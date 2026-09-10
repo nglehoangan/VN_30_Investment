@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/infrastructure/db/generated"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model MethodologyRecord {
+  methodologyId             String @id @map("methodology_id")
+  family                    String
+  semanticVersion           String @map("semantic_version")
+  approvalReference         String @map("approval_reference")
+  effectiveDate             String @map("effective_date")
+  configurationReference    String @map("configuration_reference")
+  implementationIdentity    String @map("implementation_identity")
+  governingDocumentReference String @map("governing_document_reference")
+  recordedAt                String @map("recorded_at")
+
+  @@index([family, effectiveDate])
+  @@map("methodology_record")
+}

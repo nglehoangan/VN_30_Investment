@@ -1,0 +1,64 @@
+{
+  "name": "vn30-value-investing-os",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.34.5",
+  "engines": {
+    "node": ">=22.23.2 <23"
+  },
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "start": "next start --hostname 127.0.0.1",
+    "build": "pnpm db:generate && next build",
+    "lint": "pnpm db:generate && eslint . --max-warnings=0 && node scripts/check-boundaries.mjs",
+    "typecheck": "pnpm db:generate && next typegen && tsc --noEmit",
+    "test": "pnpm db:generate && vitest run",
+    "test:unit": "vitest run tests/unit",
+    "test:smoke": "node scripts/smoke-app.mjs",
+    "test:boundaries": "pnpm db:generate && node scripts/check-boundaries.mjs && vitest run tests/architecture",
+    "db:validate": "node scripts/database.mjs validate",
+    "db:generate": "node scripts/database.mjs generate",
+    "db:migrate": "node scripts/database.mjs migrate",
+    "db:status": "node scripts/database.mjs status",
+    "test:integration": "pnpm db:generate && vitest run tests/integration",
+    "test:e2e": "pnpm build && node scripts/smoke-app.mjs --e2e",
+    "test:foundation": "pnpm test && pnpm test:e2e && node scripts/smoke-app.mjs --invalid-config"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp",
+      "unrs-resolver",
+      "better-sqlite3",
+      "@prisma/engines",
+      "prisma"
+    ],
+    "overrides": {
+      "@prisma/config>deepmerge-ts": "8.0.0",
+      "prisma>mysql2": "3.23.1"
+    }
+  },
+  "dependencies": {
+    "@prisma/adapter-better-sqlite3": "7.10.0",
+    "@prisma/client": "7.10.0",
+    "next": "16.3.4",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "zod": "4.6.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@testing-library/dom": "10.4.1",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.3",
+    "@types/node": "22.20.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.3.4",
+    "jsdom": "30.0.1",
+    "prisma": "7.10.0",
+    "typescript": "6.0.3",
+    "vitest": "5.0.0"
+  },
+  "type": "module"
+}

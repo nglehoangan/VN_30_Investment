@@ -1,0 +1,75 @@
+# Project progress
+
+## 2026-09-10 — Slice 6 complete; M6.2 ready for approval
+
+- Slice 5 approved by user. Final gates completed using a fresh source copy without Next cache or personal environment/DB files; production validation used an independent frozen dependency installation.
+- PASS: schema validate/generate, lint/typecheck, 80 unit + 36 integration + 33 boundary tests, combined 149 tests, production build, 1 Chromium E2E, invalid-config smoke and dev/production loopback smoke. Audit: 0 vulnerabilities.
+- [M6.2 final review](<06_DASHBOARD/6.2 Project Foundation/M6_2_FINAL_REVIEW.md>) contains commands, exit statuses, migration evidence, resolved failures and remaining Minor limits. README now includes the final verification sequence.
+- Critical/Major unresolved within M6.2: 0. Baseline unchanged; no default production database, staging, commit or push. Existing Initialize source commit preserved.
+- M6.2 implementation is ready for approval, not yet milestone-approved. M6.3 has not started.
+
+## 2026-09-10 — Slice 5 implemented, ready for review
+
+- Slice 4 approved by user. Added Playwright Chromium production shell smoke, UTC test configuration, actual database isolation test and integrated test:foundation gate.
+- Lint/typecheck PASS; 149 tests / 11 files PASS twice; production build, 1 Chromium E2E test and invalid-config smoke PASS. Frozen install PASS; dependency audit: 0 vulnerabilities.
+- [Slice 5 review](<06_DASHBOARD/6.2 Project Foundation/SLICE_5_REVIEW.md>) records evidence, generated-cache repair and remaining Minor limits.
+- Baseline unchanged; no production DB, seed, commit or push. Critical/Major unresolved within Slice 5: 0.
+- Slice 5 awaits approval. Slice 6 and M6.3 have not started; M6.2 remains incomplete.
+
+## 2026-09-10 — Slice 4 implemented, ready for review
+
+- Slice 3 approved by user. Slice 4 adds SQLite/Prisma migration, private DB configuration, methodology append/read persistence and real exact numeric TEXT proof.
+- Final lint/typecheck, 148 tests across 10 files, schema validate/generate, build, production/invalid-config smoke and frozen install PASS. Temporary DB migration/status/reopen/rollback checks PASS.
+- Initial Prisma transitive audit findings fixed with scoped overrides; final audit: 0 vulnerabilities.
+- [Slice 4 review](<06_DASHBOARD/6.2 Project Foundation/SLICE_4_REVIEW.md>) and [ADR 0003](adr/0003-sqlite-prisma-persistence.md) contain evidence and limitations.
+- Baseline unchanged; no production DB/approval seed, commit or push. User dev server preserved.
+- Critical/Major unresolved within Slice 4: 0. Slice 4 awaits approval; Slice 5 and M6.3 have not started. M6.2 remains incomplete.
+
+Earlier entries are historical snapshots.
+
+## 2026-09-10 — Slice 3 implemented, ready for review
+
+- Slice 2 approved by user. Slice 3 implemented: Zod boundary validation, six error categories/public mapping, validated LOG_LEVEL and safe structured logger with actual Next startup/request-error hooks.
+- Lint/typecheck, 99 tests, 31 boundary tests, build, frozen install and dev/production startup checks PASS. Invalid-config canary checks also PASS. Dependency audit: 0 vulnerabilities.
+- [Slice 3 review](<06_DASHBOARD/6.2 Project Foundation/SLICE_3_REVIEW.md>) and [ADR 0002](adr/0002-validation-errors-config-logging.md) contain evidence and limits.
+- User dev server preserved; dev checks used a temporary source-identical checkout without .env or personal data.
+- Critical/Major unresolved within Slice 3: 0. Slice 3 awaits review/approval; Slice 4 has not started. M6.2 remains incomplete.
+
+Earlier entries below are historical slice snapshots.
+
+## 2026-09-10 — Slice 2 implemented, ready for review
+
+- Slice 1 explicitly approved by user. Slice 2 implementation authorized and completed within the slice plan.
+- Added 11-module layer graph, enforced imports, Clock/IdGenerator adapters and deterministic doubles, read-only methodology contract, nominal ID/calendar/instant primitives.
+- Frozen offline install, lint, typecheck, 43 tests, dedicated boundary tests (27), build and production loopback smoke PASS.
+- [Slice 2 review](<06_DASHBOARD/6.2 Project Foundation/SLICE_2_REVIEW.md>) and [boundary ADR](adr/0001-module-boundaries.md) record scope and evidence.
+- Critical/Major unresolved within Slice 2: 0. No new dependencies, persistence, approval seed or investment engine.
+- Slice 2 awaits review/approval; Slice 3 has not started. M6.2 is not complete.
+
+## 2026-09-10 — Slice 1 implemented, ready for review
+
+- User authorized Slice 1 implementation. Local Git, pinned pnpm/Node toolchain, Next shell, strict TypeScript, ESLint, Vitest/RTL and loopback boot smoke are implemented.
+- Final frozen install, lint, clean-cache typecheck, unit test (1/1), build and dev/production boot smoke PASS; dependency audit reports 0 vulnerabilities.
+- [Slice 1 review and evidence](<06_DASHBOARD/6.2 Project Foundation/SLICE_1_REVIEW.md>) includes fixed issues, five review perspectives and limitations.
+- Critical/Major unresolved within Slice 1: 0. Minor: ESLint 9 lifecycle compatibility constraint; smoke is macOS/POSIX-specific.
+- Runtime: Node 22.23.2, pnpm 10.34.5. System Node unchanged; follow README to select the pinned version.
+- No commit/push, no baseline content changes. Slice 2 awaits Slice 1 review/approval. M6.2 is not complete; M6.3 not started.
+
+The entries below describe preparation history, not current implementation status.
+
+## 2026-09-10 — M6.2 baseline reconciliation
+
+- M1–M6.1: approved theo xác nhận user; không sửa nội dung baseline.
+- Đã đọc đầy đủ TEST_STRATEGY_v1.0.md và IMPLEMENTATION_PLAN_v1.0.md trong `docs/06_DASHBOARD/6.1 Requirements & Architecture/`; cả hai Approved Baseline v1.0.
+- [Audit và issue register](<06_DASHBOARD/6.2 Project Foundation/REPOSITORY_AUDIT.md>): CR-01/CR-02 CLOSED. Hiện 0 Critical/Major unresolved trong phạm vi preparation; 2 Minor về metadata/logical filenames còn ghi nhận.
+- [Implementation slice plan](<06_DASHBOARD/6.2 Project Foundation/IMPLEMENTATION_SLICE_PLAN.md>): đã đối chiếu baseline, bổ sung mandatory clock/ID, methodology registry skeleton, actual numeric persistence proof và Playwright setup. Dùng pnpm theo baseline §12.
+- [Codex prompt Slice 1](<06_DASHBOARD/6.2 Project Foundation/SLICE_1_CODEX_PROMPT.md>): ready for handoff, đường dẫn theo cấu trúc docs mới; chưa execute.
+- Workspace vẫn chưa Git/app/toolchain/database. Không cài dependency hoặc tạo source trong lần cập nhật này.
+- Lint/typecheck/test/build/DB/E2E: NOT RUN — chưa implementation. Git diff check: NOT AVAILABLE — chưa Git repository.
+- Documentation validation: kiểm tra links/path, whitespace và hashes baseline trước/sau lần chỉnh tài liệu này.
+- Next: thực hiện prompt Slice 1 riêng; review/approval trước Slice 2. Không cần resolve lại hai artifact đã có.
+- M6.2 chưa hoàn thành/chưa approved. M6.3 chưa bắt đầu.
+
+## Lịch sử
+
+2026-09-09: hoàn thành audit + plan + prompt ban đầu; hai artifact thiếu được ghi Major. Ngày 2026-09-10 user bổ sung và di chuyển tài liệu vào cấu trúc docs hiện tại; các issue thiếu artifact đã được đóng sau đối chiếu. Audit giữ phần lịch sử để truy xuất quyết định cũ.
