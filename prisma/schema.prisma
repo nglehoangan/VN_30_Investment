@@ -8,6 +8,7 @@ datasource db {
 }
 
 model MethodologyRecord {
+  analyticalArtifacts AnalyticalArtifact[]
   transactions LedgerTransaction[]
   methodologyId             String @id @map("methodology_id")
   family                    String
@@ -105,4 +106,17 @@ model PortfolioProjection {
   calculatedAt String @map("calculated_at")
   payload String
   @@map("portfolio_projection")
+}
+
+model AnalyticalArtifact {
+  id String @id
+  kind String
+  methodologyId String @map("methodology_id")
+  methodology MethodologyRecord @relation(fields: [methodologyId], references: [methodologyId], onDelete: Restrict, onUpdate: Restrict)
+  asOf String @map("as_of")
+  calculatedAt String @map("calculated_at")
+  body String
+  bodyHash String @map("body_hash")
+  @@index([asOf])
+  @@map("analytical_artifact")
 }

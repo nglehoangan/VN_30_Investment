@@ -1,0 +1,28 @@
+import { RUBRICS, IMPLEMENTATION, VERSION, type Sector } from "@/domain/scoring/methodology";
+import { calculateScorecard, type ScoreInput, type Assessment } from "@/domain/scoring/scorecard";
+import { methodologyId } from "@/shared/ids";
+import { dateOnly, instant } from "@/shared/time";
+import { securityId } from "@/domain/portfolio/values";
+import type { Evidence } from "@/domain/scoring/evidence";
+export const ASOF="2025-06-30T09:00:00.000Z";
+export const IDS=Array.from({length:30},(_,i)=>`SYNTHETIC-${String(i).padStart(2,"0")}`);
+export const BASE_POINTS=[6,5,5,4,5,3,4,4,4,4,3,3,2,6,6,4,4,3,2,2,1,1,1];
+export function fixture(index=0,sector:Sector="INDUSTRIAL"):ScoreInput {
+  const sid=IDS[index];
+  const evidence:Evidence[]=RUBRICS.flatMap(r=>r.topics.map(topic=>({id:`${r.id}-${topic}`,version:"fixture-v1",securityId:sid,observation:`${r.id}-${topic}`,value:`Synthetic disclosed evidence for ${topic}; no real company data`,unit:"TEXT" as const,classification:"FACT" as const,source:"SYNTHETIC deterministic fixture, not market data",periodStart:"2020-01-01",periodEnd:"2024-12-31",asOf:ASOF,publishedAt:ASOF,receivedAt:ASOF,validThrough:ASOF,critical:true,quality:"VALID" as const,family:`${r.id}-${topic}`})));
+  const assessments:Assessment[]=RUBRICS.map((r,i)=>({subcategory:r.id,assessment:r.bands.find(b=>BASE_POINTS[i]>=b.min&&BASE_POINTS[i]<=b.max)!.label,selectedPoints:BASE_POINTS[i],analyst:"Synthetic human analyst fixture",source:"HUMAN",assessedAt:ASOF,methodologyVersion:VERSION,rationale:`Synthetic ${r.name} assessment with selected points explained`,strongerEvidence:true,maximumPrerequisitesMet:true,exceptionalJustification:"Synthetic prerequisite review supports this award",disconfirmingEvidence:[`${r.id}-${r.topics[0]}`],evidence:r.topics.map(topic=>({topic,refs:[`${r.id}-${topic}`],rationale:`Synthetic ${topic} evidence, sector-specific interpretation`})),sector,sectorRationale:`Synthetic ${sector} equivalent economics, not identical metrics`,economicChannel:r.id}));
+  return {id:`score-${sid}`,securityId:sid,companyName:"SYNTHETIC TEST ONLY",asOf:ASOF,knownAt:ASOF,calculatedAt:ASOF,priorScorecardId:null,revisionReason:null,
+    methodology:{methodologyId:methodologyId("synthetic-m64-method"),family:"SCORING",semanticVersion:VERSION,approvalReference:"SYNTHETIC test approval only",effectiveDate:dateOnly("2020-01-01"),configurationReference:"m64-clarification-1",implementationIdentity:IMPLEMENTATION,governingDocumentReference:"M3 + METHODOLOGY_CLARIFICATION revision 1",recordedAt:instant("2020-01-01T00:00:00.000Z")},
+    reference:{receivedAt:ASOF,taxonomy:"SYNTHETIC",data:{version:"reference-v1",intervals:[{id:"coverage",kind:"COVERAGE",securityId:null,from:dateOnly("2020-01-01"),to:null,value:"COMPLETE_CONFIRMED",taxonomy:null,sourceReference:"Synthetic complete universe"},...IDS.flatMap((id,i)=>[{id:`member-${i}`,kind:"MEMBERSHIP" as const,securityId:securityId(id),from:dateOnly("2020-01-01"),to:null,value:"VN30",taxonomy:null,sourceReference:"Synthetic membership"},{id:`sector-${i}`,kind:"SECTOR" as const,securityId:securityId(id),from:dateOnly("2020-01-01"),to:null,value:sector,taxonomy:"SYNTHETIC",sourceReference:"Synthetic sector"},{id:`ticker-${i}`,kind:"IDENTIFIER" as const,securityId:securityId(id),from:dateOnly("2020-01-01"),to:null,value:`S${i}`,taxonomy:null,sourceReference:"Synthetic identifier"}])] }},
+    normalization:{sector,cycle:"NON_CYCLICAL",peakCycleRisk:false,method:"m64-clarification-1",peerIds:[],peerBasis:"ABSOLUTE_HISTORY",rationale:"Synthetic absolute and own-history evidence",actionComparable:true,actionEvidenceRefs:[]},
+    evidence,metrics:[],assessments,stage0:"PASS",hardVeto:false,confidence:{level:"HIGH",analyst:"Synthetic human",rationale:"All required synthetic inputs present",dimensions:["Strong","Strong","Strong","Strong","Strong"]},residualRisk:"MODERATE",expectedReturn:{value:"0.16",modelConfidence:"HIGH",assumptionBasis:"comparable-synthetic-model",aggressiveExpansion:false,downsideDominates:false,nearLowerBoundary:false,hurdle:{required:"0.15",analyst:"Synthetic human",rationale:"Normal constitutional hurdle",evidenceRefs:["VAL-RET-scenarios"],exception:null}},criticalMissing:[],thesis:{core:"Synthetic thesis",compounding:"Synthetic durable compounding",valuation:"Synthetic normalized value",downside:"Synthetic downside",invalidation:"Synthetic invalidation event"},doubleCountReview:{analyst:"Synthetic human",rationale:"Distinct economic channels",passed:true}};
+}
+export function award(input:ScoreInput,id:string,points:number):ScoreInput {
+  const r=RUBRICS.find(r=>r.id===id)!;
+  return {...input,assessments:input.assessments.map(a=>a.subcategory===id?{...a,selectedPoints:points,assessment:r.bands.find(b=>points>=b.min&&points<=b.max)!.label}:a)};
+}
+export function rankingFixture(scores:number[]=[84,82,80]) {
+  const cards=IDS.map((_,i)=>{let f=fixture(i);if(i>=scores.length)f={...f,confidence:{...f.confidence,level:"LOW"}};
+    else {let delta=scores[i]-82;for(const r of RUBRICS.filter(r=>!["VAL-RET","RG-RISK"].includes(r.id))){const old=f.assessments.find(a=>a.subcategory===r.id)!.selectedPoints;const change=Math.max(-old,Math.min(r.max-old,delta));f=award(f,r.id,old+change);delta-=change;}if(delta)throw new Error("Fixture score outside supported range");}return calculateScorecard(f);});
+  return {id:"synthetic-rank",asOf:ASOF,calculatedAt:ASOF,cards,universe:{referenceVersion:"reference-v1",securityIds:IDS,complete:true},portfolio:null};
+}
