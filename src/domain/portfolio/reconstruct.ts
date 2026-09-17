@@ -14,6 +14,19 @@ type Position = { quantity: Decimal; cost: Decimal; realized: Decimal };
 type Effect = { cost: Decimal; realized: Decimal; flow: Decimal; net: Decimal; gross: Decimal; tax: Decimal; unknown: number; adjustments: Decimal; expenses: Decimal };
 const emptyEffect = (): Effect => ({ cost: Decimal.zero, realized: Decimal.zero, flow: Decimal.zero, net: Decimal.zero, gross: Decimal.zero, tax: Decimal.zero, unknown: 0, adjustments: Decimal.zero, expenses: Decimal.zero });
 const compare = (a: string, b: string) => a < b ? -1 : a > b ? 1 : 0;
+type Obligation = { transactionId: string; type: "PAYABLE" | "RECEIVABLE"; amount: Decimal };
+/** Pure obligation transition; returns a replacement entry without mutating the input map. */
+function applyObligationLeg(l: TransactionLeg, f: Transaction["facts"], obligations: ReadonlyMap<string, Obligation>, reversed: ReadonlySet<string>) {
+  const key = l.settlementReference ?? l.id, amount = decimal(l.amount!);
+  requireRule(l.type === "PAYABLE" || l.type === "RECEIVABLE", "INVALID_OBLIGATION");
+  if (l.settlementReference) {
+    const old = obligations.get(key); requireRule(old && old.type === l.type, "UNMATCHED_OBLIGATION");
+    if (f.type === "TRADE_SETTLEMENT") requireRule(old.transactionId === f.settlesId && !reversed.has(old.transactionId), "SETTLEMENT_ORIGIN_MISMATCH");
+    return { key, value: { ...old, amount: old.amount.add(amount) } };
+  }
+  requireRule(amount.positive && !obligations.has(key), "INVALID_OBLIGATION");
+  return { key, value: { type: l.type, transactionId: f.id, amount } };
+}
 /** Pure leg-level replay; watermark never participates in economic ordering. */
 export function reconstructPortfolio(portfolioId: PortfolioId, history: readonly Transaction[], asOf: Instant, ledgerWatermark: LedgerWatermark, inceptionAt?: Instant): PortfolioState {
   instant(asOf);
@@ -23,7 +36,7 @@ export function reconstructPortfolio(portfolioId: PortfolioId, history: readonly
   const byId = new Map(transactions.map(t => [t.facts.id, t]));
   const rows = transactions.flatMap(t => t.legs.filter(l => l.effectiveAt <= asOf).map(l => ({ t, l })))
     .sort((a, b) => compare(a.l.effectiveAt, b.l.effectiveAt) || compare(a.t.facts.eventAt, b.t.facts.eventAt) || compare(a.t.facts.id, b.t.facts.id) || a.l.sequence - b.l.sequence);
-  const positions = new Map<string, Position>(), obligations = new Map<string, { transactionId: string; type: "PAYABLE" | "RECEIVABLE"; amount: Decimal }>();
+  const positions = new Map<string, Position>(), obligations = new Map<string, Obligation>();
   const activeActions = new Map<string, string>();
   const effects = new Map<string, Effect>(), visited = new Set<string>(), reversed = new Set<string>();
   let cash = Decimal.zero, totals = emptyEffect(), imported = false;
@@ -111,12 +124,8 @@ export function reconstructPortfolio(portfolioId: PortfolioId, history: readonly
       // Explicit opening/action basis, including its reversal, changes only through this leg.
       const p = position(l.securityId!); p.cost = p.cost.add(decimal(l.amount!));
     } else if (l.type === "PAYABLE" || l.type === "RECEIVABLE") {
-      const key = l.settlementReference ?? l.id, amount = decimal(l.amount!);
-      if (l.settlementReference) {
-        const o = obligations.get(key); requireRule(o && o.type === l.type, "UNMATCHED_OBLIGATION");
-        if (f.type === "TRADE_SETTLEMENT") requireRule(o.transactionId === f.settlesId && !reversed.has(o.transactionId), "SETTLEMENT_ORIGIN_MISMATCH");
-        o.amount = o.amount.add(amount);
-      } else { requireRule(amount.positive && !obligations.has(key), "INVALID_OBLIGATION"); obligations.set(key, { type: l.type, transactionId: f.id, amount }); }
+      const transition = applyObligationLeg(l, f, obligations, reversed);
+      obligations.set(transition.key, transition.value);
     } else cash = cash.add(decimal(l.amount!));
     const next = rows[i + 1];
     // Complete same-effective-time correction groups are atomic; ordinary events validate individually.

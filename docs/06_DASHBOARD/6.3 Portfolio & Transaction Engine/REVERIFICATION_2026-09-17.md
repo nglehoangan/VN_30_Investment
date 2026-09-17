@@ -1,5 +1,7 @@
 # M6.3 — Reverification after completion
 
+> **Independent-review update:** Current remediation status and evidence are in [R2 remediation report](R2_REMEDIATION_REPORT.md). This report records the earlier reviewed implementation; retain its results as historical evidence.
+
 **Kết luận: M6.3 hoàn tất về triển khai và verification trong phạm vi accounting được hỗ trợ. Không phát hiện Critical/Major mới trong lần kiểm tra lại này.** Không tự ghi nhận milestone approval.
 
 Đã đọc lại đường post/replay, effective reference, inception baseline, current valuation, reconciliation, persistence constraints và regression tests; đối chiếu disposition của đủ 46 mục yêu cầu và 30 DoD trong [completion report](COMPLETION_REPORT_2026-09-17.md). Source/config/schema/test hiện tại khớp SHA-256 của 79 files và checkout validation; không có mismatch.

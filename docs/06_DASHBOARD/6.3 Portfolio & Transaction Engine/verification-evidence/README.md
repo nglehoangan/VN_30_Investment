@@ -1,5 +1,7 @@
 # M6.3 verification evidence — 2026-09-17
 
+Current independent-review remediation: [R2 report](../R2_REMEDIATION_REPORT.md), [results and named regressions](r2-remediation-results.json), [source hashes](r2-source-sha256.json). R2 full suite: 285 pass; earlier closure counts below describe the prior commit.
+
 Current status: all four findings closed. See [completion report](../COMPLETION_REPORT_2026-09-17.md), [closure results](closure-results.json) and [source hashes](closure-source-sha256.json).
 
 The maintained regression suite is `tests/integration/portfolio-regressions.test.ts`. It runs with `pnpm test:portfolio` and `pnpm test`. Final results: 113 M6.3 tests and 262 total tests pass.

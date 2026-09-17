@@ -1,0 +1,202 @@
+{
+  "reviewedCommit": "6f4af0c5122eaf6b642ec6d6e6ce72a93780b335",
+  "date": "2026-09-17",
+  "runtime": "Node22.23.2 / pnpm10.34.5; unchanged locked dependencies",
+  "sourceFilesCompared": 82,
+  "mismatches": 0,
+  "validationCheckout": "/private/tmp/vn30-m63-validation",
+  "isolatedDatabase": "/private/tmp/vn30-m63-r2-bh4s3brl/validation.sqlite",
+  "commands": [
+    {
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "seconds": 3.67,
+      "log": "/private/tmp/m63-r2-check-0.log"
+    },
+    {
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "seconds": 2.9,
+      "log": "/private/tmp/m63-r2-check-1.log"
+    },
+    {
+      "command": "pnpm test --reporter=default --reporter=json --outputFile=/private/tmp/m63-r2-tests.json",
+      "exitCode": 0,
+      "seconds": 24.69,
+      "log": "/private/tmp/m63-r2-check-2.log"
+    },
+    {
+      "command": "pnpm test:portfolio",
+      "exitCode": 0,
+      "seconds": 20.55,
+      "log": "/private/tmp/m63-r2-check-3.log"
+    },
+    {
+      "command": "pnpm test:integration",
+      "exitCode": 0,
+      "seconds": 22.93,
+      "log": "/private/tmp/m63-r2-check-4.log"
+    },
+    {
+      "command": "pnpm prisma validate",
+      "exitCode": 0,
+      "seconds": 0.71,
+      "log": "/private/tmp/m63-r2-check-5.log"
+    },
+    {
+      "command": "pnpm db:migrate",
+      "exitCode": 0,
+      "seconds": 0.76,
+      "log": "/private/tmp/m63-r2-check-6.log"
+    },
+    {
+      "command": "pnpm prisma migrate status",
+      "exitCode": 0,
+      "seconds": 0.67,
+      "log": "/private/tmp/m63-r2-check-7.log"
+    },
+    {
+      "command": "pnpm build",
+      "exitCode": 0,
+      "seconds": 4.65,
+      "log": "/private/tmp/m63-r2-check-8.log"
+    },
+    {
+      "command": "pnpm test:e2e",
+      "exitCode": 0,
+      "log": "/private/tmp/m63-r2-e2e.log",
+      "result": "HTTP 200; 1 Chromium test passed; approved owned loopback listener"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "result": "No output"
+    }
+  ],
+  "fullSuite": {
+    "total": 285,
+    "passed": 285,
+    "failed": 0,
+    "files": 18
+  },
+  "portfolioSuite": {
+    "tests": 136,
+    "files": 7
+  },
+  "integrationSuite": {
+    "tests": 97,
+    "files": 8
+  },
+  "regressions": [
+    {
+      "file": "portfolio-review-remediation.test.ts",
+      "tests": [
+        {
+          "name": "R2-C01 future oversell rejects before commit; 100 current shares and watermark remain unchanged",
+          "status": "passed"
+        },
+        {
+          "name": "R2-C01 future BUY then SELL and both settlements are accepted at valid economic transitions",
+          "status": "passed"
+        },
+        {
+          "name": "R2-C01 future corporate-action duplicate EFFECTIVE stage is rejected before commit",
+          "status": "passed"
+        },
+        {
+          "name": "R2-C01 future unfunded payable cannot hide beyond now",
+          "status": "passed"
+        },
+        {
+          "name": "R2-C01 new earlier SELL cannot consume shares promised to an existing later future SELL",
+          "status": "passed"
+        },
+        {
+          "name": "R2-C01 validates intermediate boundaries even when final future quantity would recover",
+          "status": "passed"
+        },
+        {
+          "name": "R2-C01 future excessive settlement is rejected atomically",
+          "status": "passed"
+        },
+        {
+          "name": "R2-C01 future settlement before originating obligation is rejected",
+          "status": "passed"
+        },
+        {
+          "name": "R2-C01 future reversal cannot invalidate an already committed later sale",
+          "status": "passed"
+        },
+        {
+          "name": "R2-C01 future settled-trade correction preserves atomicity and reversal lineage",
+          "status": "passed"
+        },
+        {
+          "name": "R2-C01 future speculative event is still rejected, separate from confirmed future effect",
+          "status": "passed"
+        },
+        {
+          "name": "R2-M01 projection infrastructure failure preserves ledger without claiming accounting corruption",
+          "status": "passed"
+        },
+        {
+          "name": "R2-M01 concurrent watermark produces STALE even if rebuild throws ConflictError=false",
+          "status": "passed"
+        },
+        {
+          "name": "R2-M01 concurrent watermark produces STALE even if rebuild throws ConflictError=true",
+          "status": "passed"
+        },
+        {
+          "name": "R2-M01 unexpected post-commit reconstruction failure explicitly blocks trust without compensation",
+          "status": "passed"
+        },
+        {
+          "name": "R2-M01 typed integrity error from projection is not an ordinary rebuild failure",
+          "status": "passed"
+        },
+        {
+          "name": "R2-M01 post-commit integrity read failure is explicit and contains only safe diagnostics",
+          "status": "passed"
+        },
+        {
+          "name": "R2-m03 persisted malformed-json rejects with safe DataIntegrityError",
+          "status": "passed"
+        },
+        {
+          "name": "R2-m03 persisted column-mismatch rejects with safe DataIntegrityError",
+          "status": "passed"
+        },
+        {
+          "name": "R2-m03 persisted leg-mismatch rejects with safe DataIntegrityError",
+          "status": "passed"
+        },
+        {
+          "name": "R2-m03 persisted unknown-method rejects with safe DataIntegrityError",
+          "status": "passed"
+        },
+        {
+          "name": "R2-m03 persisted action-terms rejects with safe DataIntegrityError",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "file": "portfolio-read-models.test.ts",
+      "tests": [
+        {
+          "name": "R2-M02 NAV bridge has explicit non-return semantics and a compatible deprecated alias",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "findings": {
+    "M63-R2-C01": "CLOSED",
+    "M63-R2-M01": "CLOSED",
+    "M63-R2-M02": "CLOSED",
+    "M63-R2-m01": "CLOSED",
+    "M63-R2-m02": "CLOSED",
+    "M63-R2-m03": "CLOSED"
+  }
+}

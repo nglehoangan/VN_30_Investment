@@ -1,7 +1,9 @@
+import { prepareCandidate } from "./candidate";
+import { completePost } from "./post-commit";
 import { deriveSupportedInception, type InceptionInputs } from "@/domain/portfolio/inception";
 import type { Clock } from "@/ports/runtime";
 import type { PortfolioLedger, PortfolioProjection } from "@/ports/portfolio";
-import { buildTransaction, type TransactionInput } from "@/domain/portfolio/transaction";
+import type { TransactionInput } from "@/domain/portfolio/transaction";
 import { reconstructPortfolio } from "@/domain/portfolio/reconstruct";
 import { valuePortfolio, type ValuationInputs } from "@/domain/portfolio/valuation";
 import { reconcilePortfolio, type ReconciliationEvidence } from "@/domain/portfolio/reconciliation";
@@ -17,25 +19,11 @@ export class PortfolioEngine {
     const id = drafts[0].portfolioId, now = this.clock.now();
     requireRule(drafts.every(f => f.portfolioId === id), "MIXED_PORTFOLIO_BATCH");
     if (drafts.length > 1) requireRule(drafts[0].correctionGroupId && drafts.every(f => f.correctionGroupId === drafts[0].correctionGroupId && f.effectiveAt === drafts[0].effectiveAt), "ATOMIC_CORRECTION_GROUP_REQUIRED");
-    const committed = await this.ledger.commit(id, expected, history => {
-      const complete = [...history], additions = [];
-      for (const f of drafts) {
-        requireRule(!complete.some(t => t.facts.id === f.id || t.facts.idempotencyKey === f.idempotencyKey || (t.facts.source.source === f.source.source && t.facts.source.reference === f.source.reference)), "DUPLICATE_SOURCE_REFERENCE");
-        const transaction = buildTransaction(f, now, complete); complete.push(transaction); additions.push(transaction);
-      }
-      reconstructPortfolio(id, complete, now, watermark((BigInt(expected) + 1n).toString()));
-      return additions;
-    });
-    try {
-      const state = reconstructPortfolio(id, committed.transactions, now, committed.watermark, committed.inceptionAt);
-      await this.projection?.rebuild(state, now);
-      if ((await this.ledger.read(id)).watermark !== committed.watermark) return { status: "POSTED" as const, ledgerWatermark: committed.watermark, projectionStatus: "STALE" as const, state: null };
-      return { status: "POSTED" as const, ledgerWatermark: committed.watermark, projectionStatus: "VALID" as const, state };
-    } catch {
-      // Authoritative commit already succeeded. No compensating event or retry of the economic post.
-      return { status: "POSTED" as const, ledgerWatermark: committed.watermark, projectionStatus: "BLOCKED" as const, state: null };
-    }
+    const committed = await this.ledger.commit(id, expected, history =>
+      prepareCandidate(id, history, drafts, now, watermark((BigInt(expected) + 1n).toString())));
+    return completePost(id, committed, now, this.ledger, this.projection);
   }
+
   async reverse(input: TransactionInput & { readonly type: "REVERSAL" }, expected: LedgerWatermark) {
     requireRule(input.type === "REVERSAL", "REVERSAL_COMMAND_REQUIRED");
     return this.post([input], expected);

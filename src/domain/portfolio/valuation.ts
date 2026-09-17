@@ -2,6 +2,12 @@ import { instant, type Instant } from "@/shared/time";
 import { Decimal, decimal, price, requireRule } from "./values";
 import type { PortfolioState } from "./reconstruct";
 import { deepFreeze } from "./transaction";
+/** Absolute VND accounting/valuation NAV bridge, not an investment return measure.
+ * Not TWR, CAGR, XIRR, annualized or benchmark-relative return, and not evidence
+ * of achieving the 15–20% annual investment objective.
+ */
+export const NAV_BRIDGE_SEMANTICS = Object.freeze({ kind: "ACCOUNTING_VALUATION_NAV_BRIDGE", unit: "VND",
+  scope: "SINCE_SUPPORTED_INCEPTION", isInvestmentReturn: false, provesAnnualInvestmentObjective: false } as const);
 export interface PriceObservation {
   readonly id: string; readonly securityId: string; readonly price: string; readonly currency: "VND";
   readonly observedAt: Instant; readonly receivedAt: Instant; readonly validThrough: Instant; readonly sourceReference: string;
@@ -34,12 +40,16 @@ export function valuePortfolio(state: PortfolioState, inputs: ValuationInputs, i
   const marketValue = valid ? positions.reduce((a, p) => a.add(decimal(p.marketValue!)), Decimal.zero) : null;
   const nav = marketValue?.add(decimal(state.cash)).add(decimal(state.receivables)).sub(decimal(state.payables)) ?? null;
   const inceptionNav = state.supportedInception === "ZERO" ? "0" : inception?.status === "VALID" ? inception.nav : null;
+  const economicGain = nav !== null && inceptionNav !== null ? nav.sub(decimal(inceptionNav)).sub(decimal(state.netContributions)).toString() : null;
   return deepFreeze({ portfolioId: state.portfolioId, asOf: state.asOf, inputVersion: inputs.version, methodologyId: inputs.methodologyId,
     status: valid ? "VALID" as const : "BLOCKED" as const, nav: nav?.toString() ?? null, marketValue: marketValue?.toString() ?? null,
     unrealizedPnl: valid ? positions.reduce((a, p) => a.add(decimal(p.unrealizedPnl!)), Decimal.zero).toString() : null,
     supportedInceptionNav: inceptionNav,
     economicPnlStatus: nav !== null && inceptionNav !== null ? "VALID" as const : "BLOCKED" as const,
-    economicPnl: nav !== null && inceptionNav !== null ? nav.sub(decimal(inceptionNav)).sub(decimal(state.netContributions)).toString() : null,
+    economicGainSinceSupportedInception: economicGain,
+    economicGainSemantics: NAV_BRIDGE_SEMANTICS,
+    /** @deprecated Compatibility alias for economicGainSinceSupportedInception; NOT investment return. */
+    economicPnl: economicGain,
     cashWeight: nav?.positive ? decimal(state.cash).div(nav).toString() : null,
     netObligationWeight: nav?.positive ? decimal(state.receivables).sub(decimal(state.payables)).div(nav).toString() : null,
     positions: positions.map(p => ({ ...p, weight: nav?.positive ? decimal(p.marketValue!).div(nav).toString() : null })) });

@@ -36,7 +36,9 @@ export function buildTransaction(input: TransactionInput, now: Instant, history:
   sourceReference(f.source.source, f.source.reference);
   requireRule(transactionTypes.includes(f.type), "UNKNOWN_TRANSACTION_TYPE");
   requireRule(f.currency === "VND" && f.idempotencyKey?.length > 0 && f.idempotencyKey.length <= 128, "CURRENCY_OR_IDEMPOTENCY_INVALID");
-  requireRule(f.effectiveAt <= now && f.eventAt <= now, "FUTURE_SPECULATIVE_POSTING");
+  // An evidenced event must already have occurred. Its confirmed accounting effect may be later.
+  // Candidate replay validates every scheduled transition before this can become authoritative.
+  requireRule(f.eventAt <= now, "FUTURE_SPECULATIVE_POSTING");
   if (f.securityId) securityId(f.securityId);
   if (f.tradeDate) dateOnly(f.tradeDate);
   if (f.settlementDate) dateOnly(f.settlementDate);

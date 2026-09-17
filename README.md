@@ -102,7 +102,7 @@ Vitest runs in UTC, and browser context uses UTC/vi-VN. Existing fixed clock and
 
 ## Final M6.2 verification
 
-The six foundation slices are implemented; M6.2 was explicitly approved by the user on 2026-09-10. See [final review and evidence](<docs/06_DASHBOARD/6.2 Project Foundation/M6_2_FINAL_REVIEW.md>). M6.3 implementation and verification are complete within its supported accounting scope; see [completion report](<docs/06_DASHBOARD/6.3 Portfolio & Transaction Engine/COMPLETION_REPORT_2026-09-17.md>). Unsupported policy cases remain explicitly blocked by CR; no M6.4+ functionality is implemented.
+The six foundation slices are implemented; M6.2 was explicitly approved by the user on 2026-09-10. See [final review and evidence](<docs/06_DASHBOARD/6.2 Project Foundation/M6_2_FINAL_REVIEW.md>). M6.3 implementation and verification are complete within its supported accounting scope; see [independent-review remediation report](<docs/06_DASHBOARD/6.3 Portfolio & Transaction Engine/R2_REMEDIATION_REPORT.md>). Unsupported policy cases remain explicitly blocked by CR; no M6.4+ functionality is implemented.
 
 For a full local verification after selecting the pinned runtime and installing dependencies/browser:
 

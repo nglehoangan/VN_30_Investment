@@ -55,3 +55,14 @@ describe("M6.3 effective reference data", () => {
   });
   it("overlapping identifier history blocks", () => { const r = refs(); expect(() => referenceAt({ ...r, intervals: [...r.intervals, { ...r.intervals[0], id: "overlap" }] }, A, dateOnly("2026-01-01"), "taxonomy-v1")).toThrow(); });
 });
+
+it("R2-M02 NAV bridge has explicit non-return semantics and a compatible deprecated alias", () => {
+  const result = valuePortfolio(state(), prices());
+  expect(result.economicGainSinceSupportedInception).toBe("920");
+  expect(result.economicPnl).toBe(result.economicGainSinceSupportedInception);
+  expect(result.economicGainSemantics).toEqual({ kind: "ACCOUNTING_VALUATION_NAV_BRIDGE", unit: "VND", scope: "SINCE_SUPPORTED_INCEPTION", isInvestmentReturn: false, provesAnnualInvestmentObjective: false });
+  // Literal types protect consumers from treating this field as a return metric.
+  const isReturn: false = result.economicGainSemantics.isInvestmentReturn;
+  expect(isReturn).toBe(false);
+  expect(valuePortfolio(state(), { ...prices(), observations: [] })).toMatchObject({ economicGainSinceSupportedInception: null, economicPnl: null, economicPnlStatus: "BLOCKED" });
+});

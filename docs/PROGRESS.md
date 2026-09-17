@@ -1,5 +1,13 @@
 # Project progress
 
+## 2026-09-17 — M6.3 independent review remediation
+
+- M63-R2-C01/M01/M02/m01/m02/m03 closed in implementation: future transition replay, explicit post-commit trust failures, non-return NAV bridge semantics, small application/replay helpers and persisted-corruption regressions.
+- Sequential validation: 285 full tests, 136 M6.3 tests, 97 integration tests; lint/typecheck/schema/migration/build/e2e pass. Same-source validation manifest covers 82 files.
+- [Complete remediation report for independent review](<06_DASHBOARD/6.3 Portfolio & Transaction Engine/R2_REMEDIATION_REPORT.md>). This records implementation closure, not independent acceptance.
+- M1–M5 policies, existing CR gates and real user databases unchanged. No M6.4+, commit or push.
+
+
 ## 2026-09-17 — M6.3 implementation and verification completed
 
 - Closed C01 duplicate corporate-action replay, M01 Vietnam reference date, M02 pre-inception history and M03 imported-inception NAV baseline.

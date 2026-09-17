@@ -75,3 +75,32 @@ Vietnam business-date conversion is centralized in shared/time.ts and used for t
 For IMPORTED portfolios, deriveSupportedInception replays only evidenced OPENING_BALANCE transactions at the declared inception. Same-instant deposits or trades are excluded from imported capital. Subsequent opening reversals remain post-inception effects, not edits to the original baseline. It values opening assets using separate normalized inception prices and effective reference inputs. The derived baseline carries ledger watermark, inception instant, calculation time, opening transaction/method IDs, price/reference versions, valuation methodology, selected price evidence, resolved references and reference interval evidence. No NAV is stored as editable truth and no new schema is required.
 
 Snapshot economicPnl = current NAV − supported inception NAV − net external contributions. For zero-start history the inception baseline is zero. Imported economicPnl remains null and the snapshot BLOCKED when inception inputs are absent, stale, missing, conflicting or reference coverage is insufficient; current NAV may still be available separately. Imported cost basis supports future MWAC but is never substituted for market NAV. Metrics are since supportedInceptionAt, not invented lifetime history. isSnapshotCurrent also requires matching inception price/reference versions for imported snapshots.
+
+## Independent review remediation — M63-R2
+
+Reviewed commit: `6f4af0c5122eaf6b642ec6d6e6ce72a93780b335`.
+
+M2 TRANSACTIONS §4.3 excludes speculative announced portfolio changes from authoritative legs. The reviewed builder conservatively rejected *all* future effective timestamps; thus that commit rejected a future oversell by date rather than proving its economic validity. This remediation preserves `eventAt <= now` and source-evidence requirements for an already confirmed event, while allowing its accounting `effectiveAt` to be later, as requested by the review. It does not schedule speculative events or synthesize settlement calendars. No approved baseline was changed.
+
+`prepareCandidate` runs inside the repository's claimed-revision transaction. It builds the complete candidate and replays to `max(now, every candidate-history leg.effectiveAt)`. This is one full ordered replay, not merely a final-state check: the existing replay validates after each complete economic event or same-effective-time correction group. It therefore checks every new effective transition **and every existing later affected transition**, including intermediate invalid balances which a later event might repair. Failures roll back rows and revision. The current post result still reconstructs at now; accepted future legs do not appear early in current balances. Snapshot reads always reconstruct at their explicit asOf; a watermark is source-version metadata, not proof that an asOf-pinned cache advances with the clock.
+
+`completePost` separates the already-committed outcome from derived-state work:
+
+| Condition | Projection | Portfolio accounting trust | Reason |
+|---|---|---|---|
+| Successful reconstruction/rebuild/currentness check | VALID | VALID | null |
+| Ordinary failure at the projection infrastructure boundary | BLOCKED | VALID | PROJECTION_REBUILD_REQUIRED |
+| Newer ledger watermark, including a rebuild ConflictError | STALE | STALE | LEDGER_ADVANCED |
+| Reconstruction failure, typed integrity/domain failure from projection, or failed post-commit read | BLOCKED | BLOCKED | POST_COMMIT_INTEGRITY_FAILURE |
+
+All failures block actionability and retain `status=POSTED` with the committed watermark. There is no rollback-after-commit, compensation or blind retry. Structured diagnostics carry only an allowlisted phase and typed error code alongside the committed watermark. The integrity response uses the existing DataIntegrityError/public-error serializer. No raw error message, stack, cause, SQL, filesystem path or credentials enter the returned diagnostics. VALID accounting trust is not a portfolio recommendation: full snapshot valuation/reference/reconciliation checks remain required.
+
+`PortfolioEngine` retains application orchestration and snapshot/currentness operations; candidate validation and post-commit classification are two small application helpers. The replay keeps its single ordered loop and MWAC behavior. Only obligation creation/clearing was extracted into a pure `applyObligationLeg` returning a replacement entry, making settlement-origin checks easier to audit without a rewrite.
+
+`economicGainSinceSupportedInception` is the semantically preferred name for the existing absolute VND NAV bridge:
+
+`NAV − supportedInceptionNAV − netContributions`.
+
+It is an **accounting/valuation NAV bridge**, not TWR, CAGR, XIRR, annualized return, benchmark-relative return, or evidence that the 15–20% annual investment objective has been achieved. It can reflect documented cash adjustments and other accounting/valuation changes. The deprecated `economicPnl` alias and `economicPnlStatus` remain compatible; `economicGainSemantics` pins kind/unit/scope and literal false flags for investment-return and objective claims. No performance analytics (M6.8) or M6.4+ features were added.
+
+Tampering regressions deliberately disable guards only inside disposable SQLite fixtures to emulate damaged persistence. The production constraints are unchanged. Malformed facts JSON, normalized-column mismatch, persisted-leg mismatch, unknown accounting method and corporate-action terms mismatch must all fail with DataIntegrityError through the normal repository/application read path. These tests also assert the safe public serialization.

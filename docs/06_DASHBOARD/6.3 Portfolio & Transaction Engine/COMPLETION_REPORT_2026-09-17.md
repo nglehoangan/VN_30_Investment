@@ -1,5 +1,7 @@
 # M6.3 — Completion report, 2026-09-17
 
+> **Independent-review update:** Current remediation status and evidence are in [R2 remediation report](R2_REMEDIATION_REPORT.md). This report records the earlier reviewed implementation; retain its results as historical evidence.
+
 **Triển khai và verification M6.3 đã hoàn tất trong phạm vi accounting được hỗ trợ.** Cả bốn finding của audit đã đóng bằng code và regression evidence. Critical chưa xử lý: **0**; Major chưa xử lý: **0** trong phạm vi đã kiểm chứng. Không tự ghi nhận milestone approval và không triển khai M6.4+.
 
 ## A. Implementation summary / đóng findings
