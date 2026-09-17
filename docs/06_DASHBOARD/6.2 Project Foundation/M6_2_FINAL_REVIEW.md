@@ -1,6 +1,6 @@
 # M6.2 Project Foundation — Final review (Slice 6)
 
-2026-09-10. Slices 1–5 approved by user. Slice 6 final verification and documentation completed; **M6.2 ready for approval**, not automatically approved. M6.3 has not started. This report records implementation self-review, not an independent reviewer sign-off.
+2026-09-10. **M6.2 APPROVED — complete.** The user explicitly approved the milestone after full re-review. All six foundation slices are accepted. M6.3 has not started. Technical findings below are implementation self-review; milestone acceptance is the user’s explicit approval.
 
 ## Scope delivered and traceability
 
@@ -71,6 +71,6 @@ Numeric evidence covers exact decimal string serialization/persistence/readback,
 
 ## Repository and handoff
 
-Existing commit at review start: ff5af29 (Initialize source). It was not changed. Reviewed existing tracked Slice 5 changes and new untracked test/config/review files along with final docs; no staging, commit or push performed. Ignore checks confirmed local environment files, DB files, browser traces and generated Prisma output are excluded. Approved baseline hashes remain unchanged; no default production data directory was created.
+The earlier review recorded commit ff5af29 (Initialize source). Re-review of the current VN_30_Investment checkout found no HEAD and untracked source; the earlier commit reference does not describe this checkout. Reviewed existing tracked Slice 5 changes and new untracked test/config/review files along with final docs; no staging, commit or push performed. Ignore checks confirmed local environment files, DB files, browser traces and generated Prisma output are excluded. Approved baseline hashes remain unchanged; no default production data directory was created.
 
-README contains the runnable commands and constraints. Earlier slice reports remain historical snapshots, including historical repository state and approvals. User approval of this final report is the remaining milestone gate; do not infer authorization to implement M6.3 from completion of these checks.
+README contains the runnable commands and constraints. Earlier slice reports remain historical snapshots, including historical repository state and approvals. The user has approved this milestone following re-review; the M6.2 approval gate is closed. M6.3 implementation is not included in this approval.

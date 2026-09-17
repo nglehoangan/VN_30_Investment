@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-17",
+  "environment": "Node 22.23.2; pnpm 10.34.5; isolated SQLite; unchanged production source",
+  "command": "pnpm test --reporter=default --reporter=json --outputFile=/private/tmp/m63-verification-full-results.json",
+  "exitCode": 1,
+  "total": 240,
+  "passed": 237,
+  "failed": 3,
+  "findings": [
+    {
+      "test": "AUDIT-C01 must reject a second active split backdated before the first reversal",
+      "status": "failed"
+    },
+    {
+      "test": "AUDIT-M01 snapshot must resolve January 3 reference at January 2 18:00 UTC (January 3 01:00 Vietnam)",
+      "status": "failed"
+    },
+    {
+      "test": "AUDIT-M02 a snapshot before supported inception must not claim VALID zero-state history",
+      "status": "failed"
+    }
+  ]
+}

@@ -1,5 +1,35 @@
 # Project progress
 
+## 2026-09-17 — M6.3 implementation and verification completed
+
+- Closed C01 duplicate corporate-action replay, M01 Vietnam reference date, M02 pre-inception history and M03 imported-inception NAV baseline.
+- Full suite: 262/262; M6.3: 113/113; integration: 75/75. Lint, typecheck, production build, e2e and isolated migration/schema checks pass.
+- [Completion report and all 46 requirements / 30 DoD checks](<06_DASHBOARD/6.3 Portfolio & Transaction Engine/COMPLETION_REPORT_2026-09-17.md>), with reproducible evidence and supported-policy CR gates.
+- Implementation complete; no milestone acceptance is fabricated, no M6.4+ work, no user database migration, no commit/push performed.
+- Earlier preparation and failed-audit entries remain historical records, superseded by this closure.
+
+
+## 2026-09-16 — M6.3 preparation: audit, slice plan and Slice 1 prompt
+
+- Completed the requested preparation Steps 1–3; no M6.3 application code, schema migration or Slice 2 implementation was performed.
+- [Pre-implementation audit](<06_DASHBOARD/6.3 Portfolio & Transaction Engine/PRE_IMPLEMENTATION_AUDIT.md>) records M2/M6.1 contracts, actual M6.2 code/schema/test infrastructure, invariants, migration requirements and issue dispositions. No inspected M6.2 code requires architecture redesign.
+- [Slice plan](<06_DASHBOARD/6.3 Portfolio & Transaction Engine/IMPLEMENTATION_SLICE_PLAN.md>) expands the suggested six slices to eight to cover the approved plan's explicit snapshots/watermarks, corrections and corporate actions; preserves its dependency order and four vertical proofs.
+- [Slice 1 Codex prompt](<06_DASHBOARD/6.3 Portfolio & Transaction Engine/SLICE_1_CODEX_PROMPT.md>) specifies exact scope, allowed paths, immutable ledger and precision invariants, tests, commands and stop-for-review condition. CASH_DEPOSIT is the initial supported POSTED operation; other event types remain explicitly unsupported until their full state-aware validations are implemented in later slices.
+- Current read-only boundary check: `node scripts/check-boundaries.mjs` PASS, 25 modules. Documentation checks: baseline hashes, local document references, new-file whitespace and `git diff --check` verified for this handoff. Implementation lint/typecheck/unit/integration/build/schema gates NOT RUN: this change is preparation only, not Slice 1 implementation.
+- Current shell is Node 22.12.0 / pnpm 10.34.5; select required Node 22.23.2 before implementation gates. Historical M6.2 test counts are not new validation evidence.
+- Current HEAD is `af6c106 Initialize resource`; prior reports of a checkout without HEAD are historical. Existing README/M6.2 review edits were preserved; this entry was added above existing progress. No production database opened/migrated, no staging/commit/push, and approved baseline content remains unchanged.
+- Next deliverable is execution of the prepared Slice 1 prompt followed by review. No slice or M6.3 milestone approval is claimed; do not advance to Slice 2 or M6.4 automatically.
+
+## 2026-09-10 — M6.2 approved and complete
+
+- User explicitly approved M6.2 after the full re-review. All six foundation slices are accepted.
+- Re-review evidence: 149 tests and 1 Chromium E2E PASS; frozen install, lint/typecheck, schema validation, build, loopback/invalid-config smoke PASS; dependency audit 0 vulnerabilities. No Critical/Major findings within M6.2.
+- Current checkout is VN_30_Investment; it has no HEAD and source is untracked. Earlier commit metadata below is historical and does not describe this checkout. No staging, commit or push performed.
+- Remaining Minor tooling/platform limits are documented in the final review. Baselines unchanged.
+- M6.3 has not started; milestone approval records acceptance of M6.2 only.
+
+Entries below retain historical status snapshots.
+
 ## 2026-09-10 — Slice 6 complete; M6.2 ready for approval
 
 - Slice 5 approved by user. Final gates completed using a fresh source copy without Next cache or personal environment/DB files; production validation used an independent frozen dependency installation.

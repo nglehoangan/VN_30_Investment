@@ -65,7 +65,7 @@ export function checkBoundaries(root) {
       const safe = (['app', 'ui'].includes(from) && (react || next)) ||
         (from === 'server' && (spec === 'server-only' || next)) ||
         (from === 'infrastructure' && (spec.startsWith('node:') || spec === 'server-only')) ||
-        (spec === 'zod' && (name.startsWith('src/shared/validation/') || name.startsWith('src/infrastructure/config/') || name === 'src/infrastructure/repositories/methodology-schema.ts')) ||
+        (spec === 'zod' && (name.startsWith('src/shared/validation/') || name.startsWith('src/infrastructure/config/') || ['src/infrastructure/repositories/methodology-schema.ts', 'src/infrastructure/repositories/portfolio-command-schema.ts'].includes(name))) ||
         (name === 'src/infrastructure/db/client.ts' && spec === '@prisma/adapter-better-sqlite3');
       if (!safe) report(node, `Forbidden or unresolved external dependency: ${spec}`);
     };

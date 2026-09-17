@@ -1,0 +1,38 @@
+// @vitest-environment node
+import { beforeEach, afterEach, it, expect } from 'vitest';
+import { testDatabase } from '../fixtures/database';
+import { methodologyFixture } from '../fixtures/methodology';
+import { PrismaPortfolioLedger, PrismaPortfolioSetup } from '@/infrastructure/repositories/portfolio-ledger';
+import { initializePortfolio } from '@/application/portfolio/initialize';
+import { PortfolioEngine } from '@/application/portfolio/engine';
+import { ACCOUNTING_METHOD } from '@/domain/portfolio/values';
+import { instant, dateOnly } from '@/shared/time';
+import { P,A,NOW,at,method,deposit,buy,reversal,input } from '../fixtures/portfolio/history';
+import type { TransactionInput } from '@/domain/portfolio/transaction';
+let db: Awaited<ReturnType<typeof testDatabase>>, ledger: PrismaPortfolioLedger, engine: PortfolioEngine;
+beforeEach(async()=>{
+ db=await testDatabase(); await db.registry.append({...methodologyFixture(method),implementationIdentity:ACCOUNTING_METHOD});
+ await initializePortfolio(new PrismaPortfolioSetup(db.client),{id:P,name:'audit',currency:'VND',inceptionAt:at(1),createdAt:NOW},[{id:A,name:'A'}]);
+ ledger=new PrismaPortfolioLedger(db.client); engine=new PortfolioEngine(ledger,{now:()=>NOW});
+});
+afterEach(async()=>{await db?.close()});
+const post=async(f:TransactionInput)=>engine.post([f],(await ledger.read(P)).watermark);
+it('AUDIT-C01 must reject a second active split backdated before the first reversal',async()=>{
+ await post(deposit());await post(buy());
+ const corporateAction={id:'same-issuer-action',subtype:'SPLIT',numerator:'2',denominator:'1',evidence:'one official split',stage:'EFFECTIVE' as const};
+ await post(input('split-original','CORPORATE_ACTION',3,{securityId:A,quantity:'100',corporateAction}));
+ await post(reversal('reverse-split','split-original',5));
+ const attempt=post(input('split-backdated','CORPORATE_ACTION',4,{securityId:A,quantity:'200',corporateAction}));
+ await expect(attempt).rejects.toThrow();
+});
+it('AUDIT-M01 snapshot must resolve January 3 reference at January 2 18:00 UTC (January 3 01:00 Vietnam)',async()=>{
+ await post(deposit());await post(buy());const cutoff=instant('2026-01-02T18:00:00.000Z');
+ const result=await engine.snapshot(P,cutoff,{version:'prices',methodologyId:'v1',observations:[{id:'price',securityId:A,price:'10',currency:'VND',observedAt:cutoff,receivedAt:cutoff,validThrough:cutoff,sourceReference:'fixture'}]},null,{version:'ref',intervals:[{id:'old',kind:'SECTOR',securityId:A,from:dateOnly('2026-01-01'),to:dateOnly('2026-01-03'),value:'OLD',taxonomy:'t',sourceReference:'ref'},{id:'new',kind:'SECTOR',securityId:A,from:dateOnly('2026-01-03'),to:null,value:'NEW',taxonomy:'t',sourceReference:'ref'}]},'t');
+ expect(result.reference[0].sector).toBe('NEW');
+});
+it('AUDIT-M02 a snapshot before supported inception must not claim VALID zero-state history',async()=>{
+ const cutoff=instant('2025-12-01T00:00:00.000Z');
+ const result=await engine.snapshot(P,cutoff,{version:'p',methodologyId:'v',observations:[]},{id:'r',portfolioId:P,asOf:cutoff,receivedAt:cutoff,sourceReference:'outside supported history',cash:'0',positions:[],receivables:'0',payables:'0',unresolvedDiscrepancy:false},{version:'r',intervals:[]},'t');
+ expect(result.status).not.toBe('VALID');
+ expect(result.actionabilityBlocked).toBe(true);
+});

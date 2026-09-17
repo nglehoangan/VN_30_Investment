@@ -12,9 +12,9 @@ describe("actual SQLite methodology registry", () => {
   let db: Awaited<ReturnType<typeof testDatabase>>;
   beforeEach(async () => { db = await testDatabase(); });
   afterEach(async () => { await db?.close(); });
-  it("migrates an empty DB with only registry/migration tables and private permissions", async () => {
+  it("migrates an empty DB with expected foundation/ledger tables and private permissions", async () => {
     const tables = await db.client.$queryRaw<Array<{ name: string }>>`SELECT name FROM sqlite_master WHERE type='table' ORDER BY name`;
-    expect(tables.map(t => t.name)).toEqual(["_prisma_migrations", "methodology_record"]);
+    expect(tables.map(t => t.name)).toEqual(["_prisma_migrations", "corporate_action_reference", "ledger_leg", "ledger_transaction", "methodology_record", "portfolio", "portfolio_projection", "security"]);
     expect(db.migration("status")).toBe(0);
     expect(statSync(db.directory).mode & 0o077).toBe(0);
     expect(statSync(db.config.filePath).mode & 0o077).toBe(0);

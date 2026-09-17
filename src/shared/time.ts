@@ -16,3 +16,9 @@ export function instant(value: string): Instant {
   }
   return value as Instant;
 }
+
+/** Vietnam accounting/reference business date (UTC+7), independent of host timezone. */
+export function vietnamBusinessDate(value: Instant): DateOnly {
+  instant(value);
+  return dateOnly(new Date(Date.parse(value) + 7 * 60 * 60 * 1000).toISOString().slice(0, 10));
+}

@@ -8,6 +8,7 @@ datasource db {
 }
 
 model MethodologyRecord {
+  transactions LedgerTransaction[]
   methodologyId             String @id @map("methodology_id")
   family                    String
   semanticVersion           String @map("semantic_version")
@@ -20,4 +21,88 @@ model MethodologyRecord {
 
   @@index([family, effectiveDate])
   @@map("methodology_record")
+}
+
+model Portfolio {
+  id String @id
+  name String
+  currency String
+  inceptionAt String @map("inception_at")
+  createdAt String @map("created_at")
+  revision String @default("0")
+  transactions LedgerTransaction[]
+  projection PortfolioProjection?
+  @@map("portfolio")
+}
+model Security {
+  id String @id
+  name String
+  transactions LedgerTransaction[]
+  legs LedgerLeg[]
+  @@map("security")
+}
+model CorporateActionReference {
+  id String @id
+  terms String
+  transactions LedgerTransaction[]
+  @@map("corporate_action_reference")
+}
+model LedgerTransaction {
+  corporateActionId String? @map("corporate_action_id")
+  corporateAction CorporateActionReference? @relation(fields: [corporateActionId], references: [id], onDelete: Restrict)
+  id String @id
+  portfolioId String @map("portfolio_id")
+  portfolio Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Restrict)
+  securityId String? @map("security_id")
+  security Security? @relation(fields: [securityId], references: [id], onDelete: Restrict)
+  type String
+  status String
+  eventAt String @map("event_at")
+  createdAt String @map("created_at")
+  source String
+  sourceReference String @map("source_reference")
+  idempotencyKey String @map("idempotency_key")
+  methodologyId String @map("methodology_id")
+  methodology MethodologyRecord @relation(fields: [methodologyId], references: [methodologyId], onDelete: Restrict)
+  revision String
+  facts String
+  legCount Int @map("leg_count")
+  reversesId String? @unique @map("reverses_id")
+  reversed LedgerTransaction? @relation("reversal", fields: [reversesId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  reversal LedgerTransaction? @relation("reversal")
+  settlesId String? @map("settles_id")
+  settled LedgerTransaction? @relation("settlement", fields: [settlesId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  settlements LedgerTransaction[] @relation("settlement")
+  legs LedgerLeg[]
+  @@unique([portfolioId, idempotencyKey])
+  @@unique([portfolioId, source, sourceReference])
+  @@index([portfolioId, eventAt])
+  @@map("ledger_transaction")
+}
+model LedgerLeg {
+  id String @id
+  transactionId String @map("transaction_id")
+  transaction LedgerTransaction @relation(fields: [transactionId], references: [id], onDelete: Restrict)
+  sequence Int
+  type String
+  effectiveAt String @map("effective_at")
+  securityId String? @map("security_id")
+  security Security? @relation(fields: [securityId], references: [id], onDelete: Restrict)
+  quantity String?
+  amount String?
+  settlementReference String? @map("settlement_reference")
+  obligation LedgerLeg? @relation("obligation", fields: [settlementReference], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  clearings LedgerLeg[] @relation("obligation")
+  @@unique([transactionId, sequence])
+  @@index([effectiveAt])
+  @@map("ledger_leg")
+}
+model PortfolioProjection {
+  portfolioId String @id @map("portfolio_id")
+  portfolio Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Restrict)
+  watermark String
+  asOf String @map("as_of")
+  calculatedAt String @map("calculated_at")
+  payload String
+  @@map("portfolio_projection")
 }

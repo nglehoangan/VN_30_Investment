@@ -1,0 +1,87 @@
+{
+  "date": "2026-09-17",
+  "environment": "Node22.23.2 / pnpm10.34.5 / isolated identical-source checkout / private SQLite",
+  "sourceFilesCompared": 79,
+  "sourceMismatches": 0,
+  "fullSuite": {
+    "command": "pnpm test --reporter=default --reporter=json --outputFile=/private/tmp/m63-closure-tests.json",
+    "exitCode": 0,
+    "total": 262,
+    "passed": 262,
+    "failed": 0
+  },
+  "commands": [
+    {
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "seconds": 4.13,
+      "log": "/private/tmp/m63-closure-check-0.log"
+    },
+    {
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "seconds": 2.71,
+      "log": "/private/tmp/m63-closure-check-1.log"
+    },
+    {
+      "command": "pnpm test:portfolio",
+      "exitCode": 0,
+      "seconds": 22.27,
+      "log": "/private/tmp/m63-closure-check-2.log"
+    },
+    {
+      "command": "pnpm test:integration",
+      "exitCode": 0,
+      "seconds": 23.99,
+      "log": "/private/tmp/m63-closure-check-3.log"
+    },
+    {
+      "command": "pnpm prisma validate",
+      "exitCode": 0,
+      "seconds": 0.77,
+      "log": "/private/tmp/m63-closure-check-4.log"
+    },
+    {
+      "command": "pnpm db:migrate",
+      "exitCode": 0,
+      "seconds": 0.83,
+      "log": "/private/tmp/m63-closure-check-5.log"
+    },
+    {
+      "command": "pnpm prisma migrate status",
+      "exitCode": 0,
+      "seconds": 0.77,
+      "log": "/private/tmp/m63-closure-check-6.log"
+    },
+    {
+      "command": "pnpm build",
+      "exitCode": 0,
+      "seconds": 6.07,
+      "log": "/private/tmp/m63-closure-check-7.log"
+    },
+    {
+      "command": "pnpm test:e2e",
+      "exitCode": 0,
+      "log": "/private/tmp/m63-closure-e2e-rerun.log",
+      "environment": "Approved loopback listener outside filesystem/network sandbox; same temporary SQLite and source"
+    }
+  ],
+  "previousAttempts": [
+    {
+      "command": "pnpm test:e2e",
+      "exitCode": 1,
+      "seconds": 4.55,
+      "log": "/private/tmp/m63-closure-check-8.log"
+    }
+  ],
+  "portfolioTests": 113,
+  "integrationTests": 75,
+  "closedFindings": [
+    "AUDIT-C01",
+    "AUDIT-M01",
+    "AUDIT-M02",
+    "AUDIT-M03"
+  ],
+  "unresolvedCritical": 0,
+  "unresolvedMajor": 0
+}
