@@ -1,0 +1,54 @@
+
+> vn30-value-investing-os@0.1.0 test:e2e /private/tmp/vn30-m63-validation
+> pnpm build && node scripts/smoke-app.mjs --e2e
+
+
+> vn30-value-investing-os@0.1.0 build /private/tmp/vn30-m63-validation
+> pnpm db:generate && next build
+
+
+> vn30-value-investing-os@0.1.0 db:generate /private/tmp/vn30-m63-validation
+> node scripts/database.mjs generate
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+
+✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 68ms
+
+▲ Next.js 16.3.4 (Turbopack)
+✓ Running next.config.ts took 14ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 109ms
+  Running TypeScript ...
+  Finished TypeScript in 1061ms ...
+  Collecting page data using 4 workers ...
+  Generating static pages using 4 workers (0/3) ...
+✓ Generating static pages using 4 workers (3/3) in 244ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
+node:net:1919
+      const error = new UVExceptionWithHostPort(rval, 'listen', address, port);
+                    ^
+
+Error: listen EPERM: operation not permitted 127.0.0.1
+    at Server.setupListenHandle [as _listen2] (node:net:1919:21)
+    at listenInCluster (node:net:1998:12)
+    at node:net:2207:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+  code: 'EPERM',
+  errno: -1,
+  syscall: 'listen',
+  address: '127.0.0.1'
+}
+
+Node.js v22.23.2
+ ELIFECYCLE  Command failed with exit code 1.
