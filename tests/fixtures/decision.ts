@@ -1,0 +1,28 @@
+import { fixture, ASOF } from "./scoring";
+import { calculateScorecard } from "@/domain/scoring/scorecard";
+import { METHOD, type DecisionInput } from "@/domain/decision/contracts";
+import { methodologyId } from "@/shared/ids";
+export function decisionFixture(owned = false): DecisionInput {
+  const scorecard = calculateScorecard(fixture());
+  const method = { ...scorecard.methodology, methodologyId: methodologyId("synthetic-m65"), implementationIdentity: METHOD, configurationReference: METHOD, governingDocumentReference: "M4 plus explicit user resolutions 2026-09-20" };
+  return { id: "decision-1", securityId: scorecard.securityId, asOf: ASOF, knownAt: ASOF, recordedAt: ASOF, priorDecisionId: null, revisionReason: null, reviewType: "INITIAL", scope: "SYNTHETIC_TEST",
+    methods: { decision: method, risk: method, requiredReturn: method, stage0: method }, scorecard, ranking: null, comparatorScorecards: [],
+    portfolio: { integrity: { snapshotId: "snapshot-1", portfolioId: "portfolio-1", asOf: ASOF, ledgerWatermark: "1", reconstructionMethod: "m63-mwac-decimal12-half-even-v1", referenceVersion: "reference-v1", priceVersion: "prices-1", evidenceId: "reconciliation-1", status: "PASS", costStatus: "PASS", reasons: [] }, capturedAt: ASOF, nav: "100000000", executableCash: "80000000", positions: owned ? [{ securityId: scorecard.securityId, shares: "100", marketValue: "2000000", sector: "INDUSTRIAL" }] : [] },
+    evidence: [{ id: "decision-evidence", source: "SYNTHETIC HUMAN ASSESSMENT — not market data", asOf: ASOF, receivedAt: ASOF, validThrough: ASOF, classification: "ESTIMATE", summary: "Synthetic complete underwriting evidence including independently reviewed risk, valuation and opportunity-cost judgments" }],
+    assessment: {
+      analyst: "Synthetic human reviewer", source: "HUMAN", assessedAt: ASOF, evidenceRefs: ["decision-evidence"], rationale: "Synthetic full underwriting; price action and P&L excluded",
+      stage0: { outcome: "PASS", findings: ["PASS"], methodologyId: "synthetic-m65", conditionalBuyPermitted: false, conditionalMitigation: null }, reviewStatus: "FINAL",
+      thesis: { original: "Durable per-share compounding", current: "Supported durable economics", status: "INTACT", strength: "HIGH", breakConditions: ["Permanent loss of franchise"], violatedCondition: null, changes: "Updated operating evidence", freshUnderwriting: true, incrementalCase: "Next lot independently beats cash and scoped alternatives", declineReviewComplete: true, averagingDown: false, forwardEconomicsImproved: true, valueTrap: false },
+      valuation: { status: "ATTRACTIVE", expectedReturn: "0.16", lowerReturn: "0.12", upperReturn: "0.22", primaryMethod: "Normalized owner earnings", crossChecks: ["Scenario DCF"], intrinsicLow: "25000", intrinsicHigh: "35000", downside: "Stress survival supported", upside: "Organic compounding", assumptions: "No speculative re-rating", sensitivity: "Stress-tested operating margins", confidence: "HIGH", significantMos: true, exceptionalAsymmetry: false, aggressiveExpansion: false, extremeRobust: false, returnInadequate: false },
+      requiredReturn: { riskAdjustmentRequired: false, adjustedHurdle: null, calibrationReference: null, exceptionRequested: false, veryHighQuality: true, strongFinancialResilience: true, strongDownsideProtection: true, resilienceBenefit: true, noBetterQualifiedAlternative: true, rationale: "Normal M4 hurdle" },
+      risk: { veto: "NONE", ownershipProhibited: false, mandatoryReview: false, materialDeterioration: false, hiddenFactorBlocksAdd: false, drawdown: "NORMAL", riskIncreasing: true, approvalReference: null, smallNavException: false, normalizationPlan: null, elevatedSizeJustification: null },
+      ownershipCase: { continuedOwnership: true, whyNotAdd: "When gates fail, incremental capital is not justified", whyNotExit: "Residual thesis and positive forward value remain", whyHoldVersusAlternatives: "Switching edge insufficient after friction", reductionReason: "NONE", zeroOwnershipReason: "NONE", residualRationale: "Smaller holding retains supported economics", targetShares: null, legacyExitPlan: null },
+      opportunity: { mode: "INCREMENTAL CAPITAL", comparisonScope: "Candidate and cash; no other currently underwritten eligible candidates in this synthetic scope", excludedComparators: ["Other candidates lack current underwriting"], cash: "INFERIOR", cashRationale: "Candidate clears all absolute and relative gates", cashExpectedReturn: null, relativeMerit: "SUPERIOR", topTier: true, comparators: [], switchingTo: null, robustAfterFriction: false, frictionAndUncertainty: "No proposed switch", zeroSuperiorToResidual: false },
+      technical: { status: "NEUTRAL", timing: "EXECUTE", concreteRisk: null, resumeCondition: null, expiryTrigger: null, mandatoryExitDelaySafe: false, marketMoneyFlow: "Neutral secondary context" },
+      sizing: { proposedShares: "100", boardLot: "100", price: "20000", fees: "3000", economicTargetUpper: "0.10", portfolioImpact: "NEUTRAL / ACCEPTABLE", whyNotLarger: "Preserve future marginal capacity", whyNotSmaller: "Minimum meaningful board lot", operationalBlock: null },
+      keyPositives: ["Durable franchise"], keyRisks: ["Competition"], invalidationConditions: ["Franchise impairment"], nextReviewTrigger: "Next material results", missingCritical: [] }
+  };
+}
+/** Test-only mutable JSON copy; production inputs remain deeply readonly. */
+export type Mutable<T> = T extends string | number | boolean | null ? T : { -readonly [K in keyof T]: Mutable<T[K]> };
+export const mutableDecision = (owned = false) => JSON.parse(JSON.stringify(decisionFixture(owned))) as Mutable<DecisionInput>;

@@ -8,6 +8,7 @@ datasource db {
 }
 
 model MethodologyRecord {
+  decisionArtifacts DecisionArtifact[]
   analyticalArtifacts AnalyticalArtifact[]
   transactions LedgerTransaction[]
   methodologyId             String @id @map("methodology_id")
@@ -121,4 +122,20 @@ model AnalyticalArtifact {
   bodyHash String @map("body_hash")
   @@index([asOf])
   @@map("analytical_artifact")
+}
+
+model DecisionArtifact {
+  methodology MethodologyRecord @relation(fields: [methodologyId], references: [methodologyId], onDelete: Restrict, onUpdate: Restrict)
+  prior DecisionArtifact? @relation("decision_lineage", fields: [priorDecisionId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  revisions DecisionArtifact[] @relation("decision_lineage")
+  id String @id
+  securityId String @map("security_id")
+  methodologyId String @map("methodology_id")
+  asOf String @map("as_of")
+  recordedAt String @map("recorded_at")
+  priorDecisionId String? @map("prior_decision_id")
+  body String
+  bodyHash String @map("body_hash")
+  @@index([securityId, asOf])
+  @@map("decision_artifact")
 }

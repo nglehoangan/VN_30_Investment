@@ -64,7 +64,7 @@ export function calculateScorecard(raw: ScoreInput) {
   const usable=(ref: string) => input.evidence.some(e => e.id === ref && available(e,input.asOf,conflicts));
   const metrics=calculateMetrics(input.metrics,input.evidence,n.sector,input.asOf,conflicts,["CYCLICAL","HIGHLY_CYCLICAL"].includes(n.cycle));
   keys(input.stage0,"owner methodologyId asOf evaluatedAt status evidenceRefs"); validateExternalGate(input.stage0,input.asOf,input.knownAt);
-  check(input.stage0.owner === "M1_STAGE_0" && ["PASS","FAIL","UNKNOWN"].includes(input.stage0.status),"INVALID_STAGE_0");
+  check(input.stage0.owner === "M1_STAGE_0" && ["PASS","PASS WITH CONDITIONS","FAIL","UNKNOWN"].includes(input.stage0.status),"INVALID_STAGE_0");
   keys(input.hardVeto,"owner methodologyId asOf evaluatedAt status evidenceRefs"); validateExternalGate(input.hardVeto,input.asOf,input.knownAt);
   check(input.hardVeto.owner === "M1_RISK_POLICY" && ["CLEAR","ACTIVE","PENDING"].includes(input.hardVeto.status),"INVALID_HARD_VETO");
   keys(input.residualRisk,"owner methodologyId asOf evaluatedAt status evidenceRefs"); validateExternalGate(input.residualRisk,input.asOf,input.knownAt);
@@ -131,7 +131,7 @@ export function calculateScorecard(raw: ScoreInput) {
   const dataProblems=input.evidence.filter(e=>!available(e,input.asOf,conflicts)).map(e=>e.id);
   const confidence:Confidence=dataProblems.length||input.confidence.dimensions.includes("Weak")||input.expectedReturn?.aggressiveExpansion?"LOW":input.confidence.level;
   const veto=input.hardVeto.status!=="CLEAR"||input.residualRisk.status==="UNACCEPTABLE";
-  const validity=totalScore===null?"NOT RELIABLY SCORABLE":input.stage0.status!=="PASS"?"RESEARCH ONLY":veto||input.residualRisk.status==="HIGH"||confidence==="LOW"?"VALID — NON-ACTIONABLE":"VALID — ACTIONABLE";
+  const validity=totalScore===null?"NOT RELIABLY SCORABLE":!["PASS","PASS WITH CONDITIONS"].includes(input.stage0.status)?"RESEARCH ONLY":veto||input.residualRisk.status==="HIGH"||confidence==="LOW"?"VALID — NON-ACTIONABLE":"VALID — ACTIONABLE";
   return deepFreeze({ id:input.id,securityId:input.securityId,ticker:reference.identifier,asOf:input.asOf,calculatedAt:input.calculatedAt,methodology:input.methodology,
     input,reference,metrics,subcategories:results,categories,totalScore,confidence,validity,dataQuality:dataProblems.length?"PROVISIONAL":"VALID",
     missingEvidence:[...new Set(missing)],blockingEvidence:critical,flags:n.peakCycleRisk?["PEAK_CYCLE_RISK"]:[],portfolioContext:null });

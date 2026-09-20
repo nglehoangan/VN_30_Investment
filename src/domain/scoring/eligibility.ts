@@ -11,7 +11,7 @@ export interface ExternalGate<TStatus extends string> {
   readonly evidenceRefs: readonly string[];
 }
 
-export type Stage0Assessment = ExternalGate<"PASS" | "FAIL" | "UNKNOWN">;
+export type Stage0Assessment = ExternalGate<"PASS" | "PASS WITH CONDITIONS" | "FAIL" | "UNKNOWN">;
 export type HardVetoAssessment = ExternalGate<"CLEAR" | "ACTIVE" | "PENDING">;
 export type ResidualRisk = "LOW" | "MODERATE" | "ELEVATED_CONTROLLED" | "ELEVATED_WEAK" | "HIGH" | "UNACCEPTABLE";
 export type ResidualRiskAssessment = ExternalGate<ResidualRisk>;
