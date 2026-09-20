@@ -7,6 +7,7 @@ import { CATEGORY_MAXIMA, IMPLEMENTATION, RUBRICS, SECTORS, VERSION, type Catego
 import { check, id, keys, list, snapshot, text, unique } from "./validation";
 import { available, validateEvidence, type Evidence } from "./evidence";
 import { calculateMetrics, type MetricRequest } from "./metrics";
+import { validateExternalGate, type HardVetoAssessment, type ResidualRiskAssessment, type Stage0Assessment } from "./eligibility";
 export interface Assessment {
   readonly subcategory: string; readonly assessment: string; readonly selectedPoints: number;
   readonly analyst: string; readonly source: "HUMAN"; readonly assessedAt: string; readonly methodologyVersion: string;
@@ -16,29 +17,34 @@ export interface Assessment {
   readonly sector: Sector; readonly sectorRationale: string; readonly economicChannel: string;
 }
 export type Confidence = "HIGH" | "MEDIUM" | "LOW";
-export type ResidualRisk = "LOW" | "MODERATE" | "ELEVATED_CONTROLLED" | "ELEVATED_WEAK" | "HIGH" | "UNACCEPTABLE";
 export interface ScoreInput {
   readonly id: string; readonly securityId: string; readonly companyName: string; readonly asOf: string; readonly knownAt: string; readonly calculatedAt: string;
   readonly priorScorecardId: string | null; readonly revisionReason: string | null; readonly methodology: MethodologyRecord;
   readonly reference: { readonly data: ReferenceData; readonly receivedAt: string; readonly taxonomy: string };
   readonly normalization: { readonly sector: Sector; readonly cycle: "NON_CYCLICAL" | "MILDLY_CYCLICAL" | "CYCLICAL" | "HIGHLY_CYCLICAL"; readonly peakCycleRisk: boolean; readonly method: string; readonly peerIds: readonly string[]; readonly peerBasis: "ABSOLUTE_HISTORY" | "VN30" | "BROADER"; readonly rationale: string; readonly actionComparable: boolean; readonly actionEvidenceRefs: readonly string[] };
   readonly evidence: readonly Evidence[]; readonly metrics: readonly MetricRequest[]; readonly assessments: readonly Assessment[];
-  readonly stage0: "PASS" | "FAIL" | "UNKNOWN"; readonly hardVeto: boolean;
+  readonly artifactScope: "FORMAL" | "SYNTHETIC_TEST";
+  readonly stage0: Stage0Assessment; readonly hardVeto: HardVetoAssessment;
   readonly confidence: { readonly level: Confidence; readonly analyst: string; readonly rationale: string; readonly dimensions: readonly ("Strong" | "Adequate" | "Weak")[] };
-  readonly residualRisk: ResidualRisk; readonly expectedReturn: { readonly value: string; readonly modelConfidence: Confidence; readonly assumptionBasis: string; readonly aggressiveExpansion: boolean; readonly downsideDominates: boolean; readonly nearLowerBoundary: boolean; readonly hurdle: { readonly required:string; readonly analyst:string; readonly rationale:string; readonly evidenceRefs:readonly string[]; readonly exception: { readonly veryHighQuality:boolean; readonly downsideProtection:string; readonly portfolioResilience:string } | null } } | null;
+  readonly residualRisk: ResidualRiskAssessment; readonly expectedReturn: { readonly value: string; readonly modelConfidence: Confidence; readonly assumptionBasis: string; readonly aggressiveExpansion: boolean; readonly downsideDominates: boolean; readonly nearLowerBoundary: boolean } | null;
   readonly criticalMissing: readonly string[]; readonly thesis: { readonly core: string; readonly compounding: string; readonly valuation: string; readonly downside: string; readonly invalidation: string };
   readonly doubleCountReview: { readonly analyst: string; readonly rationale: string; readonly passed: boolean };
 }
 export function calculateScorecard(raw: ScoreInput) {
   const input=snapshot(raw);
-  keys(input,"id securityId companyName asOf knownAt calculatedAt priorScorecardId revisionReason methodology reference normalization evidence metrics assessments stage0 hardVeto confidence residualRisk expectedReturn criticalMissing thesis doubleCountReview");
+  keys(input,"id securityId companyName asOf knownAt calculatedAt priorScorecardId revisionReason methodology reference normalization evidence metrics assessments artifactScope stage0 hardVeto confidence residualRisk expectedReturn criticalMissing thesis doubleCountReview");
   id(input.id); id(input.securityId); text(input.companyName);
   [input.asOf,input.knownAt,input.calculatedAt].forEach(instant);
   check(input.asOf <= input.knownAt && input.knownAt <= input.calculatedAt,"INVALID_CALCULATION_CUTOFF");
   if (input.priorScorecardId !== null) { id(input.priorScorecardId); text(input.revisionReason); }
-  keys(input.methodology,"methodologyId family semanticVersion approvalReference effectiveDate configurationReference implementationIdentity governingDocumentReference recordedAt");
-  Object.values(input.methodology).forEach(text); dateOnly(input.methodology.effectiveDate); instant(input.methodology.recordedAt);
-  check(input.methodology.family === "SCORING" && input.methodology.implementationIdentity === IMPLEMENTATION && input.methodology.semanticVersion === VERSION,"UNSUPPORTED_METHODOLOGY");
+  keys(input.methodology,"methodologyId family semanticVersion approvalReference governanceStatus intendedUse effectiveDate configurationReference implementationIdentity governingDocumentReference recordedAt");
+  [input.methodology.methodologyId,input.methodology.family,input.methodology.semanticVersion,input.methodology.configurationReference,input.methodology.implementationIdentity,input.methodology.governingDocumentReference,input.methodology.recordedAt].forEach(text);
+  check(["DRAFT","PROPOSED","APPROVED","RETIRED"].includes(input.methodology.governanceStatus) && ["PRODUCTION","TEST"].includes(input.methodology.intendedUse),"METHODOLOGY_GOVERNANCE_REQUIRED");
+  check(input.artifactScope === "FORMAL" || input.artifactScope === "SYNTHETIC_TEST","ARTIFACT_SCOPE_REQUIRED");
+  if (input.artifactScope === "FORMAL") check(input.methodology.governanceStatus === "APPROVED" && input.methodology.intendedUse === "PRODUCTION" && input.methodology.approvalReference.trim(),"FORMAL_METHODOLOGY_NOT_APPROVED");
+  else check(input.methodology.intendedUse === "TEST" && input.methodology.family === "TEST_ONLY" && input.methodology.governanceStatus !== "APPROVED" && input.methodology.approvalReference === "","SYNTHETIC_TEST_METHODOLOGY_REQUIRED");
+  dateOnly(input.methodology.effectiveDate); instant(input.methodology.recordedAt);
+  check((input.artifactScope === "FORMAL" ? input.methodology.family === "SCORING" : input.methodology.family === "TEST_ONLY") && input.methodology.implementationIdentity === IMPLEMENTATION && input.methodology.semanticVersion === VERSION,"UNSUPPORTED_METHODOLOGY");
   check(input.methodology.effectiveDate <= input.asOf.slice(0,10) && input.methodology.recordedAt <= input.knownAt,"FUTURE_METHODOLOGY");
   keys(input.reference,"data receivedAt taxonomy"); instant(input.reference.receivedAt); text(input.reference.taxonomy);
   check(input.reference.receivedAt <= input.knownAt,"FUTURE_REFERENCE");
@@ -57,8 +63,12 @@ export function calculateScorecard(raw: ScoreInput) {
   const conflicts=validateEvidence(input.evidence,input.securityId,input.asOf,input.knownAt);
   const usable=(ref: string) => input.evidence.some(e => e.id === ref && available(e,input.asOf,conflicts));
   const metrics=calculateMetrics(input.metrics,input.evidence,n.sector,input.asOf,conflicts,["CYCLICAL","HIGHLY_CYCLICAL"].includes(n.cycle));
-  check(["PASS","FAIL","UNKNOWN"].includes(input.stage0) && typeof input.hardVeto === "boolean","INVALID_GATE");
-  check(["LOW","MODERATE","ELEVATED_CONTROLLED","ELEVATED_WEAK","HIGH","UNACCEPTABLE"].includes(input.residualRisk),"INVALID_RISK");
+  keys(input.stage0,"owner methodologyId asOf evaluatedAt status evidenceRefs"); validateExternalGate(input.stage0,input.asOf,input.knownAt);
+  check(input.stage0.owner === "M1_STAGE_0" && ["PASS","FAIL","UNKNOWN"].includes(input.stage0.status),"INVALID_STAGE_0");
+  keys(input.hardVeto,"owner methodologyId asOf evaluatedAt status evidenceRefs"); validateExternalGate(input.hardVeto,input.asOf,input.knownAt);
+  check(input.hardVeto.owner === "M1_RISK_POLICY" && ["CLEAR","ACTIVE","PENDING"].includes(input.hardVeto.status),"INVALID_HARD_VETO");
+  keys(input.residualRisk,"owner methodologyId asOf evaluatedAt status evidenceRefs"); validateExternalGate(input.residualRisk,input.asOf,input.knownAt);
+  check(input.residualRisk.owner === "M1_RISK_POLICY" && ["LOW","MODERATE","ELEVATED_CONTROLLED","ELEVATED_WEAK","HIGH","UNACCEPTABLE"].includes(input.residualRisk.status),"INVALID_RISK");
   keys(input.confidence,"level analyst rationale dimensions"); text(input.confidence.analyst); text(input.confidence.rationale);
   check(["HIGH","MEDIUM","LOW"].includes(input.confidence.level),"INVALID_CONFIDENCE");
   list(input.confidence.dimensions); check(input.confidence.dimensions.length===5 && input.confidence.dimensions.every(d => ["Strong","Adequate","Weak"].includes(d)),"FIVE_CONFIDENCE_DIMENSIONS_REQUIRED");
@@ -66,15 +76,8 @@ export function calculateScorecard(raw: ScoreInput) {
   check(Object.keys(input.thesis).length===5,"THESIS_REQUIRED");
   keys(input.doubleCountReview,"analyst rationale passed"); text(input.doubleCountReview.analyst); text(input.doubleCountReview.rationale); check(typeof input.doubleCountReview.passed === "boolean","REVIEW_REQUIRED");
   if (input.expectedReturn) {
-    keys(input.expectedReturn,"value modelConfidence assumptionBasis aggressiveExpansion downsideDominates nearLowerBoundary hurdle");
+    keys(input.expectedReturn,"value modelConfidence assumptionBasis aggressiveExpansion downsideDominates nearLowerBoundary");
     decimal(input.expectedReturn.value); text(input.expectedReturn.assumptionBasis);
-    const h=input.expectedReturn.hurdle;keys(h,"required analyst rationale evidenceRefs exception");text(h.analyst);text(h.rationale);list(h.evidenceRefs);check(h.evidenceRefs.length>0,"HURDLE_EVIDENCE_REQUIRED");
-    const required=decimal(h.required);check(required.units>=decimal("0.12").units,"BELOW_ABSOLUTE_RETURN_FLOOR");
-    if(required.units<decimal("0.15").units){
-      check(h.exception,"EXPLICIT_HURDLE_EXCEPTION_REQUIRED");keys(h.exception,"veryHighQuality downsideProtection portfolioResilience");
-      check(h.exception.veryHighQuality&&input.residualRisk==="LOW"&&input.confidence.level==="HIGH","HURDLE_EXCEPTION_QUALIFIERS_REQUIRED");text(h.exception.downsideProtection);text(h.exception.portfolioResilience);
-    } else check(h.exception===null,"UNNECESSARY_HURDLE_EXCEPTION");
-    if(input.residualRisk.startsWith("ELEVATED"))check(required.units>decimal("0.15").units,"HIGHER_RISK_REQUIRES_HIGHER_HURDLE");
     check(["HIGH","MEDIUM","LOW"].includes(input.expectedReturn.modelConfidence),"INVALID_MODEL_CONFIDENCE");
     check([input.expectedReturn.aggressiveExpansion,input.expectedReturn.downsideDominates,input.expectedReturn.nearLowerBoundary].every(v => typeof v === "boolean"),"RETURN_QUALIFIERS_REQUIRED");
   }
@@ -92,7 +95,7 @@ export function calculateScorecard(raw: ScoreInput) {
     list(a.disconfirmingEvidence); list(a.evidence); unique(a.evidence.map(e => e.topic));
     for (const e of a.evidence) { keys(e,"topic refs rationale"); check(rubric.topics.includes(e.topic),"UNKNOWN_EVIDENCE_TOPIC"); list(e.refs); check(e.refs.length>0,"EVIDENCE_REF_REQUIRED"); text(e.rationale); }
     if (a.selectedPoints===rubric.max) { check(a.maximumPrerequisitesMet && a.disconfirmingEvidence.length>0,"MAXIMUM_PREREQUISITES_REQUIRED"); text(a.exceptionalJustification); }
-    if (a.subcategory==="RG-RISK") check(a.assessment===input.residualRisk,"RESIDUAL_RISK_MISMATCH");
+    if (a.subcategory==="RG-RISK") check(a.assessment===input.residualRisk.status,"RESIDUAL_RISK_MISMATCH");
     if (a.subcategory==="VAL-RET" && input.expectedReturn) {
       const r=decimal(input.expectedReturn.value).units;
       const idx=r>=decimal("0.22").units?5:r>=decimal("0.18").units?4:r>=decimal("0.15").units?3:r>=decimal("0.12").units?2:r>=decimal("0.08").units?1:0;
@@ -113,7 +116,7 @@ export function calculateScorecard(raw: ScoreInput) {
     const absent=a ? r.topics.filter(topic => !a.evidence.some(e => e.topic===topic && e.refs.every(usable))) : r.topics;
     const badCounter=a?.disconfirmingEvidence.some(ref => !usable(ref)) ?? false;
     const actionProblem=!n.actionComparable || n.actionEvidenceRefs.some(ref => !usable(ref));
-    const badReturn=r.id==="VAL-RET" && (!input.expectedReturn || !input.expectedReturn.hurdle.evidenceRefs.every(usable));
+    const badReturn=r.id==="VAL-RET" && !input.expectedReturn;
     const complete=!!a && !absent.length && !badCounter && !actionProblem && !badReturn;
     if (!complete) missing.push(r.id);
     return { id:r.id,category:r.category,max:r.max,points:complete?a.selectedPoints:null,assessment:a??null,missingTopics:absent,status:complete?"SCORED":"N/R" };
@@ -127,8 +130,8 @@ export function calculateScorecard(raw: ScoreInput) {
   const totalScore=categories.some(c=>c.points===null)||critical.length||input.criticalMissing.length||!input.doubleCountReview.passed?null:categories.reduce((sum,c)=>sum+BigInt(c.points!),0n).toString();
   const dataProblems=input.evidence.filter(e=>!available(e,input.asOf,conflicts)).map(e=>e.id);
   const confidence:Confidence=dataProblems.length||input.confidence.dimensions.includes("Weak")||input.expectedReturn?.aggressiveExpansion?"LOW":input.confidence.level;
-  const veto=input.hardVeto||input.residualRisk==="UNACCEPTABLE";
-  const validity=totalScore===null?"NOT RELIABLY SCORABLE":input.stage0!=="PASS"?"RESEARCH ONLY":veto||input.residualRisk==="HIGH"||confidence==="LOW"?"VALID — NON-ACTIONABLE":"VALID — ACTIONABLE";
+  const veto=input.hardVeto.status!=="CLEAR"||input.residualRisk.status==="UNACCEPTABLE";
+  const validity=totalScore===null?"NOT RELIABLY SCORABLE":input.stage0.status!=="PASS"?"RESEARCH ONLY":veto||input.residualRisk.status==="HIGH"||confidence==="LOW"?"VALID — NON-ACTIONABLE":"VALID — ACTIONABLE";
   return deepFreeze({ id:input.id,securityId:input.securityId,ticker:reference.identifier,asOf:input.asOf,calculatedAt:input.calculatedAt,methodology:input.methodology,
     input,reference,metrics,subcategories:results,categories,totalScore,confidence,validity,dataQuality:dataProblems.length?"PROVISIONAL":"VALID",
     missingEvidence:[...new Set(missing)],blockingEvidence:critical,flags:n.peakCycleRisk?["PEAK_CYCLE_RISK"]:[],portfolioContext:null });

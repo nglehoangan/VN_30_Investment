@@ -1,0 +1,2 @@
+export const SECTORS = ["BANK", "REAL_ESTATE", "RETAIL", "TECHNOLOGY", "INDUSTRIAL", "MATERIALS", "UTILITIES", "ENERGY", "SECURITIES", "INSURANCE", "CONGLOMERATE"] as const;
+export type Sector = typeof SECTORS[number];

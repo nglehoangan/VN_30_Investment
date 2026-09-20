@@ -1,6 +1,6 @@
 import { deepFreeze } from "@/domain/portfolio/transaction";
-export const IMPLEMENTATION = "m64-clarification-1";
-export const VERSION = "1.0.0";
+export { IMPLEMENTATION, VERSION, CATEGORY_MAXIMA, type Category } from "./methodology/identity";
+export { SECTORS, type Sector } from "./methodology/sectors";
 export const RUBRICS = deepFreeze([
   {
     "id": "BQ-EQ",
@@ -912,7 +912,3 @@ export const RUBRICS = deepFreeze([
     "maximumPrerequisite": "Real comparable compounding after cycle and corporate-action adjustments"
   }
 ]);
-export const CATEGORY_MAXIMA = { BQ: 25, FH: 15, GQ: 15, IC: 10, VAL: 20, RG: 10, CA: 5 } as const;
-export type Category = keyof typeof CATEGORY_MAXIMA;
-export const SECTORS = ["BANK", "REAL_ESTATE", "RETAIL", "TECHNOLOGY", "INDUSTRIAL", "MATERIALS", "UTILITIES", "ENERGY", "SECURITIES", "INSURANCE", "CONGLOMERATE"] as const;
-export type Sector = typeof SECTORS[number];

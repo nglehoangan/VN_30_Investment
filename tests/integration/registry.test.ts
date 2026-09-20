@@ -19,7 +19,7 @@ describe("actual SQLite methodology registry", () => {
     expect(statSync(db.directory).mode & 0o077).toBe(0);
     expect(statSync(db.config.filePath).mode & 0o077).toBe(0);
     const columns = await db.client.$queryRawUnsafe<Array<{ name: string; type: string }>>('PRAGMA table_info("methodology_record")');
-    expect(columns.map(c => c.name)).toEqual(["methodology_id", "family", "semantic_version", "approval_reference", "effective_date", "configuration_reference", "implementation_identity", "governing_document_reference", "recorded_at"]);
+    expect(columns.map(c => c.name)).toEqual(["methodology_id", "family", "semantic_version", "approval_reference", "effective_date", "configuration_reference", "implementation_identity", "governing_document_reference", "recorded_at", "governance_status", "intended_use"]);
     expect(columns.every(c => c.type === "TEXT")).toBe(true);
   });
   it("round-trips full metadata and date/instant semantics and freezes the mapped record", async () => {

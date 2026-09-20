@@ -45,7 +45,7 @@ describe("controlled runtime", () => {
 });
 it("queries exactly the pinned methodology ID and preserves missing result", async () => {
   const id = methodologyId("test-only-methodology");
-  const record: MethodologyRecord = Object.freeze({ methodologyId: id, family: "TEST_ONLY", semanticVersion: "0.0.0", approvalReference: "fixture-not-production-approval", effectiveDate: dateOnly("2024-01-01"), configurationReference: "fixture-immutable-config", implementationIdentity: "fixture-build", governingDocumentReference: "test-fixture", recordedAt: instant("2024-01-01T00:00:00.000Z") });
+  const record: MethodologyRecord = Object.freeze({ methodologyId: id, family: "TEST_ONLY", semanticVersion: "0.0.0", approvalReference: "", governanceStatus: "PROPOSED", intendedUse: "TEST", effectiveDate: dateOnly("2024-01-01"), configurationReference: "fixture-immutable-config", implementationIdentity: "fixture-build", governingDocumentReference: "test-fixture", recordedAt: instant("2024-01-01T00:00:00.000Z") });
   const lookup = vi.fn(async (key) => key === id ? record : null);
   expect(await findMethodology({ findById: lookup }, id)).toBe(record);
   expect(lookup).toHaveBeenCalledWith(id);

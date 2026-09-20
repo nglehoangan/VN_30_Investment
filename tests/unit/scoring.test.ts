@@ -68,9 +68,9 @@ describe("official ranking, gates and economic ties",()=>{
   });
   it("VC-004–008/104: LOW-confidence high score, hard veto and category failures are excluded",()=>{
     const f=rankingFixture([90,82]);const high=f.cards[0];const low=calculateScorecard({...high.input,confidence:{...high.input.confidence,level:"LOW"}});
-    const r=rankScorecards({...f,cards:[low,...f.cards.slice(1)]});expect(r.top10.map(c=>c.securityId)).toEqual([f.cards[1].securityId]);expect(r.excluded[0].reasons).toContain("LOW_CONFIDENCE");
-    const veto=rankScorecards({...f,cards:[calculateScorecard({...high.input,hardVeto:true}),...f.cards.slice(1)]});expect(veto.excluded[0].reasons).toContain("HARD_VETO");
-    const weak=rankScorecards({...f,cards:[calculateScorecard(award(award(high.input,"FH-BS",0),"FH-LIQ",0)),...f.cards.slice(1)]});expect(weak.excluded[0].reasons).toContain("CATEGORY_GATE_FH");
+    const r=rankScorecards({...f,cards:[low,...f.cards.slice(1)]});expect(r.top10.map(c=>c.securityId)).toEqual([f.cards[1].securityId]);expect(r.excluded[0].reasons.map(x=>x.code)).toContain("LOW_CONFIDENCE");
+    const veto=rankScorecards({...f,cards:[calculateScorecard({...high.input,hardVeto:{...high.input.hardVeto,status:"ACTIVE"}}),...f.cards.slice(1)]});expect(veto.excluded[0].reasons.map(x=>x.code)).toContain("HARD_VETO");
+    const weak=rankScorecards({...f,cards:[calculateScorecard(award(award(high.input,"FH-BS",0),"FH-LIQ",0)),...f.cards.slice(1)]});expect(weak.excluded[0].reasons.map(x=>x.code)).toContain("CATEGORY_GATE_FH");
   });
   it("positions9–12 preserve full boundary tie and only ten display entries",()=>{
     const r=rankScorecards(rankingFixture([94,94,94,94,94,94,94,94,82,82,82,82]));expect(r.top10).toHaveLength(10);expect(r.boundaryTie?.securityIds).toHaveLength(4);expect(r.boundaryTie?.omitted).toHaveLength(2);expect(r.clusters.at(-1)?.displayOnlyTies[0]).toHaveLength(4);
@@ -82,5 +82,20 @@ describe("official ranking, gates and economic ties",()=>{
   it("requires complete dated universe and rejects mixed scoring method versions",()=>{
     const f=rankingFixture();expect(rankScorecards({...f,universe:{...f.universe,complete:false}}).status).toBe("BLOCKED");
     expect(()=>rankScorecards({...f,cards:[calculateScorecard({...f.cards[0].input,methodology:{...f.cards[0].methodology,methodologyId:"different" as never}}),...f.cards.slice(1)]})).toThrow();
+  });
+  it("consumes M4 hurdle results without recalculating M4 thresholds",()=>{
+    const f=rankingFixture([82]);const gate=f.requiredReturnAssessments[0];
+    const externallyPassed={...gate,assessment:{...gate.assessment,expectedReturn:"0.01",requiredReturn:"0.99",status:"PASS" as const,hurdleMet:true}};
+    expect(rankScorecards({...f,requiredReturnAssessments:[externallyPassed,...f.requiredReturnAssessments.slice(1)]}).excluded.find(x=>x.securityId===gate.securityId)).toBeUndefined();
+    const externallyFailed={...gate,assessment:{...gate.assessment,expectedReturn:"0.99",requiredReturn:"0.01",status:"FAIL" as const,hurdleMet:false}};
+    expect(rankScorecards({...f,requiredReturnAssessments:[externallyFailed,...f.requiredReturnAssessments.slice(1)]}).excluded.find(x=>x.securityId===gate.securityId)?.reasons.map(x=>x.code)).toContain("FORWARD_RETURN_HURDLE_NOT_MET");
+  });
+  it("keeps M3 arithmetic stable when only an external M4 result changes",()=>{
+    const f=rankingFixture([82]);const original=f.cards[0];const gate=f.requiredReturnAssessments[0];
+    const changed={...gate,assessment:{...gate.assessment,methodologyId:"synthetic-m4-return-v2",status:"FAIL" as const,hurdleMet:false,evidenceRefs:["Synthetic revised M4 assessment"]}};
+    const result=rankScorecards({...f,requiredReturnAssessments:[changed,...f.requiredReturnAssessments.slice(1)]});
+    expect(calculateScorecard(original.input).totalScore).toBe(original.totalScore);
+    expect(result.excluded.find(x=>x.securityId===gate.securityId)?.reasons[0].evidenceReference).toBe("synthetic-m4-return-v2");
+    expect(f.requiredReturnAssessments[0]).toEqual(gate);
   });
 });

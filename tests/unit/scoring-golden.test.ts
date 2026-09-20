@@ -40,7 +40,7 @@ describe("M3 golden sector and anti-shortcut cases",()=>{
     expect(()=>calculateScorecard({...f,assessments:f.assessments.map((a,i)=>i<2?{...a,economicChannel:"same-observation",evidence:a.evidence.map(e=>({...e,refs:[shared]}))}:a)})).toThrow();
   });
   it("VC-044/103 sector constraint changes portfolio ranking once, never fundamental total",()=>{
-    const f=rankingFixture([82]);const fundamental=rankScorecards(f),portfolio=rankScorecards({...f,portfolio:context(f.asOf),constraints:[{securityId:f.cards[0].securityId,reason:"Sector concentration blocks addition under existing reviewed policy",evidenceReference:"Synthetic scoped risk assessment"}]});
+    const f=rankingFixture([82]);const fundamental=rankScorecards(f),portfolio=rankScorecards({...f,portfolio:context(f.asOf),portfolioConstraints:[{owner:"M4",methodologyId:"synthetic-m4-portfolio-v1",asOf:f.asOf,evaluatedAt:f.asOf,status:"BLOCKED",evidenceRefs:["Synthetic scoped risk assessment"],securityId:f.cards[0].securityId,detail:"Sector concentration blocks addition under existing reviewed policy"}]});
     expect(fundamental.top10).toHaveLength(1);expect(portfolio.top10).toHaveLength(0);expect(portfolio.input.cards[0].totalScore).toBe("82");
   });
   it("VC-045 confidence excludes once and never multiplies total",()=>{const f=fixture();expect(calculateScorecard({...f,confidence:{...f.confidence,level:"LOW"}}).totalScore).toBe("82");});

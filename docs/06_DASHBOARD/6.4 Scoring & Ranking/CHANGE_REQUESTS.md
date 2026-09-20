@@ -1,6 +1,6 @@
 # M6.4 prerequisite Change Requests
 
-Date: 2026-09-17. Remediation status: **CR-M64-01 / CR-M64-02 = RESOLVED_BY_CLARIFICATION**, pending independent review. See [METHODOLOGY_CLARIFICATION.md](METHODOLOGY_CLARIFICATION.md). The historical findings below explain the original stop, not the current implementation state. No old baseline text was changed and no production approval is claimed.
+Date: 2026-09-17. Remediation status: **CR-M64-01 / CR-M64-02 = IMPLEMENTED_FOR_TEST, PRODUCTION_APPROVAL_PENDING**. See [METHODOLOGY_CLARIFICATION.md](METHODOLOGY_CLARIFICATION.md) and [M6_4_2_REMEDIATION_REPORT.md](M6_4_2_REMEDIATION_REPORT.md). The historical findings below explain the original stop. No old baseline text was changed and no production approval is claimed.
 
 These requests follow the task's explicit instruction to stop affected capabilities when an approved rule is missing or contradictory. They do not supersede M3. Qualitative assessment is expressly permitted by M3; the request is not to replace it with mechanical ratio scoring.
 

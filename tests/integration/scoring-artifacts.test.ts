@@ -13,6 +13,16 @@ import {P,NOW,at,method,W0,deposit} from "../fixtures/portfolio/history";
 import {ACCOUNTING_METHOD} from "@/domain/portfolio/values";
 import {ConflictError} from "@/shared/errors";
 describe("immutable scoring artifacts, actual SQLite",()=>{
+  it("separates synthetic methodology from externally approved formal activation",async()=>{
+    const synthetic=fixture();
+    expect(calculateScorecard(synthetic).input.artifactScope).toBe("SYNTHETIC_TEST");
+    const proposed={...synthetic,artifactScope:"FORMAL" as const,methodology:{...synthetic.methodology,family:"SCORING",intendedUse:"PRODUCTION" as const}};
+    expect(()=>calculateScorecard(proposed)).toThrow();
+    const formal={...proposed,id:"formal-approved-fixture",methodology:{...proposed.methodology,governanceStatus:"APPROVED" as const,approvalReference:"TEST-ONLY external approval fixture"}};
+    const artifact=calculateScorecard(formal);expect(artifact.methodology.approvalReference).toBe("TEST-ONLY external approval fixture");
+    const before=JSON.stringify(artifact);calculateScorecard({...formal,id:"formal-approved-fixture-v2",methodology:{...formal.methodology,methodologyId:"formal-approved-method-v2" as never,approvalReference:"TEST-ONLY revised approval fixture"}});
+    expect(JSON.stringify(artifact)).toBe(before);
+  });
   it("fresh migration, immutable roundtrip, correction and registered methodology only",async()=>{
     const db=await testDatabase();try{
       const repo=new PrismaAnalyticalArtifacts(db.client),engine=new ScoringEngine(db.registry,repo),f=fixture();

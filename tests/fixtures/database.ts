@@ -28,6 +28,9 @@ export async function testDatabase(options: { foundationOnly?: boolean; portfoli
         mkdirSync(path.join(migrations, "202609160001_portfolio_ledger"));
         copyFileSync("prisma/migrations/202609160001_portfolio_ledger/migration.sql", path.join(migrations, "202609160001_portfolio_ledger/migration.sql"));
       }
+      // Current registry clients require governance metadata even when a test intentionally stops before later domain migrations.
+      mkdirSync(path.join(migrations, "202609200001_methodology_governance"));
+      copyFileSync("prisma/migrations/202609200001_methodology_governance/migration.sql", path.join(migrations, "202609200001_methodology_governance/migration.sql"));
       const cliConfig = path.join(directory, "baseline.config.ts");
       writeFileSync(cliConfig, `export default ${JSON.stringify({ schema: path.resolve("prisma/schema.prisma"), migrations: { path: migrations }, datasource: { url: config.url } })};`);
       const result = spawnSync(process.execPath, ["node_modules/prisma/build/index.js", "migrate", "deploy", "--config", cliConfig], {

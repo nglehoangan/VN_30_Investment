@@ -281,8 +281,21 @@ Acceptance: every table example, shuffled inputs, equal secondary criteria, 9–
 
 CR-M64-01 and CR-M64-02: RESOLVED_BY_CLARIFICATION for the explicit implementation above, pending independent review. The user's instruction authorizes implementation after these deterministic clarifications; it does not grant production methodology approval. Existing baseline prose and weights are unchanged. Assessment truth remains analyst responsibility; the software enforces bounded auditable selection rather than pretending to verify investment judgments.
 
-## Existing risk/portfolio contracts consumed, not redefined
+## Ownership boundary
 
-M1 Risk Policy §14.2 remains the authority for forward-return hurdles. The score input retains an explicit human hurdle assessment, evidence and rationale. Normal hurdle cannot be below 15%; elevated risk requires an explicitly higher hurdle, never an invented automatic premium. A 12–15% hurdle requires the existing very-high-quality, LOW-risk, HIGH-confidence exception with downside-protection and portfolio-resilience rationale. Below 12% is prohibited. This checks analytical eligibility only; no BUY state is emitted. Hurdle evidence must be present. Any later decision must still satisfy the full Risk Policy.
+M6.4 owns M3 score arithmetic, evidence sufficiency, confidence, category gates, deterministic tie clustering and ranking presentation. It does not calculate Stage 0, hard veto, residual-risk policy, required-return hurdles, exceptions, purchase decisions, concentration limits or opportunity cost.
 
-Portfolio priority metrics are not fabricated. This implementation supports exposure-only ranking, an explicit evidence-backed per-security portfolio-limit exclusion supplied through the application context, and dated-price/estimated-cost 100-share feasibility display. It does not infer opportunity-cost preference where it has not been assessed; output says NOT ASSESSED. Such unassessed portfolio tie-breaks establish no preference. Cost-only observed basis discrepancies are retained as unavailable reporting context, never rewritten accounting truth.
+Stage 0, veto and residual-risk classifications arrive as immutable, dated external assessments with the responsible methodology identity and evidence references. Required-return and portfolio-constraint results arrive from M4 with the same lineage. M6.4 validates their shape and cutoff, then consumes their declared status where M3 ranking requires it. It never reproduces M1 or M4 thresholds. M6.3 remains the authority for portfolio reconstruction and reconciliation; M6.4 consumes its integrity result without rewriting accounting truth.
+
+## Approval handoff
+
+| Field | Value |
+| --- | --- |
+| Governance status | PROPOSED |
+| Intended use | TEST only |
+| Method identity | `m64-clarification-1` / `1.0.0` |
+| Approval reference | Not provided |
+| Effective production date | Not set |
+| Required approver | Project methodology owner |
+
+The clarification is executable only for synthetic tests while it remains PROPOSED. Formal artifacts require a separately recorded APPROVED methodology, PRODUCTION intent, and a non-empty external approval reference. Recording or running this code does not create that approval. Existing immutable artifacts retain the exact methodology and approval reference under which they were produced.

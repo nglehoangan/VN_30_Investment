@@ -6,6 +6,9 @@ export interface MethodologyRecord {
   readonly family: string;
   readonly semanticVersion: string;
   readonly approvalReference: string;
+  /** External governance state; the registry records it but never grants approval. */
+  readonly governanceStatus: "DRAFT" | "PROPOSED" | "APPROVED" | "RETIRED";
+  readonly intendedUse: "PRODUCTION" | "TEST";
   readonly effectiveDate: DateOnly;
   /** Reference to an immutable snapshot, not a mutable settings URL. */
   readonly configurationReference: string;
