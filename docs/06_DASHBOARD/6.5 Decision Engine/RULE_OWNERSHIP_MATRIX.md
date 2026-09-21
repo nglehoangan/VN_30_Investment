@@ -40,15 +40,15 @@ Relevant upstream sections inspected: M1 Investment Policy §4.2; Decision Frame
 | Monthly DCA / review workflows | M5; M6.6+ | NO | Boundary only | No allocator/scheduler/UI |
 | AI / security | M6.1 Security §§18,30 | Deterministic validation only | Human-attributed assessments | No AI authority, ledger writes or generic CRUD |
 
-## Approved conflict resolutions
+## Proposed conflict resolutions — pending governance approval
 
-The user explicitly approved these three resolutions in this implementation session on 2026-09-20:
+The prior approval assertion is withdrawn following M65-R1-M01. These three candidate resolutions are PROPOSED, pending independent governance approval:
 
 1. Binding concentration blocks the positive Decision State. A compliant smaller size can preserve it. M4 VC-062 is interpreted only for compliant clipping, not a hard no-add override.
 2. BROKEN thesis requires SELL; staging affects execution only. This resolves Engine §7.4 versus Sell §8.4 in favor of the latter.
 3. Qualifying 12–15% hurdle exceptions require documented rationale but no separate user approval unless another risk exception requires it. M4 VC-009/060 must distinguish hurdle classification from risk-policy overrides.
 
-Original approved files are not overwritten. These resolutions must be pinned in the M6.5 methodology.
+Original approved files are not overwritten. These proposals are pinned only in a PROPOSED/TEST candidate methodology; formal production issuance is blocked.
 
 ## Upstream limitations
 

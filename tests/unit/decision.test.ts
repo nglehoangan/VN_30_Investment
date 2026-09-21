@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { decide } from "@/domain/decision/engine";
-import { STATES } from "@/domain/decision/contracts";
+import { STATES, METHOD, LEGACY_SYNTHETIC_METHOD } from "@/domain/decision/contracts";
 import { mutableDecision, decisionFixture } from "../fixtures/decision";
 import { calculateScorecard } from "@/domain/scoring/scorecard";
 import { fixture, rankingFixture } from "../fixtures/scoring";
@@ -120,3 +120,29 @@ describe("M6.5 cash switching", () => {
 it("lot feasibility does not rewrite economic BUY", () => { const i = mutableDecision(); i.assessment.sizing.proposedShares = "15"; expect(decide(i)).toMatchObject({ decisionState: "BUY", executionStatus: "BLOCKED — PORTFOLIO/RISK", executableShares: null }); });
 
 it("M6.4 retains conditional Stage0 without changing score arithmetic", () => { const input = fixture(); const before = calculateScorecard(input); const conditional = JSON.parse(JSON.stringify(input)); conditional.stage0.status = "PASS WITH CONDITIONS"; const after = calculateScorecard(conditional); expect(after.totalScore).toBe(before.totalScore); expect(after.validity).toBe(before.validity); expect(after.input.stage0.status).toBe("PASS WITH CONDITIONS"); });
+
+
+describe("M6.5.1 pending governance", () => {
+  it.each([METHOD, LEGACY_SYNTHETIC_METHOD])("candidate %s cannot issue formal decisions even with relabeled metadata", identity => {
+    const i = mutableDecision(); i.scope = "FORMAL";
+    for (const method of Object.values(i.methods)) {
+      method.implementationIdentity = identity; method.governanceStatus = "APPROVED"; method.intendedUse = "PRODUCTION";
+      // Real pending document used as an adversarial claim, never an approval fixture.
+      method.approvalReference = "docs/06_DASHBOARD/6.5 Decision Engine/CHANGE_REQUESTS.md";
+    }
+    i.scorecard.input.artifactScope = "FORMAL";
+    i.scorecard.methodology.governanceStatus = "APPROVED"; i.scorecard.methodology.intendedUse = "PRODUCTION";
+    try { decide(i); expect.fail("Formal issuance must be blocked"); }
+    catch (error) { expect(error).toMatchObject({ issues: [{ reason: "PENDING_GOVERNANCE_TEST_ONLY" }] }); }
+  });
+  it("synthetic proposed semantics retain the neutral identity and no approval", () => {
+    const i = mutableDecision(true); i.assessment.thesis.status = "BROKEN"; i.assessment.thesis.violatedCondition = "Synthetic thesis break";
+    const d = decide(i); expect(d.decisionState).toBe("SELL"); expect(d.methodology).toBe(METHOD);
+    expect(d.input.methods.decision).toMatchObject({ governanceStatus: "PROPOSED", intendedUse: "TEST", approvalReference: "" });
+  });
+  it("legacy synthetic replay keeps its original identity and bytes", () => {
+    const i = mutableDecision(); for (const method of Object.values(i.methods)) method.implementationIdentity = LEGACY_SYNTHETIC_METHOD;
+    const d = decide(i); expect(d.methodology).toBe(LEGACY_SYNTHETIC_METHOD);
+    expect(JSON.stringify(decide(d.input))).toBe(JSON.stringify(d));
+  });
+});

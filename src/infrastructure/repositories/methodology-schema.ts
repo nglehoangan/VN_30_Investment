@@ -1,3 +1,4 @@
+import { METHOD, LEGACY_SYNTHETIC_METHOD } from "@/domain/decision/contracts";
 import { z } from "zod";
 import { parseBoundary } from "@/shared/validation/parse";
 import { dateOnly, instant } from "@/shared/time";
@@ -38,6 +39,9 @@ export function validateMethodology(value: unknown): Readonly<MethodologyRecord>
   }
   if (row.governanceStatus !== "APPROVED" && row.approvalReference) {
     throw new ValidationError([{ field: "approvalReference", reason: "UNAPPROVED_METHOD_CANNOT_CLAIM_APPROVAL", expected: "Empty until externally approved" }]);
+  }
+  if ([METHOD, LEGACY_SYNTHETIC_METHOD].includes(row.implementationIdentity) && (row.intendedUse !== "TEST" || !["PROPOSED", "RETIRED"].includes(row.governanceStatus) || row.approvalReference !== "")) {
+    throw new ValidationError([{ field: "governanceStatus", reason: "PENDING_DECISION_RESOLUTIONS", expected: "PROPOSED/TEST without approval; RETIRED/TEST allowed for archival governance" }]);
   }
   return Object.freeze({ ...row, methodologyId: methodologyId(row.methodologyId), effectiveDate: dateOnly(row.effectiveDate), recordedAt: instant(row.recordedAt) });
 }

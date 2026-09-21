@@ -1,6 +1,6 @@
 # M6.5 validation report
 
-Date: 2026-09-20. Result: ready for independent review; no production activation performed.
+Date: 2026-09-20. Historical test results only; superseded for governance by M6.5.1. M6.5 is NOT APPROVED. No production activation performed.
 
 ## F. Required sequential commands
 
@@ -47,7 +47,7 @@ The first broad run exposed only an outdated schema table-list expectation. It w
 | Critical | 0 | No known unresolved implementation finding |
 | Major | 0 | No known unresolved implementation finding |
 | Minor | 0 | No known unresolved implementation finding |
-| Deferred policy change requests | 0 | Three conflicts resolved by explicit user approval; no invented policy change |
+| Pending policy change requests | 3 | CR-01/02/03 await independent governance approval; previous approval claim withdrawn |
 | Production governance dependency | 1 | GOV-01: approved upstream/M6.5 methodology registration remains required before formal issuance |
 
 These are implementation self-review findings, not a substitute for independent CIO/architecture approval. Production governance is enforced by the code and has not been bypassed. Qualitative assessments and risk calibrations remain externally owned, with required provenance, as documented in IMPLEMENTATION_REPORT.md.
@@ -55,3 +55,5 @@ These are implementation self-review findings, not a substitute for independent 
 ## H. Scope
 
 **M6.6+ functionality implemented: NO**
+
+M65-R1-M01 supersedes the original self-review severity assessment. See M6.5.1 remediation report for current findings and checks.

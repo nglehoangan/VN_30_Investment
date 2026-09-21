@@ -79,3 +79,19 @@ describe("M6.5 immutable persisted decisions", () => {
     } finally { await db.close(); }
   });
 });
+
+
+it("pending candidate cannot claim approval; retirement never rewrites historical synthetic decisions", async () => {
+  const db = await testDatabase();
+  try {
+    const i = decisionFixture(); await db.registry.append(i.methods.decision);
+    const repo = new PrismaDecisionArtifacts(db.client); const d = decide(i); await repo.append(d);
+    const before = JSON.stringify(await repo.find(d.id));
+    await expect(db.registry.append({ ...i.methods.decision, methodologyId: methodologyId("candidate-claimed-approved"), governanceStatus: "APPROVED", intendedUse: "PRODUCTION", approvalReference: "docs/06_DASHBOARD/6.5 Decision Engine/CHANGE_REQUESTS.md" })).rejects.toThrow();
+    await expect(db.registry.append({ ...i.methods.decision, methodologyId: methodologyId("pending-with-approval"), approvalReference: "CR-01" })).rejects.toThrow();
+    await expect(db.registry.append({ ...i.methods.decision, methodologyId: methodologyId("approval-without-evidence"), governanceStatus: "APPROVED", intendedUse: "PRODUCTION" })).rejects.toThrow();
+    await db.registry.append({ ...i.methods.decision, methodologyId: methodologyId("candidate-retired-record"), governanceStatus: "RETIRED" });
+    expect(JSON.stringify(await repo.find(d.id))).toBe(before);
+    expect((await db.registry.findById(i.methods.decision.methodologyId))?.governanceStatus).toBe("PROPOSED");
+  } finally { await db.close(); }
+});

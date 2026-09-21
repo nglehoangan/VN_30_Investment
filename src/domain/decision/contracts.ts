@@ -6,7 +6,9 @@ export const STATES = ["STRONG BUY", "BUY", "ACCUMULATE", "HOLD", "REDUCE", "SEL
 export type DecisionState = typeof STATES[number];
 export const EXECUTION = ["EXECUTE", "STAGED", "TEMPORARILY DEFERRED", "REQUIRES CASH ACCUMULATION", "BLOCKED — PORTFOLIO/RISK", "NOT ACTIONABLE", "NO EXECUTION — CASH/SETTLEMENT INSUFFICIENT"] as const;
 export const STAGE0 = ["FAIL — INELIGIBLE", "FAIL — RISK VETO", "FAIL — INVESTABILITY", "PENDING — RISK POLICY REVIEW", "PENDING — INSUFFICIENT EVIDENCE", "PASS WITH CONDITIONS", "PASS"] as const;
-export const METHOD = "m65-decision-v1-session-resolutions-20260920";
+export const METHOD = "m65-decision-v1-proposed-resolutions-20260920";
+/** Historical synthetic replay only; this name is not evidence of approval. */
+export const LEGACY_SYNTHETIC_METHOD = "m65-decision-v1-session-resolutions-20260920";
 export interface Evidence {
   readonly id: string; readonly source: string; readonly asOf: string; readonly receivedAt: string;
   readonly validThrough: string; readonly classification: "FACT" | "ESTIMATE" | "ASSUMPTION";

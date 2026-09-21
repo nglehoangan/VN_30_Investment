@@ -2,7 +2,7 @@ import { ValidationError } from "@/shared/errors";
 import { instant, dateOnly } from "@/shared/time";
 import { decimal } from "@/domain/portfolio/values";
 import { snapshot } from "@/domain/scoring/validation";
-import { METHOD, STAGE0, type DecisionInput } from "./contracts";
+import { METHOD, LEGACY_SYNTHETIC_METHOD, STAGE0, type DecisionInput } from "./contracts";
 export function requireDecision(condition: unknown, reason: string): asserts condition {
   if (!condition) throw new ValidationError([{ field: "decision", reason, expected: "Approved M4 decision evidence and lineage" }]);
 }
@@ -39,7 +39,8 @@ export function validateDecision(raw: DecisionInput): DecisionInput {
     if (i.scope === "FORMAL") requireDecision(method.governanceStatus === "APPROVED" && method.intendedUse === "PRODUCTION" && !!method.approvalReference.trim(), "FORMAL_METHOD_NOT_APPROVED");
     else requireDecision(method.intendedUse === "TEST" && method.family === "TEST_ONLY" && method.governanceStatus === "PROPOSED" && method.approvalReference === "", "SYNTHETIC_METHOD_REQUIRED");
   }
-  requireDecision(i.methods.decision.implementationIdentity === METHOD && i.methods.requiredReturn.implementationIdentity === METHOD, "UNSUPPORTED_DECISION_METHOD");
+  const identity = i.methods.decision.implementationIdentity;
+  requireDecision([METHOD, LEGACY_SYNTHETIC_METHOD].includes(identity) && i.methods.requiredReturn.implementationIdentity === identity, "UNSUPPORTED_DECISION_METHOD");
   const c = i.scorecard;
   requireDecision(c.securityId === i.securityId && c.asOf === i.asOf && c.calculatedAt <= i.knownAt && c.input.knownAt <= i.knownAt, "SCORECARD_CONTEXT_MISMATCH");
   requireDecision(c.input.artifactScope === i.scope, "SCORECARD_SCOPE_MISMATCH");
@@ -130,5 +131,7 @@ export function validateDecision(raw: DecisionInput): DecisionInput {
   if (p.nav !== null) number(p.nav, true); if (p.executableCash !== null) number(p.executableCash, true);
   requireDecision(Array.isArray(p.positions) && p.positions.length <= 1000, "POSITIONS_REQUIRED"); const positions = new Set<string>();
   for (const pos of p.positions) { fields(pos, "securityId shares marketValue sector"); identifier(pos.securityId); requireDecision(!positions.has(pos.securityId), "DUPLICATE_POSITION"); positions.add(pos.securityId); number(pos.shares, true, true); if (pos.marketValue !== null) number(pos.marketValue, true); optionalText(pos.sector); }
+  // Both supported identities include unresolved capital-affecting proposals.
+  requireDecision(i.scope === "SYNTHETIC_TEST", "PENDING_GOVERNANCE_TEST_ONLY");
   return i;
 }

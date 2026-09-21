@@ -6,7 +6,7 @@ Implementation date: 2026-09-20. Scope: deterministic decision domain, applicati
 
 The complete rule/source/calculation/evidence/output matrix is in [RULE_OWNERSHIP_MATRIX.md](RULE_OWNERSHIP_MATRIX.md). It was produced before domain implementation. M1 owns constitutional/risk constraints; M3/M6.4 own scores and ranking; M4 owns decision and return logic; M2/M6.3 own accounting; M5 owns later workflows.
 
-The three conflicting rules were paused, then resolved by the user's explicit “Approve these three resolutions” reply. The pinned implementation identity is `m65-decision-v1-session-resolutions-20260920`. See [CHANGE_REQUESTS.md](CHANGE_REQUESTS.md).
+The three conflicting rules remain PENDING GOVERNANCE APPROVAL. The prior session-approval claim is withdrawn by M6.5.1. Candidate identity: `m65-decision-v1-proposed-resolutions-20260920`, PROPOSED/TEST only. See [CHANGE_REQUESTS.md](CHANGE_REQUESTS.md).
 
 ## B. Implementation mapping
 
@@ -41,7 +41,7 @@ All positive states require actionable score evidence, non-LOW confidence, curre
 | SELL | Owned only | Mandatory ownership prohibition/veto/BROKEN thesis, or supported zero-ownership case; valuation-only requires robust extreme valuation, inadequate return, switching test and zero superior to residual |
 | AVOID | Unowned only | Identified failed eligibility/economic gate; incomplete evidence is explicitly temporary with PENDING/ESCALATED qualifier and no trade authority |
 
-Technical deferral, insufficient cash and invalid execution lots do not rewrite economic attractiveness. Binding concentration does block a positive state under the approved resolution. Board lot and shares are inputs, not a hard-coded 100-share order. No order is submitted.
+Technical deferral, insufficient cash and invalid execution lots do not rewrite economic attractiveness. Binding concentration does block a positive state under the proposed resolution. Board lot and shares are inputs, not a hard-coded 100-share order. No order is submitted.
 
 ## D. Anti-shortcut evidence
 
@@ -67,7 +67,7 @@ Price/P&L triggers belong to upstream review evidence; the domain deliberately h
 
 Each record retains IDs, as-of and known-at cutoffs, server recorded time, prior decision/revision reason, dated evidence, pinned scorecard and optional ranking, portfolio snapshot ID/watermark, captured derived context, and decision/risk/required-return/scoring methodology metadata. The full frozen decision input is retained for deterministic replay. This duplicates a bounded historical read context for audit, not a ledger or independently calculated accounting model.
 
-The application resolves stored analytical artifacts and registered methodologies, verifies prior lineage, and checks portfolio currency before and after computation. Eligible stock comparators require a persisted qualifying decision for the same portfolio/watermark and cutoff. Formal issuance requires APPROVED/PRODUCTION metadata; synthetic tests require explicit synthetic scope.
+The application resolves stored analytical artifacts and registered methodologies, verifies prior lineage, and checks portfolio currency before and after computation. Eligible stock comparators require a persisted qualifying decision for the same portfolio/watermark and cutoff. Formal issuance is blocked for the candidate and historical synthetic identities regardless of relabeled metadata; synthetic tests require explicit synthetic scope.
 
 Persistence revalidates the computed record, stores a SHA-256 body checksum, verifies indexed metadata, and replays on read. Append-only ports and SQLite triggers reject update, delete and replacement. Revisions append a new ID and retain the old bytes. Future rule implementations must preserve dispatch for this pinned identity; changing its behavior would break replay verification.
 
@@ -77,7 +77,7 @@ See [VALIDATION_REPORT.md](VALIDATION_REPORT.md) for command, exit code, result 
 
 ## G. Findings and boundaries
 
-See the validation report for final severity counts. Production activation remains gated on registered APPROVED/PRODUCTION upstream and M6.5 methodologies. This is an explicit governance boundary, not implicit approval from passing synthetic tests.
+See the validation report for final severity counts. Production activation is blocked while CR-01/02/03 are pending; registered labels cannot promote this candidate. This is an explicit governance boundary, not implicit approval from passing synthetic tests.
 
 Qualitative concepts (thesis integrity, downside protection, uncertainty robustness, economic target, cash merit and risk calibration) remain attributable human assessments with dated evidence. This implementation validates their provenance/consistency and applies approved deterministic conditions; it does not claim to compute those judgments from market data. Missing required calibration or evidence prohibits dependent capital action. The domain requires a complete schema even for a Stage 0 failure; no sparse early-review UI is introduced.
 

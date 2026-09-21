@@ -1,7 +1,7 @@
 import { decimal, Decimal } from "@/domain/portfolio/values";
 import type { RequiredReturnAssessment } from "@/domain/scoring/eligibility";
 import { deepFreeze } from "@/domain/portfolio/transaction";
-import { type DecisionInput, type DecisionState, EXECUTION, METHOD } from "./contracts";
+import { type DecisionInput, type DecisionState, EXECUTION } from "./contracts";
 import { requireDecision, validateDecision } from "./validation";
 const atLeast = (a: string, b: string) => decimal(a).units >= decimal(b).units;
 const above = (a: string, b: string) => decimal(a).units > decimal(b).units;
@@ -157,7 +157,7 @@ export function decide(raw: DecisionInput) {
   }
 
   return deepFreeze({ id: i.id, securityId: i.securityId, ticker: c.ticker, asOf: i.asOf, knownAt: i.knownAt, recordedAt: i.recordedAt, scope: i.scope,
-    methodology: METHOD, priorDecisionId: i.priorDecisionId, decisionState: state, executionStatus: execution, reviewStatus,
+    methodology: i.methods.decision.implementationIdentity, priorDecisionId: i.priorDecisionId, decisionState: state, executionStatus: execution, reviewStatus,
     decisionQualifier: state === "HOLD" && reviewStatus !== "FINAL" ? "Provisional HOLD" : state === "AVOID" && reviewStatus !== "FINAL" ? "TEMPORARY — PENDING EVIDENCE" : null,
     ownership: p.owned ? "OWNED" : "UNOWNED", membership: member ? "CURRENT" : p.owned ? "LEGACY" : "NON-ELIGIBLE",
     tradeAuthorization: authorized ? "AUTHORIZED" : "NOT AUTHORIZED", suggestedAction: authorized ? `${action} ${quantity ?? "0"} shares` : positive || sale ? "DO NOT TRADE NOW" : state === "HOLD" ? "HOLD — DO NOT DEPLOY CAPITAL" : "DO NOT BUY",
