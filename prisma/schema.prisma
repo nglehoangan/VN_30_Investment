@@ -139,3 +139,44 @@ model DecisionArtifact {
   @@index([securityId, asOf])
   @@map("decision_artifact")
 }
+
+model WorkflowReview {
+  id String @id
+  identityHash String @unique @map("identity_hash")
+  portfolioId String @map("portfolio_id")
+  type String
+  supersedesId String? @map("supersedes_id")
+  recordedAt String @map("recorded_at")
+  body String
+  bodyHash String @map("body_hash")
+  proposals WorkflowProposal[]
+  audits WorkflowAudit[]
+  executions WorkflowExecution[]
+  @@index([portfolioId, type])
+  @@map("workflow_review")
+}
+model WorkflowProposal {
+  id String @id
+  reviewId String @unique @map("review_id")
+  review WorkflowReview @relation(fields: [reviewId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  body String
+  bodyHash String @map("body_hash")
+  @@map("workflow_proposal")
+}
+model WorkflowAudit {
+  id String @id
+  reviewId String @map("review_id")
+  review WorkflowReview @relation(fields: [reviewId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  body String
+  bodyHash String @map("body_hash")
+  @@map("workflow_audit")
+}
+model WorkflowExecution {
+  id String @id
+  reviewId String @map("review_id")
+  review WorkflowReview @relation(fields: [reviewId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  transactionId String @unique @map("transaction_id")
+  body String
+  bodyHash String @map("body_hash")
+  @@map("workflow_execution")
+}
