@@ -1,3 +1,4 @@
+import { MONOTONIC_METHOD } from "@/domain/decision/approved-methodology";
 import { createHash } from "node:crypto";
 import type { PrismaClient } from "@/infrastructure/db/generated/client";
 import type { DecisionArtifacts } from "@/ports/decision";
@@ -9,6 +10,7 @@ export class PrismaDecisionArtifacts implements DecisionArtifacts {
   constructor(private readonly client: PrismaClient) {}
   async append(decision: Decision) {
     const validated = decide(decision.input);
+    requireDecision(validated.scope !== "FORMAL" || validated.methodology === MONOTONIC_METHOD, "SUPERSEDED_DECISION_METHOD_REPLAY_ONLY");
     requireDecision(JSON.stringify(decision) === JSON.stringify(validated), "DECISION_REVALIDATION_FAILED");
     if (await this.client.decisionArtifact.findUnique({ where: { id: decision.id } })) throw new ConflictError();
     if (decision.priorDecisionId !== null) {

@@ -1,4 +1,4 @@
-# M6.5 policy conflict register — aligned M6.5.2
+# M6.5 policy conflict register — M6.5.3 defect correction
 
 CR-01, CR-02 and CR-03 are **APPROVED / IMPLEMENTED** following explicit project-owner approval after independent M6.5.1 review. The actual instruction was **“Approve 3 resolutions”**. The approved semantics are those defined in the immediately preceding independent review, with CR-01 approved as modified. The durable [owner approval record](M652_OWNER_APPROVAL.md) records the instruction, scope and review base without inventing a quotation.
 
@@ -15,8 +15,18 @@ Source paths: `docs/04_DECISION_ENGINE/` and `docs/01 SYSTEM/RISK_POLICY_v1.0.md
 1. M6.5 initial conflicts and unsupported approval claim: withdrawn by M6.5.1.
 2. [M6.5.1 remediation](M651_GOVERNANCE_REMEDIATION.md): proposed semantics, production blocked; retained as a historical report.
 3. [Explicit governance approval](M652_OWNER_APPROVAL.md): supplied after independent review of `4f672ade122733ee54bfefa649b882ef692bf20b` (Critical 0, Major 0, Minor blocking 0).
-4. [M6.5.2 implementation alignment](M652_GOVERNANCE_ALIGNMENT.md): new immutable `m65-decision-v1-approved-resolutions-20260930`, APPROVED/PRODUCTION, effective 2026-09-30. Only this decision implementation may issue production decisions, subject to all upstream and domain gates.
+4. [M6.5.2 implementation alignment](M652_GOVERNANCE_ALIGNMENT.md): new immutable `m65-decision-v1-approved-resolutions-20260930`, APPROVED/PRODUCTION, effective 2026-09-30. This was the M6.5.2 activation boundary; M6.5.3 now supersedes new issuance while preserving the registered record and its historical replay.
 
 `m65-decision-v1-session-resolutions-20260920` and `m65-decision-v1-proposed-resolutions-20260920` remain non-production. Their synthetic artifacts and original calculations are not rewritten, promoted or silently upgraded.
 
 GOV-01: M6.4 production methodology approval remains an independent upstream dependency. Synthetic tests grant no approval. M65-R1-m01 remains OPEN/non-blocking technical debt for later controlled decomposition of `decision/engine.ts`; no broad refactor is included. M6.6+ functionality implemented: NO.
+
+## M6.5.3 — M65-R3-M01 sector monotonicity correction
+
+The [policy audit and remediation record](M653_SECTOR_POLICY.md) documents exact M1/M4 rules, the absence of scoped sector-add evidence in the current contract, and the fail-closed correction. Existing CR-01/02/03 approvals are unchanged; this is an implementation defect correction, not a new policy approval.
+
+New formal issuance uses only `m65-decision-v1-sector-monotonicity-20261001` (1.0.2, APPROVED/PRODUCTION, effective 2026-10-01). `m65-decision-v1-approved-resolutions-20260930` retains its immutable registered metadata and historical semantics, but cannot be selected for new formal issuance. Both older synthetic identities remain synthetic-only.
+
+**CR-04 — PROPOSED / NOT APPROVED:** a future typed sector risk-exception evidence contract, limited to the scope and evidence requirements recorded in M653_SECTOR_POLICY.md. Generic approval/reference or normalization strings do not authorize sector additions. No typed exception workflow is implemented here.
+
+[Validation and closure evidence](M653_REMEDIATION_REPORT.md). M65-R1-m01 remains non-blocking technical debt. M6.6+ functionality implemented: NO.

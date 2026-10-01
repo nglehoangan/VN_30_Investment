@@ -1,4 +1,4 @@
-import { APPROVED_METHOD, isApprovedDecisionMethodology } from "./approved-methodology";
+import { APPROVED_IMPLEMENTATIONS, isApprovedDecisionMethodology } from "./approved-methodology";
 import { ValidationError } from "@/shared/errors";
 import { instant, dateOnly } from "@/shared/time";
 import { decimal } from "@/domain/portfolio/values";
@@ -38,10 +38,10 @@ export function validateDecision(raw: DecisionInput): DecisionInput {
     [method.family, method.semanticVersion, method.configurationReference, method.implementationIdentity, method.governingDocumentReference].forEach(text);
     requireDecision(method.effectiveDate <= i.asOf.slice(0, 10) && method.recordedAt <= i.knownAt, "FUTURE_METHODOLOGY");
     if (i.scope === "FORMAL") requireDecision(method.governanceStatus === "APPROVED" && method.intendedUse === "PRODUCTION" && !!method.approvalReference.trim(), "FORMAL_METHOD_NOT_APPROVED");
-    else if (method.implementationIdentity !== APPROVED_METHOD) requireDecision(method.intendedUse === "TEST" && method.family === "TEST_ONLY" && method.governanceStatus === "PROPOSED" && method.approvalReference === "", "SYNTHETIC_METHOD_REQUIRED");
+    else if (!APPROVED_IMPLEMENTATIONS.includes(method.implementationIdentity)) requireDecision(method.intendedUse === "TEST" && method.family === "TEST_ONLY" && method.governanceStatus === "PROPOSED" && method.approvalReference === "", "SYNTHETIC_METHOD_REQUIRED");
   }
   const identity = i.methods.decision.implementationIdentity;
-  requireDecision([METHOD, LEGACY_SYNTHETIC_METHOD, APPROVED_METHOD].includes(identity) && i.methods.requiredReturn.implementationIdentity === identity, "UNSUPPORTED_DECISION_METHOD");
+  requireDecision([METHOD, LEGACY_SYNTHETIC_METHOD, ...APPROVED_IMPLEMENTATIONS].includes(identity) && i.methods.requiredReturn.implementationIdentity === identity, "UNSUPPORTED_DECISION_METHOD");
   const c = i.scorecard;
   requireDecision(c.securityId === i.securityId && c.asOf === i.asOf && c.calculatedAt <= i.knownAt && c.input.knownAt <= i.knownAt, "SCORECARD_CONTEXT_MISMATCH");
   requireDecision(c.input.artifactScope === i.scope, "SCORECARD_SCOPE_MISMATCH");
@@ -133,10 +133,10 @@ export function validateDecision(raw: DecisionInput): DecisionInput {
   requireDecision(Array.isArray(p.positions) && p.positions.length <= 1000, "POSITIONS_REQUIRED"); const positions = new Set<string>();
   for (const pos of p.positions) { fields(pos, "securityId shares marketValue sector"); identifier(pos.securityId); requireDecision(!positions.has(pos.securityId), "DUPLICATE_POSITION"); positions.add(pos.securityId); number(pos.shares, true, true); if (pos.marketValue !== null) number(pos.marketValue, true); optionalText(pos.sector); }
   for (const method of Object.values(i.methods)) {
-    if (method.implementationIdentity === APPROVED_METHOD || method.methodologyId === APPROVED_METHOD) {
+    if (APPROVED_IMPLEMENTATIONS.includes(method.implementationIdentity) || APPROVED_IMPLEMENTATIONS.includes(method.methodologyId)) {
       requireDecision(isApprovedDecisionMethodology(method), "APPROVED_DECISION_METADATA_MISMATCH");
     }
   }
-  requireDecision(i.scope === "SYNTHETIC_TEST" || (identity === APPROVED_METHOD && Object.values(i.methods).every(method => ![METHOD, LEGACY_SYNTHETIC_METHOD].includes(method.implementationIdentity))), "PENDING_GOVERNANCE_TEST_ONLY");
+  requireDecision(i.scope === "SYNTHETIC_TEST" || (APPROVED_IMPLEMENTATIONS.includes(identity) && Object.values(i.methods).every(method => ![METHOD, LEGACY_SYNTHETIC_METHOD].includes(method.implementationIdentity))), "PENDING_GOVERNANCE_TEST_ONLY");
   return i;
 }

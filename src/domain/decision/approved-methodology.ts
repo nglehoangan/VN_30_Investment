@@ -17,6 +17,20 @@ export const APPROVED_DECISION_METHODOLOGY: Readonly<MethodologyRecord> = Object
   effectiveDate: dateOnly("2026-09-30"),
   recordedAt: instant("2026-09-30T00:00:00.000Z"),
 });
+/** M65-R3-M01 corrects implementation under the existing CR-01/02/03 approval. */
+export const MONOTONIC_METHOD = "m65-decision-v1-sector-monotonicity-20261001";
+export const MONOTONIC_DECISION_METHODOLOGY: Readonly<MethodologyRecord> = Object.freeze({
+  ...APPROVED_DECISION_METHODOLOGY,
+  methodologyId: methodologyId(MONOTONIC_METHOD),
+  semanticVersion: "1.0.2",
+  implementationIdentity: MONOTONIC_METHOD,
+  configurationReference: MONOTONIC_METHOD,
+  governingDocumentReference: "docs/06_DASHBOARD/6.5 Decision Engine/M653_SECTOR_POLICY.md",
+  effectiveDate: dateOnly("2026-10-01"),
+  recordedAt: instant("2026-10-01T00:00:00.000Z"),
+});
+export const APPROVED_IMPLEMENTATIONS: readonly string[] = Object.freeze([APPROVED_METHOD, MONOTONIC_METHOD]);
 export function isApprovedDecisionMethodology(record: MethodologyRecord): boolean {
-  return Object.entries(APPROVED_DECISION_METHODOLOGY).every(([key, value]) => record[key as keyof MethodologyRecord] === value);
+  const expected = record.implementationIdentity === MONOTONIC_METHOD ? MONOTONIC_DECISION_METHODOLOGY : APPROVED_DECISION_METHODOLOGY;
+  return Object.entries(expected).every(([key, value]) => record[key as keyof MethodologyRecord] === value);
 }

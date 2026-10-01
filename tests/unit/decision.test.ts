@@ -193,7 +193,7 @@ describe("M6.5.2 approved governance alignment", () => {
     expect(decide(i).executableShares).toBe(cap === "0.10" ? "500" : "700");
     expect(Number(decide(i).portfolioImpact.postWeight)).toBeLessThanOrEqual(Number(cap));
   });
-  it("sector capacity clips, but existing no-add zone cannot be skipped by a large order", () => {
+  it("historical M6.5.2 replay retains the reviewed 32%-37% defect; never use for new formal issuance", () => {
     const i = approvedDecision(); i.assessment.sizing.proposedShares = "1000";
     i.portfolio.positions.push({ securityId: "sector-peer", shares: "100", marketValue: "27000000", sector: i.scorecard.reference.sector });
     expect(decide(i)).toMatchObject({ decisionState: "BUY", executableShares: "100" });

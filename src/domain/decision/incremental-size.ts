@@ -1,3 +1,4 @@
+import { APPROVED_METHOD } from "./approved-methodology";
 import { decimal } from "@/domain/portfolio/values";
 import type { DecisionInput } from "./contracts";
 
@@ -17,8 +18,10 @@ export function incrementalSize(i: DecisionInput, reasons: readonly string[]) {
   const prohibited = above(value, "0.15") || r.hiddenFactorBlocksAdd ||
     (["CRITICAL", "SEVERE"].includes(r.drawdown) && r.riskIncreasing && !r.approvalReference) ||
     ["NEGATIVE — DO NOT ADD", "REQUIRES REDUCTION"].includes(s.portfolioImpact);
-  // M1 §7.2: 30–35% is no-add; >35–40% requires independent risk approval.
-  const sectorCap = above(sectorValue, "0.35") && r.approvalReference ? "0.40" : "0.30";
+  // Keep the M6.5.2 defect solely for immutable historical replay.
+  // M6.5.3: M1 §7.2/7.3 requires scoped sector-add authority, which this
+  // contract cannot validate. Generic approval/normalization strings grant none.
+  const sectorCap = i.methods.decision.implementationIdentity === APPROVED_METHOD && above(sectorValue, "0.35") && r.approvalReference ? "0.40" : "0.30";
   const capacity = (amount: bigint, cap: string) => (decimal(cap).units * postNav - amount * scale) / decimal(s.price).units;
   const limits = [capacity(value, exception ? "0.30" : "0.15"),
     capacity(value, s.economicTargetUpper), capacity(sectorValue, sectorCap)];

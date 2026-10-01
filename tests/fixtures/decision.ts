@@ -1,4 +1,4 @@
-import { APPROVED_DECISION_METHODOLOGY } from "@/domain/decision/approved-methodology";
+import { APPROVED_DECISION_METHODOLOGY, MONOTONIC_DECISION_METHODOLOGY } from "@/domain/decision/approved-methodology";
 import { fixture, ASOF } from "./scoring";
 import { calculateScorecard } from "@/domain/scoring/scorecard";
 import { METHOD, type DecisionInput } from "@/domain/decision/contracts";
@@ -33,5 +33,13 @@ export function approvedDecision(owned = false): Mutable<DecisionInput> {
   const i = JSON.parse(JSON.stringify(decisionFixture(owned)).replaceAll(ASOF, "2026-09-30T09:00:00.000Z")) as Mutable<DecisionInput>;
   i.methods.decision = { ...APPROVED_DECISION_METHODOLOGY };
   i.methods.requiredReturn = { ...APPROVED_DECISION_METHODOLOGY };
+  return i;
+}
+
+/** Current corrected implementation; the M6.5.2 fixture remains historical. */
+export function monotonicDecision(owned = false): Mutable<DecisionInput> {
+  const i = JSON.parse(JSON.stringify(approvedDecision(owned)).replaceAll("2026-09-30T09:00:00.000Z", "2026-10-01T09:00:00.000Z")) as Mutable<DecisionInput>;
+  i.methods.decision = { ...MONOTONIC_DECISION_METHODOLOGY };
+  i.methods.requiredReturn = { ...MONOTONIC_DECISION_METHODOLOGY };
   return i;
 }

@@ -40,7 +40,7 @@ describe("actual SQLite methodology registry", () => {
   });
   it("rejects malformed metadata before writing", async () => {
     await expect(db.registry.append({ ...methodologyFixture(), semanticVersion: "01.0.0" })).rejects.toBeInstanceOf(ValidationError);
-    expect(await db.client.methodologyRecord.count()).toBe(1);
+    expect(await db.client.methodologyRecord.count()).toBe(2);
   });
   it("rolls back the entire transaction on a duplicate append", async () => {
     const existing = methodologyFixture(); await db.registry.append(existing);
@@ -49,7 +49,7 @@ describe("actual SQLite methodology registry", () => {
       await registry.append(methodologyFixture("must-roll-back"));
       await registry.append(existing);
     })).rejects.toBeInstanceOf(ConflictError);
-    expect(await db.client.methodologyRecord.count()).toBe(2);
+    expect(await db.client.methodologyRecord.count()).toBe(3);
     expect(await db.registry.findById(methodologyId("must-roll-back"))).toBeNull();
   });
   it("blocks update, delete and REPLACE through supported connections", async () => {

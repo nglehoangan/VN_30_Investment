@@ -1,4 +1,4 @@
-import { APPROVED_METHOD } from "./approved-methodology";
+import { APPROVED_IMPLEMENTATIONS, MONOTONIC_METHOD } from "./approved-methodology";
 import { incrementalSize } from "./incremental-size";
 import { decimal, Decimal } from "@/domain/portfolio/values";
 import type { RequiredReturnAssessment } from "@/domain/scoring/eligibility";
@@ -48,12 +48,12 @@ function portfolioImpact(i: DecisionInput) {
   if (above(postWeight, "0.30")) reasons.push("EMERGENCY_CEILING");
   if (above(postWeight, "0.10") && r.elevatedSizeJustification === null) reasons.push("ELEVATED_SIZE_JUSTIFICATION_REQUIRED");
   if (above(postWeight, s.economicTargetUpper)) reasons.push("ECONOMIC_TARGET_CAP");
-  if (above(postSectorWeight, "0.30") && !(above(postSectorWeight, "0.35") && !above(postSectorWeight, "0.40") && r.approvalReference)) reasons.push("SECTOR_NO_ADD");
+  if (above(postSectorWeight, "0.30") && (i.methods.decision.implementationIdentity === MONOTONIC_METHOD || !(above(postSectorWeight, "0.35") && !above(postSectorWeight, "0.40") && r.approvalReference))) reasons.push("SECTOR_NO_ADD");
   if (above(postSectorWeight, "0.40")) reasons.push("SECTOR_CEILING");
   if (r.hiddenFactorBlocksAdd) reasons.push("HIDDEN_FACTOR_NO_ADD");
   if (["CRITICAL", "SEVERE"].includes(r.drawdown) && r.riskIncreasing && !r.approvalReference) reasons.push("DRAWDOWN_APPROVAL_REQUIRED");
   if (["NEGATIVE — DO NOT ADD", "REQUIRES REDUCTION"].includes(s.portfolioImpact)) reasons.push(s.portfolioImpact);
-  const sizing = i.methods.decision.implementationIdentity === APPROVED_METHOD ? incrementalSize(i, reasons) : null;
+  const sizing = APPROVED_IMPLEMENTATIONS.includes(i.methods.decision.implementationIdentity) ? incrementalSize(i, reasons) : null;
   const sizedTrade = sizing ? decimal(sizing.boardLotExecutableShares).mul(decimal(s.price)) : tradeValue;
   return { ...(sizing ? { sizing, requestedPostWeight: postWeight, requestedPostSectorWeight: postSectorWeight } : {}), owned, shares: position?.shares ?? "0", status: "PASS" as const, currentWeight,
     postWeight: sizing ? value.add(sizedTrade).div(postNav).toString() : postWeight, sectorWeight,

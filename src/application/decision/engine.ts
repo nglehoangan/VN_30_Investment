@@ -1,3 +1,4 @@
+import { MONOTONIC_METHOD } from "@/domain/decision/approved-methodology";
 import { decide } from "@/domain/decision/engine";
 import type { DecisionInput } from "@/domain/decision/contracts";
 import { identifier, requireDecision } from "@/domain/decision/validation";
@@ -15,6 +16,7 @@ export class DecisionEngine {
     private readonly artifacts: DecisionArtifacts, private readonly portfolio: DecisionPortfolioRead, private readonly clock: Clock) {}
   async create(raw: DecisionCommand) {
     const command = snapshot(raw);
+    requireDecision(command.scope !== "FORMAL" || command.methods.decision.implementationIdentity === MONOTONIC_METHOD, "SUPERSEDED_DECISION_METHOD_REPLAY_ONLY");
     identifier(command.scorecardId);
     const card = await this.analytical.find(command.scorecardId);
     requireDecision(card && "totalScore" in card, "PERSISTED_SCORECARD_REQUIRED");

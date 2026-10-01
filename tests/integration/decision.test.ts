@@ -1,10 +1,12 @@
+import { createHash } from "node:crypto";
+import m652History from "../fixtures/m652-historical-decisions.json";
 import historicalDecisions from "../fixtures/m65-historical-decisions.json";
-import { APPROVED_METHOD, APPROVED_DECISION_METHODOLOGY } from "@/domain/decision/approved-methodology";
+import { APPROVED_METHOD, APPROVED_DECISION_METHODOLOGY, MONOTONIC_METHOD, MONOTONIC_DECISION_METHODOLOGY } from "@/domain/decision/approved-methodology";
 import type { DecisionInput } from "@/domain/decision/contracts";
 import { calculateScorecard } from "@/domain/scoring/scorecard";
 import { describe, it, expect } from "vitest";
 import { testDatabase } from "../fixtures/database";
-import { decisionFixture, mutableDecision, approvedDecision } from "../fixtures/decision";
+import { decisionFixture, mutableDecision, monotonicDecision } from "../fixtures/decision";
 import { decide, type Decision } from "@/domain/decision/engine";
 import { PrismaDecisionArtifacts } from "@/infrastructure/repositories/decision-artifacts";
 import { PrismaAnalyticalArtifacts } from "@/infrastructure/repositories/analytical-artifacts";
@@ -119,7 +121,7 @@ describe("M6.5.2 approved methodology persistence", () => {
       const beforeArtifacts = withDecisions ? await db.client.decisionArtifact.findMany({ orderBy: { id: "asc" } }) : [];
       expect(db.migration("migrate")).toBe(0);
       expect(await db.registry.findById(APPROVED_DECISION_METHODOLOGY.methodologyId)).toEqual(APPROVED_DECISION_METHODOLOGY);
-      const afterMethods = await db.client.methodologyRecord.findMany({ where: { methodologyId: { not: APPROVED_METHOD } }, orderBy: { methodologyId: "asc" } });
+      const afterMethods = await db.client.methodologyRecord.findMany({ where: { methodologyId: { notIn: [APPROVED_METHOD, MONOTONIC_METHOD] } }, orderBy: { methodologyId: "asc" } });
       expect(afterMethods).toEqual(beforeMethods);
       expect(await db.client.analyticalArtifact.findMany()).toEqual(beforeCards);
       if (withDecisions) {
@@ -152,7 +154,7 @@ describe("M6.5.2 approved methodology persistence", () => {
       const old = historicalDecisions[1] as unknown as Decision;
       await db.registry.append(old.input.methods.decision); await repo.append(old);
       const before = await db.client.decisionArtifact.findUniqueOrThrow({ where: { id: old.id } });
-      const i = approvedDecision(); i.id = "new-formal-m652"; i.scope = "FORMAL";
+      const i = monotonicDecision(); i.id = "new-formal-m653"; i.scope = "FORMAL";
       // Isolated test-only upstream governance prerequisites; this is not project M6.4 approval.
       for (const key of ["risk", "stage0"] as const) {
         i.methods[key] = { ...i.methods[key], methodologyId: methodologyId(`fixture-formal-${key}`), family: `FIXTURE_${key}`, implementationIdentity: `fixture-${key}-implementation`, governanceStatus: "APPROVED", intendedUse: "PRODUCTION", approvalReference: "TEST FIXTURE ONLY: independent upstream approval prerequisite" };
@@ -168,7 +170,7 @@ describe("M6.5.2 approved methodology persistence", () => {
       void _score; void _rank; void _comp; void _p; void _time;
       const command: DecisionCommand = { ...base, scorecardId: card.id, rankingId: null, comparatorScorecardIds: [] };
       const formal = await engine.create(command);
-      expect(formal).toMatchObject({ scope: "FORMAL", methodology: APPROVED_METHOD, decisionState: "BUY" });
+      expect(formal).toMatchObject({ scope: "FORMAL", methodology: MONOTONIC_METHOD, decisionState: "BUY" });
       expect(await repo.find(formal.id)).toEqual(formal);
       expect(await db.client.decisionArtifact.findUniqueOrThrow({ where: { id: old.id } })).toEqual(before);
       expect((await repo.find(old.id))?.scope).toBe("SYNTHETIC_TEST");
@@ -177,6 +179,85 @@ describe("M6.5.2 approved methodology persistence", () => {
       await expect(repo.append({ ...formal, id: "fake-state", decisionState: "SELL" })).rejects.toThrow();
       const unsupported = { ...i, scorecard: card, methods: { ...i.methods, decision: { ...i.methods.decision, implementationIdentity: "unknown-approved" } } };
       expect(() => decide(unsupported)).toThrow();
+    } finally { await db.close(); }
+  });
+});
+
+describe("M6.5.3 immutable sector remediation", () => {
+  async function seedHistoricalRows(db: Awaited<ReturnType<typeof testDatabase>>, artifacts: readonly Decision[]) {
+    for (const d of artifacts) {
+      for (const method of Object.values(d.input.methods)) if (!(await db.registry.findById(method.methodologyId))) await db.registry.append(method);
+      const body = JSON.stringify(d);
+      // Test-only restoration of rows produced by earlier releases. Current append must reject old formal issuance.
+      await db.client.decisionArtifact.create({ data: { id: d.id, securityId: d.securityId, methodologyId: d.input.methods.decision.methodologyId,
+        asOf: d.asOf, recordedAt: d.recordedAt, priorDecisionId: d.priorDecisionId, body, bodyHash: createHash("sha256").update(body).digest("hex") } });
+    }
+  }
+  it.each(["M6.4", "M6.5.1", "M6.5.2"] as const)("populated %s upgrade/repeat preserves every historical row", async baseline => {
+    const db = await testDatabase(baseline === "M6.4" ? { scoringOnly: true } : baseline === "M6.5.1" ? { decisionOnly: true } : { approvedDecisionOnly: true });
+    try {
+      const artifacts = baseline === "M6.4" ? [] : baseline === "M6.5.1" ? historicalDecisions : [...historicalDecisions, ...m652History];
+      await seedHistoricalRows(db, artifacts as unknown as Decision[]);
+      const i = decisionFixture(); await db.registry.append(i.scorecard.methodology);
+      await new PrismaAnalyticalArtifacts(db.client).append(i.scorecard);
+      const methods = await db.client.methodologyRecord.findMany({ orderBy: { methodologyId: "asc" } });
+      const scores = await db.client.analyticalArtifact.findMany();
+      const decisions = baseline === "M6.4" ? [] : await db.client.decisionArtifact.findMany({ orderBy: { id: "asc" } });
+      for (let run = 0; run < 2; run++) {
+        expect(db.migration("migrate")).toBe(0); expect(db.migration("status")).toBe(0);
+        const historicalMethods = await db.client.methodologyRecord.findMany({ where: { methodologyId: { in: methods.map(m => m.methodologyId) } }, orderBy: { methodologyId: "asc" } });
+        expect(historicalMethods).toEqual(methods);
+        expect(await db.client.analyticalArtifact.findMany()).toEqual(scores);
+        expect(await db.client.decisionArtifact.findMany({ orderBy: { id: "asc" } })).toEqual(decisions);
+        expect(await db.registry.findById(MONOTONIC_DECISION_METHODOLOGY.methodologyId)).toEqual(MONOTONIC_DECISION_METHODOLOGY);
+        const repo = new PrismaDecisionArtifacts(db.client);
+        for (const artifact of artifacts) expect(JSON.stringify(await repo.find(artifact.id))).toBe(JSON.stringify(artifact));
+      }
+    } finally { await db.close(); }
+  });
+  it("fresh registry pins the corrected record and cannot rewrite either approved version", async () => {
+    const db = await testDatabase();
+    try {
+      for (const method of [APPROVED_DECISION_METHODOLOGY, MONOTONIC_DECISION_METHODOLOGY]) {
+        expect(await db.registry.findById(method.methodologyId)).toEqual(method);
+        await expect(db.registry.append(method)).rejects.toThrow();
+        await expect(db.client.methodologyRecord.update({ where: { methodologyId: method.methodologyId }, data: { semanticVersion: "9.0.0" } })).rejects.toThrow();
+        await expect(db.client.methodologyRecord.delete({ where: { methodologyId: method.methodologyId } })).rejects.toThrow();
+        await expect(db.client.$executeRawUnsafe('INSERT OR REPLACE INTO methodology_record SELECT * FROM methodology_record WHERE methodology_id = ?', method.methodologyId)).rejects.toThrow();
+      }
+      for (const field of ["approvalReference", "methodologyId", "semanticVersion", "implementationIdentity", "governingDocumentReference", "configurationReference", "effectiveDate", "recordedAt", "governanceStatus", "intendedUse"]) {
+        await expect(db.registry.append({ ...MONOTONIC_DECISION_METHODOLOGY, [field]: "forged" })).rejects.toThrow();
+      }
+      expect(await db.registry.findById(MONOTONIC_DECISION_METHODOLOGY.methodologyId)).toEqual(MONOTONIC_DECISION_METHODOLOGY);
+    } finally { await db.close(); }
+  });
+  it("server blocks old-version selection and arbitrary approval/plan/state strings; new formal truth leaves historical BUY intact", async () => {
+    const db = await testDatabase();
+    try {
+      const old = m652History[1] as unknown as Decision;
+      await seedHistoricalRows(db, [old]);
+      const before = await db.client.decisionArtifact.findUniqueOrThrow({ where: { id: old.id } });
+      const i = JSON.parse(JSON.stringify(old.input).replaceAll("2026-09-30T09:00:00.000Z", "2026-10-01T09:00:00.000Z")) as ReturnType<typeof monotonicDecision>;
+      i.id = "m653-formal-sector-correction"; i.priorDecisionId = old.id; i.revisionReason = "M65-R3-M01 implementation correction";
+      i.methods.decision = { ...MONOTONIC_DECISION_METHODOLOGY }; i.methods.requiredReturn = { ...MONOTONIC_DECISION_METHODOLOGY };
+      i.assessment.risk.approvalReference = "APPROVED — SECTOR_CONCENTRATION: arbitrary client string";
+      i.assessment.risk.normalizationPlan = "Arbitrary plan claims additions are permitted";
+      const card = calculateScorecard(i.scorecard.input); await db.registry.append(card.methodology);
+      const cards = new PrismaAnalyticalArtifacts(db.client); await cards.append(card);
+      const repo = new PrismaDecisionArtifacts(db.client);
+      const engine = new DecisionEngine(db.registry, cards, repo, { read: async () => i.portfolio, isCurrent: async () => true }, { now: () => instant(i.recordedAt) });
+      const { scorecard: _c, ranking: _r, comparatorScorecards: _cs, portfolio: _p, recordedAt: _at, ...base } = i;
+      void _c; void _r; void _cs; void _p; void _at;
+      const command: DecisionCommand = { ...base, scorecardId: card.id, rankingId: null, comparatorScorecardIds: [] };
+      const result = await engine.create(command);
+      expect(result).toMatchObject({ scope: "FORMAL", methodology: MONOTONIC_METHOD, decisionState: "AVOID", tradeAuthorization: "NOT AUTHORIZED", executableShares: null, priorDecisionId: old.id });
+      expect(await repo.find(result.id)).toEqual(result);
+      await expect(engine.create({ ...command, id: "choose-old", methods: { ...command.methods, decision: APPROVED_DECISION_METHODOLOGY, requiredReturn: APPROVED_DECISION_METHODOLOGY } })).rejects.toMatchObject({ issues: [{ reason: "SUPERSEDED_DECISION_METHOD_REPLAY_ONLY" }] });
+      await expect(repo.append(decide({ ...old.input, id: "bypass-application-old" }))).rejects.toMatchObject({ issues: [{ reason: "SUPERSEDED_DECISION_METHOD_REPLAY_ONLY" }] });
+      for (const field of ["decisionState", "executionStatus", "riskCompliantShares"]) await expect(engine.create({ ...command, id: `fake-${field}`, [field]: "BUY" } as DecisionCommand)).rejects.toThrow();
+      await expect(engine.create({ ...command, id: "fake-approval", methods: { ...command.methods, decision: { ...command.methods.decision, approvalReference: "client-approved" } } })).rejects.toThrow();
+      expect(await db.client.decisionArtifact.findUniqueOrThrow({ where: { id: old.id } })).toEqual(before);
+      expect((await repo.find(old.id))?.decisionState).toBe("BUY");
     } finally { await db.close(); }
   });
 });
