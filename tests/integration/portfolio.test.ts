@@ -94,9 +94,10 @@ describe("M6.3 real SQLite ledger / commands / migrations", () => {
   });
   it("migration repeat/reopen retains methodology and reconstructs the golden fixture", async () => {
     for (const f of goldenInputs()) await post(f);
+    const beforeMethods = await db.client.methodologyRecord.findMany({ orderBy: { methodologyId: "asc" } });
     expect(db.migration("status")).toBe(0); expect(db.migration("migrate")).toBe(0);
     const other = await openDatabase(db.config);
-    try { const e2 = new PortfolioEngine(new PrismaPortfolioLedger(other), { now: () => NOW }); expect(await e2.reconstruct(P, NOW)).toMatchObject({ cash: "8270", realizedPnl: "246" }); expect(await other.methodologyRecord.count()).toBe(1); }
+    try { const e2 = new PortfolioEngine(new PrismaPortfolioLedger(other), { now: () => NOW }); expect(await e2.reconstruct(P, NOW)).toMatchObject({ cash: "8270", realizedPnl: "246" }); expect(await other.methodologyRecord.findMany({ orderBy: { methodologyId: "asc" } })).toEqual(beforeMethods); }
     finally { await other.$disconnect(); }
   });
   it("historical watermark reproduces the input set before a later backdated contribution", async () => {

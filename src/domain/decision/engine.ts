@@ -1,3 +1,5 @@
+import { APPROVED_METHOD } from "./approved-methodology";
+import { incrementalSize } from "./incremental-size";
 import { decimal, Decimal } from "@/domain/portfolio/values";
 import type { RequiredReturnAssessment } from "@/domain/scoring/eligibility";
 import { deepFreeze } from "@/domain/portfolio/transaction";
@@ -51,9 +53,13 @@ function portfolioImpact(i: DecisionInput) {
   if (r.hiddenFactorBlocksAdd) reasons.push("HIDDEN_FACTOR_NO_ADD");
   if (["CRITICAL", "SEVERE"].includes(r.drawdown) && r.riskIncreasing && !r.approvalReference) reasons.push("DRAWDOWN_APPROVAL_REQUIRED");
   if (["NEGATIVE — DO NOT ADD", "REQUIRES REDUCTION"].includes(s.portfolioImpact)) reasons.push(s.portfolioImpact);
-  return { owned, shares: position?.shares ?? "0", status: "PASS" as const, currentWeight, postWeight, sectorWeight, postSectorWeight,
-    cashRequired: cashRequired.toString(), cashSufficient: decimal(p.executableCash!).units >= cashRequired.units,
-    allocationBlocked: reasons.length > 0, reductionRequired: (above(currentWeight, "0.25") && !(r.smallNavException && r.approvalReference && r.normalizationPlan)) || s.portfolioImpact === "REQUIRES REDUCTION", reasons };
+  const sizing = i.methods.decision.implementationIdentity === APPROVED_METHOD ? incrementalSize(i, reasons) : null;
+  const sizedTrade = sizing ? decimal(sizing.boardLotExecutableShares).mul(decimal(s.price)) : tradeValue;
+  return { ...(sizing ? { sizing, requestedPostWeight: postWeight, requestedPostSectorWeight: postSectorWeight } : {}), owned, shares: position?.shares ?? "0", status: "PASS" as const, currentWeight,
+    postWeight: sizing ? value.add(sizedTrade).div(postNav).toString() : postWeight, sectorWeight,
+    postSectorWeight: sizing ? sectorValue.add(sizedTrade).div(postNav).toString() : postSectorWeight,
+    cashRequired: sizing?.cashRequired ?? cashRequired.toString(), cashSufficient: sizing?.cashSufficient ?? (decimal(p.executableCash!).units >= cashRequired.units),
+    allocationBlocked: sizing?.allocationBlocked ?? (reasons.length > 0), reductionRequired: (above(currentWeight, "0.25") && !(r.smallNavException && r.approvalReference && r.normalizationPlan)) || s.portfolioImpact === "REQUIRES REDUCTION", reasons: sizing?.reasons ?? reasons };
 }
 function opportunityCost(i: DecisionInput) {
   const a = i.assessment, o = a.opportunity;
@@ -132,7 +138,10 @@ export function decide(raw: DecisionInput) {
   }
   if (state === "REDUCE") requireDecision(a.ownershipCase.targetShares !== null && decimal(a.ownershipCase.targetShares).positive && decimal(a.ownershipCase.targetShares).units < decimal(p.shares).units, "REDUCE_TARGET_REQUIRED");
   const positive = ["STRONG BUY", "BUY", "ACCUMULATE"].includes(state), sale = state === "SELL" || state === "REDUCE";
-  const invalidLot = positive && (!decimal(a.sizing.proposedShares).positive || decimal(a.sizing.proposedShares).units % decimal(a.sizing.boardLot).units !== 0n);
+  const approvedSizing = "sizing" in p ? p.sizing : undefined;
+  const incrementalShares = approvedSizing?.boardLotExecutableShares ?? a.sizing.proposedShares;
+  const invalidLot = positive && (!decimal(incrementalShares).positive || decimal(incrementalShares).units % decimal(a.sizing.boardLot).units !== 0n);
+  if (positive && approvedSizing?.constrained) reasons.push("CONSTRAINED — SMALLER SIZE REQUIRED");
   if (invalidLot) reasons.push("NO_VALID_PROPOSED_LOT");
   let execution: typeof EXECUTION[number] = positive || sale ? "EXECUTE" : "NOT ACTIONABLE";
   if ((positive || sale) && (p.status === "BLOCKED" || a.sizing.operationalBlock || invalidLot)) execution = "BLOCKED — PORTFOLIO/RISK";
@@ -145,7 +154,7 @@ export function decide(raw: DecisionInput) {
   const authorized = execution === "EXECUTE" || execution === "STAGED";
   const action = positive ? p.owned ? "ADD" : "INITIATE" : state;
   const target = state === "SELL" ? "0" : state === "REDUCE" ? a.ownershipCase.targetShares : null;
-  const quantity = !authorized ? null : sale ? decimal(p.shares).sub(decimal(target!)).toString() : positive ? a.sizing.proposedShares : null;
+  const quantity = !authorized ? null : sale ? decimal(p.shares).sub(decimal(target!)).toString() : positive ? incrementalShares : null;
   let finalPortfolioImpact = p;
   if (sale && p.status === "PASS" && target !== null) {
     const position = i.portfolio.positions.find(x => x.securityId === i.securityId)!;

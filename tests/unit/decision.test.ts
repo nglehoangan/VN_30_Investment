@@ -1,7 +1,8 @@
+import historicalDecisions from "../fixtures/m65-historical-decisions.json";
 import { describe, it, expect } from "vitest";
 import { decide } from "@/domain/decision/engine";
-import { STATES, METHOD, LEGACY_SYNTHETIC_METHOD } from "@/domain/decision/contracts";
-import { mutableDecision, decisionFixture } from "../fixtures/decision";
+import { STATES, METHOD, LEGACY_SYNTHETIC_METHOD, type DecisionInput } from "@/domain/decision/contracts";
+import { mutableDecision, decisionFixture, approvedDecision } from "../fixtures/decision";
 import { calculateScorecard } from "@/domain/scoring/scorecard";
 import { fixture, rankingFixture } from "../fixtures/scoring";
 import { rankScorecards } from "@/domain/ranking/rank";
@@ -145,4 +146,132 @@ describe("M6.5.1 pending governance", () => {
     const d = decide(i); expect(d.methodology).toBe(LEGACY_SYNTHETIC_METHOD);
     expect(JSON.stringify(decide(d.input))).toBe(JSON.stringify(d));
   });
+});
+
+describe("M6.5.2 approved governance alignment", () => {
+  it.each([
+    ["A", false, false, "1000", "2000000", "BUY", "499.985", "400", "EXECUTE"],
+    ["B", false, true, "1000", "2000000", "STRONG BUY", "499.985", "400", "EXECUTE"],
+    ["C", true, false, "1000", "2000000", "ACCUMULATE", "399.985", "300", "EXECUTE"],
+    ["D", true, false, "1000", "16000000", "HOLD", "0", "0", "NOT ACTIONABLE"],
+    ["E", true, false, "100", "9000000", "ACCUMULATE", "49.985", "0", "BLOCKED — PORTFOLIO/RISK"],
+    ["F", false, false, "100", "2000000", "AVOID", "0", "0", "NOT ACTIONABLE"],
+  ] as const)("CR-01 %s: requested/risk/lot and ownership", (label, owned, strong, requested, value, state, riskSize, lotSize, status) => {
+    const i = approvedDecision(owned); i.assessment.sizing.proposedShares = requested;
+    if (owned) i.portfolio.positions[0].marketValue = value;
+    if (strong) { i.assessment.valuation.expectedReturn = "0.20"; i.assessment.valuation.exceptionalAsymmetry = true; }
+    if (label === "F") i.assessment.risk.hiddenFactorBlocksAdd = true;
+    const d = decide(i);
+    expect(d).toMatchObject({ decisionState: state, executionStatus: status, executableShares: lotSize === "0" ? null : lotSize,
+      tradeAuthorization: lotSize === "0" ? "NOT AUTHORIZED" : "AUTHORIZED",
+      portfolioImpact: { sizing: { requestedShares: requested, riskCompliantShares: riskSize, boardLotExecutableShares: lotSize } } });
+    if (["A", "B", "C"].includes(label)) {
+      expect(d.reasons).toContain("CONSTRAINED — SMALLER SIZE REQUIRED");
+      expect(Number(d.portfolioImpact.postWeight)).toBeLessThanOrEqual(0.10);
+    }
+  });
+  it("owned STRONG BUY clips without becoming HOLD", () => {
+    const i = approvedDecision(true); i.assessment.sizing.proposedShares = "1000";
+    i.assessment.valuation.expectedReturn = "0.20"; i.assessment.valuation.exceptionalAsymmetry = true;
+    expect(decide(i)).toMatchObject({ decisionState: "STRONG BUY", executableShares: "300" });
+  });
+  it("cash is checked against clipped quantity; arbitrary board lot is execution only", () => {
+    const i = approvedDecision(); i.assessment.sizing.proposedShares = "1000"; i.assessment.sizing.boardLot = "10";
+    i.portfolio.executableCash = "9803000";
+    expect(decide(i)).toMatchObject({ decisionState: "BUY", executionStatus: "EXECUTE", executableShares: "490" });
+    i.portfolio.executableCash = "9802999";
+    expect(decide(i)).toMatchObject({ decisionState: "BUY", executionStatus: "REQUIRES CASH ACCUMULATION", executableShares: null });
+  });
+  it("sub-share compliant capacity preserves economics without rounding into authorization", () => {
+    const i = approvedDecision(true); i.portfolio.positions[0].marketValue = "9990000";
+    expect(decide(i)).toMatchObject({ decisionState: "ACCUMULATE", executionStatus: "BLOCKED — PORTFOLIO/RISK", executableShares: null,
+      portfolioImpact: { sizing: { riskCompliantShares: "0.485", boardLotExecutableShares: "0" } } });
+  });
+  it.each(["0.10", "0.15"])("exact capacity boundary %s and fees never over-allocate", cap => {
+    const i = approvedDecision(); i.assessment.sizing.fees = "0"; i.assessment.sizing.economicTargetUpper = cap;
+    i.assessment.risk.elevatedSizeJustification = "Documented elevated size"; i.assessment.sizing.proposedShares = "1000";
+    expect(decide(i).executableShares).toBe(cap === "0.10" ? "500" : "700");
+    expect(Number(decide(i).portfolioImpact.postWeight)).toBeLessThanOrEqual(Number(cap));
+  });
+  it("sector capacity clips, but existing no-add zone cannot be skipped by a large order", () => {
+    const i = approvedDecision(); i.assessment.sizing.proposedShares = "1000";
+    i.portfolio.positions.push({ securityId: "sector-peer", shares: "100", marketValue: "27000000", sector: i.scorecard.reference.sector });
+    expect(decide(i)).toMatchObject({ decisionState: "BUY", executableShares: "100" });
+    i.portfolio.positions[0].marketValue = "32000000"; i.assessment.risk.approvalReference = "Independent review";
+    expect(decide(i)).toMatchObject({ decisionState: "AVOID", executableShares: null });
+    i.portfolio.positions[0].marketValue = "37000000";
+    expect(decide(i)).toMatchObject({ decisionState: "BUY", executableShares: "100" });
+  });
+  it("small-NAV approval never exceeds emergency ceiling; missing approval clips normally", () => {
+    const i = approvedDecision(); i.assessment.sizing.proposedShares = "1600"; i.assessment.sizing.economicTargetUpper = "0.5";
+    i.assessment.risk.smallNavException = true; i.assessment.risk.normalizationPlan = "Future contributions normalize exposure";
+    i.assessment.risk.elevatedSizeJustification = "Small NAV";
+    expect(decide(i).executableShares).toBe("700");
+    i.assessment.risk.approvalReference = "Independent approved risk exception";
+    const d = decide(i); expect(d.executableShares).toBe("1400"); expect(Number(d.portfolioImpact.postWeight)).toBeLessThanOrEqual(0.30);
+  });
+  it.each(["EXECUTE", "STAGED", "TEMPORARILY DEFERRED"] as const)("CR-02 BROKEN always SELL with %s timing", timing => {
+    const i = approvedDecision(true); i.assessment.thesis.status = "BROKEN"; i.assessment.thesis.violatedCondition = "Franchise lost";
+    i.assessment.ownershipCase.reductionReason = "THESIS"; i.assessment.ownershipCase.targetShares = "50";
+    i.assessment.technical.timing = timing;
+    if (timing === "TEMPORARILY DEFERRED") Object.assign(i.assessment.technical, { concreteRisk: "Settlement restriction", resumeCondition: "Restriction clears", expiryTrigger: "Daily review" });
+    expect(decide(i)).toMatchObject({ decisionState: "SELL", targetShares: "0", executionStatus: timing === "EXECUTE" ? "EXECUTE" : "STAGED" });
+    i.assessment.sizing.operationalBlock = "Trading halt";
+    expect(decide(i)).toMatchObject({ decisionState: "SELL", executionStatus: "BLOCKED — PORTFOLIO/RISK", executableShares: null });
+  });
+  function exceptional() {
+    const i = approvedDecision(); i.scorecard.input.residualRisk.status = "LOW";
+    i.assessment.valuation.expectedReturn = "0.135"; i.assessment.requiredReturn.exceptionRequested = true;
+    return i;
+  }
+  it("CR-03 qualifying exception retains evidence/rationale without manual approval", () => {
+    const i = exceptional(); const d = decide(i);
+    expect(d).toMatchObject({ decisionState: "BUY", requiredReturn: { requiredReturn: "0.12", exceptionApplied: true, evidenceRefs: i.assessment.evidenceRefs } });
+    expect(d.input.assessment.requiredReturn.rationale).toBe(i.assessment.requiredReturn.rationale);
+    expect(d.lineage.evidenceRefs).toEqual(i.assessment.evidenceRefs);
+    i.assessment.requiredReturn.rationale = ""; expect(() => decide(i)).toThrow();
+  });
+  it.each(["veryHighQuality", "strongFinancialResilience", "strongDownsideProtection", "resilienceBenefit", "noBetterQualifiedAlternative"] as const)("CR-03 missing %s rejects exception", key => {
+    const i = exceptional(); i.assessment.requiredReturn[key] = false;
+    expect(decide(i)).toMatchObject({ decisionState: "AVOID", requiredReturn: { exceptionApplied: false, requiredReturn: "0.15" } });
+  });
+  it("CR-03 independent risk approval still blocks new capital", () => {
+    const i = exceptional(); i.assessment.risk.drawdown = "CRITICAL";
+    expect(decide(i)).toMatchObject({ decisionState: "AVOID", tradeAuthorization: "NOT AUTHORIZED", requiredReturn: { exceptionApplied: true } });
+    i.assessment.risk.approvalReference = "Independent risk approval";
+    expect(decide(i).executionStatus).toBe("EXECUTE");
+  });
+  it.each(["approvalReference", "methodologyId", "semanticVersion", "effectiveDate", "recordedAt", "governingDocumentReference"] as const)("client cannot change pinned %s", key => {
+    const i = approvedDecision(); Object.assign(i.methods.decision, { [key]: "forged" }); expect(() => decide(i)).toThrow();
+  });
+  it.each(["decisionState", "executionStatus", "riskCompliantShares", "allocationBlocked"])("client cannot override %s", key => {
+    const i = approvedDecision(); Object.assign(i, { [key]: "override" }); expect(() => decide(i)).toThrow();
+  });
+  it("historical artifacts captured before alignment replay byte-for-byte", () => {
+    for (const artifact of historicalDecisions) expect(JSON.stringify(decide(artifact.input as unknown as DecisionInput))).toBe(JSON.stringify(artifact));
+  });
+});
+
+it.each(["score", "Top10", "low P/E", "technical signal", "board-lot affordability", "monthly DCA cash"])("approved CR-01 preserves anti-shortcut: %s alone is not BUY", () => {
+  const i = approvedDecision(); i.assessment.valuation.status = "EXPENSIVE"; i.assessment.technical.status = "FAVORABLE";
+  expect(decide(i)).toMatchObject({ decisionState: "AVOID", executableShares: null });
+});
+it.each(["price decline", "loss position"])("approved CR-01 preserves anti-shortcut: %s alone is not ACCUMULATE", () => {
+  const i = approvedDecision(true); i.assessment.thesis.averagingDown = true; i.assessment.thesis.forwardEconomicsImproved = false;
+  expect(decide(i).decisionState).toBe("HOLD");
+});
+it.each(["+20% gain", "technical weakness"])("approved CR-01 preserves anti-shortcut: %s alone is not REDUCE/SELL", () => {
+  const i = approvedDecision(true); i.assessment.technical.status = "UNFAVORABLE";
+  expect(decide(i).decisionState).toBe("ACCUMULATE");
+});
+it("approved implementation preserves accounting and cash opportunity gates", () => {
+  const i = approvedDecision(); i.portfolio.integrity.status = "BLOCKED";
+  expect(decide(i)).toMatchObject({ decisionState: "AVOID", executableShares: null });
+  i.portfolio.integrity.status = "PASS"; i.assessment.opportunity.cash = "BETTER";
+  expect(decide(i)).toMatchObject({ decisionState: "AVOID", opportunityCost: { capitalUse: "HOLD CASH" } });
+});
+
+it("zero requested shares is execution infeasibility, not zero portfolio capacity", () => {
+  const i = approvedDecision(); i.assessment.sizing.proposedShares = "0";
+  expect(decide(i)).toMatchObject({ decisionState: "BUY", executionStatus: "BLOCKED — PORTFOLIO/RISK", executableShares: null });
 });

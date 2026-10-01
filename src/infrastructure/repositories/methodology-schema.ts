@@ -1,3 +1,4 @@
+import { APPROVED_METHOD, isApprovedDecisionMethodology } from "@/domain/decision/approved-methodology";
 import { METHOD, LEGACY_SYNTHETIC_METHOD } from "@/domain/decision/contracts";
 import { z } from "zod";
 import { parseBoundary } from "@/shared/validation/parse";
@@ -42,6 +43,9 @@ export function validateMethodology(value: unknown): Readonly<MethodologyRecord>
   }
   if ([METHOD, LEGACY_SYNTHETIC_METHOD].includes(row.implementationIdentity) && (row.intendedUse !== "TEST" || !["PROPOSED", "RETIRED"].includes(row.governanceStatus) || row.approvalReference !== "")) {
     throw new ValidationError([{ field: "governanceStatus", reason: "PENDING_DECISION_RESOLUTIONS", expected: "PROPOSED/TEST without approval; RETIRED/TEST allowed for archival governance" }]);
+  }
+  if ((row.implementationIdentity === APPROVED_METHOD || row.methodologyId === APPROVED_METHOD) && !isApprovedDecisionMethodology(row as MethodologyRecord)) {
+    throw new ValidationError([{ field: "methodologyId", reason: "APPROVED_DECISION_METADATA_MISMATCH", expected: "Exact owner-approved immutable M6.5.2 record" }]);
   }
   return Object.freeze({ ...row, methodologyId: methodologyId(row.methodologyId), effectiveDate: dateOnly(row.effectiveDate), recordedAt: instant(row.recordedAt) });
 }

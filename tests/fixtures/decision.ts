@@ -1,3 +1,4 @@
+import { APPROVED_DECISION_METHODOLOGY } from "@/domain/decision/approved-methodology";
 import { fixture, ASOF } from "./scoring";
 import { calculateScorecard } from "@/domain/scoring/scorecard";
 import { METHOD, type DecisionInput } from "@/domain/decision/contracts";
@@ -26,3 +27,11 @@ export function decisionFixture(owned = false): DecisionInput {
 /** Test-only mutable JSON copy; production inputs remain deeply readonly. */
 export type Mutable<T> = T extends string | number | boolean | null ? T : { -readonly [K in keyof T]: Mutable<T[K]> };
 export const mutableDecision = (owned = false) => JSON.parse(JSON.stringify(decisionFixture(owned))) as Mutable<DecisionInput>;
+
+/** Approved decision implementation exercised with synthetic upstream inputs. */
+export function approvedDecision(owned = false): Mutable<DecisionInput> {
+  const i = JSON.parse(JSON.stringify(decisionFixture(owned)).replaceAll(ASOF, "2026-09-30T09:00:00.000Z")) as Mutable<DecisionInput>;
+  i.methods.decision = { ...APPROVED_DECISION_METHODOLOGY };
+  i.methods.requiredReturn = { ...APPROVED_DECISION_METHODOLOGY };
+  return i;
+}

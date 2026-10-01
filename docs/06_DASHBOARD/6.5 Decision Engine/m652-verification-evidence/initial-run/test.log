@@ -1,0 +1,47 @@
+
+> vn30-value-investing-os@0.1.0 test /Users/nglehoangan/Documents/Working/VN_30_Investment
+> pnpm db:generate && vitest run
+
+
+> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment
+> node scripts/database.mjs generate
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+
+✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 62ms
+
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+ ❯ tests/integration/portfolio.test.ts (18 tests | 1 failed) 32341ms
+   ❯ M6.3 real SQLite ledger / commands / migrations (18)
+     × migration repeat/reopen retains methodology and reconstructs the golden fixture 3432ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/portfolio.test.ts > M6.3 real SQLite ledger / commands / migrations > migration repeat/reopen retains methodology and reconstructs the golden fixture
+AssertionError: expected 2 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ tests/integration/portfolio.test.ts:99:233
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 24 passed (25)
+      Tests  1 failed | 538 passed (539)
+   Start at  15:38:14
+   Duration  33.36s (tests 87%, environment 7%, setup 3%, transform 2%, import 1%)
+
+    Isolate  25 workers spawned · ~704ms startup each (spawn + environment, per file)
+             at least ~1.81s faster with isolate: false — reuses workers across files instead of one per file
+
+ ELIFECYCLE  Test failed. See above for more details.

@@ -1,0 +1,46 @@
+
+> vn30-value-investing-os@0.1.0 test:e2e /private/tmp/vn30-m652-clean
+> pnpm build && node scripts/smoke-app.mjs --e2e
+
+
+> vn30-value-investing-os@0.1.0 build /private/tmp/vn30-m652-clean
+> pnpm db:generate && next build
+
+
+> vn30-value-investing-os@0.1.0 db:generate /private/tmp/vn30-m652-clean
+> node scripts/database.mjs generate
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+
+✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 51ms
+
+▲ Next.js 16.3.4 (Turbopack)
+✓ Running next.config.ts took 14ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 93ms
+  Running TypeScript ...
+  Finished TypeScript in 995ms ...
+  Collecting page data using 4 workers ...
+  Generating static pages using 4 workers (0/3) ...
+✓ Generating static pages using 4 workers (3/3) in 213ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
+PASS start: HTTP 200, product heading, startup hook, owned loopback listener on port 62302
+
+Running 1 test using 1 worker
+
+(node:40464) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/e2e/shell.spec.ts:2:1 › production shell shows its empty state without external requests or browser errors (267ms)
+
+  1 passed (758ms)
