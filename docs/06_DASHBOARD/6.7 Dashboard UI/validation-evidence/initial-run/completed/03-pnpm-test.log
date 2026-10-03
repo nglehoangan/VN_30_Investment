@@ -1,0 +1,96 @@
+
+> vn30-value-investing-os@0.1.0 test /Users/nglehoangan/Documents/Working/VN_30_Investment
+> pnpm db:generate && vitest run
+
+
+> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment
+> node scripts/database.mjs generate
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+
+✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 432ms
+
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+ ❯ tests/integration/marginal.test.ts (5 tests | 3 failed) 97128ms
+   ❯ M6.6.1 persisted marginal boundary (5)
+     × substitution history is persisted, required on later reviews, and cannot be omitted or forged 20974ms
+     × links actual fills to individual marginal lots and rejects duplicate or missing lot references 24872ms
+     × M6.6 populated upgrade preserves reviews, proposals, embedded journals, audits, decision and execution links byte-for-byte 20689ms
+ ❯ tests/unit/app-shell.test.tsx (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/app-shell.test.tsx [ tests/unit/app-shell.test.tsx ]
+Error: Failed to resolve import "server-only" from "app/server/dashboard.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /Users/nglehoangan/Documents/Working/VN_30_Investment/app/server/dashboard.ts:1:7
+  1  |  import "server-only";
+     |          ^
+  2  |  import { existingDatabase } from "@/infrastructure/dashboard-support";
+  3  |  import { loadDatabaseConfig } from "@/infrastructure/config/database";
+ ❯ TransformPluginContext._formatLog node_modules/.pnpm/vite@8.2.2_@types+node@22.20.2_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:31147:39
+ ❯ TransformPluginContext.error node_modules/.pnpm/vite@8.2.2_@types+node@22.20.2_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:31144:14
+ ❯ normalizeUrl node_modules/.pnpm/vite@8.2.2_@types+node@22.20.2_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:28083:18
+ ❯ node_modules/.pnpm/vite@8.2.2_@types+node@22.20.2_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:28153:30
+ ❯ TransformPluginContext.transform node_modules/.pnpm/vite@8.2.2_@types+node@22.20.2_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:28119:4
+ ❯ EnvironmentPluginContainer.transform node_modules/.pnpm/vite@8.2.2_@types+node@22.20.2_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:30932:14
+ ❯ loadAndTransform node_modules/.pnpm/vite@8.2.2_@types+node@22.20.2_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:20671:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/marginal.test.ts > M6.6.1 persisted marginal boundary > substitution history is persisted, required on later reviews, and cannot be omitted or forged
+Error: Test timed out in 20000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/integration/marginal.test.ts:50:3
+     48|     } finally { await db.close(); }
+     49|   });
+     50|   it("substitution history is persisted, required on later reviews, an…
+       |   ^
+     51|     const db = await testDatabase(); try {
+     52|       const p = workflowFixture(2, (i, n) => { i.portfolio.executableC…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/integration/marginal.test.ts > M6.6.1 persisted marginal boundary > links actual fills to individual marginal lots and rejects duplicate or missing lot references
+Error: Test timed out in 20000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/integration/marginal.test.ts:68:3
+     66|     } finally { await db.close(); }
+     67|   });
+     68|   it("links actual fills to individual marginal lots and rejects dupli…
+       |   ^
+     69|     const db = await testDatabase(); try {
+     70|       const x = await marginalDatabase(db), m = await x.engine.create(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/integration/marginal.test.ts > M6.6.1 persisted marginal boundary > M6.6 populated upgrade preserves reviews, proposals, embedded journals, audits, decision and execution links byte-for-byte
+Error: Test timed out in 20000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/integration/marginal.test.ts:90:3
+     88|     } finally { await db.close(); }
+     89|   });
+     90|   it("M6.6 populated upgrade preserves reviews, proposals, embedded jo…
+       |   ^
+     91|     const db = await testDatabase({ workflowOnly: true }); try {
+     92|       const x = await marginalDatabase(db), review = await x.workflow.…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  2 failed | 32 passed (34)
+      Tests  3 failed | 719 passed (722)
+   Start at  08:24:58
+   Duration  339.97s (tests 95%, environment 3%, setup 1%, transform 1%, import 1%)
+
+    Isolate  34 workers spawned · ~659ms startup each (spawn + environment, per file)
+             at least ~10.55s faster with isolate: false — reuses workers across files instead of one per file
+
+ ELIFECYCLE  Test failed. See above for more details.

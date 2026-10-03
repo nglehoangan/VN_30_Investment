@@ -62,7 +62,7 @@ export function checkBoundaries(root) {
       if (spec.startsWith('.') && spec.endsWith('.css') && ['app', 'ui'].includes(from) && existsSync(path.resolve(path.dirname(file), spec))) return;
       const react = /^(react|react-dom)(\/|$)/.test(spec);
       const next = /^next(\/|$)/.test(spec);
-      const safe = (['app', 'ui'].includes(from) && (react || next)) ||
+      const safe = (['app', 'ui'].includes(from) && (react || next || spec === "react-hook-form")) ||
         (from === 'server' && (spec === 'server-only' || next)) ||
         (from === 'infrastructure' && (spec.startsWith('node:') || spec === 'server-only')) ||
         (spec === 'zod' && (name.startsWith('src/shared/validation/') || name.startsWith('src/infrastructure/config/') || ['src/infrastructure/repositories/methodology-schema.ts', 'src/infrastructure/repositories/portfolio-command-schema.ts'].includes(name))) ||

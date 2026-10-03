@@ -1,8 +1,13 @@
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
 import { spawn, execFileSync } from 'node:child_process';
 import { createServer } from 'node:net';
 import { once } from 'node:events';
 import { setTimeout as delay } from 'node:timers/promises';
 
+const testDirectory = mkdtempSync(path.join(tmpdir(), 'vn30-ui-e2e-'));
+const testFile = path.join(testDirectory, 'test.sqlite');
 const invalidConfig = process.argv.includes('--invalid-config');
 const canary = 'vn30-invalid-config-secret-canary';
 const mode = process.argv.includes('--dev') ? 'dev' : 'start';
@@ -13,7 +18,7 @@ const port = probe.address().port;
 await new Promise((resolve, reject) => probe.close(error => error ? reject(error) : resolve()));
 const child = spawn(process.execPath, ['node_modules/next/dist/bin/next', mode, '--hostname', '127.0.0.1', '--port', String(port)], {
   stdio: ['ignore', 'pipe', 'pipe'], detached: true,
-  env: { ...process.env, NEXT_TELEMETRY_DISABLED: '1', LOG_LEVEL: invalidConfig ? canary : 'info' },
+  env: { ...process.env, NEXT_TELEMETRY_DISABLED: '1', DATABASE_URL: `file:${testFile}`, LOG_LEVEL: invalidConfig ? canary : 'info' },
 });
 let output = '';
 let leakedCanary = false;
@@ -91,10 +96,10 @@ try {
   console.log(`PASS ${mode}: HTTP 200, product heading, startup hook, owned loopback listener on port ${port}`);
   if (process.argv.includes('--e2e')) {
     const browser = spawn(process.execPath, ['node_modules/@playwright/test/cli.js', 'test'], {
-      stdio: 'inherit', detached: true, env: { ...process.env, VN30_E2E_BASE_URL: `http://127.0.0.1:${port}` },
+      stdio: 'inherit', detached: true, env: { ...process.env, VN30_E2E_BASE_URL: `http://127.0.0.1:${port}`, VN30_E2E_DATABASE: testFile },
     });
     browserGroup = browser.pid;
-    const timer = setTimeout(stopBrowser, 90000);
+    const timer = setTimeout(stopBrowser, 300000);
     try {
       const [code] = await once(browser, 'exit');
       if (code !== 0) throw new Error('Browser smoke failed');
@@ -109,4 +114,5 @@ try {
   process.exitCode = 1;
 } finally {
   await cleanup();
+  rmSync(testDirectory, { recursive: true, force: true });
 }

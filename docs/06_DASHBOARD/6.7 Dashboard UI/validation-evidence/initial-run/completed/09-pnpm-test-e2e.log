@@ -1,0 +1,143 @@
+
+> vn30-value-investing-os@0.1.0 test:e2e /Users/nglehoangan/Documents/Working/VN_30_Investment
+> pnpm build && node scripts/smoke-app.mjs --e2e
+
+
+> vn30-value-investing-os@0.1.0 build /Users/nglehoangan/Documents/Working/VN_30_Investment
+> pnpm db:generate && next build
+
+
+> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment
+> node scripts/database.mjs generate
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+
+✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 61ms
+
+▲ Next.js 16.3.4 (Turbopack)
+✓ Running next.config.ts took 25ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 188ms
+  Running TypeScript ...
+  Finished TypeScript in 1146ms ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/2) ...
+✓ Generating static pages using 7 workers (2/2) in 226ms
+Turbopack build encountered 3 warnings:
+./src/infrastructure/db/files.ts:14:11
+Warning: Dynamic filesystem access causes tracing of the whole project
+  [90m12 |[0m     [36mfor[0m ([36mconst[0m name [36mof[0m [[32m"public"[0m, [32m".next"[0m]) {
+  [90m13 |[0m       [36mconst[0m root = path.join(config.projectDirectory, name);
+[33m[1m>[0m [90m14 |[0m       [36mif[0m (existsSync(root)) {
+  [90m   |[0m           [33m[1m^^^^^^^^^^^^^^^^[0m
+  [90m15 |[0m         [36mconst[0m relative = path.relative(realpathSync(root), physicalFile);
+  [90m16 |[0m         [36mif[0m (relative === [32m""[0m || (!relative.startsWith([32m`..[0m${path.sep[32m}`[0m) && relative !== [32m".."[0m...
+  [90m17 |[0m       }
+
+Static analysis determined that this filesystem access causes the whole project to be traced and included in the output.
+This is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.
+This can slow down deployments or lead to failures when size limits are exceeded.
+To resolve this, you can
+- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or
+- only use them in development, or
+- opt out by adding an ignore comment to the highlighted call: fs.existsSync(/*turbopackIgnore: true*/ ...), or
+- remove them.
+
+Import trace:
+  Server Component:
+    ./src/infrastructure/db/files.ts
+    ./src/infrastructure/db/client.ts
+    ./app/server/dashboard.ts
+    ./app/page.tsx
+
+
+./src/infrastructure/db/files.ts:15:40
+Warning: Dynamic filesystem access causes tracing of the whole project
+  [90m13 |[0m ... [36mconst[0m root = path.join(config.projectDirectory, name);
+  [90m14 |[0m ... [36mif[0m (existsSync(root)) {
+[33m[1m>[0m [90m15 |[0m ...   [36mconst[0m relative = path.relative(realpathSync(root), physicalFile);
+  [90m   |[0m                                      [33m[1m^^^^^^^^^^^^^^^^^^[0m
+  [90m16 |[0m ...   [36mif[0m (relative === [32m""[0m || (!relative.startsWith([32m`..[0m${path.sep[32m}`[0m) && relative !== [32m".."[0m &...
+  [90m17 |[0m ... }
+  [90m18 |[0m ...
+
+Static analysis determined that this filesystem access causes the whole project to be traced and included in the output.
+This is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.
+This can slow down deployments or lead to failures when size limits are exceeded.
+To resolve this, you can
+- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or
+- only use them in development, or
+- opt out by adding an ignore comment to the highlighted call: fs.realpathSync(/*turbopackIgnore: true*/ ...), or
+- remove them.
+
+Import trace:
+  Server Component:
+    ./src/infrastructure/db/files.ts
+    ./src/infrastructure/db/client.ts
+    ./app/server/dashboard.ts
+    ./app/page.tsx
+
+
+./src/infrastructure/db/files.ts:13:20
+Warning: Dynamic filesystem access causes tracing of the whole project
+  [90m11 |[0m     assertPrivateLocation(physicalFile, config.projectDirectory);
+  [90m12 |[0m     [36mfor[0m ([36mconst[0m name [36mof[0m [[32m"public"[0m, [32m".next"[0m]) {
+[33m[1m>[0m [90m13 |[0m       [36mconst[0m root = path.join(config.projectDirectory, name);
+  [90m   |[0m                    [33m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m       [36mif[0m (existsSync(root)) {
+  [90m15 |[0m         [36mconst[0m relative = path.relative(realpathSync(root), physicalFile);
+  [90m16 |[0m         [36mif[0m (relative === [32m""[0m || (!relative.startsWith([32m`..[0m${path.sep[32m}`[0m) && relative !== [32m".."[0m...
+
+Static analysis determined that this filesystem access causes the whole project to be traced and included in the output.
+This is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.
+This can slow down deployments or lead to failures when size limits are exceeded.
+To resolve this, you can
+- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or
+- only use them in development, or
+- opt out by adding an ignore comment to the highlighted call: path.join(/*turbopackIgnore: true*/ ...), or
+- remove them.
+
+Import trace:
+  Server Component:
+    ./src/infrastructure/db/files.ts
+    ./src/infrastructure/db/client.ts
+    ./app/server/dashboard.ts
+    ./app/page.tsx
+
+
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /[screen]
+├ ƒ /[screen]/[id]
+└ ƒ /transactions/new
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+PASS start: HTTP 200, product heading, startup hook, owned loopback listener on port 62109
+ConflictError: Dữ liệu có xung đột. Vui lòng tải lại trước khi tiếp tục.
+
+   at ../../src/infrastructure/repositories/workflow-artifacts.ts:71
+
+  69 |         const portfolio = await tx.portfolio.findUnique({ where: { id: review.command.portfolioId } });
+  70 |         requireWorkflow(portfolio || review.command.scope === "SYNTHETIC_TEST", "PERSISTED_PORTFOLIO_REQUIRED");
+> 71 |         if (portfolio && portfolio.revision !== review.portfolio.decisionContext.integrity.ledgerWatermark) throw new ConflictError();
+     |                                                                                                                   ^
+  72 |         const body = JSON.stringify(review);
+  73 |         await tx.workflowReview.create({ data: { id: review.id, portfolioId: review.command.portfolioId, type: review.command.type, supersedesId: review.command.supersedesReviewId, recordedAt: review.recordedAt, identityHash: hash(review.idempotencyKey), body, bodyHash: hash(body) } });
+  74 |         if (review.proposal) { const body = JSON.stringify(review.proposal); await tx.workflowProposal.create({ data: { id: review.proposal.id, reviewId: review.id, body, bodyHash: hash(body) } }); }
+    at /Users/nglehoangan/Documents/Working/VN_30_Investment/src/infrastructure/repositories/workflow-artifacts.ts:71:115
+    at Proxy._transactionWithCallback (/Users/nglehoangan/Documents/Working/VN_30_Investment/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@22.20.2_@types+react-dom@19.3.0_@types+_e23714d939dc38db27c959cddc294dc8/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:861:18)
+    at PrismaWorkflowArtifacts.append (/Users/nglehoangan/Documents/Working/VN_30_Investment/src/infrastructure/repositories/workflow-artifacts.ts:61:14)
+    at setup (/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/e2e/setup.ts:30:5)
+
+Browser smoke failed
+Captured 234 characters of server diagnostics (not printed).
+ ELIFECYCLE  Command failed with exit code 1.

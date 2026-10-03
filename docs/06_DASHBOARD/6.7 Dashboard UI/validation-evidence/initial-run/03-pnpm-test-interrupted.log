@@ -1,0 +1,43 @@
+
+> vn30-value-investing-os@0.1.0 test /Users/nglehoangan/Documents/Working/VN_30_Investment
+> pnpm db:generate && vitest run
+
+
+> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment
+> node scripts/database.mjs generate
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+
+✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 70ms
+
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+ ❯ tests/unit/workflow.test.ts (36 tests | 1 failed) 228947ms
+   ❯ M5 review workflows (35)
+     × all documented bias tags require contemporaneous evidence 88669ms
+ ❯ tests/integration/workflow.test.ts (11 tests | 9 failed) 352395ms
+   ❯ M6.6 immutable application and persistence (11)
+     × persists proposal/journal atomically, deduplicates runs, never posts transactions 33823ms
+     × same weekly invocation is idempotent; elapsed week creates no trades 27779ms
+     × missing, stale, corrupt and client-injected authority all fail closed 38667ms
+     × event supersedes pending schedule, blocks new monthly runs and preserves historical proposal 28706ms
+     × historical R1/A1 survive new cash, snapshot, score/rank/decision and scoring identity 44450ms
+     × execution readiness expires on new evidence, changed portfolio or an event 29721ms
+     × execution links require a posted matching M6.3 transaction 27355ms
+     × links an explicit posted trade without changing the original proposal or ledger 28434ms
+     × fresh and populated M6.5 migration repeatability preserves every upstream row 70104ms
+ ❯ tests/integration/scoring-artifacts.test.ts (4 tests | 2 failed) 77426ms
+   ❯ immutable scoring artifacts, actual SQLite (4)
+     × populated M6.3 upgrade and repeat deploy preserve existing data 40388ms
+     × ranking persists only from formal scorecards and replays after method/evidence revisions 20721ms
+ ❯ tests/integration/marginal.test.ts (5 tests | 5 failed) 377030ms
+   ❯ M6.6.1 persisted marginal boundary (5)
+     × persists/replays two authoritative lots and stop, creates a new review, never posts trades 84155ms
+     × rejects forged authority, corrupted artifacts, stale snapshots and formal/synthetic crossing 33094ms
+     × substitution history is persisted, required on later reviews, and cannot be omitted or forged 71196ms
+     × links actual fills to individual marginal lots and rejects duplicate or missing lot references 101280ms
+     × M6.6 populated upgrade preserves reviews, proposals, embedded journals, audits, decision and execution links byte-for-byte 87293ms
+ ELIFECYCLE  Test failed. See above for more details.
