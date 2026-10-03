@@ -10,7 +10,7 @@ export interface WorkflowArtifacts {
   findIdentity(identity: string): Promise<ReviewArtifact | null>;
   openEvents(portfolioId: string): Promise<readonly ReviewArtifact[]>;
   isSuperseded(id: string): Promise<boolean>;
-  hasExecution(reviewId: string): Promise<boolean>;
+  hasExecution(reviewId: string, marginalAssessmentReference?: string): Promise<boolean>;
   append(review: ReviewArtifact, expectedOpenEvents: readonly string[]): Promise<ReviewArtifact>;
   appendFollowUp(audit: FollowUpArtifact): Promise<void>;
   findFollowUp(id: string): Promise<FollowUpArtifact | null>;

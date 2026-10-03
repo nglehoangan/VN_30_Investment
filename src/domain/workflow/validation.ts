@@ -17,7 +17,8 @@ function refs(values: readonly string[], evidence: readonly { id: string }[]) {
 }
 export function validateReview(raw: ReviewCommand) {
   const c = snapshot(raw);
-  exact(c, "id type portfolioId period reviewDate asOf evidenceCutoff snapshotId scope reviewer priorReviewId supersedesReviewId decisionIds rankingId contributionId plannedContribution evidence triggers sections theses behavioral nextReview governance");
+  if (c.marginalAllocationId !== undefined) { id(c.marginalAllocationId); requireWorkflow(c.type === "MONTHLY_DCA", "MARGINAL_MONTHLY_ONLY"); }
+  exact(c, (c.marginalAllocationId !== undefined ? "marginalAllocationId " : "") + "id type portfolioId period reviewDate asOf evidenceCutoff snapshotId scope reviewer priorReviewId supersedesReviewId decisionIds rankingId contributionId plannedContribution evidence triggers sections theses behavioral nextReview governance");
   [c.id, c.portfolioId].forEach(id); [c.period, c.reviewer, c.snapshotId, c.nextReview].forEach(text);
   requireWorkflow(REVIEW_TYPES.includes(c.type) && ["FORMAL", "SYNTHETIC_TEST"].includes(c.scope), "INVALID_REVIEW_TYPE_OR_SCOPE");
   [c.reviewDate, c.asOf, c.evidenceCutoff].forEach(instant);

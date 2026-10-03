@@ -1,3 +1,4 @@
+import { PrismaMarginalArtifacts } from "./marginal-artifacts";
 import { createHash } from "node:crypto";
 import type { PrismaClient } from "@/infrastructure/db/generated/client";
 import type { WorkflowArtifacts } from "@/ports/workflow";
@@ -39,14 +40,18 @@ export class PrismaWorkflowArtifacts implements WorkflowArtifacts {
     return open(await Promise.all(rows.map(async row => (await this.find(row.id))!)));
   }
   async isSuperseded(idValue: string) { id(idValue); return !!(await this.client.workflowReview.findFirst({ where: { supersedesId: idValue } })); }
-  async hasExecution(reviewId: string) { id(reviewId); return !!(await this.client.workflowExecution.findFirst({ where: { reviewId } })); }
+  async hasExecution(reviewId: string, marginalAssessmentReference?: string) {
+    id(reviewId); const rows = await this.client.workflowExecution.findMany({ where: { reviewId } });
+    return marginalAssessmentReference ? rows.some(row => parse<ExecutionLink>(row).marginalAssessmentReference === marginalAssessmentReference) : rows.length > 0;
+  }
   async append(raw: ReviewArtifact, expectedOpenEvents: readonly string[]) {
     const review = snapshot(raw), decisions = new PrismaDecisionArtifacts(this.client), cards = new PrismaAnalyticalArtifacts(this.client);
     const inputs = [];
     for (const ref of review.command.decisionIds) { const d = await decisions.find(ref); requireWorkflow(d, "PERSISTED_DECISION_REQUIRED"); inputs.push(d); }
     const rank = review.command.rankingId ? await cards.find(review.command.rankingId) : null;
     requireWorkflow(!rank || "entries" in rank, "RANKING_REQUIRED");
-    const replay = createReview({ command: review.command, portfolio: review.portfolio, decisions: inputs, ranking: rank && "entries" in rank ? rank : null, recordedAt: review.recordedAt, openEventReviewIds: review.linkedEventReviewIds }, review.proposal?.supersedesProposalId ?? null);
+    const marginalAllocation = review.command.marginalAllocationId ? await new PrismaMarginalArtifacts(this.client).find(review.command.marginalAllocationId) : null;
+    const replay = createReview({ ...(marginalAllocation ? { marginalAllocation } : {}), command: review.command, portfolio: review.portfolio, decisions: inputs, ranking: rank && "entries" in rank ? rank : null, recordedAt: review.recordedAt, openEventReviewIds: review.linkedEventReviewIds }, review.proposal?.supersedesProposalId ?? null);
     requireWorkflow(JSON.stringify(replay) === JSON.stringify(review), "WORKFLOW_REVALIDATION_FAILED");
     for (const ref of [review.command.priorReviewId, review.command.supersedesReviewId]) if (ref) {
       const prior = await this.find(ref);
@@ -82,7 +87,7 @@ export class PrismaWorkflowArtifacts implements WorkflowArtifacts {
   async findFollowUp(idValue: string) { id(idValue); const row = await this.client.workflowAudit.findUnique({ where: { id: idValue } }); return row ? parse<FollowUpArtifact>(row) : null; }
   async appendExecution(link: ExecutionLink) {
     const review = await this.find(link.reviewId);
-    requireWorkflow(review?.proposal?.id === link.proposalId && review.proposal.items.some(i => i.decisionId === link.decisionId), "EXECUTION_LINEAGE_MISMATCH");
+    requireWorkflow(review?.proposal?.id === link.proposalId && review.proposal.items.some(i => i.decisionId === link.decisionId && (i.marginalAssessmentReference === link.marginalAssessmentReference)), "EXECUTION_LINEAGE_MISMATCH");
     if (await this.client.workflowExecution.findFirst({ where: { OR: [{ id: link.id }, { transactionId: link.transactionId }] } })) throw new ConflictError();
     const body = JSON.stringify(link);
     try { await this.client.workflowExecution.create({ data: { id: link.id, reviewId: link.reviewId, transactionId: link.transactionId, body, bodyHash: hash(body) } }); }

@@ -2,7 +2,7 @@ import { MONOTONIC_METHOD } from "@/domain/decision/approved-methodology";
 import { decimal } from "@/domain/portfolio/values";
 import type { Decision } from "@/domain/decision/engine";
 import type { AllocationProposal, PinnedReview, ProposalCandidate } from "./contracts";
-import { WORKFLOW_METHOD } from "./contracts";
+import { WORKFLOW_METHOD, MARGINAL_WORKFLOW_METHOD } from "./contracts";
 
 export function capitalIssues(p: PinnedReview): string[] {
   const { command: c, portfolio: { decisionContext: s }, ranking: r } = p;
@@ -49,6 +49,24 @@ export function allocate(p: PinnedReview, workflowBlocks: readonly string[], sup
   const rationale: string[] = [];
   const items: AllocationProposal["items"][number][] = [];
   if (issues.length) { outcome = issues.some(i => i.startsWith("DECISION REQUIRED")) ? "DECISION REQUIRED" : "REVIEW REQUIRED"; rationale.push(...issues); }
+  else if (c.marginalAllocationId) {
+    const m = p.marginalAllocation;
+    const matches = m && m.id === c.marginalAllocationId && m.scope === c.scope && m.baseSnapshotId === c.snapshotId && m.baseLedgerWatermark === s.integrity.ledgerWatermark && m.command.evidenceCutoff === c.evidenceCutoff && m.recordedAt <= c.reviewDate && JSON.stringify([...m.command.baseDecisionIds].sort()) === JSON.stringify([...c.decisionIds].sort());
+    const fresh = m && m.steps.every(step => step.assessments.every(a => a.decision.input.evidence.every(e => e.validThrough >= c.reviewDate) && a.decision.input.scorecard.input.evidence.every(e => !e.critical || e.validThrough >= c.reviewDate)));
+    if (!matches || !fresh) { outcome = "REVIEW REQUIRED"; rationale.push("CURRENT M6.5 MARGINAL AUTHORITY REQUIRED"); }
+    else {
+      const stop = m.steps[m.steps.length - 1];
+      rationale.push(...stop.reasons);
+      if (stop.result === "REVIEW REQUIRED") outcome = "REVIEW REQUIRED";
+      else {
+        for (const step of m.steps) if (step.result === "AUTHORIZED" && step.authorizedLot) {
+          const lot = step.authorizedLot;
+          items.push({ decisionId: lot.decisionId, securityId: lot.securityId, quantity: lot.quantity, estimatedCapitalRequired: lot.capital, projectedStep: step.projection.step, marginalAssessmentReference: step.id, riskEvidenceReference: step.id, opportunityEvidenceReference: step.id });
+        }
+        if (items.length) outcome = items.some(item => p.decisions.find(d => d.id === item.decisionId)?.ownership === "UNOWNED") ? "BUY" : "ACCUMULATE";
+      }
+    }
+  }
   else if (!qualified.length) rationale.push("NO QUALIFIED CANDIDATE; CONTRIBUTION DOES NOT REQUIRE DEPLOYMENT");
   else if (best.length !== 1) { outcome = "REVIEW REQUIRED"; rationale.push("ECONOMIC TIE OR CONTRADICTORY COMPARISON — MANUAL OPPORTUNITY REVIEW REQUIRED"); }
   else {
@@ -63,10 +81,10 @@ export function allocate(p: PinnedReview, workflowBlocks: readonly string[], sup
       rationale.push("M6.5 APPROVED LOT; FRESH REVIEW REQUIRED BEFORE ANY FURTHER ALLOCATION");
     }
   }
-  const cost = items[0]?.estimatedCapitalRequired ?? "0";
-  return { id: `${c.id}:allocation`, reviewId: c.id, supersedesProposalId, portfolioSnapshotReference: c.snapshotId, portfolioAsOf: s.integrity.asOf, cashAsOf: s.integrity.asOf, evidenceCutoff: c.evidenceCutoff,
+  const cost = items.reduce((n, item) => n.add(decimal(item.estimatedCapitalRequired)), decimal("0")).toString();
+  return { ...(p.marginalAllocation ? { marginalAllocation: p.marginalAllocation } : {}), id: `${c.id}:allocation`, reviewId: c.id, supersedesProposalId, portfolioSnapshotReference: c.snapshotId, portfolioAsOf: s.integrity.asOf, cashAsOf: s.integrity.asOf, evidenceCutoff: c.evidenceCutoff,
     contributionReference: p.portfolio.contribution?.transactionId ?? null, availableCapital: s.executableCash, ledgerCash: p.portfolio.ledgerCash, reservedCash: p.portfolio.reservedCash,
     newMonthlyContribution: p.portfolio.contribution?.amount ?? null, contributionEmbeddedInCash: true, rankingReference: c.rankingId,
-    methodologyVersions: [...new Set([WORKFLOW_METHOD, s.integrity.reconstructionMethod, p.ranking?.methodology ?? "UNKNOWN", ...p.decisions.flatMap(d => [d.methodology, d.input.scorecard.methodology.methodologyId, ...Object.values(d.input.methods).map(m => m.methodologyId)])])],
-    candidates, items, proposedAllocation: cost, unallocatedCash: s.executableCash === null ? null : decimal(s.executableCash).sub(decimal(cost)).toString(), outcome, rationale, dataQuality: issues.length ? "BLOCKED" : "VALID", recordedAt: p.recordedAt };
+    methodologyVersions: [...new Set([...(p.marginalAllocation ? [MARGINAL_WORKFLOW_METHOD, p.marginalAllocation.methodology] : []), WORKFLOW_METHOD, s.integrity.reconstructionMethod, p.ranking?.methodology ?? "UNKNOWN", ...p.decisions.flatMap(d => [d.methodology, d.input.scorecard.methodology.methodologyId, ...Object.values(d.input.methods).map(m => m.methodologyId)])])],
+    candidates, items, proposedAllocation: cost, unallocatedCash: s.executableCash === null ? null : decimal(s.executableCash).sub(decimal(cost)).toString(), outcome, rationale, dataQuality: issues.length || (c.marginalAllocationId && outcome === "REVIEW REQUIRED") ? "BLOCKED" : "VALID", recordedAt: p.recordedAt };
 }

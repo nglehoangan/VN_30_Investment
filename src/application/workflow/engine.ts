@@ -1,3 +1,4 @@
+import type { MarginalArtifacts } from "@/ports/marginal";
 import type { AnalyticalArtifacts } from "@/ports/scoring";
 import type { DecisionArtifacts } from "@/ports/decision";
 import type { MethodologyRegistry } from "@/ports/methodology-registry";
@@ -15,7 +16,7 @@ export class WorkflowEngine {
   constructor(private readonly artifacts: WorkflowArtifacts, private readonly portfolio: WorkflowPortfolioRead,
     private readonly decisions: DecisionArtifacts, private readonly analytical: AnalyticalArtifacts,
     private readonly registry: MethodologyRegistry, private readonly clock: Clock,
-    private readonly scope: "FORMAL" | "SYNTHETIC_TEST" = "FORMAL") {}
+    private readonly scope: "FORMAL" | "SYNTHETIC_TEST" = "FORMAL", private readonly marginal?: MarginalArtifacts) {}
 
   async create(raw: ReviewCommand) {
     const c = validateReview(raw); requireWorkflow(c.scope === this.scope, "WORKFLOW_SCOPE_MISMATCH");
@@ -64,7 +65,8 @@ export class WorkflowEngine {
     }
     const events = await this.artifacts.openEvents(c.portfolioId);
     const expectedEvents = events.map(e => e.id).sort();
-    const result = createReview({ command: c, portfolio, decisions, ranking: ranking && "entries" in ranking ? ranking : null,
+    const marginalAllocation = c.marginalAllocationId ? await this.marginal?.find(c.marginalAllocationId) : undefined;
+    const result = createReview({ ...(marginalAllocation ? { marginalAllocation } : {}), command: c, portfolio, decisions, ranking: ranking && "entries" in ranking ? ranking : null,
       recordedAt: this.clock.now(), openEventReviewIds: expectedEvents.filter(x => x !== c.supersedesReviewId) }, supersedesProposalId);
     const duplicate = await this.artifacts.findIdentity(result.idempotencyKey);
     if (duplicate) return duplicate;
@@ -82,9 +84,12 @@ export class WorkflowEngine {
     id(reviewId); const review = await this.artifacts.find(reviewId);
     requireWorkflow(review && review.command.scope === this.scope, "REVIEW_REQUIRED");
     const reasons: string[] = [];
+    if (review.proposal?.marginalAllocation?.steps.some(step => step.assessments.some(a => a.decision.input.evidence.some(e => e.validThrough < this.clock.now())))) reasons.push("STALE MARGINAL EVIDENCE");
     if (!review.proposal?.items.length) reasons.push("NO PROPOSED ALLOCATION");
     if (await this.artifacts.isSuperseded(reviewId)) reasons.push("SUPERSEDED REVIEW");
-    if (await this.artifacts.hasExecution(reviewId)) reasons.push("EXECUTION ALREADY LINKED");
+    const items = review.proposal?.items ?? [];
+    const linked = await Promise.all(items.map(item => this.artifacts.hasExecution(reviewId, item.marginalAssessmentReference)));
+    if (linked.length && linked.every(Boolean)) reasons.push("EXECUTION ALREADY LINKED");
     if (!(await this.portfolio.isCurrent(review.portfolio))) reasons.push("STALE PORTFOLIO");
     if ((await this.artifacts.openEvents(review.command.portfolioId)).length) reasons.push("OPEN EVENT REVIEW");
     for (const decisionId of review.command.decisionIds) {
@@ -104,12 +109,14 @@ export class WorkflowEngine {
     await this.artifacts.appendFollowUp(result); return result;
   }
   async linkExecution(raw: Omit<ExecutionLink, "recordedAt">) {
-    const c = snapshot(raw); exact(c, "id reviewId proposalId decisionId transactionId variance");
+    const c = snapshot(raw); exact(c, (c.marginalAssessmentReference !== undefined ? "marginalAssessmentReference " : "") + "id reviewId proposalId decisionId transactionId variance");
+    if (c.marginalAssessmentReference !== undefined) id(c.marginalAssessmentReference);
     [c.id, c.reviewId, c.proposalId, c.decisionId, c.transactionId].forEach(id); text(c.variance);
     const review = await this.artifacts.find(c.reviewId);
     requireWorkflow(review && review.command.scope === this.scope && review.proposal?.id === c.proposalId, "PROPOSAL_REFERENCE_REQUIRED");
-    const item = review.proposal.items.find(i => i.decisionId === c.decisionId);
+    const item = review.proposal.items.find(i => i.decisionId === c.decisionId && (i.marginalAssessmentReference === c.marginalAssessmentReference));
     requireWorkflow(item, "PROPOSED_DECISION_REQUIRED");
+    requireWorkflow(!item.marginalAssessmentReference || !(await this.artifacts.hasExecution(c.reviewId, item.marginalAssessmentReference)), "MARGINAL_LOT_ALREADY_LINKED");
     const transaction = await this.portfolio.transaction(review.command.portfolioId, c.transactionId);
     requireWorkflow(transaction && transaction.facts.portfolioId === review.command.portfolioId && transaction.facts.securityId === item.securityId && transaction.facts.type === "BUY" && transaction.createdAt >= review.recordedAt, "EXECUTION_TRANSACTION_MISMATCH");
     const result = deepFreeze({ ...c, recordedAt: this.clock.now() });

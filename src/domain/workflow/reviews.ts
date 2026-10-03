@@ -3,7 +3,7 @@ import { decimal } from "@/domain/portfolio/values";
 import { instant } from "@/shared/time";
 import { validateReview, requireWorkflow } from "./validation";
 import { allocate } from "./allocation";
-import { EVENT_PRIORITIES, WORKFLOW_METHOD, type PinnedReview, type ReviewArtifact, type Disposition } from "./contracts";
+import { EVENT_PRIORITIES, WORKFLOW_METHOD, MARGINAL_WORKFLOW_METHOD, type PinnedReview, type ReviewArtifact, type Disposition } from "./contracts";
 export const WEEKLY_AREAS = ["PORTFOLIO", "CASH", "CONCENTRATION", "PRICE / VALUATION", "COMPANY / EARNINGS", "MEMBERSHIP", "THESIS / RISK", "RANKING", "UNRESOLVED ITEMS"] as const;
 export const QUARTERLY_AREAS = ["BUSINESS QUALITY", "FINANCIAL HEALTH", "GROWTH", "INDUSTRY", "MANAGEMENT / CAPITAL ALLOCATION", "VALUATION", "RISK", "THESIS", "SCORE / CONFIDENCE", "PORTFOLIO / OPPORTUNITY COST"] as const;
 export const ANNUAL_AREAS = ["PERFORMANCE", "BENCHMARK", "RISK / CONCENTRATION", "DECISION QUALITY", "BEHAVIORAL PATTERNS", "SCORING / RANKING EFFECTIVENESS", "POLICY ASSUMPTIONS"] as const;
@@ -11,7 +11,7 @@ export function reviewIdentity(p: PinnedReview) {
   const { id: _id, priorReviewId: _prior, supersedesReviewId: _supersedes, ...command } = p.command;
   void _id; void _prior; void _supersedes;
   // Collision-free canonical payload; the persistence adapter hashes this bounded identity.
-  return JSON.stringify({ method: WORKFLOW_METHOD, command, portfolio: p.portfolio, events: p.openEventReviewIds });
+  return JSON.stringify({ method: p.marginalAllocation ? MARGINAL_WORKFLOW_METHOD : WORKFLOW_METHOD, command, portfolio: p.portfolio, events: p.openEventReviewIds });
 }
 export function createReview(p: PinnedReview, supersedesProposalId: string | null = null): ReviewArtifact {
   const c = validateReview(p.command), s = p.portfolio.decisionContext;
@@ -48,7 +48,7 @@ export function createReview(p: PinnedReview, supersedesProposalId: string | nul
   if (proposal?.outcome === "DECISION REQUIRED") disposition = "DECISION REQUIRED";
   const materialScore = c.sections.some(x => x.finding === "MATERIAL CHANGE" && !["PRICE / VALUATION", "VALUATION"].includes(x.area));
   const valuation = c.sections.some(x => x.finding === "MATERIAL CHANGE" && ["PRICE / VALUATION", "VALUATION"].includes(x.area));
-  return deepFreeze({ id: c.id, idempotencyKey: reviewIdentity(p), methodology: WORKFLOW_METHOD, command: c, portfolio: p.portfolio, recordedAt: p.recordedAt,
+  return deepFreeze({ id: c.id, idempotencyKey: reviewIdentity(p), methodology: p.marginalAllocation ? MARGINAL_WORKFLOW_METHOD : WORKFLOW_METHOD, command: c, portfolio: p.portfolio, recordedAt: p.recordedAt,
     disposition, status: applicable.some(t => t.severity === "T4") || p.openEventReviewIds.length ? "ESCALATED" : disposition === "REVIEW REQUIRED" ? "PENDING" : "FINAL",
     reasons: [...reasons, ...(decisionNeeded ? ["FORMAL M6.5 DECISION REFRESH REQUIRED"] : [])], linkedEventReviewIds: [...p.openEventReviewIds],
     refresh: { score: materialScore, ranking: materialScore || valuation || (c.type === "MONTHLY_DCA" && !p.ranking), valuation, decision: disposition === "DECISION REQUIRED" }, proposal,

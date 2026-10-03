@@ -1,7 +1,9 @@
+import type { MarginalAllocation } from "@/domain/decision/marginal";
 import type { DecisionPortfolio, Evidence } from "@/domain/decision/contracts";
 import type { Decision } from "@/domain/decision/engine";
 import type { Ranking } from "@/domain/ranking/rank";
 
+export const MARGINAL_WORKFLOW_METHOD = "m661-marginal-orchestration-v1";
 export const WORKFLOW_METHOD = "m66-m5-orchestration-v1";
 export const REVIEW_TYPES = ["WEEKLY", "MONTHLY_DCA", "QUARTERLY", "ANNUAL", "EVENT_DRIVEN"] as const;
 export type ReviewType = typeof REVIEW_TYPES[number];
@@ -32,6 +34,7 @@ export interface ThesisReview {
   readonly evidenceRefs: readonly string[]; readonly rationale: string;
 }
 export interface ReviewCommand {
+  readonly marginalAllocationId?: string;
   readonly id: string; readonly type: ReviewType; readonly portfolioId: string; readonly period: string;
   readonly reviewDate: string; readonly asOf: string; readonly evidenceCutoff: string; readonly snapshotId: string;
   readonly scope: "FORMAL" | "SYNTHETIC_TEST"; readonly reviewer: string;
@@ -50,6 +53,7 @@ export interface WorkflowPortfolio {
   readonly contribution: { readonly transactionId: string; readonly amount: string; readonly recordedAt: string } | null;
 }
 export interface PinnedReview {
+  readonly marginalAllocation?: MarginalAllocation;
   readonly command: ReviewCommand; readonly portfolio: WorkflowPortfolio;
   readonly decisions: readonly Decision[]; readonly ranking: Ranking | null;
   readonly recordedAt: string; readonly openEventReviewIds: readonly string[];
@@ -61,6 +65,7 @@ export interface ProposalCandidate {
   readonly marginalCapacity: string | null; readonly eligible: boolean; readonly reasons: readonly string[];
 }
 export interface AllocationProposal {
+  readonly marginalAllocation?: MarginalAllocation;
   readonly id: string; readonly reviewId: string; readonly supersedesProposalId: string | null;
   readonly portfolioSnapshotReference: string; readonly portfolioAsOf: string; readonly cashAsOf: string;
   readonly evidenceCutoff: string; readonly contributionReference: string | null;
@@ -68,13 +73,13 @@ export interface AllocationProposal {
   readonly newMonthlyContribution: string | null; readonly contributionEmbeddedInCash: true;
   readonly rankingReference: string | null; readonly methodologyVersions: readonly string[];
   readonly candidates: readonly ProposalCandidate[];
-  readonly items: readonly { readonly decisionId: string; readonly securityId: string; readonly quantity: string; readonly estimatedCapitalRequired: string; readonly riskEvidenceReference: string; readonly opportunityEvidenceReference: string }[];
+  readonly items: readonly { readonly decisionId: string; readonly securityId: string; readonly projectedStep?: number; readonly marginalAssessmentReference?: string; readonly quantity: string; readonly estimatedCapitalRequired: string; readonly riskEvidenceReference: string; readonly opportunityEvidenceReference: string }[];
   readonly proposedAllocation: string; readonly unallocatedCash: string | null;
   readonly outcome: "BUY" | "ACCUMULATE" | "HOLD CASH" | "REVIEW REQUIRED" | "DECISION REQUIRED";
   readonly rationale: readonly string[]; readonly dataQuality: "VALID" | "BLOCKED"; readonly recordedAt: string;
 }
 export interface ReviewArtifact {
-  readonly id: string; readonly idempotencyKey: string; readonly methodology: typeof WORKFLOW_METHOD;
+  readonly id: string; readonly idempotencyKey: string; readonly methodology: typeof WORKFLOW_METHOD | typeof MARGINAL_WORKFLOW_METHOD;
   readonly command: ReviewCommand; readonly portfolio: WorkflowPortfolio; readonly recordedAt: string;
   readonly disposition: Disposition; readonly status: "FINAL" | "PENDING" | "ESCALATED";
   readonly reasons: readonly string[]; readonly linkedEventReviewIds: readonly string[];
@@ -91,4 +96,4 @@ export interface FollowUpCommand {
   readonly outcomeQuality: "GOOD" | "BAD" | "UNKNOWN"; readonly rationale: string;
 }
 export interface FollowUpArtifact { readonly command: FollowUpCommand; readonly recordedAt: string; readonly originalEvidenceCutoff: string; readonly classification: string; readonly suggestedDate: string; }
-export interface ExecutionLink { readonly id: string; readonly reviewId: string; readonly proposalId: string; readonly decisionId: string; readonly transactionId: string; readonly recordedAt: string; readonly variance: string; }
+export interface ExecutionLink { readonly marginalAssessmentReference?: string; readonly id: string; readonly reviewId: string; readonly proposalId: string; readonly decisionId: string; readonly transactionId: string; readonly recordedAt: string; readonly variance: string; }
