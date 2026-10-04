@@ -1,0 +1,20 @@
+# M6.8 change requests and retained limitations
+
+Unapproved requests grant no runtime permission. M6.8 changed no M1–M5 investment semantics.
+
+| CR ID | Source baseline | Problem / impact | Safe temporary behavior | Recommendation | Approval required |
+|---|---|---|---|---|---|
+| CR-M63-01 (retained) | M2 TRANSACTIONS §13.4; PORTFOLIO §7.5 | Stock-dividend/bonus basis/tax policy not fully codified; guessing could corrupt realized P&L | Reject unsupported bonus/stock-dividend action | Approve explicit basis/tax/credited-share terms and worked fixtures | YES, upstream accounting policy |
+| CR-M63-02 (retained) | M2 DATA_RULES §§8.3/36; TRANSACTIONS §13.6 | Fractional/cash-in-lieu/tender/exchange edge cases | Reject unsupported fractional/realizing variants; supported whole-share actions remain usable | Approve precision, rounding, consideration and tax contracts | YES, upstream accounting policy |
+| CR-M63-03 (retained) | M2 TRANSACTIONS §§7.6/8.4 | Charge allocation for partial split settlement unspecified | Reject partial split settlement; accept full split and evidenced partial net settlement | Specify per-payment gross/fee/tax source contract | YES, source/accounting contract |
+| UI-CR-03 (retained accepted/deferred scope) | M6.7/6.7.1 CHANGE_REQUESTS; broader M6.1 FR-1/12/14/16/19 | Complete benchmark/performance-history analytics, CSV/Excel staging/import/export flows, independent journal authoring and pagination are not delivered | Display unavailable/limited output; never invent returns, benchmarks, import approval or journal authority | Deliver only under the existing deferred scope decision; acceptance matrix qualifies affected requirements | Scope scheduling; policy approval only if semantics change |
+| CR-M68-01 (existing governance/configuration dependency) | M6.4 governance; M6.6 CR-04; M6.7.1 SOURCE_OPERATION | Test approvals are not real production scoring/risk/Stage-0 approvals or real evidence; no vendor/freshness calibration is invented | FORMAL/current data and approved records required; unknown/stale/incomplete inputs block capital actions | Configure genuine sourced inputs and existing external approvals, then perform operational acceptance | Existing external governance approval; no new investment rule requested |
+| CR-M68-02 (existing imported-inception source limit) | M6.3 inception semantics; M6.7.1 retained source capability | Imported opening histories need supported inception observations for return/economic bridge | Preserve unsupported-inception block; show no invented inception NAV/return | Supply evidenced inception source contract within M6.3 ownership | Source-contract approval if extended |
+
+M6.6 CR-01/02 are **resolved by approved M6.6.1**; their old reports remain historical. M6.8 connects the persisted marginal authority to current monthly initiation; it adds no substitution policy.
+
+The initially missing backup/restore capability is a confirmed implementation defect (M68-M02), not a request to change policy. It is addressed under existing M6.1 requirements using private supported SQLite snapshots, mandatory restore checksums and disposable replay tests. No open backup-policy permission is inferred. Local encrypted-device storage follows the existing security baseline; other storage destinations retain their existing separate protection review.
+
+No new unresolved policy/architecture gap requiring changed M1–M5 semantics was found. Retained capability gates are not reclassified as corrupt accepted portfolio state. Complete broader M6 product requirements affected by the accepted UI-CR-03 deferral remain PASS WITH LIMITATION/BLOCKED in the acceptance matrix, rather than silently called complete.
+
+M68-M03 timing regression proves calculations recorded after receipt are accepted only through their issuance cutoff; wall-clock retries retain the immutable command. A new monthly marginal plan links/supersedes the single prior current monthly review/proposal without rewriting it. Ambiguous predecessor authority fails closed; event reviews are not automatically superseded.

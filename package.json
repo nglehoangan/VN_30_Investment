@@ -29,7 +29,10 @@
     "test:workflow": "pnpm db:generate && vitest run tests/unit/marginal.test.ts tests/integration/marginal.test.ts tests/unit/workflow.test.ts tests/integration/workflow.test.ts",
     "test:dca": "pnpm db:generate && vitest run tests/unit/marginal.test.ts tests/unit/dca.test.ts",
     "test:ui": "pnpm db:generate && vitest run tests/unit/dashboard-ui.test.tsx tests/integration/dashboard-ui.test.ts",
-    "test:current": "pnpm db:generate && vitest run tests/integration/current-remediation.test.ts tests/unit/current-remediation-ui.test.tsx"
+    "test:current": "pnpm db:generate && vitest run tests/integration/current-remediation.test.ts tests/unit/current-remediation-ui.test.tsx",
+    "test:m68": "pnpm db:generate && vitest run tests/integration/m68.test.ts tests/unit/m68-policy.test.ts tests/integration/m68-backup.test.ts tests/architecture/m68-authority.test.mjs",
+    "db:backup": "node scripts/backup.mjs backup",
+    "db:restore": "node scripts/backup.mjs restore"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

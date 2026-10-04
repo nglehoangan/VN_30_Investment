@@ -8,6 +8,15 @@ import { DataIntegrityError } from "@/shared/errors";
 const hash = (body: string) => createHash("sha256").update(body).digest("hex");
 export class PrismaMarginalArtifacts implements MarginalArtifacts {
   constructor(private readonly client: PrismaClient) {}
+  async currentCandidates(snapshotId: string, cutoff: string) {
+    // Check body integrity before embedded scope/snapshot predicates can hide it.
+    const inventory = await this.client.marginalAllocation.findMany({ select: { body: true, bodyHash: true } });
+    if (inventory.some(row => hash(row.body) !== row.bodyHash)) throw new DataIntegrityError();
+    const rows = await this.client.$queryRawUnsafe<{ id: string }[]>(
+      "SELECT id FROM marginal_allocation WHERE json_extract(body, '$.baseSnapshotId') = ? AND json_extract(body, '$.scope') = 'FORMAL' AND json_extract(body, '$.command.evidenceCutoff') <= ? AND json_extract(body, '$.recordedAt') <= ? ORDER BY id LIMIT 2",
+      snapshotId, cutoff, cutoff);
+    return rows.map(row => row.id);
+  }
   async substitutionHistory(portfolioId: string, scope: string, cutoff: string) {
     const rows = await this.client.marginalAllocation.findMany();
     return rows.flatMap(row => {

@@ -1,0 +1,32 @@
+# Scenarios A–X and evidence scope
+
+Statuses apply to controlled synthetic data exercising formal paths where stated. Simulated external approvals are isolated test fixtures, not production approval. Every referenced suite is run by the final command sequence; actual exits/counts are in validation-evidence/results.json. End-to-end application evidence and separate browser evidence are not misrepresented as one real-data session.
+
+| Scenario | Result | Runtime evidence | Observed behavior / limit |
+|---|---|---|---|
+| A | PASS | m68.test: A; current-remediation: G | Cash-only NAV, empty holdings, formal excluded universe, HOLD CASH; one contribution, no automatic BUY. |
+| B | PASS WITH LIMITATION | m68.test: B/G/U/Q/S + production composition; dashboard-ui; E2E proposal inspection/manual contribution | Formal test-approved score/rank → BUY → persisted marginal → review/proposal → explicit trade/replay. Browser proposal inspection and transaction confirmation are separate tests, not a single real-data browser session. |
+| C | PASS | m68-policy: C; dca DCA-05/06 | Lower price alone preserves HOLD; fresh intact-thesis underwriting permits M6.5 ACCUMULATE, then workflow consumes it. |
+| D | PASS | m68-policy: D/W; dca DCA-07; decision HOLD cases | 25% gain retains formal HOLD; approved sourced review triggers may escalate, never infer SELL/REDUCE from P&L. |
+| E | PASS | m68-policy: E; dca DCA-03/12 | Rank #1 AVOID receives no allocation; missing formal decisions do not inherit ranking authority. |
+| F | PASS | marginal unit J/K/L + recurrence; marginal integration substitution history | Affordability/rank/cheapness alone cannot substitute; full approved §12 conjunction and history required, otherwise HOLD CASH. |
+| G | PASS | m68 formal chain + production composition; marginal unit A–I | P0/P1/P2: authorize two exact lots, reassess then stop; preserved stop and 96m cash. No ledger write until explicit posting. |
+| H | PASS | m68-policy: H; decision-sector boundary grid and historical fixtures | Name boundaries include ±0.000000000001 VND around 10/15/20% exposure; sector 24.99/25/25.01,29.99/30/30.01,34.99/35/35.01,39.99/40/40.01. Worsening concentration never unlocks capacity; old defective method replays only historically. |
+| I | PASS WITH LIMITATION | m68-policy: I; decision critical drawdown; portfolio read-model tests | Explicit approved drawdown classification freezes unauthorized new risk, not liquidation/averaging. Complete historical flow-adjusted drawdown analytics remain accepted UI-CR-03 limitations; no raw NAV substitute. |
+| J | PASS | current-remediation missing/stale/unknown/conflict/adjustment; m68 adapter | Invalid current market evidence blocks actionability and suppresses invalid total valuation; saved historical artifacts remain readable. |
+| K | PASS | current-remediation E; dca DCA-11; UI/current status tests | Independent reconciliation mismatch blocks current portfolio-aware action and is displayed; no silent repair. |
+| L | PASS WITH LIMITATION | workflow supported MANDATE events/future membership; decision owned legacy; portfolio reference tests | Effective-dated manual evidence triggers review; entrant alone is not BUY, exit alone is not SELL. Automated ingestion/event detection is deferred. |
+| M | PASS | workflow ordinary week/elapsed week; current-remediation concurrent weekly | NO ACTION and no score/rank/valuation/decision refresh when nothing material changes; no scheduled trade. |
+| N | PASS | workflow unchanged/material/thesis/missing quarterly; current-remediation annual/quarterly test | Selective refresh and thesis review; missing required evidence returns INPUT REQUIRED/REVIEW REQUIRED, never fabricated. |
+| O | PASS | workflow annual governance variants; current-remediation annual | Annual recommendations are records only; no policy/model/risk registry mutation. |
+| P | PASS | workflow event during monthly; workflow integration event supersedes/openEvents | Event precedence blocks pending scheduled capital proposals, retains historical reviews/proposals and clear event links; no conflicting capital authorization. |
+| Q | PASS | portfolio historical watermark; scoring artifacts; m65/m652 history; workflow/marginal migration; m68 populated repeat/backup | Old accounting, scores/ranks, decisions, reviews and marginal artifacts replay with their original method/evidence, never current-method restatement. |
+| R | PASS WITH LIMITATION | portfolio accounting/read-model/CA regressions; portfolio integration staged immutable actions | Only supported cash dividends, documented whole-share splits/rights/non-realizing actions. CR-M63-01–03 remain fail-closed; no price-derived corporate action. |
+| S | PASS | m68 explicit reversal; portfolio atomic settled correction; dashboard-ui reversal | Appended reversal/correction recomputes state; original facts and audit trail remain immutable. |
+| T | PASS | decision BUY cash/lot/capacity/HOLD/SELL; decision-sector CR-01; E2E BUY+cash status | Economic state separate from execution: cash/lot infeasibility preserves BUY when economics/capacity remain valid; true zero capacity follows approved owner rules. |
+| U | PASS | m68 formal chain; workflow/marginal immutable persistence; E2E proposal inspection | Proposal generation/inspection changes no cash, quantity or transaction. Only explicit M6.3 posting changes accounting. |
+| V | PASS | m68 corrected dataset B; scoring-artifacts correction; decision revisions | New B score/current version and snapshot cannot rewrite decision/score A; old ranking context cannot authorize B. |
+| W | PASS | m68-policy D/W five rationales; workflow behavioral controls; dca anti-bias cases | Rationale strings never assign decisions. Evidenced unresolved bias can block workflow, without changing upstream Decision State. |
+| X | PASS / AI OPERATION NOT APPLICABLE | SOURCE_SCAN AI=0; architecture graphs; decision AI assessment rejection | No operational AI client/provider/write endpoint or hidden dependency; formal HUMAN evidence required. AI drafts were not operationally tested because no AI integration exists. |
+
+M68-M03 timing regression proves calculations recorded after receipt are accepted only through their issuance cutoff; wall-clock retries retain the immutable command. A new monthly marginal plan links/supersedes the single prior current monthly review/proposal without rewriting it. Ambiguous predecessor authority fails closed; event reviews are not automatically superseded.

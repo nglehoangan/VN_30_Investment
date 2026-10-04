@@ -1,0 +1,27 @@
+# Security, data and operation audit
+
+Scope: private local application, controlled disposable data; no deployment, broker, cloud backup or AI operation. Formal-path test approvals explicitly say TEST ONLY and never constitute real production approval.
+
+| Adversarial case | Evidence | Result |
+|---|---|---|
+| Browser supplies Decision State, score, NAV, risk/capacity, scope, snapshot, method, ranking, evidence cutoff or marginal authority | m68 integration injected fields; current-remediation I; dashboard-ui tampering | Rejected before formal artifact or ledger write |
+| Changed confirmation payload, expired confirmation, stale ledger watermark, repeat confirm | dashboard-ui integration; browser manual contribution | Preview writes nothing; confirmation revalidates M6.3 and remains idempotent |
+| Missing/cross-origin/remote-host request | dashboard-ui origin tests; server actions | No authoritative write |
+| Missing/stale/conflicted/adjusted/unknown-security quote; future receipt or forged calculated output | current-remediation; m68 adapter/time tests | Current actionability fails closed; partial NAV is suppressed |
+| Synthetic source or evidence; missing analyst/reference/approval | current-remediation; m68 excluded formal universe | No production fallback or inferred permission |
+| Corrupt body/hash, changed method/lineage, ambiguous marginal or monthly predecessor | immutable repositories; m68 integration | Reject or INPUT REQUIRED, no arbitrary selection/repair; production catalog hashes the inventory before body-field filtering |
+| Unposted/future/reversed contribution | workflow cash and review initiation guards | Not available as independently new capital; no double-count |
+| Future artifact at historical cutoff | workflow/decision time tests; delayed issuance regression | Cutoffs belong to issuance and original evidence, source receipt remains separately pinned |
+| Public/build/symlink/hardlink/world-readable DB or backup, existing restore destination | file-safety; m68-backup | Private owner-only storage; refusal, no overwrite/activation |
+| Altered backup bytes, manifest or artifact hash; missing source | m68-backup | Restore refuses; active source remains unchanged |
+| Secrets, arbitrary logger/correlation fields, raw exceptions and configuration canaries | logging/config-errors; sanitized server actions and CLI; smoke isolation | Only public messages/safe correlation fields; no raw path/stack/config output |
+| Test DB accidentally targets portfolio | isolation and test harnesses; scripts/validate-m68.mjs | Explicit mkdtemp paths override inherited database/source configuration; cleanup limited to owned directories |
+| Client transitive server/calculator import, hidden ledger writer or AI integration | resolver architecture checks; SOURCE_SCAN.json | No client/AI capital bypass; AI operation absent |
+
+Dependency audit is recorded verbatim in dependency-audit.json. The command completed with exit 1 because it reported nine upstream advisories: one Critical, five High, three Moderate. These external severity labels are preserved; they are not nine demonstrated application vulnerabilities. The Critical Next.js advisory concerns attacker-controlled SVG passed to Node next/og ImageResponse. The app contains no next/og import, ImageResponse call or og-image route; the M6.8 architecture regression enforces that absence. Therefore no reachable product Critical was demonstrated in this local app. Review that conclusion before introducing OG image rendering. Advisory: https://github.com/advisories/GHSA-vcvr-r3jv-pc5j . The reported patch is 16.3.6; installed Next remains 16.3.4. No broad package upgrade was made.
+
+High brace-expansion/braces recursion and Moderate expansion/fast-uri findings affect dependency parser paths. No application feature accepts attacker-supplied glob patterns or uses fast-uri host normalization for write-origin authorization. Origin validation uses the platform URL parser plus explicit loopback/host checks. These advisories remain a documented dependency-maintenance finding, with targeted patched transitive updates recommended under a separately verified lockfile change. Dependency counts from pnpm audit are not relied on to distinguish runtime/dev usage. Direct packages have existing runtime/build/test users; none was proven safely unused.
+
+Next build warns about whole-project tracing for defensive filesystem checks. Checks remain enabled. A source/build manifest inspection found no .env, portfolio SQLite, .aws or .git entry in generated route trace manifests. This is evidence for this build, not approval to publish a future build or storage directory. Node built-in SQLite emits its experimental API warning; supported Node 22.23.2 is required for the script's TypeScript imports. Both are recorded maintenance debt.
+
+Backup protects a consistent database snapshot plus migration inventory, application version, ledger watermarks, schema and exact table/row/body hashes. Checksums detect accidental corruption, not hostile replacement of an entire database/manifest pair. Restore is a separate candidate; genuine source dataset, external governance, encrypted-device storage and independent current reconciliation remain operator responsibilities. No automatic activation, network destination or plaintext cloud upload is introduced. See BACKUP_OPERATION.md for interruption and storage limits.

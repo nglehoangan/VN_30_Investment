@@ -1,0 +1,47 @@
+// @vitest-environment node
+import {it,expect} from 'vitest';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {spawnSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {testDatabase} from '../fixtures/database';
+import {marginalDatabase} from '../fixtures/marginal-database';
+import {marginalCommand,marginalFrame} from '../fixtures/marginal';
+import {methodologyFixture} from '../fixtures/methodology';
+import {P,A,NOW,W0,at,method,deposit,buy} from '../fixtures/portfolio/history';
+import {ACCOUNTING_METHOD,watermark} from '@/domain/portfolio/values';
+import {initializePortfolio} from '@/application/portfolio/initialize';
+import {PortfolioEngine} from '@/application/portfolio/engine';
+import {PrismaPortfolioSetup,PrismaPortfolioLedger} from '@/infrastructure/repositories/portfolio-ledger';
+import {PrismaAnalyticalArtifacts} from '@/infrastructure/repositories/analytical-artifacts';
+import {PrismaDecisionArtifacts} from '@/infrastructure/repositories/decision-artifacts';
+import {PrismaWorkflowArtifacts} from '@/infrastructure/repositories/workflow-artifacts';
+import {PrismaMarginalArtifacts} from '@/infrastructure/repositories/marginal-artifacts';
+import {openDatabase} from '@/infrastructure/db/client';
+import {loadDatabaseConfig} from '@/infrastructure/config/database';
+import {createReview} from '@/domain/workflow/reviews';
+const stringify=(x:unknown)=>JSON.stringify(x,(_k,v)=>typeof v==='bigint'?v.toString():v);
+async function rows(client:Awaited<ReturnType<typeof openDatabase>>){const tables=await client.$queryRawUnsafe<{name:string}[]>("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name");const result:Record<string,unknown>={};for(const t of tables){const data=await client.$queryRawUnsafe(`SELECT * FROM "${t.name.replaceAll('"','""')}"`);result[t.name]=JSON.parse(stringify(data));}return result;}
+it('exact approved Git baseline populated database survives M6.8 deploy/status and owner replay twice',async()=>{
+ const evidenceFile=process.env.M68_POPULATED_HANDOFF!;
+ if(process.env.M68_POPULATED_PHASE==='baseline'){
+  const db=await testDatabase();try{
+   await db.registry.append({...methodologyFixture(method),implementationIdentity:ACCOUNTING_METHOD});
+   await initializePortfolio(new PrismaPortfolioSetup(db.client),{id:P,name:'Baseline disposable test',currency:'VND',inceptionAt:at(1),createdAt:NOW},[{id:A,name:'A'}]);
+   const engine=new PortfolioEngine(new PrismaPortfolioLedger(db.client),{now:()=>NOW});await engine.post([deposit()],W0);await engine.post([buy()],watermark('1'));
+   const x=await marginalDatabase(db),old=await x.workflow.create(x.p.command),m=await x.engine.create(marginalCommand(x.p,[marginalFrame(x.p),marginalFrame(x.p,[0]),marginalFrame(x.p,[0,0])]));
+   const review=await x.workflow.create({...x.p.command,id:'baseline-marginal-review',priorReviewId:old.id,supersedesReviewId:old.id,marginalAllocationId:m.id});
+   writeFileSync(evidenceFile,stringify({database:db.config.filePath,rows:await rows(db.client),state:await engine.reconstruct(P,NOW),old,m,review,decisions:x.p.decisions,ranking:x.p.ranking}),{mode:0o600});
+  }finally{await db.client.$disconnect();}
+ }else{
+  const before=JSON.parse(readFileSync(evidenceFile,'utf8'));const client=await openDatabase(loadDatabaseConfig({DATABASE_URL:`file:${before.database}`},process.cwd()));try{
+   const engine=new PortfolioEngine(new PrismaPortfolioLedger(client),{now:()=>NOW}),reviews=new PrismaWorkflowArtifacts(client),marginal=new PrismaMarginalArtifacts(client),decisions=new PrismaDecisionArtifacts(client),analytical=new PrismaAnalyticalArtifacts(client);
+   const exits=[];for(let repeat=0;repeat<2;repeat++){
+    for(const operation of ['migrate','status']){const r=spawnSync(process.execPath,['scripts/database.mjs',operation,'--no-env-file'],{env:{...process.env,DATABASE_URL:`file:${before.database}`},encoding:'utf8'});expect(r.status).toBe(0);exits.push({operation,repeat,exitCode:r.status});}
+    expect(await rows(client)).toEqual(before.rows);expect(await engine.reconstruct(P,NOW)).toEqual(before.state);expect(await marginal.find(before.m.id)).toEqual(before.m);expect(await reviews.find(before.old.id)).toEqual(before.old);expect(await reviews.find(before.review.id)).toEqual(before.review);
+    for(const d of before.decisions)expect(await decisions.find(d.id)).toEqual(d);expect(await analytical.find(before.ranking.id)).toEqual(before.ranking);
+    expect(createReview({command:before.review.command,portfolio:before.review.portfolio,decisions:before.decisions,ranking:before.ranking,recordedAt:before.review.recordedAt,openEventReviewIds:before.review.linkedEventReviewIds,marginalAllocation:before.m},before.review.proposal.supersedesProposalId)).toEqual(before.review);
+   }
+   writeFileSync(process.env.M68_POPULATED_REPORT!,JSON.stringify({baseline:'f609a94d610705f3897e86b914fa4de5055833ce',actualBaselineCodeExecuted:true,newMigrations:0,exits,tableCounts:Object.fromEntries(Object.entries(before.rows).map(([k,v])=>[k,(v as unknown[]).length])),logicalRowsSha256:createHash('sha256').update(stringify(before.rows)).digest('hex'),accountingDecisionMarginalReviewReplay:'PASS',historyUnchanged:true},null,2)+'\n');
+  }finally{await client.$disconnect();}
+ }
+},30000);

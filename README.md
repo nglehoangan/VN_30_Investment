@@ -1,6 +1,6 @@
 # VN30 Value Investing OS
 
-M6.2 Project Foundation provides a local Next.js application shell with an explicit empty state. SQLite methodology persistence is available; investment workflows and financial calculations remain future work. The approved investment baseline starts at [README_v1.0.md](README_v1.0.md).
+M6 provides a local application with immutable portfolio accounting, scoring/ranking, formal decisions, reviews/DCA proposals and a dashboard. Current actionability requires externally approved methodologies, source evidence and reconciliation; unavailable inputs fail closed. The approved investment baseline starts at [README_v1.0.md](README_v1.0.md).
 
 ## Development
 
@@ -79,7 +79,7 @@ pnpm test:integration
 
 Unset `DATABASE_URL` uses that project-relative default, resolved to an absolute path. For an override, use `file:` followed by an absolute local path ending in `.sqlite`, `.sqlite3` or `.db`. The path is raw text (spaces allowed), not a percent-encoded URI; remote hosts, query strings and fragment markers are rejected. Keep the immediate parent directory owner-only (0700) and an existing DB owner-only (0600); public and .next locations, symlink files and hard-linked files are rejected. Scripts do not change existing permissions or truncate files. These filesystem checks are validated on macOS/POSIX.
 
-Next and the DB wrapper read local `.env.local`; explicit shell variables take precedence. Never commit that file or a personal DB. Restart after config changes. Do not use reset/db push as an upgrade procedure. Backup/restore workflows are deferred; this slice uses DELETE journal mode and makes no WAL backup guarantee.
+Next and the DB wrapper read local `.env.local`; explicit shell variables take precedence. Never commit that file or a personal DB. Restart after config changes. Do not use reset/db push as an upgrade procedure. Local SQLite snapshot/restore commands and their safety limits are documented in [M6.8 backup operation](<docs/06_DASHBOARD/6.8 Integration & Validation/BACKUP_OPERATION.md>). They preserve source history and restore only to a separate candidate database.
 
 Integration tests always allocate private temporary databases, override inherited DATABASE_URL, skip `.env.local`, migrate, disconnect and clean up. The numeric probe table exists only there. Exact decimals use validated strings persisted as SQLite TEXT, including values beyond JavaScript's safe integer range; no monetary rounding policy is introduced. The production schema contains only methodology metadata and migration bookkeeping.
 
@@ -98,11 +98,11 @@ The combined gate runs unit/architecture/real SQLite tests, builds production, r
 
 Chromium verifies the visible product heading and empty state, including after reload, and rejects external page requests and uncaught browser errors. Retries are disabled, timeouts bounded, and cleanup targets only test-owned process groups. Direct Playwright execution requires the harness-provided URL; use the package script. Traces on failure are local in ignored `test-results/`; they may contain page content and are not automatically published.
 
-Vitest runs in UTC, and browser context uses UTC/vi-VN. Existing fixed clock and sequence ID doubles remain test-only. The integration isolation test uses two independent databases, verifies records cannot cross between them, and checks independent cleanup. `test:unit`, `test:integration` and `test:boundaries` remain separate selectors. Financial workflow E2E and additional browser/platform coverage are deferred to their corresponding features; this is the foundation shell check.
+Vitest runs in UTC, and browser context uses UTC/vi-VN. Existing fixed clock and sequence ID doubles remain test-only. The integration isolation test uses two independent databases, verifies records cannot cross between them, and checks independent cleanup. `test:unit`, `test:integration` and `test:boundaries` remain separate selectors. The browser gate now includes controlled dashboard, historical proposal/review inspection, explicit contribution confirmation, desktop/mobile and keyboard coverage. Formal authority-chain proof uses disposable application integration tests; real-data operational acceptance and additional browser/platform coverage remain unverified.
 
 ## Final M6.2 verification
 
-The six foundation slices are implemented; M6.2 was explicitly approved by the user on 2026-09-10. See [final review and evidence](<docs/06_DASHBOARD/6.2 Project Foundation/M6_2_FINAL_REVIEW.md>). M6.3 implementation and verification are complete within its supported accounting scope; see [independent-review remediation report](<docs/06_DASHBOARD/6.3 Portfolio & Transaction Engine/R2_REMEDIATION_REPORT.md>). Unsupported policy cases remain explicitly blocked by CR; no M6.4+ functionality is implemented.
+The six foundation slices are implemented; M6.2 was explicitly approved by the user on 2026-09-10. See [final review and evidence](<docs/06_DASHBOARD/6.2 Project Foundation/M6_2_FINAL_REVIEW.md>). M6.3 implementation and verification are complete within its supported accounting scope; see [independent-review remediation report](<docs/06_DASHBOARD/6.3 Portfolio & Transaction Engine/R2_REMEDIATION_REPORT.md>). Unsupported policy cases remain explicitly blocked by CR. M6.4–M6.7 are the approved implementation baseline for the M6.8 integration gate; their current reports and the M6.8 acceptance matrix state the supported scope.
 
 For a full local verification after selecting the pinned runtime and installing dependencies/browser:
 
@@ -118,3 +118,9 @@ pnpm audit
 ```
 
 The integrated gate includes production build and browser/startup checks. No personal database or live provider is needed. Use a fresh checkout with its own frozen dependency installation for clean-build evidence; Turbopack rejects a node_modules symlink pointing outside its project root. Numbered duplicate files in generated .next/types can cause duplicate-declaration errors; do not run concurrent build/dev writers in that checkout. Preserve user source and diagnose generated cache separately rather than suppressing TypeScript errors.
+
+## M6.8 integration and validation
+
+`pnpm test:m68` exercises the formal authority chain, immutable history, input tampering and disposable backup/restore. `node scripts/validate-m68.mjs` runs the complete requested command sequence using its own disposable database, overrides inherited data/source paths, and records exit codes/counts under the M6.8 validation directory. Use Node 22.23.2 and allow the local loopback listener required by E2E. It never targets actual portfolio data.
+
+The final report and acceptance matrix distinguish tested architecture/implementation from real-data operational readiness and preserve accepted import/benchmark/history/corporate-action limitations. Milestone 7 is outside this work.

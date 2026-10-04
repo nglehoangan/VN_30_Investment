@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
-const evidence = path.resolve("docs/06_DASHBOARD/6.7.1 Current Read Model/visual-evidence");
+const evidence = path.resolve(process.env.VN30_VALIDATION_VISUAL_DIRECTORY ?? "docs/06_DASHBOARD/6.7.1 Current Read Model/visual-evidence");
 test("portfolio → holding → decision → score evidence preserves lineage", async ({ page }) => {
   await page.goto("/holdings");
   await expect(page.getByRole("columnheader", { name: "Cost basis (VND)" })).toBeVisible();
@@ -68,4 +68,15 @@ for (const width of [1440,390]) test(`review readiness fails closed for syntheti
  await expect(page.getByRole("heading",{name:"Review readiness · BLOCKED"})).toBeVisible();
  await expect(page.getByRole("button",{name:"Create formal review"})).toHaveCount(0);
  await page.screenshot({path:path.join(evidence,`${width}-review-readiness-blocked.png`),fullPage:true});
+});
+
+for (const width of [1440,390]) test(`keyboard and form status remain accessible at ${width}px`,async({page})=>{
+ await page.setViewportSize({width,height:1000});await page.goto("/transactions/new");await expect(page.locator("#main")).toBeVisible();
+ await page.keyboard.press("Tab");const skip=page.getByRole("link",{name:"Skip to content"});await expect(skip).toBeFocused();await expect(skip).toBeVisible();
+ const outline=await skip.evaluate(element=>getComputedStyle(element).outlineWidth);expect(outline).toBe("3px");
+ await page.keyboard.press("Enter");await expect(page.locator("#main")).toBeFocused();
+ const button=page.getByRole("button",{name:"Preview authoritative accounting effect"});await button.focus();await page.keyboard.press("Enter");
+ const date=page.getByLabel(/Occurred date/);await expect(date).toHaveAttribute("aria-invalid","true");const description=await date.getAttribute("aria-describedby");expect(description).toBe("date-error");await expect(page.locator("#date-error")).toContainText("required");
+ await page.goto("/transactions");const headers=page.getByRole("columnheader");await expect(headers.first()).toBeVisible();expect(await headers.count()).toBeGreaterThan(0);for(const header of await headers.all())await expect(header).toHaveAttribute("scope","col");
+ const table=page.locator(".table-scroll").first();await table.focus();await expect(table).toBeFocused();
 });
