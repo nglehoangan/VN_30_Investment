@@ -18,7 +18,7 @@ const port = probe.address().port;
 await new Promise((resolve, reject) => probe.close(error => error ? reject(error) : resolve()));
 const child = spawn(process.execPath, ['node_modules/next/dist/bin/next', mode, '--hostname', '127.0.0.1', '--port', String(port)], {
   stdio: ['ignore', 'pipe', 'pipe'], detached: true,
-  env: { ...process.env, NEXT_TELEMETRY_DISABLED: '1', DATABASE_URL: `file:${testFile}`, LOG_LEVEL: invalidConfig ? canary : 'info' },
+  env: { ...process.env, NEXT_TELEMETRY_DISABLED: '1', DATABASE_URL: `file:${testFile}`, VN30_CURRENT_SOURCE_FILE: path.join(testDirectory, "current-source.json"), LOG_LEVEL: invalidConfig ? canary : 'info' },
 });
 let output = '';
 let leakedCanary = false;
@@ -96,7 +96,7 @@ try {
   console.log(`PASS ${mode}: HTTP 200, product heading, startup hook, owned loopback listener on port ${port}`);
   if (process.argv.includes('--e2e')) {
     const browser = spawn(process.execPath, ['node_modules/@playwright/test/cli.js', 'test'], {
-      stdio: 'inherit', detached: true, env: { ...process.env, VN30_E2E_BASE_URL: `http://127.0.0.1:${port}`, VN30_E2E_DATABASE: testFile },
+      stdio: 'inherit', detached: true, env: { ...process.env, VN30_E2E_BASE_URL: `http://127.0.0.1:${port}`, VN30_E2E_DATABASE: testFile, VN30_CURRENT_SOURCE_FILE: path.join(testDirectory, "current-source.json") },
     });
     browserGroup = browser.pid;
     const timer = setTimeout(stopBrowser, 300000);

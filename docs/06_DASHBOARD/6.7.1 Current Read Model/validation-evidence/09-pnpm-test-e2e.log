@@ -1,0 +1,140 @@
+
+> vn30-value-investing-os@0.1.0 test:e2e /Users/nglehoangan/Documents/Working/VN_30_Investment
+> pnpm build && node scripts/smoke-app.mjs --e2e
+
+
+> vn30-value-investing-os@0.1.0 build /Users/nglehoangan/Documents/Working/VN_30_Investment
+> pnpm db:generate && next build
+
+
+> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment
+> node scripts/database.mjs generate
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+
+✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 62ms
+
+▲ Next.js 16.3.4 (Turbopack)
+✓ Running next.config.ts took 17ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 226ms
+  Running TypeScript ...
+  Finished TypeScript in 1162ms ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/2) ...
+✓ Generating static pages using 7 workers (2/2) in 51ms
+Turbopack build encountered 3 warnings:
+./src/infrastructure/db/files.ts:14:11
+Warning: Dynamic filesystem access causes tracing of the whole project
+  [90m12 |[0m     [36mfor[0m ([36mconst[0m name [36mof[0m [[32m"public"[0m, [32m".next"[0m]) {
+  [90m13 |[0m       [36mconst[0m root = path.join(config.projectDirectory, name);
+[33m[1m>[0m [90m14 |[0m       [36mif[0m (existsSync(root)) {
+  [90m   |[0m           [33m[1m^^^^^^^^^^^^^^^^[0m
+  [90m15 |[0m         [36mconst[0m relative = path.relative(realpathSync(root), physicalFile);
+  [90m16 |[0m         [36mif[0m (relative === [32m""[0m || (!relative.startsWith([32m`..[0m${path.sep[32m}`[0m) && relative !== [32m".."[0m...
+  [90m17 |[0m       }
+
+Static analysis determined that this filesystem access causes the whole project to be traced and included in the output.
+This is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.
+This can slow down deployments or lead to failures when size limits are exceeded.
+To resolve this, you can
+- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or
+- only use them in development, or
+- opt out by adding an ignore comment to the highlighted call: fs.existsSync(/*turbopackIgnore: true*/ ...), or
+- remove them.
+
+Import trace:
+  Server Component:
+    ./src/infrastructure/db/files.ts
+    ./src/infrastructure/db/client.ts
+    ./app/server/transaction-actions.ts
+    ./app/transactions/new/page.tsx
+
+
+./src/infrastructure/db/files.ts:15:40
+Warning: Dynamic filesystem access causes tracing of the whole project
+  [90m13 |[0m ... [36mconst[0m root = path.join(config.projectDirectory, name);
+  [90m14 |[0m ... [36mif[0m (existsSync(root)) {
+[33m[1m>[0m [90m15 |[0m ...   [36mconst[0m relative = path.relative(realpathSync(root), physicalFile);
+  [90m   |[0m                                      [33m[1m^^^^^^^^^^^^^^^^^^[0m
+  [90m16 |[0m ...   [36mif[0m (relative === [32m""[0m || (!relative.startsWith([32m`..[0m${path.sep[32m}`[0m) && relative !== [32m".."[0m &...
+  [90m17 |[0m ... }
+  [90m18 |[0m ...
+
+Static analysis determined that this filesystem access causes the whole project to be traced and included in the output.
+This is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.
+This can slow down deployments or lead to failures when size limits are exceeded.
+To resolve this, you can
+- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or
+- only use them in development, or
+- opt out by adding an ignore comment to the highlighted call: fs.realpathSync(/*turbopackIgnore: true*/ ...), or
+- remove them.
+
+Import trace:
+  Server Component:
+    ./src/infrastructure/db/files.ts
+    ./src/infrastructure/db/client.ts
+    ./app/server/transaction-actions.ts
+    ./app/transactions/new/page.tsx
+
+
+./src/infrastructure/db/files.ts:13:20
+Warning: Dynamic filesystem access causes tracing of the whole project
+  [90m11 |[0m     assertPrivateLocation(physicalFile, config.projectDirectory);
+  [90m12 |[0m     [36mfor[0m ([36mconst[0m name [36mof[0m [[32m"public"[0m, [32m".next"[0m]) {
+[33m[1m>[0m [90m13 |[0m       [36mconst[0m root = path.join(config.projectDirectory, name);
+  [90m   |[0m                    [33m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m14 |[0m       [36mif[0m (existsSync(root)) {
+  [90m15 |[0m         [36mconst[0m relative = path.relative(realpathSync(root), physicalFile);
+  [90m16 |[0m         [36mif[0m (relative === [32m""[0m || (!relative.startsWith([32m`..[0m${path.sep[32m}`[0m) && relative !== [32m".."[0m...
+
+Static analysis determined that this filesystem access causes the whole project to be traced and included in the output.
+This is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.
+This can slow down deployments or lead to failures when size limits are exceeded.
+To resolve this, you can
+- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or
+- only use them in development, or
+- opt out by adding an ignore comment to the highlighted call: path.join(/*turbopackIgnore: true*/ ...), or
+- remove them.
+
+Import trace:
+  Server Component:
+    ./src/infrastructure/db/files.ts
+    ./src/infrastructure/db/client.ts
+    ./app/server/transaction-actions.ts
+    ./app/transactions/new/page.tsx
+
+
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /[screen]
+├ ƒ /[screen]/[id]
+├ ƒ /reviews/new
+└ ƒ /transactions/new
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+PASS start: HTTP 200, product heading, startup hook, owned loopback listener on port 64498
+
+Running 8 tests using 1 worker
+
+(node:94641) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/e2e/dashboard.spec.ts:5:1 › portfolio → holding → decision → score evidence preserves lineage (2.4s)
+  ✓  2 [chromium] › tests/e2e/dashboard.spec.ts:16:1 › monthly HOLD CASH and marginal proposal inspection create no transactions (1.6s)
+  ✓  3 [chromium] › tests/e2e/dashboard.spec.ts:30:1 › manual contribution → preview → confirm → authoritative ledger and cash (2.1s)
+  ✓  4 [chromium] › tests/e2e/dashboard.spec.ts:51:34 › major screens are usable at 1440px with visual evidence (11.7s)
+  ✓  5 [chromium] › tests/e2e/dashboard.spec.ts:51:34 › major screens are usable at 390px with visual evidence (12.3s)
+  ✓  6 [chromium] › tests/e2e/dashboard.spec.ts:64:33 › review readiness fails closed for synthetic sources at 1440px (656ms)
+  ✓  7 [chromium] › tests/e2e/dashboard.spec.ts:64:33 › review readiness fails closed for synthetic sources at 390px (663ms)
+  ✓  8 [chromium] › tests/e2e/shell.spec.ts:2:1 › production dashboard shows its isolated synthetic state without external requests or browser errors (1.4s)
+
+  8 passed (40.3s)

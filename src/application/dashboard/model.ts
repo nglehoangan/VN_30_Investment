@@ -5,7 +5,9 @@ import type { Ranking } from "@/domain/ranking/rank";
 import type { Decision } from "@/domain/decision/engine";
 import type { ReviewArtifact, ExecutionLink, FollowUpArtifact } from "@/domain/workflow/contracts";
 import type { MethodologyRecord } from "@/domain/methodology/record";
+import type { CurrentModel } from "@/application/current/read-model";
 export interface DashboardModel {
+  current?: CurrentModel;
   status: "SUCCESS" | "EMPTY" | "BLOCKED"; message: string | null;
   portfolio: { id: string; name: string } | null; state: PortfolioState | null;
   transactions: readonly Transaction[]; cards: readonly Scorecard[]; rankings: readonly Ranking[];

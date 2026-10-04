@@ -1,4 +1,4 @@
-import { copyFileSync } from "node:fs";
+import { copyFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { tmpdir } from "node:os";
 import { testDatabase } from "../fixtures/database";
@@ -18,6 +18,9 @@ export default async function setup() {
   if (!destination || !path.resolve(destination).startsWith(path.join(tmpdir(), "vn30-ui-e2e-"))) throw new Error("E2E requires an owned temporary database");
   const db = await testDatabase();
   try {
+    const stamp = new Date().toISOString();
+    const sourceFile = path.join(path.dirname(destination), "current-source.json");
+    writeFileSync(sourceFile, JSON.stringify({ version: "synthetic-price-1", portfolioId: "portfolio-1", scope: "SYNTHETIC_TEST", asOf: stamp, receivedAt: stamp, ledgerWatermark: "2", taxonomy: "SYNTHETIC", valuationMethodologyId: "m63-valuation-test-only", prices: [{ id: "synthetic-quote", securityId: "SYNTHETIC-00", price: "20", currency: "VND", observedAt: stamp, receivedAt: stamp, validThrough: "2026-12-31T00:00:00.000Z", sourceReference: "SYNTHETIC TEST ONLY", provider: "SYNTHETIC_TEST", revision: "1", quality: "VALID", policyReference: "SYNTHETIC TEST ONLY validity fixture", adjustment: "RAW" }], references: { version: "synthetic-reference-1", intervals: [{ id: "member", kind: "MEMBERSHIP", securityId: "SYNTHETIC-00", from: "2026-01-01", to: null, value: "VN30", taxonomy: null, sourceReference: "SYNTHETIC TEST ONLY" }, { id: "sector", kind: "SECTOR", securityId: "SYNTHETIC-00", from: "2026-01-01", to: null, value: "INDUSTRIAL", taxonomy: "SYNTHETIC", sourceReference: "SYNTHETIC TEST ONLY" }] }, referenceAsOf: stamp, referenceValidThrough: "2026-12-31T00:00:00.000Z", referencePolicy: "SYNTHETIC TEST ONLY", reconciliation: { id: "synthetic-recon", portfolioId: "portfolio-1", asOf: stamp, receivedAt: stamp, sourceReference: "SYNTHETIC TEST ONLY independent fixture", cash: "10000", positions: [{ securityId: "SYNTHETIC-00", quantity: "100", openCost: "1000" }], receivables: "0", payables: "1000", unresolvedDiscrepancy: false }, analyst: null }));
     // All values are synthetic test evidence, only in this disposable test database.
     await db.registry.append({ ...methodologyFixture(method), family: "ACCOUNTING", approvalReference: "SYNTHETIC TEST ONLY", governanceStatus: "APPROVED", intendedUse: "PRODUCTION", implementationIdentity: ACCOUNTING_METHOD });
     const P = portfolioId("portfolio-1");

@@ -1,4 +1,6 @@
 import "server-only";
+import { currentServices } from "./current";
+import { unavailableCurrent } from "@/application/current/read-model";
 import { existingDatabase } from "@/infrastructure/dashboard-support";
 import { loadDatabaseConfig } from "@/infrastructure/config/database";
 import { openDatabase } from "@/infrastructure/db/client";
@@ -27,6 +29,8 @@ export async function readDashboard(client: PrismaClient, screen = "audit", refe
     result.state = await new PortfolioEngine(ledger, runtime.clock).reconstruct(portfolioId(result.portfolio.id), runtime.clock.now());
     result.transactions = [...read.transactions].sort((a, b) => b.facts.eventAt.localeCompare(a.facts.eventAt)).filter(t => screen !== "transactions" || !reference || t.facts.id === reference).slice(0, 100);
     result.truncated = read.transactions.length > 100;
+    try { result.current = (await currentServices(client).current.capture(result.portfolio.id)).model; }
+    catch { result.current = unavailableCurrent("INVALID_SOURCE_DATA"); }
   }
   const needAnalytics = ["audit", "dashboard", "holdings", "vn30", "ranking", "scoring", "data", "settings", "imports"].includes(screen);
   const needDecisions = ["audit", "dashboard", "holdings", "decisions", "risk"].includes(screen);

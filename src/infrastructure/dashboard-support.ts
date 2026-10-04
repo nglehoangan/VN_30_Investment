@@ -1,5 +1,5 @@
 import { existsSync } from "node:fs";
-import { randomBytes, createHmac, timingSafeEqual } from "node:crypto";
+import { randomBytes, createHash, createHmac, timingSafeEqual } from "node:crypto";
 import { ValidationError } from "@/shared/errors";
 const secret = randomBytes(32);
 const sign = (body: string) => createHmac("sha256", secret).update(body).digest("hex");
@@ -15,3 +15,5 @@ export function openConfirmation(token: unknown): unknown {
   if (extra || !body || !mac || !/^[a-f0-9]{64}$/.test(mac) || !timingSafeEqual(Buffer.from(sign(body)), Buffer.from(mac))) throw invalid();
   return JSON.parse(Buffer.from(body, "base64url").toString());
 }
+
+export const reviewIdentity = (scope: string) => `review-${createHash("sha256").update(scope).digest("hex")}`;

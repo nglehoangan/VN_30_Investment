@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
-import { mkdirSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
-const evidence = path.resolve("docs/06_DASHBOARD/6.7 Dashboard UI/visual-evidence");
+const evidence = path.resolve("docs/06_DASHBOARD/6.7.1 Current Read Model/visual-evidence");
 test("portfolio → holding → decision → score evidence preserves lineage", async ({ page }) => {
   await page.goto("/holdings");
   await expect(page.getByRole("columnheader", { name: "Cost basis (VND)" })).toBeVisible();
@@ -41,6 +41,10 @@ test("manual contribution → preview → confirm → authoritative ledger and c
   await page.screenshot({ path: path.join(evidence, "390-transaction-confirmation.png"), fullPage: true });
   await page.getByRole("button", { name: "Confirm transaction" }).click();
   await expect(page.getByText(/Transaction recorded/)).toBeVisible();
+  const sourceFile = path.join(path.dirname(process.env.VN30_E2E_DATABASE!), "current-source.json");
+  const source = JSON.parse(readFileSync(sourceFile, "utf8"));
+  source.version = "synthetic-price-2"; source.ledgerWatermark = "3"; source.asOf = new Date().toISOString(); source.receivedAt = source.asOf; source.reconciliation.asOf = source.asOf; source.reconciliation.receivedAt = source.asOf; source.reconciliation.cash = "10500";
+  writeFileSync(sourceFile, JSON.stringify(source));
   await page.getByRole("link", { name: "Read recomputed holdings" }).click();
   await expect(page.getByText("10500", { exact: true })).toBeVisible();
 });
@@ -48,11 +52,20 @@ for (const width of [1440, 390]) test(`major screens are usable at ${width}px wi
   test.setTimeout(90000);
   mkdirSync(evidence, { recursive: true });
   await page.setViewportSize({ width, height: 1000 });
-  for (const route of ["dashboard", "holdings", "vn30", "ranking", "scoring/score-SYNTHETIC-00", "decisions/workflow-decision-0", "dca/proposal-review", "reviews/hold-cash-review", "reviews/weekly-review", "reviews/quarterly-review", "reviews/annual-review", "reviews/event-review", "journal/hold-cash-review", "transactions", "transactions/new", "audit", "data", "risk", "performance", "settings"]) {
+  for (const route of ["dashboard", "holdings", "vn30", "ranking", "scoring/score-SYNTHETIC-00", "decisions/workflow-decision-0", "dca/proposal-review", "reviews/hold-cash-review", "reviews/weekly-review", "reviews/quarterly-review", "reviews/annual-review", "reviews/event-review", "journal/hold-cash-review", "transactions", "transactions/new", "audit", "data", "risk", "performance", "settings", "reviews", "reviews/new"]) {
     await page.goto(`/${route}`);
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     await expect(page.getByRole("status").first()).toContainText("BLOCKED");
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: path.join(evidence, `${width}-${route.replaceAll("/", "-")}.png`), fullPage: true });
   }
+});
+
+for (const width of [1440,390]) test(`review readiness fails closed for synthetic sources at ${width}px`,async({page})=>{
+ await page.setViewportSize({width,height:1000});await page.goto("/reviews/new");
+ await page.getByLabel(/Requested date/).fill(new Date().toISOString().slice(0,10));
+ await page.getByRole("button",{name:"Preview review readiness"}).click();
+ await expect(page.getByRole("heading",{name:"Review readiness · BLOCKED"})).toBeVisible();
+ await expect(page.getByRole("button",{name:"Create formal review"})).toHaveCount(0);
+ await page.screenshot({path:path.join(evidence,`${width}-review-readiness-blocked.png`),fullPage:true});
 });
