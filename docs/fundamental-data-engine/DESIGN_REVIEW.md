@@ -1,12 +1,18 @@
 # Fundamental Data Engine — first-run design review
 
-Date: 2026-10-08 (Asia/Ho_Chi_Minh). Status: **PROPOSAL — A–H COMPLETE FOR REVIEW; IMPLEMENTATION NOT AUTHORIZED**.
+Date: 2026-10-08 (Asia/Ho_Chi_Minh). Status: **DESIGN REMEDIATED — READY FOR SLICE 1 REVIEW; IMPLEMENTATION NOT AUTHORIZED**.
 
-Audited checkout: `40a7f9557ea8492d80bebe8e3928bdbe171020d3`; working tree was clean before this document. This report assesses checked-in code, contracts and evidence, not the contents of the user's private database. No credentials, personal captures or production database were read; no API account requests, migrations, live scoring, rankings or recommendations were run. External research below used public documentation only. Tests were inspected, not executed; their existence is not a new PASS claim.
+Original audit checkout: `40a7f9557ea8492d80bebe8e3928bdbe171020d3`. Remediation re-audit: `df8cbefdf1ff2111f51836a4a9ea648d21478169`; working tree was clean before remediation. This report assesses checked-in code, contracts and evidence, not the contents of the user's private database. No credentials, personal captures or production database were read; no API account requests, migrations, live scoring, rankings or recommendations were run. External research below used public documentation only. Tests were inspected, not executed; their existence is not a new PASS claim.
 
 Recommendation: build vendor-independent contracts and additive analytical storage first. Qualify a structured provider against original disclosures before integration. Preserve the existing evidence, methodology, exact arithmetic and immutable artifact architecture. Financial coverage is necessary but insufficient for a complete score: the current engine also requires human qualitative assessments and external gates.
 
 ## A. Repository audit
+
+### Remediation re-audit and repository changes
+
+Re-read AGENTS.md, this complete design, the relevant Section A governing clauses, current scoring Evidence/METRICS/application engine, effective-dated ReferenceData/Security contracts and Prisma schema before editing. Compared current HEAD with the original audit. The scoring contracts/reference model/schema inspected here retain the limitations identified below, so all three Major findings remain applicable.
+
+Material change: the `src/infrastructure/tcbs/` adapter directory (including collect/sync/normalizer/token-session files), `src/infrastructure/config/tcbs.ts`, website session form/actions and `tests/integration/tcbs-sync.test.ts` were removed. Current integration is CLI capture/import (`api/test-tcbs.mjs`, `api/import-captured.mjs`, `api/token-session.mjs`) and immutable broker repository/read UI, not automatic website sync. `latestBrokerApiData` now reads at most 100 captures and groups by API ID; it is not a PIT/version-aware financial selector. No remediation restores deleted features. Source assessment is retained as the prior dated desk assessment, not new provider qualification.
 
 ### Authority reviewed
 
@@ -39,21 +45,21 @@ Paths are repository-relative. Logical paths printed inside older documents some
 | `src/domain/portfolio/reference.ts` | Effective-dated identifier/membership/sector/coverage, tri-state membership; complete coverage requires 30 distinct members. | Reuse reference semantics and security IDs; ingestion-time universe/sector evidence still needs a pinned analytical reference manifest. Count alone does not prove official membership. |
 | `prisma/schema.prisma` | Security, ledger, MethodologyRecord, AnalyticalArtifact, DecisionArtifact, workflow/marginal artifacts, BrokerObservation. | No fundamental observation, import batch, financial derivation or fundamental dataset snapshot tables. Security is already the shared durable identity; do not duplicate a company/security master. |
 | `src/infrastructure/repositories/analytical-artifacts.ts`, scoring migration | Append-only SCORECARD/RANKING JSON + SHA-256; read integrity checks; triggers prevent mutation. | Reuse immutable body/hash pattern. Port/type and read discriminator accept only scorecard/ranking; cannot just insert FUNDAMENTAL_SNAPSHOT into it. |
-| `src/infrastructure/repositories/broker-observations.ts`, `src/infrastructure/tcbs/{collect.ts,sync.ts,normalize.mjs}` | Raw captures plus normalized broker snapshots; hash checks; latest successful response views; bounded sync and preserved older observations. | Reuse capture/lineage design, not private account tables for public issuer statements. Latest-success queries are not PIT fundamental queries. |
+| `src/infrastructure/repositories/broker-observations.ts`, `api/import-captured.mjs` | Raw captures plus normalized broker snapshots; hash checks; latest-by-API read view; CLI import preserves observations. | Reuse capture/lineage design, not private account tables for public issuer statements. Latest-success queries are not PIT fundamental queries. |
 | `src/ports/current.ts`, `src/infrastructure/current-source.ts`, `src/shared/validation/current-source.ts` | Normalized local CurrentSource provider for portfolio prices/references/reconciliation/analyst review evidence. | This is portfolio-scoped, not a financial statement provider. Keep it; add a narrow fundamental provider port rather than widening portfolio source ownership. |
-| `src/application/current/read-model.ts`, `src/application/dashboard/model.ts`, `src/ui/dashboard.tsx` | Current portfolio freshness/integrity plus historical artifacts; /data explicitly sets Fundamental freshness to null. | Extend read model/UI only after snapshot/readiness. No existing full-universe fundamental coverage counters. Broker sync READY is not DI PASS. |
+| `src/application/current/read-model.ts`, `src/application/dashboard/model.ts`, `src/ui/dashboard.tsx` | Current portfolio freshness/integrity plus historical artifacts; /data explicitly sets Fundamental freshness to null. | Extend read model/UI only after snapshot/readiness. No existing full-universe fundamental coverage counters. Broker capture/import success is not DI PASS. |
 | `src/shared/time.ts`, `src/domain/portfolio/values.ts`, `src/infrastructure/db/exact-decimal.ts` | Canonical UTC instants/date-only, clock, decimal strings and BigInt decimal12 half-even arithmetic. | Reuse; do not introduce floating point or domain IO. Raw lexical values must survive normalization limits. |
-| `src/infrastructure/config/{database.ts,tcbs.ts}`, `logging/logger.ts`, `app/server/`, `scripts/database.mjs`, `scripts/backup.mjs` | Private server config, allowlisted safe logging, server composition, explicit migration wrapper and backup/recovery workflow. | Preserve all TCBS controls. New credentials use analogous private server handling and are excluded from tracing, git, logs, raw headers and UI. |
+| `src/infrastructure/config/database.ts`, `api/token-session.mjs`, `logging/logger.ts`, `app/server/`, `scripts/database.mjs`, `scripts/backup.mjs` | Private server config, allowlisted safe logging, server composition, explicit migration wrapper and backup/recovery workflow. | Preserve all TCBS controls. New credentials use analogous private server handling and are excluded from tracing, git, logs, raw headers and UI. |
 
 ### TCBS assessment from actual integration
 
-`api/tcbs-api-catalog.json` explicitly records “Fundamental financial statements require an additional source.” `api/README.md` later sections and executable sync supersede its stale introductory claim that no client exists. Existing calls cover profile/account/cash/positions/orders/matches/debt, tickerCommons(index=2), securities metadata, intraday prints and supply/demand. Intraday history is only latest 20 prints per held ticker; cash/debt pagination is incomplete. Market observations and broker portfolio holdings are not issuer financial statements. The held-ticker collection loop is not full VN30 fundamental coverage.
+`api/tcbs-api-catalog.json` explicitly records “Fundamental financial statements require an additional source.” Current CLI catalog covers profile/account/cash/positions/orders/matches/debt, tickerCommons(index=2) and securities metadata. Current `api/README.md` documents CLI testing/token cache and offline capture import; its introductory “no client” wording is stale relative to those scripts. Website sync and supplemental held-ticker intraday/supply-demand collection from the original audit are absent in this checkout. Market observations and portfolio holdings are not issuer financial statements; actual private coverage was not inspected.
 
-No audited adapter supplies income/balance/cash-flow history, publication timestamps or restatement versions. This supports **TCBS currently insufficient**, not a claim that no TCBS product anywhere has fundamentals. Public TCBS portal describes trading, realtime market and account capabilities; a separate TCBS analytics endpoint would need its own documentation, terms and qualification. Do not discover hidden endpoints as an implementation shortcut.
+No current adapter supplies issuer statement history, publication timestamps or restatement versions. This supports **TCBS currently insufficient**, not a claim that no TCBS product anywhere has fundamentals. The previously researched public portal describes trading/market/account capabilities; any separate analytics endpoint requires its own documentation, terms and qualification. No hidden endpoints or live requests are proposed by this remediation.
 
 ### Tests and boundaries inspected
 
-`tests/unit/scoring.test.ts` already rejects future publication/reference evidence; `scoring-golden.test.ts` and `methodology-validation.test.ts` pin rules. `tests/integration/scoring-artifacts.test.ts` covers immutable round-trip, corrections, UPDATE/DELETE/REPLACE rejection, populated upgrade and ledger preservation. `portfolio-migration.test.ts`, `numeric.test.ts`, `isolation.test.ts`, `file-safety.test.ts`, `broker-observations.test.ts`, `tcbs-sync.test.ts` and API session tests provide migration, exactness, security and adapter patterns. `tests/fixtures/database.ts` allocates private temporary DBs and runs migration with `--no-env-file`; `vitest.config.ts` uses UTC and one worker. Architecture checks in `scripts/check-boundaries.mjs` constrain even type imports and client transitive graphs.
+`tests/unit/scoring.test.ts` already rejects future publication/reference evidence; `scoring-golden.test.ts` and `methodology-validation.test.ts` pin rules. `tests/integration/scoring-artifacts.test.ts` covers immutable round-trip, corrections, UPDATE/DELETE/REPLACE rejection, populated upgrade and ledger preservation. `portfolio-migration.test.ts`, `numeric.test.ts`, `isolation.test.ts`, `file-safety.test.ts`, `broker-observations.test.ts` and API session tests (current `tcbs-sync.test.ts` was removed) provide migration, exactness, security and adapter patterns. `tests/fixtures/database.ts` allocates private temporary DBs and runs migration with `--no-env-file`; `vitest.config.ts` uses UTC and one worker. Architecture checks in `scripts/check-boundaries.mjs` constrain even type imports and client transitive graphs.
 
 Pure domain → domain/shared; ports → domain/shared/ports; application → ports/domain/shared/application; infrastructure may implement ports; server composition wires IO; UI consumes read models. No provider fetch, Prisma, node crypto, environment reads or wall clock in domain. No new dependency is required for the first slice. Before any future code, read the relevant installed `node_modules/next/dist/docs/` guides per AGENTS.md.
 
@@ -75,7 +81,7 @@ Research date 2026-10-08. **F** = directly supported fact; **A** = planning assu
 
 | Candidate | Coverage and statement/history evidence | Dates, restatements and PIT | Access, limits, terms, reliability/stability and effort |
 |---|---|---|---|
-| Existing TCBS OpenAPI | **F:** audited repo has market/account integrations; no statement adapter; explicit source gap. Portal describes market and trading/account data. **U:** separately licensed fundamental offering. | **F:** current market capture often uses receipt time, not verified exchange publication; no fundamental version chain. Unsuitable as sole fundamental/PIT source today. | **F:** existing API key + Smart OTP/JWT, private cache, 401/429 stop and bounded sync. **U:** statement entitlement/limits/terms. Stable enough for existing scope only; extra API would require separate qualification. |
+| Existing TCBS OpenAPI | **F:** audited repo has market/account integrations; no statement adapter; explicit source gap. Portal describes market and trading/account data. **U:** separately licensed fundamental offering. | **F:** current market capture often uses receipt time, not verified exchange publication; no fundamental version chain. Unsuitable as sole fundamental/PIT source today. | **F:** existing CLI API key + Smart OTP/JWT and private cache; automatic website sync from the original audit has been removed. **U:** statement entitlement/limits/terms. Stable enough for existing scope only; extra API would require separate qualification. |
 | Original issuer disclosures plus official exchange/regulatory/index notices; controlled document import | **F:** issuer IR can expose quarterly consolidated statements and annual reports (FPT example linked below). **A:** all active constituents can be covered by a maintained disclosure register; must prove each. All three statements/notes depend on report. History depth varies. | Strongest evidentiary route if original document, publication record and every version are retained. **U:** precise publication time, archived originals and restatement history per issuer. Document signing/report date is not publication date. | Public pages may require no login; no universal documented bulk API established here. Automated downloads/rates/storage rights need site-specific verification. Manual/approved export ingestion avoids undocumented endpoints; high extraction/review effort and website/PDF layout changes. Original provenance does not eliminate extraction mistakes. |
 | FiinGroup API Datafeed / FiinPro X | **F:** Datafeed documents corporate financial data; product guide advertises quarterly/annual listed-company history since listing. **A:** candidate for full VN30; API entitlement may differ from platform. **U:** actual 30/30, sector notes, consolidated vs separate, depth and field completeness. | **U:** item-level original availability timestamps, timestamp precision/timezone, AS-KNOWN query/version history, revisions and original PDFs. Fast update claim does not prove historical PIT. | **F:** documented API product, not a browser-only shortcut. **U:** auth scheme, quotas, SLA, price, local persistence/replay/export rights and contract duration. **A:** medium implementation effort and potentially more stable contractual support than a community bridge; sample proof required. |
 | Vietstock DataFeed | **F:** official Vietstock materials list a DataFeed product. **U:** exact financial API/schema, quarterly/annual depth, VN30 sector coverage, note-level fields. | **U:** publication timestamps, original/restated versions and PIT access. Treat current tables as latest-revised until proven otherwise. | **U:** API docs, authentication, licensed storage/reuse, quotas and SLA. **A:** commercial alternative worth qualifying; medium/high effort until specification received. No website scraping proposed. |
@@ -145,23 +151,74 @@ flowchart TD
 
 Suggested modules: `src/domain/fundamentals/{contracts,validation,requirements,normalization,selection,derivation,snapshot,readiness}.ts`; `src/ports/fundamentals.ts`; `src/application/fundamentals/{ingest,build-snapshot,readiness,scoring-input}.ts`; `src/infrastructure/fundamentals/` adapters/maps; `src/infrastructure/repositories/fundamentals.ts`; future server wiring under `app/server/`. Names are proposals, not generated code. Keep financial-statement source items distinct from scored derived MetricId; reuse Sector, Security, time, decimal and existing metric definitions.
 
-### Observation and transformation model
+### Governed Canonical Financial Item Registry (MAJOR-2)
 
-Canonical observations retain securityId and supplied ticker/identifier mapping reference; canonical item ID; statement family; consolidation scope; segment where applicable; accounting standard/audit status; periodStart/end; QUARTER/YTD/ANNUAL/INSTANT (TTM explicitly derived or labeled vendor aggregate); fiscalYear/quarter; period semantics; publication/available metadata; actual retrieval/ingestion; raw capture/field locator/raw lexical value; source unit/multiplier/currency; exact normalized value/unit; status; mapping/version/transformation trace; restatement/correction identity and predecessor. Fiscal calendar is explicit, not inferred universally from Gregorian quarters.
+The future registry is an immutable, machine-readable manifest, reviewed against approved M3 evidence/operand definitions. Each approved release has `registryVersion`, `registryHash`, methodology/document/approval references, recorded/effective dates and governance state. Use the existing methodology identity/approval mechanism; a machine-readable record cannot approve itself. Existing registry metadata checks do not independently certify content approval: acceptance must verify external owner approval binds the exact registryHash and crosswalk release, and pin that association in the immutable manifest. Slice 1 proposes a versioned checked-in JSON manifest with runtime validation and approved release references, not a new accounting master service or a complete invented taxonomy.
 
-Example mapping specification (illustrative until vendor qualified): `netProfitAfterTax` → `reported_net_profit_after_tax` (not normalized common profit); declared million VND × `1000000` → VND; exact decimal parse; reporting scope/period preservation; mapping version + raw field path; no adjustment. `15000` million VND produces `15000000000` VND. Percent `15` explicitly declared PERCENT maps to RATIO `0.15`; RATIO `0.15` stays `0.15`. Currency is required for monetary values; nonmonetary values use null currency. Supported source units include VND/thousand/million/billion, percent/ratio, shares/thousand shares and VND/share. Unknown multiplier, scale ambiguity or excess exact precision fails normalization; do not round away a source fact.
+Each entry governs:
 
-Represent availability, quality, freshness and applicability separately: availability AVAILABLE/MISSING/SOURCE_UNAVAILABLE; quality VALID/WARNING/INVALID/CONFLICTING/UNKNOWN; freshness CURRENT/AGING/STALE/UNKNOWN with policy/evaluation reference; applicability APPLICABLE/NOT_APPLICABLE/UNRESOLVED. Provide requested combined display states through a deterministic projection. NOT_APPLICABLE needs approved sector/route rationale, never a missing-data escape. Numeric zero remains AVAILABLE with `"0"`; missing normalized value is null. M8 INSUFFICIENT confidence remains at readiness layer; only valid HIGH/MEDIUM/LOW evidence assessments bridge into the existing score contract.
+| Field | Governed meaning |
+|---|---|
+| `itemId`, `name`, `meaning` | Stable vendor-independent identity, readable name and precise economic/accounting definition. |
+| `statementType`, `measurementSemantic` | Income/balance/cash-flow/approved supplementary family; FLOW or STOCK. Ratios/per-share evidence need an explicitly governed separate measurement semantic, never falsely labeled stock/flow. |
+| `allowedUnits`, `currencyApplicability`, `signConvention` | Declared monetary/share/per-share/ratio units, whether currency is required, source and canonical sign direction. |
+| `allowedReportingScopes`, `sectorApplicability` | CONSOLIDATED, SEPARATE_STANDALONE or explicitly approved later scopes; applicable sectors and conditions. |
+| `evidenceTopicMappings`, `operandMappings` | Approved document metric IDs/rubric topics and existing executable MetricId + ordered operand position where applicable, with period/normalization requirements. Empty/unresolved executable mapping does not create a formula. |
+| `itemDefinitionVersion`, `methodologyIdentity`, `authorityReferences` | Versioned definition and approval provenance pinned by registry release/hash. |
+| `status`, `deprecatedFrom`, `supersededBy` | Explicit deprecation/supersession; no reusing an itemId for changed economics. Compatible clarifications create new versions; meaning-changing concepts require a distinct item identity. Old manifests remain resolvable. |
 
-### PIT and revisions
+Illustrative identities only: REVENUE, EBIT, NET_INCOME, NET_INCOME_ATTRIBUTABLE_COMMON, TOTAL_ASSETS, COMMON_EQUITY, CFO, CAPEX. These are not automatically approved registry entries. `netProfit`, `profitAfterTax`, `netIncome` and `NPAT` are raw vendor labels; none can enter canonical observation identity without an approved mapping to an exact registry item/version. Preserve raw provider identifiers/labels/field path and map **Provider Field → Canonical Financial Item**, then approved topic/operand—not arbitrary free-form observation text. Unknown/unapproved/deprecated-for-new-use mappings retain raw evidence and block canonical acceptance; no automatic label aliasing. NET_INCOME and NET_INCOME_ATTRIBUTABLE_COMMON are not interchangeable.
 
-Separate `decisionAsOf`, `systemKnownAt`, `generatedAt`, market cutoff and fundamental cutoff. Public availability must be <= decisionAsOf; actual retrieved/ingested time must be <= systemKnownAt. For operational AS-KNOWN replay enforce systemKnownAt <= decisionAsOf: information the system acquired later cannot be represented as previously known. A historical-public research dataset may be built later only with independently verified original availability and original vintage, explicitly separate from operational replay. Current Evidence requires receivedAt <= knownAt; this design proposes **no historical bypass or rewriting of receivedAt**. Any later bridge for historical-public mode needs separate reviewed semantics and cannot relax the production entry point.
+FLOW measures activity over a period (revenue, CFO, profit); STOCK measures a balance at a date (assets, cash, debt, equity). TTM may aggregate four comparable non-overlapping quarterly FLOW values; STOCK is not summed into TTM. YTD-to-quarter subtraction applies only to comparable cumulative FLOW with identical scope/basis and eligible vintage. Average equity/invested capital is a derived balance from documented STOCK dates and an approved averaging method, not sum of quarterly balances. ROE uses normalized attributable common-profit FLOW over the measurement window and average common-equity STOCK for that window; ROIC similarly needs approved NOPAT and invested-capital definitions. Growth compares like-for-like FLOW windows or STOCK dates; EPS requires its governed per-share/action denominator semantics. Equal units alone do not establish economic or period comparability. Where an averaging, sector metric or annualization definition is unresolved, preserve evidence and block the affected derivation rather than invent it. No new MetricId or scoring formula is authorized.
 
-PublishedAt/availableAt can be null in canonical storage, with `VERIFIED_TIMESTAMP`, `VERIFIED_DATE_ONLY`, `UNKNOWN` precision/status and evidence reference. Never substitute reporting period or retrievedAt for publication. Conservative date-only admission at the end of that local publication day is a proposed operational rule to approve and version; until then classify uncertain intraday admission UNKNOWN. Records with unknown public availability remain preserved but ineligible for readiness/scoring under the initial fail-closed policy. “First observed at retrieval” is useful system evidence, not proof of the original historical publication date.
+### Observation, scope, units and currency
 
-AS-KNOWN selects only eligible original/restated vintages published and actually known by the applicable cutoffs. AS-REVISED selects latest valid revised data at a declared later revision cutoff and must be labeled; never feed that mode into an AS-KNOWN score. Distinguish issuer restatement from provider correction, mapping correction and repeat retrieval. Retain all versions; supersession is a new append-only link/event, not an update to the old record. Explicit source resolution survives in the snapshot. No averaging or preference for a favorable value. Changed content without a documented version/change explanation is CONFLICTING/UNKNOWN.
+Canonical observations retain securityId and supplied ticker/identifier mapping reference; `itemId` plus immutable registry version/hash/item-definition version; statement family and FLOW/STOCK (resolved and checked against registry); reporting scope/segment/accounting/audit basis; periodStart/end/type, fiscalYear/quarter/calendar; the distinct publication/receipt fields below; raw capture/field locator/raw lexical value/label; declared source unit/multiplier/currency; exact normalized value/unit/currency or null; data presence/quality/applicability; mapping/version/transformation trace; revision kind and predecessor. QUARTER/YTD/ANNUAL apply to appropriate FLOW/per-share periods; INSTANT captures STOCK observation date. TTM is explicitly derived or a labeled provider aggregate with verified constituent lineage.
 
-Mandatory regression: period end `2026-06-30`, publication `2026-07-25`, snapshot as-of `2026-07-10` → excluded from accepted inputs and derived metrics, regardless of its reporting period. Also test publication exactly at cutoff, receipt after cutoff, late restatement and backdated vendor availability.
+Reporting scope is explicit: CONSOLIDATED and SEPARATE_STANDALONE remain distinct even for identical values. Other scopes require registry approval. For listed groups whose approved metric route uses consolidated economics (e.g. M3 §12.1 comparable consolidated revenue), standalone cannot silently fill missing consolidated data. A fallback requires an approved route/source-rule reference, purpose, rationale and retained original scope; affected quality/confidence/readiness must reflect the substitution. Without that route, block/N/R under existing missing rules. A source hierarchy does not authorize a scope substitution.
+
+Illustrative mapping pending registry approval: vendor `netProfitAfterTax` → approved NET_INCOME definition, not automatically attributable or normalized common profit. Declared `15000` million VND × `1000000` yields `15000000000` VND. Percent `15` explicitly declared PERCENT yields RATIO `0.15`; RATIO `0.15` stays `0.15`. Source sign inversion must be explicit and registry-consistent (e.g. capex cash outflow vs positive expenditure operand); investing flow is not CAPEX. Unknown scale/sign/scope or excess exact precision blocks normalization; preserve raw facts without silent rounding.
+
+Ingestion preserves reporting currency. Unit-scale conversion within a currency is distinct from FX: million USD stays USD, never silently becomes VND. Monetary values require currency; nonmonetary values use null currency. A later approved FX transformation must retain source/target currency, approved FX source and immutable observation ID/hash, FX date/time and availability, exact rate and quote direction, conversion methodology (including applicable FLOW-period vs STOCK-date convention), transformation version and result. If the approved rate/source/method is absent or future at the cutoff, the required VND-dependent operand/readiness remains blocked/N/R; no implicit currency conversion. Existing scoring Evidence supports VND, so non-VND values cannot be bridged as VND merely by changing a unit label. Slice 1 represents currencies/lineage only and implements no FX.
+
+Separate `dataPresence` AVAILABLE/MISSING/SOURCE_UNAVAILABLE from governed information availability below; quality VALID/WARNING/INVALID/CONFLICTING/UNKNOWN; freshness CURRENT/AGING/STALE/UNKNOWN; applicability APPLICABLE/NOT_APPLICABLE/UNRESOLVED. Numeric zero remains AVAILABLE with `"0"`; missing normalized value is null. NOT_APPLICABLE needs an approved route reason. Readiness INSUFFICIENT confidence does not broaden current scoring HIGH/MEDIUM/LOW semantics.
+
+### Canonical information availability and PIT (MAJOR-1)
+
+| Field | Meaning / evidence requirement |
+|---|---|
+| `periodStart`, `periodEnd` | Economic reporting window or STOCK date; never information availability. |
+| `reportDate` | Issuer/report signing date if known, with its own precision/reference; never automatically publication. |
+| `publishedAt` / publication date | Issuer/exchange/public disclosure evidence for the underlying reported version; nullable. ISSUER_RESTATEMENT needs its own disclosure; provider/mapping corrections retain underlying issuer publication plus separate correction knowledge provenance; they do not invent a new issuer publication date. |
+| `publicationPrecision` | TIMESTAMP, DATE_ONLY or UNKNOWN; date-only uses a date field plus source timezone, not an invented midnight instant. |
+| `publicationStatus` | VERIFIED or UNKNOWN; conflicting/unverified vendor claims cannot be VERIFIED. Retain claimed date separately in raw provenance. |
+| `providerReceivedAt` | Optional verified provider receipt for this version; provenance/precision retained, not a substitute for public disclosure. |
+| `retrievedAt`, `ingestedAt` | Actual local receipt and storage times, separately recorded; no backdating. Retrieval is not proof of earlier publication. |
+| `availableAt`, `availabilityStatus` | Nullable **derived** canonical admissibility boundary and VERIFIED/UNKNOWN result, with policy/mode and provenance-input references; never an accepted vendor-provided scalar. |
+
+Proposed initial operational AS-KNOWN policy: derive a `publicBoundary` from verified original publication evidence. Exact timestamp uses that instant. Verified date-only may use the start of the following local day as a conservative boundary **only after this operational policy/timezone is approved and versioned**; it is labeled a policy boundary, never reported as an exact publishedAt. Unknown publication/timezone yields UNKNOWN with null boundary. A provider assertion of availableAt alone cannot satisfy verification.
+
+For a known publication/version and a valid local receipt chronology, derive:
+
+`availableAt = max(publicBoundary, retrievedAt, ingestedAt, verified providerReceivedAt if applicable, correction/interpretation knowledge boundaries if applicable)`.
+
+Record the policy identity/version, analysis mode, input IDs/hashes and rationale. Slice 5 appends an immutable availability assessment referencing the foundational observation hash and provenance inputs; it never updates the foundational null/UNKNOWN fields. Selectors read the explicitly pinned assessment, not a mutable availableAt cache on observations. Receipt after ingestion, impossible publication/receipt chronology or uncertain required provenance is invalid/UNKNOWN; a max calculation does not legitimize contradictory evidence. Missing optional provider receipt need not block when authoritative publication and local capture establish the route. Material provider/mapping corrections add their actual system-known correction boundary; knowledge of a corrected interpretation cannot be backdated to the original report's publication. A disputed provider receipt remains visible and cannot be selectively dropped to obtain readiness.
+
+Operational AS-KNOWN admission requires availableAt VERIFIED and <= `systemKnownAt` <= `decisionAsOf`, eligible period/scope/version, freshness/quality and required evidence rules. A later build time does not extend historical knowledge. Unknown publication fails closed for required inputs even if retrievedAt is known. No reporting/signing date, guessed delay or provider timestamp can make it scoreable.
+
+Example (dates shown in Vietnam local time; exact instants still require evidence): Q2 end June 30, report signed July 22, public exchange publication July 25, provider receipt July 25, local retrieval July 26. July 10 excludes the report. July 22 signing does not admit it. Verified public knowledge may begin July 25, but this local operational system cannot know it before July 26 and actual ingestion; availableAt is the latest required boundary. If publication is only date-known, the approved conservative policy also waits until July 26 00:00 local; unknown publication remains UNKNOWN even after local retrieval. A July 25 local decision is excluded despite provider receipt that day. At/after actual July 26 ingestion, availability can be admitted only if remaining gates pass.
+
+Keep `decisionAsOf`, `systemKnownAt`, market/fundamental cutoffs and actual snapshot `builtAt` distinct. A historical-public research dataset built later requires its own explicitly approved availability policy/original vintage proof and is not operational AS-KNOWN replay. That bridge remains deferred. Existing scoring Evidence requires actual receivedAt <= knownAt and publishedAt <= receivedAt; date-only admission must not fabricate publishedAt to satisfy it. Unrepresentable publication precision remains blocked at the current scoring bridge until a separately reviewed compatible contract exists. No Evidence semantics/code changes in this task or Slice 1.
+
+AS-REVISED is a separately labeled diagnostic/latest-valid revision mode at an explicit revision cutoff; it cannot replace AS-KNOWN or manufacture prior knowledge. Unknown publication is still visible and never converted into VERIFIED by choosing revised mode.
+
+### Revision lineage and source conflicts (MINOR-1 and MINOR-4)
+
+Revision taxonomy: ORIGINAL; ISSUER_RESTATEMENT (issuer changes previously reported financials); PROVIDER_CORRECTION (provider data/parsing correction, not an issuer statement change); MAPPING_CORRECTION (local mapping/interpretation repair). Repeat retrieval is another receipt event, not a restatement. Each revision retains one immediate revision predecessor (`supersedesObservationId`); other contributing transformation/source ancestors are immutable referenced lineage, not additional immediate supersession edges. A later multi-parent derivation may use explicit lineage edges in its owning slice without overbuilding Slice 1. Each revision also retains issuer/provider version identifiers, reason, documentary evidence, correction disclosure/receipt/ingestion boundaries and policy/mapping versions. Never overwrite an earlier observation. The PIT selector resolves only versions knowable at the cutoff; unexplained changed content remains CONFLICTING/UNKNOWN. Semantic transformation corrections may need a separately labeled corrected replay; they cannot silently replace the operational as-calculated record.
+
+Source priority governs eligible **selection**, not evidence retention. Preserve all source identities, raw lexical and normalized values/currencies/scopes/periods, immutable captures/observations and material conflict findings. A reviewed selection artifact records candidates, discrepancies, selected value or null, applicability/availability, rationale, authoritative resolution reference, selector/policy version and decision/knowledge cutoffs. The approved hierarchy may select higher-priority evidence only within its resolution rules; it does not erase a disagreement. Unresolved material conflicts remain visible and block affected outputs. No generic latest-wins, averaging or favorable-value choice. Latest eligible issuer restatement within a documented vintage chain is not permission to select whichever unrelated source arrived last.
+
+Mandatory PIT regression remains: Q2 end `2026-06-30`, publication `2026-07-25`, as-of `2026-07-10` → excluded from selected and derived inputs. Slice 5 also tests reportDate July 22, provider receipt July 25, local retrieval/ingestion July 26, unknown/date-only publication, exact boundaries, later revisions/corrections and false provider availableAt.
 
 ### Validation
 
@@ -175,7 +232,19 @@ Cross-period: compatible quarter/YTD/annual flow semantics, no gaps/overlap in T
 
 Reuse `calculateMetrics` for existing formulas with correct canonical operands and request normalization. Derived records include formula identity/version, methodology/document hashes, ordered observation/derived input IDs, period(s), normalization rationale/references, units, exact result or null/reason, precision policy and calculatedAt. Derived operands (average common equity, TTM CFO, normalized common profit, corporate-action-adjusted EPS) need their own lineage; vendor ROE is a reported provider ratio, not an unexplained internal calculation. Financial normalization involving judgment remains an explicit reviewed adjustment. Confidence cannot exceed weak required inputs by default.
 
-Snapshot seals sorted accepted observation/derived IDs **and hashes**, pinned universe/sector/market/reference content or immutable resolvable bodies, source/import/mapping identities, cutoffs/mode, selected revisions/resolutions, requirements/validation/freshness versions, missing/excluded items, readiness, methodology/build identity. Canonical serialization sorts sets by documented code-point order, preserves ordered formula operands and normalizes UTC/decimal transport. Immutable creation envelope holds generatedAt separately from deterministic content identity; repeated identical inputs/policies/cutoffs yield identical content hash even at a later execution time. Changed input, selection or policy yields a new identity. Bodies and references are checked on load; missing lineage/hash mismatch fails closed. Publication of header/members/readiness is atomic; later arrivals cannot alter an old snapshot.
+### Dataset content identity vs snapshot build/run identity (MAJOR-3)
+
+`fundamentalSnapshotContentHash` identifies deterministic investment-relevant content; `runId` identifies a particular build event. Two builds can have different runIds/builtAt/operator while resolving the same contentHash. The M8 Data Snapshot reference carries both identities; a scoring binding pins contentHash **and** the selected run/review acceptance evidence. DI review is not transferred automatically between runs merely because their content hashes match.
+
+The canonical content manifest includes selected canonical fact/derived semantic fingerprints, durable identities, registry/mapping/methodology and availability-policy versions/hashes, periods/scopes/units/currencies, decision/knowledge/market/fundamental cutoffs and mode, investment-relevant availability provenance/boundaries, pinned universe/sector/market/reference content, derived operand ordering/formulas, deterministic quality/freshness/findings, conflict resolutions, required exclusions/missing states and readiness/requirements policy. Any change to these interpretation-relevant facts or policies changes content identity.
+
+Canonicalization is versioned: schema-fixed field set, code-point sorted object keys and unordered sets; preserve ordered formula operands, canonical decimal/UTC transport and distinct null/zero/unknown states. Currency, scope, semantic meaning, publication precision, correction knowledge boundaries and source-policy decisions are never treated as irrelevant differences. Exclude JSON whitespace/key-order differences and build timestamps. Hash canonical semantic fact content, not raw serialized observation bodies with irrelevant transport formatting; raw payload/body hashes and actual storage IDs remain checked in run provenance. A new retrieval event that changes the chosen operational knowledge boundary is investment-relevant and changes content; an unselected import or unrelated batch is not. No arbitrary caller exclusion list may hide investment-relevant fields.
+
+The immutable run envelope includes runId, contentHash, builtAt, software/build identity, operator/process, actual source/import batches, selected storage IDs/raw and body hashes, validation run, review context and exact manifest digest. Software execution identity is run metadata unless a version changes interpretation/algorithm, in which case its governing semantic version is also content. Derived calculation execution timestamps are run metadata; their input availability/correction boundaries and governing formula/precision versions remain content. Elapsed validation time/reviewer signing time is run metadata; deterministic validation findings/policy and selection-resolution facts are content. A run-to-content binding verifies each selected storage record's semantic fingerprint and raw integrity; missing/tampered references fail closed even when contentHash appears valid.
+
+Seal content, members, readiness and run provenance atomically. Rebuilds create immutable new run envelopes and may reuse content; corrections never modify old runs/content. DI12 compares canonical content/input reproducibility, while replay checks pinned original lineage; independent validation links its own execution to the same governed content. Audit/incident investigation uses runId for execution/operator/import/software provenance and contentHash to establish whether facts/interpretation changed. Changing only builtAt must not masquerade as a dataset correction.
+
+Slice 5 acceptance tests: (1) reordered equivalent inputs/key ordering/whitespace → same contentHash; (2) same governed content, different builtAt → same contentHash and distinct runId; (3) changed selected observation → different contentHash; (4) changed interpretation-relevant canonical mapping/methodology/policy → different contentHash; (5) tampered manifest or storage/run-to-content mismatch → integrity failure; (6) new imports not selected under frozen cutoffs → old contentHash reproducible with a new runId and original eligible lineage. Also test selected receipt/correction boundary changes alter content and old manifests remain immutable.
 
 Readiness table: ticker/security | universe | market | fundamentals | valuation inputs | flow/technical | evidence confidence | assessment/gate completeness | ready for scoring | blockers. Flow/technical may be NOT_APPLICABLE for permanent M3 score with baseline reference, but required for relevant M4 workflow; never add points or always block M3 for an optional overlay. Data-ready, fully score-ready and actionable remain distinct. Missing bank NIM quality evidence can produce `BLOCKED_MISSING_NIM_EVIDENCE`; unknown publication `BLOCKED_PUBLICATION_UNKNOWN`; stale statements `BLOCKED_STALE_FUNDAMENTALS`; missing human rubric/gate evidence `BLOCKED_ASSESSMENT_REQUIRED`. These are illustrative reasons, not claims about actual tickers.
 
@@ -187,15 +256,18 @@ Physical design follows existing SQLite TEXT timestamps/decimal strings and JSON
 
 | Proposed entity | Fields / reason | Indexes and constraints |
 |---|---|---|
+| Canonical registry manifest (Slice 1; no new registry table) | Versioned validated JSON definitions/crosswalk, stable itemId, FLOW/STOCK semantics and all governed fields in D; release hash/authority references | Immutable approved release pinned by observation; runtime membership/version validation. Reuse methodology registry; no self-approval or duplicate Security/master. |
 | FundamentalSourceVersion | id, provider identity, documentation/terms references, adapter/schema version, declared coverage/temporal limitations, recordedAt, body/hash | Immutable identity. Credentials are excluded. Version new terms/capabilities without editing history. |
 | FundamentalImportBatch | id, sourceVersionId, request/import fingerprint, retrieval started/completedAt, ingestedAt, completion/error state, body/hash including page/capture manifest | FK source; index(sourceVersionId, completedAt); unique import execution identity. Immutable terminal manifest; partial batch can retain captures but cannot claim complete coverage. No mutable job status required in this initial design. |
 | FundamentalRawCapture | id, sourceVersionId, importExecutionId, request/resource fingerprint, sourceRecordId/version nullable, retrievedAt, mediaType, response status, payload text or content-addressed blob reference, payloadHash, safe document reference | FK source; index(sourceVersionId, retrievedAt), index(importExecutionId). No authorization headers/token-bearing URLs. Preserve retrieval occurrence separately from payload content deduplication; same value retrieved twice has two receipt events. Batch manifest resolves captures without cyclic mandatory FKs. |
-| FundamentalObservation | id, rawCaptureId, securityId, identifierReference, canonicalItemId, statement/scope/segment/accounting/audit basis, periodStart/end/type/fiscalYear/quarter, publishedAt/availableAt nullable, availabilityStatus/precision/timezone/evidence ref, ingestedAt, source version, raw field path/value/unit/multiplier/currency, normalized decimal/null and unit, mapping version/transform trace, recordVersion/revisionKind, supersedesObservationId nullable, availability/quality/applicability, body/hash | FK Security/capture/predecessor RESTRICT; index(securityId,item,scope,periodEnd,availableAt), index(sourceVersion,ingestedAt), index(supersedesObservationId). Unique(capture,item,scope,period,fieldLocator,mappingVersion) for reprocessing idempotence; not unique(security,item,period), which would erase conflict/revision evidence. Typed checks enforce null/value/status compatibility and fiscal/temporal ordering; decimal validation in repository/domain. |
+| FundamentalObservation | id, rawCaptureId, securityId, identifierReference, itemId/registryVersion/hash/itemDefinitionVersion, statement/measurementSemantic/scope/segment/accounting/audit basis, periodStart/end/type/fiscalYear/quarter, reportDate + precision/reference nullable, publication timestamp or date/precision/status/timezone/evidence ref, optional providerReceivedAt/provenance, actual retrievedAt and ingestedAt, nullable derived availableAt/status/policy/mode/input refs (future derivation, initially UNKNOWN), source version, raw identifier/label/field path/value/unit/multiplier/currency, normalized decimal/null and unit/currency, explicit scope fallback/FX lineage references if applicable, mapping version/transform trace, recordVersion/revisionKind, supersedesObservationId nullable, dataPresence/quality/applicability, body/hash | FK Security/capture/predecessor RESTRICT; index(securityId,item,scope,periodEnd), index(sourceVersion,ingestedAt), index(supersedesObservationId). Unique(capture,item,scope,period,fieldLocator,mappingVersion) for reprocessing idempotence; not unique(security,item,period), which would erase conflict/revision evidence. Typed checks enforce null/value/status compatibility and fiscal/temporal ordering; item membership/semantic/scope/unit rules validated against immutable registry. Slice 1 stores no VERIFIED derived availability and performs no selector or FX calculation; metadata fields/immutable body permit later derived artifacts without historical rewrites. |
 | FundamentalValidationArtifact | id, ruleSetVersion, assessedAt, target refs, results/severity/issue refs, resolutions and reviewer, body/hash | Index(assessedAt); immutable, reference targets checked; later review/correction is a new artifact. Missing anticipated item represented as a finding, not fabricated source observation. |
 | FundamentalDerivedMetric + DerivedInput | id, securityId, canonical/existing metric ID, formula/version, method/document/precision identity, periods, exact result/null, unit, calculatedAt, normalization, body/hash; ordered input rows with input observation or derived ID/hash | FK methodology/input targets RESTRICT; unique(derivedId,sequence); exactly one input target; index(securityId,metric,periodEnd). Validate acyclic graph and inherited quality in application/domain; formula not in SQL trigger. |
-| FundamentalDataSnapshot | id/contentHash, contractVersion, mode, decisionAsOf/systemKnownAt, market/fundamental cutoffs, universe/sector/reference/market identities+hashes, methodology/build/policy identities, quality/freshness/readiness summary, immutable manifest body/hash, generatedAt envelope | Unique deterministic content identity; index(decisionAsOf,mode). Resolved external refs must be pinned bodies or immutable checked references; do not pretend a FK exists to a nonpersisted reference version. Atomic seal. |
-| SnapshotObservation / SnapshotDerived / SnapshotTickerReadiness | snapshotId, referenced observation/derived ID+hash; per-security readiness body/hash with dimensions/blocker refs/requirements version | PK(snapshotId,targetId), PK(snapshotId,securityId); restrictive FKs; immutable membership/readiness. Full approved universe accounted for even when blocked. |
-| ScoringDatasetBinding (later) | scorecardId, snapshotId, scoring input hash, requirements version, validation/DI acceptance reference, createdAt, body/hash | FK analytical artifact + snapshot RESTRICT; unique(scorecardId). Check kind SCORECARD and exact input/model/cutoff match. No rewrite of existing scorecard bodies. Historical bindings cannot be retroactively invented without evidence. |
+| FundamentalAvailabilityAssessment (Slice 5) | id, observationId/hash, policy/mode/version, provenance-input refs/hashes, publicBoundary/derived availableAt nullable, result VERIFIED/UNKNOWN or invalid finding, assessedAt, body/hash | Immutable append with FK observation RESTRICT; index(observationId,policyVersion), index(availableAt). Foundational availability fields stay null/UNKNOWN; no retrospective update. |
+| FundamentalDataSnapshotContent (Slice 5) | contentHash, canonicalization/contract version, deterministic manifest defined in D including semantic selected facts/availability assessments/cutoffs/policies/readiness; canonical manifest bytes/hash | Unique contentHash; index(decisionAsOf,mode). Exclude execution timestamps/irrelevant serialization; preserve exact governed content. |
+| FundamentalSnapshotRun (Slice 5) | runId, contentHash, builtAt, software/operator/process, import/capture/selected storage IDs and integrity hashes, validation run/review refs, immutable provenance envelope/hash | Unique runId; FK content RESTRICT; index(contentHash,builtAt). Multiple runs per content; atomic seal and verified run-to-content binding. |
+| SnapshotObservation / SnapshotDerived / SnapshotTickerReadiness | contentHash + semantic member fingerprint; runId + actual observation/derived ID/hash lineage; per-security readiness body/hash with dimensions/blocker refs/requirements version | Content membership PK(contentHash,semanticFingerprint), readiness PK(contentHash,securityId); run lineage keys(runId,targetId); restrictive FKs; immutable membership/readiness. Full approved universe accounted for even when blocked. |
+| ScoringDatasetBinding (later) | scorecardId, contentHash, runId, scoring input hash, requirements version, validation/DI acceptance reference, createdAt, body/hash | FK analytical artifact + content/run RESTRICT; unique(scorecardId). Check kind SCORECARD and exact input/model/cutoff match. No rewrite of existing scorecard bodies. Historical bindings cannot be retroactively invented without evidence. |
 
 Normalized monetary values use decimal TEXT; raw lexical values may be nonnumeric and survive failed parsing. UTC timestamp strings must be canonical for ordering; date-only cannot masquerade as UTC timestamp. Unit/currency/state/statement/scope checks require explicit enum allowlists in runtime validation and feasible SQL CHECK constraints. Unknown future item identifiers do not automatically become approved metrics. No DB enum permits changing investment rules.
 
@@ -212,15 +284,15 @@ Migration safety: additive DDL only; review SQL/schema before any deployment; fr
 | DI1 VN30 master source/effective date verified | Partial; official effective-date acceptance unverified | Pinned official notice/identity import and availability/effectivity metadata | Independent notice/source/date/hash verification for exact cutoff. |
 | DI2 Active universe complete/no duplicates | Partial; reference contract/count checks | Universe manifest and duplicate/identity validation | 30 authoritative distinct active securities, reconciled additions/removals and negative duplicate tests. |
 | DI3 Sector mapping complete | Partial; taxonomy/reference checks | Complete dated approved-sector mapping | All active members mapped at cutoff; mapping/source approvals and historical interval checks. |
-| DI4 Required market data loaded | Partial/source coverage unverified | Full required price/history/corporate-action coverage beyond held-ticker prints | Every required ticker/field/cutoff with provenance, quality, freshness and completeness; TCBS HTTP PASS alone insufficient. |
+| DI4 Required market data loaded | Partial/source coverage unverified | Full required price/history/corporate-action coverage with the required history and adjustment semantics | Every required ticker/field/cutoff with provenance, quality, freshness and completeness; TCBS HTTP PASS alone insufficient. |
 | DI5 Required fundamentals loaded | Source-blocked; engine not implemented | Qualified statement/supplement provider, raw/observation repositories | Full sector-route coverage report, latest available/audited periods and required history; representative source reconciliation. |
 | DI6 Period/unit normalization validated | Partial primitives; fundamental normalization absent | Explicit field/unit/period/scope maps | Independent expected-vs-actual unit/sign/YTD/TTM/denominator cases and real samples, scale-error negative controls. |
 | DI7 Missing-data checks PASS | Partial score fail-closed; full checklist absent | Sector required-route completeness and absent item findings | Whole-universe required-input accounting; zeros vs missing; approved N/A/fallbacks; affected outputs blocked. |
 | DI8 Freshness checks PASS | Partial current price/reference; fundamental policy absent | Class-specific disclosure monitoring/freshness policy | Latest-public-period/audited-FY evidence at cutoff; stale/unknown/new-disclosure regression and owned policy. |
 | DI9 Conflict/impossible-value checks PASS | Partial generic conflict/decimal checks | Fundamental conflict, financial, scale and cross-period rules | Material issues resolved with source evidence; valid negatives/coverage>100% retained; unresolved conflicts blocked. |
 | DI10 Derived metric lineage verified | Partial embedded metric operands | Stored derivation graph/semantic operands/version bridge | Independent formula recomputation and full traversal to raw captures; missing/weak quality propagation. |
-| DI11 Point-in-time controls verified | Partial Evidence checks; source-blocked publication/vintages | Selector/modes/publication precision/restatement controls | July 10/July 25 negative control, late receipt/revision/mode tests plus real publication references and original vintages. |
-| DI12 Data Snapshot ID reproducible | Fundamental snapshot not implemented | Deterministic manifest, seal/load and integrity verification | Identical inputs/policies reproduce ID/input digest across order/reopen; changed facts yield new identity, prior replay unchanged. |
+| DI11 Point-in-time controls verified | Partial Evidence checks; source-blocked publication/vintages | Selector/modes/governed availableAt derivation/publication precision/revision controls | July 10/July 25 control; signing/receipt/ingestion/date-only/unknown/forged provider availableAt/correction tests plus authoritative publication/version provenance. |
+| DI12 Data Snapshot ID reproducible | Fundamental snapshot not implemented | Deterministic manifest, seal/load and integrity verification | Identical governed content/policies reproduce contentHash across order/reopen/new build time; distinct runId per execution; selected fact/interpretation changes yield new content, tamper fails, unselected later imports preserve prior identity. |
 | DI13 Required per-ticker readiness determined | Not implemented for universe; partial score validity | All dimensions, assessment/gate and DI integration | Every active security accounted for; blocked reasons reproducible; injection/direct FORMAL bypass tests. |
 | DI14 Independent data-quality review PASS | Not executed | Review artifact linked to exact snapshot/build/tests | Independent expected-vs-actual checks, reviewer identity/sign-off, immutable dataset hash and exception register. |
 | DI15 No Critical/Major data issue unresolved | Not demonstrated | Severity/issue/resolution register, review enforcement | Complete scoped register and independent verified closure/retests; not inferred from absence of findings or passing unit tests. |
@@ -233,21 +305,21 @@ Commands are proposed validation, **not run in this review**. For any DB-consumi
 
 ### Slice 1 — canonical contracts and foundational schema
 
-Scope: narrow observation/raw/source/batch contracts, state/unit/period validation and foundational additive tables only. Approve canonical statement-item/evidence crosswalk; defer unresolved sector formulas. Implement append/read repository for foundational records, including integrity and private test fixtures. No fetching, normalization engine, derived tables, snapshots, UI or scoring connection yet.
+Scope: narrow observation/raw/source/batch contracts, governed machine-readable canonical registry/crosswalk, state/unit/period/scope/currency/publication-provenance validation and foundational additive tables only. Registry release approval is an explicit completion gate; defer unresolved sector formulas. Availability/policy/result contract fields remain representable but availableAt stays null/UNKNOWN; do not compute it in Slice 1. Implement append/read repository for foundational records, including integrity and private test fixtures. No fetching, normalization engine, FX conversion, PIT selector/availability evaluator, derived metrics engine/tables, snapshot builder/tables, DI acceptance engine, scoring readiness integration, UI, live scoring/ranking, valuation or decision logic.
 
-Expected files: `src/domain/fundamentals/contracts.ts`, `validation.ts`; `src/ports/fundamentals.ts`; `src/infrastructure/repositories/fundamentals.ts`; `prisma/schema.prisma`; one new reviewed additive migration; `tests/unit/fundamentals-contracts.test.ts`, `tests/integration/fundamentals-repository.test.ts`, `fundamentals-migration.test.ts`; extend owned DB fixture only as necessary; contract/crosswalk review artifact under this directory. Reuse shared Security/Sector/time/decimal rather than duplicate them.
+Expected files: `src/domain/fundamentals/contracts.ts`, `validation.ts`, a validated canonical-registry JSON manifest/loader contract; `src/ports/fundamentals.ts`; `src/infrastructure/repositories/fundamentals.ts`; `prisma/schema.prisma`; one new reviewed additive migration; `tests/unit/fundamentals-contracts.test.ts`, `tests/integration/fundamentals-repository.test.ts`, `fundamentals-migration.test.ts`; extend owned DB fixture only as necessary; contract/crosswalk review artifact under this directory. Reuse shared Security/Sector/time/decimal rather than duplicate them.
 
-Tests: exact decimal/null/zero, units/currency, unknown dates, impossible chronology, raw preservation, duplicate identity/conflicting period versions, restrictive FKs, immutable raw/observation round-trip and UPDATE/DELETE/REPLACE guards; existing populated ledger/broker/artifact preservation plus reopen/repeat deployment. A dated future-publication fixture is stored distinctly, with no admissibility claim yet.
+Tests: exact decimal/null/zero, units/currency, unknown dates, impossible chronology, raw preservation, duplicate identity/conflicting period versions, restrictive FKs, immutable raw/observation round-trip and UPDATE/DELETE/REPLACE guards; existing populated ledger/broker/artifact preservation plus reopen/repeat deployment. Fixtures preserve FLOW vs STOCK, consolidated vs standalone, non-VND currency without conversion, ORIGINAL/ISSUER_RESTATEMENT/PROVIDER_CORRECTION/MAPPING_CORRECTION, report signing vs publication and provider/local receipt. Reject arbitrary item aliases, scope fallback without an approved route and non-null VERIFIED derived availableAt in this slice; conflicts retained without latest-wins. No admissibility claim yet.
 
 Commands: isolated `node scripts/database.mjs validate --no-env-file`, generate, `pnpm exec vitest run tests/unit/fundamentals-contracts.test.ts tests/integration/fundamentals-repository.test.ts tests/integration/fundamentals-migration.test.ts`, `pnpm test:boundaries`, `pnpm typecheck`, `pnpm lint`, `pnpm test:portfolio`, `pnpm test:scoring`, `git diff --check` (all process environments isolated as above).
 
-Acceptance: foundational contract/schema reviewed; lineage and unknown availability representable without guessed timestamps; old authoritative records unchanged; tests supply evidence, not DI PASS. Risks: excessive early schema scope, incorrect canonical definitions, precision loss, shared Security initialization ownership and migration targeting mistakes. Stop for review before Slice 2.
+Acceptance: foundational contract/schema reviewed and machine-readable canonical registry/crosswalk release approved against M3 authority (no self-issued approvals); unknown item IDs/semantic mismatches rejected; scope/currency/revision/publication/availability provenance representable without calculation or guessed timestamps; old authoritative records unchanged; tests supply evidence, not DI PASS. Risks: excessive early schema scope, incorrect canonical definitions, precision loss, shared Security initialization ownership and migration targeting mistakes. Stop for review before Slice 2.
 
 ### Slice 2 — qualified provider adapter and raw observations
 
 Scope: only after explicit source selection/entitlement approval, implement one documented provider or reviewed offline import; capture every retrieval/page/error and immutable import manifest. Full-universe requests independent from portfolio holdings.
 
-Files: `src/infrastructure/fundamentals/<approved-provider>.ts`, private config adapter, `src/application/fundamentals/ingest.ts`, ports/repository extensions; fixtures/parsing/security tests. Commands: focused provider/import tests, boundaries/typecheck/lint, TCBS regression `pnpm exec vitest run tests/integration/tcbs-sync.test.ts tests/integration/broker-observations.test.ts` and `node --test api/token-session.test.mjs`, diff check; no live API in CI.
+Files: `src/infrastructure/fundamentals/<approved-provider>.ts`, private config adapter, `src/application/fundamentals/ingest.ts`, ports/repository extensions; fixtures/parsing/security tests. Commands: focused provider/import tests, boundaries/typecheck/lint, TCBS regression `pnpm exec vitest run tests/integration/broker-observations.test.ts` and `node --test api/token-session.test.mjs`, diff check; no live API in CI.
 
 Acceptance: independently verified contract fixtures; auth never exposed; bounded timeout/rates/pagination and partial-source states; retry preserves capture events; no canonical acceptance/scoring yet. Risks: licensing, endpoint drift, numeric JSON precision, missing timestamps/vintages. Live source qualification is separately authorized and evidenced, not assumed by this plan.
 
@@ -265,9 +337,9 @@ Acceptance: independent ROE/FCF/CASA/NPL examples reference correct original inp
 
 ### Slice 5 — Data Snapshot and PIT controls
 
-Scope: operational AS-KNOWN, labeled AS-REVISED, publication precision/version selection, immutable dataset manifest; historical-public bridge deferred unless separately approved. Files: domain selection/snapshot, application build-snapshot, snapshot membership repository/schema, time/version regression fixtures. Commands: focused PIT/snapshot/repository tests, boundaries/typecheck/lint/scoring, isolated migration checks and diff check.
+Scope: operational AS-KNOWN with governed availableAt evaluator, labeled AS-REVISED, publication precision and correction/version selection, deterministic content manifest plus distinct immutable build/run envelope; historical-public bridge deferred unless separately approved. Files: domain selection/snapshot, application build-snapshot, snapshot membership repository/schema, time/version regression fixtures. Commands: focused PIT/snapshot/repository tests, boundaries/typecheck/lint/scoring, isolated migration checks and diff check.
 
-Acceptance: July 10 excludes July 25 Q2 results from all selected and derived outputs; July 25 exact-boundary cases explicit; later receipt/restatement cannot leak; unknown availability blocks; same content produces same identity despite input order/new generation envelope; tamper/missing lineage fail; old snapshot stable after new imports. Risks: system/public clock confusion, date-only uncertainty, opaque references, mixed revision sets and noncanonical hash serialization.
+Acceptance: the signing/publication/provider/local retrieval/ingestion example in D admits no local July 25 knowledge; July 10 excludes July 25 results from selected and derived outputs. Test unknown/date-only publication, false vendor availableAt, invalid chronology, exact cutoff, each correction taxonomy and separate modes. All six MAJOR-3 tests in D are mandatory: equivalent reordering, different build time/run identity, changed selected fact, changed interpretation mapping/method, tamper, and rebuild after unselected new imports. Freeze eligible lineage and review acceptance separately from content equality. Risks: public/system clocks, precision uncertainty, unresolved policy approval, semantic hashing and conflicting vintages. Unknown ownership blocks affected use; no new favorable rules.
 
 ### Slice 6 — scoring readiness integration
 
@@ -287,73 +359,135 @@ Scope: after approval for real source access, ingest complete official universe/
 
 Acceptance: each DI gate has measured evidence for exact dataset; all active tickers have readiness or explicit blockers; reviewer sign-off and Critical/Major issue register complete. A missing source field remains blocked; no all-PASS promise. Risks: source completeness, missing original availability/history, publication monitoring, real-dataset exceptions and storage rights. This slice produces initialization evidence only; live scoring/Top 10 remain a separately approved task with INITIAL_SCORING_REPORT preconditions.
 
-## H. Exact Codex prompt for Slice 1 (use only after approval)
+## H. Exact Codex prompt for Slice 1 (future use only after explicit owner approval)
 
 ```text
-Implement only Slice 1 of docs/fundamental-data-engine/DESIGN_REVIEW.md,
-which the owner has explicitly approved. Stop after the Slice 1 review
-report. Do not implement Slice 2 or advance milestones.
+Implement only approved Slice 1 of docs/fundamental-data-engine/DESIGN_REVIEW.md.
+Stop with a Slice 1 acceptance report; do not execute later slices or
+advance milestones. This prompt is not authorization until the owner
+explicitly approves implementation.
 
-First reread AGENTS.md and the relevant installed Next.js guides in
-node_modules/next/dist/docs/ before writing code. Audit the current diff
-and preserve user changes. Read the A authority files and G Slice 1
-scope; reuse existing Security, Sector, Evidence, METRICS, decimal/time,
-MethodologyRecord, Clock, errors, persistence and boundary patterns.
-Approved M1–M8 investment rules remain authoritative. If the repository
-has materially changed, report the difference before expanding scope.
+Reread AGENTS.md and relevant installed node_modules/next/dist/docs/
+guides before code. Audit current HEAD/diff and governing Section A
+contracts; preserve user changes. Reuse Security, Sector, time/decimal,
+MethodologyRecord/approval mechanism, Clock, errors and inward dependency
+boundaries. Do not restore removed TCBS website sync as part of this work.
 
-Deliver canonical fundamental source/capture/import/observation
-contracts and validation, a narrow append/read port and infrastructure
-repository, and only their foundational additive SQLite/Prisma tables.
-Use the proposed E fields/constraints relevant to these entities; do not
-create derived-metric, snapshot, readiness or scoring-binding tables yet.
-Document the canonical statement-item to approved evidence/metric
-crosswalk. Do not invent unresolved sector formulas or mandatory routes.
-Do not add MetricId entries, scoring weights, score bands or policy rules.
+Deliver only foundational source/raw capture/import/observation contracts,
+validation, append/read port/repository and reviewed additive storage,
+plus a machine-readable versioned Canonical Financial Item Registry and
+approved M3 evidence-topic/existing metric-operand crosswalk. Use a
+validated immutable JSON registry release; no extra registry/master
+service/table unless separately reviewed. Registry/crosswalk approval
+with verified external approval binding the exact registryHash/crosswalk
+release and document/methodology references is an
+explicit Slice 1 completion requirement; never self-approve or seed
+production approvals. Illustrative item names are not an approved
+complete taxonomy. Unknown/unapproved provider labels such as netProfit,
+profitAfterTax, netIncome or NPAT cannot become arbitrary canonical IDs.
+Preserve raw field identifiers/labels and resolve only through approved
+Provider Field -> canonical itemId + registry/version/hash mappings.
 
-An observation must preserve durable security identity and ticker mapping,
-canonical item, statement/scope, fiscal period/type, raw lexical value,
-declared unit/multiplier/currency, exact normalized value or null,
-publication/availability date and precision/status including UNKNOWN,
-actual retrievedAt and ingestedAt, source/capture/field references,
-mapping/transformation version, and issuer-restatement/provider-correction
-lineage. Missing is never zero. Reporting period is never publication
-or retrieval. Null publication must be representable and must not be
-converted into an admissible scoring Evidence object. Raw invalid values
-remain auditable. No provider fetching or actual normalization engine
-is in this slice; validate supplied canonical fixtures only.
+Registry entries govern stable identity/name/meaning, statement family,
+FLOW/STOCK or explicitly governed other measurement semantic, allowed
+units/currency/scopes/sign, sector applicability, evidence-topic and
+existing executable operand mappings, methodology/version/authority and
+deprecation/supersession. Reject semantic mismatches; never sum STOCK
+balances into TTM or treat per-share/ratio evidence as additive FLOW.
+Do not invent unresolved sector formulas, MetricIds, weights or rules.
 
-Keep provider/Prisma/IO/crypto/environment/time access in infrastructure
-or server composition. Keep credentials out of all contracts, captures,
-logs and client DTOs. Preserve existing TCBS controls and private files.
-Reuse exact decimal TEXT and immutable body/hash patterns. New tables
-must prevent UPDATE, DELETE and replacement mutation and use restrictive
-foreign keys. Allow multiple conflicting/revised records for the same
-security/item/period; idempotence must not erase distinct retrievals.
+Observation contracts preserve durable security/ticker provenance,
+canonical registry identity, statement/scope/fiscal calendar and period,
+reportDate/signing precision/reference, nullable publication timestamp
+or date with precision/status/timezone/proof, optional provider receipt,
+actual retrievedAt and ingestedAt, raw lexical value/unit/multiplier/
+currency, exact normalized value/unit/currency or null, mapping/version/
+transformation references and immutable source/capture lineage.
+Represent availability policy/mode/input references and nullable derived
+availableAt/status, but keep derived availability null/UNKNOWN in Slice 1:
+no availability evaluator or PIT selector. A provider's availableAt is
+only a raw claim, never canonical VERIFIED metadata. Period end and
+report signing are not publication. Receipt is not historical publication
+proof. Unknown publication must remain UNKNOWN and cannot be bridged into
+scoring Evidence with invented timestamps. Preserve Evidence semantics.
 
-Prepare migration SQL for review first and inspect its diff before
-applying it anywhere. Apply it only to owned isolated temporary databases
-with explicit absolute DATABASE_URL and --no-env-file, following the
-existing database fixture. Never open, migrate, reset, restore or mutate
-the real user's database. Never seed approval or real-data records.
-Test fresh deployment, populated pre-slice upgrade, repeat deployment,
-reopen, immutable repository round-trip, exact decimal and null/zero,
-unknown dates, invalid periods/units, conflicting/revised rows, raw
-retention, FK rejection, UPDATE/DELETE/REPLACE rejection and preservation
-of existing ledger/portfolio/broker/analytical/methodology records and
-portfolio replay. Include a Q2 2026 fixture with period end June 30 and
-publication July 25; preserve both dates without claiming PIT selection
-is implemented in Slice 1.
+Distinguish ORIGINAL, ISSUER_RESTATEMENT, PROVIDER_CORRECTION and
+MAPPING_CORRECTION with immutable predecessor/reason/proof and actual
+correction knowledge provenance; repeat retrieval is a receipt event.
+Keep consolidated and separate/standalone scopes distinct. No silent
+fallback to standalone: only an approved lineage-visible route can
+represent a fallback, otherwise remain blocked/N/R. Preserve reporting
+currency; no FX conversion or relabeling USD as VND. Future FX lineage
+must be representable with currencies, approved FX source/observation
+and date/time/rate/quote direction, methodology/version and result.
+Missing is null, never zero; zero is a legitimate available value.
 
-Run the Slice 1 validation commands with isolated database/configuration,
-including relevant new tests, boundary checks, typecheck, lint, existing
-portfolio/scoring regressions and git diff --check. Do not let wrappers
-load personal environment/database files. Record exact command outcomes,
-source identity, migration diff review, old-record preservation and
-recovery considerations. Do not report any DI gate PASS merely because
-code/tests exist. Return files changed, tests/evidence, remaining risks
-and a Slice 1 acceptance report. No live scoring, Top 10, Buy/Sell advice,
-provider integration, production database changes, commit or push.
+Retain conflicting observations with raw/normalized values and source
+identities; no overwrite, averaging or latest-wins resolution. Selection
+policy/rationale belongs to later reviewed artifacts. Idempotence must
+not merge distinct retrievals or discard revised/conflicting evidence.
+Use exact decimal TEXT and immutable body/hash/restrictive FK/trigger
+patterns. Domain has no IO/Prisma/crypto/environment/uncontrolled time.
+Keep credentials out of payloads/contracts/logs/client DTOs and preserve
+current private TCBS security controls.
+
+Do not implement provider fetching, normalization engine/FX, PIT selector,
+derived metrics, snapshot builder/content/run tables, DI acceptance,
+scoring readiness integration, UI, live scoring, ranking, valuation or
+Buy/Hold/Sell logic. Keep future contentHash/runId concepts distinct in
+contracts/docs: builtAt/operator/run IDs cannot contaminate deterministic
+investment-content identity. No snapshot hash builder in this slice.
+
+Prepare/review additive schema/migration diff before isolated application.
+Use only owned private temporary DBs with explicit absolute DATABASE_URL
+and --no-env-file. Never access/migrate/reset/restore the real private DB.
+Test fresh/populated upgrade, repeat deployment/reopen, exact round-trip,
+null/zero, raw retention, registry identity/semantics/scope/unit/currency,
+unknown and date-only publication, reportDate vs public/provider/local
+receipt, all revision kinds/conflicts, FK and UPDATE/DELETE/REPLACE guards,
+and preservation/replay of all preexisting authoritative records.
+Q2 fixture: end June 30, signed July 22, public/provider July 25,
+local retrieved/ingested July 26; store distinctions without claiming
+PIT selection works. Reject forged canonical VERIFIED availableAt.
+
+Run isolated G Slice 1 checks: focused contracts/repository/migration
+tests, boundaries, typecheck, lint, portfolio/scoring regressions and
+git diff --check. No live provider requests or personal env files.
+Report actual outcomes, reviewed migration/recovery implications,
+registry approval evidence or pending approval, scope limits and risks.
+No DI gate PASS from design/code/tests alone. No production approval
+seeding, scoring/ranking/Top 10/decisions, production DB work, commit/push.
+Stop for owner review after Slice 1; do not start Slice 2.
 ```
 
-**Stop:** A–H delivered. Await owner review and explicit implementation approval. No Slice 1 implementation is included in this document.
+## I. Remediation closure and multi-role re-review
+
+Review is design-only, using current source/authority and read-only role reviews; it is not independent production-data acceptance. Scores assess specification clarity and Slice 1 review readiness, not financial results or runtime certification.
+
+| Finding | Remediation / closure evidence |
+|---|---|
+| MAJOR-1 availability | D separates report/signing, publication precision/status, provider/local receipt/ingestion and governed derived availableAt. False provider availableAt and unknown publication fail closed; July 10/25 and local July 26 tests mandatory in Slice 5. Existing Evidence unchanged. |
+| MAJOR-2 canonical registry | D specifies versioned machine-readable item meaning, FLOW/STOCK/other semantics, scope/unit/sign/currency/sector/topic/operand rules. G/H require exact registry/crosswalk approval before Slice 1 completion; vendor labels cannot self-create IDs. |
+| MAJOR-3 identity | D/E split canonical contentHash from immutable runId/build envelope, require verified binding and six reproducibility/tamper tests; DI12 remains evidence-dependent. |
+| MINOR-1 revisions | Explicit ORIGINAL/ISSUER_RESTATEMENT/PROVIDER_CORRECTION/MAPPING_CORRECTION taxonomy, single immediate predecessor and referenced additional ancestors; no overwritten history. |
+| MINOR-2 reporting scope | Consolidated vs separate preserved; approved explicit fallback with quality/confidence/readiness consequences, otherwise block/N/R. |
+| MINOR-3 currency | Preserve reporting currency; unit scale is not FX. Future conversion requires full rate/source/date/availability/quote/method lineage; no Slice 1 FX. |
+| MINOR-4 conflict priority | Retain every source observation/conflict; governed eligible selection/rationale separate from retention; no generic latest-wins. |
+
+Additional review clarifications closed: approval references must externally bind the exact registryHash/crosswalk (existing metadata checks alone do not certify approval); availability evaluation is an immutable Slice 5 assessment and never mutates foundational null/UNKNOWN columns; provider/mapping corrections reuse underlying issuer publication with separate correction knowledge, while an issuer restatement needs its own disclosure.
+
+Design decisions added: initial local operational availability uses latest verified public/actual receipt/ingestion/correction boundary; date-only conservative boundary requires explicit policy approval and remains unrepresentable at current scoring bridge; registry is a validated immutable release manifest, reusing methodology ownership rather than another Security/master; content semantic hashing excludes execution-only metadata and binds immutable run provenance separately. These decisions preserve governing investment semantics and do not grant new production approvals.
+
+| Role | Score / 10 | Review conclusion |
+|---|---:|---|
+| CIO | 9.6 | Frozen investment philosophy, human assessment/external gate precedence and cash/no-action remain valid. Data completeness is not a Buy or allocation instruction. |
+| Data Architect | 9.4 | Canonical identity, immutable lineage/availability ownership, exact approval binding, content/run distinction and narrow additive Slice 1 scope are clear. |
+| Financial Data Engineer | 9.5 | FLOW/STOCK, period/scope/currency, ordered operands, revision provenance and public/system knowledge boundaries are explicit. |
+| Risk/QA | 9.6 | Fail-closed negative controls, correction retention, migration isolation/recovery and no false DI PASS are specified. |
+| Overall (equal-weight mean, rounded to one decimal) | 9.5 | READY FOR SLICE 1 REVIEW. Requested 9.8–9.9 is not asserted without stronger evidence. |
+
+Remaining in-scope findings: **Critical 0; Major 0; Minor 0 identified after clarification closure**. This is bounded by the reviewed specification, not a guarantee of defect-free future code. Registry/crosswalk owner approval, availability policy approval, provider qualification, precise later-slice canonicalization/schema implementation and actual migration/validation execution remain explicit future gates. Design readiness does not close them or DI15. DI1–DI15 retain their original execution/evidence status; none is promoted to PASS.
+
+Verification in this remediation: document A–H/DI1–DI15/required-contract checks, audit-path checks and `git diff --check`; source/tests read only, no test suite executed. Exact file changed: `docs/fundamental-data-engine/DESIGN_REVIEW.md` only. No production code, Prisma/schema/migration changes, production/private DB access, live financial API/provider integration, live scoring/ranking/Top 10/decisions, commit or push. Section H remains an unexecuted future prompt requiring explicit owner approval.
+
+**Stop:** design remediation only. This prompt was not executed. Await owner review and explicit implementation approval.
