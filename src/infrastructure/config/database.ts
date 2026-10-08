@@ -20,7 +20,7 @@ export function assertPrivateLocation(filePath: string, projectDirectory: string
 export function loadDatabaseConfig(environment: Readonly<Record<string, string | undefined>>, projectDirectory: string): DatabaseConfig {
   const root = path.resolve(projectDirectory);
   const supplied = environment.DATABASE_URL;
-  const value = supplied === undefined ? `file:${path.join(root, "data", "vn30.sqlite")}` : supplied;
+  const value = supplied === undefined ? `file:${path.join(/* turbopackIgnore: true */ root, "data", "vn30.sqlite")}` : supplied;
   if (!urlSchema.safeParse(value).success) throw databaseConfigurationError();
   const filePath = path.resolve(value.slice(5));
   if (!path.isAbsolute(value.slice(5)) || !/\.(?:sqlite3?|db)$/.test(filePath)) throw databaseConfigurationError();

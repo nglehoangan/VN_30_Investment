@@ -1,5 +1,7 @@
 import "server-only";
 import { currentServices } from "./current";
+import { loadBrokerSnapshot } from "@/infrastructure/broker-snapshot";
+import { latestBrokerSnapshot, latestBrokerApiData } from "@/infrastructure/repositories/broker-observations";
 import { unavailableCurrent } from "@/application/current/read-model";
 import { existingDatabase } from "@/infrastructure/dashboard-support";
 import { loadDatabaseConfig } from "@/infrastructure/config/database";
@@ -68,9 +70,15 @@ export async function loadDashboard(screen = "dashboard", reference?: string): P
   let client: PrismaClient | undefined;
   try {
     const config = loadDatabaseConfig(process.env, process.cwd());
-    if (!existingDatabase(config.filePath)) return emptyDashboard();
+    if (!existingDatabase(config.filePath)) {
+      const brokerSnapshot = await loadBrokerSnapshot(process.env.VN30_BROKER_SNAPSHOT_FILE);
+      return { ...emptyDashboard(), status: brokerSnapshot ? "SUCCESS" : "EMPTY", brokerSnapshot: brokerSnapshot ?? undefined };
+    }
     client = await openDatabase(config);
-    return await readDashboard(client, screen, reference);
+    const brokerSnapshot = await latestBrokerSnapshot(client) ?? await loadBrokerSnapshot(process.env.VN30_BROKER_SNAPSHOT_FILE);
+    const brokerApiData = await latestBrokerApiData(client);
+    const dashboard = await readDashboard(client, screen, reference);
+    return { ...dashboard, brokerApiData, status: dashboard.status === "EMPTY" && brokerSnapshot ? "SUCCESS" : dashboard.status, brokerSnapshot: brokerSnapshot ?? undefined };
   } catch (error) { return { ...emptyDashboard(), status: "BLOCKED", message: toPublicError(error).message }; }
   finally { await client?.$disconnect(); }
 }

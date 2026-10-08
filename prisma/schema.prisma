@@ -7,6 +7,18 @@ datasource db {
   provider = "sqlite"
 }
 
+// Append-only broker evidence, separate from approved accounting transactions.
+model BrokerObservation {
+  id String @id
+  kind String
+  apiId String? @map("api_id")
+  receivedAt String @map("received_at")
+  body String
+  bodyHash String @map("body_hash")
+  @@index([kind, receivedAt])
+  @@map("broker_observation")
+}
+
 model MethodologyRecord {
   decisionArtifacts DecisionArtifact[]
   analyticalArtifacts AnalyticalArtifact[]

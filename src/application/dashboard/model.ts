@@ -6,7 +6,11 @@ import type { Decision } from "@/domain/decision/engine";
 import type { ReviewArtifact, ExecutionLink, FollowUpArtifact } from "@/domain/workflow/contracts";
 import type { MethodologyRecord } from "@/domain/methodology/record";
 import type { CurrentModel } from "@/application/current/read-model";
+import type { BrokerSnapshot } from "@/domain/portfolio/broker-snapshot";
+import type { BrokerApiData } from "@/domain/portfolio/broker-api-data";
 export interface DashboardModel {
+  brokerApiData?: BrokerApiData;
+  brokerSnapshot?: BrokerSnapshot;
   current?: CurrentModel;
   status: "SUCCESS" | "EMPTY" | "BLOCKED"; message: string | null;
   portfolio: { id: string; name: string } | null; state: PortfolioState | null;

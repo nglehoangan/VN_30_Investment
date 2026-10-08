@@ -1,18 +1,21 @@
 # VN30 Value Investing OS
 
-A local portfolio-management system for long-term VN30 Value Investing. It combines an approved investment constitution with immutable portfolio accounting, scoring/ranking, formal decisions, reviews/DCA proposals and a dashboard.
+VVIOS là hệ thống hỗ trợ quản lý danh mục đầu tư giá trị dài hạn trong VN30. Project kết hợp bộ nguyên tắc đầu tư M1–M5 với ứng dụng local: sổ giao dịch bất biến, tái dựng danh mục, scoring/ranking, quyết định đầu tư, review/DCA và dashboard có truy xuất bằng chứng.
 
-Current actionability requires externally approved methodologies, source evidence and reconciliation; unavailable inputs fail closed. The 15%–20% CAGR objective is an investment target, not a guaranteed return.
+**Trạng thái ngày 2026-10-07:** đã có implementation M6 và bộ tài liệu validation/production readiness M7–M8. Production acceptance vẫn **NO-GO — EVIDENCE PENDING**. Hệ thống tiếp tục phục vụ nghiên cứu, phát triển và validation; chưa được chứng nhận cho real-money decision support. Mục tiêu CAGR 15%–20% là mục tiêu đầu tư, không phải kết quả đã chứng minh.
 
-This README combines the investment baseline and application guide. Investment rules remain subject to the authority hierarchy below; this merge does not approve or change any policy. The former `README_v1.0.md` content is incorporated here, with historical Milestone 1 metadata distinguished from current project status.
+Hệ thống phân tích, đề xuất và giải thích; người dùng review, phê duyệt hoặc từ chối và thực hiện giao dịch thủ công. Recommendation, approval và giao dịch thực tế được quản lý riêng.
 
 ## Navigation
 
 - [Current status and review evidence](#current-status-and-review-evidence)
-- [Development and local setup](#development)
-- [Configuration and diagnostics](#slice-3--configuration-and-safe-diagnostics)
-- [Local persistence and backup](#slice-4--local-persistence)
-- [Verification commands](#final-m62-verification)
+- [Implemented capabilities](#implemented-capabilities)
+- [Architecture and repository map](#architecture-and-repository-map)
+- [Development](#development)
+- [Configuration and local data](#configuration-and-local-data)
+- [Local persistence and backup](#local-persistence-and-backup)
+- [Verification commands](#verification-commands)
+- [Release identity and freeze status](#release-identity-and-freeze-status)
 - [Investment overview](#1-project-overview)
 - [Approved policy documents](#3-approved-milestone-1-documents)
 - [Document authority](#4-document-authority-hierarchy)
@@ -23,20 +26,54 @@ This README combines the investment baseline and application guide. Investment r
 
 ## Current status and review evidence
 
-M1–M5 are approved documentation baselines. M6 provides the local application; its implementation and verification must be read within each report's supported scope. Historical progress entries describe their own dates, not necessarily the current state.
+| Milestone | Nội dung và trạng thái | Tài liệu tham chiếu |
+|---|---|---|
+| M1–M5 | Baseline tài liệu về constitution, data model, scoring, decision và portfolio workflow | [M1](<docs/01 SYSTEM/>), [M2](<docs/02 DATABASE/>), [M3](<docs/03 SCORING/>), [M4](docs/04_DECISION_ENGINE/), [M5](docs/05_PORTFOLIO_WORKFLOW/) |
+| M6.1–M6.3 | Requirements/architecture, foundation và accounting implementation trong phạm vi được hỗ trợ | [Architecture](<docs/06_DASHBOARD/6.1 Requirements & Architecture/ARCHITECTURE_v1.0.md>), [foundation review](<docs/06_DASHBOARD/6.2 Project Foundation/M6_2_FINAL_REVIEW.md>), [accounting remediation](<docs/06_DASHBOARD/6.3 Portfolio & Transaction Engine/R2_REMEDIATION_REPORT.md>) |
+| M6.4–M6.6.1 | Scoring/ranking, decision, portfolio review/DCA và marginal allocation | [Scoring](<docs/06_DASHBOARD/6.4 Scoring & Ranking/IMPLEMENTATION_REPORT.md>), [decision](<docs/06_DASHBOARD/6.5 Decision Engine/IMPLEMENTATION_REPORT.md>), [workflow](<docs/06_DASHBOARD/6.6 DCA & Portfolio Workflow/IMPLEMENTATION_REPORT.md>), [marginal allocation](<docs/06_DASHBOARD/6.6.1 Marginal Allocation Remediation/IMPLEMENTATION_REPORT.md>) |
+| M6.7–M6.8 | Dashboard, current read model, integration/hardening; broader M6 **PASS WITH LIMITATION**, real-data operational acceptance **BLOCKED / NOT VALIDATED** | [UI](<docs/06_DASHBOARD/6.7 Dashboard UI/IMPLEMENTATION_REPORT.md>), [current data](<docs/06_DASHBOARD/6.7.1 Current Read Model/IMPLEMENTATION_REPORT.md>), [M6 final validation](<docs/06_DASHBOARD/6.8 Integration & Validation/FINAL_VALIDATION_REPORT.md>), [acceptance matrix](<docs/06_DASHBOARD/6.8 Integration & Validation/M6_ACCEPTANCE_MATRIX.md>) |
+| M7 | Validation specifications và final report đã có; independent deterministic evidence chưa đóng đủ gate, historical validation **BLOCKED / NOT EXECUTED**, paper/forward observations chưa tích lũy | [M7 final report](docs/07_VALIDATION/FINAL_VALIDATION_REPORT.md), [model limitations](docs/07_VALIDATION/MODEL_LIMITATIONS.md) |
+| M8 | Production/onboarding specifications đã có; acceptance document là approval candidate, live gates còn pending/not executed; **NO-GO** | [Production acceptance](docs/08_CONTINUOUS_IMPROVEMENT/PRODUCTION_ACCEPTANCE.md), [operational runbook](docs/08_CONTINUOUS_IMPROVEMENT/OPERATIONAL_RUNBOOK.md) |
 
-- M6.2: approved on 2026-09-10; [foundation final review](<docs/06_DASHBOARD/6.2 Project Foundation/M6_2_FINAL_REVIEW.md>).
-- M6.3: implemented and verified within supported accounting scope; [remediation report](<docs/06_DASHBOARD/6.3 Portfolio & Transaction Engine/R2_REMEDIATION_REPORT.md>).
-- M6.4–M6.7: implementation baseline used by the M6.8 integration gate.
-- M6.8: ready for independent review within approved bounded scope; [final validation report](<docs/06_DASHBOARD/6.8 Integration & Validation/FINAL_VALIDATION_REPORT.md>) and [acceptance matrix](<docs/06_DASHBOARD/6.8 Integration & Validation/M6_ACCEPTANCE_MATRIX.md>).
-- Broader M6: **PASS WITH LIMITATION**. Real-data operational acceptance: **BLOCKED / NOT VALIDATED**. Import, benchmark, historical analytics and corporate-action limitations are recorded in the acceptance matrix and [change requests](<docs/06_DASHBOARD/6.8 Integration & Validation/CHANGE_REQUESTS.md>).
-- M7–M8: future roadmap; no M7 functionality is claimed.
+Tên commit “Complete M7/M8” ghi nhận deliverable trong Git; trạng thái acceptance được xác định theo evidence và sign-off trong tài liệu. [PROGRESS.md](docs/PROGRESS.md) giữ lịch sử đến M6.3; các entry cũ không mô tả trạng thái hiện tại của toàn project. Một số tài liệu còn logical path hoặc metadata lịch sử; dùng đường dẫn vật lý trong bảng trên và đọc cả verdict cuối cùng.
 
-The former Milestone 1 “start Milestone 2” next step is historical and has been replaced by this status. Continue with M6.8 independent review and its recorded operational prerequisites before treating the system as accepted for real-data operation.
+## Implemented capabilities
+
+| Module | Chức năng hiện có |
+|---|---|
+| Portfolio/accounting | Immutable transaction/leg ledger; cash/quantity/cost basis, MWAC, realized P&L, valuation, reconciliation và tái dựng theo as-of; các trường hợp policy không được hỗ trợ bị chặn |
+| Methodology | Registry có version, approval/effective identity và kiểm tra lineage; không cung cấp production approval seed |
+| Scoring/ranking | Evidence/metric validation, sector methodology, scorecard, confidence/eligibility, ranking và Top 10; Top 10 không tự tạo quyền BUY |
+| Decision | Decision states, valuation/return hurdle, risk, portfolio impact, sizing và opportunity cost với reference/approval gates |
+| Review/DCA | Weekly, monthly DCA, quarterly, annual, event-driven review; proposal, marginal reassessment theo từng lot, HOLD CASH, human outcome và follow-up audit |
+| Current data | Dataset local do server đọc; kiểm tra schema, portfolio identity, freshness, reconciliation và current actionability; không dùng synthetic fallback khi thiếu dữ liệu |
+| Dashboard | Overview/holdings/risk/performance; VN30/ranking/decisions/DCA; transactions/reviews/journal; imports/data/audit/settings và artifact details |
+| Operations | Boundary checks, safe logging, local SQLite migration, snapshot/restore với checksum và kiểm tra schema/migration/artifact integrity |
+
+Trang `/transactions/new` cung cấp manual transaction flow có xác nhận; `/reviews/new` khởi tạo review theo dữ liệu server. Khả năng có route không đồng nghĩa mọi loại giao dịch, import hoặc analytics đều operationally accepted. Các giới hạn import, benchmark, historical analytics, corporate action, security/platform và UX được ghi trong [M6 acceptance matrix](<docs/06_DASHBOARD/6.8 Integration & Validation/M6_ACCEPTANCE_MATRIX.md>) và [change requests](<docs/06_DASHBOARD/6.8 Integration & Validation/CHANGE_REQUESTS.md>).
+
+## Architecture and repository map
+
+Ứng dụng dùng Next.js **16.3.4**, React **19.3.0**, TypeScript **6.0.3**, Prisma **7.10.0** và SQLite qua `better-sqlite3`. Financial decimals được biểu diễn bằng validated strings và lưu bằng SQLite TEXT để giữ precision. Domain không phụ thuộc UI hoặc persistence; server composition nối application services với các adapter.
+
+| Đường dẫn | Vai trò |
+|---|---|
+| `app/` | App Router pages, error/loading UI và server actions/composition |
+| `src/domain/` | Portfolio, methodology, scoring/ranking, decision và workflow rules |
+| `src/application/` | Use cases, current read/review initiation và dashboard models |
+| `src/ports/` | Contracts cho storage, runtime và các service dependencies |
+| `src/infrastructure/` | SQLite/Prisma, repositories, current-source reader, config và logging |
+| `src/shared/`, `src/ui/` | IDs/time/errors/validation và dashboard/forms/evidence UI |
+| `prisma/` | Schema và 9 committed migrations; generated client nằm trong infrastructure, được Git ignore |
+| `tests/` | Unit, integration, architecture và E2E suites |
+| `scripts/` | Database, backup/restore, smoke, boundary và M6.8 validation harness |
+| `docs/` | M1–M8 specifications, reviews, validation evidence, release manifest và [ADRs](docs/adr/) |
+
+Trước khi sửa Next.js code, đọc guide phù hợp trong `node_modules/next/dist/docs/` theo [AGENTS.md](AGENTS.md). Project kiểm tra dependency direction và client transitive imports qua `scripts/check-boundaries.mjs`.
 
 ## Development
 
-Use Node **22.23.2** (`.nvmrc`) and pnpm **10.34.5**. Switch your Node version using your existing version manager before running commands; the system Node 22.12.0 observed during audit is below this project's supported runtime.
+Chọn Node **22.23.2** theo `.nvmrc` bằng version manager đang dùng; `package.json` yêu cầu `>=22.23.2 <23`. Dùng pnpm **10.34.5**. Node local `22.12.0` được quan sát khi kiểm tra manifest không đạt yêu cầu.
 
 ```sh
 pnpm install --frozen-lockfile
@@ -44,118 +81,100 @@ pnpm db:generate
 pnpm dev
 ```
 
-Open http://127.0.0.1:3000. Both `dev` and `start` bind only to loopback. No secrets are needed. Optional server-only `LOG_LEVEL` is validated at startup; unset defaults to `info`. See `.env.example` and configuration below.
+Mở http://127.0.0.1:3000. `dev` và `start` bind loopback. Có thể xem empty state khi chưa có database; app không tự seed danh mục hoặc approved methodology. Để dùng persistence, chạy migration riêng theo phần dưới. Không cần provider key hoặc broker credential.
 
 ```sh
-pnpm lint
-pnpm typecheck
-pnpm test
 pnpm build
-pnpm test:smoke
 pnpm start
 ```
 
-`test:unit` runs the component unit suite. `typecheck` generates Next route types before checking TypeScript, including on a clean checkout. `test:smoke` starts the real production build on a temporary loopback port, checks HTTP content and listener ownership, and cleans up its process. On macOS it uses `/usr/sbin/lsof`; support for other operating systems is not yet validated. Use `node scripts/smoke-app.mjs --dev` for the development boot check. Run boot checks sequentially, outside an existing build/dev process.
+Lockfile/direct dependencies được pin. Native build scripts được cho phép trong `package.json`; project scripts không cài global runtime. Application code không cần remote fonts, market provider API hoặc AI API để khởi động. Có thể đặt `NEXT_TELEMETRY_DISABLED=1` trong shell để tắt Next telemetry.
 
-No remote fonts, provider APIs, AI, telemetry integration or market data are required by application code. Next's optional framework telemetry can be disabled with `NEXT_TELEMETRY_DISABLED=1` in your shell.
+## Configuration and local data
 
-## Scope and quality
+Xem [.env.example](.env.example). Next và database wrapper đọc `.env.local`; shell variables đã đặt có precedence. Restart server sau khi thay đổi cấu hình.
 
-The application shell and module/clock/ID/registry contracts are implemented. Validation/errors/config/logging are included; SQLite/Prisma/migrations and methodology persistence are included; Playwright Chromium shell smoke is included. There are no reset or seed commands.
+| Biến | Giá trị / hành vi |
+|---|---|
+| `LOG_LEVEL` | Optional: `debug`, `info`, `warn`, `error`, `silent`; default `info`; giá trị rỗng/không hợp lệ bị từ chối |
+| `DATABASE_URL` | Optional: default `data/vn30.sqlite`; override bằng `file:` + absolute private local path có đuôi `.sqlite`, `.sqlite3` hoặc `.db` |
+| `VN30_CURRENT_SOURCE_FILE` | Optional: absolute path đến normalized current-source JSON; server đọc tối đa 4 MB và kiểm tra portfolio identity/schema |
+| `VN30_BROKER_SNAPSHOT_FILE` | Optional: absolute private path đến snapshot broker với holdings/cash riêng ngày; hiển thị trong dashboard/holdings/data/imports, không cấp quyền giao dịch |
 
-Lockfile and direct versions are pinned. Reviewed native build scripts are limited to sharp, unrs-resolver, better-sqlite3, @prisma/engines and prisma. No global runtime is installed by project scripts.
+Current-source contract ở [current-source.ts](src/shared/validation/current-source.ts), gồm version/scope/as-of, ledger watermark, prices, reference intervals, reconciliation và analyst evidence. `FORMAL` và `SYNTHETIC_TEST` là scope riêng. Thiếu, invalid hoặc stale evidence có thể làm current actionability bị chặn dù historical artifact vẫn xem được. Methodology approval và production data readiness vẫn là prerequisite bên ngoài.
 
-Ignore rules exclude secrets, local databases/sidecars and runtime import/export/backup directories while retaining fixtures and migrations. Do not add personal financial exports to source directories.
+Logging chọn safe category/correlation fields; không serialize raw payload/environment. Đây là operational diagnostics, còn investment audit được quản lý trong persisted artifacts. Không commit `.env.local`, live DB, current-source dataset cá nhân hoặc financial exports; ignore rules loại runtime data/import/export/backup directories khỏi Git.
 
-See [progress](docs/PROGRESS.md) and [Slice 1 review](<docs/06_DASHBOARD/6.2 Project Foundation/SLICE_1_REVIEW.md>). Each slice requires review before work proceeds to the next.
-
-## Slice 2 — Module foundation
-
-The shell now delegates to `src/ui/`. Pure methodology contracts live in `src/domain/`; read orchestration in `src/application/`; clock/ID/registry interfaces in `src/ports/`; native adapters in `src/infrastructure/`; nominal IDs/time representations in `src/shared/`. `app/server/runtime.ts` is the server-only composition root. Persistence is composed separately in `app/server/persistence.ts`; no registry write endpoint exists.
-
-```sh
-pnpm test:boundaries
-```
-
-`pnpm lint` also checks dependency directions and client transitive imports. `pnpm test` runs all unit/architecture suites; `pnpm test:unit` selects unit suites. Typecheck includes negative nominal-type/readonly contracts. See [boundary ADR](docs/adr/0001-module-boundaries.md) for rules, limitations and allowed extensions. Clock/ID fixtures are test-only; no production approval seed is supplied.
-
-
-## Slice 3 — Configuration and safe diagnostics
-
-Optional `LOG_LEVEL` accepts `debug`, `info`, `warn`, `error`, or `silent`. An empty/unknown value is invalid. Leave it unset for `info`, or set a value in your shell / local `.env.local`; never commit secret environment files. Restart the server after changing configuration. Optional server-only `DATABASE_URL` is also validated; no provider variables are required.
-
-The Next startup hook validates config before readiness; request errors are logged with safe category/correlation metadata only. An invalid config can leave Next's process listening while requests fail: correct the setting and restart. No raw request/error/environment data is emitted by the application logger. This is basic operational logging, not investment audit history.
-
-```sh
-node scripts/smoke-app.mjs --invalid-config
-node scripts/smoke-app.mjs --dev --invalid-config
-```
-
-Smoke subprocesses explicitly use info or a synthetic invalid value, without changing your shell environment. These checks prove startup validation and no config-canary leak. Next permits only one dev instance per workspace: run dev smoke in a separate checkout if your own dev server is running. The checks never stop that existing server.
-
-Shared validation uses Zod; core modules remain independent of it. Public error mapping returns fixed messages; diagnostics redact by selecting known fields rather than serializing raw payloads. See [validation/diagnostics ADR](docs/adr/0002-validation-errors-config-logging.md) and [Slice 3 review](<docs/06_DASHBOARD/6.2 Project Foundation/SLICE_3_REVIEW.md>).
-
-## Slice 4 — Local persistence
-
-The shell does not open a database. When persistence is needed, explicitly initialize it:
+## Local persistence and backup
 
 ```sh
 pnpm db:validate
 pnpm db:generate
 pnpm db:migrate
 pnpm db:status
-pnpm test:integration
 ```
 
-`db:migrate` applies committed migrations with Prisma migrate deploy; it creates the default private `data/vn30.sqlite` when absent. It preserves existing records and supplies no approval seed. Run migrations before calling `openPersistence()` and call its `close()` when finished. There is no automatic migration during application startup. Validate/generate/build do not create or open a database.
+`db:migrate` dùng Prisma migrate deploy để áp dụng committed migrations, tạo private default DB nếu chưa có. App startup không tự migrate. Dashboard đọc database hiện có; nếu chưa có DB trả empty state, nếu không đọc được trả trạng thái blocked. Generate/build không tạo portfolio database. Không có reset hoặc seed command.
 
-Unset `DATABASE_URL` uses that project-relative default, resolved to an absolute path. For an override, use `file:` followed by an absolute local path ending in `.sqlite`, `.sqlite3` or `.db`. The path is raw text (spaces allowed), not a percent-encoded URI; remote hosts, query strings and fragment markers are rejected. Keep the immediate parent directory owner-only (0700) and an existing DB owner-only (0600); public and .next locations, symlink files and hard-linked files are rejected. Scripts do not change existing permissions or truncate files. These filesystem checks are validated on macOS/POSIX.
+Override DB path dùng raw absolute path, không phải percent-encoded URI; remote host, query/fragment, public/build locations, symlink và hardlink bị từ chối. Immediate parent phải owner-only `0700`, file DB hiện có `0600`. Scripts không tự sửa permission của dữ liệu hiện có. Filesystem controls được kiểm tra trên macOS/POSIX. Integration tests dùng private disposable DB và không dựa vào `.env.local` hay personal database.
 
-Next and the DB wrapper read local `.env.local`; explicit shell variables take precedence. Never commit that file or a personal DB. Restart after config changes. Do not use reset/db push as an upgrade procedure. Local SQLite snapshot/restore commands and their safety limits are documented in [M6.8 backup operation](<docs/06_DASHBOARD/6.8 Integration & Validation/BACKUP_OPERATION.md>). They preserve source history and restore only to a separate candidate database.
-
-Integration tests always allocate private temporary databases, override inherited DATABASE_URL, skip `.env.local`, migrate, disconnect and clean up. The numeric probe table exists only there. Exact decimals use validated strings persisted as SQLite TEXT, including values beyond JavaScript's safe integer range; no monetary rounding policy is introduced. The initial M6.2 production schema contained only methodology metadata and migration bookkeeping. Later M6 migrations add accounting and investment artifact persistence; see the current committed migrations and M6.8 acceptance matrix.
-
-Prisma Client is generated inside infrastructure and ignored by Git/ESLint. Build, lint, typecheck and test commands generate it as needed. Security overrides pin Prisma's transitive deepmerge-ts 8.0.0 and mysql2 3.23.1; revisit when upstream adopts patched versions. See [persistence ADR](docs/adr/0003-sqlite-prisma-persistence.md) and [Slice 4 review](<docs/06_DASHBOARD/6.2 Project Foundation/SLICE_4_REVIEW.md>).
-
-## Slice 5 — Deterministic foundation gate
-
-Install the pinned browser once, then run the combined gate:
+Backup và restore cần absolute private paths. Ví dụ, thay đường dẫn bên dưới bằng thư mục private của bạn:
 
 ```sh
-pnpm exec playwright install chromium
-pnpm test:foundation
+pnpm db:backup /absolute/private/backups/vvios-snapshot.sqlite
+pnpm db:restore /absolute/private/backups/vvios-snapshot.sqlite /absolute/private/restore/vvios-candidate.sqlite
 ```
 
-The combined gate runs unit/architecture/real SQLite tests, builds production, runs a real Chromium shell test and checks invalid startup configuration. `pnpm test:e2e` builds and runs only production/browser smoke. It allocates a temporary loopback port, starts its own server, verifies listener ownership and then passes that URL to Playwright. It never reuses your port-3000 server. Run build-based gates sequentially; use a separate checkout if your dev/build process writes the same Next output directory.
+Backup dùng SQLite `VACUUM INTO`, tạo sidecar manifest/checksum và từ chối ghi đè target. Restore kiểm tra snapshot và tạo **candidate DB riêng**; không tự kích hoạt. Phải kiểm tra current source, reconstruct/reconcile và cấu hình `DATABASE_URL` rõ ràng trước khi dùng candidate. Xem [backup operation](<docs/06_DASHBOARD/6.8 Integration & Validation/BACKUP_OPERATION.md>) và [M8 recovery requirements](docs/08_CONTINUOUS_IMPROVEMENT/BACKUP_RECOVERY.md). Local technical checks chưa thay thế production restore-drill acceptance.
 
-Chromium verifies the visible product heading and empty state, including after reload, and rejects external page requests and uncaught browser errors. Retries are disabled, timeouts bounded, and cleanup targets only test-owned process groups. Direct Playwright execution requires the harness-provided URL; use the package script. Traces on failure are local in ignored `test-results/`; they may contain page content and are not automatically published.
+## Verification commands
 
-Vitest runs in UTC, and browser context uses UTC/vi-VN. Existing fixed clock and sequence ID doubles remain test-only. The integration isolation test uses two independent databases, verifies records cannot cross between them, and checks independent cleanup. `test:unit`, `test:integration` and `test:boundaries` remain separate selectors. The browser gate now includes controlled dashboard, historical proposal/review inspection, explicit contribution confirmation, desktop/mobile and keyboard coverage. Formal authority-chain proof uses disposable application integration tests; real-data operational acceptance and additional browser/platform coverage remain unverified.
-
-## Final M6.2 verification
-
-The six foundation slices are implemented; M6.2 was explicitly approved by the user on 2026-09-10. See [final review and evidence](<docs/06_DASHBOARD/6.2 Project Foundation/M6_2_FINAL_REVIEW.md>). M6.3 implementation and verification are complete within its supported accounting scope; see [independent-review remediation report](<docs/06_DASHBOARD/6.3 Portfolio & Transaction Engine/R2_REMEDIATION_REPORT.md>). Unsupported policy cases remain explicitly blocked by CR. M6.4–M6.7 are the approved implementation baseline for the M6.8 integration gate; their current reports and the M6.8 acceptance matrix state the supported scope.
-
-For a full local verification after selecting the pinned runtime and installing dependencies/browser:
+Chạy các gate ghi `.next` tuần tự trong checkout không có dev/build writer đồng thời. E2E dùng own temporary loopback server; trên macOS smoke harness cần `/usr/sbin/lsof`. Các platform khác chưa được xác nhận đầy đủ.
 
 ```sh
-pnpm db:validate
 pnpm lint
 pnpm typecheck
-pnpm test:unit
-pnpm test:integration
-pnpm test:boundaries
-pnpm test:foundation
-pnpm audit
+pnpm test
+pnpm db:validate
+pnpm build
+pnpm test:smoke
+pnpm exec playwright install chromium
+pnpm test:e2e
 ```
 
-The integrated gate includes production build and browser/startup checks. No personal database or live provider is needed. Use a fresh checkout with its own frozen dependency installation for clean-build evidence; Turbopack rejects a node_modules symlink pointing outside its project root. Numbered duplicate files in generated .next/types can cause duplicate-declaration errors; do not run concurrent build/dev writers in that checkout. Preserve user source and diagnose generated cache separately rather than suppressing TypeScript errors.
+| Command | Phạm vi |
+|---|---|
+| `pnpm test:unit`, `pnpm test:integration`, `pnpm test:boundaries` | Unit / disposable SQLite integration / architecture contracts |
+| `pnpm test:portfolio`, `pnpm test:scoring`, `pnpm test:decision` | Accounting, analytical artifacts và decision/marginal logic |
+| `pnpm test:workflow`, `pnpm test:dca` | Review, allocation và cash outcomes |
+| `pnpm test:ui`, `pnpm test:current` | Dashboard UI và current data/actionability |
+| `pnpm test:m68` | Authority chain, immutable history, adversarial inputs và backup/restore |
+| `pnpm test:foundation` | Full tests + production/browser smoke + invalid configuration |
+| `node scripts/smoke-app.mjs --dev` | Development boot smoke |
+| `node scripts/smoke-app.mjs --invalid-config` | Production startup config rejection; cần build trước |
+| `pnpm audit` | Dependency audit tại thời điểm chạy |
 
-## M6.8 integration and validation
+`typecheck` generate Next route types trước `tsc`; lint/typecheck/test/build generate Prisma Client khi cần. Vitest chạy UTC; browser context dùng UTC/vi-VN. `node scripts/validate-m68.mjs` chạy M6.8 sequential harness bằng disposable data/source paths và ghi evidence trong thư mục M6.8; đọc script trước khi chạy vì sẽ tạo/cập nhật evidence files.
 
-`pnpm test:m68` exercises the formal authority chain, immutable history, input tampering and disposable backup/restore. `node scripts/validate-m68.mjs` runs the complete requested command sequence using its own disposable database, overrides inherited data/source paths, and records exit codes/counts under the M6.8 validation directory. Use Node 22.23.2 and allow the local loopback listener required by E2E. It never targets actual portfolio data.
+M6.8 final report ghi full suite **761 tests**, E2E **10 tests**, lint/typecheck/build và các final gate PASS trong lần validation được lưu. Focused suites có overlap nên không cộng counts. Đây là historical evidence của M6.8, không phải kết quả test mới cho README này hoặc chứng nhận exact release build. M7 vẫn cần independent Expected-vs-Actual/oracle evidence, historical point-in-time validation và các acceptance gate riêng.
 
-The final report and acceptance matrix distinguish tested architecture/implementation from real-data operational readiness and preserve accepted import/benchmark/history/corporate-action limitations. Milestone 7 is outside this work.
+## Release identity and freeze status
+
+[VVIOS v1.0 Release Manifest](docs/08_CONTINUOUS_IMPROVEMENT/release-manifest-v1.0/README.md) pin source commit:
+
+```text
+14aa8b2b1052ffb297edadd298ce90c0fb246779
+```
+
+Manifest gồm Git tree/SHA, inventory **758 artifacts** với size/SHA-256, **11 schema/migration artifacts**, package/build source identity và freeze status. Release target `VVIOS v1.0` khác package version `0.1.0`. Các commit chứa manifest hoặc cập nhật README về sau không thay thế source SHA đã pin.
+
+```sh
+python3 docs/08_CONTINUOUS_IMPROVEMENT/release-manifest-v1.0/verify.py
+```
+
+**Source identity/hashes: verified. Production release: NOT FROZEN / NOT AUTHORIZED.** Compiled build provenance/output hashes, live applied schema, production configuration, active policy/model approvals, còn thiếu M7/M8 evidence và reviewer/final approval vẫn pending. Checksum xác minh consistency, không phải digital signature hay approval. Giữ nguyên **NO-GO — EVIDENCE PENDING** theo [production acceptance](docs/08_CONTINUOUS_IMPROVEMENT/PRODUCTION_ACCEPTANCE.md).
+
+Phần dưới giữ bản tóm tắt investment framework từng được hợp nhất từ `README_v1.0.md`. Tài liệu policy gốc và authority hierarchy quyết định quy tắc; README không phê duyệt hoặc thay đổi baseline.
 
 ---
 
@@ -830,20 +849,11 @@ Implement portfolio-management application and operational automation. M6.2 is a
 
 ### Milestone 7 — Validation
 
-Status: outside the current implemented scope.
+Validation specifications and the final report are present in `docs/07_VALIDATION/`. Independent executable/oracle evidence remains incomplete; historical validation is BLOCKED / NOT EXECUTED, paper/forward observations have not accumulated, and real-data operational acceptance is unvalidated. The final report prohibits release as validated for real-money decision support. Prior M6 tests are supporting evidence.
 
-Perform:
+### Milestone 8 — Production Readiness & Live Portfolio Onboarding
 
-- historical logic review;
-- backtest where appropriate;
-- paper portfolio testing;
-- decision-quality validation.
-
-### Milestone 8 — Continuous Improvement
-
-Status: future roadmap.
-
-Use real outcomes and decision-journal evidence to improve the system.
+Production/onboarding specifications are present in `docs/08_CONTINUOUS_IMPROVEMENT/`, covering import, reconciliation, initial snapshot/data/scoring/review/DCA, backup/recovery and operational runbook. Production acceptance remains an approval candidate with NO-GO — EVIDENCE PENDING. The exact-commit release manifest verifies source identity; compiled build, runtime, live onboarding evidence and final sign-offs remain pending. Continuous improvement must follow controlled validation and change approval.
 
 ---
 
