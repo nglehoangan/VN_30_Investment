@@ -1,0 +1,451 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-10-09",
+  "purpose": "issuer_financial_report_source_discovery",
+  "scheduledCollectionImplemented": false,
+  "universe": {
+    "basis": "SSIAM VN30 ETF published asset allocation; research proxy, not an approved HOSE constituent master",
+    "sourceUrl": "https://ssiam.com.vn/en/fund-information-vn30",
+    "allocationAsOf": "2026-08-31",
+    "officialConstituentValidation": "PENDING",
+    "officialFactsheetCandidateUrl": "https://staticfile.hsx.vn/Uploads/UploadDocuments/2487402/Form_Factsheet_MCIndices_VN_T08.2026.pdf",
+    "officialFactsheetFetchResult": "Tool failed to open; constituents not independently read",
+    "supplementalReason": "BVH, POW, PLX, TPB appear in earlier or conflicting VN30 lists; kept separately, without asserting current membership"
+  },
+  "verificationMethod": "Public web search, page opening and selected attachment opening. Static reader only; no browser-rendered discovery or scheduled collector verified.",
+  "publicationTimestampVerified": false,
+  "productionDataAccepted": false,
+  "sources": [
+    {
+      "ticker": "ACB",
+      "issuer": "Asia Commercial Bank",
+      "scope": "research_basket",
+      "discoveryUrl": "https://acb.com.vn/nha-dau-tu/bao-cao-tai-chinh",
+      "checkedOn": "2026-10-09",
+      "status": "DYNAMIC_PAGE",
+      "observation": "Trang danh mục cần nội dung động; PDF mẫu riêng đã mở, 99 trang, có văn bản.",
+      "scheduledCollectionEnabled": false,
+      "sample": {
+        "url": "https://acb.com.vn/acbwebsite/files/ACB-FS2025-Consol-VN_searchable.pdf",
+        "status": "PDF_OPENED",
+        "pageCount": 99,
+        "extractedTextReturned": true,
+        "tableExtractionVerified": false
+      }
+    },
+    {
+      "ticker": "BID",
+      "issuer": "BIDV",
+      "scope": "research_basket",
+      "discoveryUrl": "https://bidv.com.vn/vn/quan-he-nha-dau-tu/thong-tin-tai-chinh",
+      "checkedOn": "2026-10-09",
+      "status": "DYNAMIC_PAGE",
+      "observation": "Trang công khai; danh sách tài liệu còn placeholder động.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "BSR",
+      "issuer": "Binh Son Refining and Petrochemical",
+      "scope": "research_basket",
+      "discoveryUrl": "https://bsr.com.vn/bao-cao",
+      "checkedOn": "2026-10-09",
+      "status": "FETCH_FAILED",
+      "observation": "Tìm thấy trang chính thức trong chỉ mục tìm kiếm; lần mở trực tiếp lỗi 502 hoặc lỗi công cụ.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "CTG",
+      "issuer": "VietinBank",
+      "scope": "research_basket",
+      "discoveryUrl": "https://investor.vietinbank.vn/vi/periodicreports.aspx",
+      "checkedOn": "2026-10-09",
+      "status": "REPORT_LINKS_VISIBLE",
+      "observation": "Danh sách báo cáo riêng/hợp nhất đọc được; mở một liên kết mẫu gặp lỗi công cụ.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "FPT",
+      "issuer": "FPT Corporation",
+      "scope": "research_basket",
+      "discoveryUrl": "https://fpt.com/vi/nha-dau-tu",
+      "checkedOn": "2026-10-09",
+      "status": "PDF_OPENED",
+      "observation": "Trang nhà đầu tư và PDF mẫu mở được; tab tài chính cần xử lý nội dung động.",
+      "scheduledCollectionEnabled": false,
+      "sample": {
+        "url": "https://fpt.com/api/media/20260727_FPT_BCTC_hop_nhat_Quy_2_2026_8d6b7fdefb.pdf",
+        "status": "PDF_OPENED",
+        "pageCount": 47,
+        "extractedTextReturned": false,
+        "tableExtractionVerified": false
+      }
+    },
+    {
+      "ticker": "GAS",
+      "issuer": "PV GAS",
+      "scope": "research_basket",
+      "discoveryUrl": "https://www.pvgas.com.vn/bai-viet/category/bao-cao-tai-chinh",
+      "checkedOn": "2026-10-09",
+      "status": "REPORT_LINKS_VISIBLE",
+      "observation": "Danh mục, bài Q2/2026 và liên kết PDF Việt/Anh đọc được; lần mở tệp đính kèm lỗi công cụ.",
+      "scheduledCollectionEnabled": false,
+      "sample": null,
+      "sampleArticleUrl": "https://www.pvgas.com.vn/bai-viet/bao-cao-tai-chinh-hop-nhat-quy-22026"
+    },
+    {
+      "ticker": "GVR",
+      "issuer": "Vietnam Rubber Group",
+      "scope": "research_basket",
+      "discoveryUrl": "https://vrg.vn/quan-he-co-dong/bao-cao-tai-chinh/",
+      "checkedOn": "2026-10-09",
+      "status": "REPORT_LINKS_VISIBLE",
+      "observation": "Danh mục và trang năm 2026 có liên kết báo cáo riêng/hợp nhất; chưa mở PDF mẫu.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "HDB",
+      "issuer": "HDBank",
+      "scope": "research_basket",
+      "discoveryUrl": "https://hdbank.com.vn/vi/investor/thong-tin-nha-dau-tu/bao-cao-tai-chinh",
+      "checkedOn": "2026-10-09",
+      "status": "REDIRECT_REVIEW",
+      "observation": "Chuyển tới đường dẫn bản tin nhà đầu tư; chưa xác nhận danh sách và PDF báo cáo.",
+      "scheduledCollectionEnabled": false,
+      "sample": null,
+      "resolvedUrl": "https://hdbank.com.vn/vi/investor/thong-tin-nha-dau-tu/bao-cao-tai-chinh/ban-tin-nha-dau-tu"
+    },
+    {
+      "ticker": "HPG",
+      "issuer": "Hoa Phat Group",
+      "scope": "research_basket",
+      "discoveryUrl": "https://www.hoaphat.com.vn/quan-he-co-dong/bao-cao-tai-chinh",
+      "checkedOn": "2026-10-09",
+      "status": "REPORT_LINKS_VISIBLE",
+      "observation": "Danh sách và URL PDF đọc được; PDF bán niên mẫu vượt giới hạn công cụ: 22.266.273 byte.",
+      "scheduledCollectionEnabled": false,
+      "sample": {
+        "url": "https://file.hoaphat.com.vn/hoaphat-com-vn/2026/08/20260828-hpg-bctc-hop-nhat-soat-xet-6-thang-2026-va-giai-trinh-1-2.pdf",
+        "status": "TOOL_SIZE_LIMIT",
+        "pageCount": null,
+        "extractedTextReturned": null,
+        "tableExtractionVerified": false
+      }
+    },
+    {
+      "ticker": "LPB",
+      "issuer": "LPBank",
+      "scope": "research_basket",
+      "discoveryUrl": "https://lpbank.com.vn/nha-dau-tu/",
+      "checkedOn": "2026-10-09",
+      "status": "FETCH_FAILED",
+      "observation": "Trang chính thức được tìm thấy qua chỉ mục; mở trực tiếp timeout/lỗi công cụ.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "MBB",
+      "issuer": "Military Commercial Joint Stock Bank",
+      "scope": "research_basket",
+      "discoveryUrl": "https://www.mbbank.com.vn/Investor/bao-cao-tai-chinh/0/0//documents",
+      "checkedOn": "2026-10-09",
+      "status": "DYNAMIC_PAGE",
+      "observation": "Trang đúng mục báo cáo tài chính; tên báo cáo và file còn placeholder, chưa lấy được URL PDF.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "MCH",
+      "issuer": "Masan Consumer",
+      "scope": "research_basket",
+      "discoveryUrl": "https://masanconsumer.com/quan-he-co-dong/thong-tin-tai-chinh/",
+      "checkedOn": "2026-10-09",
+      "status": "PDF_OPENED",
+      "observation": "Danh sách và PDF hợp nhất bán niên 2026 mở được, 69 trang.",
+      "scheduledCollectionEnabled": false,
+      "sample": {
+        "url": "https://masanconsumer.com/wp-content/uploads/2026/08/110.-MSC-Consol-Audited-1H2026-VN.pdf",
+        "status": "PDF_OPENED",
+        "pageCount": 69,
+        "extractedTextReturned": false,
+        "tableExtractionVerified": false
+      }
+    },
+    {
+      "ticker": "MSN",
+      "issuer": "Masan Group",
+      "scope": "research_basket",
+      "discoveryUrl": "https://www.masangroup.com/vi/investor-relations/",
+      "checkedOn": "2026-10-09",
+      "status": "REPORT_LINKS_VISIBLE",
+      "observation": "Danh sách và URL PDF đọc được; PDF bán niên mẫu vượt giới hạn công cụ: 27.847.457 byte.",
+      "scheduledCollectionEnabled": false,
+      "sample": {
+        "url": "https://www.masangroup.com/wp-content/uploads/2026/08/03.-MSN-Consol-HY26-VN-quality.pdf",
+        "status": "TOOL_SIZE_LIMIT",
+        "pageCount": null,
+        "extractedTextReturned": null,
+        "tableExtractionVerified": false
+      }
+    },
+    {
+      "ticker": "MWG",
+      "issuer": "Mobile World Investment Corporation",
+      "scope": "research_basket",
+      "discoveryUrl": "https://mwg.vn/bao-cao",
+      "checkedOn": "2026-10-09",
+      "status": "DYNAMIC_PAGE",
+      "observation": "Trang báo cáo có bộ chọn năm; danh sách chưa được render trong công cụ, chưa lấy được PDF.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "SAB",
+      "issuer": "SABECO",
+      "scope": "research_basket",
+      "discoveryUrl": "https://sabeco.com.vn/2025-2",
+      "checkedOn": "2026-10-09",
+      "status": "REPORT_LINKS_VISIBLE",
+      "observation": "Trang năm 2025 mở được; đường dẫn danh mục tổng thử nghiệm lỗi. Cần tìm thêm trang năm mới.",
+      "scheduledCollectionEnabled": false,
+      "sample": null,
+      "failedGeneralCategoryUrl": "https://sabeco.com.vn/co-dong/bao-cao-tai-chinh"
+    },
+    {
+      "ticker": "SHB",
+      "issuer": "Saigon Hanoi Bank",
+      "scope": "research_basket",
+      "discoveryUrl": "https://www.shb.com.vn/category/nha-dau-tu/bao-cao-tai-chinh/",
+      "checkedOn": "2026-10-09",
+      "status": "PDF_OPENED",
+      "observation": "Danh mục, bài bán niên và PDF hợp nhất mở được, 57 trang.",
+      "scheduledCollectionEnabled": false,
+      "sample": {
+        "url": "https://www.shb.com.vn/wp-content/uploads/2026/08/hop-nhat-30.6.26-1.pdf",
+        "status": "PDF_OPENED",
+        "pageCount": 57,
+        "extractedTextReturned": false,
+        "tableExtractionVerified": false
+      }
+    },
+    {
+      "ticker": "SSB",
+      "issuer": "SeABank",
+      "scope": "research_basket",
+      "discoveryUrl": "https://www.seabank.com.vn/tin-tuc/nha-dau-tu/bao-cao-tai-chinh",
+      "checkedOn": "2026-10-09",
+      "status": "REPORT_LIST_VISIBLE",
+      "observation": "Danh sách và bài báo cáo hợp nhất bán niên 2026 đọc được; chưa xác định URL tệp PDF.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "SSI",
+      "issuer": "SSI Securities Corporation",
+      "scope": "research_basket",
+      "discoveryUrl": "https://www.ssi.com.vn/quan-he-nha-dau-tu/bao-cao-tai-chinh",
+      "checkedOn": "2026-10-09",
+      "status": "REPORT_LIST_VISIBLE",
+      "observation": "Tên báo cáo theo kỳ và phân trang đọc được; chưa xác định URL tệp mẫu.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "STB",
+      "issuer": "Sacombank",
+      "scope": "research_basket",
+      "discoveryUrl": "https://www.sacombank.com.vn/trang-chu/nha-dau-tu/bao-cao.html",
+      "checkedOn": "2026-10-09",
+      "status": "DYNAMIC_PAGE",
+      "observation": "Đúng mục báo cáo tài chính; bộ chọn năm chưa render danh sách. Không suy ra công ty thiếu báo cáo.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "TCB",
+      "issuer": "Techcombank",
+      "scope": "research_basket",
+      "discoveryUrl": "https://techcombank.com/nha-dau-tu/thong-tin-tai-chinh/bao-cao-tai-chinh-vas",
+      "checkedOn": "2026-10-09",
+      "status": "DYNAMIC_PAGE",
+      "observation": "Trang VAS có bộ lọc động; chỉ mục thấy báo cáo nhưng lần mở trực tiếp chưa có các mục. IFRS phải tách riêng.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "TCX",
+      "issuer": "Techcom Securities",
+      "scope": "research_basket",
+      "discoveryUrl": "https://www.tcbs.com.vn/nha-dau-tu/",
+      "checkedOn": "2026-10-09",
+      "status": "PDF_OPENED",
+      "observation": "Trang của chính tổ chức phát hành TCX và PDF Q2/2026 mở được, 63 trang.",
+      "scheduledCollectionEnabled": false,
+      "sample": {
+        "url": "https://www.tcbs.com.vn/wp-content/uploads/2026/07/TCBS-Bao-cao-tai-chinh-QII.2026.pdf",
+        "status": "PDF_OPENED",
+        "pageCount": 63,
+        "extractedTextReturned": false,
+        "tableExtractionVerified": false
+      }
+    },
+    {
+      "ticker": "VCB",
+      "issuer": "Vietcombank",
+      "scope": "research_basket",
+      "discoveryUrl": "https://www.vietcombank.com.vn/vi-VN/Nha-dau-tu",
+      "checkedOn": "2026-10-09",
+      "status": "IR_LANDING_ONLY",
+      "observation": "Mở được trang quan hệ nhà đầu tư; chưa xác nhận đường dẫn danh mục tài chính và PDF cụ thể.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "VHM",
+      "issuer": "Vinhomes",
+      "scope": "research_basket",
+      "discoveryUrl": "https://vinhomes.vn/en/bao-cao-tai-chinh",
+      "checkedOn": "2026-10-09",
+      "status": "FETCH_FAILED",
+      "observation": "Trang tài chính chính thức tìm được qua chỉ mục; lần mở trực tiếp lỗi, bản tiếng Việt trả 403.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "VIB",
+      "issuer": "Vietnam International Bank",
+      "scope": "research_basket",
+      "discoveryUrl": "https://www.vib.com.vn/vn/nha-dau-tu",
+      "checkedOn": "2026-10-09",
+      "status": "FETCH_FAILED",
+      "observation": "Trang nhà đầu tư chính thức trả 403; bài công bố tài chính được tìm thấy trong chỉ mục. Cần xác nhận danh mục PDF.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "VIC",
+      "issuer": "Vingroup",
+      "scope": "research_basket",
+      "discoveryUrl": "https://vingroup.net/quan-he-co-dong/bao-cao-tai-chinh",
+      "checkedOn": "2026-10-09",
+      "status": "DYNAMIC_PAGE",
+      "observation": "Mở được danh mục và bộ chọn năm; trang năm 2026 chưa hiển thị các URL báo cáo trong công cụ.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "VJC",
+      "issuer": "Vietjet Air",
+      "scope": "research_basket",
+      "discoveryUrl": "https://ir.vietjetair.com/Home/Menu/bao-cao-tai-chinh-quy",
+      "checkedOn": "2026-10-09",
+      "status": "FETCH_FAILED",
+      "observation": "URL danh mục quý được dẫn trong văn bản công bố của chính VJC; lần mở trực tiếp gặp lỗi công cụ.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "VNM",
+      "issuer": "Vinamilk",
+      "scope": "research_basket",
+      "discoveryUrl": "https://www.vinamilk.com.vn/investor/reports/financial",
+      "checkedOn": "2026-10-09",
+      "status": "FETCH_FAILED",
+      "observation": "Đường dẫn tài chính tìm được qua tìm kiếm; các lần mở trực tiếp lỗi. Cần xác nhận đường dẫn sau đổi website.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "VPB",
+      "issuer": "VPBank",
+      "scope": "research_basket",
+      "discoveryUrl": "https://www.vpbank.com.vn/quan-he-nha-dau-tu/bao-cao-tai-chinh",
+      "checkedOn": "2026-10-09",
+      "status": "DYNAMIC_PAGE",
+      "observation": "Trang có bộ chọn năm; chỉ mục thấy tên báo cáo nhưng công cụ chưa render danh sách/PDF.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "VPL",
+      "issuer": "Vinpearl",
+      "scope": "research_basket",
+      "discoveryUrl": "https://vinpearl.com/vi/bao-cao-tai-chinh",
+      "checkedOn": "2026-10-09",
+      "status": "PDF_OPENED",
+      "observation": "Danh sách riêng/hợp nhất và PDF hợp nhất Q2/2026 mở được, 57 trang.",
+      "scheduledCollectionEnabled": false,
+      "sample": {
+        "url": "https://statics.vinpearl.com/20260827%20-%20VPL%20-%20BCTC%20hop%20nhat%20Quy%202%202026.pdf",
+        "status": "PDF_OPENED",
+        "pageCount": 57,
+        "extractedTextReturned": false,
+        "tableExtractionVerified": false
+      }
+    },
+    {
+      "ticker": "VRE",
+      "issuer": "Vincom Retail",
+      "scope": "research_basket",
+      "discoveryUrl": "https://ir.vincom.com.vn/bao-cao-tai-chinh-va-tom-tat-ket-qua-kinh-doanh/",
+      "checkedOn": "2026-10-09",
+      "status": "PDF_OPENED",
+      "observation": "Dù có thông báo cần JavaScript, danh sách và PDF hợp nhất bán niên 2026 mở được, 48 trang.",
+      "scheduledCollectionEnabled": false,
+      "sample": {
+        "url": "https://ir.vincom.com.vn/wp-content/uploads/2026/08/Bao-cao-tai-chinh-hop-nhat-ban-nien-soat-xet-2026.pdf",
+        "status": "PDF_OPENED",
+        "pageCount": 48,
+        "extractedTextReturned": false,
+        "tableExtractionVerified": false
+      }
+    },
+    {
+      "ticker": "BVH",
+      "issuer": "Bao Viet Holdings",
+      "scope": "supplemental_historical_candidate",
+      "discoveryUrl": "https://www.baoviet.com.vn/vi/bao-cao-tai-chinh",
+      "checkedOn": "2026-10-09",
+      "status": "REPORT_LIST_VISIBLE",
+      "observation": "Danh sách đọc được; chưa mở tệp mẫu. Ngày hiển thị có thể là ngày chuyển hệ thống, chưa xác minh ngày công bố.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "POW",
+      "issuer": "PV Power",
+      "scope": "supplemental_historical_candidate",
+      "discoveryUrl": "https://pvpower.vn/vi/tag/bao-cao-tai-chinh-10.htm",
+      "checkedOn": "2026-10-09",
+      "status": "REPORT_LINKS_VISIBLE",
+      "observation": "Trang danh mục mở được; tìm thấy các bài Q1, Q2 và bán niên 2026.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "PLX",
+      "issuer": "Petrolimex",
+      "scope": "supplemental_historical_candidate",
+      "discoveryUrl": "https://www.petrolimex.com.vn/quan-he-nha-dau-tu.html",
+      "checkedOn": "2026-10-09",
+      "status": "REPORT_LINKS_VISIBLE",
+      "observation": "Trang nhà đầu tư của Tập đoàn mở được; có báo cáo hợp nhất bán niên. Không dùng báo cáo công ty con.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    },
+    {
+      "ticker": "TPB",
+      "issuer": "TPBank",
+      "scope": "supplemental_historical_candidate",
+      "discoveryUrl": "https://tpb.vn/nha-dau-tu/bao-cao-tai-chinh",
+      "checkedOn": "2026-10-09",
+      "status": "DYNAMIC_PAGE",
+      "observation": "Mở được trang báo cáo tài chính; chưa xác minh các URL tài liệu trong nội dung động.",
+      "scheduledCollectionEnabled": false,
+      "sample": null
+    }
+  ]
+}

@@ -9,3 +9,12 @@ export interface FundamentalRepository {
   findCapture(id: string): Promise<FundamentalRawCapture | null>;
   findObservation(id: string): Promise<FundamentalObservation | null>;
 }
+
+/** Raw document collection only: no canonical financial observations. */
+export interface FundamentalDocumentCollector {
+  collect(executionId: string): Promise<{
+    source: FundamentalSourceVersion;
+    batch: FundamentalImportBatch;
+    captures: readonly FundamentalRawCapture[];
+  }>;
+}
