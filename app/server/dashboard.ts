@@ -1,4 +1,6 @@
 import "server-only";
+import {readDataFreshness,type DataFreshnessServices} from "@/infrastructure/repositories/data-freshness";
+import {emptyDataFreshness} from "@/domain/fundamentals/freshness";
 import { currentServices } from "./current";
 import { loadBrokerSnapshot } from "@/infrastructure/broker-snapshot";
 import { latestBrokerSnapshot, latestBrokerApiData } from "@/infrastructure/repositories/broker-observations";
@@ -20,7 +22,8 @@ import { emptyDashboard } from "@/application/dashboard/model";
 import type { DashboardModel } from "@/application/dashboard/model";
 import type { PrismaClient } from "@/infrastructure/db/generated/client";
 /** Bounded catalog queries select IDs only. Existing adapters remain decoding/integrity authority. */
-export async function readDashboard(client: PrismaClient, screen = "audit", reference?: string): Promise<DashboardModel> {
+export async function readDashboard(client: PrismaClient, screen = "audit", reference?: string, data?: {services?:DataFreshnessServices;acceptanceId?:string;viewedAt?:string}): Promise<DashboardModel> {
+  if(screen==="data"){const dataFreshness=await readDataFreshness(client,data?.viewedAt??runtime.clock.now(),reference,data?.services,data?.acceptanceId);return {...emptyDashboard(),dataFreshness,status:dataFreshness.status==="VERIFIED"?"SUCCESS":dataFreshness.status};}
   const result = emptyDashboard();
   const portfolios = await client.portfolio.findMany({ take: 2, orderBy: { id: "asc" }, select: { id: true, name: true } });
   if (portfolios.length > 1) return { ...result, status: "BLOCKED", message: "Multiple portfolios require an explicit portfolio-selection contract. Capital actions are unavailable." };
@@ -66,19 +69,21 @@ export async function readDashboard(client: PrismaClient, screen = "audit", refe
   result.status = result.portfolio || result.cards.length || result.reviews.length || result.decisions.length ? "SUCCESS" : "EMPTY";
   return result;
 }
-export async function loadDashboard(screen = "dashboard", reference?: string): Promise<DashboardModel> {
+export async function loadDashboard(screen = "dashboard", reference?: string,acceptanceId?:string): Promise<DashboardModel> {
   let client: PrismaClient | undefined;
   try {
     const config = loadDatabaseConfig(process.env, process.cwd());
     if (!existingDatabase(config.filePath)) {
+      if(screen==="data")return {...emptyDashboard(),dataFreshness:emptyDataFreshness(runtime.clock.now())};
       const brokerSnapshot = await loadBrokerSnapshot(process.env.VN30_BROKER_SNAPSHOT_FILE);
       return { ...emptyDashboard(), status: brokerSnapshot ? "SUCCESS" : "EMPTY", brokerSnapshot: brokerSnapshot ?? undefined };
     }
     client = await openDatabase(config);
+    if(screen==="data")return await readDashboard(client,screen,reference,{acceptanceId});
     const brokerSnapshot = await latestBrokerSnapshot(client) ?? await loadBrokerSnapshot(process.env.VN30_BROKER_SNAPSHOT_FILE);
     const brokerApiData = await latestBrokerApiData(client);
     const dashboard = await readDashboard(client, screen, reference);
     return { ...dashboard, brokerApiData, status: dashboard.status === "EMPTY" && brokerSnapshot ? "SUCCESS" : dashboard.status, brokerSnapshot: brokerSnapshot ?? undefined };
-  } catch (error) { return { ...emptyDashboard(), status: "BLOCKED", message: toPublicError(error).message }; }
+  } catch (error) { return { ...emptyDashboard(), status: "BLOCKED", message: toPublicError(error).message, ...(screen==="data"?{dataFreshness:emptyDataFreshness(runtime.clock.now(),"BLOCKED",["BLOCKED_DATA_READ"])}:{}) }; }
   finally { await client?.$disconnect(); }
 }

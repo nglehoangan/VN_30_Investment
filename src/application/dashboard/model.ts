@@ -9,6 +9,7 @@ import type { CurrentModel } from "@/application/current/read-model";
 import type { BrokerSnapshot } from "@/domain/portfolio/broker-snapshot";
 import type { BrokerApiData } from "@/domain/portfolio/broker-api-data";
 export interface DashboardModel {
+  dataFreshness?: import("@/domain/fundamentals/freshness").DataFreshnessModel;
   brokerApiData?: BrokerApiData;
   brokerSnapshot?: BrokerSnapshot;
   current?: CurrentModel;
@@ -20,3 +21,6 @@ export interface DashboardModel {
   methods: readonly MethodologyRecord[]; truncated: boolean;
 }
 export const emptyDashboard = (): DashboardModel => ({ status: "EMPTY", message: null, portfolio: null, state: null, transactions: [], cards: [], rankings: [], decisions: [], reviews: [], executions: [], followUps: [], methods: [], truncated: false });
+
+/** Empty public presentation state; no readiness or engine evaluation. */
+export {emptyDataFreshness} from "@/domain/fundamentals/freshness";

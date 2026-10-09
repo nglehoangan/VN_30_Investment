@@ -5,7 +5,7 @@ import { validateStatementMapping, validateStatementExtract } from '@/domain/fun
 import { requireFundamental } from '@/domain/fundamentals/validation';
 import { deepFreeze } from '@/domain/portfolio/transaction';
 import type { NormalizationTools } from '@/ports/fundamentals';
-import fptMapping from './fpt-reviewed-mapping-v1.json';
+import fptMapping from './fpt-reviewed-mapping-v1.json' with {type:'json'};
 
 /** Exact serialized JSON digest; retained manifests preserve their key order. */
 export const normalizationHash = (value: unknown) => createHash('sha256').update(JSON.stringify(value)).digest('hex');

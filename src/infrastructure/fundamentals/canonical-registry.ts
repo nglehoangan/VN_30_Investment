@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import manifest from './canonical-items-v1.json';
+import manifest from './canonical-items-v1.json' with {type:'json'};
 import { deepFreeze } from '@/domain/portfolio/transaction';
 import { validateCanonicalRegistry, requireFundamental, fundamentalHash } from '@/domain/fundamentals/validation';
 import type { RegistryRelease, RegistryApprovalBinding } from '@/domain/fundamentals/contracts';

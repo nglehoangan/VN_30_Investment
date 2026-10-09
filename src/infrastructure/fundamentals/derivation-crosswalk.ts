@@ -1,4 +1,4 @@
-import manifest from './derivation-crosswalk-v1.json';
+import manifest from './derivation-crosswalk-v1.json' with {type:'json'};
 import { validateCrosswalk } from '@/domain/fundamentals/derivation';
 import type { DerivationCrosswalk } from '@/domain/fundamentals/derivation';
 import type { RegistryRelease } from '@/domain/fundamentals/contracts';

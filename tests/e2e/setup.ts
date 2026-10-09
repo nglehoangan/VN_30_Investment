@@ -1,6 +1,7 @@
 import { copyFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { tmpdir } from "node:os";
+import {setupFreshnessSnapshot} from "../fixtures/data-freshness";
 import { testDatabase } from "../fixtures/database";
 import { marginalDatabase } from "../fixtures/marginal-database";
 import { workflowFixture, sections } from "../fixtures/workflow";
@@ -43,6 +44,7 @@ export default async function setup() {
     await x.workflow.create({ ...f.command, id: "quarterly-review", type: "QUARTERLY", sections: sections(QUARTERLY_AREAS) });
     await x.workflow.create({ ...f.command, id: "annual-review", type: "ANNUAL", sections: sections(ANNUAL_AREAS), governance: "NO POLICY CHANGE" });
     await x.workflow.create({ ...f.command, id: "event-review", type: "EVENT_DRIVEN", triggers: [{ id: "synthetic-event", category: "COMPANY", priority: "HARD RISK / SOLVENCY / GOVERNANCE", severity: "T4", effectiveAt: f.command.asOf, evidenceRefs: ["decision-evidence"], verified: true, decisionReady: true, governingRule: "SYNTHETIC M5 event review", affectedSecurityId: f.decisions[0].securityId, requiredEvidence: "Formal decision refresh", rationale: "SYNTHETIC TEST ONLY material event" }] });
+    await setupFreshnessSnapshot(db);
     await db.client.$disconnect();
     copyFileSync(db.config.filePath, destination);
   } finally { await db.close(); }
