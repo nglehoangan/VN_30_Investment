@@ -87,3 +87,80 @@ Internal in-scope findings after checks: Critical 0 / Major 0 / Minor 0 identifi
 Actual independent reviewer authority, source qualification, complete approved sector/history/freshness/market/valuation requirements, registry/crosswalk/policy approvals and real DI execution remain external evidence requirements. This implementation provides no production bundle and no operational all-PASS claim. References and review capabilities must be independently verified by the future trusted composition owner; declaration strings alone are insufficient. The existing derivation-route/sector gaps remain blocked; DATE_ONLY requires a separately approved future Evidence-contract change before bridging. The initial bridge is operational AS_KNOWN, not an AS_REVISED or historical-public research bridge.
 
 No DI gate is promoted to PASS in project records. No real scoring/ranking/Top 10, valuation/portfolio decision/DCA recommendation, investment rule change, source fetch, cron, UI, production migration, self-approval, commit or push. Runtime production wiring is intentionally inactive without externally supplied review capabilities and a real approved bundle. No Slice 07/08 implementation. Stop for Slice 06 review.
+
+## Slice 06 remediation — external conditional review, 2026-10-09
+
+### Review baseline and authority
+
+The external review of `b7d8b1632410fd157183da1a7597d74dfe370765` returned **CONDITIONAL APPROVAL: Critical 0 / Major 1 / Minor 2**. HEAD matches that reviewed commit; the approved Slice 05 baseline is `7090d3a7952f6ce062d46416cea8d8f5c7fd385d`. The remediation started with a clean tree. The original report and its verification history above remain historical; its TIMESTAMP-only bridge and narrower dataReady interpretation are superseded for new v2 authorizations below.
+
+Re-audit covered AGENTS.md, installed Next route guidance, DESIGN_REVIEW.md D/F/G, Slice 05/06 reports, availability/snapshot selectors and immutable replay, Evidence/ScoreInput validation, calculateMetrics/calculateScorecard, M3 methodology, scoring dataset persistence, tests and the existing migration. No material difference from the reviewed HEAD was found. This authorization covers Slice 06 remediation only; no commit, staging or push.
+
+### Major: explicit canonical Evidence time contract
+
+Evidence is now a discriminated shape: absence of `time` retains the original exact-timestamp contract; presence requires `time.contract = canonical-evidence-time-v2` with exact fields. The existing source/version fields are not reinterpreted as a time-contract version.
+
+The canonical bridge emits v2 for all new canonical financial facts and derived operands, including TIMESTAMP facts. `time` pins snapshotRunId, fundamentalCutoff, operational availableAt, reviewKnownAt, and ordered publication constituents. Each constituent retains observationId, publication precision/status, actual publishedAt or null, publicationDate, timezone, disclosure evidenceReference, selected assessmentId, observationHash, policyHash and availableAt. `availabilityProvenance` is the exact canonical JSON serialization of the immutable Slice 05 assessment, retaining policy, public/fallback/evidence-backed boundaries, authority, receipt proof/knownAt and correction provenance. It is a bounded machine-readable JSON proof, never an issuer publication clock or caller-granted authority.
+
+- VERIFIED TIMESTAMP retains its exact issuer publishedAt. Operational receivedAt remains the verified availability boundary, at/after publication and local knowledge.
+- VERIFIED DATE_ONLY retains publicationDate/precision/status/timezone/evidence and **publishedAt = null**. The bridge admits the selected otherwise eligible fact under Slice 05's approved operational policy: either its approved conservative next-local-day boundary or governed trusted publicly receivable provider receipt. Both systemKnownAt and fundamentalCutoff must admit the verified operational boundary. The fallback, receipt and availableAt are never copied into publishedAt.
+- UNKNOWN/unverified publication remains blocked, regardless of receipt/retrieval/ingestion clocks.
+
+The common eligibility predicate checks sealed membership and assessment binding, security, scope, reporting window/scope requirement, sector, VALID/APPLICABLE/non-null status, freshness, publication semantics, approved DATE_ONLY policy/timezone and PIT availability. Repository reads independently verify body/index hashes, raw/source/revision lineage, provider capabilities/methodology, pinned assessment replay and the sealed snapshot. Structural Evidence validation alone does not confer canonical authority. External HUMAN/MARKET/VALUATION inputs retain their existing exact-timestamp contract, full reviewed-input matching and origin controls; they cannot claim canonical `time` or supply DATE_ONLY lineage.
+
+Derived operands preserve all ordered publication constituents. If any constituent is DATE_ONLY, that operand's composite publishedAt remains null; an all-TIMESTAMP operand keeps the latest actual constituent publication. Knowledge is the maximum eligible constituent availability, crosswalk recording and applicable reviewed adjustment boundary. Existing ordered operations/formula replay, values, units, confidence and canonical evidence families are unchanged. The mixed YTD subtraction fixture independently yields CFO 30, capex 4 and FCF 26 without manufacturing publication instants.
+
+### Minor 1: fundamental dimension
+
+New v2 readiness builds its coverage check from selected snapshot members and required selected derivations, using the same eligibility predicate and executable bridge as actual scoring. Repository existence alone cannot establish READY. Unselected, stale, wrong-scope, missing or late facts block the dimension; required metrics must pass selected-constituent and formula checks. The actual reviewed bridge must separately cover the approved sector's required items/metrics. Human topic support still constrains score readiness, without changing raw fact truth or assigning points.
+
+### Minor 2: dataReady meaning
+
+Under `strict-canonical-m3-readiness-v2`, dataReady means **all non-human data required for the M3 score is ready**: universe, market, fundamentals and valuation must each be READY. Valuation requires the approved per-ticker external inputs and a structurally valid expected-return package. It does not require human VAL rubric points merely to mark raw data present. All data with missing HUMAN assessments can therefore be dataReady=true while readyForScoring=false. Missing required valuation or expected return makes dataReady=false. Confidence, HUMAN topic/rubric completeness and assessments/gates remain additional score-readiness requirements. M3 weights/rubrics, formulas, ranking policy, M4 decisions and required-return logic are unchanged.
+
+### Explicit legacy replay and complete hashes
+
+New DI acceptance appends and FORMAL score writes require readiness algorithm v2; new dataset bindings use `scoring-dataset-binding-v2`. The independent DI acceptance envelope remains v1 because its existing requirements and complete ScoreInput fields already carry the versioned semantics. No unreviewed conversion of an old acceptance is permitted: a new v2 package requires its own exact externally pinned approval/hash.
+
+Stored v1 Evidence/ScoreInput/Scorecard/acceptance/bindings retain their original semantics and v1 readiness/bridge replay. Historical v1 dataReady has its original narrower meaning, identified by its pinned v1 algorithm; it cannot authorize a new FORMAL score. No historical JSON, score or snapshot manifest is rewritten. Existing synthetic/history fixtures retain legacy exact Evidence where appropriate.
+
+The compatibility golden was generated by executing the original fixture and calculators from a read-only git archive of reviewed commit b7d8 in an owned temporary directory. Its acceptance/input/binding/canonical-score/transport-score SHA-256 values are stored in `tests/fixtures/reviewed-slice6-v1-golden.json`. Current legacy replay reproduces those original hashes and bytes rather than defining expected results from the modified calculator.
+
+Full actual ScoreInput hashing, reviewed semantic matching, acceptance hashing and authorization/binding replay include the new nested time/provenance fields. Changing precision, date, disclosure or governed receipt proof is not hash-equivalent. Exact run/content/manifest/model/requirements/30-member universe binding, independent review, DI1–DI15, unresolved Critical/Major admission, sector/bank rules, no implicit FX, null/zero distinction, human numeric FACT prohibition, market dimensions, valuation classifications, confidence/gates, default FORMAL closure, ranking binding and immutable atomic writes remain enforced.
+
+### Schema and tests
+
+No Prisma schema or migration changes; metadata fits existing immutable JSON. No publication backfill. Existing populated Slice 05-to-06 migration, immutable/FK/rollback tests continue to run. Prisma validation/client generation use an explicit harmless temporary URL and `--no-env-file`; every integration database is an owned temporary fixture.
+
+Eleven added cases cover governed DATE_ONLY at/after availability and independent pre-cutoff exclusion, ungoverned/UNKNOWN/selection failure, TIMESTAMP/legacy regression, exact publication/proof hashes, external caller forgery, selected/stale/scope/late fundamental coverage, mixed derived knowledge, multi-constituent DATE_ONLY YTD formula replay, actual DATE_ONLY persistence/reopen without/with receipt capabilities, reviewed v1 golden replay/new-write rejection, and a forged but externally pinned DI input package that still fails canonical bridge authorization. Existing missing-valuation and missing-HUMAN tests now assert the v2 dataReady semantics explicitly.
+
+Release evidence for this handoff is gated on all of the following succeeding on the frozen final tree (including this appendix); this report is delivered only after the actual results match:
+
+| Verification | Required final result |
+| --- | --- |
+| Slice 01–06 fundamentals/PIT/readiness/bridge/persistence/migrations/registry/architecture | 28 files / 192 tests passed |
+| M3 scoring/golden/portfolio, ranking admission, marginal/M4/registry regression | 12 files / 345 tests passed |
+| Current/workflow/M6.8/backup compatibility | 3 files / 27 tests passed |
+| Complete unit/integration/architecture | 71 files / 935 tests passed |
+| Token session | 3 tests passed |
+| TypeScript noEmit, ESLint zero warnings, architecture boundaries | Passed |
+| Prisma validate/generate with isolated URL; git diff --check | Passed |
+
+Logs are retained outside the repository at `/private/tmp/vn30-remediation-{focused,scoring,downstream,full,static}.log`. SHA-256 inventories before/after the final complete run cover all tracked/new source, tests, schema, scripts, reports and relevant config; they must match. Earlier development failures (policy array normalization and deliberately mutated DATE_ONLY observations with TIMESTAMP assessments) were corrected before release checks and are not reported as passing runs. The first frozen full run passed 71 files / 934 tests and its before/after inventory matched. A subsequent serial review found a bounded-ID edge case in temporary coverage evidence IDs. The coverage helper now uses short ordinal IDs, with a maximum-length canonical observation regression; the earlier full result is retained separately and is superseded by the final 935-test run. No covered file may change during final verification.
+
+### Serial four-role self-review and limits
+
+This is a serial implementation self-review, **not independent owner approval or DI acceptance**.
+
+| Role | Score / 10 | Review |
+| --- | --- | --- |
+| CIO | 9 | Governed historical DATE_ONLY data is retained without future information or changed investment rules. |
+| Data Architect | 9 | Explicit Evidence/requirements/binding versions; separate publication/knowledge; original v1 golden hashes and full reviewed-input binding. |
+| Financial Data Engineer | 9 | DATE_ONLY stays date-only; UNKNOWN blocks; multi-constituent publication and latest operational/review boundary retain exact formula replay. |
+| Risk/QA | 9 | Forged even-reviewed inputs fail bridge authorization; missing/stale/unselected data and absent valuation and maximum-length canonical identifiers are covered; final frozen-tree regression required. |
+
+Internal in-scope findings: **Critical 0 / Major 0 / Minor 0 identified**, contingent on the release evidence above. Recommendation: **READY FOR SLICE 06 FINAL REVIEW**. The original external CONDITIONAL APPROVAL is preserved; this remediation does not declare final external approval.
+
+Real registry/source/provider/availability/requirements/sector/methodology/valuation approval and independent DI execution remain external prerequisites. Operational AS_KNOWN scoring retains the existing coincident decision/knowledge cutoff restriction; AS_REVISED and a historical-public research bridge are not enabled. Unresolved sector/derivation routes remain blocked. No source-ranking system or new investment engine.
+
+No project DI gate is promoted. All approval/PASS fixtures are synthetic and isolated. No Slice 07 or later, real VN30 scoring/ranking/Top 10, valuation engine, Buy/Hold/Sell, DCA, source fetch, cron, UI, production/private DB, real self-approval, commit or push. Stop for Slice 06 final review.

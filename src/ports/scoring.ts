@@ -9,7 +9,7 @@ export interface ScoringPortfolioRead { read(asOf: string): Promise<PortfolioInt
 
 export interface ScoringDatasetSelection {readonly snapshotRunId:string;readonly acceptanceId:string}
 export interface ScoringDatasetAuthorization {
- readonly contract:'scoring-dataset-binding-v1';
+ readonly contract:'scoring-dataset-binding-v1'|'scoring-dataset-binding-v2';
  readonly selection:ScoringDatasetSelection;readonly acceptanceHash:string;readonly inputHash:string;
  readonly requirementsHash:string;readonly readiness:readonly import('@/domain/fundamentals/scoring-readiness').TickerScoringReadiness[];
 }

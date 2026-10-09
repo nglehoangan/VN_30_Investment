@@ -6,8 +6,9 @@ import {PrismaScoringDatasets} from '@/infrastructure/repositories/scoring-datas
 import {ScoringEngine} from '@/application/scoring/engine';
 import {calculateScorecard} from '@/domain/scoring/scorecard';
 import {fixture} from '../fixtures/scoring';
-import {snapshotHash} from '@/infrastructure/fundamentals/snapshot-hash';
+import {snapshotHash,manifestDigest} from '@/infrastructure/fundamentals/snapshot-hash';
 import {canonicalJson} from '@/domain/fundamentals/snapshot';
+import reviewedV1 from '../fixtures/reviewed-slice6-v1-golden.json';
 import {openDatabase} from '@/infrastructure/db/client';
 import {PrismaFundamentalSnapshot} from '@/infrastructure/repositories/fundamental-snapshot';
 import {PrismaFundamentals} from '@/infrastructure/repositories/fundamentals';
@@ -79,5 +80,37 @@ it('configured review hashes still require an exact approved production methodol
   }
   const a={...f.acceptance,id:'bad-requirements-acceptance',methodologyId:'other-di-method',requirements:{...f.requirements,approvalReference:'unapproved-policy-reference'}},hash=snapshotHash(a),method=await db.client.methodologyRecord.findUniqueOrThrow({where:{methodologyId:f.acceptance.methodologyId}});await db.client.methodologyRecord.create({data:{...method,methodologyId:a.methodologyId,configurationReference:'di-acceptance-sha256:'+hash}});
   const repo=new PrismaScoringDatasets(db.client,f.snapshots,f.facts,f.derivations,f.registry,[{acceptanceHash:hash,reviewerReference:a.reviewerReference,approvalReference:a.approvalReference}]);await expect(repo.appendAcceptance(a)).rejects.toThrow();expect(await db.client.dataInitializationAcceptance.count()).toBe(0);
+ }finally{await db.close();}
+},30_000);
+it('governed DATE_ONLY persists, reopens and cannot be forged through reviewed input or external evidence',async()=>{
+ const db=await testDatabase();try{
+  const f=await setupScoringReadiness(db,true,'date-only'),card=await f.engine.score(f.input,f.selection),binding=await f.datasets.findBinding(card.id);
+  expect(binding!.contract).toBe('scoring-dataset-binding-v2');const e=card.input.evidence.find(e=>e.time)!;expect(e.publishedAt).toBeNull();expect(e.time!.constituents[0].publicationDate).toBe('2026-07-25');expect(card.totalScore).toBe('82');
+  for(const change of [{publicationDate:'2026-07-24'},{evidenceReference:'forged-proof'},{publicationPrecision:'TIMESTAMP',publishedAt:e.receivedAt,publicationDate:null}]){
+   const input={...f.input,id:'forged-time',evidence:f.input.evidence.map(v=>v.id===e.id?{...v,time:{...v.time!,constituents:v.time!.constituents.map(c=>({...c,...change}))}}:v)};
+   await expect(f.engine.score(input as typeof f.input,f.selection)).rejects.toThrow();
+  }
+  await db.client.$disconnect();const c=await openDatabase(db.config);try{
+   const datasets=new PrismaScoringDatasets(c,new PrismaFundamentalSnapshot(c,f.registry,f.registryBinding,f.policyBinding,f.providerEvidenceBindings),new PrismaFundamentals(c,f.registry,f.registryBinding),new PrismaFundamentalDerivation(c,f.registry,f.registryBinding),f.registry,[f.reviewBinding]);expect(await datasets.findBinding(card.id)).toEqual(binding);
+   const untrusted=new PrismaScoringDatasets(c,new PrismaFundamentalSnapshot(c,f.registry,f.registryBinding,f.policyBinding),new PrismaFundamentals(c,f.registry,f.registryBinding),new PrismaFundamentalDerivation(c,f.registry,f.registryBinding),f.registry,[f.reviewBinding]);await expect(untrusted.findBinding(card.id)).rejects.toThrow();
+  }finally{await c.$disconnect();}
+ }finally{await db.close();}
+},30_000);
+it('stored v1 score, acceptance and dataset binding replay unchanged; v1 cannot authorize a new FORMAL write',async()=>{
+ const db=await testDatabase();try{
+  const f=await setupScoringReadiness(db,false,'legacy'),a=f.acceptance;
+  // Only a historical artifact fixture in an owned temporary database; no runtime writer bypass.
+  await db.client.dataInitializationAcceptance.create({data:{id:a.id,snapshotRunId:a.snapshotRunId,acceptedAt:a.acceptedAt,body:canonicalJson(a),bodyHash:snapshotHash(a)}});
+  const {evaluateScoringReadiness}=await import('@/domain/fundamentals/scoring-readiness'),{seedHistoricalScorecard}=await import('../fixtures/historical-scorecard'),card=calculateScorecard(f.input),stored={contract:'scoring-dataset-binding-v1' as const,selection:f.selection,acceptanceHash:snapshotHash(a),inputHash:snapshotHash(f.input),requirementsHash:a.requirementsHash,readiness:evaluateScoringReadiness(a,f.snapshot,f.sources,snapshotHash)};
+  await seedHistoricalScorecard(db.client,card);await db.client.scoringDatasetBinding.create({data:{scorecardId:card.id,snapshotRunId:a.snapshotRunId,acceptanceId:a.id,inputHash:stored.inputHash,createdAt:card.calculatedAt,body:canonicalJson(stored),bodyHash:snapshotHash(stored)}});
+  expect(snapshotHash(a)).toBe(reviewedV1.acceptanceHash);expect(snapshotHash(f.input)).toBe(reviewedV1.inputHash);expect(snapshotHash(card)).toBe(reviewedV1.cardCanonicalHash);expect(manifestDigest(JSON.stringify(card))).toBe(reviewedV1.cardTransportHash);expect(snapshotHash(stored)).toBe(reviewedV1.bindingHash);expect(await f.datasets.findBinding(card.id)).toEqual(stored);expect(await f.artifacts.find(card.id)).toEqual(card);expect(card.input.evidence.every(e=>!e.time)).toBe(true);await expect(f.engine.score({...f.input,id:'new-v1-score'},f.selection)).rejects.toThrow();expect(await db.client.analyticalArtifact.count()).toBe(1);
+ }finally{await db.close();}
+},30_000);
+it('even an externally pinned reviewed package cannot authorize caller-created DATE_ONLY lineage outside the canonical bridge',async()=>{
+ const db=await testDatabase();try{
+  const f=await setupScoringReadiness(db,false,'date-only'),e=f.input.evidence.find(e=>e.time)!,input={...f.input,evidence:f.input.evidence.map(v=>v.id===e.id?{...v,time:{...v.time!,constituents:v.time!.constituents.map(c=>({...c,evidenceReference:'caller-made-disclosure'}))}}:v)},a={...f.acceptance,id:'forged-reviewed-date-only',methodologyId:'forged-reviewed-di-method',tickers:f.acceptance.tickers.map((t,i)=>i===0?{...t,input}:t)},hash=snapshotHash(a),method=await db.client.methodologyRecord.findUniqueOrThrow({where:{methodologyId:f.acceptance.methodologyId}});
+  await db.client.methodologyRecord.create({data:{...method,methodologyId:a.methodologyId,configurationReference:'di-acceptance-sha256:'+hash}});
+  const datasets=new PrismaScoringDatasets(db.client,f.snapshots,f.facts,f.derivations,f.registry,[{acceptanceHash:hash,reviewerReference:a.reviewerReference,approvalReference:a.approvalReference}]);await datasets.appendAcceptance(a);
+  expect((await datasets.readiness(a.id))[0].readyForScoring).toBe(false);await expect(datasets.authorize(input,{snapshotRunId:a.snapshotRunId,acceptanceId:a.id})).rejects.toThrow();expect(await db.client.analyticalArtifact.count()).toBe(0);expect(await db.client.scoringDatasetBinding.count()).toBe(0);
  }finally{await db.close();}
 },30_000);

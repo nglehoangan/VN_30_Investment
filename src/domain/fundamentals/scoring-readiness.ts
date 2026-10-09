@@ -9,12 +9,12 @@ import {deepFreeze} from '@/domain/portfolio/transaction';
 import {snapshot} from '@/domain/scoring/validation';
 import type {FundamentalSnapshot} from './snapshot';
 import {requireFundamental,fundamentalId,fundamentalHash} from './validation';
-import {bridgeScoringInputs,assertBridgeMatches,isMarketEvidence,exactReadinessFields,validateBridgePlan,type ScoringBridgePlan,type ScoringBridgeSources} from './scoring-bridge';
+import {eligibleScoringFact,bridgeScoringInputs,assertBridgeMatches,isMarketEvidence,exactReadinessFields,validateBridgePlan,type ScoringBridgePlan,type ScoringBridgeSources} from './scoring-bridge';
 import type {MetricId} from '@/domain/scoring/metrics';
 import {METRICS} from '@/domain/scoring/metrics';
 export const REQUIRED_DI_GATES=Array.from({length:15},(_,i)=>'DI'+(i+1));
 export interface ScoringReadinessRequirements {
- readonly version:string;readonly algorithm:'strict-canonical-m3-readiness-v1';readonly governanceStatus:'APPROVED';readonly approvalReference:string;readonly methodologyId:string;
+ readonly version:string;readonly algorithm:'strict-canonical-m3-readiness-v1'|'strict-canonical-m3-readiness-v2';readonly governanceStatus:'APPROVED';readonly approvalReference:string;readonly methodologyId:string;
  readonly recordedAt:string;readonly effectiveDate:string;readonly authorityReferences:readonly string[];
  readonly flowTechnical:'NOT_APPLICABLE_PERMANENT_M3';
  readonly sectors:readonly {readonly sector:Sector;readonly requiredItems:readonly string[];readonly requiredMetrics:readonly MetricId[];readonly requiredMarketObservations:readonly string[];readonly requiredValuationObservations:readonly string[]}[];
@@ -40,7 +40,7 @@ export function scoringInputSemantic(input:ScoreInput){const {id,calculatedAt,..
 export function validateReadinessRequirements(raw:ScoringReadinessRequirements){
  const p=snapshot(raw);exactReadinessFields(p,'version algorithm governanceStatus approvalReference methodologyId recordedAt effectiveDate authorityReferences flowTechnical sectors');
  [p.version,p.methodologyId].forEach(fundamentalId);ref(p.approvalReference);instant(p.recordedAt);dateOnly(p.effectiveDate);
- requireFundamental(p.algorithm==='strict-canonical-m3-readiness-v1'&&p.governanceStatus==='APPROVED'&&p.flowTechnical==='NOT_APPLICABLE_PERMANENT_M3'&&Array.isArray(p.authorityReferences)&&p.authorityReferences.length>0,'READINESS_REQUIREMENTS_GOVERNANCE');p.authorityReferences.forEach(ref);
+ requireFundamental(['strict-canonical-m3-readiness-v1','strict-canonical-m3-readiness-v2'].includes(p.algorithm)&&p.governanceStatus==='APPROVED'&&p.flowTechnical==='NOT_APPLICABLE_PERMANENT_M3'&&Array.isArray(p.authorityReferences)&&p.authorityReferences.length>0,'READINESS_REQUIREMENTS_GOVERNANCE');p.authorityReferences.forEach(ref);
  requireFundamental(Array.isArray(p.sectors)&&p.sectors.length>0&&new Set(p.sectors.map(s=>s.sector)).size===p.sectors.length,'READINESS_SECTOR_ROUTES');
  for(const r of p.sectors){exactReadinessFields(r,'sector requiredItems requiredMetrics requiredMarketObservations requiredValuationObservations');requireFundamental(SECTORS.includes(r.sector)&&Array.isArray(r.requiredItems)&&r.requiredItems.length>0&&new Set(r.requiredItems).size===r.requiredItems.length&&Array.isArray(r.requiredMetrics)&&new Set(r.requiredMetrics).size===r.requiredMetrics.length,'READINESS_SECTOR_REQUIREMENTS');r.requiredItems.forEach(fundamentalId);
   for(const required of [r.requiredMarketObservations,r.requiredValuationObservations]){requireFundamental(Array.isArray(required)&&required.length>0&&new Set(required).size===required.length,'EXPLICIT_REQUIRED_MARKET_VALUATION_INPUTS');required.forEach(fundamentalId);}
@@ -73,10 +73,19 @@ export function bindDIAcceptance(a:DataInitializationAcceptance,s:FundamentalSna
  }
 }
 export function evaluateScoringReadiness(a:DataInitializationAcceptance,s:FundamentalSnapshot,sources:ScoringBridgeSources,hash:(v:unknown)=>string):readonly TickerScoringReadiness[]{
+ const legacyReplay=a.requirements.algorithm==='strict-canonical-m3-readiness-v1';
  return deepFreeze(a.tickers.map(t=>{
   const blockers:string[]=[],dimensions={universe:'READY',market:'BLOCKED',fundamentals:'BLOCKED',valuation:'BLOCKED',flowTechnical:'NOT_APPLICABLE',confidence:'BLOCKED',assessmentsAndGates:'BLOCKED'} as {universe:ReadinessStatus;market:ReadinessStatus;fundamentals:ReadinessStatus;valuation:ReadinessStatus;flowTechnical:ReadinessStatus;confidence:ReadinessStatus;assessmentsAndGates:ReadinessStatus};
   const input=t.input,sector=s.request.references.find(v=>v.kind==='SECTOR')!.content.find(v=>v.startsWith(t.securityId+':'))?.slice(t.securityId.length+1),route=a.requirements.sectors.find(r=>r.sector===sector);
-  if(route&&route.requiredItems.every(item=>sources.observations.some(o=>o.securityId===t.securityId&&o.itemId===item&&o.normalized.value!==null&&o.quality==='VALID'))&&route.requiredMetrics.every(metric=>sources.derived.some(d=>s.derivedIds.includes(d.id)&&d.request.securityId===t.securityId&&d.request.metric===metric&&d.status==='CALCULATED')))dimensions.fundamentals='READY';
+  if(legacyReplay&&route&&route.requiredItems.every(item=>sources.observations.some(o=>o.securityId===t.securityId&&o.itemId===item&&o.normalized.value!==null&&o.quality==='VALID'))&&route.requiredMetrics.every(metric=>sources.derived.some(d=>s.derivedIds.includes(d.id)&&d.request.securityId===t.securityId&&d.request.metric===metric&&d.status==='CALCULATED')))dimensions.fundamentals='READY';
+  if(!legacyReplay&&route){
+   try{
+    const facts=s.members.filter(m=>sources.observations.some(o=>o.id===m.observationId&&o.securityId===t.securityId&&route.requiredItems.includes(o.itemId))).map((m,index)=>({observationId:m.observationId,evidenceId:'readiness-fact-'+index,validThrough:s.request.decisionAsOf}));
+    const metricPlans=route.requiredMetrics.map((metric,index)=>{const d=sources.derived.find(d=>s.derivedIds.includes(d.id)&&d.request.securityId===t.securityId&&d.request.metric===metric);requireFundamental(d,'READINESS_REQUIRED_DERIVED_INPUT');return {derivationId:d!.id,requestId:'readiness-metric-'+index,evidenceIds:['readiness-metric-'+index+'-0','readiness-metric-'+index+'-1'] as const,validThrough:s.request.decisionAsOf};});
+    requireFundamental(route.requiredItems.every(item=>facts.some(f=>eligibleScoringFact(s,t.securityId,sources,f.observationId).o.itemId===item)),'READINESS_SELECTED_FINANCIAL_COVERAGE');
+    bridgeScoringInputs(s,t.securityId,{facts,metrics:metricPlans,external:[]},sources);dimensions.fundamentals='READY';
+   }catch{dimensions.fundamentals='BLOCKED';}
+  }
   if(!input||!t.bridge){blockers.push('BLOCKED_ASSESSMENT_REQUIRED','BLOCKED_SCORING_INPUT_REQUIRED');return {securityId:t.securityId,...dimensions,dataReady:false,readyForScoring:false,blockers};}
   try{
    requireFundamental(input.artifactScope==='FORMAL'&&input.asOf===s.request.decisionAsOf&&input.knownAt===s.request.systemKnownAt&&hash(input.methodology)===a.scoringMethodologyHash,'READINESS_MODEL_OR_CUTOFF_MISMATCH');
@@ -89,17 +98,19 @@ export function evaluateScoringReadiness(a:DataInitializationAcceptance,s:Fundam
    if(requiredExternal('MARKET',route.requiredMarketObservations))dimensions.market='READY';else blockers.push('BLOCKED_MARKET_INPUTS');
    const valuationInputsPresent=requiredExternal('VALUATION',route.requiredValuationObservations);
    if(input.assessments.length!==RUBRICS.length)blockers.push('BLOCKED_ASSESSMENT_REQUIRED');
-   const generated=bridgeScoringInputs(s,t.securityId,t.bridge,sources);assertBridgeMatches(input,generated,t.bridge);
+   const generated=bridgeScoringInputs(s,t.securityId,t.bridge,sources,legacyReplay);assertBridgeMatches(input,generated,t.bridge);
    requireFundamental(route&&route.requiredItems.every(item=>t.bridge!.facts.some(f=>sources.observations.find(o=>o.id===f.observationId)?.itemId===item)||t.bridge!.metrics.some(m=>sources.derived.find(d=>d.id===m.derivationId)?.observations.some(o=>o.itemId===item)))&&route.requiredMetrics.every(m=>generated.metrics.some(v=>v.metric===m)),'READINESS_REQUIRED_FINANCIAL_INPUTS');
+   const dataCard=legacyReplay?null:calculateScorecard(input);
+   if(!legacyReplay){dimensions.fundamentals='READY';if(valuationInputsPresent&&input.expectedReturn)dimensions.valuation='READY';else blockers.push('BLOCKED_VALUATION_INPUTS');}
    // Every bridged report must support a governed financial topic or an executable operand.
    for(const fact of t.bridge.facts){const o=sources.observations.find(o=>o.id===fact.observationId)!,item=sources.registry.manifest.items.find(i=>i.itemId===o.itemId)!;requireFundamental(input.assessments.some(ass=>ass.evidence.some(e=>e.refs.includes(fact.evidenceId)&&item.evidenceTopicMappings.some(m=>m.rubricId===ass.subcategory&&m.topic===e.topic))),'BRIDGE_GOVERNED_TOPIC_REQUIRED');}
    dimensions.fundamentals='READY';
-   const card=calculateScorecard(input);
-   if(valuationInputsPresent&&input.expectedReturn&&card.subcategories.filter(c=>c.category==='VAL').every(c=>c.points!==null))dimensions.valuation='READY';else blockers.push('BLOCKED_VALUATION_INPUTS');
+   const card=dataCard??calculateScorecard(input);
+   if(legacyReplay){if(valuationInputsPresent&&input.expectedReturn&&card.subcategories.filter(c=>c.category==='VAL').every(c=>c.points!==null))dimensions.valuation='READY';else blockers.push('BLOCKED_VALUATION_INPUTS');}
    if(input.confidence.level!=='LOW'&&!input.confidence.dimensions.includes('Weak')&&card.confidence!=='LOW')dimensions.confidence='READY';else blockers.push('BLOCKED_EVIDENCE_CONFIDENCE');
    if(input.assessments.length===RUBRICS.length&&card.totalScore!==null&&input.stage0.status!=='UNKNOWN'&&input.hardVeto.status!=='PENDING'&&input.doubleCountReview.passed)dimensions.assessmentsAndGates='READY';else blockers.push('BLOCKED_ASSESSMENT_REQUIRED');
   }catch(error){blockers.push('BLOCKED_INPUT_VALIDATION');if(error instanceof ValidationError)blockers.push(...error.issues.map(i=>i.reason));else blockers.push('INVALID_REVIEWED_INPUT');}
-  const dataReady=dimensions.universe==='READY'&&dimensions.market==='READY'&&dimensions.fundamentals==='READY',readyForScoring=dataReady&&dimensions.valuation==='READY'&&dimensions.confidence==='READY'&&dimensions.assessmentsAndGates==='READY';
+  const dataReady=dimensions.universe==='READY'&&dimensions.market==='READY'&&dimensions.fundamentals==='READY'&&(legacyReplay||dimensions.valuation==='READY'),readyForScoring=dataReady&&dimensions.valuation==='READY'&&dimensions.confidence==='READY'&&dimensions.assessmentsAndGates==='READY';
   return {securityId:t.securityId,...dimensions,dataReady,readyForScoring,blockers:[...new Set(blockers)].sort()};
  }));
 }

@@ -33,7 +33,7 @@ export class PrismaScoringDatasets implements ScoringDatasets, ScoringReadinessR
   requireFundamental(this.registry.registryHash===JSON.parse(s!.manifest).registry.registryHash,'READINESS_CANONICAL_REGISTRY_BINDING');return {a,s:s!};
  }
  async appendAcceptance(raw:DataInitializationAcceptance){
-  const a=validateDIAcceptance(raw);await this.verified(a);
+  const a=validateDIAcceptance(raw);requireFundamental(a.requirements.algorithm==='strict-canonical-m3-readiness-v2','NEW_DI_ACCEPTANCE_REQUIRES_READINESS_V2');await this.verified(a);
   await this.client.dataInitializationAcceptance.create({data:{id:a.id,snapshotRunId:a.snapshotRunId,acceptedAt:a.acceptedAt,body:canonicalJson(a),bodyHash:snapshotHash(a)}});
  }
  private async acceptance(id:string){
@@ -47,14 +47,16 @@ export class PrismaScoringDatasets implements ScoringDatasets, ScoringReadinessR
   const derived=await Promise.all(s.derivedIds.map(async id=>{const d=await this.derivations.find(id);requireFundamental(d,'READINESS_DERIVATION_INTEGRITY');return d!;}));return {registry:this.registry,observations,assessments,derived};
  }
  async readiness(acceptanceId:string){const {a,s}=await this.acceptance(acceptanceId);return evaluateScoringReadiness(a,s,await this.sources(s),snapshotHash);}
- async authorize(raw:ScoreInput,rawSelection:ScoringDatasetSelection):Promise<ScoringDatasetAuthorization>{
+ async authorize(raw:ScoreInput,rawSelection:ScoringDatasetSelection):Promise<ScoringDatasetAuthorization>{return this.authorization(raw,rawSelection,false);}
+ private async authorization(raw:ScoreInput,rawSelection:ScoringDatasetSelection,legacyReplay:boolean):Promise<ScoringDatasetAuthorization>{
   const input=snapshot(raw),selection=snapshot(rawSelection);exactReadinessFields(selection,'snapshotRunId acceptanceId');[selection.snapshotRunId,selection.acceptanceId].forEach(fundamentalId);
   requireFundamental(input.artifactScope==='FORMAL','FORMAL_DATASET_SCOPE_REQUIRED');const {a,s}=await this.acceptance(selection.acceptanceId);
+  requireFundamental((a.requirements.algorithm==='strict-canonical-m3-readiness-v1')===legacyReplay,'NEW_FORMAL_REQUIRES_READINESS_V2');
   requireFundamental(selection.snapshotRunId===a.snapshotRunId&&a.acceptedAt<=input.calculatedAt,'DI_RUN_OR_ACCEPTANCE_TIME_MISMATCH');
   const reviewed=a.tickers.find(t=>t.securityId===input.securityId)?.input;requireFundamental(reviewed&&canonicalJson(scoringInputSemantic(input))===canonicalJson(scoringInputSemantic(reviewed)),'REVIEWED_SCORING_INPUT_REQUIRED');
   const registered=await new PrismaMethodologyRegistry(this.client).findById(input.methodology.methodologyId);requireFundamental(registered&&canonicalJson(registered)===canonicalJson(input.methodology),'REGISTERED_SCORING_METHOD_REQUIRED');
   const readiness=evaluateScoringReadiness(a,s,await this.sources(s),snapshotHash);requireFundamental(readiness.find(t=>t.securityId===input.securityId)?.readyForScoring,'TICKER_NOT_READY_FOR_SCORING');
-  return deepFreeze({contract:'scoring-dataset-binding-v1' as const,selection,acceptanceHash:snapshotHash(a),inputHash:snapshotHash(input),requirementsHash:a.requirementsHash,readiness});
+  return deepFreeze({contract:legacyReplay?'scoring-dataset-binding-v1' as const:'scoring-dataset-binding-v2' as const,selection,acceptanceHash:snapshotHash(a),inputHash:snapshotHash(input),requirementsHash:a.requirementsHash,readiness});
  }
  async append(card:Scorecard,authorization:ScoringDatasetAuthorization){
   requireFundamental(Object.isFrozen(card)&&canonicalJson(calculateScorecard(card.input))===canonicalJson(card),'SCORING_DOMAIN_REPLAY_REQUIRED');
@@ -69,6 +71,6 @@ export class PrismaScoringDatasets implements ScoringDatasets, ScoringReadinessR
   fundamentalId(scorecardId);const row=await this.client.scoringDatasetBinding.findUnique({where:{scorecardId}});if(!row)return null;
   const stored=JSON.parse(row.body) as ScoringDatasetAuthorization,card=await new PrismaAnalyticalArtifacts(this.client).find(scorecardId);
   requireFundamental(card&&'totalScore' in card&&snapshotHash(stored)===row.bodyHash&&stored.selection.snapshotRunId===row.snapshotRunId&&stored.selection.acceptanceId===row.acceptanceId&&stored.inputHash===row.inputHash&&card.calculatedAt===row.createdAt,'SCORING_DATASET_BODY_INDEX_BINDING');
-  const replay=await this.authorize(card.input,stored.selection);requireFundamental(canonicalJson(replay)===canonicalJson(stored)&&canonicalJson(calculateScorecard(card.input))===canonicalJson(card),'SCORING_DATASET_REPLAY');return replay;
+  const replay=await this.authorization(card.input,stored.selection,stored.contract==='scoring-dataset-binding-v1');requireFundamental(canonicalJson(replay)===canonicalJson(stored)&&canonicalJson(calculateScorecard(card.input))===canonicalJson(card),'SCORING_DATASET_REPLAY');return replay;
  }
 }
