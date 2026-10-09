@@ -48,3 +48,9 @@ export interface FundamentalDerivationRepository {
   append(assessment: import('@/domain/fundamentals/derivation').DerivationAssessment): Promise<void>;
   find(id:string): Promise<import('@/domain/fundamentals/derivation').DerivationAssessment|null>;
 }
+
+export interface FundamentalSnapshotRepository {
+  assess(id:string, observationId:string, policy:import('@/domain/fundamentals/availability').AvailabilityPolicy, assessedAt:string):Promise<import('@/domain/fundamentals/availability').AvailabilityAssessment>;
+  seal(request:import('@/domain/fundamentals/snapshot').SnapshotRequest):Promise<import('@/domain/fundamentals/snapshot').FundamentalSnapshot>;
+  findRun(runId:string):Promise<import('@/domain/fundamentals/snapshot').FundamentalSnapshot|null>;
+}

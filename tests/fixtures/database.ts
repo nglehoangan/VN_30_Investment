@@ -7,7 +7,7 @@ import { prepareDatabaseFile } from "@/infrastructure/db/files";
 import { openDatabase } from "@/infrastructure/db/client";
 import { PrismaMethodologyRegistry } from "@/infrastructure/repositories/methodology-registry";
 /** No caller target or inherited DATABASE_URL: every invocation owns a new private temp directory. */
-export async function testDatabase(options: { derivationBaseline?: boolean; normalizationBaseline?: boolean; fundamentalsBaseline?: boolean; foundationOnly?: boolean; portfolioOnly?: boolean; scoringOnly?: boolean; decisionOnly?: boolean; approvedDecisionOnly?: boolean; workflowOnly?: boolean; monotonicDecisionOnly?: boolean } = {}) {
+export async function testDatabase(options: { snapshotBaseline?: boolean; derivationBaseline?: boolean; normalizationBaseline?: boolean; fundamentalsBaseline?: boolean; foundationOnly?: boolean; portfolioOnly?: boolean; scoringOnly?: boolean; decisionOnly?: boolean; approvedDecisionOnly?: boolean; workflowOnly?: boolean; monotonicDecisionOnly?: boolean } = {}) {
   const directory = mkdtempSync(path.join(tmpdir(), "vn30-test-db-"));
   const config = loadDatabaseConfig({ DATABASE_URL: `file:${path.join(directory, "fixture data.sqlite")}` }, process.cwd());
   function migration(command: "migrate" | "status") {
@@ -18,13 +18,13 @@ export async function testDatabase(options: { derivationBaseline?: boolean; norm
     return result.status;
   }
   try {
-    if (options.fundamentalsBaseline || options.normalizationBaseline || options.derivationBaseline) {
+    if (options.fundamentalsBaseline || options.normalizationBaseline || options.derivationBaseline || options.snapshotBaseline) {
       prepareDatabaseFile(config);
       const migrations = path.join(directory, "baseline-migrations");
       mkdirSync(migrations);
       copyFileSync("prisma/migrations/migration_lock.toml", path.join(migrations, "migration_lock.toml"));
       for (const entry of readdirSync("prisma/migrations", { withFileTypes: true })) {
-        if (!entry.isDirectory() || entry.name >= (options.derivationBaseline ? "202610090002_fundamental_derivation" : options.normalizationBaseline ? "202610090001_fundamental_normalization" : "202610080002_fundamental_foundation")) continue;
+        if (!entry.isDirectory() || entry.name >= (options.snapshotBaseline ? "202610090003_fundamental_snapshot" : options.derivationBaseline ? "202610090002_fundamental_derivation" : options.normalizationBaseline ? "202610090001_fundamental_normalization" : "202610080002_fundamental_foundation")) continue;
         mkdirSync(path.join(migrations, entry.name));
         copyFileSync(path.join("prisma/migrations", entry.name, "migration.sql"), path.join(migrations, entry.name, "migration.sql"));
       }

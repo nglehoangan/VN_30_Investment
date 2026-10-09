@@ -12,7 +12,7 @@ import { methodologyId } from '@/shared/ids';
 import { DataIntegrityError } from '@/shared/errors';
 /** Append-only arithmetic artifacts. No fact selection, availability evaluator or scoring integration. */
 export class PrismaFundamentalDerivation implements FundamentalDerivationRepository {
-  constructor(private readonly client:PrismaClient,private readonly registry:RegistryRelease=loadCanonicalRegistry(),private readonly binding:RegistryApprovalBinding|null=null){}
+  constructor(private readonly client:PrismaClient|Prisma.TransactionClient,private readonly registry:RegistryRelease=loadCanonicalRegistry(),private readonly binding:RegistryApprovalBinding|null=null){}
   private async replay(client:Prisma.TransactionClient,result:DerivationAssessment){
     requireFundamental(normalizationHash(result.registry)===normalizationHash(this.registry),'DERIVATION_REGISTRY_BINDING');
     if(result.request.scope==='FORMAL'){
@@ -28,7 +28,7 @@ export class PrismaFundamentalDerivation implements FundamentalDerivationReposit
   }
   async append(result:DerivationAssessment){
     fundamentalId(result.id);
-    try{await this.client.$transaction(async tx=>{
+    try{requireFundamental('$transaction' in this.client,'DERIVATION_APPEND_TRANSACTION_OWNER');await this.client.$transaction(async tx=>{
       const checked=await this.replay(tx,result),body=JSON.stringify(checked);
       requireFundamental(Buffer.byteLength(body,'utf8')<=4_000_000,'BOUNDED_DERIVATION');
       await tx.fundamentalDerivation.create({data:{id:checked.id,securityId:checked.request.securityId,recordedAt:checked.recordedAt,status:checked.status,body,bodyHash:normalizationHash(checked)}});

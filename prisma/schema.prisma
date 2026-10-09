@@ -263,6 +263,8 @@ model FundamentalNormalization {
   @@map("fundamental_normalization")
 }
 model FundamentalObservation {
+  availabilityAssessments FundamentalAvailabilityAssessment[]
+  snapshotMembers FundamentalSnapshotMember[]
   derivationInputs FundamentalDerivationInput[]
   id String @id
   securityId String @map("security_id")
@@ -295,6 +297,7 @@ model FundamentalObservation {
 }
 
 model FundamentalDerivation {
+  snapshotMembers FundamentalSnapshotDerivedMember[]
   id String @id
   securityId String @map("security_id")
   security Security @relation(fields: [securityId], references: [id], onDelete: Restrict, onUpdate: Restrict)
@@ -315,4 +318,59 @@ model FundamentalDerivationInput {
   observation FundamentalObservation @relation(fields: [observationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
   @@id([derivationId, operand, position])
   @@map("fundamental_derivation_input")
+}
+
+model FundamentalAvailabilityAssessment {
+  id String @id
+  observationId String @map("observation_id")
+  observation FundamentalObservation @relation(fields: [observationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  policyVersion String @map("policy_version")
+  availableAt String? @map("available_at")
+  assessedAt String @map("assessed_at")
+  body String
+  bodyHash String @map("body_hash")
+  members FundamentalSnapshotMember[]
+  @@index([observationId, policyVersion])
+  @@index([availableAt])
+  @@map("fundamental_availability_assessment")
+}
+model FundamentalSnapshotContent {
+  contentHash String @id @map("content_hash")
+  manifest String
+  manifestDigest String @map("manifest_digest")
+  runs FundamentalSnapshotRun[]
+  @@map("fundamental_snapshot_content")
+}
+model FundamentalSnapshotRun {
+  runId String @id @map("run_id")
+  contentHash String @map("content_hash")
+  content FundamentalSnapshotContent @relation(fields: [contentHash], references: [contentHash], onDelete: Restrict, onUpdate: Restrict)
+  builtAt String @map("built_at")
+  body String
+  bodyHash String @map("body_hash")
+  members FundamentalSnapshotMember[]
+  derivedMembers FundamentalSnapshotDerivedMember[]
+  @@index([contentHash, builtAt])
+  @@map("fundamental_snapshot_run")
+}
+model FundamentalSnapshotMember {
+  runId String @map("run_id")
+  run FundamentalSnapshotRun @relation(fields: [runId], references: [runId], onDelete: Restrict, onUpdate: Restrict)
+  observationId String @map("observation_id")
+  observation FundamentalObservation @relation(fields: [observationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  assessmentId String @map("assessment_id")
+  assessment FundamentalAvailabilityAssessment @relation(fields: [assessmentId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  selected Boolean
+  @@id([runId, observationId])
+  @@map("fundamental_snapshot_member")
+}
+
+model FundamentalSnapshotDerivedMember {
+  runId String @map("run_id")
+  run FundamentalSnapshotRun @relation(fields: [runId], references: [runId], onDelete: Restrict, onUpdate: Restrict)
+  derivationId String @map("derivation_id")
+  derivation FundamentalDerivation @relation(fields: [derivationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  selected Boolean
+  @@id([runId, derivationId])
+  @@map("fundamental_snapshot_derived_member")
 }

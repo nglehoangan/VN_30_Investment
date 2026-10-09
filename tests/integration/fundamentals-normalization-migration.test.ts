@@ -16,7 +16,7 @@ it('upgrades populated Slice 2 baseline additively, preserves every old table/tr
     const after=await db.client.$queryRawUnsafe<Array<{name:string;type:string;sql:string}>>("SELECT name,type,sql FROM sqlite_master WHERE name NOT LIKE 'sqlite_%' AND name NOT LIKE '_prisma_%' ORDER BY name");
     for(const old of schema)expect(after.find(s=>s.name===old.name)).toEqual(old);
     for(const table of tables)expect(await db.client.$queryRawUnsafe(`SELECT * FROM "${table}" ORDER BY rowid`)).toEqual(before.get(table));
-    expect(after.filter(s=>s.type==='table'&&!tables.includes(s.name)).map(s=>s.name)).toEqual(['fundamental_derivation','fundamental_derivation_input','fundamental_normalization']);
+    expect(after.filter(s=>s.type==='table'&&!tables.includes(s.name)).map(s=>s.name)).toEqual(['fundamental_availability_assessment','fundamental_derivation','fundamental_derivation_input','fundamental_normalization','fundamental_snapshot_content','fundamental_snapshot_derived_member','fundamental_snapshot_member','fundamental_snapshot_run']);
     expect(await repo.findObservation(f.observation.id)).toEqual(f.observation);
     expect(await db.client.$queryRawUnsafe('PRAGMA foreign_key_check')).toEqual([]);
     expect(db.migration('status')).toBe(0);
