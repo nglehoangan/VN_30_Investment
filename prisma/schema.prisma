@@ -51,6 +51,7 @@ model Portfolio {
   @@map("portfolio")
 }
 model Security {
+  fundamentalDerivations FundamentalDerivation[]
   fundamentalNormalizations FundamentalNormalization[]
   fundamentalObservations FundamentalObservation[]
   id String @id
@@ -262,6 +263,7 @@ model FundamentalNormalization {
   @@map("fundamental_normalization")
 }
 model FundamentalObservation {
+  derivationInputs FundamentalDerivationInput[]
   id String @id
   securityId String @map("security_id")
   security Security @relation(fields: [securityId], references: [id], onDelete: Restrict, onUpdate: Restrict)
@@ -290,4 +292,27 @@ model FundamentalObservation {
   @@index([sourceVersionId, ingestedAt])
   @@index([supersedesObservationId])
   @@map("fundamental_observation")
+}
+
+model FundamentalDerivation {
+  id String @id
+  securityId String @map("security_id")
+  security Security @relation(fields: [securityId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  recordedAt String @map("recorded_at")
+  status String
+  body String
+  bodyHash String @map("body_hash")
+  inputs FundamentalDerivationInput[]
+  @@index([securityId, recordedAt])
+  @@map("fundamental_derivation")
+}
+model FundamentalDerivationInput {
+  derivationId String @map("derivation_id")
+  derivation FundamentalDerivation @relation(fields: [derivationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  operand Int
+  position Int
+  observationId String @map("observation_id")
+  observation FundamentalObservation @relation(fields: [observationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  @@id([derivationId, operand, position])
+  @@map("fundamental_derivation_input")
 }

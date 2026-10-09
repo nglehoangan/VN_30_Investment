@@ -31,7 +31,9 @@ function growth(end: string, start: string, years: number) {
   const units = rounded - scale, negative = units < 0n, abs = negative ? -units : units;
   return decimal(`${negative ? "-" : ""}${abs/scale}.${(abs%scale).toString().padStart(12,"0")}`).toString();
 }
-export function calculateMetrics(requests: readonly MetricRequest[], evidence: readonly Evidence[], sector: Sector, asOf: string, conflicts: readonly string[], cyclical: boolean) {
+/** Arithmetic consumes only these fields; publication/PIT validation remains at its owning boundary. */
+export type MetricOperand = Pick<Evidence,'id'|'value'|'unit'|'periodStart'|'periodEnd'|'quality'|'validThrough'>;
+export function calculateMetrics<T extends MetricOperand>(requests: readonly MetricRequest[], evidence: readonly T[], sector: Sector, asOf: string, conflicts: readonly string[], cyclical: boolean) {
   list(requests); unique(requests.map(r => r.id));
   return requests.map(r => {
     keys(r,"id metric evidenceRefs years comparable normalization"); id(r.id);
@@ -48,7 +50,7 @@ export function calculateMetrics(requests: readonly MetricRequest[], evidence: r
     if (missing.length || !r.comparable) reason = "N/R — MISSING_OR_INCOMPARABLE_EVIDENCE";
     else if (cyclical && r.normalization.kind === "AS_REPORTED") reason = "N/R — CYCLE_NORMALIZATION_REQUIRED";
     else {
-      const [a,b] = operands as Evidence[];
+      const [a,b] = operands as T[];
       check(a.unit !== "TEXT" && a.unit === b.unit, "METRIC_UNIT_MISMATCH");
       if (!["DIVIDEND_YIELD","MOS"].includes(r.metric)) check(a.periodStart === b.periodStart && a.periodEnd === b.periodEnd, "METRIC_PERIOD_MISMATCH");
       const x=decimal(a.value), y=decimal(b.value);

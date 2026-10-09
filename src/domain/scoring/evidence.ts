@@ -30,4 +30,4 @@ export function validateEvidence(rows: readonly Evidence[], securityId: string, 
   }
   return conflicts;
 }
-export function available(e: Evidence, asOf: string, conflicts: readonly string[]) { return e.quality === "VALID" && e.validThrough >= asOf && !conflicts.includes(e.id); }
+export function available(e: Pick<Evidence,"id" | "quality" | "validThrough">, asOf: string, conflicts: readonly string[]) { return e.quality === "VALID" && e.validThrough >= asOf && !conflicts.includes(e.id); }

@@ -27,7 +27,7 @@ it('populated latest baseline upgrade, repeat deployment and all previous rows/t
     for(const table of tables)expect(await db.client.$queryRawUnsafe(`SELECT * FROM "${table}" ORDER BY rowid`)).toEqual(before.get(table));
     const after=await db.client.$queryRawUnsafe<Array<{name:string;type:string;sql:string}>>("SELECT name,type,sql FROM sqlite_master WHERE name NOT LIKE 'sqlite_%' AND name NOT LIKE '_prisma_%' ORDER BY name");
     for(const old of schema)expect(after.find(s=>s.name===old.name)).toEqual(old);
-    expect(after.filter(s=>s.type==='table'&&!tables.includes(s.name)).map(s=>s.name).sort()).toEqual(['fundamental_import_batch','fundamental_normalization','fundamental_observation','fundamental_raw_capture','fundamental_source_version']);
+    expect(after.filter(s=>s.type==='table'&&!tables.includes(s.name)).map(s=>s.name).sort()).toEqual(['fundamental_derivation','fundamental_derivation_input','fundamental_import_batch','fundamental_normalization','fundamental_observation','fundamental_raw_capture','fundamental_source_version']);
     expect(await engine.reconstruct(P,NOW)).toEqual(replay);expect(await db.client.$queryRawUnsafe('PRAGMA foreign_key_check')).toEqual([]);
     const f=fundamentalFixture();await db.client.security.create({data:{id:f.observation.securityId,name:'Test issuer'}});const repo=new PrismaFundamentals(db.client);await repo.appendSource(f.source);await repo.appendImport(f.batch,[f.capture]);await repo.appendObservation(f.observation);expect(await repo.findObservation(f.observation.id)).toEqual(f.observation);
     expect(db.migration('status')).toBe(0);

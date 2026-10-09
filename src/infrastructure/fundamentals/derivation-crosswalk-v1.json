@@ -1,0 +1,321 @@
+{
+  "version": "fundamental-derivations-1.0.0",
+  "governanceStatus": "PROPOSED",
+  "approvalReference": null,
+  "registryHash": "80804db9834eef4ce6f3e56b844e2a1bcccd6ce5cfae801c8c7e50cd1210970e",
+  "formulaVersion": "existing-metrics-v1",
+  "precisionPolicy": "decimal-12-half-even-v1",
+  "authorityReferences": [
+    "docs/03 SCORING/METRIC_DEFINITIONS.md:sha256:6aac73fbf8e72e64111880d152d3c0da09eb114addcf4c0cb616425864ea2f7f",
+    "docs/03 SCORING/SECTOR_NORMALIZATION.md:sha256:0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4",
+    "src/domain/scoring/metrics.ts:sha256:5fc2ac2cef83218b898b6ba5803e36b26dd923c7251ac7dfeb62d3840f71f32d"
+  ],
+  "routes": [
+    {
+      "sector": "REAL_ESTATE",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ]
+    },
+    {
+      "sector": "REAL_ESTATE",
+      "metric": "FCF",
+      "operands": [
+        {
+          "role": "CFO",
+          "itemId": "CFO",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "issuer_capex",
+          "itemId": "CAPEX",
+          "operation": "REPORTED"
+        }
+      ]
+    },
+    {
+      "sector": "RETAIL",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ]
+    },
+    {
+      "sector": "RETAIL",
+      "metric": "FCF",
+      "operands": [
+        {
+          "role": "CFO",
+          "itemId": "CFO",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "issuer_capex",
+          "itemId": "CAPEX",
+          "operation": "REPORTED"
+        }
+      ]
+    },
+    {
+      "sector": "TECHNOLOGY",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ]
+    },
+    {
+      "sector": "TECHNOLOGY",
+      "metric": "FCF",
+      "operands": [
+        {
+          "role": "CFO",
+          "itemId": "CFO",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "issuer_capex",
+          "itemId": "CAPEX",
+          "operation": "REPORTED"
+        }
+      ]
+    },
+    {
+      "sector": "INDUSTRIAL",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ]
+    },
+    {
+      "sector": "INDUSTRIAL",
+      "metric": "FCF",
+      "operands": [
+        {
+          "role": "CFO",
+          "itemId": "CFO",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "issuer_capex",
+          "itemId": "CAPEX",
+          "operation": "REPORTED"
+        }
+      ]
+    },
+    {
+      "sector": "MATERIALS",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ]
+    },
+    {
+      "sector": "MATERIALS",
+      "metric": "FCF",
+      "operands": [
+        {
+          "role": "CFO",
+          "itemId": "CFO",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "issuer_capex",
+          "itemId": "CAPEX",
+          "operation": "REPORTED"
+        }
+      ]
+    },
+    {
+      "sector": "UTILITIES",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ]
+    },
+    {
+      "sector": "UTILITIES",
+      "metric": "FCF",
+      "operands": [
+        {
+          "role": "CFO",
+          "itemId": "CFO",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "issuer_capex",
+          "itemId": "CAPEX",
+          "operation": "REPORTED"
+        }
+      ]
+    },
+    {
+      "sector": "ENERGY",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ]
+    },
+    {
+      "sector": "ENERGY",
+      "metric": "FCF",
+      "operands": [
+        {
+          "role": "CFO",
+          "itemId": "CFO",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "issuer_capex",
+          "itemId": "CAPEX",
+          "operation": "REPORTED"
+        }
+      ]
+    },
+    {
+      "sector": "CONGLOMERATE",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ]
+    },
+    {
+      "sector": "CONGLOMERATE",
+      "metric": "FCF",
+      "operands": [
+        {
+          "role": "CFO",
+          "itemId": "CFO",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "issuer_capex",
+          "itemId": "CAPEX",
+          "operation": "REPORTED"
+        }
+      ]
+    },
+    {
+      "sector": "BANK",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ]
+    },
+    {
+      "sector": "BANK",
+      "metric": "CASA",
+      "operands": [
+        {
+          "role": "current_and_savings",
+          "itemId": null,
+          "operation": "REPORTED"
+        },
+        {
+          "role": "deposits",
+          "itemId": null,
+          "operation": "REPORTED"
+        }
+      ]
+    },
+    {
+      "sector": "BANK",
+      "metric": "NPL",
+      "operands": [
+        {
+          "role": "NPL",
+          "itemId": null,
+          "operation": "REPORTED"
+        },
+        {
+          "role": "gross_loans",
+          "itemId": null,
+          "operation": "REPORTED"
+        }
+      ]
+    }
+  ],
+  "recordedAt": "2026-10-09T00:00:00.000Z",
+  "effectiveDate": "2026-10-09"
+}

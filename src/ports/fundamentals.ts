@@ -43,3 +43,8 @@ export interface FundamentalNormalizationRepository {
   append(assessment: NormalizationAssessment): Promise<void>;
   find(id: string): Promise<NormalizationAssessment | null>;
 }
+
+export interface FundamentalDerivationRepository {
+  append(assessment: import('@/domain/fundamentals/derivation').DerivationAssessment): Promise<void>;
+  find(id:string): Promise<import('@/domain/fundamentals/derivation').DerivationAssessment|null>;
+}
