@@ -128,7 +128,7 @@ export function documentQualificationStatus(history: readonly DocumentQualificat
 }
 
 declare const candidateBrand: unique symbol;
-/** Future Slice 3 must accept this gate result, never FundamentalRawCapture. */
+/** Slice 3 accepts this gate result, never FundamentalRawCapture. */
 export type QualifiedNormalizationCandidate = Readonly<{
   rawDocument: VerifiedRawDocument; qualification: DocumentQualification;
   readonly [candidateBrand]: true;

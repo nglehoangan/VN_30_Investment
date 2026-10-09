@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import type { PrismaClient } from '@/infrastructure/db/generated/client';
+import type { PrismaClient, Prisma } from '@/infrastructure/db/generated/client';
 import { PrismaMethodologyRegistry } from './methodology-registry';
 import { loadCanonicalRegistry, verifyRegistryApproval } from '@/infrastructure/fundamentals/canonical-registry';
 import type { RegistryRelease, RegistryApprovalBinding, FundamentalSourceVersion, FundamentalImportBatch, FundamentalRawCapture, FundamentalObservation } from '@/domain/fundamentals/contracts';
@@ -22,7 +22,7 @@ function failure(error:unknown):never {
 export class PrismaFundamentals implements FundamentalRepository {
   private readonly release:RegistryRelease;
   private readonly binding:RegistryApprovalBinding|null;
-  constructor(private readonly client:PrismaClient,release:RegistryRelease=loadCanonicalRegistry(),binding:RegistryApprovalBinding|null=null) {
+  constructor(private readonly client:PrismaClient | Prisma.TransactionClient,release:RegistryRelease=loadCanonicalRegistry(),binding:RegistryApprovalBinding|null=null) {
     const verified=loadCanonicalRegistry(release.manifest);
     requireFundamental(verified.registryHash===release.registryHash,'REGISTRY_RELEASE_HASH_MISMATCH');
     this.release=verified;this.binding=binding?Object.freeze({...binding}):null;
@@ -45,10 +45,11 @@ export class PrismaFundamentals implements FundamentalRepository {
       requireFundamental(c.sourceVersionId===b.sourceVersionId && c.importExecutionId===b.id && b.startedAt<=c.retrievedAt && c.retrievedAt<=b.completedAt,'CAPTURE_BATCH_MISMATCH');
       requireFundamental(hash(c.payload)===c.payloadHash,'RAW_PAYLOAD_HASH_MISMATCH');
     }
-    try{await this.client.$transaction(async tx=>{
+    const insert = async (tx: Prisma.TransactionClient) => {
       await tx.fundamentalImportBatch.create({data:{id:b.id,sourceVersionId:b.sourceVersionId,completedAt:b.completedAt,...encode(b)}});
       for(const c of captures)await tx.fundamentalRawCapture.create({data:{id:c.id,sourceVersionId:c.sourceVersionId,importExecutionId:c.importExecutionId,retrievedAt:c.retrievedAt,payloadHash:c.payloadHash,...encode(c)}});
-    });}catch(error){failure(error);}
+    };
+    try{if ('$transaction' in this.client) await this.client.$transaction(insert); else await insert(this.client);}catch(error){failure(error);}
   }
   async appendObservation(raw:FundamentalObservation) {
     const o=validateFundamentalObservation(raw,this.release);

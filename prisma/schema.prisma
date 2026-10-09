@@ -51,6 +51,7 @@ model Portfolio {
   @@map("portfolio")
 }
 model Security {
+  fundamentalNormalizations FundamentalNormalization[]
   fundamentalObservations FundamentalObservation[]
   id String @id
   name String
@@ -203,6 +204,7 @@ model MarginalAllocation {
 
 // Slice 1 analytical evidence only. No provider, selector, derivation or scoring state.
 model FundamentalSourceVersion {
+  normalizations FundamentalNormalization[]
   id String @id
   recordedAt String @map("recorded_at")
   body String
@@ -213,6 +215,7 @@ model FundamentalSourceVersion {
   @@map("fundamental_source_version")
 }
 model FundamentalImportBatch {
+  normalizations FundamentalNormalization[]
   id String @id
   sourceVersionId String @map("source_version_id")
   source FundamentalSourceVersion @relation(fields: [sourceVersionId], references: [id], onDelete: Restrict, onUpdate: Restrict)
@@ -225,6 +228,7 @@ model FundamentalImportBatch {
   @@map("fundamental_import_batch")
 }
 model FundamentalRawCapture {
+  normalizations FundamentalNormalization[]
   id String @id
   sourceVersionId String @map("source_version_id")
   source FundamentalSourceVersion @relation(fields: [sourceVersionId], references: [id], onDelete: Restrict, onUpdate: Restrict)
@@ -238,6 +242,24 @@ model FundamentalRawCapture {
   @@unique([id, sourceVersionId])
   @@index([sourceVersionId, retrievedAt])
   @@map("fundamental_raw_capture")
+}
+
+model FundamentalNormalization {
+  id String @id
+  securityId String @map("security_id")
+  security Security @relation(fields: [securityId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  sourceVersionId String @map("source_version_id")
+  source FundamentalSourceVersion @relation(fields: [sourceVersionId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  importExecutionId String @map("import_execution_id")
+  batch FundamentalImportBatch @relation(fields: [importExecutionId, sourceVersionId], references: [id, sourceVersionId], onDelete: Restrict, onUpdate: Restrict)
+  rawCaptureId String @map("raw_capture_id")
+  capture FundamentalRawCapture @relation(fields: [rawCaptureId, sourceVersionId], references: [id, sourceVersionId], onDelete: Restrict, onUpdate: Restrict)
+  recordedAt String @map("recorded_at")
+  status String
+  body String
+  bodyHash String @map("body_hash")
+  @@index([securityId, recordedAt])
+  @@map("fundamental_normalization")
 }
 model FundamentalObservation {
   id String @id

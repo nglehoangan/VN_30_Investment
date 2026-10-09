@@ -1,5 +1,6 @@
 import type { FundamentalSourceVersion, FundamentalRawCapture, FundamentalImportBatch, FundamentalObservation } from '@/domain/fundamentals/contracts';
 import type { DocumentQualification, VerifiedRawDocument, QualifiedNormalizationCandidate, DocumentIssuerIdentity } from '@/domain/fundamentals/document-qualification';
+import type { NormalizationAssessment } from '@/domain/fundamentals/normalization';
 /** No fetch, latest-wins selection, mutation, scoring or portfolio posting capability. */
 export interface FundamentalRepository {
   appendSource(source: FundamentalSourceVersion): Promise<void>;
@@ -28,7 +29,17 @@ export interface DocumentQualificationRepository {
   append(qualification: DocumentQualification): Promise<void>;
   history(documentId: string): Promise<readonly DocumentQualification[]>;
 }
-/** Contract only. No normalizer, parsed values or normalization implementation in Slice 2. */
+/** Normalization receives documents through this qualification boundary. */
 export interface QualifiedDocumentInput {
   candidate(captureIds: readonly string[], intendedIssuer: DocumentIssuerIdentity): Promise<QualifiedNormalizationCandidate>;
+}
+
+export interface NormalizationTools {
+  now(): string;
+  hash(value: unknown): string;
+}
+export interface FundamentalNormalizationRepository {
+  comparable(observations: readonly FundamentalObservation[]): Promise<readonly FundamentalObservation[]>;
+  append(assessment: NormalizationAssessment): Promise<void>;
+  find(id: string): Promise<NormalizationAssessment | null>;
 }
