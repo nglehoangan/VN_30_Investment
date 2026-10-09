@@ -1,5 +1,7 @@
 # Fundamental source register
 
+Lifecycle boundary: **source discovered ≠ source operationally qualified ≠ document identity qualified ≠ financial observation accepted**. `issuer-sources.json` remains discovery configuration only. `PDF_OPENED` and visible links are browsing results; none grants normalization eligibility. The Slice 02 document gate requires separate hash-bound content review.
+
 ## FPT Corporation — FPT
 
 Recorded: 2026-10-09. Owner requested retaining these links for future financial-report collection after the public browsing trial. This entry records source discovery, not production-data acceptance or permission for an unattended bulk collection job.

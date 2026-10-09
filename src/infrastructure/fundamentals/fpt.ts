@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import type { FundamentalDocumentCollector } from '@/ports/fundamentals';
 import type { FundamentalRawCapture, FundamentalSourceVersion } from '@/domain/fundamentals/contracts';
 import { fundamentalId, validateFundamentalSource, validateFundamentalBatch, validateFundamentalCapture } from '@/domain/fundamentals/validation';
+import { INTERNAL_RAW_FAILURE_STATUS, RAW_DOCUMENT_MEDIA_TYPE } from './raw-document';
 
 const ROOT = 'https://fpt.com/vi/nha-dau-tu';
 const digest = (bytes: string | Uint8Array) => createHash('sha256').update(bytes).digest('hex');
@@ -131,9 +132,9 @@ export class FptDocumentCollector implements FundamentalDocumentCollector {
             sourceVersionId: FPT_SOURCE.id, importExecutionId: executionId,
             requestFingerprint: digest(JSON.stringify({ method:'GET',url,attempt })), resourceReference: url,
             sourceRecordId: null, sourceRecordVersion: null, retrievedAt,
-            mediaType: 'application/vnd.vn30.raw-document+json',
+            mediaType: RAW_DOCUMENT_MEDIA_TYPE,
             // 599 is a local capture sentinel; real HTTP status remains nullable in envelope.
-            responseStatus: failure ? 599 : status!, payload, payloadHash: digest(payload) }));
+            responseStatus: failure ? INTERNAL_RAW_FAILURE_STATUS : status!, payload, payloadHash: digest(payload) }));
         }
         if (!failure) return body;
         errors.push(`request-${requestCount}-attempt-${attempt}:${failure}${status === null ? '' : `:http-${status}`}`);

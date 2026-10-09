@@ -1,4 +1,5 @@
 import type { FundamentalSourceVersion, FundamentalRawCapture, FundamentalImportBatch, FundamentalObservation } from '@/domain/fundamentals/contracts';
+import type { DocumentQualification, VerifiedRawDocument, QualifiedNormalizationCandidate, DocumentIssuerIdentity } from '@/domain/fundamentals/document-qualification';
 /** No fetch, latest-wins selection, mutation, scoring or portfolio posting capability. */
 export interface FundamentalRepository {
   appendSource(source: FundamentalSourceVersion): Promise<void>;
@@ -17,4 +18,17 @@ export interface FundamentalDocumentCollector {
     batch: FundamentalImportBatch;
     captures: readonly FundamentalRawCapture[];
   }>;
+}
+
+/** Generic issuer-independent boundary; discovered source configuration grants no qualification. */
+export interface FundamentalDocumentReader {
+  reconstruct(captureIds: readonly string[]): Promise<VerifiedRawDocument>;
+}
+export interface DocumentQualificationRepository {
+  append(qualification: DocumentQualification): Promise<void>;
+  history(documentId: string): Promise<readonly DocumentQualification[]>;
+}
+/** Contract only. No normalizer, parsed values or normalization implementation in Slice 2. */
+export interface QualifiedDocumentInput {
+  candidate(captureIds: readonly string[], intendedIssuer: DocumentIssuerIdentity): Promise<QualifiedNormalizationCandidate>;
 }
