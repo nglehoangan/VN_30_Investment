@@ -83,3 +83,87 @@ Mapping, registry and derivation crosswalk are not self-approved. Real reviewed 
 No Slice 05 work: no availability evaluator, publication fallback, AS-KNOWN/AS-REVISED/latest selector, snapshot builder or snapshot content identity. Every derived artifact keeps availableAt null/UNKNOWN. No production scoring/ranking/Top 10, valuation engine, portfolio decision or investment recommendation was run. Existing scoring/decision test fixtures were executed solely as regression checks. DI1–DI15 statuses are unchanged; no DI gate becomes PASS from this implementation.
 
 Recommendation after completed regression evidence: **READY FOR SLICE 04 IMPLEMENTATION REVIEW**, within the proposed-crosswalk/pinned-arithmetic scope above. Stop before Slice 05.
+
+## Slice 04 conditional-review remediation — 2026-10-09
+
+Previous external review: **CONDITIONAL APPROVAL**, Critical **0**, Major **1**, Minor **2**. Reviewed commit and remediation HEAD/baseline: `42f180c173149c48e39627822ca6ab53e227d85a`; working tree initially clean. Original feature baseline remains `addaf5bbf06fe772822bbd557ec7110b477c4e55`. HEAD matches the reviewed commit exactly, with no material divergence. The historical implementation and verification narrative above is preserved; it is not rewritten as an external PASS.
+
+Re-audit covered AGENTS.md and the installed Next backend-for-frontend guide; DESIGN_REVIEW.md; Slice 01–04 reports; canonical registry, FinancialUnit and normalization/revision contracts; derivation crosswalk/domain/application/repository; M3 metric definitions and calculateMetrics; existing immutable derivation migration and unit/integration/migration tests. No investment formula, Next route/UI or production data was changed.
+
+### Major: explicit immutable adjustment dimensions
+
+ReviewedAdjustment now requires `amount`, `unit`, `currency`, `adjustmentKind`, reviewerReference, reviewedAt, evidenceReference, rationale and confidence (plus its existing id). Unit uses the **existing canonical FinancialUnit** type; there is no parallel unit or scale system. Every field is mandatory in the exact JSON schema. Missing unit/currency/classification, unsupported units, invalid currency or omitted/empty required review evidence rejects new admission. The metadata is retained directly inside the immutable request/artifact and protected by existing body hash, transaction replay and SQL mutation guards. Nothing is inherited from a base observation to fill an absent adjustment field.
+
+HUMAN_NORMALIZED monetary earnings addition requires a CURRENCY base, CURRENCY adjustment and exactly matching explicit currency before any addition. VND + explicitly VND is eligible; VND + USD, CURRENCY + RATIO/SHARES/CURRENCY_PER_SHARE yield null/N_R with `MONETARY_ADJUSTMENT_DIMENSION_MISMATCH` and LOW confidence. MILLION_CURRENCY/BILLION_CURRENCY are not canonical adjustment units and are rejected. No FX or unit scaling is performed. The original fact and mismatched review declaration both remain visible in a retained N/R artifact.
+
+ACTION_ADJUSTED separately requires `unit: RATIO`, `currency: null`, `adjustmentKind: CORPORATE_ACTION_FACTOR`, and a strictly positive amount. Existing per-share-only input restriction remains. Multiplication retains original CURRENCY_PER_SHARE unit and original currency. Monetary metadata cannot be passed as an action factor; factor classification cannot be passed as a monetary normalization. No monetary addition, FX relabeling or implicit factor dimension is permitted.
+
+### Minor #1: bounded economic audit classification and sign semantics
+
+HUMAN_NORMALIZED classification is exactly:
+
+- NON_RECURRING_GAIN
+- NON_RECURRING_LOSS
+- ACCOUNTING_RECLASSIFICATION
+- OTHER_REVIEWED
+
+These labels are **audit metadata**, not financial justification or an investment rule. Evidence, rationale, reviewer, timestamp and confidence remain mandatory. The reviewed signed amount controls arithmetic. Removing a gain by `-6` gives `24 - 6 = 18`; adding back a reviewed expense by `+6` gives `24 + 6 = 30`. Reclassifying the same signed amount never flips its sign or changes its value. No gain/loss sign rule was invented.
+
+### Minor #2: explicit ROE normalization requirement
+
+M3 METRIC_DEFINITIONS.md §12.3 defines common-attributable profit / average common equity and states **“Use normalized NPAT for scoring.”** Existing METRICS.ROE names its numerator `normalized_common_profit`. The proposed crosswalk therefore intentionally continues to require NET_INCOME_ATTRIBUTABLE_COMMON → HUMAN_NORMALIZED for this route. A raw reported common-profit fact is not automatically asserted to be economically normalized.
+
+No AS_REPORTED alternative was invented for this scoring-oriented route. Missing review/adjustment is rejected; substituting REPORTED under the current crosswalk returns N/R. The engine never injects amount 0, a reviewer, evidence or rationale to make ROE pass. A genuinely reviewed zero amount is not automatically prohibited by a new investment rule: it must be independently supplied with the same complete dimensions/classification/evidence and review controls. It is not a synthetic fallback generated by this remediation. The genuine test normalization removes a reviewed non-recurring gain by -6 VND, rather than using a zero workaround.
+
+Crosswalk bytes/status, canonical registry, source mapping and methodology/formula files are unchanged. Crosswalk remains **PROPOSED**, as do registry and source mapping. Their frozen authority/code hashes still match. No release is self-approved.
+
+### Backward compatibility and migration
+
+**No schema or migration changes.** All additional metadata lives in existing immutable derivation JSON; restrictive FKs, immutable guards, atomic writes and ordered input links are unchanged. There is no production backfill or rewrite.
+
+The reviewed contract has conditional implementation approval and no approved production acceptance in the available governance evidence. This is a clean contract correction: older adjusted bodies lacking explicit dimensions/classification fail closed on authoritative replay/admission, rather than fabricating their missing metadata. Tests retain a synthetic legacy body byte-for-byte and verify that both find/replay and append reject it. Its raw stored history is not deleted or reinterpreted. Existing unadjusted artifacts still replay through the unchanged null-adjustment schema. An independently reviewed new request can create a new immutable artifact; there is no automatic conversion of legacy review evidence.
+
+### Tests and final-tree verification
+
+Seven new focused unit tests cover independently declared VND dimensions and retained metadata; USD and unit mismatches/N_R; missing or malformed dimensions/classification/reviewer/evidence/rationale; explicit negative/positive signs independent of classification; mandatory ROE review with no zero fallback; action-factor/monetary separation and per-share restriction; and rejection of a non-monetary base. Existing action-factor coverage additionally verifies factor metadata and retained VND per-share units. Existing ROE and future-review fixtures now declare dimensions/classification explicitly.
+
+Two added integration tests cover full monetary review persist/reopen/replay and retained USD-mismatch N/R without fact mutation, plus immutable legacy adjusted bodies and rejection of dimension guessing. Original missing/zero, conflicts, revision lineage, averaging, native-quarter TTM, YTD, unresolved bank/insurance/securities routes, temporal review, replay/tamper/FK/migration controls remain exercised.
+
+Runtime: Node **22.23.2**, pnpm **10.34.5**. Owned isolated temporary databases only; no environment file or production/private database accessed. Schema unchanged, so Prisma validate/generate is not repeated solely for this metadata correction. Existing migration tests run in focused/full suites, including populated prior-baseline preservation and repeat deployment. Scoring/decision test lists run directly after existing generated-client validation, avoiding wrappers that read .env.local.
+
+Acceptance evidence below is verified by repeating the complete commands against the finished report/code/test tree before handoff:
+
+- Focused Slice 01–04 fundamentals, derivation, populated migrations, registry and architecture: **19 files / 132 tests passed**.
+- Existing scoring/decision regression: **12 files / 345 tests passed**.
+- Complete unit/integration/architecture: **59 files / 856 tests passed**.
+- Token-session: **3 tests passed**.
+- Static checks: TypeScript `tsc --noEmit`, ESLint zero warnings, architecture boundaries (**127 modules**) and `git diff --check` passed.
+
+No implementation/test/schema changes will follow the final acceptance run. A changed-file SHA-256 manifest is captured before that run and checked afterward to prove final-tree stability. No reliance on a pre-final-patch full suite plus focused follow-up is used for final acceptance.
+
+### Exact remediation files
+
+1. `src/domain/fundamentals/derivation.ts`
+2. `tests/fixtures/reviewed-adjustment.ts` (new)
+3. `tests/unit/fundamentals-adjustment.test.ts` (new)
+4. `tests/unit/fundamentals-derivation.test.ts`
+5. `tests/integration/fundamentals-derivation.test.ts`
+6. `docs/fundamental-data-engine/SLICE_4_IMPLEMENTATION_REPORT.md`
+
+### Four-role self-review
+
+These are independently reasoned implementation perspectives, not independent external reviewer sign-off or DI14 acceptance.
+
+| Role | Score / 10 | Assessment |
+|---|---:|---|
+| CIO | 9.8 | No adjustment is justified merely because it improves ROE; metadata makes declared economics auditable; no investment action is generated. |
+| Data Architect | 9.6 | Explicit dimensions/classification are immutable and hash/replay protected; missing metadata never inherits from a fact; no latest-wins/PIT selector; legacy ambiguity remains truthfully blocked. |
+| Financial Data Engineer | 9.6 | Monetary unit/currency compatibility is checked before addition; sign is exactly reviewed; no FX/scale guess; corporate-action factors are distinct and retain per-share dimensions. |
+| Risk/QA | 9.6 | Missing/malformed dimensions and kind reject; mismatches produce N/R; mandatory ROE review cannot be satisfied by injected zero; final-tree checks and unchanged governance are verified. |
+| Overall, equal-weight mean | 9.65 | Ready for independent Slice 04 final implementation review after completed final acceptance. |
+
+Remaining in-scope self-review findings: **Critical 0 / Major 0 / Minor 0**. Reviewer/evidence declarations still require operational authenticity and independent financial judgment; their presence does not prove an adjustment is economically justified. Production approval, real-source data qualification/coverage, approved bank components, complete sector requirements and governed PIT/availability remain open dependencies. Legacy adjusted artifacts with unknown dimensions intentionally do not gain new replay eligibility.
+
+**DI1–DI15: no status changes; no gate promoted to PASS.** Engine implemented ≠ production data approved ≠ PIT ready ≠ scoring ready ≠ DI PASS. No Slice 05, availableAt derivation, publication fallback, AS-KNOWN/AS-REVISED/latest selector, snapshot/content snapshot identity, readiness/DI acceptance engine, live VN30 scoring/ranking/Top 10, valuation, portfolio decision or DCA recommendation was implemented/run. availableAt stays null/UNKNOWN; reviewedAt is not availability. Existing scoring/decision fixtures run only as regression tests. No production/private DB, self-approval, commit or push occurred.
+
+Recommendation after final acceptance: **READY FOR SLICE 04 FINAL REVIEW**. Stop before Slice 05.

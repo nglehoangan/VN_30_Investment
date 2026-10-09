@@ -25,7 +25,7 @@ it('ROE independently reconciles reviewed common profit and begin/end common equ
  const f=derivationFixture(),profit=derivationFact('profit','NET_INCOME_ATTRIBUTABLE_COMMON','24');
  const begin={...derivationFact('begin','COMMON_EQUITY','100'),periodType:'INSTANT' as const,periodStart:'2026-03-31',periodEnd:'2026-03-31',fiscalQuarter:1 as const};
  const end={...derivationFact('end','COMMON_EQUITY','140'),periodType:'INSTANT' as const,periodStart:'2026-06-30',periodEnd:'2026-06-30'};
- const request:DerivationRequest={...f.request,metric:'ROE',operands:[{id:'profit-operand',operation:'HUMAN_NORMALIZED',observationIds:[profit.id],adjustment:{id:'review-profit',reviewerReference:'fixture-reviewer',reviewedAt:f.recordedAt,evidenceReference:'fixture-normalization-evidence',rationale:'Reviewed 6-unit exceptional gain excluded',amount:'-6',confidence:'MEDIUM'}},{id:'equity-operand',operation:'AVERAGE_ENDPOINTS',observationIds:[begin.id,end.id],adjustment:null}]};
+ const request:DerivationRequest={...f.request,metric:'ROE',operands:[{id:'profit-operand',operation:'HUMAN_NORMALIZED',observationIds:[profit.id],adjustment:{id:'review-profit',reviewerReference:'fixture-reviewer',reviewedAt:f.recordedAt,evidenceReference:'fixture-normalization-evidence',rationale:'Reviewed 6-unit exceptional gain excluded',amount:'-6',unit:'CURRENCY',currency:'VND',adjustmentKind:'NON_RECURRING_GAIN',confidence:'MEDIUM'}},{id:'equity-operand',operation:'AVERAGE_ENDPOINTS',observationIds:[begin.id,end.id],adjustment:null}]};
  const r=run({request,observations:[profit,begin,end]});expect(r.operands.map(o=>o.value)).toEqual(['18','120']);expect(r.value).toBe('0.15');expect(r.confidence).toBe('MEDIUM');
  expect(run({request,observations:[profit,{...begin,normalized:{...begin.normalized,value:'-140'}},end]}).reason).toContain('NONPOSITIVE');
  expect(()=>run({request:{...request,operands:[{...request.operands[0],adjustment:null},request.operands[1]]},observations:[profit,begin,end]})).toThrow();
@@ -75,9 +75,9 @@ it('reviewed action factor retains per-share units and cannot masquerade as mone
  const first={...derivationFact('cfo'),registryHash:registry.registryHash,itemId:'TEST_EPS',measurementSemantic:'PER_SHARE' as const,raw:{...f.observations[0].raw,unit:'CURRENCY_PER_SHARE',multiplier:'1'},normalized:{value:'100',unit:'CURRENCY_PER_SHARE' as const,currency:'VND'}};
  const observations=[first,{...f.observations[1],registryHash:registry.registryHash}];
  const crosswalk={...f.crosswalk,registryHash:registry.registryHash,routes:[{sector:'TECHNOLOGY' as const,metric:'FCF' as const,operands:[{role:'CFO',itemId:'TEST_EPS',operation:'ACTION_ADJUSTED' as const},{role:'issuer_capex',itemId:'CAPEX',operation:'REPORTED' as const}]}]};
- const request={...f.request,operands:[{...f.request.operands[0],operation:'ACTION_ADJUSTED' as const,adjustment:{id:'test-split',reviewerReference:'fixture-reviewer',reviewedAt:f.recordedAt,evidenceReference:'fixture-reviewed-split',rationale:'Reviewed two-for-one split, factor one half',amount:'0.5',confidence:'LOW' as const}},f.request.operands[1]]};
+ const request={...f.request,operands:[{...f.request.operands[0],operation:'ACTION_ADJUSTED' as const,adjustment:{id:'test-split',reviewerReference:'fixture-reviewer',reviewedAt:f.recordedAt,evidenceReference:'fixture-reviewed-split',rationale:'Reviewed two-for-one split, factor one half',amount:'0.5',unit:'RATIO' as const,currency:null,adjustmentKind:'CORPORATE_ACTION_FACTOR' as const,confidence:'LOW' as const}},f.request.operands[1]]};
  const result=run({registry,crosswalk,crosswalkHash:normalizationHash(crosswalk),request,observations});
- expect(result.operands[0]).toMatchObject({value:'50',unit:'CURRENCY_PER_SHARE',confidence:'LOW'});expect(result.value).toBeNull();expect(result.availability.availableAt).toBeNull();
+ expect(result.operands[0]).toMatchObject({value:'50',unit:'CURRENCY_PER_SHARE',currency:'VND',confidence:'LOW'});expect(result.request.operands[0].adjustment).toMatchObject({amount:'0.5',unit:'RATIO',currency:null,adjustmentKind:'CORPORATE_ACTION_FACTOR'});expect(result.value).toBeNull();expect(result.availability.availableAt).toBeNull();
 });
 it('rejects altered release hashes, future release/review clocks and missing/duplicate pinned inputs',()=>{
  const f=derivationFixture();expect(()=>run({crosswalkHash:'0'.repeat(64)})).toThrow();
@@ -91,6 +91,6 @@ it('rejects altered release hashes, future release/review clocks and missing/dup
 });
 it('future human review cannot bypass chronology through an unresolved route',()=>{
  const f=derivationFixture();
- const request={...f.request,metric:'ROE' as const,operands:[{...f.request.operands[0],operation:'HUMAN_NORMALIZED' as const,adjustment:{id:'future-review',reviewerReference:'fixture-reviewer',reviewedAt:'2030-01-01T00:00:00.000Z',evidenceReference:'fixture',rationale:'Future review must be rejected',amount:'0',confidence:'HIGH' as const}},f.request.operands[1]]};
+ const request={...f.request,metric:'ROE' as const,operands:[{...f.request.operands[0],operation:'HUMAN_NORMALIZED' as const,adjustment:{id:'future-review',reviewerReference:'fixture-reviewer',reviewedAt:'2030-01-01T00:00:00.000Z',evidenceReference:'fixture',rationale:'Future review must be rejected',amount:'0',unit:'CURRENCY' as const,currency:'VND',adjustmentKind:'OTHER_REVIEWED' as const,confidence:'HIGH' as const}},f.request.operands[1]]};
  expect(()=>run({request})).toThrow();
 });

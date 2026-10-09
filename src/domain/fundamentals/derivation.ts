@@ -1,4 +1,4 @@
-import type { FundamentalObservation, RegistryRelease } from './contracts';
+import type { FundamentalObservation, RegistryRelease, FinancialUnit } from './contracts';
 import { requireFundamental, fundamentalId, fundamentalHash, validateFundamentalObservation } from './validation';
 import { calculateMetrics, METRICS } from '@/domain/scoring/metrics';
 import type { MetricId, MetricOperand } from '@/domain/scoring/metrics';
@@ -17,9 +17,14 @@ export interface DerivationCrosswalk {
     readonly operands:readonly {readonly role:string;readonly itemId:string|null;readonly operation:OperandOperation}[]}[];
 }
 export type OperandOperation='REPORTED'|'AVERAGE_ENDPOINTS'|'TTM_QUARTERS'|'QUARTER_FROM_YTD'|'HUMAN_NORMALIZED'|'ACTION_ADJUSTED';
+/** Audit classification only; the reviewed signed amount controls arithmetic. */
+export const HUMAN_ADJUSTMENT_KINDS = ['NON_RECURRING_GAIN','NON_RECURRING_LOSS','ACCOUNTING_RECLASSIFICATION','OTHER_REVIEWED'] as const;
+export type HumanAdjustmentKind = typeof HUMAN_ADJUSTMENT_KINDS[number];
 export interface ReviewedAdjustment {
   readonly id:string;readonly reviewerReference:string;readonly reviewedAt:string;readonly evidenceReference:string;
   readonly rationale:string;readonly amount:string;readonly confidence:'HIGH'|'MEDIUM'|'LOW';
+  readonly unit:FinancialUnit;readonly currency:string|null;
+  readonly adjustmentKind:HumanAdjustmentKind|'CORPORATE_ACTION_FACTOR';
 }
 export interface DerivationRequest {
   readonly id:string;readonly scope:FundamentalObservation['scope'];readonly securityId:string;readonly sector:Sector;
@@ -68,7 +73,17 @@ export function validateDerivationRequest(raw:DerivationRequest):DerivationReque
   requireFundamental(Array.isArray(x.operands)&&x.operands.length===2&&new Set(x.operands.map(o=>o.id)).size===2,'DERIVATION_TWO_ORDERED_OPERANDS');
   for(const o of x.operands){exact(o,'id operation observationIds adjustment');fundamentalId(o.id);requireFundamental(operations.includes(o.operation)&&Array.isArray(o.observationIds)&&o.observationIds.length>0&&o.observationIds.length<=4&&new Set(o.observationIds).size===o.observationIds.length,'DERIVATION_INPUTS');o.observationIds.forEach(fundamentalId);
     requireFundamental((o.operation==='HUMAN_NORMALIZED'||o.operation==='ACTION_ADJUSTED')===(o.adjustment!==null),'REVIEWED_ADJUSTMENT_REQUIRED');
-    if(o.adjustment){const a=o.adjustment;exact(a,'id reviewerReference reviewedAt evidenceReference rationale amount confidence');fundamentalId(a.id);[a.reviewerReference,a.evidenceReference,a.rationale].forEach(reference);instant(a.reviewedAt);requireFundamental(decimal(a.amount).toString()===a.amount&&['HIGH','MEDIUM','LOW'].includes(a.confidence),'REVIEWED_ADJUSTMENT_METADATA');if(o.operation==='ACTION_ADJUSTED')requireFundamental(decimal(a.amount).positive,'ACTION_FACTOR_POSITIVE');}
+    if(o.adjustment){
+      const a=o.adjustment;
+      exact(a,'id reviewerReference reviewedAt evidenceReference rationale amount confidence unit currency adjustmentKind');
+      fundamentalId(a.id);[a.reviewerReference,a.evidenceReference,a.rationale].forEach(reference);instant(a.reviewedAt);
+      requireFundamental(decimal(a.amount).toString()===a.amount&&['HIGH','MEDIUM','LOW'].includes(a.confidence),'REVIEWED_ADJUSTMENT_METADATA');
+      requireFundamental(['CURRENCY','CURRENCY_PER_SHARE','SHARES','RATIO'].includes(a.unit),'ADJUSTMENT_CANONICAL_UNIT_REQUIRED');
+      const monetary=a.unit==='CURRENCY'||a.unit==='CURRENCY_PER_SHARE';
+      requireFundamental(monetary ? typeof a.currency==='string'&&/^[A-Z]{3}$/.test(a.currency) : a.currency===null,'ADJUSTMENT_CURRENCY_REQUIRED');
+      if(o.operation==='HUMAN_NORMALIZED') requireFundamental(HUMAN_ADJUSTMENT_KINDS.includes(a.adjustmentKind as HumanAdjustmentKind),'HUMAN_ADJUSTMENT_CLASSIFICATION_REQUIRED');
+      else requireFundamental(a.adjustmentKind==='CORPORATE_ACTION_FACTOR'&&a.unit==='RATIO'&&a.currency===null&&decimal(a.amount).positive,'DIMENSIONLESS_POSITIVE_ACTION_FACTOR_REQUIRED');
+    }
   }
   return deepFreeze(x);
 }
@@ -114,6 +129,7 @@ export function deriveFundamentals(input:{request:DerivationRequest;recordedAt:s
       } else {
         const a=spec.adjustment!;
         if(!sameWindow)reason='ADJUSTMENT_PERIOD_MISMATCH';
+        else if(spec.operation==='HUMAN_NORMALIZED'&&(first.normalized.unit!=='CURRENCY'||a.unit!==first.normalized.unit||a.currency!==first.normalized.currency))reason='MONETARY_ADJUSTMENT_DIMENSION_MISMATCH';
         else if(spec.operation==='ACTION_ADJUSTED'&&first.normalized.unit!=='CURRENCY_PER_SHARE')reason='ACTION_REQUIRES_PER_SHARE_INPUT';
         else value=(spec.operation==='ACTION_ADJUSTED'?amounts[0].mul(decimal(a.amount)):amounts[0].add(decimal(a.amount))).toString();
       }
