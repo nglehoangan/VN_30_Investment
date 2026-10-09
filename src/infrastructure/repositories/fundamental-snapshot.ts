@@ -2,7 +2,11 @@ import type { PrismaClient, Prisma } from '@/infrastructure/db/generated/client'
 import type { FundamentalSnapshotRepository } from '@/ports/fundamentals';
 import type { RegistryRelease,RegistryApprovalBinding } from '@/domain/fundamentals/contracts';
 import type { AvailabilityPolicy,AvailabilityAssessment } from '@/domain/fundamentals/availability';
-import { assessAvailability,validateAvailabilityPolicy } from '@/domain/fundamentals/availability';
+import { assessAvailability,validateAvailabilityPolicy,isEvidenceAssessment } from '@/domain/fundamentals/availability';
+import type { ProviderReceiptEvidenceBinding } from '@/domain/fundamentals/availability-evidence';
+import { bindProviderReceipt,validateProviderReceiptEvidence } from '@/domain/fundamentals/availability-evidence';
+import { deepFreeze } from '@/domain/portfolio/transaction';
+import type { FundamentalObservation } from '@/domain/fundamentals/contracts';
 import type { SnapshotRequest,FundamentalSnapshot } from '@/domain/fundamentals/snapshot';
 import { buildFundamentalSnapshot,validateSnapshotRequest,canonicalJson } from '@/domain/fundamentals/snapshot';
 import { requireFundamental,fundamentalId } from '@/domain/fundamentals/validation';
@@ -16,7 +20,22 @@ import { DataIntegrityError } from '@/shared/errors';
 export interface AvailabilityApprovalBinding {readonly policyHash:string;readonly approvalReference:string;readonly methodologyId:string}
 /** Trusted composition supplies external approval bindings; request JSON cannot approve its own policy. */
 export class PrismaFundamentalSnapshot implements FundamentalSnapshotRepository {
-  constructor(private readonly client:PrismaClient,private readonly registry:RegistryRelease=loadCanonicalRegistry(),private readonly registryBinding:RegistryApprovalBinding|null=null,private readonly policyBinding:AvailabilityApprovalBinding|null=null){}
+  private readonly providerEvidenceBindings:readonly ProviderReceiptEvidenceBinding[];
+  constructor(private readonly client:PrismaClient,private readonly registry:RegistryRelease=loadCanonicalRegistry(),private readonly registryBinding:RegistryApprovalBinding|null=null,private readonly policyBinding:AvailabilityApprovalBinding|null=null,providerEvidenceBindings:readonly ProviderReceiptEvidenceBinding[]=[]){
+    this.providerEvidenceBindings=deepFreeze(providerEvidenceBindings.map(validateProviderReceiptEvidence));
+    requireFundamental(new Set(this.providerEvidenceBindings.map(b=>b.receipt.observationHash)).size===this.providerEvidenceBindings.length,'UNIQUE_PROVIDER_EVIDENCE_BINDINGS');
+  }
+  private async providerEvidence(tx:Prisma.TransactionClient,raw:ProviderReceiptEvidenceBinding,o:FundamentalObservation,assessedAt:string){
+    const b=bindProviderReceipt(raw,o,assessedAt,snapshotHash);
+    requireFundamental(this.providerEvidenceBindings.some(configured=>canonicalJson(configured)===canonicalJson(b)),'PROVIDER_EVIDENCE_TRUSTED_COMPOSITION_REQUIRED');
+    const source=await new PrismaFundamentals(tx,this.registry,this.registryBinding).findSource(o.sourceVersionId);
+    requireFundamental(source&&source.provider===b.authority.provider&&snapshotHash(source)===b.authority.sourceHash&&source.recordedAt<=b.receipt.knownAt,'PROVIDER_SOURCE_AUTHORITY_BINDING');
+    if(o.scope==='FORMAL'){
+      const method=await new PrismaMethodologyRegistry(tx).findById(methodologyId(b.authority.methodologyIdentity));
+      requireFundamental(method&&method.governanceStatus==='APPROVED'&&method.intendedUse==='PRODUCTION'&&method.approvalReference===b.authority.approvalReference&&method.configurationReference==='provider-receipt-authority-sha256:'+snapshotHash(b.authority)&&method.recordedAt<=b.authority.recordedAt&&method.effectiveDate<=b.authority.recordedAt.slice(0,10),'PROVIDER_AUTHORITY_EXTERNAL_METHOD_BINDING');
+    }
+    return b;
+  }
   private async governance(tx:Prisma.TransactionClient,scope:string,policy:AvailabilityPolicy,knownAt:string){
     if(scope!=='FORMAL')return;
     const registryMethod=await new PrismaMethodologyRegistry(tx).findById(methodologyId(this.registry.manifest.methodologyIdentity));
@@ -30,7 +49,9 @@ export class PrismaFundamentalSnapshot implements FundamentalSnapshotRepository 
     try{return await this.client.$transaction(async tx=>{
       const facts=new PrismaFundamentals(tx,this.registry,this.registryBinding),o=await facts.findObservation(observationId);
       requireFundamental(o,'AVAILABILITY_FACT_NOT_FOUND');await this.governance(tx,o!.scope,policy,assessedAt);
-      const a=assessAvailability({id,observation:o!,registry:this.registry,policy,assessedAt,hash:snapshotHash});
+      const selected=policy.algorithm==='operational-evidence-v2'?this.providerEvidenceBindings.find(b=>b.receipt.observationHash===snapshotHash(o)):undefined;
+      const providerEvidenceBinding=selected?await this.providerEvidence(tx,selected,o!,assessedAt):null;
+      const a=assessAvailability({id,observation:o!,registry:this.registry,policy,assessedAt,providerEvidenceBinding,hash:snapshotHash});
       await tx.fundamentalAvailabilityAssessment.create({data:{id:a.id,observationId:a.observationId,policyVersion:a.policy.version,availableAt:a.availableAt,assessedAt:a.assessedAt,body:canonicalJson(a),bodyHash:snapshotHash(a)}});return a;
     });}catch(error){throw new DataIntegrityError({cause:error});}
   }
@@ -49,8 +70,9 @@ export class PrismaFundamentalSnapshot implements FundamentalSnapshotRepository 
       const a=JSON.parse(row!.body) as AvailabilityAssessment;
       requireFundamental(a.id===row!.id&&a.observationId===row!.observationId&&pin.observationId===row!.observationId&&a.policy.version===row!.policyVersion&&a.availableAt===row!.availableAt&&a.assessedAt===row!.assessedAt,'ASSESSMENT_INDEX_BINDING');return a;
     }));
+    const providerEvidenceBindings=await Promise.all(assessments.flatMap(a=>isEvidenceAssessment(a)&&a.providerEvidenceBinding?[{a,b:a.providerEvidenceBinding}]:[]).map(async ({a,b})=>{const o=applicable.find(o=>o.id===a.observationId);requireFundamental(o,'PROVIDER_EVIDENCE_OBSERVATION_NOT_FOUND');return this.providerEvidence(tx,b,o!,a.assessedAt);}));
     const derived=await Promise.all(r.derivedIds.map(async id=>{const d=await new PrismaFundamentalDerivation(tx,this.registry,this.registryBinding).find(id);requireFundamental(d,'SNAPSHOT_DERIVATION_NOT_FOUND');return d!;}));
-    const snapshot=buildFundamentalSnapshot(r,{registry:this.registry,observations:applicable,assessments,derived},snapshotHash);
+    const snapshot=buildFundamentalSnapshot(r,{registry:this.registry,observations:applicable,assessments,derived,providerEvidenceBindings},snapshotHash);
     const provenance=await Promise.all(applicable.map(async o=>{
       const row=await tx.fundamentalObservation.findUniqueOrThrow({where:{id:o.id}}),capture=await facts.findCapture(o.rawCaptureId);
       requireFundamental(capture,'SNAPSHOT_RAW_NOT_FOUND');

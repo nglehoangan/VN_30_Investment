@@ -87,3 +87,75 @@ All financial and approval fixtures are synthetic. The July PIT fixtures use a s
 Domain: `availability.ts`, `snapshot.ts`. Application: `build-snapshot.ts`. Port: the new snapshot repository interface. Infrastructure: `snapshot-hash.ts`, `fundamental-snapshot.ts`, and transaction-client read support in `fundamental-derivation.ts`. Storage: Prisma relationships/models and the one new additive migration. Tests: shared snapshot fixtures, two unit suites, snapshot persistence and populated migration suites, and earlier migration inventories. This report is the review handoff.
 
 No source fetch/cron/UI composition, scoring bridge, per-ticker scoring readiness or independent DI acceptance is added. Existing bank-component/insurance/securities governance gaps remain unresolved; this slice cannot make them ready by supplying a snapshot. Policy approval and supported date-only timezone governance remain external. Stop here for Slice 05 review before Slice 06.
+
+## Slice 05 remediation — external conditional review, 2026-10-09
+
+### Review baseline and scope
+
+The external review of HEAD `86a2755cbca1b4aa502ee1cfc72eb8fba936e0d5` returned **CONDITIONAL APPROVAL: Critical 0 / Major 1 / Minor 2**. The approved Slice 04 baseline remains `ded76d9d45da0837ab426a24442a4e6ff2eb4cb5`. HEAD matched the reviewed commit and the remediation started from a clean tree. The original implementation and verification history above is retained; its unconditional v1 next-midnight interpretation is historical, not the new v2 behavior.
+
+The audit covered AGENTS.md, DESIGN_REVIEW.md, Slice 03–05 reports, availability/snapshot contracts and hashing, publication/provider/revision validation, immutable repositories, migrations and PIT tests. The installed Next route guide was read; there are no Next route changes. This is Slice 05 remediation only. No commit or push is authorized or performed.
+
+Major: conservative DATE_ONLY fallback must not erase stronger approved same-day public-receivable evidence. Minor #1 (clarified by the user): evidence authority must be machine-readable and distinguish trusted filing feeds from generic scraper/cache receipts. Minor #2: correctionKnownAt must mean actual system knowledge of revision semantics, not public disclosure. All three are addressed together under a separately versioned policy; no source-ranking framework is introduced.
+
+### Governed evidence semantics and availability
+
+New `operational-evidence-v2` policy explicitly declares `dateOnlyEvidenceClasses`. Its only permitted public-strengthening class is `TRUSTED_PROVIDER_RECEIPT`; an empty list retains the fallback. LOCAL_RETRIEVAL, LOCAL_INGESTION and CORRECTION_KNOWLEDGE cannot be authorized as public disclosure substitutes. Assessment JSON records each evidence class, timestamp, evidence reference, authority hash, proof knownAt and public-boundary role. Other classes are ISSUER_PUBLICATION_TIMESTAMP and UNTRUSTED_PROVIDER_RECEIPT.
+
+VERIFIED DATE_ONLY keeps publishedAt null. Approved UTC/Vietnam policy yields next local midnight as `publicFallbackBoundary`. With no qualifying proof, `publicBoundary` equals that fallback. A governed, VERIFIED, exactly bound receipt of a PUBLICLY_RECEIVABLE_DOCUMENT within the publication day may establish `evidenceBackedBoundary` before the fallback when policy permits it. The selected boundary and `boundaryBasis` are explicit. Mere providerReceivedAt, local retrieval or ingestion never grants this authority.
+
+For the requested Vietnam example, July 25 fallback is `2026-07-25T17:00:00.000Z`; trusted public receipt is 15:00Z and becomes publicBoundary; retrieval is 16:00Z and ingestion is 16:01Z. Final availableAt is **16:01Z**, never 15:00Z. The maximum also includes provider receipt, correction knowledge, authority recording and verified receipt-proof knownAt. A proof learned at 16:02Z cannot yield 16:01Z availability. Neither assessment execution time nor later build time establishes knowledge. Before-start-of-local-day provider/local evidence is retained and marked INVALID, including v2 policies that cannot authorize a boundary; it is never silently removed.
+
+Provider authority pins source version and canonical source hash, provider, authority version/reference, APPROVED governance/approval reference, methodology identity, public-receivable semantics and authority recording time. Receipt proof pins the full canonical immutable observation hash, exact receivedAt and receipt evidence reference, VERIFIED status and actual proof knownAt. The repository verifies the stored source/provider/hash and source knowledge chronology. Trusted composition supplies these bindings through repository construction; request JSON has no trust field and cannot inject one. A stored self-declared trusted assessment, even with a recomputed transport hash, cannot pass replay without the independently configured binding.
+
+FORMAL also requires the existing exact external registry and availability-policy approval bindings. Provider authority must independently match an APPROVED/PRODUCTION methodology record, exact approval reference and `configurationReference = provider-receipt-authority-sha256:<canonicalAuthorityHash>`, with recording/effective chronology. No real approval is created. All approved metadata used by tests exists only in isolated synthetic fixtures/databases.
+
+VERIFIED TIMESTAMP retains issuer/publicBoundary equal to exact publishedAt and respects subsequent system/proof floors. Exact chronology is unchanged. UNKNOWN publication remains UNKNOWN even with a trusted provider proof; v2 deliberately supplies no provider-only UNKNOWN override. Report signing/fiscal dates, corrections and local clocks remain prohibited generic substitutes.
+
+correctionKnownAt is documented as actual system knowledge of the explicit revision semantics, supported by revisionEvidenceReference. Its evidence class never establishes publicBoundary; it participates only in the operational maximum. Existing immutable-observation/revision chronology is retained: correction knowledge cannot follow that corrected observation's ingestion, and must respect predecessor ingestion. Tests exercise correction knowledge before and after local retrieval, but at/before corrected ingestion. Knowledge obtained after ingestion requires a new revision, not a rewritten historical observation.
+
+### Historical selection, persistence and identity
+
+AS_KNOWN still requires availableAt <= systemKnownAt **and** availableAt <= fundamentalCutoff. Later builtAt does not expand that set. Explicit chain/fork/conflict rules and authoritative enumeration are unchanged. AS_REVISED still requires explicit revisionCutoff and diagnosticOnly=true; revised/proof knowledge does not leak into AS_KNOWN. Derived PIT inherits the maximum eligible constituent knowledge: a delayed trusted proof on one CFO/CAPEX operand excludes FCF until that boundary. No formula or investment rule changes.
+
+V2 uses `fundamental-snapshot-content-v2`. Canonical identity pins policy/hash, authority classification/full governed authority, fallback and evidence-backed boundaries, chosen basis, final availability, proof knowledge and evidence lineage. Policy exclusion of trusted receipts or a governed authority version change alters contentHash. Physical observation/capture/assessment IDs and build clocks remain run provenance; local evidence storage references and the binding's physical observation transport hash are excluded from semantic content, while exact immutable assessment/run replay still checks them. No caller-defined hash exclusion is added.
+
+V1 `operational-max-v1` assessments and `fundamental-snapshot-content-v1` retain their exact historical shapes and hashes. A static golden assessment and full snapshot were generated with availability.ts/snapshot.ts extracted from reviewed commit `86a2755`; the temporary legacy generator was deleted. The checked-in golden regression matches the new code's v1 replay exactly. Persistence tests also prove that configuring a trusted binding later does not upgrade an already pinned v2 fallback or a v1 artifact. A new assessment/run must explicitly pin changed evidence semantics. Trusted v2 runs require their original governed bindings to reopen; a different/missing binding fails closed rather than reinterpreting old content.
+
+**No schema or migration changes.** New semantics fit immutable assessment/manifest JSON. Existing table guards, restrictive FKs, transactional sealing and populated Slice 01–05 migrations remain tested. No historical trust backfill or assessment mutation is performed. Foundation observations and derivation artifacts retain their original null/UNKNOWN availability.
+
+### Verification of the final tree
+
+Runtime remains Node 22.23.2 / pnpm 10.34.5. Integration tests create their own temporary databases and migrations with --no-env-file; Prisma validation uses an explicit harmless /private/tmp URL. No personal .env.local or production/private database is read or migrated.
+
+Added **16 tests** in three suites: ten evidence/PIT/hash/derived unit tests covering A–N, one reviewed-v1 golden test, and five persistence/governance/adversarial integration tests. Synthetic fixture and static golden bytes accompany them. Coverage includes fallback, untrusted/local receipts, invalid chronology, immediately-before/exact operational cutoffs, later proof knowledge, request self-trust rejection, exact source/provider/reference/hash binding, independent FORMAL authority, immutable pinned replay, correction distinction, TIMESTAMP/UNKNOWN, AS_KNOWN/AS_REVISED and deterministic content identity.
+
+Final verification release criterion and results:
+
+- Focused fundamental Slice 01–05 / registry / architecture regression: **23 files / 161 tests passed**.
+- Existing scoring/golden/marginal/decision/registry regression: **12 files / 345 tests passed**.
+- Complete unit/integration/architecture regression on the frozen final tree: **66 files / 904 tests passed**.
+- Token-session regression: **3 tests passed**.
+- TypeScript noEmit, ESLint zero warnings, architecture boundaries (**133 modules**), Prisma schema validation, tracked/untracked whitespace checks and git diff --check passed. No Prisma generation is needed because schema/generated client contracts are unchanged.
+- Populated snapshot/derivation/normalization/foundation migration regressions are included in focused and complete runs. Existing rows/DDL/immutable guards/FKs remain covered.
+
+All implementation, tests, fixture bytes and this appendix are finalized before the final complete regression. A deterministic SHA-256 inventory of tracked plus new source/test/schema/scripts/relevant reports/configuration is captured before the run and compared afterwards; no covered file changes during verification. Final command output and inventory are temporary verification artifacts outside the repository. This report is delivered only after these release checks succeed; failed attempts do not count as passes. An intermediate whitespace check found one extra EOF blank line; it was corrected before freezing the final tree.
+
+### Four-role review and remaining boundaries
+
+These are serial implementation self-reviews, not independent owner acceptance or external policy/DI approval. Scores use a 10-point scale for this remediation's implementation and evidence coverage.
+
+| Role | Score | Assessment |
+| --- | --- | --- |
+| CIO | 9/10 | Same-day approved public evidence is preserved without backdating actual system knowledge; no decision/scoring logic added. |
+| Data Architect | 9/10 | V2 is explicitly versioned/content-addressed; old artifact golden replay and pinned fallback remain stable; trusted composition is separate from request/run identity. |
+| Financial Data Engineer | 9/10 | DATE_ONLY is not fabricated time; public feed authority is explicit; correction/local knowledge stays distinct; exact/unknown publication remains conservative. |
+| Risk/QA | 9/10 | Fail-closed chronology and source/proof/governance replay are tested; later proof and revised knowledge cannot broaden AS_KNOWN; exact-final-tree regression is required and passed. |
+
+Internal remediation review: **Critical 0 / Major 0 / Minor 0 remaining identified findings**. This does not replace the historical external CONDITIONAL APPROVAL or confer external acceptance. Recommendation: **READY FOR SLICE 05 FINAL REVIEW**.
+
+Real provider/public-receivable entitlement and authority proof, registry/mapping/crosswalk/methodology/timezone/policy approval, and operational source validation remain external responsibilities. Timezone support is deliberately limited to UTC and Asia/Ho_Chi_Minh. UNKNOWN provider-only substitution is not authorized. Authority revocation/ranking and source fetch are outside this slice. Existing bank/insurance/securities governance gaps remain unresolved. Synthetic tests demonstrate the contract, not real financial evidence or production readiness.
+
+No DI gate is promoted to PASS. DI11 implementation improved; operational validation is not certified. scoringReadiness stays DEFERRED_SLICE_06. No Slice 06, scoring bridge/readiness engine, VN30 ranking, Top 10, valuation, portfolio decision, DCA recommendation, UI, cron or source fetch; no production DB, self-approval, commit or push. Stop for Slice 05 final review.
+
+Remediation files: domain availability.ts, availability-evidence.ts, contracts.ts and snapshot.ts; infrastructure fundamental-snapshot.ts; tests/fixtures/availability-evidence.ts and reviewed-slice5-v1-golden.json; tests/unit/fundamentals-availability-evidence.test.ts and fundamentals-availability-legacy.test.ts; tests/integration/fundamentals-availability-evidence.test.ts; this report.

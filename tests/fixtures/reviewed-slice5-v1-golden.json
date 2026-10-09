@@ -1,0 +1,115 @@
+{
+  "reviewedCommit": "86a2755cbca1b4aa502ee1cfc72eb8fba936e0d5",
+  "assessment": {
+    "id": "assessment-legacy-golden",
+    "observationId": "observation-legacy-golden",
+    "observationHash": "2fa4d41420ef0fcb05c9b49418cda9f57ad5ff4aeddd6bb9505e1006047edc53",
+    "mode": "AS_KNOWN",
+    "policy": {
+      "version": "synthetic-operational-v1",
+      "algorithm": "operational-max-v1",
+      "governanceStatus": "APPROVED",
+      "approvalReference": "synthetic-approved-v1",
+      "recordedAt": "2026-01-01T00:00:00.000Z",
+      "dateOnlyZones": [
+        "Asia/Ho_Chi_Minh",
+        "UTC"
+      ]
+    },
+    "policyHash": "971c3370a6503037760a8509a7c2f45a81a9f5161e3f349369b91096ef3e6298",
+    "assessedAt": "2026-07-27T00:00:00.000Z",
+    "publicBoundary": "2026-07-25T17:00:00.000Z",
+    "availableAt": "2026-07-26T09:01:00.000Z",
+    "status": "VERIFIED",
+    "finding": null,
+    "provenance": [
+      "fixture-provider-receipt",
+      "fixture-supplied-scale-transformation",
+      "synthetic-date-disclosure"
+    ]
+  },
+  "snapshot": {
+    "request": {
+      "runId": "run-legacy-golden",
+      "scope": "SYNTHETIC_TEST",
+      "mode": "AS_KNOWN",
+      "decisionAsOf": "2026-07-27T00:00:00.000Z",
+      "systemKnownAt": "2026-07-27T00:00:00.000Z",
+      "marketCutoff": "2026-07-27T00:00:00.000Z",
+      "fundamentalCutoff": "2026-07-27T00:00:00.000Z",
+      "revisionCutoff": null,
+      "policy": {
+        "version": "synthetic-operational-v1",
+        "algorithm": "operational-max-v1",
+        "governanceStatus": "APPROVED",
+        "approvalReference": "synthetic-approved-v1",
+        "recordedAt": "2026-01-01T00:00:00.000Z",
+        "dateOnlyZones": [
+          "UTC",
+          "Asia/Ho_Chi_Minh"
+        ]
+      },
+      "requirementsVersion": "synthetic-requirements-v1",
+      "requirements": [
+        {
+          "securityId": "test-issuer",
+          "itemId": "NET_INCOME",
+          "reportingScope": "CONSOLIDATED",
+          "periodStart": "2026-04-01",
+          "periodEnd": "2026-06-30",
+          "maxAgeDays": 180
+        }
+      ],
+      "references": [
+        {
+          "kind": "UNIVERSE",
+          "version": "synthetic-universe-v1",
+          "knownAt": "2026-01-01T00:00:00.000Z",
+          "content": [
+            "test-issuer"
+          ]
+        },
+        {
+          "kind": "SECTOR",
+          "version": "synthetic-sector-v1",
+          "knownAt": "2026-01-01T00:00:00.000Z",
+          "content": [
+            "test-issuer:TECHNOLOGY"
+          ]
+        },
+        {
+          "kind": "MARKET",
+          "version": "synthetic-market-v1",
+          "knownAt": "2026-01-01T00:00:00.000Z",
+          "content": [
+            "synthetic-market-no-real-prices"
+          ]
+        }
+      ],
+      "assessmentPins": [
+        {
+          "observationId": "observation-legacy-golden",
+          "assessmentId": "assessment-legacy-golden"
+        }
+      ],
+      "derivedIds": [],
+      "builtAt": "2026-07-28T00:00:00.000Z",
+      "softwareBuild": "synthetic-build",
+      "operatorReference": "synthetic-operator",
+      "validationRunReference": "synthetic-validation",
+      "reviewContext": "synthetic-review"
+    },
+    "contentHash": "0db33f0426bdd36479689787248ab14c055a168eedf3763b8c0033dbbfed7a2e",
+    "manifest": "{\"blockers\":[],\"contract\":\"fundamental-snapshot-content-v1\",\"decisionAsOf\":\"2026-07-27T00:00:00.000Z\",\"derived\":[],\"diagnosticOnly\":false,\"exclusions\":[],\"facts\":[{\"availability\":{\"availableAt\":\"2026-07-26T09:01:00.000Z\",\"finding\":null,\"mode\":\"AS_KNOWN\",\"policyHash\":\"971c3370a6503037760a8509a7c2f45a81a9f5161e3f349369b91096ef3e6298\",\"provenance\":[\"fixture-provider-receipt\",\"fixture-supplied-scale-transformation\",\"synthetic-date-disclosure\"],\"publicBoundary\":\"2026-07-25T17:00:00.000Z\",\"status\":\"VERIFIED\"},\"fact\":{\"accountingBasis\":\"reported-synthetic\",\"ancestorReferences\":[],\"applicability\":\"APPLICABLE\",\"applicabilityReference\":null,\"auditStatus\":\"UNAUDITED\",\"contract\":\"canonical-fact-semantic-v1\",\"correctionKnownAt\":null,\"dataPresence\":\"AVAILABLE\",\"fiscalCalendarReference\":\"fixture-calendar-year\",\"fiscalQuarter\":2,\"fiscalYear\":2026,\"fxLineageReference\":null,\"identifierReference\":\"synthetic-identifier-interval\",\"ingestedAt\":\"2026-07-26T09:01:00.000Z\",\"itemDefinitionVersion\":\"1.0.0\",\"itemId\":\"NET_INCOME\",\"mappingVersion\":\"synthetic-map-v1\",\"measurementSemantic\":\"FLOW\",\"normalized\":{\"currency\":\"VND\",\"unit\":\"CURRENCY\",\"value\":\"15000000000\"},\"periodEnd\":\"2026-06-30\",\"periodStart\":\"2026-04-01\",\"periodType\":\"QUARTER\",\"predecessorHash\":null,\"providerReceiptReference\":\"fixture-provider-receipt\",\"providerReceivedAt\":\"2026-07-25T10:00:00.000Z\",\"publication\":{\"evidenceReference\":\"synthetic-date-disclosure\",\"publicationDate\":\"2026-07-25\",\"publicationPrecision\":\"DATE_ONLY\",\"publicationStatus\":\"VERIFIED\",\"publishedAt\":null,\"timezone\":\"Asia/Ho_Chi_Minh\"},\"quality\":\"VALID\",\"raw\":{\"currency\":\"VND\",\"fieldId\":\"netProfitAfterTax\",\"fieldLocator\":\"$.netProfitAfterTax\",\"label\":\"Reported total NPAT\",\"lexicalValue\":\"15000\",\"multiplier\":\"1000000\",\"unit\":\"MILLION_CURRENCY\"},\"recordVersion\":\"1\",\"registryHash\":\"bb5add12edeb7cc9d6de006b0d2b13e6dfcee1d7d5759454d1a9bef1f72232d7\",\"registryVersion\":\"1.0.0\",\"reportDate\":\"2026-07-22\",\"reportDateReference\":\"fixture-signing-reference\",\"reportingScope\":\"CONSOLIDATED\",\"retrievedAt\":\"2026-07-26T09:00:00.000Z\",\"revisionEvidenceReference\":null,\"revisionKind\":\"ORIGINAL\",\"revisionReason\":null,\"scope\":\"SYNTHETIC_TEST\",\"scopeFallback\":null,\"sector\":\"TECHNOLOGY\",\"securityId\":\"test-issuer\",\"segment\":null,\"sourceVersionId\":\"test-source\",\"statementType\":\"INCOME\",\"ticker\":\"TEST\",\"transformationReferences\":[\"fixture-supplied-scale-transformation\"]},\"fingerprint\":\"683ddd272bd7270a6254338903fc4effce376fa2c7b807abbbe921f17ce57ee2\"}],\"findings\":[],\"fundamentalCutoff\":\"2026-07-27T00:00:00.000Z\",\"marketCutoff\":\"2026-07-27T00:00:00.000Z\",\"mode\":\"AS_KNOWN\",\"policy\":{\"algorithm\":\"operational-max-v1\",\"approvalReference\":\"synthetic-approved-v1\",\"dateOnlyZones\":[\"Asia/Ho_Chi_Minh\",\"UTC\"],\"governanceStatus\":\"APPROVED\",\"recordedAt\":\"2026-01-01T00:00:00.000Z\",\"version\":\"synthetic-operational-v1\"},\"policyHash\":\"971c3370a6503037760a8509a7c2f45a81a9f5161e3f349369b91096ef3e6298\",\"references\":[{\"content\":[\"synthetic-market-no-real-prices\"],\"kind\":\"MARKET\",\"knownAt\":\"2026-01-01T00:00:00.000Z\",\"version\":\"synthetic-market-v1\"},{\"content\":[\"test-issuer\"],\"kind\":\"UNIVERSE\",\"knownAt\":\"2026-01-01T00:00:00.000Z\",\"version\":\"synthetic-universe-v1\"},{\"content\":[\"test-issuer:TECHNOLOGY\"],\"kind\":\"SECTOR\",\"knownAt\":\"2026-01-01T00:00:00.000Z\",\"version\":\"synthetic-sector-v1\"}],\"registry\":{\"manifest\":{\"approvalReference\":null,\"authorityReferences\":[\"docs/03 SCORING/METRIC_DEFINITIONS.md\",\"docs/03 SCORING/SECTOR_NORMALIZATION.md\",\"docs/01 SYSTEM/SCORING_MODEL_v1.0.md\"],\"crosswalkVersion\":\"1.0.0\",\"effectiveDate\":\"2026-01-01\",\"governanceStatus\":\"PROPOSED\",\"items\":[{\"allowedReportingScopes\":[\"CONSOLIDATED\",\"SEPARATE_STANDALONE\"],\"allowedUnits\":[\"CURRENCY\"],\"authorityReferences\":[\"docs/03 SCORING/METRIC_DEFINITIONS.md\"],\"currencyApplicability\":\"REQUIRED\",\"deprecatedFrom\":null,\"evidenceTopicMappings\":[{\"documentMetricId\":\"GQ-HIST-01\",\"requirement\":\"Comparable consolidated windows, eligible original vintage; endpoint operands require later reviewed construction.\",\"rubricId\":\"GQ-HIST\",\"topic\":\"trend\"}],\"itemDefinitionVersion\":\"1.0.0\",\"itemId\":\"REVENUE\",\"meaning\":\"Issuer-reported non-financial revenue for the stated window and scope; not bank net interest income or normalized growth.\",\"measurementSemantic\":\"FLOW\",\"methodologyIdentity\":\"fundamentals-items-v1\",\"name\":\"Reported revenue\",\"operandMappings\":[],\"sectorApplicability\":[\"REAL_ESTATE\",\"RETAIL\",\"TECHNOLOGY\",\"INDUSTRIAL\",\"MATERIALS\",\"UTILITIES\",\"ENERGY\",\"CONGLOMERATE\"],\"signConvention\":\"SIGNED\",\"statementType\":\"INCOME\",\"status\":\"ACTIVE\",\"supersededBy\":null},{\"allowedReportingScopes\":[\"CONSOLIDATED\",\"SEPARATE_STANDALONE\"],\"allowedUnits\":[\"CURRENCY\"],\"authorityReferences\":[\"docs/03 SCORING/METRIC_DEFINITIONS.md\"],\"currencyApplicability\":\"REQUIRED\",\"deprecatedFrom\":null,\"evidenceTopicMappings\":[{\"documentMetricId\":\"BQ-EQ-03\",\"requirement\":\"Comparable definition and documented cycle/one-off normalization before scoring.\",\"rubricId\":\"BQ-EQ\",\"topic\":\"margins\"}],\"itemDefinitionVersion\":\"1.0.0\",\"itemId\":\"EBIT\",\"meaning\":\"Explicitly reconciled issuer EBIT; not any operating-profit label and not automatically normalized EBIT.\",\"measurementSemantic\":\"FLOW\",\"methodologyIdentity\":\"fundamentals-items-v1\",\"name\":\"Reported EBIT\",\"operandMappings\":[],\"sectorApplicability\":[\"REAL_ESTATE\",\"RETAIL\",\"TECHNOLOGY\",\"INDUSTRIAL\",\"MATERIALS\",\"UTILITIES\",\"ENERGY\",\"CONGLOMERATE\"],\"signConvention\":\"SIGNED\",\"statementType\":\"INCOME\",\"status\":\"ACTIVE\",\"supersededBy\":null},{\"allowedReportingScopes\":[\"CONSOLIDATED\",\"SEPARATE_STANDALONE\"],\"allowedUnits\":[\"CURRENCY\"],\"authorityReferences\":[\"docs/03 SCORING/METRIC_DEFINITIONS.md\"],\"currencyApplicability\":\"REQUIRED\",\"deprecatedFrom\":null,\"evidenceTopicMappings\":[{\"documentMetricId\":\"BQ-CASH-03\",\"requirement\":\"Only reported evidence; normalization and attribution need separate lineage.\",\"rubricId\":\"BQ-CASH\",\"topic\":\"one_offs\"}],\"itemDefinitionVersion\":\"1.0.0\",\"itemId\":\"NET_INCOME\",\"meaning\":\"Reported total net profit after tax in the stated consolidation scope, including minority interests when present; not common-attributable profit.\",\"measurementSemantic\":\"FLOW\",\"methodologyIdentity\":\"fundamentals-items-v1\",\"name\":\"Reported net income\",\"operandMappings\":[],\"sectorApplicability\":[\"BANK\",\"REAL_ESTATE\",\"RETAIL\",\"TECHNOLOGY\",\"INDUSTRIAL\",\"MATERIALS\",\"UTILITIES\",\"ENERGY\",\"SECURITIES\",\"INSURANCE\",\"CONGLOMERATE\"],\"signConvention\":\"SIGNED\",\"statementType\":\"INCOME\",\"status\":\"ACTIVE\",\"supersededBy\":null},{\"allowedReportingScopes\":[\"CONSOLIDATED\",\"SEPARATE_STANDALONE\"],\"allowedUnits\":[\"CURRENCY\"],\"authorityReferences\":[\"docs/03 SCORING/METRIC_DEFINITIONS.md\"],\"currencyApplicability\":\"REQUIRED\",\"deprecatedFrom\":null,\"evidenceTopicMappings\":[{\"documentMetricId\":\"BQ-EQ-02\",\"requirement\":\"Reported fact supports review; ROE requires normalized profit and average common equity, neither inferred here.\",\"rubricId\":\"BQ-EQ\",\"topic\":\"returns\"}],\"itemDefinitionVersion\":\"1.0.0\",\"itemId\":\"NET_INCOME_ATTRIBUTABLE_COMMON\",\"meaning\":\"Reported net profit attributable to common shareholders; attribution must be evidenced, not inferred from total net income.\",\"measurementSemantic\":\"FLOW\",\"methodologyIdentity\":\"fundamentals-items-v1\",\"name\":\"Reported common-attributable net income\",\"operandMappings\":[],\"sectorApplicability\":[\"BANK\",\"REAL_ESTATE\",\"RETAIL\",\"TECHNOLOGY\",\"INDUSTRIAL\",\"MATERIALS\",\"UTILITIES\",\"ENERGY\",\"SECURITIES\",\"INSURANCE\",\"CONGLOMERATE\"],\"signConvention\":\"SIGNED\",\"statementType\":\"INCOME\",\"status\":\"ACTIVE\",\"supersededBy\":null},{\"allowedReportingScopes\":[\"CONSOLIDATED\",\"SEPARATE_STANDALONE\"],\"allowedUnits\":[\"CURRENCY\"],\"authorityReferences\":[\"docs/03 SCORING/METRIC_DEFINITIONS.md\"],\"currencyApplicability\":\"REQUIRED\",\"deprecatedFrom\":null,\"evidenceTopicMappings\":[],\"itemDefinitionVersion\":\"1.0.0\",\"itemId\":\"TOTAL_ASSETS\",\"meaning\":\"Reported total assets at the balance-sheet date and stated scope.\",\"measurementSemantic\":\"STOCK\",\"methodologyIdentity\":\"fundamentals-items-v1\",\"name\":\"Total assets\",\"operandMappings\":[],\"sectorApplicability\":[\"BANK\",\"REAL_ESTATE\",\"RETAIL\",\"TECHNOLOGY\",\"INDUSTRIAL\",\"MATERIALS\",\"UTILITIES\",\"ENERGY\",\"SECURITIES\",\"INSURANCE\",\"CONGLOMERATE\"],\"signConvention\":\"NONNEGATIVE\",\"statementType\":\"BALANCE\",\"status\":\"ACTIVE\",\"supersededBy\":null},{\"allowedReportingScopes\":[\"CONSOLIDATED\",\"SEPARATE_STANDALONE\"],\"allowedUnits\":[\"CURRENCY\"],\"authorityReferences\":[\"docs/03 SCORING/METRIC_DEFINITIONS.md\"],\"currencyApplicability\":\"REQUIRED\",\"deprecatedFrom\":null,\"evidenceTopicMappings\":[{\"documentMetricId\":\"BQ-EQ-02\",\"requirement\":\"Average common equity is a later governed derivation from comparable dated balances.\",\"rubricId\":\"BQ-EQ\",\"topic\":\"returns\"}],\"itemDefinitionVersion\":\"1.0.0\",\"itemId\":\"COMMON_EQUITY\",\"meaning\":\"Equity attributable to common shareholders excluding minority/preferred interests as applicable, not automatically total equity.\",\"measurementSemantic\":\"STOCK\",\"methodologyIdentity\":\"fundamentals-items-v1\",\"name\":\"Common equity\",\"operandMappings\":[],\"sectorApplicability\":[\"BANK\",\"REAL_ESTATE\",\"RETAIL\",\"TECHNOLOGY\",\"INDUSTRIAL\",\"MATERIALS\",\"UTILITIES\",\"ENERGY\",\"SECURITIES\",\"INSURANCE\",\"CONGLOMERATE\"],\"signConvention\":\"SIGNED\",\"statementType\":\"BALANCE\",\"status\":\"ACTIVE\",\"supersededBy\":null},{\"allowedReportingScopes\":[\"CONSOLIDATED\",\"SEPARATE_STANDALONE\"],\"allowedUnits\":[\"CURRENCY\"],\"authorityReferences\":[\"docs/03 SCORING/METRIC_DEFINITIONS.md\"],\"currencyApplicability\":\"REQUIRED\",\"deprecatedFrom\":null,\"evidenceTopicMappings\":[{\"documentMetricId\":\"BQ-CASH-01\",\"requirement\":\"Comparable multi-year cumulative CFO/normalized NPAT; bank CFO substitution prohibited.\",\"rubricId\":\"BQ-CASH\",\"topic\":\"realization\"}],\"itemDefinitionVersion\":\"1.0.0\",\"itemId\":\"CFO\",\"meaning\":\"Issuer net cash from operating activities over the stated window; unrelated to investor portfolio cash.\",\"measurementSemantic\":\"FLOW\",\"methodologyIdentity\":\"fundamentals-items-v1\",\"name\":\"Operating cash flow\",\"operandMappings\":[{\"metricId\":\"FCF\",\"operand\":\"CFO\",\"position\":0,\"requirement\":\"Compatible non-financial reporting window; capex definition and sign reconciled; no automatic scoring.\"}],\"sectorApplicability\":[\"REAL_ESTATE\",\"RETAIL\",\"TECHNOLOGY\",\"INDUSTRIAL\",\"MATERIALS\",\"UTILITIES\",\"ENERGY\",\"CONGLOMERATE\"],\"signConvention\":\"SIGNED\",\"statementType\":\"CASH_FLOW\",\"status\":\"ACTIVE\",\"supersededBy\":null},{\"allowedReportingScopes\":[\"CONSOLIDATED\",\"SEPARATE_STANDALONE\"],\"allowedUnits\":[\"CURRENCY\"],\"authorityReferences\":[\"docs/03 SCORING/METRIC_DEFINITIONS.md\"],\"currencyApplicability\":\"REQUIRED\",\"deprecatedFrom\":null,\"evidenceTopicMappings\":[{\"documentMetricId\":\"BQ-CASH-02\",\"requirement\":\"Disclose total vs maintenance capex; no inference from total investing outflow.\",\"rubricId\":\"BQ-CASH\",\"topic\":\"realization\"}],\"itemDefinitionVersion\":\"1.0.0\",\"itemId\":\"CAPEX\",\"meaning\":\"Positive issuer expenditure required to sustain/grow operations, explicitly identified/reconciled from disclosed capex items; not investing cash flow.\",\"measurementSemantic\":\"FLOW\",\"methodologyIdentity\":\"fundamentals-items-v1\",\"name\":\"Issuer capital expenditure\",\"operandMappings\":[{\"metricId\":\"FCF\",\"operand\":\"issuer_capex\",\"position\":1,\"requirement\":\"Positive issuer expenditure for compatible CFO window; maintenance vs total scope documented.\"}],\"sectorApplicability\":[\"REAL_ESTATE\",\"RETAIL\",\"TECHNOLOGY\",\"INDUSTRIAL\",\"MATERIALS\",\"UTILITIES\",\"ENERGY\",\"CONGLOMERATE\"],\"signConvention\":\"NONNEGATIVE\",\"statementType\":\"CASH_FLOW\",\"status\":\"ACTIVE\",\"supersededBy\":null}],\"methodologyIdentity\":\"fundamentals-items-v1\",\"recordedAt\":\"2026-01-01T00:00:00.000Z\",\"registryVersion\":\"1.0.0\"},\"registryHash\":\"bb5add12edeb7cc9d6de006b0d2b13e6dfcee1d7d5759454d1a9bef1f72232d7\"},\"requirements\":[{\"itemId\":\"NET_INCOME\",\"maxAgeDays\":180,\"periodEnd\":\"2026-06-30\",\"periodStart\":\"2026-04-01\",\"reportingScope\":\"CONSOLIDATED\",\"securityId\":\"test-issuer\"}],\"requirementsVersion\":\"synthetic-requirements-v1\",\"revisionCutoff\":null,\"scope\":\"SYNTHETIC_TEST\",\"scoringReadiness\":\"DEFERRED_SLICE_06\",\"selectorVersion\":\"explicit-chain-operational-v1\",\"systemKnownAt\":\"2026-07-27T00:00:00.000Z\"}",
+    "members": [
+      {
+        "observationId": "observation-legacy-golden",
+        "assessmentId": "assessment-legacy-golden",
+        "semanticHash": "683ddd272bd7270a6254338903fc4effce376fa2c7b807abbbe921f17ce57ee2",
+        "observationHash": "2fa4d41420ef0fcb05c9b49418cda9f57ad5ff4aeddd6bb9505e1006047edc53"
+      }
+    ],
+    "derivedIds": [],
+    "blockers": []
+  }
+}

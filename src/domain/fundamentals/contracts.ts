@@ -76,6 +76,10 @@ export interface FundamentalObservation {
   readonly fxLineageReference: string | null;
   readonly revisionKind: 'ORIGINAL' | 'ISSUER_RESTATEMENT' | 'PROVIDER_CORRECTION' | 'MAPPING_CORRECTION';
   readonly recordVersion: string; readonly supersedesObservationId: string | null;
-  readonly revisionReason: string | null; readonly revisionEvidenceReference: string | null; readonly correctionKnownAt: string | null;
+  readonly revisionReason: string | null; readonly revisionEvidenceReference: string | null;
+  /** Actual system knowledge of correction/revision semantics, with revisionEvidenceReference lineage.
+   * Not issuer/provider/public publication; cannot establish a public boundary.
+   * A corrected observation is ingested at/after this knowledge; future knowledge requires a new revision. */
+  readonly correctionKnownAt: string | null;
   readonly ancestorReferences: readonly string[];
 }

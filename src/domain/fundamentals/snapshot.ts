@@ -1,6 +1,7 @@
 import type { FundamentalObservation, RegistryRelease, ReportingScope } from './contracts';
 import type { AvailabilityAssessment, AvailabilityPolicy } from './availability';
-import { assessAvailability, validateAvailabilityPolicy } from './availability';
+import { assessAvailability, validateAvailabilityPolicy, isEvidenceAssessment } from './availability';
+import type { ProviderReceiptEvidenceBinding } from './availability-evidence';
 import type { DerivationAssessment } from './derivation';
 import { comparableKey } from './normalization';
 import { requireFundamental, fundamentalId, validateFundamentalObservation } from './validation';
@@ -44,6 +45,7 @@ export interface SnapshotRequest {
   readonly validationRunReference:string;readonly reviewContext:string;
 }
 export interface SnapshotInputs {
+  readonly providerEvidenceBindings?:readonly ProviderReceiptEvidenceBinding[];
   readonly registry:RegistryRelease;readonly observations:readonly FundamentalObservation[];
   readonly assessments:readonly AvailabilityAssessment[];readonly derived:readonly DerivationAssessment[];
 }
@@ -110,7 +112,9 @@ export function buildFundamentalSnapshot(request:SnapshotRequest,inputs:Snapshot
   for(const o of candidates){
     const pin=r.assessmentPins.find(p=>p.observationId===o.id)!,a=inputs.assessments.find(a=>a.id===pin.assessmentId);
     requireFundamental(a&&a.assessedAt<=r.builtAt,'SNAPSHOT_ASSESSMENT_NOT_FOUND');
-    const replay=assessAvailability({id:a!.id,observation:o,registry:inputs.registry,policy,assessedAt:a!.assessedAt,hash});
+    const providerEvidenceBinding=isEvidenceAssessment(a!)?a!.providerEvidenceBinding:null;
+    requireFundamental(!providerEvidenceBinding||inputs.providerEvidenceBindings?.some(b=>canonicalJson(b)===canonicalJson(providerEvidenceBinding)),'SNAPSHOT_TRUSTED_EVIDENCE_BINDING_REQUIRED');
+    const replay=assessAvailability({id:a!.id,observation:o,registry:inputs.registry,policy,assessedAt:a!.assessedAt,providerEvidenceBinding,hash});
     requireFundamental(canonicalJson(replay)===canonicalJson(a),'SNAPSHOT_ASSESSMENT_REPLAY');pinned.set(o.id,a!);fingerprint(o.id);
     requireFundamental(r.references.find(v=>v.kind==='SECTOR')!.content.includes(o.securityId+':'+o.sector),'SNAPSHOT_SECTOR_BINDING');
   }
@@ -142,7 +146,7 @@ export function buildFundamentalSnapshot(request:SnapshotRequest,inputs:Snapshot
       crosswalk:d.crosswalk,crosswalkHash:hash(d.crosswalk),operands:d.operands.map((o,i)=>({role:o.role,operation:o.operation,value:o.value,reason:o.reason,unit:o.unit,currency:o.currency,confidence:o.confidence,inputs:o.observationIds.map(id=>fingerprint(id)),adjustment:d.request.operands[i].adjustment})),
       value:d.value,unit:d.unit,currency:d.currency,reason:d.reason,confidence:d.confidence,status:d.status,availableAt:[...ids.map(id=>pinned.get(id)!.availableAt!),...adjustments.map(a=>a.reviewedAt)].sort(codePointCompare).at(-1)});
   }
-  const manifest=canonicalJson({contract:'fundamental-snapshot-content-v1',selectorVersion:'explicit-chain-operational-v1',scope:r.scope,mode:r.mode,diagnosticOnly:r.mode==='AS_REVISED',
+  const manifest=canonicalJson({contract:policy.algorithm==='operational-max-v1'?'fundamental-snapshot-content-v1':'fundamental-snapshot-content-v2',selectorVersion:'explicit-chain-operational-v1',scope:r.scope,mode:r.mode,diagnosticOnly:r.mode==='AS_REVISED',
     decisionAsOf:r.decisionAsOf,systemKnownAt:r.systemKnownAt,marketCutoff:r.marketCutoff,fundamentalCutoff:r.fundamentalCutoff,revisionCutoff:r.revisionCutoff,
     registry:inputs.registry,policy,policyHash:hash(policy),requirementsVersion:r.requirementsVersion,requirements:[...r.requirements].sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b))),
     references:r.references.map(ref=>({...ref,content:[...ref.content].sort(codePointCompare)})).sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b))),
@@ -151,4 +155,11 @@ export function buildFundamentalSnapshot(request:SnapshotRequest,inputs:Snapshot
     derived:derivedContent.sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b))),findings:findings.sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b))),blockers:[...new Set(blockers)].sort(codePointCompare),scoringReadiness:'DEFERRED_SLICE_06'});
   return deepFreeze({request:JSON.parse(JSON.stringify(r)) as SnapshotRequest,contentHash:hash(JSON.parse(manifest)),manifest,members,derivedIds:derivedIds.sort(codePointCompare),blockers:[...new Set(blockers)].sort(codePointCompare)});
 }
-function availabilitySemantic(a:AvailabilityAssessment){return {mode:a.mode,policyHash:a.policyHash,publicBoundary:a.publicBoundary,availableAt:a.availableAt,status:a.status,finding:a.finding,provenance:interpretationReferences(a.provenance)};}
+function availabilitySemantic(a:AvailabilityAssessment){
+  const base={mode:a.mode,policyHash:a.policyHash,publicBoundary:a.publicBoundary,availableAt:a.availableAt,status:a.status,finding:a.finding,provenance:interpretationReferences(a.provenance)};
+  if(!isEvidenceAssessment(a))return base;
+  return {...base,publicFallbackBoundary:a.publicFallbackBoundary,evidenceBackedBoundary:a.evidenceBackedBoundary,boundaryBasis:a.boundaryBasis,
+    evidenceInputs:a.evidenceInputs.map(e=>({...e,evidenceReference:e.evidenceClass==='LOCAL_RETRIEVAL'||e.evidenceClass==='LOCAL_INGESTION'?null:e.evidenceReference})),
+    providerEvidenceAuthority:a.providerEvidenceBinding?.authority??null,
+    providerReceiptEvidence:a.providerEvidenceBinding?{receivedAt:a.providerEvidenceBinding.receipt.receivedAt,evidenceReference:a.providerEvidenceBinding.receipt.evidenceReference,status:a.providerEvidenceBinding.receipt.status,knownAt:a.providerEvidenceBinding.receipt.knownAt}:null};
+}
