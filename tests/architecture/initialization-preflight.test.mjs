@@ -1,0 +1,16 @@
+import {it,expect} from 'vitest';
+import {execFileSync} from 'node:child_process';
+import {mkdtempSync,existsSync,rmSync,readFileSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import path from 'node:path';
+import {initializationPreflight,parseArguments} from '../../scripts/fundamental-initialization-preflight.mjs';
+it('repository preflight never equates research candidates or approval labels with initialized VN30/DI acceptance',()=>{
+ const p=initializationPreflight();expect(p.status).toBe('BLOCKED');expect(p.formalUniverseCount).toBeNull();expect(p.dataset).toBeNull();expect(p.inventory.researchCandidates).toBe(30);expect(p.inventory.supplementalCandidates).toBe(4);expect(p.candidates).toHaveLength(34);expect(p.gates.map(g=>g.id)).toEqual(Array.from({length:15},(_,i)=>`DI${i+1}`));expect(p.gates.every(g=>g.status==='NOT_EXECUTED'&&g.measurement===null&&g.independentReviewer===null)).toBe(true);expect(p.candidates.every(c=>c.status==='BLOCKED'&&c.activeMembership==='UNKNOWN'&&c.dataReady===null&&c.readyForScoring===null)).toBe(true);expect(p.repositoryEvidence.every(e=>/^[a-f0-9]{64}$/.test(e.sha256))).toBe(true);expect(initializationPreflight()).toEqual(p);
+});
+it('target/cutoff planning is redacted and grants no database/network/scoring capability',()=>{
+ const target='/private/tmp/PRIVATE-ACCOUNT-CANARY.sqlite',p=initializationPreflight({target,asOf:'2026-10-09T10:00:00.000Z'});expect(p.target.selected).toBe(true);expect(p.target.reviewRequired).toBe(true);expect(JSON.stringify(p)).not.toContain(target);expect(p.databaseAccessExecuted||p.sourceAccessExecuted||p.scoringExecuted).toBe(false);expect(p.gates.every(g=>g.status==='NOT_EXECUTED')).toBe(true);expect(p.blockers).toContain('EXACT_SOURCE_TARGET_COMMAND_REVIEW_REQUIRED');
+ const directory=mkdtempSync(path.join(tmpdir(),'vn30-init-preflight-')),script=path.resolve('scripts/fundamental-initialization-preflight.mjs');try{const target=path.join(directory,'PRIVATE-CANARY.sqlite'),output=execFileSync(process.execPath,[script,'--target',target,'--as-of','2026-10-09T10:00:00.000Z'],{cwd:directory,env:{...process.env,DATABASE_URL:'file:'+target},encoding:'utf8'});expect(JSON.parse(output).status).toBe('BLOCKED');expect(output).not.toContain('PRIVATE-CANARY');expect(existsSync(target)).toBe(false);const defaultOutput=execFileSync(process.execPath,[script],{cwd:directory,encoding:'utf8'});expect(defaultOutput).toBe(readFileSync('docs/fundamental-data-engine/evidence/2026-10-09-initialization-preflight.json','utf8'));}finally{rmSync(directory,{recursive:true,force:true});}
+});
+it('invalid dates/targets and execute/approval flags fail closed',()=>{
+ for(const asOf of ['2026-02-30T00:00:00.000Z','2026-10-09','private'])expect(()=>initializationPreflight({asOf})).toThrow();for(const target of ['relative.sqlite','/tmp/file.sqlite?token=private','/tmp/private.txt'])expect(()=>initializationPreflight({target})).toThrow();for(const args of [['--execute'],['--approve','yes'],['--target'],['--target','/tmp/a.sqlite','--target','/tmp/b.sqlite']])expect(()=>parseArguments(args)).toThrow();expect(parseArguments(['--as-of','2026-10-09T10:00:00.000Z','--target','/tmp/a.sqlite'])).toEqual({asOf:'2026-10-09T10:00:00.000Z',target:'/tmp/a.sqlite'});
+});
