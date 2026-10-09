@@ -14,6 +14,7 @@ export class PrismaAnalyticalArtifacts implements AnalyticalArtifacts {
   async append(artifact:Scorecard|Ranking){
     check(Object.isFrozen(artifact)&&Object.isFrozen(artifact.input),"IMMUTABLE_DOMAIN_ARTIFACT_REQUIRED");
     const result=snapshot(artifact),score="totalScore" in result;
+    if(score)check(result.input.artifactScope!=='FORMAL','FORMAL_SCORECARD_REQUIRES_DATASET_REPOSITORY');
     id(result.id);instant(result.asOf);instant(result.calculatedAt);
     const method=score?result.methodology.methodologyId:result.input.cards[0]?.methodology.methodologyId;
     check(method,"RANKING_METHODOLOGY_REQUIRED");const body=JSON.stringify(result);

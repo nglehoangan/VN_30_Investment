@@ -1,3 +1,4 @@
+import {seedHistoricalScorecard} from "../fixtures/historical-scorecard";
 import { createHash } from "node:crypto";
 import m652History from "../fixtures/m652-historical-decisions.json";
 import historicalDecisions from "../fixtures/m65-historical-decisions.json";
@@ -164,7 +165,7 @@ describe("M6.5.2 approved methodology persistence", () => {
       const scoreInput = i.scorecard.input;
       scoreInput.artifactScope = "FORMAL";
       scoreInput.methodology = { ...scoreInput.methodology, methodologyId: methodologyId("fixture-formal-scoring"), family: "SCORING", governanceStatus: "APPROVED", intendedUse: "PRODUCTION", approvalReference: "TEST FIXTURE ONLY: independent scoring approval prerequisite" };
-      const card = calculateScorecard(scoreInput); await db.registry.append(card.methodology); await cards.append(card);
+      const card = calculateScorecard(scoreInput); await db.registry.append(card.methodology); await seedHistoricalScorecard(db.client,card);
       const engine = new DecisionEngine(db.registry, cards, repo, { read: async () => i.portfolio, isCurrent: async () => true }, { now: () => instant(i.recordedAt) });
       const { scorecard: _score, ranking: _rank, comparatorScorecards: _comp, portfolio: _p, recordedAt: _time, ...base } = i;
       void _score; void _rank; void _comp; void _p; void _time;
@@ -243,7 +244,7 @@ describe("M6.5.3 immutable sector remediation", () => {
       i.assessment.risk.approvalReference = "APPROVED — SECTOR_CONCENTRATION: arbitrary client string";
       i.assessment.risk.normalizationPlan = "Arbitrary plan claims additions are permitted";
       const card = calculateScorecard(i.scorecard.input); await db.registry.append(card.methodology);
-      const cards = new PrismaAnalyticalArtifacts(db.client); await cards.append(card);
+      const cards = new PrismaAnalyticalArtifacts(db.client); await seedHistoricalScorecard(db.client,card);
       const repo = new PrismaDecisionArtifacts(db.client);
       const engine = new DecisionEngine(db.registry, cards, repo, { read: async () => i.portfolio, isCurrent: async () => true }, { now: () => instant(i.recordedAt) });
       const { scorecard: _c, ranking: _r, comparatorScorecards: _cs, portfolio: _p, recordedAt: _at, ...base } = i;

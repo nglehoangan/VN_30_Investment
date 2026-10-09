@@ -1,4 +1,5 @@
 // @vitest-environment node
+import {seedHistoricalScorecard} from "../fixtures/historical-scorecard";
 import { beforeEach, afterEach, it, expect, vi } from "vitest";
 vi.mock("server-only",()=>({}));
 import { createHash } from "node:crypto";
@@ -67,7 +68,7 @@ it("G: posted monthly contribution with formal excluded universe preserves HOLD 
  const cards=IDS.map((_,index)=>{const f=JSON.parse(JSON.stringify(fixture(index)).replaceAll(ASOF,NOW).replaceAll("SYNTHETIC-00",A));f.reference.data.version=source.references.version;f.artifactScope="FORMAL";f.methodology={...f.methodology,family:"SCORING",governanceStatus:"APPROVED",intendedUse:"PRODUCTION",approvalReference:"TEST ONLY formal-path fixture"};f.confidence.level="LOW";return calculateScorecard(f);});
  source.references=cards[0].input.reference.data;source.taxonomy=cards[0].input.reference.taxonomy;
  const context=(await current.context(P)).context!;
- await db.registry.append(cards[0].methodology);const analytical=new PrismaAnalyticalArtifacts(db.client);for(const c of cards)await analytical.append(c);
+ await db.registry.append(cards[0].methodology);const analytical=new PrismaAnalyticalArtifacts(db.client);for(const c of cards)await seedHistoricalScorecard(db.client,c);
  const rank=rankScorecards({id:"formal-test-rank",asOf:NOW,calculatedAt:NOW,cards,universe:{referenceVersion:source.references.version,securityIds:cards.map(c=>c.securityId),complete:true},portfolio:context.integrity,requiredReturnAssessments:[]});expect(rank.entries).toHaveLength(0);expect(rank.status).toBe("VALID");await analytical.append(rank);rankingId=rank.id;
  const result=await initiation.create(P,{...intent,type:"MONTHLY_DCA",contributionReference:"deposit"});expect(result.status).toBe("READY");
  const review=await new PrismaWorkflowArtifacts(db.client).find(result.artifactId!);expect(review?.proposal?.outcome).toBe("HOLD CASH");expect(review?.proposal?.newMonthlyContribution).toBe("10000");expect(review?.proposal?.ledgerCash).toBe("10000");expect(await db.client.ledgerTransaction.count()).toBe(2);

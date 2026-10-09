@@ -12,6 +12,8 @@ import { instant,dateOnly } from "@/shared/time";
 import { currentSourceSchema,reviewIntentSchema } from "@/shared/validation/current-source";
 import { LocalCurrentSource } from "@/infrastructure/current-source";
 import { ScoringEngine } from "@/application/scoring/engine";
+import { calculateScorecard } from "@/domain/scoring/scorecard";
+import { seedHistoricalScorecard } from "../fixtures/historical-scorecard";
 import { writeFileSync,mkdirSync } from "node:fs";
 import path from "node:path";
 const intent={type:"MONTHLY_DCA" as const,requestedDate:"2026-10-04",contributionReference:"m68-contribution",eventReference:null};
@@ -20,7 +22,7 @@ function plan(x:Awaited<ReturnType<typeof m68System>>){
  const lot={securityId:d.securityId,sector:d.input.scorecard.reference.sector!,quantity:s.boardLot,price:s.price,fees:s.fees};
  return {id:"m68-marginal-A",baseDecisionIds:[d.id],evidenceCutoff:NOW,frames:[[],[lot],[lot,lot]].map(lots=>({projection:projectAllocation(x.context,lots),candidates:[{decisionId:d.id,assessment:d.input.assessment,evidence:d.input.evidence}]}))};
 }
-describe("M6.8 formal end-to-end authority chain (disposable test evidence)",()=>{
+describe("M6.8 downstream formal authority chain with historical upstream scores (disposable test evidence)",()=>{
  it("A: contribution, cash-only current state, excluded formal universe and HOLD CASH never buy",async()=>{
   const x=await m68System(false);try{
    const before=await x.current.capture(P);expect(before.model.nav).toBe("100000000");expect(before.snapshot?.state.positions).toEqual([]);
@@ -123,7 +125,10 @@ describe("M6.8 formal end-to-end authority chain (disposable test evidence)",()=
   const x=await m68System();try{
    const original=x.bases[0],saved=JSON.stringify(await x.decisions.find(original.id));
    const input=structuredClone(original.input.scorecard.input);
-   const revised=await new ScoringEngine(x.db.registry,x.analytical).score({...input,id:"m68-corrected-score-B",priorScorecardId:original.lineage.scorecardId,revisionReason:"TEST ONLY dataset B correction",evidence:input.evidence.map(e=>({...e,version:"corrected-dataset-B"}))});
+   const corrected={...input,id:"m68-corrected-score-B",priorScorecardId:original.lineage.scorecardId,revisionReason:"TEST ONLY dataset B correction",evidence:input.evidence.map(e=>({...e,version:"corrected-dataset-B"}))};
+   await expect(new ScoringEngine(x.db.registry,x.analytical).score(corrected)).rejects.toThrow();
+   // Historical upstream import for the downstream context regression; no retrospective DI link.
+   const revised=calculateScorecard(corrected);await seedHistoricalScorecard(x.db.client,revised);
    x.source.version="m68-prices-B";x.source.prices[0].revision="B";x.source.prices[0].price="21000";
    const current=await x.current.context(P);expect(current.model.sourceVersion).toBe("m68-prices-B");expect(current.context?.integrity.snapshotId).not.toBe(original.lineage.snapshotId);
    expect(revised.input.evidence[0].version).toBe("corrected-dataset-B");expect(JSON.stringify(await x.decisions.find(original.id))).toBe(saved);expect(await x.analytical.find(original.lineage.scorecardId)).toEqual(original.input.scorecard);

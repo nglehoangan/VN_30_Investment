@@ -127,6 +127,7 @@ model PortfolioProjection {
 }
 
 model AnalyticalArtifact {
+  scoringDatasetBinding ScoringDatasetBinding?
   id String @id
   kind String
   methodologyId String @map("methodology_id")
@@ -342,6 +343,8 @@ model FundamentalSnapshotContent {
   @@map("fundamental_snapshot_content")
 }
 model FundamentalSnapshotRun {
+  diAcceptances DataInitializationAcceptance[]
+  scoringBindings ScoringDatasetBinding[]
   runId String @id @map("run_id")
   contentHash String @map("content_hash")
   content FundamentalSnapshotContent @relation(fields: [contentHash], references: [contentHash], onDelete: Restrict, onUpdate: Restrict)
@@ -373,4 +376,29 @@ model FundamentalSnapshotDerivedMember {
   selected Boolean
   @@id([runId, derivationId])
   @@map("fundamental_snapshot_derived_member")
+}
+
+model DataInitializationAcceptance {
+  id String @id
+  snapshotRunId String @map("snapshot_run_id")
+  snapshotRun FundamentalSnapshotRun @relation(fields: [snapshotRunId], references: [runId], onDelete: Restrict, onUpdate: Restrict)
+  acceptedAt String @map("accepted_at")
+  body String
+  bodyHash String @map("body_hash")
+  scoringBindings ScoringDatasetBinding[]
+  @@index([snapshotRunId, acceptedAt])
+  @@map("data_initialization_acceptance")
+}
+model ScoringDatasetBinding {
+  scorecardId String @id @map("scorecard_id")
+  scorecard AnalyticalArtifact @relation(fields: [scorecardId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  snapshotRunId String @map("snapshot_run_id")
+  snapshotRun FundamentalSnapshotRun @relation(fields: [snapshotRunId], references: [runId], onDelete: Restrict, onUpdate: Restrict)
+  acceptanceId String @map("acceptance_id")
+  acceptance DataInitializationAcceptance @relation(fields: [acceptanceId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  inputHash String @map("input_hash")
+  createdAt String @map("created_at")
+  body String
+  bodyHash String @map("body_hash")
+  @@map("scoring_dataset_binding")
 }

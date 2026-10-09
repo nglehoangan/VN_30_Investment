@@ -9,7 +9,9 @@ import { methodologyId } from "@/shared/ids";
 import { instant } from "@/shared/time";
 import { initializePortfolio } from "@/application/portfolio/initialize";
 import { PortfolioEngine } from "@/application/portfolio/engine";
-import { ScoringEngine } from "@/application/scoring/engine";
+import { calculateScorecard } from "@/domain/scoring/scorecard";
+import { rankScorecards } from "@/domain/ranking/rank";
+import { seedHistoricalScorecard, seedHistoricalRanking } from "./historical-scorecard";
 import { DecisionEngine } from "@/application/decision/engine";
 import { MarginalDecisionEngine } from "@/application/decision/marginal";
 import { CurrentReadService } from "@/application/current/read-model";
@@ -44,9 +46,10 @@ export async function m68System(qualified = true, analysisDelayMs = 0) {
     const context = captured.context;
     const read = {read:async()=>context,isCurrent:async()=>JSON.stringify((await current.context(P)).context)===JSON.stringify(context)};
     const analytical = new PrismaAnalyticalArtifacts(db.client), decisions = new PrismaDecisionArtifacts(db.client), marginal = new PrismaMarginalArtifacts(db.client), reviews = new PrismaWorkflowArtifacts(db.client);
-    const scoring = new ScoringEngine(db.registry,analytical);await db.registry.append(inputs[0].methodology);
-    const cards=[]; for(const input of inputs) cards.push(await scoring.score(input));
-    const ranking=await scoring.rank({id:"m68-ranking-A",asOf:NOW,calculatedAt:currentTime,cards,universe:{referenceVersion:source.references.version,securityIds:IDS,complete:true},requiredReturnAssessments:qualified?[{securityId:IDS[0],assessment:{owner:"M4",methodologyId:"TEST-ONLY-required-return",asOf:NOW,evaluatedAt:NOW,status:"PASS",evidenceRefs:["TEST ONLY"],expectedReturn:"0.16",requiredReturn:"0.15",hurdleMet:true,exceptionApplied:false}}]:[]},{read:async()=>context.integrity});
+    // Downstream M6.8 regressions retain pre-Slice06 upstream artifacts. No new scoring activation/DI claim.
+    await db.registry.append(inputs[0].methodology);
+    const cards=inputs.map(calculateScorecard);for(const card of cards)await seedHistoricalScorecard(db.client,card);
+    const ranking=rankScorecards({id:"m68-ranking-A",asOf:NOW,calculatedAt:currentTime,cards,universe:{referenceVersion:source.references.version,securityIds:IDS,complete:true},portfolio:context.integrity,requiredReturnAssessments:qualified?[{securityId:IDS[0],assessment:{owner:"M4",methodologyId:"TEST-ONLY-required-return",asOf:NOW,evaluatedAt:NOW,status:"PASS",evidenceRefs:["TEST ONLY"],expectedReturn:"0.16",requiredReturn:"0.15",hurdleMet:true,exceptionApplied:false}}]:[]});await seedHistoricalRanking(db.client,ranking);
     const bases:Decision[]=[];
     if(qualified){
       const i=JSON.parse(JSON.stringify(monotonicDecision()).replaceAll("2026-10-01T09:00:00.000Z",NOW)) as ReturnType<typeof monotonicDecision>;
