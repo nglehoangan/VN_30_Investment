@@ -6,6 +6,7 @@ import type { RegistryRelease, RegistryApprovalBinding, FundamentalSourceVersion
 import { fundamentalId, requireFundamental, validateFundamentalSource, validateFundamentalBatch, validateFundamentalCapture, validateFundamentalObservation } from '@/domain/fundamentals/validation';
 import type { FundamentalRepository } from '@/ports/fundamentals';
 import { ConflictError, DataIntegrityError } from '@/shared/errors';
+import { comparableKey } from '@/domain/fundamentals/normalization';
 import { methodologyId } from '@/shared/ids';
 
 const hash=(body:string)=>createHash('sha256').update(body).digest('hex');
@@ -60,7 +61,7 @@ export class PrismaFundamentals implements FundamentalRepository {
     requireFundamental(batch && batch.ingestedAt<=o.ingestedAt,'OBSERVATION_BEFORE_BATCH_INGESTION');
     if(o.supersedesObservationId!==null){
       const old=await this.findObservation(o.supersedesObservationId);
-      requireFundamental(old&&old.securityId===o.securityId&&old.itemId===o.itemId&&old.reportingScope===o.reportingScope&&old.periodStart===o.periodStart&&old.periodEnd===o.periodEnd&&old.scope===o.scope&&old.ingestedAt<=o.ingestedAt&&o.correctionKnownAt!==null&&old.ingestedAt<=o.correctionKnownAt,'REVISION_PREDECESSOR_MISMATCH');
+      requireFundamental(old&&comparableKey(old)===comparableKey(o)&&old.ingestedAt<=o.ingestedAt&&o.correctionKnownAt!==null&&old.ingestedAt<=o.correctionKnownAt,'REVISION_PREDECESSOR_MISMATCH');
       if(o.revisionKind==='PROVIDER_CORRECTION'||o.revisionKind==='MAPPING_CORRECTION')requireFundamental(JSON.stringify(old.publication)===JSON.stringify(o.publication),'CORRECTION_CANNOT_INVENT_ISSUER_PUBLICATION');
       if(o.revisionKind==='ISSUER_RESTATEMENT')requireFundamental(o.publication.evidenceReference!==null && o.publication.evidenceReference!==old.publication.evidenceReference,'RESTATEMENT_REQUIRES_OWN_DISCLOSURE');
     }
@@ -83,12 +84,19 @@ export class PrismaFundamentals implements FundamentalRepository {
       const c=stored(row,validateFundamentalCapture);requireFundamental(hash(c.payload)===c.payloadHash&&row.payloadHash===c.payloadHash&&row.sourceVersionId===c.sourceVersionId&&row.importExecutionId===c.importExecutionId&&row.retrievedAt===c.retrievedAt,'CAPTURE_METADATA_OR_PAYLOAD_MISMATCH');return c;
     }catch(error){failure(error);}
   }
-  async findObservation(id:string):Promise<FundamentalObservation|null> {
-    fundamentalId(id);try{const row=await this.client.fundamentalObservation.findUnique({where:{id}});if(!row)return null;
+  async findObservation(id:string, visited:readonly string[]=[]):Promise<FundamentalObservation|null> {
+    fundamentalId(id);requireFundamental(!visited.includes(id),'REVISION_CYCLE');try{const row=await this.client.fundamentalObservation.findUnique({where:{id}});if(!row)return null;
       const o=stored<FundamentalObservation>(row,value=>validateFundamentalObservation(value,this.release));
       requireFundamental(row.securityId===o.securityId&&row.sourceVersionId===o.sourceVersionId&&row.rawCaptureId===o.rawCaptureId&&row.itemId===o.itemId&&row.registryHash===o.registryHash&&row.reportingScope===o.reportingScope&&row.periodStart===o.periodStart&&row.periodEnd===o.periodEnd&&row.fieldLocator===o.raw.fieldLocator&&row.mappingVersion===o.mappingVersion&&row.ingestedAt===o.ingestedAt&&row.normalizedValue===o.normalized.value&&row.availableAt===null&&row.availabilityStatus==='UNKNOWN'&&row.supersedesObservationId===o.supersedesObservationId,'OBSERVATION_METADATA_MISMATCH');
       await this.verifyFormal(o);
-      const c=await this.findCapture(o.rawCaptureId);requireFundamental(c&&c.sourceVersionId===o.sourceVersionId&&c.retrievedAt===o.retrievedAt,'OBSERVATION_LINEAGE_MISSING');return o;
+      const c=await this.findCapture(o.rawCaptureId);requireFundamental(c&&c.sourceVersionId===o.sourceVersionId&&c.retrievedAt===o.retrievedAt,'OBSERVATION_LINEAGE_MISSING');
+      if(o.supersedesObservationId !== null) {
+        const old=await this.findObservation(o.supersedesObservationId,[...visited,id]);
+        requireFundamental(old && comparableKey(old) === comparableKey(o) && old.ingestedAt <= o.correctionKnownAt! && old.ingestedAt <= o.ingestedAt,'REVISION_PREDECESSOR_MISMATCH');
+        if(o.revisionKind==='PROVIDER_CORRECTION'||o.revisionKind==='MAPPING_CORRECTION') requireFundamental(JSON.stringify(old.publication)===JSON.stringify(o.publication),'CORRECTION_CANNOT_INVENT_ISSUER_PUBLICATION');
+        if(o.revisionKind==='ISSUER_RESTATEMENT') requireFundamental(o.publication.evidenceReference!==null && o.publication.evidenceReference!==old.publication.evidenceReference,'RESTATEMENT_REQUIRES_OWN_DISCLOSURE');
+      }
+      return o;
     }catch(error){failure(error);}
   }
 }

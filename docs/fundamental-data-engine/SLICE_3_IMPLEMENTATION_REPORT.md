@@ -56,3 +56,82 @@ Migration tests deploy and repeat migrations against owned isolated databases. T
 Real source access/retention qualification and historical coverage remain the Slice 02 review matters; this work does not close them. Production mapping approval, exact registry/methodology approval/binding, independent review of actual report evidence and wider issuer coverage remain pending. This slice neither automates real PDF transcription nor claims all VN30 sources are ingestible.
 
 No production facts, derived metrics, snapshots, scoring, rankings, Top 10 selection, portfolio behavior, DI 1–15 PASS, or Slice 04 work was introduced. Changes remain uncommitted for review. Slice 03 implementation is ready for review within the reviewed-import scope described above.
+
+## Slice 03 conditional-review remediation — 2026-10-09
+
+Previous external review: **CONDITIONAL APPROVAL**, Critical **0**, Major **1**, Minor **3**, reviewed commit `42315509cbdeb0e7b970eb54e46df2cf5eaa7638`. Remediation HEAD and baseline are exactly that commit; working tree was clean. There is no material baseline divergence. The original implementation/verification narrative above is preserved as historical evidence, including its pre-final-patch full regression limitation. This section supersedes its statement that explicit mapping revision handling is unavailable.
+
+Re-audit covered AGENTS.md and the installed Next backend-for-frontend guide; DESIGN_REVIEW.md (including revision taxonomy and Slice 03 boundaries); Slice 01–03 implementation reports; canonical contracts/validation/registry; document qualification and reviewed extraction contracts; FPT mapping; normalization application and repositories; Prisma schema and fundamental migrations; Slice 01–03 fixtures/tests; M7 DATA_VALIDATION/HISTORICAL_VALIDATION_PLAN publication and revision controls; and M8 DATA_INITIALIZATION DI1–DI15 requirements. No Next route/UI, investment logic, source register or approval manifest changes were needed.
+
+### Major remediation: immutable explicit revision lineage
+
+Reviewed rows may now contain `revision`: kind, recordVersion, immediate predecessorId, evidenceReference, reason, knownAt, optional independently evidenced issuer publication, and predecessorMappingHash for mapping corrections. The taxonomy is exactly **ORIGINAL / ISSUER_RESTATEMENT / PROVIDER_CORRECTION / MAPPING_CORRECTION**. No competing taxonomy or latest-value selector was added.
+
+New normalization requires explicit reviewed semantics. Missing revision evidence produces `REVISION_SEMANTICS_UNRESOLVED`, a BLOCKED assessment and no admitted observation; it is never inferred from first ingestion. Explicit ORIGINAL needs an evidence reference and cannot claim a predecessor, correction reason/time, mapping predecessor or restatement publication. Its original-evidence reference stays in immutable extraction and transformation provenance.
+
+A revision must identify an existing economically comparable predecessor using all existing dimensions: observation scope, security, canonical item, reporting scope, segment, accounting basis, full period/fiscal calendar, unit and currency. It cannot supersede itself or an incompatible item/window/currency/scope. The complete predecessor chain is traversed, checked for missing links, incompatible identities and cycles, and retained in `ancestorReferences`. New observation IDs remain deterministic from explicit normalization run and row identities; replay does not regenerate identities from current time.
+
+Issuer restatement additionally requires its own qualified document body and explicit VERIFIED disclosure evidence distinct from the predecessor's disclosure. Provider/local mapping corrections inherit predecessor issuer publication rather than creating issuer restatement facts. MAPPING_CORRECTION requires a changed mapping version/hash and verifies the supplied prior hash against predecessor provenance. Both mapping manifests/hashes remain retained through their immutable assessments. Production mapping/registry approval gates remain unchanged.
+
+Only validated ancestors of a new revision are exempt from unequal-value conflict checks. Unexplained unequal competitors and unrelated branches remain CONFLICTING/BLOCKED. No earlier observation is updated, deleted or retroactively reinterpreted. Corrected values do not automatically become selected scoring inputs.
+
+The application first creates comparison candidates, then validates lineage with loaded history. This provisional comparison pass is not an admission decision. The repository independently recomputes authoritative lineage in the append transaction; a provisional or forged result cannot be persisted. Fundamental observation append/read checks also enforce full comparable identity, chronology and immutable predecessor traversal. Hash-valid direct storage corruption is not accepted as a validated normalization result.
+
+New artifacts carry `revisionPolicyVersion: explicit-lineage-v1`. Previously persisted artifacts without that marker retain their original replay policy for **audit reads only**. Newly appending an artifact without the marker is rejected. Historical ORIGINAL labels are not rewritten or newly asserted to be independently evidenced; their evidence remains as originally recorded. Existing raw documents, qualification history, extraction bodies, observations and assessment bodies are untouched.
+
+### Minor remediation and temporal safety
+
+**Minor #1:** `NormalizationAssessment.recordedAt` is documented as the execution/recording timestamp only. The injected clock still controls execution deterministically. It is distinct from period end, report/signing date, issuer publication, provider receipt, local retrieval and revision evidence knowledge time. Revision `knownAt` must be no earlier than predecessor ingestion and no later than reviewed extraction/execution. Genuine issuer publication must be separately evidenced, supported by receipt chronology and no later than correction knowledge. A future local execution clock does not populate publication, report date, provider receipt or availability. No clock is used as publication fallback.
+
+**Minor #2:** proposed FPT mapping and canonical registry remain unchanged/unapproved, with their original hashes above. FORMAL still requires approved manifests and exact methodology binding. All newly created financial observations in tests are isolated SYNTHETIC_TEST fixtures. **Normalization engine implemented ≠ mapping approved ≠ production fundamentals accepted ≠ DI PASS.**
+
+**Minor #3:** final acceptance uses the complete unit/integration/architecture suite after all remediation code/test/report changes, in addition to the focused Slice 01–03 regression. The earlier historical 823-test run plus focused follow-up is not reused as remediation acceptance evidence.
+
+`availableAt` remains null/UNKNOWN for every revision. No availability evaluator, publication fallback, AS-KNOWN/AS-REVISED selector, snapshot or investment action is implemented. Issuer evidence, correction knowledge and local execution remain separately retained for later governed PIT work.
+
+### Added tests and exact changed files
+
+Seven new unit tests cover unknown/original semantics; explicit 100-million versus 110-million unexplained conflict; provider correction; issuer restatement disclosure; changed mapping/hash lineage; invalid predecessor/security/item/scope/period/accounting/currency/self-reference/evidence/future knowledge/cycles; A→B→C replay and unrelated competing branch; and controlled future local clock without publication/availability leakage. Two added integration tests cover persistent issuer→provider→same-capture mapping correction, predecessor immutability and reopen/replay, plus legacy artifact audit replay and rejection of new legacy admission. Existing Slice 03 fixture rows now explicitly declare synthetic ORIGINAL review evidence; synthetic PDF bodies differ by fixture identity so restatement document lineage is independently exercised.
+
+Exact remediation files:
+
+1. `src/domain/fundamentals/normalization.ts`
+2. `src/application/fundamentals/normalize.ts`
+3. `src/infrastructure/repositories/fundamental-normalization.ts`
+4. `src/infrastructure/repositories/fundamentals.ts`
+5. `tests/fixtures/normalization.ts`
+6. `tests/unit/fundamentals-revisions.test.ts` (new)
+7. `tests/integration/fundamentals-normalization.test.ts`
+8. `docs/fundamental-data-engine/SLICE_3_IMPLEMENTATION_REPORT.md`
+
+**Schema/migration changes: none.** Existing immutable observation/normalization JSON bodies, predecessor FK and guards are sufficient. No backfill fabricates ORIGINAL semantics. Existing populated-baseline migrations and preservation regressions are included in focused/full checks.
+
+### Final verification
+
+Node **22.23.2**, pnpm **10.34.5**; controlled transports and owned isolated temporary databases only. No environment file or production/private database was read. Prisma schema/generation was unchanged by remediation; no new Prisma generation or migration deployment outside isolated tests is required.
+
+- Focused Slice 01–03 fundamentals, registry and architecture: **15 files / 109 tests passed**.
+- Complete final-tree unit/integration/architecture: **55 files / 833 tests passed**.
+- Existing token-session regression: **3 tests passed**.
+- TypeScript `tsc --noEmit`, ESLint zero warnings, boundary checks (**123 modules**) and `git diff --check`: passed.
+- Existing isolated migration tests preserve prior populated portfolio/fundamental tables; no schema changes or production migration.
+
+Initial new restatement tests failed because the synthetic publication timestamp was later than retrieval; fixture chronology was corrected without weakening validation. Typecheck caught an optional-property delete in the test helper and an accidental variable-reference substitution in repository code; both were corrected. These initial failures are not counted as PASS.
+
+### Four-role self-review and remaining limits
+
+These are separately reasoned implementation self-reviews, not independent owner/CIO sign-off or DI14 acceptance.
+
+| Role | Score / 10 | Assessment |
+|---|---:|---|
+| CIO | 9.8 | Corrections cause no scoring, valuation or BUY/SELL action; historical investment evidence remains unchanged/reconstructable. |
+| Data Architect | 9.6 | Immediate predecessor and full immutable chain, deterministic explicit identities, no overwrite/cycle/latest-wins; mapping/registry/raw/qualification evidence survives; historical audit replay does not approve old inferred semantics. |
+| Financial Data Engineer | 9.6 | Issuer restatement, provider correction and mapping correction stay distinct; comparable economic identity is enforced; YTD/native quarter/stock/flow and exact lexical conversion remain covered. |
+| Risk/QA | 9.6 | Unexplained differences still block; invalid lineage and future correction knowledge fail closed; controlled-clock regression prevents publication/availability substitution; no production DB or DI promotion. |
+| Overall, equal-weight mean | 9.65 | Ready for independent Slice 03 final implementation review within reviewed-import scope. |
+
+Remaining in-scope findings from self-review: **Critical 0 / Major 0 / blocking Minor 0 / Minor 0**. Real independently reviewed disclosures, authenticity/retention/access/storage qualification, production approval, broad VN30 coverage and future governed availability/selection remain explicit operational or later-slice dependencies, not claims closed by synthetic tests. Evidence references are reviewed declarations in the trusted local workflow, not cryptographic authentication of an issuer or reviewer. Existing captured-cell uniqueness remains: provider corrections should retain a distinct capture; mapping corrections of the same capture require a distinct mapping version. This remediation does not create a generic reprocessing/version scheduler.
+
+**DI1–DI15: no status changes and no gate promoted to PASS.** Technical lineage readiness improved; DI5/6 operational fundamentals/normalization, DI11 PIT, DI14 independent review and DI15 closure still require their own evidence. No slices beyond Slice 03 were implemented: no derived ratios/growth/TTM/YTD subtraction, snapshots, PIT/AS-KNOWN/latest selector, readiness engine, scoring/ranking/Top 10, valuation, portfolio decision or investment recommendation. `availableAt` was not derived. No production/private DB, live financial ingest, commit or push occurred. Mapping/registry were not self-approved.
+
+Recommendation after successful final verification: **READY FOR SLICE 03 FINAL REVIEW**. Stop here; Slice 04 is not authorized by this remediation.

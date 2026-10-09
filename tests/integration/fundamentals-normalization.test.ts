@@ -10,6 +10,7 @@ import { FileDocumentQualifications } from '@/infrastructure/repositories/docume
 import { FundamentalDocumentGate } from '@/application/fundamentals/document-qualification';
 import { NormalizeFundamentals } from '@/application/fundamentals/normalize';
 import { normalizationHash } from '@/infrastructure/fundamentals/reviewed-statement';
+import { normalizeStatement } from '@/domain/fundamentals/normalization';
 import { release } from '../fixtures/fundamentals';
 import { openDatabase } from '@/infrastructure/db/client';
 
@@ -103,4 +104,46 @@ describe('qualification-bound normalization and immutable validation storage',()
       expect(await db.client.$queryRawUnsafe('PRAGMA foreign_key_check')).toEqual([]);
     }finally{await db.close();}
   },30_000);
+  it('retains issuer, provider and mapping revision chains with exact replay and no availability inference',async()=>{
+    const db=await testDatabase();try{
+      const s=await setup(db),a=await s.service.run(request(s.f,'revision-a'));
+      let old=a.observations[0], previousFixture=s.f;const retained=[old];const artifacts=[a];
+      for(const kind of ['ISSUER_RESTATEMENT','PROVIDER_CORRECTION','MAPPING_CORRECTION'] as const) {
+        const f=kind==='MAPPING_CORRECTION' ? previousFixture : await s.seed(kind);previousFixture=f;
+        const manifest=kind==='MAPPING_CORRECTION' ? {...f.mapping.manifest,version:'mapping-corrected-2'} : f.mapping.manifest;
+        const mapping={manifest,hash:normalizationHash(manifest)};
+        const revision={kind,recordVersion:String(retained.length+1),predecessorId:old.id,evidenceReference:`fixture-evidence-${kind}`,
+          reason:`Reviewed ${kind}`,knownAt:old.ingestedAt,predecessorMappingHash:kind==='MAPPING_CORRECTION' ? f.mapping.hash : null,
+          publication:kind==='ISSUER_RESTATEMENT' ? {publishedAt:'2026-10-09T09:30:00.000Z',publicationDate:null,
+            publicationPrecision:'TIMESTAMP' as const,publicationStatus:'VERIFIED' as const,timezone:'UTC',evidenceReference:'fixture-issuer-disclosure'} : null};
+        const extract={...f.extract,reviewedAt:'2026-10-09T16:00:00.000Z',rows:[{...f.extract.rows[0],lexicalValue:String(110+retained.length),revision}]};
+        const service=new NormalizeFundamentals(s.gate,s.repository,release,mapping,{hash:normalizationHash,now:()=> '2026-10-09T16:00:00.000Z'});
+        const next=await service.run({...request(f,`revision-${kind}`),extract});
+        expect(next.status).toBe('VALIDATED');expect(next.observations[0].supersedesObservationId).toBe(old.id);
+        expect(next.observations[0].availability.availableAt).toBeNull();
+        if(kind!=='ISSUER_RESTATEMENT') expect(next.observations[0].publication).toEqual(old.publication);
+        old=next.observations[0];retained.push(old);artifacts.push(next);
+      }
+      expect(await db.client.fundamentalObservation.count()).toBe(4);
+      for(const o of retained) expect(await s.rawRepository.findObservation(o.id)).toEqual(o);
+      for(const a of artifacts) expect(await s.repository.find(a.id)).toEqual(a);
+      await db.client.$disconnect();const reopened=await openDatabase(db.config);
+      try{expect(await new PrismaFundamentalNormalization(reopened,s.gate).find(artifacts[3].id)).toEqual(artifacts[3]);}finally{await reopened.$disconnect();}
+    }finally{await db.close();}
+  },30_000);
+  it('legacy assessments replay without relabeling history; new legacy append is rejected',async()=>{
+    const db=await testDatabase();try{
+      const s=await setup(db),row={...s.f.extract.rows[0]};delete row.revision;
+      const extract={...s.f.extract,rows:[row]};
+      const old=normalizeStatement({...s.f.input,id:'legacy-run',extract,extractHash:normalizationHash(extract),legacyReplay:true});
+      await s.rawRepository.appendObservation(old.observations[0]);
+      await db.client.fundamentalNormalization.create({data:{id:old.id,securityId:normalizationIssuer.securityId,sourceVersionId:old.sourceVersionId,
+        importExecutionId:old.importExecutionId,rawCaptureId:old.rawCaptureId,recordedAt:old.recordedAt,status:old.status,body:JSON.stringify(old),bodyHash:normalizationHash(old)}});
+      expect(await s.repository.find(old.id)).toEqual(old);
+      await expect(s.repository.append(old)).rejects.toThrow();
+      const unknown=await s.service.run({...request(s.f,'unknown-revision'),extract});
+      expect(unknown.status).toBe('BLOCKED');expect(unknown.observations).toEqual([]);
+    }finally{await db.close();}
+  },30_000);
+
 });

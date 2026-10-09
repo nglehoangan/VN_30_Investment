@@ -11,7 +11,7 @@ export class NormalizeFundamentals {
   async run(request:{id:string;scope:FundamentalObservation['scope'];captureIds:readonly string[];issuer:DocumentIssuerIdentity;extract:StatementExtract}):Promise<NormalizationAssessment> {
     const candidate = await this.gate.candidate(request.captureIds,request.issuer);
     const provisional = normalizeStatement({id:request.id,scope:request.scope,recordedAt:this.tools.now(),candidate,
-      extract:request.extract,extractHash:this.tools.hash(request.extract),mapping:this.mapping,registry:this.registry,prior:[],hash:this.tools.hash});
+      extract:request.extract,extractHash:this.tools.hash(request.extract),mapping:this.mapping,registry:this.registry,prior:[],hash:this.tools.hash,deferLineage:true});
     const prior = await this.repository.comparable(provisional.observations);
     const result = normalizeStatement({id:request.id,scope:request.scope,recordedAt:provisional.recordedAt,candidate,
       extract:request.extract,extractHash:provisional.extractHash,mapping:this.mapping,registry:this.registry,prior,hash:this.tools.hash});

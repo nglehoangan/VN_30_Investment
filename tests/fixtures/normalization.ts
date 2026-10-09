@@ -12,7 +12,7 @@ import { release } from './fundamentals';
 export const normalizationIssuer = {securityId:securityId('test-issuer'),ticker:'FPT',issuerReference:'fixture-security:FPT-Corporation'};
 export async function normalizationFixture(suffix='1') {
   const collection = await new FptDocumentCollector({reportUrls:['https://fpt.com/api/media/FPT_BCTC_Q2_TEST.pdf']},{
-    request:async url=>new Response(url.endsWith('.pdf') ? '%PDF-1.7\nSYNTHETIC ONLY' : '<div>dynamic</div>',
+    request:async url=>new Response(url.endsWith('.pdf') ? `%PDF-1.7\nSYNTHETIC ONLY ${suffix}` : '<div>dynamic</div>',
       {headers:{'content-type':url.endsWith('.pdf') ? 'application/pdf' : 'text/html'}}),
     now:()=> '2026-10-09T10:00:00.000Z',sleep:async()=>{},
   }).collect(`test-batch-${suffix}`);
@@ -34,7 +34,7 @@ export async function normalizationFixture(suffix='1') {
     rows:[{id:'net-income',fieldId:'reviewed.netIncome',label:'Reviewed total profit after tax',sourceLabel:'Synthetic reported total NPAT',
       locator:'page:2/row:profit/column:current',definitionLocator:'page:2/note:total-profit-definition',
       unitLocator:'page:2/header:unit',periodLocator:'page:2/header:period',lexicalValue:'15.123,5',unit:'MILLION_CURRENCY',currency:'VND',
-      reportingScope:'CONSOLIDATED',periodStart:'2026-04-01',periodEnd:'2026-06-30',periodType:'QUARTER'}]};
+      reportingScope:'CONSOLIDATED',periodStart:'2026-04-01',periodEnd:'2026-06-30',periodType:'QUARTER',revision:{kind:'ORIGINAL',recordVersion:'1',predecessorId:null,evidenceReference:'fixture-explicit-original-review',reason:null,knownAt:null,publication:null,predecessorMappingHash:null}}]};
   const mapping = loadStatementMapping(release);
   const input = {id:`normalization-${suffix}`,scope:'SYNTHETIC_TEST' as const,recordedAt:'2026-10-09T13:00:00.000Z',candidate,
     extract,extractHash:normalizationHash(extract),mapping,registry:release,prior:[],hash:normalizationHash};

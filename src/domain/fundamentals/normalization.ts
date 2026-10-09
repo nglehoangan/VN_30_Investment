@@ -19,6 +19,14 @@ export interface StatementMapping {
     readonly definitionReference: string }[];
 }
 export interface MappingRelease { readonly manifest: StatementMapping; readonly hash: string }
+/** Evidence reviewed independently of ingestion order. Unknown semantics omit this object and block admission. */
+export interface StatementRevision {
+  readonly kind: FundamentalObservation['revisionKind']; readonly recordVersion: string;
+  readonly predecessorId: string | null; readonly evidenceReference: string;
+  readonly reason: string | null; readonly knownAt: string | null;
+  readonly publication: FundamentalObservation['publication'] | null;
+  readonly predecessorMappingHash: string | null;
+}
 export interface StatementExtract {
   readonly id: string; readonly documentId: string; readonly bodyHash: string; readonly qualificationId: string;
   readonly reviewerReference: string; readonly reviewedAt: string; readonly method: 'REVIEWED_TRANSCRIPTION';
@@ -29,14 +37,16 @@ export interface StatementExtract {
     readonly unitLocator: string; readonly periodLocator: string;
     readonly lexicalValue: string | null; readonly unit: string; readonly currency: string | null;
     readonly reportingScope: ReportingScope; readonly periodStart: string; readonly periodEnd: string;
-    readonly periodType: FundamentalObservation['periodType'] }[];
+    readonly periodType: FundamentalObservation['periodType']; readonly revision?: StatementRevision }[];
 }
 export interface NormalizationFinding {
   readonly rowId: string; readonly code: string; readonly severity: 'BLOCKING' | 'MISSING';
   readonly relatedObservationIds: readonly string[];
 }
 export interface NormalizationAssessment {
+  /** Execution/recording clock only; never issuer publication, signing or canonical availability. */
   readonly id: string; readonly scope: FundamentalObservation['scope']; readonly recordedAt: string;
+  readonly revisionPolicyVersion?: 'explicit-lineage-v1';
   readonly sourceVersionId: string; readonly importExecutionId: string; readonly rawCaptureId: string;
   readonly documentId: string; readonly bodyHash: string; readonly qualificationId: string;
   readonly qualification: QualifiedNormalizationCandidate['qualification']; readonly captureIds: readonly string[];
@@ -98,7 +108,17 @@ export function validateStatementExtract(raw: StatementExtract) {
     ['AUDITED','REVIEWED','UNAUDITED','UNKNOWN'].includes(x.auditStatus),'EXTRACT_METADATA');
   requireFundamental(Array.isArray(x.rows) && x.rows.length > 0 && x.rows.length <= 500 && new Set(x.rows.map(r => r.id)).size === x.rows.length,'EXTRACT_ROWS');
   for (const r of x.rows) {
-    exact(r,'id fieldId label sourceLabel locator definitionLocator unitLocator periodLocator lexicalValue unit currency reportingScope periodStart periodEnd periodType');
+    exact(r,'id fieldId label sourceLabel locator definitionLocator unitLocator periodLocator lexicalValue unit currency reportingScope periodStart periodEnd periodType' + (r.revision === undefined ? '' : ' revision'));
+    if (r.revision !== undefined) {
+      const v = r.revision;
+      exact(v,'kind recordVersion predecessorId evidenceReference reason knownAt publication predecessorMappingHash');
+      requireFundamental(['ORIGINAL','ISSUER_RESTATEMENT','PROVIDER_CORRECTION','MAPPING_CORRECTION'].includes(v.kind),'REVISION_KIND');
+      fundamentalId(v.recordVersion); reference(v.evidenceReference);
+      if (v.kind === 'ORIGINAL') requireFundamental(v.predecessorId === null && v.reason === null && v.knownAt === null && v.publication === null && v.predecessorMappingHash === null,'ORIGINAL_HAS_NO_PREDECESSOR');
+      else {fundamentalId(v.predecessorId); reference(v.reason!); instant(v.knownAt!);}
+      if (v.predecessorMappingHash !== null) fundamentalHash(v.predecessorMappingHash);
+      requireFundamental(v.kind === 'ISSUER_RESTATEMENT' || v.publication === null,'CORRECTION_CANNOT_DECLARE_ISSUER_PUBLICATION');
+    }
     fundamentalId(r.id); fundamentalId(r.fieldId); text(r.label); text(r.sourceLabel); text(r.unit);
     [r.locator,r.definitionLocator,r.unitLocator,r.periodLocator].forEach(locator);
     requireFundamental(r.lexicalValue === null || typeof r.lexicalValue === 'string' && r.lexicalValue.length <= 4000,'RAW_LEXICAL_STRING_REQUIRED');
@@ -152,9 +172,11 @@ export function comparableKey(o: FundamentalObservation): string {
     o.periodType,o.fiscalYear,o.fiscalQuarter,o.fiscalCalendarReference,o.normalized.unit,o.normalized.currency]);
 }
 
+function documentHash(o:FundamentalObservation) {return o.transformationReferences.find(r=>r.startsWith('document-sha256:'))?.slice('document-sha256:'.length);}
+
 export function normalizeStatement(input: {id:string;scope:FundamentalObservation['scope'];recordedAt:string;
   candidate:QualifiedNormalizationCandidate;extract:StatementExtract;extractHash:string;mapping:MappingRelease;
-  registry:RegistryRelease;prior:readonly FundamentalObservation[];hash:(value:unknown)=>string}): NormalizationAssessment {
+  registry:RegistryRelease;prior:readonly FundamentalObservation[];hash:(value:unknown)=>string; legacyReplay?:boolean; deferLineage?:boolean}): NormalizationAssessment {
   const {candidate,registry} = input, q = candidate.qualification, raw = candidate.rawDocument;
   requireQualifiedDocument(raw,[{...q,supersedesQualificationId:null,correctionReason:null}],q.intendedIssuer);
   fundamentalId(input.id); instant(input.recordedAt); fundamentalHash(input.extractHash); fundamentalHash(input.mapping.hash);
@@ -164,10 +186,13 @@ export function normalizeStatement(input: {id:string;scope:FundamentalObservatio
   requireFundamental(x.documentId === raw.documentId && x.bodyHash === raw.bodyHash && x.qualificationId === q.id &&
     m.sourceVersionId === raw.sourceVersionId && x.reviewedAt >= q.reviewedAt && input.recordedAt >= x.reviewedAt,'EXTRACT_QUALIFICATION_BINDING');
   requireFundamental(input.scope !== 'FORMAL' || (m.governanceStatus === 'APPROVED' && registry.manifest.governanceStatus === 'APPROVED'),'FORMAL_MAPPING_REGISTRY_APPROVAL_REQUIRED');
+  const prior = input.prior.map(o => validateFundamentalObservation(o,registry));
+  requireFundamental(new Set(prior.map(o=>o.id)).size === prior.length && prior.every(o => o.ingestedAt <= input.recordedAt),'NORMALIZATION_CONTEXT_AFTER_RUN');
   const observations: FundamentalObservation[] = [], findings: NormalizationFinding[] = [];
   const add = (rowId:string,code:string,severity:NormalizationFinding['severity']='BLOCKING',relatedObservationIds:readonly string[]=[]) => findings.push({rowId,code,severity,relatedObservationIds});
   for (const row of x.rows) {
     const f = m.fields.find(field => field.fieldId === row.fieldId);
+    if (!row.revision && !input.legacyReplay) {add(row.id,'REVISION_SEMANTICS_UNRESOLVED');continue;}
     if (!f) {add(row.id,'UNKNOWN_FIELD_MAPPING');continue;}
     const item = registry.manifest.items.find(i => i.itemId === f.itemId)!;
     if (row.label !== f.label) {add(row.id,'MAPPING_LABEL_MISMATCH');continue;}
@@ -189,14 +214,14 @@ export function normalizeStatement(input: {id:string;scope:FundamentalObservatio
     }
     if (parsed.code) add(row.id,parsed.code,parsed.state === 'MISSING' ? 'MISSING' : 'BLOCKING');
     const declared = DECLARED_UNITS[f.unit];
-    const o: FundamentalObservation = {
+    const o = {
       id:`${input.id}-${row.id}`,scope:input.scope,securityId:q.intendedIssuer.securityId,ticker:q.intendedIssuer.ticker,
       identifierReference:q.intendedIssuer.issuerReference,sourceVersionId:raw.sourceVersionId,rawCaptureId:raw.captureIds[0],
       itemId:item.itemId,registryVersion:registry.manifest.registryVersion,registryHash:registry.registryHash,itemDefinitionVersion:item.itemDefinitionVersion,
       statementType:item.statementType,measurementSemantic:item.measurementSemantic,sector:x.sector,reportingScope:row.reportingScope,segment:null,
       accountingBasis:x.accountingBasis,auditStatus:x.auditStatus,periodStart:row.periodStart,periodEnd:row.periodEnd,periodType:row.periodType,
       fiscalYear:period.fiscalYear,fiscalQuarter:period.fiscalQuarter,fiscalCalendarReference:period.calendarReference,
-      reportDate:null,reportDateReference:null,publication:{publishedAt:null,publicationDate:null,publicationPrecision:'UNKNOWN',publicationStatus:'UNKNOWN',timezone:null,evidenceReference:null},
+      reportDate:null,reportDateReference:null,publication:row.revision?.publication ?? {publishedAt:null,publicationDate:null,publicationPrecision:'UNKNOWN',publicationStatus:'UNKNOWN',timezone:null,evidenceReference:null},
       providerReceivedAt:null,providerReceiptReference:null,retrievedAt:raw.retrievedAt,ingestedAt:input.recordedAt,
       availability:{availableAt:null,status:'UNKNOWN',policyReference:null,mode:null,provenanceReferences:[]},
       raw:{fieldId:row.fieldId,label:row.sourceLabel,fieldLocator:row.locator,lexicalValue:row.lexicalValue,unit:row.unit,
@@ -206,24 +231,49 @@ export function normalizeStatement(input: {id:string;scope:FundamentalObservatio
         `mapping-sha256:${input.mapping.hash}`,`normalization-run:${input.id}`,`declared-sign:${f.sign}`,row.unitLocator,row.periodLocator,row.definitionLocator,f.definitionReference],
       dataPresence:parsed.state === 'MISSING' ? 'MISSING' : 'AVAILABLE',quality:parsed.state === 'AVAILABLE' ? 'VALID' : parsed.state === 'MISSING' ? 'UNKNOWN' : 'INVALID',
       applicability:'APPLICABLE',applicabilityReference:null,scopeFallback:null,fxLineageReference:null,
-      revisionKind:'ORIGINAL',recordVersion:'1',supersedesObservationId:null,revisionReason:null,revisionEvidenceReference:null,correctionKnownAt:null,ancestorReferences:[],
-    };
+      revisionKind:row.revision?.kind ?? 'ORIGINAL',recordVersion:row.revision?.recordVersion ?? '1',supersedesObservationId:row.revision?.predecessorId ?? null,revisionReason:row.revision?.reason ?? null,revisionEvidenceReference:row.revision?.kind === 'ORIGINAL' ? null : row.revision?.evidenceReference ?? null,correctionKnownAt:row.revision?.knownAt ?? null,ancestorReferences:[] as string[],
+    } as FundamentalObservation & {publication:FundamentalObservation['publication'];transformationReferences:string[];ancestorReferences:string[]};
+    if (row.revision) {
+      const v=row.revision, old=prior.find(p=>p.id===v.predecessorId);
+      o.transformationReferences = [...o.transformationReferences,`revision-evidence:${v.evidenceReference}`];
+      if (v.kind !== 'ORIGINAL' && !input.deferLineage) {
+        requireFundamental(old && comparableKey(old) === comparableKey(o) && old.id !== o.id && old.quality !== 'CONFLICTING' &&
+          old.ingestedAt <= v.knownAt! && v.knownAt! <= x.reviewedAt && v.knownAt! <= input.recordedAt,'REVISION_PREDECESSOR_MISMATCH');
+        if (v.kind === 'ISSUER_RESTATEMENT') requireFundamental(documentHash(old) !== undefined && raw.documentId !== documentHash(old) && v.publication !== null &&
+          v.publication.evidenceReference !== null && v.publication.evidenceReference !== old.publication.evidenceReference &&
+          v.publication.publicationStatus === 'VERIFIED' &&
+          (v.publication.publishedAt !== null ? v.publication.publishedAt <= v.knownAt! : v.publication.publicationDate !== null && v.publication.publicationDate <= v.knownAt!.slice(0,10)),'RESTATEMENT_REQUIRES_OWN_DISCLOSURE');
+        else o.publication = old.publication;
+        if (v.kind === 'MAPPING_CORRECTION') {
+          requireFundamental(old.mappingVersion !== m.version && v.predecessorMappingHash !== null &&
+            old.transformationReferences.includes(`mapping-sha256:${v.predecessorMappingHash}`) && v.predecessorMappingHash !== input.mapping.hash,'MAPPING_CORRECTION_HASH_LINEAGE');
+        } else requireFundamental(v.predecessorMappingHash === null,'NON_MAPPING_CORRECTION_HASH');
+        const chain:string[]=[]; let current:FundamentalObservation|undefined=old;
+        while(current) {
+          requireFundamental(!chain.includes(current.id) && current.id !== o.id,'REVISION_CYCLE');
+          requireFundamental(comparableKey(current) === comparableKey(o),'REVISION_CHAIN_IDENTITY'); chain.push(current.id);
+          if (current.supersedesObservationId === null) break;
+          current=prior.find(p=>p.id===current!.supersedesObservationId);
+          requireFundamental(current !== undefined,'REVISION_CHAIN_INCOMPLETE');
+        }
+        o.ancestorReferences=chain;
+      }
+    }
     observations.push(validateFundamentalObservation(o,registry));
   }
-  const prior = input.prior.map(o => validateFundamentalObservation(o,registry));
-  requireFundamental(prior.every(o => o.ingestedAt <= input.recordedAt),'NORMALIZATION_CONTEXT_AFTER_RUN');
   for (let i = 0; i < observations.length; i++) {
     const o = observations[i];
     const same = [...prior,...observations.filter((_,index) => index !== i)].filter(other => comparableKey(other) === comparableKey(o));
-    const conflicts = same.filter(other => o.normalized.value !== null && other.normalized.value !== null && other.normalized.value !== o.normalized.value);
-    const remapped = same.filter(other => other.rawCaptureId === o.rawCaptureId && other.mappingVersion !== o.mappingVersion);
+    const unrelated = same.filter(other => !o.ancestorReferences.includes(other.id));
+    const conflicts = unrelated.filter(other => o.normalized.value !== null && other.normalized.value !== null && other.normalized.value !== o.normalized.value);
+    const remapped = unrelated.filter(other => other.rawCaptureId === o.rawCaptureId && other.mappingVersion !== o.mappingVersion);
     if (remapped.length) add(x.rows.find(r => `${input.id}-${r.id}` === o.id)!.id,'MAPPING_CORRECTION_REQUIRES_EXPLICIT_REVISION','BLOCKING',remapped.map(c => c.id));
     if (conflicts.length) {
       add(x.rows.find(r => `${input.id}-${r.id}` === o.id)!.id,'VALUE_CONFLICT','BLOCKING',conflicts.map(c => c.id));
       observations[i] = validateFundamentalObservation({...o,quality:'CONFLICTING'},registry);
     }
   }
-  return deepFreeze({id:input.id,scope:input.scope,recordedAt:input.recordedAt,sourceVersionId:raw.sourceVersionId,importExecutionId:raw.importExecutionId,
+  return deepFreeze({...(input.legacyReplay ? {} : {revisionPolicyVersion:'explicit-lineage-v1' as const}),id:input.id,scope:input.scope,recordedAt:input.recordedAt,sourceVersionId:raw.sourceVersionId,importExecutionId:raw.importExecutionId,
     rawCaptureId:raw.captureIds[0],documentId:raw.documentId,bodyHash:raw.bodyHash,qualificationId:q.id,qualification:q,captureIds:raw.captureIds,
     extract:x,extractHash:input.extractHash,mapping:{manifest:m,hash:input.mapping.hash},registry,
     status:findings.some(f => f.severity === 'BLOCKING') ? 'BLOCKED' : findings.length ? 'PARTIAL' : 'VALIDATED',findings,observations,

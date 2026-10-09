@@ -33,6 +33,7 @@ export class PrismaFundamentalNormalization implements FundamentalNormalizationR
   comparable(observations:readonly FundamentalObservation[]) {return this.compareWith(this.client,observations);}
   async append(raw:NormalizationAssessment) {
     fundamentalId(raw.id);
+    requireFundamental(raw.revisionPolicyVersion === 'explicit-lineage-v1','EXPLICIT_REVISION_POLICY_REQUIRED');
     const candidate = await this.gate.candidate(raw.captureIds,raw.qualification.intendedIssuer);
     requireFundamental(normalizationHash(candidate.qualification) === normalizationHash(raw.qualification) &&
       raw.registry.registryHash === this.release.registryHash && normalizationHash(raw.registry) === normalizationHash(this.release), 'NORMALIZATION_GATE_CHANGED');
@@ -79,7 +80,7 @@ export class PrismaFundamentalNormalization implements FundamentalNormalizationR
       }));
       const replay = normalizeStatement({id:result.id,scope:result.scope,recordedAt:result.recordedAt,
         candidate:{...verified,qualification:q},extract:result.extract,extractHash:result.extractHash,mapping:result.mapping,
-        registry:this.release,prior,hash:normalizationHash});
+        registry:this.release,prior,hash:normalizationHash,legacyReplay:result.revisionPolicyVersion === undefined});
       requireFundamental(normalizationHash(replay) === row.bodyHash,'NORMALIZATION_STORED_REPLAY');
       for (const o of result.observations) {
         const stored = await repository.findObservation(o.id);
