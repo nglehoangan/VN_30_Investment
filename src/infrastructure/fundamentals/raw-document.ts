@@ -3,14 +3,16 @@ import type { FundamentalRawCapture } from '@/domain/fundamentals/contracts';
 import type { VerifiedRawDocument } from '@/domain/fundamentals/document-qualification';
 import type { FundamentalRepository, FundamentalDocumentReader } from '@/ports/fundamentals';
 import { validateFundamentalCapture, requireFundamental, fundamentalHash } from '@/domain/fundamentals/validation';
+import {publicDocumentQuery,rawResourceReference} from './public-resource';
 import { deepFreeze } from '@/domain/portfolio/transaction';
 
 /** RESERVED INTERNAL FAILURE SENTINEL; never an assertion that the provider returned HTTP 599. */
 export const INTERNAL_RAW_FAILURE_STATUS = 599;
 export const RAW_DOCUMENT_MEDIA_TYPE = 'application/vnd.vn30.raw-document+json';
+export const pdfDocumentMediaType=(schema:string,mediaType:string)=>mediaType==='application/pdf'||schema==='raw-document-envelope-v2'&&mediaType==='application/octet-stream';
 const sha = (bytes: string | Uint8Array) => createHash('sha256').update(bytes).digest('hex');
 interface RawDocumentEnvelope {
-  schema: 'raw-document-envelope-v1'; url: string; attempt: number; httpStatus: number | null;
+  schema: 'raw-document-envelope-v1' | 'raw-document-envelope-v2'; url: string; attempt: number; httpStatus: number | null;
   mediaType: string; error: string | null; bodyComplete: boolean; encoding: 'base64';
   chunkIndex: number; chunkCount: number; byteLength: number; bodySha256: string; bytes: string;
 }
@@ -21,13 +23,13 @@ function envelope(raw: FundamentalRawCapture): RawDocumentEnvelope {
   requireFundamental(e !== null && typeof e === 'object' &&
     Object.keys(e).sort().join(' ') === 'attempt bodyComplete bodySha256 byteLength bytes chunkCount chunkIndex encoding error httpStatus mediaType schema url',
     'RAW_ENVELOPE_FIELDS');
-  requireFundamental(e.schema === 'raw-document-envelope-v1' && e.encoding === 'base64' &&
-    e.url === c.resourceReference && Number.isInteger(e.attempt) && e.attempt >= 1 && e.attempt <= 3 &&
+  requireFundamental(['raw-document-envelope-v1','raw-document-envelope-v2'].includes(e.schema) && e.encoding === 'base64' &&
+    (e.schema === 'raw-document-envelope-v1' ? e.url === c.resourceReference : rawResourceReference(e.url) === c.resourceReference) && Number.isInteger(e.attempt) && e.attempt >= 1 && e.attempt <= 3 &&
     (e.httpStatus === null || (Number.isInteger(e.httpStatus) && e.httpStatus >= 100 && e.httpStatus <= 599)) &&
     typeof e.mediaType === 'string' && (e.error === null || (typeof e.error === 'string' && /^[A-Z_]{1,80}$/.test(e.error))) &&
     typeof e.bodyComplete === 'boolean','RAW_ENVELOPE_METADATA');
   const u = new URL(e.url);
-  requireFundamental(u.protocol === 'https:' && !u.username && !u.password && !u.search && !u.hash,'RAW_ENVELOPE_URL');
+  requireFundamental(u.protocol === 'https:' && !u.username && !u.password && !u.hash && (e.schema === 'raw-document-envelope-v1' ? !u.search : publicDocumentQuery(u)),'RAW_ENVELOPE_URL');
   requireFundamental(Number.isInteger(e.byteLength) && e.byteLength >= 0 && e.byteLength <= 64_000_000 &&
     e.chunkCount === Math.max(1,Math.ceil(e.byteLength / 1_000_000)) && Number.isInteger(e.chunkIndex) &&
     e.chunkIndex >= 0 && e.chunkIndex < e.chunkCount && typeof e.bytes === 'string' &&
@@ -39,6 +41,18 @@ function envelope(raw: FundamentalRawCapture): RawDocumentEnvelope {
     ? e.bodyComplete && e.httpStatus !== null && e.httpStatus >= 200 && e.httpStatus < 300 && c.responseStatus === e.httpStatus
     : !e.bodyComplete && c.responseStatus === INTERNAL_RAW_FAILURE_STATUS,'RAW_HTTP_SENTINEL_MISMATCH');
   return e;
+}
+
+/** Each contiguous response is a separate retrieval, even for the same URL/clock/body. */
+export function completeRawPdfGroups(captures:readonly FundamentalRawCapture[]):string[][] {
+  const groups:string[][]=[];
+  for(let index=0;index<captures.length;){
+    const e=envelope(captures[index]);
+    requireFundamental(e.chunkIndex===0&&index+e.chunkCount<=captures.length,'RAW_RESPONSE_GROUP_BOUNDARY');
+    if(e.error===null&&pdfDocumentMediaType(e.schema,e.mediaType)&&Buffer.from(e.bytes,'base64').subarray(0,5).toString()==='%PDF-')groups.push(captures.slice(index,index+e.chunkCount).map(c=>c.id));
+    index+=e.chunkCount;
+  }
+  return groups;
 }
 
 /** Consumers read actual nullable provider evidence, never the reserved capture sentinel. */
@@ -60,7 +74,7 @@ export class RepositoryRawDocuments implements FundamentalDocumentReader {
     const source = await this.repository.findSource(c.sourceVersionId);
     requireFundamental(source !== null && source.id === c.sourceVersionId && source.schemaVersion === e.schema &&
       batch !== null && batch.id === c.importExecutionId && batch.sourceVersionId === c.sourceVersionId &&
-      e.error === null && e.mediaType === 'application/pdf' && rows.length === e.chunkCount,'RAW_DOCUMENT_NOT_COMPLETE_PDF');
+      e.error === null && pdfDocumentMediaType(e.schema,e.mediaType) && rows.length === e.chunkCount,'RAW_DOCUMENT_NOT_COMPLETE_PDF');
     for (const [index,row] of rows.entries()) {
       const other = row.envelope, capture = row.capture;
       requireFundamental(other.chunkIndex === index && other.chunkCount === e.chunkCount && other.bodySha256 === e.bodySha256 &&
@@ -79,6 +93,6 @@ export class RepositoryRawDocuments implements FundamentalDocumentReader {
     const documentId = sha(JSON.stringify({sourceVersionId:c.sourceVersionId,importExecutionId:c.importExecutionId,
       resourceReference:e.url,attempt:e.attempt,captureIds:ids,payloadHashes:rows.map(row => row.capture.payloadHash),bodyHash:e.bodySha256}));
     return deepFreeze({documentId,bodyHash:e.bodySha256,sourceVersionId:c.sourceVersionId,importExecutionId:c.importExecutionId,
-      captureIds:ids,resourceReference:e.url,retrievedAt:c.retrievedAt,ingestedAt:batch!.ingestedAt,bodyBase64:body.toString('base64')}) as unknown as VerifiedRawDocument;
+      captureIds:ids,resourceReference:c.resourceReference,retrievedAt:c.retrievedAt,ingestedAt:batch!.ingestedAt,bodyBase64:body.toString('base64')}) as unknown as VerifiedRawDocument;
   }
 }

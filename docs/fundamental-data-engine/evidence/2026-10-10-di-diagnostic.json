@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 1,
+  "kind": "DI_PREREQUISITE_EXECUTION_AND_READ_ONLY_DATABASE_AUDIT",
+  "status": "BLOCKED",
+  "ownerExecutionAuthorized": true,
+  "reportingWindow": {
+    "start": "2025-01-01",
+    "end": "2026-06-30"
+  },
+  "requestedDecisionAsOf": "2026-10-10T04:54:20.680Z",
+  "targetReference": "data/initialization-08b.sqlite",
+  "execution": {
+    "repositoryPreflightExecuted": true,
+    "explicitDatabaseReadOnlyAuditExecuted": true,
+    "formalDIEvaluationExecuted": false,
+    "diAcceptanceWritten": false,
+    "scoringExecuted": false
+  },
+  "preflightReference": "docs/fundamental-data-engine/evidence/2026-10-10-di-current-preflight.json",
+  "preflightPacketHash": "f8ef45a023899229320fafec37bae709feba72e689e023a424616804219cb513",
+  "databaseAudit": {
+    "recordedAt": "2026-10-10T04:54:27.600082+00:00",
+    "databaseReference": "data/initialization-08b.sqlite",
+    "mode": "READ_ONLY_QUERY_ONLY_TRANSACTION",
+    "counts": {
+      "security": 0,
+      "methodology_record": 2,
+      "fundamental_source_version": 75,
+      "fundamental_import_batch": 76,
+      "fundamental_raw_capture": 3806,
+      "fundamental_observation": 0,
+      "fundamental_normalization": 0,
+      "fundamental_derivation": 0,
+      "fundamental_availability_assessment": 0,
+      "fundamental_snapshot_content": 0,
+      "fundamental_snapshot_run": 0,
+      "data_initialization_acceptance": 0,
+      "scoring_dataset_binding": 0,
+      "portfolio": 0
+    },
+    "quickCheck": [
+      "ok"
+    ],
+    "foreignKeyViolationCount": 0,
+    "rawSourceImportCaptureInventoryHash": "e9c83f5e05eb93caaecc8bd3444c622fd5c8c6f399aef2e13e03ab6fb7fb1b31",
+    "countsUnchangedAfterAudit": true,
+    "databaseBytes": 4579348480
+  },
+  "rawDocumentCoverageReference": "docs/fundamental-data-engine/evidence/2026-10-10-vietstock-raw-coverage.json",
+  "gatePrerequisiteChecks": [
+    {
+      "id": "DI1",
+      "requirement": "VN30 master source/effective date verified",
+      "formalStatus": "NOT_EXECUTED",
+      "prerequisiteStatus": "BLOCKED",
+      "reason": "Authoritative VN30 membership/effective-date package not bound",
+      "measurement": {
+        "formalUniverseCount": null,
+        "officialConstituentValidation": "PENDING"
+      },
+      "independentReviewer": null
+    },
+    {
+      "id": "DI2",
+      "requirement": "Active universe complete/no duplicates",
+      "formalStatus": "NOT_EXECUTED",
+      "prerequisiteStatus": "BLOCKED",
+      "reason": "Research source count is not a verified active universe",
+      "measurement": {
+        "researchCandidates": 30,
+        "securityRecords": 0
+      },
+      "independentReviewer": null
+    },
+    {
+      "id": "DI3",
+      "requirement": "Sector mapping complete",
+      "formalStatus": "NOT_EXECUTED",
+      "prerequisiteStatus": "BLOCKED",
+      "reason": "No initialized security/sector master",
+      "measurement": {
+        "securityRecords": 0
+      },
+      "independentReviewer": null
+    },
+    {
+      "id": "DI4",
+      "requirement": "Required market data loaded",
+      "formalStatus": "NOT_EXECUTED",
+      "prerequisiteStatus": "BLOCKED",
+      "reason": "No dataset-bound required market inputs or snapshot",
+      "measurement": {
+        "canonicalObservations": 0,
+        "snapshotRuns": 0
+      },
+      "independentReviewer": null
+    },
+    {
+      "id": "DI5",
+      "requirement": "Required fundamentals loaded",
+      "formalStatus": "NOT_EXECUTED",
+      "prerequisiteStatus": "BLOCKED",
+      "reason": "Raw PDFs/ZIPs have not produced canonical financial inputs",
+      "measurement": {
+        "rawCaptures": 3806,
+        "canonicalObservations": 0
+      },
+      "independentReviewer": null
+    },
+    {
+      "id": "DI6",
+      "requirement": "Period/unit normalization validated",
+      "formalStatus": "NOT_EXECUTED",
+      "prerequisiteStatus": "BLOCKED",
+      "reason": "No normalized financial observations",
+      "measurement": {
+        "normalizations": 0
+      },
+      "independentReviewer": null
+    },
+    {
+      "id": "DI7",
+      "requirement": "Missing-data checks PASS",
+      "formalStatus": "NOT_EXECUTED",
+      "prerequisiteStatus": "BLOCKED",
+      "reason": "No canonical per-ticker inputs to validate required-item completeness",
+      "measurement": {
+        "canonicalObservations": 0
+      },
+      "independentReviewer": null
+    },
+    {
+      "id": "DI8",
+      "requirement": "Freshness checks PASS",
+      "formalStatus": "NOT_EXECUTED",
+      "prerequisiteStatus": "BLOCKED",
+      "reason": "No bound freshness evaluation or availability assessments",
+      "measurement": {
+        "availabilityAssessments": 0
+      },
+      "independentReviewer": null
+    },
+    {
+      "id": "DI9",
+      "requirement": "Conflict/impossible-value checks PASS",
+      "formalStatus": "NOT_EXECUTED",
+      "prerequisiteStatus": "BLOCKED",
+      "reason": "Numerical consistency/conflict checks cannot evaluate absent canonical inputs",
+      "measurement": {
+        "canonicalObservations": 0
+      },
+      "independentReviewer": null
+    },
+    {
+      "id": "DI10",
+      "requirement": "Derived metric lineage verified",
+      "formalStatus": "NOT_EXECUTED",
+      "prerequisiteStatus": "BLOCKED",
+      "reason": "No derived metric lineage",
+      "measurement": {
+        "derivations": 0
+      },
+      "independentReviewer": null
+    },
+    {
+      "id": "DI11",
+      "requirement": "Point-in-time controls verified",
+      "formalStatus": "NOT_EXECUTED",
+      "prerequisiteStatus": "BLOCKED",
+      "reason": "Local retrieval is not historical publication/PIT qualification; no assessments",
+      "measurement": {
+        "availabilityAssessments": 0
+      },
+      "independentReviewer": null
+    },
+    {
+      "id": "DI12",
+      "requirement": "Data Snapshot ID reproducible",
+      "formalStatus": "NOT_EXECUTED",
+      "prerequisiteStatus": "BLOCKED",
+      "reason": "No sealed reproducible snapshot",
+      "measurement": {
+        "snapshotContents": 0,
+        "snapshotRuns": 0
+      },
+      "independentReviewer": null
+    },
+    {
+      "id": "DI13",
+      "requirement": "Required per-ticker readiness determined",
+      "formalStatus": "NOT_EXECUTED",
+      "prerequisiteStatus": "BLOCKED",
+      "reason": "No accepted snapshot/readiness package",
+      "measurement": {
+        "snapshotRuns": 0,
+        "scoringDatasetBindings": 0
+      },
+      "independentReviewer": null
+    },
+    {
+      "id": "DI14",
+      "requirement": "Independent data-quality review PASS",
+      "formalStatus": "NOT_EXECUTED",
+      "prerequisiteStatus": "BLOCKED",
+      "reason": "No independent dataset-specific review artifact or DI acceptance",
+      "measurement": {
+        "acceptances": 0
+      },
+      "independentReviewer": null
+    },
+    {
+      "id": "DI15",
+      "requirement": "No Critical/Major data issue unresolved",
+      "formalStatus": "NOT_EXECUTED",
+      "prerequisiteStatus": "BLOCKED",
+      "reason": "Major prerequisite issues remain open; independent closure not supplied",
+      "measurement": {
+        "openPreflightMajorIssues": 3
+      },
+      "independentReviewer": null
+    }
+  ],
+  "authorizationNote": "Owner requested DI execution on the previously selected target. Generic preflight command-review placeholders do not revoke that authorization; the operative blockers are absent canonical inputs, governed dataset packages, snapshot and independent acceptance.",
+  "nextDependencies": [
+    "Official universe/effective membership and sector master",
+    "Required market and valuation observations",
+    "PDF/OCR extraction with issuer/sector-specific mapping, units, period normalization and reconciliation",
+    "Publication/revision/PIT availability assessments and derived metric lineage",
+    "Sealed snapshot with explicit requirements and per-ticker readiness",
+    "Independent DI14/DI15 dataset review and acceptance"
+  ],
+  "packetHashSemantics": "SHA256_OF_SORTED_COMPACT_UTF8_JSON_WITH_PACKET_HASH_FIELD_OMITTED",
+  "packetHash": "3c314252db8d74e2166deebfdce1d0412bf6061079928f05040b79abf67a23ca"
+}
