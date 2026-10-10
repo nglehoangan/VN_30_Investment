@@ -53,6 +53,7 @@ export class PrismaFundamentals implements FundamentalRepository {
     try{if ('$transaction' in this.client) await this.client.$transaction(insert); else await insert(this.client);}catch(error){failure(error);}
   }
   async appendObservation(raw:FundamentalObservation) {
+    requireFundamental(raw.scope!=='REVIEW_CANDIDATE','CANDIDATES_REQUIRE_ISOLATED_STAGING');
     const o=validateFundamentalObservation(raw,this.release);
     await this.verifyFormal(o);
     const c=await this.findCapture(o.rawCaptureId);

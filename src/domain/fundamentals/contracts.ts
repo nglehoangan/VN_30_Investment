@@ -51,7 +51,7 @@ export interface PublicationProvenance {
   readonly timezone: string | null; readonly evidenceReference: string | null;
 }
 export interface FundamentalObservation {
-  readonly id: string; readonly scope: 'FORMAL' | 'SYNTHETIC_TEST'; readonly securityId: SecurityId;
+  readonly id: string; readonly scope: 'FORMAL' | 'SYNTHETIC_TEST' | 'REVIEW_CANDIDATE'; readonly securityId: SecurityId;
   readonly ticker: string; readonly identifierReference: string; readonly sourceVersionId: string; readonly rawCaptureId: string;
   readonly itemId: string; readonly registryVersion: string; readonly registryHash: string; readonly itemDefinitionVersion: string;
   readonly statementType: CanonicalItem['statementType']; readonly measurementSemantic: MeasurementSemantic;

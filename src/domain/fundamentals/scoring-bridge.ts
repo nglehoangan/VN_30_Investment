@@ -28,12 +28,13 @@ export function validateBridgePlan(p:ScoringBridgePlan){
 /** Shared predicate for sealed selection, scoring bridge and fundamental readiness. Sources
  * are independently reloaded/replayed by the repository; request JSON is never authority. */
 export function eligibleScoringFact(s:FundamentalSnapshot,securityId:string,sources:ScoringBridgeSources,id:string,legacyReplay=false){
+ requireFundamental(s.request.scope!=='REVIEW_CANDIDATE','CANDIDATES_NOT_FOR_SCORING');
  const r=s.request,member=s.members.find(m=>m.observationId===id),o=sources.observations.find(o=>o.id===id),a=sources.assessments.find(a=>a.id===member?.assessmentId);
  requireFundamental(member&&o&&a&&o.securityId===securityId&&a.observationId===id&&a.status==='VERIFIED'&&a.availableAt!==null&&a.availableAt<=r.systemKnownAt&&a.availableAt<=r.fundamentalCutoff,'BRIDGE_SELECTED_PIT_INPUT_REQUIRED');
  validateFundamentalObservation(o!,sources.registry);requireFundamental(o!.scope===r.scope&&o!.quality==='VALID'&&o!.normalized.value!==null&&o!.applicability==='APPLICABLE'&&o!.scopeFallback===null,'BRIDGE_VALID_CANONICAL_INPUT_REQUIRED');
  if(legacyReplay){requireFundamental(o!.publication.publicationStatus==='VERIFIED'&&o!.publication.publicationPrecision==='TIMESTAMP','BRIDGE_EXACT_PUBLICATION_REQUIRED');return {o:o!,a:a!};}
  const q=r.requirements.find(q=>q.securityId===securityId&&q.itemId===o!.itemId&&q.reportingScope===o!.reportingScope&&q.periodStart===o!.periodStart&&q.periodEnd===o!.periodEnd);
- requireFundamental(q&&Date.parse(r.fundamentalCutoff)-Date.parse(q.periodEnd+'T00:00:00.000Z')<=q.maxAgeDays*86400000&&a!.observationHash===member!.observationHash&&canonicalJson(a!.policy)===canonicalJson(validateAvailabilityPolicy(r.policy)),'BRIDGE_REQUIREMENT_AND_ASSESSMENT_BINDING');
+ requireFundamental(q&&q.maxAgeDays!==null&&Date.parse(r.fundamentalCutoff)-Date.parse(q.periodEnd+'T00:00:00.000Z')<=q.maxAgeDays*86400000&&a!.observationHash===member!.observationHash&&canonicalJson(a!.policy)===canonicalJson(validateAvailabilityPolicy(r.policy)),'BRIDGE_REQUIREMENT_AND_ASSESSMENT_BINDING');
  requireFundamental(r.references.find(v=>v.kind==='SECTOR')!.content.includes(securityId+':'+o!.sector),'BRIDGE_SECTOR_BINDING');
  const pub=o!.publication;
  requireFundamental(pub.publicationStatus==='VERIFIED'&&['TIMESTAMP','DATE_ONLY'].includes(pub.publicationPrecision),'BRIDGE_VERIFIED_PUBLICATION_REQUIRED');

@@ -180,7 +180,7 @@ export function normalizeStatement(input: {id:string;scope:FundamentalObservatio
   const {candidate,registry} = input, q = candidate.qualification, raw = candidate.rawDocument;
   requireQualifiedDocument(raw,[{...q,supersedesQualificationId:null,correctionReason:null}],q.intendedIssuer);
   fundamentalId(input.id); instant(input.recordedAt); fundamentalHash(input.extractHash); fundamentalHash(input.mapping.hash);
-  requireFundamental(['FORMAL','SYNTHETIC_TEST'].includes(input.scope),'NORMALIZATION_SCOPE');
+  requireFundamental(['FORMAL','SYNTHETIC_TEST','REVIEW_CANDIDATE'].includes(input.scope),'NORMALIZATION_SCOPE');
   const x = validateStatementExtract(input.extract), m = validateStatementMapping(input.mapping.manifest,registry);
   requireFundamental(input.hash(x) === input.extractHash && input.hash(m) === input.mapping.hash,'NORMALIZATION_MANIFEST_HASH');
   requireFundamental(x.documentId === raw.documentId && x.bodyHash === raw.bodyHash && x.qualificationId === q.id &&

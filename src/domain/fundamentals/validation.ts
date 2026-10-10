@@ -99,7 +99,7 @@ export function validateFundamentalObservation(raw: FundamentalObservation, rele
   fields(o,'id scope securityId ticker identifierReference sourceVersionId rawCaptureId itemId registryVersion registryHash itemDefinitionVersion statementType measurementSemantic sector reportingScope segment accountingBasis auditStatus periodStart periodEnd periodType fiscalYear fiscalQuarter fiscalCalendarReference reportDate reportDateReference publication providerReceivedAt providerReceiptReference retrievedAt ingestedAt availability raw normalized mappingVersion transformationReferences dataPresence quality applicability applicabilityReference scopeFallback fxLineageReference revisionKind recordVersion supersedesObservationId revisionReason revisionEvidenceReference correctionKnownAt ancestorReferences');
   [o.id,o.sourceVersionId,o.rawCaptureId,o.mappingVersion,o.recordVersion].forEach(fundamentalId);securityId(o.securityId);
   requireFundamental(typeof o.ticker==='string'&&/^[A-Z0-9]{1,20}$/.test(o.ticker),'INVALID_TICKER');safeReference(o.identifierReference);
-  one(o.scope,['FORMAL','SYNTHETIC_TEST']);
+  one(o.scope,['FORMAL','SYNTHETIC_TEST','REVIEW_CANDIDATE']);
   requireFundamental(o.scope!=='FORMAL'||release.manifest.governanceStatus==='APPROVED','PROPOSED_REGISTRY_NOT_FOR_PRODUCTION');
   requireFundamental(o.registryHash===release.registryHash&&o.registryVersion===release.manifest.registryVersion,'REGISTRY_IDENTITY_MISMATCH');
   const item=release.manifest.items.find(i=>i.itemId===o.itemId);requireFundamental(item&&item.status==='ACTIVE','UNAPPROVED_CANONICAL_ITEM');

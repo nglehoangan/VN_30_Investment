@@ -37,6 +37,7 @@ export class PrismaFundamentalSnapshot implements FundamentalSnapshotRepository 
     return b;
   }
   private async governance(tx:Prisma.TransactionClient,scope:string,policy:AvailabilityPolicy,knownAt:string){
+    requireFundamental(scope!=='REVIEW_CANDIDATE','CANDIDATES_REQUIRE_ISOLATED_STAGING');
     if(scope!=='FORMAL')return;
     const registryMethod=await new PrismaMethodologyRegistry(tx).findById(methodologyId(this.registry.manifest.methodologyIdentity));
     verifyRegistryApproval(this.registry,this.registryBinding,registryMethod);

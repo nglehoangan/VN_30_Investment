@@ -27,6 +27,7 @@ export class PrismaFundamentalDerivation implements FundamentalDerivationReposit
     requireFundamental(normalizationHash(replay)===normalizationHash(result),'DERIVATION_REPLAY_MISMATCH');return replay;
   }
   async append(result:DerivationAssessment){
+    requireFundamental(result.request.scope!=='REVIEW_CANDIDATE','CANDIDATES_REQUIRE_ISOLATED_STAGING');
     fundamentalId(result.id);
     try{requireFundamental('$transaction' in this.client,'DERIVATION_APPEND_TRANSACTION_OWNER');await this.client.$transaction(async tx=>{
       const checked=await this.replay(tx,result),body=JSON.stringify(checked);

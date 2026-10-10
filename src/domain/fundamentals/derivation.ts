@@ -69,7 +69,7 @@ export function validateCrosswalk(raw:DerivationCrosswalk,registry:RegistryRelea
 export function validateDerivationRequest(raw:DerivationRequest):DerivationRequest {
   const x=snapshot(raw);exact(x,'id scope securityId sector metric periodStart periodEnd cyclical operands');
   fundamentalId(x.id);fundamentalId(x.securityId);dateOnly(x.periodStart);dateOnly(x.periodEnd);
-  requireFundamental(x.periodStart<=x.periodEnd&&['FORMAL','SYNTHETIC_TEST'].includes(x.scope)&&SECTORS.includes(x.sector)&&metrics.includes(x.metric)&&typeof x.cyclical==='boolean','DERIVATION_REQUEST_METADATA');
+  requireFundamental(x.periodStart<=x.periodEnd&&['FORMAL','SYNTHETIC_TEST','REVIEW_CANDIDATE'].includes(x.scope)&&SECTORS.includes(x.sector)&&metrics.includes(x.metric)&&typeof x.cyclical==='boolean','DERIVATION_REQUEST_METADATA');
   requireFundamental(Array.isArray(x.operands)&&x.operands.length===2&&new Set(x.operands.map(o=>o.id)).size===2,'DERIVATION_TWO_ORDERED_OPERANDS');
   for(const o of x.operands){exact(o,'id operation observationIds adjustment');fundamentalId(o.id);requireFundamental(operations.includes(o.operation)&&Array.isArray(o.observationIds)&&o.observationIds.length>0&&o.observationIds.length<=4&&new Set(o.observationIds).size===o.observationIds.length,'DERIVATION_INPUTS');o.observationIds.forEach(fundamentalId);
     requireFundamental((o.operation==='HUMAN_NORMALIZED'||o.operation==='ACTION_ADJUSTED')===(o.adjustment!==null),'REVIEWED_ADJUSTMENT_REQUIRED');

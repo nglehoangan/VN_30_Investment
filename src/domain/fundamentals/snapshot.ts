@@ -27,7 +27,7 @@ export function canonicalJson(value: unknown): string {
 }
 export interface SnapshotRequirement {
   readonly securityId:string;readonly itemId:string;readonly reportingScope:ReportingScope;
-  readonly periodStart:string;readonly periodEnd:string;readonly maxAgeDays:number;
+  readonly periodStart:string;readonly periodEnd:string;readonly maxAgeDays:number|null;
 }
 export interface SnapshotReference {
   readonly kind:'UNIVERSE'|'SECTOR'|'MARKET'|'REFERENCE';readonly version:string;
@@ -61,13 +61,13 @@ export function validateSnapshotRequest(raw:SnapshotRequest){
   exact(r,'runId scope mode decisionAsOf systemKnownAt marketCutoff fundamentalCutoff revisionCutoff policy requirementsVersion requirements references assessmentPins derivedIds builtAt softwareBuild operatorReference validationRunReference reviewContext');
   [r.runId,r.requirementsVersion,r.softwareBuild,r.operatorReference,r.validationRunReference,r.reviewContext].forEach(fundamentalId);
   [r.decisionAsOf,r.systemKnownAt,r.marketCutoff,r.fundamentalCutoff,r.builtAt].forEach(instant);
-  requireFundamental(['FORMAL','SYNTHETIC_TEST'].includes(r.scope)&&['AS_KNOWN','AS_REVISED'].includes(r.mode),'SNAPSHOT_SCOPE_MODE');
+  requireFundamental(['FORMAL','SYNTHETIC_TEST','REVIEW_CANDIDATE'].includes(r.scope)&&['AS_KNOWN','AS_REVISED'].includes(r.mode),'SNAPSHOT_SCOPE_MODE');
   requireFundamental(r.systemKnownAt<=r.decisionAsOf&&r.marketCutoff<=r.decisionAsOf&&r.fundamentalCutoff<=r.decisionAsOf&&r.builtAt>=r.decisionAsOf,'SNAPSHOT_CUTOFF_ORDER');
   requireFundamental(r.mode==='AS_KNOWN'?r.revisionCutoff===null:r.revisionCutoff!==null&&instant(r.revisionCutoff)<=r.builtAt,'SNAPSHOT_REVISION_CUTOFF');
   validateAvailabilityPolicy(r.policy);
   requireFundamental(r.requirements.length>0&&r.requirements.length<=5000&&new Set(r.requirements.map(q=>canonicalJson([q.securityId,q.itemId,q.reportingScope,q.periodStart,q.periodEnd]))).size===r.requirements.length,'SNAPSHOT_REQUIREMENTS');
   for(const q of r.requirements){exact(q,'securityId itemId reportingScope periodStart periodEnd maxAgeDays');fundamentalId(q.securityId);fundamentalId(q.itemId);dateOnly(q.periodStart);dateOnly(q.periodEnd);
-    requireFundamental(q.periodStart<=q.periodEnd&&q.periodEnd<=r.fundamentalCutoff.slice(0,10)&&['CONSOLIDATED','SEPARATE_STANDALONE'].includes(q.reportingScope)&&Number.isInteger(q.maxAgeDays)&&q.maxAgeDays>=0&&q.maxAgeDays<=36500,'SNAPSHOT_REQUIREMENT_PERIOD');}
+    requireFundamental(q.periodStart<=q.periodEnd&&q.periodEnd<=r.fundamentalCutoff.slice(0,10)&&['CONSOLIDATED','SEPARATE_STANDALONE'].includes(q.reportingScope)&&(q.maxAgeDays===null?r.scope==='REVIEW_CANDIDATE':Number.isInteger(q.maxAgeDays)&&q.maxAgeDays>=0&&q.maxAgeDays<=36500),'SNAPSHOT_REQUIREMENT_PERIOD');}
   requireFundamental(new Set(r.assessmentPins.map(p=>p.observationId)).size===r.assessmentPins.length&&new Set(r.assessmentPins.map(p=>p.assessmentId)).size===r.assessmentPins.length&&new Set(r.derivedIds).size===r.derivedIds.length,'SNAPSHOT_UNIQUE_PINS');
   r.assessmentPins.forEach(p=>{exact(p,'observationId assessmentId');fundamentalId(p.observationId);fundamentalId(p.assessmentId);});r.derivedIds.forEach(fundamentalId);
   requireFundamental(r.references.length>=3&&r.references.length<=100&&['UNIVERSE','SECTOR','MARKET'].every(k=>r.references.filter(v=>v.kind===k).length===1),'SNAPSHOT_REFERENCE_SET');
@@ -130,6 +130,7 @@ export function buildFundamentalSnapshot(request:SnapshotRequest,inputs:Snapshot
     if(heads.length>1||roots.size>1)code='BLOCKED_CONFLICT';
     else if(heads.length===0)code=rows.some(o=>pinned.get(o.id)!.status==='UNKNOWN')?'BLOCKED_PUBLICATION_UNKNOWN':rows.some(o=>pinned.get(o.id)!.status==='INVALID')?'BLOCKED_INVALID_AVAILABILITY':rows.length?'BLOCKED_NOT_YET_AVAILABLE':'BLOCKED_REQUIRED_FACT_MISSING';
     else if(heads[0].quality!=='VALID'||heads[0].dataPresence!=='AVAILABLE'||heads[0].applicability!=='APPLICABLE')code='BLOCKED_FACT_QUALITY';
+    else if(q.maxAgeDays===null)code='BLOCKED_FRESHNESS_POLICY_UNRESOLVED';
     else if(Date.parse(r.fundamentalCutoff)-Date.parse(q.periodEnd+'T00:00:00.000Z')>q.maxAgeDays*86400000)code='BLOCKED_STALE_FUNDAMENTALS';
     if(code){blockers.push(code);findings.push({requirement:q,code,candidates:rows.map(o=>({fingerprint:fingerprint(o.id),availability:availabilitySemantic(pinned.get(o.id)!)})).sort((a,b)=>a.fingerprint<b.fingerprint?-1:1)});}
     else selected.push(heads[0]);

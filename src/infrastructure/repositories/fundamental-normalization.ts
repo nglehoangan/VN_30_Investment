@@ -32,6 +32,7 @@ export class PrismaFundamentalNormalization implements FundamentalNormalizationR
   }
   comparable(observations:readonly FundamentalObservation[]) {return this.compareWith(this.client,observations);}
   async append(raw:NormalizationAssessment) {
+    requireFundamental(raw.scope!=='REVIEW_CANDIDATE','CANDIDATES_REQUIRE_ISOLATED_STAGING');
     fundamentalId(raw.id);
     requireFundamental(raw.revisionPolicyVersion === 'explicit-lineage-v1','EXPLICIT_REVISION_POLICY_REQUIRED');
     const candidate = await this.gate.candidate(raw.captureIds,raw.qualification.intendedIssuer);
