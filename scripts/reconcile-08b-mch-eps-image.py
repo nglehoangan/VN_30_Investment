@@ -1,0 +1,22 @@
+"""Actually inspected MCH reviewed note EPS; literal date columns survive in reader B."""
+import datetime,hashlib,json,pathlib,runpy
+B=pathlib.Path('data/initialization-08b-remediation-work');H='4974b488d0511d3d80619912a8e2e9ad06bcb3bb4b416876bfcd4800ae2c1082'
+def validate(c,p,R):
+ d=c.get('sourceImageColumnDefinition') or {};a=R['compact'](R['full_text'](p,'passA'));b=R['compact'](R['full_text'](p,'passB'))
+ return (c['bodyHash']==H and c['page']==63 and c['ticker']=='MCH' and c['itemId']=='BASIC_EPS' and c['sourceRowCode']=='(iii)' and c['sourceCaption']=='Lãi cơ bản trên cổ phiếu'
+  and c['scope']=='CONSOLIDATED' and c['unit']=='CURRENCY_PER_SHARE' and c['currency']=='VND'
+  and c['periodType']=='YTD' and c['period']['start']=='2026-01-01' and c['period']['end']=='2026-06-30'
+  and c['lexicalValue']==d.get('currentLexical')=='2.510' and d.get('comparativeLexical')=='2.636' and d.get('currentColumnOrdinal')==0
+  and all(R['compact'](x) in a and R['compact'](x) in b for x in ['báo cáo tài chính hợp nhất','kỳ sáu tháng','30 tháng 6 năm 2026','Lãi cơ bản trên cổ phiếu','VND/cổ phiếu','điều chỉnh lại','cổ phiếu thưởng'])
+  and all(any(w['text']==date and w['confidence']>=.8 and left<w['x']<right and .20<w['y']<.24 for w in p['passB']) for date,left,right in [('30/6/2026',.60,.72),('30/6/2025',.77,.88)])
+  and .68<c['columnX']<.75 and .27<c['rowY']<.29
+  and any(w['text']=='2.510' and w['confidence']>=.8 and abs(w['x']-c['columnX'])<.001 and abs(w['y']+w['height']/2-c['rowY'])<.001 for w in p['passA'])
+  and any(w['text']=='2.636' and w['x']>.83 and abs(w['y']+w['height']/2-c['rowY'])<.015 for w in p['passA']))
+def main():
+ R=runpy.run_path('scripts/reconcile-08b-extraction.py');sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();q=next(q for q in json.loads((B/'qualifications.json').read_text()) if q['bodyHash']==H);assert q['scope']=='CONSOLIDATED' and q['auditStatus']=='REVIEWED'
+ f=B/'ocr'/f'{H}-p63.json';p=json.loads(f.read_text());assert sha(f.with_suffix('.png'))==p['renderSha256'];w=next(w for w in p['passA'] if w['text']=='2.510');caption='Lãi cơ bản trên cổ phiếu';d={'layout':'MCH_NOTE_37_III_REPORTED_EPS','currentColumnOrdinal':0,'currentLexical':'2.510','comparativeLexical':'2.636','dateVerification':'ACTUAL_SOURCE_IMAGE_AND_RETAINED_TESSERACT_LITERAL_DATE_COLUMN_WORDS','priorDisclosure':'BONUS_SHARE_ADJUSTED_COMPARATIVE_EPS; NOT_UNADJUSTED_PRIOR_EPS'}
+ c={'ticker':'MCH','securityId':q['securityId'],'documentId':q['documentId'],'bodyHash':H,'page':63,'itemId':'BASIC_EPS','sourceCaption':caption,'captionAlternative':R['fold'](caption),'sourceRowCode':'(iii)','lexicalValue':'2.510','verificationLexicalValue':'2.510','verifiedCanonicalInteger':'2510','unit':'CURRENCY_PER_SHARE','currency':'VND','scope':q['scope'],'period':{**q['period'],'start':'2026-01-01','end':'2026-06-30','type':'YTD'},'periodType':'YTD','columnX':w['x'],'rowY':w['y']+w['height']/2,'extractionMethod':p['engineA'],'verificationMethod':'CODEX_ASSISTANT_SOURCE_IMAGE_READING','renderSha256':p['renderSha256'],'sourceImageColumnDefinition':d,'status':'VERIFIED_TRANSCRIPTION_REVIEW_CANDIDATE','comparativeColumn':False,'independentHumanApproval':None,'sourceOcrProofFile':str(f)};assert validate(c,p,R)
+ row={'bodyHash':H,'page':63,'itemId':'BASIC_EPS','caption':caption,'rowCode':'(iii)','currentLexical':'2.510','unit':c['unit'],'currency':'VND','scope':q['scope'],'periodType':'YTD','periodStart':'2026-01-01','periodEnd':'2026-06-30','renderSha256':p['renderSha256'],'sourceImageColumnDefinition':d}
+ proof=B/'mch-eps-source-image-reader-proof.json';proof.write_text(json.dumps({'method':'CODEX_ASSISTANT_SOURCE_IMAGE_READING','recordedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'governanceStatus':'REVIEW_CANDIDATE','independentHumanApproval':None,'rows':[row],'sourceRisk':'Reported six-month EPS 2,510 VND/share. Prior 2,636 is explicitly bonus-share adjusted. Do not treat weighted shares as ending shares, create total-to-common-profit aliases or declare normalized EPS.'},ensure_ascii=False,indent=2)+'\n');c.update(sourceImageProofFile=str(proof),sourcePageEvidenceHashes=[sha(f),sha(proof)])
+ out=B/'source-image-verified-cells.json';cells=json.loads(out.read_text());cells=[x for x in cells if not(x['bodyHash']==H and x['itemId']=='BASIC_EPS')]+[c];out.write_text(json.dumps(cells,ensure_ascii=False,indent=2)+'\n');print(json.dumps({'sourceImageCells':len(cells),'newMchEpsCells':1}))
+if __name__=='__main__':main()

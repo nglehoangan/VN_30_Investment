@@ -1,0 +1,7 @@
+"""Follow the single observed second page for the exact required GVR archive."""
+import datetime,hashlib,html,json,pathlib,re,subprocess
+B=pathlib.Path('data/initialization-08b-remediation-work/targeted-indexes');parent=B/'GVR-required-history-2025.body';receipt=json.loads(parent.with_suffix('.json').read_text());assert receipt['httpStatus']=='200' and hashlib.sha256(parent.read_bytes()).hexdigest()==receipt['bodySha256']
+links={html.unescape(u) for u in re.findall(r'href="([^"]+)"',parent.read_text()) if '/bao-cao-tai-chinh/2025-bao-cao-tai-chinh/page/' in u};assert len(links)==1;url=next(iter(links));assert url=='https://vrg.vn/quan-he-co-dong/bao-cao-tai-chinh/2025-bao-cao-tai-chinh/page/2/'
+file=B/'GVR-required-history-2025-page2.body';assert not file.exists()
+r=subprocess.run(['curl','--cacert','/etc/ssl/cert.pem','--max-time','30','-sS','-o',str(file),'-w','%{http_code}',url],capture_output=True,text=True)
+file.with_suffix('.json').write_text(json.dumps({'url':url,'method':'OBSERVED_PRIMARY_ISSUER_YEAR_ARCHIVE_PAGE','observedFrom':str(parent),'observedFromSha256':receipt['bodySha256'],'httpStatus':r.stdout,'curlExit':r.returncode,'retrievedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='milliseconds').replace('+00:00','Z'),'bodySha256':hashlib.sha256(file.read_bytes()).hexdigest() if file.exists() else None,'stderr':r.stderr},indent=2)+'\n');print(json.dumps({'httpStatus':r.stdout}),flush=True)

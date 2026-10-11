@@ -4,6 +4,8 @@ import { instant, dateOnly } from '@/shared/time';
 import { deepFreeze } from '@/domain/portfolio/transaction';
 import { snapshot } from '@/domain/scoring/validation';
 import { bindProviderReceipt } from './availability-evidence';
+import { bindLivePublicDisclosure } from './live-public-disclosure';
+import type { LivePublicDisclosureBinding } from './live-public-disclosure';
 import type { ProviderReceiptEvidenceBinding, AvailabilityEvidenceInput } from './availability-evidence';
 
 interface AvailabilityPolicyBase {
@@ -18,7 +20,10 @@ export interface EvidenceAvailabilityPolicy extends AvailabilityPolicyBase {
   readonly algorithm:'operational-evidence-v2';
   readonly dateOnlyEvidenceClasses:readonly 'TRUSTED_PROVIDER_RECEIPT'[];
 }
-export type AvailabilityPolicy=LegacyAvailabilityPolicy|EvidenceAvailabilityPolicy;
+export interface LiveAvailabilityPolicy extends AvailabilityPolicyBase {
+ readonly algorithm:'operational-live-public-v3';readonly dateOnlyEvidenceClasses:readonly 'TRUSTED_PROVIDER_RECEIPT'[];readonly applicability:'INITIAL_LIVE_ONLY';
+}
+export type AvailabilityPolicy=LegacyAvailabilityPolicy|EvidenceAvailabilityPolicy|LiveAvailabilityPolicy;
 interface AvailabilityAssessmentBase {
   readonly id: string; readonly observationId: string; readonly observationHash: string;
   readonly mode: 'AS_KNOWN'; readonly policy: AvailabilityPolicy; readonly policyHash: string; readonly assessedAt: string;
@@ -28,36 +33,39 @@ interface AvailabilityAssessmentBase {
 }
 export interface LegacyAvailabilityAssessment extends AvailabilityAssessmentBase {readonly policy:LegacyAvailabilityPolicy}
 export interface EvidenceAvailabilityAssessment extends AvailabilityAssessmentBase {
-  readonly policy:EvidenceAvailabilityPolicy;
+  readonly policy:EvidenceAvailabilityPolicy|LiveAvailabilityPolicy;
+  readonly livePublicDisclosureBinding?:LivePublicDisclosureBinding|null;
   readonly publicFallbackBoundary:string|null; readonly evidenceBackedBoundary:string|null;
-  readonly boundaryBasis:'ISSUER_PUBLICATION_TIMESTAMP'|'CONSERVATIVE_DATE_ONLY_FALLBACK'|'TRUSTED_PROVIDER_RECEIPT'|null;
+  readonly boundaryBasis:'ISSUER_PUBLICATION_TIMESTAMP'|'CONSERVATIVE_DATE_ONLY_FALLBACK'|'TRUSTED_PROVIDER_RECEIPT'|'CONSERVATIVE_INITIAL_LIVE_PUBLIC_DISCLOSURE'|null;
   readonly evidenceInputs:readonly AvailabilityEvidenceInput[];
   readonly providerEvidenceBinding:ProviderReceiptEvidenceBinding|null;
 }
 export type AvailabilityAssessment=LegacyAvailabilityAssessment|EvidenceAvailabilityAssessment;
-export function isEvidenceAssessment(a:AvailabilityAssessment):a is EvidenceAvailabilityAssessment{return a.policy.algorithm==='operational-evidence-v2';}
+export function isEvidenceAssessment(a:AvailabilityAssessment):a is EvidenceAvailabilityAssessment{return a.policy.algorithm!=='operational-max-v1';}
 export function validateAvailabilityPolicy(raw: AvailabilityPolicy) {
   const p=snapshot(raw);
-  const fields='algorithm approvalReference dateOnlyZones governanceStatus recordedAt version'+(p.algorithm==='operational-evidence-v2'?' dateOnlyEvidenceClasses':'');
+  const fields='algorithm approvalReference dateOnlyZones governanceStatus recordedAt version'+(p.algorithm!=='operational-max-v1'?' dateOnlyEvidenceClasses':'')+(p.algorithm==='operational-live-public-v3'?' applicability':'');
   requireFundamental(Object.keys(p).sort().join(' ')===fields.split(' ').sort().join(' '),'AVAILABILITY_POLICY_FIELDS');
   fundamentalId(p.version);instant(p.recordedAt);
-  requireFundamental(['operational-max-v1','operational-evidence-v2'].includes(p.algorithm)&&['PROPOSED','APPROVED'].includes(p.governanceStatus)&&
+  requireFundamental(['operational-max-v1','operational-evidence-v2','operational-live-public-v3'].includes(p.algorithm)&&['PROPOSED','APPROVED'].includes(p.governanceStatus)&&
     (p.approvalReference===null||typeof p.approvalReference==='string'&&p.approvalReference.length>0&&p.approvalReference.length<=4000)&&
     (p.governanceStatus==='APPROVED')===(p.approvalReference!==null),'AVAILABILITY_POLICY_APPROVAL');
   requireFundamental(Array.isArray(p.dateOnlyZones)&&new Set(p.dateOnlyZones).size===p.dateOnlyZones.length&&p.dateOnlyZones.every(z=>['UTC','Asia/Ho_Chi_Minh'].includes(z)),'AVAILABILITY_POLICY_TIMEZONES');
-  if(p.algorithm==='operational-evidence-v2')requireFundamental(Array.isArray(p.dateOnlyEvidenceClasses)&&new Set(p.dateOnlyEvidenceClasses).size===p.dateOnlyEvidenceClasses.length&&p.dateOnlyEvidenceClasses.every(c=>c==='TRUSTED_PROVIDER_RECEIPT'),'DATE_ONLY_PUBLIC_EVIDENCE_CLASSES');
+  if(p.algorithm!=='operational-max-v1')requireFundamental(Array.isArray(p.dateOnlyEvidenceClasses)&&new Set(p.dateOnlyEvidenceClasses).size===p.dateOnlyEvidenceClasses.length&&p.dateOnlyEvidenceClasses.every(c=>c==='TRUSTED_PROVIDER_RECEIPT'),'DATE_ONLY_PUBLIC_EVIDENCE_CLASSES');
+  if(p.algorithm==='operational-live-public-v3')requireFundamental(p.applicability==='INITIAL_LIVE_ONLY','LIVE_POLICY_SCOPE');
   return deepFreeze({...p,dateOnlyZones:[...p.dateOnlyZones].sort()});
 }
 /** New artifact only. Signing and fiscal dates never substitute for publication. */
-export function assessAvailability(input:{id:string;observation:FundamentalObservation;registry:RegistryRelease;policy:AvailabilityPolicy;assessedAt:string;providerEvidenceBinding?:ProviderReceiptEvidenceBinding|null;hash:(v:unknown)=>string}):AvailabilityAssessment {
+export function assessAvailability(input:{id:string;observation:FundamentalObservation;registry:RegistryRelease;policy:AvailabilityPolicy;assessedAt:string;providerEvidenceBinding?:ProviderReceiptEvidenceBinding|null;livePublicDisclosureBinding?:LivePublicDisclosureBinding|null;hash:(v:unknown)=>string}):AvailabilityAssessment {
   fundamentalId(input.id);instant(input.assessedAt);
   const o=validateFundamentalObservation(input.observation,input.registry),p=validateAvailabilityPolicy(input.policy);
   requireFundamental(o.ingestedAt<=input.assessedAt&&p.recordedAt<=input.assessedAt,'AVAILABILITY_ASSESSMENT_CHRONOLOGY');
-  const trusted=p.algorithm==='operational-evidence-v2'&&input.providerEvidenceBinding?bindProviderReceipt(input.providerEvidenceBinding,o,input.assessedAt,input.hash):null;
+  const trusted=p.algorithm!=='operational-max-v1'&&input.providerEvidenceBinding?bindProviderReceipt(input.providerEvidenceBinding,o,input.assessedAt,input.hash):null;
   let publicFallbackBoundary:string|null=null,evidenceBackedBoundary:string|null=null;
   let boundaryBasis:EvidenceAvailabilityAssessment['boundaryBasis']=null;
   let publicBoundary:string|null=null,status:AvailabilityAssessment['status']='UNKNOWN',finding:string|null='PUBLICATION_UNKNOWN';
   const pub=o.publication;
+  const live=p.algorithm==='operational-live-public-v3'&&input.livePublicDisclosureBinding?bindLivePublicDisclosure(input.livePublicDisclosureBinding,o,input.assessedAt,input.hash):null;
   if(pub.publicationStatus==='VERIFIED'&&pub.publicationPrecision==='TIMESTAMP'){publicBoundary=pub.publishedAt;boundaryBasis='ISSUER_PUBLICATION_TIMESTAMP';}
   else if(pub.publicationStatus==='VERIFIED'&&pub.publicationPrecision==='DATE_ONLY'){
     if(p.governanceStatus!=='APPROVED')finding='DATE_ONLY_POLICY_UNAPPROVED';
@@ -80,6 +88,10 @@ export function assessAvailability(input:{id:string;observation:FundamentalObser
     const start=Date.parse(pub.publicationDate!+'T00:00:00.000Z')-(pub.timezone==='Asia/Ho_Chi_Minh'?7*3600000:0);
     if(Date.parse(o.retrievedAt)<start||(o.providerReceivedAt!==null&&Date.parse(o.providerReceivedAt)<start)){status='INVALID';finding='PUBLICATION_RECEIPT_CHRONOLOGY';}
   }
+  if(publicBoundary===null&&status!=='INVALID'&&live){
+    requireFundamental(o.scope==='REVIEW_CANDIDATE'||p.governanceStatus==='APPROVED','FORMAL_LIVE_POLICY_APPROVAL');
+    publicBoundary=[live.retrievedAt,live.verifiedAt,o.ingestedAt,p.recordedAt].sort().at(-1)!;evidenceBackedBoundary=publicBoundary;boundaryBasis='CONSERVATIVE_INITIAL_LIVE_PUBLIC_DISCLOSURE';
+  }
   if(publicBoundary!==null&&status!=='INVALID'){
     status='VERIFIED';finding=null;
   }
@@ -94,5 +106,5 @@ export function assessAvailability(input:{id:string;observation:FundamentalObser
   if(o.providerReceivedAt!==null)evidence(trusted?'TRUSTED_PROVIDER_RECEIPT':'UNTRUSTED_PROVIDER_RECEIPT',o.providerReceivedAt,o.providerReceiptReference!,boundaryBasis==='TRUSTED_PROVIDER_RECEIPT',trusted?input.hash(trusted.authority):null,trusted?.receipt.knownAt??null);
   evidence('LOCAL_RETRIEVAL',o.retrievedAt,'raw-capture:'+o.rawCaptureId);evidence('LOCAL_INGESTION',o.ingestedAt,'observation:'+o.id);
   if(o.correctionKnownAt!==null)evidence('CORRECTION_KNOWLEDGE',o.correctionKnownAt,o.revisionEvidenceReference!);
-  return deepFreeze({...base,policy:p,publicFallbackBoundary,evidenceBackedBoundary,boundaryBasis,evidenceInputs,providerEvidenceBinding:trusted});
+  return deepFreeze({...base,policy:p,...(p.algorithm==='operational-live-public-v3'?{livePublicDisclosureBinding:live}:{}),publicFallbackBoundary,evidenceBackedBoundary,boundaryBasis,evidenceInputs,providerEvidenceBinding:trusted});
 }

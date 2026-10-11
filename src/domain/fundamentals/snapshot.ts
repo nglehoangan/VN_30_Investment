@@ -1,6 +1,13 @@
+import {validateSourcePeriodWithdrawals} from './source-period-withdrawal';
+import type {SourcePeriodWithdrawal} from './source-period-withdrawal';
 import type { FundamentalObservation, RegistryRelease, ReportingScope } from './contracts';
 import type { AvailabilityAssessment, AvailabilityPolicy } from './availability';
 import { assessAvailability, validateAvailabilityPolicy, isEvidenceAssessment } from './availability';
+import { equivalentRepresentative } from './fact-equivalence';
+import type { FactEquivalenceResolution } from './fact-equivalence';
+import { assessOperationalFreshness } from './operational-freshness';
+import type { OperationalFreshnessPolicy, OperationalFreshnessEvidence } from './operational-freshness';
+import type { LivePublicDisclosureBinding } from './live-public-disclosure';
 import type { ProviderReceiptEvidenceBinding } from './availability-evidence';
 import type { DerivationAssessment } from './derivation';
 import { comparableKey } from './normalization';
@@ -45,6 +52,10 @@ export interface SnapshotRequest {
   readonly validationRunReference:string;readonly reviewContext:string;
 }
 export interface SnapshotInputs {
+  readonly sourcePeriodWithdrawals?:readonly SourcePeriodWithdrawal[];
+  readonly equivalenceResolutions?:readonly FactEquivalenceResolution[];
+  readonly operationalFreshnessBindings?:readonly {readonly observationId:string;readonly policy:OperationalFreshnessPolicy;readonly evidence:OperationalFreshnessEvidence}[];
+  readonly livePublicDisclosureBindings?:readonly LivePublicDisclosureBinding[];
   readonly providerEvidenceBindings?:readonly ProviderReceiptEvidenceBinding[];
   readonly registry:RegistryRelease;readonly observations:readonly FundamentalObservation[];
   readonly assessments:readonly AvailabilityAssessment[];readonly derived:readonly DerivationAssessment[];
@@ -97,6 +108,8 @@ export function buildFundamentalSnapshot(request:SnapshotRequest,inputs:Snapshot
   requireFundamental(r.requirements.every(q=>inputs.registry.manifest.items.some(i=>i.itemId===q.itemId&&i.status==='ACTIVE')),'SNAPSHOT_REQUIRED_CANONICAL_ITEMS');
   const all=inputs.observations.map(o=>validateFundamentalObservation(o,inputs.registry));
   requireFundamental(new Set(all.map(o=>o.id)).size===all.length,'SNAPSHOT_DUPLICATE_FACTS');
+  requireFundamental(policy.algorithm==='operational-live-public-v3'||!(inputs.sourcePeriodWithdrawals?.length),'WITHDRAWAL_REQUIRES_LIVE_POLICY');
+  const withdrawn=validateSourcePeriodWithdrawals(inputs.sourcePeriodWithdrawals??[],all,cutoff,hash);
   const byId=new Map(all.map(o=>[o.id,o])),fingerprints=new Map<string,string>();
   function fingerprint(id:string,visited=new Set<string>()):string {
     if(fingerprints.has(id))return fingerprints.get(id)!;
@@ -114,24 +127,32 @@ export function buildFundamentalSnapshot(request:SnapshotRequest,inputs:Snapshot
     requireFundamental(a&&a.assessedAt<=r.builtAt,'SNAPSHOT_ASSESSMENT_NOT_FOUND');
     const providerEvidenceBinding=isEvidenceAssessment(a!)?a!.providerEvidenceBinding:null;
     requireFundamental(!providerEvidenceBinding||inputs.providerEvidenceBindings?.some(b=>canonicalJson(b)===canonicalJson(providerEvidenceBinding)),'SNAPSHOT_TRUSTED_EVIDENCE_BINDING_REQUIRED');
-    const replay=assessAvailability({id:a!.id,observation:o,registry:inputs.registry,policy,assessedAt:a!.assessedAt,providerEvidenceBinding,hash});
+    const livePublicDisclosureBinding=isEvidenceAssessment(a!)?a!.livePublicDisclosureBinding:null;
+    requireFundamental(!livePublicDisclosureBinding||inputs.livePublicDisclosureBindings?.some(b=>canonicalJson(b)===canonicalJson(livePublicDisclosureBinding)),'SNAPSHOT_LIVE_PUBLIC_BINDING_REQUIRED');
+    const replay=assessAvailability({livePublicDisclosureBinding,id:a!.id,observation:o,registry:inputs.registry,policy,assessedAt:a!.assessedAt,providerEvidenceBinding,hash});
     requireFundamental(canonicalJson(replay)===canonicalJson(a),'SNAPSHOT_ASSESSMENT_REPLAY');pinned.set(o.id,a!);fingerprint(o.id);
     requireFundamental(r.references.find(v=>v.kind==='SECTOR')!.content.includes(o.securityId+':'+o.sector),'SNAPSHOT_SECTOR_BINDING');
   }
   const selected:FundamentalObservation[]=[],findings:unknown[]=[],blockers:string[]=[];
   for(const q of [...r.requirements].sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b)))){
-    const rows=candidates.filter(o=>o.securityId===q.securityId&&o.itemId===q.itemId&&o.reportingScope===q.reportingScope&&o.periodStart===q.periodStart&&o.periodEnd===q.periodEnd);
+    const rows=candidates.filter(o=>!withdrawn.has(o.id)&&o.securityId===q.securityId&&o.itemId===q.itemId&&o.reportingScope===q.reportingScope&&o.periodStart===q.periodStart&&o.periodEnd===q.periodEnd);
     const eligible=rows.filter(o=>{const a=pinned.get(o.id)!;return a.status==='VERIFIED'&&a.availableAt!<=cutoff&&(r.mode==='AS_KNOWN'||o.quality==='VALID'&&o.dataPresence==='AVAILABLE'&&o.applicability==='APPLICABLE');});
     const superseded=new Set<string>();
     for(const o of eligible){let prev=o.supersedesObservationId;while(prev){superseded.add(prev);prev=byId.get(prev)!.supersedesObservationId;}}
-    const heads=eligible.filter(o=>!superseded.has(o.id));
+    let heads=eligible.filter(o=>!superseded.has(o.id));
+    const equivalent=policy.algorithm==='operational-live-public-v3'?equivalentRepresentative(heads,inputs.equivalenceResolutions??[],cutoff,hash,inputs.observations):null;
+    if(equivalent)heads=[equivalent];
     let code:string|null=null;
     const roots=new Set(rows.map(o=>{let root=o;while(root.supersedesObservationId)root=byId.get(root.supersedesObservationId)!;return root.id;}));
-    if(heads.length>1||roots.size>1)code='BLOCKED_CONFLICT';
+    if(heads.length>1||roots.size>1&&!equivalent)code='BLOCKED_CONFLICT';
     else if(heads.length===0)code=rows.some(o=>pinned.get(o.id)!.status==='UNKNOWN')?'BLOCKED_PUBLICATION_UNKNOWN':rows.some(o=>pinned.get(o.id)!.status==='INVALID')?'BLOCKED_INVALID_AVAILABILITY':rows.length?'BLOCKED_NOT_YET_AVAILABLE':'BLOCKED_REQUIRED_FACT_MISSING';
     else if(heads[0].quality!=='VALID'||heads[0].dataPresence!=='AVAILABLE'||heads[0].applicability!=='APPLICABLE')code='BLOCKED_FACT_QUALITY';
-    else if(q.maxAgeDays===null)code='BLOCKED_FRESHNESS_POLICY_UNRESOLVED';
-    else if(Date.parse(r.fundamentalCutoff)-Date.parse(q.periodEnd+'T00:00:00.000Z')>q.maxAgeDays*86400000)code='BLOCKED_STALE_FUNDAMENTALS';
+    else if(q.maxAgeDays===null){
+      const bindings=inputs.operationalFreshnessBindings?.filter(b=>b.observationId===heads[0].id)??[];
+      if(policy.algorithm!=='operational-live-public-v3'||bindings.length!==1)code='BLOCKED_FRESHNESS_POLICY_UNRESOLVED';
+      else {const b=bindings[0];requireFundamental(b.evidence.class==='FUNDAMENTALS'&&b.evidence.cutoff===r.fundamentalCutoff&&b.evidence.periodOrVersion===heads[0].periodEnd&&b.evidence.contentHash===hash(heads[0])&&b.evidence.publicationUsable,'SNAPSHOT_FRESHNESS_EXACT_BINDING');const a=assessOperationalFreshness(b.policy,b.evidence,hash);if(!a.eligible)code='BLOCKED_OPERATIONAL_FRESHNESS_'+a.status;}
+    }
+    else if(q.maxAgeDays!==null&&Date.parse(r.fundamentalCutoff)-Date.parse(q.periodEnd+'T00:00:00.000Z')>q.maxAgeDays*86400000)code='BLOCKED_STALE_FUNDAMENTALS';
     if(code){blockers.push(code);findings.push({requirement:q,code,candidates:rows.map(o=>({fingerprint:fingerprint(o.id),availability:availabilitySemantic(pinned.get(o.id)!)})).sort((a,b)=>a.fingerprint<b.fingerprint?-1:1)});}
     else selected.push(heads[0]);
   }
@@ -147,19 +168,19 @@ export function buildFundamentalSnapshot(request:SnapshotRequest,inputs:Snapshot
       crosswalk:d.crosswalk,crosswalkHash:hash(d.crosswalk),operands:d.operands.map((o,i)=>({role:o.role,operation:o.operation,value:o.value,reason:o.reason,unit:o.unit,currency:o.currency,confidence:o.confidence,inputs:o.observationIds.map(id=>fingerprint(id)),adjustment:d.request.operands[i].adjustment})),
       value:d.value,unit:d.unit,currency:d.currency,reason:d.reason,confidence:d.confidence,status:d.status,availableAt:[...ids.map(id=>pinned.get(id)!.availableAt!),...adjustments.map(a=>a.reviewedAt)].sort(codePointCompare).at(-1)});
   }
-  const manifest=canonicalJson({contract:policy.algorithm==='operational-max-v1'?'fundamental-snapshot-content-v1':'fundamental-snapshot-content-v2',selectorVersion:'explicit-chain-operational-v1',scope:r.scope,mode:r.mode,diagnosticOnly:r.mode==='AS_REVISED',
+  const manifest=canonicalJson({contract:policy.algorithm==='operational-max-v1'?'fundamental-snapshot-content-v1':policy.algorithm==='operational-live-public-v3'?'fundamental-snapshot-content-v3':'fundamental-snapshot-content-v2',selectorVersion:'explicit-chain-operational-v1',scope:r.scope,mode:r.mode,diagnosticOnly:r.mode==='AS_REVISED',
     decisionAsOf:r.decisionAsOf,systemKnownAt:r.systemKnownAt,marketCutoff:r.marketCutoff,fundamentalCutoff:r.fundamentalCutoff,revisionCutoff:r.revisionCutoff,
-    registry:inputs.registry,policy,policyHash:hash(policy),requirementsVersion:r.requirementsVersion,requirements:[...r.requirements].sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b))),
+    ...(policy.algorithm==='operational-live-public-v3'?{sourcePeriodWithdrawals:[...(inputs.sourcePeriodWithdrawals??[])].sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b))),equivalenceResolutions:[...(inputs.equivalenceResolutions??[])].sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b))),operationalFreshnessBindings:[...(inputs.operationalFreshnessBindings??[])].sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b)))}:{}),registry:inputs.registry,policy,policyHash:hash(policy),requirementsVersion:r.requirementsVersion,requirements:[...r.requirements].sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b))),
     references:r.references.map(ref=>({...ref,content:[...ref.content].sort(codePointCompare)})).sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b))),
     facts:members.map(m=>({fingerprint:m.semanticHash,fact:factSemantic(byId.get(m.observationId)!,byId.get(m.observationId)!.supersedesObservationId?fingerprint(byId.get(m.observationId)!.supersedesObservationId!):null),availability:availabilitySemantic(pinned.get(m.observationId)!)})),
-    exclusions:candidates.filter(o=>!members.some(m=>m.observationId===o.id)).map(o=>({fingerprint:fingerprint(o.id),availability:availabilitySemantic(pinned.get(o.id)!),state:pinned.get(o.id)!.status!=='VERIFIED'?pinned.get(o.id)!.finding:pinned.get(o.id)!.availableAt!>cutoff?'NOT_YET_AVAILABLE':'SUPERSEDED_OR_BLOCKED'})).sort((a,b)=>a.fingerprint<b.fingerprint?-1:1),
+    exclusions:candidates.filter(o=>!members.some(m=>m.observationId===o.id)).map(o=>({fingerprint:fingerprint(o.id),availability:availabilitySemantic(pinned.get(o.id)!),state:withdrawn.has(o.id)?'WITHDRAWN_SOURCE_PERIOD_QUALIFICATION_CORRECTION':pinned.get(o.id)!.status!=='VERIFIED'?pinned.get(o.id)!.finding:pinned.get(o.id)!.availableAt!>cutoff?'NOT_YET_AVAILABLE':'SUPERSEDED_OR_BLOCKED'})).sort((a,b)=>a.fingerprint<b.fingerprint?-1:1),
     derived:derivedContent.sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b))),findings:findings.sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b))),blockers:[...new Set(blockers)].sort(codePointCompare),scoringReadiness:'DEFERRED_SLICE_06'});
   return deepFreeze({request:JSON.parse(JSON.stringify(r)) as SnapshotRequest,contentHash:hash(JSON.parse(manifest)),manifest,members,derivedIds:derivedIds.sort(codePointCompare),blockers:[...new Set(blockers)].sort(codePointCompare)});
 }
 function availabilitySemantic(a:AvailabilityAssessment){
   const base={mode:a.mode,policyHash:a.policyHash,publicBoundary:a.publicBoundary,availableAt:a.availableAt,status:a.status,finding:a.finding,provenance:interpretationReferences(a.provenance)};
   if(!isEvidenceAssessment(a))return base;
-  return {...base,publicFallbackBoundary:a.publicFallbackBoundary,evidenceBackedBoundary:a.evidenceBackedBoundary,boundaryBasis:a.boundaryBasis,
+  return {...base,...(a.policy.algorithm==='operational-live-public-v3'?{livePublicDisclosureBinding:a.livePublicDisclosureBinding??null}:{}),publicFallbackBoundary:a.publicFallbackBoundary,evidenceBackedBoundary:a.evidenceBackedBoundary,boundaryBasis:a.boundaryBasis,
     evidenceInputs:a.evidenceInputs.map(e=>({...e,evidenceReference:e.evidenceClass==='LOCAL_RETRIEVAL'||e.evidenceClass==='LOCAL_INGESTION'?null:e.evidenceReference})),
     providerEvidenceAuthority:a.providerEvidenceBinding?.authority??null,
     providerReceiptEvidence:a.providerEvidenceBinding?{receivedAt:a.providerEvidenceBinding.receipt.receivedAt,evidenceReference:a.providerEvidenceBinding.receipt.evidenceReference,status:a.providerEvidenceBinding.receipt.status,knownAt:a.providerEvidenceBinding.receipt.knownAt}:null};

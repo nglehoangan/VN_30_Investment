@@ -15,7 +15,7 @@ export interface DocumentIssuerIdentity {
 }
 export interface DocumentPeriod {
   readonly start: string; readonly end: string;
-  readonly type: 'QUARTER' | 'YTD' | 'ANNUAL';
+  readonly type: 'QUARTER' | 'YTD' | 'ANNUAL' | 'INSTANT';
   readonly fiscalYear: number; readonly fiscalQuarter: 1 | 2 | 3 | 4 | null;
   readonly calendarReference: string;
 }
@@ -32,7 +32,7 @@ export interface DocumentQualification {
   readonly sourceVersionId: string; readonly importExecutionId: string; readonly captureIds: readonly string[];
   readonly intendedIssuer: DocumentIssuerIdentity;
   readonly evidencedIssuer: DocumentIssuerIdentity | null;
-  readonly documentType: 'FINANCIAL_STATEMENTS' | 'OTHER' | null;
+  readonly documentType: 'FINANCIAL_STATEMENTS' | 'FINANCIAL_DISCLOSURE' | 'OTHER' | null;
   readonly period: DocumentPeriod | null; readonly reportingScope: ReportingScope | null;
   readonly status: DocumentQualificationStatus;
   readonly method: 'DOCUMENT_CONTENT_REVIEW' | 'NOT_REVIEWED';
@@ -67,17 +67,18 @@ export function validateDocumentQualification(raw: DocumentQualification): Docum
   q.captureIds.forEach(fundamentalId); instant(q.reviewedAt);
   requireFundamental(['UNQUALIFIED','QUALIFIED','REJECTED','CONFLICTED'].includes(q.status),'DOCUMENT_STATUS');
   requireFundamental(['DOCUMENT_CONTENT_REVIEW','NOT_REVIEWED'].includes(q.method),'DOCUMENT_METHOD');
-  requireFundamental([null,'FINANCIAL_STATEMENTS','OTHER'].includes(q.documentType),'DOCUMENT_TYPE');
+  requireFundamental([null,'FINANCIAL_STATEMENTS','FINANCIAL_DISCLOSURE','OTHER'].includes(q.documentType),'DOCUMENT_TYPE');
   requireFundamental([null,'CONSOLIDATED','SEPARATE_STANDALONE'].includes(q.reportingScope),'DOCUMENT_SCOPE');
   if (q.evidencedIssuer !== null) issuer(q.evidencedIssuer);
   if (q.period !== null) {
     const p = q.period;
     fields(p,'start end type fiscalYear fiscalQuarter calendarReference');
     dateOnly(p.start); dateOnly(p.end); reference(p.calendarReference);
-    requireFundamental(p.start <= p.end && ['QUARTER','YTD','ANNUAL'].includes(p.type) &&
+    requireFundamental(p.start <= p.end && ['QUARTER','YTD','ANNUAL','INSTANT'].includes(p.type) &&
       Number.isInteger(p.fiscalYear) && p.fiscalYear >= 1900 && p.fiscalYear <= 9999 &&
-      (p.type === 'ANNUAL' ? p.fiscalQuarter === null : [1,2,3,4].includes(p.fiscalQuarter!)), 'DOCUMENT_PERIOD');
+      (['ANNUAL','INSTANT'].includes(p.type) ? p.fiscalQuarter === null : [1,2,3,4].includes(p.fiscalQuarter!)), 'DOCUMENT_PERIOD');
   }
+  if(q.period?.type==='INSTANT')requireFundamental(q.documentType==='FINANCIAL_DISCLOSURE'&&q.period.start===q.period.end,'POINT_DISCLOSURE_PERIOD');
   requireFundamental(Array.isArray(q.evidence) && q.evidence.length <= 100, 'DOCUMENT_EVIDENCE');
   for (const e of q.evidence) {
     fields(e,'dimension reference locator bodyHash'); reference(e.reference); reference(e.locator); fundamentalHash(e.bodyHash);
@@ -92,7 +93,7 @@ export function validateDocumentQualification(raw: DocumentQualification): Docum
     q.supersedesQualificationId !== q.id,'DOCUMENT_CORRECTION_LINEAGE');
   if (q.status === 'QUALIFIED') {
     requireFundamental(q.method === 'DOCUMENT_CONTENT_REVIEW' && q.reviewerReference !== null && q.evidence.length > 0 &&
-      q.documentType === 'FINANCIAL_STATEMENTS' && q.period !== null && q.reportingScope !== null &&
+      ['FINANCIAL_STATEMENTS','FINANCIAL_DISCLOSURE'].includes(q.documentType!) && q.period !== null && q.reportingScope !== null &&
       q.evidencedIssuer !== null && sameIssuer(q.intendedIssuer,q.evidencedIssuer),'DOCUMENT_IDENTITY_NOT_QUALIFIED');
     requireFundamental(new Set(q.evidence.map(e => e.dimension)).size === 4,'DOCUMENT_ALL_IDENTITY_EVIDENCE_REQUIRED');
   }

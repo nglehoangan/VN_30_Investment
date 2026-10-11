@@ -108,7 +108,7 @@ export function validateFundamentalObservation(raw: FundamentalObservation, rele
   nullableText(o.segment);text(o.accountingBasis);one(o.auditStatus,['AUDITED','REVIEWED','UNAUDITED','UNKNOWN']);
   [o.periodStart,o.periodEnd].forEach(day);requireFundamental(o.periodStart<=o.periodEnd,'INVALID_PERIOD_ORDER');
   one(o.periodType,['QUARTER','YTD','ANNUAL','INSTANT']);
-  requireFundamental((item.measurementSemantic==='STOCK')===(o.periodType==='INSTANT'),'FLOW_STOCK_PERIOD_MISMATCH');
+  requireFundamental(item.measurementSemantic==='STOCK'?o.periodType==='INSTANT':o.periodType!=='INSTANT'||item.measurementSemantic==='RATIO','FLOW_STOCK_PERIOD_MISMATCH');
   if(o.periodType==='INSTANT')requireFundamental(o.periodStart===o.periodEnd,'STOCK_REQUIRES_SINGLE_DATE');
   requireFundamental(Number.isInteger(o.fiscalYear)&&o.fiscalYear>=1900&&o.fiscalYear<=9999,'INVALID_FISCAL_YEAR');
   one(o.fiscalQuarter,[null,1,2,3,4]);requireFundamental(!['QUARTER','YTD'].includes(o.periodType)||o.fiscalQuarter!==null,'QUARTER_REQUIRED');
@@ -142,7 +142,7 @@ export function validateFundamentalObservation(raw: FundamentalObservation, rele
   one(o.dataPresence,['AVAILABLE','MISSING','SOURCE_UNAVAILABLE']);one(o.quality,['VALID','WARNING','INVALID','CONFLICTING','UNKNOWN']);one(o.applicability,['APPLICABLE','NOT_APPLICABLE','UNRESOLVED']);nullableText(o.applicabilityReference);
   requireFundamental(o.applicability==='APPLICABLE'||o.applicabilityReference!==null,'APPLICABILITY_REASON_REQUIRED');
   if(o.normalized.value!==null){
-    const units:Readonly<Record<string,readonly [string,string]>>={CURRENCY:['CURRENCY','1'],THOUSAND_CURRENCY:['CURRENCY','1000'],MILLION_CURRENCY:['CURRENCY','1000000'],BILLION_CURRENCY:['CURRENCY','1000000000'],CURRENCY_PER_SHARE:['CURRENCY_PER_SHARE','1'],SHARES:['SHARES','1'],THOUSAND_SHARES:['SHARES','1000'],RATIO:['RATIO','1'],PERCENT:['RATIO','0.01']};
+    const units:Readonly<Record<string,readonly [string,string]>>={CURRENCY:['CURRENCY','1'],THOUSAND_CURRENCY:['CURRENCY','1000'],MILLION_CURRENCY:['CURRENCY','1000000'],BILLION_CURRENCY:['CURRENCY','1000000000'],TRILLION_CURRENCY:['CURRENCY','1000000000000'],CURRENCY_PER_SHARE:['CURRENCY_PER_SHARE','1'],SHARES:['SHARES','1'],THOUSAND_SHARES:['SHARES','1000'],RATIO:['RATIO','1'],PERCENT:['RATIO','0.01']};
     const declared=units[o.raw.unit];
     requireFundamental(declared&&declared[0]===o.normalized.unit&&declared[1]===o.raw.multiplier,'UNKNOWN_OR_INCOMPATIBLE_RAW_UNIT_SCALE');
   }

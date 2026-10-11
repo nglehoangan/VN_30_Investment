@@ -1,5 +1,5 @@
 import type { FundamentalObservation, RegistryRelease, ReportingScope, FinancialUnit } from './contracts';
-import type { QualifiedNormalizationCandidate } from './document-qualification';
+import type { DocumentPeriod, QualifiedNormalizationCandidate } from './document-qualification';
 import { requireQualifiedDocument } from './document-qualification';
 import { requireFundamental, fundamentalId, fundamentalHash, validateFundamentalObservation } from './validation';
 import { decimal } from '@/domain/portfolio/values';
@@ -27,6 +27,9 @@ export interface StatementRevision {
   readonly publication: FundamentalObservation['publication'] | null;
   readonly predecessorMappingHash: string | null;
 }
+export interface ComparativePeriodEvidence {
+ readonly bodyHash:string;readonly period:DocumentPeriod;readonly sourcePageEvidenceHashes:readonly string[];readonly method:'TWO_INDEPENDENT_EXPLICIT_COMPARATIVE_COLUMN_READERS';readonly evidenceReference:string;
+}
 export interface StatementExtract {
   readonly id: string; readonly documentId: string; readonly bodyHash: string; readonly qualificationId: string;
   readonly reviewerReference: string; readonly reviewedAt: string; readonly method: 'REVIEWED_TRANSCRIPTION';
@@ -37,7 +40,7 @@ export interface StatementExtract {
     readonly unitLocator: string; readonly periodLocator: string;
     readonly lexicalValue: string | null; readonly unit: string; readonly currency: string | null;
     readonly reportingScope: ReportingScope; readonly periodStart: string; readonly periodEnd: string;
-    readonly periodType: FundamentalObservation['periodType']; readonly revision?: StatementRevision }[];
+    readonly periodType: FundamentalObservation['periodType']; readonly revision?: StatementRevision;readonly comparativePeriod?:ComparativePeriodEvidence }[];
 }
 export interface NormalizationFinding {
   readonly rowId: string; readonly code: string; readonly severity: 'BLOCKING' | 'MISSING';
@@ -58,7 +61,7 @@ export interface NormalizationAssessment {
 }
 export const DECLARED_UNITS: Readonly<Record<string,readonly [FinancialUnit,string]>> = deepFreeze({
   CURRENCY:['CURRENCY','1'],THOUSAND_CURRENCY:['CURRENCY','1000'],MILLION_CURRENCY:['CURRENCY','1000000'],
-  BILLION_CURRENCY:['CURRENCY','1000000000'],CURRENCY_PER_SHARE:['CURRENCY_PER_SHARE','1'],
+  BILLION_CURRENCY:['CURRENCY','1000000000'],TRILLION_CURRENCY:['CURRENCY','1000000000000'],CURRENCY_PER_SHARE:['CURRENCY_PER_SHARE','1'],
   SHARES:['SHARES','1'],THOUSAND_SHARES:['SHARES','1000'],RATIO:['RATIO','1'],PERCENT:['RATIO','0.01'],
 });
 function exact(value: object, names: string) {
@@ -108,7 +111,13 @@ export function validateStatementExtract(raw: StatementExtract) {
     ['AUDITED','REVIEWED','UNAUDITED','UNKNOWN'].includes(x.auditStatus),'EXTRACT_METADATA');
   requireFundamental(Array.isArray(x.rows) && x.rows.length > 0 && x.rows.length <= 500 && new Set(x.rows.map(r => r.id)).size === x.rows.length,'EXTRACT_ROWS');
   for (const r of x.rows) {
-    exact(r,'id fieldId label sourceLabel locator definitionLocator unitLocator periodLocator lexicalValue unit currency reportingScope periodStart periodEnd periodType' + (r.revision === undefined ? '' : ' revision'));
+    exact(r,'id fieldId label sourceLabel locator definitionLocator unitLocator periodLocator lexicalValue unit currency reportingScope periodStart periodEnd periodType' + (r.revision === undefined ? '' : ' revision')+(r.comparativePeriod===undefined?'':' comparativePeriod'));
+    if(r.comparativePeriod!==undefined){
+      const b=r.comparativePeriod;exact(b,'bodyHash period sourcePageEvidenceHashes method evidenceReference');fundamentalHash(b.bodyHash);reference(b.evidenceReference);
+      exact(b.period,'start end type fiscalYear fiscalQuarter calendarReference');dateOnly(b.period.start);dateOnly(b.period.end);reference(b.period.calendarReference);
+      requireFundamental(b.bodyHash===x.bodyHash&&b.method==='TWO_INDEPENDENT_EXPLICIT_COMPARATIVE_COLUMN_READERS'&&new Set(b.sourcePageEvidenceHashes).size>=2,'COMPARATIVE_PERIOD_SOURCE_EVIDENCE');b.sourcePageEvidenceHashes.forEach(fundamentalHash);
+      requireFundamental(b.period.start<=b.period.end&&['QUARTER','YTD','ANNUAL'].includes(b.period.type)&&Number.isInteger(b.period.fiscalYear)&&b.period.fiscalYear===Number(b.period.end.slice(0,4))&&(b.period.fiscalQuarter===null||[1,2,3,4].includes(b.period.fiscalQuarter)),'COMPARATIVE_PERIOD_SEMANTICS');
+    }
     if (r.revision !== undefined) {
       const v = r.revision;
       exact(v,'kind recordVersion predecessorId evidenceReference reason knownAt publication predecessorMappingHash');
@@ -197,8 +206,9 @@ export function normalizeStatement(input: {id:string;scope:FundamentalObservatio
     const item = registry.manifest.items.find(i => i.itemId === f.itemId)!;
     if (row.label !== f.label) {add(row.id,'MAPPING_LABEL_MISMATCH');continue;}
     if (row.reportingScope !== q.reportingScope) {add(row.id,'REPORTING_SCOPE_MISMATCH');continue;}
-    const stock = item.measurementSemantic === 'STOCK';
-    const period = q.period!;
+    const stock = item.measurementSemantic === 'STOCK' || item.measurementSemantic === 'RATIO' && row.periodType === 'INSTANT';
+    const period = row.comparativePeriod?.period??q.period!;
+    if(row.comparativePeriod&&period.end>=q.period!.end){add(row.id,'COMPARATIVE_PERIOD_NOT_PRIOR');continue;}
     // A reviewed YTD document can contain a separately evidenced current-quarter column.
     // Preserve that column's declared dates/type; never subtract YTD values or infer dates.
     const nativeFlow = row.periodStart === period.start && row.periodType === period.type;
@@ -228,7 +238,7 @@ export function normalizeStatement(input: {id:string;scope:FundamentalObservatio
         multiplier:row.unit === f.unit ? declared[1] : null,currency:row.currency},
       normalized:{value:parsed.value,unit:declared[0],currency:row.currency},mappingVersion:m.version,
       transformationReferences:[`document-sha256:${raw.bodyHash}`,`qualification:${q.id}`,`extract-sha256:${input.extractHash}`,
-        `mapping-sha256:${input.mapping.hash}`,`normalization-run:${input.id}`,`declared-sign:${f.sign}`,row.unitLocator,row.periodLocator,row.definitionLocator,f.definitionReference],
+        ...(row.comparativePeriod?[row.comparativePeriod.evidenceReference,...row.comparativePeriod.sourcePageEvidenceHashes.map(h=>'comparative-page-proof-sha256:'+h)]:[]),`mapping-sha256:${input.mapping.hash}`,`normalization-run:${input.id}`,`declared-sign:${f.sign}`,row.unitLocator,row.periodLocator,row.definitionLocator,f.definitionReference],
       dataPresence:parsed.state === 'MISSING' ? 'MISSING' : 'AVAILABLE',quality:parsed.state === 'AVAILABLE' ? 'VALID' : parsed.state === 'MISSING' ? 'UNKNOWN' : 'INVALID',
       applicability:'APPLICABLE',applicabilityReference:null,scopeFallback:null,fxLineageReference:null,
       revisionKind:row.revision?.kind ?? 'ORIGINAL',recordVersion:row.revision?.recordVersion ?? '1',supersedesObservationId:row.revision?.predecessorId ?? null,revisionReason:row.revision?.reason ?? null,revisionEvidenceReference:row.revision?.kind === 'ORIGINAL' ? null : row.revision?.evidenceReference ?? null,correctionKnownAt:row.revision?.knownAt ?? null,ancestorReferences:[] as string[],
