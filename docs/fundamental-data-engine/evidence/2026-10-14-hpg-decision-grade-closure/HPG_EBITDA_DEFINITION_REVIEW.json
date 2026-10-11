@@ -1,0 +1,68 @@
+{
+  "definitions": [
+    {
+      "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+      "sha256": "c624180510ecbaf652c7120ebdcc331bfa80f72b2d772380d1caeec35c0b697c",
+      "references": [
+        "BQ-EQ-02: normalized profit attributable to common shareholders",
+        "FH-BS-01: unrestricted cash and normalized EBITDA, cyclical downside and lease consistency",
+        "FH-DS-01: normalized EBIT/interest"
+      ]
+    },
+    {
+      "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+      "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4",
+      "references": [
+        "10.1 mandatory materials cycle normalization",
+        "10.3 trough or normalized EBITDA"
+      ]
+    },
+    {
+      "path": "src/infrastructure/fundamentals/canonical-items-v1.json",
+      "governanceStatus": "PROPOSED",
+      "notPromotedByThisReview": true,
+      "references": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON reported attribution semantic boundary",
+        "EBIT explicitly reconciled issuer measure, no arbitrary operating label alias"
+      ]
+    }
+  ],
+  "approvedDebtPolicy": "nonfinancial-debt-contract-v2",
+  "EBITDA": {
+    "REPORTED_EBITDA": "NO_QUALIFIED_REPORTED_EBITDA_IDENTIFIED_IN_TARGETED_RETAINED_ACCOUNTING_EVIDENCE",
+    "NORMALIZED_EBITDA": "UNAVAILABLE_NO_EVIDENCE_BACKED_APPROVED_HPG_NORMALIZATION",
+    "DOWNSIDE_EBITDA": "UNAVAILABLE_NO_APPROVED_STRESS_NORMALIZATION",
+    "ordinaryNPATorPBTplusInterestOrCFOdepreciationUsedAsProxy": false,
+    "reportedFactsVersusNormalizationSeparated": true
+  },
+  "materialNormalizationChallenge": {
+    "periodEnd": "2026-06-30",
+    "sourceHash": "2601aa68f0dd3e55195bfa263452ab513efd56094459fa436748b93d6ebcfe8c",
+    "pdfPage": 59,
+    "note": 34,
+    "financialInvestmentDisposalGain": "4929111116632",
+    "classification": "REPORTED_NON_OPERATING_FINANCIAL_INCOME",
+    "requiresAnalystNormalization": true,
+    "adjustmentAdmitted": false,
+    "reason": "Exact non-operating gain available, but subtraction alone does not produce approved normalized/trough EBITDA. Need verified full reconciliation, tax/attribution, cycle assumptions and lease consistency."
+  },
+  "adjustmentsAdmitted": 0,
+  "noAnnualization": true,
+  "normalizationAdjustments": [
+    {
+      "id": "6M2026-investment-disposal-gain-removal-candidate",
+      "reason": "Issuer note34 identifies disposal gain; potential one-off removal requires approved full EBITDA reconciliation, attribution/tax/cycle and lease treatment. It is not an admitted normalization.",
+      "amount": "-4929111116632",
+      "period": {
+        "start": "2026-01-01",
+        "end": "2026-06-30"
+      },
+      "source": "data/manual-fundamentals/HPG/HPG_Baocaotaichinh_6T_2026_Soatxet_Hopnhat.pdf#page=59/note=34",
+      "classification": "ANALYST_NORMALIZATION",
+      "reversibility": "UNKNOWN",
+      "confidence": "LOW",
+      "admitted": false
+    }
+  ],
+  "sourceAccountingReview": "docs/fundamental-data-engine/evidence/2026-10-14-hpg-decision-grade-closure/source-review/accounting/INDEPENDENT_ACCOUNTING_QUALIFICATION.json"
+}

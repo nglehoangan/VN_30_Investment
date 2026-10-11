@@ -1,0 +1,101 @@
+{
+  "status": "PASS",
+  "permanentTestFile": "tests/unit/debt-contract-activation.test.ts",
+  "permanentDebtActivationTests": 32,
+  "mandatoryCases": [
+    {
+      "case": 1,
+      "requirement": "Reported versus comprehensive distinction",
+      "testName": "reported and comprehensive metrics stay distinct; HPG comprehensive population is unproven",
+      "result": "PASS"
+    },
+    {
+      "case": 2,
+      "requirement": "UNKNOWN is not zero",
+      "testName": "UNKNOWN amounts are not zero and unknown status stays visible",
+      "result": "PASS"
+    },
+    {
+      "case": 3,
+      "requirement": "UNKNOWN excluded from borrowing quantity",
+      "testName": "UNKNOWN liabilities are not silently included in reported borrowings",
+      "result": "PASS"
+    },
+    {
+      "case": 4,
+      "requirement": "Known financing cannot be omitted",
+      "testName": "known BOND/FINANCE_LEASE/OTHER_FINANCING cannot be omitted or admitted without verified amount/overlap",
+      "result": "PASS"
+    },
+    {
+      "case": 5,
+      "requirement": "Current portion counted once",
+      "testName": "current portion is counted once even when the issuer presentation includes it in both captions",
+      "result": "PASS"
+    },
+    {
+      "case": 6,
+      "requirement": "No principal/carrying substitution",
+      "testName": "principal cannot silently replace approved carrying measurement",
+      "result": "PASS"
+    },
+    {
+      "case": 7,
+      "requirement": "No incompatible lease switch",
+      "testName": "incompatible lease policy cannot switch silently",
+      "result": "PASS"
+    },
+    {
+      "case": 8,
+      "requirement": "Comprehensive preference dimension compatibility",
+      "testName": "comprehensive preference requires compatible ticker/currency/scope/period",
+      "result": "PASS"
+    },
+    {
+      "case": 9,
+      "requirement": "Unrestricted cash required",
+      "testName": "generic cash cannot produce decision-grade net debt",
+      "result": "PASS"
+    },
+    {
+      "case": 10,
+      "requirement": "Financial sector isolation",
+      "testName": "BANK/SECURITIES/INSURANCE debt requirements are unchanged and population receipt cannot cross sector",
+      "result": "PASS"
+    },
+    {
+      "case": 11,
+      "requirement": "HPG FY2024 CFO false zero veto",
+      "testName": "HPG FY2024 CFO false zero stays vetoed and PDF verified",
+      "result": "PASS"
+    },
+    {
+      "case": 12,
+      "requirement": "HPG FY2024 CapEx false zero veto",
+      "testName": "HPG FY2024 CASH_CAPEX_REPORTED false zero stays vetoed and PDF verified",
+      "result": "PASS"
+    },
+    {
+      "case": 13,
+      "requirement": "Corrected 6M2026 short borrowing",
+      "testName": "corrected 6M2026 short borrowings retain qualified value",
+      "result": "PASS"
+    },
+    {
+      "case": 14,
+      "requirement": "No unproven HPG comprehensive admission",
+      "testName": "a retained unrelated approval path cannot masquerade as separate exhaustive comprehensive proof",
+      "result": "PASS"
+    }
+  ],
+  "additionalGuards": [
+    "Conflicting debt receipt quarantine",
+    "PIT/readiness remains false despite CORE35/35",
+    "Exact frozen legacy replay",
+    "Validated M3 accounting projection",
+    "Normalized EBITDA lease and provenance qualification",
+    "Cash qualification hash/source/time/sign checks",
+    "Compatible M3 arithmetic without annualization"
+  ],
+  "testResultsReference": "TEST_RESULTS.json"
+}

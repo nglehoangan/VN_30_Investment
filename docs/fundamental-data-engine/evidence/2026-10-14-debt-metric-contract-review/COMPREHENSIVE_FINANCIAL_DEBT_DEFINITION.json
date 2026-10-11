@@ -1,0 +1,28 @@
+{
+  "status": "PROPOSED_UNAPPROVED",
+  "approvalReference": null,
+  "effectiveDate": null,
+  "activated": false,
+  "ProjectOwnerDecisionRequired": true,
+  "readyForScoring": false,
+  "metricId": "COMPREHENSIVE_FINANCIAL_DEBT",
+  "version": "comprehensive-debt-proposed-v1",
+  "purpose": "Exhaustively verified consolidated interest-bearing financing liability population.",
+  "dimensions": {
+    "measurementSemantic": "INSTANT",
+    "scope": "CONSOLIDATED",
+    "unit": "CURRENCY",
+    "currency": "VND",
+    "measurementBasisRequired": true,
+    "measurementBasis": [
+      "ISSUER_REPORTED_CARRYING_AMOUNT",
+      "ISSUER_VERIFIED_PRINCIPAL"
+    ],
+    "principalMustNotBeInferredFromCarryingAmount": true,
+    "sourcePeriodAndLeasePolicyVersionsRequired": true
+  },
+  "requirement": "Every relevant financing population, including applicable bonds, leases, related-party financing and financing within other liabilities, must be verified or explicitly proven absent. Unresolved financing population remains unavailable.",
+  "measurement": "Versioned, explicitly verified carrying or principal basis; selected Owner policy must match comparison/ratio basis. Existing FINANCIAL_DEBT strict principal semantics are preserved until explicit migration; no automatic alias to this proposed ID.",
+  "absenceUnknownNotZero": true,
+  "reportedReconciliationIsNotExhaustiveProof": true
+}

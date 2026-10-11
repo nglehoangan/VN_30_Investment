@@ -1,0 +1,177 @@
+{
+  "status": "FROZEN_READ_ONLY_DEPENDENCY_ANALYSIS",
+  "amendmentActivated": false,
+  "runScoring": false,
+  "actualProductionDependency": [
+    {
+      "metric": "NET_DEBT",
+      "operands": [
+        "FINANCIAL_DEBT",
+        "CASH_AND_EQUIVALENTS"
+      ],
+      "path": "manual-current mechanical derivation, reused by hybrid admission",
+      "reference": {
+        "path": "src/domain/fundamentals/manual-first.ts",
+        "lines": [
+          198
+        ],
+        "sha256": "2341995230bf910c141605aeb6a9d509a3bc0994ac8bde8bb8b39f547fc9228e"
+      },
+      "approvedDefinition": "interest-bearing debt minus unrestricted cash",
+      "requiredProposedSafeguards": [
+        "explicit debt basis label",
+        "known bonds/leases/other financing included and no current portion double count",
+        "cash economic availability validated"
+      ]
+    },
+    {
+      "metric": "financialHealth evidence sufficiency",
+      "operands": [
+        "CORE debt group FINANCIAL_DEBT"
+      ],
+      "formula": null,
+      "reference": {
+        "path": "src/domain/fundamentals/hybrid-sufficiency.ts",
+        "lines": [
+          25,
+          36
+        ],
+        "sha256": "6bf0d2545b41efce1c929ebd9ddcabfafce24f3b1f1b060fc879d2ac767bf799"
+      },
+      "effect": "missing required debt group makes financialEvidenceStatus INSUFFICIENT"
+    }
+  ],
+  "scoringCalculatorDependencies": [
+    {
+      "metric": "NET_DEBT",
+      "operands": [
+        "interest_bearing_debt",
+        "unrestricted_cash"
+      ],
+      "formula": "subtract",
+      "reference": {
+        "path": "src/domain/scoring/metrics.ts",
+        "lines": [
+          9,
+          57
+        ],
+        "sha256": "5fc2ac2cef83218b898b6ba5803e36b26dd923c7251ac7dfeb62d3840f71f32d"
+      }
+    },
+    {
+      "metric": "NET_DEBT_EBITDA",
+      "operands": [
+        "net_debt",
+        "normalized_EBITDA"
+      ],
+      "formula": "divide",
+      "reference": {
+        "path": "src/domain/scoring/metrics.ts",
+        "lines": [
+          14,
+          61
+        ],
+        "sha256": "5fc2ac2cef83218b898b6ba5803e36b26dd923c7251ac7dfeb62d3840f71f32d"
+      },
+      "indirectDebtDependency": true
+    },
+    {
+      "metric": "INTEREST_COVERAGE",
+      "operands": [
+        "normalized_EBIT",
+        "net_interest"
+      ],
+      "formula": "divide",
+      "reference": {
+        "path": "src/domain/scoring/metrics.ts",
+        "lines": [
+          9,
+          61
+        ],
+        "sha256": "5fc2ac2cef83218b898b6ba5803e36b26dd923c7251ac7dfeb62d3840f71f32d"
+      },
+      "numericalDebtDependency": false,
+      "debtContext": "maturity/refinancing and consistency, not debt numerator"
+    }
+  ],
+  "documentedOnlyInReviewedImplementation": [
+    {
+      "metric": "Debt / Equity",
+      "reference": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "lines": [
+          650,
+          654
+        ],
+        "sha256": "c624180510ecbaf652c7120ebdcc331bfa80f72b2d772380d1caeec35c0b697c"
+      },
+      "calculatorMetricExists": false
+    },
+    {
+      "metric": "Net Debt / Equity",
+      "reference": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "lines": [
+          656,
+          660
+        ],
+        "sha256": "c624180510ecbaf652c7120ebdcc331bfa80f72b2d772380d1caeec35c0b697c"
+      },
+      "calculatorMetricExists": false
+    },
+    {
+      "metric": "Debt / Assets",
+      "calculatorMetricExists": false,
+      "approvedFormulaFound": false
+    }
+  ],
+  "sectorIsolation": {
+    "nonFinancialProposedScope": [
+      "REAL_ESTATE",
+      "TECHNOLOGY",
+      "RETAIL",
+      "INDUSTRIAL",
+      "MATERIALS",
+      "ENERGY",
+      "UTILITIES",
+      "CONGLOMERATE"
+    ],
+    "BANK": "retain CAR/NPL/liquidity and prohibitions, no reported-borrowings substitution",
+    "SECURITIES": "retain current sector-specific leverage/capital/margin lending requirements; excluded from proposed industrial anyOf amendment",
+    "INSURANCE": "excluded from proposed non-financial amendment",
+    "references": [
+      {
+        "path": "src/domain/scoring/metrics.ts",
+        "lines": [
+          45
+        ],
+        "sha256": "5fc2ac2cef83218b898b6ba5803e36b26dd923c7251ac7dfeb62d3840f71f32d"
+      },
+      {
+        "path": "src/domain/fundamentals/manual-first.ts",
+        "lines": [
+          192
+        ],
+        "sha256": "2341995230bf910c141605aeb6a9d509a3bc0994ac8bde8bb8b39f547fc9228e"
+      },
+      {
+        "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v1.json",
+        "lines": [
+          682,
+          712
+        ],
+        "sha256": "0dd4149a6f5b39e69e96d320621ab9e09ddb52de3153112c0a751fa3894a328a"
+      },
+      {
+        "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+        "lines": [
+          316,
+          338
+        ],
+        "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4"
+      }
+    ]
+  },
+  "scoringReadiness": "Generic scorecard calculates requested metrics and human-assessed categories; actual current-financial bridge never returns readyForScoring true. Admission does not generate score or satisfy independent DI gates.",
+  "amendmentDesign": "Proposed non-financial anyOf(COMPREHENSIVE_FINANCIAL_DEBT,REPORTED_BORROWINGS) with verified comprehensive precedence, reported-basis labels and uncertainty metadata; approval and separate materiality review required before use. Never silently replace operand labeled interest_bearing_debt with a comprehensive assertion."
+}

@@ -1,0 +1,59 @@
+{
+  "status": "PROPOSED_UNAPPROVED",
+  "approvalReference": null,
+  "effectiveDate": null,
+  "activated": false,
+  "ProjectOwnerDecisionRequired": true,
+  "readyForScoring": false,
+  "version": "nonfinancial-debt-requirement-proposed-v2",
+  "applicableSectors": [
+    "REAL_ESTATE",
+    "RETAIL",
+    "TECHNOLOGY",
+    "INDUSTRIAL",
+    "MATERIALS",
+    "UTILITIES",
+    "ENERGY",
+    "CONGLOMERATE"
+  ],
+  "excludedSectors": [
+    "BANK",
+    "SECURITIES",
+    "INSURANCE"
+  ],
+  "before": {
+    "id": "debt",
+    "anyOf": [
+      "FINANCIAL_DEBT"
+    ],
+    "component": "FINANCIAL_HEALTH"
+  },
+  "proposed": {
+    "id": "debt",
+    "anyOf": [
+      "COMPREHENSIVE_FINANCIAL_DEBT",
+      "REPORTED_BORROWINGS"
+    ],
+    "component": "FINANCIAL_HEALTH",
+    "preference": [
+      "COMPREHENSIVE_FINANCIAL_DEBT",
+      "REPORTED_BORROWINGS"
+    ],
+    "selectionRules": [
+      "Prefer comprehensive only if verified exhaustive population and compatible ticker, scope, period, currency, measurement and lease policy",
+      "Otherwise verified reported population may satisfy the proposed quantity requirement",
+      "Comprehensive quantity lower than compatible reported population requires reconciliation",
+      "No silent mixed principal/carrying or mixed comprehensive/reported series; explicit normalization/comparability review required",
+      "Uncertainty and ratio-specific requirements evaluated separately",
+      "No activation until Owner approval; current FINANCIAL_DEBT requirements remain intact"
+    ]
+  },
+  "futureBridgeRequirements": [
+    "Distinct basis-aware net-debt formulas/metadata, not silent reuse of legacy FINANCIAL_DEBT",
+    "Only unrestricted economically available cash may be netted",
+    "Normalized/downside EBITDA and explicit lease consistency for Net Debt / EBITDA",
+    "Separate property funding/presales/covenant/liquidity analysis",
+    "Independent case-specific assessment of material unclassified liability uncertainty",
+    "Registry/crosswalk/calculator/evidence/sufficiency version migration and validation after Owner approval"
+  ]
+}

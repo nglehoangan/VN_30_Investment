@@ -1,0 +1,33 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+ ❯ tests/unit/structured-certification.test.ts (33 tests | 2 failed) 37ms
+   ❯ hierarchical certification with retained issuer calibration (28)
+     × QUY flow is rejected without proven standalone basis 3ms
+     × LUYKE six-month flow remains YTD, never annual 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/structured-certification.test.ts > hierarchical certification with retained issuer calibration > QUY flow is rejected without proven standalone basis
+AssertionError: expected [ Array(2) ] to include 'QUARTER_FLOW_BASIS_UNVERIFIED'
+ ❯ tests/unit/structured-certification.test.ts:21:266
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/unit/structured-certification.test.ts > hierarchical certification with retained issuer calibration > LUYKE six-month flow remains YTD, never annual
+AssertionError: expected [ Array(2) ] to include 'YTD_SEMANTICS_UNCERTIFIED'
+ ❯ tests/unit/structured-certification.test.ts:22:258
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  2 failed | 74 passed (76)
+   Start at  00:19:33
+   Duration  1.93s (environment 63%, setup 16%, transform 9%, tests 6%, import 5%)
+
+    Isolate  3 workers spawned · ~422ms startup each (spawn + environment, per file)
+             at least ~845ms faster with isolate: false — reuses workers across files instead of one per file
+

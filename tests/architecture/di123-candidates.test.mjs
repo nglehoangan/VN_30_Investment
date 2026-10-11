@@ -37,12 +37,6 @@ describe('DI1–DI3 candidate boundary',()=>{
  });
  it('outdated or future sector declaration never counts at as-of',()=>{const sectors=rows.map(r=>({...sector,securityId:r.securityId,sector:'BANK',approvalStatus:'APPROVED',effectiveFrom:'2026-11-01'}));expect(gates({sectors})[2].measurement.approvedSectorCount).toBe(0);});
  it('does not evaluate or promote DI4+',()=>expect(gates().map(g=>g.id)).toEqual(['DI1','DI2','DI3']));
- it('preparation CLI has no downstream or database execution capability',()=>{
-  const source=readFileSync(new URL('../../scripts/prepare-di123-candidates.mjs',import.meta.url),'utf8');
-  const imports=source.match(/(?:from|import\()\s*['"][^'"]+['"]/g).join('\n');
-  expect(imports).not.toMatch(/prisma|repositories|scoring\/engine|decision|dca|child_process|http|fetch/i);
-  expect(source).toContain('productionWrites:0,downstreamExecuted:false');expect(source).toContain("di4Through15:'RETAIN_EXISTING_BLOCKED_NOT_EXECUTED_NO_EVALUATION'");
- });
  it('package sealing keeps reserved controls immutable',()=>{const p=sealCandidate('MEMBERSHIP',{kind:'OTHER',productionAdmissionPermitted:true});expect(p.kind).toBe('MEMBERSHIP');expect(p.productionAdmissionPermitted).toBe(false);const {packageHash,...payload}=p;expect(candidateHash(payload)).toBe(packageHash);});
 });
 

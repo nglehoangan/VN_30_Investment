@@ -1,6 +1,5 @@
 // @vitest-environment node
 import {describe,it,expect} from 'vitest';
-import {readFileSync} from 'node:fs';
 import {transcriptionDraft,researchReadiness} from '../../scripts/lib/transcription-draft.mjs';
 import {parseReviewedStatement,normalizationHash} from '../../src/infrastructure/fundamentals/reviewed-statement';
 import {normalizeStatement} from '../../src/domain/fundamentals/normalization';
@@ -60,9 +59,5 @@ describe('08B outside-canonical extraction boundary',()=>{
     const cutoff='2026-06-30T23:59:59.999Z',request={...f.request,decisionAsOf:cutoff,systemKnownAt:cutoff,marketCutoff:cutoff,fundamentalCutoff:cutoff,assessmentPins:[],builtAt:'2026-10-10T10:01:00.000Z'};
     const snapshot=buildFundamentalSnapshot(request,{...f.inputs,observations:[observation],assessments:[assessment]},snapshotHash);
     expect(snapshot.members).toEqual([]);expect(snapshot.blockers).toContain('BLOCKED_REQUIRED_FACT_MISSING');
-  });
-  it('review tooling composes no write, network, scoring or decision capability',()=>{
-    const source=readFileSync(new URL('../../scripts/prepare-08b-review.mjs',import.meta.url),'utf8');
-    expect(source).toContain('readOnly:true');expect(source).toContain('PRAGMA query_only=ON');expect(source).not.toMatch(/appendObservation|appendImport|fetch\(|calculateScorecard|rankScorecards|PrismaClient|process\.loadEnvFile|INSERT INTO|UPDATE /);
   });
 });

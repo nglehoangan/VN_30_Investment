@@ -1,0 +1,1528 @@
+VN30 Value Investing OS
+Structured Certification & Coverage Closure
+
+Repository:
+https://github.com/nglehoangan/VN_30_Investment
+
+CURRENT REVIEWED BASELINE
+
+Expected starting HEAD:
+
+ca191dd2d20e731fb6700a3b44a46142993c1ee5
+
+Before doing anything:
+- verify current HEAD,
+- verify clean/dirty working tree,
+- inspect all existing CafeF production-admission evidence,
+- do not assume this prompt's numbers are current if repository evidence differs.
+
+==================================================
+ROLE
+==================================================
+
+Act as:
+
+- Principal Financial Data Architect
+- Senior Data Engineer
+- Accounting Data Quality Engineer
+- Equity Research Data Engineer
+- Risk Manager
+- Independent Validation Engineer
+
+==================================================
+OWNER-APPROVED ARCHITECTURE
+==================================================
+
+The approved architecture remains:
+
+CAFEF STRUCTURED-DATA-FIRST
++
+PDF / ISSUER VERIFIED
+
+Meaning:
+
+CafeF is the PRIMARY STRUCTURED INGESTION SOURCE.
+
+CafeF is NOT unconditional accounting authority.
+
+Issuer financial statements, audited/reviewed PDFs and qualified issuer
+disclosures remain:
+
+- verification authority,
+- exception/fallback evidence,
+- conflict-resolution evidence,
+- source for sector-specific disclosures not reliably available from CafeF,
+- source for historical publication/PIT evidence where necessary.
+
+DO NOT revert to bulk PDF-first extraction.
+
+DO NOT implement CafeF-only trust.
+
+==================================================
+CURRENT REVIEWED STATE
+==================================================
+
+The previous production-admission closure concluded:
+
+C. BLOCKED — MATERIAL DATA GAPS REMAIN
+
+Known reviewed state:
+
+CORE:
+- denominator = 750
+- DIRECT_STRUCTURED = 0
+- SAFE_DERIVED = 2
+- PDF_VERIFIED = 248
+- FALLBACK_REQUIRED = 385
+- PROVIDER_ANOMALY = 3
+- CONFLICT = 16
+- UNAVAILABLE = 96
+- admitted = 250
+- coverage = 33.3333%
+
+SECTOR_CORE:
+- denominator = 365
+- DIRECT_STRUCTURED = 0
+- PDF_VERIFIED = 90
+- FALLBACK_REQUIRED = 185
+- PROVIDER_ANOMALY = 2
+- UNAVAILABLE = 88
+- admitted = 90
+- coverage = 24.6575%
+
+Known blockers:
+
+Critical:
+C1. CORE / SECTOR_CORE production targets not met.
+C2. 16 unresolved material required CORE conflicts.
+
+Major:
+M1. Exact-record structured metadata certificates absent.
+M2. Current YTD and sector-critical issuer evidence incomplete.
+M3. Pending VHM selective review excluded.
+M4. Historical publication/revision proof incomplete.
+M5. Production read-model promotion blocked.
+
+All 30 symbols remain insufficient.
+
+readyForScoring = false.
+
+==================================================
+MISSION
+==================================================
+
+Perform:
+
+STRUCTURED CERTIFICATION & COVERAGE CLOSURE
+
+Primary goals:
+
+1. Replace unnecessary per-cell structured certification with a safe,
+   deterministic, auditable CONTRACT-LEVEL CERTIFICATION framework.
+
+2. Increase DIRECT_STRUCTURED from 0 to the maximum defensible level.
+
+3. Resolve all 16 material required CORE conflicts where qualified evidence
+   exists.
+
+4. Fully exploit CafeF:
+
+   TypeTime=NAM
+   TypeTime=QUY
+   TypeTime=LUYKE
+
+   while preserving strict period semantics.
+
+5. Close current-period coverage gaps where data actually exists.
+
+6. Use PDF/issuer evidence only where structured certification is not
+   sufficient or where exceptions/conflicts require independent evidence.
+
+7. Re-run production-admission gates.
+
+TARGET:
+
+CORE admitted coverage >= 95%
+AND
+unresolved material CORE conflicts = 0
+
+SECTOR_CORE admitted coverage >= 95%
+for applicable decision-critical requirement groups.
+
+DO NOT weaken definitions, denominators, evidence requirements or safety rules
+to achieve these targets.
+
+If the targets cannot be reached safely:
+
+REPORT BLOCKED.
+
+==================================================
+NON-NEGOTIABLE SAFETY RULE
+==================================================
+
+The objective is NOT:
+
+"make DIRECT_STRUCTURED large."
+
+The objective is:
+
+"make every DIRECT_STRUCTURED fact defensible."
+
+DIRECT_STRUCTURED must never mean:
+
+"the API returned a number."
+
+It must mean:
+
+"the number is covered by a certified provider contract AND the individual
+observation passed deterministic admission validation."
+
+==================================================
+PHASE 0 — FREEZE CURRENT BASELINE
+==================================================
+
+Record:
+
+- starting HEAD
+- branch
+- working-tree state
+- database identity
+- migration state
+- current evidence hashes
+- current admission coverage
+- current 16 CORE conflicts
+- current insufficient-symbol list
+- current regression state
+
+Do not modify:
+
+docs/fundamental-data-engine/evidence/
+2026-10-13-cafef-production-admission/
+
+Treat that directory as immutable historical evidence.
+
+Create a NEW evidence directory following repository conventions, e.g.:
+
+docs/fundamental-data-engine/evidence/
+2026-10-14-structured-certification-closure/
+
+Use the actual execution date if repository conventions require it.
+
+==================================================
+PHASE 1 — ROOT-CAUSE DIRECT_STRUCTURED = 0
+==================================================
+
+Before changing certification logic, explain exactly why production CafeF
+records currently cannot become DIRECT_STRUCTURED.
+
+Classify every blocker into categories such as:
+
+- statement identity uncertified
+- provider code mapping uncertified
+- scope uncertified
+- unit uncertified
+- fiscal calendar uncertified
+- period semantics uncertified
+- revision/restatement semantics uncertified
+- audit-status semantics uncertified
+- provider anomaly
+- accounting identity failure
+- cross-endpoint conflict
+- issuer conflict
+- malformed value
+- ambiguous quarter/YTD semantics
+- unsupported sector template
+- historical PIT deficiency
+
+Generate:
+
+DIRECT_STRUCTURED_ROOT_CAUSE.csv
+
+Do not modify the certificate requirement until this analysis is complete.
+
+==================================================
+PHASE 2 — CERTIFICATION MODEL REDESIGN
+==================================================
+
+The previous exact-record certificate requirement is too granular for normal
+structured ingestion if every individual financial cell requires manual
+independent certification.
+
+Design a hierarchical certification model.
+
+Use at least three layers:
+
+L1 — PROVIDER / ENDPOINT CONTRACT
+
+Example identity:
+
+provider = CAFEF
+endpoint = GetReportCDKT
+schema/template fingerprint = <hash/version>
+statement family = BALANCE_SHEET
+sector/template namespace = STANDARD_CORPORATE
+
+L2 — METRIC MAPPING CONTRACT
+
+Example:
+
+provider = CAFEF
+statement = KQKD
+template namespace = STANDARD_CORPORATE
+normalized provider code = 10
+canonical metric = REVENUE
+
+The contract must certify semantics, not one value.
+
+L3 — OBSERVATION ADMISSION
+
+Example:
+
+HPG
+FY2025
+KQKD code 10
+156116094618482
+
+The observation can become DIRECT_STRUCTURED only if:
+
+- applicable L1 contract is certified,
+- applicable L2 mapping contract is certified,
+- observation passes deterministic validation,
+- no conflict/anomaly/quarantine trigger exists.
+
+==================================================
+PHASE 3 — CONTRACT CERTIFICATE REQUIREMENTS
+==================================================
+
+A contract certificate must bind enough metadata to prevent accidental semantic
+reuse.
+
+At minimum consider:
+
+provider
+endpoint
+reportType
+TypeTime
+statement family
+template/schema fingerprint
+template namespace
+provider code
+normalized provider code
+canonical metric
+statement semantics
+unit semantics
+sign semantics
+scope semantics
+period semantics
+sector applicability
+known exceptions
+verification sample references
+review timestamp
+reviewer/evidence identity
+certificate body hash
+mapping version
+normalizer version
+
+Never certify by Vietnamese label alone.
+
+Never certify provider code alone across unrelated templates.
+
+The effective key should conceptually resemble:
+
+provider
++ endpoint/statement
++ template/schema fingerprint
++ template namespace
++ normalized provider code
++ canonical metric
++ period mode where material
+
+==================================================
+PHASE 4 — SCHEMA FINGERPRINTING
+==================================================
+
+CafeF exposes template/schema metadata.
+
+Create deterministic schema/template fingerprints.
+
+Normalize provider quirks before fingerprinting only where semantically safe.
+
+Known example:
+
+"\t450"
+
+must preserve:
+
+rawCode = "\t450"
+
+while normalizedCode may be:
+
+"450"
+
+Do not let whitespace normalization hide true code collisions.
+
+Detect:
+
+- new codes
+- removed codes
+- label changes
+- hierarchy changes
+- lever changes
+- template drift
+- sector-template drift
+
+A contract certificate must NOT silently apply to an incompatible future schema.
+
+Unknown schema fingerprint:
+
+FAIL CLOSED
+
+until compatible schema is demonstrated.
+
+==================================================
+PHASE 5 — BUILD TEMPLATE NAMESPACES
+==================================================
+
+At minimum evaluate and maintain:
+
+STANDARD_CORPORATE
+BANK
+SECURITIES
+REAL_ESTATE
+OTHER_SPECIAL
+
+Do not assume one template per sector if evidence shows otherwise.
+
+Build:
+
+CAFEF_TEMPLATE_REGISTRY.json
+
+For each observed template/schema include:
+
+- fingerprint
+- symbols observed
+- statement type
+- provider endpoint
+- TypeTime modes observed
+- provider codes
+- hierarchy
+- mapping coverage
+- certification state
+- known anomalies
+
+==================================================
+PHASE 6 — RISK-BASED CONTRACT CERTIFICATION
+==================================================
+
+Do NOT manually compare every financial cell.
+
+Instead validate each contract using representative issuer/PDF evidence.
+
+Sampling must be risk-based.
+
+For each important mapping contract, use enough independent samples to establish
+that:
+
+- statement identity is correct,
+- code meaning is correct,
+- unit is correct,
+- sign convention is correct,
+- consolidated/separate scope behavior is understood,
+- period behavior is correct,
+- values reconcile within tolerance,
+- known exceptions are documented.
+
+Prefer samples across:
+
+- multiple companies,
+- multiple years,
+- different magnitudes,
+- different provider schema fingerprints where applicable.
+
+Do not claim statistical population accuracy from a small sample.
+
+The purpose is semantic contract certification plus automated observation
+validation, not proof that CafeF never makes factual errors.
+
+==================================================
+PHASE 7 — OBSERVATION-LEVEL VALIDATION
+==================================================
+
+Even under a certified contract, every CafeF observation must independently pass
+automated validation.
+
+At minimum:
+
+- payload/schema valid
+- numeric value parseable
+- valid period
+- valid quarter
+- correct TypeTime
+- compatible schema fingerprint
+- correct template namespace
+- no suspicious-zero trigger
+- no statement-level near-zero anomaly
+- no accounting identity failure where applicable
+- no cross-endpoint material conflict
+- no known issuer conflict
+- no duplicate ambiguity
+- scope acceptable
+- unit resolved
+- period semantics resolved
+- freshness acceptable for use case
+
+Only then:
+
+DIRECT_STRUCTURED
+
+A certified contract must NOT override an observation anomaly.
+
+==================================================
+PHASE 8 — NAM / QUY / LUYKE MODEL
+==================================================
+
+Fully implement and validate all three CafeF period modes.
+
+--------------------------------
+NAM
+--------------------------------
+
+TypeTime=NAM
+
+Canonical period:
+
+ANNUAL
+
+Examples:
+
+FY2022
+FY2023
+FY2024
+FY2025
+
+For completed fiscal years, prefer qualified annual consolidated observations
+when the metric contract requires consolidated scope.
+
+--------------------------------
+QUY
+--------------------------------
+
+TypeTime=QUY
+
+Canonical period:
+
+QUARTER
+
+Examples:
+
+Q1 2026
+Q2 2026
+Q3 2026
+
+But prove whether each statement family represents:
+
+- standalone quarter,
+- cumulative value,
+- period-end stock,
+- unknown.
+
+Do not assume.
+
+Balance sheet:
+
+point-in-time STOCK.
+
+Income statement:
+
+must prove standalone vs cumulative semantics.
+
+Cash flow:
+
+must prove standalone vs cumulative semantics.
+
+Until proven:
+
+QUARTER_FLOW_BASIS_UNVERIFIED
+
+must remain quarantined.
+
+--------------------------------
+LUYKE
+--------------------------------
+
+TypeTime=LUYKE
+
+Canonical period:
+
+YTD
+
+Examples:
+
+3M2026
+6M2026
+9M2026
+12M2026
+
+Map:
+
+Q1 → 3M
+Q2 → 6M
+Q3 → 9M
+Q4 → 12M
+
+only when provider semantics are proven.
+
+Do not treat:
+
+6M2026 = FY2026
+
+Do not automatically annualize.
+
+==================================================
+PHASE 9 — CURRENT ANALYSIS PERIOD SELECTION
+==================================================
+
+Implement deterministic current-period selection.
+
+Maintain:
+
+LONG_TERM_BASELINE
+
+and
+
+CURRENT_TRAJECTORY
+
+separately.
+
+Example:
+
+LONG_TERM_BASELINE:
+
+FY2022
+FY2023
+FY2024
+FY2025
+
+CURRENT_TRAJECTORY:
+
+FY2025
++
+latest valid 2026 YTD
++
+latest valid standalone quarter when verified
+
+Current-year preferred flow observation:
+
+latest valid YTD
+
+Example priority:
+
+9M
+>
+6M
+>
+3M
+
+Do not use this ordering to compare unlike periods without an explicit metric
+rule.
+
+If LUYKE is unavailable:
+
+retain QUY separately.
+
+Do not silently substitute Q2 for 6M.
+
+==================================================
+PHASE 10 — CURRENT-YEAR REFRESH
+==================================================
+
+Re-fetch or use current retained CafeF data according to repository policy.
+
+For all 30 official project VN30 symbols:
+
+attempt:
+
+NAM
+QUY
+LUYKE
+
+for relevant statement endpoints.
+
+Handle pagination correctly.
+
+Do not assume pageIndex=1/pageSize=4 is sufficient.
+
+Retain:
+
+request parameters
+retrieval timestamp
+raw payload
+SHA256
+endpoint
+status
+template fingerprint
+
+Compare new retrievals against retained POC observations.
+
+Detect revisions/restatements.
+
+Do not overwrite older raw snapshots.
+
+==================================================
+PHASE 11 — CLOSE THE 16 CORE CONFLICTS
+==================================================
+
+Create a conflict work queue containing all current material required CORE
+conflicts.
+
+For each conflict determine:
+
+symbol
+metric
+period
+CafeF observation
+CafeF endpoint
+CafeF schema fingerprint
+current canonical/PDF value
+scope
+unit
+period
+difference
+materiality
+root cause
+required evidence
+
+Resolution hierarchy:
+
+1. verify same metric definition
+2. verify same period
+3. verify same scope
+4. verify same unit
+5. verify restatement/revision
+6. inspect qualified issuer statement/PDF
+7. resolve deterministically
+
+Allowed resolution states:
+
+CAFEF_CORRECT
+ISSUER_CORRECT
+DEFINITION_DIFFERENCE
+SCOPE_DIFFERENCE
+PERIOD_DIFFERENCE
+RESTATEMENT_DIFFERENCE
+ROUNDING
+PROVIDER_ERROR
+EXISTING_EXTRACTION_ERROR
+UNRESOLVED
+
+Never average conflicting accounting facts.
+
+Production gate requires:
+
+material required CORE unresolved conflicts = 0
+
+If evidence is insufficient:
+
+leave UNRESOLVED and fail the gate.
+
+==================================================
+PHASE 12 — KNOWN PROVIDER ERRORS
+==================================================
+
+Preserve permanent regression handling for:
+
+HPG FY2024 CFO false zero
+HPG FY2024 CapEx false zero
+SSI FY2025 CFO false zero
+SSI FY2025 CapEx false zero
+VCB FY2025 parent NPAT discrepancy
+
+These cases must demonstrate:
+
+A contract may be certified,
+BUT
+an anomalous observation can still be rejected and routed to issuer evidence.
+
+This is central to the architecture.
+
+==================================================
+PHASE 13 — CORE COVERAGE CLOSURE
+==================================================
+
+For every CORE requirement cell classify:
+
+DIRECT_STRUCTURED
+SAFE_DERIVED
+PDF_VERIFIED
+ISSUER_VERIFIED
+FALLBACK_REQUIRED
+PROVIDER_ANOMALY
+CONFLICT
+UNAVAILABLE
+NOT_APPLICABLE
+
+For DIRECT_STRUCTURED retain:
+
+contractCertificateId
+schemaFingerprint
+mappingContractId
+observationValidationId
+
+Do not classify a fact DIRECT_STRUCTURED if those bindings are missing.
+
+Target:
+
+admitted CORE >= 95%
+
+where admitted may include:
+
+DIRECT_STRUCTURED
+SAFE_DERIVED
+PDF_VERIFIED
+ISSUER_VERIFIED
+
+but only according to approved metric rules.
+
+AND:
+
+material CORE conflicts = 0.
+
+==================================================
+PHASE 14 — SECTOR_CORE CLOSURE
+==================================================
+
+Do not try to force every sector metric through CafeF.
+
+For BANK metrics such as:
+
+NPL
+NPL ratio
+debt groups 3–5
+LLR
+CASA
+CAR
+CET1
+NIM denominator
+
+if CafeF does not provide verified semantics:
+
+use issuer/PDF disclosures.
+
+For SECURITIES:
+
+verify definitions for:
+
+margin lending
+proprietary assets
+brokerage/operating income
+financial assets
+equity
+
+For REAL_ESTATE:
+
+use issuer evidence where project/segment information is required.
+
+For OTHER_SPECIAL / conglomerates:
+
+use issuer segment disclosures where consolidated headline statements are
+insufficient.
+
+Target:
+
+SECTOR_CORE admitted >= 95%
+
+for applicable decision-critical requirement groups.
+
+Do not neutral-fill missing sector metrics.
+
+==================================================
+PHASE 15 — SAFE DERIVATIONS
+==================================================
+
+Review existing derived metrics.
+
+A derived metric may be SAFE_DERIVED only when:
+
+- all inputs are admitted canonical facts,
+- formula is deterministic,
+- period semantics compatible,
+- sector semantics compatible,
+- formula version retained,
+- no unresolved conflict in inputs.
+
+Examples may include:
+
+gross margin
+net margin
+debt totals
+growth
+selected ratios
+
+depending on approved M3 metric definitions.
+
+Do not invent proxy metrics simply to improve coverage.
+
+==================================================
+PHASE 16 — UNIT CERTIFICATION
+==================================================
+
+CafeF may return:
+
+unit = null
+
+Do not globally infer one unit.
+
+Certify units by contract/metric.
+
+Examples:
+
+monetary statement values may be raw VND
+
+EPS may be VND/share
+
+ratios may have different scales
+
+Retain:
+
+raw value
+raw provider unit
+resolved canonical unit
+conversion rule
+unit contract
+
+If unit cannot be proven:
+
+do not DIRECT_STRUCTURED admit.
+
+==================================================
+PHASE 17 — SCOPE CERTIFICATION
+==================================================
+
+Explicitly distinguish:
+
+CONSOLIDATED
+SEPARATE
+UNKNOWN
+
+Do not infer consolidated solely from company type.
+
+For each provider contract determine how scope is encoded or established.
+
+For target-wide M3 analysis, preserve the existing approved consolidated-scope
+policy.
+
+If only standalone exists:
+
+do not silently treat it as consolidated.
+
+Use existing governance rules for acceptable fallback.
+
+==================================================
+PHASE 18 — HISTORICAL PIT
+==================================================
+
+Do not confuse CURRENT_ANALYSIS certification with HISTORICAL_REPLAY
+eligibility.
+
+A CafeF fact can be valid for CURRENT_ANALYSIS while:
+
+historicalPitEligible = false
+
+Historical replay requires defensible:
+
+publication date
+and, where material,
+revision/restatement chronology.
+
+If CafeF cannot provide this:
+
+bind publication evidence from issuer/HOSE/qualified source.
+
+Do not block CURRENT_ANALYSIS merely because PIT is unavailable.
+
+Do block HISTORICAL_REPLAY use.
+
+Report these separately.
+
+==================================================
+PHASE 19 — PROVIDER DRIFT SAFETY
+==================================================
+
+Create automatic provider drift detection.
+
+On each refresh compare:
+
+endpoint schema
+template fingerprint
+codes
+hierarchy
+labels
+period behavior
+unit behavior
+
+against certified contracts.
+
+If compatible:
+
+continue certification.
+
+If incompatible:
+
+affected contract becomes:
+
+REVIEW_REQUIRED
+
+and affected new observations cannot DIRECT_STRUCTURED admit until reviewed.
+
+Do not invalidate historical already-admitted facts merely because the provider
+later changes schema; preserve their original contract binding.
+
+==================================================
+PHASE 20 — VHM AND PENDING SELECTIVE REVIEW
+==================================================
+
+Close the existing pending VHM selective review.
+
+Do not special-case VHM merely to pass coverage.
+
+Apply the same:
+
+period
+scope
+definition
+unit
+issuer-evidence
+
+rules as other symbols.
+
+Record the resolution.
+
+==================================================
+PHASE 21 — PDF FALLBACK OPTIMIZATION
+==================================================
+
+Rebuild:
+
+PDF_FALLBACK_QUEUE.csv
+
+After contract certification.
+
+Expected behavior:
+
+many ordinary CORE financial-statement cells should leave the fallback queue
+if they become defensible DIRECT_STRUCTURED.
+
+PDF/issuer work should remain concentrated on:
+
+- provider anomalies
+- conflicts
+- sector-specific metrics
+- scope ambiguity
+- unit ambiguity
+- notes
+- PIT evidence
+- special disclosures
+- unresolved schema contracts
+
+Report:
+
+fallback queue before
+fallback queue after
+reduction percentage
+reason distribution
+
+Do not target a predetermined reduction percentage.
+
+==================================================
+PHASE 22 — CERTIFICATION CALIBRATION
+==================================================
+
+Perform an independent risk-based issuer/PDF sample AFTER contract
+certification.
+
+The validation sample must contain:
+
+- DIRECT_STRUCTURED observations
+- multiple sectors
+- multiple years
+- multiple statement types
+- zeros and nonzeros
+- high-value observations
+- large YoY changes
+- current YTD observations
+- known historical anomaly classes
+
+Compare against qualified issuer evidence.
+
+Classify:
+
+MATCH
+MATCH_WITHIN_TOLERANCE
+DEFINITION_DIFFERENCE
+SCOPE_DIFFERENCE
+PROVIDER_ERROR
+ISSUER_EXTRACTION_ERROR
+UNRESOLVED
+
+Any material systematic error must invalidate or narrow the affected contract.
+
+Do not hide failures by removing samples after results are known.
+
+==================================================
+PHASE 23 — CERTIFICATE REVOCATION
+==================================================
+
+Certification must be revocable.
+
+If calibration or future validation discovers a systematic contract error:
+
+- revoke/narrow affected certificate,
+- identify all canonical facts admitted under it,
+- quarantine affected facts,
+- recompute downstream derived metrics,
+- recompute sufficiency,
+- record impact.
+
+Add deterministic tests.
+
+==================================================
+PHASE 24 — COVERAGE RECALCULATION
+==================================================
+
+After all closure work, recompute:
+
+CORE
+SECTOR_CORE
+SUPPORTING
+OPTIONAL
+
+by:
+
+symbol
+sector
+metric
+period
+source class
+admission class
+
+Report both:
+
+CURRENT_ANALYSIS readiness
+
+and
+
+HISTORICAL_REPLAY readiness.
+
+Do not combine these into one percentage.
+
+==================================================
+PHASE 25 — SYMBOL SUFFICIENCY
+==================================================
+
+Recompute each of the 30 symbols:
+
+FULL
+PARTIAL
+INSUFFICIENT
+
+using the existing approved evidence model.
+
+Report:
+
+ticker
+CORE required/admitted
+SECTOR_CORE required/admitted
+current trajectory availability
+conflicts
+anomalies
+fallback requirements
+PIT status
+final sufficiency
+
+Do not redefine FULL.
+
+==================================================
+PHASE 26 — PRODUCTION GATES
+==================================================
+
+Run these gates exactly.
+
+GATE A — CORE
+
+admitted CORE >= 95%
+
+AND
+
+unresolved material required CORE conflicts = 0
+
+GATE B — SECTOR_CORE
+
+admitted applicable decision-critical SECTOR_CORE >= 95%
+
+GATE C — DATA SAFETY
+
+silently admitted suspicious zero = 0
+silently admitted accounting conflict = 0
+silently converted ambiguous quarterly CF = 0
+unproven annualization = 0
+cross-sector code collision = 0
+historical PIT violation = 0
+
+GATE D — CERTIFICATION
+
+every DIRECT_STRUCTURED fact has:
+
+valid provider contract
+valid mapping contract
+compatible schema fingerprint
+observation validation
+proven unit
+proven scope
+proven period semantics
+
+GATE E — REPRODUCIBILITY
+
+offline independent replay PASS
+
+GATE F — REGRESSION
+
+all mandatory regression cases PASS.
+
+Do not modify these thresholds without Project Owner approval.
+
+==================================================
+PHASE 27 — TESTING
+==================================================
+
+Add deterministic tests for:
+
+- contract-level certification
+- mapping-level certification
+- schema fingerprint
+- schema drift
+- code normalization
+- cross-template collision
+- unit certification
+- scope certification
+- NAM semantics
+- QUY semantics
+- LUYKE semantics
+- current-period selection
+- suspicious zero under certified contract
+- accounting conflict under certified contract
+- certificate revocation
+- issuer fallback
+- conflict resolution
+- missing YTD
+- no annualization
+- historical PIT exclusion
+- current analysis vs historical replay
+- safe derivation dependencies
+- malformed numeric
+- duplicate observation
+- restatement/revision
+- known HPG/SSI/VCB regressions
+
+Run the full relevant project validation suite.
+
+Do not change assertions merely to make tests pass.
+
+==================================================
+PHASE 28 — INDEPENDENT OFFLINE REPLAY
+==================================================
+
+Using retained raw snapshots and evidence only:
+
+reproduce:
+
+raw CafeF
+→ schema fingerprint
+→ provider contract
+→ mapping contract
+→ normalized observation
+→ observation validation
+→ DIRECT_STRUCTURED / fallback decision
+→ canonical facts
+→ derived metrics
+→ coverage
+→ sufficiency
+
+No live network.
+
+Hash outputs.
+
+Compare deterministic artifacts byte-for-byte where practical.
+
+==================================================
+REQUIRED EVIDENCE
+==================================================
+
+Create under the NEW closure evidence directory at least:
+
+README.md
+
+BASELINE_FREEZE.json
+
+DIRECT_STRUCTURED_ROOT_CAUSE.csv
+
+CAFEF_TEMPLATE_REGISTRY.json
+SCHEMA_FINGERPRINTS.json
+SCHEMA_DRIFT_REPORT.json
+
+PROVIDER_CONTRACT_REGISTRY.json
+MAPPING_CONTRACT_REGISTRY.json
+CONTRACT_CERTIFICATES.json
+CONTRACT_CERTIFICATION_EVIDENCE.csv
+CONTRACT_REVOCATION_TEST.json
+
+OBSERVATION_VALIDATION_REPORT.json
+
+NAM_VALIDATION.json
+QUY_VALIDATION.json
+LUYKE_VALIDATION.json
+CURRENT_PERIOD_SELECTION.json
+
+CORE_CONFLICT_QUEUE_BEFORE.csv
+CORE_CONFLICT_RESOLUTION.csv
+CORE_CONFLICT_QUEUE_AFTER.csv
+
+CAFEF_REFRESH_MANIFEST.json
+PROVIDER_ANOMALIES.csv
+
+PDF_FALLBACK_QUEUE_BEFORE.csv
+PDF_FALLBACK_QUEUE_AFTER.csv
+PDF_FALLBACK_REDUCTION.json
+
+PDF_ISSUER_CALIBRATION_SAMPLE.csv
+CALIBRATION_RESULT.json
+
+CORE_COVERAGE.csv
+SECTOR_CORE_COVERAGE.csv
+SUPPORTING_COVERAGE.csv
+SYMBOL_SUFFICIENCY.csv
+
+CURRENT_ANALYSIS_READINESS.json
+HISTORICAL_REPLAY_READINESS.json
+
+CANONICAL_ADMISSION_REPORT.json
+DERIVED_METRIC_REPORT.json
+
+REGRESSION_VALIDATION.json
+FULL_TEST_RESULTS.json
+INDEPENDENT_REPLAY.json
+
+DI_IMPACT_REPORT.json
+OPEN_ISSUES.json
+FINAL_REVIEW.md
+ARTIFACT_HASHES.json
+
+Equivalent existing artifact names are acceptable if clearly documented.
+
+==================================================
+INDEPENDENT FINAL REVIEW
+==================================================
+
+After implementation, independently review as:
+
+- CIO
+- Portfolio Manager
+- Equity Research Analyst
+- Financial Data Architect
+- Accounting Data Quality Reviewer
+- Risk Manager
+- QA / PIT Reviewer
+- Investment System Architect
+
+Answer explicitly:
+
+1. Why was DIRECT_STRUCTURED previously zero?
+
+2. What certification model replaced per-cell certification?
+
+3. Is contract-level certification materially safe?
+
+4. How many provider contracts are certified?
+
+5. How many mapping contracts are certified?
+
+6. How many production observations became DIRECT_STRUCTURED?
+
+7. What percentage of CORE is DIRECT_STRUCTURED?
+
+8. What percentage of CORE is admitted total?
+
+9. What percentage of SECTOR_CORE is admitted?
+
+10. Were all 16 CORE conflicts resolved?
+
+11. If not, why not?
+
+12. Are HPG/SSI false-zero cases still rejected?
+
+13. Is VCB parent NPAT discrepancy safely resolved?
+
+14. How many CafeF anomalies remain?
+
+15. How much did PDF fallback work decline?
+
+16. Which metrics still require issuer/PDF evidence?
+
+17. Is NAM certified?
+
+18. Is QUY certified separately by statement semantics?
+
+19. Is LUYKE certified?
+
+20. Is current-year trajectory usable?
+
+21. Is historical PIT usable?
+
+22. Which symbols remain INSUFFICIENT?
+
+23. Are all DIRECT_STRUCTURED observations auditable to a certified contract?
+
+24. Can a provider schema change silently bypass certification?
+
+25. Can a known provider error silently enter canonical facts?
+
+26. Does independent replay pass?
+
+27. Are production gates A–F satisfied?
+
+28. Are DI14/DI15 technically ready for owner/independent review?
+
+29. Is official M3 scoring safe to unblock?
+
+==================================================
+FINAL VERDICT
+==================================================
+
+Return EXACTLY ONE:
+
+A. PRODUCTION DATA ADMISSION READY
+
+B. CONDITIONAL READY — MINOR NON-MATERIAL ISSUES ONLY
+
+C. BLOCKED — COVERAGE / CERTIFICATION / CONFLICT GAPS REMAIN
+
+D. REJECT CONTRACT-CERTIFICATION APPROACH
+
+A/B are forbidden if:
+
+- CORE < 95%
+- SECTOR_CORE < 95%
+- any material required CORE conflict unresolved
+- any DIRECT_STRUCTURED fact lacks required contract bindings
+- known provider errors can silently enter canonical facts
+- safety gate fails
+- independent replay fails
+
+==================================================
+GOVERNANCE
+==================================================
+
+Even if verdict A:
+
+DO NOT self-approve reserved Project Owner gates.
+
+DO NOT run official VN30 scoring.
+
+DO NOT generate ranking.
+
+DO NOT generate Top 10.
+
+DO NOT generate investment decisions.
+
+DO NOT generate DCA recommendations.
+
+Keep:
+
+readyForScoring = false
+
+until independent review and explicit Project Owner approval.
+
+==================================================
+FINAL RESPONSE
+==================================================
+
+Return:
+
+Starting HEAD
+Final HEAD
+
+Files changed
+
+Provider contracts:
+- total
+- certified
+- rejected/review-required
+
+Mapping contracts:
+- total
+- certified
+- rejected/review-required
+
+DIRECT_STRUCTURED:
+- before
+- after
+
+CORE:
+- denominator
+- DIRECT_STRUCTURED
+- SAFE_DERIVED
+- PDF_VERIFIED
+- ISSUER_VERIFIED
+- unresolved
+- total admitted
+- percentage
+
+SECTOR_CORE:
+same breakdown
+
+16 CORE conflicts:
+- resolved
+- remaining
+
+NAM status
+QUY status
+LUYKE status
+
+Current trajectory status
+Historical PIT status
+
+PDF fallback:
+- before
+- after
+- reduction
+
+Known anomaly regression results
+
+Insufficient symbols
+
+Critical / Major / Minor issues
+
+Full test results
+Independent replay result
+
+Production gates A–F:
+PASS / FAIL individually
+
+DI14 status
+DI15 status
+readyForScoring
+
+Final verdict A/B/C/D
+
+Exact evidence directory
+
+Final commit SHA
+
+==================================================
+STOP CONDITION
+==================================================
+
+STOP after Structured Certification & Coverage Closure.
+
+Do not proceed to official scoring even if all gates pass.
+
+Wait for independent review and Project Owner approval.

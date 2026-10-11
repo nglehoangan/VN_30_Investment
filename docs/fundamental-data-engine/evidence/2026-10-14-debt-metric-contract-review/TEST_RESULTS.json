@@ -1,0 +1,120 @@
+{
+  "status": "PASS",
+  "runtime": {
+    "node": "22.23.2",
+    "PATHPrefix": "/private/tmp/node-v22.23.2-darwin-arm64/bin",
+    "maxWorkers": 1
+  },
+  "finalResults": {
+    "fullSuite": {
+      "files": 101,
+      "tests": 1247,
+      "durationSeconds": 840.48,
+      "exitCode": 0
+    },
+    "focused": {
+      "files": 6,
+      "tests": 126,
+      "newProposalTests": 20,
+      "exitCode": 0
+    },
+    "typecheck": {
+      "exitCode": 0
+    },
+    "lint": {
+      "exitCode": 0
+    },
+    "boundaryCheck": {
+      "sourceModules": 163,
+      "exitCode": 0
+    },
+    "databaseValidation": {
+      "exitCode": 0
+    },
+    "independentReplay": {
+      "checks": 20,
+      "byteIdenticalArtifacts": 5,
+      "exitCode": 0
+    }
+  },
+  "commands": [
+    {
+      "check": "focused-initial",
+      "command": "node node_modules/vitest/vitest.mjs run tests/unit/debt-metric-contract-proposal.test.ts tests/unit/hpg-debt-final-closure.test.ts tests/unit/hpg-ticker-closure.test.ts tests/unit/structured-certification.test.ts tests/unit/cafef-poc.test.ts tests/unit/hybrid-targets.test.ts --testTimeout=40000",
+      "exitCode": 0,
+      "log": "validation-logs/focused-initial.log",
+      "sha256": "aad5bfc3fdccc390578c1435a4579078e4465e54cbaaf390a5f3ef30907e4c51"
+    },
+    {
+      "check": "proposal-generation",
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/review-debt-metric-contract.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/proposal-generation.log",
+      "sha256": "28bcf05b53dbdc2ca696256f03ee56f424477510a4b38bd95e757b2719095f8f"
+    },
+    {
+      "check": "full-suite",
+      "command": "pnpm test --testTimeout=40000",
+      "exitCode": 0,
+      "log": "validation-logs/full-suite.log",
+      "sha256": "6afa56b36ae59d8b9ab74a54473e78f9fa87d39c1e0b0e3109f73e09c14fef96"
+    },
+    {
+      "check": "focused-final",
+      "command": "node node_modules/vitest/vitest.mjs run tests/unit/debt-metric-contract-proposal.test.ts tests/unit/hpg-debt-final-closure.test.ts tests/unit/hpg-ticker-closure.test.ts tests/unit/structured-certification.test.ts tests/unit/cafef-poc.test.ts tests/unit/hybrid-targets.test.ts --testTimeout=40000",
+      "exitCode": 0,
+      "log": "validation-logs/focused-final.log",
+      "sha256": "a3658442d9785128d64f40d7218d835064981400a14db96e09250f450fe4e87d"
+    },
+    {
+      "check": "typecheck",
+      "command": "node node_modules/typescript/bin/tsc --noEmit",
+      "exitCode": 0,
+      "log": "validation-logs/typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "check": "lint-initial",
+      "command": "node node_modules/eslint/bin/eslint.js . --max-warnings=0",
+      "exitCode": 1,
+      "log": "validation-logs/lint.log",
+      "sha256": "6fa490f68ace0e563b00ca92ada42849f4d074a93da435949185f26dd15240f3"
+    },
+    {
+      "check": "lint-final",
+      "command": "node node_modules/eslint/bin/eslint.js . --max-warnings=0",
+      "exitCode": 0,
+      "log": "validation-logs/lint-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "check": "boundaries",
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/check-boundaries.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/boundary-check.log",
+      "sha256": "372dd5f8c85ec086cc6becd06ce669382719f4e6a21b16d87653d9345ac52e23"
+    },
+    {
+      "check": "database-validation",
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/database.mjs validate",
+      "exitCode": 0,
+      "log": "validation-logs/database-validation.log",
+      "sha256": "e1344514cb0e93026a245afd134e0c874287a64f7c5798cbda02eff700d2aa22"
+    },
+    {
+      "check": "independent-replay",
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-debt-metric-contract-review.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/independent-replay.log",
+      "sha256": "658ee8d44afa8ed1c088e6d6e67484d8947c9e756811be8670c49e0bac878fe1"
+    }
+  ],
+  "diagnostics": {
+    "initialLint": "Unused main path binding; default output now uses main absolute path, preserving identical behavior; final lint exit0.",
+    "fullSuite": "Longer runtime observed; own Node worker progress confirmed with read-only PID/time/CPU query. Full suite completed successfully; no timeout/assertion weakened.",
+    "reviewerRegexConcern": "Rendering/escaping suspicion withdrawn after actual multi-digit numeric regression passed; not a defect."
+  },
+  "noProductionScoringRun": true,
+  "noApprovedBaselineChanged": true,
+  "readyForScoring": false
+}

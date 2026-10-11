@@ -402,3 +402,16 @@ model ScoringDatasetBinding {
   bodyHash String @map("body_hash")
   @@map("scoring_dataset_binding")
 }
+
+// Prospective structured-first admission manifest; retains prior issuer/manual evidence.
+model FundamentalAdmissionRun {
+  id String @id
+  contentHash String @unique @map("content_hash")
+  policyVersion String @map("policy_version")
+  analysisAt String @map("analysis_at")
+  body String
+  bodyHash String @map("body_hash")
+  previousManualSnapshotId String @map("previous_manual_snapshot_id")
+  createdAt String @map("created_at")
+  @@map("fundamental_admission_run")
+}

@@ -944,3 +944,5 @@ Approved baseline at Milestone 1 completion review:
 ### Historical documentation note
 
 The Milestone 1 README recorded a Minor issue in `DECISION_FRAMEWORK.md` v1.0: a legacy sentence kept possible hard-veto issues pending until Risk Policy approval, although Risk Policy v1.0 was already approved. That historical note did not block M2 or change decision logic. Consult the source document and its review history for the current disposition.
+
+Dữ liệu slice 8 hiện chỉ đọc từ `data/manual-fundamentals/`; xem [runbook manual](docs/fundamental-data-engine/SLICE_8_INITIALIZATION_RUNBOOK.md).

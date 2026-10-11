@@ -1,3 +1,4 @@
+import {DEBT_CONTRACT,debtContractActive} from '@/domain/fundamentals/debt-contract';
 import { decimal } from "@/domain/portfolio/values";
 import { check, id, keys, list, text, unique } from "./validation";
 import { available, type Evidence } from "./evidence";
@@ -32,7 +33,7 @@ function growth(end: string, start: string, years: number) {
   return decimal(`${negative ? "-" : ""}${abs/scale}.${(abs%scale).toString().padStart(12,"0")}`).toString();
 }
 /** Arithmetic consumes only these fields; publication/PIT validation remains at its owning boundary. */
-export type MetricOperand = Pick<Evidence,'id'|'value'|'unit'|'periodStart'|'periodEnd'|'quality'|'validThrough'>;
+export type MetricOperand = Pick<Evidence,'id'|'value'|'unit'|'periodStart'|'periodEnd'|'quality'|'validThrough'|'debtAccounting'>;
 export function calculateMetrics<T extends MetricOperand>(requests: readonly MetricRequest[], evidence: readonly T[], sector: Sector, asOf: string, conflicts: readonly string[], cyclical: boolean) {
   list(requests); unique(requests.map(r => r.id));
   return requests.map(r => {
@@ -47,12 +48,17 @@ export function calculateMetrics<T extends MetricOperand>(requests: readonly Met
     const missing = refs.filter(ref => !evidence.some(e => e.id === ref && available(e,asOf,conflicts)));
     const operands = r.evidenceRefs.map(ref => evidence.find(e => e.id === ref));
     let value: string | null = null, reason: string | null = null;
-    if (missing.length || !r.comparable) reason = "N/R — MISSING_OR_INCOMPARABLE_EVIDENCE";
+    const debtActive=debtContractActive(asOf)&&DEBT_CONTRACT.applicableSectors.includes(sector)&&['NET_DEBT','NET_DEBT_EBITDA'].includes(r.metric);
+    const [debtOperand,otherOperand]=operands,dc=debtOperand?.debtAccounting,oc=otherOperand?.debtAccounting;
+    const compatible=!!dc&&!!oc&&dc.contractVersion===DEBT_CONTRACT.version&&oc.contractVersion===DEBT_CONTRACT.version&&dc.qualificationStatus==='VERIFIED'&&oc.qualificationStatus==='VERIFIED'&&dc.ticker===oc.ticker&&dc.periodEnd===oc.periodEnd&&dc.periodEnd===debtOperand?.periodEnd&&oc.periodEnd===otherOperand?.periodEnd&&dc.scope===oc.scope&&dc.scope==='CONSOLIDATED'&&dc.currency===oc.currency&&dc.currency==='VND'&&dc.measurementBasis===oc.measurementBasis&&dc.measurementBasis===DEBT_CONTRACT.defaultMeasurementBasis&&dc.leasePolicyVersion===oc.leasePolicyVersion&&dc.leasePolicyVersion===DEBT_CONTRACT.leasePolicyVersion&&dc.qualifiedEvidenceReference.length>0&&oc.qualifiedEvidenceReference.length>0&&dc.sourceHashes.length>0&&oc.sourceHashes.length>0&&dc.sourceHashes.every(h=>/^[a-f0-9]{64}$/.test(h))&&oc.sourceHashes.every(h=>/^[a-f0-9]{64}$/.test(h))&&debtOperand?.unit==='VND'&&otherOperand?.unit==='VND';
+    const qualifiedDebtOperands=compatible&&(r.metric==='NET_DEBT'?dc!.role==='DEBT'&&['REPORTED_BORROWINGS','COMPREHENSIVE_FINANCIAL_DEBT'].includes(dc!.selectedDebtMetric??'')&&oc!.role==='UNRESTRICTED_CASH'&&oc!.cashEconomicAvailabilityVerified:dc!.role==='NET_DEBT'&&dc!.cashEconomicAvailabilityVerified&&oc!.role==='NORMALIZED_EBITDA'&&oc!.normalizedOrDownside);
+    if(debtActive&&(!qualifiedDebtOperands||r.metric==='NET_DEBT'&&(debtOperand?.periodStart!==debtOperand?.periodEnd||otherOperand?.periodStart!==otherOperand?.periodEnd)))reason='N/R — QUALIFIED_DEBT_CASH_EBITDA_BASIS_REQUIRED';
+    else if (missing.length || !r.comparable) reason = "N/R — MISSING_OR_INCOMPARABLE_EVIDENCE";
     else if (cyclical && r.normalization.kind === "AS_REPORTED") reason = "N/R — CYCLE_NORMALIZATION_REQUIRED";
     else {
       const [a,b] = operands as T[];
       check(a.unit !== "TEXT" && a.unit === b.unit, "METRIC_UNIT_MISMATCH");
-      if (!["DIVIDEND_YIELD","MOS"].includes(r.metric)) check(a.periodStart === b.periodStart && a.periodEnd === b.periodEnd, "METRIC_PERIOD_MISMATCH");
+      if (!["DIVIDEND_YIELD","MOS"].includes(r.metric)) check((debtActive&&r.metric==='NET_DEBT_EBITDA'||a.periodStart===b.periodStart)&&a.periodEnd===b.periodEnd, "METRIC_PERIOD_MISMATCH");
       const x=decimal(a.value), y=decimal(b.value);
       if (["FCF","NET_DEBT"].includes(r.metric)) value=x.sub(y).toString();
       else if (!y.positive || ((r.metric.endsWith("CAGR") || r.metric === "EARNINGS_YIELD") && !x.positive)) reason="N/R — NONPOSITIVE_DENOMINATOR_OR_EARNINGS";

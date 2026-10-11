@@ -1,0 +1,65 @@
+{
+  "reviewer": "hpg_current_pit_independent_review",
+  "reviewedAt": "2026-10-14T13:40:01.482610+00:00",
+  "scope": "HPG current-analysis data readiness only; no scoring or DI approval",
+  "findings": {
+    "PITCouplingFound": false,
+    "currentAdmissionPolicy": "admitManualStatement enforces historicalAvailability VERIFIED and publishedAt only in HISTORICAL_REPLAY branch. CURRENT_ANALYSIS still requires qualified retained/hash-verified issuer sources and no future period/import/review/publication.",
+    "currentSufficiencyPolicy": "evaluateHybridTarget never reads historical PIT readiness; current LOW is produced by unresolved debt materiality/qualified cash bridge and freshness. Separate reporting of historical NOT_READY is warranted; weakening historical guard is not.",
+    "coverageIsNotDecisionGrade": "Existing fundamentalScorable predicate can accept PARTIAL/MEDIUM. It is financial-input eligibility only, not six-section decision-grade completeness or official scoring readiness. CORE35/35 alone cannot resolve qualified cash, normalized/downside EBITDA, supporting semantic definitions, current market, qualitative or governance requirements.",
+    "latestCurrentVsPastPeriods": "Old annual inputs support baseline comparability and normalized analysis. Their age must not be confused with current statement freshness; missing historical publication availability does not contaminate current admissibility."
+  },
+  "sectionGates": {
+    "BusinessQuality": [
+      "normalized ROIC / NOPAT / economic invested-capital definitions or explicitly justified applicable substitute",
+      "ordinary-common-share earnings for sustainable ROE where used",
+      "cash conversion and maintenance capex; cost curve/competitive durability not merely spot commodity profit"
+    ],
+    "FinancialHealth": [
+      "approved reported borrowing carrying basis with case-specific uncertainty assessment",
+      "qualified unrestricted cash for Net Debt",
+      "normalized/downside EBITDA and compatible lease policy for leverage",
+      "interest coverage, liquidity, maturities and survivability; spot EBITDA insufficient for MATERIALS"
+    ],
+    "Growth": [
+      "comparable revenue/EPS/NPAT baseline with corporate actions",
+      "normalization of cycle/base effects",
+      "capacity expansion economics under normalized prices and incremental returns; historical revenue alone insufficient"
+    ],
+    "Industry": [
+      "retained source-supported structure, competition, cost position and company-relative position",
+      "normalized forward asymmetry and cycle evidence; commodity momentum alone insufficient"
+    ],
+    "ValuationInputs": [
+      "normalized common earnings or EBIT/EBITDA/FCF denominator appropriate to HPG",
+      "approved market/share/EV operands where required",
+      "base/conservative scenario assumptions, cross-check and method selection; financial statements alone insufficient"
+    ],
+    "Risk": [
+      "case-specific opaque-financing quantitative and qualitative materiality",
+      "cash restriction, lease and debt maturity limitations",
+      "governance/related-party/auditor/control concerns and residual risk without double counting"
+    ]
+  },
+  "independentChallengeRequirements": [
+    "An immaterial conclusion retains UNKNOWN and amount; does not certify comprehensive debt",
+    "Any cash qualification must bind precise amount and restriction/source review; disclosure silence is insufficient alone",
+    "No report-only EBITDA, arbitrary line subtraction, or six-month annualization may satisfy normalized/downside EBITDA",
+    "Missing common-share/economic operating-profit definitions cannot be blanket waived using coverage",
+    "HistoricalReplayReady false must coexist with admissible current-qualified statements without opening historical guard"
+  ],
+  "sourceHashes": {
+    "src/domain/fundamentals/manual-first.ts": "78744681ca88cd50f7bd33a7c0281e56336f1c791a08fce4155acf0f5e5b3942",
+    "src/domain/fundamentals/hybrid-sufficiency.ts": "3aa7d2a70a1944e6fbce0506788e68e4feae1e1af42eb252604b27bdbb650b42",
+    "docs/03 SCORING/METRIC_DEFINITIONS.md": "c624180510ecbaf652c7120ebdcc331bfa80f72b2d772380d1caeec35c0b697c",
+    "docs/03 SCORING/SECTOR_NORMALIZATION.md": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4",
+    "docs/03 SCORING/DEBT_METRIC_CONTRACT_v2.md": "674051221c7b70de2c5276df4958d959184b658a9b5ca0908345c2589f1ffed5"
+  },
+  "approval": {
+    "HPGClosureApproved": false,
+    "DI14Approved": false,
+    "DI15Approved": false,
+    "readyForScoring": false
+  },
+  "status": "INITIAL_POLICY_REVIEW; final retained-evidence challenge and offline replay pending"
+}

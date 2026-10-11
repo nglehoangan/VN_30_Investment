@@ -1,0 +1,424 @@
+VN30 Value Investing OS
+Debt Metric Contract Activation + HPG Re-evaluation
+
+Repository:
+https://github.com/nglehoangan/VN_30_Investment
+
+Expected starting HEAD:
+
+257a55dab28e510a8349c6e0d89c5d7c4c555c30
+
+==================================================
+OWNER DECISION
+==================================================
+
+Project Owner APPROVES the proposed Debt Metric Contract Amendment reviewed
+at commit:
+
+257a55dab28e510a8349c6e0d89c5d7c4c555c30
+
+Approved architecture:
+
+For applicable NON-FINANCIAL sectors:
+
+CORE debt requirement becomes:
+
+id: debt
+anyOf:
+  - COMPREHENSIVE_FINANCIAL_DEBT
+  - REPORTED_BORROWINGS
+
+preference:
+  - COMPREHENSIVE_FINANCIAL_DEBT
+  - REPORTED_BORROWINGS
+
+Default measurement basis:
+
+ISSUER_REPORTED_CARRYING_AMOUNT
+
+Scope:
+
+CONSOLIDATED
+
+REPORTED_BORROWINGS and COMPREHENSIVE_FINANCIAL_DEBT remain distinct metrics.
+
+Unknown miscellaneous liabilities:
+
+- must NOT be interpreted as zero;
+- must NOT automatically enter REPORTED_BORROWINGS;
+- must remain visible as uncertainty/risk metadata.
+
+BANK / SECURITIES / INSURANCE contracts are unchanged.
+
+==================================================
+MISSION
+==================================================
+
+Perform TWO tightly controlled tasks only:
+
+1. Activate/version the approved debt semantic contract across the required
+   canonical/M3 pathways.
+
+2. Re-evaluate HPG under the newly approved contract.
+
+Do NOT process another ticker.
+
+Do NOT run VN30 ranking, Top10, DCA or investment decisions.
+
+==================================================
+PHASE 1 — VERSIONED CONTRACT ACTIVATION
+==================================================
+
+Create an explicit approved contract version.
+
+Update all required locations consistently:
+
+- canonical metric registry;
+- requirement groups;
+- metric definitions;
+- sector contracts;
+- M3 dependency mapping;
+- evidence sufficiency;
+- scoring input contracts;
+- derived metric dependencies;
+- validation cases;
+- relevant documentation.
+
+Do not silently rename legacy FINANCIAL_DEBT.
+
+Preserve legacy semantics and migration trace.
+
+==================================================
+PHASE 2 — METRIC REGISTRY
+==================================================
+
+Add explicit canonical definitions for:
+
+REPORTED_BORROWINGS
+
+COMPREHENSIVE_FINANCIAL_DEBT
+
+Required metadata includes:
+
+ticker
+period
+scope
+currency
+measurement basis
+lease policy version
+population status
+source/evidence
+uncertainty status
+
+For REPORTED_BORROWINGS require:
+
+reportedPopulationStatus
+
+For comprehensive debt require:
+
+comprehensivePopulationStatus.
+
+==================================================
+PHASE 3 — M3 REQUIREMENT MIGRATION
+==================================================
+
+For applicable non-financial sectors only, migrate:
+
+anyOf: [FINANCIAL_DEBT]
+
+to:
+
+anyOf:
+  - COMPREHENSIVE_FINANCIAL_DEBT
+  - REPORTED_BORROWINGS
+
+with comprehensive preference only when:
+
+ticker
+period
+scope
+currency
+measurement basis
+lease policy
+
+are compatible.
+
+No silent switching across incompatible series.
+
+==================================================
+PHASE 4 — NET DEBT
+==================================================
+
+Do NOT mechanically reuse the old:
+
+FINANCIAL_DEBT - generic CASH_AND_EQUIVALENTS
+
+formula.
+
+Define a basis-aware bridge.
+
+NET_DEBT must use:
+
+selected compatible debt metric
+-
+qualified unrestricted economically available cash
+
+If unrestricted cash cannot be established:
+
+NET_DEBT remains unavailable or lower confidence according to approved
+governance.
+
+Do not convert all reported cash into unrestricted cash automatically.
+
+==================================================
+PHASE 5 — EBITDA / LEASE CONSISTENCY
+==================================================
+
+Where Debt/EBITDA or Net Debt/EBITDA is used:
+
+ensure debt and EBITDA lease treatment is consistent.
+
+Do not silently compare:
+
+lease-adjusted debt
+against
+non-lease-adjusted EBITDA
+
+or vice versa.
+
+Retain explicit lease policy/version metadata.
+
+Do not invent normalized EBITDA where existing approved evidence does not
+support it.
+
+==================================================
+PHASE 6 — UNCERTAINTY
+==================================================
+
+Implement uncertainty metadata without weakening availability rules.
+
+Unknown miscellaneous liabilities remain UNKNOWN.
+
+Retain:
+
+unclassifiedLiabilityAmount
+unclassifiedLiabilityRatioToBorrowings
+materialityAssessment
+
+Do NOT invent a universal materiality threshold.
+
+Metric availability alone must NOT automatically mean:
+
+financialEvidenceStatus = FULL
+
+or
+
+readyForScoring = true.
+
+==================================================
+PHASE 7 — HPG CANONICAL ADMISSION
+==================================================
+
+Re-evaluate HPG using already qualified issuer evidence.
+
+Do NOT perform another broad PDF extraction campaign.
+
+Candidate REPORTED_BORROWINGS:
+
+FY2022
+57,900,321,604,873 VND
+
+FY2023
+65,381,002,473,117 VND
+
+FY2024
+82,963,129,469,555 VND
+
+FY2025
+92,174,151,302,217 VND
+
+6M2026
+98,529,977,232,553 VND
+
+Before admission independently confirm for every period:
+
+- qualified issuer source;
+- consolidated scope;
+- correct period;
+- VND;
+- ISSUER_REPORTED_CARRYING_AMOUNT basis;
+- short/long reconciliation;
+- current portion counted once;
+- known separately disclosed financing handled;
+- no known financing item omitted;
+- provenance retained.
+
+Unknown miscellaneous liabilities remain uncertainty metadata.
+
+COMPREHENSIVE_FINANCIAL_DEBT remains unavailable unless exhaustive evidence
+exists.
+
+==================================================
+PHASE 8 — HPG RECOMPUTATION
+==================================================
+
+Recompute:
+
+CORE coverage
+SECTOR_CORE coverage
+SUPPORTING coverage
+current trajectory
+evidence sufficiency
+financial confidence
+fallback queue
+
+Expected quantitative CORE maximum:
+
+35 / 35
+
+but do NOT hard-code or force it.
+
+If another CORE blocker appears, report it.
+
+Do NOT automatically set readyForScoring=true merely because CORE reaches
+35/35.
+
+==================================================
+PHASE 9 — REGRESSIONS
+==================================================
+
+Permanent tests must prove:
+
+1. REPORTED_BORROWINGS != COMPREHENSIVE_FINANCIAL_DEBT.
+
+2. UNKNOWN miscellaneous liability != zero.
+
+3. UNKNOWN miscellaneous liability is not silently included.
+
+4. known interest-bearing financing cannot be omitted.
+
+5. current portion counted once.
+
+6. principal and carrying amount cannot mix silently.
+
+7. incompatible lease policy cannot switch silently.
+
+8. comprehensive debt preference requires compatible dimensions.
+
+9. unrestricted cash is required for decision-grade NET_DEBT.
+
+10. bank/securities/insurance contracts unchanged.
+
+11. HPG FY2024 CFO false zero remains vetoed.
+
+12. HPG FY2024 CapEx false zero remains vetoed.
+
+13. corrected 6M2026 short borrowing remains:
+    71,433,383,400,905 VND.
+
+14. HPG comprehensive debt remains unavailable unless separately proven.
+
+==================================================
+PHASE 10 — VALIDATION
+==================================================
+
+Run:
+
+full test suite
+focused debt tests
+HPG closure regressions
+structured certification tests
+sector contract tests
+lint
+typecheck
+architecture boundaries
+database validation
+offline independent replay
+
+No threshold weakening is allowed.
+
+==================================================
+REQUIRED EVIDENCE
+==================================================
+
+Create:
+
+docs/fundamental-data-engine/evidence/
+2026-10-14-debt-contract-activation-hpg/
+
+At minimum:
+
+OWNER_APPROVAL.json
+DEBT_CONTRACT_VERSION.json
+METRIC_REGISTRY_MIGRATION.json
+REQUIREMENT_MIGRATION.json
+SECTOR_IMPACT.json
+NET_DEBT_BRIDGE.json
+LEASE_POLICY_VALIDATION.json
+UNCERTAINTY_MODEL.json
+HPG_REPORTED_BORROWINGS_ADMISSION.json
+HPG_CORE_RECOMPUTATION.json
+HPG_CURRENT_TRAJECTORY.json
+HPG_FINAL_SUFFICIENCY.json
+REGRESSION_RESULTS.json
+TEST_RESULTS.json
+INDEPENDENT_REPLAY.json
+OPEN_ISSUES.json
+FINAL_REVIEW.md
+ARTIFACT_HASHES.json
+
+==================================================
+FINAL VERDICT
+==================================================
+
+Return separately:
+
+CONTRACT ACTIVATION:
+
+A. PASS
+B. PASS WITH NON-BLOCKING ISSUES
+C. BLOCKED
+D. INTEGRITY FAILURE
+
+and:
+
+HPG:
+
+A. HPG TICKER DATA CLOSURE PASS
+B. HPG CONDITIONALLY CLOSED — NON-MATERIAL GAPS ONLY
+C. HPG BLOCKED — MATERIAL DATA GAPS REMAIN
+D. HPG DATA INTEGRITY FAILURE
+
+Do not make HPG PASS solely because quantitative CORE becomes 35/35.
+
+==================================================
+GOVERNANCE
+==================================================
+
+Owner approval in this prompt authorizes ONLY the Debt Metric Contract
+Amendment and its implementation.
+
+It does NOT approve:
+
+HPG ticker closure
+DI14
+DI15
+scoring
+ranking
+Top10
+Buy/Hold/Sell
+DCA
+
+Those remain separate review gates.
+
+==================================================
+STOP
+==================================================
+
+STOP after contract activation and HPG re-evaluation.
+
+Do not process VCB.
+Do not process another ticker.
+Do not run official scoring.
+
+Wait for independent review.

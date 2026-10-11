@@ -1,0 +1,170 @@
+
+> vn30-value-investing-os@0.1.0 test /Users/nglehoangan/Documents/Working/VN_30_Investment
+> pnpm db:generate && vitest run
+
+
+> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment
+> node scripts/database.mjs generate
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+
+✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 119ms
+
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+ ❯ tests/integration/registry.test.ts (10 tests | 1 failed) 6541ms
+   ❯ actual SQLite methodology registry (10)
+     × migrates an empty DB with expected foundation/ledger tables and private permissions 637ms
+ ❯ tests/integration/scoring-readiness-migration.test.ts (1 test | 1 failed) 1919ms
+   × populated Slice05 upgrade preserves every old table, trigger, snapshot and historical score without retroactive bindings 1919ms
+ ❯ tests/integration/fundamentals-migration.test.ts (1 test | 1 failed) 1781ms
+   × populated latest baseline upgrade, repeat deployment and all previous rows/triggers/portfolio replay are preserved 1781ms
+ ❯ tests/integration/fundamentals-snapshot-migration.test.ts (1 test | 1 failed) 1742ms
+   × upgrades populated Slice4 baseline additively and preserves every prior table, trigger and row 1742ms
+ ❯ tests/integration/fundamentals-normalization-migration.test.ts (1 test | 1 failed) 1715ms
+   × upgrades populated Slice 2 baseline additively, preserves every old table/trigger/row and repeats deployment 1715ms
+ ❯ tests/integration/fundamentals-derivation-migration.test.ts (1 test | 1 failed) 1919ms
+   × upgrades populated Slice 3 baseline additively, preserves every old table/trigger/row and repeats deployment 1918ms
+(node:11791) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/fundamentals-derivation-migration.test.ts > upgrades populated Slice 3 baseline additively, preserves every old table/trigger/row and repeats deployment
+AssertionError: expected [ …(10) ] to deeply equal [ …(9) ]
+
+- Expected
++ Received
+
+@@ -1,7 +1,8 @@
+  [
+    "data_initialization_acceptance",
++   "fundamental_admission_run",
+    "fundamental_availability_assessment",
+    "fundamental_derivation",
+    "fundamental_derivation_input",
+    "fundamental_snapshot_content",
+    "fundamental_snapshot_derived_member",
+
+ ❯ tests/integration/fundamentals-derivation-migration.test.ts:20:88
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/integration/fundamentals-migration.test.ts > populated latest baseline upgrade, repeat deployment and all previous rows/triggers/portfolio replay are preserved
+AssertionError: expected [ …(15) ] to deeply equal [ …(14) ]
+
+- Expected
++ Received
+
+@@ -1,7 +1,8 @@
+  [
+    "data_initialization_acceptance",
++   "fundamental_admission_run",
+    "fundamental_availability_assessment",
+    "fundamental_derivation",
+    "fundamental_derivation_input",
+    "fundamental_import_batch",
+    "fundamental_normalization",
+
+ ❯ tests/integration/fundamentals-migration.test.ts:30:95
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/integration/fundamentals-normalization-migration.test.ts > upgrades populated Slice 2 baseline additively, preserves every old table/trigger/row and repeats deployment
+AssertionError: expected [ …(11) ] to deeply equal [ …(10) ]
+
+- Expected
++ Received
+
+@@ -1,7 +1,8 @@
+  [
+    "data_initialization_acceptance",
++   "fundamental_admission_run",
+    "fundamental_availability_assessment",
+    "fundamental_derivation",
+    "fundamental_derivation_input",
+    "fundamental_normalization",
+    "fundamental_snapshot_content",
+
+ ❯ tests/integration/fundamentals-normalization-migration.test.ts:19:88
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/integration/fundamentals-snapshot-migration.test.ts > upgrades populated Slice4 baseline additively and preserves every prior table, trigger and row
+AssertionError: expected [ …(8) ] to deeply equal [ …(7) ]
+
+- Expected
++ Received
+
+@@ -1,7 +1,8 @@
+  [
+    "data_initialization_acceptance",
++   "fundamental_admission_run",
+    "fundamental_availability_assessment",
+    "fundamental_snapshot_content",
+    "fundamental_snapshot_derived_member",
+    "fundamental_snapshot_member",
+    "fundamental_snapshot_run",
+
+ ❯ tests/integration/fundamentals-snapshot-migration.test.ts:14:86
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/integration/registry.test.ts > actual SQLite methodology registry > migrates an empty DB with expected foundation/ledger tables and private permissions
+AssertionError: expected [ '_prisma_migrations', …(30) ] to deeply equal [ '_prisma_migrations', …(29) ]
+
+- Expected
++ Received
+
+@@ -3,10 +3,11 @@
+    "analytical_artifact",
+    "broker_observation",
+    "corporate_action_reference",
+    "data_initialization_acceptance",
+    "decision_artifact",
++   "fundamental_admission_run",
+    "fundamental_availability_assessment",
+    "fundamental_derivation",
+    "fundamental_derivation_input",
+    "fundamental_import_batch",
+    "fundamental_normalization",
+
+ ❯ tests/integration/registry.test.ts:17:37
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  tests/integration/scoring-readiness-migration.test.ts > populated Slice05 upgrade preserves every old table, trigger, snapshot and historical score without retroactive bindings
+AssertionError: expected [ …(3) ] to deeply equal [ …(2) ]
+
+- Expected
++ Received
+
+  [
+    "data_initialization_acceptance",
++   "fundamental_admission_run",
+    "scoring_dataset_binding",
+  ]
+
+ ❯ tests/integration/scoring-readiness-migration.test.ts:14:86
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  6 failed | 88 passed (94)
+      Tests  6 failed | 1150 passed (1156)
+   Start at  23:06:09
+   Duration  311.95s (tests 91%, environment 5%, setup 2%, import 1%, transform 1%)
+
+    Isolate  94 workers spawned · ~213ms startup each (spawn + environment, per file)
+             at least ~19.80s faster with isolate: false — reuses workers across files instead of one per file
+
+ ELIFECYCLE  Test failed. See above for more details.

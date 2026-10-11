@@ -1,0 +1,41 @@
+{
+  "status": "AWAITING_PROJECT_OWNER_RELEASE_DECISION",
+  "approvalGranted": false,
+  "decisionClass": "POLICY_DECISION_REQUIRED",
+  "reason": "Approved/tested implementation does not supply the separately required external approval of the exact data interpretation release.",
+  "registry": {
+    "path": "src/infrastructure/fundamentals/canonical-items-v1.json",
+    "sha256": "dfc9be8bc4a46bdb07310d096704274a44447d5e139033251bd996ab3811dc60",
+    "canonicalContentHash": "80804db9834eef4ce6f3e56b844e2a1bcccd6ce5cfae801c8c7e50cd1210970e",
+    "governanceStatus": "PROPOSED",
+    "approvalReference": null,
+    "methodologyIdentity": "fundamentals-items-v1",
+    "crosswalkVersion": "1.0.0",
+    "authorityReferences": [
+      "docs/03 SCORING/METRIC_DEFINITIONS.md",
+      "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+      "docs/01 SYSTEM/SCORING_MODEL_v1.0.md"
+    ]
+  },
+  "derivationCrosswalk": {
+    "path": "src/infrastructure/fundamentals/derivation-crosswalk-v1.json",
+    "sha256": "492e8f14971b9fe028b75280eaf55f6ce36dfe78280ffc6c9a5889359c8daf3e",
+    "canonicalContentHash": "cc347a9ab1ea3582300adef11300298c448705204b33e9599af6500467d789cf",
+    "governanceStatus": "PROPOSED",
+    "approvalReference": null,
+    "version": "fundamental-derivations-1.0.0"
+  },
+  "exactBoundary": "src/infrastructure/fundamentals/canonical-registry.ts:verifyRegistryApproval",
+  "requiredDecision": "Approve or reject the exact canonical registry and derivation crosswalk release content. Approval must then be bound through the existing methodology mechanism to an APPROVED/PRODUCTION record and the approved registry hash; this file grants no authority.",
+  "additionalAuthorityNotImplied": [
+    "Provider-specific source mappings",
+    "Slice05 availability policy hash/timezone/external binding",
+    "Effective-dated sector assignment release",
+    "Bank-specific populations and bridges"
+  ],
+  "freshness": {
+    "thresholdInvented": false,
+    "perPathBlockersGenerated": 0,
+    "policyAuthorityNeeded": "Approved requirements release and reporting-cycle/public-inventory evidence under existing fundamental freshness rules; no downstream freshness veto."
+  }
+}

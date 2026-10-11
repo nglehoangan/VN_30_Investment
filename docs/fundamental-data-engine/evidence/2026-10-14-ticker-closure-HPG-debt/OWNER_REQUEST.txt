@@ -1,0 +1,541 @@
+VN30 Value Investing OS
+HPG Ticker Data Closure — Debt Population Final Closure
+
+Repository:
+https://github.com/nglehoangan/VN_30_Investment
+
+Expected starting HEAD:
+
+e47781bfa8ba9da534465679a9f7a1df4b069f0b
+
+==================================================
+SCOPE
+==================================================
+
+HPG ONLY.
+
+This is a narrow follow-up to the completed HPG ticker closure.
+
+Do NOT restart the full HPG closure.
+
+Do NOT process VCB or any other ticker.
+
+Do NOT change global scoring, ranking, DI14, DI15 or portfolio logic.
+
+The only decision-critical blocker to address is:
+
+FINANCIAL_DEBT
+
+for:
+
+FY2022
+FY2023
+FY2024
+FY2025
+6M2026
+
+Current HPG CORE coverage:
+
+30 / 35 = 85.714286%
+
+The five unresolved CORE cells are all FINANCIAL_DEBT.
+
+==================================================
+MISSION
+==================================================
+
+Determine, using qualified HPG issuer evidence, the complete population of
+interest-bearing financial liabilities for each required period.
+
+The objective is NOT to force a debt number.
+
+The objective is to determine whether a defensible comprehensive
+FINANCIAL_DEBT value can be established.
+
+If yes:
+
+admit it with full provenance.
+
+If no:
+
+keep it unresolved and explain exactly which liability population remains
+unproven.
+
+==================================================
+APPROVED DEFINITION
+==================================================
+
+FINANCIAL_DEBT means:
+
+All outstanding interest-bearing financial borrowing principal and other
+interest-bearing financing liabilities attributable to the consolidated
+group, including applicable:
+
+- short-term borrowings
+- long-term borrowings
+- current portion of long-term borrowings
+- bonds
+- finance lease liabilities
+- other interest-bearing loans
+- other explicitly financing liabilities
+
+while excluding:
+
+- trade payables
+- customer advances
+- tax liabilities
+- employee liabilities
+- ordinary operating accruals
+- provisions
+- deferred revenue
+- dividends payable
+- non-interest-bearing operating liabilities
+- accrued interest where the approved metric is principal-only
+
+Avoid double counting current portions.
+
+==================================================
+PHASE 1 — INVENTORY ALL LIABILITY CAPTIONS
+==================================================
+
+For each:
+
+FY2022
+FY2023
+FY2024
+FY2025
+6M2026
+
+inspect the complete consolidated balance sheet liability section.
+
+Create:
+
+HPG_LIABILITY_POPULATION.csv
+
+Columns at minimum:
+
+period
+statementCaption
+statementCode
+amount
+noteReference
+interestBearing
+classification
+includeInFinancialDebt
+reason
+evidencePage
+sourceHash
+
+Do not inspect only the lines already called "borrowings".
+
+Inventory every liability caption that could plausibly contain financing debt.
+
+==================================================
+PHASE 2 — READ RELEVANT NOTES
+==================================================
+
+Inspect issuer notes for all potentially financing-related captions.
+
+At minimum search/review concepts equivalent to:
+
+borrowings
+loans
+bonds
+debentures
+finance lease
+lease liabilities
+financial liabilities
+other payables
+other long-term liabilities
+accrued expenses
+related-party financing
+bank loans
+secured loans
+unsecured loans
+current portion
+interest rate
+borrowing costs
+
+Use Vietnamese equivalents in the statements as necessary.
+
+Do not assume absence merely because the English concept is absent.
+
+==================================================
+PHASE 3 — BORROWING NOTE RECONCILIATION
+==================================================
+
+For each period prove:
+
+opening balance
++
+new borrowings
+-
+repayments
++/-
+other movements
+=
+closing borrowing balance
+
+where disclosure permits.
+
+Reconcile note totals to balance-sheet captions.
+
+Explicitly identify current portions.
+
+Prove they are counted once.
+
+==================================================
+PHASE 4 — BONDS
+==================================================
+
+Determine explicitly for each period whether HPG consolidated group has:
+
+- bonds
+- convertible bonds
+- other debt securities
+- privately placed bonds
+
+If amount > 0:
+
+include according to approved FINANCIAL_DEBT definition.
+
+If issuer evidence explicitly establishes none:
+
+record VERIFIED_ABSENT.
+
+If evidence cannot establish presence/absence:
+
+UNKNOWN.
+
+Do not convert UNKNOWN to zero.
+
+==================================================
+PHASE 5 — FINANCE LEASE / LEASE LIABILITIES
+==================================================
+
+Inspect:
+
+- finance lease liabilities
+- lease liabilities
+- right-of-use related financing liabilities
+- current and non-current lease liabilities
+
+Determine whether each item belongs to the project's approved
+FINANCIAL_DEBT definition.
+
+Do not automatically include operating lease accounting amounts unless the
+metric definition requires them.
+
+Document the accounting-policy decision.
+
+==================================================
+PHASE 6 — OTHER PAYABLES / ACCRUALS
+==================================================
+
+The previous closure specifically remained blocked because other payables /
+accrued liabilities were not exhaustively classified.
+
+Inspect their note composition.
+
+For each material component classify:
+
+OPERATING
+FINANCING_INTEREST_BEARING
+NON_INTEREST_BEARING
+UNKNOWN
+
+Only financing-interest-bearing amounts belong in FINANCIAL_DEBT.
+
+If an UNKNOWN material component could contain debt:
+
+the period remains unresolved.
+
+==================================================
+PHASE 7 — CROSS-STATEMENT CHECKS
+==================================================
+
+Use supporting evidence such as:
+
+interest expense
+borrowing-cost disclosures
+cash-flow proceeds from borrowings
+cash-flow repayments of borrowings
+secured asset disclosures
+loan maturity schedules
+
+to challenge the debt population.
+
+These are validation evidence.
+
+Do NOT derive debt mechanically from interest expense or financing cash flow.
+
+Flag inconsistencies.
+
+==================================================
+PHASE 8 — PERIOD-BY-PERIOD CONCLUSION
+==================================================
+
+For every period return exactly one:
+
+COMPLETE_POPULATION_VERIFIED
+PARTIAL_POPULATION_ONLY
+UNRESOLVED_MATERIAL_COMPONENT
+
+If COMPLETE_POPULATION_VERIFIED:
+
+calculate FINANCIAL_DEBT deterministically.
+
+Store:
+
+components
+amounts
+formula
+source pages
+source hashes
+scope
+period
+unit
+definition version
+
+The value may become:
+
+PDF_VERIFIED
+or
+ISSUER_VERIFIED
+
+as appropriate.
+
+Do NOT force DIRECT_STRUCTURED.
+
+==================================================
+PHASE 9 — SAFE DERIVATION
+==================================================
+
+Only if complete population is proven may FINANCIAL_DEBT be derived.
+
+Example:
+
+FINANCIAL_DEBT =
+verified short-term borrowing principal
++ verified long-term borrowing principal
++ verified additional qualifying debt
+- verified duplicate current portions
+
+The formula must be period-specific if accounting presentation changed.
+
+Do not assume one formula across FY2022–6M2026 without checking.
+
+==================================================
+PHASE 10 — CURRENT 6M2026
+==================================================
+
+Give 6M2026 special attention because it determines CURRENT_TRAJECTORY.
+
+Use the qualified reviewed consolidated interim financial statements.
+
+Do not use Q2 standalone as substitute.
+
+Determine whether 6M2026 comprehensive financial debt can be proven.
+
+If yes, recompute current trajectory.
+
+==================================================
+PHASE 11 — INDEPENDENT CHALLENGE
+==================================================
+
+After producing the proposed debt values, perform an independent reviewer
+challenge.
+
+The reviewer must try to falsify completeness by asking:
+
+- Is there another bond line?
+- Is there another lease liability?
+- Is there an interest-bearing related-party payable?
+- Is debt hidden in other liabilities?
+- Is a current portion double counted?
+- Is accrued interest incorrectly included?
+- Is any financing liability outside the borrowing note?
+- Did presentation change between years?
+
+Do not use the same derivation logic as proof of itself.
+
+==================================================
+PHASE 12 — RECOMPUTE HPG
+==================================================
+
+If all five debt periods become defensible:
+
+recompute:
+
+HPG CORE coverage
+HPG current trajectory
+HPG sufficiency
+HPG fallback queue
+
+Expected mathematical maximum if these are the only CORE gaps:
+
+35 / 35 CORE.
+
+But DO NOT hard-code or force 100%.
+
+If another issue appears, report it.
+
+==================================================
+SUPPORTING / PIT ISSUES
+==================================================
+
+Do NOT attempt to close the ten SUPPORTING definition gaps in this run unless
+they are directly necessary to prove FINANCIAL_DEBT.
+
+Do NOT attempt broad historical PIT closure.
+
+Those are separate non-CORE workstreams.
+
+Historical PIT may remain NOT_READY without blocking CURRENT_ANALYSIS ticker
+closure if existing governance permits it.
+
+==================================================
+ACCEPTANCE
+==================================================
+
+HPG may become:
+
+A. HPG TICKER DATA CLOSURE PASS
+
+only if:
+
+- all five FINANCIAL_DEBT requirements are defensibly admitted;
+- HPG required CORE conflicts = 0;
+- unresolved required provider anomalies = 0;
+- current 6M2026 trajectory contains required CORE financial-health data;
+- known HPG FY2024 false-zero protections still PASS;
+- no unsafe debt derivation is introduced;
+- all safety checks PASS;
+- independent replay PASS.
+
+If debt completeness cannot be proven:
+
+C. HPG BLOCKED — MATERIAL DATA GAPS REMAIN
+
+Do not downgrade a material debt gap to Minor merely to close HPG.
+
+==================================================
+REQUIRED EVIDENCE
+==================================================
+
+Create a new evidence directory such as:
+
+docs/fundamental-data-engine/evidence/
+2026-10-14-ticker-closure-HPG-debt/
+
+At minimum:
+
+README.md
+HPG_LIABILITY_POPULATION.csv
+HPG_DEBT_NOTE_INDEX.csv
+HPG_BORROWING_RECONCILIATION.csv
+HPG_BOND_REVIEW.json
+HPG_LEASE_LIABILITY_REVIEW.json
+HPG_OTHER_LIABILITY_REVIEW.csv
+HPG_DEBT_CROSS_STATEMENT_CHECK.json
+HPG_FINANCIAL_DEBT_BY_PERIOD.json
+HPG_DEBT_INDEPENDENT_CHALLENGE.json
+HPG_CORE_AFTER_DEBT_CLOSURE.json
+HPG_CURRENT_TRAJECTORY_AFTER_DEBT.json
+HPG_FINAL_SUFFICIENCY.json
+HPG_DEBT_REGRESSION.json
+HPG_TEST_RESULTS.json
+HPG_INDEPENDENT_REPLAY.json
+OPEN_ISSUES.json
+FINAL_REVIEW.md
+ARTIFACT_HASHES.json
+
+Do not modify previous HPG evidence.
+
+==================================================
+TESTING
+==================================================
+
+Run:
+
+HPG debt-specific tests
+HPG closure regression tests
+structured certification tests
+known false-zero tests
+full relevant project suite
+lint
+typecheck
+boundaries
+database validation
+offline independent replay
+
+Preserve previous HPG canonical facts unless qualified evidence justifies a
+change.
+
+==================================================
+FINAL RESPONSE
+==================================================
+
+Return:
+
+Starting HEAD
+Final HEAD
+
+For each:
+FY2022
+FY2023
+FY2024
+FY2025
+6M2026
+
+report:
+
+financial debt value
+status
+components
+source/evidence
+confidence
+
+CORE before
+CORE after
+
+Current trajectory before
+Current trajectory after
+
+Debt gaps remaining
+
+FY2024 CFO false-zero regression
+FY2024 CapEx false-zero regression
+
+Safety results
+
+Tests
+Independent replay
+
+Critical/Major/Minor issues
+
+Final HPG sufficiency
+
+Final verdict:
+
+A. HPG TICKER DATA CLOSURE PASS
+B. HPG CONDITIONALLY CLOSED — NON-MATERIAL GAPS ONLY
+C. HPG BLOCKED — MATERIAL DATA GAPS REMAIN
+D. HPG DATA INTEGRITY FAILURE
+
+Evidence directory
+Final commit SHA
+
+==================================================
+STOP
+==================================================
+
+STOP AFTER HPG DEBT CLOSURE.
+
+Do not start VCB.
+
+Do not process any other ticker.
+
+Do not run scoring/ranking/Top10/DCA.
+
+Wait for independent review.

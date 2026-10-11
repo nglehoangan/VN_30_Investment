@@ -1,3 +1,5 @@
+import debtManifest from './debt-canonical-items-v2.json' with {type:'json'};
+import {debtContractActive} from '@/domain/fundamentals/debt-contract';
 import { createHash } from 'node:crypto';
 import manifest from './canonical-items-v1.json' with {type:'json'};
 import { deepFreeze } from '@/domain/portfolio/transaction';
@@ -23,3 +25,6 @@ export function verifyRegistryApproval(release: RegistryRelease, binding: Regist
   requireFundamental(binding.registryHash===release.registryHash && binding.crosswalkVersion===release.manifest.crosswalkVersion && binding.methodologyIdentity===release.manifest.methodologyIdentity && binding.approvalReference===release.manifest.approvalReference,'REGISTRY_APPROVAL_HASH_MISMATCH');
   requireFundamental(method.methodologyId===binding.methodologyIdentity && method.governanceStatus==='APPROVED' && method.intendedUse==='PRODUCTION' && method.approvalReference===binding.approvalReference && method.configurationReference===`registry-sha256:${release.registryHash}`,'REGISTRY_METHOD_BINDING_MISMATCH');
 }
+
+/** Scoped Owner-approved debt release. It does not approve the unrelated proposed base registry. */
+export function loadDebtCanonicalRegistry(at:string,knownAt=at){requireFundamental(debtContractActive(at,knownAt),'DEBT_CONTRACT_NOT_YET_EFFECTIVE');return loadCanonicalRegistry(debtManifest);}

@@ -1,0 +1,185 @@
+{
+  "status": "PASS",
+  "runtime": {
+    "node": "22.23.2",
+    "PATHPrefix": "/private/tmp/node-v22.23.2-darwin-arm64/bin",
+    "workingDirectory": "/Users/nglehoangan/Documents/Working/VN_30_Investment"
+  },
+  "finalResults": {
+    "fullSuite": {
+      "files": 100,
+      "tests": 1227,
+      "exitCode": 0
+    },
+    "focusedSuite": {
+      "files": 5,
+      "tests": 106,
+      "newDebtTests": 9,
+      "exitCode": 0
+    },
+    "boundaries": {
+      "files": 8,
+      "tests": 98,
+      "exitCode": 0
+    },
+    "lint": {
+      "exitCode": 0
+    },
+    "typecheck": {
+      "exitCode": 0
+    },
+    "databaseValidation": {
+      "exitCode": 0
+    },
+    "independentReplay": {
+      "checks": 18,
+      "artifactComparisons": 15,
+      "exitCode": 0
+    }
+  },
+  "commands": [
+    {
+      "check": "initial-full-suite",
+      "command": "pnpm test --testTimeout=40000",
+      "exitCode": 0,
+      "log": "validation-logs/full-suite.log",
+      "logSha256": "2fb15dd91089eadb3549cf2c1b6008a18b1c7a496856c889d4a18a863ddb0784"
+    },
+    {
+      "check": "initial-focused",
+      "command": "node node_modules/vitest/vitest.mjs run tests/unit/hpg-debt-final-closure.test.ts tests/unit/hpg-ticker-closure.test.ts tests/unit/structured-certification.test.ts tests/unit/cafef-poc.test.ts tests/unit/hybrid-targets.test.ts --testTimeout=40000",
+      "exitCode": 0,
+      "log": "validation-logs/focused-suite.log",
+      "logSha256": "c0acbcaa87866281733d21432fe758ebb42d08a6e35bb7bfe26fd6330ff1836f"
+    },
+    {
+      "check": "initial-lint",
+      "command": "pnpm lint",
+      "exitCode": 1,
+      "log": "validation-logs/lint.log",
+      "logSha256": "8507fa0a8597ff4a6c92f8911d06056818a38ae539fca13e0330f8359b89fe51"
+    },
+    {
+      "check": "initial-typecheck",
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "log": "validation-logs/typecheck.log",
+      "logSha256": "5564c8bc9bc0a4edf5dfe368ce02e73fdde770dae0c762cb90aca68f3205485a"
+    },
+    {
+      "check": "architecture-boundaries",
+      "command": "pnpm test:boundaries",
+      "exitCode": 0,
+      "log": "validation-logs/boundaries.log",
+      "logSha256": "9aa6fbfe83135609a66a43056866da0d6a06d0fe1e21aa734ea0233b0cec9af9"
+    },
+    {
+      "check": "database-validation",
+      "command": "pnpm db:validate",
+      "exitCode": 0,
+      "log": "validation-logs/database-validation.log",
+      "logSha256": "91c370e07fa9b0b7a167f0558895a0aa893d6e5dade7970f9b77e180dd06e8d0"
+    },
+    {
+      "check": "initial-producer",
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/close-hpg-debt-closure.mjs",
+      "exitCode": 1,
+      "log": "validation-logs/producer-initial.log",
+      "logSha256": "c1e5016c49596164a9d6e63a75330b40c1a38a6cebfa1b845ab6279e07dea1eb"
+    },
+    {
+      "check": "qualified-correction-producer",
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/close-hpg-debt-closure.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/producer-final.log",
+      "logSha256": "a2ce1d635d0c3a38d72c833a88e23d5b2e4fff4e787172c9f71fcf858ad84141"
+    },
+    {
+      "check": "concurrent-full-diagnostic",
+      "command": "pnpm test --testTimeout=40000",
+      "exitCode": 1,
+      "log": "validation-logs/full-suite-final.log",
+      "logSha256": "4db0feaa94266689a5170f9ff1da63cd50bc5bac4157562cba6ef2dc5e61238c"
+    },
+    {
+      "check": "concurrent-typecheck-diagnostic",
+      "command": "pnpm typecheck",
+      "exitCode": 1,
+      "log": "validation-logs/typecheck-final.log",
+      "logSha256": "fa8aa14ef2f39d5ab8d2fd1bfbf0613816c5cbd48092f9769846d29867003191"
+    },
+    {
+      "check": "lint-post-correction",
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "log": "validation-logs/lint-final.log",
+      "logSha256": "75d4a955a16ae9f75382e8d81e18c15118848d9a314c05400326bae5b0e93133"
+    },
+    {
+      "check": "typecheck-serial-final",
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "log": "validation-logs/typecheck-serial-final.log",
+      "logSha256": "45e3602879719829e7dc19ee535209f07fe2be7f226d89052f1200fd731d116c"
+    },
+    {
+      "check": "focused-final",
+      "command": "node node_modules/vitest/vitest.mjs run tests/unit/hpg-debt-final-closure.test.ts tests/unit/hpg-ticker-closure.test.ts tests/unit/structured-certification.test.ts tests/unit/cafef-poc.test.ts tests/unit/hybrid-targets.test.ts --testTimeout=40000",
+      "exitCode": 0,
+      "log": "validation-logs/focused-suite-final.log",
+      "logSha256": "bdf74d728873f3e10c6fd3712fe4069b2abf4546de677fbf2710b4c7411860d8"
+    },
+    {
+      "check": "full-suite-serial-final",
+      "command": "pnpm test --testTimeout=40000",
+      "exitCode": 0,
+      "log": "validation-logs/full-suite-serial-final.log",
+      "logSha256": "b7c4942fb7aa4121b5a8c5d548edacfdc3373d7e438936bdda273abbf88d34bb"
+    },
+    {
+      "check": "normalized-report-producer",
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/close-hpg-debt-closure.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/producer-report-final.log",
+      "logSha256": "a2ce1d635d0c3a38d72c833a88e23d5b2e4fff4e787172c9f71fcf858ad84141"
+    },
+    {
+      "check": "independent-replay",
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-hpg-debt-closure.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/independent-replay-final.log",
+      "logSha256": "6cb2d5a38dd8351e7a94f5d1a44bb761f0dfb8a45a38ccba7e8d369e03be56b8"
+    },
+    {
+      "check": "lint-report-final",
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "log": "validation-logs/lint-report-final.log",
+      "logSha256": "352a09a077a42f4c9eb51cb01db6770c4c21967c0cd152a80c4d68a7f8584362"
+    },
+    {
+      "check": "post-suite-db-and-replay",
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH pnpm db:validate > docs/fundamental-data-engine/evidence/2026-10-14-ticker-closure-HPG-debt/validation-logs/database-validation-final.log 2>&1\n/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-hpg-debt-closure.mjs > docs/fundamental-data-engine/evidence/2026-10-14-ticker-closure-HPG-debt/validation-logs/independent-replay-after-tests.log 2>&1",
+      "exitCode": 0,
+      "logs": [
+        "validation-logs/database-validation-final.log",
+        "validation-logs/independent-replay-after-tests.log"
+      ],
+      "individualDbValidationExitAlreadyRecorded": true
+    },
+    {
+      "check": "reviewer-initial-verifier-diagnostic",
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-hpg-debt-closure.mjs",
+      "exitCode": 1,
+      "evidence": "HPG_DEBT_INDEPENDENT_CHALLENGE.json#/reviewerVerifierDiagnostic",
+      "resolved": true
+    }
+  ],
+  "diagnostics": {
+    "initialProducer": "Unknown aggregate subtotal and explicitly excluded trade caption may have unknown interest terms yet include=false; guard narrowed to UNKNOWN/MIXED population rows, which must stay null. No complete debt admission or certificate requirement weakened.",
+    "lint": "Unused matrix warning resolved by cross-checking computed group coverage against domain hybridCoverage.",
+    "concurrentPrisma": "Root validation commands launched overlapping pnpm db:generate processes; EEXIST/generated-client errors. Sequential regeneration/typecheck and complete full suite passed. No database data changed.",
+    "independentVerifier": "Optional field assertion changed to actual source schema; final debt-null and complete-population guards remain strict."
+  },
+  "scope": "CLI evidence generation, retained qualified extraction correction and regression tests; no domain/application/UI/provider certificate logic changed. No browser build/E2E required. No live provider requests or official scoring."
+}

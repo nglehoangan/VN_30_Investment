@@ -1,11 +1,28 @@
 """Exact caption/geometry candidate reconciliation. No fuzzy captions or source winner."""
 import json,pathlib,re,unicodedata,hashlib,decimal,datetime,os
-B=pathlib.Path(os.environ.get('VN30_EVIDENCE_WORK','data/initialization-08b-final-work'))
+B=pathlib.Path(os.environ.get('VN30_EVIDENCE_WORK','data/manual-extracted/current'))
 def fold(s):return re.sub(r'\s+',' ',''.join(c for c in unicodedata.normalize('NFD',s).lower() if unicodedata.category(c)!='Mn').replace('đ','d')).strip()
 def compact(s):return re.sub('[^a-z0-9]','',fold(s))
 def affirmative_vas_preparation(text):
  t=fold(text)
+ bank_heading='co so lap bao cao tai chinh'
+ bank_declaration='duoc lap theo cac chuan muc ke toan viet nam, che do ke toan viet nam ap dung cho cac to chuc tin dung'
+ # Exact current basis clause observed in VCB's retained consolidated note.
+ bank_match=re.search(r'(bao cao tai chinh hop nhat(?: giua nien do)?, (?:duoc )?trinh bay bang dong[.,]? viet nam.{0,120}'+bank_declaration+r')',t)
+ if bank_heading in t and bank_match and not any(x in bank_match.group(1) for x in ['khong duoc lap','se duoc lap']):return True
+ # These full affirmative declarations precede the standards list; a list
+ # or statute citation alone never establishes the current report's basis.
+ statutory_declarations=[
+  ('Cơ sở lập báo cáo tài chính','Báo cáo tài chính hợp nhất của Ngân hàng được lập phù hợp với hệ thống tài khoản kế toán các tổ chức tín dụng theo Quyết định số 479/2004/QĐ-NHNN ngày 29 tháng 4 năm 2004 và các thông tư sửa đổi và bổ sung Quyết định số 479/2004/QĐ-NHNN; Chế độ báo cáo tài chính đối với các tổ chức tín dụng theo Quyết định số 16/2007/QĐ-NHNN ngày 18 tháng 4 năm 2007 và các thông tư sửa đổi và bổ sung Quyết định số 16/2007/QĐ-NHNN và các Chuẩn mực Kế toán Việt Nam do Bộ Tài chính ban hành bao gồm'),
+  ('Cơ sở lập báo cáo tài chính hợp nhất','Báo cáo tài chính hợp nhất giữa niên độ của Ngân hàng được lập phù hợp với Chế độ kế toán các Tổ chức tín dụng Việt Nam theo Quyết định số 479/2004/QĐ-NHNN ngày 29 tháng 4 năm 2004 và các thông tư sửa đổi, bổ sung; Quyết định số 16/2007/QĐ-NHNN ngày 18 tháng 4 năm 2007 và các thông tư sửa đổi, bổ sung và hệ thống chuẩn mực kế toán Việt Nam do Bộ Tài chính ban hành bao gồm'),
+  ('Tuyên bố về việc tuân thủ chuẩn mực kế toán và chế độ kế toán Việt Nam','Ban Tổng Giám đốc Công ty cam kết đã lập báo cáo tài chính hợp nhất Quý 2 năm 2026 tuân thủ theo chuẩn mực kế toán và chế độ kế toán doanh nghiệp Việt Nam, các hướng dẫn kế toán áp dụng cho công ty chứng khoán'),
+ ]
+ if any(compact(heading) in compact(t) and compact(clause) in compact(t) for heading,clause in statutory_declarations):return True
  current_declarations=[
+  ('co so lap bao cao tai chinh hop nhat giua nien do','bao cao tai chinh hop nhat giua nien do kem theo duoc trinh bay bang dong viet nam (vnd), theo nguyen tac gia goc va phu hop chuan muc ke toan, che do ke toan doanh nghiep viet nam'),
+  ('tuyen bo ve tuan thu','bao cao tai chinh quy hop nhat duoc lap theo cac chuan muc ke toan viet nam, che do ke toan doanh nghiep viet nam'),
+  ('tuyen bo ve tuan thu','bao cao tai chinh hop nhat giua nien do nay duoc lap theo cac chuan muc ke toan viet nam, che do ke toan doanh nghiep viet nam'),
+  ('co so cua viec lap bao cao tai chinh hop nhat','bao cao tai chinh hop nhat da duoc lap theo cac chuan muc ke toan viet nam'),
   ('tuyen bo ve tuan thu','bao cao tai chinh hop nhat nay duoc lap theo cac chuan muc ke toan viet nam, che do ke toan doanh nghiep viet nam'),
   ('tuyen bo tuan thu','bao cao tai chinh hop nhat giua nien do duoc lap theo cac chuan muc ke toan viet nam, che do ke toan viet nam ap dung cho cac to chuc tin dung'),
   ('tuyen bo tuan thu','ban tong giam doc ngan hang khang dinh bao cao tai chinh hop nhat dinh kem duoc lap phu hop voi cac chuan muc ke toan viet nam, he thong ke toan cac to chuc tin dung viet nam'),
@@ -488,11 +505,13 @@ def reconcile():
  identities=json.load(open('docs/fundamental-data-engine/evidence/2026-10-10-di123-identities.json'))['identities'];ids={i['ticker']:i for i in identities};selected=json.load(open(B/'selected-documents.json'));results=[];exceptions=[];cells=[];sectors=[]
  existingSectors={s['ticker']:s for s in json.load(open('docs/fundamental-data-engine/evidence/2026-10-10-di123-sectors.json'))['assignments']}
  for d in selected:
+  assert hashlib.sha256((B/d['file']).read_bytes()).hexdigest()==d['bodyHash'], 'MANUAL_PDF_HASH_MISMATCH'
   pages=[];primaryPeriodJoinPages=[]
   for f in sorted((B/'ocr').glob(d['bodyHash']+'-p*.json')):
    if not re.fullmatch(re.escape(d['bodyHash'])+r'-p[0-9]+\.json',f.name):continue
    p=json.load(open(f))
    if 'error' not in p:
+    assert p['bodyHash']==d['bodyHash'], 'MANUAL_READER_HASH_MISMATCH'
     if p.get('engineA','').startswith('APPLE_VISION'):
      p={**p,'passA':p['passB'],'passB':p['passA'],'engineA':p['engineB'],'engineB':p['engineA']}
     if d['bodyHash'] in {'041c5a2ac49f0e8f4a29f2b1fdb82aea00608579ad33c0606adf9ad06dd8da40','930d0d8de3a286afab2fb4fb6fcd9caf7aa0731fda86f092f03150a796a38020','5d9260dace57a7a3e5928e9d247c878d7667786fffeb2d7ace87aa7a9bca082f'}:

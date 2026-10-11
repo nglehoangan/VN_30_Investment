@@ -1,0 +1,74 @@
+{
+  "status": "PASS",
+  "proposalStatus": "PROPOSED_UNAPPROVED",
+  "testFile": "tests/unit/debt-metric-contract-proposal.test.ts",
+  "prototypeTests": 20,
+  "focusedSuiteTests": 126,
+  "focusedExitCode": 0,
+  "mandatoryCases": [
+    {
+      "case": "miscellaneous payable UNKNOWN does not automatically enter reported debt",
+      "status": "PASS",
+      "test": "unknown miscellaneous payable is excluded from reported quantity but retained as an unresolved amount"
+    },
+    {
+      "case": "miscellaneous payable UNKNOWN does not become zero",
+      "status": "PASS",
+      "test": "unknown liability amount remains null and never becomes a zero"
+    },
+    {
+      "case": "separately disclosed interest-bearing liability included",
+      "status": "PASS",
+      "test": "adds separately disclosed applicable OTHER_INTEREST_BEARING_FINANCING"
+    },
+    {
+      "case": "current portion counted once",
+      "status": "PASS",
+      "test": "current portion is counted once for different short/long presentations"
+    },
+    {
+      "case": "separately disclosed bond included",
+      "status": "PASS",
+      "test": "adds separately disclosed applicable BOND"
+    },
+    {
+      "case": "applicable finance lease handled under contract",
+      "status": "PASS",
+      "test": "adds separately disclosed applicable FINANCE_LEASE; sector applicable lease and exclusion regressions"
+    },
+    {
+      "case": "reported does not masquerade as comprehensive",
+      "status": "PASS",
+      "test": "reported metric never masquerades as comprehensive debt or an approved canonical metric"
+    },
+    {
+      "case": "bank/securities contracts unaffected",
+      "status": "PASS",
+      "test": "BANK/SECURITIES/INSURANCE stays outside; existing tracked requirement files byte-identical"
+    },
+    {
+      "case": "HPG FY2024 false zeros preserved",
+      "status": "PASS",
+      "test": "actual HPG corrected current short and FY2024 false-zero protections remain in approved input"
+    },
+    {
+      "case": "corrected current short remains 71433383400905",
+      "status": "PASS",
+      "test": "actual HPG corrected current short and FY2024 false-zero protections remain in approved input"
+    }
+  ],
+  "additionalSafeguards": [
+    "Known financing unverified or unquantified cannot be omitted",
+    "Verified current/loan/bond/lease overlap",
+    "Same stock scope/end and financing measurement basis",
+    "No incompatible principal/carrying preference",
+    "No conflicting metric values",
+    "No automatic smaller comprehensive amount preference",
+    "No silent series population/measurement/lease changes",
+    "Ticker/currency/lease policy selection isolation",
+    "All prototype outputs canonicalAdmission=false/readyForScoring=false"
+  ],
+  "approvedBaselineChanged": false,
+  "officialScoringRun": false,
+  "HPGApproved": false
+}

@@ -1,0 +1,209 @@
+{
+  "reviewer": "Independent QA/PIT and Financial Data Architect agent",
+  "status": "COMPLETE",
+  "recommendedVerdict": "C. BLOCKED \u2014 MATERIAL DATA GAPS REMAIN",
+  "scope": [
+    "L1 provider schema/mode/namespace contracts",
+    "L2 empirical issuer-backed mapping and predetermined holdouts",
+    "L3 exact observation admission and provenance",
+    "offline replay, safety regressions, revocation dependencies, PIT",
+    "historical evidence and database preservation"
+  ],
+  "findings": [
+    {
+      "severity": "Critical",
+      "id": "QA-C1",
+      "issue": "Both required coverage targets remain below 95%",
+      "coverage": {
+        "CORE": {
+          "denominator": 750,
+          "counts": {
+            "DIRECT_STRUCTURED": 356,
+            "SAFE_DERIVED": 0,
+            "PDF_VERIFIED": 76,
+            "ISSUER_VERIFIED": 0,
+            "FALLBACK_REQUIRED": 209,
+            "PROVIDER_ANOMALY": 3,
+            "CONFLICT": 8,
+            "UNAVAILABLE": 98,
+            "NOT_APPLICABLE": 0
+          },
+          "admitted": 432,
+          "percentage": 57.6,
+          "targetMet": false
+        },
+        "SECTOR_CORE": {
+          "denominator": 365,
+          "counts": {
+            "DIRECT_STRUCTURED": 151,
+            "SAFE_DERIVED": 0,
+            "PDF_VERIFIED": 26,
+            "ISSUER_VERIFIED": 0,
+            "FALLBACK_REQUIRED": 99,
+            "PROVIDER_ANOMALY": 1,
+            "CONFLICT": 0,
+            "UNAVAILABLE": 88,
+            "NOT_APPLICABLE": 0
+          },
+          "admitted": 177,
+          "percentage": 48.49315068493151,
+          "targetMet": false
+        }
+      }
+    },
+    {
+      "severity": "Critical",
+      "id": "QA-C2",
+      "issue": "Eight unresolved material required CORE conflicts remain"
+    },
+    {
+      "severity": "Major",
+      "id": "QA-M1",
+      "issue": "Current YTD and decision-critical sector disclosures incomplete; all 30 symbols insufficient"
+    },
+    {
+      "severity": "Major",
+      "id": "QA-M2",
+      "issue": "Historical publication/revision proof incomplete; current contract certification cannot grant historical PIT eligibility"
+    }
+  ],
+  "implementationFindings": [
+    {
+      "id": "ARCH-1",
+      "issue": "Promoted structured records must separate raw CafeF identity from retained issuer-reader metadata",
+      "disposition": "RESOLVED; inspected code and independently executed adversarial checks in final 40-regression verifier"
+    },
+    {
+      "id": "ARCH-2",
+      "issue": "Explained revision reference alone cannot qualify revised record",
+      "disposition": "RESOLVED; inspected code and independently executed adversarial checks in final 40-regression verifier"
+    },
+    {
+      "id": "ARCH-3",
+      "issue": "Calibration reference ticker/year/scope labels and unique sample IDs must bind exact issuer records",
+      "disposition": "RESOLVED; inspected code and independently executed adversarial checks in final 40-regression verifier"
+    },
+    {
+      "id": "ARCH-4",
+      "issue": "L3 must independently enforce fiscal label and exact calendar windows, beyond normalizer assumptions",
+      "disposition": "RESOLVED; inspected code and independently executed adversarial checks in final 40-regression verifier"
+    }
+  ],
+  "limitations": [
+    "No network or new provider refresh was performed by this reviewer",
+    "No visual reread of every issuer PDF; qualified retained issuer facts are the independent calibration authority",
+    "Empirical calibration is limited to observed issuer/schema/mode domains; no population accuracy claim",
+    "Complete suite execution belongs to root; direct reviewer execution limited to independent verifier"
+  ],
+  "DI14": "AWAITING_INDEPENDENT_REVIEW",
+  "DI15": "AWAITING_PROJECT_OWNER_APPROVAL",
+  "readyForScoring": false,
+  "officialScoringExecuted": false,
+  "independentExecution": {
+    "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-structured-certification.mjs",
+    "exitCode": 0,
+    "regressions": 40,
+    "sourceBindingsVerified": 845,
+    "generatedArtifactsCompared": 38,
+    "historicalFilesVerified": 107,
+    "existingDatabasesVerified": 8,
+    "realDirectStructuredFacts": 844
+  },
+  "gates": {
+    "A": "FAIL",
+    "B": "FAIL",
+    "C": "PASS",
+    "D": "PASS",
+    "E": "PASS",
+    "F": "PASS",
+    "safety": {
+      "silentlyAdmittedSuspiciousZero": 0,
+      "silentlyAdmittedAccountingConflict": 0,
+      "silentlyConvertedAmbiguousQuarterlyCF": 0,
+      "unprovenAnnualization": 0,
+      "crossSectorCodeCollision": 0,
+      "historicalPITViolation": 0
+    },
+    "unresolvedMaterialCOREConflicts": 8,
+    "readyForScoring": false,
+    "independentReplay": "INDEPENDENT_REPLAY.json",
+    "regressions": "REGRESSION_VALIDATION.json"
+  },
+  "independentCoverageArithmetic": {
+    "CORE": {
+      "required": 750,
+      "admitted": 432,
+      "percentage": 57.6,
+      "statuses": {
+        "DIRECT_STRUCTURED": 356,
+        "SAFE_DERIVED": 0,
+        "PDF_VERIFIED": 76,
+        "ISSUER_VERIFIED": 0,
+        "FALLBACK_REQUIRED": 209,
+        "PROVIDER_ANOMALY": 3,
+        "CONFLICT": 8,
+        "UNAVAILABLE": 98,
+        "NOT_APPLICABLE": 0
+      },
+      "annualRequired": 600,
+      "YTDRequired": 150
+    },
+    "SECTOR_CORE": {
+      "required": 365,
+      "admitted": 177,
+      "percentage": 48.49315068493151,
+      "statuses": {
+        "DIRECT_STRUCTURED": 151,
+        "SAFE_DERIVED": 0,
+        "PDF_VERIFIED": 26,
+        "ISSUER_VERIFIED": 0,
+        "FALLBACK_REQUIRED": 99,
+        "PROVIDER_ANOMALY": 1,
+        "CONFLICT": 0,
+        "UNAVAILABLE": 88,
+        "NOT_APPLICABLE": 0
+      },
+      "annualRequired": 292,
+      "YTDRequired": 73
+    },
+    "uniqueRequiredKeys": 1115
+  },
+  "contractAssessment": {
+    "L1ProviderContracts": 69,
+    "certifiedL1": 10,
+    "L2Mappings": 261,
+    "certifiedL2": 31,
+    "predeterminedHoldouts": 80,
+    "holdoutResults": {
+      "MATCH": 48,
+      "MATCH_WITHIN_TOLERANCE": 14,
+      "PROVIDER_ERROR": 18,
+      "UNRESOLVED": 0
+    },
+    "scope": "Exact endpoint/mode/providerType/schema/namespace plus observed issuer symbol cohort; unknown contracts fail closed",
+    "limitations": "No population accuracy claim; zero values remain issuer verified; no current LUYKE provider contracts certified; calendar scope and unit attestations rely on independently qualified retained issuer calibration"
+  },
+  "revocationAssessment": {
+    "mappingRevocation": "PASS; prior direct IDs quarantined and derived operands recomputed without revoked IDs",
+    "providerRevocation": "PASS; dependent mapping admissions removed",
+    "historicalSnapshotMutation": false
+  },
+  "PITAssessment": {
+    "currentCertificationDoesNotGrantHistoricalPIT": true,
+    "historicalAdmittedFacts": 0,
+    "interpretation": "Safe exclusion from absent publication/revision proof, not historical production readiness"
+  },
+  "provenanceAssessment": "PASS: direct sourceHash/sourceDocumentId identify selected raw CafeF body; issuer review metadata retained separately; qualified exact-scope/window evidence backs preflight",
+  "roleConclusions": {
+    "QA_PIT": "Safety, deterministic replay, revocation and preservation checks pass. Coverage, material conflicts and missing PIT evidence block admission.",
+    "Financial_Data_Architect": "L1/L2/L3 implementation respects structured primary ingestion and independent issuer verification. Scope is bounded by empirical schema/mode/issuer evidence. Code-review findings were repaired. No basis to reject the architecture; no basis to approve production data."
+  },
+  "noReservedApprovalsGranted": true,
+  "priorSealedHistoricalVerifier": {
+    "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-cafef-production-admission.mjs",
+    "exitCode": 0,
+    "regressions": 17,
+    "sourceBindings": 826,
+    "sealedEvidenceUnchanged": true
+  }
+}

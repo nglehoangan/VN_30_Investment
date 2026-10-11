@@ -1,3 +1,4 @@
+import {DEBT_CONTRACT,type DebtMeasurement,type DebtMetric} from '@/domain/fundamentals/debt-contract';
 import { dateOnly, instant } from "@/shared/time";
 import { decimal } from "@/domain/portfolio/values";
 import { check, id, keys, list, text, unique } from "./validation";
@@ -23,7 +24,8 @@ export interface CanonicalEvidenceTime {
     readonly availabilityProvenance: string;
   }[];
 }
-interface EvidenceBase {
+export interface DebtAccountingContext {readonly contractVersion:string;readonly role:'DEBT'|'NET_DEBT'|'UNRESTRICTED_CASH'|'NORMALIZED_EBITDA';readonly ticker:string;readonly periodEnd:string;readonly scope:'CONSOLIDATED';readonly currency:'VND';readonly measurementBasis:DebtMeasurement;readonly leasePolicyVersion:string;readonly qualifiedEvidenceReference:string;readonly sourceHashes:readonly string[];readonly qualificationStatus:'VERIFIED';readonly selectedDebtMetric:DebtMetric|null;readonly cashEconomicAvailabilityVerified:boolean;readonly normalizedOrDownside:boolean}
+interface EvidenceBase {readonly debtAccounting?:DebtAccountingContext;
   readonly id: string; readonly version: string; readonly securityId: string; readonly observation: string;
   readonly value: string; readonly unit: "VND" | "VND_PER_SHARE" | "SHARES" | "RATIO" | "TEXT";
   readonly classification: "FACT" | "ESTIMATE" | "ASSUMPTION"; readonly source: string;
@@ -62,7 +64,8 @@ export function validateEvidence(rows: readonly Evidence[], securityId: string, 
   list(rows); unique(rows.map(e => e.id));
   const conflicts: string[] = [];
   for (const e of rows) {
-    keys(e, "id version securityId observation value unit classification source periodStart periodEnd asOf publishedAt receivedAt validThrough critical quality family"+(e.time?" time":""));
+    keys(e, "id version securityId observation value unit classification source periodStart periodEnd asOf publishedAt receivedAt validThrough critical quality family"+(e.time?" time":"")+(e.debtAccounting?" debtAccounting":""));
+    if(e.debtAccounting){const q=e.debtAccounting;keys(q,'contractVersion role ticker periodEnd scope currency measurementBasis leasePolicyVersion qualifiedEvidenceReference sourceHashes qualificationStatus selectedDebtMetric cashEconomicAvailabilityVerified normalizedOrDownside');text(q.qualifiedEvidenceReference);dateOnly(q.periodEnd);text(q.ticker);check(q.contractVersion===DEBT_CONTRACT.version&&['DEBT','NET_DEBT','UNRESTRICTED_CASH','NORMALIZED_EBITDA'].includes(q.role)&&q.periodEnd===e.periodEnd&&q.measurementBasis===DEBT_CONTRACT.defaultMeasurementBasis&&q.leasePolicyVersion===DEBT_CONTRACT.leasePolicyVersion&&typeof q.cashEconomicAvailabilityVerified==='boolean'&&typeof q.normalizedOrDownside==='boolean'&&[null,'REPORTED_BORROWINGS','COMPREHENSIVE_FINANCIAL_DEBT'].includes(q.selectedDebtMetric)&&q.scope==='CONSOLIDATED'&&q.currency==='VND'&&q.qualificationStatus==='VERIFIED'&&q.sourceHashes.length>0&&q.sourceHashes.every(h=>/^[a-f0-9]{64}$/.test(h)), 'DEBT_SCORING_CONTEXT_REQUIRED');}
     [e.id,e.version,e.securityId,e.observation,e.family].forEach(id); text(e.source);
     check(e.securityId === securityId, "MIXED_SECURITY_EVIDENCE");
     check(["FACT","ESTIMATE","ASSUMPTION"].includes(e.classification), "EVIDENCE_CLASS_REQUIRED");

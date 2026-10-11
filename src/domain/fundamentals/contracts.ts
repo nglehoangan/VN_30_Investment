@@ -5,7 +5,7 @@ import type { SecurityId } from '@/domain/portfolio/values';
 export type MeasurementSemantic = 'FLOW' | 'STOCK' | 'PER_SHARE' | 'RATIO';
 export type ReportingScope = 'CONSOLIDATED' | 'SEPARATE_STANDALONE';
 export type FinancialUnit = 'CURRENCY' | 'CURRENCY_PER_SHARE' | 'SHARES' | 'RATIO';
-export interface CanonicalItem {
+export interface CanonicalItem {readonly metadataRequirements?:readonly string[];
   readonly itemId: string; readonly name: string; readonly meaning: string;
   readonly statementType: 'INCOME' | 'BALANCE' | 'CASH_FLOW' | 'SUPPLEMENTARY';
   readonly measurementSemantic: MeasurementSemantic; readonly allowedUnits: readonly FinancialUnit[];

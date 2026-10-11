@@ -9,6 +9,7 @@ import type { CurrentModel } from "@/application/current/read-model";
 import type { BrokerSnapshot } from "@/domain/portfolio/broker-snapshot";
 import type { BrokerApiData } from "@/domain/portfolio/broker-api-data";
 export interface DashboardModel {
+  manualFundamentals?: import("@/domain/fundamentals/manual-first").CurrentAnalysisSnapshot;
   dataFreshness?: import("@/domain/fundamentals/freshness").DataFreshnessModel;
   brokerApiData?: BrokerApiData;
   brokerSnapshot?: BrokerSnapshot;

@@ -2,9 +2,25 @@
 import runpy,unittest
 R=runpy.run_path('scripts/reconcile-08b-extraction.py')
 class ExtractionBoundaryTests(unittest.TestCase):
+ def test_vcb_current_bank_basis_requires_complete_positive_clause(self):
+  check=R['affirmative_vas_preparation']
+  heading='Cơ sở lập báo cáo tài chính. '
+  clause='Báo cáo tài chính hợp nhất, trình bày bằng Đồng Việt Nam (VND), được làm tròn đến hàng triệu gần nhất, được lập theo các Chuẩn mực Kế toán Việt Nam, Chế độ Kế toán Việt Nam áp dụng cho các Tổ chức tín dụng'
+  self.assertTrue(check(heading+clause))
+  for variant in [clause.replace('hợp nhất, trình','hợp nhất, được trình'),clause.replace('hợp nhất, trình','hợp nhất giữa niên độ, được trình'),clause.replace('hợp nhất, trình','hợp nhất giữa niên độ, được trình').replace('Đồng Việt','Đồng, Việt')]:
+   self.assertTrue(check(heading+variant))
+   for old,new in [('được lập','không được lập'),('được lập','sẽ được lập'),('hợp nhất','riêng'),('Chuẩn mực Kế toán Việt Nam','IFRS')]:self.assertFalse(check(heading+variant.replace(old,new)))
+  self.assertFalse(check(clause))
+  for old,new in [('được lập','không được lập'),('được lập','sẽ được lập'),('hợp nhất','riêng'),('Chuẩn mực Kế toán Việt Nam','IFRS')]:
+   self.assertFalse(check(heading+clause.replace(old,new)))
+
  def test_current_compliance_declarations_reject_negation_future_and_citations(self):
   check=R['affirmative_vas_preparation']
   samples=[
+   ('Cơ sở lập báo cáo tài chính hợp nhất giữa niên độ. ','Báo cáo tài chính hợp nhất giữa niên độ kèm theo được trình bày bằng Đồng Việt Nam (VND), theo nguyên tắc giá gốc và phù hợp chuẩn mực kế toán, chế độ kế toán doanh nghiệp Việt Nam'),
+   ('Tuyên bố về tuân thủ. ','Báo cáo tài chính quý hợp nhất được lập theo các Chuẩn mực Kế toán Việt Nam, Chế độ kế toán doanh nghiệp Việt Nam'),
+   ('Tuyên bố về tuân thủ. ','Báo cáo tài chính hợp nhất giữa niên độ này được lập theo các Chuẩn mực Kế toán Việt Nam, Chế độ kế toán doanh nghiệp Việt Nam'),
+   ('Cơ sở của việc lập báo cáo tài chính hợp nhất. ','Báo cáo tài chính hợp nhất đã được lập theo các Chuẩn mực Kế toán Việt Nam'),
    ('Tuyên bố về tuân thủ. ','Báo cáo tài chính hợp nhất này được lập theo các Chuẩn mực Kế toán Việt Nam, Chế độ Kế toán Doanh nghiệp Việt Nam'),
    ('Tuyên bố tuân thủ. ','Báo cáo tài chính hợp nhất giữa niên độ được lập theo các Chuẩn mực Kế toán Việt Nam, Chế độ Kế toán Việt Nam áp dụng cho các Tổ chức tín dụng'),
    ('Tuyên bố tuân thủ. ','Ban Tổng Giám đốc Ngân hàng khẳng định báo cáo tài chính hợp nhất đính kèm được lập phù hợp với các Chuẩn mực kế toán Việt Nam, Hệ thống kế toán các tổ chức tín dụng Việt Nam'),
@@ -13,7 +29,7 @@ class ExtractionBoundaryTests(unittest.TestCase):
   for heading,clause in samples:
    self.assertTrue(check(heading+clause))
    self.assertFalse(check(clause))
-   for old,new in [('được lập','không được lập'),('được lập','sẽ được lập'),('has complied','has not complied'),('has complied','will comply')]:
+   for old,new in [('được lập','không được lập'),('được lập','sẽ được lập'),('được trình bày','không được trình bày'),('được trình bày','sẽ được trình bày'),('has complied','has not complied'),('has complied','will comply')]:
     if old in clause:self.assertFalse(check(heading+clause.replace(old,new)))
   self.assertFalse(check('Tuyên bố tuân thủ. Chuẩn mực Kế toán Việt Nam số 11.'))
 

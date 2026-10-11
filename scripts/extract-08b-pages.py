@@ -2,8 +2,7 @@
 import pathlib,json,subprocess,concurrent.futures,hashlib,os,csv,io
 import pymupdf
 import pdfplumber
-from pypdf import PdfReader
-B=pathlib.Path(os.environ.get('VN30_EVIDENCE_WORK','data/initialization-08b-final-work'));T=B/'ocr';T.mkdir(exist_ok=True);os.chmod(T,0o700)
+B=pathlib.Path(os.environ.get('VN30_EVIDENCE_WORK','data/manual-extracted/current'));T=B/'ocr';T.mkdir(exist_ok=True);os.chmod(T,0o700)
 LANG=pathlib.Path('/private/tmp/vn30-tessdata');LANG.mkdir(exist_ok=True)
 for src,name in [('/private/tmp/vn30-vie.traineddata','vie.traineddata'),('/opt/homebrew/share/tessdata/eng.traineddata','eng.traineddata')]:
  target=LANG/name
@@ -13,6 +12,7 @@ def process(task):
  rotation=int(os.environ.get('VN30_PDF_RENDER_ROTATION','0'))
  if rotation not in [0,90,180,270]:raise ValueError('UNSUPPORTED_PDF_RENDER_ROTATION')
  if dpi not in [180,300,400]:raise ValueError('UNSUPPORTED_RENDER_DPI')
+ assert hashlib.sha256((B/file).read_bytes()).hexdigest()==file[:-4], 'MANUAL_PDF_HASH_MISMATCH'
  doc=pymupdf.open(B/file);page=doc[n];area=page.rect.width*page.rect.height
  majorRaster=any(r.width*r.height/area>0.5 for img in page.get_images() for r in page.get_image_rects(img[0]))
  forceImage=os.environ.get('VN30_FORCE_IMAGE_OCR')=='1'
@@ -82,7 +82,7 @@ if __name__=='__main__':
    else:tasks.extend((d['file'],n) for n in range(min(len(p),args.pages)))
  if args.bank_notes:(B/'special-sector-note-search.json').write_text(json.dumps(notePlan,indent=2)+'\n')
  tasks=list(dict.fromkeys(tasks))
- with concurrent.futures.ProcessPoolExecutor(max_workers=max(1,min(3,int(os.environ.get('VN30_OCR_WORKERS','3'))))) as pool:
+ with concurrent.futures.ProcessPoolExecutor(max_workers=max(1,min(8,int(os.environ.get('VN30_OCR_WORKERS','3'))))) as pool:
   for i,result in enumerate(pool.map(process,tasks)):
    with (B/'ocr-progress.jsonl').open('a') as out:out.write(json.dumps(result)+'\n')
    if i%30==0:print(json.dumps({'completed':i+1,'total':len(tasks)}),flush=True)

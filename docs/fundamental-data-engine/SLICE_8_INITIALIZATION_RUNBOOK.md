@@ -1,63 +1,48 @@
-# Slice 8 — controlled initialization runbook
+# Slice 8 — trích xuất từ manual
 
-Status: preparation implemented; real dataset initialization BLOCKED. The source register is discovery evidence, not an approved constituent master, source license, publication proof or initialized dataset.
+Luồng hiện hành chỉ đọc PDF do người dùng đặt trong `data/manual-fundamentals/<TICKER>/`.
+Không tải dữ liệu từ web, không cần snapshot cũ hoặc database initialization.
+Tên thư mục/mã cổ phiếu chỉ là gợi ý; việc xác nhận issuer, kỳ báo cáo, scope và số liệu vẫn cần review nội dung.
 
-## Repository preflight (implemented, read only)
+## Cài đặt và chạy
 
-Run from any directory with Node 22:
-
-```sh
-node /absolute/path/to/VN_30_Investment/scripts/fundamental-initialization-preflight.mjs
-```
-
-To prepare a particular target/as-of for review (this still does not open the target):
+Từ repo root, tạo Python virtual environment và cài dependencies:
 
 ```sh
-node scripts/fundamental-initialization-preflight.mjs \
-  --target /absolute/private/initialization.sqlite \
-  --as-of 2026-10-09T10:00:00.000Z
+python3 -m venv .venv-manual
+.venv-manual/bin/pip install -r scripts/requirements-manual.txt
+.venv-manual/bin/python scripts/inspect-08b-manual-corpus.py
 ```
 
-The second invocation is an illustrative planning command, not approval of that target/date. stdout is a redacted JSON packet; stderr rejects invalid arguments without printing their contents. A successful process exit means preflight completed, **not initialization PASS**. Consumers must inspect `kind`, `status`, `dataset`, `formalUniverseCount` and DI statuses. There is no `--execute`/`--approve`, network fetch, environment loading, database connection, scoring or automatic PASS path. Target paths are hashed and withheld. Fixed repository files are pinned by SHA-256; the packet has its own hash. Regenerate after source/governance documents change.
+Output mặc định: `data/manual-extracted/current/`, gồm inventory, danh sách PDF, text theo từng trang và symlink về PDF gốc. Script từ chối ghi đè thư mục đã tồn tại. Để chạy lại, dùng `--output data/manual-extracted/run-02`. Có thể dùng `--inventory-only` mà không cần thư viện PDF.
 
-The dated checked-in packet has no target or dataset. It accounts for every research/supplemental candidate separately with explicit unknown readiness and blockers. A count of 30 research candidates does not establish current official VN30 membership. All DI1–DI15 remain NOT_EXECUTED with no measured dataset evidence or reviewer sign-off. Repository preflight is not financial-data validation.
+```sh
+VN30_EVIDENCE_WORK=data/manual-extracted/current VN30_NATIVE_VERIFY=1 \
+  .venv-manual/bin/python scripts/extract-08b-pages.py --pages 12
+VN30_EVIDENCE_WORK=data/manual-extracted/current \
+  .venv-manual/bin/python scripts/reconcile-08b-extraction.py
+```
 
-## Inputs before real execution
+Reader kiểm tra SHA-256 của PDF trước khi đọc. Với trang native, hai reader là PyMuPDF và pdfplumber. Với PDF scan cần Apple Vision helper, Tesseract và language data `vie+eng`; reader giữ exception khi OCR thất bại. Cấu hình mặc định legacy trên macOS: helper `/private/tmp/vn30-vision-ocr`, Tesseract `/opt/homebrew/bin/tesseract`, language data `/private/tmp/vn30-tessdata`. Biên dịch helper bằng:
 
-Owner supplies the reporting windows, decision/system-known/fundamental/market cutoffs, exact database path and isolation/backup plan. Supply official dated universe membership with stable Security identifiers and effective intervals; approved dated sector mappings; market inputs and adjustment/freshness policy; required issuer reports/capture history. Market/fundamental observations must cover the entire official universe independently of portfolio holdings.
+```sh
+clang -fobjc-arc -framework Foundation -framework Vision \
+  scripts/lib/vision-ocr.m -o /private/tmp/vn30-vision-ocr
+```
 
-Source owners supply access/raw-retention evidence and approved issuer/provider configuration. Discovery URLs alone do not grant source qualification. Existing FPT collection and reviewed mapping are not a generic VN30 parser; other issuers need independently reviewed routes rather than FPT labels applied to every company. Capture original document bytes, complete import/error manifests and exact vintages. Missing original publication/history remains unknown; a fresh retrieval cannot create earlier operational knowledge.
+Đặt `vie.traineddata` trong `/private/tmp/vn30-tessdata/` và `eng.traineddata` từ bản cài Tesseract. `--pages` giới hạn số trang đầu (mặc định 12); chưa đọc hết PDF thì chưa thể kết luận không có số liệu. Reader không tự phê duyệt hoặc đưa số liệu vào database. Reconciler dùng identity/sector reference trong `docs/fundamental-data-engine/evidence/2026-10-10-di123-*.json`; đây là reference của project, không phải số liệu tài chính từ nguồn ngoài manual.
 
-Independent reviewers supply document qualification, exact source/registry/mapping/crosswalk/availability/sector/requirements/methodology hash bindings and publication evidence authority. Canonical/mapping/crosswalk PROPOSED releases must not be edited to APPROVED merely to unblock a run. Compose trusted repository capabilities independently; caller JSON/env approval claims cannot establish authority. Distinguish actual issuer timestamp, date-only public fallback/trusted receipt, local retrieval and ingestion. Reconcile normalization and formulas independently, preserving scopes, units, currencies and revisions. Unsupported sector routes remain blocked.
+## Dữ liệu giữ lại
 
-## Controlled execution sequence (not yet executable as a real import command)
+- `data/manual-fundamentals/`: PDF nguồn nguyên vẹn.
+- `data/manual-extracted/current/`: kết quả của luồng hiện hành.
+- `data/manual-extracted/current/ocr/`: một kết quả hai reader cho mỗi trang đã OCR; chỉ giữ output reader thô.
+- `data/manual-extracted/current/page-text/`: text khảo sát trang hoặc reader cloud-only khi không có cặp reader đầy đủ.
+- `data/manual-extracted/extraction-manifest.json`: nguồn của từng trang giữ lại và thống kê loại bản lặp.
 
-1. Prepare a concrete command package containing exact source configurations, document/vintage list, membership/sector/market evidence, reporting windows/cutoffs, existing repository capability composition, DB target and backup/recovery steps. The public report includes redacted references and hashes, never credentials or account capture.
-2. Obtain review of that exact package and command. DESIGN_REVIEW.md §G requires: “A controlled real import command must be reviewed with its actual source/database target before execution.” No real-import CLI is supplied yet because its sources, target, contracts and independent reviews are missing.
-3. In an approved isolated target, preserve existing Security identities and use existing immutable ingestion, document qualification, normalization, derivation, availability and snapshot repositories. Enumerate all official members. Never overwrite source captures, canonical revisions or historical scores. Stop before writes if capability checks, target guards or source coverage fail. Partial imports retain error manifests and explicit blockers; retry uses new execution identity.
-4. Independently reconcile each required fact to report page/field, normalization and sector route. Validate missing/null versus zero, FLOW/STOCK, standalone/consolidated, annual/YTD/TTM, capex sign, FX lineage, conflicting sources, corrections and latest constituent/review availability. Do not invent a fallback to obtain completeness.
-5. Seal exact AS_KNOWN request through the existing snapshot repository with all immutable references, pins, versions, hash and cutoffs. Record actual runId/contentHash and replay/reopen evidence. A diagnostic AS_REVISED snapshot cannot substitute for FORMAL eligibility.
-6. Produce a dataset-bound measured evidence report for each DI gate and each official ticker. Include unresolved issue register and reviewer roles/sign-offs. Explicitly mark unexecuted gates and missing/stale/unsupported tickers. Execute independent acceptance only with existing trusted DI review capability and exact reviewed input package; never manufacture all-PASS evidence.
-7. Read the sealed run via `/data/<runId>`; select its exact independently verified acceptance if present. Historical readiness is not current actionability. Stop at Slice 8 review. Real scoring/ranking/Top 10 and live decisions require a separately approved INITIAL_SCORING_REPORT task.
+Text native được đọc trực tiếp một lần từ 144 PDF. OCR thô được chọn từ các lần đọc cũ, không phải lần OCR mới cho toàn bộ corpus. Mỗi cặp body hash/trang chỉ giữ một file reader. File cloud-only được giữ để không mất kết quả duy nhất, chưa được kiểm chứng nội dung. Ảnh render, transcription đã qua reconciliation, kết quả qualification, snapshot và các bản reader lặp đã được xóa. PNG được tạo lại từ PDF khi cần review hình ảnh; hash render trong reader cũ là metadata, không phải bằng chứng hình ảnh đang được giữ.
 
-## Evidence required by gate
+Artifact lịch sử không tự trở thành dữ liệu canonical. Snapshot hỗn hợp, public downloads, captures, database initialization và execution package cũ được loại khỏi `data`. Các bản khôi phục dữ liệu/script cũ đã được xóa theo yêu cầu giải phóng dung lượng. Danh sách phần đã loại được ghi tại `SLICE_8_MANUAL_CLEANUP.json`. Tài liệu/evidence các lần chạy trước trong `docs` là lịch sử, các lệnh cũ trong đó không còn là runbook hiện hành.
 
-| Gate | Dataset-specific evidence needed |
-| --- | --- |
-| DI1 | Official dated universe source/effective membership and independent verification |
-| DI2 | Exact active member identities/count, duplicate/interval checks |
-| DI3 | Complete approved dated sector mapping |
-| DI4 | Required market records, source/adjustment/period/freshness checks |
-| DI5 | Required issuer facts, source captures/qualification and completeness |
-| DI6 | Independently reconciled period/unit/currency/scope normalization |
-| DI7 | Required-item null/missing coverage with explicit exclusions |
-| DI8 | Pinned-policy freshness and actual cutoff checks |
-| DI9 | Conflict/impossible-value exceptions and resolution evidence |
-| DI10 | Governed formulas, exact ordered canonical operands/review knowledge |
-| DI11 | Original publication/receipt/local knowledge and cutoff/revision replay |
-| DI12 | Exact sealed manifest/content hash, run envelope and reproducibility |
-| DI13 | Every official ticker's verified all-input readiness or blockers |
-| DI14 | Independent data-quality review bound to exact dataset and inputs |
-| DI15 | Dataset issue register, no unresolved Critical/Major, independent closure |
-
-Tests validate software contracts with isolated synthetic fixtures. They do not satisfy these gates for a real dataset.
+Kiểm tra logic reconciliation: `python3 scripts/test-08b-extraction.py`.
+Các script DB, backup, smoke, M6.8 và preflight dùng chung được giữ cho ứng dụng.

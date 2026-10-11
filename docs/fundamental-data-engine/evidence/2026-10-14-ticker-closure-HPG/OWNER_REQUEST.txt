@@ -1,0 +1,763 @@
+VN30 Value Investing OS
+Ticker-by-Ticker Data Closure — HPG
+
+Repository:
+https://github.com/nglehoangan/VN_30_Investment
+
+CURRENT REVIEWED BASELINE
+
+Expected starting HEAD:
+
+a71cfafc5b8eb5414aa1204772f79bf7e91c8338
+
+Before doing anything:
+- verify current HEAD,
+- inspect repository state,
+- inspect the latest Structured Certification Closure evidence,
+- inspect all retained CafeF raw snapshots for HPG,
+- inspect all qualified issuer/PDF evidence already available for HPG,
+- inspect HPG entries in CORE_COVERAGE.csv,
+  SECTOR_CORE_COVERAGE.csv,
+  METRIC_COVERAGE.csv,
+  PDF_FALLBACK_QUEUE_AFTER.csv,
+  PROVIDER_ANOMALIES.csv,
+  SYMBOL_SUFFICIENCY.csv,
+  CURRENT_PERIOD_SELECTION.json,
+  NAM_VALIDATION.json,
+  QUY_VALIDATION.json,
+  LUYKE_VALIDATION.json.
+
+Do not modify historical evidence directories.
+
+==================================================
+ROLE
+==================================================
+
+Act as:
+
+- Financial Data Architect
+- Equity Research Data Engineer
+- Accounting Data Quality Reviewer
+- Risk Manager
+- Independent Validation Engineer
+
+==================================================
+SCOPE
+==================================================
+
+THIS RUN IS HPG ONLY.
+
+Do not perform data closure for any other VN30 ticker.
+
+Shared contract/schema infrastructure may be improved only where required
+to correctly process HPG.
+
+Do not use HPG work as automatic certification for another ticker.
+
+Do not run portfolio-wide scoring.
+
+Do not run VN30 ranking.
+
+Do not generate Top 10.
+
+Do not generate Buy/Hold/Sell/DCA decisions.
+
+==================================================
+APPROVED ARCHITECTURE
+==================================================
+
+CafeF Structured-Data-First
++
+PDF / Issuer Verified
+
+CafeF is primary structured ingestion.
+
+CafeF is not unconditional accounting authority.
+
+Issuer audited/reviewed financial statements remain verification authority
+for:
+
+- conflicts,
+- anomalies,
+- missing structured data,
+- sector/special disclosures,
+- scope/unit/period ambiguity,
+- historical publication/PIT evidence.
+
+Current certification architecture:
+
+L1 Provider Contract
+→
+L2 Mapping Contract
+→
+L3 Observation Validation
+→
+DIRECT_STRUCTURED or fallback/quarantine
+
+Do not weaken this model.
+
+==================================================
+KNOWN HPG RISK CASES
+==================================================
+
+Preserve these mandatory regressions.
+
+HPG FY2024 CafeF cash-flow data contained known false-zero observations.
+
+Issuer-verified values include:
+
+CFO FY2024:
+6,608,320,655,215 VND
+
+CapEx FY2024:
+35,495,026,797,327 VND
+
+The raw CafeF zero observations must NEVER become DIRECT_STRUCTURED.
+
+Also investigate existing debt-population completeness concerns.
+
+Do not assume:
+
+short-term debt + long-term debt
+
+always equals comprehensive financial debt unless the HPG financial statement
+definition proves it.
+
+==================================================
+MISSION
+==================================================
+
+Close HPG fundamental-data requirements as far as defensibly possible.
+
+The objective is NOT:
+
+"make HPG coverage 100%."
+
+The objective is:
+
+"produce the highest defensible HPG coverage with zero silent data-quality
+violations."
+
+Resolve HPG independently before another ticker is attempted.
+
+==================================================
+PHASE 1 — HPG BASELINE
+==================================================
+
+Create a complete HPG requirement inventory.
+
+For every HPG requirement show:
+
+metric
+evidence class
+period
+current status
+current source
+CafeF endpoint
+CafeF code
+mapping contract
+provider contract
+issuer/PDF availability
+problem/reason
+
+Classify:
+
+CORE
+SECTOR_CORE
+SUPPORTING
+OPTIONAL
+
+and current admission state:
+
+DIRECT_STRUCTURED
+SAFE_DERIVED
+PDF_VERIFIED
+ISSUER_VERIFIED
+FALLBACK_REQUIRED
+PROVIDER_ANOMALY
+CONFLICT
+UNAVAILABLE
+NOT_APPLICABLE
+
+Generate:
+
+HPG_BASELINE_REQUIREMENTS.csv
+
+Record initial:
+
+CORE required/admitted
+SECTOR_CORE required/admitted
+fallback count
+conflict count
+provider anomaly count
+current trajectory status
+PIT status
+
+==================================================
+PHASE 2 — HPG NAM CLOSURE
+==================================================
+
+Process annual HPG data first.
+
+Target periods:
+
+FY2022
+FY2023
+FY2024
+FY2025
+
+Use CafeF NAM structured data wherever contract-certified.
+
+For every required annual CORE metric determine:
+
+DIRECT_STRUCTURED
+or
+issuer/PDF fallback
+or
+unresolved
+
+Do not manually verify every ordinary CafeF cell if an applicable certified
+contract plus observation validation is sufficient.
+
+But issuer/PDF verification is mandatory for:
+
+- anomaly
+- conflict
+- suspicious zero
+- scope ambiguity
+- unit ambiguity
+- known problematic mapping
+- accounting identity failure.
+
+Validate annual accounting identities where applicable.
+
+==================================================
+PHASE 3 — HPG CURRENT LUYKE
+==================================================
+
+This is a HIGH-PRIORITY phase.
+
+Inspect retained and, if repository policy permits, current CafeF:
+
+TypeTime=LUYKE
+
+for HPG.
+
+Determine whether valid current-year observations exist for:
+
+3M
+6M
+9M
+12M
+
+based on actual available reporting period.
+
+Do not invent unavailable periods.
+
+For each LUYKE statement determine:
+
+Balance Sheet:
+point-in-time stock
+
+Income Statement:
+YTD flow
+
+Cash Flow:
+YTD flow
+
+Prove the semantics using:
+
+- provider payload structure,
+- period metadata,
+- adjacent periods where useful,
+- qualified HPG issuer interim report.
+
+Do not infer semantics merely from TypeTime name.
+
+If CafeF LUYKE is unavailable or untrustworthy:
+
+use qualified HPG issuer interim financial statements.
+
+The resulting current trajectory may therefore contain:
+
+DIRECT_STRUCTURED
+and/or
+PDF_VERIFIED / ISSUER_VERIFIED
+
+depending on evidence.
+
+Do not require CafeF specifically if issuer evidence is superior.
+
+==================================================
+PHASE 4 — HPG QUY
+==================================================
+
+Inspect QUY separately.
+
+Balance-sheet stock may be admitted when:
+
+- schema certified,
+- scope certified,
+- unit certified,
+- period certified,
+- observation validation passes.
+
+For income statement and cash flow:
+
+determine whether values are:
+
+standalone quarter
+cumulative
+unknown.
+
+Never convert unknown basis.
+
+Never substitute Q2 for 6M.
+
+Never annualize automatically.
+
+QUY is supplementary to current trajectory.
+
+LUYKE has priority for YTD fundamental analysis.
+
+==================================================
+PHASE 5 — HPG CORE CLOSURE
+==================================================
+
+Process every outstanding HPG CORE requirement individually.
+
+For each unresolved cell determine root cause:
+
+MISSING_PROVIDER_DATA
+UNCERTIFIED_CONTRACT
+UNCERTIFIED_MAPPING
+PROVIDER_ANOMALY
+CONFLICT
+SUSPICIOUS_ZERO
+UNIT_UNKNOWN
+SCOPE_UNKNOWN
+PERIOD_UNKNOWN
+DEBT_DEFINITION_INCOMPLETE
+PDF_NOT_EXTRACTED
+PDF_NOT_MAPPED
+ISSUER_DISCLOSURE_REQUIRED
+TRULY_UNAVAILABLE
+
+Do not leave generic FALLBACK_REQUIRED if a more precise cause can be
+established.
+
+Resolve using the approved source hierarchy.
+
+==================================================
+PHASE 6 — HPG DEBT DEFINITION
+==================================================
+
+Perform explicit debt-population review.
+
+Determine which HPG balance-sheet lines constitute financial debt.
+
+Check:
+
+- short-term borrowings
+- current portion of long-term borrowings
+- long-term borrowings
+- bonds
+- finance lease liabilities if applicable
+- other interest-bearing liabilities if applicable.
+
+Do not count operating liabilities as financial debt.
+
+Do not use a simple derived total until completeness is proven.
+
+Document:
+
+HPG_DEBT_DEFINITION.json
+
+If comprehensive debt can be safely derived:
+
+SAFE_DERIVED
+
+with complete admitted inputs and formula version.
+
+Otherwise use issuer-reported total where available or leave unresolved.
+
+==================================================
+PHASE 7 — HPG CASH FLOW REGRESSION
+==================================================
+
+Explicitly re-test FY2024:
+
+CFO
+CapEx
+
+The known CafeF false zeros must be rejected.
+
+Verify whether the underlying mapping contract can remain certified while
+these individual observations are vetoed.
+
+Expected architecture behavior:
+
+CERTIFIED CONTRACT
++
+FAILED OBSERVATION
+→
+NO DIRECT_STRUCTURED
+→
+ISSUER/PDF FALLBACK
+
+If not, fail this closure.
+
+==================================================
+PHASE 8 — HPG SECTOR_CORE
+==================================================
+
+Determine HPG's applicable sector-specific requirements using the approved
+M3 metric definitions.
+
+Do not introduce bank/securities metrics.
+
+For each applicable HPG SECTOR_CORE metric:
+
+- determine exact definition,
+- identify structured source if valid,
+- otherwise use issuer disclosure,
+- preserve period/scope/unit.
+
+Do not neutral-fill missing metrics.
+
+==================================================
+PHASE 9 — CURRENT TRAJECTORY
+==================================================
+
+Build HPG current trajectory separately from historical baseline.
+
+Example structure:
+
+LONG_TERM_BASELINE
+
+FY2022
+FY2023
+FY2024
+FY2025
+
+CURRENT_TRAJECTORY
+
+FY2025
++
+latest valid current-year YTD
++
+latest standalone quarter only if independently proven useful.
+
+Report whether HPG current trajectory is:
+
+FULL
+PARTIAL
+INSUFFICIENT
+
+and explain exactly why.
+
+Do not convert 6M into FY.
+
+Do not extrapolate current-year earnings unless a later scoring rule explicitly
+allows it.
+
+==================================================
+PHASE 10 — HPG PDF/ISSUER FALLBACK
+==================================================
+
+After structured closure, build the remaining HPG fallback queue.
+
+Only retain genuinely necessary issuer/PDF work:
+
+- provider anomalies
+- missing metrics
+- debt definition
+- conflicts
+- current YTD gaps
+- notes/special disclosures
+- PIT evidence.
+
+Do not re-extract PDFs unnecessarily.
+
+Prefer existing qualified retained evidence.
+
+If the necessary issuer document already exists but metric is not extracted,
+fix extraction/mapping rather than downloading another document.
+
+==================================================
+PHASE 11 — HPG HISTORICAL PIT
+==================================================
+
+Evaluate separately.
+
+Do not let PIT block CURRENT_ANALYSIS.
+
+For each historical fact determine whether publication availability can be
+proven.
+
+If not:
+
+historicalPitEligible=false.
+
+Never infer publication date from current CafeF retrieval.
+
+Report:
+
+CURRENT_ANALYSIS readiness
+
+separately from:
+
+HISTORICAL_REPLAY readiness.
+
+==================================================
+PHASE 12 — INDEPENDENT HPG VALIDATION
+==================================================
+
+Perform an independent issuer/PDF validation sample.
+
+Include at minimum:
+
+- total assets
+- equity
+- revenue
+- profit
+- debt
+- CFO
+- CapEx
+- current YTD metric(s)
+- known FY2024 false-zero cases.
+
+Compare:
+
+CafeF structured
+vs
+canonical
+vs
+issuer evidence.
+
+Allowed outcomes:
+
+MATCH
+MATCH_WITHIN_TOLERANCE
+PROVIDER_ERROR
+DEFINITION_DIFFERENCE
+SCOPE_DIFFERENCE
+PERIOD_DIFFERENCE
+UNRESOLVED
+
+Any systematic mapping failure must revoke/narrow the relevant certificate.
+
+==================================================
+PHASE 13 — HPG SUFFICIENCY
+==================================================
+
+Recompute HPG only.
+
+Report:
+
+CORE:
+required
+DIRECT_STRUCTURED
+SAFE_DERIVED
+PDF_VERIFIED
+ISSUER_VERIFIED
+unresolved
+coverage %
+
+SECTOR_CORE:
+same
+
+SUPPORTING:
+same
+
+Current trajectory:
+FULL / PARTIAL / INSUFFICIENT
+
+Historical PIT:
+READY / NOT_READY
+
+Overall HPG evidence sufficiency:
+FULL / PARTIAL / INSUFFICIENT
+
+Do not change global sufficiency thresholds.
+
+==================================================
+HPG CLOSURE ACCEPTANCE
+==================================================
+
+HPG can receive:
+
+TICKER DATA CLOSURE PASS
+
+only if:
+
+1. no unresolved material HPG CORE conflict;
+2. no silent suspicious zero;
+3. no silent provider anomaly;
+4. no ambiguous period conversion;
+5. no unproven annualization;
+6. all DIRECT_STRUCTURED facts have valid certification bindings;
+7. known FY2024 HPG false-zero regression passes;
+8. debt definition is either proven or explicitly unresolved without unsafe
+   derivation;
+9. current trajectory status is explicitly established;
+10. independent replay/tests pass.
+
+A ticker does NOT need artificial 100% coverage.
+
+If a genuinely unavailable metric remains, preserve it as unavailable and
+report its investment impact.
+
+==================================================
+REQUIRED EVIDENCE
+==================================================
+
+Create a new HPG-specific evidence directory, e.g.:
+
+docs/fundamental-data-engine/evidence/
+2026-10-14-ticker-closure-HPG/
+
+Include at least:
+
+README.md
+HPG_BASELINE_REQUIREMENTS.csv
+HPG_NAM_VALIDATION.json
+HPG_LUYKE_VALIDATION.json
+HPG_QUY_VALIDATION.json
+HPG_CORE_CLOSURE.csv
+HPG_SECTOR_CORE_CLOSURE.csv
+HPG_DEBT_DEFINITION.json
+HPG_PROVIDER_ANOMALIES.csv
+HPG_CONFLICT_RESOLUTION.csv
+HPG_CURRENT_TRAJECTORY.json
+HPG_PDF_FALLBACK_QUEUE.csv
+HPG_PIT_READINESS.json
+HPG_INDEPENDENT_VALIDATION.csv
+HPG_CANONICAL_FACTS.json
+HPG_SUFFICIENCY.json
+HPG_REGRESSION_RESULTS.json
+HPG_TEST_RESULTS.json
+HPG_FINAL_REVIEW.md
+ARTIFACT_HASHES.json
+
+==================================================
+TESTING
+==================================================
+
+Run:
+
+- HPG-specific tests
+- structured certification tests
+- CafeF adapter tests
+- hybrid admission tests
+- known anomaly regressions
+- full relevant project suite
+- lint
+- typecheck
+- architecture boundaries
+- deterministic offline replay
+
+Do not weaken tests.
+
+==================================================
+GLOBAL DATASET RULE
+==================================================
+
+This run may improve global shared contract infrastructure.
+
+However:
+
+DO NOT declare global CORE >=95%.
+
+DO NOT declare global SECTOR_CORE >=95%.
+
+DO NOT approve DI14.
+
+DO NOT approve DI15.
+
+DO NOT set readyForScoring=true.
+
+Those are evaluated only after enough individual ticker closures are complete
+and a separate portfolio-wide reconciliation is run.
+
+==================================================
+FINAL VERDICT
+==================================================
+
+Return exactly one HPG verdict:
+
+A. HPG TICKER DATA CLOSURE PASS
+
+B. HPG CONDITIONALLY CLOSED — NON-MATERIAL GAPS ONLY
+
+C. HPG BLOCKED — MATERIAL DATA GAPS REMAIN
+
+D. HPG DATA INTEGRITY FAILURE
+
+==================================================
+FINAL RESPONSE
+==================================================
+
+Return:
+
+Starting HEAD
+Final HEAD
+
+HPG CORE:
+before / after
+
+HPG SECTOR_CORE:
+before / after
+
+DIRECT_STRUCTURED:
+before / after
+
+NAM status
+
+LUYKE status
+
+QUY status
+
+Current trajectory status
+
+Debt-definition status
+
+FY2024 CFO false-zero regression
+FY2024 CapEx false-zero regression
+
+Conflicts:
+before / resolved / remaining
+
+Provider anomalies:
+before / remaining
+
+PDF fallback:
+before / after
+
+Historical PIT status
+
+HPG final sufficiency
+
+Critical issues
+Major issues
+Minor issues
+
+Tests
+Independent replay
+
+Exact evidence directory
+Final commit SHA
+
+Final verdict A/B/C/D
+
+==================================================
+STOP
+==================================================
+
+STOP AFTER HPG.
+
+Do not start VCB.
+
+Do not process another ticker.
+
+Wait for independent review and explicit Project Owner approval.

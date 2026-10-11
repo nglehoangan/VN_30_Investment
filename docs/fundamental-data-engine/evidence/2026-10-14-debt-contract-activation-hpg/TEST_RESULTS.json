@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "runtime": "Node v22.23.2 / pnpm 10.34.5",
+  "scope": "Complete repository Vitest unit/integration/architecture suite plus debt, HPG, structured certification, sector, manual and M3 focused regressions",
+  "finalSourceFrozen": true,
+  "commands": [
+    {
+      "command": "pnpm test",
+      "shellEnvironmentPrefix": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-debt-contract-activation-hpg/validation-logs/full-suite-sealed-source.log",
+      "logSha256": "b31fbfef5b68777c155a5a390df4ef1a3ce28ce769424e97ab16cccd097d93ce",
+      "filesPassed": 102,
+      "testsPassed": 1279
+    },
+    {
+      "command": "pnpm exec vitest run tests/unit/debt-contract-activation.test.ts tests/unit/debt-metric-contract-proposal.test.ts tests/unit/hpg-debt-final-closure.test.ts tests/unit/hpg-ticker-closure.test.ts tests/unit/structured-certification.test.ts tests/unit/hybrid-targets.test.ts tests/unit/fundamentals-contracts.test.ts tests/unit/decision-sector.test.ts tests/unit/manual-first.test.ts tests/unit/scoring-bridge-derived.test.ts",
+      "shellEnvironmentPrefix": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-debt-contract-activation-hpg/validation-logs/focused-suite-sealed-source.log",
+      "logSha256": "1f924e8f3a8b47ffa6d72d4cf55fff12d9be4534b0abccc734f2a583a947e799",
+      "filesPassed": 10,
+      "testsPassed": 208
+    },
+    {
+      "command": "pnpm lint",
+      "shellEnvironmentPrefix": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-debt-contract-activation-hpg/validation-logs/lint-sealed-source.log",
+      "logSha256": "c3c7dcb5bb8b682d8f96ccf55c6695bd05d6f0882d0648a70a9ea4d3ba2d6c42"
+    },
+    {
+      "command": "pnpm typecheck",
+      "shellEnvironmentPrefix": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-debt-contract-activation-hpg/validation-logs/typecheck-sealed-source.log",
+      "logSha256": "30d630a8a4fc241be555e7cb7e6fdfeee273d887fdbbf4e714c0d794a9de07a2"
+    },
+    {
+      "command": "pnpm test:boundaries",
+      "shellEnvironmentPrefix": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-debt-contract-activation-hpg/validation-logs/boundaries-sealed-source.log",
+      "logSha256": "3a87d012318cd361c3cc6828f00d712f5cb0c3aed1ceaee70096c318747ec09b",
+      "filesPassed": 8,
+      "testsPassed": 98
+    },
+    {
+      "command": "pnpm db:validate",
+      "shellEnvironmentPrefix": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-debt-contract-activation-hpg/validation-logs/database-validation.log",
+      "logSha256": "91c370e07fa9b0b7a167f0558895a0aa893d6e5dade7970f9b77e180dd06e8d0"
+    },
+    {
+      "command": "node scripts/activate-debt-contract-hpg.mjs",
+      "shellEnvironmentPrefix": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-debt-contract-activation-hpg/validation-logs/producer-final.log",
+      "logSha256": "28ea541f65bc2c650a08efe02f201cd64c9e43ed8efa48ec47280092aa4750f6"
+    },
+    {
+      "command": "node scripts/verify-debt-contract-activation-hpg.mjs",
+      "shellEnvironmentPrefix": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-debt-contract-activation-hpg/validation-logs/offline-replay-sealed-source.log",
+      "logSha256": "658ee8d44afa8ed1c088e6d6e67484d8947c9e756811be8670c49e0bac878fe1",
+      "checksPassed": 20,
+      "deterministicArtifacts": 14
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "resolvedDiagnosticFailures": [
+    {
+      "command": "pnpm typecheck",
+      "exitCode": 2,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-debt-contract-activation-hpg/validation-logs/typecheck.log",
+      "cause": "JSON default measurement basis inferred string instead of DebtMeasurement in new M3 projection",
+      "resolution": "Explicit domain type at already-validated projection; final typecheck exit 0"
+    }
+  ],
+  "priorPassingRuns": [
+    {
+      "command": "pnpm test",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-debt-contract-activation-hpg/validation-logs/full-suite.log",
+      "files": 102,
+      "tests": 1277
+    },
+    {
+      "command": "pnpm test",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-debt-contract-activation-hpg/validation-logs/full-suite-final.log",
+      "files": 102,
+      "tests": 1279
+    }
+  ],
+  "officialScoringRun": false,
+  "otherTickerProcessed": false,
+  "thresholdsWeakened": false
+}

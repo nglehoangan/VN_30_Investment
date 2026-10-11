@@ -1,0 +1,156 @@
+{
+  "runtime": "Node v22.23.2; pnpm commands used this runtime via PATH",
+  "initialAttempts": [
+    {
+      "command": "pnpm test",
+      "exitCode": 1,
+      "elapsedSeconds": 313.57,
+      "log": "/private/tmp/cafef-closure-check-0.log",
+      "retainedLog": "validation-logs/cafef-closure-check-0.log"
+    },
+    {
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "elapsedSeconds": 6.88,
+      "log": "/private/tmp/cafef-closure-check-1.log",
+      "retainedLog": "validation-logs/cafef-closure-check-1.log"
+    },
+    {
+      "command": "pnpm typecheck",
+      "exitCode": 2,
+      "elapsedSeconds": 3.2,
+      "log": "/private/tmp/cafef-closure-check-2.log",
+      "retainedLog": "validation-logs/cafef-closure-check-2.log"
+    },
+    {
+      "command": "pnpm test:boundaries",
+      "exitCode": 0,
+      "elapsedSeconds": 5.65,
+      "log": "/private/tmp/cafef-closure-check-3.log",
+      "retainedLog": "validation-logs/cafef-closure-check-3.log"
+    },
+    {
+      "command": "pnpm test:e2e",
+      "exitCode": 143,
+      "elapsedSeconds": 221.69,
+      "log": "/private/tmp/cafef-closure-check-4.log",
+      "retainedLog": "validation-logs/cafef-closure-check-4.log"
+    },
+    {
+      "command": "node scripts/smoke-app.mjs --invalid-config",
+      "exitCode": 1,
+      "elapsedSeconds": 0.04,
+      "log": "/private/tmp/cafef-closure-check-5.log",
+      "retainedLog": "validation-logs/cafef-closure-check-5.log"
+    }
+  ],
+  "retryDiagnostic": {
+    "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run",
+    "exitCode": 1,
+    "elapsedSeconds": 324.56,
+    "log": "/private/tmp/cafef-closure-full-final.log",
+    "retainedLog": "validation-logs/cafef-closure-full-final.log"
+  },
+  "finalChecks": [
+    {
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "elapsedSeconds": 7.2,
+      "log": "/private/tmp/cafef-closure-static-final-0.log",
+      "retainedLog": "validation-logs/cafef-closure-static-final-0.log"
+    },
+    {
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "elapsedSeconds": 3.11,
+      "log": "/private/tmp/cafef-closure-static-final-1.log",
+      "retainedLog": "validation-logs/cafef-closure-static-final-1.log"
+    },
+    {
+      "command": "pnpm test:boundaries",
+      "exitCode": 0,
+      "elapsedSeconds": 6.1,
+      "log": "/private/tmp/cafef-closure-static-final-2.log",
+      "retainedLog": "validation-logs/cafef-closure-static-final-2.log"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run --testTimeout=40000",
+      "exitCode": 0,
+      "elapsedSeconds": 312.95,
+      "log": "/private/tmp/cafef-closure-full-complete.log",
+      "retainedLog": "validation-logs/cafef-closure-full-complete.log"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/next/dist/bin/next build --webpack",
+      "exitCode": 0,
+      "log": "/private/tmp/cafef-closure-webpack.log",
+      "retainedLog": "validation-logs/cafef-closure-webpack.log"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/smoke-app.mjs --e2e",
+      "exitCode": 0,
+      "log": "/private/tmp/cafef-closure-e2e-final.log",
+      "retainedLog": "validation-logs/cafef-closure-e2e-final.log"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/smoke-app.mjs --invalid-config",
+      "exitCode": 0,
+      "log": "/private/tmp/cafef-closure-invalid-config-final.log",
+      "retainedLog": "validation-logs/cafef-closure-invalid-config-final.log"
+    },
+    {
+      "command": "MANUAL_TEST_NODE=/private/tmp/node-v22.23.2-darwin-arm64/bin/node python3 scripts/test-physical-manual-corpus.py",
+      "exitCode": 0,
+      "log": "/private/tmp/cafef-closure-physical.log",
+      "retainedLog": "validation-logs/cafef-closure-physical.log"
+    },
+    {
+      "command": "python3 scripts/test-08b-extraction.py",
+      "exitCode": 0,
+      "log": "/private/tmp/cafef-closure-extraction.log",
+      "retainedLog": "validation-logs/cafef-closure-extraction.log"
+    },
+    {
+      "command": "pnpm db:validate",
+      "exitCode": 0,
+      "log": "/private/tmp/cafef-closure-db-validate.log",
+      "retainedLog": "validation-logs/cafef-closure-db-validate.log"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/close-cafef-production-admission.mjs",
+      "exitCode": 0,
+      "log": "/private/tmp/cafef-closure-generate.log",
+      "retainedLog": "validation-logs/cafef-closure-generate.log"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-cafef-production-admission.mjs",
+      "exitCode": 0,
+      "report": "INDEPENDENT_REPLAY.json",
+      "checks": 17
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "defaultRuntimeDiagnostic": {
+    "command": "node scripts/close-cafef-production-admission.mjs",
+    "exitCode": 1,
+    "reason": "Host default Node v22.12.0 lacks registerHooks; corrected to required v22.23.2."
+  },
+  "initialVerifierDiagnostic": {
+    "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-cafef-production-admission.mjs",
+    "exitCode": 1,
+    "reason": "Initial regression fixture used nonexistent PARENT_NET_INCOME identifier; corrected to NET_INCOME_ATTRIBUTABLE_PARENT and strengthened value assertions."
+  },
+  "retryNotes": [
+    "Six strict migration table expectations updated for the already-existing admission migration; previous schema/data preservation assertions retained.",
+    "Nullable fiscal-year month corrected to undefined for freshness API.",
+    "Turbopack build stalled at zero CPU; own validation process stopped after 221.69 seconds, exit143. Supported Webpack build passed.",
+    "Localhost smoke initially failed EPERM in sandbox; authorized temporary localhost checks reran outside sandbox and passed.",
+    "Full-suite backup test timed out at20000ms during concurrent browser validation; complete suite rerun with40000ms timeout passed all1159tests. No assertions disabled."
+  ],
+  "officialVN30ScoringExecuted": false,
+  "syntheticTestsOnly": true,
+  "officialRankingOrInvestmentDecisionGenerated": false
+}

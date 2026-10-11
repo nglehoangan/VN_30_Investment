@@ -1,0 +1,84 @@
+{
+  "status": "PROPOSED_UNAPPROVED",
+  "approvalReference": null,
+  "effectiveDate": null,
+  "activated": false,
+  "ProjectOwnerDecisionRequired": true,
+  "readyForScoring": false,
+  "metricId": "REPORTED_BORROWINGS",
+  "version": "reported-borrowings-proposed-v1",
+  "purpose": "Decision-grade issuer-reported borrowing/identified financing population input for non-financial leverage analysis, subject to ratio, uncertainty and risk qualification; not exhaustive financing assurance.",
+  "dimensions": {
+    "measurementSemantic": "INSTANT",
+    "scope": "CONSOLIDATED",
+    "unit": "CURRENCY",
+    "currency": "VND",
+    "measurementBasisRequired": true,
+    "measurementBasis": [
+      "ISSUER_REPORTED_CARRYING_AMOUNT",
+      "ISSUER_VERIFIED_PRINCIPAL"
+    ],
+    "principalMustNotBeInferredFromCarryingAmount": true,
+    "sourcePeriodAndLeasePolicyVersionsRequired": true
+  },
+  "applicableSectors": [
+    "REAL_ESTATE",
+    "RETAIL",
+    "TECHNOLOGY",
+    "INDUSTRIAL",
+    "MATERIALS",
+    "UTILITIES",
+    "ENERGY",
+    "CONGLOMERATE"
+  ],
+  "include": [
+    "Verified reported short borrowings",
+    "Current portion of long borrowings counted once",
+    "Verified non-current borrowings",
+    "Separately identified bonds/debt securities not already included",
+    "Separately identified finance-lease and sector-applicable lease financing under explicit approved normalization policy",
+    "Separately identified other interest-bearing financing not already included"
+  ],
+  "exclude": [
+    "Trade payables",
+    "Customer advances",
+    "Taxes and wages",
+    "Ordinary operating accruals",
+    "Provisions",
+    "Dividends payable",
+    "Deferred revenue",
+    "Accrued interest for principal-only basis",
+    "Unclassified miscellaneous liabilities not explicitly identified as financing"
+  ],
+  "admissionConditions": [
+    "Applicable non-financial sector",
+    "Qualified issuer stock quantities with exact scope/period/unit",
+    "Reported borrowing captions reconcile to relevant notes",
+    "Current portion counted once under period-specific presentation",
+    "Survey of reported liabilities and financing notes",
+    "Every explicitly identified qualifying financing item verified and counted once, with omission/overlap guards",
+    "Lease applicability/measurement consistent with sector and period policy",
+    "Unclassified liabilities retained visibly without interpreting them as zero",
+    "Retained evidence/provenance and later approved contract version"
+  ],
+  "doesNotRequire": "Proof that each unspecified miscellaneous payable contains zero financing; this condition belongs to exhaustive population certification.",
+  "measurementNote": "Use issuer-reported carrying amounts when that is what the qualified statement reports. Verified face/principal amounts require separate proof and cannot be silently equated with carrying amounts.",
+  "uncertainty": {
+    "reportedStatuses": [
+      "REPORTED_COMPLETE",
+      "REPORTED_PLUS_IDENTIFIED_ADDITIONS"
+    ],
+    "strictStatuses": [
+      "COMPREHENSIVE_VERIFIED",
+      "COMPREHENSIVE_UNVERIFIED"
+    ],
+    "unclassifiedLiabilityAmount": "Known sum of individually listed opaque components; null if an amount is unquantified; not a bound on unreported debt.",
+    "unclassifiedLiabilityRatioToBorrowings": "Exact numerator/denominator for classified-known opaque amounts only; null for unquantified component or zero borrowing denominator.",
+    "materialityAssessment": "UNASSESSED_NO_APPROVED_THRESHOLD until case-specific qualified risk review; no universal cutoff inferred.",
+    "m3Readiness": "Metric quantity availability does not resolve material uncertainty, cash eligibility, lease comparability or scoring governance."
+  },
+  "forbiddenAliases": [
+    "REPORTED_BORROWINGS -> FINANCIAL_DEBT",
+    "REPORTED_BORROWINGS -> COMPREHENSIVE_FINANCIAL_DEBT"
+  ]
+}

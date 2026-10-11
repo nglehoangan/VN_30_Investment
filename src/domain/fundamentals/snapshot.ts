@@ -1,4 +1,6 @@
 import {validateSourcePeriodWithdrawals} from './source-period-withdrawal';
+import {validateSourceFactRejections} from './source-fact-rejection';
+import type {SourceFactRejection} from './source-fact-rejection';
 import type {SourcePeriodWithdrawal} from './source-period-withdrawal';
 import type { FundamentalObservation, RegistryRelease, ReportingScope } from './contracts';
 import type { AvailabilityAssessment, AvailabilityPolicy } from './availability';
@@ -53,6 +55,7 @@ export interface SnapshotRequest {
 }
 export interface SnapshotInputs {
   readonly sourcePeriodWithdrawals?:readonly SourcePeriodWithdrawal[];
+  readonly sourceFactRejections?:readonly SourceFactRejection[];
   readonly equivalenceResolutions?:readonly FactEquivalenceResolution[];
   readonly operationalFreshnessBindings?:readonly {readonly observationId:string;readonly policy:OperationalFreshnessPolicy;readonly evidence:OperationalFreshnessEvidence}[];
   readonly livePublicDisclosureBindings?:readonly LivePublicDisclosureBinding[];
@@ -110,6 +113,9 @@ export function buildFundamentalSnapshot(request:SnapshotRequest,inputs:Snapshot
   requireFundamental(new Set(all.map(o=>o.id)).size===all.length,'SNAPSHOT_DUPLICATE_FACTS');
   requireFundamental(policy.algorithm==='operational-live-public-v3'||!(inputs.sourcePeriodWithdrawals?.length),'WITHDRAWAL_REQUIRES_LIVE_POLICY');
   const withdrawn=validateSourcePeriodWithdrawals(inputs.sourcePeriodWithdrawals??[],all,cutoff,hash);
+  const rejected=validateSourceFactRejections(inputs.sourceFactRejections??[],all,cutoff,hash);
+  requireFundamental(r.scope==='REVIEW_CANDIDATE'||rejected.size===0,'FACT_REJECTION_CANDIDATE_SNAPSHOT_ONLY');
+  for(const id of rejected)withdrawn.add(id);
   const byId=new Map(all.map(o=>[o.id,o])),fingerprints=new Map<string,string>();
   function fingerprint(id:string,visited=new Set<string>()):string {
     if(fingerprints.has(id))return fingerprints.get(id)!;
@@ -142,9 +148,13 @@ export function buildFundamentalSnapshot(request:SnapshotRequest,inputs:Snapshot
     let heads=eligible.filter(o=>!superseded.has(o.id));
     const equivalent=policy.algorithm==='operational-live-public-v3'?equivalentRepresentative(heads,inputs.equivalenceResolutions??[],cutoff,hash,inputs.observations):null;
     if(equivalent)heads=[equivalent];
+    // Proved economic identity can include a source whose public boundary is
+    // unknown. Keep that source in evidence; only eligible occurrences may be selected.
+    const fullRootEquivalent=!equivalent&&policy.algorithm==='operational-live-public-v3'?equivalentRepresentative(rows.filter(o=>!superseded.has(o.id)),inputs.equivalenceResolutions??[],cutoff,hash,inputs.observations):null;
+    if(fullRootEquivalent&&heads.length)heads=[[...heads].sort((a,b)=>codePointCompare(hash(a),hash(b)))[0]];
     let code:string|null=null;
     const roots=new Set(rows.map(o=>{let root=o;while(root.supersedesObservationId)root=byId.get(root.supersedesObservationId)!;return root.id;}));
-    if(heads.length>1||roots.size>1&&!equivalent)code='BLOCKED_CONFLICT';
+    if(heads.length>1||roots.size>1&&!equivalent&&!fullRootEquivalent)code='BLOCKED_CONFLICT';
     else if(heads.length===0)code=rows.some(o=>pinned.get(o.id)!.status==='UNKNOWN')?'BLOCKED_PUBLICATION_UNKNOWN':rows.some(o=>pinned.get(o.id)!.status==='INVALID')?'BLOCKED_INVALID_AVAILABILITY':rows.length?'BLOCKED_NOT_YET_AVAILABLE':'BLOCKED_REQUIRED_FACT_MISSING';
     else if(heads[0].quality!=='VALID'||heads[0].dataPresence!=='AVAILABLE'||heads[0].applicability!=='APPLICABLE')code='BLOCKED_FACT_QUALITY';
     else if(q.maxAgeDays===null){
@@ -170,10 +180,11 @@ export function buildFundamentalSnapshot(request:SnapshotRequest,inputs:Snapshot
   }
   const manifest=canonicalJson({contract:policy.algorithm==='operational-max-v1'?'fundamental-snapshot-content-v1':policy.algorithm==='operational-live-public-v3'?'fundamental-snapshot-content-v3':'fundamental-snapshot-content-v2',selectorVersion:'explicit-chain-operational-v1',scope:r.scope,mode:r.mode,diagnosticOnly:r.mode==='AS_REVISED',
     decisionAsOf:r.decisionAsOf,systemKnownAt:r.systemKnownAt,marketCutoff:r.marketCutoff,fundamentalCutoff:r.fundamentalCutoff,revisionCutoff:r.revisionCutoff,
+    ...(inputs.sourceFactRejections?.length?{sourceFactRejections:[...inputs.sourceFactRejections].sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b)))}:{}),
     ...(policy.algorithm==='operational-live-public-v3'?{sourcePeriodWithdrawals:[...(inputs.sourcePeriodWithdrawals??[])].sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b))),equivalenceResolutions:[...(inputs.equivalenceResolutions??[])].sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b))),operationalFreshnessBindings:[...(inputs.operationalFreshnessBindings??[])].sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b)))}:{}),registry:inputs.registry,policy,policyHash:hash(policy),requirementsVersion:r.requirementsVersion,requirements:[...r.requirements].sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b))),
     references:r.references.map(ref=>({...ref,content:[...ref.content].sort(codePointCompare)})).sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b))),
     facts:members.map(m=>({fingerprint:m.semanticHash,fact:factSemantic(byId.get(m.observationId)!,byId.get(m.observationId)!.supersedesObservationId?fingerprint(byId.get(m.observationId)!.supersedesObservationId!):null),availability:availabilitySemantic(pinned.get(m.observationId)!)})),
-    exclusions:candidates.filter(o=>!members.some(m=>m.observationId===o.id)).map(o=>({fingerprint:fingerprint(o.id),availability:availabilitySemantic(pinned.get(o.id)!),state:withdrawn.has(o.id)?'WITHDRAWN_SOURCE_PERIOD_QUALIFICATION_CORRECTION':pinned.get(o.id)!.status!=='VERIFIED'?pinned.get(o.id)!.finding:pinned.get(o.id)!.availableAt!>cutoff?'NOT_YET_AVAILABLE':'SUPERSEDED_OR_BLOCKED'})).sort((a,b)=>a.fingerprint<b.fingerprint?-1:1),
+    exclusions:candidates.filter(o=>!members.some(m=>m.observationId===o.id)).map(o=>({fingerprint:fingerprint(o.id),availability:availabilitySemantic(pinned.get(o.id)!),state:rejected.has(o.id)?'QUARANTINED_SOURCE_EXTRACTION_OR_MAPPING_DEFECT':withdrawn.has(o.id)?'WITHDRAWN_SOURCE_PERIOD_QUALIFICATION_CORRECTION':pinned.get(o.id)!.status!=='VERIFIED'?pinned.get(o.id)!.finding:pinned.get(o.id)!.availableAt!>cutoff?'NOT_YET_AVAILABLE':'SUPERSEDED_OR_BLOCKED'})).sort((a,b)=>a.fingerprint<b.fingerprint?-1:1),
     derived:derivedContent.sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b))),findings:findings.sort((a,b)=>codePointCompare(canonicalJson(a),canonicalJson(b))),blockers:[...new Set(blockers)].sort(codePointCompare),scoringReadiness:'DEFERRED_SLICE_06'});
   return deepFreeze({request:JSON.parse(JSON.stringify(r)) as SnapshotRequest,contentHash:hash(JSON.parse(manifest)),manifest,members,derivedIds:derivedIds.sort(codePointCompare),blockers:[...new Set(blockers)].sort(codePointCompare)});
 }

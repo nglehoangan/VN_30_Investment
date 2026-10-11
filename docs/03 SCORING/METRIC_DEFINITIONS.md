@@ -2000,3 +2000,16 @@ Approve `METRIC_DEFINITIONS.md` only if the following are accepted:
 ## Status
 
 > **APPROVED — VERSION 1.0 — 0 CRITICAL / 0 MAJOR UNRESOLVED**
+
+
+## Amendment: CASA and NPL source contracts v1
+
+Project Owner approved the proposed source contracts on 2026-10-12. Approval was recorded at `2026-10-12T14:57:36.000Z`; it is prospective and cannot authorize mappings at an earlier AS_KNOWN cutoff. The formulas in §§12.9–12.11 remain unchanged.
+
+The normative versioned contract is [casa-npl-source-contract-v1.json](../../src/infrastructure/fundamentals/casa-npl-source-contract-v1.json), `contracts[].proposedContract`, as approved from the [proposal](../fundamental-data-engine/evidence/2026-10-12-di14-blocker-closure/GOVERNANCE_AMENDMENT_PROPOSAL.json). Approval is recorded in [OWNER_APPROVAL.json](../fundamental-data-engine/evidence/2026-10-12-casa-npl-owner-approved/OWNER_APPROVAL.json).
+
+CASA requires explicitly evidenced current-account and savings-account populations and compatible gross customer deposits. Demand deposits alone and product names do not establish the numerator. NPL requires gross non-performing balances and gross customer loans under the exact disclosed regulatory classification and population. The proposal’s logical `BANK_NPL_AMOUNT` refers to the existing canonical item `BANK_NONPERFORMING_LOANS`; it does not create an additional canonical item.
+
+Each executable bank mapping still requires an explicitly approved, period-effective issuer table with product/class identifiers, exact source captions, disclosure authority, scope, unit and definition version. No bank-specific table accompanied this approval; the versioned table is therefore empty and execution remains blocked for such routes. Approval of the contract supplies no missing financial fact or publication timestamp.
+
+All operands and definition/bridge approvals must be known at the pinned cutoff. Require matching economic dates, currencies and scope, approved unit scaling and separately evidenced scope or regulatory/VAS bridges. Preserve unresolved conflicts and UNKNOWN availability. No automatic source precedence, group-3/4/5 sum, cross-bank alias, standalone fallback, FX inference or zero filling is authorized. Loan-loss coverage must reuse the identical approved NPL definition.

@@ -1,4 +1,6 @@
 import {ValidationError} from '@/shared/errors';
+// Separate current-analysis sufficiency path; legacy accepted historical datasets retain strict replay.
+export {evaluateManualEvidence} from './manual-first';
 import type {ScoreInput} from '@/domain/scoring/scorecard';
 import {validateEvidence} from '@/domain/scoring/evidence';
 import {calculateScorecard} from '@/domain/scoring/scorecard';

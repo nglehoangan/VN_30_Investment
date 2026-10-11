@@ -42,7 +42,8 @@ export function validateCanonicalRegistry(raw: unknown): CanonicalRegistry {
   requireFundamental(Array.isArray(r.items) && r.items.length > 0 && r.items.length <= 1000, 'REGISTRY_ITEMS_REQUIRED');
   requireFundamental(new Set(r.items.map(i=>i.itemId)).size === r.items.length,'DUPLICATE_ITEM');
   for (const i of r.items as readonly CanonicalItem[]) {
-    fields(i,'itemId name meaning statementType measurementSemantic allowedUnits currencyApplicability signConvention allowedReportingScopes sectorApplicability evidenceTopicMappings operandMappings itemDefinitionVersion methodologyIdentity authorityReferences status deprecatedFrom supersededBy');
+    fields(i,'itemId name meaning statementType measurementSemantic allowedUnits currencyApplicability signConvention allowedReportingScopes sectorApplicability evidenceTopicMappings operandMappings itemDefinitionVersion methodologyIdentity authorityReferences status deprecatedFrom supersededBy'+(i.metadataRequirements?' metadataRequirements':''));
+    if(i.metadataRequirements)refs(i.metadataRequirements,false);
     requireFundamental(/^[A-Z][A-Z0-9_]{0,63}$/.test(i.itemId),'CANONICAL_ITEM_ID_REQUIRED');
     [i.name,i.meaning].forEach(text); fundamentalId(i.itemDefinitionVersion);
     requireFundamental(i.methodologyIdentity === r.methodologyIdentity,'ITEM_METHOD_MISMATCH');

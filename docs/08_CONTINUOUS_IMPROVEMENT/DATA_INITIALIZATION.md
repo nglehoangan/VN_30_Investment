@@ -683,4 +683,8 @@ When explicitly approved:
 
 ------------------------------------------------------------------------
 
+## 36. Prospective manual-first amendment — 2026-10-13
+
+The Project Owner approved the manual financial statement–first architecture in the current project workflow. [MANUAL_FUNDAMENTALS_ARCHITECTURE.md](MANUAL_FUNDAMENTALS_ARCHITECTURE.md) records the explicit DI5/DI7/DI8/DI9/DI10/DI11 amendment, source ownership, evidence sufficiency, reporting-cycle freshness and mode separation. This does not rewrite previous initialization results or weaken downstream scoring gates. DI14/DI15 remain independent review/owner approval boundaries.
+
 **END OF DOCUMENT**

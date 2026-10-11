@@ -1,0 +1,157 @@
+{
+  "reviewType": "INDEPENDENT_ACCOUNTING_RISK_M3_SEMANTIC_CONTRACT_REVIEW",
+  "reviewer": "Independent delegated reviewer; not the proposal author or Project Owner",
+  "verdict": "A. CONTRACT CORRECTION RECOMMENDED",
+  "decisionScope": "Recommend a dormant semantic amendment; do not approve activation, HPG, scoring or DI gates.",
+  "reviewedArtifacts": [
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-14-debt-metric-contract-review/CURRENT_FINANCIAL_DEBT_TRACE.json",
+      "sha256": "c410565a0ac868c4d3eb4c3b719b5e1eb6cf9dd59d91a7402ace5219b655a942"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-14-debt-metric-contract-review/M3_DEPENDENCY_ANALYSIS.json",
+      "sha256": "b5529b211e1450e074986197c55b12891411e24069f56f1f121202aad203ab97"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-14-debt-metric-contract-review/CROSS_TICKER_DEBT_DISCLOSURE_SAMPLE.json",
+      "sha256": "3c46e21c825215cfa0802b92832c65a8d092baf7aab9f9167e102e2daabcf9d8"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-14-debt-metric-contract-review/REPORTED_BORROWINGS_DEFINITION.json",
+      "sha256": "e40729d0e6443b6ef6898c200271662ebce9117bdce33b8aefadb442c4363c39"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-14-debt-metric-contract-review/COMPREHENSIVE_FINANCIAL_DEBT_DEFINITION.json",
+      "sha256": "642842c6e147888f402e458457ce6f5eeb48bccc6d6353659040063671d9f906"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-14-debt-metric-contract-review/PROPOSED_REQUIREMENT_GROUP.json",
+      "sha256": "00be753bd731882d4c2470a0637677a2a692b9211283b6cf0becbb7caf07917d"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-14-debt-metric-contract-review/HPG_PROTOTYPE_INPUTS.json",
+      "sha256": "b0846c63d0d0ad5f8ad01656631bb6666e74b6f4f44810df1cf707214988a397"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-14-debt-metric-contract-review/HPG_REEVALUATION_PROVISIONAL.json",
+      "sha256": "261ccef787497a7dc29e24a72e120d86fc95dcd8c840fc867a276ed66e7e58bf"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-14-debt-metric-contract-review/PROPOSED_AMENDMENT.md",
+      "sha256": "92676d701f3efad329a4310c6c0e541df3a6b7dba9f2a9ca8abeb0b24e878e05"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-14-debt-metric-contract-review/SCORING_CONTRACT_IMPACT.md",
+      "sha256": "093229b5bfdbaf589dc56a0aa052e8266e0ac3120390654e97e026c467db27fe"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-14-debt-metric-contract-review/OPEN_ISSUES.json",
+      "sha256": "6643ef521ac6307ebd86b34f5b56c2f41bf9014e169ca19ee8c5f6201017aae4"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-14-debt-metric-contract-review/DEBT_METRIC_CONTRACT_REVIEW.md",
+      "sha256": "6f9e78f77d259818482d41b65cd7f451fc42e1b28717ba469d31833ea4a7bf98"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-14-debt-metric-contract-review/README.md",
+      "sha256": "b918ad7d60ba1ed8fcc06c7a5b335e484a6b7263c0d202e3752eed07193ecc11"
+    }
+  ],
+  "roles": [
+    {
+      "role": "ACCOUNTING",
+      "finding": "Reported and identified financing population is a defensible separate metric. Exhaustive absence of financing in each opaque payable is a stronger assurance objective and must remain a distinct unavailable comprehensive population. Count current maturities once; include all identified applicable bonds, leases and other financing, with verified overlap.",
+      "measurement": "Retained balance-sheet HPG quantities are carrying amounts; no face-principal equality established. Versioned compatible measurement policies mandatory.",
+      "outcome": "RECOMMEND_PROPOSED_TAXONOMY"
+    },
+    {
+      "role": "RISK",
+      "finding": "Unknown operating/miscellaneous liabilities must retain uncertainty and amounts, never zero or a presumption of nonfinancing. Small opaque amount/borrowings ratios are not upper bounds on hidden debt. No universal materiality threshold is justified by existing policy.",
+      "readiness": "Unresolved material safety uncertainty remains a separate scoring/decision blocker; this review gives no HPG materiality clearance.",
+      "outcome": "RECOMMEND_WITH_EXPLICIT_RISK_QUALIFICATION"
+    },
+    {
+      "role": "M3",
+      "finding": "Approved intent is sector-appropriate leverage, liquidity and solvency resilience. Reported borrowing basis can support that intent only with consistent lease/measurement basis, unrestricted cash, normalized/downside EBITDA and independent judgment. Exact documented versus executable dependencies are distinguished.",
+      "selection": "Prefer exhaustive verified comprehensive on compatible basis; otherwise verified reported population may satisfy an Owner-approved quantitative alternative. A smaller comprehensive population requires reconciliation; incompatible principal/carrying or mixed population/lease series cannot switch silently.",
+      "outcome": "RECOMMEND_PROPOSED_CONTRACT_NOT_SCORING_APPROVAL"
+    },
+    {
+      "role": "GOVERNANCE_QA",
+      "finding": "Dormant prototype remains under scripts/lib and review/tests. All 2297 prior tracked files and eight DB hashes unchanged. Five deterministic generated artifacts reproduced byte-for-byte offline. No other ticker receives admission.",
+      "outcome": "PASS_REVIEW_SCOPE_AND_NONACTIVATION"
+    }
+  ],
+  "independentChallenge": {
+    "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-debt-metric-contract-review.mjs",
+    "exitCode": 0,
+    "checksPassed": 20,
+    "checksFailed": 0,
+    "resultArtifact": "INDEPENDENT_REPLAY.json"
+  },
+  "crossTickerInterpretation": "SYSTEMATIC_CONTRACT_PROBLEM within a purposive retained sample, not statistical VN30 coverage or evidence other ticker populations are admission-ready. Consumer numeric population limitation is explicit.",
+  "HPGImpact": {
+    "approvedCORE": {
+      "admitted": 30,
+      "required": 35
+    },
+    "hypotheticalCORE": {
+      "admitted": 35,
+      "required": 35,
+      "assumption": "Owner explicitly approves and activates later requirement version and accepts issuer-reported population under it"
+    },
+    "verifiedReportedQuantitiesVND": [
+      "57900321604873",
+      "65381002473117",
+      "82963129469555",
+      "92174151302217",
+      "98529977232553"
+    ],
+    "comprehensiveDebtAllFivePeriods": null,
+    "currentTrajectory": "INSUFFICIENT",
+    "overall": "INSUFFICIENT",
+    "historicalPIT": "NOT_READY",
+    "HPGApproved": false,
+    "readyForScoring": false
+  },
+  "resolvedReviewChallenges": [
+    {
+      "challenge": "Regex escaping initially suspected from tool rendering",
+      "resolution": "Withdrawn: actual numeric regex and passing positive numeric tests establish proper behavior; not an implementation defect."
+    },
+    {
+      "challenge": "Compatible comprehensive amount below reported subset",
+      "resolution": "Author added explicit reconciliation veto and regression test."
+    },
+    {
+      "challenge": "Cross-ticker/currency/lease policy and series selection identity",
+      "resolution": "Author added dimension/lease compatibility and series guards."
+    }
+  ],
+  "activationPrerequisites": [
+    "Independent semantic review retained (this artifact)",
+    "Explicit Project Owner approval, reference, effective version, scope and measurement/lease policy",
+    "Versioned canonical metric registry/crosswalk/requirement migration with forbidden alias protection",
+    "Basis-aware derived metrics/calculator bridge and unrestricted-cash/EBITDA/lease qualification",
+    "Known-financing completeness/overlap and uncertainty validation with independent case-specific materiality assessment",
+    "Relevant migration/sector/regression validation and separate DI/scoring governance review"
+  ],
+  "openReviewDefects": {
+    "Critical": 0,
+    "Major": 0,
+    "Minor": 0
+  },
+  "remainingPrerequisitesAndDataRisk": "Three Major carry-forward/activation items in OPEN_ISSUES.json are not approval or readiness; supporting definitions/PIT remain separate.",
+  "contractActivated": false,
+  "ProjectOwnerApprovalGranted": false,
+  "DI14Approved": false,
+  "DI15Approved": false,
+  "officialScoringRun": false,
+  "nextTickerProcessed": false,
+  "implementationReview": {
+    "dormantPrototypeOnly": true,
+    "productionImport": false,
+    "leaseComparabilityAssessedInterpretation": "Retained policy/caption arithmetic survey only, not approved sector lease normalization or M3 comparability. HPG artifact explicitly retains pending lease policy review.",
+    "noAdditionalApprovalClaim": "The scenario and reported quantities cannot be activated solely by this independent recommendation."
+  }
+}

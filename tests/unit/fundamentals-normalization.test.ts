@@ -8,6 +8,23 @@ import { requireQualifiedDocument } from '@/domain/fundamentals/document-qualifi
 const scalar = (value:string|null,unit='MILLION_CURRENCY',format:'VI'|'EN'|'CANONICAL'='VI',sign:'IDENTITY'|'NEGATE_NONPOSITIVE'='IDENTITY')=>
   normalizeLexical(value,{unit,format,sign,missingTokens:['-','—']});
 describe('exact lexical normalization, no financial adjustments',()=>{
+  it('admits a printed Q4 column inside an annual report only with exact source-bound current-column evidence',async()=>{
+    const f=await normalizationFixture('annual-quarter');
+    const qualification={...f.qualification,period:{start:'2025-01-01',end:'2025-12-31',type:'ANNUAL' as const,fiscalYear:2025,fiscalQuarter:null,calendarReference:'SOURCE_EXPLICIT_YEAR_END'}};
+    const candidate=requireQualifiedDocument(f.raw,[qualification],f.qualification.intendedIssuer);
+    const period={start:'2025-10-01',end:'2025-12-31',type:'QUARTER' as const,fiscalYear:2025,fiscalQuarter:4 as const,calendarReference:'SOURCE_EXPLICIT_CALENDAR_WINDOW'};
+    const row={...f.extract.rows[0],periodStart:period.start,periodEnd:period.end,periodType:period.type};
+    const evidence={bodyHash:f.raw.bodyHash,period,sourcePageEvidenceHashes:['a'.repeat(64),'b'.repeat(64)],method:'TWO_INDEPENDENT_EXPLICIT_CURRENT_COLUMN_READERS' as const,evidenceReference:'fixture:printed-q4-header'};
+    const run=(r:typeof f.extract.rows[number])=>{const extract={...f.extract,rows:[r]};return normalizeStatement({...f.input,candidate,extract,extractHash:normalizationHash(extract)});};
+    expect(run(row).findings[0].code).toBe('REPORTING_PERIOD_MISMATCH');
+    const result=run({...row,currentPeriod:evidence});expect(result.status).toBe('VALIDATED');
+    expect(result.observations[0]).toMatchObject({periodType:'QUARTER',periodStart:period.start,periodEnd:period.end,fiscalQuarter:4,fiscalYear:2025,normalized:{value:'15123500000'}});
+    for(const bad of [{...evidence,bodyHash:'c'.repeat(64)},{...evidence,sourcePageEvidenceHashes:['a'.repeat(64)]},{...evidence,period:{...period,fiscalQuarter:3 as const}},{...evidence,period:{...period,start:'2025-09-01'}}])expect(()=>run({...row,currentPeriod:bad})).toThrow();
+    const outside={...evidence,period:{...period,start:'2025-07-01',end:'2025-09-30',fiscalQuarter:3 as const}};
+    expect(run({...row,periodStart:outside.period.start,periodEnd:outside.period.end,currentPeriod:outside}).findings[0].code).toBe('CURRENT_COLUMN_OUTSIDE_DOCUMENT_PERIOD');
+    expect(()=>run({...row,currentPeriod:evidence,comparativePeriod:{...evidence,method:'TWO_INDEPENDENT_EXPLICIT_COMPARATIVE_COLUMN_READERS'}})).toThrow();
+    expect(qualification.period.type).toBe('ANNUAL');
+  });
   it('independent million-VND/percent expected values reconcile with exact arithmetic',()=>{
     expect(scalar('1.234,5').value).toBe('1234500000');
     expect(scalar('2,5%','PERCENT').value).toBe('0.025');

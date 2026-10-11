@@ -1,0 +1,16 @@
+import '/Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/lib/ts-runtime.mjs';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+const root='/Users/nglehoangan/Documents/Working/VN_30_Investment/';
+const {buildFundamentalSnapshot,canonicalJson}=await import(root+'src/domain/fundamentals/snapshot.ts');
+const {snapshotHash}=await import(root+'src/infrastructure/fundamentals/snapshot-hash.ts');
+const b=root+'docs/fundamental-data-engine/evidence/2026-10-12-governance-closure-selected-path-corrected/';
+const read=n=>JSON.parse(readFileSync(b+n,'utf8'));
+const packet=read('EXECUTION_PACKAGE_REDACTED.json'),manifest=read('SNAPSHOT_MANIFEST.json');
+const expected=packet.snapshotContentHash;
+const result=buildFundamentalSnapshot(packet.cutoffs,{registry:manifest.registry,observations:[...packet.canonicalObservations].reverse(),assessments:[...packet.availabilityAssessments].reverse(),derived:[...packet.derivedMetrics].reverse(),providerEvidenceBindings:packet.availabilityAssessments.map(a=>a.providerEvidenceBinding).filter(Boolean),livePublicDisclosureBindings:packet.availabilityAssessments.map(a=>a.livePublicDisclosureBinding).filter(Boolean),sourceFactRejections:packet.sourceFactRejections,sourcePeriodWithdrawals:packet.sourcePeriodWithdrawals,equivalenceResolutions:manifest.equivalenceResolutions,operationalFreshnessBindings:manifest.operationalFreshnessBindings},snapshotHash);
+assert.equal(result.contentHash,expected);assert.equal(result.manifest,canonicalJson(manifest));
+const outfile=root+'docs/fundamental-data-engine/evidence/2026-10-12-di14-blocker-closure/SNAPSHOT_REPLAY.json';
+writeFileSync(outfile,JSON.stringify({status:'PASS',scope:'DETERMINISTIC_SELECTOR_AND_AVAILABILITY_REPLAY_FROM_PRESERVED_REDACTED_INPUTS',method:'SEPARATE_PROCESS_REVERSED_OBSERVATIONS_ASSESSMENTS_DERIVED',snapshotRunId:packet.snapshotRunId,contentHash:result.contentHash,manifestDigest:createHash('sha256').update(result.manifest).digest('hex'),members:result.members.length,availabilityAssessmentsReplayed:packet.availabilityAssessments.length,unsafeSelected:result.members.filter(m=>packet.availabilityAssessments.find(a=>a.id===m.assessmentId).status!=='VERIFIED').length,fullRawDocumentAndReaderHashReplay:'NOT_REPRODUCIBLE_AFTER_PREVIOUS_USER_AUTHORIZED_CLEANUP',sourceReacquisition:false,productOrApprovedDocumentModified:false},null,2)+'\n',{flag:'wx'});
+console.log('PASS',result.contentHash,result.members.length);

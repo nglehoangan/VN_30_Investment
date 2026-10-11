@@ -1,0 +1,115 @@
+{
+  "status": "PASS",
+  "nodeVersion": "22.23.2",
+  "environment": "PATH prepended with /private/tmp/node-v22.23.2-darwin-arm64/bin; pnpm uses repository configuration",
+  "commands": [
+    {
+      "check": "focused-initial",
+      "command": "node node_modules/vitest/vitest.mjs run tests/unit/hpg-ticker-closure.test.ts tests/unit/structured-certification.test.ts tests/unit/cafef-poc.test.ts tests/unit/hybrid-targets.test.ts",
+      "exitCode": 1,
+      "log": "validation-logs/hpg-closure-focused.log",
+      "sha256": "7e3188ec716349808191952c474ebd12464fb8a8a779b10f4286f2577ee4fc35"
+    },
+    {
+      "check": "typecheck-initial",
+      "command": "pnpm typecheck",
+      "exitCode": 2,
+      "log": "validation-logs/hpg-closure-typecheck.log",
+      "sha256": "d4e489846ab2fe5e42060423cfb5d0f207a5d9741b92d2bfaa6b7c6fe00da178"
+    },
+    {
+      "check": "focused-final",
+      "command": "node node_modules/vitest/vitest.mjs run tests/unit/hpg-ticker-closure.test.ts tests/unit/structured-certification.test.ts tests/unit/cafef-poc.test.ts tests/unit/hybrid-targets.test.ts",
+      "exitCode": 0,
+      "log": "validation-logs/hpg-closure-focused-fixed.log",
+      "sha256": "e4dddbec807edaf24edc5a877ad0f56be819fd97f812d373b83592e3e15b762e"
+    },
+    {
+      "check": "typecheck-fixed",
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "log": "validation-logs/hpg-closure-typecheck-fixed.log",
+      "sha256": "7c1ab026edcf1cbb64d5e0b657c7b8143e8f525a68306d50436dc20f58108c5a"
+    },
+    {
+      "check": "full-suite",
+      "command": "pnpm test --testTimeout=40000",
+      "exitCode": 0,
+      "log": "validation-logs/hpg-closure-full.log",
+      "sha256": "1dce256c6aa3a7d5e395dfc6c61f7456ffc2b6adb6f528d27e976871316fe2e5"
+    },
+    {
+      "check": "lint",
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "log": "validation-logs/hpg-closure-lint.log",
+      "sha256": "084f835be2a4a01ac75d296c40bf080e80b53693d19c69b3230256c604eed1e6"
+    },
+    {
+      "check": "boundaries",
+      "command": "pnpm test:boundaries",
+      "exitCode": 0,
+      "log": "validation-logs/hpg-closure-boundaries.log",
+      "sha256": "7247457d8849bb86facf49b174db23c0dacbbef16d9c5e588978065ae7c3a395"
+    },
+    {
+      "check": "lint-final",
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "log": "validation-logs/hpg-closure-lint-final.log",
+      "sha256": "0027e1cc5d6af35ce5561fea4a0569e3a85587c0dcd17a023ff01fff6877e7fb"
+    },
+    {
+      "check": "typecheck-final",
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "log": "validation-logs/hpg-closure-typecheck-final.log",
+      "sha256": "3946f16b03342c59f81d5f19946139b507ddcbaf786803797190e9ff2d6d28a9"
+    },
+    {
+      "check": "database-validation",
+      "command": "pnpm db:validate",
+      "exitCode": 0,
+      "log": "validation-logs/hpg-closure-dbvalidate.log",
+      "sha256": "91c370e07fa9b0b7a167f0558895a0aa893d6e5dade7970f9b77e180dd06e8d0"
+    },
+    {
+      "check": "producer-final",
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/close-hpg-ticker-closure.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/hpg-closure-producer-last.log",
+      "sha256": "6980d62d6fa0783abf5a036829dad6869f21c8d2fbd3d1b98a6ec4c4045e68c4"
+    },
+    {
+      "check": "independent-replay-final",
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-hpg-ticker-closure.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/hpg-closure-replay-final.log",
+      "sha256": "5445c7c66e979ccbba8e9542f71124aec8243d4ebd695eecc6c41d964d218686"
+    }
+  ],
+  "fullSuite": {
+    "files": 99,
+    "tests": 1218,
+    "exitCode": 0
+  },
+  "focusedFinal": {
+    "files": 4,
+    "tests": 97,
+    "exitCode": 0
+  },
+  "boundaries": {
+    "files": 8,
+    "tests": 98,
+    "exitCode": 0
+  },
+  "offlineReplay": {
+    "checks": 37,
+    "exitCode": 0
+  },
+  "initialFailures": {
+    "focused": "Assertion inspected friendly ValidationError.message instead of issues; fixed exact reason assertion.",
+    "typecheck": "Manual canonical group has no ticker field; corrected filtering through facts."
+  },
+  "limits": "No app/UI/Next API changes; full relevant unit/integration suite run. No official scoring, ranking, decisions, live provider requests or new other-ticker closure."
+}

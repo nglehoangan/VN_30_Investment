@@ -1,4 +1,9 @@
+import {DEBT_CONTRACT,isDebtMetric,validDebtMetadata,validCashQualification,validEbitdaQualification} from './debt-contract';
+import type {HybridAdmissionSnapshot,HybridInput} from './hybrid-admission';
+import type {DebtAccountingContext} from '@/domain/scoring/evidence';
 import type {FundamentalObservation,RegistryRelease} from './contracts';
+import type {CurrentAnalysisSnapshot} from './manual-first';
+
 import {isEvidenceAssessment,validateAvailabilityPolicy,type AvailabilityAssessment} from './availability';
 import type {DerivationAssessment} from './derivation';
 import type {FundamentalSnapshot} from './snapshot';
@@ -28,6 +33,7 @@ export function validateBridgePlan(p:ScoringBridgePlan){
 /** Shared predicate for sealed selection, scoring bridge and fundamental readiness. Sources
  * are independently reloaded/replayed by the repository; request JSON is never authority. */
 export function eligibleScoringFact(s:FundamentalSnapshot,securityId:string,sources:ScoringBridgeSources,id:string,legacyReplay=false){
+ requireFundamental(s.request&&['AS_KNOWN','AS_REVISED'].includes(s.request.mode),'HISTORICAL_SNAPSHOT_MODE_REQUIRED');
  requireFundamental(s.request.scope!=='REVIEW_CANDIDATE','CANDIDATES_NOT_FOR_SCORING');
  const r=s.request,member=s.members.find(m=>m.observationId===id),o=sources.observations.find(o=>o.id===id),a=sources.assessments.find(a=>a.id===member?.assessmentId);
  requireFundamental(member&&o&&a&&o.securityId===securityId&&a.observationId===id&&a.status==='VERIFIED'&&a.availableAt!==null&&a.availableAt<=r.systemKnownAt&&a.availableAt<=r.fundamentalCutoff,'BRIDGE_SELECTED_PIT_INPUT_REQUIRED');
@@ -88,4 +94,37 @@ export function assertBridgeMatches(input:{evidence:readonly Evidence[];metrics:
   if(origin.kind==='VALUATION')requireFundamental(e!.classification!=='FACT','VALUATION_REQUIRES_EXPLICIT_ESTIMATE');
   if(origin.kind==='MARKET')requireFundamental(isMarketEvidence(e!),'MARKET_EVIDENCE_ALLOWLIST');
  }
+}
+
+/** Current financial evidence only: no points, qualitative claims or DI self-acceptance. */
+export function bridgeCurrentManualFinancialInputs(s:CurrentAnalysisSnapshot,ticker:string){
+ requireFundamental(s.contract==='manual-current-analysis-snapshot-v1'&&s.mode==='CURRENT_ANALYSIS','CURRENT_MANUAL_BRIDGE_MODE');
+ const readiness=s.readiness.find(r=>r.ticker===ticker);
+ requireFundamental(readiness,'CURRENT_MANUAL_TICKER_REQUIRED');
+ return {
+  contract:'current-manual-financial-inputs-v1' as const,mode:'CURRENT_ANALYSIS' as const,snapshotId:s.snapshotId,contentHash:s.contentHash,
+  ticker,fundamentalScorable:readiness!.fundamentalScorable,confidence:readiness!.financialConfidence,
+  facts:s.canonicalFacts.filter(f=>f.status==='AVAILABLE'&&f.facts[0].ticker===ticker&&f.facts[0].scope===readiness!.scope&&f.facts[0].period.end===readiness!.reportingPeriod),
+  metrics:s.derivedMetrics.filter(d=>d.status==='AVAILABLE'&&d.ticker===ticker&&d.scope===readiness!.scope&&d.period.end===readiness!.reportingPeriod),
+  affectedComponents:readiness!.missingMaterialEvidence,missingSupportingEvidence:readiness!.missingSupportingEvidence,
+  qualitativeEvidence:[],marketEvidence:[],valuationEvidence:[],readyForScoring:false as const,
+ };
+}
+
+/** Qualified accounting dimensions for M3 input assembly. This projection grants neither
+ * historical PIT eligibility nor scoring readiness; those remain separate bridge gates. */
+export function bridgeApprovedDebtAccounting(s:HybridAdmissionSnapshot,input:HybridInput,hash:(value:unknown)=>string){
+ requireFundamental(s.mode==='CURRENT_ANALYSIS'&&s.contract==='structured-issuer-verified-current-v1','CURRENT_FINANCIAL_BRIDGE_MODE');
+ const rows:{canonicalId:string;value:string;periodStart:string;periodEnd:string;debtAccounting:DebtAccountingContext}[]=[];
+ for(const f of s.canonicalFacts){
+  const sector=input.universe.find(u=>u.ticker===f.ticker)?.sector;
+  if(!DEBT_CONTRACT.applicableSectors.includes(sector??''))continue;
+  let role:DebtAccountingContext['role'],reference:string,sourceHashes:readonly string[];
+  if(isDebtMetric(f.itemId)&&f.debtMetadata&&validDebtMetadata(f.debtMetadata,f.itemId,f,input,hash)){role='DEBT';reference=f.debtMetadata.evidenceReference;sourceHashes=f.debtMetadata.sourceHashes;}
+  else if(validCashQualification(f,input,hash)){role='UNRESTRICTED_CASH';reference=f.cashQualification!.evidenceReference;sourceHashes=[f.cashQualification!.sourceHash];}
+  else if(validEbitdaQualification(f,input,hash)){role='NORMALIZED_EBITDA';reference=f.ebitdaQualification!.evidenceReference;sourceHashes=[f.ebitdaQualification!.sourceHash];}
+  else continue;
+  rows.push({canonicalId:f.id,value:f.value,periodStart:f.period.start,periodEnd:f.period.end,debtAccounting:{contractVersion:DEBT_CONTRACT.version,role,ticker:f.ticker,periodEnd:f.period.end,scope:'CONSOLIDATED',currency:'VND',measurementBasis:DEBT_CONTRACT.defaultMeasurementBasis as DebtAccountingContext['measurementBasis'],leasePolicyVersion:DEBT_CONTRACT.leasePolicyVersion,qualifiedEvidenceReference:reference,sourceHashes,qualificationStatus:'VERIFIED',selectedDebtMetric:isDebtMetric(f.itemId)?f.itemId:null,cashEconomicAvailabilityVerified:role==='UNRESTRICTED_CASH',normalizedOrDownside:role==='NORMALIZED_EBITDA'}});
+ }
+ return deepFreeze({contract:DEBT_CONTRACT.version,inputs:rows,readyForScoring:false,historicalPitEligibilityGranted:false});
 }

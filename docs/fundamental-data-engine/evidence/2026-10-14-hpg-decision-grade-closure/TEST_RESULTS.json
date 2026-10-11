@@ -1,0 +1,74 @@
+{
+  "status": "PASS",
+  "runtime": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+  "PATHPrefix": "/private/tmp/node-v22.23.2-darwin-arm64/bin",
+  "runs": [
+    {
+      "command": "pnpm test",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-hpg-decision-grade-closure/validation-logs/full-suite-final.log",
+      "logSHA256": "9b99fc1db52bc520a09d3a59e6cb6afe8e8bcb60cd5de0194dc254c46f391c68",
+      "testFiles": 103,
+      "testsPassed": 1296
+    },
+    {
+      "command": "pnpm exec vitest run tests/unit/hpg-decision-grade.test.ts tests/unit/debt-contract-activation.test.ts tests/unit/hpg-debt-final-closure.test.ts tests/unit/hpg-ticker-closure.test.ts tests/unit/structured-certification.test.ts tests/unit/scoring-bridge-derived.test.ts tests/unit/scoring-evidence-time.test.ts tests/unit/decision-sector.test.ts tests/unit/fundamentals-contracts.test.ts tests/unit/hybrid-targets.test.ts tests/unit/manual-first.test.ts",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-hpg-decision-grade-closure/validation-logs/focused-closure.log",
+      "logSHA256": "d518f2ef09e484b48a190a00db337d407d5f239e1b4059e4214dd7d29b77a4a2",
+      "testFiles": 11,
+      "testsPassed": 209
+    },
+    {
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-hpg-decision-grade-closure/validation-logs/typecheck-closure.log",
+      "logSHA256": "85175ce597319f78abfc0f4b3937f1765e75901592b47f320d4f27fcc70ef378",
+      "testFiles": null,
+      "testsPassed": null
+    },
+    {
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-hpg-decision-grade-closure/validation-logs/lint-closure.log",
+      "logSHA256": "cc3cbe825a3172136c5a7bdb132896d65cf167a0fde95eb1e3bccf69e91cc1fb",
+      "testFiles": null,
+      "testsPassed": null
+    },
+    {
+      "command": "pnpm test:boundaries",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-hpg-decision-grade-closure/validation-logs/boundaries-closure.log",
+      "logSHA256": "4c70f2e29fa52228c9ceff1f1a57266f13b5ee3d6c34fc4e0273b1e0de5fb67c",
+      "testFiles": 8,
+      "testsPassed": 98
+    },
+    {
+      "command": "pnpm db:validate",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-hpg-decision-grade-closure/validation-logs/db-validate.log",
+      "logSHA256": "91c370e07fa9b0b7a167f0558895a0aa893d6e5dade7970f9b77e180dd06e8d0",
+      "testFiles": null,
+      "testsPassed": null
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/close-hpg-decision-grade.mjs",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-hpg-decision-grade-closure/validation-logs/producer-final-counts.log",
+      "logSHA256": "06f7625cb739d5fed0000d083d178698818d4ef97b3c1b7300bd5fe18487b002",
+      "testFiles": null,
+      "testsPassed": null
+    }
+  ],
+  "diagnosticAttempts": [
+    {
+      "command": "pnpm exec vitest run tests/unit/hpg-decision-grade.test.ts",
+      "exitCode": 1,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-14-hpg-decision-grade-closure/validation-logs/qualification-regressions-initial.log",
+      "logSHA256": "09791e4871e243861e099e084c54c9f1cbe769cf67ead1b1ca1f78bf7ae63b11",
+      "resolved": true,
+      "reason": "Three test assertions expected localized public error text instead of structured ValidationError issues.reason; assertions corrected to inspect exact rejection reason. Subsequent complete and focused suites pass."
+    }
+  ],
+  "officialScoringRun": false
+}

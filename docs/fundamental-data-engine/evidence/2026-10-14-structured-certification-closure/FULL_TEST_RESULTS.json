@@ -1,0 +1,147 @@
+{
+  "runtime": "Node v22.23.2; pnpm10.34.5; PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH for pnpm commands",
+  "fullRelevantSuiteStatus": "PASS",
+  "finalChecks": [
+    {
+      "command": "pnpm test --testTimeout=40000",
+      "exitCode": 0,
+      "retainedLog": "validation-logs/structured-closure-full-frozen.log",
+      "result": "98 files;1208 tests;309.03 seconds; final source frozen",
+      "logSHA256": "0aa0b4c66573508971decaa68857f0e21e422c4b853e611503a3d9c322545611"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/structured-certification.test.ts tests/unit/cafef-refresh.test.ts tests/unit/hybrid-targets.test.ts tests/unit/cafef-poc.test.ts",
+      "exitCode": 0,
+      "retainedLog": "validation-logs/structured-closure-focused-calendar.log",
+      "result": "92 tests; final calendar and evidence-binding adversaries",
+      "logSHA256": "af09d581995ab7c19c1d16f16aaf6d613157146bcbfa05ce93f83acb3a47bda9"
+    },
+    {
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "retainedLog": "validation-logs/structured-closure-lint-seal.log",
+      "result": "163 source modules; ESLint warnings0; boundaries PASS",
+      "logSHA256": "11c5874a1ab095f3ccfcdad246e58efba0a2b0f7266b7242e4316d915dab5dfd"
+    },
+    {
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "retainedLog": "validation-logs/structured-closure-typecheck-seal.log",
+      "result": "Prisma generate,Next route types,tsc PASS",
+      "logSHA256": "2713e9a489196ab05e9ec2cd6ca3b5b360b6c692bf240a1b427bd185f99e5009"
+    },
+    {
+      "command": "pnpm test:boundaries",
+      "exitCode": 0,
+      "retainedLog": "validation-logs/structured-closure-boundaries.log",
+      "result": "8 files;98 tests PASS",
+      "logSHA256": "dfd4b4af7c140bbb7d686c94fc42d4b048fe02b8cf0f40047f10d8645292d891"
+    },
+    {
+      "command": "pnpm db:validate",
+      "exitCode": 0,
+      "retainedLog": "validation-logs/structured-closure-dbvalidate.log",
+      "result": "Prisma schema valid",
+      "logSHA256": "91c370e07fa9b0b7a167f0558895a0aa893d6e5dade7970f9b77e180dd06e8d0"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/next/dist/bin/next build --webpack",
+      "exitCode": 0,
+      "retainedLog": "validation-logs/structured-closure-webpack-build.log",
+      "result": "Production build PASS; supported Webpack path",
+      "logSHA256": "07c0699673afdfca37160b71eea3b3a153b2795d8c114367496093609cb5ca59"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/smoke-app.mjs --e2e",
+      "exitCode": 0,
+      "retainedLog": "validation-logs/structured-closure-e2e.log",
+      "result": "12 browser tests PASS; isolated synthetic fixtures/disposable DB;48captures copied and original bytes restored",
+      "logSHA256": "76635afcecdea71c6b7525e876a8079ee484a458be90b883b8f439e1bd6aa495"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/smoke-app.mjs --invalid-config",
+      "exitCode": 0,
+      "retainedLog": "validation-logs/structured-closure-invalid-config.log",
+      "result": "Startup rejects invalid config without secret leakage",
+      "logSHA256": "d2e2cebca05aa1de4c042d6459915fe1b7a7ceb396706138583ab56010066027"
+    },
+    {
+      "command": "MANUAL_TEST_NODE=/private/tmp/node-v22.23.2-darwin-arm64/bin/node python3 scripts/test-physical-manual-corpus.py",
+      "exitCode": 0,
+      "retainedLog": "validation-logs/structured-closure-physical.log",
+      "result": "4 tests PASS",
+      "logSHA256": "0ca1f92895f3ef838ddbc956f4d5bf03e33434f1c4bed7208364e7b08e398cb2"
+    },
+    {
+      "command": "python3 scripts/test-08b-extraction.py",
+      "exitCode": 0,
+      "retainedLog": "validation-logs/structured-closure-extraction.log",
+      "result": "49 tests PASS",
+      "logSHA256": "c52d6824e049b0d5528887b6990aa15011d7aba740508ac2bc1de864e4ceca7d"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-cafef-production-admission.mjs",
+      "exitCode": 0,
+      "retainedLog": "validation-logs/structured-closure-legacy-replay.log",
+      "result": "17 previous production regression cases;826 retained bindings; old sealed reports unchanged",
+      "logSHA256": "b62102950966bbd7e6bcaa1428077e790d0feb582c985637783507815d91f3ca"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-manual-first.mjs",
+      "exitCode": 0,
+      "retainedLog": "validation-logs/structured-closure-manual-replay.log",
+      "result": "144documents;1668reader hashes;448historical artifacts; diagnostic report retained here and original restored",
+      "logSHA256": "e134b021c1c5597962e2fed6cfcebd4b1d18bf4168767de26da1fb1d33e3965c"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/close-structured-certification.mjs",
+      "exitCode": 0,
+      "retainedLog": "validation-logs/structured-certification-producer-seal.log",
+      "result": "Frozen final producer; no network",
+      "logSHA256": "6edcd2568fad0c5173a89263b4561ce7a3265fc584de70f7a77454a4cd490348"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-structured-certification.mjs",
+      "exitCode": 0,
+      "retainedLog": "validation-logs/structured-closure-independent-replay-seal.log",
+      "result": "40 checks;845bindings;844direct facts;38byte-identical artifacts;107oldfiles;8DBs unchanged",
+      "logSHA256": "f79cea7457f7990922fda18209a09c899d73b9b174846fedc33f0938ff79fdce"
+    }
+  ],
+  "diagnosticAttempts": [
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/structured-certification.test.ts tests/unit/hybrid-targets.test.ts tests/unit/cafef-poc.test.ts",
+      "exitCode": 1,
+      "retainedLog": "validation-logs/structured-certification-focused.log",
+      "reason": "Two tests exposed absent explicit period-basis rejection reasons; implementation fixed without weakening assertions."
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/typescript/bin/tsc --noEmit",
+      "exitCode": 2,
+      "retainedLog": "validation-logs/structured-certification-initial-typecheck.log",
+      "reason": "Provider periodBasis inferred as string; explicit type fixed."
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/typescript/bin/tsc --noEmit",
+      "exitCode": 2,
+      "retainedLog": "validation-logs/structured-certification-typecheck.log",
+      "reason": "Optional blockedDebtDerivations access in test; corrected presence assertion."
+    },
+    {
+      "command": "pnpm lint",
+      "exitCode": 1,
+      "retainedLog": "validation-logs/structured-closure-lint-post-review.log",
+      "reason": "Unused verifier import; removed."
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-cafef-poc.mjs",
+      "exitCode": 1,
+      "retainedLog": "validation-logs/structured-closure-poc-replay.log",
+      "reason": "Prior POC-only guard forbids uncommitted src/domain edits. This Owner-authorized contract migration changes those files. Assertion preserved; new qualified raw/schema/domain verifier and historical production replay pass."
+    }
+  ],
+  "timeoutPolicy": "Full test CLI40s applies only execution timeout; assertions unchanged; default Vitest maxWorkers1. Browser tests run after full suite; final frozen full suite rerun subsequently.",
+  "historicalPreservation": "688 tracked historical evidence/browser artifacts compared with starting HEAD bytes;107dated baseline SHA256 files plus8DBs independently rehashed; no historical diff remains",
+  "officialScoringRankingDecisionsExecuted": false,
+  "readyForScoring": false
+}

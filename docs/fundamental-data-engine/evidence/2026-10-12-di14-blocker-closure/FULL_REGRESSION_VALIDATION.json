@@ -1,0 +1,96 @@
+{
+  "fullRegressionSuitePassed": true,
+  "allRequestedValidationComplete": false,
+  "validationLimitations": [
+    "Historical 39 CFO controls cannot be rerun on original sealed evidence.",
+    "Initialization SQLite was removed before this task.",
+    "Full raw/render replay is unavailable; deterministic snapshot/availability replay is PASS."
+  ],
+  "checks": [
+    {
+      "check": "full_unit_integration_architecture",
+      "status": "PASS",
+      "tests": 1063,
+      "files": 90,
+      "exitCode": 0
+    },
+    {
+      "check": "architecture_suite",
+      "status": "PASS",
+      "tests": 95,
+      "files": 8,
+      "exitCode": 0
+    },
+    {
+      "check": "source_tamper_governance_selected_path_controls",
+      "status": "PASS_CURRENT_CORPUS",
+      "tests": 139,
+      "exitCode": 0
+    },
+    {
+      "check": "historical_CFO_39_exact_source_controls",
+      "status": "NOT_RERUN_PRIOR_INPUTS_REMOVED",
+      "evidence": "SOURCE_TAMPER_CHECKS.json"
+    },
+    {
+      "check": "TypeScript",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "validation-logs/typescript.log"
+    },
+    {
+      "check": "ESLint_zero_warnings",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "validation-logs/eslint.log"
+    },
+    {
+      "check": "Prisma_generate",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "validation-logs/prisma-generate.log"
+    },
+    {
+      "check": "Prisma_validate",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "validation-logs/prisma-validate.log"
+    },
+    {
+      "check": "SQLite_quick_check_and_foreign_key_check",
+      "status": "PASS_CURRENT_APP_DATABASE_READ_ONLY",
+      "evidence": "SQLITE_CHECKS.json"
+    },
+    {
+      "check": "original_snapshot_database_integrity",
+      "status": "NOT_RERUN_PRIOR_DATABASE_REMOVED"
+    },
+    {
+      "check": "independent_deterministic_selector_availability_replay",
+      "status": "PASS",
+      "evidence": "SNAPSHOT_REPLAY.json"
+    },
+    {
+      "check": "original_raw_reader_render_replay",
+      "status": "NOT_REPRODUCIBLE_PRIOR_EXACT_BYTES_REMOVED"
+    },
+    {
+      "check": "git_diff_check",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "GIT_CHECKS.json"
+    }
+  ],
+  "testsExecuted": 1063,
+  "testsPassed": 1063,
+  "testsFailed": 0,
+  "testsPending": 0,
+  "exitCode": 0,
+  "SIGSEGV": false,
+  "timeoutFailures": 0,
+  "testCorpusSha256": "ec5438557a8009ddce4dc2558e0f490c71d8ae7964313d01090598b3e684499a",
+  "sameCorpusBetweenColdAndFinal": true,
+  "assertionsOrTimeoutsChanged": false,
+  "approvedDocumentsModified": false,
+  "sourceReacquisition": false
+}

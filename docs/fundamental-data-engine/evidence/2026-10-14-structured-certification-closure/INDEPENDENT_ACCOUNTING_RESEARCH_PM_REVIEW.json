@@ -1,0 +1,150 @@
+{
+  "reviewedAt": "2026-10-14T00:37:19.882Z",
+  "reviewScope": "INDEPENDENT_ACCOUNTING_RESEARCH_PM_REVIEW",
+  "roles": [
+    {
+      "role": "Accounting Data Quality Reviewer",
+      "verdict": "C. BLOCKED — COVERAGE / CERTIFICATION / CONFLICT GAPS REMAIN",
+      "reason": "Unresolved material conflicts and debt population/PIT proof gaps."
+    },
+    {
+      "role": "Equity Research Analyst",
+      "verdict": "C. BLOCKED — COVERAGE / CERTIFICATION / CONFLICT GAPS REMAIN",
+      "reason": "Annual coverage and current trajectory remain insufficient."
+    },
+    {
+      "role": "Portfolio Manager",
+      "verdict": "C. BLOCKED — COVERAGE / CERTIFICATION / CONFLICT GAPS REMAIN",
+      "reason": "Required sector coverage remains below target; reserved DI gates remain unapproved."
+    }
+  ],
+  "findings": [
+    {
+      "severity": "Critical",
+      "id": "ACCOUNTING_COVERAGE",
+      "finding": "CORE 432/750 = 57.6%; SECTOR_CORE 177/365 = 48.49315068493151%. Both remain below 95%; missing obligations remain in denominators.",
+      "references": [
+        "CORE_COVERAGE.csv",
+        "SECTOR_CORE_COVERAGE.csv"
+      ]
+    },
+    {
+      "severity": "Critical",
+      "id": "UNRESOLVED_CORE_CONFLICTS",
+      "finding": "Eight required CORE conflicts remain: LPB FY2022 assets/equity and MSN, VPL, VRE H1 2026 assets/equity. Qualified same-period issuer evidence is absent or unqualified.",
+      "references": [
+        "CORE_CONFLICT_ADJUDICATION.json",
+        "CORE_CONFLICT_QUEUE_AFTER.csv"
+      ]
+    },
+    {
+      "severity": "Major",
+      "id": "CURRENT_TRAJECTORY",
+      "finding": "All 30 symbols are insufficient. The 150 current YTD CORE obligations comprise 1 PDF_VERIFIED, 110 FALLBACK_REQUIRED, 33 UNAVAILABLE and 6 CONFLICT. Quarters do not replace YTD.",
+      "references": [
+        "CURRENT_ANALYSIS_READINESS.json",
+        "CORE_COVERAGE.csv"
+      ]
+    },
+    {
+      "severity": "Major",
+      "id": "DEBT_COMPLETENESS",
+      "finding": "Eight debt derivations remain blocked. Short plus long borrowings do not establish comprehensive financial debt. VIC code339 bonds require explicit population evidence.",
+      "references": [
+        "DERIVED_METRIC_REPORT.json",
+        "src/domain/fundamentals/hybrid-admission.ts"
+      ]
+    },
+    {
+      "severity": "Major",
+      "id": "PIT_INSUFFICIENT",
+      "finding": "Current corpus presence and calibration do not prove historical publication or revision availability.",
+      "references": [
+        "HISTORICAL_REPLAY_READINESS.json"
+      ]
+    },
+    {
+      "severity": "Minor",
+      "id": "MIXED_PRIMARY_SOURCE_METADATA",
+      "finding": "Verified regenerated canonical artifact: DIRECT_STRUCTURED facts have no issuer locator, reader proof, review reference or extraction method at top level. All issuer-backed direct facts retain exact verificationIds in retainedIssuerVerificationMetadata.",
+      "references": [
+        "src/domain/fundamentals/hybrid-admission.ts",
+        "CANONICAL_ADMISSION_REPORT.json"
+      ],
+      "affectsQuantitySafety": false,
+      "status": "VERIFIED_IN_REGENERATED_ARTIFACT"
+    }
+  ],
+  "questions": {
+    "10": "No. Eight of sixteen resolved through qualified issuer cells; eight remain.",
+    "11": "LPB document remains REVIEW_REQUIRED; MSN/VPL/VRE H1 2026 same-period qualified issuer evidence is absent.",
+    "12": "Yes. HPG FY2024 CFO 6608320655215 and CapEx 35495026797327; SSI FY2025 CFO -10425608767324 and CapEx 148182381457 remain nonzero PDF_VERIFIED issuer resolutions.",
+    "13": "Yes. VCB FY2025 parent NPAT 35177663000000 remains PDF_VERIFIED issuer resolution.",
+    "14": "Required obligations: 3 CORE plus 1 SECTOR_CORE anomalies. Provider diagnostics contain 188 rows: 99 PROVIDER_ANOMALY, 30 CONFLICT, 59 UNVERIFIED; these are different counting units.",
+    "15": "Required unadmitted obligations declined 775 to 506: 269/775 = 34.70967741935484%. This does not measure PDF labor hours.",
+    "16": "The exact 506 unresolved obligations are retained in PDF_FALLBACK_QUEUE_AFTER.csv. They include current YTD, sector disclosures, CFO/CapEx exceptions, parent earnings and complete financial debt.",
+    "20": "No. All 30 symbols lack sufficient current trajectory.",
+    "28": "Technical evidence is reviewable. DI14 awaits independent review and DI15 awaits Project Owner approval; neither is approved here.",
+    "29": "No. Official M3 scoring must remain blocked."
+  },
+  "independentChecks": {
+    "coverage": {
+      "CORE": {
+        "denominator": 750,
+        "counts": {
+          "DIRECT_STRUCTURED": 356,
+          "SAFE_DERIVED": 0,
+          "PDF_VERIFIED": 76,
+          "ISSUER_VERIFIED": 0,
+          "FALLBACK_REQUIRED": 209,
+          "PROVIDER_ANOMALY": 3,
+          "CONFLICT": 8,
+          "UNAVAILABLE": 98,
+          "NOT_APPLICABLE": 0
+        },
+        "admitted": 432,
+        "percentage": 57.6,
+        "targetMet": false
+      },
+      "SECTOR_CORE": {
+        "denominator": 365,
+        "counts": {
+          "DIRECT_STRUCTURED": 151,
+          "SAFE_DERIVED": 0,
+          "PDF_VERIFIED": 26,
+          "ISSUER_VERIFIED": 0,
+          "FALLBACK_REQUIRED": 99,
+          "PROVIDER_ANOMALY": 1,
+          "CONFLICT": 0,
+          "UNAVAILABLE": 88,
+          "NOT_APPLICABLE": 0
+        },
+        "admitted": 177,
+        "percentage": 48.49315068493151,
+        "targetMet": false
+      }
+    },
+    "COREObligations": 750,
+    "SECTOR_COREObligations": 365,
+    "duplicateObligations": 0,
+    "directCanonicalFactCount": 844,
+    "directMissingContractBindingOrRejectedValidation": 0,
+    "directZeros": 0,
+    "baselineConflictResolvedIssuerCells": 8,
+    "baselineConflictUnresolved": 8,
+    "blockedDebtDerivations": 8,
+    "providerSamplePolicy": "Qualified independent same-issuer concept, window/instant, scope, unit and currency comparisons; held-out calibration; finite calibrated symbol domain; Detail/Summary agreement does not establish independent verification.",
+    "statisticalPopulationAccuracyClaim": false,
+    "directPrimarySourceMetadataMixing": 0,
+    "issuerBackedDirectMetadataNestingValidated": 372
+  },
+  "limitations": [
+    "Finite calibration does not certify unseen issuer quantity accuracy.",
+    "Complete validation execution and offline replay are assigned to a separate reviewer."
+  ],
+  "DI14Approved": false,
+  "DI15Approved": false,
+  "readyForScoring": false,
+  "officialScoringExecuted": false,
+  "finalArtifactConfirmationAt": "2026-10-14T00:45:18.272Z"
+}

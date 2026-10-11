@@ -1,0 +1,44 @@
+{
+  "startingHEAD": "a71cfafc5b8eb5414aa1204772f79bf7e91c8338",
+  "runtime": "Node22.23.2; PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH",
+  "checks": [
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/cafef-poc.test.ts tests/unit/structured-certification.test.ts tests/unit/hybrid-targets.test.ts tests/unit/cafef-refresh.test.ts",
+      "exitCode": 0,
+      "log": "validation-logs/cafef-nam-quy-tests.log",
+      "result": "94testsPASS"
+    },
+    {
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "log": "validation-logs/cafef-nam-quy-lint.log",
+      "result": "PASS"
+    },
+    {
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "log": "validation-logs/cafef-nam-quy-typecheck.log",
+      "result": "PASS"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/report-cafef-nam-quy-policy.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/cafef-nam-quy-policy.log",
+      "result": "244NAM/QUYrequests,4807candidates,0LUYKEcontracts;844directfacts;coverageunchanged"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-cafef-production-admission.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/cafef-nam-quy-historical-production.log",
+      "result": "17checks826bindingsPASS"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-structured-certification.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/cafef-nam-quy-historical-contracts.log",
+      "result": "40checks845bindings38artifactsPASS"
+    }
+  ],
+  "historicalEvidenceChanged": false,
+  "readyForScoring": false
+}

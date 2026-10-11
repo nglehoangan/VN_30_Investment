@@ -6,6 +6,12 @@ export interface FactEquivalenceResolution {
  readonly kind:'SAME_ECONOMIC_FACT'|'SAME_REVISED_ECONOMIC_FACT';readonly observationHashes:readonly string[];
  readonly representativeHash:string;readonly recordedAt:string;readonly reason:string;
  readonly sourcePageEvidenceHashes:readonly string[];readonly status:'REVIEW_CANDIDATE'|'APPROVED';readonly approvalReference:string|null;
+ /** Exact source-note proof that technical extraction labels describe the
+  * same January–December fiscal calendar. Original contexts stay immutable. */
+ readonly calendarEvidence?:readonly {readonly observationHash:string;readonly bodyHash:string;readonly calendar:'JANUARY_DECEMBER'|'EXACT_INSTANT_DATE';readonly sourcePageEvidenceHashes:readonly string[]}[];
+ /** Positive preparation declarations establish comparison context only;
+  * original UNKNOWN observations and their hashes are never rewritten. */
+ readonly accountingBasisEvidence?:readonly {readonly observationHash:string;readonly bodyHash:string;readonly accountingBasis:'VAS';readonly sourcePageEvidenceHashes:readonly string[]}[];
 }
 export function equivalentRepresentative(rows:readonly FundamentalObservation[],resolutions:readonly FactEquivalenceResolution[],cutoff:string,hash:(v:unknown)=>string,lineage:readonly FundamentalObservation[]=[]){
  if(rows.length<2)return null;
@@ -14,7 +20,36 @@ export function equivalentRepresentative(rows:readonly FundamentalObservation[],
  requireFundamental(r.status==='APPROVED'?r.approvalReference!==null:r.status==='REVIEW_CANDIDATE'&&r.approvalReference===null,'EQUIVALENCE_APPROVAL');
  requireFundamental(rows.every(o=>o.scope==='REVIEW_CANDIDATE')||r.status==='APPROVED','FORMAL_EQUIVALENCE_APPROVAL');
  requireFundamental(new Set(hashes).size===rows.length&&new Set(r.sourcePageEvidenceHashes).size>=rows.length&&r.reason.length>0,'EQUIVALENCE_SOURCE_EVIDENCE');r.sourcePageEvidenceHashes.forEach(fundamentalHash);
- requireFundamental(new Set(rows.map(comparableKey)).size===1&&new Set(rows.map(o=>o.normalized.value)).size===1&&rows.every(o=>o.quality==='VALID'&&o.dataPresence==='AVAILABLE'),'EQUIVALENCE_EXACT_ECONOMIC_FACT');
+ requireFundamental(new Set(rows.map(o=>JSON.stringify([o.registryHash,o.itemDefinitionVersion,o.statementType,o.measurementSemantic]))).size===1,'EQUIVALENCE_CANONICAL_DEFINITION');
+ let comparisonRows=[...rows];
+ if(r.accountingBasisEvidence){
+  requireFundamental(r.accountingBasisEvidence.length===rows.length&&new Set(r.accountingBasisEvidence.map(e=>e.observationHash)).size===rows.length,'EQUIVALENCE_BASIS_EXACT_OCCURRENCES');
+  for(const o of rows){
+   const e=r.accountingBasisEvidence.find(e=>e.observationHash===hash(o));
+   requireFundamental(e&&e.accountingBasis==='VAS'&&['UNKNOWN','VAS'].includes(o.accountingBasis)&&o.transformationReferences.includes('document-sha256:'+e.bodyHash),'EQUIVALENCE_SOURCE_BASIS_CONTEXT');
+   fundamentalHash(e!.bodyHash);
+   requireFundamental(new Set(e!.sourcePageEvidenceHashes).size>=2&&e!.sourcePageEvidenceHashes.every(h=>r.sourcePageEvidenceHashes.includes(h)),'EQUIVALENCE_BASIS_SOURCE_PROOFS');
+   e!.sourcePageEvidenceHashes.forEach(fundamentalHash);
+  }
+  comparisonRows=rows.map(o=>({...o,accountingBasis:'VAS'}));
+ }
+ let keys=comparisonRows.map(comparableKey);
+ if(r.calendarEvidence){
+  requireFundamental(r.calendarEvidence.length===rows.length&&new Set(r.calendarEvidence.map(e=>e.observationHash)).size===rows.length,'EQUIVALENCE_CALENDAR_EXACT_OCCURRENCES');
+  for(const [i,o] of comparisonRows.entries()){
+   const e=r.calendarEvidence.find(e=>e.observationHash===hash(rows[i]));
+   requireFundamental(e&&(e.calendar==='JANUARY_DECEMBER'||e.calendar==='EXACT_INSTANT_DATE'&&o.periodType==='INSTANT'&&o.periodStart===o.periodEnd)&&o.transformationReferences.includes('document-sha256:'+e.bodyHash)&&o.accountingBasis==='VAS'&&['SOURCE_EXPLICIT_CALENDAR_WINDOW','SOURCE_EXPLICIT_YEAR_END'].includes(o.fiscalCalendarReference)&&o.fiscalYear===Number(o.periodEnd.slice(0,4))&&(o.fiscalQuarter===null||o.fiscalQuarter===Math.ceil(Number(o.periodEnd.slice(5,7))/3)),'EQUIVALENCE_SOURCE_CALENDAR_CONTEXT');
+   fundamentalHash(e!.bodyHash);
+   requireFundamental(Array.isArray(e!.sourcePageEvidenceHashes)&&new Set(e!.sourcePageEvidenceHashes).size>=2&&e!.sourcePageEvidenceHashes.every(h=>r.sourcePageEvidenceHashes.includes(h)),'EQUIVALENCE_CALENDAR_SOURCE_PROOFS');
+   e!.sourcePageEvidenceHashes.forEach(fundamentalHash);
+  }
+  requireFundamental(new Set(r.calendarEvidence.map(e=>e.calendar)).size===1,'EQUIVALENCE_CALENDAR_PROOF_KIND');
+  // Only two non-economic extraction-context fields can be reconciled, and
+  // only with source-bound proof for every occurrence. Basis, period type,
+  // exact dates, scope, definition and values still have to agree.
+  keys=comparisonRows.map(o=>comparableKey({...o,fiscalQuarter:null,fiscalCalendarReference:'SOURCE_EVIDENCED_'+r.calendarEvidence![0].calendar}));
+ }
+ requireFundamental(new Set(keys).size===1&&new Set(rows.map(o=>o.normalized.value)).size===1&&rows.every(o=>o.quality==='VALID'&&o.dataPresence==='AVAILABLE'),'EQUIVALENCE_EXACT_ECONOMIC_FACT');
  if(r.kind==='SAME_ECONOMIC_FACT')requireFundamental(rows.every(o=>o.revisionKind==='ORIGINAL'),'EQUIVALENCE_EXACT_ECONOMIC_FACT');
  else {
   requireFundamental(rows.some(o=>o.revisionKind==='ISSUER_RESTATEMENT'),'EQUIVALENCE_REVISED_HEAD_REQUIRED');

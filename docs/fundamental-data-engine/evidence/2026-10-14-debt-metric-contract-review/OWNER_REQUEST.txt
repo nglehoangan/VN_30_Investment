@@ -1,0 +1,384 @@
+VN30 Value Investing OS
+HPG Debt Metric Contract Review
+— Semantic Contract Correction Before Further Data Closure
+
+Repository:
+https://github.com/nglehoangan/VN_30_Investment
+
+Expected starting HEAD:
+
+f6873711fb9014fb5aa4e4c457e3affd9544ff45
+
+==================================================
+PURPOSE
+==================================================
+
+DO NOT perform another HPG data extraction campaign.
+
+The previous HPG debt closure demonstrated that the current canonical
+FINANCIAL_DEBT requirement may demand stronger exhaustive evidence than
+issuer financial statements normally disclose.
+
+This run is a MODEL / METRIC CONTRACT REVIEW.
+
+Do not change the contract merely to make HPG pass.
+
+Determine whether the existing FINANCIAL_DEBT definition is appropriate for
+VN30 non-financial companies and for M3 scoring.
+
+==================================================
+CURRENT EVIDENCE
+==================================================
+
+HPG borrowing populations have been issuer-verified:
+
+FY2022:
+57,900,321,604,873 VND
+
+FY2023:
+65,381,002,473,117 VND
+
+FY2024:
+82,963,129,469,555 VND
+
+FY2025:
+92,174,151,302,217 VND
+
+6M2026:
+98,529,977,232,553 VND
+
+These values correctly avoid double-counting current portions.
+
+However, the existing FINANCIAL_DEBT contract remains unresolved because
+issuer disclosure does not exhaustively prove that every miscellaneous
+payable/accrual contains zero interest-bearing financing principal.
+
+Do NOT automatically promote these values to FINANCIAL_DEBT.
+
+==================================================
+MISSION
+==================================================
+
+Review whether the data model should distinguish:
+
+1. REPORTED_BORROWINGS
+
+from
+
+2. COMPREHENSIVE_FINANCIAL_DEBT
+
+and determine which metric M3 actually requires for non-financial-company
+Financial Health scoring.
+
+==================================================
+PHASE 1 — TRACE EXISTING CONTRACT
+==================================================
+
+Trace FINANCIAL_DEBT through:
+
+SCORING_MODEL
+METRIC_DEFINITIONS
+sector normalization
+scorecard
+fundamental data contracts
+canonical metric registry
+derived metrics
+sufficiency rules
+M3 scoring implementation
+validation cases
+
+Answer:
+
+What exact analytical purpose does FINANCIAL_DEBT serve?
+
+Which derived metrics depend on it?
+
+Examples:
+
+Net Debt
+Debt / Equity
+Debt / EBITDA
+Debt / Assets
+interest coverage context
+financial leverage
+
+Determine whether those calculations require:
+
+A. issuer-reported borrowings
+
+or
+
+B. exhaustive all-interest-bearing-liability population.
+
+Do not assume B automatically.
+
+==================================================
+PHASE 2 — ACCOUNTING SEMANTICS
+==================================================
+
+Define candidate metric:
+
+REPORTED_BORROWINGS
+
+Suggested semantics:
+
+Issuer-reported consolidated borrowing principal consisting of:
+
+- short-term borrowings;
+- current portion of long-term borrowings counted once;
+- non-current borrowings;
+- separately disclosed bonds/debt securities;
+- separately disclosed finance-lease financing liabilities if the approved
+  scoring definition includes them;
+- separately disclosed other interest-bearing financing principal.
+
+Exclude:
+
+- trade payables;
+- customer advances;
+- taxes;
+- wages;
+- ordinary accrued operating expenses;
+- provisions;
+- dividends payable;
+- deferred revenue;
+- miscellaneous liabilities unless issuer identifies them as financing /
+  interest-bearing.
+
+Crucially:
+
+Do NOT require proof that every unspecified operating/miscellaneous payable
+is non-interest-bearing before REPORTED_BORROWINGS can be admitted.
+
+Unknown miscellaneous liabilities remain separately flagged as uncertainty.
+
+==================================================
+PHASE 3 — STRICT METRIC
+==================================================
+
+If analytically useful, retain:
+
+COMPREHENSIVE_FINANCIAL_DEBT
+
+as a stricter metric.
+
+Definition:
+
+all verified interest-bearing financial liabilities.
+
+It may remain unavailable when issuer disclosure is insufficient.
+
+Do NOT silently equate:
+
+REPORTED_BORROWINGS
+=
+COMPREHENSIVE_FINANCIAL_DEBT.
+
+==================================================
+PHASE 4 — MATERIALITY / UNCERTAINTY
+==================================================
+
+Design explicit uncertainty metadata.
+
+For example:
+
+debtPopulationStatus:
+REPORTED_COMPLETE
+REPORTED_PLUS_IDENTIFIED_ADDITIONS
+COMPREHENSIVE_VERIFIED
+COMPREHENSIVE_UNVERIFIED
+
+and:
+
+unclassifiedLiabilityAmount
+unclassifiedLiabilityRatioToBorrowings
+materialityAssessment
+
+Do not invent a universal materiality threshold without reviewing existing
+Risk Policy / Scoring Model conventions.
+
+Unknown residuals must remain visible.
+
+They must not silently become zero.
+
+==================================================
+PHASE 5 — M3 IMPACT
+==================================================
+
+Determine the safest metric for M3 non-financial scoring.
+
+If existing M3 intent can be faithfully implemented using
+REPORTED_BORROWINGS:
+
+recommend changing the required CORE group from:
+
+FINANCIAL_DEBT
+
+to an approved requirement group such as:
+
+anyOf:
+- COMPREHENSIVE_FINANCIAL_DEBT
+- REPORTED_BORROWINGS
+
+with explicit precedence:
+
+COMPREHENSIVE_FINANCIAL_DEBT preferred when verified;
+otherwise REPORTED_BORROWINGS permitted when its issuer population is
+verified.
+
+Do this ONLY if consistent with original approved investment intent.
+
+Do not weaken bank/securities sector contracts.
+
+==================================================
+PHASE 6 — CROSS-TICKER RISK REVIEW
+==================================================
+
+Before changing the contract, inspect a small representative set of retained
+non-bank evidence already in the repository.
+
+Do NOT perform ticker closure.
+
+Use only existing evidence to determine whether the current strict debt
+definition would systematically block otherwise valid non-bank companies.
+
+Include different business types where retained evidence permits:
+
+industrial/materials
+consumer
+technology
+real estate/conglomerate
+
+Report whether HPG is:
+
+HPG_SPECIFIC
+
+or
+
+SYSTEMATIC_CONTRACT_PROBLEM.
+
+No other ticker receives admission from this review.
+
+==================================================
+PHASE 7 — HPG RE-EVALUATION
+==================================================
+
+Only if the contract review concludes that REPORTED_BORROWINGS is the
+correct decision-grade metric for non-bank scoring:
+
+re-evaluate HPG using the already verified borrowing populations.
+
+Do NOT perform new broad extraction.
+
+Every period must still prove:
+
+- consolidated scope;
+- correct period;
+- correct unit;
+- issuer evidence;
+- short/long reconciliation;
+- current portion counted once;
+- separately identified bonds/leases handled according to contract;
+- no known financing item omitted.
+
+Unknown miscellaneous liabilities must remain disclosed in metadata.
+
+==================================================
+PHASE 8 — VALIDATION
+==================================================
+
+Add regression tests proving:
+
+1. miscellaneous payable UNKNOWN does not automatically enter reported debt;
+
+2. miscellaneous payable UNKNOWN does not become zero;
+
+3. separately disclosed interest-bearing liability is included;
+
+4. current portion is counted once;
+
+5. bond is included when separately disclosed;
+
+6. applicable finance lease is handled according to metric contract;
+
+7. REPORTED_BORROWINGS does not masquerade as
+   COMPREHENSIVE_FINANCIAL_DEBT;
+
+8. bank/securities contracts are unaffected;
+
+9. HPG FY2024 CafeF false-zero regressions remain protected;
+
+10. corrected 6M2026 short borrowing remains
+    71,433,383,400,905 VND.
+
+==================================================
+GOVERNANCE
+==================================================
+
+This is a semantic contract amendment.
+
+Do not silently modify previously approved M3 documentation.
+
+Produce an explicit proposed amendment.
+
+Until Project Owner approval:
+
+- do not promote the amendment to approved baseline;
+- do not set HPG readyForScoring=true;
+- do not approve HPG;
+- do not process VCB;
+- do not run ranking/Top10/DCA.
+
+==================================================
+REQUIRED ARTIFACTS
+==================================================
+
+Create:
+
+docs/fundamental-data-engine/evidence/
+2026-10-14-debt-metric-contract-review/
+
+At minimum:
+
+DEBT_METRIC_CONTRACT_REVIEW.md
+CURRENT_FINANCIAL_DEBT_TRACE.json
+REPORTED_BORROWINGS_DEFINITION.json
+COMPREHENSIVE_FINANCIAL_DEBT_DEFINITION.json
+M3_DEPENDENCY_ANALYSIS.json
+CROSS_TICKER_DEBT_DISCLOSURE_SAMPLE.json
+HPG_REEVALUATION_PROVISIONAL.json
+SCORING_CONTRACT_IMPACT.md
+PROPOSED_AMENDMENT.md
+REGRESSION_RESULTS.json
+TEST_RESULTS.json
+OPEN_ISSUES.json
+FINAL_REVIEW.md
+ARTIFACT_HASHES.json
+
+==================================================
+FINAL VERDICT
+==================================================
+
+Return exactly one:
+
+A. CONTRACT CORRECTION RECOMMENDED
+B. CURRENT FINANCIAL_DEBT CONTRACT IS CORRECT
+C. MORE ACCOUNTING EVIDENCE REQUIRED BEFORE CONTRACT DECISION
+D. CONTRACT DESIGN FAILURE — MATERIAL REWORK REQUIRED
+
+If A:
+
+show the exact proposed contract change and its impact on HPG.
+
+Do NOT activate it without Project Owner approval.
+
+==================================================
+STOP
+==================================================
+
+STOP AFTER CONTRACT REVIEW.
+
+Do not process another ticker.
+Do not approve HPG automatically.
+Do not run scoring.
+Wait for independent review and Project Owner decision.

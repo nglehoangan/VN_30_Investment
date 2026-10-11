@@ -32,7 +32,13 @@
     "test:current": "pnpm db:generate && vitest run tests/integration/current-remediation.test.ts tests/unit/current-remediation-ui.test.tsx",
     "test:m68": "pnpm db:generate && vitest run tests/integration/m68.test.ts tests/unit/m68-policy.test.ts tests/integration/m68-backup.test.ts tests/architecture/m68-authority.test.mjs",
     "db:backup": "node scripts/backup.mjs backup",
-    "db:restore": "node scripts/backup.mjs restore"
+    "db:restore": "node scripts/backup.mjs restore",
+    "data:manual": "python3 scripts/inspect-08b-manual-corpus.py",
+    "data:manual:current": "node scripts/reprocess-manual-first.mjs",
+    "data:manual:ocr": "python3 scripts/extract-08b-pages.py",
+    "data:manual:reconcile": "python3 scripts/reconcile-08b-extraction.py",
+    "data:cafef:fetch": "node scripts/fetch-cafef-poc.mjs",
+    "data:cafef:analyze": "node scripts/analyze-cafef-poc.mjs"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

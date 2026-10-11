@@ -1,0 +1,351 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+ ✓ tests/integration/decision.test.ts (14 tests) 20041ms
+   ✓ M6.5 immutable persisted decisions (4)
+     ✓ append/read, duplicate rejection, prior/snapshot/score/method/evidence lineage, later artifacts cannot rewrite history 1819ms
+     ✓ application resolves stored artifacts and rechecks portfolio instead of accepting client decision authority 616ms
+     ✓ rejects missing prior record, invented result and mismatched prior security 592ms
+     ✓ populated M6.4 SQLite upgrade preserves exact upstream rows and supports repeated migrations 2165ms
+   ✓ pending candidate cannot claim approval; retirement never rewrites historical synthetic decisions 574ms
+   ✓ M6.5.2 approved methodology persistence (4)
+     ✓ append-only migration over populated M6.4/M6.5; decision history false 2076ms
+     ✓ append-only migration over populated M6.4/M6.5; decision history true 2081ms
+     ✓ fresh database pins immutable approval, rejects forged metadata and leaves historical candidates non-production 557ms
+     ✓ approved identity creates a new formal artifact through server resolution, without upgrading synthetic history 589ms
+   ✓ M6.5.3 immutable sector remediation (5)
+     ✓ populated M6.4 upgrade/repeat preserves every historical row 2572ms
+     ✓ populated M6.5.1 upgrade/repeat preserves every historical row 2626ms
+     ✓ populated M6.5.2 upgrade/repeat preserves every historical row 2613ms
+     ✓ fresh registry pins the corrected record and cannot rewrite either approved version 560ms
+     ✓ server blocks old-version selection and arbitrary approval/plan/state strings; new formal truth leaves historical BUY intact 600ms
+stdout | tests/integration/m68.test.ts > M6.8 downstream formal authority chain with historical upstream scores (disposable test evidence) > performance sanity: current reads at 30 holdings preserve exact NAV and record local latency
+{"profile":"VN30 30 holdings / 31 immutable ledger events","currentReadMilliseconds":[13.041624999998021,11.543499999999767,12.355290999999852,12.031457999997656,11.110584000001836],"meanMilliseconds":12.016491599999426,"ledgerReadsPerCaptureFromSourceAudit":5,"limitation":"full-history reconstruction; measurements are local, not an SLA"}
+
+ ✓ tests/integration/m68.test.ts (12 tests) 30732ms
+   ✓ M6.8 downstream formal authority chain with historical upstream scores (disposable test evidence) (12)
+     ✓ A: contribution, cash-only current state, excluded formal universe and HOLD CASH never buy 1081ms
+     ✓ B/G/U/Q/S: score → BUY → persisted marginal lots → review/proposal → explicit ledger → reconstruction/reversal; history survives 4248ms
+     ✓ ambiguous, mismatched, missing and tampered marginal authority never falls back to an allocation 1615ms
+     ✓ later calculations use issuance cutoff; retry preserves time and revised proposal supersedes history 3887ms
+     ✓ production catalog cannot hide a corrupt marginal body by changing its scope before selection 1475ms
+     ✓ production server composition resolves persisted marginal authority without browser input 3636ms
+     ✓ security: all injected authority and lineage fields fail before a review write 811ms
+     ✓ fresh/populated M6.7 database: repeated deploy/status preserves all rows and historical replay 6337ms
+     ✓ adapter failures and future source times block formal action without fallback 892ms
+     ✓ concurrent/repeated monthly initiation is idempotent and never changes accounting 4654ms
+     ✓ V: corrected dataset B creates a new score and current context without rewriting decision A 1093ms
+     ✓ performance sanity: current reads at 30 holdings preserve exact NAV and record local latency 1003ms
+ ✓ tests/integration/m68-backup.test.ts (3 tests) 19981ms
+   ✓ backup → disposable restore → integrity, complete historical rows, accounting and artifact replay 2118ms
+   ✓ backup/restore refuses overwrite, same path, public output, symlinks, missing checksums and altered backup bytes 16531ms
+   ✓ corrupt authoritative artifact cannot be published as a validated backup 1331ms
+ ✓ tests/integration/marginal.test.ts (5 tests) 19310ms
+   ✓ M6.6.1 persisted marginal boundary (5)
+     ✓ persists/replays two authoritative lots and stop, creates a new review, never posts trades 3774ms
+     ✓ rejects forged authority, corrupted artifacts, stale snapshots and formal/synthetic crossing 2374ms
+     ✓ substitution history is persisted, required on later reviews, and cannot be omitted or forged 4196ms
+     ✓ links actual fills to individual marginal lots and rejects duplicate or missing lot references 5197ms
+     ✓ M6.6 populated upgrade preserves reviews, proposals, embedded journals, audits, decision and execution links byte-for-byte 3768ms
+ ✓ tests/integration/workflow.test.ts (11 tests) 17692ms
+   ✓ M6.6 immutable application and persistence (11)
+     ✓ persists proposal/journal atomically, deduplicates runs, never posts transactions 1473ms
+     ✓ same weekly invocation is idempotent; elapsed week creates no trades 1244ms
+     ✓ missing, stale, corrupt and client-injected authority all fail closed 1499ms
+     ✓ production boundary rejects synthetic history 1081ms
+     ✓ event supersedes pending schedule, blocks new monthly runs and preserves historical proposal 1673ms
+     ✓ decision audit preserves contemporaneous evidence and separates profit from quality 1453ms
+     ✓ historical R1/A1 survive new cash, snapshot, score/rank/decision and scoring identity 2156ms
+     ✓ execution readiness expires on new evidence, changed portfolio or an event 1364ms
+     ✓ execution links require a posted matching M6.3 transaction 1265ms
+     ✓ links an explicit posted trade without changing the original proposal or ledger 1307ms
+     ✓ fresh and populated M6.5 migration repeatability preserves every upstream row 3175ms
+ ✓ tests/integration/portfolio.test.ts (18 tests) 16854ms
+   ✓ M6.3 real SQLite ledger / commands / migrations (18)
+     ✓ VC-L01 Command -> validation -> repository -> SQLite -> reload -> replay 660ms
+     ✓ VC-L05 / VC-SEC02 duplicate key/source and stale double submit cannot post twice 580ms
+     ✓ same values with distinct economic identities are not silently merged 570ms
+     ✓ VC-L03 oversell rejects before authoritative commit and revision advance 579ms
+     ✓ VC-SEC03 stale draft is rejected; never posts against stale quantity 586ms
+     ✓ raw late-leg insert/update/delete/replace/header destructive mutation fail 576ms
+     ✓ failed required leg insert rolls back header, revision and all legs 567ms
+     ✓ VC-L07 projection failure retains authoritative event and stale old projection 579ms
+     ✓ VC-L08 new event invalidates historical snapshot watermark 579ms
+     ✓ VC-L06 settled trade correction is atomic, queryable, survives reload 596ms
+     ✓ independent connections racing at one watermark permit at most one economic command 5903ms
+     ✓ decimal TEXT round-trip beyond safe integer and fractional charge 582ms
+     ✓ migration repeat/reopen retains methodology and reconstructs the golden fixture 1638ms
+     ✓ historical watermark reproduces the input set before a later backdated contribution 575ms
+     ✓ an old rebuild cannot overwrite a projection from a newer ledger revision 562ms
+     ✓ snapshot includes valuation/reconciliation versions and blocks missing evidence or changed inputs 576ms
+     ✓ corporate reference and staged accounting effects persist separately and are immutable 576ms
+     ✓ FK and value exclusivity constraints enabled 568ms
+ ✓ tests/integration/portfolio-review-remediation.test.ts (22 tests) 12641ms
+   ✓ R2-C01 future oversell rejects before commit; 100 current shares and watermark remain unchanged 655ms
+   ✓ R2-C01 future BUY then SELL and both settlements are accepted at valid economic transitions 587ms
+   ✓ R2-C01 future corporate-action duplicate EFFECTIVE stage is rejected before commit 574ms
+   ✓ R2-C01 future unfunded payable cannot hide beyond now 572ms
+   ✓ R2-C01 new earlier SELL cannot consume shares promised to an existing later future SELL 572ms
+   ✓ R2-C01 validates intermediate boundaries even when final future quantity would recover 586ms
+   ✓ R2-C01 future excessive settlement is rejected atomically 568ms
+   ✓ R2-C01 future settlement before originating obligation is rejected 568ms
+   ✓ R2-C01 future reversal cannot invalidate an already committed later sale 571ms
+   ✓ R2-C01 future settled-trade correction preserves atomicity and reversal lineage 583ms
+   ✓ R2-C01 future speculative event is still rejected, separate from confirmed future effect 554ms
+   ✓ R2-M01 projection infrastructure failure preserves ledger without claiming accounting corruption 562ms
+   ✓ R2-M01 concurrent watermark produces STALE even if rebuild throws ConflictError=false 565ms
+   ✓ R2-M01 concurrent watermark produces STALE even if rebuild throws ConflictError=true 568ms
+   ✓ R2-M01 unexpected post-commit reconstruction failure explicitly blocks trust without compensation 574ms
+   ✓ R2-M01 typed integrity error from projection is not an ordinary rebuild failure 562ms
+   ✓ R2-M01 post-commit integrity read failure is explicit and contains only safe diagnostics 574ms
+   ✓ R2-m03 persisted malformed-json rejects with safe DataIntegrityError 575ms
+   ✓ R2-m03 persisted column-mismatch rejects with safe DataIntegrityError 567ms
+   ✓ R2-m03 persisted leg-mismatch rejects with safe DataIntegrityError 560ms
+   ✓ R2-m03 persisted unknown-method rejects with safe DataIntegrityError 572ms
+   ✓ R2-m03 persisted action-terms rejects with safe DataIntegrityError 575ms
+ ✓ tests/unit/workflow.test.ts (36 tests) 12514ms
+   ✓ M5 review workflows (35)
+     ✓ ordinary week has NO ACTION, no score/rank/decision refresh, no trade 308ms
+     ✓ all documented bias tags require contemporaneous evidence 3892ms
+ ✓ tests/integration/portfolio-regressions.test.ts (20 tests) 11513ms
+   ✓ AUDIT-C01 must reject a second active split backdated before the first reversal 664ms
+   ✓ AUDIT-M01 snapshot must resolve January 3 reference at January 2 18:00 UTC (January 3 01:00 Vietnam) 586ms
+   ✓ AUDIT-M02 a snapshot before supported inception must not claim VALID zero-state history 560ms
+   ✓ C01 replacement after reversal preserves original historical state and accepts one active stage 585ms
+   ✓ C01 replay rejects a duplicate backdated before the original even if latest active state appears free 570ms
+   ✓ C01 atomic replacement at reversal effective time follows deterministic economic ordering 579ms
+   ✓ M03 imported NAV baseline is priced, reproducible, versioned and separate from cost and contributions 586ms
+   ✓ M03 absent inception inputs block actionable imported snapshot while preserving current NAV 572ms
+   ✓ M03 missing inception evidence cannot be replaced with cost basis or current inputs 568ms
+   ✓ M03 stale inception evidence cannot be replaced with cost basis or current inputs 566ms
+   ✓ M03 future inception evidence cannot be replaced with cost basis or current inputs 578ms
+   ✓ M03 conflicting inception evidence cannot be replaced with cost basis or current inputs 565ms
+   ✓ M03 missing-sector inception evidence cannot be replaced with cost basis or current inputs 565ms
+   ✓ M03 missing-membership inception evidence cannot be replaced with cost basis or current inputs 576ms
+   ✓ M03 revised inception evidence recomputes gain without changing ledger 574ms
+   ✓ M02 inception itself is supported and empty zero-start history is distinct from pre-inception 551ms
+   ✓ M01 reference day boundary 2026-01-02T16:59:59.999Z resolves sector and identifier to OLD 571ms
+   ✓ M01 reference day boundary 2026-01-02T17:00:00.000Z resolves sector and identifier to NEW 561ms
+   ✓ M01 reference day boundary 2026-01-02T23:59:59.999Z resolves sector and identifier to NEW 567ms
+   ✓ M01 reference day boundary 2026-01-03T00:00:00.000Z resolves sector and identifier to NEW 567ms
+ ✓ tests/unit/marginal.test.ts (22 tests) 11079ms
+   ✓ M6.6.1 M6.5-owned marginal authorization (22)
+     ✓ A/B: two lots authorized; third blocked; post-lot exposures and residual are preserved 374ms
+     ✓ C: projected sector capacity stops the next lot 307ms
+     ✓ D: cash stops after one lot without exhausting the residual 308ms
+     ✓ G: only refreshed authoritative comparisons permit A then B 453ms
+     ✓ H: a new tie requires review, never alphabetical selection 414ms
+     ✓ I: 15 candidates use comparison evidence, with deterministic replay 4131ms
+     ✓ J: affordable alternative that fails required return receives no substitution 357ms
+     ✓ K: approved §12 conjunction permits B, then cash stops; preserves A's merit 408ms
+     ✓ L: lower share price alone grants no substitution authority 363ms
+     ✓ missing mosNotMateriallyWeaker evidence retains cash 362ms
+     ✓ missing concentrationNotWorse evidence retains cash 365ms
+     ✓ missing diversionDoesNotStarvePreferred evidence retains cash 369ms
+     ✓ recurring diversion requires fresh competitive evidence 369ms
+ ✓ tests/integration/scoring-readiness.test.ts (11 tests) 10277ms
+   ✓ FORMAL writes score plus immutable exact dataset binding, computes all-ticker readiness and reopens 1533ms
+   ✓ direct/default FORMAL engine and artifact repository cannot bypass DI; synthetic scope remains intact 726ms
+   ✓ a stored caller-authored DI PASS or a different run cannot manufacture independent review authority 810ms
+   ✓ reviewed financial/model/human inputs and clocks cannot be changed behind a valid acceptance 959ms
+   ✓ immutable guards, restrictive links and rollback retain both datasets and legacy score artifacts 1020ms
+   ✓ transport hashes cannot hide tampered DI review, readiness bindings or forged domain scores 956ms
+   ✓ historical FORMAL artifacts without dataset links remain readable but cannot claim readiness at the ranking boundary 759ms
+   ✓ configured review hashes still require an exact approved production methodology and requirements binding 732ms
+   ✓ governed DATE_ONLY persists, reopens and cannot be forged through reviewed input or external evidence 1136ms
+   ✓ stored v1 score, acceptance and dataset binding replay unchanged; v1 cannot authorize a new FORMAL write 794ms
+   ✓ even an externally pinned reviewed package cannot authorize caller-created DATE_ONLY lineage outside the canonical bridge 852ms
+ ✓ tests/unit/dca.test.ts (32 tests) 10490ms
+   ✓ M6.6 DCA baseline (32)
+     ✓ DCA-01 contribution exists without qualified candidates: HOLD CASH 326ms
+     ✓ DCA-04 high score LOW confidence cannot deploy 302ms
+     ✓ DCA-09 M6.5 robust comparator evidence determines priority 343ms
+     ✓ 2 equal candidates preserve economic tie regardless of affordability 323ms
+     ✓ 5 equal candidates preserve economic tie regardless of affordability 522ms
+     ✓ 15 equal candidates preserve economic tie regardless of affordability 1115ms
+     ✓ economically preferred but unaffordable does not substitute next affordable 350ms
+     ✓ old proposal remains immutable when all current artifacts change 541ms
+ ✓ tests/integration/current-remediation.test.ts (12 tests) 7957ms
+   ✓ A: authoritative NAV includes payable; price changes never alter accounting or transactions 704ms
+   ✓ B/C: missing, stale, unknown and conflicted latest price fail closed 620ms
+   ✓ D: effective-dated sector changes do not mutate old captured evidence 619ms
+   ✓ E: reconciliation discrepancy and stale ledger block actionability despite valid prices 608ms
+   ✓ F/H: preview does not write; concurrent weekly submissions persist one formal review without refresh/trade 635ms
+   ✓ I/security: browser authority fields are rejected before any formal write 597ms
+   ✓ J/K/L: missing analyst evidence, synthetic sources and arbitrary events cannot create reviews 610ms
+   ✓ G: posted monthly contribution with formal excluded universe preserves HOLD CASH and cash 1119ms
+   ✓ annual evidence remains separate from policy; missing quarterly evidence fails closed 625ms
+   ✓ normalized local adapter rejects forged outputs and preserves source as-of separately from retrieval 602ms
+   ✓ missing one of two held prices suppresses total NAV instead of a partial total 602ms
+   ✓ latest invalid or ambiguous quote cannot fall back to an older valid quote 615ms
+ ✓ tests/integration/registry.test.ts (10 tests) 7208ms
+   ✓ actual SQLite methodology registry (10)
+     ✓ migrates an empty DB with expected foundation/ledger tables and private permissions 1183ms
+     ✓ round-trips full metadata and date/instant semantics and freezes the mapped record 620ms
+     ✓ maps duplicates to ConflictError without replacing the original 604ms
+     ✓ preserves find missing/null and maps required missing to NotFoundError 620ms
+     ✓ rejects malformed metadata before writing 600ms
+     ✓ rolls back the entire transaction on a duplicate append 627ms
+     ✓ blocks update, delete and REPLACE through supported connections 610ms
+     ✓ preserves records on reconnect and repeated migration deploy 1146ms
+     ✓ detects invalid persisted metadata instead of returning trusted domain state 594ms
+     ✓ supports canonical effective-date filtering without implicit timezone shifts 602ms
+ ✓ tests/integration/fundamentals-snapshot.test.ts (9 tests) 6100ms
+   ✓ atomically seals/reopens content, selected/excluded members, provenance and independent build runs 777ms
+   ✓ authoritative enumeration rejects hidden conflicts, incomplete pins and forged availability with no partial content 657ms
+   ✓ new imports after frozen cutoff reproduce original content and eligible lineage while retained raw evidence stays immutable 648ms
+   ✓ all artifact/member writes reject update/delete/replace and restrictive FK violations 651ms
+   ✓ detects run/manifest/member tampering even if the attacker recomputes transport body hashes 660ms
+   ✓ raw capture tampering is detected during replay and future builds, despite apparently valid content identity 677ms
+   ✓ proposed registry/policy and request self-approval cannot produce a FORMAL run 666ms
+   ✓ persists derived membership with restrictive FKs and rejects output tampering through derivation replay 700ms
+   ✓ FORMAL availability requires an exact external policy hash binding and production methodology record 664ms
+ ✓ tests/integration/data-freshness.test.ts (9 tests) 5959ms
+   ✓ empty data never invents universe or readiness counters and the data read bypasses portfolio/broker services 764ms
+   ✓ exact 30-member coverage and governed DATE_ONLY clocks are shown independently of DI readiness, with no writes 1108ms
+   ✓ stored DI PASS cannot establish readiness without trusted review capabilities; mismatched acceptance/run stays blocked 944ms
+   ✓ unknown publication and excluded/missing requirements stay visible; public DTO withholds raw payloads, private references and credential URLs 649ms
+   ✓ a verified DATE_ONLY snapshot is readable by default composition without creating approvals or fabricated issuer times 623ms
+   ✓ tampered snapshot and malformed/absent run references fail closed without exposing diagnostics 607ms
+   ✓ revision provenance resolves the pinned predecessor without including operator or raw capture bodies 632ms
+   ✓ governed derived lineage displays actual ordered operands and selected canonical constituent IDs 631ms
+ ✓ tests/integration/fundamentals-normalization.test.ts (7 tests) 4743ms
+   ✓ qualification-bound normalization and immutable validation storage (7)
+     ✓ persists validated observations, exact lineage and unknown publication/availability; reopens and rejects duplicate writes 773ms
+     ✓ retains cross-receipt conflicts and unknown mappings as BLOCKED artifacts without overwriting prior facts 647ms
+     ✓ missing data stays null; corrected/revoked qualification and FORMAL unapproved maps block normalization 626ms
+     ✓ atomic persistence rejects forged output/context and rollback leaves no partial artifact 652ms
+     ✓ SQL mutation/replacement guards, restrictive foreign keys and read tamper detection hold 661ms
+     ✓ retains issuer, provider and mapping revision chains with exact replay and no availability inference 728ms
+     ✓ legacy assessments replay without relabeling history; new legacy append is rejected 654ms
+ ✓ tests/integration/dashboard-ui.test.ts (6 tests) 3794ms
+   ✓ M6.7 local read / confirmed command integration (6)
+     ✓ preview does not write; confirmation posts; repeat confirmation cannot duplicate 704ms
+     ✓ rejects tampering, browser business outputs, expired confirmation and stale watermark 640ms
+     ✓ reversal appends a new fact instead of mutating original 618ms
+     ✓ BUY preview resolves amount on server and rejects oversell without posting 612ms
+     ✓ read validates immutable ledger rather than trusting projection payload 607ms
+     ✓ rejects missing/cross-origin and remote host writes 612ms
+ ✓ tests/integration/fundamentals-repository.test.ts (6 tests) 3757ms
+   ✓ immutable fundamental SQLite repository (6)
+     ✓ exact source/capture/import/observation round-trip, reopen and no ledger mutation 695ms
+     ✓ retains conflicts and every correction kind without latest-wins or overwrites 629ms
+     ✓ raw invalid payload remains available and failed/partial imports cannot imply completeness 608ms
+     ✓ rejects unknown Security/capture/lineage and forged registry/formal production writes 611ms
+     ✓ guards UPDATE DELETE REPLACE and ON CONFLICT mutation at the database boundary 614ms
+     ✓ detects body, scalar metadata and raw payload tampering on read 599ms
+ ✓ tests/integration/scoring-artifacts.test.ts (4 tests) 3532ms
+   ✓ immutable scoring artifacts, actual SQLite (4)
+     ✓ fresh migration, immutable roundtrip, correction and registered methodology only 719ms
+     ✓ populated M6.3 upgrade and repeat deploy preserve existing data 1684ms
+     ✓ ranking persists only from formal scorecards and replays after method/evidence revisions 1114ms
+ ✓ tests/integration/fundamentals-availability-evidence.test.ts (5 tests) 3266ms
+   ✓ persists trusted boundaries and independently verifies authority on reopen; missing composition fails closed 745ms
+   ✓ adding a trusted binding does not reinterpret pinned fallback or legacy artifacts; new assessment has a separate identity 671ms
+   ✓ source/provider/hash/receipt mismatches reject governed input without persisting any assessment 630ms
+   ✓ a forged stored trusted assessment cannot create authority even with a recomputed body hash 605ms
+   ✓ FORMAL v2 requires independent exact registry, policy and publicly receivable provider methodology bindings 615ms
+ ✓ tests/integration/fundamentals-derivation.test.ts (5 tests) 3222ms
+   ✓ persists exact formula/input/adjustment lineage atomically, reopens and retains canonical facts 714ms
+   ✓ rejects forged output, missing inputs and formal proposed release without partial writes 628ms
+   ✓ keeps N/R evidence, guards artifact/input mutation and replacement, restrictive FKs and tamper replay 630ms
+   ✓ persists/reopens/replays complete monetary review dimensions and N/R mismatches without mutating facts 625ms
+   ✓ legacy adjusted bodies stay immutable and replay fails closed rather than guessing missing dimensions 624ms
+ ✓ tests/integration/scoring-readiness-migration.test.ts (1 test) 2768ms
+   ✓ populated Slice05 upgrade preserves every old table, trigger, snapshot and historical score without retroactive bindings 2768ms
+ ✓ tests/unit/scoring.test.ts (59 tests) 2623ms
+ ✓ tests/unit/dashboard-ui.test.tsx (29 tests) 2405ms
+   ✓ M6.7 authority-preserving UI (25)
+     ✓ HOLD CASH is successful and proposal remains distinct from execution 303ms
+   ✓ renders marginal authorization, stop reasons and substitution policy with supporting evidence 505ms
+ ✓ tests/integration/fundamentals-migration.test.ts (1 test) 2356ms
+   ✓ populated latest baseline upgrade, repeat deployment and all previous rows/triggers/portfolio replay are preserved 2356ms
+ ✓ tests/integration/fundamentals-normalization-migration.test.ts (1 test) 2307ms
+   ✓ upgrades populated Slice 2 baseline additively, preserves every old table/trigger/row and repeats deployment 2306ms
+ ✓ tests/integration/fundamentals-snapshot-migration.test.ts (1 test) 2345ms
+   ✓ upgrades populated Slice4 baseline additively and preserves every prior table, trigger and row 2345ms
+ ✓ tests/integration/fundamentals-derivation-migration.test.ts (1 test) 2340ms
+   ✓ upgrades populated Slice 3 baseline additively, preserves every old table/trigger/row and repeats deployment 2339ms
+ ✓ tests/integration/portfolio-migration.test.ts (1 test) 2395ms
+   ✓ populated M6.2 -> M6.3 additive migration preserves config records and replays fixture 2395ms
+ ✓ tests/unit/m68-policy.test.ts (5 tests) 1837ms
+   ✓ D/W: gain above 20 percent and biased rationales do not overwrite formal HOLD 1501ms
+ ✓ tests/unit/data-freshness-ui.test.tsx (6 tests) 1641ms
+   ✓ shows exact coverage denominator, historical readiness and current diagnostic staleness without trade controls 692ms
+ ✓ tests/unit/fpt-collector.test.ts (7 tests) 1421ms
+   ✓ FPT raw documents, no live network (7)
+     ✓ preserves binary bytes and hashes, captures landing page and stays PARTIAL 1408ms
+ ✓ tests/integration/isolation.test.ts (1 test) 1279ms
+   ✓ independent database fixtures never share records and remove only their owned directories 1278ms
+ ✓ tests/unit/scoring-golden.test.ts (32 tests) 967ms
+ ✓ tests/unit/decision-sector.test.ts (36 tests) 802ms
+ ✓ tests/unit/decision.test.ts (139 tests) 719ms
+ ✓ tests/integration/fundamentals-ingest.test.ts (1 test) 736ms
+   ✓ persists immutable raw page/error/PDF manifests and retains independent refreshes 735ms
+ ✓ tests/integration/issuer-documents.test.ts (1 test) 759ms
+   ✓ generic issuer collection persists only raw events and document lineage with no canonical/DI promotion 758ms
+ ✓ tests/integration/numeric.test.ts (11 tests) 660ms
+ ✓ tests/unit/scoring-readiness.test.ts (10 tests) 548ms
+ ✓ tests/architecture/boundaries.test.mjs (33 tests) 378ms
+   ✓ dependency boundaries (33)
+     ✓ accepts the real nonempty source graph 306ms
+ ✓ tests/unit/scoring-portfolio.test.ts (9 tests) 239ms
+ ✓ tests/unit/document-qualification.test.ts (11 tests) 161ms
+ ✓ tests/unit/current-remediation-ui.test.tsx (3 tests) 147ms
+ ✓ tests/unit/broker-snapshot.test.tsx (3 tests) 117ms
+ ✓ tests/unit/app-shell.test.tsx (2 tests) 95ms
+ ✓ tests/unit/scoring-evidence-time.test.ts (4 tests) 99ms
+ ✓ tests/architecture/initialization-preflight.test.mjs (3 tests) 76ms
+ ✓ tests/unit/fundamentals-snapshot.test.ts (18 tests) 70ms
+ ✓ tests/unit/fundamentals-availability-evidence.test.ts (10 tests) 46ms
+ ✓ tests/unit/issuer-documents.test.ts (12 tests) 42ms
+ ✓ tests/architecture/ui-authority.test.mjs (1 test) 44ms
+ ✓ tests/unit/fundamentals-revisions.test.ts (7 tests) 32ms
+ ✓ tests/unit/fundamentals-normalization.test.ts (12 tests) 29ms
+ ✓ tests/unit/fundamentals-live-public-disclosure.test.ts (4 tests) 30ms
+ ✓ tests/unit/scoring-bridge-derived.test.ts (5 tests) 28ms
+ ✓ tests/unit/portfolio-accounting.test.ts (54 tests) 29ms
+ ✓ tests/architecture/di123-candidates.test.mjs (27 tests) 10ms
+ ✓ tests/unit/fundamentals-snapshot-derived.test.ts (4 tests) 24ms
+ ✓ tests/unit/fundamentals-derivation.test.ts (10 tests) 24ms
+ ✓ tests/unit/fundamentals-review-candidate.test.ts (4 tests) 24ms
+ ✓ tests/architecture/08b-review.test.mjs (20 tests) 24ms
+ ✓ tests/unit/fundamentals-fact-equivalence.test.ts (5 tests) 21ms
+ ✓ tests/unit/fundamentals-equivalence-pit-selection.test.ts (2 tests) 18ms
+ ✓ tests/unit/fundamentals-financial-disclosure.test.ts (3 tests) 17ms
+ ✓ tests/unit/portfolio-read-models.test.ts (20 tests) 18ms
+ ✓ tests/unit/fundamentals-source-period-withdrawal.test.ts (3 tests) 17ms
+ ✓ tests/unit/fundamentals-adjustment.test.ts (7 tests) 16ms
+ ✓ tests/unit/fundamentals-comparative-period.test.ts (1 test) 14ms
+ ✓ tests/integration/broker-snapshot.test.ts (2 tests) 14ms
+ ✓ tests/unit/fundamentals-source-fact-rejection.test.ts (2 tests) 12ms
+ ✓ tests/architecture/m68-authority.test.mjs (2 tests) 5ms
+ ✓ tests/integration/file-safety.test.ts (14 tests) 9ms
+ ✓ tests/unit/fundamentals-contracts.test.ts (10 tests) 11ms
+(node:39920) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/broker-observations.test.ts (2 tests) 7ms
+ ✓ tests/unit/validation.test.ts (25 tests) 7ms
+ ✓ tests/unit/decision-portfolio.test.ts (2 tests) 7ms
+ ✓ tests/unit/methodology-validation.test.ts (13 tests) 6ms
+ ✓ tests/unit/config-errors.test.ts (21 tests) 6ms
+ ✓ tests/unit/fundamentals-availability-legacy.test.ts (1 test) 6ms
+ ✓ tests/unit/fundamentals-manual-document.test.ts (9 tests) 5ms
+ ✓ tests/unit/portfolio-command.test.ts (1 test) 5ms
+ ✓ tests/unit/foundation.test.ts (15 tests) 5ms
+ ✓ tests/unit/fundamentals-operational-freshness.test.ts (4 tests) 3ms
+ ✓ tests/unit/broker-api-data.test.ts (2 tests) 4ms
+ ✓ tests/unit/fundamentals-public-resource.test.ts (4 tests) 4ms
+ ✓ tests/unit/logging.test.ts (6 tests) 4ms
+ ✓ tests/architecture/fundamentals-mapping-closure.test.mjs (4 tests) 3ms
+ ✓ tests/architecture/fundamentals-governance-boundary.test.mjs (5 tests) 2ms
+
+ Test Files  90 passed (90)
+      Tests  1063 passed (1063)
+   Start at  06:57:44
+   Duration  305.89s (tests 92%, environment 4%, setup 2%, import 1%, transform 1%)
+
+    Isolate  90 workers spawned · ~199ms startup each (spawn + environment, per file)
+             at least ~17.72s faster with isolate: false — reuses workers across files instead of one per file
+
+JSON report written to /Users/nglehoangan/Documents/Working/VN_30_Investment/docs/fundamental-data-engine/evidence/2026-10-12-di14-blocker-closure/full-regression-final-results.json

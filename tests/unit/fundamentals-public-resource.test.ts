@@ -1,6 +1,18 @@
 import {describe,it,expect} from 'vitest';
 import {publicDocumentQuery,rawResourceReference} from '../../src/infrastructure/fundamentals/public-resource';
 
+it('allows public document routing for additional tickers and historical filings, without arbitrary query parameters',()=>{
+ for(const ticker of ['FPT','HPG','GVR','ACB','TCX']){
+  const url=`https://finance.vietstock.vn/${ticker.toLowerCase()}/tai-tai-lieu.htm?doctype=1`;
+  expect(publicDocumentQuery(new URL(url))).toBe(true);
+  expect(publicDocumentQuery(new URL(url+'&token=secret'))).toBe(false);
+  expect(publicDocumentQuery(new URL(url.replace('doctype=1','doctype=2')))).toBe(false);
+ }
+ const historical='https://static2.vietstock.vn/data/HOSE/2024/BCTC/VN/NAM/FPT.pdf?ver=1234abcd';
+ expect(publicDocumentQuery(new URL(historical))).toBe(true);
+ expect(publicDocumentQuery(new URL(historical+'&account=private'))).toBe(false);
+});
+
 describe('observed public secondary filing routing',()=>{
  it('pins the reviewed VIB edition without widening the query contract',()=>{
   const url='https://www.vib.com.vn/wps/wcm/connect/a404414a-c634-43ca-9fd6-9d4475d4c289/20260806+-+VIB+-+BCTC+hop+nhat+soat+xet+ban+nien+2026.pdf?MOD=AJPERES&CONVERT_TO=url&CACHEID=ROOTWORKSPACE-a404414a-c634-43ca-9fd6-9d4475d4c289-p.lJrlM';
