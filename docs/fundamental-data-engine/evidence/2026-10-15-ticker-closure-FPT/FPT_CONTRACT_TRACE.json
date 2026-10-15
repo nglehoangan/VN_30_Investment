@@ -1,0 +1,183 @@
+{
+  "ticker": "FPT",
+  "sector": "TECHNOLOGY",
+  "authorityFiles": [
+    {
+      "path": "docs/01 SYSTEM/SCORING_MODEL_v1.0.md",
+      "SHA256": "2afc75a20e13d08b88459f57b39a6ebb13f91452fc8b3313a0e817ea0dd44aff"
+    },
+    {
+      "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+      "SHA256": "c624180510ecbaf652c7120ebdcc331bfa80f72b2d772380d1caeec35c0b697c"
+    },
+    {
+      "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+      "SHA256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4"
+    },
+    {
+      "path": "docs/03 SCORING/SCORECARD_TEMPLATE.md",
+      "SHA256": "fe3051843accb2667d5e1b6eba5c0222696676195fa68b4b9d10da91663b0971"
+    },
+    {
+      "path": "docs/08_CONTINUOUS_IMPROVEMENT/MANUAL_FUNDAMENTALS_ARCHITECTURE.md",
+      "SHA256": "cb74f900dfd26b2f3cb0b234fc4a8ead1d4ce14fbee8991f7aae717905cfb515"
+    },
+    {
+      "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v1.json",
+      "SHA256": "0dd4149a6f5b39e69e96d320621ab9e09ddb52de3153112c0a751fa3894a328a"
+    },
+    {
+      "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+      "SHA256": "11cd53d5f52913f0365f8749538d5023cc5fdf5a27a7f212ab03bcb64ad4749e"
+    },
+    {
+      "path": "src/domain/fundamentals/debt-contract-v2.json",
+      "SHA256": "37aebee839c1a2e6d18c72fffee4ac664e532b7b144d9f96ada87d8c938cfdd2"
+    },
+    {
+      "path": "src/domain/fundamentals/debt-contract.ts",
+      "SHA256": "00521ed85766cda721d7c4eb353fb8363ec2a05d05d6aeac8bef67d3fed80d68"
+    },
+    {
+      "path": "src/domain/fundamentals/hybrid-sufficiency.ts",
+      "SHA256": "3aa7d2a70a1944e6fbce0506788e68e4feae1e1af42eb252604b27bdbb650b42"
+    },
+    {
+      "path": "src/infrastructure/fundamentals/canonical-registry.ts",
+      "SHA256": "bc63ab9de332daab00e184057a305a710793e55212adf8f8c50dbed65591416c"
+    },
+    {
+      "path": "src/infrastructure/fundamentals/cafef.ts",
+      "SHA256": "823a7e1bfbff7337c8631de4b29bc9393f8b5d97e3187fc85ede28da954e7b37"
+    },
+    {
+      "path": "tests/unit/hybrid-targets.test.ts",
+      "SHA256": "dcdf31296aec9048f86ab84250836e5ec6ad8fdf2feefad89b7f0827fb5d7cbe"
+    },
+    {
+      "path": "tests/unit/debt-contract-activation.test.ts",
+      "SHA256": "677ab0a1670192024d32508d76d5683d48a7e8c813428c41090df428adf4137f"
+    },
+    {
+      "path": "tests/unit/structured-certification.test.ts",
+      "SHA256": "35c92e26ccf09b0f1b8e8cc3c252ba897f4413b32d9b4a2c8a09d058d170541a"
+    },
+    {
+      "path": "src/infrastructure/fundamentals/canonical-items-v1.json",
+      "SHA256": "dfc9be8bc4a46bdb07310d096704274a44447d5e139033251bd996ab3811dc60"
+    },
+    {
+      "path": "src/infrastructure/fundamentals/debt-canonical-items-v2.json",
+      "SHA256": "b9314cd523cfb0dd06f62597d018697c83a0c56e289892387fc6dddd29f0cabb"
+    }
+  ],
+  "requirements": {
+    "CORE": [
+      {
+        "id": "assets",
+        "anyOf": [
+          "TOTAL_ASSETS"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      },
+      {
+        "id": "equity",
+        "anyOf": [
+          "TOTAL_EQUITY"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      },
+      {
+        "id": "earnings",
+        "anyOf": [
+          "NET_INCOME"
+        ],
+        "component": "BUSINESS_QUALITY"
+      },
+      {
+        "id": "sales",
+        "anyOf": [
+          "REVENUE"
+        ],
+        "component": "GROWTH_QUALITY"
+      },
+      {
+        "id": "cash_generation",
+        "anyOf": [
+          "CFO"
+        ],
+        "component": "BUSINESS_QUALITY"
+      },
+      {
+        "id": "debt",
+        "anyOf": [
+          "COMPREHENSIVE_FINANCIAL_DEBT",
+          "REPORTED_BORROWINGS"
+        ],
+        "component": "FINANCIAL_HEALTH",
+        "preference": [
+          "COMPREHENSIVE_FINANCIAL_DEBT",
+          "REPORTED_BORROWINGS"
+        ]
+      },
+      {
+        "id": "cash",
+        "anyOf": [
+          "CASH_AND_EQUIVALENTS"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      }
+    ],
+    "SECTOR_CORE": [
+      {
+        "id": "cash_reinvestment",
+        "anyOf": [
+          "CASH_CAPEX_REPORTED"
+        ],
+        "component": "BUSINESS_QUALITY"
+      }
+    ],
+    "SUPPORTING": [
+      "NET_INCOME_ATTRIBUTABLE_COMMON",
+      "NET_INCOME_ATTRIBUTABLE_PARENT",
+      "BASIC_EPS",
+      "OPERATING_PROFIT",
+      "CASH_CAPEX_REPORTED",
+      "CURRENT_ASSETS",
+      "CURRENT_LIABILITIES",
+      "RECEIVABLES"
+    ],
+    "OPTIONAL": [
+      "ROIC",
+      "ROA",
+      "MARGIN_STABILITY"
+    ],
+    "requiredDerivations": [],
+    "rationale": "M3 \u00a710: cash economics and reinvestment."
+  },
+  "periods": [
+    "FY2022",
+    "FY2023",
+    "FY2024",
+    "FY2025",
+    "6M2026"
+  ],
+  "freshness": "60 calendar days quarterly grace: 30 September + 60 days not yet due on 15 October; 30 June + 60 days due",
+  "approvedDebtPreference": [
+    "COMPREHENSIVE_FINANCIAL_DEBT",
+    "REPORTED_BORROWINGS"
+  ],
+  "canonicalCapexSemantics": "Exact issuer row 21 signed outflow retained, positive magnitude for canonical cash reinvestment, matching approved cafef NEGATE_NONPOSITIVE mapping and manual derived FCF operand guard",
+  "noNewRequirements": true,
+  "M3Changed": false,
+  "baselineAssessment": {
+    "currentPeriodGap": "All current required facts and reviewed original missing",
+    "debtDefinitionGap": "Five v2 population receipts absent",
+    "capexSignGap": "Six historical verification observations negative; corrected per source row and explicit links",
+    "scopeMismatch": "No qualified parent/standalone admitted",
+    "unitUncertainty": "Provider units/scopes fail closed without certification; issuer current and annual VND verified",
+    "extractionArtifacts": "Legacy OCR/render/text dependencies scanned before cleanup; final replay has none",
+    "providerUnknownSchemaPolicy": "FAIL_CLOSED",
+    "quarterYtdPolicy": "Quarter flow never substitutes YTD; no annualization"
+  }
+}

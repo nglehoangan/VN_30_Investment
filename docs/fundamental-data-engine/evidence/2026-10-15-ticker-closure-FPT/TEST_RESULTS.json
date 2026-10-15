@@ -1,0 +1,134 @@
+{
+  "nodeVersion": "22.23.2",
+  "normalWorkspace": true,
+  "isolatedSourceWorkaroundUsed": false,
+  "FPTSpecificRegressions": {
+    "status": "PASS",
+    "files": 1,
+    "passed": 18,
+    "failed": 0,
+    "skipped": 0
+  },
+  "debtContractV2": {
+    "status": "PASS",
+    "files": 1,
+    "passed": 32,
+    "failed": 0,
+    "skipped": 0
+  },
+  "technologyContractTests": "FPT regression verifies fixed 7 CORE + 1 SECTOR_CORE across five windows; quarter/YTD and supporting boundary mutations tested",
+  "CafeFStructuredCertification": {
+    "status": "PASS",
+    "files": 1,
+    "passed": 45,
+    "failed": 0,
+    "skipped": 0
+  },
+  "currentPeriodTests": {
+    "status": "PASS",
+    "files": 1,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0
+  },
+  "canonicalConflictTests": "FPT scope/YTD mutation tests, canonical exact replay, 17 issuer resolutions, and structured-certification conflict tests pass",
+  "crossTickerRegressions": {
+    "status": "PASS",
+    "files": 5,
+    "passed": 62,
+    "failed": 0,
+    "skipped": 0
+  },
+  "fundamentalDataSuite": {
+    "status": "PASS",
+    "files": 46,
+    "passed": 398,
+    "failed": 0,
+    "skipped": 0
+  },
+  "architectureBoundaries": {
+    "status": "PASS",
+    "sourceModules": 167,
+    "testFiles": 8,
+    "tests": 98
+  },
+  "lint": {
+    "status": "PASS",
+    "command": "pnpm lint"
+  },
+  "typecheck": {
+    "status": "PASS",
+    "command": "pnpm typecheck"
+  },
+  "databaseValidation": {
+    "status": "PASS",
+    "command": "pnpm db:validate"
+  },
+  "fullApplicationSuite": {
+    "status": "PASS",
+    "command": "pnpm exec vitest run --reporter=json --outputFile=/tmp/fpt-full-final.json",
+    "files": 106,
+    "passed": 1342,
+    "failed": 0,
+    "skipped": 0,
+    "reportSHA256": "6b8c6a17ecf0200f124d5ddf39e1b2a89ba06e40c05da6249357b005f42722bc"
+  },
+  "initialFullWorkspaceSuiteAfterCleanup": {
+    "status": "PASS",
+    "passed": 1324,
+    "failed": 0,
+    "newFPTTestsAddedAfterThisRun": true
+  },
+  "focusedRegressionSuite": {
+    "status": "PASS",
+    "passed": 142,
+    "failed": 0,
+    "reportSHA256": "b54834255b320b597b97e1cf226712b17c32ab3d3ed8eb74b82e96c5242fdc57"
+  },
+  "independentReplay": {
+    "status": "PASS",
+    "artifact": "INDEPENDENT_REPLAY.json",
+    "afterDisposableCleanup": true
+  },
+  "crossTickerSeparateReplay": {
+    "HPG": {
+      "status": "PASS",
+      "checks": 24
+    },
+    "VCB": {
+      "status": "PASS"
+    },
+    "SSI": {
+      "status": "PASS"
+    }
+  },
+  "resolvedIntermediateFailures": [
+    {
+      "action": "pnpm typecheck after adding FPT tests",
+      "classification": "FPT_CAUSED",
+      "failure": "Three readonly property assignments and one undeclared canonical evidenceReference access in test code",
+      "resolution": "Use new mutable outer fixture objects and typed verification evidence reference; final typecheck PASS; runtime assertions unchanged"
+    },
+    {
+      "action": "Extra HPG sealed verifier invocation",
+      "classification": "PRE_EXISTING_UNRELATED",
+      "failure": "All 24 accounting/source/replay checks passed but sealed output command string differed by absolute Node executable path",
+      "resolution": "Reran with Node at original recorded /private/tmp/node-v22.23.2-darwin-arm64/bin/node; sealed evidence comparison PASS; no HPG evidence changes"
+    }
+  ],
+  "cleanupExecutionNote": "Dependency scan initially stopped on a disposable alias whose already-removed unreferenced target made it dangling; completed alias-aware scan. No required dependency was removed; old replay-bound OCR and sources retained. Eighteen early deletions have unavailable pre-delete hashes explicitly null in the deletion manifest.",
+  "logHashes": {
+    "fpt-lint-seal.log": "877349620369fca809f4a1c209884a86499000db2f333aef35aff74ff466d717",
+    "fpt-typecheck-final2.log": "7c1ab026edcf1cbb64d5e0b657c7b8143e8f525a68306d50436dc20f58108c5a",
+    "fpt-dbvalidate.log": "91c370e07fa9b0b7a167f0558895a0aa893d6e5dade7970f9b77e180dd06e8d0",
+    "fpt-boundaries-final.log": "530ec8ceca1d89d78e415d0c371fab997ffad0eab1f704237ffcab377f9a92a7",
+    "fpt-full-initial.log": "590e804734700365d3cab4814538e93471ce318a753b66d132385f62c441157d",
+    "fpt-full-final.log": "b88b13d1dd624109b01a18b9b924ebcefe2ec5b8218c5d5a7900b162a5483559",
+    "fpt-focused.log": "0ed315929b40ee9c3d2892485b38ba111cdbc0c0367ff3e1e05b22475de7cdd3",
+    "fpt-hpg-replay.log": "f13d0ed0d4a5a6d17c4762f2cc1d7bc192323cd25709e84c655a0c003b2e9bd6",
+    "fpt-hpg-replay-rerun.log": "edaf35fd193a629d478c73f7f71d1b336df7a0a625798bf2f8286ee4a48574a5",
+    "fpt-vcb-replay.log": "bf8eac2d59dd668ac65b4610b3246ab3ec860bfdda6196b85a0f034227f5cc92",
+    "fpt-ssi-replay.log": "39801d3d7c1413c1fd0a51409c50116704cb74192fccf07f1eb41acab0bae185",
+    "fpt-replay-final.log": "aa58c1930a76b500cf6c16d7d4fb79401ba2a980af732b5d2e26332cce977349"
+  }
+}
