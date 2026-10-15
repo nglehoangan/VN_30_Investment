@@ -1,0 +1,174 @@
+{
+  "ticker": "VPL",
+  "authorityTrace": [
+    {
+      "path": "docs/01 SYSTEM/SCORING_MODEL_v1.0.md",
+      "sha256": "2afc75a20e13d08b88459f57b39a6ebb13f91452fc8b3313a0e817ea0dd44aff"
+    },
+    {
+      "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+      "sha256": "c624180510ecbaf652c7120ebdcc331bfa80f72b2d772380d1caeec35c0b697c"
+    },
+    {
+      "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+      "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4"
+    },
+    {
+      "path": "docs/03 SCORING/SCORECARD_TEMPLATE.md",
+      "sha256": "fe3051843accb2667d5e1b6eba5c0222696676195fa68b4b9d10da91663b0971"
+    },
+    {
+      "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+      "sha256": "11cd53d5f52913f0365f8749538d5023cc5fdf5a27a7f212ab03bcb64ad4749e"
+    },
+    {
+      "path": "src/infrastructure/fundamentals/canonical-items-v1.json",
+      "sha256": "dfc9be8bc4a46bdb07310d096704274a44447d5e139033251bd996ab3811dc60"
+    },
+    {
+      "path": "src/domain/fundamentals/hybrid-sufficiency.ts",
+      "sha256": "3aa7d2a70a1944e6fbce0506788e68e4feae1e1af42eb252604b27bdbb650b42"
+    }
+  ],
+  "approvedRequirements": {
+    "CORE": [
+      {
+        "id": "assets",
+        "anyOf": [
+          "TOTAL_ASSETS"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      },
+      {
+        "id": "equity",
+        "anyOf": [
+          "TOTAL_EQUITY"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      },
+      {
+        "id": "earnings",
+        "anyOf": [
+          "NET_INCOME"
+        ],
+        "component": "BUSINESS_QUALITY"
+      },
+      {
+        "id": "sales",
+        "anyOf": [
+          "REVENUE"
+        ],
+        "component": "GROWTH_QUALITY"
+      },
+      {
+        "id": "cash_generation",
+        "anyOf": [
+          "CFO"
+        ],
+        "component": "BUSINESS_QUALITY"
+      },
+      {
+        "id": "debt",
+        "anyOf": [
+          "COMPREHENSIVE_FINANCIAL_DEBT",
+          "REPORTED_BORROWINGS"
+        ],
+        "component": "FINANCIAL_HEALTH",
+        "preference": [
+          "COMPREHENSIVE_FINANCIAL_DEBT",
+          "REPORTED_BORROWINGS"
+        ]
+      },
+      {
+        "id": "cash",
+        "anyOf": [
+          "CASH_AND_EQUIVALENTS"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      }
+    ],
+    "SECTOR_CORE": [
+      {
+        "id": "project_capital",
+        "anyOf": [
+          "INVENTORY"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      }
+    ],
+    "SUPPORTING": [
+      "NET_INCOME_ATTRIBUTABLE_COMMON",
+      "NET_INCOME_ATTRIBUTABLE_PARENT",
+      "BASIC_EPS",
+      "OPERATING_PROFIT",
+      "CASH_CAPEX_REPORTED",
+      "CURRENT_ASSETS",
+      "CURRENT_LIABILITIES",
+      "RECEIVABLES"
+    ],
+    "OPTIONAL": [
+      "ROIC",
+      "ROA",
+      "MARGIN_STABILITY"
+    ],
+    "requiredDerivations": [],
+    "rationale": "M3 §8: project assets, leverage and cash conversion."
+  },
+  "fixedDenominators": {
+    "CORE": 35,
+    "SECTOR_CORE": 5,
+    "SUPPORTING": 40
+  },
+  "interpretation": "Approved Level1 project_capital anyOf[INVENTORY] is generic issuer reported inventory. No REAL_ESTATE_INVENTORY derived population exists in current registry. Preserve property-only and ordinary components separately; do not add investment property/CIP.",
+  "currentInventory": {
+    "page": 34,
+    "note": "10",
+    "componentsMillionVnd": {
+      "propertyUnderConstruction": 17827867,
+      "completedProperty": 1554999,
+      "materials": 135593,
+      "tools": 5867,
+      "products": 25604,
+      "merchandise": 173
+    },
+    "netReportedMillionVnd": 19550103,
+    "population": "Hospitality/entertainment operating supplies are issuer inventory; total is not renamed property-only inventory; operating fixed assets excluded",
+    "sourceHash": "fe9fdc9bc2eabc2fa7f178f6e9fa4ccf3563417212414efb6bfc40ab0aaac0fe",
+    "canonicalMetric": "INVENTORY",
+    "propertyOnlyMetricAdmitted": false
+  },
+  "currentRevenue": {
+    "page": 48,
+    "note": "29",
+    "componentsMillionVnd": {
+      "hotelTourismEntertainmentAndRelatedServices": 6837243,
+      "leasingAndPropertyTransfers": -42594
+    },
+    "totalMillionVnd": 6794649,
+    "roundingResidualMillionVnd": 0,
+    "sourceHash": "fe9fdc9bc2eabc2fa7f178f6e9fa4ccf3563417212414efb6bfc40ab0aaac0fe",
+    "canonicalMetric": "REVENUE",
+    "basis": "Consolidated net accounting revenue; segment figures are explanatory only"
+  },
+  "semanticProtection": {
+    "investmentProperty": "Separate balance-sheet caption; excluded from INVENTORY",
+    "constructionInProgress": "Separate noncurrent fixed-asset construction caption; excluded from INVENTORY. Issuer inventory development/work-in-progress stays classified within inventory only.",
+    "longTermProjectCosts": "Use issuer classification; never automatically inventory or CapEx",
+    "receivables": "Balance-sheet short-term receivables total, including issuer classified related balances; never cash",
+    "customerAdvances": "Liability, not automatically presales/revenue/debt",
+    "contractLiabilitiesUnearnedRevenue": "Liability, never recognized revenue by proxy",
+    "deposits": "Classify only under source terms; fixed-interest financing added where explicitly identified, commercial/BCC deposits UNKNOWN",
+    "presales": "UNAVAILABLE: compatible canonical population not qualified; no new metric invented",
+    "JVAssociates": "Only consolidated accounting totals; no project/JV look-through assets or revenue added",
+    "CapEx": "Only reported fixed-asset cash-payment row magnitude; investing total, land/inventory cash movement and acquisitions excluded",
+    "cash": "Generic cash retained; unrestricted economic availability unqualified; NET_DEBT N_R"
+  },
+  "comparabilityBoundaries": [
+    "Original and later restated comparative cells retained with explicit revision relationships; see RESTATEMENT_REVIEW",
+    "2026 Circular99 / revised presentation boundaries; historical chronology not PIT certified",
+    "Changes in subsidiaries/JV investments are contained in issuer consolidated perimeter; no organic or constant-perimeter growth qualification"
+  ],
+  "levelTwoDeferred": true,
+  "scoringPerformed": false,
+  "specificGap": "2026 EPS source current column blank;145 is prior6M2025. No current EPS admitted. Historical provider namespace STANDARD_CORPORATE retained and fails REAL_ESTATE namespace check; no relabeling."
+}

@@ -1,0 +1,194 @@
+{
+  "ticker": "VHM",
+  "status": "PASS",
+  "node": "22.23.2",
+  "startingHEAD": "69d8f66d131c81fe3f714f90003d49570ecf6b79",
+  "repositoryBaselineTests": 1342,
+  "addedTests": 43,
+  "fullApplicationSuite": {
+    "command": "pnpm exec vitest run --reporter=json --outputFile=/tmp/re-full-final.json",
+    "configuration": "Normal repository configuration; maxWorkers1; testTimeout20000ms; no timeout overrides",
+    "passed": 1385,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 315.17,
+    "reportSHA256": "4095c0bf666869c82b88e9bfda39f8a9cafea27eb2d36807cce93b0be4c77486"
+  },
+  "realEstate": {
+    "passed": 43,
+    "failed": 0,
+    "mandatorySemantics": 24,
+    "tickerSpecific": 5,
+    "shared": 28
+  },
+  "targetedDebtCafeFCertificationCurrentAndRealEstate": {
+    "command": "pnpm exec vitest run tests/unit/debt-contract-activation.test.ts tests/unit/structured-certification.test.ts tests/unit/hybrid-targets.test.ts tests/unit/real-estate-ticker-closure.test.ts",
+    "passed": 122,
+    "failed": 0
+  },
+  "fundamentalDataSuite": {
+    "files": 50,
+    "passed": 495,
+    "failed": 0,
+    "fileNames": [
+      "architecture/fundamentals-governance-boundary.test.mjs",
+      "architecture/fundamentals-mapping-closure.test.mjs",
+      "integration/fundamental-admission.test.ts",
+      "integration/fundamentals-availability-evidence.test.ts",
+      "integration/fundamentals-derivation-migration.test.ts",
+      "integration/fundamentals-derivation.test.ts",
+      "integration/fundamentals-ingest.test.ts",
+      "integration/fundamentals-migration.test.ts",
+      "integration/fundamentals-normalization-migration.test.ts",
+      "integration/fundamentals-normalization.test.ts",
+      "integration/fundamentals-repository.test.ts",
+      "integration/fundamentals-snapshot-migration.test.ts",
+      "integration/fundamentals-snapshot.test.ts",
+      "integration/manual-first.test.ts",
+      "unit/cafef-poc.test.ts",
+      "unit/cafef-refresh.test.ts",
+      "unit/debt-contract-activation.test.ts",
+      "unit/debt-metric-contract-proposal.test.ts",
+      "unit/fpt-collector.test.ts",
+      "unit/fpt-ticker-closure.test.ts",
+      "unit/fundamentals-adjustment.test.ts",
+      "unit/fundamentals-availability-evidence.test.ts",
+      "unit/fundamentals-availability-legacy.test.ts",
+      "unit/fundamentals-comparative-period.test.ts",
+      "unit/fundamentals-contracts.test.ts",
+      "unit/fundamentals-derivation.test.ts",
+      "unit/fundamentals-equivalence-pit-selection.test.ts",
+      "unit/fundamentals-fact-equivalence.test.ts",
+      "unit/fundamentals-financial-disclosure.test.ts",
+      "unit/fundamentals-live-public-disclosure.test.ts",
+      "unit/fundamentals-manual-document.test.ts",
+      "unit/fundamentals-normalization.test.ts",
+      "unit/fundamentals-operational-freshness.test.ts",
+      "unit/fundamentals-public-resource.test.ts",
+      "unit/fundamentals-review-candidate.test.ts",
+      "unit/fundamentals-revisions.test.ts",
+      "unit/fundamentals-snapshot-derived.test.ts",
+      "unit/fundamentals-snapshot.test.ts",
+      "unit/fundamentals-source-fact-rejection.test.ts",
+      "unit/fundamentals-source-period-withdrawal.test.ts",
+      "unit/hpg-debt-final-closure.test.ts",
+      "unit/hpg-decision-grade.test.ts",
+      "unit/hpg-ticker-closure.test.ts",
+      "unit/hybrid-targets.test.ts",
+      "unit/manual-first.test.ts",
+      "unit/manual-fundamentals-ui.test.tsx",
+      "unit/real-estate-ticker-closure.test.ts",
+      "unit/ssi-ticker-closure.test.ts",
+      "unit/structured-certification.test.ts",
+      "unit/vcb-ticker-closure.test.ts"
+    ]
+  },
+  "architecture": {
+    "command": "pnpm test:boundaries",
+    "passed": 98,
+    "failed": 0,
+    "sourceModules": 168
+  },
+  "lint": {
+    "command": "pnpm lint",
+    "status": "PASS",
+    "finalChangedFilesLint": "PASS"
+  },
+  "typecheck": {
+    "command": "pnpm typecheck",
+    "status": "PASS",
+    "finalTscNoEmit": "PASS"
+  },
+  "database": {
+    "command": "pnpm db:validate",
+    "status": "PASS"
+  },
+  "protectedClosureReplays": {
+    "HPG": {
+      "status": "PASS",
+      "checks": 24,
+      "canonicalAndEvidenceUnchanged": true
+    },
+    "VCB": {
+      "status": "PASS",
+      "checks": 9,
+      "canonicalAndEvidenceUnchanged": true
+    },
+    "SSI": {
+      "status": "PASS",
+      "checks": 8,
+      "canonicalAndEvidenceUnchanged": true
+    },
+    "FPT": {
+      "status": "PASS",
+      "checks": 10,
+      "canonicalAndEvidenceUnchanged": true
+    }
+  },
+  "earlierAttempts": {
+    "fullSuite": {
+      "passed": 1380,
+      "failed": 5,
+      "failures": [
+        {
+          "file": "integration/m68-backup.test.ts",
+          "title": "backup/restore refuses overwrite, same path, public output, symlinks, missing checksums and altered backup bytes",
+          "classification": "ENVIRONMENTAL_TIMEOUT",
+          "error": "Error: Test timed out in 20000ms.",
+          "disposition": "Affected files pass26/26 in isolation at unchanged20-second timeout; final entire suite rerun alone"
+        },
+        {
+          "file": "integration/m68.test.ts",
+          "title": "B/G/U/Q/S: score \u2192 BUY \u2192 persisted marginal lots \u2192 review/proposal \u2192 explicit ledger \u2192 reconstruction/reversal; history survives",
+          "classification": "ENVIRONMENTAL_TIMEOUT",
+          "error": "Error: Test timed out in 20000ms.",
+          "disposition": "Affected files pass26/26 in isolation at unchanged20-second timeout; final entire suite rerun alone"
+        },
+        {
+          "file": "integration/m68.test.ts",
+          "title": "fresh/populated M6.7 database: repeated deploy/status preserves all rows and historical replay",
+          "classification": "ENVIRONMENTAL_TIMEOUT",
+          "error": "Error: Test timed out in 20000ms.",
+          "disposition": "Affected files pass26/26 in isolation at unchanged20-second timeout; final entire suite rerun alone"
+        },
+        {
+          "file": "integration/m68.test.ts",
+          "title": "concurrent/repeated monthly initiation is idempotent and never changes accounting",
+          "classification": "ENVIRONMENTAL_TIMEOUT",
+          "error": "Error: Test timed out in 20000ms.",
+          "disposition": "Affected files pass26/26 in isolation at unchanged20-second timeout; final entire suite rerun alone"
+        },
+        {
+          "file": "integration/workflow.test.ts",
+          "title": "fresh and populated M6.5 migration repeatability preserves every upstream row",
+          "classification": "ENVIRONMENTAL_TIMEOUT",
+          "error": "Error: Test timed out in 20000ms.",
+          "disposition": "Affected files pass26/26 in isolation at unchanged20-second timeout; final entire suite rerun alone"
+        }
+      ]
+    },
+    "isolatedNormalTimeoutRerun": {
+      "passed": 26,
+      "failed": 0
+    },
+    "resolvedImplementationAndHarnessIssues": [
+      {
+        "classification": "SHARED_REAL_ESTATE_CAUSED",
+        "kind": "Validation orchestration",
+        "detail": "Parallel pnpm scripts raced during Prisma client generation (EEXIST); corrected to sequential generation/checks; normal workspace checks pass"
+      },
+      {
+        "classification": "SHARED_REAL_ESTATE_CAUSED",
+        "kind": "New regression test harness",
+        "detail": "Two focused43-test attempts had42 passes and1 failure reading legacy evidence seal paths; harness now handles all approved formats; final43/43 pass"
+      },
+      {
+        "classification": "SHARED_REAL_ESTATE_CAUSED",
+        "kind": "New test typing",
+        "detail": "Readonly receipt properties mutated in initial test; shallow mutable copy fixes test typing; final typecheck passes"
+      }
+    ]
+  },
+  "remainingFailures": [],
+  "independentHumanReview": false
+}
