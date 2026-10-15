@@ -1,0 +1,117 @@
+{
+  "nodeVersion": "22.23.2",
+  "SSIRegressions": {
+    "status": "PASS",
+    "passed": 16
+  },
+  "targetedCafeFCertificationCurrent": {
+    "status": "PASS",
+    "files": 5,
+    "passed": 110,
+    "failed": 0,
+    "skipped": 0,
+    "reportSHA256": "eba04f239ebc1db9b15fb667ec7ccf6905e9c29fcba11c517370ddfad8f6f708",
+    "failures": [],
+    "ssiSpecific": {
+      "passed": 16,
+      "failed": 0,
+      "minimumRequestedInvariants": 14
+    }
+  },
+  "fundamentalDataSuite": {
+    "status": "PASS",
+    "files": 40,
+    "passed": 328,
+    "failed": 0,
+    "skipped": 0,
+    "reportSHA256": "0145211cfcdf7d25614707d7fe75a9087d36fcd69aa18211e629a57b858ae2b8",
+    "failures": []
+  },
+  "fullApplicationSuite": {
+    "status": "FAIL",
+    "files": 105,
+    "passed": 1322,
+    "failed": 2,
+    "skipped": 0,
+    "reportSHA256": "eb88b437b6dd40606333fbcb1cc520a5f73a83a5ac24a32cf717d4e9a8b931c3",
+    "failures": [
+      {
+        "file": "tests/architecture/boundaries.test.mjs",
+        "test": "dependency boundaries accepts the real nonempty source graph",
+        "message": "AssertionError: expected [ Array(1) ] to deeply equal []",
+        "classification": "PRE_EXISTING_UNRELATED",
+        "priorEvidence": "docs/fundamental-data-engine/evidence/2026-10-15-ticker-closure-VCB/TEST_RESULTS.json"
+      },
+      {
+        "file": "tests/integration/m68-backup.test.ts",
+        "test": "backup/restore refuses overwrite, same path, public output, symlinks, missing checksums and altered backup bytes",
+        "message": "Error: Test timed out in 20000ms.",
+        "classification": "ENVIRONMENTAL/TIMEOUT",
+        "priorEvidence": "docs/fundamental-data-engine/evidence/2026-10-15-ticker-closure-VCB/TEST_RESULTS.json"
+      }
+    ],
+    "fullApplicationSuitePassed": false
+  },
+  "failedBackupCaseIsolatedRerun": {
+    "status": "PASS",
+    "files": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 2,
+    "reportSHA256": "36f1f2feb885606e3d643c89ce1370d910ce9082df105e139371b268af22c3c6",
+    "failures": []
+  },
+  "initialFullApplicationBeforeEmptyDirectoryFix": {
+    "status": "FAIL",
+    "passed": 1099,
+    "failed": 198,
+    "skipped": 11,
+    "classification": "PRE_EXISTING_UNRELATED",
+    "reason": "Prisma P3015 from 16 pre-existing empty numbered migration directories; reproduced independently; removed empty directories and migration deployment then passed",
+    "logSHA256": "ea3ac81e1b21746bd9814e4322bc12fa710f21628e9781733a351066ba4332d1"
+  },
+  "typecheck": {
+    "status": "PASS",
+    "command": "pnpm typecheck",
+    "logSHA256": "0d51574f4237d6be7c8e4ed9b9c73e16535433d2d46037b021e06232c80d1628",
+    "postCleanupStatus": "PASS",
+    "postCleanupLogSHA256": "ed3f28e5296ded3c1bf9bacc62911e2718cb784f05c34393f2444d652be5e54d"
+  },
+  "databaseValidation": {
+    "status": "PASS",
+    "command": "pnpm db:validate",
+    "logSHA256": "91c370e07fa9b0b7a167f0558895a0aa893d6e5dade7970f9b77e180dd06e8d0"
+  },
+  "lint": {
+    "status": "FAIL",
+    "classification": "PRE_EXISTING_UNRELATED",
+    "command": "pnpm lint",
+    "reason": "Retained src/infrastructure/db/client 2.ts imports @prisma/adapter-better-sqlite3; exact-path boundary exemption belongs only to canonical client.ts. VCB historical evidence refers to duplicate; retained under owner rule.",
+    "logSHA256": "390ff48190cd877fefadd16df2cb5cb0b47351b1fbf6797cf3c0aca29c57bd6c"
+  },
+  "changedFileLint": {
+    "status": "PASS",
+    "files": 5,
+    "logSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "workspaceArchitecture": {
+    "status": "FAIL",
+    "classification": "PRE_EXISTING_UNRELATED",
+    "logSHA256": "171f65b9c9afe8da36fbb6c7d037f31b8b6e9281e802f94a32eb11e241728997"
+  },
+  "canonicalSourceArchitecture": {
+    "status": "PASS",
+    "modules": 166,
+    "method": "Copied canonical source graph to disposable directory; installed dependencies linked, generated Prisma files copied; retained numbered copies excluded only in isolated verification. Original workspace result still FAIL.",
+    "logSHA256": "68793d141a6e9b195a5484cb92c971d90fbd8cbee1d07f09a75796bba0d7da09"
+  },
+  "offlineDeterministicReplay": {
+    "status": "PASS",
+    "evidence": "INDEPENDENT_REPLAY.json"
+  },
+  "sourceManifestPhysicalHashes": {
+    "status": "PASS",
+    "originals": 6
+  },
+  "fullApplicationSuitePassed": false
+}

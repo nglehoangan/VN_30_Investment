@@ -1,0 +1,47 @@
+{
+  "dataIntegrity": {
+    "Critical": [],
+    "Major": [],
+    "Minor": []
+  },
+  "historicalPit": {
+    "status": "NOT_READY",
+    "reason": "Historical publication/revision chronology not qualified; date-only current disclosure does not invent timestamp chronology"
+  },
+  "governance": [
+    "Independent review pending",
+    "Project Owner approval pending"
+  ],
+  "scope": "SSI only; official scoring, rankings, DI14 and DI15 not approved",
+  "validationExceptions": [
+    {
+      "file": "tests/architecture/boundaries.test.mjs",
+      "test": "dependency boundaries accepts the real nonempty source graph",
+      "message": "AssertionError: expected [ Array(1) ] to deeply equal []",
+      "classification": "PRE_EXISTING_UNRELATED",
+      "priorEvidence": "docs/fundamental-data-engine/evidence/2026-10-15-ticker-closure-VCB/TEST_RESULTS.json"
+    },
+    {
+      "file": "tests/integration/m68-backup.test.ts",
+      "test": "backup/restore refuses overwrite, same path, public output, symlinks, missing checksums and altered backup bytes",
+      "message": "Error: Test timed out in 20000ms.",
+      "classification": "ENVIRONMENTAL/TIMEOUT",
+      "priorEvidence": "docs/fundamental-data-engine/evidence/2026-10-15-ticker-closure-VCB/TEST_RESULTS.json"
+    },
+    {
+      "classification": "PRE_EXISTING_UNRELATED",
+      "test": "pnpm lint / workspace architecture",
+      "reason": "Retained src/infrastructure/db/client 2.ts imports @prisma/adapter-better-sqlite3; exact-path boundary exemption belongs only to canonical client.ts. VCB historical evidence refers to duplicate; retained under owner rule."
+    }
+  ],
+  "retentionExceptions": {
+    "historicalSSIExtractionProofs": 286,
+    "retainedNumberedCandidates": [
+      ".gitattributes 2",
+      "src/domain/fundamentals/hybrid-admission 3.ts",
+      "src/domain/fundamentals/manual-first 3.ts",
+      "src/infrastructure/db/client 2.ts"
+    ],
+    "source": "REPOSITORY_CLEANUP_MANIFEST.json"
+  }
+}
