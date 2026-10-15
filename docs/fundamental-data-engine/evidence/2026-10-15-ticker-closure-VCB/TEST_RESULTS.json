@@ -1,0 +1,190 @@
+{
+  "nodeVersion": "22.23.2",
+  "results": {
+    "vcbRegressions": {
+      "status": "PASS",
+      "files": 1,
+      "tests": 12,
+      "logSHA256": "a602b0db5abc0be990ab62dab7bca72f49c7433fc7c55a2bf73cda5d3a419120",
+      "retainedLog": false,
+      "summaryTail": [
+        "RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment",
+        "",
+        "",
+        " Test Files  1 passed (1)",
+        "      Tests  12 passed (12)",
+        "   Start at  03:49:28",
+        "   Duration  7.42s (environment 52%, transform 18%, setup 12%, tests 10%, import 7%)"
+      ]
+    },
+    "bankCafeFCertificationCurrentPeriodTargeted": {
+      "status": "PASS",
+      "files": 9,
+      "tests": 158,
+      "logSHA256": "4fa755eccb1d5c6f067423bfa3ba8a780e6afdb88cd969f41ea2735efccde74e",
+      "retainedLog": false,
+      "summaryTail": [
+        "RUN  v5.0.0 /private/tmp/vcb-validation",
+        "",
+        "",
+        " Test Files  9 passed (9)",
+        "      Tests  158 passed (158)",
+        "   Start at  03:43:41",
+        "   Duration  101.67s (environment 52%, setup 20%, tests 11%, transform 10%, import 7%, worker 1%)",
+        "",
+        "Environment  jsdom was created 9 times \u00b7 46.08s total, 52% of tracked time",
+        "             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)",
+        "             learn more: https://vitest.dev/guide/improving-performance#test-environments"
+      ]
+    },
+    "fullRelevantFinancialDataSuite": {
+      "status": "PASS",
+      "files": 40,
+      "tests": 324,
+      "command": "pnpm exec vitest run fundamentals manual-first cafef hybrid-targets structured-certification vcb-ticker-closure",
+      "execution": "Isolated tracked starting tree plus VCB modifications; original manual data and installed dependencies linked",
+      "logSHA256": "783a65fb3ca0a7842bc59f4103279e2c797c2d7bcbdf0137c3d6b1210f08e3c5",
+      "retainedLog": false,
+      "summaryTail": [
+        "RUN  v5.0.0 /private/tmp/vcb-validation",
+        "",
+        "",
+        " Test Files  40 passed (40)",
+        "      Tests  324 passed (324)",
+        "   Start at  03:46:35",
+        "   Duration  198.49s (tests 87%, environment 4%, setup 3%, transform 3%, import 2%)",
+        "",
+        "    Isolate  40 workers spawned \u00b7 ~333ms startup each (spawn + environment, per file)",
+        "             at least ~12.98s faster with isolate: false \u2014 reuses workers across files instead of one per file"
+      ]
+    },
+    "architectureBoundaries": {
+      "status": "PASS",
+      "files": 8,
+      "tests": 98,
+      "modules": 166,
+      "command": "pnpm test:boundaries",
+      "logSHA256": "2d1036a785f73e1c28d22cf86259162be5f848fba3c33b4b25beda8bbf9fb856",
+      "retainedLog": false,
+      "summaryTail": [
+        "",
+        " RUN  v5.0.0 /private/tmp/vcb-validation",
+        "",
+        "",
+        " Test Files  8 passed (8)",
+        "      Tests  98 passed (98)",
+        "   Start at  03:40:12",
+        "   Duration  70.42s (environment 50%, setup 21%, tests 12%, import 9%, transform 7%)",
+        "",
+        "Environment  jsdom was created 8 times \u00b7 31.98s total, 50% of tracked time",
+        "             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)",
+        "             learn more: https://vitest.dev/guide/improving-performance#test-environments"
+      ]
+    },
+    "lint": {
+      "status": "PASS",
+      "command": "pnpm lint",
+      "logSHA256": "7fe582b1501fe74d8003f40b1ff16028d7411828915ce262081c0caa5463a589",
+      "retainedLog": false,
+      "summaryTail": [
+        "",
+        "",
+        "> vn30-value-investing-os@0.1.0 db:generate /private/tmp/vcb-validation",
+        "> node scripts/database.mjs generate",
+        "",
+        "Loaded Prisma config from prisma.config.ts.",
+        "",
+        "Prisma schema loaded from prisma/schema.prisma.",
+        "",
+        "\u2714 Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 3.53s",
+        "",
+        "PASS boundaries: 166 source modules"
+      ]
+    },
+    "typecheck": {
+      "status": "PASS",
+      "command": "pnpm typecheck",
+      "note": "Initial parallel generation attempt collided; serial retry passed",
+      "logSHA256": "3d48ae55a9db7b10f5ce72a01d75b8d99179108bebed84446fbb5eff0baf9916",
+      "retainedLog": false,
+      "summaryTail": [
+        "",
+        "> vn30-value-investing-os@0.1.0 db:generate /private/tmp/vcb-validation",
+        "> node scripts/database.mjs generate",
+        "",
+        "Loaded Prisma config from prisma.config.ts.",
+        "",
+        "Prisma schema loaded from prisma/schema.prisma.",
+        "",
+        "\u2714 Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 3.16s",
+        "",
+        "Generating route types...",
+        "\u2713 Types generated successfully"
+      ]
+    },
+    "databaseValidation": {
+      "status": "PASS",
+      "command": "pnpm db:validate",
+      "logSHA256": "91c370e07fa9b0b7a167f0558895a0aa893d6e5dade7970f9b77e180dd06e8d0",
+      "retainedLog": false,
+      "summaryTail": [
+        "> vn30-value-investing-os@0.1.0 db:validate /Users/nglehoangan/Documents/Working/VN_30_Investment",
+        "> node scripts/database.mjs validate",
+        "",
+        "Loaded Prisma config from prisma.config.ts.",
+        "",
+        "Prisma schema loaded from prisma/schema.prisma.",
+        "The schema at prisma/schema.prisma is valid \ud83d\ude80"
+      ]
+    },
+    "fullApplicationSuite": {
+      "status": "NOT_FULLY_GREEN_STOPPED_AFTER_UNRELATED_TIMEOUT_FAILURES",
+      "command": "pnpm test",
+      "unrelatedFailures": [
+        {
+          "file": "tests/integration/m68.test.ts",
+          "case": "B/G/U/Q/S downstream chain",
+          "durationMs": 62836
+        },
+        {
+          "file": "tests/integration/m68-backup.test.ts",
+          "case": "backup/restore refuses invalid paths and bytes",
+          "durationMs": 20445
+        },
+        {
+          "file": "tests/integration/decision.test.ts",
+          "case": "populated M6.5.2 upgrade/repeat",
+          "durationMs": 43055
+        }
+      ],
+      "note": "Broad suite interrupted after out-of-scope integration timeouts; no claim that the full application suite passed.",
+      "logSHA256": "38caf40f2660a11c2ea29a7cc838b36daee8ffb123f03996d61709f9038e72e0",
+      "retainedLog": false,
+      "summaryTail": [
+        "",
+        " RUN  v5.0.0 /private/tmp/vcb-validation",
+        "",
+        " \u276f tests/integration/m68.test.ts (12 tests | 1 failed) 130815ms",
+        "   \u276f M6.8 downstream formal authority chain with historical upstream scores (disposable test evidence) (12)",
+        "     \u00d7 B/G/U/Q/S: score \u2192 BUY \u2192 persisted marginal lots \u2192 review/proposal \u2192 explicit ledger \u2192 reconstruction/reversal; history survives 62836ms",
+        " \u276f tests/integration/m68-backup.test.ts (3 tests | 1 failed) 24164ms",
+        "   \u00d7 backup/restore refuses overwrite, same path, public output, symlinks, missing checksums and altered backup bytes 20445ms",
+        " \u276f tests/integration/decision.test.ts (14 tests | 1 failed) 103573ms",
+        "   \u276f M6.5.3 immutable sector remediation (5)",
+        "     \u00d7 populated M6.5.2 upgrade/repeat preserves every historical row 43055ms",
+        "\u2009ELIFECYCLE\u2009 Test failed. See above for more details."
+      ]
+    },
+    "workspaceValidation": {
+      "status": "PRE_EXISTING_UNTRACKED_DUPLICATES_EXCLUDED",
+      "note": "Original workspace lint/boundaries reject client 2.ts and repository-schema 2.ts copies. Original typecheck passed; financial-data suite, full lint and boundaries validated against isolated tracked tree. No unrelated files modified/deleted."
+    },
+    "finalChangedFileLint": {
+      "status": "PASS",
+      "command": "pnpm exec eslint <six changed source/script/test files> --max-warnings=0",
+      "logSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "officialScoringRun": false,
+  "fullApplicationSuitePassed": false
+}

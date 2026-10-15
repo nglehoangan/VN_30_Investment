@@ -1,0 +1,135 @@
+{
+  "format": "vvios-tcbs-api-catalog-v1",
+  "documentation_version": "1.0.0",
+  "base_url": "https://openapi.tcbs.com.vn",
+  "approval": {
+    "scope": "User approved saving these 10 API entries; live account calls are not authorized by this approval",
+    "date": "2026-10-08"
+  },
+  "integration_status": "DOCUMENTED_ONLY; NOT_IMPLEMENTED",
+  "live_account_calls_enabled": false,
+  "credentials_file": ".env.local",
+  "endpoints": [
+    {
+      "id": "1.1",
+      "method": "POST",
+      "path": "/gaia/v1/oauth2/openapi/token",
+      "name": "Xác thực",
+      "purpose": "Đổi API Key và Smart OTP lấy JWT",
+      "priority": "CORE",
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/auth/token/",
+      "sub_account_type": null
+    },
+    {
+      "id": "2.1",
+      "method": "GET",
+      "path": "/eros/v2/get-profile/by-username/{custodyCode}",
+      "name": "Thông tin tiểu khoản",
+      "purpose": "Xác định tiểu khoản được chọn để đồng bộ",
+      "priority": "CORE",
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/account/sub-account/",
+      "sub_account_type": null
+    },
+    {
+      "id": "4.14",
+      "method": "GET",
+      "path": "/aion/v1/accounts/{accountNo}/se",
+      "name": "Tài sản cổ phiếu",
+      "purpose": "Mã, số lượng, giá trung bình và giá trị thị trường",
+      "priority": "CORE",
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/asset/",
+      "sub_account_type": "NORMAL"
+    },
+    {
+      "id": "4.15",
+      "method": "GET",
+      "path": "/aion/v1/accounts/{accountNo}/cashInvestments",
+      "name": "Số dư tiền",
+      "purpose": "Tiền mặt theo tiểu khoản",
+      "priority": "CORE",
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/cash-balance/",
+      "sub_account_type": "NORMAL"
+    },
+    {
+      "id": "4.16",
+      "method": "GET",
+      "path": "/erebos/v2/digital/trans-hist-cashStatements",
+      "name": "Sao kê tiền",
+      "purpose": "Dòng tiền từ mốc khởi tạo; phân trang và đối soát",
+      "priority": "CORE",
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/cash-statement/",
+      "sub_account_type": "NORMAL"
+    },
+    {
+      "id": "5.1",
+      "method": "GET",
+      "path": "/tartarus/v1/tickerCommons",
+      "name": "Mã và giá",
+      "purpose": "Giá holdings hoặc rổ VN30 hiện tại với index=2",
+      "priority": "CORE",
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/market-symbol/",
+      "sub_account_type": null
+    },
+    {
+      "id": "4.6",
+      "method": "GET",
+      "path": "/aion/v1/accounts/{accountNo}/matching-details",
+      "name": "Thông tin khớp lệnh",
+      "purpose": "Đối soát mua/bán thực tế; chưa xác nhận phạm vi lịch sử",
+      "priority": "SUPPLEMENTAL",
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/matching-details/",
+      "sub_account_type": "NORMAL"
+    },
+    {
+      "id": "4.4",
+      "method": "GET",
+      "path": "/aion/v1/accounts/{accountNo}/orders",
+      "name": "Sổ lệnh",
+      "purpose": "Trạng thái lệnh; không đồng nhất với giao dịch đã khớp",
+      "priority": "SUPPLEMENTAL",
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/get-orders/",
+      "sub_account_type": "NORMAL"
+    },
+    {
+      "id": "4.17",
+      "method": "GET",
+      "path": "/erebos/v2/digital/margin-info",
+      "name": "Tra cứu nợ",
+      "purpose": "Đối soát nợ margin, lãi và phí nếu có",
+      "priority": "SUPPLEMENTAL",
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/debt-lookup/",
+      "sub_account_type": "MARGIN"
+    },
+    {
+      "id": "5.11",
+      "method": "GET",
+      "path": "/ananke/v1/securities",
+      "name": "Thông tin chứng khoán",
+      "purpose": "Định danh, sàn, loại và trạng thái chứng khoán",
+      "priority": "SUPPLEMENTAL",
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/securities-info/",
+      "sub_account_type": null
+    }
+  ],
+  "unresolved": [
+    "Pending dividend and restricted WFT fields not confirmed by published response schemas",
+    "Matching-details historical coverage and pagination query parameters not confirmed",
+    "Fundamental financial statements require an additional source",
+    "Token lifetime/renewal and rate limits must be verified before implementation",
+    "Validate monetary precision, units, dates and transaction-code mappings before financial posting"
+  ],
+  "account_resolution": {
+    "source_api": "2.1",
+    "fields": "basicInfo,bankSubAccounts",
+    "persistence": "No accountNo config/disk persistence; API 2.1 response cached only in memory for current test run",
+    "active_status": "1",
+    "ambiguity_policy": "BLOCK; do not choose first or fallback to another type"
+  },
+  "token_session": {
+    "storage": "data/tcbs-session/session.json",
+    "permissions": "0600; directory 0700",
+    "auth_retries": 0,
+    "reuse_until": "JWT expiration minus 60 seconds",
+    "otp_persisted": false
+  }
+}

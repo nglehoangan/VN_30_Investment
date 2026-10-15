@@ -1,0 +1,15 @@
+"use client";
+import { useRef, useState } from "react";
+import Link from "next/link";
+import type { ReviewResponse } from "@/application/current/review-initiation";
+export function ReviewForm({action}:{action:(mode:"preview"|"create",intent:unknown)=>Promise<ReviewResponse>}){
+ const lock=useRef(false),[pending,setPending]=useState(false),[response,setResponse]=useState<ReviewResponse|null>(null);
+ const [type,setType]=useState("WEEKLY"),[date,setDate]=useState(""),[contribution,setContribution]=useState(""),[event,setEvent]=useState("");
+ async function submit(mode:"preview"|"create"){
+ if(lock.current)return;lock.current=true;setPending(true);
+ try{setResponse(await action(mode,{type,requestedDate:date,contributionReference:contribution||null,eventReference:event||null}));}
+ catch{setResponse({status:"BLOCKED",reasons:["Readiness request failed. Inspect review history before retrying creation."],portfolio:"UNKNOWN",marketData:"UNKNOWN",analystEvidence:"INPUT REQUIRED",type});}
+ finally{lock.current=false;setPending(false);}}
+ function clear(){setResponse(null);}
+ return <section aria-label="Review initiation"><h2>Start Review</h2><p>Submit review intent. The server resolves accounting, market, reference and analyst evidence and delegates formal creation to M6.6. Review initiation never records a transaction.</p><p>Analyst evidence is loaded from the configured normalized local source dataset. Missing evidence remains INPUT REQUIRED; a review schedule never requires a trade.</p><form onSubmit={e=>{e.preventDefault();void submit("preview");}}><fieldset disabled={pending}><legend>Minimal review intent</legend><label>Review type<select value={type} onChange={e=>{setType(e.target.value);setContribution("");setEvent("");clear();}}>{["WEEKLY","MONTHLY_DCA","QUARTERLY","ANNUAL","EVENT_DRIVEN"].map(t=><option key={t}>{t}</option>)}</select></label><label>Requested date (Asia/Ho_Chi_Minh)<input type="date" required value={date} onChange={e=>{setDate(e.target.value);clear();}} /></label>{type==="MONTHLY_DCA"&&<label>Posted contribution reference (optional)<input value={contribution} onChange={e=>{setContribution(e.target.value);clear();}} /></label>}{type==="EVENT_DRIVEN"&&<label>Verified event reference<input required value={event} onChange={e=>{setEvent(e.target.value);clear();}} /></label>}<button type="submit">{pending?"Checking authoritative inputs…":"Preview review readiness"}</button></fieldset></form>{response&&<div role="status"><h3>Review readiness · {response.status}</h3><dl className="metrics"><div><dt>Portfolio</dt><dd>{response.portfolio}</dd></div><div><dt>Market data</dt><dd>{response.marketData}</dd></div><div><dt>Analyst evidence</dt><dd>{response.analystEvidence}</dd></div></dl><ul>{response.reasons.map(r=><li key={r}>{r}</li>)}</ul>{response.artifactId?<p>Formal review recorded: <Link href={`/reviews/${encodeURIComponent(response.artifactId)}`}>Read review</Link></p>:response.status==="READY"&&<button disabled={pending} onClick={()=>void submit("create")}>Create formal review</button>}</div>}</section>;
+}

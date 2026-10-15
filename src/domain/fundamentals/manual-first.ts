@@ -14,7 +14,7 @@ export type FinancialScope = 'CONSOLIDATED'|'STANDALONE';
 export type AnalysisContext = {mode:'CURRENT_ANALYSIS';analysisAt:string}|{mode:'HISTORICAL_REPLAY';decisionAt:string;systemKnownAt:string};
 export interface ManualStatement {
  readonly documentId:string;readonly SHA256:string;readonly ticker:string;readonly issuer:string;
- readonly documentType:'FINANCIAL_STATEMENTS'|'ANNUAL_REPORT';
+ readonly documentType:'FINANCIAL_STATEMENTS'|'ANNUAL_REPORT'|'REGULATORY_DISCLOSURE';
  readonly reportingPeriod:{start:string;end:string};readonly fiscalYear:number;readonly fiscalQuarter:number|null;
  readonly reportingScope:FinancialScope;readonly currency:string;readonly unitBasis:string;
  readonly retainedPath:string;readonly importedAt:string;readonly reviewedAt:string;
@@ -61,7 +61,7 @@ export function admitManualStatement(s:ManualStatement,c:AnalysisContext):boolea
   const cutoff=c.mode==='CURRENT_ANALYSIS'?c.analysisAt:c.decisionAt;instant(cutoff);instant(s.importedAt);instant(s.reviewedAt);
   dateOnly(s.reportingPeriod.start);dateOnly(s.reportingPeriod.end);
   requireFundamental(/^[a-f0-9]{64}$/.test(s.SHA256)&&s.verifiedHash===s.SHA256&&s.retainedPath.length>0&&s.documentId.length>0,'RETAINED_HASH_REQUIRED');
-  requireFundamental(s.ticker.length>0&&s.issuer.length>0&&['FINANCIAL_STATEMENTS','ANNUAL_REPORT'].includes(s.documentType)&&['CONSOLIDATED','STANDALONE'].includes(s.reportingScope)&&s.currency.length>0&&s.unitBasis.length>0,'MANUAL_IDENTITY_REQUIRED');
+  requireFundamental(s.ticker.length>0&&s.issuer.length>0&&['FINANCIAL_STATEMENTS','ANNUAL_REPORT','REGULATORY_DISCLOSURE'].includes(s.documentType)&&['CONSOLIDATED','STANDALONE'].includes(s.reportingScope)&&s.currency.length>0&&s.unitBasis.length>0,'MANUAL_IDENTITY_REQUIRED');
   requireFundamental(s.reviewStatus==='QUALIFIED'&&s.reviewReference.length>0&&['QUARTERLY','ANNUAL'].includes(s.cadence)&&s.reportingPeriod.start<=s.reportingPeriod.end&&s.reportingPeriod.end<=cutoff.slice(0,10)&&s.importedAt<=cutoff&&s.reviewedAt<=cutoff&&s.importedAt<=s.reviewedAt,'MANUAL_QUALIFICATION_OR_FUTURE_PERIOD');
   requireFundamental(Number.isInteger(s.fiscalYear)&&s.fiscalYear>=1900&&s.fiscalYear<=Number(s.reportingPeriod.end.slice(0,4))+1&&(s.fiscalQuarter===null||[1,2,3,4].includes(s.fiscalQuarter)),'MANUAL_FISCAL_IDENTITY');
   if(s.publishedAt!==null){instant(s.publishedAt);requireFundamental(s.publishedAt<=cutoff,'FUTURE_PUBLICATION');}

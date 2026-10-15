@@ -1,0 +1,17 @@
+import './lib/ts-runtime.mjs';
+import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs';
+import {resolve,join} from 'node:path';
+import assert from 'node:assert/strict';
+const {loadHybridInput,financialHash}=await import('../src/infrastructure/fundamentals/hybrid-input.ts');
+const {calibrateCafeFContracts}=await import('../src/infrastructure/fundamentals/contract-calibration.ts');
+const {buildHybridAdmission}=await import('../src/domain/fundamentals/hybrid-admission.ts');
+const {financialTargets,hybridCoverage}=await import('../src/domain/fundamentals/hybrid-sufficiency.ts');
+const root=resolve(import.meta.dirname,'..'),out=join(root,'docs/fundamental-data-engine/evidence/2026-10-14-cafef-nam-quy-only');
+mkdirSync(out,{recursive:true});assert(!existsSync(join(out,'ARTIFACT_HASHES.json')),'Sealed policy evidence');
+const contextPath=join(out,'RUN_CONTEXT.json');if(!existsSync(contextPath))writeFileSync(contextPath,JSON.stringify({analysisAt:new Date().toISOString()},null,2)+'\n');
+const context=JSON.parse(readFileSync(contextPath,'utf8')),previous='docs/fundamental-data-engine/evidence/2026-10-14-structured-certification-closure';
+const loaded=loadHybridInput(root,context.analysisAt,'cafef-nam-quy-only','CURRENT_ANALYSIS',{includeBorrowings:true,selectiveEvidencePaths:['SELECTIVE_ISSUER_CELL_EVIDENCE.json','CONFLICT_ISSUER_CELL_EVIDENCE.json'].map(n=>previous+'/'+n)});
+const {input,registry}=calibrateCafeFContracts(root,loaded.input,loaded.rawRequests),snapshot=buildHybridAdmission(input,financialHash),coverage=hybridCoverage(financialTargets(input),snapshot,input);
+assert(loaded.rawRequests.every(r=>r.TypeTime==='NAM'||r.TypeTime==='QUY'));assert(input.candidates.every(c=>c.requestMode==='NAM'||c.requestMode==='QUY'));assert(registry.providers.every(p=>p.mode!=='LUYKE'));assert(registry.mappings.every(m=>m.mode!=='LUYKE'));
+const report={policy:'CAFEF_NAM_QUY_ONLY',enabledModes:['NAM','QUY'],disabledModes:['LUYKE'],historicalParsing:'Retained only to reproduce sealed historical evidence; no new API request or current admission.',requests:loaded.rawRequests.length,candidates:input.candidates.length,providerContracts:registry.providers.length,mappingContracts:registry.mappings.length,directFacts:snapshot.canonicalFacts.filter(f=>f.classification==='DIRECT_STRUCTURED').length,coverage:Object.fromEntries(['CORE','SECTOR_CORE'].map(tier=>{const rows=coverage.groups.filter(g=>g.evidenceClass===tier);return [tier,{denominator:rows.length,admitted:rows.filter(g=>g.available).length,percentage:100*rows.filter(g=>g.available).length/rows.length}];})),issuerYtdFacts:snapshot.canonicalFacts.filter(f=>f.reportPeriodType==='YTD'&&f.authority!=='CAFEF_STRUCTURED').length,YTDPolicy:'Qualified issuer/PDF evidence remains acceptable; QUY is not automatically converted into YTD or annualized. Required denominators unchanged.',readyForScoring:false,officialScoringExecuted:false,contentHash:snapshot.contentHash};
+writeFileSync(join(out,'POLICY_VALIDATION.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));

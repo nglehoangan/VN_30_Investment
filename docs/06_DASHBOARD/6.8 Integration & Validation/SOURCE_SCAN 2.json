@@ -1,0 +1,471 @@
+{
+  "synthetic_fixture": [
+    {
+      "path": "src/ui/dashboard.tsx",
+      "line": 41,
+      "text": "return <div className=\"app-shell\"><aside><Link className=\"brand\" href=\"/\">VN30<span>Value Investing OS</span></Link><nav aria-label=\"Primary navigation\">{navigation.map(g => <div className=\"nav-group\" key={g.group}><p>{g.group}</p>{g.items.map(([key, label]) => <Link key={key} href={`/${key}`} aria-current={key === screen ? \"page\" : undefined}>{label}</Link>)}</div>)}</nav><p className=\"local-label\">LOCAL FIRST \u00b7 VND</p></aside><div className=\"workspace\"><header><p>{m.portfolio?.name ?? \"Personal investment workspace\"}</p><Link href=\"/data\">Data status & integrity</Link></header><main id=\"main\" tabIndex={-1}><p className=\"eyebrow\">{screen === \"reviews\" && id === \"new\" ? \"Review initiation \u00b7 server-derived readiness\" : screen === \"transactions\" && id === \"new\" ? \"Accounting fact entry \u00b7 explicit confirmation\" : id && screen !== \"holdings\" ? \"HISTORICAL AS-OF ARTIFACT \u00b7 READ ONLY\" : \"CURRENT READ MODEL\"}</p><h1>{screen === \"dashboard\" ? \"VN30 Value Investing OS\" : title}</h1><div className=\"trust-strip\" role=\"status\"><strong>{m.status === \"BLOCKED\" ? \"BLOCKED \u2014 integrity could not be verified\" : `Current capital actionability: ${m.current?.actionability ?? \"BLOCKED / Unavailable\"}`}</strong><span>Portfolio as-of: {m.current?.portfolioAsOf ?? m.state?.asOf ?? \"Unavailable\"}</span><span>Reconciliation: {m.current?.reconciliation ?? \"Unavailable\"} \u00b7 Price freshness: {m.current?.priceFreshness ?? \"Unavailable\"}</span><span>PASS indicates current input integrity. M6.5/M6.6 still authorize investment actions.</span></div>{(m.current?.scope === \"SYNTHETIC_TEST\" || m.cards.some(c => c.input.artifactScope === \"SYNTHETIC_TEST\") || m.decisions.some(d => d.scope === \"SYNTHETIC_TEST\") || m.reviews.some(r => r.command.scope === \"SYNTHETIC_TEST\")) && <p className=\"notice\">SYNTHETIC TEST ONLY artifacts are present. They are not production investment evidence.</p>}{m.message && <p role=\"alert\" className=\"notice\">{m.message}</p>}{m.truncated && <p className=\"notice\">Showing up to 100 records per artifact family. Older references may be outside this catalog.</p>}"
+    },
+    {
+      "path": "src/ports/current.ts",
+      "line": 3,
+      "text": "version:string;portfolioId:string;scope:\"FORMAL\"|\"SYNTHETIC_TEST\";asOf:string;receivedAt:string;ledgerWatermark:string;taxonomy:string;valuationMethodologyId:string;"
+    },
+    {
+      "path": "src/domain/workflow/validation.ts",
+      "line": 23,
+      "text": "requireWorkflow(REVIEW_TYPES.includes(c.type) && [\"FORMAL\", \"SYNTHETIC_TEST\"].includes(c.scope), \"INVALID_REVIEW_TYPE_OR_SCOPE\");"
+    },
+    {
+      "path": "src/domain/workflow/contracts.ts",
+      "line": 40,
+      "text": "readonly scope: \"FORMAL\" | \"SYNTHETIC_TEST\"; readonly reviewer: string;"
+    },
+    {
+      "path": "src/domain/scoring/methodology.ts",
+      "line": 848,
+      "text": "\"label\": \"Evidence does not demonstrate disciplined distribution\""
+    },
+    {
+      "path": "src/domain/scoring/methodology.ts",
+      "line": 899,
+      "text": "\"label\": \"Evidence does not demonstrate real compounding\""
+    },
+    {
+      "path": "src/domain/scoring/scorecard.ts",
+      "line": 26,
+      "text": "readonly artifactScope: \"FORMAL\" | \"SYNTHETIC_TEST\";"
+    },
+    {
+      "path": "src/domain/scoring/scorecard.ts",
+      "line": 43,
+      "text": "check(input.artifactScope === \"FORMAL\" || input.artifactScope === \"SYNTHETIC_TEST\",\"ARTIFACT_SCOPE_REQUIRED\");"
+    },
+    {
+      "path": "src/domain/scoring/scorecard.ts",
+      "line": 45,
+      "text": "else check(input.methodology.intendedUse === \"TEST\" && input.methodology.family === \"TEST_ONLY\" && input.methodology.governanceStatus !== \"APPROVED\" && input.methodology.approvalReference === \"\",\"SYNTHETIC_TEST_METHODOLOGY_REQUIRED\");"
+    },
+    {
+      "path": "src/domain/decision/validation.ts",
+      "line": 6,
+      "text": "import { METHOD, LEGACY_SYNTHETIC_METHOD, STAGE0, type DecisionInput } from \"./contracts\";"
+    },
+    {
+      "path": "src/domain/decision/validation.ts",
+      "line": 33,
+      "text": "enumeration(i.scope, [\"FORMAL\", \"SYNTHETIC_TEST\"]);"
+    },
+    {
+      "path": "src/domain/decision/validation.ts",
+      "line": 41,
+      "text": "else if (!APPROVED_IMPLEMENTATIONS.includes(method.implementationIdentity)) requireDecision(method.intendedUse === \"TEST\" && method.family === \"TEST_ONLY\" && method.governanceStatus === \"PROPOSED\" && method.approvalReference === \"\", \"SYNTHETIC_METHOD_REQUIRED\");"
+    },
+    {
+      "path": "src/domain/decision/validation.ts",
+      "line": 44,
+      "text": "requireDecision([METHOD, LEGACY_SYNTHETIC_METHOD, ...APPROVED_IMPLEMENTATIONS].includes(identity) && i.methods.requiredReturn.implementationIdentity === identity, \"UNSUPPORTED_DECISION_METHOD\");"
+    },
+    {
+      "path": "src/domain/decision/validation.ts",
+      "line": 140,
+      "text": "requireDecision(i.scope === \"SYNTHETIC_TEST\" || (APPROVED_IMPLEMENTATIONS.includes(identity) && Object.values(i.methods).every(method => ![METHOD, LEGACY_SYNTHETIC_METHOD].includes(method.implementationIdentity))), \"PENDING_GOVERNANCE_TEST_ONLY\");"
+    },
+    {
+      "path": "src/domain/decision/contracts.ts",
+      "line": 10,
+      "text": "/** Historical synthetic replay only; this name is not evidence of approval. */"
+    },
+    {
+      "path": "src/domain/decision/contracts.ts",
+      "line": 11,
+      "text": "export const LEGACY_SYNTHETIC_METHOD = \"m65-decision-v1-session-resolutions-20260920\";"
+    },
+    {
+      "path": "src/domain/decision/contracts.ts",
+      "line": 54,
+      "text": "readonly scope: \"FORMAL\" | \"SYNTHETIC_TEST\";"
+    },
+    {
+      "path": "src/infrastructure/repositories/workflow-artifacts.ts",
+      "line": 70,
+      "text": "requireWorkflow(portfolio || review.command.scope === \"SYNTHETIC_TEST\", \"PERSISTED_PORTFOLIO_REQUIRED\");"
+    },
+    {
+      "path": "src/infrastructure/repositories/methodology-schema.ts",
+      "line": 2,
+      "text": "import { METHOD, LEGACY_SYNTHETIC_METHOD } from \"@/domain/decision/contracts\";"
+    },
+    {
+      "path": "src/infrastructure/repositories/methodology-schema.ts",
+      "line": 44,
+      "text": "if ([METHOD, LEGACY_SYNTHETIC_METHOD].includes(row.implementationIdentity) && (row.intendedUse !== \"TEST\" || ![\"PROPOSED\", \"RETIRED\"].includes(row.governanceStatus) || row.approvalReference !== \"\")) {"
+    },
+    {
+      "path": "src/application/current/read-model.ts",
+      "line": 43,
+      "text": "if (s.scope !== \"FORMAL\") reasons.push(\"SYNTHETIC_TEST_SOURCE\");"
+    },
+    {
+      "path": "src/application/workflow/engine.ts",
+      "line": 19,
+      "text": "private readonly scope: \"FORMAL\" | \"SYNTHETIC_TEST\" = \"FORMAL\", private readonly marginal?: MarginalArtifacts) {}"
+    },
+    {
+      "path": "src/application/decision/marginal.ts",
+      "line": 14,
+      "text": "private readonly scope: \"FORMAL\" | \"SYNTHETIC_TEST\" = \"FORMAL\") {}"
+    },
+    {
+      "path": "src/shared/validation/current-source.ts",
+      "line": 12,
+      "text": "version: text, portfolioId: text, scope: z.enum([\"FORMAL\", \"SYNTHETIC_TEST\"]), asOf: time, receivedAt: time,"
+    }
+  ],
+  "policy_numbers": [
+    {
+      "path": "src/ui/dashboard.tsx",
+      "line": 41,
+      "text": "return <div className=\"app-shell\"><aside><Link className=\"brand\" href=\"/\">VN30<span>Value Investing OS</span></Link><nav aria-label=\"Primary navigation\">{navigation.map(g => <div className=\"nav-group\" key={g.group}><p>{g.group}</p>{g.items.map(([key, label]) => <Link key={key} href={`/${key}`} aria-current={key === screen ? \"page\" : undefined}>{label}</Link>)}</div>)}</nav><p className=\"local-label\">LOCAL FIRST \u00b7 VND</p></aside><div className=\"workspace\"><header><p>{m.portfolio?.name ?? \"Personal investment workspace\"}</p><Link href=\"/data\">Data status & integrity</Link></header><main id=\"main\" tabIndex={-1}><p className=\"eyebrow\">{screen === \"reviews\" && id === \"new\" ? \"Review initiation \u00b7 server-derived readiness\" : screen === \"transactions\" && id === \"new\" ? \"Accounting fact entry \u00b7 explicit confirmation\" : id && screen !== \"holdings\" ? \"HISTORICAL AS-OF ARTIFACT \u00b7 READ ONLY\" : \"CURRENT READ MODEL\"}</p><h1>{screen === \"dashboard\" ? \"VN30 Value Investing OS\" : title}</h1><div className=\"trust-strip\" role=\"status\"><strong>{m.status === \"BLOCKED\" ? \"BLOCKED \u2014 integrity could not be verified\" : `Current capital actionability: ${m.current?.actionability ?? \"BLOCKED / Unavailable\"}`}</strong><span>Portfolio as-of: {m.current?.portfolioAsOf ?? m.state?.asOf ?? \"Unavailable\"}</span><span>Reconciliation: {m.current?.reconciliation ?? \"Unavailable\"} \u00b7 Price freshness: {m.current?.priceFreshness ?? \"Unavailable\"}</span><span>PASS indicates current input integrity. M6.5/M6.6 still authorize investment actions.</span></div>{(m.current?.scope === \"SYNTHETIC_TEST\" || m.cards.some(c => c.input.artifactScope === \"SYNTHETIC_TEST\") || m.decisions.some(d => d.scope === \"SYNTHETIC_TEST\") || m.reviews.some(r => r.command.scope === \"SYNTHETIC_TEST\")) && <p className=\"notice\">SYNTHETIC TEST ONLY artifacts are present. They are not production investment evidence.</p>}{m.message && <p role=\"alert\" className=\"notice\">{m.message}</p>}{m.truncated && <p className=\"notice\">Showing up to 100 records per artifact family. Older references may be outside this catalog.</p>}"
+    },
+    {
+      "path": "src/ui/dashboard.tsx",
+      "line": 46,
+      "text": "{screen === \"ranking\" && <>{ranking ? <RankingView ranking={ranking} /> : <Panel title=\"Formal ranking / Top 10\"><p>Unavailable \u2014 no formal ranking artifact is recorded.</p><p>Top 10 \u2260 Buy list.</p></Panel>}<Panel title=\"Scorecards\"><Table headers={[\"Scorecard\", \"Security\", \"100-point score\", \"Confidence\", \"As-of\"]} rows={m.cards.map(c => [<Ref key={c.id} route=\"scoring\" id={c.id} />, c.ticker, c.totalScore, c.confidence, c.asOf])} /></Panel></>}"
+    },
+    {
+      "path": "src/ui/dashboard.tsx",
+      "line": 47,
+      "text": "{screen === \"scoring\" && <Panel title=\"Formal scorecard\">{card ? <><Metrics values={{ \"100-point score\": card.totalScore, Confidence: card.confidence, \"Data quality\": card.dataQuality, Validity: card.validity, \"Data as-of\": card.asOf, \"Evidence cutoff\": card.input.knownAt, \"Methodology version\": card.methodology.semanticVersion, \"Scope\": card.input.artifactScope }} /><h3>Category and subcategory scores</h3><Table headers={[\"Category\", \"Points\", \"Maximum\"]} rows={card.categories.map(c => [c.category, c.points, c.max])} /><Table headers={[\"Subcategory\", \"Points\", \"Evidence\"]} rows={card.subcategories.map(c => [c.id, c.points, <Evidence key={c.id} value={c} />])} /><Evidence value={{ categories: card.categories, subcategories: card.subcategories, normalization: card.input.normalization, missingEvidence: card.missingEvidence, blockingEvidence: card.blockingEvidence, evidence: card.input.evidence, thesis: card.input.thesis }} /></> : id ? <p>Unavailable \u2014 scorecard reference not found in the catalog.</p> : <Table headers={[\"Scorecard\", \"Ticker\", \"100-point score\", \"Confidence\", \"Data as-of\"]} rows={m.cards.map(c => [<Ref key={c.id} route=\"scoring\" id={c.id} />, c.ticker, c.totalScore, c.confidence, c.asOf])} empty=\"No formal scorecards recorded yet.\" />}</Panel>}"
+    },
+    {
+      "path": "src/domain/scoring/scorecard.ts",
+      "line": 101,
+      "text": "const idx=r>=decimal(\"0.22\").units?5:r>=decimal(\"0.18\").units?4:r>=decimal(\"0.15\").units?3:r>=decimal(\"0.12\").units?2:r>=decimal(\"0.08\").units?1:0;"
+    },
+    {
+      "path": "src/domain/decision/validation.ts",
+      "line": 22,
+      "text": "function texts(value: readonly string[], nonempty = false) { requireDecision(Array.isArray(value) && value.length <= 100 && (!nonempty || value.length > 0), \"BOUNDED_LIST_REQUIRED\"); value.forEach(text); }"
+    },
+    {
+      "path": "src/domain/decision/marginal.ts",
+      "line": 66,
+      "text": "requireDecision(Array.isArray(e.evidenceRefs) && e.evidenceRefs.length > 0 && e.evidenceRefs.length <= 100 && Array.isArray(e.historyIds) && e.historyIds.length <= 1000 && new Set(e.historyIds).size === e.historyIds.length, \"SUBSTITUTION_REFERENCES_REQUIRED\");"
+    },
+    {
+      "path": "src/domain/decision/engine.ts",
+      "line": 20,
+      "text": "const calibrated = !riskAdjusted || (h.adjustedHurdle !== null && above(h.adjustedHurdle, \"0.15\") && h.calibrationReference !== null);"
+    },
+    {
+      "path": "src/domain/decision/engine.ts",
+      "line": 21,
+      "text": "const hurdle = riskAdjusted && calibrated ? h.adjustedHurdle! : exception ? \"0.12\" : \"0.15\";"
+    },
+    {
+      "path": "src/domain/decision/engine.ts",
+      "line": 27,
+      "text": "exceptionApplied: pass && exception && !atLeast(expected!, \"0.15\") });"
+    },
+    {
+      "path": "src/domain/decision/engine.ts",
+      "line": 45,
+      "text": "const exception = r.smallNavException && r.approvalReference !== null && r.normalizationPlan !== null && !above(currentWeight, \"0.15\");"
+    },
+    {
+      "path": "src/domain/decision/engine.ts",
+      "line": 46,
+      "text": "if (above(currentWeight, \"0.15\")) reasons.push(\"CURRENT_POSITION_NO_ADD\");"
+    },
+    {
+      "path": "src/domain/decision/engine.ts",
+      "line": 47,
+      "text": "if (above(postWeight, \"0.15\") && !exception) reasons.push(\"POST_POSITION_NO_ADD\");"
+    },
+    {
+      "path": "src/domain/decision/engine.ts",
+      "line": 48,
+      "text": "if (above(postWeight, \"0.30\")) reasons.push(\"EMERGENCY_CEILING\");"
+    },
+    {
+      "path": "src/domain/decision/engine.ts",
+      "line": 51,
+      "text": "if (above(postSectorWeight, \"0.30\") && (i.methods.decision.implementationIdentity === MONOTONIC_METHOD || !(above(postSectorWeight, \"0.35\") && !above(postSectorWeight, \"0.40\") && r.approvalReference))) reasons.push(\"SECTOR_NO_ADD\");"
+    },
+    {
+      "path": "src/domain/decision/engine.ts",
+      "line": 52,
+      "text": "if (above(postSectorWeight, \"0.40\")) reasons.push(\"SECTOR_CEILING\");"
+    },
+    {
+      "path": "src/domain/decision/engine.ts",
+      "line": 102,
+      "text": "const independentReduce = (reduction === \"RISK\" && (a.risk.hiddenFactorBlocksAdd || a.risk.materialDeterioration)) || (reduction === \"THESIS\" && a.thesis.status === \"WEAKENING\") || (reduction === \"CONCENTRATION\" && p.currentWeight !== null && above(p.currentWeight, \"0.15\")) || (reduction === \"LEGACY\" && !member && a.ownershipCase.legacyExitPlan !== null);"
+    },
+    {
+      "path": "src/domain/decision/incremental-size.ts",
+      "line": 17,
+      "text": "const exception = r.smallNavException && r.approvalReference !== null && r.normalizationPlan !== null && !above(value, \"0.15\");"
+    },
+    {
+      "path": "src/domain/decision/incremental-size.ts",
+      "line": 18,
+      "text": "const prohibited = above(value, \"0.15\") || r.hiddenFactorBlocksAdd ||"
+    },
+    {
+      "path": "src/domain/decision/incremental-size.ts",
+      "line": 24,
+      "text": "const sectorCap = i.methods.decision.implementationIdentity === APPROVED_METHOD && above(sectorValue, \"0.35\") && r.approvalReference ? \"0.40\" : \"0.30\";"
+    },
+    {
+      "path": "src/domain/decision/incremental-size.ts",
+      "line": 26,
+      "text": "const limits = [capacity(value, exception ? \"0.30\" : \"0.15\"),"
+    },
+    {
+      "path": "src/domain/decision/approved-methodology.ts",
+      "line": 25,
+      "text": "semanticVersion: \"1.0.2\","
+    },
+    {
+      "path": "src/infrastructure/repositories/portfolio-command-schema.ts",
+      "line": 26,
+      "text": "const parsed = parseBoundary(z.array(schema).min(1).max(100), value, { \"$\": \"Explicit bounded transaction command with exact decimal strings\" });"
+    },
+    {
+      "path": "src/application/scoring/execution-context.ts",
+      "line": 15,
+      "text": "const required=price.mul(decimal(\"100\")).add(costs);"
+    },
+    {
+      "path": "src/application/portfolio/engine.ts",
+      "line": 17,
+      "text": "requireRule(inputs.length > 0 && inputs.length <= 100, \"BOUNDED_POST_BATCH_REQUIRED\");"
+    },
+    {
+      "path": "src/shared/validation/current-source.ts",
+      "line": 6,
+      "text": "const section = z.strictObject({ area: text, securityId: text.nullable(), evidenceRefs: z.array(text).max(100), finding: z.enum([\"UNCHANGED\", \"MATERIAL CHANGE\", \"MISSING\", \"NOT APPLICABLE\"]), rationale: text });"
+    },
+    {
+      "path": "src/shared/validation/current-source.ts",
+      "line": 7,
+      "text": "const thesis = z.strictObject({ securityId: text, prior: z.enum([\"INTACT\", \"IMPROVING\", \"WEAKENING\", \"BROKEN\", \"PENDING\"]), current: z.enum([\"INTACT\", \"IMPROVING\", \"WEAKENING\", \"BROKEN\", \"PENDING\"]), evidenceRefs: z.array(text).max(100), rationale: text });"
+    },
+    {
+      "path": "src/shared/validation/current-source.ts",
+      "line": 8,
+      "text": "const trigger = z.strictObject({ id: text, category: z.enum([\"COMPANY\", \"MARKET\", \"POSITION\", \"MANDATE / REFERENCE\", \"PORTFOLIO INTEGRITY\"]), priority: z.enum([\"HARD RISK / SOLVENCY / GOVERNANCE\", \"MANDATE / ELIGIBILITY\", \"PORTFOLIO INTEGRITY / RECONCILIATION\", \"THESIS-BREAK RISK\", \"CONCENTRATION / RISK BREACH\", \"MATERIAL FUNDAMENTAL DETERIORATION\", \"VALUATION / EXPECTED RETURN\", \"OPPORTUNITY REVIEW\", \"TECHNICAL EXECUTION\"]), severity: z.enum([\"T0\", \"T1\", \"T2\", \"T3\", \"T4\"]), effectiveAt: time, evidenceRefs: z.array(text).min(1).max(100), verified: z.boolean(), decisionReady: z.boolean(), governingRule: text, affectedSecurityId: text.nullable(), requiredEvidence: text, rationale: text });"
+    },
+    {
+      "path": "src/shared/validation/current-source.ts",
+      "line": 17,
+      "text": "analyst: z.strictObject({ version: text, reviewer: text, asOf: time, receivedAt: time, validThrough: time, sourceReference: text, evidence: z.array(evidence).max(100), sections: z.array(section).max(100), theses: z.array(thesis).max(30), triggers: z.array(trigger).max(100), nextReview: text, governance: z.enum([\"NO POLICY CHANGE\", \"OPERATIONAL IMPROVEMENTS ONLY\", \"MODEL/RULE VALIDATION REQUIRED\", \"POLICY REVIEW PROPOSAL REQUIRED\"]).nullable() }).nullable(),"
+    },
+    {
+      "path": "app/server/dashboard.ts",
+      "line": 30,
+      "text": "result.transactions = [...read.transactions].sort((a, b) => b.facts.eventAt.localeCompare(a.facts.eventAt)).filter(t => screen !== \"transactions\" || !reference || t.facts.id === reference).slice(0, 100);"
+    },
+    {
+      "path": "app/server/dashboard.ts",
+      "line": 31,
+      "text": "result.truncated = read.transactions.length > 100;"
+    },
+    {
+      "path": "app/server/dashboard.ts",
+      "line": 53,
+      "text": "for (const row of filteredAnalytics.slice(0, 100)) {"
+    },
+    {
+      "path": "app/server/dashboard.ts",
+      "line": 58,
+      "text": "for (const row of decisions.slice(0, 100)) { const a = await decision.find(row.id); if (a && (!result.portfolio || a.input.portfolio.integrity.portfolioId === result.portfolio.id)) result.decisions = [...result.decisions, a]; }"
+    },
+    {
+      "path": "app/server/dashboard.ts",
+      "line": 59,
+      "text": "for (const row of reviews.slice(0, 100)) { const a = await workflow.find(row.id); if (a && (!result.portfolio || a.command.portfolioId === result.portfolio.id)) result.reviews = [...result.reviews, a]; }"
+    },
+    {
+      "path": "app/server/dashboard.ts",
+      "line": 60,
+      "text": "for (const row of methods.slice(0, 100)) { const a = await registry.findById(methodologyId(row.methodologyId)); if (a) result.methods = [...result.methods, a]; }"
+    },
+    {
+      "path": "app/server/dashboard.ts",
+      "line": 61,
+      "text": "for (const row of executions.slice(0, 100)) { const a = await workflow.findExecution(row.id); if (a) result.executions = [...result.executions, a]; }"
+    },
+    {
+      "path": "app/server/dashboard.ts",
+      "line": 62,
+      "text": "for (const row of audits.slice(0, 100)) { const a = await workflow.findFollowUp(row.id); if (a) result.followUps = [...result.followUps, a]; }"
+    },
+    {
+      "path": "app/server/dashboard.ts",
+      "line": 63,
+      "text": "result.truncated ||= [analytics, decisions, reviews, methods, executions, audits].some(rows => rows.length > 100);"
+    },
+    {
+      "path": "scripts/smoke-app.mjs",
+      "line": 56,
+      "text": "await delay(100);"
+    }
+  ],
+  "formal_calculators": [
+    {
+      "path": "src/domain/ranking/rank.ts",
+      "line": 27,
+      "text": "export function rankScorecards(raw:RankInput) {"
+    },
+    {
+      "path": "src/domain/ranking/rank.ts",
+      "line": 33,
+      "text": "const cards=input.cards.map(c=>calculateScorecard(c.input));"
+    },
+    {
+      "path": "src/domain/workflow/reviews.ts",
+      "line": 16,
+      "text": "export function createReview(p: PinnedReview, supersedesProposalId: string | null = null): ReviewArtifact {"
+    },
+    {
+      "path": "src/domain/scoring/scorecard.ts",
+      "line": 33,
+      "text": "export function calculateScorecard(raw: ScoreInput) {"
+    },
+    {
+      "path": "src/domain/portfolio/reconstruct.ts",
+      "line": 31,
+      "text": "export function reconstructPortfolio(portfolioId: PortfolioId, history: readonly Transaction[], asOf: Instant, ledgerWatermark: LedgerWatermark, inceptionAt?: Instant): PortfolioState {"
+    },
+    {
+      "path": "src/domain/portfolio/valuation.ts",
+      "line": 22,
+      "text": "export function valuePortfolio(state: PortfolioState, inputs: ValuationInputs, inception?: InceptionBaseline) {"
+    },
+    {
+      "path": "src/domain/portfolio/inception.ts",
+      "line": 15,
+      "text": "const state = reconstructPortfolio(portfolioId, opening, inceptionAt, ledgerWatermark, inceptionAt);"
+    },
+    {
+      "path": "src/domain/portfolio/inception.ts",
+      "line": 24,
+      "text": "const valuation = valuePortfolio(state, inputs.prices), day = vietnamBusinessDate(inceptionAt);"
+    },
+    {
+      "path": "src/domain/decision/marginal.ts",
+      "line": 77,
+      "text": "export function assessMarginalAllocation(raw: MarginalCommand, bases: readonly Decision[], recordedAt: string): MarginalAllocation {"
+    },
+    {
+      "path": "src/domain/decision/marginal.ts",
+      "line": 97,
+      "text": "const decision = decide({ ...d.input, id: `${id}:${assessments.length}`, knownAt: command.evidenceCutoff, recordedAt,"
+    },
+    {
+      "path": "src/domain/decision/engine.ts",
+      "line": 56,
+      "text": "const sizing = APPROVED_IMPLEMENTATIONS.includes(i.methods.decision.implementationIdentity) ? incrementalSize(i, reasons) : null;"
+    },
+    {
+      "path": "src/domain/decision/engine.ts",
+      "line": 90,
+      "text": "export function decide(raw: DecisionInput) {"
+    },
+    {
+      "path": "src/domain/decision/incremental-size.ts",
+      "line": 8,
+      "text": "export function incrementalSize(i: DecisionInput, reasons: readonly string[]) {"
+    },
+    {
+      "path": "src/infrastructure/repositories/decision-artifacts.ts",
+      "line": 12,
+      "text": "const validated = decide(decision.input);"
+    },
+    {
+      "path": "src/infrastructure/repositories/decision-artifacts.ts",
+      "line": 32,
+      "text": "const replay = decide(stored.input);"
+    },
+    {
+      "path": "src/infrastructure/repositories/workflow-artifacts.ts",
+      "line": 54,
+      "text": "const replay = createReview({ ...(marginalAllocation ? { marginalAllocation } : {}), command: review.command, portfolio: review.portfolio, decisions: inputs, ranking: rank && \"entries\" in rank ? rank : null, recordedAt: review.recordedAt, openEventReviewIds: review.linkedEventReviewIds }, review.proposal?.supersedesProposalId ?? null);"
+    },
+    {
+      "path": "src/infrastructure/repositories/marginal-artifacts.ts",
+      "line": 31,
+      "text": "const replay = assessMarginalAllocation(a.command, bases, a.recordedAt);"
+    },
+    {
+      "path": "src/application/workflow/engine.ts",
+      "line": 69,
+      "text": "const result = createReview({ ...(marginalAllocation ? { marginalAllocation } : {}), command: c, portfolio, decisions, ranking: ranking && \"entries\" in ranking ? ranking : null,"
+    },
+    {
+      "path": "src/application/scoring/engine.ts",
+      "line": 11,
+      "text": "const result=calculateScorecard(input);await this.artifacts.append(result);return result;"
+    },
+    {
+      "path": "src/application/scoring/engine.ts",
+      "line": 18,
+      "text": "const result=rankScorecards({...input,portfolio:portfolio?await portfolio.read(input.asOf):null});"
+    },
+    {
+      "path": "src/application/portfolio/candidate.ts",
+      "line": 18,
+      "text": "reconstructPortfolio(id, complete, horizon, next);"
+    },
+    {
+      "path": "src/application/portfolio/engine.ts",
+      "line": 33,
+      "text": "return reconstructPortfolio(id, read.transactions, asOf, read.watermark, read.inceptionAt);"
+    },
+    {
+      "path": "src/application/portfolio/engine.ts",
+      "line": 37,
+      "text": "const state = reconstructPortfolio(id, read.transactions, asOf, read.watermark, read.inceptionAt);"
+    },
+    {
+      "path": "src/application/portfolio/engine.ts",
+      "line": 40,
+      "text": "const valuation = valuePortfolio(state, prices, inception), reconciliation = reconcilePortfolio(state, evidence, calculatedAt);"
+    },
+    {
+      "path": "src/application/portfolio/post-commit.ts",
+      "line": 18,
+      "text": "try { state = reconstructPortfolio(id, committed.transactions, now, committed.watermark, committed.inceptionAt); }"
+    },
+    {
+      "path": "src/application/decision/marginal.ts",
+      "line": 34,
+      "text": "const result = assessMarginalAllocation(c, bases, this.clock.now());"
+    },
+    {
+      "path": "src/application/decision/engine.ts",
+      "line": 52,
+      "text": "const result = decide({ ...input, recordedAt: this.clock.now(), scorecard: card, ranking: ranking && \"entries\" in ranking ? ranking : null, comparatorScorecards: comparators, portfolio });"
+    }
+  ],
+  "ai": [],
+  "money_float": [
+    {
+      "path": "src/ui/dashboard.tsx",
+      "line": 50,
+      "text": "{screen === \"reviews\" && id !== \"new\" && (id ? r ? <ReviewView review={r} /> : <Panel title=\"Review unavailable\"><p>Reference not found in the catalog.</p></Panel> : <Panel title=\"Review center\"><p>Weekly \u00b7 Monthly DCA \u00b7 Quarterly \u00b7 Annual \u00b7 Event-driven</p><p><Link href=\"/reviews/new\">Start Review \u00b7 preview authoritative readiness</Link></p><p>NO ACTION and HOLD CASH are normal outcomes. Review schedules do not require trading.</p><Table headers={[\"Review\", \"Type\", \"Status\", \"Disposition\", \"Allocation outcome\", \"Data as-of\", \"Escalation\"]} rows={[...m.reviews].sort((a, b) => Number(b.command.type === \"EVENT_DRIVEN\") - Number(a.command.type === \"EVENT_DRIVEN\")).map(r => [<Ref key={r.id} route=\"reviews\" id={r.id} />, r.command.type, r.status, r.disposition, r.proposal?.outcome, r.command.asOf, r.reasons.join(\" \u00b7 \")])} empty=\"No reviews recorded yet.\" /></Panel>)}"
+    },
+    {
+      "path": "src/domain/decision/engine.ts",
+      "line": 118,
+      "text": "if (![[\"BQ\", 13], [\"FH\", 8], [\"RG\", 5], [\"VAL\", 10]].every(([key, min]) => category(i, String(key), Number(min)))) blocks.push(\"CATEGORY_GATE_FAILED\");"
+    },
+    {
+      "path": "scripts/validate-m68.mjs",
+      "line": 20,
+      "text": "const row = { command: name, exitCode: result.status ?? 1, status: result.status === 0 ? 'PASS' : 'FAIL', testCount: vitest ? Number(vitest[1]) : browser ? Number(browser[1]) : null, durationMilliseconds: Date.now() - start };"
+    }
+  ]
+}

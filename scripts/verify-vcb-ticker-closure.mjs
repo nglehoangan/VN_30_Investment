@@ -1,0 +1,27 @@
+import './lib/ts-runtime.mjs';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+const {buildHybridAdmission}=await import('../src/domain/fundamentals/hybrid-admission.ts');
+const {financialHash}=await import('../src/infrastructure/fundamentals/hybrid-input.ts');
+const {financialTargets,evaluateHybridTarget}=await import('../src/domain/fundamentals/hybrid-sufficiency.ts');
+const {validateCafeFResponse}=await import('../src/infrastructure/fundamentals/cafef.ts');
+const {decimal}=await import('../src/domain/portfolio/values.ts');
+const root=resolve(import.meta.dirname,'..'),dir=resolve(root,'docs/fundamental-data-engine/evidence/2026-10-15-ticker-closure-VCB');
+const read=n=>JSON.parse(readFileSync(resolve(dir,n),'utf8')),sha=p=>createHash('sha256').update(readFileSync(resolve(root,p))).digest('hex');
+const input=read('VCB_RETAINED_ADMISSION_INPUT.json'),expected=read('VCB_CANONICAL_FACTS.json'),checks=[];
+function check(name,fn){fn();checks.push({name,status:'PASS'});}
+check('Every durable source binding matches exact physical bytes',()=>{for(const b of input.sourceBindings)assert.equal(sha(b.path),b.sha256,b.path);});
+check('Issuer and regulatory originals are retained PDFs with qualified scope',()=>{for(const d of input.statements){assert.equal(sha(d.retainedPath),d.SHA256);assert(readFileSync(resolve(root,d.retainedPath)).subarray(0,5).toString()==='%PDF-');}});
+check('No OCR, page renders, extraction copies or scratch files required for final replay',()=>{assert(!JSON.stringify(input).includes('retainedReaderProof'));assert(input.sourceBindings.every(b=>!/(manual-extracted|\.png$|\.txt$|ocr\/)/i.test(b.path)));});
+check('Original CafeF payloads parse in NAM/QUY and match declared candidate source hashes',()=>{for(const c of input.candidates){assert(['NAM','QUY'].includes(c.requestMode));const b=input.sourceBindings.find(b=>b.sha256===c.sourceHash);assert(b);const parsed=validateCafeFResponse(readFileSync(resolve(root,b.path),'utf8'),c.endpoint,c.ticker,c.requestMode);assert(parsed.records.length);}});
+const rebuilt=buildHybridAdmission(input,financialHash);
+check('Offline full canonical snapshot is byte-for-byte deterministic',()=>assert.equal(JSON.stringify(rebuilt),JSON.stringify(expected)));
+check('Only VCB is admitted; no scoring or approvals',()=>{assert(rebuilt.canonicalFacts.every(f=>f.ticker==='VCB'));assert.equal(rebuilt.readyForScoring,false);assert.equal(rebuilt.DI14,'AWAITING_INDEPENDENT_REVIEW');});
+check('Fixed CORE 15/15 and BANK SECTOR_CORE 20/20 with current reviewed YTD',()=>{const rows=financialTargets(input).map(t=>evaluateHybridTarget(t,'BANK',rebuilt,input));assert.equal(rows.reduce((n,r)=>n+r.CORE.required,0),15);assert.equal(rows.reduce((n,r)=>n+r.SECTOR_CORE.required,0),20);assert(rows.every(r=>r.CORE.available===3&&r.SECTOR_CORE.available===4));assert.equal(rebuilt.unresolvedIssuerConflicts.length,0);});
+check('Permanent FY2025 issuer parent NPAT priority',()=>assert.equal(rebuilt.canonicalFacts.find(f=>f.itemId==='NET_INCOME_ATTRIBUTABLE_PARENT'&&f.period.end==='2025-12-31').value,'35177663000000'));
+check('Independent bank arithmetic reconciles NPL, denominator, allowance and reported capital',()=>{const bank=read('VCB_BANK_INPUTS.json'),metrics=read('VCB_BANK_METRICS.json');for(const p of bank.periods){const m=metrics.periods.find(m=>m.end===p.end),npl=p.groups.reduce((s,g)=>s.add(decimal(g.value)),decimal('0'));assert.equal(m.NPL.value,npl.toString());assert.equal(m.NPL_RATIO.value,npl.div(decimal(p.grossLoans.value)).toString());assert.equal(decimal(p.specificProvision.value).add(decimal(p.generalProvision.value)).toString(),p.allowance.value);assert.equal(m.LLR.value,decimal(p.allowance.value).div(npl).toString());assert.equal(m.CAR.value,p.car.value);assert.equal(m.CET1.value,p.cet1.value);assert.equal(m.CASA.value,null);assert.equal(m.NIM.value,null);for(const [metric,value] of [['BANK_GROSS_CUSTOMER_LOANS',p.grossLoans.value],['BANK_LOAN_LOSS_RESERVES',p.allowance.value],['BANK_CUSTOMER_DEPOSITS',p.deposits.value]])assert.equal(rebuilt.canonicalFacts.find(f=>f.itemId===metric&&f.period.end===p.end).value,value);}});
+const result={status:'PASS',offline:true,independentProcess:true,independentHumanReview:false,sourceBindings:input.sourceBindings.length,contentHash:rebuilt.contentHash,checks};
+const output=process.argv.find(a=>a.startsWith('--out='))?.slice(6);if(output)writeFileSync(resolve(output),JSON.stringify(result,null,2)+'\n');
+console.log(JSON.stringify(result,null,2));

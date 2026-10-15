@@ -1,0 +1,132 @@
+{
+  "periods": [
+    {
+      "end": "2025-12-31",
+      "NPL": {
+        "status": "AVAILABLE",
+        "value": "9669555000000",
+        "ratio": "0.005777954378",
+        "classification": "SAFE_DERIVED",
+        "reason": null,
+        "operandIds": [
+          "vcb:GROUP_3:2025-12-31",
+          "vcb:GROUP_4:2025-12-31",
+          "vcb:GROUP_5:2025-12-31",
+          "vcb:GROSS_CUSTOMER_LOANS:2025-12-31"
+        ]
+      },
+      "NPL_RATIO": {
+        "status": "AVAILABLE",
+        "value": "0.005777954378",
+        "classification": "SAFE_DERIVED",
+        "formula": "(group3+group4+group5) / gross customer loans; no interbank or off-balance-sheet exposure"
+      },
+      "LLR": {
+        "status": "AVAILABLE",
+        "value": "2.582919172599",
+        "classification": "SAFE_DERIVED",
+        "reason": null,
+        "operandIds": [
+          "vcb:CUSTOMER_LOAN_ALLOWANCE_GENERAL_PLUS_SPECIFIC:2025-12-31",
+          "derived-npl:2025-12-31"
+        ],
+        "formula": "customer-loan allowance (general + specific) / customer-loan groups 3+4+5"
+      },
+      "CASA": {
+        "status": "UNAVAILABLE",
+        "value": null,
+        "classification": null,
+        "reason": "BANK_SCOPE_DATE_OR_SOURCE_MISMATCH",
+        "operandIds": []
+      },
+      "NIM": {
+        "status": "UNAVAILABLE",
+        "value": null,
+        "classification": null,
+        "reason": "BANK_SCOPE_DATE_OR_SOURCE_MISMATCH",
+        "operandIds": []
+      },
+      "CAR": {
+        "status": "AVAILABLE",
+        "value": "0.1156",
+        "classification": "REPORTED",
+        "reason": null,
+        "operandIds": []
+      },
+      "CET1": {
+        "status": "UNAVAILABLE",
+        "value": null,
+        "classification": null,
+        "reason": "REGULATORY_METRIC_UNAVAILABLE",
+        "operandIds": []
+      },
+      "definitionNotes": "NPL: substandard+doubtful+loss customer loans; denominator reconciles to full five-group customer-loan total. Allowance: customer loans only, general+specific; excludes interbank, securities, off-balance-sheet provisions. Historical Tier 1 is not relabelled CET1. CASA stays unavailable pending approved scope mapping."
+    },
+    {
+      "end": "2026-06-30",
+      "NPL": {
+        "status": "AVAILABLE",
+        "value": "10736521000000",
+        "ratio": "0.006106652267",
+        "classification": "SAFE_DERIVED",
+        "reason": null,
+        "operandIds": [
+          "vcb:GROUP_3:2026-06-30",
+          "vcb:GROUP_4:2026-06-30",
+          "vcb:GROUP_5:2026-06-30",
+          "vcb:GROSS_CUSTOMER_LOANS:2026-06-30"
+        ]
+      },
+      "NPL_RATIO": {
+        "status": "AVAILABLE",
+        "value": "0.006106652267",
+        "classification": "SAFE_DERIVED",
+        "formula": "(group3+group4+group5) / gross customer loans; no interbank or off-balance-sheet exposure"
+      },
+      "LLR": {
+        "status": "AVAILABLE",
+        "value": "2.792775704532",
+        "classification": "SAFE_DERIVED",
+        "reason": null,
+        "operandIds": [
+          "vcb:CUSTOMER_LOAN_ALLOWANCE_GENERAL_PLUS_SPECIFIC:2026-06-30",
+          "derived-npl:2026-06-30"
+        ],
+        "formula": "customer-loan allowance (general + specific) / customer-loan groups 3+4+5"
+      },
+      "CASA": {
+        "status": "UNAVAILABLE",
+        "value": null,
+        "classification": null,
+        "reason": "BANK_SCOPE_DATE_OR_SOURCE_MISMATCH",
+        "operandIds": []
+      },
+      "NIM": {
+        "status": "UNAVAILABLE",
+        "value": null,
+        "classification": null,
+        "reason": "BANK_SCOPE_DATE_OR_SOURCE_MISMATCH",
+        "operandIds": []
+      },
+      "CAR": {
+        "status": "AVAILABLE",
+        "value": "0.1171",
+        "classification": "REPORTED",
+        "reason": null,
+        "operandIds": []
+      },
+      "CET1": {
+        "status": "AVAILABLE",
+        "value": "0.1143",
+        "classification": "REPORTED",
+        "reason": null,
+        "operandIds": []
+      },
+      "definitionNotes": "NPL: substandard+doubtful+loss customer loans; denominator reconciles to full five-group customer-loan total. Allowance: customer loans only, general+specific; excludes interbank, securities, off-balance-sheet provisions. Historical Tier 1 is not relabelled CET1. CASA stays unavailable pending approved scope mapping."
+    }
+  ],
+  "sourceInputs": "docs/fundamental-data-engine/evidence/2026-10-15-ticker-closure-VCB/VCB_BANK_INPUTS.json",
+  "registryUnchanged": true,
+  "NIM": "No earning-assets average qualified; no total-assets proxy or automatic interim annualization",
+  "CASA": "Demand deposits disclosed separately; no unapproved mapping to current-and-savings population"
+}
