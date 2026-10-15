@@ -1,0 +1,165 @@
+{
+  "ticker": "MSN",
+  "classificationAuthority": "Inherited RETAIL from retained admission universe at approved starting HEAD; manual-current snapshot and earlier sector-namespace validation carry the same label. Official effective-dated production assignments are BLOCKED, not approved M3 authority. No classification changed in this task.",
+  "authorityTrace": [
+    {
+      "path": "docs/01 SYSTEM/SCORING_MODEL_v1.0.md",
+      "sha256": "2afc75a20e13d08b88459f57b39a6ebb13f91452fc8b3313a0e817ea0dd44aff"
+    },
+    {
+      "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+      "sha256": "c624180510ecbaf652c7120ebdcc331bfa80f72b2d772380d1caeec35c0b697c"
+    },
+    {
+      "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+      "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4"
+    },
+    {
+      "path": "docs/03 SCORING/SCORECARD_TEMPLATE.md",
+      "sha256": "fe3051843accb2667d5e1b6eba5c0222696676195fa68b4b9d10da91663b0971"
+    },
+    {
+      "path": "docs/03 SCORING/VALIDATION_CASES_v1.0.md",
+      "sha256": "61eb4a00b00661938b4c6d89bc0df7efabef37afbf89002428d2780119c58fdb"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-13-clean-production-initialization/PRODUCTION_SECTOR_MAPPING.json",
+      "sha256": "cdd927575db4c44b0b75d2905ae35334e932506595ddbfe9f23f1c7ecb632a14"
+    },
+    {
+      "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+      "sha256": "11cd53d5f52913f0365f8749538d5023cc5fdf5a27a7f212ab03bcb64ad4749e"
+    },
+    {
+      "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v1.json",
+      "sha256": "0dd4149a6f5b39e69e96d320621ab9e09ddb52de3153112c0a751fa3894a328a"
+    },
+    {
+      "path": "src/infrastructure/fundamentals/canonical-registry.ts",
+      "sha256": "bc63ab9de332daab00e184057a305a710793e55212adf8f8c50dbed65591416c"
+    },
+    {
+      "path": "src/domain/fundamentals/hybrid-sufficiency.ts",
+      "sha256": "3aa7d2a70a1944e6fbce0506788e68e4feae1e1af42eb252604b27bdbb650b42"
+    },
+    {
+      "path": "src/domain/fundamentals/debt-contract-v2.json",
+      "sha256": "37aebee839c1a2e6d18c72fffee4ac664e532b7b144d9f96ada87d8c938cfdd2"
+    }
+  ],
+  "exactRequirements": {
+    "CORE": [
+      {
+        "id": "assets",
+        "anyOf": [
+          "TOTAL_ASSETS"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      },
+      {
+        "id": "equity",
+        "anyOf": [
+          "TOTAL_EQUITY"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      },
+      {
+        "id": "earnings",
+        "anyOf": [
+          "NET_INCOME"
+        ],
+        "component": "BUSINESS_QUALITY"
+      },
+      {
+        "id": "sales",
+        "anyOf": [
+          "REVENUE"
+        ],
+        "component": "GROWTH_QUALITY"
+      },
+      {
+        "id": "cash_generation",
+        "anyOf": [
+          "CFO"
+        ],
+        "component": "BUSINESS_QUALITY"
+      },
+      {
+        "id": "debt",
+        "anyOf": [
+          "COMPREHENSIVE_FINANCIAL_DEBT",
+          "REPORTED_BORROWINGS"
+        ],
+        "component": "FINANCIAL_HEALTH",
+        "preference": [
+          "COMPREHENSIVE_FINANCIAL_DEBT",
+          "REPORTED_BORROWINGS"
+        ]
+      },
+      {
+        "id": "cash",
+        "anyOf": [
+          "CASH_AND_EQUIVALENTS"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      }
+    ],
+    "SECTOR_CORE": [
+      {
+        "id": "working_capital",
+        "anyOf": [
+          "INVENTORY"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      }
+    ],
+    "SUPPORTING": [
+      "NET_INCOME_ATTRIBUTABLE_COMMON",
+      "NET_INCOME_ATTRIBUTABLE_PARENT",
+      "BASIC_EPS",
+      "OPERATING_PROFIT",
+      "CASH_CAPEX_REPORTED",
+      "CURRENT_ASSETS",
+      "CURRENT_LIABILITIES",
+      "RECEIVABLES"
+    ],
+    "OPTIONAL": [
+      "ROIC",
+      "ROA",
+      "MARGIN_STABILITY"
+    ],
+    "requiredDerivations": [],
+    "rationale": "M3 §9: working capital and cash conversion."
+  },
+  "inventory": {
+    "sourcePage": 48,
+    "components": {
+      "goodsInTransit": 3418846,
+      "rawMaterials": 3127402,
+      "toolsSupplies": 751579,
+      "workInProgress": 1788380,
+      "finishedGoods": 3781571,
+      "merchandise": 4377789,
+      "consignment": 150836
+    },
+    "gross": 17396403,
+    "provision": -139167,
+    "net": 17257236,
+    "unit": "MILLION_VND"
+  },
+  "inventoryInterpretation": "Issuer categories and provisions preserved; no obsolescence/quality scoring",
+  "revenue": "Qualified consolidated net accounting revenue only; GMV, store sales, operational KPIs and associate/JV top line excluded",
+  "cash": "Cash and equivalents only; term deposits and financial investments are separate. Unrestricted economically available cash is unqualified; NET_DEBT remains N_R",
+  "perimeter": "MSN consolidated group including subsidiaries only; associates/JVs remain equity-accounted and are not added line-by-line. MCH is independent evidence.",
+  "lease": "Issuer-recognized finance leases only; future operating rent is not capitalized",
+  "operatingProfit": "Reported VAS row30 is supporting, not normalized EBIT/EBITDA",
+  "CapEx": "Only qualified fixed-asset cash acquisition rows; acquisitions, investments and deposits excluded; unqualified combinations withheld",
+  "comparability": "2026 accounting presentation changes are explicit boundaries; no organic-growth reconstruction or annualization",
+  "inheritedSector": "RETAIL",
+  "officialProductionSectorAssignment": {
+    "status": "BLOCKED",
+    "source": "docs/fundamental-data-engine/evidence/2026-10-13-clean-production-initialization/PRODUCTION_SECTOR_MAPPING.json",
+    "levelOneUse": "Existing accounting evidence requirement route only; no official scoring or sector ranking admission",
+    "ownerReviewRequired": true
+  }
+}

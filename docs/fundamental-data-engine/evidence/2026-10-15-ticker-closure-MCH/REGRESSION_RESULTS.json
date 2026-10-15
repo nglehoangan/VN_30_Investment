@@ -1,0 +1,184 @@
+{
+  "ticker": "MCH",
+  "status": "PASS",
+  "passed": 43,
+  "failed": 0,
+  "mandatorySemanticCases": 33,
+  "additionalTickerIsolationAndSourceCases": 10,
+  "assertions": [
+    {
+      "name": "1 MCH accounting evidence cannot enter MSN",
+      "status": "passed"
+    },
+    {
+      "name": "2 MSN accounting evidence cannot enter MCH",
+      "status": "passed"
+    },
+    {
+      "name": "3 rejects associate revenue",
+      "status": "passed"
+    },
+    {
+      "name": "4 rejects JV assets",
+      "status": "passed"
+    },
+    {
+      "name": "5 rejects retail operating sales",
+      "status": "passed"
+    },
+    {
+      "name": "6 rejects GMV",
+      "status": "passed"
+    },
+    {
+      "name": "7 rejects store count",
+      "status": "passed"
+    },
+    {
+      "name": "12 rejects customer advance as revenue",
+      "status": "passed"
+    },
+    {
+      "name": "15 rejects term deposit as cash",
+      "status": "passed"
+    },
+    {
+      "name": "16 rejects financial investment as cash",
+      "status": "passed"
+    },
+    {
+      "name": "22 rejects investing outflow as CapEx",
+      "status": "passed"
+    },
+    {
+      "name": "23 rejects acquisition as CapEx",
+      "status": "passed"
+    },
+    {
+      "name": "24 rejects investment purchase as CapEx",
+      "status": "passed"
+    },
+    {
+      "name": "8 gross inventory cannot replace net inventory",
+      "status": "passed"
+    },
+    {
+      "name": "9 inventory provision cannot disappear",
+      "status": "passed"
+    },
+    {
+      "name": "10 commercial TRADE_PAYABLE requires financing proof",
+      "status": "passed"
+    },
+    {
+      "name": "11 commercial SUPPLIER_PAYABLE requires financing proof",
+      "status": "passed"
+    },
+    {
+      "name": "13 commercial CUSTOMER_ADVANCE requires financing proof",
+      "status": "passed"
+    },
+    {
+      "name": "14 commercial RELATED_PARTY_PAYABLE requires financing proof",
+      "status": "passed"
+    },
+    {
+      "name": "17 generic cash cannot become unrestricted cash",
+      "status": "passed"
+    },
+    {
+      "name": "18 NET_DEBT stays unavailable without qualified cash",
+      "status": "passed"
+    },
+    {
+      "name": "19 current borrowing portion is counted only once",
+      "status": "passed"
+    },
+    {
+      "name": "20 a known financing bond omission invalidates debt receipt",
+      "status": "passed"
+    },
+    {
+      "name": "21 principal cannot silently replace carrying value",
+      "status": "passed"
+    },
+    {
+      "name": "25 quarter cannot masquerade as YTD",
+      "status": "passed"
+    },
+    {
+      "name": "26 unapproved interim annualization is rejected",
+      "status": "passed"
+    },
+    {
+      "name": "27 standalone evidence cannot enter consolidated facts",
+      "status": "passed"
+    },
+    {
+      "name": "28 restated observations have bound predecessor lineage",
+      "status": "passed"
+    },
+    {
+      "name": "29 missing inventory cannot be neutral filled",
+      "status": "passed"
+    },
+    {
+      "name": "30 qualified issuer nonzero defeats provider conflict",
+      "status": "passed"
+    },
+    {
+      "name": "31 historical PIT does not block current Level 1",
+      "status": "passed"
+    },
+    {
+      "name": "32 offline inputs need no disposable extraction files",
+      "status": "passed"
+    },
+    {
+      "name": "33 all seven protected source and evidence hashes remain unchanged",
+      "status": "passed"
+    },
+    {
+      "name": "MSN has isolated candidates, originals, verifications and canonical facts",
+      "status": "passed"
+    },
+    {
+      "name": "MSN every new source row has exact accounting population, units and window",
+      "status": "passed"
+    },
+    {
+      "name": "MWG has isolated candidates, originals, verifications and canonical facts",
+      "status": "passed"
+    },
+    {
+      "name": "MWG every new source row has exact accounting population, units and window",
+      "status": "passed"
+    },
+    {
+      "name": "VNM has isolated candidates, originals, verifications and canonical facts",
+      "status": "passed"
+    },
+    {
+      "name": "VNM every new source row has exact accounting population, units and window",
+      "status": "passed"
+    },
+    {
+      "name": "SAB has isolated candidates, originals, verifications and canonical facts",
+      "status": "passed"
+    },
+    {
+      "name": "SAB every new source row has exact accounting population, units and window",
+      "status": "passed"
+    },
+    {
+      "name": "MCH has isolated candidates, originals, verifications and canonical facts",
+      "status": "passed"
+    },
+    {
+      "name": "MCH every new source row has exact accounting population, units and window",
+      "status": "passed"
+    }
+  ],
+  "command": "pnpm exec vitest run tests/unit/consumer-retail-ticker-closure.test.ts --pool=threads",
+  "afterDisposableExtractionDeletion": true
+}
