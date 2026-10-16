@@ -1,0 +1,264 @@
+{
+  "baseline": {
+    "passCount": 1717,
+    "failCount": 0
+  },
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "MBB targeted replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=MBB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.93
+    },
+    {
+      "name": "VIB targeted replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=VIB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.66
+    },
+    {
+      "name": "Bank semantic regressions",
+      "command": [
+        "node",
+        "scripts/verify-bank-group-regressions.mjs"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.56
+    },
+    {
+      "name": "15 approved ticker replays and VNM preservation",
+      "command": [
+        "node",
+        "scripts/verify-tcx-protected.mjs"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 10.41
+    },
+    {
+      "name": "ACB approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=ACB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.7
+    },
+    {
+      "name": "BID approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=BID",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.76
+    },
+    {
+      "name": "CTG approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=CTG",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.7
+    },
+    {
+      "name": "HDB approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=HDB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.72
+    },
+    {
+      "name": "LPB approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=LPB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.74
+    },
+    {
+      "name": "SHB approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=SHB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.71
+    },
+    {
+      "name": "SSB approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=SSB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.73
+    },
+    {
+      "name": "STB approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=STB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.69
+    },
+    {
+      "name": "TCB approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=TCB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.7
+    },
+    {
+      "name": "VPB approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=VPB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.7
+    },
+    {
+      "name": "VCB protected regressions",
+      "command": [
+        "node",
+        "scripts/verify-vcb-ticker-closure.mjs"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 1.17
+    },
+    {
+      "name": "TCX preservation",
+      "command": [
+        "node",
+        "scripts/verify-tcx-ticker.mjs"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 2.68
+    },
+    {
+      "name": "Structured certification",
+      "command": [
+        "node",
+        "scripts/verify-structured-certification.mjs"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 107.36
+    },
+    {
+      "name": "Architecture boundaries",
+      "command": [
+        "pnpm",
+        "test:boundaries"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 6.58,
+      "summary": "\n> vn30-value-investing-os@0.1.0 test:boundaries /Users/nglehoangan/Documents/Working/VN_30_Investment\n> pnpm db:generate && node scripts/check-boundaries.mjs && vitest run tests/architecture\n\n\n> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment\n> node scripts/database.mjs generate\n\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n\n✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 123ms\n\nPASS boundaries: 174 source modules\n\n RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment\n\n\n Test Files  8 passed (8)\n      Tests  98 passed (98)\n   Start at  13:44:31\n   Duration  4.47s (environment 51%, setup 17%, tests 15%, import 11%, transform 5%, worker 1%)\n\nEnvironment  jsdom was created 8 times · 2.02s total, 51% of tracked time\n             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)\n             learn more: https://vitest.dev/guide/improving-performance#test-environments\n\n"
+    },
+    {
+      "name": "Lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 7.58,
+      "summary": "\n> vn30-value-investing-os@0.1.0 lint /Users/nglehoangan/Documents/Working/VN_30_Investment\n> pnpm db:generate && eslint . --max-warnings=0 && node scripts/check-boundaries.mjs\n\n\n> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment\n> node scripts/database.mjs generate\n\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n\n✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 118ms\n\nPASS boundaries: 174 source modules\n"
+    },
+    {
+      "name": "Typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 2.92,
+      "summary": "\n> vn30-value-investing-os@0.1.0 typecheck /Users/nglehoangan/Documents/Working/VN_30_Investment\n> pnpm db:generate && next typegen && tsc --noEmit\n\n\n> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment\n> node scripts/database.mjs generate\n\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n\n✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 119ms\n\nGenerating route types...\n✓ Types generated successfully\n"
+    },
+    {
+      "name": "DB validation",
+      "command": [
+        "pnpm",
+        "db:validate"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.8,
+      "summary": "\n> vn30-value-investing-os@0.1.0 db:validate /Users/nglehoangan/Documents/Working/VN_30_Investment\n> node scripts/database.mjs validate\n\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\nThe schema at prisma/schema.prisma is valid 🚀\n"
+    },
+    {
+      "name": "Full application suite including fundamental-data suite",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 519.68,
+      "summary": "\n> vn30-value-investing-os@0.1.0 test /Users/nglehoangan/Documents/Working/VN_30_Investment\n> pnpm db:generate && vitest run\n\n\n> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment\n> node scripts/database.mjs generate\n\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n\n✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 122ms\n\n\n RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment\n\n(node:8869) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  116 passed (116)\n      Tests  1717 passed (1717)\n   Start at  13:44:48\n   Duration  518.34s (tests 68%, environment 19%, setup 7%, import 3%, transform 1%)\n\n    Isolate  116 workers spawned · ~1.03s startup each (spawn + environment, per file)\n             at least ~118.27s faster with isolate: false — reuses workers across files instead of one per file\n\n"
+    }
+  ],
+  "passCount": 1717,
+  "failCount": 0,
+  "testFiles": 116,
+  "fundamentalDataSuite": "Included in full application Vitest run; targeted bank and semantic verifiers also executed separately.",
+  "newVitestTests": 0,
+  "targetedEvidenceVerifier": "Independent compact receipt/source-byte and canonical replay checks; no production behavior changed."
+}

@@ -1,0 +1,911 @@
+{
+  "status": "PASS",
+  "approvedTickerCount": 25,
+  "checks": [
+    {
+      "name": "15 approved ticker replays and VNM preservation",
+      "command": [
+        "node",
+        "scripts/verify-tcx-protected.mjs"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 10.41,
+      "receipt": {
+        "status": "PASS",
+        "results": [
+          {
+            "ticker": "HPG",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 868,
+            "contentHash": "e211732102bbdf31e9b8d2407d3f9cf40598b9675c2ab01beae09b063286ecc3"
+          },
+          {
+            "ticker": "VCB",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 86,
+            "contentHash": "651defb0ca62173b2d3adb079dd5ce58d89be4463708170cf909227cb029c73f"
+          },
+          {
+            "ticker": "SSI",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 14,
+            "contentHash": "95b5334f829dbcb74e2cf1a21f3404eb71d04e6d7247e9b08397cab22b25aa8c"
+          },
+          {
+            "ticker": "FPT",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 15,
+            "contentHash": "d928e9cd0bc7aa7a4506123c369ffa7d59e2d3b3557ae0ce683bbeb8a9497948"
+          },
+          {
+            "ticker": "VHM",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "bd978c691584a38ac0bb236db8abc0a7e5f5fb7c0044b051372afa4ce011a164"
+          },
+          {
+            "ticker": "VRE",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 17,
+            "contentHash": "35acd1ef938a3e59f6ce5bb1c0329e3d44bc17e6cbeaedb542bd36a4924aa4c9"
+          },
+          {
+            "ticker": "VPL",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "7e129430e0bf4e1abcc9400fa9f29cb242e3f797e828fddcb9a9e9f2a2895390"
+          },
+          {
+            "ticker": "MSN",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "f047fbcdb65429e8466f1afc4cf0a48de01fe0b20fbcf87defb2f441080a4701"
+          },
+          {
+            "ticker": "MWG",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "ba28d008737a5f3cf13b7ffafb2920070ea152f08a1e5b8a3afbab5f4cac5daf"
+          },
+          {
+            "ticker": "SAB",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "bb8822b21c17a1a331af0d5c29ffdd0ae68036d3dcf4dcb3218eb47e2007a8f8"
+          },
+          {
+            "ticker": "MCH",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 17,
+            "contentHash": "f68442d96395ef88a08276b089aa2d5f400b1bead7f708f75392e0ca46011e5b"
+          },
+          {
+            "ticker": "GAS",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "649b68db209601ed572c606b138cf61cbb935159cd5fe8c30faff0d20cf96664"
+          },
+          {
+            "ticker": "BSR",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "fa35f185c97ace12ad79bcd9833ca2aeafc159076892ab7be4728d1c5bb23eea"
+          },
+          {
+            "ticker": "GVR",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "e7d870d0bce7e145f61813e9e455450169f0f474078496e7c6c21d71c6e4e55e"
+          },
+          {
+            "ticker": "VJC",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "f628d6f039c7e6f9b9e9a9b45f2f574ffec6e77dfe827dc411d3cc307b97313a"
+          }
+        ],
+        "VNM": {
+          "levelOneReady": false,
+          "verdict": "C. VNM BLOCKED — MATERIAL LEVEL-1 DATA-INTEGRITY GAPS REMAIN",
+          "status": "DEFERRED BLOCKED"
+        }
+      }
+    },
+    {
+      "name": "ACB approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=ACB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.7,
+      "receipt": {
+        "ticker": "ACB",
+        "status": "PASS",
+        "purpose": "Independent offline canonical replay, qualified loan/allowance reconciliation, revision lineage, and fail-closed material-gap verdict",
+        "offline": true,
+        "separateProcess": true,
+        "independentHumanReview": false,
+        "contentHash": "2ebba38b5a74a8c8da39e9fd4e569fb6da7b580e595873bf84c49b67ca19eb7d",
+        "checks": [
+          {
+            "name": "Only this bank supplies canonical admission evidence",
+            "status": "PASS"
+          },
+          {
+            "name": "Every source binding matches physical bytes",
+            "status": "PASS"
+          },
+          {
+            "name": "Manifest originals match their recorded hashes and ticker paths",
+            "status": "PASS"
+          },
+          {
+            "name": "NAM/QUY raw observations parse under their own symbol and payload",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent offline canonical replay agrees exactly",
+            "status": "PASS"
+          },
+          {
+            "name": "Registry group denominators remain 15 CORE / 20 SECTOR_CORE / 45 SUPPORTING",
+            "status": "PASS"
+          },
+          {
+            "name": "Current reporting obligation is 6M2026 YTD with no quarter substitution",
+            "status": "PASS"
+          },
+          {
+            "name": "Quarantined observations remain outside canonical verification inputs",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent qualification outcome follows concrete material gaps",
+            "status": "PASS"
+          },
+          {
+            "name": "Loan groups, allowance exclusions and lineage replay from compact receipts",
+            "status": "PASS"
+          },
+          {
+            "name": "No extracted text, OCR or render dependency needed for replay",
+            "status": "PASS"
+          },
+          {
+            "name": "Every sealed artifact hash matches",
+            "status": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BID approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=BID",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.76,
+      "receipt": {
+        "ticker": "BID",
+        "status": "PASS",
+        "purpose": "Independent offline canonical replay, qualified loan/allowance reconciliation, revision lineage, and fail-closed material-gap verdict",
+        "offline": true,
+        "separateProcess": true,
+        "independentHumanReview": false,
+        "contentHash": "97962f6b4a8a1e0b2c3d4ec1acf781bc4d075ecf36bb972204376773c0c5ac6b",
+        "checks": [
+          {
+            "name": "Only this bank supplies canonical admission evidence",
+            "status": "PASS"
+          },
+          {
+            "name": "Every source binding matches physical bytes",
+            "status": "PASS"
+          },
+          {
+            "name": "Manifest originals match their recorded hashes and ticker paths",
+            "status": "PASS"
+          },
+          {
+            "name": "NAM/QUY raw observations parse under their own symbol and payload",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent offline canonical replay agrees exactly",
+            "status": "PASS"
+          },
+          {
+            "name": "Registry group denominators remain 15 CORE / 20 SECTOR_CORE / 45 SUPPORTING",
+            "status": "PASS"
+          },
+          {
+            "name": "Current reporting obligation is 6M2026 YTD with no quarter substitution",
+            "status": "PASS"
+          },
+          {
+            "name": "Quarantined observations remain outside canonical verification inputs",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent qualification outcome follows concrete material gaps",
+            "status": "PASS"
+          },
+          {
+            "name": "Loan groups, allowance exclusions and lineage replay from compact receipts",
+            "status": "PASS"
+          },
+          {
+            "name": "No extracted text, OCR or render dependency needed for replay",
+            "status": "PASS"
+          },
+          {
+            "name": "Every sealed artifact hash matches",
+            "status": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CTG approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=CTG",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.7,
+      "receipt": {
+        "ticker": "CTG",
+        "status": "PASS",
+        "purpose": "Independent offline canonical replay, qualified loan/allowance reconciliation, revision lineage, and fail-closed material-gap verdict",
+        "offline": true,
+        "separateProcess": true,
+        "independentHumanReview": false,
+        "contentHash": "26ed9e7e191d6825d4462396c0d9c69817fe86f0315dd8b333f5ebd22785f741",
+        "checks": [
+          {
+            "name": "Only this bank supplies canonical admission evidence",
+            "status": "PASS"
+          },
+          {
+            "name": "Every source binding matches physical bytes",
+            "status": "PASS"
+          },
+          {
+            "name": "Manifest originals match their recorded hashes and ticker paths",
+            "status": "PASS"
+          },
+          {
+            "name": "NAM/QUY raw observations parse under their own symbol and payload",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent offline canonical replay agrees exactly",
+            "status": "PASS"
+          },
+          {
+            "name": "Registry group denominators remain 15 CORE / 20 SECTOR_CORE / 45 SUPPORTING",
+            "status": "PASS"
+          },
+          {
+            "name": "Current reporting obligation is 6M2026 YTD with no quarter substitution",
+            "status": "PASS"
+          },
+          {
+            "name": "Quarantined observations remain outside canonical verification inputs",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent qualification outcome follows concrete material gaps",
+            "status": "PASS"
+          },
+          {
+            "name": "Loan groups, allowance exclusions and lineage replay from compact receipts",
+            "status": "PASS"
+          },
+          {
+            "name": "No extracted text, OCR or render dependency needed for replay",
+            "status": "PASS"
+          },
+          {
+            "name": "Every sealed artifact hash matches",
+            "status": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "name": "HDB approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=HDB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.72,
+      "receipt": {
+        "ticker": "HDB",
+        "status": "PASS",
+        "purpose": "Independent offline canonical replay, qualified loan/allowance reconciliation, revision lineage, and fail-closed material-gap verdict",
+        "offline": true,
+        "separateProcess": true,
+        "independentHumanReview": false,
+        "contentHash": "69779af6a69c830c8c357406f5b1897610333ff2f0f2c791723b807de12edc11",
+        "checks": [
+          {
+            "name": "Only this bank supplies canonical admission evidence",
+            "status": "PASS"
+          },
+          {
+            "name": "Every source binding matches physical bytes",
+            "status": "PASS"
+          },
+          {
+            "name": "Manifest originals match their recorded hashes and ticker paths",
+            "status": "PASS"
+          },
+          {
+            "name": "NAM/QUY raw observations parse under their own symbol and payload",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent offline canonical replay agrees exactly",
+            "status": "PASS"
+          },
+          {
+            "name": "Registry group denominators remain 15 CORE / 20 SECTOR_CORE / 45 SUPPORTING",
+            "status": "PASS"
+          },
+          {
+            "name": "Current reporting obligation is 6M2026 YTD with no quarter substitution",
+            "status": "PASS"
+          },
+          {
+            "name": "Quarantined observations remain outside canonical verification inputs",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent qualification outcome follows concrete material gaps",
+            "status": "PASS"
+          },
+          {
+            "name": "Loan groups, allowance exclusions and lineage replay from compact receipts",
+            "status": "PASS"
+          },
+          {
+            "name": "No extracted text, OCR or render dependency needed for replay",
+            "status": "PASS"
+          },
+          {
+            "name": "Every sealed artifact hash matches",
+            "status": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LPB approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=LPB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.74,
+      "receipt": {
+        "ticker": "LPB",
+        "status": "PASS",
+        "purpose": "Independent offline canonical replay, qualified loan/allowance reconciliation, revision lineage, and fail-closed material-gap verdict",
+        "offline": true,
+        "separateProcess": true,
+        "independentHumanReview": false,
+        "contentHash": "7e4be50c3751cac4ed7facee83690830f6dd1e17501033f95a075663c1611691",
+        "checks": [
+          {
+            "name": "Only this bank supplies canonical admission evidence",
+            "status": "PASS"
+          },
+          {
+            "name": "Every source binding matches physical bytes",
+            "status": "PASS"
+          },
+          {
+            "name": "Manifest originals match their recorded hashes and ticker paths",
+            "status": "PASS"
+          },
+          {
+            "name": "NAM/QUY raw observations parse under their own symbol and payload",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent offline canonical replay agrees exactly",
+            "status": "PASS"
+          },
+          {
+            "name": "Registry group denominators remain 15 CORE / 20 SECTOR_CORE / 45 SUPPORTING",
+            "status": "PASS"
+          },
+          {
+            "name": "Current reporting obligation is 6M2026 YTD with no quarter substitution",
+            "status": "PASS"
+          },
+          {
+            "name": "Quarantined observations remain outside canonical verification inputs",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent qualification outcome follows concrete material gaps",
+            "status": "PASS"
+          },
+          {
+            "name": "Loan groups, allowance exclusions and lineage replay from compact receipts",
+            "status": "PASS"
+          },
+          {
+            "name": "No extracted text, OCR or render dependency needed for replay",
+            "status": "PASS"
+          },
+          {
+            "name": "Every sealed artifact hash matches",
+            "status": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SHB approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=SHB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.71,
+      "receipt": {
+        "ticker": "SHB",
+        "status": "PASS",
+        "purpose": "Independent offline canonical replay, qualified loan/allowance reconciliation, revision lineage, and fail-closed material-gap verdict",
+        "offline": true,
+        "separateProcess": true,
+        "independentHumanReview": false,
+        "contentHash": "a650ee58c298a8c89b21926e0f1a39bcc5f224ee1e178db8e208af5a415758df",
+        "checks": [
+          {
+            "name": "Only this bank supplies canonical admission evidence",
+            "status": "PASS"
+          },
+          {
+            "name": "Every source binding matches physical bytes",
+            "status": "PASS"
+          },
+          {
+            "name": "Manifest originals match their recorded hashes and ticker paths",
+            "status": "PASS"
+          },
+          {
+            "name": "NAM/QUY raw observations parse under their own symbol and payload",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent offline canonical replay agrees exactly",
+            "status": "PASS"
+          },
+          {
+            "name": "Registry group denominators remain 15 CORE / 20 SECTOR_CORE / 45 SUPPORTING",
+            "status": "PASS"
+          },
+          {
+            "name": "Current reporting obligation is 6M2026 YTD with no quarter substitution",
+            "status": "PASS"
+          },
+          {
+            "name": "Quarantined observations remain outside canonical verification inputs",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent qualification outcome follows concrete material gaps",
+            "status": "PASS"
+          },
+          {
+            "name": "Loan groups, allowance exclusions and lineage replay from compact receipts",
+            "status": "PASS"
+          },
+          {
+            "name": "No extracted text, OCR or render dependency needed for replay",
+            "status": "PASS"
+          },
+          {
+            "name": "Every sealed artifact hash matches",
+            "status": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SSB approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=SSB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.73,
+      "receipt": {
+        "ticker": "SSB",
+        "status": "PASS",
+        "purpose": "Independent offline canonical replay, qualified loan/allowance reconciliation, revision lineage, and fail-closed material-gap verdict",
+        "offline": true,
+        "separateProcess": true,
+        "independentHumanReview": false,
+        "contentHash": "dd6ae7f3006f9a1f5a5bc73471a547c4db0c2d80472581611ed90d31c5508d6d",
+        "checks": [
+          {
+            "name": "Only this bank supplies canonical admission evidence",
+            "status": "PASS"
+          },
+          {
+            "name": "Every source binding matches physical bytes",
+            "status": "PASS"
+          },
+          {
+            "name": "Manifest originals match their recorded hashes and ticker paths",
+            "status": "PASS"
+          },
+          {
+            "name": "NAM/QUY raw observations parse under their own symbol and payload",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent offline canonical replay agrees exactly",
+            "status": "PASS"
+          },
+          {
+            "name": "Registry group denominators remain 15 CORE / 20 SECTOR_CORE / 45 SUPPORTING",
+            "status": "PASS"
+          },
+          {
+            "name": "Current reporting obligation is 6M2026 YTD with no quarter substitution",
+            "status": "PASS"
+          },
+          {
+            "name": "Quarantined observations remain outside canonical verification inputs",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent qualification outcome follows concrete material gaps",
+            "status": "PASS"
+          },
+          {
+            "name": "Loan groups, allowance exclusions and lineage replay from compact receipts",
+            "status": "PASS"
+          },
+          {
+            "name": "No extracted text, OCR or render dependency needed for replay",
+            "status": "PASS"
+          },
+          {
+            "name": "Every sealed artifact hash matches",
+            "status": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "name": "STB approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=STB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.69,
+      "receipt": {
+        "ticker": "STB",
+        "status": "PASS",
+        "purpose": "Independent offline canonical replay, qualified loan/allowance reconciliation, revision lineage, and fail-closed material-gap verdict",
+        "offline": true,
+        "separateProcess": true,
+        "independentHumanReview": false,
+        "contentHash": "44c3ad3d53be52b5720ece34fd51dfa35f342bd960144c1e7895b3aea4efa9f3",
+        "checks": [
+          {
+            "name": "Only this bank supplies canonical admission evidence",
+            "status": "PASS"
+          },
+          {
+            "name": "Every source binding matches physical bytes",
+            "status": "PASS"
+          },
+          {
+            "name": "Manifest originals match their recorded hashes and ticker paths",
+            "status": "PASS"
+          },
+          {
+            "name": "NAM/QUY raw observations parse under their own symbol and payload",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent offline canonical replay agrees exactly",
+            "status": "PASS"
+          },
+          {
+            "name": "Registry group denominators remain 15 CORE / 20 SECTOR_CORE / 45 SUPPORTING",
+            "status": "PASS"
+          },
+          {
+            "name": "Current reporting obligation is 6M2026 YTD with no quarter substitution",
+            "status": "PASS"
+          },
+          {
+            "name": "Quarantined observations remain outside canonical verification inputs",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent qualification outcome follows concrete material gaps",
+            "status": "PASS"
+          },
+          {
+            "name": "Loan groups, allowance exclusions and lineage replay from compact receipts",
+            "status": "PASS"
+          },
+          {
+            "name": "No extracted text, OCR or render dependency needed for replay",
+            "status": "PASS"
+          },
+          {
+            "name": "Every sealed artifact hash matches",
+            "status": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TCB approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=TCB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.7,
+      "receipt": {
+        "ticker": "TCB",
+        "status": "PASS",
+        "purpose": "Independent offline canonical replay, qualified loan/allowance reconciliation, revision lineage, and fail-closed material-gap verdict",
+        "offline": true,
+        "separateProcess": true,
+        "independentHumanReview": false,
+        "contentHash": "cb3e487919a31362e89b998c1cb1fa8f982ddffe32caf8e86be2a16ad6fdb6e7",
+        "checks": [
+          {
+            "name": "Only this bank supplies canonical admission evidence",
+            "status": "PASS"
+          },
+          {
+            "name": "Every source binding matches physical bytes",
+            "status": "PASS"
+          },
+          {
+            "name": "Manifest originals match their recorded hashes and ticker paths",
+            "status": "PASS"
+          },
+          {
+            "name": "NAM/QUY raw observations parse under their own symbol and payload",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent offline canonical replay agrees exactly",
+            "status": "PASS"
+          },
+          {
+            "name": "Registry group denominators remain 15 CORE / 20 SECTOR_CORE / 45 SUPPORTING",
+            "status": "PASS"
+          },
+          {
+            "name": "Current reporting obligation is 6M2026 YTD with no quarter substitution",
+            "status": "PASS"
+          },
+          {
+            "name": "Quarantined observations remain outside canonical verification inputs",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent qualification outcome follows concrete material gaps",
+            "status": "PASS"
+          },
+          {
+            "name": "Loan groups, allowance exclusions and lineage replay from compact receipts",
+            "status": "PASS"
+          },
+          {
+            "name": "No extracted text, OCR or render dependency needed for replay",
+            "status": "PASS"
+          },
+          {
+            "name": "Every sealed artifact hash matches",
+            "status": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VPB approved replay",
+      "command": [
+        "node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=VPB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.7,
+      "receipt": {
+        "ticker": "VPB",
+        "status": "PASS",
+        "purpose": "Independent offline canonical replay, qualified loan/allowance reconciliation, revision lineage, and fail-closed material-gap verdict",
+        "offline": true,
+        "separateProcess": true,
+        "independentHumanReview": false,
+        "contentHash": "3f7c0a96ee3960e9f5c98853a6f5cb86644f7ebc73079b5289fadf7a8afff063",
+        "checks": [
+          {
+            "name": "Only this bank supplies canonical admission evidence",
+            "status": "PASS"
+          },
+          {
+            "name": "Every source binding matches physical bytes",
+            "status": "PASS"
+          },
+          {
+            "name": "Manifest originals match their recorded hashes and ticker paths",
+            "status": "PASS"
+          },
+          {
+            "name": "NAM/QUY raw observations parse under their own symbol and payload",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent offline canonical replay agrees exactly",
+            "status": "PASS"
+          },
+          {
+            "name": "Registry group denominators remain 15 CORE / 20 SECTOR_CORE / 45 SUPPORTING",
+            "status": "PASS"
+          },
+          {
+            "name": "Current reporting obligation is 6M2026 YTD with no quarter substitution",
+            "status": "PASS"
+          },
+          {
+            "name": "Quarantined observations remain outside canonical verification inputs",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent qualification outcome follows concrete material gaps",
+            "status": "PASS"
+          },
+          {
+            "name": "Loan groups, allowance exclusions and lineage replay from compact receipts",
+            "status": "PASS"
+          },
+          {
+            "name": "No extracted text, OCR or render dependency needed for replay",
+            "status": "PASS"
+          },
+          {
+            "name": "Every sealed artifact hash matches",
+            "status": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TCX preservation",
+      "command": [
+        "node",
+        "scripts/verify-tcx-ticker.mjs"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 2.68,
+      "receipt": {
+        "ticker": "TCX",
+        "status": "PASS",
+        "offline": true,
+        "separateProcess": true,
+        "independentHumanReview": false,
+        "closureVerdict": "C. TCX BLOCKED — MATERIAL LEVEL-1 DATA-INTEGRITY GAPS REMAIN",
+        "contentHash": "524615515366f1505cb48782e733eb2c6ab437987034fd8c9619760939bec5ee",
+        "checks": [
+          {
+            "name": "Sealed evidence bytes",
+            "status": "PASS"
+          },
+          {
+            "name": "Physical source bytes and TCX original PDF identity",
+            "status": "PASS"
+          },
+          {
+            "name": "TCX actual CafeF raw schema, exact code, value and fingerprint lineage; NAM QUY only",
+            "status": "PASS"
+          },
+          {
+            "name": "Offline canonical replay exact; no foreign witnesses or issuer evidence",
+            "status": "PASS"
+          },
+          {
+            "name": "Fixed five windows and honest blocked result",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent exact integer margin and debt reconciliations",
+            "status": "PASS"
+          },
+          {
+            "name": "All protected closure, canonical, source and replay artifact bytes unchanged",
+            "status": "PASS"
+          },
+          {
+            "name": "Separate producer process reproduces every generated artifact",
+            "status": "PASS"
+          }
+        ]
+      }
+    }
+  ],
+  "unchangedEvidenceBindings": "PRESERVATION_BINDINGS.json",
+  "separateHumanReview": false
+}
