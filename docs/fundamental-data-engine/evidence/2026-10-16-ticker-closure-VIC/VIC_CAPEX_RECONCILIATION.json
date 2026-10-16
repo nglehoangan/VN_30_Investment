@@ -1,29 +1,59 @@
 {
   "ticker": "VIC",
-  "status": "INCOMPLETE_NOT_QUALIFIED",
+  "status": "QUALIFIED",
+  "definition": "Approved CASH_CAPEX_REPORTED: cash paid to acquire/construct fixed assets and other long-term assets, issuer CF row21; not total investing outflow.",
   "periods": [
     {
-      "end": "2026-06-30",
-      "status": "NOT_QUALIFIED_IN_THIS_ROUND"
-    },
-    {
       "end": "2022-12-31",
-      "status": "NOT_QUALIFIED_IN_THIS_ROUND"
+      "sourceHash": "104d2bcdb068a8bb1b51504c6413cd77fbae8b5900a800326f16727a23e91012",
+      "sourceCashPaymentMillion": -75161529,
+      "canonicalCashCapEx": "75161529000000",
+      "sourceSign": "NEGATIVE_CASH_OUTFLOW",
+      "normalization": "Multiply VND million by 1000000 then negate exactly once",
+      "locator": "Original FY2022 PDF p15 CF row21",
+      "currentAnalysisValue": "75160452000000",
+      "comparativeRevision": "FY2023 p15 and p99 note42; original retained"
     },
     {
       "end": "2023-12-31",
-      "status": "NOT_QUALIFIED_IN_THIS_ROUND"
+      "sourceHash": "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d",
+      "sourceCashPaymentMillion": -54548151,
+      "canonicalCashCapEx": "54548151000000",
+      "sourceSign": "NEGATIVE_CASH_OUTFLOW",
+      "normalization": "Multiply VND million by 1000000 then negate exactly once",
+      "locator": "Original FY2023 PDF p15 CF row21",
+      "currentAnalysisValue": "54548151000000",
+      "comparativeRevision": null
     },
     {
       "end": "2024-12-31",
-      "status": "NOT_QUALIFIED_IN_THIS_ROUND"
+      "sourceHash": "5da49574d83a136e1064f32219f4dbc18e19f2916f0825b628a88c57c2c00e5d",
+      "sourceCashPaymentMillion": -48567437,
+      "canonicalCashCapEx": "48567437000000",
+      "sourceSign": "NEGATIVE_CASH_OUTFLOW",
+      "normalization": "Multiply VND million by 1000000 then negate exactly once",
+      "locator": "Original FY2024 PDF p15 CF row21",
+      "currentAnalysisValue": "48567437000000",
+      "comparativeRevision": null
     },
     {
       "end": "2025-12-31",
-      "status": "NOT_QUALIFIED_IN_THIS_ROUND"
+      "sourceHash": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217",
+      "sourceCashPaymentMillion": -76157072,
+      "canonicalCashCapEx": "76157072000000",
+      "sourceSign": "NEGATIVE_CASH_OUTFLOW",
+      "normalization": "Multiply VND million by 1000000 then negate exactly once",
+      "locator": "Original FY2025 PDF p15 CF row21",
+      "currentAnalysisValue": "76157072000000",
+      "comparativeRevision": null
     }
   ],
-  "signNormalization": "Only qualifying issuer cash-flow fixed-asset acquisition payment rows: negate reported negative payment once. No new row qualified.",
-  "boundary": "Total investing, acquisitions, loans, deposits and JV contributions excluded from automatic CapEx.",
-  "closureImpact": "Major unresolved review; not an analytical gap or assertion of absence."
+  "excludedRows": [
+    "CF23 loans/debt instruments",
+    "CF25 equity investments/acquisitions",
+    "CF30 total investing cash flow",
+    "deposits",
+    "JV contributions"
+  ],
+  "noEconomicNormalization": true
 }

@@ -1,66 +1,783 @@
 {
   "ticker": "VIC",
-  "contract": "nonfinancial-debt-contract-v2",
+  "contractVersion": "nonfinancial-debt-contract-v2",
   "periods": [
     {
-      "periodEnd": "2026-06-30",
-      "status": "UNAVAILABLE",
-      "short": null,
-      "long": null,
-      "currentPortion": null,
-      "reportedBorrowings": null,
-      "comprehensiveDebtValue": null,
-      "reason": "No qualified population receipt; no inferred aggregation from subsidiaries or commercial liabilities."
-    },
-    {
       "periodEnd": "2022-12-31",
-      "status": "UNAVAILABLE",
-      "short": null,
-      "long": null,
-      "currentPortion": null,
-      "reportedBorrowings": null,
+      "status": "QUALIFIED",
+      "sourceHash": "104d2bcdb068a8bb1b51504c6413cd77fbae8b5900a800326f16727a23e91012",
+      "sourceHashes": [
+        "104d2bcdb068a8bb1b51504c6413cd77fbae8b5900a800326f16727a23e91012",
+        "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d"
+      ],
+      "short": "40594457000000",
+      "long": "119804341000000",
+      "currentPortion": "25279645000000",
+      "shortIncludesCurrentPortion": true,
+      "longIncludesCurrentPortion": false,
+      "reportedBorrowings": "177903088000000",
+      "reportedPopulationStatus": "REPORTED_PLUS_IDENTIFIED_ADDITIONS",
       "comprehensiveDebtValue": null,
-      "reason": "No qualified population receipt; no inferred aggregation from subsidiaries or commercial liabilities."
+      "comprehensiveStatus": "COMPREHENSIVE_UNVERIFIED",
+      "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+      "components": [
+        {
+          "id": "VIC-2022-caption-0",
+          "caption": "Short bank/other loans after LC comparative reclassification",
+          "amount": "15314812000000",
+          "alreadyIncludedIn": "SHORT",
+          "category": "BANK_LOAN",
+          "currentPortion": false,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2022 PDF note26 pp58-64, balance sheet p11; FY2023 pp58-60 and p99 note42 for revised FY2022 LC presentation",
+          "sourceHash": "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d"
+        },
+        {
+          "id": "VIC-2022-caption-1",
+          "caption": "Current portion long-term loans",
+          "amount": "16086798000000",
+          "alreadyIncludedIn": "SHORT",
+          "category": "LOAN_CURRENT",
+          "currentPortion": true,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2022 PDF note26 pp58-64, balance sheet p11; FY2023 pp58-60 and p99 note42 for revised FY2022 LC presentation",
+          "sourceHash": "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d"
+        },
+        {
+          "id": "VIC-2022-caption-2",
+          "caption": "Current portion long-term bonds",
+          "amount": "9192847000000",
+          "alreadyIncludedIn": "SHORT",
+          "category": "BOND",
+          "currentPortion": true,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2022 PDF note26 pp58-64, balance sheet p11; FY2023 pp58-60 and p99 note42 for revised FY2022 LC presentation",
+          "sourceHash": "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d"
+        },
+        {
+          "id": "VIC-2022-caption-3",
+          "caption": "Noncurrent loans",
+          "amount": "61410373000000",
+          "alreadyIncludedIn": "LONG",
+          "category": "BANK_LOAN",
+          "currentPortion": false,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2022 PDF note26 pp58-64, balance sheet p11; FY2023 pp58-60 and p99 note42 for revised FY2022 LC presentation",
+          "sourceHash": "104d2bcdb068a8bb1b51504c6413cd77fbae8b5900a800326f16727a23e91012"
+        },
+        {
+          "id": "VIC-2022-caption-4",
+          "caption": "Noncurrent bonds including embedded issuer exchangeable issues",
+          "amount": "58393968000000",
+          "alreadyIncludedIn": "LONG",
+          "category": "BOND",
+          "currentPortion": false,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2022 PDF note26 pp58-64, balance sheet p11; FY2023 pp58-60 and p99 note42 for revised FY2022 LC presentation",
+          "sourceHash": "104d2bcdb068a8bb1b51504c6413cd77fbae8b5900a800326f16727a23e91012"
+        }
+      ],
+      "additions": [
+        {
+          "id": "VIC-2022-separate-exchangeable",
+          "caption": "Separately captioned exchangeable bond liability",
+          "amount": "9866970000000",
+          "alreadyIncludedIn": null,
+          "category": "BOND",
+          "currentNoncurrent": "NONCURRENT",
+          "locator": "Original FY2022 PDF p64 note27 and balance sheet p11 row339: separately captioned exchangeable liability; issuer explicitly states no equity component",
+          "sourceHash": "104d2bcdb068a8bb1b51504c6413cd77fbae8b5900a800326f16727a23e91012"
+        },
+        {
+          "id": "VIC-2022-identified-LC-financing",
+          "caption": "Explicit fee-bearing letter-of-credit financing outside borrowing caption",
+          "amount": "7637320000000",
+          "alreadyIncludedIn": null,
+          "category": "OTHER_FINANCING",
+          "currentNoncurrent": "CURRENT",
+          "locator": "Original FY2023 PDF p58 note25 comparative FY2022 column and note42 p99; explicit letter-of-credit financing balances; note25 continuation describes annual LC fees (FY2023 p59: 9.5%-14.5%, FY2025 p64: 14%); included only identified issuer carrying balance, not all other payables",
+          "sourceHash": "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d"
+        }
+      ],
+      "knownFinancingItems": [
+        {
+          "id": "VIC-2022-caption-2",
+          "kind": "BOND",
+          "amount": "9192847000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": "SHORT",
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2022 PDF note26 pp58-64, balance sheet p11; FY2023 pp58-60 and p99 note42 for revised FY2022 LC presentation"
+        },
+        {
+          "id": "VIC-2022-caption-4",
+          "kind": "BOND",
+          "amount": "58393968000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": "LONG",
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2022 PDF note26 pp58-64, balance sheet p11; FY2023 pp58-60 and p99 note42 for revised FY2022 LC presentation"
+        },
+        {
+          "id": "VIC-2022-separate-exchangeable",
+          "kind": "BOND",
+          "amount": "9866970000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": null,
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2022 PDF p64 note27 and balance sheet p11 row339: separately captioned exchangeable liability; issuer explicitly states no equity component"
+        },
+        {
+          "id": "VIC-2022-identified-LC-financing",
+          "kind": "OTHER_FINANCING",
+          "amount": "7637320000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": null,
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2023 PDF p58 note25 comparative FY2022 column and note42 p99; explicit letter-of-credit financing balances; note25 continuation describes annual LC fees (FY2023 p59: 9.5%-14.5%, FY2025 p64: 14%); included only identified issuer carrying balance, not all other payables"
+        }
+      ],
+      "uncertaintyComponents": [
+        {
+          "id": "VIC-2022-other-economic-financing",
+          "caption": "Profit-sharing/cooperation, support/commitments and other payables not automatically financing; exhaustive economic debt and lease equivalence not qualified. No known explicit financing item identified in this reviewed survey is omitted.",
+          "amount": null,
+          "interestBearing": "UNKNOWN",
+          "evidenceReference": "Original FY2022 notes25, related parties and commitments; retained qualified reported population is sufficient for Level1."
+        }
+      ],
+      "populationSurvey": {
+        "borrowings": "All issuer note26 closing captions reconciled to row320 and row338; bank-only substitution forbidden.",
+        "bonds": "All note26 bond classes already included in captions; only distinct row339 note27 is an addition. Carrying amounts include reported issue-cost/FX adjustments. No face-notional replacement.",
+        "leases": "FY2022 note26 contains no separately disclosed closing finance-lease liability; FY2023-25 disclosed current and noncurrent leases are included once in respective captions. No capitalization of operating lease commitments.",
+        "hybrids": "See VIC_HYBRID_FINANCING_REVIEW.json: actual issuer classification, carrying adjustments and separate/embedded populations.",
+        "LC": "FY2022/2023 fee-bearing LC outside revised borrowing captions explicitly identified; FY2024 UPAS is already inside short loans after 1 July policy change; FY2025 separately disclosed fee-bearing LC at other payables is added once.",
+        "relatedParty": "Explicit issuer loan counterparties within note26 included in caption population; commercial/BCC/advance balances in note25 are not automatically financing."
+      },
+      "locator": "Original FY2022 PDF note26 pp58-64, balance sheet p11; FY2023 pp58-60 and p99 note42 for revised FY2022 LC presentation"
     },
     {
       "periodEnd": "2023-12-31",
-      "status": "UNAVAILABLE",
-      "short": null,
-      "long": null,
-      "currentPortion": null,
-      "reportedBorrowings": null,
+      "status": "QUALIFIED",
+      "sourceHash": "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d",
+      "sourceHashes": [
+        "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d"
+      ],
+      "short": "116235201000000",
+      "long": "97018190000000",
+      "currentPortion": "73210402000000",
+      "shortIncludesCurrentPortion": true,
+      "longIncludesCurrentPortion": false,
+      "reportedBorrowings": "219085351000000",
+      "reportedPopulationStatus": "REPORTED_PLUS_IDENTIFIED_ADDITIONS",
       "comprehensiveDebtValue": null,
-      "reason": "No qualified population receipt; no inferred aggregation from subsidiaries or commercial liabilities."
+      "comprehensiveStatus": "COMPREHENSIVE_UNVERIFIED",
+      "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+      "components": [
+        {
+          "id": "VIC-2023-caption-0",
+          "caption": "Short loans incl credit lines and other explicitly reported loans",
+          "amount": "41842824000000",
+          "alreadyIncludedIn": "SHORT",
+          "category": "BANK_LOAN",
+          "currentPortion": false,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2023 PDF note26 pp60-69, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d"
+        },
+        {
+          "id": "VIC-2023-caption-1",
+          "caption": "Current portion long-term loans",
+          "amount": "16654234000000",
+          "alreadyIncludedIn": "SHORT",
+          "category": "LOAN_CURRENT",
+          "currentPortion": true,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2023 PDF note26 pp60-69, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d"
+        },
+        {
+          "id": "VIC-2023-caption-2",
+          "caption": "Current portion long-term bonds",
+          "amount": "46046545000000",
+          "alreadyIncludedIn": "SHORT",
+          "category": "BOND",
+          "currentPortion": true,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2023 PDF note26 pp60-69, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d"
+        },
+        {
+          "id": "VIC-2023-caption-3",
+          "caption": "Current issuer exchangeable bond",
+          "amount": "10451913000000",
+          "alreadyIncludedIn": "SHORT",
+          "category": "BOND",
+          "currentPortion": true,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2023 PDF note26 pp60-69, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d"
+        },
+        {
+          "id": "VIC-2023-caption-4",
+          "caption": "Short convertible loan",
+          "amount": "1181975000000",
+          "alreadyIncludedIn": "SHORT",
+          "category": "OTHER_FINANCING",
+          "currentPortion": false,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2023 PDF note26 pp60-69, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d"
+        },
+        {
+          "id": "VIC-2023-caption-5",
+          "caption": "Current portion finance leases",
+          "amount": "57710000000",
+          "alreadyIncludedIn": "SHORT",
+          "category": "FINANCE_LEASE",
+          "currentPortion": true,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2023 PDF note26 pp60-69, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d"
+        },
+        {
+          "id": "VIC-2023-caption-6",
+          "caption": "Noncurrent loans",
+          "amount": "68130320000000",
+          "alreadyIncludedIn": "LONG",
+          "category": "BANK_LOAN",
+          "currentPortion": false,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2023 PDF note26 pp60-69, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d"
+        },
+        {
+          "id": "VIC-2023-caption-7",
+          "caption": "Noncurrent bonds incl issuer exchangeable issues",
+          "amount": "28757192000000",
+          "alreadyIncludedIn": "LONG",
+          "category": "BOND",
+          "currentPortion": false,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2023 PDF note26 pp60-69, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d"
+        },
+        {
+          "id": "VIC-2023-caption-8",
+          "caption": "Noncurrent finance leases",
+          "amount": "130678000000",
+          "alreadyIncludedIn": "LONG",
+          "category": "FINANCE_LEASE",
+          "currentPortion": false,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2023 PDF note26 pp60-69, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d"
+        }
+      ],
+      "additions": [
+        {
+          "id": "VIC-2023-identified-LC-financing",
+          "caption": "Explicit fee-bearing letter-of-credit financing outside borrowing caption",
+          "amount": "5831960000000",
+          "alreadyIncludedIn": null,
+          "category": "OTHER_FINANCING",
+          "currentNoncurrent": "CURRENT",
+          "locator": "Original FY2023 PDF p58 note25 current closing column; explicit letter-of-credit financing balances; note25 continuation describes annual LC fees (FY2023 p59: 9.5%-14.5%, FY2025 p64: 14%); included only identified issuer carrying balance, not all other payables",
+          "sourceHash": "ff7eb8ca67242cd8078e3282ec6718c1b7c538da19526f0f721502a28447149d"
+        }
+      ],
+      "knownFinancingItems": [
+        {
+          "id": "VIC-2023-caption-2",
+          "kind": "BOND",
+          "amount": "46046545000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": "SHORT",
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2023 PDF note26 pp60-69, balance sheet p11; current-year closing carrying columns"
+        },
+        {
+          "id": "VIC-2023-caption-3",
+          "kind": "BOND",
+          "amount": "10451913000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": "SHORT",
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2023 PDF note26 pp60-69, balance sheet p11; current-year closing carrying columns"
+        },
+        {
+          "id": "VIC-2023-caption-4",
+          "kind": "OTHER_FINANCING",
+          "amount": "1181975000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": "SHORT",
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2023 PDF note26 pp60-69, balance sheet p11; current-year closing carrying columns"
+        },
+        {
+          "id": "VIC-2023-caption-5",
+          "kind": "FINANCE_LEASE",
+          "amount": "57710000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": "SHORT",
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2023 PDF note26 pp60-69, balance sheet p11; current-year closing carrying columns"
+        },
+        {
+          "id": "VIC-2023-caption-7",
+          "kind": "BOND",
+          "amount": "28757192000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": "LONG",
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2023 PDF note26 pp60-69, balance sheet p11; current-year closing carrying columns"
+        },
+        {
+          "id": "VIC-2023-caption-8",
+          "kind": "FINANCE_LEASE",
+          "amount": "130678000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": "LONG",
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2023 PDF note26 pp60-69, balance sheet p11; current-year closing carrying columns"
+        },
+        {
+          "id": "VIC-2023-identified-LC-financing",
+          "kind": "OTHER_FINANCING",
+          "amount": "5831960000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": null,
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2023 PDF p58 note25 current closing column; explicit letter-of-credit financing balances; note25 continuation describes annual LC fees (FY2023 p59: 9.5%-14.5%, FY2025 p64: 14%); included only identified issuer carrying balance, not all other payables"
+        }
+      ],
+      "uncertaintyComponents": [
+        {
+          "id": "VIC-2023-other-economic-financing",
+          "caption": "Profit-sharing/cooperation, support/commitments and other payables not automatically financing; exhaustive economic debt and lease equivalence not qualified. No known explicit financing item identified in this reviewed survey is omitted.",
+          "amount": null,
+          "interestBearing": "UNKNOWN",
+          "evidenceReference": "Original FY2023 notes25, related parties and commitments; retained qualified reported population is sufficient for Level1."
+        }
+      ],
+      "populationSurvey": {
+        "borrowings": "All issuer note26 closing captions reconciled to row320 and row338; bank-only substitution forbidden.",
+        "bonds": "All note26 bond classes already included in captions; only distinct row339 note27 is an addition. Carrying amounts include reported issue-cost/FX adjustments. No face-notional replacement.",
+        "leases": "FY2022 note26 contains no separately disclosed closing finance-lease liability; FY2023-25 disclosed current and noncurrent leases are included once in respective captions. No capitalization of operating lease commitments.",
+        "hybrids": "See VIC_HYBRID_FINANCING_REVIEW.json: actual issuer classification, carrying adjustments and separate/embedded populations.",
+        "LC": "FY2022/2023 fee-bearing LC outside revised borrowing captions explicitly identified; FY2024 UPAS is already inside short loans after 1 July policy change; FY2025 separately disclosed fee-bearing LC at other payables is added once.",
+        "relatedParty": "Explicit issuer loan counterparties within note26 included in caption population; commercial/BCC/advance balances in note25 are not automatically financing."
+      },
+      "locator": "Original FY2023 PDF note26 pp60-69, balance sheet p11; current-year closing carrying columns"
     },
     {
       "periodEnd": "2024-12-31",
-      "status": "UNAVAILABLE",
-      "short": null,
-      "long": null,
-      "currentPortion": null,
-      "reportedBorrowings": null,
+      "status": "QUALIFIED",
+      "sourceHash": "5da49574d83a136e1064f32219f4dbc18e19f2916f0825b628a88c57c2c00e5d",
+      "sourceHashes": [
+        "5da49574d83a136e1064f32219f4dbc18e19f2916f0825b628a88c57c2c00e5d"
+      ],
+      "short": "95189145000000",
+      "long": "129041914000000",
+      "currentPortion": "40510112000000",
+      "shortIncludesCurrentPortion": true,
+      "longIncludesCurrentPortion": false,
+      "reportedBorrowings": "227920057000000",
+      "reportedPopulationStatus": "REPORTED_PLUS_IDENTIFIED_ADDITIONS",
       "comprehensiveDebtValue": null,
-      "reason": "No qualified population receipt; no inferred aggregation from subsidiaries or commercial liabilities."
+      "comprehensiveStatus": "COMPREHENSIVE_UNVERIFIED",
+      "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+      "components": [
+        {
+          "id": "VIC-2024-caption-0",
+          "caption": "Short loans including UPAS LC under new presentation policy",
+          "amount": "54679033000000",
+          "alreadyIncludedIn": "SHORT",
+          "category": "BANK_LOAN",
+          "currentPortion": false,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2024 PDF note26 pp67-77, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "5da49574d83a136e1064f32219f4dbc18e19f2916f0825b628a88c57c2c00e5d"
+        },
+        {
+          "id": "VIC-2024-caption-1",
+          "caption": "Current portion long-term loans",
+          "amount": "17137476000000",
+          "alreadyIncludedIn": "SHORT",
+          "category": "LOAN_CURRENT",
+          "currentPortion": true,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2024 PDF note26 pp67-77, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "5da49574d83a136e1064f32219f4dbc18e19f2916f0825b628a88c57c2c00e5d"
+        },
+        {
+          "id": "VIC-2024-caption-2",
+          "caption": "Current portion long-term bonds",
+          "amount": "23115228000000",
+          "alreadyIncludedIn": "SHORT",
+          "category": "BOND",
+          "currentPortion": true,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2024 PDF note26 pp67-77, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "5da49574d83a136e1064f32219f4dbc18e19f2916f0825b628a88c57c2c00e5d"
+        },
+        {
+          "id": "VIC-2024-caption-3",
+          "caption": "Current portion finance leases",
+          "amount": "257408000000",
+          "alreadyIncludedIn": "SHORT",
+          "category": "FINANCE_LEASE",
+          "currentPortion": true,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2024 PDF note26 pp67-77, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "5da49574d83a136e1064f32219f4dbc18e19f2916f0825b628a88c57c2c00e5d"
+        },
+        {
+          "id": "VIC-2024-caption-4",
+          "caption": "Noncurrent loans",
+          "amount": "77403555000000",
+          "alreadyIncludedIn": "LONG",
+          "category": "BANK_LOAN",
+          "currentPortion": false,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2024 PDF note26 pp67-77, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "5da49574d83a136e1064f32219f4dbc18e19f2916f0825b628a88c57c2c00e5d"
+        },
+        {
+          "id": "VIC-2024-caption-5",
+          "caption": "Noncurrent bonds incl issuer exchangeable issues",
+          "amount": "51520340000000",
+          "alreadyIncludedIn": "LONG",
+          "category": "BOND",
+          "currentPortion": false,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2024 PDF note26 pp67-77, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "5da49574d83a136e1064f32219f4dbc18e19f2916f0825b628a88c57c2c00e5d"
+        },
+        {
+          "id": "VIC-2024-caption-6",
+          "caption": "Noncurrent finance leases",
+          "amount": "118019000000",
+          "alreadyIncludedIn": "LONG",
+          "category": "FINANCE_LEASE",
+          "currentPortion": false,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2024 PDF note26 pp67-77, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "5da49574d83a136e1064f32219f4dbc18e19f2916f0825b628a88c57c2c00e5d"
+        }
+      ],
+      "additions": [
+        {
+          "id": "VIC-2024-separate-exchangeable",
+          "caption": "Separately captioned exchangeable bond liability",
+          "amount": "3688998000000",
+          "alreadyIncludedIn": null,
+          "category": "BOND",
+          "currentNoncurrent": "NONCURRENT",
+          "locator": "Original FY2024 PDF p77 note27 and balance sheet p11 row339: separately captioned exchangeable liability; issuer explicitly states no equity component",
+          "sourceHash": "5da49574d83a136e1064f32219f4dbc18e19f2916f0825b628a88c57c2c00e5d"
+        }
+      ],
+      "knownFinancingItems": [
+        {
+          "id": "VIC-2024-caption-2",
+          "kind": "BOND",
+          "amount": "23115228000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": "SHORT",
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2024 PDF note26 pp67-77, balance sheet p11; current-year closing carrying columns"
+        },
+        {
+          "id": "VIC-2024-caption-3",
+          "kind": "FINANCE_LEASE",
+          "amount": "257408000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": "SHORT",
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2024 PDF note26 pp67-77, balance sheet p11; current-year closing carrying columns"
+        },
+        {
+          "id": "VIC-2024-caption-5",
+          "kind": "BOND",
+          "amount": "51520340000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": "LONG",
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2024 PDF note26 pp67-77, balance sheet p11; current-year closing carrying columns"
+        },
+        {
+          "id": "VIC-2024-caption-6",
+          "kind": "FINANCE_LEASE",
+          "amount": "118019000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": "LONG",
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2024 PDF note26 pp67-77, balance sheet p11; current-year closing carrying columns"
+        },
+        {
+          "id": "VIC-2024-separate-exchangeable",
+          "kind": "BOND",
+          "amount": "3688998000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": null,
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2024 PDF p77 note27 and balance sheet p11 row339: separately captioned exchangeable liability; issuer explicitly states no equity component"
+        }
+      ],
+      "uncertaintyComponents": [
+        {
+          "id": "VIC-2024-other-economic-financing",
+          "caption": "Profit-sharing/cooperation, support/commitments and other payables not automatically financing; exhaustive economic debt and lease equivalence not qualified. No known explicit financing item identified in this reviewed survey is omitted.",
+          "amount": null,
+          "interestBearing": "UNKNOWN",
+          "evidenceReference": "Original FY2024 notes25, related parties and commitments; retained qualified reported population is sufficient for Level1."
+        }
+      ],
+      "populationSurvey": {
+        "borrowings": "All issuer note26 closing captions reconciled to row320 and row338; bank-only substitution forbidden.",
+        "bonds": "All note26 bond classes already included in captions; only distinct row339 note27 is an addition. Carrying amounts include reported issue-cost/FX adjustments. No face-notional replacement.",
+        "leases": "FY2022 note26 contains no separately disclosed closing finance-lease liability; FY2023-25 disclosed current and noncurrent leases are included once in respective captions. No capitalization of operating lease commitments.",
+        "hybrids": "See VIC_HYBRID_FINANCING_REVIEW.json: actual issuer classification, carrying adjustments and separate/embedded populations.",
+        "LC": "FY2022/2023 fee-bearing LC outside revised borrowing captions explicitly identified; FY2024 UPAS is already inside short loans after 1 July policy change; FY2025 separately disclosed fee-bearing LC at other payables is added once.",
+        "relatedParty": "Explicit issuer loan counterparties within note26 included in caption population; commercial/BCC/advance balances in note25 are not automatically financing."
+      },
+      "locator": "Original FY2024 PDF note26 pp67-77, balance sheet p11; current-year closing carrying columns"
     },
     {
       "periodEnd": "2025-12-31",
-      "status": "UNAVAILABLE",
-      "short": null,
-      "long": null,
-      "currentPortion": null,
+      "status": "QUALIFIED",
+      "sourceHash": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217",
+      "sourceHashes": [
+        "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217"
+      ],
+      "short": "114000484000000",
+      "long": "221419341000000",
+      "currentPortion": "45808970000000",
+      "shortIncludesCurrentPortion": true,
+      "longIncludesCurrentPortion": false,
+      "reportedBorrowings": "342485743000000",
+      "reportedPopulationStatus": "REPORTED_PLUS_IDENTIFIED_ADDITIONS",
+      "comprehensiveDebtValue": null,
+      "comprehensiveStatus": "COMPREHENSIVE_UNVERIFIED",
+      "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+      "components": [
+        {
+          "id": "VIC-2025-caption-0",
+          "caption": "Short loans including UPAS LC",
+          "amount": "68191514000000",
+          "alreadyIncludedIn": "SHORT",
+          "category": "BANK_LOAN",
+          "currentPortion": false,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2025 PDF note26 pp65-76, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217"
+        },
+        {
+          "id": "VIC-2025-caption-1",
+          "caption": "Current portion long-term loans",
+          "amount": "18463680000000",
+          "alreadyIncludedIn": "SHORT",
+          "category": "LOAN_CURRENT",
+          "currentPortion": true,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2025 PDF note26 pp65-76, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217"
+        },
+        {
+          "id": "VIC-2025-caption-2",
+          "caption": "Current portion long-term bonds",
+          "amount": "27237388000000",
+          "alreadyIncludedIn": "SHORT",
+          "category": "BOND",
+          "currentPortion": true,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2025 PDF note26 pp65-76, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217"
+        },
+        {
+          "id": "VIC-2025-caption-3",
+          "caption": "Current portion finance leases",
+          "amount": "107902000000",
+          "alreadyIncludedIn": "SHORT",
+          "category": "FINANCE_LEASE",
+          "currentPortion": true,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2025 PDF note26 pp65-76, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217"
+        },
+        {
+          "id": "VIC-2025-caption-4",
+          "caption": "Noncurrent loans",
+          "amount": "127043464000000",
+          "alreadyIncludedIn": "LONG",
+          "category": "BANK_LOAN",
+          "currentPortion": false,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2025 PDF note26 pp65-76, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217"
+        },
+        {
+          "id": "VIC-2025-caption-5",
+          "caption": "Noncurrent bonds incl issuer exchangeable issues",
+          "amount": "94344412000000",
+          "alreadyIncludedIn": "LONG",
+          "category": "BOND",
+          "currentPortion": false,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2025 PDF note26 pp65-76, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217"
+        },
+        {
+          "id": "VIC-2025-caption-6",
+          "caption": "Noncurrent finance leases",
+          "amount": "31465000000",
+          "alreadyIncludedIn": "LONG",
+          "category": "FINANCE_LEASE",
+          "currentPortion": false,
+          "measurementBasis": "ISSUER_REPORTED_CARRYING_AMOUNT",
+          "locator": "Original FY2025 PDF note26 pp65-76, balance sheet p11; current-year closing carrying columns",
+          "sourceHash": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217"
+        }
+      ],
+      "additions": [
+        {
+          "id": "VIC-2025-separate-exchangeable",
+          "caption": "Separately captioned exchangeable bond liability",
+          "amount": "3081207000000",
+          "alreadyIncludedIn": null,
+          "category": "BOND",
+          "currentNoncurrent": "NONCURRENT",
+          "locator": "Original FY2025 PDF p76 note27 and balance sheet p11 row339: separately captioned exchangeable liability; issuer explicitly states no equity component",
+          "sourceHash": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217"
+        },
+        {
+          "id": "VIC-2025-identified-LC-financing",
+          "caption": "Explicit fee-bearing letter-of-credit financing outside borrowing caption",
+          "amount": "3984711000000",
+          "alreadyIncludedIn": null,
+          "category": "OTHER_FINANCING",
+          "currentNoncurrent": "CURRENT",
+          "locator": "Original FY2025 PDF p63 note25 current closing column; explicit letter-of-credit financing balances; note25 continuation describes annual LC fees (FY2023 p59: 9.5%-14.5%, FY2025 p64: 14%); included only identified issuer carrying balance, not all other payables",
+          "sourceHash": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217"
+        }
+      ],
+      "knownFinancingItems": [
+        {
+          "id": "VIC-2025-caption-2",
+          "kind": "BOND",
+          "amount": "27237388000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": "SHORT",
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2025 PDF note26 pp65-76, balance sheet p11; current-year closing carrying columns"
+        },
+        {
+          "id": "VIC-2025-caption-3",
+          "kind": "FINANCE_LEASE",
+          "amount": "107902000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": "SHORT",
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2025 PDF note26 pp65-76, balance sheet p11; current-year closing carrying columns"
+        },
+        {
+          "id": "VIC-2025-caption-5",
+          "kind": "BOND",
+          "amount": "94344412000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": "LONG",
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2025 PDF note26 pp65-76, balance sheet p11; current-year closing carrying columns"
+        },
+        {
+          "id": "VIC-2025-caption-6",
+          "kind": "FINANCE_LEASE",
+          "amount": "31465000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": "LONG",
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2025 PDF note26 pp65-76, balance sheet p11; current-year closing carrying columns"
+        },
+        {
+          "id": "VIC-2025-separate-exchangeable",
+          "kind": "BOND",
+          "amount": "3081207000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": null,
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2025 PDF p76 note27 and balance sheet p11 row339: separately captioned exchangeable liability; issuer explicitly states no equity component"
+        },
+        {
+          "id": "VIC-2025-identified-LC-financing",
+          "kind": "OTHER_FINANCING",
+          "amount": "3984711000000",
+          "applicable": true,
+          "verified": true,
+          "alreadyIncludedIn": null,
+          "inclusionEvidenceVerified": true,
+          "evidenceReference": "Original FY2025 PDF p63 note25 current closing column; explicit letter-of-credit financing balances; note25 continuation describes annual LC fees (FY2023 p59: 9.5%-14.5%, FY2025 p64: 14%); included only identified issuer carrying balance, not all other payables"
+        }
+      ],
+      "uncertaintyComponents": [
+        {
+          "id": "VIC-2025-other-economic-financing",
+          "caption": "Profit-sharing/cooperation, support/commitments and other payables not automatically financing; exhaustive economic debt and lease equivalence not qualified. No known explicit financing item identified in this reviewed survey is omitted.",
+          "amount": null,
+          "interestBearing": "UNKNOWN",
+          "evidenceReference": "Original FY2025 notes25, related parties and commitments; retained qualified reported population is sufficient for Level1."
+        }
+      ],
+      "populationSurvey": {
+        "borrowings": "All issuer note26 closing captions reconciled to row320 and row338; bank-only substitution forbidden.",
+        "bonds": "All note26 bond classes already included in captions; only distinct row339 note27 is an addition. Carrying amounts include reported issue-cost/FX adjustments. No face-notional replacement.",
+        "leases": "FY2022 note26 contains no separately disclosed closing finance-lease liability; FY2023-25 disclosed current and noncurrent leases are included once in respective captions. No capitalization of operating lease commitments.",
+        "hybrids": "See VIC_HYBRID_FINANCING_REVIEW.json: actual issuer classification, carrying adjustments and separate/embedded populations.",
+        "LC": "FY2022/2023 fee-bearing LC outside revised borrowing captions explicitly identified; FY2024 UPAS is already inside short loans after 1 July policy change; FY2025 separately disclosed fee-bearing LC at other payables is added once.",
+        "relatedParty": "Explicit issuer loan counterparties within note26 included in caption population; commercial/BCC/advance balances in note25 are not automatically financing."
+      },
+      "locator": "Original FY2025 PDF note26 pp65-76, balance sheet p11; current-year closing carrying columns"
+    },
+    {
+      "periodEnd": "2026-06-30",
+      "status": "SOURCE_UNAVAILABLE_AFTER_REASONABLE_SEARCH",
       "reportedBorrowings": null,
       "comprehensiveDebtValue": null,
-      "reason": "No qualified population receipt; no inferred aggregation from subsidiaries or commercial liabilities."
+      "reason": "Same reviewed consolidated original unavailable after bounded search; annual receipts complete independently.",
+      "classification": "SOURCE_UNAVAILABLE_AFTER_REASONABLE_SEARCH"
     }
   ],
-  "excludedAutomaticDebt": [
-    "customer advances",
-    "presales",
-    "trade payables",
-    "contract liabilities",
-    "related-party payables",
-    "project cooperation liabilities",
-    "off-balance commitments"
+  "unrestrictedCashRequiredForLevelOne": false,
+  "comprehensiveDebtRequiredForLevelOne": false,
+  "exclusions": [
+    "customer advances/presales",
+    "trade payables absent explicit financing",
+    "BCC/project cooperation balances absent explicit financing",
+    "related-party commercial balances",
+    "security deposits",
+    "off-balance and capital commitments"
   ],
-  "doubleCountingPolicy": "No subsidiary debt added to consolidated borrowings; current portions counted once only if population evidence qualifies."
+  "noSubsidiaryDebtAdded": true,
+  "reportedVsComprehensiveBoundary": "Reported-plus-identified issuer financing carrying populations qualified; economic/comprehensive debt remains UNAVAILABLE without exhaustive proof."
 }

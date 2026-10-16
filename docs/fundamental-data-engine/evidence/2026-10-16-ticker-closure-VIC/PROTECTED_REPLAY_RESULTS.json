@@ -1,144 +1,158 @@
 {
   "status": "PASS",
   "approvedTickerCount": 25,
-  "offline": true,
-  "separateProcess": true,
-  "protected15": {
-    "status": "PASS",
-    "results": [
-      {
-        "ticker": "HPG",
-        "status": "PASS",
-        "offline": true,
-        "separateProcess": true,
-        "sourceBindings": 868,
-        "contentHash": "e211732102bbdf31e9b8d2407d3f9cf40598b9675c2ab01beae09b063286ecc3"
-      },
-      {
-        "ticker": "VCB",
-        "status": "PASS",
-        "offline": true,
-        "separateProcess": true,
-        "sourceBindings": 86,
-        "contentHash": "651defb0ca62173b2d3adb079dd5ce58d89be4463708170cf909227cb029c73f"
-      },
-      {
-        "ticker": "SSI",
-        "status": "PASS",
-        "offline": true,
-        "separateProcess": true,
-        "sourceBindings": 14,
-        "contentHash": "95b5334f829dbcb74e2cf1a21f3404eb71d04e6d7247e9b08397cab22b25aa8c"
-      },
-      {
-        "ticker": "FPT",
-        "status": "PASS",
-        "offline": true,
-        "separateProcess": true,
-        "sourceBindings": 15,
-        "contentHash": "d928e9cd0bc7aa7a4506123c369ffa7d59e2d3b3557ae0ce683bbeb8a9497948"
-      },
-      {
-        "ticker": "VHM",
-        "status": "PASS",
-        "offline": true,
-        "separateProcess": true,
-        "sourceBindings": 16,
-        "contentHash": "bd978c691584a38ac0bb236db8abc0a7e5f5fb7c0044b051372afa4ce011a164"
-      },
-      {
-        "ticker": "VRE",
-        "status": "PASS",
-        "offline": true,
-        "separateProcess": true,
-        "sourceBindings": 17,
-        "contentHash": "35acd1ef938a3e59f6ce5bb1c0329e3d44bc17e6cbeaedb542bd36a4924aa4c9"
-      },
-      {
-        "ticker": "VPL",
-        "status": "PASS",
-        "offline": true,
-        "separateProcess": true,
-        "sourceBindings": 16,
-        "contentHash": "7e129430e0bf4e1abcc9400fa9f29cb242e3f797e828fddcb9a9e9f2a2895390"
-      },
-      {
-        "ticker": "MSN",
-        "status": "PASS",
-        "offline": true,
-        "separateProcess": true,
-        "sourceBindings": 16,
-        "contentHash": "f047fbcdb65429e8466f1afc4cf0a48de01fe0b20fbcf87defb2f441080a4701"
-      },
-      {
-        "ticker": "MWG",
-        "status": "PASS",
-        "offline": true,
-        "separateProcess": true,
-        "sourceBindings": 16,
-        "contentHash": "ba28d008737a5f3cf13b7ffafb2920070ea152f08a1e5b8a3afbab5f4cac5daf"
-      },
-      {
-        "ticker": "SAB",
-        "status": "PASS",
-        "offline": true,
-        "separateProcess": true,
-        "sourceBindings": 16,
-        "contentHash": "bb8822b21c17a1a331af0d5c29ffdd0ae68036d3dcf4dcb3218eb47e2007a8f8"
-      },
-      {
-        "ticker": "MCH",
-        "status": "PASS",
-        "offline": true,
-        "separateProcess": true,
-        "sourceBindings": 17,
-        "contentHash": "f68442d96395ef88a08276b089aa2d5f400b1bead7f708f75392e0ca46011e5b"
-      },
-      {
-        "ticker": "GAS",
-        "status": "PASS",
-        "offline": true,
-        "separateProcess": true,
-        "sourceBindings": 16,
-        "contentHash": "649b68db209601ed572c606b138cf61cbb935159cd5fe8c30faff0d20cf96664"
-      },
-      {
-        "ticker": "BSR",
-        "status": "PASS",
-        "offline": true,
-        "separateProcess": true,
-        "sourceBindings": 16,
-        "contentHash": "fa35f185c97ace12ad79bcd9833ca2aeafc159076892ab7be4728d1c5bb23eea"
-      },
-      {
-        "ticker": "GVR",
-        "status": "PASS",
-        "offline": true,
-        "separateProcess": true,
-        "sourceBindings": 16,
-        "contentHash": "e7d870d0bce7e145f61813e9e455450169f0f474078496e7c6c21d71c6e4e55e"
-      },
-      {
-        "ticker": "VJC",
-        "status": "PASS",
-        "offline": true,
-        "separateProcess": true,
-        "sourceBindings": 16,
-        "contentHash": "f628d6f039c7e6f9b9e9a9b45f2f574ffec6e77dfe827dc411d3cc307b97313a"
-      }
-    ],
-    "VNM": {
-      "levelOneReady": false,
-      "verdict": "C. VNM BLOCKED — MATERIAL LEVEL-1 DATA-INTEGRITY GAPS REMAIN",
-      "status": "DEFERRED BLOCKED"
-    }
-  },
-  "protected10Banks": [
+  "checks": [
     {
-      "ticker": "ACB",
+      "name": "protected15",
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-tcx-protected.mjs"
+      ],
       "exitCode": 0,
       "status": "PASS",
-      "seconds": 12.62,
+      "seconds": 12.6,
+      "receipt": {
+        "status": "PASS",
+        "results": [
+          {
+            "ticker": "HPG",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 868,
+            "contentHash": "e211732102bbdf31e9b8d2407d3f9cf40598b9675c2ab01beae09b063286ecc3"
+          },
+          {
+            "ticker": "VCB",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 86,
+            "contentHash": "651defb0ca62173b2d3adb079dd5ce58d89be4463708170cf909227cb029c73f"
+          },
+          {
+            "ticker": "SSI",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 14,
+            "contentHash": "95b5334f829dbcb74e2cf1a21f3404eb71d04e6d7247e9b08397cab22b25aa8c"
+          },
+          {
+            "ticker": "FPT",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 15,
+            "contentHash": "d928e9cd0bc7aa7a4506123c369ffa7d59e2d3b3557ae0ce683bbeb8a9497948"
+          },
+          {
+            "ticker": "VHM",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "bd978c691584a38ac0bb236db8abc0a7e5f5fb7c0044b051372afa4ce011a164"
+          },
+          {
+            "ticker": "VRE",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 17,
+            "contentHash": "35acd1ef938a3e59f6ce5bb1c0329e3d44bc17e6cbeaedb542bd36a4924aa4c9"
+          },
+          {
+            "ticker": "VPL",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "7e129430e0bf4e1abcc9400fa9f29cb242e3f797e828fddcb9a9e9f2a2895390"
+          },
+          {
+            "ticker": "MSN",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "f047fbcdb65429e8466f1afc4cf0a48de01fe0b20fbcf87defb2f441080a4701"
+          },
+          {
+            "ticker": "MWG",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "ba28d008737a5f3cf13b7ffafb2920070ea152f08a1e5b8a3afbab5f4cac5daf"
+          },
+          {
+            "ticker": "SAB",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "bb8822b21c17a1a331af0d5c29ffdd0ae68036d3dcf4dcb3218eb47e2007a8f8"
+          },
+          {
+            "ticker": "MCH",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 17,
+            "contentHash": "f68442d96395ef88a08276b089aa2d5f400b1bead7f708f75392e0ca46011e5b"
+          },
+          {
+            "ticker": "GAS",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "649b68db209601ed572c606b138cf61cbb935159cd5fe8c30faff0d20cf96664"
+          },
+          {
+            "ticker": "BSR",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "fa35f185c97ace12ad79bcd9833ca2aeafc159076892ab7be4728d1c5bb23eea"
+          },
+          {
+            "ticker": "GVR",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "e7d870d0bce7e145f61813e9e455450169f0f474078496e7c6c21d71c6e4e55e"
+          },
+          {
+            "ticker": "VJC",
+            "status": "PASS",
+            "offline": true,
+            "separateProcess": true,
+            "sourceBindings": 16,
+            "contentHash": "f628d6f039c7e6f9b9e9a9b45f2f574ffec6e77dfe827dc411d3cc307b97313a"
+          }
+        ],
+        "VNM": {
+          "levelOneReady": false,
+          "verdict": "C. VNM BLOCKED — MATERIAL LEVEL-1 DATA-INTEGRITY GAPS REMAIN",
+          "status": "DEFERRED BLOCKED"
+        }
+      }
+    },
+    {
+      "name": "ACB",
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=ACB",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 0.73,
       "receipt": {
         "ticker": "ACB",
         "status": "PASS",
@@ -200,10 +214,16 @@
       }
     },
     {
-      "ticker": "BID",
+      "name": "BID",
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=BID",
+        "--sealed"
+      ],
       "exitCode": 0,
       "status": "PASS",
-      "seconds": 19.66,
+      "seconds": 0.77,
       "receipt": {
         "ticker": "BID",
         "status": "PASS",
@@ -265,10 +285,16 @@
       }
     },
     {
-      "ticker": "CTG",
+      "name": "CTG",
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=CTG",
+        "--sealed"
+      ],
       "exitCode": 0,
       "status": "PASS",
-      "seconds": 25.03,
+      "seconds": 0.74,
       "receipt": {
         "ticker": "CTG",
         "status": "PASS",
@@ -330,10 +356,16 @@
       }
     },
     {
-      "ticker": "HDB",
+      "name": "HDB",
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=HDB",
+        "--sealed"
+      ],
       "exitCode": 0,
       "status": "PASS",
-      "seconds": 24.5,
+      "seconds": 0.75,
       "receipt": {
         "ticker": "HDB",
         "status": "PASS",
@@ -395,10 +427,16 @@
       }
     },
     {
-      "ticker": "LPB",
+      "name": "LPB",
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=LPB",
+        "--sealed"
+      ],
       "exitCode": 0,
       "status": "PASS",
-      "seconds": 19.4,
+      "seconds": 0.72,
       "receipt": {
         "ticker": "LPB",
         "status": "PASS",
@@ -460,10 +498,16 @@
       }
     },
     {
-      "ticker": "SHB",
+      "name": "SHB",
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=SHB",
+        "--sealed"
+      ],
       "exitCode": 0,
       "status": "PASS",
-      "seconds": 12.69,
+      "seconds": 0.75,
       "receipt": {
         "ticker": "SHB",
         "status": "PASS",
@@ -525,10 +569,16 @@
       }
     },
     {
-      "ticker": "SSB",
+      "name": "SSB",
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=SSB",
+        "--sealed"
+      ],
       "exitCode": 0,
       "status": "PASS",
-      "seconds": 10.27,
+      "seconds": 0.77,
       "receipt": {
         "ticker": "SSB",
         "status": "PASS",
@@ -590,10 +640,16 @@
       }
     },
     {
-      "ticker": "STB",
+      "name": "STB",
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=STB",
+        "--sealed"
+      ],
       "exitCode": 0,
       "status": "PASS",
-      "seconds": 8.29,
+      "seconds": 0.74,
       "receipt": {
         "ticker": "STB",
         "status": "PASS",
@@ -655,10 +711,16 @@
       }
     },
     {
-      "ticker": "TCB",
+      "name": "TCB",
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=TCB",
+        "--sealed"
+      ],
       "exitCode": 0,
       "status": "PASS",
-      "seconds": 2.35,
+      "seconds": 0.72,
       "receipt": {
         "ticker": "TCB",
         "status": "PASS",
@@ -720,10 +782,16 @@
       }
     },
     {
-      "ticker": "VPB",
+      "name": "VPB",
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-bank-ticker.mjs",
+        "--ticker=VPB",
+        "--sealed"
+      ],
       "exitCode": 0,
       "status": "PASS",
-      "seconds": 1.35,
+      "seconds": 0.74,
       "receipt": {
         "ticker": "VPB",
         "status": "PASS",
@@ -783,55 +851,158 @@
           }
         ]
       }
-    }
-  ],
-  "latestConsumerOutcomes": [
-    {
-      "ticker": "MSN",
-      "status": "PASS",
-      "verdict": "B. MSN CONDITIONALLY CLOSED — ANALYTICAL GAPS CARRIED FORWARD",
-      "separateProcessReplay": true,
-      "contentHash": "fd0a8b946cdfe99b3863d6d7191c0a38b3cb87203e31633efa4c48774eb2e4c3"
     },
     {
-      "ticker": "VNM",
-      "status": "PASS",
-      "verdict": "C. VNM BLOCKED — MATERIAL LEVEL-1 DATA-INTEGRITY GAPS REMAIN",
-      "separateProcessReplay": true,
-      "contentHash": "dce1aaf7ed4c3745f81e8a0ee35265c91698b8d0a61608ccc829650bf5775f5c"
-    },
-    {
-      "ticker": "SAB",
-      "status": "PASS",
-      "verdict": "B. SAB CONDITIONALLY CLOSED — ANALYTICAL GAPS CARRIED FORWARD",
-      "separateProcessReplay": true,
-      "contentHash": "76db62c6733bcd07c45791df98b9fe796de444a80723edd0b533c4c9041b3e32"
-    }
-  ],
-  "latestDeferredOutcomes": [
-    {
+      "name": "consumer_latest",
       "command": [
-        "node",
-        "scripts/verify-bank-targeted-fix.mjs"
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-consumer-targeted-fix.mjs"
       ],
       "exitCode": 0,
       "status": "PASS",
-      "seconds": 2.18,
-      "stdout": "{\n  \"status\": \"PASS\",\n  \"offline\": true,\n  \"separateProcess\": true,\n  \"independentHumanReview\": false,\n  \"scope\": [\n    \"MBB\",\n    \"VIB\"\n  ],\n  \"checks\": [\n    {\n      \"name\": \"All prior protected and deferred evidence bytes remain unchanged\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"New issuer originals match retained PDF bytes\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"March-dated MBB CAR is rejected despite June column header\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Unavailable VIB capital never enters canonical admission\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"VIB arithmetic uses independently disclosed populations without a plug\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Both canonical engines independently replay offline after cleanup\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Exactly three Major issues remain and governance stops\",\n      \"status\": \"PASS\"\n    }\n  ]\n}\n",
-      "stderr": ""
+      "seconds": 3.27,
+      "receipt": [
+        {
+          "ticker": "MSN",
+          "status": "PASS",
+          "verdict": "B. MSN CONDITIONALLY CLOSED — ANALYTICAL GAPS CARRIED FORWARD",
+          "separateProcessReplay": true,
+          "contentHash": "fd0a8b946cdfe99b3863d6d7191c0a38b3cb87203e31633efa4c48774eb2e4c3"
+        },
+        {
+          "ticker": "VNM",
+          "status": "PASS",
+          "verdict": "C. VNM BLOCKED — MATERIAL LEVEL-1 DATA-INTEGRITY GAPS REMAIN",
+          "separateProcessReplay": true,
+          "contentHash": "dce1aaf7ed4c3745f81e8a0ee35265c91698b8d0a61608ccc829650bf5775f5c"
+        },
+        {
+          "ticker": "SAB",
+          "status": "PASS",
+          "verdict": "B. SAB CONDITIONALLY CLOSED — ANALYTICAL GAPS CARRIED FORWARD",
+          "separateProcessReplay": true,
+          "contentHash": "76db62c6733bcd07c45791df98b9fe796de444a80723edd0b533c4c9041b3e32"
+        }
+      ]
     },
     {
+      "name": "bank_deferred",
       "command": [
-        "node",
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-bank-targeted-fix.mjs",
+        "--sealed"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 1.67,
+      "receipt": {
+        "status": "PASS",
+        "offline": true,
+        "separateProcess": true,
+        "independentHumanReview": false,
+        "scope": [
+          "MBB",
+          "VIB"
+        ],
+        "checks": [
+          {
+            "name": "All prior protected and deferred evidence bytes remain unchanged",
+            "status": "PASS"
+          },
+          {
+            "name": "New issuer originals match retained PDF bytes",
+            "status": "PASS"
+          },
+          {
+            "name": "March-dated MBB CAR is rejected despite June column header",
+            "status": "PASS"
+          },
+          {
+            "name": "Unavailable VIB capital never enters canonical admission",
+            "status": "PASS"
+          },
+          {
+            "name": "VIB arithmetic uses independently disclosed populations without a plug",
+            "status": "PASS"
+          },
+          {
+            "name": "Both canonical engines independently replay offline after cleanup",
+            "status": "PASS"
+          },
+          {
+            "name": "Exactly three Major issues remain and governance stops",
+            "status": "PASS"
+          },
+          {
+            "name": "Targeted evidence seal matches every retained artifact",
+            "status": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "name": "tcx_deferred",
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
         "scripts/verify-tcx-ket-vang.mjs"
       ],
       "exitCode": 0,
       "status": "PASS",
-      "seconds": 4.02,
-      "stdout": "{\n  \"ticker\": \"TCX\",\n  \"issue\": \"TCX-DEBT-2022-MANAGED-POPULATION\",\n  \"status\": \"PASS\",\n  \"meaning\": \"Replay/retention checks pass; issuer evidence remains insufficient for accounting qualification\",\n  \"offline\": true,\n  \"separateProcess\": true,\n  \"independentHumanReview\": false,\n  \"afterCleanup\": true,\n  \"targetedVerdict\": \"B. TCX REMAINS DEFERRED BLOCKED — ISSUER EVIDENCE INSUFFICIENT\",\n  \"primaryCanonicalContentHash\": \"524615515366f1505cb48782e733eb2c6ab437987034fd8c9619760939bec5ee\",\n  \"checks\": [\n    {\n      \"name\": \"Targeted sealed evidence unchanged\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Every original issuer source retained with exact hash and PDF header\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Primary TCX, all approved closures, protected sources and contracts unchanged\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Exact targeted arithmetic stays unavailable; no neutral fill or retroactive iSave inference\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Coverage and all governance flags preserve the blocked primary outcome\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"No disposable extraction dependency in targeted durable inputs\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Independent TCX original canonical replay in a separate process after cleanup\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Separate targeted producer reproduces every generated artifact offline\",\n      \"status\": \"PASS\"\n    }\n  ]\n}\n",
-      "stderr": ""
+      "seconds": 3.42,
+      "receipt": {
+        "ticker": "TCX",
+        "issue": "TCX-DEBT-2022-MANAGED-POPULATION",
+        "status": "PASS",
+        "meaning": "Replay/retention checks pass; issuer evidence remains insufficient for accounting qualification",
+        "offline": true,
+        "separateProcess": true,
+        "independentHumanReview": false,
+        "afterCleanup": true,
+        "targetedVerdict": "B. TCX REMAINS DEFERRED BLOCKED — ISSUER EVIDENCE INSUFFICIENT",
+        "primaryCanonicalContentHash": "524615515366f1505cb48782e733eb2c6ab437987034fd8c9619760939bec5ee",
+        "checks": [
+          {
+            "name": "Targeted sealed evidence unchanged",
+            "status": "PASS"
+          },
+          {
+            "name": "Every original issuer source retained with exact hash and PDF header",
+            "status": "PASS"
+          },
+          {
+            "name": "Primary TCX, all approved closures, protected sources and contracts unchanged",
+            "status": "PASS"
+          },
+          {
+            "name": "Exact targeted arithmetic stays unavailable; no neutral fill or retroactive iSave inference",
+            "status": "PASS"
+          },
+          {
+            "name": "Coverage and all governance flags preserve the blocked primary outcome",
+            "status": "PASS"
+          },
+          {
+            "name": "No disposable extraction dependency in targeted durable inputs",
+            "status": "PASS"
+          },
+          {
+            "name": "Independent TCX original canonical replay in a separate process after cleanup",
+            "status": "PASS"
+          },
+          {
+            "name": "Separate targeted producer reproduces every generated artifact offline",
+            "status": "PASS"
+          }
+        ]
+      }
     }
   ],
-  "sourcesAndEvidenceBytePreservation": "PROTECTED_BASELINE.json; rechecked by VIC independent verifier",
+  "deferredOutcomesPreserved": [
+    "VNM",
+    "TCX",
+    "MBB",
+    "VIB"
+  ],
+  "offline": true,
   "independentHumanReview": false
 }

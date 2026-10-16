@@ -1,25 +1,26 @@
 {
   "status": "PASS",
-  "startingHead": "a79b6c3e3448b6d841bd6ffda5855eb9fb1ac453",
+  "startingHead": "8502faa06bed266a375188fc45fb1f8d7476286e",
   "finalHead": "PENDING_COMMIT",
   "clientDate": "2026-10-16",
   "checks": [
     {
-      "name": "VIC and conglomerate semantic regressions",
+      "name": "VIC original, accounting qualification and conglomerate semantic regressions",
       "command": [
         "pnpm",
         "exec",
         "vitest",
         "run",
         "tests/unit/vic-ticker-closure.test.ts",
+        "tests/unit/vic-accounting-qualification.test.ts",
         "tests/unit/real-estate-ticker-closure.test.ts",
         "tests/unit/consumer-retail-ticker-closure.test.ts"
       ],
       "node": "22.23.2",
       "exitCode": 0,
       "status": "PASS",
-      "logSHA256": "fde3e9037fee4528f7743240cecede9c4abf6dd55ab3f5fe4a09374e8e5e4726",
-      "summary": "RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment\n\n\n Test Files  3 passed (3)\n      Tests  124 passed (124)\n   Start at  14:27:30\n   Duration  3.09s (tests 41%, environment 34%, import 9%, setup 8%, transform 7%)\n\n    Isolate  3 workers spawned · ~391ms startup each (spawn + environment, per file)\n             at least ~781ms faster with isolate: false — reuses workers across files instead of one per file"
+      "logSHA256": "5a2e170b8a147a44f28283b8c5facb2a08ff332712e8b4c052895df7fa1e09c5",
+      "summary": "RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment\n\n\n Test Files  4 passed (4)\n      Tests  152 passed (152)\n   Start at  15:17:53\n   Duration  4.76s (environment 41%, tests 35%, import 10%, setup 9%, transform 5%)\n\n    Isolate  4 workers spawned · ~525ms startup each (spawn + environment, per file)\n             at least ~1.58s faster with isolate: false — reuses workers across files instead of one per file"
     },
     {
       "name": "Structured certification archival offline replay",
@@ -42,8 +43,8 @@
       "node": "22.23.2",
       "exitCode": 0,
       "status": "PASS",
-      "logSHA256": "b2718e4ce0a5f82d3698e177b58d3c70c62e7d07c9b17cec91517684cc0ab3d8",
-      "summary": "\n✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 1.86s\n\nPASS boundaries: 174 source modules\n\n RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment\n\n\n Test Files  8 passed (8)\n      Tests  98 passed (98)\n   Start at  14:23:47\n   Duration  111.60s (environment 50%, setup 17%, tests 17%, import 11%, transform 6%)\n\nEnvironment  jsdom was created 8 times · 49.64s total, 50% of tracked time\n             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)\n             learn more: https://vitest.dev/guide/improving-performance#test-environments"
+      "logSHA256": "9fb6adf6bf0a2f4545fa63208cfa37c7b9ea9941970a22bec1d064c11ebd08be",
+      "summary": "> vn30-value-investing-os@0.1.0 test:boundaries /Users/nglehoangan/Documents/Working/VN_30_Investment\n> pnpm db:generate && node scripts/check-boundaries.mjs && vitest run tests/architecture\n\n\n> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment\n> node scripts/database.mjs generate\n\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n\n✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 139ms\n\nPASS boundaries: 174 source modules\n\n RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment\n\n\n Test Files  8 passed (8)\n      Tests  98 passed (98)\n   Start at  15:18:00\n   Duration  3.95s (environment 47%, setup 18%, tests 17%, import 12%, transform 6%)\n\n    Isolate  8 workers spawned · ~261ms startup each (spawn + environment, per file)\n             at least ~1.82s faster with isolate: false — reuses workers across files instead of one per file"
     },
     {
       "name": "Lint",
@@ -54,8 +55,8 @@
       "node": "22.23.2",
       "exitCode": 0,
       "status": "PASS",
-      "logSHA256": "9794acc0800c5775f2ca55ca01b798bbc21a0d27447ebc78f9048d356321dc1b",
-      "summary": "> vn30-value-investing-os@0.1.0 lint /Users/nglehoangan/Documents/Working/VN_30_Investment\n> pnpm db:generate && eslint . --max-warnings=0 && node scripts/check-boundaries.mjs\n\n\n> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment\n> node scripts/database.mjs generate\n\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n\n✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 1.10s\n\nPASS boundaries: 174 source modules"
+      "logSHA256": "e4e0c5a0add719a685c224a2c2cdf0ce566550a21e807a08e94796b5b85cb0a5",
+      "summary": "> vn30-value-investing-os@0.1.0 lint /Users/nglehoangan/Documents/Working/VN_30_Investment\n> pnpm db:generate && eslint . --max-warnings=0 && node scripts/check-boundaries.mjs\n\n\n> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment\n> node scripts/database.mjs generate\n\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n\n✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 138ms\n\nPASS boundaries: 174 source modules"
     },
     {
       "name": "Typecheck",
@@ -66,8 +67,8 @@
       "node": "22.23.2",
       "exitCode": 0,
       "status": "PASS",
-      "logSHA256": "85175ce597319f78abfc0f4b3937f1765e75901592b47f320d4f27fcc70ef378",
-      "summary": "> vn30-value-investing-os@0.1.0 typecheck /Users/nglehoangan/Documents/Working/VN_30_Investment\n> pnpm db:generate && next typegen && tsc --noEmit\n\n\n> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment\n> node scripts/database.mjs generate\n\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n\n✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 116ms\n\nGenerating route types...\n✓ Types generated successfully"
+      "logSHA256": "10dee924f0c47dd8a3f0f495e20b38e680ce9b3cb1e2288319409c7a5711976a",
+      "summary": "> vn30-value-investing-os@0.1.0 typecheck /Users/nglehoangan/Documents/Working/VN_30_Investment\n> pnpm db:generate && next typegen && tsc --noEmit\n\n\n> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment\n> node scripts/database.mjs generate\n\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n\n✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 154ms\n\nGenerating route types...\n✓ Types generated successfully"
     },
     {
       "name": "DB validation",
@@ -91,39 +92,21 @@
       "node": "22.23.2",
       "exitCode": 0,
       "status": "PASS",
-      "logSHA256": "62b6b67a52caff03c2fc98061841cb877cbbe9ea77cc2de54deb3d0c58cd4940",
-      "summary": "\n✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 662ms\n\n\n RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment\n\n(node:13239) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  117 passed (117)\n      Tests  1755 passed (1755)\n   Start at  14:35:09\n   Duration  830.46s (tests 82%, environment 11%, setup 4%, import 2%, transform 1%)\n\n    Isolate  117 workers spawned · ~938ms startup each (spawn + environment, per file)\n             at least ~108.76s faster with isolate: false — reuses workers across files instead of one per file"
+      "logSHA256": "2d89b678038bff5531cee848b7945a98f2d84944a0bf837425adebe425a12ed1",
+      "summary": "> vn30-value-investing-os@0.1.0 test /Users/nglehoangan/Documents/Working/VN_30_Investment\n> pnpm db:generate && vitest run --testTimeout=120000\n\n\n> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment\n> node scripts/database.mjs generate\n\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n\n✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 122ms\n\n\n RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment\n\n(node:16943) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\n Test Files  118 passed (118)\n      Tests  1783 passed (1783)\n   Start at  15:20:25\n   Duration  337.08s (tests 88%, environment 6%, setup 3%, import 2%, transform 1%)\n\n    Isolate  118 workers spawned · ~242ms startup each (spawn + environment, per file)\n             at least ~28.26s faster with isolate: false — reuses workers across files instead of one per file"
     }
   ],
-  "passCount": 1755,
+  "passCount": 1783,
   "failCount": 0,
-  "baselinePassCount": 1717,
-  "addedVitestTests": 38,
+  "baselinePassCount": 1755,
+  "addedVitestTests": 28,
   "protectedTickerCount": 25,
   "fundamentalDataSuite": "Included in full unfiltered application run; issuer semantic regressions and structured certification also run separately.",
-  "initialAttempts": [
-    {
-      "kind": "New test harness",
-      "result": "CORRECTED",
-      "detail": "Endpoint typing cast corrected; deferred bank outcomes use outcome rather than verdict; unit preservation check narrowed to all 25 canonical/final artifacts while independent verifier still hashes every source and prior artifact. Initial broad hash assertion exceeded the default timeout during concurrent validation."
-    },
-    {
-      "kind": "Full suite concurrent attempt",
-      "result": "INTERRUPTED_EXIT_130",
-      "detail": "Three existing M6.8 integration tests exceeded default timeouts while heavy validation jobs ran concurrently. No existing test or runtime code changed; subsequent default-timeout isolated run had one marginal integration fixture exceed 20 seconds at 20.7 seconds. Final full suite used a documented 120-second per-test runtime limit with every test and assertion retained.",
-      "logSHA256": "10b99813543619c54d1041446651becafc3ad7df2ed0711ce7dbc670931e7aae"
-    },
-    {
-      "kind": "Isolated run with repository default timeout",
-      "result": "INTERRUPTED_EXIT_130_AFTER_ONE_TIMEOUT",
-      "detail": "Existing tests/unit/marginal.test.ts comparison-evidence replay case took 20.732 seconds against the default 20-second limit. Final full-suite invocation raises only the runtime allowance to 120 seconds.",
-      "logSHA256": "e11d6beb864b72211a3998ace1add71d8bd227b46fab0bcba2473c3c6aa98ef2"
-    }
-  ],
+  "initialAttempts": [],
   "runtimeLimit": {
     "fullSuiteTestTimeoutMs": 120000,
     "repositoryDefaultMs": 20000,
-    "reason": "Existing marginal test took 20.7 seconds against 20-second default in isolated run; no test or assertion removed."
+    "reason": "Same 120-second invocation as the prior baseline; prior round documented existing integration fixtures exceeding the 20-second default. No test assertions removed and no repository timeout configuration changed."
   },
-  "readiness": "Software checks PASS; VIC accounting closure remains verdict C, not Level1 ready."
+  "readiness": "Software checks PASS; annual accounting qualified; VIC remains verdict C solely because reviewed 6M2026 original is unavailable after bounded search."
 }

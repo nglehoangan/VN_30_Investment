@@ -4,28 +4,30 @@
     "Critical": [],
     "Major": [
       {
-        "id": "VIC-CURRENT-6M2026",
+        "id": "VIC:CURRENT:2026-06-30:REVIEWED_ORIGINAL",
         "severity": "Major",
+        "classification": "SOURCE_UNAVAILABLE_AFTER_REASONABLE_SEARCH",
         "status": "OPEN",
-        "detail": "Required reviewed consolidated 2026-01-01 through 2026-06-30 original is not retained. Issuer index lists it on 2026-08-29; direct linked public PDF returns HTTP 403. Contents cannot be qualified; this is an access failure, not proof of nonexistence."
-      },
-      {
-        "id": "VIC-DEBT-POPULATION",
-        "severity": "Major",
-        "status": "OPEN",
-        "detail": "No qualified v2 reported-borrowings population receipts for any required period. Legacy short/long operands do not prove carrying populations, current portions, leases or hybrid classifications."
-      },
-      {
-        "id": "VIC-PERIMETER-REVIEW",
-        "severity": "Major",
-        "status": "OPEN",
-        "detail": "Material consolidation/perimeter and hybrid/support note review is incomplete across FY2022-FY2025 and required current interim. Do not infer organic comparability or approve A/B."
-      },
-      {
-        "id": "VIC-REQUIRED-COVERAGE",
-        "severity": "Major",
-        "status": "OPEN",
-        "detail": "Baseline fixed CORE 13/35, SECTOR_CORE 3/5. No silent fill or subsidiary substitution; see exact missing requirements."
+        "material": true,
+        "period": {
+          "start": "2026-01-01",
+          "end": "2026-06-30",
+          "frame": "YTD"
+        },
+        "detail": "Issuer-listed reviewed consolidated filing exists, but all discovered public issuer PDF variants returned HTTP 403; permitted mirror probe returned 404 and official/mirror search did not yield a qualifying same filing. No current canonical fact is fabricated from index, Q2, Q1, news or broker material.",
+        "evidence": "VIC_CURRENT_SOURCE_SEARCH.json",
+        "annualQualificationBlocked": false,
+        "requiredMissingGroups": [
+          "assets",
+          "equity",
+          "earnings",
+          "sales",
+          "cash_generation",
+          "debt",
+          "cash",
+          "project_capital"
+        ],
+        "stop": "No automatic further forensic round; await Review VIC Qualification Round."
       }
     ],
     "Minor": []
