@@ -1,0 +1,317 @@
+{
+  "runtime": "Node22.23.2, pnpm10.34.5",
+  "baseline": {
+    "passed": 1783,
+    "failed": 0
+  },
+  "observedBaseline": {
+    "passed": 1783,
+    "failed": 0
+  },
+  "newAggregateRegressions": {
+    "passed": 3,
+    "failed": 0
+  },
+  "focused": {
+    "passed": 603,
+    "failed": 0,
+    "files": 44
+  },
+  "runs": [
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "seconds": 9.64,
+      "log": "validation-logs/lint.log"
+    },
+    {
+      "name": "typecheck",
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "seconds": 3.17,
+      "log": "validation-logs/typecheck.log"
+    },
+    {
+      "name": "database",
+      "command": "pnpm db:validate",
+      "exitCode": 0,
+      "seconds": 1.03,
+      "log": "validation-logs/database.log"
+    },
+    {
+      "name": "boundaries",
+      "command": "pnpm test:boundaries",
+      "exitCode": 0,
+      "seconds": 7.61,
+      "log": "validation-logs/boundaries.log"
+    },
+    {
+      "name": "ticker-and-fundamental",
+      "command": "pnpm exec vitest run tests/unit/*ticker-closure.test.ts tests/unit/hpg-debt-final-closure.test.ts tests/unit/structured-certification.test.ts tests/unit/fundamentals*.test.ts tests/integration/fundamentals*.test.ts",
+      "exitCode": 0,
+      "seconds": 66.05,
+      "log": "validation-logs/ticker-and-fundamental.log"
+    },
+    {
+      "name": "structured-replay",
+      "command": "node scripts/verify-structured-certification.mjs",
+      "exitCode": 0,
+      "seconds": 120.64,
+      "log": "validation-logs/structured-replay.log"
+    },
+    {
+      "name": "consumer-targeted",
+      "command": "node scripts/verify-consumer-targeted-fix.mjs",
+      "exitCode": 0,
+      "seconds": 4.45,
+      "log": "validation-logs/consumer-targeted.log"
+    },
+    {
+      "name": "bank-targeted",
+      "command": "node scripts/verify-bank-targeted-fix.mjs",
+      "exitCode": 0,
+      "seconds": 2.4,
+      "log": "validation-logs/bank-targeted.log"
+    },
+    {
+      "name": "full-suite",
+      "command": "pnpm test",
+      "exitCode": 0,
+      "passed": 1783,
+      "failed": 0,
+      "log": "validation-logs/full-suite-supported-runtime.log"
+    },
+    {
+      "name": "aggregate-regressions",
+      "command": "pnpm exec vitest run tests/unit/vn30-final-closure-review.test.ts",
+      "exitCode": 0,
+      "passed": 3,
+      "failed": 0,
+      "log": "validation-logs/aggregate-regressions.log"
+    },
+    {
+      "name": "lint-final",
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "log": "validation-logs/lint-final.log"
+    },
+    {
+      "name": "typecheck-final",
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "log": "validation-logs/typecheck-final.log"
+    },
+    {
+      "name": "tcx-targeted",
+      "command": "node scripts/verify-tcx-ket-vang.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/tcx-targeted.log"
+    },
+    {
+      "command": "node scripts/verify-debt-contract-activation-hpg.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-0.log"
+    },
+    {
+      "command": "node scripts/verify-vcb-ticker-closure.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-1.log"
+    },
+    {
+      "command": "node scripts/verify-ssi-ticker-closure.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-2.log"
+    },
+    {
+      "command": "node scripts/verify-fpt-ticker-closure.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-3.log"
+    },
+    {
+      "command": "node scripts/verify-bank-group-regressions.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-4.log"
+    },
+    {
+      "command": "node scripts/verify-tcx-ticker.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-5.log"
+    },
+    {
+      "command": "node scripts/verify-vjc-ticker.mjs",
+      "exitCode": 1,
+      "log": "validation-logs/replay-6.log"
+    },
+    {
+      "command": "node scripts/verify-gvr-ticker.mjs",
+      "exitCode": 1,
+      "log": "validation-logs/replay-7.log"
+    },
+    {
+      "command": "node scripts/verify-vic-ticker.mjs --ticker=VIC",
+      "exitCode": 0,
+      "log": "validation-logs/replay-8.log"
+    },
+    {
+      "command": "node scripts/verify-real-estate-ticker.mjs --ticker=VHM",
+      "exitCode": 0,
+      "log": "validation-logs/replay-9.log"
+    },
+    {
+      "command": "node scripts/verify-real-estate-ticker.mjs --ticker=VRE",
+      "exitCode": 0,
+      "log": "validation-logs/replay-10.log"
+    },
+    {
+      "command": "node scripts/verify-real-estate-ticker.mjs --ticker=VPL",
+      "exitCode": 0,
+      "log": "validation-logs/replay-11.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=MSN",
+      "exitCode": 0,
+      "log": "validation-logs/replay-12.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=MWG",
+      "exitCode": 0,
+      "log": "validation-logs/replay-13.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=SAB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-14.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=MCH",
+      "exitCode": 0,
+      "log": "validation-logs/replay-15.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=VNM",
+      "exitCode": 0,
+      "log": "validation-logs/replay-16.log"
+    },
+    {
+      "command": "node scripts/verify-energy-ticker.mjs --ticker=GAS",
+      "exitCode": 0,
+      "log": "validation-logs/replay-17.log"
+    },
+    {
+      "command": "node scripts/verify-energy-ticker.mjs --ticker=BSR",
+      "exitCode": 0,
+      "log": "validation-logs/replay-18.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=ACB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-19.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=BID",
+      "exitCode": 0,
+      "log": "validation-logs/replay-20.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=CTG",
+      "exitCode": 0,
+      "log": "validation-logs/replay-21.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=HDB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-22.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=LPB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-23.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=MBB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-24.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=SHB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-25.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=SSB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-26.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=STB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-27.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=TCB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-28.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=VIB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-29.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=VPB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-30.log"
+    },
+    {
+      "name": "production-webpack-build",
+      "command": "pnpm exec next build --webpack",
+      "exitCode": 0,
+      "log": "validation-logs/application-webpack-build.log"
+    },
+    {
+      "name": "application-e2e-webpack",
+      "command": "node scripts/smoke-app.mjs --e2e",
+      "exitCode": 0,
+      "passed": 12,
+      "failed": 0,
+      "log": "validation-logs/application-e2e-webpack-supported.log"
+    }
+  ],
+  "environmentAttempts": [
+    {
+      "command": "pnpm test with default Node22.12.0",
+      "exitCode": 1,
+      "reason": "Unsupported runtime; ERR_UNKNOWN_FILE_EXTENSION on TypeScript. Supported local runtime rerun passed.",
+      "log": "validation-logs/full-suite.log"
+    },
+    {
+      "command": "pnpm test:e2e (Turbopack)",
+      "exitCode": 143,
+      "reason": "Stopped review-owned build after approximately four minutes with no compile progress; documented Webpack build subsequently passed.",
+      "log": "validation-logs/application-e2e.log"
+    },
+    {
+      "command": "node scripts/smoke-app.mjs --e2e (sandbox)",
+      "exitCode": 1,
+      "reason": "listen EPERM on loopback; rerun with approved loopback access.",
+      "log": "validation-logs/application-e2e-webpack.log"
+    }
+  ],
+  "e2e": {
+    "status": "PASS",
+    "passed": 12,
+    "failed": 0,
+    "command": "node scripts/smoke-app.mjs --e2e after pnpm exec next build --webpack",
+    "exitCode": 0,
+    "log": "validation-logs/application-e2e-webpack-supported.log"
+  },
+  "strictAudit": "FAIL \u2014 HPG retention dependency; canonical replay30/30 PASS",
+  "noFailuresHidden": true,
+  "validationStatus": "PASS_WITH_ENVIRONMENT_ATTEMPTS_DISCLOSED",
+  "fullSuiteStartedBeforeNewTestFile": "Existing full suite passed1783; new aggregate file ran separately and passed3. No claim that one run contained1786.",
+  "screenshotPreservation": {
+    "restoredCount": 48,
+    "evidence": "E2E_SCREENSHOT_PRESERVATION.json"
+  }
+}

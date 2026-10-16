@@ -1,0 +1,542 @@
+{
+  "tickers": [
+    {
+      "ticker": "MBB",
+      "state": "DEFERRED_BLOCKED",
+      "blockers": [
+        {
+          "classification": "REGULATORY_SOURCE_UNAVAILABLE",
+          "detail": "No qualifying CAR for 2026-06-30; candidate June column is footnoted effective 2026-03-31, rejected for wrong date.",
+          "concrete": true,
+          "notExtractionBacklog": true
+        }
+      ],
+      "latestEvidence": "docs/fundamental-data-engine/evidence//2026-10-16-bank-targeted-fix/MBB_TARGETED_FINAL_SUFFICIENCY.json",
+      "sourceIssueEvidence": [
+        {
+          "path": "docs/fundamental-data-engine/evidence//2026-10-16-bank-targeted-fix/OPEN_ISSUES.json",
+          "evidence": {
+            "startingHead": "42501c4f086fd901b824386e157f6bf841424baf",
+            "finalHead": "PENDING_COMMIT",
+            "readyForScoring": false,
+            "decisionReady": false,
+            "DI14": "NOT_APPROVED",
+            "DI15": "NOT_APPROVED",
+            "issues": [
+              {
+                "id": "MBB:CAPITAL:2026-06-30",
+                "severity": "Major",
+                "status": "OPEN",
+                "proofRequired": "MBB_CAPITAL_TARGETED_EVIDENCE.json"
+              },
+              {
+                "id": "VIB:CAPITAL:2026-06-30",
+                "severity": "Major",
+                "status": "OPEN",
+                "proofRequired": "VIB_CAPITAL_TARGETED_EVIDENCE.json"
+              },
+              {
+                "id": "VIB:NPL_HEADLINE_VS_GROUPS",
+                "severity": "Major",
+                "status": "OPEN",
+                "proofRequired": "VIB_NPL_CONFLICT_ANALYSIS.json"
+              }
+            ],
+            "nextAction": "STOP; wait for Review Bank Targeted Fix. No automatic further forensic round."
+          }
+        },
+        {
+          "path": "docs/fundamental-data-engine/evidence/2026-10-16-ticker-closure-MBB/OPEN_ISSUES.json",
+          "evidence": {
+            "ticker": "MBB",
+            "dataIntegrity": {
+              "Critical": [],
+              "Major": [
+                {
+                  "id": "MBB:CAPITAL:2026-06-30",
+                  "period": "2026-06-30",
+                  "requirement": "capital_strength",
+                  "classification": "SOURCE_UNAVAILABLE_AFTER_REASONABLE_SEARCH",
+                  "reportClass": "SOURCE_UNAVAILABLE",
+                  "material": true,
+                  "reason": "Standard permitted mirror returned 404; bounded issuer/exchange/public-mirror indexed searches did not yield an accessible original for this date. VIB issuer disclosure listing exists, but access returned 403 or an unrelated generic page; no access-control bypass. No press/provider ratio admitted.",
+                  "evidence": "MBB_CAPITAL_SOURCE_SEARCH.json"
+                }
+              ],
+              "Minor": []
+            },
+            "gaps": [
+              {
+                "id": "MBB:CAPITAL:2026-06-30",
+                "period": "2026-06-30",
+                "requirement": "capital_strength",
+                "classification": "SOURCE_UNAVAILABLE_AFTER_REASONABLE_SEARCH",
+                "reportClass": "SOURCE_UNAVAILABLE",
+                "material": true,
+                "reason": "Standard permitted mirror returned 404; bounded issuer/exchange/public-mirror indexed searches did not yield an accessible original for this date. VIB issuer disclosure listing exists, but access returned 403 or an unrelated generic page; no access-control bypass. No press/provider ratio admitted.",
+                "evidence": "MBB_CAPITAL_SOURCE_SEARCH.json"
+              }
+            ],
+            "independentHumanReview": "PENDING",
+            "historicalPIT": "NOT_READY; separate"
+          }
+        }
+      ],
+      "materialGaps": [],
+      "coverage": {
+        "CORE": {
+          "required": 15,
+          "admitted": 15,
+          "missing": 0
+        },
+        "SECTOR_CORE": {
+          "required": 20,
+          "admitted": 19,
+          "missing": 1
+        },
+        "SUPPORTING": {
+          "required": 45,
+          "admitted": 5,
+          "missing": 40
+        }
+      }
+    },
+    {
+      "ticker": "TCX",
+      "state": "DEFERRED_BLOCKED",
+      "blockers": [
+        {
+          "classification": "ACCOUNTING_POPULATION_UNRESOLVED",
+          "detail": "FY2022 financing population unresolved: known subtotal 8,580,234,544,957 VND; unresolved population 5,284,485,167,173 VND. No comprehensive FINANCIAL_DEBT manufactured.",
+          "concrete": true,
+          "notExtractionBacklog": true
+        }
+      ],
+      "latestEvidence": "docs/fundamental-data-engine/evidence//2026-10-16-tcx-targeted-fix/TCX_TARGETED_FINAL_SUFFICIENCY.json",
+      "sourceIssueEvidence": [
+        {
+          "path": "docs/fundamental-data-engine/evidence//2026-10-16-tcx-targeted-fix/OPEN_ISSUES.json",
+          "evidence": {
+            "ticker": "TCX",
+            "dataIntegrity": {
+              "Critical": [],
+              "Major": [
+                {
+                  "id": "TCX-DEBT-2022-MANAGED-POPULATION",
+                  "status": "DEFERRED BLOCKED; FINAL AUTHORIZED FORENSIC ROUND COMPLETE",
+                  "amount": "5284485167173",
+                  "missingProof": [
+                    "FY2022 applicable executed or authoritative contractual terms identifying TCBS financing use and direct principal/return obligations, or proving a non-financing managed-asset arrangement",
+                    "Exact reconciliation of all 5,284,485,167,173 VND to those terms or an exact evidenced financing/non-financing split",
+                    "Explicit bridge distinguishing pre-24-May-2023 managed program from subsequently recognized iSave borrowings"
+                  ]
+                }
+              ],
+              "Minor": "Two one-VND primary presentation differences remain unchanged; not investigated or fixed"
+            },
+            "primaryClosure": "PRESERVED",
+            "supporting": "15/40; unchanged",
+            "governanceStop": "No further automatic forensic loop; await Review TCX Targeted Fix",
+            "readyForScoring": false,
+            "decisionReady": false,
+            "DI14": "NOT_APPROVED",
+            "DI15": "NOT_APPROVED"
+          }
+        },
+        {
+          "path": "docs/fundamental-data-engine/evidence/2026-10-16-ticker-closure-TCX/OPEN_ISSUES.json",
+          "evidence": {
+            "ticker": "TCX",
+            "dataIntegrity": {
+              "Critical": [],
+              "Major": [
+                {
+                  "id": "TCX-DEBT-2022-MANAGED-POPULATION",
+                  "amount": "5284485167173",
+                  "currency": "VND",
+                  "status": "UNRESOLVED",
+                  "requiredAction": "Obtain issuer-specific proof of FY2022 Két Vàng managed-payable financing nature and population boundary; only targeted fix after review. No automatic debt inclusion/exclusion.",
+                  "evidence": "TCX_FINANCIAL_DEBT_RECONCILIATION.json"
+                }
+              ],
+              "Minor": [
+                {
+                  "metric": "TOTAL_LIABILITIES",
+                  "end": "2024-12-31",
+                  "original": "26947161543516",
+                  "subrowSum": "26947161543515",
+                  "classification": "ONE_VND_ISSUER_PRESENTATION_DIFFERENCE",
+                  "reason": "Original FY2024 page 9 long-term liabilities prints 1,012,893,977,744; components and next comparative print 1,012,893,977,745. Equity/assets unchanged; retain exact required rows, do not silently rebalance."
+                },
+                {
+                  "metric": "COMMON_EARNINGS",
+                  "end": "2025-12-31",
+                  "values": [
+                    "5683331855108",
+                    "5683331855109"
+                  ],
+                  "classification": "ONE_VND_ISSUER_PRESENTATION_DIFFERENCE",
+                  "reason": "FY2025 page 13 row 200 net income versus row 500. Net income admitted from row 200; common-share earnings deferred."
+                }
+              ]
+            },
+            "historicalPIT": "NOT_READY; nonblocking CURRENT_ANALYSIS",
+            "analyticalGaps": "TCX_DEFERRED_ANALYTICAL_GAPS.json",
+            "governanceStop": "TCX exception queue. Stop after TCX; await Review TCX Level-1 Closure.",
+            "readyForScoring": false,
+            "decisionReady": false
+          }
+        }
+      ],
+      "materialGaps": [],
+      "coverage": {
+        "CORE": {
+          "required": 15,
+          "admitted": 15,
+          "missing": 0
+        },
+        "SECTOR_CORE": {
+          "required": 15,
+          "admitted": 14,
+          "missing": 1
+        },
+        "SUPPORTING": {
+          "required": 40,
+          "admitted": 15,
+          "missing": 25
+        }
+      }
+    },
+    {
+      "ticker": "VIB",
+      "state": "DEFERRED_BLOCKED",
+      "blockers": [
+        {
+          "classification": "REGULATORY_SOURCE_UNAVAILABLE",
+          "detail": "No qualifying consolidated CAR for 2026-06-30.",
+          "concrete": true,
+          "notExtractionBacklog": true
+        },
+        {
+          "classification": "DEFINITION_UNRESOLVED",
+          "detail": "Headline NPL 2.1% (6M2026) / 2.16% (FY2025) does not reconcile to customer-loan Group3+4+5 / gross loans (~2.926% / ~2.967%); broader population reconstruction is not canonical authority.",
+          "concrete": true,
+          "notExtractionBacklog": true
+        }
+      ],
+      "latestEvidence": "docs/fundamental-data-engine/evidence//2026-10-16-bank-targeted-fix/VIB_TARGETED_FINAL_SUFFICIENCY.json",
+      "sourceIssueEvidence": [
+        {
+          "path": "docs/fundamental-data-engine/evidence//2026-10-16-bank-targeted-fix/OPEN_ISSUES.json",
+          "evidence": {
+            "startingHead": "42501c4f086fd901b824386e157f6bf841424baf",
+            "finalHead": "PENDING_COMMIT",
+            "readyForScoring": false,
+            "decisionReady": false,
+            "DI14": "NOT_APPROVED",
+            "DI15": "NOT_APPROVED",
+            "issues": [
+              {
+                "id": "MBB:CAPITAL:2026-06-30",
+                "severity": "Major",
+                "status": "OPEN",
+                "proofRequired": "MBB_CAPITAL_TARGETED_EVIDENCE.json"
+              },
+              {
+                "id": "VIB:CAPITAL:2026-06-30",
+                "severity": "Major",
+                "status": "OPEN",
+                "proofRequired": "VIB_CAPITAL_TARGETED_EVIDENCE.json"
+              },
+              {
+                "id": "VIB:NPL_HEADLINE_VS_GROUPS",
+                "severity": "Major",
+                "status": "OPEN",
+                "proofRequired": "VIB_NPL_CONFLICT_ANALYSIS.json"
+              }
+            ],
+            "nextAction": "STOP; wait for Review Bank Targeted Fix. No automatic further forensic round."
+          }
+        },
+        {
+          "path": "docs/fundamental-data-engine/evidence/2026-10-16-ticker-closure-VIB/OPEN_ISSUES.json",
+          "evidence": {
+            "ticker": "VIB",
+            "dataIntegrity": {
+              "Critical": [],
+              "Major": [
+                {
+                  "id": "VIB:CAPITAL:2026-06-30",
+                  "period": "2026-06-30",
+                  "requirement": "capital_strength",
+                  "classification": "SOURCE_UNAVAILABLE_AFTER_REASONABLE_SEARCH",
+                  "reportClass": "SOURCE_UNAVAILABLE",
+                  "material": true,
+                  "reason": "Standard permitted mirror returned 404; bounded issuer/exchange/public-mirror indexed searches did not yield an accessible original for this date. VIB issuer disclosure listing exists, but access returned 403 or an unrelated generic page; no access-control bypass. No press/provider ratio admitted.",
+                  "evidence": "VIB_CAPITAL_SOURCE_SEARCH.json"
+                },
+                {
+                  "id": "VIB:NPL_HEADLINE_VS_GROUPS",
+                  "period": "2026-06-30",
+                  "classification": "TRUE_DATA_INTEGRITY_CONFLICT",
+                  "reportClass": "DATA_INTEGRITY",
+                  "material": true,
+                  "reason": "Reviewed statement PDF p63 reports headline customer NPL 2.10% (2025: 2.16%), while the same-page customer-loan groups 3+4+5 / gross imply 0.029255581132 (2025: 0.029674124086). Scope/definition bridge is not disclosed. Exact components and deterministic group ratio retained; headline not admitted or substituted.",
+                  "sourceHash": "35544e18432c66711b6cb1ac20d99a280ca2347418014b6b7060bd4d720494e3",
+                  "sourcePages": [
+                    63
+                  ]
+                }
+              ],
+              "Minor": []
+            },
+            "gaps": [
+              {
+                "id": "VIB:CAPITAL:2026-06-30",
+                "period": "2026-06-30",
+                "requirement": "capital_strength",
+                "classification": "SOURCE_UNAVAILABLE_AFTER_REASONABLE_SEARCH",
+                "reportClass": "SOURCE_UNAVAILABLE",
+                "material": true,
+                "reason": "Standard permitted mirror returned 404; bounded issuer/exchange/public-mirror indexed searches did not yield an accessible original for this date. VIB issuer disclosure listing exists, but access returned 403 or an unrelated generic page; no access-control bypass. No press/provider ratio admitted.",
+                "evidence": "VIB_CAPITAL_SOURCE_SEARCH.json"
+              },
+              {
+                "id": "VIB:NPL_HEADLINE_VS_GROUPS",
+                "period": "2026-06-30",
+                "classification": "TRUE_DATA_INTEGRITY_CONFLICT",
+                "reportClass": "DATA_INTEGRITY",
+                "material": true,
+                "reason": "Reviewed statement PDF p63 reports headline customer NPL 2.10% (2025: 2.16%), while the same-page customer-loan groups 3+4+5 / gross imply 0.029255581132 (2025: 0.029674124086). Scope/definition bridge is not disclosed. Exact components and deterministic group ratio retained; headline not admitted or substituted.",
+                "sourceHash": "35544e18432c66711b6cb1ac20d99a280ca2347418014b6b7060bd4d720494e3",
+                "sourcePages": [
+                  63
+                ]
+              }
+            ],
+            "independentHumanReview": "PENDING",
+            "historicalPIT": "NOT_READY; separate"
+          }
+        }
+      ],
+      "materialGaps": [],
+      "coverage": {
+        "CORE": {
+          "required": 15,
+          "admitted": 15,
+          "missing": 0
+        },
+        "SECTOR_CORE": {
+          "required": 20,
+          "admitted": 19,
+          "missing": 1
+        },
+        "SUPPORTING": {
+          "required": 45,
+          "admitted": 5,
+          "missing": 40
+        }
+      }
+    },
+    {
+      "ticker": "VIC",
+      "state": "DEFERRED_BLOCKED",
+      "blockers": [
+        {
+          "classification": "SOURCE_UNAVAILABLE",
+          "detail": "Reviewed consolidated 6M2026 filing listed by issuer but public PDF variants HTTP403 and permitted mirror404; no qualifying retained current original.",
+          "concrete": true,
+          "notExtractionBacklog": true
+        }
+      ],
+      "latestEvidence": "docs/fundamental-data-engine/evidence//2026-10-16-ticker-closure-VIC/VIC_FINAL_SUFFICIENCY.json",
+      "sourceIssueEvidence": [
+        {
+          "path": "docs/fundamental-data-engine/evidence//2026-10-16-ticker-closure-VIC/OPEN_ISSUES.json",
+          "evidence": {
+            "ticker": "VIC",
+            "dataIntegrity": {
+              "Critical": [],
+              "Major": [
+                {
+                  "id": "VIC:CURRENT:2026-06-30:REVIEWED_ORIGINAL",
+                  "severity": "Major",
+                  "classification": "SOURCE_UNAVAILABLE_AFTER_REASONABLE_SEARCH",
+                  "status": "OPEN",
+                  "material": true,
+                  "period": {
+                    "start": "2026-01-01",
+                    "end": "2026-06-30",
+                    "frame": "YTD"
+                  },
+                  "detail": "Issuer-listed reviewed consolidated filing exists, but all discovered public issuer PDF variants returned HTTP 403; permitted mirror probe returned 404 and official/mirror search did not yield a qualifying same filing. No current canonical fact is fabricated from index, Q2, Q1, news or broker material.",
+                  "evidence": "VIC_CURRENT_SOURCE_SEARCH.json",
+                  "annualQualificationBlocked": false,
+                  "requiredMissingGroups": [
+                    "assets",
+                    "equity",
+                    "earnings",
+                    "sales",
+                    "cash_generation",
+                    "debt",
+                    "cash",
+                    "project_capital"
+                  ],
+                  "stop": "No automatic further forensic round; await Review VIC Qualification Round."
+                }
+              ],
+              "Minor": []
+            },
+            "historicalPIT": "NOT_READY; does not block CURRENT_ANALYSIS",
+            "analyticalQualification": "VIC_DEFERRED_ANALYTICAL_GAPS.json",
+            "independentReview": "PENDING",
+            "projectOwnerApproval": "PENDING"
+          }
+        },
+        {
+          "path": "docs/fundamental-data-engine/evidence//2026-10-16-ticker-closure-VIC/OPEN_ISSUES.json",
+          "evidence": {
+            "ticker": "VIC",
+            "dataIntegrity": {
+              "Critical": [],
+              "Major": [
+                {
+                  "id": "VIC:CURRENT:2026-06-30:REVIEWED_ORIGINAL",
+                  "severity": "Major",
+                  "classification": "SOURCE_UNAVAILABLE_AFTER_REASONABLE_SEARCH",
+                  "status": "OPEN",
+                  "material": true,
+                  "period": {
+                    "start": "2026-01-01",
+                    "end": "2026-06-30",
+                    "frame": "YTD"
+                  },
+                  "detail": "Issuer-listed reviewed consolidated filing exists, but all discovered public issuer PDF variants returned HTTP 403; permitted mirror probe returned 404 and official/mirror search did not yield a qualifying same filing. No current canonical fact is fabricated from index, Q2, Q1, news or broker material.",
+                  "evidence": "VIC_CURRENT_SOURCE_SEARCH.json",
+                  "annualQualificationBlocked": false,
+                  "requiredMissingGroups": [
+                    "assets",
+                    "equity",
+                    "earnings",
+                    "sales",
+                    "cash_generation",
+                    "debt",
+                    "cash",
+                    "project_capital"
+                  ],
+                  "stop": "No automatic further forensic round; await Review VIC Qualification Round."
+                }
+              ],
+              "Minor": []
+            },
+            "historicalPIT": "NOT_READY; does not block CURRENT_ANALYSIS",
+            "analyticalQualification": "VIC_DEFERRED_ANALYTICAL_GAPS.json",
+            "independentReview": "PENDING",
+            "projectOwnerApproval": "PENDING"
+          }
+        }
+      ],
+      "materialGaps": [
+        {
+          "id": "VIC:CURRENT:2026-06-30:REVIEWED_ORIGINAL",
+          "severity": "Major",
+          "classification": "SOURCE_UNAVAILABLE_AFTER_REASONABLE_SEARCH",
+          "status": "OPEN",
+          "material": true,
+          "period": {
+            "start": "2026-01-01",
+            "end": "2026-06-30",
+            "frame": "YTD"
+          },
+          "detail": "Issuer-listed reviewed consolidated filing exists, but all discovered public issuer PDF variants returned HTTP 403; permitted mirror probe returned 404 and official/mirror search did not yield a qualifying same filing. No current canonical fact is fabricated from index, Q2, Q1, news or broker material.",
+          "evidence": "VIC_CURRENT_SOURCE_SEARCH.json",
+          "annualQualificationBlocked": false,
+          "requiredMissingGroups": [
+            "assets",
+            "equity",
+            "earnings",
+            "sales",
+            "cash_generation",
+            "debt",
+            "cash",
+            "project_capital"
+          ],
+          "stop": "No automatic further forensic round; await Review VIC Qualification Round."
+        }
+      ],
+      "coverage": {
+        "CORE": {
+          "required": 35,
+          "admitted": 28,
+          "missing": 7
+        },
+        "SECTOR_CORE": {
+          "required": 5,
+          "admitted": 4,
+          "missing": 1
+        },
+        "SUPPORTING": {
+          "required": 40,
+          "admitted": 24,
+          "missing": 16
+        }
+      }
+    },
+    {
+      "ticker": "VNM",
+      "state": "DEFERRED_BLOCKED",
+      "blockers": [
+        {
+          "classification": "ACCOUNTING_POPULATION_UNRESOLVED",
+          "detail": "FY2024/FY2025/6M2026 exact end-date current debt portions and complete financing population remain unqualified; movement transfers cannot replace closing balances.",
+          "concrete": true,
+          "notExtractionBacklog": true
+        }
+      ],
+      "latestEvidence": "docs/fundamental-data-engine/evidence//2026-10-15-consumer-targeted-fix/VNM/FINAL_SUFFICIENCY.json",
+      "sourceIssueEvidence": [
+        {
+          "path": "docs/fundamental-data-engine/evidence//2026-10-15-consumer-targeted-fix/VNM/OPEN_ISSUES.json",
+          "evidence": {
+            "Critical": [],
+            "Major": [
+              "Exact end-date current portion and complete financing reconciliation remain unqualified for FY2024, FY2025 and 6M2026; movement transfers cannot substitute for closing balances"
+            ],
+            "analyticalGapsReference": "docs/fundamental-data-engine/evidence/2026-10-15-ticker-closure-VNM/VNM_DEFERRED_ANALYTICAL_GAPS.json"
+          }
+        },
+        {
+          "path": "docs/fundamental-data-engine/evidence//2026-10-15-consumer-targeted-fix/VNM/OPEN_ISSUES.json",
+          "evidence": {
+            "Critical": [],
+            "Major": [
+              "Exact end-date current portion and complete financing reconciliation remain unqualified for FY2024, FY2025 and 6M2026; movement transfers cannot substitute for closing balances"
+            ],
+            "analyticalGapsReference": "docs/fundamental-data-engine/evidence/2026-10-15-ticker-closure-VNM/VNM_DEFERRED_ANALYTICAL_GAPS.json"
+          }
+        }
+      ],
+      "materialGaps": [
+        "Exact end-date current portion and complete financing reconciliation remain unqualified for FY2024, FY2025 and 6M2026; movement transfers cannot substitute for closing balances"
+      ],
+      "coverage": {
+        "CORE": {
+          "required": 35,
+          "admitted": 32,
+          "missing": 3
+        },
+        "SECTOR_CORE": {
+          "required": 5,
+          "admitted": 5,
+          "missing": 0
+        },
+        "SUPPORTING": {
+          "required": 40,
+          "admitted": 16,
+          "missing": 24
+        }
+      }
+    }
+  ],
+  "furtherFixRound": false
+}

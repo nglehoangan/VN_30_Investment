@@ -1,0 +1,58 @@
+[
+  {
+    "name": "lint",
+    "command": "pnpm lint",
+    "exitCode": 0,
+    "seconds": 9.64,
+    "log": "validation-logs/lint.log"
+  },
+  {
+    "name": "typecheck",
+    "command": "pnpm typecheck",
+    "exitCode": 0,
+    "seconds": 3.17,
+    "log": "validation-logs/typecheck.log"
+  },
+  {
+    "name": "database",
+    "command": "pnpm db:validate",
+    "exitCode": 0,
+    "seconds": 1.03,
+    "log": "validation-logs/database.log"
+  },
+  {
+    "name": "boundaries",
+    "command": "pnpm test:boundaries",
+    "exitCode": 0,
+    "seconds": 7.61,
+    "log": "validation-logs/boundaries.log"
+  },
+  {
+    "name": "ticker-and-fundamental",
+    "command": "pnpm exec vitest run tests/unit/*ticker-closure.test.ts tests/unit/hpg-debt-final-closure.test.ts tests/unit/structured-certification.test.ts tests/unit/fundamentals*.test.ts tests/integration/fundamentals*.test.ts",
+    "exitCode": 0,
+    "seconds": 66.05,
+    "log": "validation-logs/ticker-and-fundamental.log"
+  },
+  {
+    "name": "structured-replay",
+    "command": "node scripts/verify-structured-certification.mjs",
+    "exitCode": 0,
+    "seconds": 120.64,
+    "log": "validation-logs/structured-replay.log"
+  },
+  {
+    "name": "consumer-targeted",
+    "command": "node scripts/verify-consumer-targeted-fix.mjs",
+    "exitCode": 0,
+    "seconds": 4.45,
+    "log": "validation-logs/consumer-targeted.log"
+  },
+  {
+    "name": "bank-targeted",
+    "command": "node scripts/verify-bank-targeted-fix.mjs",
+    "exitCode": 0,
+    "seconds": 2.4,
+    "log": "validation-logs/bank-targeted.log"
+  }
+]
