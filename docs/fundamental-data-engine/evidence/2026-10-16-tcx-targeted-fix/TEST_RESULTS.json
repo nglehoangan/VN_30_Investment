@@ -1,0 +1,123 @@
+{
+  "ticker": "TCX",
+  "issue": "TCX-DEBT-2022-MANAGED-POPULATION",
+  "status": "PASS",
+  "baseline": {
+    "passed": 1616,
+    "failed": 0
+  },
+  "fullApplicationSuite": {
+    "status": "PASS",
+    "command": "pnpm test",
+    "runtime": "Node 22.23.2; default forks; outside sandbox",
+    "passed": 1641,
+    "failed": 0,
+    "testFiles": 114,
+    "durationSeconds": 330.21,
+    "baselineDelta": "+25 targeted regressions; no baseline regressions",
+    "outputSummary": "Test Files 114 passed (114); Tests 1641 passed (1641)"
+  },
+  "targetedRegressions": {
+    "status": "PASS",
+    "passed": 25,
+    "failed": 0,
+    "reference": "REGRESSION_RESULTS.json"
+  },
+  "combinedTcxSsiFinancialDebtStructuredCurrentArchitecture": {
+    "status": "PASS",
+    "command": "pnpm exec vitest run tests/unit/tcx-ket-vang-targeted.test.ts tests/unit/tcx-ticker-closure.test.ts tests/unit/ssi-ticker-closure.test.ts tests/unit/debt-contract-activation.test.ts tests/unit/debt-metric-contract-proposal.test.ts tests/unit/structured-certification.test.ts tests/unit/hybrid-targets.test.ts tests/architecture --pool=threads",
+    "passed": 274,
+    "failed": 0,
+    "originalTcxRegressions": 36,
+    "ssiRegressions": 16
+  },
+  "fundamentalDataSuite": {
+    "status": "PASS",
+    "execution": "Included in completed full application suite: fundamentals unit/integration, admission, normalization, derivation, availability, manual-first, structured certification and hybrid/current-period cases; no additional accounting facts admitted"
+  },
+  "structuredCertification": {
+    "status": "PASS",
+    "command": "node scripts/verify-structured-certification.mjs",
+    "checks": 40,
+    "direct": 844,
+    "sourceBindings": 845,
+    "artifacts": 38
+  },
+  "architecture": {
+    "status": "PASS",
+    "sourceModules": 173,
+    "execution": "pnpm lint boundary check and architecture tests in combined/full suites"
+  },
+  "lint": {
+    "status": "PASS",
+    "command": "pnpm lint",
+    "warnings": 0,
+    "finalChangedFileCheck": "PASS; helper/declaration/producer/verifier and targeted tests linted after final code additions"
+  },
+  "typecheck": {
+    "status": "PASS",
+    "command": "pnpm typecheck",
+    "nextTypegen": "PASS",
+    "tscNoEmit": "PASS"
+  },
+  "database": {
+    "status": "PASS",
+    "command": "pnpm db:validate",
+    "result": "Prisma schema valid"
+  },
+  "protectedReplay": {
+    "status": "PASS",
+    "tickers": 15,
+    "separateProcessPerTicker": true,
+    "VNM": "DEFERRED BLOCKED",
+    "reference": "PROTECTED_REPLAY_RESULTS.json"
+  },
+  "protectedPhysicalBindings": {
+    "status": "PASS",
+    "count": 1365,
+    "includes": "Primary sealed TCX artifacts, original canonical input/output, source bytes, prior 15 approved closures, VNM and approved contracts"
+  },
+  "independentTcxReplay": {
+    "status": "PASS",
+    "afterCleanup": true,
+    "offline": true,
+    "separateProcess": true,
+    "independentHumanReview": false,
+    "reference": "INDEPENDENT_REPLAY.json"
+  },
+  "cleanup": {
+    "status": "PASS",
+    "deletedScratchFiles": 320,
+    "backup": false,
+    "archive": false
+  },
+  "unsuccessfulOrInterruptedAttempts": [
+    {
+      "command": "pnpm typecheck",
+      "status": "FAIL_THEN_FIXED",
+      "reason": "TS7016: new review JavaScript module lacked a TypeScript declaration",
+      "fix": "Added scripts/lib/tcx-ket-vang-review.d.mts; typecheck rerun passed. No financial contract change."
+    },
+    {
+      "command": "pnpm test",
+      "status": "INTERRUPTED_BEFORE_FINAL_REGRESSION_SET",
+      "exitCode": 130,
+      "reason": "Initial baseline run stopped so the final full run included all 25 new targeted tests",
+      "replacement": "Final default-process full suite passed 1641/1641"
+    }
+  ],
+  "sourceAccessLimitations": {
+    "termsRoute": "Issuer iSave terms returned HTTP 403; no bypass; not used as qualified FY2022 proof",
+    "prospectusOCR": "No qualifying keyword hit in bounded 120-page OCR scan; non-detection not treated as proof of absence"
+  },
+  "governance": {
+    "targetedVerdict": "B. TCX REMAINS DEFERRED BLOCKED \u2014 ISSUER EVIDENCE INSUFFICIENT",
+    "economicClassification": "D_UNRESOLVED",
+    "canonicalFinancialDebt2022": null,
+    "furtherAutomaticForensicRound": false,
+    "readyForScoring": false,
+    "decisionReady": false,
+    "DI14": "NOT_APPROVED",
+    "DI15": "NOT_APPROVED"
+  }
+}

@@ -1,0 +1,36 @@
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {describe,it,expect} from 'vitest';
+import {reconcileKetVang,TCX_2022_KNOWN_FINANCING,TCX_2022_MANAGED_PAYABLE} from '../../scripts/lib/tcx-ket-vang-review.mjs';
+const dir='docs/fundamental-data-engine/evidence/2026-10-16-tcx-targeted-fix/';
+const primary='docs/fundamental-data-engine/evidence/2026-10-16-ticker-closure-TCX/';
+const read=(p:string)=>JSON.parse(readFileSync(p,'utf8'));
+const proof=()=>read(dir+'TCX_2022_KET_VANG_PROOF_INPUT.json');
+// Counterfactual arithmetic fixtures test guard behavior; they are never issuer evidence or admission inputs.
+const hypothetical=()=>({...proof(),status:'VERIFIED',sources:[{issuer:'TCX',sha256:'a'.repeat(64),locator:'hypothetical regression fixture'}],contractAppliesToFY2022:true,exactPopulationReconciliation:true,financingPortion:TCX_2022_MANAGED_PAYABLE,issuerFinancingUseProven:true,directPrincipalObligationProven:true,financingReturnObligationProven:true});
+const facts=()=>read(primary+'TCX_CANONICAL_FACTS.json').canonicalFacts as {itemId:string;value:string;period:{end:string}}[];
+const protectedBytes=(filter:(p:string)=>boolean)=>{for(const b of read(dir+'PROTECTED_BASELINE.json').bindings.filter((b:{path:string})=>filter(b.path)))expect(createHash('sha256').update(readFileSync(b.path)).digest('hex'),b.path).toBe(b.sha256);};
+describe('TCX final targeted FY2022 Két Vàng forensic boundary',()=>{
+ it('01 caption alone cannot classify financing or non-financing',()=>expect(reconcileKetVang({...proof(),caption:'Managed investor payable'}).classification).toBe('D_UNRESOLVED'));
+ it('02 FY2023 iSave does not retroactively classify FY2022',()=>expect(reconcileKetVang({...hypothetical(),end:'2023-12-31',contractAppliesToFY2022:false}).canonicalFinancialDebt).toBeNull());
+ it('03 mixed note-28 cost cannot automatically become interest',()=>expect(reconcileKetVang({...proof(),mixedExpense:'588947224663'}).canonicalFinancialDebt).toBeNull());
+ it('04 client transaction money stays outside company cash',()=>{protectedBytes(p=>p.endsWith('TCX_CUSTOMER_MONEY_REVIEW.json'));expect(read(primary+'TCX_CUSTOMER_MONEY_REVIEW.json').currentCompanyCash).toBe('6154505245964');});
+ it('05 managed on-balance payable is not automatically off-balance client money',()=>{const x=read(dir+'TCX_2022_KET_VANG_CLASSIFICATION.json');expect(x.onBalanceFinancialLiability).toBe(true);expect(x.clientOffBalanceClassification).toBe('NOT_ESTABLISHED');});
+ it('06 managed payable cannot automatically become financial debt',()=>expect(reconcileKetVang({...proof(),broadFinancialLiability:true}).canonicalFinancialDebt).toBeNull());
+ it('07 counterfactual proven full financing includes carrying amount exactly once',()=>expect(reconcileKetVang(hypothetical())).toMatchObject({classification:'A_FINANCING',canonicalFinancialDebt:'13864719712130',qualifiedFinancingPortion:'5284485167173'}));
+ it('08 counterfactual evidenced exclusion retains bank/bond subtotal unchanged',()=>expect(reconcileKetVang({...hypothetical(),financingPortion:'0',excludedPopulationNonFinancingProven:true})).toMatchObject({classification:'B_NON_FINANCING',canonicalFinancialDebt:'8580234544957',excludedNonFinancingPortion:'5284485167173'}));
+ it('09 no double counting bank borrowing',()=>expect(reconcileKetVang({...hypothetical(),outsideBankSubtotal:false}).canonicalFinancialDebt).toBeNull());
+ it('10 no double counting bonds',()=>expect(reconcileKetVang({...hypothetical(),outsideBondSubtotal:false}).canonicalFinancialDebt).toBeNull());
+ it('11 cash receipt or repayment flow cannot replace closing carrying amount',()=>{expect(reconcileKetVang({...hypothetical(),measurement:'CASH_RECEIPTS'}).canonicalFinancialDebt).toBeNull();expect(reconcileKetVang({...hypothetical(),coveredPopulation:'2519094220855'}).canonicalFinancialDebt).toBeNull();});
+ for(const [n,end,value] of [[12,'2023-12-31','19017655741207'],[13,'2024-12-31','25104250761829'],[14,'2025-12-31','34093976776742'],[15,'2026-06-30','52500668915684']] as const)it(`${n} ${end} financial debt unchanged`,()=>expect(facts().find(f=>f.itemId==='FINANCIAL_DEBT'&&f.period.end===end)?.value).toBe(value));
+ it('16 TCX margin series unchanged',()=>{protectedBytes(p=>p.endsWith('TCX_MARGIN_LOAN_RECONCILIATION.json'));expect(facts().filter(f=>f.itemId==='SECURITIES_MARGIN_LOANS')).toHaveLength(5);});
+ it('17 customer-money semantics unchanged',()=>protectedBytes(p=>p.endsWith('TCX_CUSTOMER_MONEY_REVIEW.json')));
+ it('18 FVTPL semantics unchanged',()=>protectedBytes(p=>p.endsWith('TCX_FVTPL_REVIEW.json')));
+ it('19 SSI closure unchanged',()=>protectedBytes(p=>p.includes('-SSI/')||p.includes('/SSI/')));
+ it('20 all 15 approved closures and primary TCX evidence unchanged',()=>protectedBytes(()=>true));
+ it('21 VNM remains deferred blocked',()=>{const x=read('docs/fundamental-data-engine/evidence/2026-10-15-ticker-closure-VNM/VNM_FINAL_SUFFICIENCY.json');expect(x.levelOneReady).toBe(false);expect(x.verdict).toMatch(/BLOCKED/);});
+ it('22 no denominator or contract modifications',()=>{protectedBytes(p=>p.includes('evidence-requirements-')||p.endsWith('debt-contract.ts')||p.endsWith('securities-contract.ts')||p.endsWith('hybrid-sufficiency.ts'));expect(read(dir+'TCX_TARGETED_FINAL_SUFFICIENCY.json').coverage).toEqual(read(primary+'TCX_FINAL_SUFFICIENCY.json').coverage);});
+ it('23 no neutral fill or approximate partial allocation',()=>{expect(facts().find(f=>f.itemId==='FINANCIAL_DEBT'&&f.period.end==='2022-12-31')).toBeUndefined();expect(reconcileKetVang(proof()).canonicalFinancialDebt).toBeNull();expect(reconcileKetVang({...hypothetical(),financingPortion:'5273000000000',exactPopulationReconciliation:false}).canonicalFinancialDebt).toBeNull();expect(TCX_2022_KNOWN_FINANCING).toBe('8580234544957');});
+ it('24 readyForScoring remains false',()=>expect(read(dir+'TCX_TARGETED_FINAL_SUFFICIENCY.json').readyForScoring).toBe(false));
+ it('25 decisionReady remains false',()=>expect(read(dir+'TCX_TARGETED_FINAL_SUFFICIENCY.json').decisionReady).toBe(false));
+});
