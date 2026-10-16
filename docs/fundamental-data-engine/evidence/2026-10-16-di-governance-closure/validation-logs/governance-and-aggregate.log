@@ -1,0 +1,37 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+ ❯ tests/unit/di-governance-closure.test.ts (18 tests | 2 failed) 5998ms
+   × 17 DI14 cannot be self-approved by candidate author 23ms
+   × 18 DI15 rejects an unresolved Major even if the associated input is quarantined 18ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/di-governance-closure.test.ts > 17 DI14 cannot be self-approved by candidate author
+AssertionError: expected [Function] to throw error including 'INDEPENDENT_DI_REVIEW_REQUIRED' but got 'Dữ liệu chưa hợp lệ. Vui lòng kiểm tr…'
+
+Expected: "INDEPENDENT_DI_REVIEW_REQUIRED"
+Received: "Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập."
+
+ ❯ tests/unit/di-governance-closure.test.ts:34:340
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/unit/di-governance-closure.test.ts > 18 DI15 rejects an unresolved Major even if the associated input is quarantined
+AssertionError: expected [Function] to throw error including 'UNRESOLVED_CRITICAL_MAJOR_DI_ISSUE' but got 'Dữ liệu chưa hợp lệ. Vui lòng kiểm tr…'
+
+Expected: "UNRESOLVED_CRITICAL_MAJOR_DI_ISSUE"
+Received: "Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập."
+
+ ❯ tests/unit/di-governance-closure.test.ts:35:329
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  2 failed | 19 passed (21)
+   Start at  16:03:08
+   Duration  8.16s (tests 86%, transform 5%, environment 5%, setup 3%, import 2%)
+

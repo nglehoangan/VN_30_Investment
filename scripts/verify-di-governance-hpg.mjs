@@ -1,0 +1,22 @@
+import './lib/ts-runtime.mjs';
+import assert from 'node:assert/strict';
+import {readFileSync,mkdtempSync,readdirSync,rmSync,writeFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import {join} from 'node:path';
+import {tmpdir} from 'node:os';
+const {buildHybridAdmission}=await import('../src/domain/fundamentals/hybrid-admission.ts');
+const {financialHash}=await import('../src/infrastructure/fundamentals/hybrid-input.ts');
+const dir='docs/fundamental-data-engine/evidence/2026-10-16-di-governance-closure/';
+const read=p=>JSON.parse(readFileSync(p,'utf8'));
+const input=read(dir+'HPG_RETAINED_ADMISSION_INPUT.json');
+assert(!/retainedReaderProof|manual-extracted|\.(?:png|jpg)"|\/private\/tmp\//.test(JSON.stringify(input)));
+for(const b of input.sourceBindings)assert.equal(createHash('sha256').update(readFileSync(b.path)).digest('hex'),b.sha256,b.path);
+assert.deepEqual(buildHybridAdmission(input,financialHash),read(dir+'HPG_CANONICAL_FACTS.json'));
+assert.equal(read(dir+'HPG_REPLAY_RESULTS.json').semanticallyIdentical,true);
+assert.equal(read(dir+'HPG_CANONICAL_FACTS.json').readyForScoring,false);
+const temp=mkdtempSync(join(tmpdir(),'hpg-governance-replay-'));
+try{execFileSync(process.execPath,['scripts/close-di-governance-hpg.mjs','--out='+temp],{stdio:'pipe'});for(const n of readdirSync(temp))assert.equal(readFileSync(join(temp,n),'utf8'),readFileSync(dir+n,'utf8'),n);}finally{rmSync(temp,{recursive:true,force:true});}
+const result={ticker:'HPG',status:'PASS',offline:true,separateProducerProcess:true,successorCanonicalExact:true,semanticEquality:true,physicalSourceHashesVerified:input.sourceBindings.length,extractionFilesRead:0,readyForScoring:false,decisionReady:false};
+if(process.argv.includes('--record'))writeFileSync(dir+'HPG_INDEPENDENT_REPLAY.json',JSON.stringify(result,null,2)+'\n');
+console.log(JSON.stringify(result));

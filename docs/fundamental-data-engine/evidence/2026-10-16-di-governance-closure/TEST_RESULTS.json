@@ -1,0 +1,308 @@
+{
+  "runtime": "Node22.23.2 / pnpm10.34.5",
+  "requestedBaseline": {
+    "passed": 1783,
+    "failed": 0
+  },
+  "countReconciliation": {
+    "requestedBaseline": 1783,
+    "priorCommittedAggregateCases": 3,
+    "newGovernanceCases": 18,
+    "expectedFullSuite": 1804
+  },
+  "runs": [
+    {
+      "name": "new-governance-and-prior-aggregate",
+      "command": "pnpm exec vitest run tests/unit/di-governance-closure.test.ts tests/unit/vn30-final-closure-review.test.ts",
+      "exitCode": 0,
+      "log": "validation-logs/governance-and-aggregate-complete.log",
+      "failed": 0,
+      "passed": 21
+    },
+    {
+      "name": "fundamental-and-ticker-suite",
+      "command": "pnpm exec vitest run tests/unit/*ticker-closure.test.ts tests/unit/hpg-debt-final-closure.test.ts tests/unit/structured-certification.test.ts tests/unit/fundamentals*.test.ts tests/integration/fundamentals*.test.ts",
+      "exitCode": 0,
+      "log": "validation-logs/fundamentals-focused.log",
+      "failed": 0,
+      "passed": 603
+    },
+    {
+      "name": "architecture",
+      "command": "pnpm test:boundaries",
+      "exitCode": 0,
+      "log": "validation-logs/boundaries.log",
+      "failed": 0,
+      "passed": 98
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "log": "validation-logs/lint-delivery.log"
+    },
+    {
+      "name": "typecheck",
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "log": "validation-logs/typecheck-delivery.log"
+    },
+    {
+      "name": "DB-schema-validation",
+      "command": "pnpm db:validate",
+      "exitCode": 0,
+      "log": "validation-logs/database.log"
+    },
+    {
+      "name": "structured-certification-offline",
+      "command": "node scripts/verify-structured-certification.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/structured-replay.log"
+    },
+    {
+      "name": "HPG-independent",
+      "command": "node scripts/verify-di-governance-hpg.mjs --record",
+      "exitCode": 0,
+      "log": "validation-logs/hpg-independent.log"
+    },
+    {
+      "name": "all30-dispositions",
+      "command": "node scripts/verify-di-governance-aggregate.mjs --record",
+      "exitCode": 0,
+      "log": "validation-logs/aggregate-protected.log"
+    },
+    {
+      "name": "webpack-production-build",
+      "command": "pnpm exec next build --webpack",
+      "exitCode": 0,
+      "log": "validation-logs/application-webpack-build.log"
+    },
+    {
+      "name": "application-smoke-and-E2E",
+      "command": "node scripts/smoke-app.mjs --e2e (approved loopback)",
+      "exitCode": 0,
+      "log": "validation-logs/application-e2e.log",
+      "passed": 12,
+      "failed": 0
+    },
+    {
+      "name": "backup-isolated-default-timeout",
+      "command": "pnpm exec vitest run tests/integration/m68-backup.test.ts",
+      "exitCode": 0,
+      "log": "validation-logs/backup-isolated.log",
+      "failed": 0,
+      "passed": 3
+    },
+    {
+      "name": "full-suite-retest",
+      "command": "pnpm exec vitest run --testTimeout=60000",
+      "exitCode": 0,
+      "log": "validation-logs/full-suite-extended-timeout.log",
+      "failed": 0,
+      "passed": 1804
+    }
+  ],
+  "originalFailuresRetained": [
+    {
+      "name": "original-VJC-missing-required-argument",
+      "command": "node scripts/verify-vjc-ticker.mjs",
+      "exitCode": 1,
+      "log": "validation-logs/vjc-original.log"
+    },
+    {
+      "name": "original-GVR-missing-required-argument",
+      "command": "node scripts/verify-gvr-ticker.mjs",
+      "exitCode": 1,
+      "log": "validation-logs/gvr-original.log"
+    },
+    {
+      "name": "initial-new-regression-message-matcher",
+      "command": "pnpm exec vitest run tests/unit/di-governance-closure.test.ts tests/unit/vn30-final-closure-review.test.ts",
+      "exitCode": 1,
+      "log": "validation-logs/governance-and-aggregate.log",
+      "failed": 2,
+      "passed": 19,
+      "rootCause": "Two assertions tested public localized Error.message for internal reason codes. Corrected to assert ValidationError.issues[].reason; production validation unchanged."
+    },
+    {
+      "name": "full-suite-default-timeout",
+      "command": "pnpm test",
+      "exitCode": 1,
+      "log": "validation-logs/full-suite.log",
+      "failed": 1,
+      "passed": 1803,
+      "rootCause": "Existing m68 backup/restore safety test exceeded20000ms; no safety assertion failure. Isolated same default-timeout file passed3/3; full repeat uses command-level60000ms only, same assertions and unchanged repository config."
+    }
+  ],
+  "protectedReplayCommands": [
+    {
+      "command": "node scripts/verify-di-governance-hpg.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-0.log"
+    },
+    {
+      "command": "node scripts/verify-debt-contract-activation-hpg.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-1.log"
+    },
+    {
+      "command": "node scripts/verify-vcb-ticker-closure.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-2.log"
+    },
+    {
+      "command": "node scripts/verify-ssi-ticker-closure.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-3.log"
+    },
+    {
+      "command": "node scripts/verify-fpt-ticker-closure.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-4.log"
+    },
+    {
+      "command": "node scripts/verify-bank-group-regressions.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-5.log"
+    },
+    {
+      "command": "node scripts/verify-tcx-ticker.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-6.log"
+    },
+    {
+      "command": "node scripts/verify-vjc-ticker.mjs --ticker=VJC",
+      "exitCode": 0,
+      "log": "validation-logs/replay-7.log"
+    },
+    {
+      "command": "node scripts/verify-gvr-ticker.mjs --ticker=GVR",
+      "exitCode": 0,
+      "log": "validation-logs/replay-8.log"
+    },
+    {
+      "command": "node scripts/verify-vic-ticker.mjs --ticker=VIC",
+      "exitCode": 0,
+      "log": "validation-logs/replay-9.log"
+    },
+    {
+      "command": "node scripts/verify-real-estate-ticker.mjs --ticker=VHM",
+      "exitCode": 0,
+      "log": "validation-logs/replay-10.log"
+    },
+    {
+      "command": "node scripts/verify-real-estate-ticker.mjs --ticker=VRE",
+      "exitCode": 0,
+      "log": "validation-logs/replay-11.log"
+    },
+    {
+      "command": "node scripts/verify-real-estate-ticker.mjs --ticker=VPL",
+      "exitCode": 0,
+      "log": "validation-logs/replay-12.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=MSN",
+      "exitCode": 0,
+      "log": "validation-logs/replay-13.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=MWG",
+      "exitCode": 0,
+      "log": "validation-logs/replay-14.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=SAB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-15.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=MCH",
+      "exitCode": 0,
+      "log": "validation-logs/replay-16.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=VNM",
+      "exitCode": 0,
+      "log": "validation-logs/replay-17.log"
+    },
+    {
+      "command": "node scripts/verify-energy-ticker.mjs --ticker=GAS",
+      "exitCode": 0,
+      "log": "validation-logs/replay-18.log"
+    },
+    {
+      "command": "node scripts/verify-energy-ticker.mjs --ticker=BSR",
+      "exitCode": 0,
+      "log": "validation-logs/replay-19.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=ACB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-20.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=BID",
+      "exitCode": 0,
+      "log": "validation-logs/replay-21.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=CTG",
+      "exitCode": 0,
+      "log": "validation-logs/replay-22.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=HDB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-23.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=LPB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-24.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=MBB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-25.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=SHB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-26.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=SSB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-27.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=STB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-28.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=TCB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-29.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=VIB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-30.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=VPB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-31.log"
+    }
+  ],
+  "fullRetestStatus": "PASS",
+  "changedTestAssertionsForBackup": false,
+  "repositoryTimeoutConfigChanged": false,
+  "fullRetestTimeoutMs": 60000,
+  "unhiddenReplayExit1": true,
+  "officialFetchAttempts": "official-sources/FETCH_RECEIPTS.json and NETWORK_FETCH_RECEIPTS.json retain sandbox DNS and Python TLS-chain failures. macOS curl with system trust succeeded; TLS verification was not disabled.",
+  "screenshotPreservation": "E2E_SCREENSHOT_PRESERVATION.json",
+  "taskDisposableCleanup": "TASK_DISPOSABLE_CLEANUP.json",
+  "scope": "Synthetic application tests only; no live investment scoring/ranking/Top10/decisions."
+}

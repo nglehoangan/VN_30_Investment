@@ -1,0 +1,33 @@
+{
+  "ticker": "GVR",
+  "classification": "COMMAND_INVOCATION_ERROR",
+  "original": {
+    "command": "node scripts/verify-gvr-ticker.mjs",
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "node:internal/modules/run_main:123\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(['GVR'].includes(ticker))\n\n    at file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-gvr-ticker.mjs:13:1 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '==',\n  diff: 'simple'\n}\n\nNode.js v22.23.2\n",
+    "assertion": "assert(['GVR'].includes(ticker))",
+    "expected": {
+      "ticker": "GVR",
+      "includes": true
+    },
+    "actual": {
+      "ticker": "undefined (no --ticker argument)",
+      "includes": false
+    }
+  },
+  "corrected": {
+    "command": "node scripts/verify-gvr-ticker.mjs --ticker=GVR",
+    "exitCode": 0,
+    "stdout": "{\"ticker\":\"GVR\",\"status\":\"PASS\",\"checks\":10,\"closureVerdict\":\"B. GVR CONDITIONALLY CLOSED — ANALYTICAL GAPS CARRIED FORWARD\"}\n",
+    "stderr": "",
+    "verifierSourceChanged": false
+  },
+  "rootCause": "Caller omitted mandatory --ticker argument; failure occurred before any source hash or canonical comparison. Existing verifier is correct. New aggregate runner supplies explicit ticker; no historical script/evidence edits or stale-hash reseals needed.",
+  "state": "CLOSED",
+  "canonicalHashBefore": "90b61c191f530ab37e5ef1d01ab85bfd31ab78166dfd7df7dc34b7844fb87e93",
+  "canonicalBeforeAuthority": "718685ebab973b1c800c78f51a2ae76147e502e5",
+  "canonicalHashAfter": "90b61c191f530ab37e5ef1d01ab85bfd31ab78166dfd7df7dc34b7844fb87e93",
+  "numericValuesChanged": false,
+  "independentProcessReplay": true
+}
