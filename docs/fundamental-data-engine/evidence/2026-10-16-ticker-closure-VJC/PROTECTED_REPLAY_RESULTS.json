@@ -1,0 +1,159 @@
+{
+  "results": [
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-hpg-ticker-closure.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"status\":\"PASS\",\"checks\":37,\"direct\":42,\"sourceBindings\":868,\"artifacts\":23}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-hpg-debt-closure.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"status\":\"PASS\",\"checks\":18,\"artifactComparisons\":15,\"historicalArtifactsVerified\":972}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-vcb-ticker-closure.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"offline\": true,\n  \"independentProcess\": true,\n  \"independentHumanReview\": false,\n  \"sourceBindings\": 86,\n  \"contentHash\": \"651defb0ca62173b2d3adb079dd5ce58d89be4463708170cf909227cb029c73f\",\n  \"checks\": [\n    {\n      \"name\": \"Every durable source binding matches exact physical bytes\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Issuer and regulatory originals are retained PDFs with qualified scope\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"No OCR, page renders, extraction copies or scratch files required for final replay\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Original CafeF payloads parse in NAM/QUY and match declared candidate source hashes\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Offline full canonical snapshot is byte-for-byte deterministic\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Only VCB is admitted; no scoring or approvals\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Fixed CORE 15/15 and BANK SECTOR_CORE 20/20 with current reviewed YTD\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Permanent FY2025 issuer parent NPAT priority\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Independent bank arithmetic reconciles NPL, denominator, allowance and reported capital\",\n      \"status\": \"PASS\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-ssi-ticker-closure.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"offline\": true,\n  \"separateProcess\": true,\n  \"independentHumanReview\": false,\n  \"method\": \"Separate verifier process, physical-byte hash checks, full canonical replay and independent integer population reconciliation. Independent review remains outstanding.\",\n  \"sourceBindings\": 14,\n  \"contentHash\": \"95b5334f829dbcb74e2cf1a21f3404eb71d04e6d7247e9b08397cab22b25aa8c\",\n  \"checks\": [\n    {\n      \"name\": \"Every retained original and raw provider source has exact SHA256\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Original issuer documents are physically retained PDFs\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"No temporary extraction dependency\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Separate-process canonical snapshot replay exact\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Only SSI securities facts; NAM QUY policy and no approvals\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Fixed required groups complete in all five windows with no invalid verification or unresolved conflict\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"FY2025 issuer CFO and CapEx survive false zero\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Margin-loan carrying amount excludes customer advances with exact integer reconciliation\",\n      \"status\": \"PASS\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-fpt-ticker-closure.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"offline\": true,\n  \"separateProcess\": true,\n  \"independentHumanReview\": false,\n  \"method\": \"Independent verifier implementation and process: physical source hashes, deterministic full admission replay, exact integer debt and segment reconciliation. Independent human review remains required.\",\n  \"sourceBindings\": 15,\n  \"contentHash\": \"d928e9cd0bc7aa7a4506123c369ffa7d59e2d3b3557ae0ce683bbeb8a9497948\",\n  \"checks\": [\n    {\n      \"name\": \"Physical retained original and immutable provider bytes match SHA256\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Replay input has no extraction artifact or reader-proof dependency\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Offline separate-process canonical replay exact\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"All fixed CORE and TECHNOLOGY sector groups complete; no canonical conflict\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"FPT only and NAM/QUY only; governance not approved\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Debt components reconcile independently using integer arithmetic and current portions once\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"No comprehensive debt or unrestricted cash manufactured; NET_DEBT stays N/R\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"CapEx is exact fixed-asset row magnitude, not investing total\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Segment arithmetic preserves eliminations and rounding; consolidated value uses its own row\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Offline producer regenerates every produced evidence artifact byte for byte\",\n      \"status\": \"PASS\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-real-estate-ticker.mjs",
+        "--ticker=VHM"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"ticker\": \"VHM\",\n  \"status\": \"PASS\",\n  \"offline\": true,\n  \"separateProcess\": true,\n  \"independentHumanReview\": false,\n  \"method\": \"Independent verifier implementation and process; source hashes, exact admission replay, component arithmetic and producer byte reproducibility; human review remains pending\",\n  \"contentHash\": \"bd978c691584a38ac0bb236db8abc0a7e5f5fb7c0044b051372afa4ce011a164\",\n  \"sourceBindings\": 16,\n  \"checks\": [\n    {\n      \"name\": \"Retained original PDFs and necessary immutable provider bytes match SHA256\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Retained CafeF NAM QUY payloads parse against original endpoint and ticker\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"No disposable extraction or reader proof required\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Separate process offline canonical replay exactly matches all retained output\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Fixed denominators complete for four annual periods and reviewed current YTD\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Ticker isolation, modes, no scoring and no foreign accounting verification\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Every debt component reconciles independently with integer arithmetic\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Original and restated source observations remain linked explicitly\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"No comprehensive debt, unrestricted cash or presales manufactured\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Issuer inventory and revenue components reconcile without classification collapse\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Ticker-specific source exclusions and missing values remain unavailable\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Independent producer process regenerates produced artifacts byte for byte\",\n      \"status\": \"PASS\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-real-estate-ticker.mjs",
+        "--ticker=VRE"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"ticker\": \"VRE\",\n  \"status\": \"PASS\",\n  \"offline\": true,\n  \"separateProcess\": true,\n  \"independentHumanReview\": false,\n  \"method\": \"Independent verifier implementation and process; source hashes, exact admission replay, component arithmetic and producer byte reproducibility; human review remains pending\",\n  \"contentHash\": \"35acd1ef938a3e59f6ce5bb1c0329e3d44bc17e6cbeaedb542bd36a4924aa4c9\",\n  \"sourceBindings\": 17,\n  \"checks\": [\n    {\n      \"name\": \"Retained original PDFs and necessary immutable provider bytes match SHA256\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Retained CafeF NAM QUY payloads parse against original endpoint and ticker\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"No disposable extraction or reader proof required\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Separate process offline canonical replay exactly matches all retained output\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Fixed denominators complete for four annual periods and reviewed current YTD\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Ticker isolation, modes, no scoring and no foreign accounting verification\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Every debt component reconciles independently with integer arithmetic\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Original and restated source observations remain linked explicitly\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"No comprehensive debt, unrestricted cash or presales manufactured\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Issuer inventory and revenue components reconcile without classification collapse\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Ticker-specific source exclusions and missing values remain unavailable\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Independent producer process regenerates produced artifacts byte for byte\",\n      \"status\": \"PASS\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-real-estate-ticker.mjs",
+        "--ticker=VPL"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"ticker\": \"VPL\",\n  \"status\": \"PASS\",\n  \"offline\": true,\n  \"separateProcess\": true,\n  \"independentHumanReview\": false,\n  \"method\": \"Independent verifier implementation and process; source hashes, exact admission replay, component arithmetic and producer byte reproducibility; human review remains pending\",\n  \"contentHash\": \"7e129430e0bf4e1abcc9400fa9f29cb242e3f797e828fddcb9a9e9f2a2895390\",\n  \"sourceBindings\": 16,\n  \"checks\": [\n    {\n      \"name\": \"Retained original PDFs and necessary immutable provider bytes match SHA256\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Retained CafeF NAM QUY payloads parse against original endpoint and ticker\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"No disposable extraction or reader proof required\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Separate process offline canonical replay exactly matches all retained output\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Fixed denominators complete for four annual periods and reviewed current YTD\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Ticker isolation, modes, no scoring and no foreign accounting verification\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Every debt component reconciles independently with integer arithmetic\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Original and restated source observations remain linked explicitly\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"No comprehensive debt, unrestricted cash or presales manufactured\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Issuer inventory and revenue components reconcile without classification collapse\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Ticker-specific source exclusions and missing values remain unavailable\",\n      \"status\": \"PASS\"\n    },\n    {\n      \"name\": \"Independent producer process regenerates produced artifacts byte for byte\",\n      \"status\": \"PASS\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-consumer-retail-ticker.mjs",
+        "--ticker=MSN"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"ticker\":\"MSN\",\"status\":\"PASS\",\"checks\":10,\"closureVerdict\":\"C. MSN BLOCKED — MATERIAL LEVEL-1 DATA-INTEGRITY GAPS REMAIN\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-consumer-retail-ticker.mjs",
+        "--ticker=MWG"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"ticker\":\"MWG\",\"status\":\"PASS\",\"checks\":10,\"closureVerdict\":\"B. MWG CONDITIONALLY CLOSED — ANALYTICAL GAPS CARRIED FORWARD\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-consumer-retail-ticker.mjs",
+        "--ticker=SAB"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"ticker\":\"SAB\",\"status\":\"PASS\",\"checks\":10,\"closureVerdict\":\"C. SAB BLOCKED — MATERIAL LEVEL-1 DATA-INTEGRITY GAPS REMAIN\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-consumer-retail-ticker.mjs",
+        "--ticker=MCH"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"ticker\":\"MCH\",\"status\":\"PASS\",\"checks\":10,\"closureVerdict\":\"B. MCH CONDITIONALLY CLOSED — ANALYTICAL GAPS CARRIED FORWARD\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-consumer-targeted-fix.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "[{\"ticker\":\"MSN\",\"status\":\"PASS\",\"verdict\":\"B. MSN CONDITIONALLY CLOSED — ANALYTICAL GAPS CARRIED FORWARD\",\"separateProcessReplay\":true,\"contentHash\":\"fd0a8b946cdfe99b3863d6d7191c0a38b3cb87203e31633efa4c48774eb2e4c3\"},{\"ticker\":\"VNM\",\"status\":\"PASS\",\"verdict\":\"C. VNM BLOCKED — MATERIAL LEVEL-1 DATA-INTEGRITY GAPS REMAIN\",\"separateProcessReplay\":true,\"contentHash\":\"dce1aaf7ed4c3745f81e8a0ee35265c91698b8d0a61608ccc829650bf5775f5c\"},{\"ticker\":\"SAB\",\"status\":\"PASS\",\"verdict\":\"B. SAB CONDITIONALLY CLOSED — ANALYTICAL GAPS CARRIED FORWARD\",\"separateProcessReplay\":true,\"contentHash\":\"76db62c6733bcd07c45791df98b9fe796de444a80723edd0b533c4c9041b3e32\"}]\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-energy-ticker.mjs",
+        "--ticker=GAS"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"ticker\":\"GAS\",\"status\":\"PASS\",\"checks\":10,\"closureVerdict\":\"B. GAS CONDITIONALLY CLOSED — ANALYTICAL GAPS CARRIED FORWARD\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-energy-ticker.mjs",
+        "--ticker=BSR"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"ticker\":\"BSR\",\"status\":\"PASS\",\"checks\":10,\"closureVerdict\":\"B. BSR CONDITIONALLY CLOSED — ANALYTICAL GAPS CARRIED FORWARD\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-gvr-ticker.mjs",
+        "--ticker=GVR"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"ticker\":\"GVR\",\"status\":\"PASS\",\"checks\":10,\"closureVerdict\":\"B. GVR CONDITIONALLY CLOSED — ANALYTICAL GAPS CARRIED FORWARD\"}\n",
+      "stderr": ""
+    }
+  ],
+  "status": "PASS"
+}

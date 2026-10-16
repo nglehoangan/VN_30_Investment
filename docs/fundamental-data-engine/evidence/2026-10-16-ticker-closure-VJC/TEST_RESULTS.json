@@ -1,0 +1,70 @@
+{
+  "ticker": "VJC",
+  "status": "PASS",
+  "startingHead": "016261d8e00d02d33b6af5bb4497fa94a48fafc2",
+  "finalHead": "PENDING_COMMIT",
+  "commitStatus": "Uncommitted VJC-only closure; original interim PDF included in change set; no final commit SHA claimed.",
+  "runtime": "Node22.23.2",
+  "baselineFullApplicationSuite": {
+    "passed": 1534,
+    "failed": 0,
+    "files": 111
+  },
+  "fullApplicationSuite": {
+    "command": "pnpm test",
+    "passed": 1580,
+    "failed": 0,
+    "files": 112,
+    "workerSetting": "Repository default maxWorkers=1; no timeout/config changes"
+  },
+  "VJCRegressions": {
+    "passed": 46,
+    "failed": 0
+  },
+  "focusedDebtFundamentalArchitecture": {
+    "passed": 197,
+    "failed": 0
+  },
+  "CafeFStructuredCertification": {
+    "status": "PASS",
+    "checks": 40,
+    "direct": 844,
+    "sourceBindings": 845,
+    "artifacts": 38
+  },
+  "CafeFProductionAdmission": {
+    "status": "PASS",
+    "regressions": 17,
+    "sourceBindings": 826
+  },
+  "lint": "PASS",
+  "typecheck": "PASS",
+  "databaseValidation": "PASS",
+  "architecture": "PASS; 172 source modules, plus architecture tests in focused/full suites",
+  "currentPeriod": "PASS; reviewed CONSOLIDATED 2026-01-01 through 2026-06-30, exact YTD; no quarter substitution or annualization",
+  "protectedReplay": "PROTECTED_REPLAY_RESULTS.json; all 14 approved ticker closures plus prior debt/consumer fixes PASS; VNM remains DEFERRED BLOCKED",
+  "priorAttempts": [
+    {
+      "status": "PASS",
+      "passed": 1534,
+      "failed": 0,
+      "description": "Initial existing full application suite before adding VJC tests"
+    },
+    {
+      "status": "CANCELLED_REDUNDANT",
+      "description": "Duplicate full validation processes stopped to remove contention; no clean completion claimed for those runs."
+    },
+    {
+      "status": "FAIL_TIMEOUT_THEN_STOPPED",
+      "test": "tests/integration/m68-backup.test.ts: backup/restore refuses overwrite, same path, public output, symlinks, missing checksums and altered backup bytes",
+      "diagnostic": "Existing 20000ms timeout exceeded; observed 22002ms test and 25709ms file while overlapping validation runs were active. No assertion/data defect established.",
+      "disposition": "All three backup tests passed in isolated rerun; final full suite rerun without competing full-suite processes and passed.",
+      "backupRerun": {
+        "passed": 3,
+        "failed": 0
+      }
+    }
+  ],
+  "noHiddenFailures": true,
+  "validationLogPolicy": "Compact durable outcomes and failure diagnostics retained here; disposable full process logs deleted after validation."
+}
