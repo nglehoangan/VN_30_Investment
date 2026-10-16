@@ -1,0 +1,30 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+ ❯ tests/unit/consumer-targeted-fix.test.ts (18 tests | 1 failed) 973ms
+   × MSN all five periods add only carrying amounts outside the borrowing captions 27ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/consumer-targeted-fix.test.ts > MSN all five periods add only carrying amounts outside the borrowing captions
+AssertionError: expected '82200529000000' to be '82210529000000' // Object.is equality
+
+Expected: "82210529000000"
+Received: "82200529000000"
+
+ ❯ tests/unit/consumer-targeted-fix.test.ts:20:74
+     18|  for(const [n,r] of i.reportedDebtReceipts!.entries()){
+     19|   expect(r.shortIncludesCurrentPortion).toBe(true);expect(r.longInclud…
+     20|   expect(evaluateDebtReceipt(r,s.canonicalFacts,i,financialHash)?.valu…
+       |                                                                          ^
+     21|   expect(r.metadata.uncertainty.unclassifiedLiabilityAmount).toBeNull(…
+     22|  }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 17 passed (18)
+   Start at  16:20:32
+   Duration  1.85s (tests 55%, environment 27%, transform 9%, setup 6%, import 3%)
+

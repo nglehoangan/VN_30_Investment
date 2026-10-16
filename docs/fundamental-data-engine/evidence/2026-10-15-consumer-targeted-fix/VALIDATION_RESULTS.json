@@ -1,0 +1,178 @@
+{
+  "baselineHead": "883134b1c2f16cce6488cf775b1baa9d6a756e09",
+  "runtime": "Node22.23.2",
+  "status": "PASS",
+  "fullApplication": {
+    "command": "pnpm test",
+    "files": 109,
+    "passed": 1446,
+    "failed": 0,
+    "baselinePassed": 1428,
+    "addedTargetedTests": 18,
+    "exitCode": 0,
+    "log": "validation-logs/full-suite.log"
+  },
+  "focusedDebtAndConsumer": {
+    "passed": 122,
+    "failed": 0,
+    "files": 5,
+    "exitCode": 0,
+    "log": "validation-logs/targeted-and-debt.log"
+  },
+  "fundamentalSuite": {
+    "passed": 158,
+    "failed": 0,
+    "files": 31,
+    "exitCode": 0,
+    "log": "validation-logs/fundamental-suite.log"
+  },
+  "architecture": {
+    "passed": 98,
+    "failed": 0,
+    "files": 8,
+    "exitCode": 0,
+    "log": "validation-logs/boundaries.log"
+  },
+  "postCleanupTargeted": {
+    "passed": 18,
+    "failed": 0,
+    "exitCode": 0,
+    "log": "validation-logs/targeted-final.log"
+  },
+  "lint": {
+    "exitCode": 0,
+    "log": "validation-logs/lint-final.log"
+  },
+  "typecheck": {
+    "exitCode": 0,
+    "log": "validation-logs/typecheck.log"
+  },
+  "databaseValidation": {
+    "exitCode": 0,
+    "log": "validation-logs/db-validate.log"
+  },
+  "protectedAndBaselineReplays": [
+    {
+      "command": "node scripts/verify-hpg-ticker-closure.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "validation-logs/protected-0.log"
+    },
+    {
+      "command": "node scripts/verify-vcb-ticker-closure.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "validation-logs/protected-1.log"
+    },
+    {
+      "command": "node scripts/verify-ssi-ticker-closure.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "validation-logs/protected-2.log"
+    },
+    {
+      "command": "node scripts/verify-fpt-ticker-closure.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "validation-logs/protected-3.log"
+    },
+    {
+      "command": "node scripts/verify-hpg-debt-closure.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "validation-logs/protected-4.log"
+    },
+    {
+      "command": "node scripts/verify-real-estate-ticker.mjs --ticker=VHM",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "validation-logs/protected-5.log"
+    },
+    {
+      "command": "node scripts/verify-real-estate-ticker.mjs --ticker=VRE",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "validation-logs/protected-6.log"
+    },
+    {
+      "command": "node scripts/verify-real-estate-ticker.mjs --ticker=VPL",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "validation-logs/protected-7.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=MSN",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "validation-logs/protected-8.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=MWG",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "validation-logs/protected-9.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=VNM",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "validation-logs/protected-10.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=SAB",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "validation-logs/protected-11.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=MCH",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "validation-logs/protected-12.log"
+    }
+  ],
+  "newTargetedReplay": {
+    "status": "PASS",
+    "tickers": [
+      "MSN",
+      "VNM",
+      "SAB"
+    ],
+    "separateProcess": true,
+    "afterExtractionCleanup": true,
+    "log": "validation-logs/final-replay.log"
+  },
+  "protection": {
+    "matchedBindings": 534,
+    "manifest": "PROTECTED_BASELINE.json",
+    "existingEvidenceModified": false,
+    "approvedContractModified": false
+  },
+  "correctedInitialFindings": [
+    {
+      "check": "targeted initial run",
+      "result": "17PASS/1FAIL",
+      "cause": "Two hand-entered expected MSN totals had arithmetic transcription errors; issuer operands, reconciliation and generated values were correct",
+      "fix": "Correct expected FY2022 and FY2023 sum literals; final18/18 and full1446/1446 pass",
+      "log": "validation-logs/targeted-tests.log"
+    },
+    {
+      "check": "lint initial run",
+      "result": "FAIL unused import warning",
+      "fix": "Remove unused readdirSync import; final lint exits0",
+      "log": "validation-logs/lint.log"
+    }
+  ],
+  "retention": {
+    "newOriginalPdf": "data/manual-fundamentals/VNM/VNM_2026_6M_Reviewed_Consolidated.pdf",
+    "sourceSHA256": "a6155aa757b320b893a78093b0454473f4a581aead225af4eb4ef1fbd6628561",
+    "deletedNewPageTextFiles": 106,
+    "deletedNewPageRenders": 26,
+    "deletedNewExtractionScripts": 3,
+    "deletedOcrLogs": 2,
+    "disposableArtifactsArchived": false,
+    "retained": "Original PDFs, canonical proof/replay artifacts and validation logs only"
+  },
+  "reviewStatus": "Independent review and owner approval pending",
+  "stop": "Review Consumer / Retail Targeted Fix"
+}
