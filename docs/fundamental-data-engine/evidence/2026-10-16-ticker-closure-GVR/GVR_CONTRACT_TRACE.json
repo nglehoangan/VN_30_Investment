@@ -1,0 +1,150 @@
+{
+  "ticker": "GVR",
+  "startingHead": "80f78a14c09a1dbced380a572585c437c28eeb30",
+  "finalHead": "PENDING_COMMIT",
+  "sector": "MATERIALS",
+  "providerNamespace": "STANDARD_CORPORATE",
+  "requirements": {
+    "CORE": [
+      {
+        "id": "assets",
+        "anyOf": [
+          "TOTAL_ASSETS"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      },
+      {
+        "id": "equity",
+        "anyOf": [
+          "TOTAL_EQUITY"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      },
+      {
+        "id": "earnings",
+        "anyOf": [
+          "NET_INCOME"
+        ],
+        "component": "BUSINESS_QUALITY"
+      },
+      {
+        "id": "sales",
+        "anyOf": [
+          "REVENUE"
+        ],
+        "component": "GROWTH_QUALITY"
+      },
+      {
+        "id": "cash_generation",
+        "anyOf": [
+          "CFO"
+        ],
+        "component": "BUSINESS_QUALITY"
+      },
+      {
+        "id": "debt",
+        "anyOf": [
+          "COMPREHENSIVE_FINANCIAL_DEBT",
+          "REPORTED_BORROWINGS"
+        ],
+        "component": "FINANCIAL_HEALTH",
+        "preference": [
+          "COMPREHENSIVE_FINANCIAL_DEBT",
+          "REPORTED_BORROWINGS"
+        ]
+      },
+      {
+        "id": "cash",
+        "anyOf": [
+          "CASH_AND_EQUIVALENTS"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      }
+    ],
+    "SECTOR_CORE": [
+      {
+        "id": "cycle_margin",
+        "anyOf": [
+          "GROSS_PROFIT",
+          "OPERATING_PROFIT"
+        ],
+        "component": "BUSINESS_QUALITY"
+      }
+    ],
+    "SUPPORTING": [
+      "NET_INCOME_ATTRIBUTABLE_COMMON",
+      "NET_INCOME_ATTRIBUTABLE_PARENT",
+      "BASIC_EPS",
+      "OPERATING_PROFIT",
+      "CASH_CAPEX_REPORTED",
+      "CURRENT_ASSETS",
+      "CURRENT_LIABILITIES",
+      "RECEIVABLES"
+    ],
+    "OPTIONAL": [
+      "ROIC",
+      "ROA",
+      "MARGIN_STABILITY"
+    ],
+    "requiredDerivations": [],
+    "rationale": "M3 §11: cycle-sensitive margins."
+  },
+  "freshness": {
+    "version": "reporting-cycle-v1",
+    "quarterlyGraceDays": 60,
+    "annualGraceDays": 120,
+    "agingMissedCycles": 1,
+    "basis": "Operational analysis policy, not an assertion of statutory issuer filing deadlines; quarterly issuers expect latest completed fiscal quarter after 60-day grace; annual-only reports after 120-day grace. No retrieval-age input."
+  },
+  "authorityBindings": [
+    {
+      "path": "docs/01 SYSTEM/SCORING_MODEL_v1.0.md",
+      "sha256": "2afc75a20e13d08b88459f57b39a6ebb13f91452fc8b3313a0e817ea0dd44aff"
+    },
+    {
+      "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+      "sha256": "c624180510ecbaf652c7120ebdcc331bfa80f72b2d772380d1caeec35c0b697c"
+    },
+    {
+      "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+      "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4"
+    },
+    {
+      "path": "docs/03 SCORING/SCORECARD_TEMPLATE.md",
+      "sha256": "fe3051843accb2667d5e1b6eba5c0222696676195fa68b4b9d10da91663b0971"
+    },
+    {
+      "path": "src/infrastructure/fundamentals/canonical-items-v1.json",
+      "sha256": "dfc9be8bc4a46bdb07310d096704274a44447d5e139033251bd996ab3811dc60"
+    },
+    {
+      "path": "src/infrastructure/fundamentals/debt-canonical-items-v2.json",
+      "sha256": "b9314cd523cfb0dd06f62597d018697c83a0c56e289892387fc6dddd29f0cabb"
+    },
+    {
+      "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v1.json",
+      "sha256": "0dd4149a6f5b39e69e96d320621ab9e09ddb52de3153112c0a751fa3894a328a"
+    },
+    {
+      "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+      "sha256": "11cd53d5f52913f0365f8749538d5023cc5fdf5a27a7f212ab03bcb64ad4749e"
+    },
+    {
+      "path": "src/domain/fundamentals/hybrid-sufficiency.ts",
+      "sha256": "3aa7d2a70a1944e6fbce0506788e68e4feae1e1af42eb252604b27bdbb650b42"
+    },
+    {
+      "path": "src/domain/fundamentals/debt-contract.ts",
+      "sha256": "f4810fd87fa31364fbc29093b91d37bd46f1ce062a7088136279e519ea3a5f55"
+    },
+    {
+      "path": "tests/unit/hybrid-targets.test.ts",
+      "sha256": "dcdf31296aec9048f86ab84250836e5ec6ad8fdf2feefad89b7f0827fb5d7cbe"
+    },
+    {
+      "path": "tests/unit/debt-contract-activation.test.ts",
+      "sha256": "677ab0a1670192024d32508d76d5683d48a7e8c813428c41090df428adf4137f"
+    }
+  ],
+  "interpretation": "Unchanged production MATERIALS contract: 7 CORE groups, 1 SECTOR_CORE group (reported GROSS_PROFIT or OPERATING_PROFIT), 8 SUPPORTING items per target; 4 annual targets and current required reviewed 6M2026 YTD. Scoring model cycle normalization is Level2; no new industrial/materials contract or denominator change. GVR remains a consolidated diversified group; no JV look-through."
+}
