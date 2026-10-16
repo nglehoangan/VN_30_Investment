@@ -1,0 +1,193 @@
+{
+  "ticker": "TCX",
+  "sector": "SECURITIES",
+  "classificationAuthority": "Production structured-certification retained universe; TCX SECURITIES; unchanged",
+  "methodologyAuthorities": [
+    "docs/01 SYSTEM/SCORING_MODEL_v1.0.md",
+    "docs/03 SCORING/METRIC_DEFINITIONS.md",
+    "docs/03 SCORING/SECTOR_NORMALIZATION.md#13.1",
+    "docs/03 SCORING/SCORECARD_TEMPLATE.md"
+  ],
+  "runtimeAuthorities": [
+    "src/infrastructure/fundamentals/canonical-items-v1.json",
+    "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+    "src/domain/fundamentals/debt-contract.ts",
+    "src/domain/fundamentals/securities-contract.ts",
+    "src/domain/fundamentals/hybrid-sufficiency.ts",
+    "src/domain/fundamentals/hybrid-admission.ts"
+  ],
+  "requirements": {
+    "CORE": [
+      {
+        "id": "assets",
+        "anyOf": [
+          "TOTAL_ASSETS"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      },
+      {
+        "id": "equity",
+        "anyOf": [
+          "TOTAL_EQUITY"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      },
+      {
+        "id": "earnings",
+        "anyOf": [
+          "NET_INCOME"
+        ],
+        "component": "BUSINESS_QUALITY"
+      }
+    ],
+    "SECTOR_CORE": [
+      {
+        "id": "liquidity",
+        "anyOf": [
+          "CASH_AND_EQUIVALENTS"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      },
+      {
+        "id": "leverage",
+        "anyOf": [
+          "FINANCIAL_DEBT"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      },
+      {
+        "id": "margin_risk",
+        "anyOf": [
+          "SECURITIES_MARGIN_LOANS"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      }
+    ],
+    "SUPPORTING": [
+      "NET_INCOME_ATTRIBUTABLE_COMMON",
+      "NET_INCOME_ATTRIBUTABLE_PARENT",
+      "BASIC_EPS",
+      "OPERATING_PROFIT",
+      "CASH_CAPEX_REPORTED",
+      "CURRENT_ASSETS",
+      "CURRENT_LIABILITIES",
+      "RECEIVABLES"
+    ],
+    "OPTIONAL": [
+      "ROIC",
+      "ROA",
+      "MARGIN_STABILITY"
+    ],
+    "requiredDerivations": [],
+    "rationale": "M3 §6: capital, leverage, liquidity and margin-lending risk."
+  },
+  "denominators": {
+    "CORE": 15,
+    "SECTOR_CORE": 15,
+    "SUPPORTING": 40
+  },
+  "targets": [
+    {
+      "ticker": "TCX",
+      "frame": "YTD",
+      "start": "2026-01-01",
+      "end": "2026-06-30",
+      "fiscalYear": 2026,
+      "quarter": 2,
+      "track": "CURRENT_TRAJECTORY"
+    },
+    {
+      "ticker": "TCX",
+      "frame": "ANNUAL",
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "fiscalYear": 2022,
+      "quarter": null,
+      "track": "LONG_TERM_BASELINE"
+    },
+    {
+      "ticker": "TCX",
+      "frame": "ANNUAL",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "fiscalYear": 2023,
+      "quarter": null,
+      "track": "LONG_TERM_BASELINE"
+    },
+    {
+      "ticker": "TCX",
+      "frame": "ANNUAL",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "fiscalYear": 2024,
+      "quarter": null,
+      "track": "LONG_TERM_BASELINE"
+    },
+    {
+      "ticker": "TCX",
+      "frame": "ANNUAL",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "fiscalYear": 2025,
+      "quarter": null,
+      "track": "LONG_TERM_BASELINE"
+    }
+  ],
+  "listingBoundaryException": false,
+  "nonfinancialDebtV2Applies": false,
+  "validationCases": [
+    "tests/unit/ssi-ticker-closure.test.ts",
+    "tests/unit/tcx-ticker-closure.test.ts"
+  ],
+  "providerSchemaReview": {
+    "candidateCount": 143,
+    "keys": [
+      "provider",
+      "statementFamily",
+      "normalizedCode",
+      "schemaFingerprint"
+    ],
+    "fingerprints": [
+      "51d72495cb2ea335c6153f8ee50204535bb5b2f7cb9132e5a149e6a25279b7f9",
+      "4f297a5d777161620a19d4f558e6a085b8a4bb2a41e4c0e7e6e1856b2d752263",
+      "1885577336cee7b9948f3507e58fba7ddad477d360109af32cc56f32a7bbd799",
+      "f3250e127ee44a8c0100c1b720eb16fd935b7e021e94f01a3c50943baef27ee7"
+    ],
+    "TCXCodes": [
+      "GetReportCDKT|111|CASH_AND_EQUIVALENTS",
+      "GetReportCDKT|270|TOTAL_ASSETS",
+      "GetReportCDKT|400|TOTAL_EQUITY",
+      "GetReportDetail|200|NET_INCOME",
+      "GetReportDetail|201|NET_INCOME_ATTRIBUTABLE_PARENT",
+      "GetReportDetail|501|BASIC_EPS",
+      "GetReportLCTT|HDDT_48|CASH_CAPEX_REPORTED",
+      "GetReportLCTT|HDKD_46|CFO",
+      "GetReportSummary|CDKT_15|CASH_AND_EQUIVALENTS",
+      "GetReportSummary|CDKT_22|TOTAL_ASSETS",
+      "GetReportSummary|CDKT_26|TOTAL_EQUITY",
+      "GetReportSummary|KQKD_10|NET_INCOME",
+      "GetReportSummary|KQKD_12|BASIC_EPS"
+    ],
+    "rawHashes": [
+      "0d2fe1eb3ac1042db46d473ca7f6d8bd9916febd9d29223b2a336049123ba5ef",
+      "0d88910c2bd1cd6a39eee57c977bea055b285a4e81e680bd3385b1e3676d439b",
+      "16f7402d5c025cee147c1d078c832e3e1eefd31d46e0b2e50386c28946f9a9f7",
+      "191c3bb4d9cd8dbec54384ddfdd59564268b9b8da8e664f7abd43ff367ac97b3",
+      "1c97c5b98dd8fca93a7427d21311c966f7fe59cf7c7970a833607f06f268f6db",
+      "26d11bf05a5d39bbca4f8df295e1f1b6e43a9181ba7d4c4d457b4d9cbbe213a0",
+      "28b0dd974d65b7560ed2a7beb33ad7975bae917b846dcd2cc3466ba6fa5a4114",
+      "46cd4e61c72a6899ea4a7d04b3eae83ca4d6584ab3a50d1077a6f4c887130406",
+      "6c8a183d40179e31a94ede69b5ec301b22ec2d4bb46aa12df4b92d266a04f92d",
+      "bf66cc7ed7f90ad1141026034b49522334ed6140ba15f44181cc6248a40daae5",
+      "e329c1028ddcb6468925e98e7d000630584c93d66bc8b04838425a98d1c0e5d0",
+      "f4d7d5baf96459028c2cc2f04226420f3cfbb5513aeeabd4de393724cd6ab8bb"
+    ],
+    "directStructuredCount": 0,
+    "disposition": "TCX actual retained raw candidates inspected; no foreign exact-record samples used. Shared provider mappings are not promoted to TCX certification. Issuer-verified quantities use TCX PDFs; uncertified scope/unit/schema remains explicit fallback.",
+    "unknownDrift": "FAIL_CLOSED",
+    "allowedModes": [
+      "NAM",
+      "QUY"
+    ]
+  }
+}

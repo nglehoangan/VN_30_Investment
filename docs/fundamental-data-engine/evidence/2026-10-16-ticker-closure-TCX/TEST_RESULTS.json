@@ -1,0 +1,137 @@
+{
+  "ticker": "TCX",
+  "status": "PASS_WITH_RECORDED_EXECUTION_INCIDENTS",
+  "approvedStartingBaseline": {
+    "passed": 1580,
+    "failed": 0
+  },
+  "finalApplicationSuite": {
+    "status": "PASS",
+    "command": "pnpm test -- --reporter=json --outputFile=/tmp/tcx-full-forks.json",
+    "pool": "default forks",
+    "environment": "outside sandbox; Node 22.23.2",
+    "testFiles": 113,
+    "passed": 1616,
+    "failed": 0,
+    "durationSeconds": 338.01,
+    "delta": "+36 TCX regressions; no baseline failures",
+    "outputSummary": "Test Files 113 passed (113); Tests 1616 passed (1616)",
+    "reporterNote": "pnpm forwarded a literal --; Vitest produced its default text summary rather than JSON. Counts transcribed from completed command output, not an invented JSON report."
+  },
+  "targetedSecuritiesDebtCafeFCurrentFundamentalsArchitecture": {
+    "status": "PASS",
+    "passed": 291,
+    "failed": 0,
+    "command": "pnpm exec vitest run tests/unit/tcx-ticker-closure.test.ts tests/unit/ssi-ticker-closure.test.ts tests/unit/structured-certification.test.ts tests/unit/hybrid-targets.test.ts tests/unit/debt-contract-activation.test.ts tests/unit/debt-metric-contract-proposal.test.ts tests/unit/cafef-poc.test.ts tests/architecture --pool=threads",
+    "groups": [
+      "TCX-specific 36",
+      "SSI protected securities semantics",
+      "Financial-debt contract and proposal",
+      "CafeF structured certification",
+      "Current-period hybrid sufficiency",
+      "Architecture boundaries"
+    ]
+  },
+  "structuredCertification": {
+    "status": "PASS",
+    "command": "node scripts/verify-structured-certification.mjs",
+    "checks": 40,
+    "direct": 844,
+    "sourceBindings": 845,
+    "artifacts": 38
+  },
+  "lint": {
+    "status": "PASS",
+    "command": "pnpm lint",
+    "warnings": 0,
+    "sourceModules": 173,
+    "changedFilesFinalCheck": "PASS; eslint on three TCX scripts, TCX domain qualifier and TCX regressions after final code change"
+  },
+  "typecheck": {
+    "status": "PASS",
+    "command": "pnpm typecheck",
+    "nextTypegen": "PASS",
+    "tsc": "PASS"
+  },
+  "database": {
+    "status": "PASS",
+    "command": "pnpm db:validate",
+    "result": "Prisma schema valid"
+  },
+  "architecture": {
+    "status": "PASS",
+    "command": "node scripts/check-boundaries.mjs",
+    "sourceModules": 173,
+    "suite": "Included in targeted and full application suites"
+  },
+  "productionBuild": {
+    "status": "PASS_SUPPORTED_WEBPACK_MODE",
+    "command": "pnpm exec next build --webpack",
+    "cliAuthority": "node_modules/next/dist/docs/01-app/03-api-reference/06-cli/next.md",
+    "result": "Optimized production build, typecheck, page collection and route generation passed"
+  },
+  "applicationBrowserSuite": {
+    "status": "PASS",
+    "command": "node scripts/smoke-app.mjs --e2e",
+    "productionBuild": "Webpack build",
+    "passed": 12,
+    "failed": 0,
+    "durationSeconds": 52.3,
+    "startup": "HTTP 200, product heading, startup hook and owned loopback listener verified"
+  },
+  "invalidConfiguration": {
+    "status": "PASS",
+    "command": "node scripts/smoke-app.mjs --invalid-config",
+    "result": "Invalid config blocks readiness/HTTP success; no canary leakage"
+  },
+  "protectedReplay": {
+    "status": "PASS",
+    "tickers": 15,
+    "separateProcesses": true,
+    "protectedPhysicalBindings": 1322,
+    "VNM": "DEFERRED BLOCKED",
+    "reference": "PROTECTED_REPLAY_RESULTS.json"
+  },
+  "tcxOfflineReplay": {
+    "status": "PASS",
+    "separateProcess": true,
+    "afterCleanup": true,
+    "reference": "INDEPENDENT_REPLAY.json"
+  },
+  "unsuccessfulAttempts": [
+    {
+      "command": "pnpm test",
+      "environment": "sandbox",
+      "status": "FAILED_TEST_THEN_INTERRUPTED",
+      "observedFailure": "m68-backup integration backup/restore test timed out at 25,038ms; incomplete run stopped with exit 130",
+      "scope": "No product failure inferred from incomplete run; full default-process-pool rerun outside sandbox passed all 1,616 tests"
+    },
+    {
+      "command": "pnpm exec vitest run --pool=threads",
+      "environment": "sandbox",
+      "status": "INTERRUPTED",
+      "reason": "No completed suite result; stopped before external rerun"
+    },
+    {
+      "command": "pnpm exec vitest run --pool=threads --reporter=json --outputFile=/tmp/tcx-full-validation.json",
+      "environment": "outside sandbox",
+      "status": "EXECUTION_FAILURE",
+      "reason": "Native SIGSEGV; no completed test counts; do not represent as PASS",
+      "resolution": "Default process-pool full-suite rerun passed"
+    },
+    {
+      "command": "pnpm test:e2e",
+      "environment": "outside sandbox",
+      "status": "INTERRUPTED_DURING_DEFAULT_TURBOPACK_COMPILATION",
+      "reason": "No progress beyond compilation for over six minutes; interrupted with exit 130; browser tests did not run in this attempt",
+      "resolution": "Supported --webpack production build passed; all 12 browser tests and invalid-config smoke passed against that build",
+      "limitation": "Default Turbopack build completion remains unverified; no unrelated bundler/config change made"
+    }
+  ],
+  "governance": {
+    "accountingVerdict": "C. TCX BLOCKED \u2014 MATERIAL LEVEL-1 DATA-INTEGRITY GAPS REMAIN",
+    "readyForScoring": false,
+    "decisionReady": false,
+    "independentHumanApproval": false
+  }
+}

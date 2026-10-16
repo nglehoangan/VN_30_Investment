@@ -1,0 +1,50 @@
+{
+  "ticker": "TCX",
+  "scope": "STANDALONE all five required windows; branches are issuer perimeter, not consolidated subsidiaries",
+  "observations": [
+    {
+      "metric": "BASIC_EPS",
+      "end": "2024-12-31",
+      "original": "8716",
+      "originalSourceHash": "a8e0c50f6f6c049899ac332922454ebd1549fa9e1ec598d3cdfa383f64090283",
+      "originalLocator": "FY2024 PDF page 13 and note 38 page 62",
+      "revisedComparative": "1964",
+      "revisedSourceHash": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+      "revisedLocator": "FY2025 PDF pages 13,62 note 38",
+      "classification": "ISSUER_REPORTED_RETROSPECTIVE_EPS_ADJUSTMENT",
+      "reason": "Note 38 explicitly discloses bonus/share-capital adjustment; retain both versions and explicit supersession. No normalized EPS."
+    },
+    {
+      "metric": "BASIC_EPS",
+      "period": "6M2025 comparative in 6M2026",
+      "original": "1231",
+      "revisedComparative": "1026",
+      "sourceHash": "6c781b57b01326ac7dc6c347ef7c5d79b403536c089ddb4956a8aaaa68ba5b37",
+      "locator": "6M2026 PDF pages 13,62 note 35",
+      "classification": "REVISED_COMPARATIVE_RETAINED_NOT_ADMITTED",
+      "reason": "Note 35 explicitly retains previously reported 6M2025 EPS 1,231 and adjusted 1,026 with share-count bridge; outside required target, no annual EPS revision fabricated."
+    }
+  ],
+  "minorIssues": [
+    {
+      "metric": "TOTAL_LIABILITIES",
+      "end": "2024-12-31",
+      "original": "26947161543516",
+      "subrowSum": "26947161543515",
+      "classification": "ONE_VND_ISSUER_PRESENTATION_DIFFERENCE",
+      "reason": "Original FY2024 page 9 long-term liabilities prints 1,012,893,977,744; components and next comparative print 1,012,893,977,745. Equity/assets unchanged; retain exact required rows, do not silently rebalance."
+    },
+    {
+      "metric": "COMMON_EARNINGS",
+      "end": "2025-12-31",
+      "values": [
+        "5683331855108",
+        "5683331855109"
+      ],
+      "classification": "ONE_VND_ISSUER_PRESENTATION_DIFFERENCE",
+      "reason": "FY2025 page 13 row 200 net income versus row 500. Net income admitted from row 200; common-share earnings deferred."
+    }
+  ],
+  "accountingPolicy2026": "Notes 2 and 4 retain VAS/securities presentation; Circular 99/2025 referenced, policies stated consistent with most recent annual. No restated required assets/equity/net-income/margin balances identified in comparative review.",
+  "historicalPIT": "NOT_READY; current analysis uses explicitly qualified source lineage, no invented publication timestamps"
+}

@@ -1,0 +1,41 @@
+{
+  "ticker": "TCX",
+  "dataIntegrity": {
+    "Critical": [],
+    "Major": [
+      {
+        "id": "TCX-DEBT-2022-MANAGED-POPULATION",
+        "amount": "5284485167173",
+        "currency": "VND",
+        "status": "UNRESOLVED",
+        "requiredAction": "Obtain issuer-specific proof of FY2022 Két Vàng managed-payable financing nature and population boundary; only targeted fix after review. No automatic debt inclusion/exclusion.",
+        "evidence": "TCX_FINANCIAL_DEBT_RECONCILIATION.json"
+      }
+    ],
+    "Minor": [
+      {
+        "metric": "TOTAL_LIABILITIES",
+        "end": "2024-12-31",
+        "original": "26947161543516",
+        "subrowSum": "26947161543515",
+        "classification": "ONE_VND_ISSUER_PRESENTATION_DIFFERENCE",
+        "reason": "Original FY2024 page 9 long-term liabilities prints 1,012,893,977,744; components and next comparative print 1,012,893,977,745. Equity/assets unchanged; retain exact required rows, do not silently rebalance."
+      },
+      {
+        "metric": "COMMON_EARNINGS",
+        "end": "2025-12-31",
+        "values": [
+          "5683331855108",
+          "5683331855109"
+        ],
+        "classification": "ONE_VND_ISSUER_PRESENTATION_DIFFERENCE",
+        "reason": "FY2025 page 13 row 200 net income versus row 500. Net income admitted from row 200; common-share earnings deferred."
+      }
+    ]
+  },
+  "historicalPIT": "NOT_READY; nonblocking CURRENT_ANALYSIS",
+  "analyticalGaps": "TCX_DEFERRED_ANALYTICAL_GAPS.json",
+  "governanceStop": "TCX exception queue. Stop after TCX; await Review TCX Level-1 Closure.",
+  "readyForScoring": false,
+  "decisionReady": false
+}
