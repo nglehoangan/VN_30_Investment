@@ -1,0 +1,160 @@
+{
+  "ticker": "SHB",
+  "authorities": [
+    {
+      "path": "docs/01 SYSTEM/SCORING_MODEL_v1.0.md",
+      "sha256": "2afc75a20e13d08b88459f57b39a6ebb13f91452fc8b3313a0e817ea0dd44aff"
+    },
+    {
+      "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+      "sha256": "c624180510ecbaf652c7120ebdcc331bfa80f72b2d772380d1caeec35c0b697c"
+    },
+    {
+      "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+      "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4"
+    },
+    {
+      "path": "docs/03 SCORING/SCORECARD_TEMPLATE.md",
+      "sha256": "fe3051843accb2667d5e1b6eba5c0222696676195fa68b4b9d10da91663b0971"
+    },
+    {
+      "path": "src/domain/scoring/metrics.ts",
+      "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+    },
+    {
+      "path": "src/domain/fundamentals/bank-contract.ts",
+      "sha256": "094622983f9e29c3d0c6a1338028f7de4a0ab698125a7aa299c32ece58b2735d"
+    },
+    {
+      "path": "src/domain/fundamentals/manual-first.ts",
+      "sha256": "6d2c4ff61fb46ecd6dad38f716772c25c5d2de9db994ac0b5b5e5d07d7dbbe16"
+    },
+    {
+      "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v1.json",
+      "sha256": "0dd4149a6f5b39e69e96d320621ab9e09ddb52de3153112c0a751fa3894a328a"
+    },
+    {
+      "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+      "sha256": "11cd53d5f52913f0365f8749538d5023cc5fdf5a27a7f212ab03bcb64ad4749e"
+    },
+    {
+      "path": "src/domain/fundamentals/hybrid-sufficiency.ts",
+      "sha256": "3aa7d2a70a1944e6fbce0506788e68e4feae1e1af42eb252604b27bdbb650b42"
+    },
+    {
+      "path": "src/domain/fundamentals/structured-certification.ts",
+      "sha256": "19a15af0d309bd318a29ebd5702fbcdf830575a662f6c278325f25e5f2bc902e"
+    },
+    {
+      "path": "tests/unit/vcb-ticker-closure.test.ts",
+      "sha256": "29ded19a2f3ed6bdd4d1a64bb0aa6f8e0ffdbcc508f7c424cd6cc25973001b09"
+    },
+    {
+      "path": "scripts/close-bank-ticker.mjs",
+      "sha256": "1d4d2bf14f50d446e5837ffdef1600f97b401ff01d25c1708f3c1fc99a6f7754"
+    },
+    {
+      "path": "scripts/verify-bank-ticker.mjs",
+      "sha256": "d7c82cf2fd1b232ed8a283f39268e2fb7090bf24aa2ffae2a8bf835b0ab1668e"
+    },
+    {
+      "path": "scripts/verify-bank-group-regressions.mjs",
+      "sha256": "54f0db4b3df1acf1e952085e6887efac219f5e932e0d70a044eebef25aca15d1"
+    },
+    {
+      "path": "tests/unit/bank-group-ticker-closure.test.ts",
+      "sha256": "3cc34437ac3dbb465abc2c2366b76c868509ef7caa4afdd89c8b13cc609cc32b"
+    }
+  ],
+  "requirements": {
+    "CORE": [
+      {
+        "id": "assets",
+        "anyOf": [
+          "TOTAL_ASSETS"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      },
+      {
+        "id": "equity",
+        "anyOf": [
+          "TOTAL_EQUITY"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      },
+      {
+        "id": "earnings",
+        "anyOf": [
+          "NET_INCOME"
+        ],
+        "component": "BUSINESS_QUALITY"
+      }
+    ],
+    "SECTOR_CORE": [
+      {
+        "id": "loan_population",
+        "anyOf": [
+          "BANK_GROSS_CUSTOMER_LOANS"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      },
+      {
+        "id": "funding_population",
+        "anyOf": [
+          "BANK_CUSTOMER_DEPOSITS"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      },
+      {
+        "id": "asset_quality",
+        "anyOf": [
+          "BANK_LOAN_LOSS_RESERVES"
+        ],
+        "component": "BUSINESS_QUALITY"
+      },
+      {
+        "id": "capital_strength",
+        "anyOf": [
+          "BANK_REPORTED_CAR",
+          "BANK_REPORTED_CET1"
+        ],
+        "component": "FINANCIAL_HEALTH"
+      }
+    ],
+    "SUPPORTING": [
+      "NET_INCOME_ATTRIBUTABLE_COMMON",
+      "NET_INCOME_ATTRIBUTABLE_PARENT",
+      "BASIC_EPS",
+      "OPERATING_PROFIT",
+      "CASH_CAPEX_REPORTED",
+      "BANK_NET_INTEREST_INCOME",
+      "BANK_REPORTED_NIM",
+      "BANK_REPORTED_NPL",
+      "BANK_REPORTED_CREDIT_GROWTH"
+    ],
+    "OPTIONAL": [
+      "BANK_CURRENT_AND_SAVINGS_DEPOSITS",
+      "CASA"
+    ],
+    "requiredDerivations": [],
+    "rationale": "M3 §5: capital adequacy, funding, provisioning and sustainable returns; reserves alone do not prove NPL recognition. NPL judgment stays N/R without defined population."
+  },
+  "requiredAcrossFivePeriods": {
+    "CORE": 15,
+    "SECTOR_CORE": 20,
+    "SUPPORTING": 45
+  },
+  "currentGraceDays": 60,
+  "currentRequiredEnd": "2026-06-30",
+  "nonfinancialDebtContractApplicable": false,
+  "bankDefinitions": {
+    "NPL": "CUSTOMER_LOANS GROUP_3 + GROUP_4 + GROUP_5; denominator GROSS_CUSTOMER_LOANS",
+    "LLR": "CUSTOMER_LOAN_ALLOWANCE_GENERAL_PLUS_SPECIFIC / NPL_CUSTOMER_LOANS",
+    "CAR": "Qualified issuer-reported regulatory ratio, date/scope/framework required",
+    "CET1": "Explicit CET1 identity required; historical Tier 1 is not CET1",
+    "CASA": "Exact qualified current-and-savings customer deposit population required",
+    "NIM": "Reported with definition or approved exact earning-assets derivation; no annualization"
+  },
+  "registryUnchanged": true,
+  "VCB": "Protected semantic/regression reference only; zero VCB facts or documents in retained admission input"
+}

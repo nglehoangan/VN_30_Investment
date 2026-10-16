@@ -1,0 +1,45 @@
+
+> vn30-value-investing-os@0.1.0 test /Users/nglehoangan/Documents/Working/VN_30_Investment
+> pnpm db:generate && vitest run
+
+
+> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment
+> node scripts/database.mjs generate
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+
+✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 114ms
+
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+ ❯ tests/unit/vjc-ticker-closure.test.ts (46 tests | 1 failed) 127ms
+   × 40 all 14 approved closures and existing contracts unchanged 7ms
+(node:94607) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/vjc-ticker-closure.test.ts > 40 all 14 approved closures and existing contracts unchanged
+AssertionError: expected 'b2146109e480a9134a60db32741f030b1ad89…' to be '8744c83ec45a643899ce82b370648e17f88dc…' // Object.is equality
+
+Expected: "8744c83ec45a643899ce82b370648e17f88dc263ed99b851846538439fe26249"
+Received: "b2146109e480a9134a60db32741f030b1ad8973e8c54e9ebfdfbdd90065b57c7"
+
+ ❯ tests/unit/vjc-ticker-closure.test.ts:40:248
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 114 passed (115)
+      Tests  1 failed | 1684 passed (1685)
+   Start at  07:02:33
+   Duration  329.47s (tests 89%, environment 6%, setup 3%, import 2%, transform 1%)
+
+    Isolate  115 workers spawned · ~235ms startup each (spawn + environment, per file)
+             at least ~26.80s faster with isolate: false — reuses workers across files instead of one per file
+
+ ELIFECYCLE  Test failed. See above for more details.

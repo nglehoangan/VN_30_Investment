@@ -1,0 +1,28 @@
+import './lib/ts-runtime.mjs';
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync,readdirSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+const {buildHybridAdmission}=await import('../src/domain/fundamentals/hybrid-admission.ts');
+const {financialHash}=await import('../src/infrastructure/fundamentals/hybrid-input.ts');
+const {financialTargets,evaluateHybridTarget,selectHybridCurrentPeriods}=await import('../src/domain/fundamentals/hybrid-sufficiency.ts');
+const {validateCafeFResponse}=await import('../src/infrastructure/fundamentals/cafef.ts');
+const ticker=process.argv.find(a=>a.startsWith('--ticker='))?.slice(9);assert('ACB BID CTG HDB LPB MBB SHB SSB STB TCB VIB VPB'.split(' ').includes(ticker));
+const dir=`docs/fundamental-data-engine/evidence/2026-10-16-ticker-closure-${ticker}`;
+const read=n=>JSON.parse(readFileSync(dir+'/'+n,'utf8')),sha=p=>createHash('sha256').update(readFileSync(p)).digest('hex');
+const input=read(ticker+'_RETAINED_ADMISSION_INPUT.json'),expected=read(ticker+'_CANONICAL_FACTS.json'),checks=[];
+function check(name,fn){fn();checks.push({name,status:'PASS'});}
+check('Only this bank supplies canonical admission evidence',()=>{assert.deepEqual(input.universe,[{ticker,sector:'BANK'}]);for(const kind of ['candidates','verifications','statements'])assert(input[kind].every(v=>v.ticker===ticker));assert.deepEqual(input.certificationWitnesses,{candidates:[],verifications:[]});for(const s of input.statements)assert(s.retainedPath.startsWith(`data/manual-fundamentals/${ticker}/`));});
+check('Every source binding matches physical bytes',()=>{for(const b of input.sourceBindings)assert.equal(sha(b.path),b.sha256);for(const v of input.verifications){const d=input.statements.find(d=>d.documentId===v.sourceDocumentId);assert(d&&d.ticker===v.ticker&&d.SHA256===v.sourceHash&&d.reportingScope===v.scope);}});
+check('Manifest originals match their recorded hashes and ticker paths',()=>{for(const s of read(ticker+'_SOURCE_MANIFEST.json').sources){assert(s.retainedPath.startsWith(`data/manual-fundamentals/${ticker}/`));assert.equal(sha(s.retainedPath),s.SHA256);assert.equal(readFileSync(s.retainedPath).subarray(0,5).toString(),'%PDF-');}});
+check('NAM/QUY raw observations parse under their own symbol and payload',()=>{for(const c of input.candidates){assert(['NAM','QUY'].includes(c.requestMode));const b=input.sourceBindings.find(b=>b.sha256===c.sourceHash);assert(b);assert(validateCafeFResponse(readFileSync(b.path,'utf8'),c.endpoint,ticker,c.requestMode).records.length);}});
+const actual=buildHybridAdmission(input,financialHash);
+check('Independent offline canonical replay agrees exactly',()=>assert.deepEqual(actual,expected));
+check('Registry group denominators remain 15 CORE / 20 SECTOR_CORE / 45 SUPPORTING',()=>{const rows=financialTargets(input).map(t=>evaluateHybridTarget(t,'BANK',actual,input));for(const [tier,total] of [['CORE',15],['SECTOR_CORE',20],['SUPPORTING',45]])assert.equal(rows.reduce((n,r)=>n+r[tier].required,0),total);const final=read(ticker+'_FINAL_SUFFICIENCY.json');for(const tier of ['CORE','SECTOR_CORE','SUPPORTING'])assert.equal(final.coverage[tier].admitted,rows.reduce((n,r)=>n+r[tier].available,0));});
+check('Current reporting obligation is 6M2026 YTD with no quarter substitution',()=>{const current=selectHybridCurrentPeriods(input,actual)[0];assert.deepEqual(current,read(ticker+'_CURRENT_TRAJECTORY.json'));assert.equal(current.CURRENT_TRAJECTORY.requiredYtd.end,'2026-06-30');assert.equal(current.CURRENT_TRAJECTORY.requiredYtd.frame,'YTD');assert.equal(current.CURRENT_TRAJECTORY.annualization,false);});
+check('Quarantined observations remain outside canonical verification inputs',()=>{for(const q of read(ticker+'_QUARANTINED_LEGACY_OBSERVATIONS.json'))assert(!input.verifications.some(v=>v.id===q.observation.id));});
+check('Missing populations and accounting gaps remain blocked, never zero-filled',()=>{const final=read(ticker+'_FINAL_SUFFICIENCY.json'),issues=read('OPEN_ISSUES.json');assert.equal(final.levelOneReady,false);assert(final.verdict.startsWith('C.'));assert.equal(final.major,issues.dataIntegrity.Major.length);assert(issues.dataIntegrity.Major.length>0);for(const n of ['NPL_RECONCILIATION','LLR_RECONCILIATION','CAPITAL_REVIEW','CASA_REVIEW','NIM_REVIEW']){const r=read(ticker+'_'+n+'.json');assert(r.periods.every(p=>p.value===null&&p.status==='UNAVAILABLE'));}assert.equal(final.finalHead,'PENDING_COMMIT');assert.equal(final.readyForScoring,false);assert.equal(final.decisionReady,false);assert.equal(actual.readyForScoring,false);});
+check('No extracted text, OCR or render dependency needed for replay',()=>{assert(!JSON.stringify(input).includes('retainedReaderProof'));assert(input.sourceBindings.every(b=>!/(manual-extracted|\.png$|\.txt$|ocr\/)/i.test(b.path)));});
+if(process.argv.includes('--sealed'))check('Every sealed artifact hash matches',()=>{const hashes=read('ARTIFACT_HASHES.json');for(const b of hashes.artifacts)assert.equal(sha(dir+'/'+b.path),b.sha256);assert.deepEqual(readdirSync(dir).filter(p=>p!=='ARTIFACT_HASHES.json').sort(),hashes.artifacts.map(b=>b.path).sort());});
+const result={ticker,status:'PASS',purpose:'Offline replay and fail-closed exception integrity; does not assert accounting closure',offline:true,separateProcess:true,independentHumanReview:false,contentHash:actual.contentHash,checks};
+const output=process.argv.find(a=>a.startsWith('--out='))?.slice(6);if(output)writeFileSync(output,JSON.stringify(result,null,2)+'\n');
+console.log(JSON.stringify(result));

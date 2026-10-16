@@ -1,0 +1,236 @@
+{
+  "ticker": "SSB",
+  "purpose": "Validation of retained evidence and exception handling; not a Level-1 closure approval",
+  "checks": [
+    {
+      "name": "bank-regressions",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "tests/unit/bank-group-ticker-closure.test.ts",
+        "tests/unit/vcb-ticker-closure.test.ts"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 1.89,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/bank-regressions.log"
+    },
+    {
+      "name": "fundamental-data",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "fundamentals",
+        "structured",
+        "current-period"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 40.55,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/fundamental-data.log"
+    },
+    {
+      "name": "structured-certification",
+      "command": [
+        "node",
+        "scripts/verify-structured-certification.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 108.73,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/structured-certification.log"
+    },
+    {
+      "name": "protected-VCB",
+      "command": [
+        "node",
+        "scripts/verify-vcb-ticker-closure.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 1.23,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/protected-VCB.log"
+    },
+    {
+      "name": "protected-all-approved",
+      "command": [
+        "node",
+        "scripts/verify-tcx-protected.mjs"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 9.96,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/protected-all-approved.log"
+    },
+    {
+      "name": "boundaries",
+      "command": [
+        "pnpm",
+        "test:boundaries"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 6.13,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/boundaries.log"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 7.98,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/lint.log"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 2.98,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/typecheck.log"
+    },
+    {
+      "name": "db-validation",
+      "command": [
+        "pnpm",
+        "db:validate"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 0.82,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/db-validation.log"
+    },
+    {
+      "name": "full-application-suite",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "status": "FAIL",
+      "exitCode": 1,
+      "elapsedSeconds": 330.83,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/full-application-suite.log"
+    },
+    {
+      "name": "application-e2e",
+      "command": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "status": "FAIL",
+      "exitCode": 143,
+      "elapsedSeconds": 131.11,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/application-e2e.log"
+    },
+    {
+      "name": "invalid-config",
+      "command": [
+        "node",
+        "scripts/smoke-app.mjs",
+        "--invalid-config"
+      ],
+      "status": "FAIL",
+      "exitCode": 1,
+      "elapsedSeconds": 0.05,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/invalid-config.log"
+    },
+    {
+      "name": "current-period",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "tests/unit/hybrid-targets.test.ts"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/current-period.log"
+    },
+    {
+      "name": "protected-baseline-corrected",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "tests/unit/vjc-ticker-closure.test.ts"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/protected-baseline-correction.log"
+    },
+    {
+      "name": "webpack-build",
+      "command": [
+        "pnpm",
+        "exec",
+        "next",
+        "build",
+        "--webpack"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/webpack-build.log"
+    },
+    {
+      "name": "browser-e2e",
+      "command": [
+        "node",
+        "scripts/smoke-app.mjs",
+        "--e2e"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/browser-e2e.log"
+    },
+    {
+      "name": "invalid-config-corrected",
+      "command": [
+        "node",
+        "scripts/smoke-app.mjs",
+        "--invalid-config"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/invalid-config-corrected.log"
+    },
+    {
+      "name": "full-application-suite-corrected",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "status": "PASS",
+      "exitCode": 0,
+      "testFiles": 115,
+      "testsPassed": 1685,
+      "testsFailed": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/full-application-suite-corrected.log",
+      "resolution": "Root .gitattributes restored to its protected starting bytes; dedicated source-directory attributes added for new PDFs. Original failed run retained."
+    }
+  ],
+  "bankSemanticRegression": {
+    "path": "docs/fundamental-data-engine/evidence/2026-10-16-ticker-closure-SSB/REGRESSION_RESULTS.json",
+    "status": "PASS",
+    "rules": 37
+  },
+  "independentReplay": {
+    "path": "docs/fundamental-data-engine/evidence/2026-10-16-ticker-closure-SSB/INDEPENDENT_REPLAY.json",
+    "status": "PASS",
+    "offline": true,
+    "separateProcess": true
+  },
+  "independentHumanReview": "PENDING",
+  "fullCellQualification": "INCOMPLETE"
+}

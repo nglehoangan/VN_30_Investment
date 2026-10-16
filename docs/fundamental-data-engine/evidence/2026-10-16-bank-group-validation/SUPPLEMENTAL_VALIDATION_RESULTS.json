@@ -1,0 +1,77 @@
+[
+  {
+    "name": "current-period",
+    "command": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "tests/unit/hybrid-targets.test.ts"
+    ],
+    "status": "PASS",
+    "exitCode": 0,
+    "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/current-period.log"
+  },
+  {
+    "name": "protected-baseline-corrected",
+    "command": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "tests/unit/vjc-ticker-closure.test.ts"
+    ],
+    "status": "PASS",
+    "exitCode": 0,
+    "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/protected-baseline-correction.log"
+  },
+  {
+    "name": "webpack-build",
+    "command": [
+      "pnpm",
+      "exec",
+      "next",
+      "build",
+      "--webpack"
+    ],
+    "status": "PASS",
+    "exitCode": 0,
+    "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/webpack-build.log"
+  },
+  {
+    "name": "browser-e2e",
+    "command": [
+      "node",
+      "scripts/smoke-app.mjs",
+      "--e2e"
+    ],
+    "status": "PASS",
+    "exitCode": 0,
+    "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/browser-e2e.log"
+  },
+  {
+    "name": "invalid-config-corrected",
+    "command": [
+      "node",
+      "scripts/smoke-app.mjs",
+      "--invalid-config"
+    ],
+    "status": "PASS",
+    "exitCode": 0,
+    "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/invalid-config-corrected.log"
+  },
+  {
+    "name": "full-application-suite-corrected",
+    "command": [
+      "pnpm",
+      "test"
+    ],
+    "status": "PASS",
+    "exitCode": 0,
+    "testFiles": 115,
+    "testsPassed": 1685,
+    "testsFailed": 0,
+    "log": "docs/fundamental-data-engine/evidence/2026-10-16-bank-group-validation/full-application-suite-corrected.log",
+    "resolution": "Root .gitattributes restored to its protected starting bytes; dedicated source-directory attributes added for new PDFs. Original failed run retained."
+  }
+]
