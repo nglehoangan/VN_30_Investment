@@ -1,9 +1,9 @@
 {
   "ticker": "VPB",
   "sector": "BANK",
-  "startingHead": "01db9b119bda5352389e3aa5e1bfbe77a5ec79b2",
+  "startingHead": "9663c58a09d48e5d6fae4b71cdef659d0f474040",
   "finalHead": "PENDING_COMMIT",
-  "coverage": {
+  "coverageBefore": {
     "CORE": {
       "required": 15,
       "admitted": 6,
@@ -20,6 +20,23 @@
       "missing": 42
     }
   },
+  "coverage": {
+    "CORE": {
+      "required": 15,
+      "admitted": 15,
+      "missing": 0
+    },
+    "SECTOR_CORE": {
+      "required": 20,
+      "admitted": 20,
+      "missing": 0
+    },
+    "SUPPORTING": {
+      "required": 45,
+      "admitted": 5,
+      "missing": 40
+    }
+  },
   "periods": [
     {
       "ticker": "VPB",
@@ -33,78 +50,27 @@
         "quarter": 2,
         "track": "CURRENT_TRAJECTORY"
       },
-      "scope": null,
+      "scope": "CONSOLIDATED",
       "CORE": {
         "required": 3,
-        "available": 0
+        "available": 3
       },
       "SECTOR_CORE": {
         "required": 4,
-        "available": 0
+        "available": 4
       },
       "SUPPORTING": {
         "required": 9,
-        "available": 0
+        "available": 1
       },
-      "financialEvidenceStatus": "INSUFFICIENT",
-      "financialConfidence": "INSUFFICIENT",
-      "missingRequirements": [
-        {
-          "id": "assets",
-          "anyOf": [
-            "TOTAL_ASSETS"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "equity",
-          "anyOf": [
-            "TOTAL_EQUITY"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "earnings",
-          "anyOf": [
-            "NET_INCOME"
-          ],
-          "component": "BUSINESS_QUALITY"
-        },
-        {
-          "id": "loan_population",
-          "anyOf": [
-            "BANK_GROSS_CUSTOMER_LOANS"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "funding_population",
-          "anyOf": [
-            "BANK_CUSTOMER_DEPOSITS"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "asset_quality",
-          "anyOf": [
-            "BANK_LOAN_LOSS_RESERVES"
-          ],
-          "component": "BUSINESS_QUALITY"
-        },
-        {
-          "id": "capital_strength",
-          "anyOf": [
-            "BANK_REPORTED_CAR",
-            "BANK_REPORTED_CET1"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        }
-      ],
+      "financialEvidenceStatus": "PARTIAL",
+      "financialConfidence": "MEDIUM",
+      "missingRequirements": [],
       "providerAnomalies": [],
-      "fallbackRequired": 10,
+      "fallbackRequired": 5,
       "issuerConflicts": [],
-      "freshness": "UNKNOWN",
-      "fundamentalScorable": false,
+      "freshness": "CURRENT",
+      "fundamentalScorable": true,
       "readyForScoring": false,
       "decisionReady": false
     },
@@ -123,65 +89,21 @@
       "scope": "CONSOLIDATED",
       "CORE": {
         "required": 3,
-        "available": 1
+        "available": 3
       },
       "SECTOR_CORE": {
         "required": 4,
-        "available": 0
+        "available": 4
       },
       "SUPPORTING": {
         "required": 9,
         "available": 1
       },
-      "financialEvidenceStatus": "INSUFFICIENT",
-      "financialConfidence": "INSUFFICIENT",
-      "missingRequirements": [
-        {
-          "id": "assets",
-          "anyOf": [
-            "TOTAL_ASSETS"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "equity",
-          "anyOf": [
-            "TOTAL_EQUITY"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "loan_population",
-          "anyOf": [
-            "BANK_GROSS_CUSTOMER_LOANS"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "funding_population",
-          "anyOf": [
-            "BANK_CUSTOMER_DEPOSITS"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "asset_quality",
-          "anyOf": [
-            "BANK_LOAN_LOSS_RESERVES"
-          ],
-          "component": "BUSINESS_QUALITY"
-        },
-        {
-          "id": "capital_strength",
-          "anyOf": [
-            "BANK_REPORTED_CAR",
-            "BANK_REPORTED_CET1"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        }
-      ],
+      "financialEvidenceStatus": "PARTIAL",
+      "financialConfidence": "LOW",
+      "missingRequirements": [],
       "providerAnomalies": [],
-      "fallbackRequired": 8,
+      "fallbackRequired": 3,
       "issuerConflicts": [],
       "freshness": "STALE",
       "fundamentalScorable": false,
@@ -203,65 +125,21 @@
       "scope": "CONSOLIDATED",
       "CORE": {
         "required": 3,
-        "available": 1
+        "available": 3
       },
       "SECTOR_CORE": {
         "required": 4,
-        "available": 0
+        "available": 4
       },
       "SUPPORTING": {
         "required": 9,
         "available": 1
       },
-      "financialEvidenceStatus": "INSUFFICIENT",
-      "financialConfidence": "INSUFFICIENT",
-      "missingRequirements": [
-        {
-          "id": "assets",
-          "anyOf": [
-            "TOTAL_ASSETS"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "equity",
-          "anyOf": [
-            "TOTAL_EQUITY"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "loan_population",
-          "anyOf": [
-            "BANK_GROSS_CUSTOMER_LOANS"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "funding_population",
-          "anyOf": [
-            "BANK_CUSTOMER_DEPOSITS"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "asset_quality",
-          "anyOf": [
-            "BANK_LOAN_LOSS_RESERVES"
-          ],
-          "component": "BUSINESS_QUALITY"
-        },
-        {
-          "id": "capital_strength",
-          "anyOf": [
-            "BANK_REPORTED_CAR",
-            "BANK_REPORTED_CET1"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        }
-      ],
+      "financialEvidenceStatus": "PARTIAL",
+      "financialConfidence": "LOW",
+      "missingRequirements": [],
       "providerAnomalies": [],
-      "fallbackRequired": 8,
+      "fallbackRequired": 3,
       "issuerConflicts": [],
       "freshness": "STALE",
       "fundamentalScorable": false,
@@ -283,67 +161,23 @@
       "scope": "CONSOLIDATED",
       "CORE": {
         "required": 3,
-        "available": 1
+        "available": 3
       },
       "SECTOR_CORE": {
         "required": 4,
-        "available": 0
+        "available": 4
       },
       "SUPPORTING": {
         "required": 9,
-        "available": 0
+        "available": 1
       },
-      "financialEvidenceStatus": "INSUFFICIENT",
-      "financialConfidence": "INSUFFICIENT",
-      "missingRequirements": [
-        {
-          "id": "assets",
-          "anyOf": [
-            "TOTAL_ASSETS"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "equity",
-          "anyOf": [
-            "TOTAL_EQUITY"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "loan_population",
-          "anyOf": [
-            "BANK_GROSS_CUSTOMER_LOANS"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "funding_population",
-          "anyOf": [
-            "BANK_CUSTOMER_DEPOSITS"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "asset_quality",
-          "anyOf": [
-            "BANK_LOAN_LOSS_RESERVES"
-          ],
-          "component": "BUSINESS_QUALITY"
-        },
-        {
-          "id": "capital_strength",
-          "anyOf": [
-            "BANK_REPORTED_CAR",
-            "BANK_REPORTED_CET1"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        }
-      ],
+      "financialEvidenceStatus": "PARTIAL",
+      "financialConfidence": "LOW",
+      "missingRequirements": [],
       "providerAnomalies": [
         "8278e24e0d3e8d3790a003accca6a59a563d5f7801ded0e994873a884df46093"
       ],
-      "fallbackRequired": 9,
+      "fallbackRequired": 3,
       "issuerConflicts": [],
       "freshness": "STALE",
       "fundamentalScorable": false,
@@ -369,49 +203,19 @@
       },
       "SECTOR_CORE": {
         "required": 4,
-        "available": 0
+        "available": 4
       },
       "SUPPORTING": {
         "required": 9,
         "available": 1
       },
-      "financialEvidenceStatus": "INSUFFICIENT",
-      "financialConfidence": "INSUFFICIENT",
-      "missingRequirements": [
-        {
-          "id": "loan_population",
-          "anyOf": [
-            "BANK_GROSS_CUSTOMER_LOANS"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "funding_population",
-          "anyOf": [
-            "BANK_CUSTOMER_DEPOSITS"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        },
-        {
-          "id": "asset_quality",
-          "anyOf": [
-            "BANK_LOAN_LOSS_RESERVES"
-          ],
-          "component": "BUSINESS_QUALITY"
-        },
-        {
-          "id": "capital_strength",
-          "anyOf": [
-            "BANK_REPORTED_CAR",
-            "BANK_REPORTED_CET1"
-          ],
-          "component": "FINANCIAL_HEALTH"
-        }
-      ],
+      "financialEvidenceStatus": "PARTIAL",
+      "financialConfidence": "LOW",
+      "missingRequirements": [],
       "providerAnomalies": [
         "f871feff3bc372cce8bece18d685cca6a9d11c6905737bf3f47bed8fabcb1b1c"
       ],
-      "fallbackRequired": 14,
+      "fallbackRequired": 8,
       "issuerConflicts": [],
       "freshness": "STALE",
       "fundamentalScorable": false,
@@ -419,71 +223,26 @@
       "decisionReady": false
     }
   ],
-  "levelOneReady": false,
-  "verdict": "C. BLOCKED — MATERIAL LEVEL-1 DATA-INTEGRITY GAPS REMAIN",
-  "executionScope": "Retained structured and issuer evidence first-pass audit; current PDF acquisition performed; full independent accounting-cell qualification remains incomplete",
+  "latestQualifiedCurrentPeriod": "2026-06-30",
+  "scope": "CONSOLIDATED",
+  "levelOneReady": true,
+  "verdict": "B. LEVEL-1 ACCOUNTING SUFFICIENT — SUPPORTING ANALYTICS DEFERRED",
   "critical": 0,
-  "major": 46,
-  "minor": 0,
-  "NPL": "UNAVAILABLE",
-  "LLR": "UNAVAILABLE",
-  "CAR": "UNAVAILABLE",
+  "major": 0,
+  "minor": 1,
+  "NPL": "GROUP_COMPONENTS_QUALIFIED",
+  "LLR": "GENERAL_PLUS_SPECIFIC_QUALIFIED",
+  "CAR": "AVAILABLE",
   "CET1": "UNAVAILABLE",
   "CASA": "UNAVAILABLE",
   "NIM": "UNAVAILABLE",
-  "exceptionQueue": [
-    "VPB:2026-06-30:assets",
-    "VPB:2026-06-30:equity",
-    "VPB:2026-06-30:earnings",
-    "VPB:2026-06-30:loan_population",
-    "VPB:2026-06-30:funding_population",
-    "VPB:2026-06-30:asset_quality",
-    "VPB:2026-06-30:capital_strength",
-    "VPB:2022-12-31:assets",
-    "VPB:2022-12-31:equity",
-    "VPB:2022-12-31:loan_population",
-    "VPB:2022-12-31:funding_population",
-    "VPB:2022-12-31:asset_quality",
-    "VPB:2022-12-31:capital_strength",
-    "VPB:2023-12-31:assets",
-    "VPB:2023-12-31:equity",
-    "VPB:2023-12-31:loan_population",
-    "VPB:2023-12-31:funding_population",
-    "VPB:2023-12-31:asset_quality",
-    "VPB:2023-12-31:capital_strength",
-    "VPB:2024-12-31:assets",
-    "VPB:2024-12-31:equity",
-    "VPB:2024-12-31:loan_population",
-    "VPB:2024-12-31:funding_population",
-    "VPB:2024-12-31:asset_quality",
-    "VPB:2024-12-31:capital_strength",
-    "VPB:2025-12-31:loan_population",
-    "VPB:2025-12-31:funding_population",
-    "VPB:2025-12-31:asset_quality",
-    "VPB:2025-12-31:capital_strength",
-    "VPB:NPL_POPULATION",
-    "VPB:LLR_POPULATION",
-    "VPB:CURRENT_ISSUER_QUALIFICATION",
-    "VPB:INVALID:manual-current:reviewed-cell-522a2791f3fdf05c83852bcbd11fafaa8c3bb98e8b21fd3cade1dd7c828b5d27-1145",
-    "VPB:INVALID:manual-current:reviewed-cell-522a2791f3fdf05c83852bcbd11fafaa8c3bb98e8b21fd3cade1dd7c828b5d27-1146",
-    "VPB:INVALID:manual-current:reviewed-cell-522a2791f3fdf05c83852bcbd11fafaa8c3bb98e8b21fd3cade1dd7c828b5d27-677",
-    "VPB:INVALID:manual-current:reviewed-cell-8390381aac60735641f7fdca8a2e85fc995e1af5af99e7bbb42077d6512020e6-1139",
-    "VPB:INVALID:manual-current:reviewed-cell-8390381aac60735641f7fdca8a2e85fc995e1af5af99e7bbb42077d6512020e6-1140",
-    "VPB:INVALID:manual-current:reviewed-cell-8390381aac60735641f7fdca8a2e85fc995e1af5af99e7bbb42077d6512020e6-670",
-    "VPB:INVALID:manual-current:reviewed-cell-8390381aac60735641f7fdca8a2e85fc995e1af5af99e7bbb42077d6512020e6-671",
-    "VPB:INVALID:manual-current:reviewed-cell-e2c3050c39ab9c2d55a18da5f79defce9e49caffc38a7b3cb89890f853e910e7-1134",
-    "VPB:INVALID:manual-current:reviewed-cell-e2c3050c39ab9c2d55a18da5f79defce9e49caffc38a7b3cb89890f853e910e7-1135",
-    "VPB:INVALID:manual-current:reviewed-cell-e2c3050c39ab9c2d55a18da5f79defce9e49caffc38a7b3cb89890f853e910e7-664",
-    "VPB:INVALID:manual-current:reviewed-cell-e2c3050c39ab9c2d55a18da5f79defce9e49caffc38a7b3cb89890f853e910e7-665",
-    "VPB:INVALID:manual-current:reviewed-cell-f3298c72cbe58af1eefd8223d235843138761a45648cd7e60c5153ad21776ea0-1152",
-    "VPB:INVALID:manual-current:reviewed-cell-f3298c72cbe58af1eefd8223d235843138761a45648cd7e60c5153ad21776ea0-681",
-    "VPB:INVALID:manual-current:reviewed-cell-f3298c72cbe58af1eefd8223d235843138761a45648cd7e60c5153ad21776ea0-682"
-  ],
+  "exceptionQueue": [],
   "historicalPIT": "NOT_READY",
   "historicalPITBlocksCurrentLevelOne": false,
   "readyForScoring": false,
   "decisionReady": false,
   "DI14": "NOT_APPROVED",
   "DI15": "NOT_APPROVED",
-  "independentReviewRequired": true
+  "independentReviewRequired": true,
+  "executionScope": "Normal Level-1 original issuer accounting-cell qualification; no targeted forensic fixes, scoring, ranking or decisions."
 }

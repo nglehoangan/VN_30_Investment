@@ -1,11 +1,11 @@
 {
   "ticker": "MBB",
   "status": "PASS",
-  "purpose": "Offline replay and fail-closed exception integrity; does not assert accounting closure",
+  "purpose": "Independent offline canonical replay, qualified loan/allowance reconciliation, revision lineage, and fail-closed material-gap verdict",
   "offline": true,
   "separateProcess": true,
   "independentHumanReview": false,
-  "contentHash": "23ea4c0f67b8e203744799e215d94d4f1e52b8354c14e9f97dd895df75e7e606",
+  "contentHash": "b54ec43a2ba9cbd59f3dac418a0966d505e6110bcce38de196bd67092f82968b",
   "checks": [
     {
       "name": "Only this bank supplies canonical admission evidence",
@@ -40,12 +40,23 @@
       "status": "PASS"
     },
     {
-      "name": "Missing populations and accounting gaps remain blocked, never zero-filled",
+      "name": "Independent qualification outcome follows concrete material gaps",
+      "status": "PASS"
+    },
+    {
+      "name": "Loan groups, allowance exclusions and lineage replay from compact receipts",
       "status": "PASS"
     },
     {
       "name": "No extracted text, OCR or render dependency needed for replay",
       "status": "PASS"
     }
-  ]
+  ],
+  "afterCleanup": true,
+  "producerRegeneration": {
+    "separateProcess": true,
+    "offline": true,
+    "artifactsCompared": 22,
+    "allByteIdentical": true
+  }
 }

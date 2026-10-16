@@ -1,11 +1,11 @@
 {
   "ticker": "VIB",
   "status": "PASS",
-  "purpose": "Offline replay and fail-closed exception integrity; does not assert accounting closure",
+  "purpose": "Independent offline canonical replay, qualified loan/allowance reconciliation, revision lineage, and fail-closed material-gap verdict",
   "offline": true,
   "separateProcess": true,
   "independentHumanReview": false,
-  "contentHash": "567c800b8077b353fbaca41002e40ab8a8dcb3abbaa38351106a521d717fe4af",
+  "contentHash": "e2cd39406cd3ef5775f7a66413a5af0c86658644d31e1fdedf1b50bfc699e38b",
   "checks": [
     {
       "name": "Only this bank supplies canonical admission evidence",
@@ -40,12 +40,23 @@
       "status": "PASS"
     },
     {
-      "name": "Missing populations and accounting gaps remain blocked, never zero-filled",
+      "name": "Independent qualification outcome follows concrete material gaps",
+      "status": "PASS"
+    },
+    {
+      "name": "Loan groups, allowance exclusions and lineage replay from compact receipts",
       "status": "PASS"
     },
     {
       "name": "No extracted text, OCR or render dependency needed for replay",
       "status": "PASS"
     }
-  ]
+  ],
+  "afterCleanup": true,
+  "producerRegeneration": {
+    "separateProcess": true,
+    "offline": true,
+    "artifactsCompared": 22,
+    "allByteIdentical": true
+  }
 }

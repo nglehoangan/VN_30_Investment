@@ -1,7 +1,7 @@
-# BID final first-pass review
+# BID Accounting Qualification Review
 
-C. BLOCKED. 31 Major accounting/qualification issues remain; see OPEN_ISSUES.json for exact periods and requirements. Full independent cell review remains incomplete. Downloading a PDF does not qualify its contents. No assertion that unavailable disclosures do not exist.
+B. LEVEL-1 ACCOUNTING SUFFICIENT — SUPPORTING ANALYTICS DEFERRED. Critical 0; Major 0; Minor 0. Exact material gaps: none. Supporting completion is not required for Level 1.
 
-NPL and LLR require this issuer's component populations. CAR/CET1 require qualified date, scope, framework and ratio identity. CASA/NIM unavailable and not filled. Historical PIT NOT_READY is separate. Analytical gaps never excuse missing Level-1 facts. No repeated forensic loop; ticker placed independently in exception queue.
+NPL uses exact customer groups 3+4+5 and issuer gross customer loans. LLR uses reconciled general plus specific customer-loan provisions; separately disclosed exclusions remain outside numerator. Capital is reported with exact scope/date/framework; Tier 1 is not CET1. See retained receipts for original and revised comparatives.
 
-readyForScoring=false; decisionReady=false; DI14/DI15 NOT_APPROVED. Final HEAD=PENDING_COMMIT. Independent human review pending.
+Await Review Bank Qualification Round. No targeted fixes or investment decisions. Final HEAD=PENDING_COMMIT.

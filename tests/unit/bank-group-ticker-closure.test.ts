@@ -36,7 +36,7 @@ describe('bank group mandatory accounting boundaries',()=>{
   const rows=financialTargets(input).map(t=>evaluateHybridTarget(t,'BANK',snapshot,input));
   expect(rows.reduce((n,r)=>n+r.CORE.required,0)).toBe(15);expect(rows.reduce((n,r)=>n+r.SECTOR_CORE.required,0)).toBe(20);
   expect(financialTargets(input).find(t=>t.track==='CURRENT_TRAJECTORY')).toMatchObject({frame:'YTD',start:'2026-01-01',end:'2026-06-30'});
-  const final=load(ticker,ticker+'_FINAL_SUFFICIENCY');expect(final).toMatchObject({levelOneReady:false,readyForScoring:false,decisionReady:false,finalHead:'PENDING_COMMIT'});expect(final.verdict).toMatch(/^C\./);
+  const final=load(ticker,ticker+'_FINAL_SUFFICIENCY');expect(final).toMatchObject({levelOneReady:!['MBB','VIB'].includes(ticker),readyForScoring:false,decisionReady:false,finalHead:'PENDING_COMMIT'});expect(final.coverage.CORE.admitted).toBe(15);expect(final.verdict).toMatch(['MBB','VIB'].includes(ticker)?/^C\./:/^B\./);
  });
  it('cross-bank PDF evidence fails issuer binding even if a fact ticker is forged',()=>{
   const input=load('ACB','ACB_RETAINED_ADMISSION_INPUT') as HybridInput;
@@ -57,7 +57,8 @@ describe('bank group mandatory accounting boundaries',()=>{
   expect(snapshot.canonicalFacts).toHaveLength(0);
  });
  it('current quarter cannot replace required YTD income',()=>{
-  const input=load('ACB','ACB_RETAINED_ADMISSION_INPUT') as HybridInput,snapshot=buildHybridAdmission(input,financialHash);
+  const original=load('ACB','ACB_RETAINED_ADMISSION_INPUT') as HybridInput;
+  const input={...original,verifications:original.verifications.map(v=>v.itemId==='NET_INCOME'&&v.period.end==='2026-06-30'?{...v,reportPeriodType:'QUARTER' as const,period:{start:'2026-04-01',end:'2026-06-30'}}:v)},snapshot=buildHybridAdmission(input,financialHash);
   const target=financialTargets(input).find(t=>t.track==='CURRENT_TRAJECTORY')!;
   expect(evaluateHybridTarget(target,'BANK',snapshot,input).missingRequirements.some(m=>m.id==='earnings')).toBe(true);
  });

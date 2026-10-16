@@ -1,0 +1,108 @@
+{
+  "status": "PASS",
+  "startingHead": "9663c58a09d48e5d6fae4b71cdef659d0f474040",
+  "finalHead": "PENDING_COMMIT",
+  "baseline": {
+    "passed": 1685,
+    "failed": 0
+  },
+  "fullApplication": {
+    "command": "pnpm test -- --maxWorkers=1",
+    "passed": 1717,
+    "failed": 0,
+    "filesPassed": 116,
+    "durationSeconds": 338.65,
+    "log": "full-application.log"
+  },
+  "bankQualification": {
+    "passed": 76,
+    "failed": 0,
+    "log": "bank-qualification-tests.log",
+    "afterFinalReceiptRegeneration": true
+  },
+  "bankSemantics": {
+    "checksPassed": 37,
+    "receipt": "bank-semantic-regressions.json"
+  },
+  "fundamentalDataSuite": {
+    "status": "PASS",
+    "method": "All included fundamental, manual-first, hybrid, debt, structured-certification, current-remediation, ticker-closure, BANK and protected-regression test files executed in the complete 116-file application run; no separate subset can omit a failing test.",
+    "log": "full-application.log"
+  },
+  "structuredCertification": {
+    "status": "PASS",
+    "checks": 40,
+    "direct": 844,
+    "sourceBindings": 845,
+    "artifacts": 38
+  },
+  "vcbProtected": {
+    "status": "PASS",
+    "log": "vcb-protected.log"
+  },
+  "approvedTickerReplay": {
+    "status": "PASS",
+    "count": 15,
+    "receipt": "approved-ticker-replay.json"
+  },
+  "deferredBlockedPreservation": {
+    "VNM": "PASS",
+    "TCX": "PASS",
+    "receipt": "PROTECTED_PRESERVATION.json"
+  },
+  "architectureBoundaries": {
+    "status": "PASS",
+    "sourceModules": 174,
+    "log": "boundaries.log"
+  },
+  "lint": {
+    "status": "PASS",
+    "log": "lint.log",
+    "correctedFailureRetained": "lint-first-attempt.log"
+  },
+  "typecheck": {
+    "status": "PASS",
+    "log": "typecheck.log"
+  },
+  "dbValidation": {
+    "status": "PASS",
+    "log": "db-validation.log"
+  },
+  "offlineBankReplayAfterCleanup": {
+    "status": "PASS",
+    "count": 12,
+    "receipt": "bank-post-cleanup-replay.json",
+    "independentProducerRegeneration": true
+  },
+  "cleanup": {
+    "status": "PASS",
+    "receipt": "CLEANUP_RECEIPT.json"
+  },
+  "accountingOutcomes": {
+    "B": [
+      "ACB",
+      "BID",
+      "CTG",
+      "HDB",
+      "LPB",
+      "SHB",
+      "SSB",
+      "STB",
+      "TCB",
+      "VPB"
+    ],
+    "C": [
+      "MBB",
+      "VIB"
+    ]
+  },
+  "critical": 0,
+  "major": 3,
+  "minor": 3,
+  "independentHumanReview": "PENDING",
+  "readyForScoring": false,
+  "decisionReady": false,
+  "DI14": "NOT_APPROVED",
+  "DI15": "NOT_APPROVED",
+  "stop": "Await Review Bank Qualification Round"
+}

@@ -1,11 +1,11 @@
 {
   "ticker": "ACB",
   "status": "PASS",
-  "purpose": "Offline replay and fail-closed exception integrity; does not assert accounting closure",
+  "purpose": "Independent offline canonical replay, qualified loan/allowance reconciliation, revision lineage, and fail-closed material-gap verdict",
   "offline": true,
   "separateProcess": true,
   "independentHumanReview": false,
-  "contentHash": "6b0fce49ac18d475d4156e051ed6c0e66bfcce88267d764842e6de73535cb673",
+  "contentHash": "2ebba38b5a74a8c8da39e9fd4e569fb6da7b580e595873bf84c49b67ca19eb7d",
   "checks": [
     {
       "name": "Only this bank supplies canonical admission evidence",
@@ -40,12 +40,23 @@
       "status": "PASS"
     },
     {
-      "name": "Missing populations and accounting gaps remain blocked, never zero-filled",
+      "name": "Independent qualification outcome follows concrete material gaps",
+      "status": "PASS"
+    },
+    {
+      "name": "Loan groups, allowance exclusions and lineage replay from compact receipts",
       "status": "PASS"
     },
     {
       "name": "No extracted text, OCR or render dependency needed for replay",
       "status": "PASS"
     }
-  ]
+  ],
+  "afterCleanup": true,
+  "producerRegeneration": {
+    "separateProcess": true,
+    "offline": true,
+    "artifactsCompared": 22,
+    "allByteIdentical": true
+  }
 }
