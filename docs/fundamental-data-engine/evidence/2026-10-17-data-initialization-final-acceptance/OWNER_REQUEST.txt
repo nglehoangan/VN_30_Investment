@@ -1,0 +1,372 @@
+VN30 Value Investing OS
+Data Initialization — Final Independent Acceptance Candidate
+
+Repository:
+https://github.com/nglehoangan/VN_30_Investment
+
+Starting HEAD:
+
+68aa87f9ae4478714ec6ca676e5a3b2addf0d77f
+
+==================================================
+MISSION
+==================================================
+
+Prepare the exact final Data Initialization acceptance candidate for
+independent review.
+
+Policy B — Quarantined Partial-Universe is already Owner-approved and
+implementation-approved.
+
+Do NOT modify Policy B semantics.
+
+Do NOT reopen ticker accounting work.
+
+Do NOT score VN30.
+
+Do NOT rank VN30.
+
+Do NOT produce Top10.
+
+Do NOT issue Buy/Hold/Sell/DCA.
+
+This round exists to revalidate and bind DI1–DI15 to ONE exact release.
+
+==================================================
+1. EXACT RELEASE BINDING
+==================================================
+
+Bind the candidate to:
+
+starting/final commit
+certified universe snapshot/hash
+Policy B version/hash
+acceptance-contract version
+partition hash
+exception-register hash
+all30 canonical snapshot hashes
+build/test evidence.
+
+No floating references.
+
+No "latest".
+
+No caller-selected acceptance version.
+
+==================================================
+2. RECONSTRUCT CURRENT UNIVERSE
+==================================================
+
+Independently reconstruct:
+
+FULL_UNIVERSE = 30
+
+SCORABLE_UNIVERSE = 25
+
+DEFERRED_UNIVERSE = 5.
+
+Expected deferred:
+
+MBB
+TCX
+VIB
+VIC
+VNM
+
+But derive from evidence.
+
+Require exact partition.
+
+Any discrepancy => FAIL.
+
+==================================================
+3. DI1–DI15 REVALIDATION
+==================================================
+
+Trace the authoritative definition and acceptance criteria for EACH:
+
+DI1
+DI2
+DI3
+DI4
+DI5
+DI6
+DI7
+DI8
+DI9
+DI10
+DI11
+DI12
+DI13
+DI14
+DI15.
+
+Do not infer PASS from old summaries.
+
+For each gate produce:
+
+gate ID
+authoritative requirement
+exact evidence
+exact release binding
+PASS / FAIL / PENDING
+reason.
+
+==================================================
+4. DI3–DI12
+==================================================
+
+These gates are currently pending only because the new Policy-B release has
+not received exact release-wide re-acceptance.
+
+Re-run/rebind their required checks.
+
+If underlying evidence remains valid and unchanged:
+
+prove it with hashes/replay/tests.
+
+Do not fabricate new accounting data.
+
+Do not require ticker forensic work unless actual canonical divergence is
+discovered.
+
+==================================================
+5. DI14 INDEPENDENT ACCEPTANCE CANDIDATE
+==================================================
+
+Prepare DI14 for external/independent reviewer approval.
+
+Must bind:
+
+final commit
+universe hash
+Policy B hash
+acceptance-contract version
+partition hash
+exception register
+30 snapshot hashes
+test/build result
+replay result
+global blocker result.
+
+Producer must NOT self-sign.
+
+Fields:
+
+producerIdentity
+independentReviewer
+reviewTimestamp
+reviewCommit
+approvalReference
+reviewedArtifactHash.
+
+Leave independent approval fields null/pending.
+
+==================================================
+6. DI15
+==================================================
+
+Evaluate DI15 using approved Policy B.
+
+DI15 may PASS only if:
+
+all mandatory preceding gates required by contract PASS
+
+partition valid
+
+25 admitted candidates have no unresolved admission-blocking Major/Critical
+
+5 deferred tickers retain exact material blockers
+
+technical quarantine passes
+
+no global system blocker exists
+
+DI14 has actual independent approval.
+
+During candidate generation:
+
+DI15 may remain PENDING/FAIL solely because DI14 awaits reviewer.
+
+Do not fake DI14 to make DI15 PASS.
+
+==================================================
+7. DEFERRED PRESERVATION
+==================================================
+
+Prove all six Major ticker issues remain intact.
+
+No accounting changes.
+
+No severity changes.
+
+No fake resolution.
+
+No score.
+
+No ranking eligibility.
+
+No positive capital state.
+
+No DCA.
+
+==================================================
+8. GLOBAL SYSTEM BLOCKERS
+==================================================
+
+Re-run global fail-closed checks.
+
+Explicitly verify no:
+
+universe mismatch
+cross-ticker contamination
+registry corruption
+mapping corruption
+unit corruption
+provider-schema corruption affecting admitted data
+canonical replay divergence
+database corruption
+acceptance-version bypass.
+
+If any exists:
+
+FAIL final acceptance.
+
+==================================================
+9. PROTECTED REPLAY
+==================================================
+
+Replay all30 dispositions.
+
+For 25 admitted candidates:
+
+canonical closure must reproduce.
+
+For 5 deferred:
+
+blocked disposition and exact issue set must reproduce.
+
+Also replay:
+
+HPG durable successor
+VJC
+GVR
+official universe certification
+Policy B partition.
+
+==================================================
+10. TESTS
+==================================================
+
+Current baseline:
+
+1,902 PASS / 0 FAIL.
+
+Run:
+
+DI1–DI15 acceptance regressions
+Policy B regressions
+aggregate closure regressions
+all ticker protected replay
+structured certification
+fundamental-data suite
+architecture boundaries
+lint
+typecheck
+DB validation
+production build
+browser smoke/E2E
+full application suite.
+
+No hidden failure.
+
+==================================================
+11. EVIDENCE PACKAGE
+==================================================
+
+Create:
+
+docs/fundamental-data-engine/evidence/
+2026-10-17-data-initialization-final-acceptance/
+
+At minimum:
+
+README.md
+
+RELEASE_BINDING.json
+UNIVERSE_RECONCILIATION.json
+UNIVERSE_PARTITION.json
+EXCEPTION_REGISTER.json
+
+DI01_REVIEW.json
+DI02_REVIEW.json
+DI03_REVIEW.json
+DI04_REVIEW.json
+DI05_REVIEW.json
+DI06_REVIEW.json
+DI07_REVIEW.json
+DI08_REVIEW.json
+DI09_REVIEW.json
+DI10_REVIEW.json
+DI11_REVIEW.json
+DI12_REVIEW.json
+DI13_REVIEW.json
+DI14_REVIEW_CANDIDATE.json
+DI15_REVIEW.json
+
+GLOBAL_BLOCKER_REVIEW.json
+PROTECTED_REPLAY_RESULTS.json
+TEST_RESULTS.json
+OPEN_ISSUES.json
+
+FINAL_ACCEPTANCE_CANDIDATE.md
+ARTIFACT_HASHES.json
+
+==================================================
+12. FINAL CANDIDATE VERDICT
+==================================================
+
+Report:
+
+DI1 ... DI13:
+PASS / FAIL
+
+DI14:
+PENDING_INDEPENDENT_APPROVAL
+
+DI15:
+PENDING_DI14
+or FAIL if another gate fails.
+
+Also report:
+
+FULL_UNIVERSE_COUNT
+SCORABLE_UNIVERSE_COUNT
+DEFERRED_UNIVERSE_COUNT
+GLOBAL_SYSTEM_BLOCKER_COUNT
+
+readyForScoring=false
+
+decisionReady=false.
+
+==================================================
+13. STOP
+==================================================
+
+STOP after producing the acceptance candidate.
+
+Do NOT self-approve DI14.
+
+Do NOT set readyForScoring=true.
+
+Do NOT run M3 scoring.
+
+Do NOT rank VN30.
+
+Do NOT produce Top10.
+
+Do NOT issue investment decisions.
+
+Wait for:
+
+Review Data Initialization Final Acceptance

@@ -1,0 +1,15 @@
+import './lib/ts-runtime.mjs';
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync} from 'node:fs';
+const {financialHash}=await import('../src/infrastructure/fundamentals/hybrid-input.ts');
+const {validatePolicyBAdmission,evaluatePolicyBDI15}=await import('../src/domain/fundamentals/partial-universe.ts');
+const O='docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/';
+const read=n=>JSON.parse(readFileSync(O+n,'utf8'));
+const policy=read('UNIVERSE_PARTITION.json');validatePolicyBAdmission(policy,financialHash);
+const review=evaluatePolicyBDI15(policy,financialHash);
+assert.equal(review.status,'FAIL');assert.equal(review.GLOBAL_SYSTEM_BLOCKERS.length,1);
+for(const gate of ['DI4','DI8','DI12','DI14'])assert(review.reasons.includes('REQUIRED_DI_NOT_PASS:'+gate));
+const original=JSON.parse(readFileSync('docs/fundamental-data-engine/evidence/2026-10-17-di15-partial-universe-amendment/UNIVERSE_PARTITION.json','utf8'));
+assert.deepEqual(policy.members,original.members);assert.deepEqual(policy.universe,original.universe);assert.deepEqual(policy.issues.filter(i=>i.kind==='TICKER_ISOLATED_BLOCKER'),original.issues);
+writeFileSync(O+'DI15_REVIEW.json',JSON.stringify({gateId:'DI15',authoritativeRequirement:'Approved Policy B: complete partition, preserved exact issue ledger, deferred exclusion, no global blocker, all mandatory preceding gates including actual independent DI14 PASS.',authority:[{path:'docs/08_CONTINUOUS_IMPROVEMENT/DI15_PARTIAL_UNIVERSE_POLICY_B.md',version:'1.0'},{path:'src/domain/fundamentals/partial-universe.ts',function:'evaluatePolicyBDI15'}],exactReleaseBinding:read('RELEASE_BINDING.json'),status:'FAIL',contractResult:review,partitionIntegrity:'PASS',deferredTechnicalQuarantine:'PASS',originalSixMajorTickerIssues:'UNCHANGED_OPEN',reason:'Global market source replay blocker and DI4/DI8/DI12 FAIL; DI14 pending. This is not solely a pending-independent-review case.',independentApprovalGranted:false,readyForScoring:false,decisionReady:false},null,2)+'\n');
+console.log(JSON.stringify({status:'PASS_EVALUATION',DI15:review.status,reasons:review.reasons,globalSystemBlockers:review.GLOBAL_SYSTEM_BLOCKERS.length,originalPartitionAndSixIssuesUnchanged:true}));

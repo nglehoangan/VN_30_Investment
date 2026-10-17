@@ -1,0 +1,104 @@
+{
+  "status": "FAIL",
+  "GLOBAL_SYSTEM_BLOCKER_COUNT": 1,
+  "globalSystemBlockers": [
+    {
+      "id": "RELEASE-MARKET-SOURCE-REPLAY-UNAVAILABLE",
+      "securityId": null,
+      "kind": "GLOBAL_SYSTEM_BLOCKER",
+      "severity": "MAJOR",
+      "status": "OPEN",
+      "classification": "SHARED_SOURCE_CONTRACT",
+      "detail": "Required full-universe market evidence cannot be replayed: all30 recorded raw exchange-response paths are unavailable. Archived2026-10-09 rows do not establish a current release snapshot or accepted freshness. This is a shared release evidence gap, not a finding of corruption in canonical accounting.",
+      "provenance": [
+        {
+          "reference": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/MARKET_SOURCE_RECHECK.json",
+          "sha256": "4929caad19ab7d7e8ac3099e011e5a17d78938c7b4860a436df0082735f5a8b3"
+        },
+        {
+          "reference": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/MARKET_EVIDENCE_AUDIT.json",
+          "sha256": "61325b47cec348b65a0c51ed0fb9f25d4b728b1f5b666b52bfaefe588f5e50e6"
+        }
+      ],
+      "resolutionReference": null
+    }
+  ],
+  "observedAccountingIntegrityCorruptionCount": 0,
+  "checks": {
+    "universeMismatch": "NONE",
+    "crossTickerContamination": "NONE",
+    "registryCorruption": "NONE_OBSERVED_IN_REPLAYED_RELEASE",
+    "mappingCorruption": "NONE_OBSERVED_IN_REPLAYED_RELEASE",
+    "unitCorruption": "NONE",
+    "providerSchemaCorruptionAffectingAdmittedFacts": "NONE_OBSERVED_IN_REPLAYED_RELEASE",
+    "canonicalReplayDivergence": "NONE",
+    "databasePhysicalCorruption": "NONE",
+    "databaseDeploymentReadiness": "FORMAL_TABLES_NOT_PRESENT; no deployment/migration requested or performed",
+    "acceptanceVersionBypass": "REJECTED_BY_EXISTING_REGRESSIONS"
+  },
+  "faultInjectionResults": [
+    {
+      "classification": "UNIVERSE_IDENTITY",
+      "status": "PASS",
+      "result": "GLOBAL_DI15_FAIL"
+    },
+    {
+      "classification": "CROSS_TICKER_CONTAMINATION",
+      "status": "PASS",
+      "result": "GLOBAL_DI15_FAIL"
+    },
+    {
+      "classification": "SHARED_REGISTRY",
+      "status": "PASS",
+      "result": "GLOBAL_DI15_FAIL"
+    },
+    {
+      "classification": "SCORING_CONTRACT",
+      "status": "PASS",
+      "result": "GLOBAL_DI15_FAIL"
+    },
+    {
+      "classification": "UNIT_CORRUPTION",
+      "status": "PASS",
+      "result": "GLOBAL_DI15_FAIL"
+    },
+    {
+      "classification": "PROVIDER_SCHEMA_DRIFT",
+      "status": "PASS",
+      "result": "GLOBAL_DI15_FAIL"
+    },
+    {
+      "classification": "SHARED_MAPPING",
+      "status": "PASS",
+      "result": "GLOBAL_DI15_FAIL"
+    },
+    {
+      "classification": "CANONICAL_REPLAY_DIVERGENCE",
+      "status": "PASS",
+      "result": "GLOBAL_DI15_FAIL"
+    },
+    {
+      "classification": "DATABASE_CORRUPTION",
+      "status": "PASS",
+      "result": "GLOBAL_DI15_FAIL"
+    },
+    {
+      "classification": "SHARED_SOURCE_CONTRACT",
+      "status": "PASS",
+      "result": "GLOBAL_DI15_FAIL"
+    },
+    {
+      "classification": "SHARED_ENGINE",
+      "status": "PASS",
+      "result": "GLOBAL_DI15_FAIL"
+    },
+    {
+      "classification": "PRODUCTION_INFRASTRUCTURE",
+      "status": "PASS",
+      "result": "GLOBAL_DI15_FAIL"
+    }
+  ],
+  "globalGapIsNotTickerQuarantinable": true,
+  "noClaimOfCorruptionFromMissingMarketSources": true,
+  "exactReleaseId": "di-final-review-d99edb6c9e7a7237610138522ee1d987a5872709a9e09ecb163f7dd6a680993b"
+}

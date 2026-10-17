@@ -1,0 +1,47 @@
+{
+  "gateId": "DI12",
+  "authoritativeRequirement": "Data Snapshot ID reproducible",
+  "authority": [
+    {
+      "path": "docs/08_CONTINUOUS_IMPROVEMENT/DATA_INITIALIZATION.md",
+      "sha256": "8d959671dadcb15f4443c70aaa16c350accf6ee492d6847b9c068a1bb33265e1",
+      "section": "§28 Initialization Gates"
+    }
+  ],
+  "exactEvidence": [
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/ACCOUNTING_RECONSTRUCTION.json",
+      "sha256": "2c4a0c641087665d8b165bf221290b0ba41efb3f43fde32ed9e1afb27c1a46a1"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/RELEASE_BINDING.json",
+      "sha256": "65d2e85026b3626d4d8a427d811ee4065b66df03acaa9df47296b7727b8fd088"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/MARKET_EVIDENCE_AUDIT.json",
+      "sha256": "61325b47cec348b65a0c51ed0fb9f25d4b728b1f5b666b52bfaefe588f5e50e6"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/MARKET_SOURCE_RECHECK.json",
+      "sha256": "4929caad19ab7d7e8ac3099e011e5a17d78938c7b4860a436df0082735f5a8b3"
+    },
+    {
+      "path": "src/domain/fundamentals/scoring-readiness-policy-b.ts",
+      "sha256": "863f0c30cc43839c458271d22a9cf697ee53d8b52f5faadb70e565d7f7f995b4",
+      "section": "bindDIAcceptance: exact FORMAL AS_KNOWN snapshot binding"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/DATABASE_INVENTORY.json",
+      "sha256": "8b5d5080e8d7e3d5de5d567e25b2f51dcc1188dd95f2a476918d631544deb973"
+    }
+  ],
+  "exactReleaseBinding": {
+    "releaseId": "di-final-review-d99edb6c9e7a7237610138522ee1d987a5872709a9e09ecb163f7dd6a680993b",
+    "implementationCommit": "68aa87f9ae4478714ec6ca676e5a3b2addf0d77f",
+    "universeHash": "908fd1605a29311406205540eace74cde62a8215d559d4b66bb288eef9644170",
+    "canonicalSetHash": "30de93c5f44a7796b4bc39084a61bfadc6aaa2e89b8ee707702b7004af57dd62"
+  },
+  "status": "FAIL",
+  "reason": "FAIL for final acceptance: 30 accounting snapshots and the review-bundle identity are reproducible, but no complete eligible formal snapshotRunId/contentHash/manifestDigest binds market plus fundamentals under the unchanged acceptance contract. Default DB has no formal snapshot/acceptance tables; it passes physical integrity. No schema migration or acceptance write performed.",
+  "independentDI14Approval": false
+}

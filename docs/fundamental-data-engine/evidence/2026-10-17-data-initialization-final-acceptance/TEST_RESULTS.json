@@ -1,0 +1,445 @@
+{
+  "status": "PASS",
+  "runtime": "Node22.23.2 / pnpm10.34.5",
+  "implementationCommit": "68aa87f9ae4478714ec6ca676e5a3b2addf0d77f",
+  "baseline": 1902,
+  "finalPassed": 1902,
+  "finalFailed": 0,
+  "newRuntimeTests": 0,
+  "focusedAcceptanceAndPolicyB": 140,
+  "newPolicyBRegressionsWithinBaseline": 98,
+  "fundamentalFocused": 603,
+  "architecture": 98,
+  "browser": 12,
+  "protectedReplayCommands": 32,
+  "commands": [
+    {
+      "name": "focused",
+      "command": "pnpm exec vitest run tests/unit/di15-policy-b.test.ts tests/unit/policy-b-ports.test.ts tests/unit/policy-b-reporting.test.tsx tests/integration/di15-policy-b.test.ts tests/unit/scoring-readiness.test.ts tests/integration/scoring-readiness.test.ts tests/unit/di-governance-closure.test.ts tests/unit/vn30-final-closure-review.test.ts",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/focused.log",
+      "logSHA256": "064b25170dbb4d6e8469b54bdcbc7251685bcfeda29a7e50100477f341bc180b",
+      "testsPassed": 140,
+      "testsFailed": 0,
+      "commandLedger": "static-commands.json"
+    },
+    {
+      "name": "fundamental",
+      "command": "pnpm exec vitest run tests/unit/*ticker-closure.test.ts tests/unit/hpg-debt-final-closure.test.ts tests/unit/structured-certification.test.ts tests/unit/fundamentals*.test.ts tests/integration/fundamentals*.test.ts",
+      "exitCode": 1,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/fundamental-initial-browser-screenshot-conflict.log",
+      "logSHA256": "55a3da792f1f2994a7f3ef828332441674399deaf7cd336d82860363de482ccd",
+      "testsPassed": 602,
+      "testsFailed": 1,
+      "commandLedger": "static-commands.json"
+    },
+    {
+      "name": "fundamental",
+      "command": "pnpm exec vitest run tests/unit/*ticker-closure.test.ts tests/unit/hpg-debt-final-closure.test.ts tests/unit/structured-certification.test.ts tests/unit/fundamentals*.test.ts tests/integration/fundamentals*.test.ts",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/fundamental.log",
+      "logSHA256": "944fb50af2aaa2ca9504d333faff60022bcf57205308da5de9838a8e031a71b0",
+      "testsPassed": 603,
+      "testsFailed": 0,
+      "commandLedger": "static-retest-commands.json"
+    },
+    {
+      "name": "boundaries",
+      "command": "pnpm test:boundaries",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/boundaries.log",
+      "logSHA256": "5038c681621f6dcf1cbe6103cb985c95aa7d1b0b729b57c7a16d18124f9e6b2f",
+      "testsPassed": 98,
+      "testsFailed": 0,
+      "commandLedger": "static-retest-commands.json"
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/lint.log",
+      "logSHA256": "932f738b01ad4101c91f73e5bfe4f023f9c49884c91d9e99657f4183d09301e3",
+      "commandLedger": "static-retest-commands.json"
+    },
+    {
+      "name": "typecheck",
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/typecheck.log",
+      "logSHA256": "49748fb4b834af6b56a18b4c75f4f5d2a5c2a777f2077c284a4b91474fad654a",
+      "commandLedger": "static-retest-commands.json"
+    },
+    {
+      "name": "database",
+      "command": "pnpm db:validate",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/database.log",
+      "logSHA256": "91c370e07fa9b0b7a167f0558895a0aa893d6e5dade7970f9b77e180dd06e8d0",
+      "commandLedger": "static-retest-commands.json"
+    },
+    {
+      "name": "structured",
+      "command": "node scripts/verify-structured-certification.mjs",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/structured.log",
+      "logSHA256": "f79cea7457f7990922fda18209a09c899d73b9b174846fedc33f0938ff79fdce",
+      "commandLedger": "static-retest-commands.json"
+    },
+    {
+      "name": "production-build",
+      "command": "pnpm db:generate && pnpm exec next build --webpack",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/production-build.log",
+      "logSHA256": "adf36a7bfdf0bc0d68922d810ba36d53001a812ba9bde8922ce1e95ba2eb5647",
+      "commandLedger": "browser-initial-commands.json"
+    },
+    {
+      "name": "browser",
+      "command": "node scripts/smoke-app.mjs --e2e",
+      "exitCode": 1,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/browser-sandbox-denial.log",
+      "logSHA256": "e7eabe6331d8aafdaaa2d028fb49e35292b27ca3d54e2c0c8b97ffc4cd0a1242",
+      "commandLedger": "browser-initial-commands.json"
+    },
+    {
+      "name": "browser",
+      "command": "node scripts/smoke-app.mjs --e2e",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/browser.log",
+      "logSHA256": "1e25b26424d601e5478ded012f0b9c9cd56a3bd71f43c90e168e294f807dc47e",
+      "permission": "Approved localhost loopback retest after sandbox EPERM",
+      "testsPassed": 12,
+      "testsFailed": 0,
+      "commandLedger": "browser-retest-commands.json"
+    },
+    {
+      "name": "full-suite",
+      "command": "pnpm test --testTimeout=60000",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/full-suite.log",
+      "logSHA256": "533b75777ead7a15f7b02993cfcfc3fa2d2343d035cb4047f11e52a9f83ffa6c",
+      "testsPassed": 1902,
+      "testsFailed": 0,
+      "commandLedger": "full-commands.json"
+    },
+    {
+      "name": "replay-0",
+      "command": "node scripts/verify-di-governance-hpg.mjs",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-0.log",
+      "logSHA256": "268a8471ef18018a167a7c6be14e3370aa7abdbe45a2e32c762040cb4a90625b",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-1",
+      "command": "node scripts/verify-debt-contract-activation-hpg.mjs",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-1.log",
+      "logSHA256": "658ee8d44afa8ed1c088e6d6e67484d8947c9e756811be8670c49e0bac878fe1",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-2",
+      "command": "node scripts/verify-vcb-ticker-closure.mjs",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-2.log",
+      "logSHA256": "bf8eac2d59dd668ac65b4610b3246ab3ec860bfdda6196b85a0f034227f5cc92",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-3",
+      "command": "node scripts/verify-ssi-ticker-closure.mjs",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-3.log",
+      "logSHA256": "39801d3d7c1413c1fd0a51409c50116704cb74192fccf07f1eb41acab0bae185",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-4",
+      "command": "node scripts/verify-fpt-ticker-closure.mjs",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-4.log",
+      "logSHA256": "aa58c1930a76b500cf6c16d7d4fb79401ba2a980af732b5d2e26332cce977349",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-5",
+      "command": "node scripts/verify-bank-group-regressions.mjs",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-5.log",
+      "logSHA256": "062812a29d5d870cc6a38e98d90fedbad9f6cc632f2cd132824a484d3b58737b",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-6",
+      "command": "node scripts/verify-tcx-ticker.mjs",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-6.log",
+      "logSHA256": "ed7aeb2eb5a9a60271d51cc9c5a0a8d5a8f6c504a2eb4fa12f7d5df968cb306b",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-7",
+      "command": "node scripts/verify-vjc-ticker.mjs --ticker=VJC",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-7.log",
+      "logSHA256": "250d8102ee4caf25d72cbea9f43a0923747b0a7d8a123d53f4e3fcb70f11a57e",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-8",
+      "command": "node scripts/verify-gvr-ticker.mjs --ticker=GVR",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-8.log",
+      "logSHA256": "95ba8922d6848fc23374c53c9776dbe609c2b1d3c81e145ca74e320ecc9ca6f8",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-9",
+      "command": "node scripts/verify-vic-ticker.mjs --ticker=VIC",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-9.log",
+      "logSHA256": "d9372947238ffa2d2d18aaa53f817aaa385afce0b72a493060303235b7f58e77",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-10",
+      "command": "node scripts/verify-real-estate-ticker.mjs --ticker=VHM",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-10.log",
+      "logSHA256": "ad1dd2d69dc35a7d6bb9c68343eb2d96694dfda47645f336d04cbacf0d0b396a",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-11",
+      "command": "node scripts/verify-real-estate-ticker.mjs --ticker=VRE",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-11.log",
+      "logSHA256": "e54ef129e4a4b722ec6e3d8003c80eca9edecaabba1cf13e6441b084550f67ab",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-12",
+      "command": "node scripts/verify-real-estate-ticker.mjs --ticker=VPL",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-12.log",
+      "logSHA256": "07f8f477d085444e706f675eed0d58665f43bbe6dfb733f9a0478432ac273526",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-13",
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=MSN",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-13.log",
+      "logSHA256": "c2eaed3ceea20119990cc4c9f6cc976c8bd5a516877a0f266019450265fb5765",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-14",
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=MWG",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-14.log",
+      "logSHA256": "95df23346569cc4bda8af3416374a6f1cef9c14d48bbb042937b8b6154453dbd",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-15",
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=SAB",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-15.log",
+      "logSHA256": "28de3026a2a86bcc1b2c055adde0bb0a815ca7e640e5d384f5b7739f6af609c3",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-16",
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=MCH",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-16.log",
+      "logSHA256": "a4d3fcde108ae2a63c7ca6401ea7bfaf89ffe957030d7cfa4b1f7c48d3b5bd4e",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-17",
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=VNM",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-17.log",
+      "logSHA256": "ff238f72f808a2b198f24a3e92e671d673b18907e4f85bb9236cde02e9791e96",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-18",
+      "command": "node scripts/verify-energy-ticker.mjs --ticker=GAS",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-18.log",
+      "logSHA256": "1a9c1b3504809bd81a451c95cd403abc187a23a3167ca54a2fbd914c9b8c049e",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-19",
+      "command": "node scripts/verify-energy-ticker.mjs --ticker=BSR",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-19.log",
+      "logSHA256": "6c046b52427285d727296c057590df307d177589c14b592ef95befd517f756f4",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-20",
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=ACB",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-20.log",
+      "logSHA256": "46f55465e572dc582c8c5aacc0b03d99d3206e42131ba0b2cb066e29f1c234b8",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-21",
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=BID",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-21.log",
+      "logSHA256": "b6c42f5e03edc2503642bc1816fb524cc832590e5cb83bdb7e7d8b648d5ce070",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-22",
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=CTG",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-22.log",
+      "logSHA256": "72e2bb4e38e74477979df31128cebdafecf4fb195d0374385ec40260c6601b1c",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-23",
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=HDB",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-23.log",
+      "logSHA256": "162dd3fc341c394441f6333ff5d1c9bede936261e806ab74947e8ca2aeb1e824",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-24",
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=LPB",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-24.log",
+      "logSHA256": "0b6d6c1394235742b2ee9dd152803dd4ea375b5dc144df685d22bf8213cd9390",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-25",
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=MBB",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-25.log",
+      "logSHA256": "5601e975cb1f8e45dedff32d9148dc5fc8cad54808bbe58be45ab1f00a81fe36",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-26",
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=SHB",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-26.log",
+      "logSHA256": "4113793c6ec9dc7835cf87d8deb7a8febaf2ecf61932dddb6e958a5d67dfb452",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-27",
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=SSB",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-27.log",
+      "logSHA256": "adef1008fa03b4e82afce9fb6af5ce97e82d99ead859d3d3ffcc60331b40bf92",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-28",
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=STB",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-28.log",
+      "logSHA256": "95c1706537dd3f961aa2b3814b40fbb739bc941c90aeeedb5ac41dfc13e1bbbf",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-29",
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=TCB",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-29.log",
+      "logSHA256": "ab900be95742fdffb2ff7bd74c67ad3bb2e798911653eb3b4da942d062ec4e09",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-30",
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=VIB",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-30.log",
+      "logSHA256": "5ef91915d4f48f800c369d8bad4fd710b4eabf7e0a1f2e186f20e85ac0f3c5f6",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "replay-31",
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=VPB",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/replay-31.log",
+      "logSHA256": "c9d6e0d115ec7995f5a6c745badb16c8836bca9306bc217571c8adfbcff2ad64",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "aggregate",
+      "command": "node scripts/verify-di-governance-aggregate.mjs",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/aggregate.log",
+      "logSHA256": "5173058f667304bab817d2d611e2ffa57f159355ccf2a1fbc33ff2c4856143c5",
+      "commandLedger": "protected-commands.json"
+    },
+    {
+      "name": "market-audit",
+      "command": "python3 scripts/audit-final-di-candidate-market.py",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/market-audit.log",
+      "logSHA256": "1942295de47ed252681e848ce07378111232c5a6610f33a156935393a7e31fde"
+    },
+    {
+      "name": "reconstruction",
+      "command": "node scripts/reconstruct-final-di-candidate.mjs",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/reconstruction.log",
+      "logSHA256": "0700bf00d120d5685fefe7bf1d5b7a1bd61e6299e174360792c0525a1e19193f"
+    },
+    {
+      "name": "universe-replay",
+      "command": "python3 scripts/replay-final-di-universe.py",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/universe-replay.log",
+      "logSHA256": "207b5248362eabbbdc52a021eead07a3012448ca73df346ac0c60248416a21d7"
+    },
+    {
+      "name": "di15-evaluation",
+      "command": "node scripts/evaluate-final-di-candidate.mjs",
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/validation-logs/di15-evaluation.log",
+      "logSHA256": "85e743ca99eed22733754a5fb0a59ec3665ee0c0e1b6f6d8d886a2bd703f21f0"
+    }
+  ],
+  "initialFailuresRetained": [
+    {
+      "log": "validation-logs/browser-sandbox-denial.log",
+      "cause": "Sandbox blocked localhost listen with EPERM.",
+      "correction": "Explicit loopback escalation approved; same browser command passed12/12."
+    },
+    {
+      "log": "validation-logs/fundamental-initial-browser-screenshot-conflict.log",
+      "result": "602 PASS /1 FAIL",
+      "cause": "Concurrent browser visual test regenerated a protected historical PNG.",
+      "correction": "Restored48 exact images from starting commit, then ran fundamental603/603 and full1902/1902 after browser completion. No hash/assertion changed."
+    },
+    {
+      "log": "validation-logs/reconstruction-initial-private-source-assumption.log",
+      "cause": "New review script initially assumed private retained PDFs were git objects.",
+      "correction": "Tracked files checked against starting commit; private originals checked against exact source SHA256 in starting-commit-pinned inputs. No source bytes changed."
+    },
+    {
+      "log": "validation-logs/reconstruction-initial-optional-flag-assumption.log",
+      "cause": "New review script asserted an optional decisionReady field was literally false in canonical JSON where absent.",
+      "correction": "Require it never be true; candidate flags remain explicitly false. No runtime contract or facts changed."
+    }
+  ],
+  "testAssertionsWeakened": false,
+  "runtimePolicyChanged": false,
+  "timeout": "Command-level60000ms for unchanged full-suite assertions; repository config unchanged.",
+  "scope": "Synthetic application score/decision fixtures only; no current-release scoring/ranking/capital action."
+}
