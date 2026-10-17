@@ -1,0 +1,316 @@
+{
+  "status": "PASS",
+  "startingCommit": "c24455fbb47374b355a888247af7bd4e3934ee57",
+  "runtime": "Node22.23.2 / pnpm10.34.5",
+  "date": "2026-10-17",
+  "baseline": {
+    "passed": 1804,
+    "failed": 0
+  },
+  "finalFullSuite": {
+    "passed": 1902,
+    "failed": 0,
+    "newTests": 98
+  },
+  "checks": [
+    {
+      "name": "Policy B new regressions",
+      "command": "pnpm exec vitest run tests/unit/di15-policy-b.test.ts tests/unit/policy-b-ports.test.ts tests/unit/policy-b-reporting.test.tsx tests/integration/di15-policy-b.test.ts --reporter=json --outputFile=docs/fundamental-data-engine/evidence/2026-10-17-di15-partial-universe-amendment/REGRESSION_RESULTS.json",
+      "passed": 98,
+      "log": "validation-logs/policy-b-regressions-final.log",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "name": "Full application unit/integration/architecture suite",
+      "command": "pnpm test --testTimeout=60000",
+      "passed": 1902,
+      "files": 124,
+      "log": "validation-logs/full-suite-final.log",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "name": "Browser E2E",
+      "command": "node scripts/smoke-app.mjs --e2e",
+      "passed": 12,
+      "log": "validation-logs/application-e2e.log",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "name": "Structured certification",
+      "command": "node scripts/verify-structured-certification.mjs",
+      "checks": {
+        "status": "PASS",
+        "checks": 40,
+        "direct": 844,
+        "sourceBindings": 845,
+        "artifacts": 38
+      },
+      "log": "validation-logs/structured-replay.log",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "name": "Architecture boundaries",
+      "command": "pnpm test:boundaries",
+      "passed": 98,
+      "files": 8,
+      "log": "validation-logs/boundaries.log",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "name": "Lint",
+      "command": "pnpm lint",
+      "log": "validation-logs/lint-final.log",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "name": "Typecheck",
+      "command": "pnpm typecheck",
+      "log": "validation-logs/typecheck-delivery.log",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "name": "Database schema",
+      "command": "pnpm db:validate",
+      "log": "validation-logs/database.log",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "name": "Production application build",
+      "command": "pnpm exec next build --webpack",
+      "log": "validation-logs/application-webpack-build.log",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "name": "Current30 canonical reconstruction and baseline byte verification",
+      "command": "node scripts/build-di15-policy-b.mjs",
+      "passed": 30,
+      "log": "validation-logs/current-release-reconstruction-final.log",
+      "status": "PASS",
+      "exitCode": 0
+    }
+  ],
+  "historicalProtectedReplay": [
+    {
+      "command": "node scripts/verify-di-governance-hpg.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-0.log"
+    },
+    {
+      "command": "node scripts/verify-debt-contract-activation-hpg.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-1.log"
+    },
+    {
+      "command": "node scripts/verify-vcb-ticker-closure.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-2.log"
+    },
+    {
+      "command": "node scripts/verify-ssi-ticker-closure.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-3.log"
+    },
+    {
+      "command": "node scripts/verify-fpt-ticker-closure.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-4.log"
+    },
+    {
+      "command": "node scripts/verify-bank-group-regressions.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-5.log"
+    },
+    {
+      "command": "node scripts/verify-tcx-ticker.mjs",
+      "exitCode": 0,
+      "log": "validation-logs/replay-6.log"
+    },
+    {
+      "command": "node scripts/verify-vjc-ticker.mjs --ticker=VJC",
+      "exitCode": 0,
+      "log": "validation-logs/replay-7.log"
+    },
+    {
+      "command": "node scripts/verify-gvr-ticker.mjs --ticker=GVR",
+      "exitCode": 0,
+      "log": "validation-logs/replay-8.log"
+    },
+    {
+      "command": "node scripts/verify-vic-ticker.mjs --ticker=VIC",
+      "exitCode": 0,
+      "log": "validation-logs/replay-9.log"
+    },
+    {
+      "command": "node scripts/verify-real-estate-ticker.mjs --ticker=VHM",
+      "exitCode": 0,
+      "log": "validation-logs/replay-10.log"
+    },
+    {
+      "command": "node scripts/verify-real-estate-ticker.mjs --ticker=VRE",
+      "exitCode": 0,
+      "log": "validation-logs/replay-11.log"
+    },
+    {
+      "command": "node scripts/verify-real-estate-ticker.mjs --ticker=VPL",
+      "exitCode": 0,
+      "log": "validation-logs/replay-12.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=MSN",
+      "exitCode": 0,
+      "log": "validation-logs/replay-13.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=MWG",
+      "exitCode": 0,
+      "log": "validation-logs/replay-14.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=SAB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-15.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=MCH",
+      "exitCode": 0,
+      "log": "validation-logs/replay-16.log"
+    },
+    {
+      "command": "node scripts/verify-consumer-retail-ticker.mjs --ticker=VNM",
+      "exitCode": 0,
+      "log": "validation-logs/replay-17.log"
+    },
+    {
+      "command": "node scripts/verify-energy-ticker.mjs --ticker=GAS",
+      "exitCode": 0,
+      "log": "validation-logs/replay-18.log"
+    },
+    {
+      "command": "node scripts/verify-energy-ticker.mjs --ticker=BSR",
+      "exitCode": 0,
+      "log": "validation-logs/replay-19.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=ACB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-20.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=BID",
+      "exitCode": 0,
+      "log": "validation-logs/replay-21.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=CTG",
+      "exitCode": 0,
+      "log": "validation-logs/replay-22.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=HDB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-23.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=LPB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-24.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=MBB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-25.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=SHB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-26.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=SSB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-27.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=STB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-28.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=TCB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-29.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=VIB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-30.log"
+    },
+    {
+      "command": "node scripts/verify-bank-ticker.mjs --ticker=VPB",
+      "exitCode": 0,
+      "log": "validation-logs/replay-31.log"
+    }
+  ],
+  "additionalFocusedResults": [
+    {
+      "log": "validation-logs/fundamentals-focused.log",
+      "files": 44,
+      "passed": 603,
+      "exitCode": 0,
+      "commandNote": "Focused fundamental-data Vitest file selection; all files also rerun in exact full-suite command above."
+    },
+    {
+      "log": "validation-logs/policy-b-and-acceptance.log",
+      "files": 8,
+      "passed": 140,
+      "exitCode": 0,
+      "commandNote": "Focused Policy B, DI acceptance and aggregate disposition selection; all files also rerun in full suite."
+    }
+  ],
+  "initialFailuresAndCorrections": [
+    {
+      "log": "validation-logs/policy-b-focused-initial.log",
+      "result": "115 PASS / 2 FAIL",
+      "cause": "Historical immutable source hashes rejected initial in-place source changes.",
+      "fix": "Restored every baseline file and introduced additive v2 modules. Focused retest117 PASS; full final1902 PASS."
+    },
+    {
+      "log": "validation-logs/typecheck-development.log",
+      "cause": "Explicit blocker-ID callback type missing.",
+      "fix": "Added type annotation; final typecheck PASS."
+    },
+    {
+      "log": "validation-logs/lint.log",
+      "cause": "Initial composition factory violated infrastructure-to-application boundary.",
+      "fix": "Moved factory into existing app/server composition layer. Boundary rule unchanged; final lint PASS."
+    },
+    {
+      "log": "REGRESSION_RESULTS_INITIAL_TIMESTAMP_FAILURE.json",
+      "result": "97 PASS / 1 FAIL",
+      "cause": "New universe reference used microsecond UTC capture time where instant validation requires milliseconds.",
+      "fix": "Derived conservative receipt capture upper bound rounded upward to UTC milliseconds; old source timestamps unchanged. Final98 PASS."
+    },
+    {
+      "log": "validation-logs/full-suite.log",
+      "result": "1900 PASS / 2 FAIL",
+      "cause": "Concurrent browser testing regenerated historical protected screenshots while full-suite hash checks ran.",
+      "fix": "Restored all48 historical images from starting HEAD. Sequential full-suite rerun1902 PASS; E2E12 PASS separately. See E2E_SCREENSHOT_PRESERVATION.json."
+    }
+  ],
+  "assertionsOrConfigurationWeakened": false,
+  "timeoutNote": "Command-level60000ms test timeout; unchanged assertions/configuration.",
+  "accountingFactsChanged": 0,
+  "sourceIssuesRemovedOrDowngraded": 0,
+  "existingTrackedFilesChanged": 0,
+  "scoringExecutedAgainstCurrentRelease": false,
+  "productionAcceptanceWritten": false
+}

@@ -1,0 +1,12 @@
+import {scoringReadinessFixture} from './scoring-readiness';
+import {snapshotHash} from '@/infrastructure/fundamentals/snapshot-hash';
+import type {PolicyBAdmission,PolicyBIssue} from '@/domain/fundamentals/partial-universe';
+import type {DataInitializationAcceptance} from '@/domain/fundamentals/scoring-readiness-policy-b';
+export function policyBFixture(){
+ const f=scoringReadinessFixture(),ids=f.acceptance.tickers.map(t=>t.securityId);
+ const issues:PolicyBIssue[]=ids.slice(25).map((id,i)=>({id:'synthetic-isolated-'+i,securityId:id,kind:'TICKER_ISOLATED_BLOCKER',severity:'MAJOR',status:'OPEN',classification:'SOURCE_UNAVAILABLE',detail:'SYNTHETIC ONLY: qualified original unavailable',provenance:[{reference:'synthetic-original-source-register',sha256:'1'.repeat(64)}],resolutionReference:null}));
+ const identities=ids.map((securityId,i)=>({securityId,ticker:'SYN-'+i}));
+ const p:PolicyBAdmission={contract:'quarantined-partial-universe-v1',ownerApproval:{reference:'SYNTHETIC ONLY owner fixture',sha256:'2'.repeat(64),effectiveDate:'2026-01-01'},universe:{asOf:f.request.decisionAsOf.slice(0,10),certification:'PASS',reference:f.request.references.find(r=>r.kind==='UNIVERSE')!,hash:f.acceptance.universeHash,evidence:{reference:'SYNTHETIC ONLY certified universe',sha256:'3'.repeat(64)},identities,identitiesHash:snapshotHash(identities)},sourceIssueRegister:{reference:'synthetic-source-issue-ledger',sha256:'4'.repeat(64),issuesHash:snapshotHash(issues),issues:structuredClone(issues)},issues,members:identities.map((m,i)=>({...m,state:i<25?'SCORABLE':'DEFERRED',levelOnePass:i<25,levelOneEvidence:{reference:'synthetic-level-one-'+i,sha256:'5'.repeat(64)},blockerIds:issues.filter(s=>s.securityId===m.securityId).map(s=>s.id),reopenTriggers:i<25?[]:[{type:'AUTHORITATIVE_ISSUER_FILING',condition:'New qualifying original with exact issuer/period/scope',evidenceReference:'synthetic-original-search'}],score:null,quarantine:i<25?null:{scoring:false,ranking:false,top10:false,positiveCapital:false,dca:false,weightRedistribution:false,capitalRedistribution:false}})),prerequisites:Array.from({length:14},(_,i)=>({gate:'DI'+(i+1),status:'PASS',evidenceReference:'SYNTHETIC ONLY gate'+i}))};
+ const acceptance:DataInitializationAcceptance={...f.acceptance,contract:'independent-di-acceptance-v2',partialUniverse:p,issues:issues.map(i=>({id:i.id,severity:i.severity,resolutionReference:i.resolutionReference}))};
+ return {...f,policy:p,acceptance};
+}

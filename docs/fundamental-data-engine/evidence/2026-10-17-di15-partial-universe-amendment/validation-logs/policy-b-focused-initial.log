@@ -1,0 +1,82 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+ ❯ tests/unit/di-governance-closure.test.ts (18 tests | 2 failed) 2968ms
+   × 7 VJC independent producer replay is deterministic with explicit ticker 1049ms
+   × 8 GVR independent producer replay is deterministic with explicit ticker 1548ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/di-governance-closure.test.ts > 7 VJC independent producer replay is deterministic with explicit ticker
+Error: Command failed: /private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-vjc-ticker.mjs --ticker=VJC
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: docs/01 SYSTEM/INVESTMENT_POLICY.md
++ actual - expected
+
++ '9c5be1ed1c03abfb2c0c63b8311c86e94986064d4a44cc4aaf8eb8e43fdf5270'
+- '7160610b4c415a08f4a88b5d20ca6cc079119d5da552791f0c26781da7bd8e4c'
+
+    at file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-vjc-ticker.mjs:28:138
+    at check (file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-vjc-ticker.mjs:18:25)
+    at file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-vjc-ticker.mjs:28:1 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '9c5be1ed1c03abfb2c0c63b8311c86e94986064d4a44cc4aaf8eb8e43fdf5270',
+  expected: '7160610b4c415a08f4a88b5d20ca6cc079119d5da552791f0c26781da7bd8e4c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.2
+
+ ❯ scripts/verify-vjc-ticker.mjs:28:138
+ ❯ check scripts/verify-vjc-ticker.mjs:18:25
+ ❯ tests/unit/di-governance-closure.test.ts:27:83
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/unit/di-governance-closure.test.ts > 8 GVR independent producer replay is deterministic with explicit ticker
+Error: Command failed: /private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-gvr-ticker.mjs --ticker=GVR
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: src/domain/fundamentals/freshness.ts
++ actual - expected
+
++ 'bab3bcaeb4289031fb53168a8286a07836332d43bf757cf1e778a49372958f79'
+- '0c3f8a7ac686a18dcada1ebcd4a63440a2f2797316200dc991103ff1432e6c59'
+
+    at file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-gvr-ticker.mjs:27:138
+    at check (file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-gvr-ticker.mjs:18:25)
+    at file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-gvr-ticker.mjs:27:1 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'bab3bcaeb4289031fb53168a8286a07836332d43bf757cf1e778a49372958f79',
+  expected: '0c3f8a7ac686a18dcada1ebcd4a63440a2f2797316200dc991103ff1432e6c59',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.2
+
+ ❯ scripts/verify-gvr-ticker.mjs:27:138
+ ❯ check scripts/verify-gvr-ticker.mjs:18:25
+ ❯ tests/unit/di-governance-closure.test.ts:28:83
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  2 failed | 115 passed (117)
+   Start at  23:57:25
+   Duration  7.42s (tests 80%, environment 7%, setup 5%, transform 5%, import 2%)
+
+    Isolate  4 workers spawned · ~188ms startup each (spawn + environment, per file)
+             at least ~564ms faster with isolate: false — reuses workers across files instead of one per file
+

@@ -1,0 +1,47 @@
+// @vitest-environment node
+import {readFileSync} from 'node:fs';
+import {expect,it} from 'vitest';
+import {policyBFixture} from '../fixtures/policy-b';
+import {scoringReadinessFixture} from '../fixtures/scoring-readiness';
+import {assertPolicyBAction,evaluatePolicyBDI15,validatePolicyBAdmission,policyBReporting,POLICY_B_ACTIONS,GLOBAL_BLOCKERS,type PolicyBAdmission,type PolicyBIssue} from '@/domain/fundamentals/partial-universe';
+import {validateDIAcceptance,evaluateScoringReadiness,bindDIAcceptance} from '@/domain/fundamentals/scoring-readiness-policy-b';
+import {snapshotHash,manifestDigest} from '@/infrastructure/fundamentals/snapshot-hash';
+const clone=<T,>(v:T):T=>structuredClone(v);
+const p=()=>clone(policyBFixture().policy);
+const fail=(a:PolicyBAdmission)=>expect(evaluatePolicyBDI15(a,snapshotHash).status).toBe('FAIL');
+function source(a:PolicyBAdmission){return {...a,sourceIssueRegister:{...a.sourceIssueRegister,issues:clone(a.issues),issuesHash:snapshotHash(a.issues)}};}
+it('30 is exactly25 scorable plus5 deferred, with no intersection',()=>{const a=p(),r=evaluatePolicyBDI15(a,snapshotHash);expect(r).toMatchObject({status:'PASS',FULL_UNIVERSE_COUNT:30,SCORABLE_UNIVERSE_COUNT:25,DEFERRED_UNIVERSE_COUNT:5,readyForScoring:false,decisionReady:false});expect(policyBReporting(a,snapshotHash)).toMatchObject({deferredTickers:a.members.slice(25).map(m=>m.ticker),rankingLabel:'Top ranked among currently scorable VN30 constituents',weightRedistribution:false,capitalRedistribution:false});});
+it('duplicate admission state fails',()=>{const a=p();fail({...a,members:[...a.members.slice(0,-1),a.members[0]]});});
+it('missing admission state fails',()=>{const a=p();fail({...a,members:a.members.slice(1)});});
+it('non-universe security fails',()=>{const a=p();fail({...a,members:a.members.map((m,i)=>i?m:{...m,securityId:'OUTSIDE'})});});
+it('non-universe ticker cannot borrow a certified stable ID',()=>{const a=p();fail({...a,members:a.members.map((m,i)=>i?m:{...m,ticker:'OUTSIDE'})});});
+it('universe hash mismatch fails',()=>{const a=p();fail({...a,universe:{...a.universe,hash:'a'.repeat(64)}});});
+it('uncertified universe fails',()=>{const a=p();fail({...a,universe:{...a.universe,certification:'BLOCKED'}});});
+it('certified identity map cannot change silently',()=>{const a=p();fail({...a,universe:{...a.universe,identities:a.universe.identities.slice(1)}});});
+it('deferred score remains null and unavailable',()=>expect(p().members.slice(25).every(m=>m.score===null)).toBe(true));
+it.each([0,'50','MEDIAN','SECTOR_AVERAGE','ESTIMATED'])('placeholder score %s fails',score=>{const a=p();fail({...a,members:a.members.map((m,i)=>i===25?{...m,score}:m)} as unknown as PolicyBAdmission);});
+it.each(POLICY_B_ACTIONS)('deferred cannot enter %s',action=>{const a=p();expect(()=>assertPolicyBAction(a,a.members[25].securityId,action,snapshotHash)).toThrow();});
+it('Major remains Major after quarantine and issue stays OPEN',()=>{const a=validatePolicyBAdmission(p(),snapshotHash);expect(a.issues.every(i=>i.severity==='MAJOR'&&i.status==='OPEN'&&i.resolutionReference===null)).toBe(true);expect(evaluatePolicyBDI15(a,snapshotHash).status).toBe('PASS');});
+it('severity downgrade fails against the complete source ledger',()=>{const a=p();fail({...a,issues:a.issues.map((i,n)=>n?i:{...i,severity:'MINOR'})});});
+it('dropping an original blocker fails',()=>{const a=p();fail({...a,issues:a.issues.slice(1)});});
+it('quarantine is not issue resolution',()=>{const a=p();fail({...a,issues:a.issues.map((i,n)=>n?i:{...i,status:'RESOLVED',resolutionReference:'quarantined'})});});
+it('missing source provenance fails',()=>{const a=p();fail(source({...a,issues:a.issues.map((i,n)=>n?i:{...i,provenance:[]})}));});
+it('missing blocker on deferred member fails',()=>{const a=p();fail({...a,members:a.members.map((m,i)=>i===25?{...m,blockerIds:[]}:m)});});
+it('missing reopen trigger fails',()=>{const a=p();fail({...a,members:a.members.map((m,i)=>i===25?{...m,reopenTriggers:[]}:m)});});
+it.each(['PRICE_MOVEMENT','MARKET_SENTIMENT','RANKING_NEEDS','SCORABLE_COUNT'])('%s cannot reopen a deferred ticker',type=>{const a=p();fail({...a,members:a.members.map((m,i)=>i===25?{...m,reopenTriggers:[{...m.reopenTriggers[0],type}]}:m)} as PolicyBAdmission);});
+it('Major in a SCORABLE member fails',()=>{const a=p();fail({...a,members:a.members.map((m,i)=>i===25?{...m,state:'SCORABLE',levelOnePass:true,quarantine:null}:m)});});
+it('technical exclusion is mandatory',()=>{const a=p();fail({...a,members:a.members.map((m,i)=>i===25?{...m,quarantine:null}:m)});});
+it.each(['scoring','ranking','top10','positiveCapital','dca','weightRedistribution','capitalRedistribution'])('enabled quarantine capability %s fails',field=>{const a=p();fail({...a,members:a.members.map((m,i)=>i===25?{...m,quarantine:{...m.quarantine,[field]:true}}:m)} as PolicyBAdmission);});
+it.each(GLOBAL_BLOCKERS)('%s remains a global blocker',classification=>{const a=p(),i:PolicyBIssue={id:'shared-failure',securityId:null,kind:'GLOBAL_SYSTEM_BLOCKER',severity:'MAJOR',status:'OPEN',classification,detail:'SYNTHETIC shared failure',provenance:[{reference:'synthetic-shared-failure',sha256:'a'.repeat(64)}],resolutionReference:null};const b=source({...a,issues:[...a.issues,i]});fail(b);expect(evaluatePolicyBDI15(b,snapshotHash).GLOBAL_SYSTEM_BLOCKERS).toHaveLength(1);});
+it.each(GLOBAL_BLOCKERS)('%s cannot masquerade as isolated',classification=>{const a=p();fail(source({...a,issues:a.issues.map((i,n)=>n?i:{...i,classification})}));});
+it('isolated Critical still blocks globally under the stricter legacy rule',()=>{const a=p(),b=source({...a,issues:a.issues.map((i,n)=>n?i:{...i,severity:'CRITICAL'})});fail(b);expect(evaluatePolicyBDI15(b,snapshotHash).GLOBAL_SYSTEM_BLOCKERS).toHaveLength(1);});
+it('pending independent DI14 prevents release DI15 and any action',()=>{const a=p(),b={...a,prerequisites:a.prerequisites.map(g=>g.gate==='DI14'?{...g,status:'PENDING' as const}:g)};expect(evaluatePolicyBDI15(b,snapshotHash)).toMatchObject({status:'FAIL',quarantineStatus:'PASS',readyForScoring:false,decisionReady:false});expect(()=>assertPolicyBAction(b,b.members[0].securityId,'SCORING',snapshotHash)).toThrow();});
+it.each(['DI3','DI4','DI5','DI6','DI7','DI8','DI9','DI10','DI11','DI12'])('%s is not waived',gate=>{const a=p();fail({...a,prerequisites:a.prerequisites.map(g=>g.gate===gate?{...g,status:'NOT_EXECUTED'}:g)});});
+it('v1 remains strict even when an unresolved Major is notionally deferred',()=>{const f=scoringReadinessFixture();expect(()=>validateDIAcceptance({...f.acceptance,issues:[{id:'original-major',severity:'MAJOR',resolutionReference:null}]})).toThrow();});
+it('v2 acceptance binds partition/issue ledger and leaves deferred readiness blocked',()=>{const f=policyBFixture();validateDIAcceptance(f.acceptance,snapshotHash);bindDIAcceptance(f.acceptance,f.snapshot,snapshotHash,manifestDigest);const rows=evaluateScoringReadiness(f.acceptance,f.snapshot,f.sources,snapshotHash);expect(rows).toHaveLength(30);expect(rows.slice(25).every(r=>r.admissionState==='DEFERRED'&&r.score===null&&!r.readyForScoring&&!r.dataReady&&r.deferredIssues?.[0].severity==='MAJOR')).toBe(true);});
+it('v2 cannot accept a deferred score input or bridge even if independent strings exist',()=>{const f=policyBFixture();expect(()=>validateDIAcceptance({...f.acceptance,tickers:f.acceptance.tickers.map((t,i)=>i===25?{...t,input:f.input,bridge:f.plan}:t)},snapshotHash)).toThrow();});
+it('v2 rejects issue summaries that omit or downgrade the original Major',()=>{const f=policyBFixture();expect(()=>validateDIAcceptance({...f.acceptance,issues:[]},snapshotHash)).toThrow();});
+it('v2 rejects self-approval and an unbound partition',()=>{const f=policyBFixture();expect(()=>validateDIAcceptance({...f.acceptance,reviewerReference:f.acceptance.producerReference},snapshotHash)).toThrow();expect(()=>bindDIAcceptance({...f.acceptance,universeHash:'a'.repeat(64)},f.snapshot,snapshotHash,manifestDigest)).toThrow();});
+it('current release reconstructs30/25/5 and preserves all six source Major issues',()=>{const a=JSON.parse(readFileSync('docs/fundamental-data-engine/evidence/2026-10-17-di15-partial-universe-amendment/UNIVERSE_PARTITION.json','utf8')) as PolicyBAdmission;validatePolicyBAdmission(a,snapshotHash);expect(a.members.filter(m=>m.state==='DEFERRED').map(m=>m.ticker).sort()).toEqual(['MBB','TCX','VIB','VIC','VNM']);expect(a.members.filter(m=>m.state==='SCORABLE')).toHaveLength(25);expect(a.issues).toHaveLength(6);expect(a.issues.every(i=>i.severity==='MAJOR'&&i.status==='OPEN')).toBe(true);for(const m of a.members.filter(m=>m.state==='DEFERRED'))for(const action of POLICY_B_ACTIONS)expect(()=>assertPolicyBAction(a,m.securityId,action,snapshotHash)).toThrow();});
+
+it.each(['SCORE_WEIGHT_REDISTRIBUTION','CAPITAL_REDISTRIBUTION'] as const)('even a SCORABLE member cannot receive %s',action=>{const a=p();expect(()=>assertPolicyBAction(a,a.members[0].securityId,action,snapshotHash)).toThrow();});

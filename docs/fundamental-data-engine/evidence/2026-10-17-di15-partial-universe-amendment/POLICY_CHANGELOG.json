@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "effectiveDate": "2026-10-17",
+  "ownerApproval": "OWNER_POLICY_DECISION.json",
+  "previousRule": "independent-di-acceptance-v1 requires resolution of every Critical/Major across its full accepted scope.",
+  "newRule": "independent-di-acceptance-v2 adds quarantined-partial-universe-v1. Only ticker-isolated evidence blockers can remain OPEN Major, with exact register/provenance/triggers and technical exclusion. All unresolved Critical and shared-system blockers remain global; every other DI gate remains required.",
+  "reason": "Retain honest full-universe reporting without fabricated evidence or reopening concrete unavailable-source/definition blockers.",
+  "affectedAcceptanceContract": "independent-di-acceptance-v2",
+  "newImplementation": [
+    "src/domain/fundamentals/partial-universe.ts",
+    "src/domain/fundamentals/scoring-readiness-policy-b.ts",
+    "src/infrastructure/repositories/scoring-datasets-policy-b.ts",
+    "src/application/fundamentals/policy-b-ports.ts",
+    "app/server/policy-b-services.ts",
+    "src/domain/fundamentals/freshness-policy-b.ts",
+    "src/infrastructure/repositories/data-freshness-policy-b.ts",
+    "src/ui/policy-b-data-freshness.tsx"
+  ],
+  "compatibility": "Additive versioned files. No old contract bytes, hashes, registry releases, accounting facts or historical snapshots are rewritten. Legacy v1 readers remain strict. New production Policy B must use the explicit server-only factory and pinned current acceptance, never a legacy v1 service as a partial-release substitute.",
+  "databaseMigration": "Not required; existing append-only acceptance JSON and body hashes support versioned bodies.",
+  "independentReview": "DI14 is not supplied by Owner policy approval; exact new body/partition/source ledger must have trusted independent review capability before insertion/use."
+}

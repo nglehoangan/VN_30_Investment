@@ -1,0 +1,79 @@
+
+> vn30-value-investing-os@0.1.0 test /Users/nglehoangan/Documents/Working/VN_30_Investment
+> pnpm db:generate && vitest run --testTimeout=60000
+
+
+> vn30-value-investing-os@0.1.0 db:generate /Users/nglehoangan/Documents/Working/VN_30_Investment
+> node scripts/database.mjs generate
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+
+✔ Generated Prisma Client (7.10.0) to ./src/infrastructure/db/generated in 128ms
+
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+ ❯ tests/unit/di-governance-closure.test.ts (18 tests | 1 failed) 3469ms
+   × 7 VJC independent producer replay is deterministic with explicit ticker 1035ms
+ ❯ tests/unit/vjc-ticker-closure.test.ts (46 tests | 1 failed) 281ms
+   × 40 all 14 approved closures and existing contracts unchanged 179ms
+(node:33907) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/di-governance-closure.test.ts > 7 VJC independent producer replay is deterministic with explicit ticker
+Error: Command failed: /private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-vjc-ticker.mjs --ticker=VJC
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: docs/06_DASHBOARD/6.7.1 Current Read Model/visual-evidence/1440-audit.png
++ actual - expected
+
++ '6b1495fecd4d80bfa6d800ea96ed133d859237a945a0fbbcc1b2f03dd4b67445'
+- 'ddf9ab0dee0293ad60d24e30c61eec3b6c7607ad90eef73473bb7b39a8d6829f'
+
+    at file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-vjc-ticker.mjs:28:138
+    at check (file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-vjc-ticker.mjs:18:25)
+    at file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-vjc-ticker.mjs:28:1 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '6b1495fecd4d80bfa6d800ea96ed133d859237a945a0fbbcc1b2f03dd4b67445',
+  expected: 'ddf9ab0dee0293ad60d24e30c61eec3b6c7607ad90eef73473bb7b39a8d6829f',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.2
+
+ ❯ scripts/verify-vjc-ticker.mjs:28:138
+ ❯ check scripts/verify-vjc-ticker.mjs:18:25
+ ❯ tests/unit/di-governance-closure.test.ts:27:83
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/unit/vjc-ticker-closure.test.ts > 40 all 14 approved closures and existing contracts unchanged
+AssertionError: expected '6b1495fecd4d80bfa6d800ea96ed133d85923…' to be 'ddf9ab0dee0293ad60d24e30c61eec3b6c760…' // Object.is equality
+
+Expected: "ddf9ab0dee0293ad60d24e30c61eec3b6c7607ad90eef73473bb7b39a8d6829f"
+Received: "6b1495fecd4d80bfa6d800ea96ed133d859237a945a0fbbcc1b2f03dd4b67445"
+
+ ❯ tests/unit/vjc-ticker-closure.test.ts:40:248
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 122 passed (124)
+      Tests  2 failed | 1900 passed (1902)
+   Start at  00:03:07
+   Duration  366.64s (tests 89%, environment 6%, setup 3%, import 2%, transform 1%)
+
+    Isolate  124 workers spawned · ~236ms startup each (spawn + environment, per file)
+             at least ~28.99s faster with isolate: false — reuses workers across files instead of one per file
+
+ ELIFECYCLE  Test failed. See above for more details.

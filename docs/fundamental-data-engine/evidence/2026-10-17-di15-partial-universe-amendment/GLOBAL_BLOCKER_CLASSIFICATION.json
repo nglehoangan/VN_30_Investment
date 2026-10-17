@@ -1,0 +1,181 @@
+{
+  "supportedGlobalFailureClasses": [
+    "UNIVERSE_IDENTITY",
+    "CROSS_TICKER_CONTAMINATION",
+    "SHARED_REGISTRY",
+    "SCORING_CONTRACT",
+    "UNIT_CORRUPTION",
+    "PROVIDER_SCHEMA_DRIFT",
+    "SHARED_MAPPING",
+    "CANONICAL_REPLAY_DIVERGENCE",
+    "DATABASE_CORRUPTION",
+    "SHARED_SOURCE_CONTRACT",
+    "SHARED_ENGINE",
+    "PRODUCTION_INFRASTRUCTURE"
+  ],
+  "quarantinableIsolatedClasses": [
+    "SOURCE_UNAVAILABLE",
+    "REGULATORY_SOURCE_UNAVAILABLE",
+    "ACCOUNTING_POPULATION_UNRESOLVED",
+    "DEFINITION_UNRESOLVED"
+  ],
+  "rule": "Unresolved GLOBAL_SYSTEM_BLOCKER of any severity or any unresolved Critical is global; preserve stricter v1 Critical prohibition. Only enumerated ticker-isolated evidence insufficiency can be quarantined.",
+  "globalSystemBlockers": [],
+  "count": 0,
+  "sourceIssueCount": 6,
+  "issues": [
+    {
+      "id": "VNM:LEVEL1:1",
+      "securityId": "a243cd90-95b8-44f0-96a5-b6be0defeb87",
+      "kind": "TICKER_ISOLATED_BLOCKER",
+      "severity": "MAJOR",
+      "status": "OPEN",
+      "classification": "ACCOUNTING_POPULATION_UNRESOLVED",
+      "detail": "FY2024/FY2025/6M2026 exact end-date current debt portions and complete financing population remain unqualified; movement transfers cannot replace closing balances.",
+      "provenance": [
+        {
+          "reference": "docs/fundamental-data-engine/evidence/2026-10-16-di-governance-closure/OPEN_ISSUES.json#VNM:LEVEL1:1",
+          "sha256": "8466bd11865011cd881d286aa70a91117c91e0ee454a7f40826f5d799b2db376"
+        }
+      ],
+      "resolutionReference": null
+    },
+    {
+      "id": "TCX:LEVEL1:1",
+      "securityId": "8754ecd0-5962-4b53-aff3-84b09d29771e",
+      "kind": "TICKER_ISOLATED_BLOCKER",
+      "severity": "MAJOR",
+      "status": "OPEN",
+      "classification": "ACCOUNTING_POPULATION_UNRESOLVED",
+      "detail": "FY2022 financing population unresolved: known subtotal 8,580,234,544,957 VND; unresolved population 5,284,485,167,173 VND. No comprehensive FINANCIAL_DEBT manufactured.",
+      "provenance": [
+        {
+          "reference": "docs/fundamental-data-engine/evidence/2026-10-16-di-governance-closure/OPEN_ISSUES.json#TCX:LEVEL1:1",
+          "sha256": "8466bd11865011cd881d286aa70a91117c91e0ee454a7f40826f5d799b2db376"
+        }
+      ],
+      "resolutionReference": null
+    },
+    {
+      "id": "MBB:LEVEL1:1",
+      "securityId": "ff699c86-8eaf-4178-af14-0b38fd5b1255",
+      "kind": "TICKER_ISOLATED_BLOCKER",
+      "severity": "MAJOR",
+      "status": "OPEN",
+      "classification": "REGULATORY_SOURCE_UNAVAILABLE",
+      "detail": "No qualifying CAR for 2026-06-30; candidate June column is footnoted effective 2026-03-31, rejected for wrong date.",
+      "provenance": [
+        {
+          "reference": "docs/fundamental-data-engine/evidence/2026-10-16-di-governance-closure/OPEN_ISSUES.json#MBB:LEVEL1:1",
+          "sha256": "8466bd11865011cd881d286aa70a91117c91e0ee454a7f40826f5d799b2db376"
+        }
+      ],
+      "resolutionReference": null
+    },
+    {
+      "id": "VIB:LEVEL1:1",
+      "securityId": "3bba4509-56e7-415e-b0d4-8057797853f7",
+      "kind": "TICKER_ISOLATED_BLOCKER",
+      "severity": "MAJOR",
+      "status": "OPEN",
+      "classification": "REGULATORY_SOURCE_UNAVAILABLE",
+      "detail": "No qualifying consolidated CAR for 2026-06-30.",
+      "provenance": [
+        {
+          "reference": "docs/fundamental-data-engine/evidence/2026-10-16-di-governance-closure/OPEN_ISSUES.json#VIB:LEVEL1:1",
+          "sha256": "8466bd11865011cd881d286aa70a91117c91e0ee454a7f40826f5d799b2db376"
+        }
+      ],
+      "resolutionReference": null
+    },
+    {
+      "id": "VIB:LEVEL1:2",
+      "securityId": "3bba4509-56e7-415e-b0d4-8057797853f7",
+      "kind": "TICKER_ISOLATED_BLOCKER",
+      "severity": "MAJOR",
+      "status": "OPEN",
+      "classification": "DEFINITION_UNRESOLVED",
+      "detail": "Headline NPL 2.1% (6M2026) / 2.16% (FY2025) does not reconcile to customer-loan Group3+4+5 / gross loans (~2.926% / ~2.967%); broader population reconstruction is not canonical authority.",
+      "provenance": [
+        {
+          "reference": "docs/fundamental-data-engine/evidence/2026-10-16-di-governance-closure/OPEN_ISSUES.json#VIB:LEVEL1:2",
+          "sha256": "8466bd11865011cd881d286aa70a91117c91e0ee454a7f40826f5d799b2db376"
+        }
+      ],
+      "resolutionReference": null
+    },
+    {
+      "id": "VIC:LEVEL1:1",
+      "securityId": "140e2228-6cb5-4a6a-973c-c67277ec4f0b",
+      "kind": "TICKER_ISOLATED_BLOCKER",
+      "severity": "MAJOR",
+      "status": "OPEN",
+      "classification": "SOURCE_UNAVAILABLE",
+      "detail": "Reviewed consolidated 6M2026 filing listed by issuer but public PDF variants HTTP403 and permitted mirror404; no qualifying retained current original.",
+      "provenance": [
+        {
+          "reference": "docs/fundamental-data-engine/evidence/2026-10-16-di-governance-closure/OPEN_ISSUES.json#VIC:LEVEL1:1",
+          "sha256": "8466bd11865011cd881d286aa70a91117c91e0ee454a7f40826f5d799b2db376"
+        }
+      ],
+      "resolutionReference": null
+    }
+  ],
+  "otherDIAcceptancePrerequisites": [
+    {
+      "gate": "DI3",
+      "status": "PENDING",
+      "evidenceReference": "Exact PolicyB release-wide independent acceptance is pending; prior technical results are retained and not rewritten or inferred from ticker Level1 closure"
+    },
+    {
+      "gate": "DI4",
+      "status": "PENDING",
+      "evidenceReference": "Exact PolicyB release-wide independent acceptance is pending; prior technical results are retained and not rewritten or inferred from ticker Level1 closure"
+    },
+    {
+      "gate": "DI5",
+      "status": "PENDING",
+      "evidenceReference": "Exact PolicyB release-wide independent acceptance is pending; prior technical results are retained and not rewritten or inferred from ticker Level1 closure"
+    },
+    {
+      "gate": "DI6",
+      "status": "PENDING",
+      "evidenceReference": "Exact PolicyB release-wide independent acceptance is pending; prior technical results are retained and not rewritten or inferred from ticker Level1 closure"
+    },
+    {
+      "gate": "DI7",
+      "status": "PENDING",
+      "evidenceReference": "Exact PolicyB release-wide independent acceptance is pending; prior technical results are retained and not rewritten or inferred from ticker Level1 closure"
+    },
+    {
+      "gate": "DI8",
+      "status": "PENDING",
+      "evidenceReference": "Exact PolicyB release-wide independent acceptance is pending; prior technical results are retained and not rewritten or inferred from ticker Level1 closure"
+    },
+    {
+      "gate": "DI9",
+      "status": "PENDING",
+      "evidenceReference": "Exact PolicyB release-wide independent acceptance is pending; prior technical results are retained and not rewritten or inferred from ticker Level1 closure"
+    },
+    {
+      "gate": "DI10",
+      "status": "PENDING",
+      "evidenceReference": "Exact PolicyB release-wide independent acceptance is pending; prior technical results are retained and not rewritten or inferred from ticker Level1 closure"
+    },
+    {
+      "gate": "DI11",
+      "status": "PENDING",
+      "evidenceReference": "Exact PolicyB release-wide independent acceptance is pending; prior technical results are retained and not rewritten or inferred from ticker Level1 closure"
+    },
+    {
+      "gate": "DI12",
+      "status": "PENDING",
+      "evidenceReference": "Exact PolicyB release-wide independent acceptance is pending; prior technical results are retained and not rewritten or inferred from ticker Level1 closure"
+    },
+    {
+      "gate": "DI14",
+      "status": "PENDING",
+      "evidenceReference": "docs/fundamental-data-engine/evidence/2026-10-16-di-governance-closure/DI14_ACCEPTANCE_CANDIDATE.json"
+    }
+  ]
+}

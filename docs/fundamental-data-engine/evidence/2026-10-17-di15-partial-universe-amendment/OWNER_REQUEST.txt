@@ -1,0 +1,743 @@
+VN30 Value Investing OS
+DI15 Partial-Universe Governance Amendment
+
+Repository:
+https://github.com/nglehoangan/VN_30_Investment
+
+Starting HEAD:
+
+c24455fbb47374b355a888247af7bd4e3934ee57
+
+OWNER DECISION:
+
+APPROVED
+
+Policy B — Quarantined Partial-Universe
+
+==================================================
+MISSION
+==================================================
+
+Formally implement the Owner-approved Policy B:
+
+QUARANTINED PARTIAL-UNIVERSE.
+
+This is a governance amendment and acceptance-contract change.
+
+It is NOT:
+
+ticker forensic work
+scoring execution
+ranking
+Top10 generation
+valuation
+investment recommendation
+portfolio action.
+
+Do NOT reopen any ticker accounting closure.
+
+==================================================
+1. GOVERNANCE MODEL
+==================================================
+
+The system must explicitly distinguish:
+
+FULL_UNIVERSE
+
+SCORABLE_UNIVERSE
+
+DEFERRED_UNIVERSE
+
+Definitions:
+
+FULL_UNIVERSE =
+all effective VN30 constituents for the certified as-of date.
+
+SCORABLE_UNIVERSE =
+FULL_UNIVERSE members satisfying all mandatory Level-1 evidence/readiness
+requirements for scoring admission.
+
+DEFERRED_UNIVERSE =
+FULL_UNIVERSE members with unresolved material Level-1 evidence blockers.
+
+Require:
+
+FULL_UNIVERSE =
+SCORABLE_UNIVERSE ∪ DEFERRED_UNIVERSE
+
+and:
+
+SCORABLE_UNIVERSE ∩ DEFERRED_UNIVERSE = ∅.
+
+Every current VN30 member must belong to exactly one admission state.
+
+No ticker may disappear from reporting.
+
+==================================================
+2. DEFERRED TICKER SEMANTICS
+==================================================
+
+A DEFERRED ticker:
+
+remains a VN30 constituent
+
+remains visible in all universe/accounting reports
+
+must retain exact blocker(s)
+
+must retain blocker severity
+
+must retain provenance
+
+must retain next-review/reopen trigger
+
+is NOT considered resolved
+
+is NOT considered Level-1 PASS
+
+must be:
+
+INSUFFICIENT / NOT_SCORABLE
+
+according to the approved repository terminology.
+
+Its score must be:
+
+null / unavailable
+
+NEVER:
+
+0
+neutral
+median
+sector average
+estimated placeholder.
+
+==================================================
+3. STRICT QUARANTINE
+==================================================
+
+A DEFERRED ticker MUST NOT:
+
+enter fundamental scoring
+
+receive a fabricated complete score
+
+enter ranking
+
+enter Top10
+
+receive STRONG BUY
+
+receive BUY
+
+receive ACCUMULATE
+
+consume new capital
+
+receive DCA allocation
+
+receive redistributed score weight
+
+receive redistributed portfolio capital merely because it is excluded.
+
+No missing-weight redistribution.
+
+No denominator manipulation that makes deferred tickers appear scored.
+
+==================================================
+4. FULL-UNIVERSE REPORTING
+==================================================
+
+All user-facing/system audit outputs must distinguish:
+
+FULL_UNIVERSE_COUNT
+
+SCORABLE_UNIVERSE_COUNT
+
+DEFERRED_UNIVERSE_COUNT.
+
+Never report:
+
+"Top 10 VN30"
+
+if fewer than all VN30 constituents are scorable without qualification.
+
+Use explicit wording such as:
+
+"Top ranked among currently scorable VN30 constituents"
+
+and disclose:
+
+scorable count
+deferred count
+deferred ticker list.
+
+Do not implement Top10 now.
+
+Only encode the governance invariant.
+
+==================================================
+5. DI15 SEMANTIC AMENDMENT
+==================================================
+
+Current rule effectively means:
+
+"No unresolved Critical/Major data issue anywhere in FULL_UNIVERSE."
+
+Replace it with the Owner-approved quarantined interpretation:
+
+DI15 may PASS when:
+
+1. every FULL_UNIVERSE member is accounted for;
+
+2. every SCORABLE_UNIVERSE member has no unresolved Critical/Major
+   Level-1 data issue relevant to scoring admission;
+
+3. every ticker with an unresolved material Level-1 blocker is placed in
+   DEFERRED_UNIVERSE;
+
+4. every deferred blocker remains explicitly recorded at its true severity;
+
+5. deferred tickers are technically prevented from scoring/ranking/
+   positive-capital states;
+
+6. no unresolved Major is hidden, downgraded, neutral-filled or marked
+   resolved merely because the ticker is deferred;
+
+7. universe certification itself is PASS;
+
+8. all other mandatory DI gates remain satisfied.
+
+Quarantine is an accepted admission disposition.
+
+Quarantine is NOT issue resolution.
+
+==================================================
+6. CRITICAL SEVERITY RULE
+==================================================
+
+Do NOT automatically permit arbitrary Critical issues through quarantine.
+
+Trace current policy for Critical data-integrity failures.
+
+Default fail-closed rule:
+
+A ticker with a Critical issue indicating possible corruption of:
+
+universe identity
+cross-ticker contamination
+canonical data of another ticker
+shared registry
+shared mapping
+shared calculation engine
+shared source contract
+shared production infrastructure
+
+MUST block DI15 globally.
+
+Only ticker-isolated evidence insufficiency may be quarantined.
+
+If existing authority requires a stricter interpretation:
+
+preserve the stricter rule.
+
+Document exact result.
+
+==================================================
+7. SHARED-SYSTEM ISSUE RULE
+==================================================
+
+Policy B applies to ticker-isolated Level-1 evidence blockers.
+
+It MUST NOT quarantine away shared-system failures.
+
+Examples that remain global blockers:
+
+wrong VN30 universe
+
+unknown provider schema drift affecting admitted facts
+
+cross-ticker data leakage
+
+broken sector registry
+
+broken scoring contract
+
+unit corruption
+
+shared mapping corruption
+
+non-deterministic canonical replay
+
+unresolved production database corruption.
+
+Implement an explicit distinction between:
+
+TICKER_ISOLATED_BLOCKER
+
+and
+
+GLOBAL_SYSTEM_BLOCKER.
+
+==================================================
+8. CURRENT RELEASE STATE
+==================================================
+
+Reconstruct state from evidence.
+
+Do not hard-code this solely because it is written here.
+
+Expected current state after reconstruction:
+
+FULL_UNIVERSE = 30
+
+SCORABLE_UNIVERSE candidate = 25
+
+DEFERRED_UNIVERSE = 5
+
+Expected deferred:
+
+VNM
+TCX
+MBB
+VIB
+VIC
+
+But derive this from canonical disposition evidence.
+
+If reconstruction differs:
+
+STOP and report discrepancy.
+
+==================================================
+9. CURRENT DEFERRED BLOCKERS
+==================================================
+
+Preserve exact existing issues.
+
+Do not edit accounting facts.
+
+Do not reopen forensic work.
+
+VNM:
+financing population qualification gap.
+
+TCX:
+FY2022 Két Vàng financing classification/population unresolved.
+
+MBB:
+2026-06-30 regulatory capital source unavailable.
+
+VIB:
+2026-06-30 regulatory capital source unavailable
+plus NPL definition conflict.
+
+VIC:
+reviewed consolidated 6M2026 original unavailable.
+
+These remain real Major issues.
+
+Do NOT change severity to make DI15 pass.
+
+==================================================
+10. REOPEN TRIGGERS
+==================================================
+
+Each deferred ticker must have deterministic reopen trigger.
+
+Examples:
+
+new authoritative issuer filing becomes available
+
+new official regulatory capital disclosure
+
+qualified original/mirror source becomes accessible
+
+issuer publishes definition bridge
+
+new authoritative debt-note evidence.
+
+Do not reopen based merely on:
+
+price movement
+
+market sentiment
+
+desire to increase scorable count
+
+ranking needs.
+
+==================================================
+11. DI14 RELATIONSHIP
+==================================================
+
+Policy B does NOT self-approve DI14.
+
+DI14 remains independently reviewed.
+
+Update DI14 candidate only as required to bind:
+
+Owner-approved Policy B
+new acceptance-contract version
+final universe partition
+exception register
+exact commit/hash
+tests.
+
+Do not fabricate independent signoff.
+
+==================================================
+12. INVESTMENT CONSTITUTION CHANGE CONTROL
+==================================================
+
+Trace whether Policy B requires modification to:
+
+INVESTMENT_POLICY.md
+DECISION_FRAMEWORK.md
+RISK_POLICY.md
+SCORING_MODEL.md
+SYSTEM_PROMPT.md
+
+Make the MINIMUM required governance amendment.
+
+Do not rewrite M1 broadly.
+
+Preserve approved principles:
+
+VN30-only
+no fabricated score
+no missing-weight redistribution
+evidence-first
+LOW confidence cannot receive new capital
+material uncertainty blocks positive capital state.
+
+If M1 wording already supports Policy B without contradiction:
+
+add a narrow clarification/amendment rather than rewriting unrelated rules.
+
+Record Owner approval:
+
+"Policy B — Quarantined Partial-Universe approved by Owner"
+
+with date and change rationale.
+
+==================================================
+13. VERSIONING
+==================================================
+
+Do NOT silently overwrite baseline governance semantics.
+
+Use repository's existing version/change-control convention.
+
+Record:
+
+previous rule
+new rule
+reason
+Owner approval
+effective date
+affected acceptance contract
+backward-compatibility impact.
+
+Do not promote unrelated files.
+
+==================================================
+14. IMPLEMENTATION CONTRACT
+==================================================
+
+Update scoring-readiness / DI acceptance logic as necessary.
+
+The implementation must fail closed.
+
+Conceptually:
+
+if GLOBAL_SYSTEM_BLOCKER exists:
+    DI15 FAIL
+
+for ticker in FULL_UNIVERSE:
+    require exactly one:
+        SCORABLE
+        DEFERRED
+
+if ticker is SCORABLE:
+    unresolved Critical/Major Level1 admission blocker => DI15 FAIL
+
+if ticker is DEFERRED:
+    require exact blocker
+    require severity
+    require provenance
+    require reopen trigger
+    require technical quarantine
+
+if any deferred ticker becomes scoreable/rankable:
+    DI15 FAIL
+
+if universe partition incomplete:
+    DI15 FAIL
+
+Only then may DI15 PASS.
+
+==================================================
+15. NO AUTOMATIC SCORING
+==================================================
+
+Even if DI15 becomes PASS after implementation:
+
+readyForScoring MUST remain false until:
+
+DI14 independently passes
+and all other required admission gates pass.
+
+Do not use DI15 amendment to bypass DI14.
+
+decisionReady remains false.
+
+==================================================
+16. TESTS — PARTITION
+==================================================
+
+Add tests proving:
+
+30 = scorable + deferred
+
+intersection is empty
+
+duplicate state fails
+
+missing state fails
+
+non-VN30 ticker cannot enter partition
+
+universe hash mismatch fails
+
+uncertified universe fails.
+
+==================================================
+17. TESTS — DEFERRED QUARANTINE
+==================================================
+
+Prove deferred ticker:
+
+has null score
+
+cannot enter scoring
+
+cannot enter ranking
+
+cannot enter Top10
+
+cannot receive STRONG BUY
+
+cannot receive BUY
+
+cannot receive ACCUMULATE
+
+cannot receive DCA/new capital
+
+cannot receive neutral fill
+
+cannot receive missing-weight redistribution.
+
+==================================================
+18. TESTS — ISSUE INTEGRITY
+==================================================
+
+Prove:
+
+Major remains Major after quarantine
+
+quarantine != resolved
+
+missing provenance fails
+
+missing blocker fails
+
+missing reopen trigger fails
+
+ticker marked SCORABLE while Major remains => FAIL
+
+deferred ticker without technical exclusion => FAIL.
+
+==================================================
+19. TESTS — GLOBAL FAIL CLOSED
+==================================================
+
+Prove Policy B cannot quarantine:
+
+wrong official universe
+
+cross-ticker contamination
+
+shared registry corruption
+
+unit corruption
+
+provider schema drift affecting admitted data
+
+shared mapping corruption
+
+canonical replay divergence.
+
+Each must cause global DI15 FAIL.
+
+==================================================
+20. TESTS — CURRENT RELEASE
+==================================================
+
+Reconstruct current 30-member release.
+
+Expected candidate partition:
+
+25 SCORABLE
+5 DEFERRED
+
+with:
+
+VNM
+TCX
+MBB
+VIB
+VIC
+
+deferred.
+
+Do not create scores.
+
+Prove all five remain blocked from scoring and capital actions.
+
+==================================================
+21. EVIDENCE
+==================================================
+
+Create:
+
+docs/fundamental-data-engine/evidence/
+2026-10-17-di15-partial-universe-amendment/
+
+At minimum:
+
+README.md
+
+OWNER_POLICY_DECISION.json
+POLICY_AUTHORITY_TRACE.json
+POLICY_CHANGELOG.json
+
+UNIVERSE_PARTITION.json
+DEFERRED_EXCEPTION_REGISTER.json
+GLOBAL_BLOCKER_CLASSIFICATION.json
+
+DI15_CONTRACT_BEFORE.json
+DI15_CONTRACT_AFTER.json
+DI15_ACCEPTANCE_REVIEW.json
+
+DI14_UPDATED_CANDIDATE.json
+
+REGRESSION_RESULTS.json
+PROTECTED_REPLAY_RESULTS.json
+TEST_RESULTS.json
+OPEN_ISSUES.json
+FINAL_REVIEW.md
+ARTIFACT_HASHES.json
+
+==================================================
+22. VALIDATION
+==================================================
+
+Current full-suite baseline:
+
+1,804 PASS / 0 FAIL.
+
+Run:
+
+new Policy-B regressions
+DI acceptance regressions
+aggregate disposition regressions
+all ticker protected replay
+structured certification
+fundamental-data suite
+architecture boundaries
+lint
+typecheck
+DB validation
+full application suite.
+
+No existing accounting fact may change.
+
+No deferred blocker may disappear.
+
+==================================================
+23. EXPECTED DI15 RESULT
+==================================================
+
+Do NOT force PASS.
+
+Evaluate the amended contract.
+
+DI15 may become PASS only if:
+
+Policy B implementation is correct
+
+current universe partition is valid
+
+all 25 admitted/scorable candidates have no unresolved admission-blocking
+Critical/Major issue
+
+all 5 deferred tickers are completely quarantined
+
+no global system blocker exists.
+
+Otherwise DI15 remains FAIL.
+
+==================================================
+24. FINAL OUTPUT
+==================================================
+
+Report separately:
+
+POLICY_B_IMPLEMENTATION:
+PASS / FAIL
+
+FULL_UNIVERSE:
+count
+
+SCORABLE_UNIVERSE:
+count + tickers
+
+DEFERRED_UNIVERSE:
+count + tickers
+
+GLOBAL_SYSTEM_BLOCKERS:
+count + details
+
+DI15:
+PASS / FAIL
+
+DI14:
+PASS / PENDING / FAIL
+
+readyForScoring:
+true / false
+
+decisionReady:
+true / false
+
+==================================================
+STOP
+==================================================
+
+After implementation:
+
+STOP.
+
+Do NOT run M3 scoring.
+
+Do NOT rank VN30.
+
+Do NOT produce Top10.
+
+Do NOT issue Buy/Hold/Sell/DCA.
+
+Wait for:
+
+Review DI15 Partial-Universe Amendment
