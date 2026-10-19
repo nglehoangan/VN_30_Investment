@@ -1,0 +1,8 @@
+// @vitest-environment node
+import {it,expect} from 'vitest';
+import {readFileSync} from 'node:fs';
+import {testDatabase} from '../fixtures/database';
+import {PrismaLevel1Disposition} from '@/infrastructure/repositories/level1-disposition';
+import {snapshotHash} from '@/infrastructure/fundamentals/snapshot-hash';
+import type {Level1DispositionRelease} from '@/domain/fundamentals/level1-disposition';
+it('persists governance independently, refuses mutation/untrusted approval and propagates TCX exception',async()=>{const db=await testDatabase();try{const r=JSON.parse(readFileSync('docs/fundamental-data-engine/evidence/2026-10-19-level1-promotion-partition-closure/RELEASE.json','utf8')) as Level1DispositionRelease;const binding={id:r.id,bodyHash:snapshotHash(r),approvalHash:r.approvalHash};const repo=new PrismaLevel1Disposition(db.client,binding);await repo.append(r);await repo.append(r);expect(await repo.current()).toEqual(r);expect((await repo.context('TCX')).exceptions[0].status).toBe('ACTIVE');expect(await db.client.dataInitializationAcceptance.count()).toBe(0);expect(await db.client.analyticalArtifact.count()).toBe(0);expect(await db.client.fundamentalAdmissionRun.count()).toBe(0);const mbb=r.partition.members.find(m=>m.ticker==='MBB')!;for(const a of ['SCORING','RANKING','TOP10','NEW_CAPITAL','DCA'] as const)await expect(repo.assertAction(mbb.securityId,a)).rejects.toThrow();await expect(new PrismaLevel1Disposition(db.client,{...binding,bodyHash:'f'.repeat(64)}).current()).rejects.toThrow();await expect(db.client.fundamentalDispositionRelease.update({where:{id:r.id},data:{body:'{}'}})).rejects.toThrow();await expect(db.client.fundamentalDispositionRelease.delete({where:{id:r.id}})).rejects.toThrow();}finally{await db.close();}},30000);

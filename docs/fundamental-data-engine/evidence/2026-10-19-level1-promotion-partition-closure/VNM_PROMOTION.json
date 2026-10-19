@@ -1,0 +1,560 @@
+{
+  "ticker": "VNM",
+  "state": "LEVEL1_CLOSED",
+  "approvalReference": "docs/fundamental-data-engine/evidence/2026-10-19-level1-promotion-partition-closure/APPROVAL_AUTHORITY.json",
+  "evidence": {
+    "path": "docs/fundamental-data-engine/evidence/2026-10-19-consolidated-financial-final-revalidation/VNM_REVALIDATION.json",
+    "sha256": "b8b1b9b63524b77675461d4573c71711016b9efd95262f76d196d23337592c70"
+  },
+  "scope": {
+    "ticker": "VNM",
+    "result": "LEVEL1_PROMOTION_CANDIDATE",
+    "completeFINANCIAL_DEBTAnswer": {
+      "FY2024": "YES for complete issuer-reported borrowing population; NO claim of exhaustive comprehensive economic debt",
+      "FY2025": "YES for complete issuer-reported borrowing population; NO claim of exhaustive comprehensive economic debt",
+      "2026-06-30": "YES for complete issuer-reported borrowing population; NO claim of exhaustive comprehensive economic debt"
+    },
+    "contractReason": "Approved Level1 debt group is anyOf COMPREHENSIVE_FINANCIAL_DEBT / REPORTED_BORROWINGS. Reported survey and current portion presentation now verified. Comprehensive residual uncertainties are not promoted to Level1 requirements.",
+    "periods": [
+      {
+        "periodEnd": "2024-12-31",
+        "scope": "CONSOLIDATED",
+        "unit": "VND",
+        "auditReviewStatus": "AUDITED",
+        "source": {
+          "sha256": "a70f448abc8aa61f0b6d25a281a1af4bf0d46d7309083d18556129cc53620450",
+          "paths": [
+            "data/manual-download/VNM/VNM_Baocaotaichinh_2024_Kiemtoan_Hopnhat.pdf",
+            "data/manual-download/VNM/20250228_20250228___vnm___bctc_kiem_toan_2024___hop_nhat_vn.pdf"
+          ],
+          "physicalPages": [
+            9,
+            47,
+            48,
+            50
+          ],
+          "note": "V.15/V.17/V.18"
+        },
+        "components": [
+          {
+            "component": "SHORT_TERM_BANK_BORROWINGS",
+            "rawLabel": "Vay ngắn hạn",
+            "closingBalance": "9115435107250",
+            "included": true,
+            "page": 47,
+            "note": "V.15(a)",
+            "reason": "Issuer closing current caption and closing lender total; current maturities already included."
+          },
+          {
+            "component": "NONCURRENT_BANK_BORROWINGS",
+            "rawLabel": "Vay dài hạn",
+            "closingBalance": "157903902450",
+            "included": true,
+            "page": 48,
+            "note": "V.15(b)",
+            "reason": "Issuer noncurrent closing caption after reclassification; lender closing total."
+          },
+          {
+            "component": "CURRENT_PORTION_OF_LONG_TERM_BORROWINGS",
+            "rawLabel": "Phân loại lại (movement, not closing current balance)",
+            "closingBalance": null,
+            "included": "WITHIN_SHORT_CAPTION",
+            "page": 47,
+            "note": "V.15",
+            "reason": "Owner-approved included/not separately disclosed presentation. No movement substituted for closing amount; no additional addition."
+          },
+          {
+            "component": "BONDS",
+            "rawLabel": null,
+            "closingBalance": null,
+            "included": false,
+            "page": 9,
+            "note": "Balance sheet and Note15",
+            "reason": "No separately recognized bond financing identified in reported caption and lender survey. Not certified as reported zero."
+          },
+          {
+            "component": "FINANCE_LEASES_CURRENT_AND_NONCURRENT",
+            "rawLabel": null,
+            "closingBalance": null,
+            "included": false,
+            "page": 9,
+            "reason": "No issuer-recognized finance lease liability identified in reported liability captions/Note15. Operating lease policy and commitments are different. Not proof of comprehensive economic absence."
+          },
+          {
+            "component": "ACCRUED_BORROWING_INTEREST",
+            "rawLabel": "Chi phí lãi vay",
+            "closingBalance": "54230876167",
+            "included": false,
+            "page": 50,
+            "note": "V.17",
+            "reason": "Accrued expense disclosed separately; outside issuer reported borrowing carrying captions; not newly classified principal financing."
+          },
+          {
+            "component": "OTHER_PAYABLE_RESIDUAL",
+            "rawLabel": "Phải trả khác (detail row)",
+            "closingBalance": "82293267804",
+            "included": false,
+            "page": 50,
+            "note": "V.18",
+            "reason": "No explicit interest-bearing financing terms in this residual disclosure. Preserve UNKNOWN economic classification, not zero and not an identified omitted borrowing."
+          },
+          {
+            "component": "OPERATING_LEASE_COMMITMENTS",
+            "rawLabel": "Các khoản tiền thuê tối thiểu ... hợp đồng thuê hoạt động không được hủy ngang",
+            "closingBalance": "1667391119679",
+            "included": false,
+            "page": 54,
+            "note": "V.24(a)",
+            "reason": "Off-balance-sheet operating lease commitments, not recognized finance lease principal; no automatic capitalization under debt-v2."
+          }
+        ],
+        "reportedBorrowings": "9273339009700",
+        "shortRollforwardOperands": [
+          "8217757172267",
+          "18454373109005",
+          "183157263872",
+          "-17751443377504",
+          "11590939610"
+        ],
+        "longRollforwardOperands": [
+          "238476074100",
+          "93029702629",
+          "-183157263872",
+          "9555389593"
+        ],
+        "shortRollforwardExact": true,
+        "longRollforwardExact": true,
+        "completeReportedClosingPopulationProven": true,
+        "completeComprehensiveFinancialDebtProven": false,
+        "unresolvedComprehensiveComponent": "Interest-bearing character, if any, of residual other payables; no recognized financing item demonstrated omitted. Does not block approved REPORTED_BORROWINGS alternative.",
+        "survey": "Reviewed liability captions, Note15 bank lender tables, accrued expenses, other payables, operating lease policy/commitments; no known explicit financing omitted. Full text search of original retained note pages supplements visual checks.",
+        "currentPortionAddedAgain": false
+      },
+      {
+        "periodEnd": "2025-12-31",
+        "scope": "CONSOLIDATED",
+        "unit": "VND",
+        "auditReviewStatus": "AUDITED",
+        "source": {
+          "sha256": "ee996ffcb87f0699a59c20b102082666f6716fcf9be8ee314ad2de055f79c940",
+          "paths": [
+            "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+            "data/manual-download/VNM/20260227___vnm___bctc_hop_nhat_2025___da_kiem_toan.pdf"
+          ],
+          "physicalPages": [
+            9,
+            47,
+            48,
+            50
+          ],
+          "note": "V.15/V.17/V.18"
+        },
+        "components": [
+          {
+            "component": "SHORT_TERM_BANK_BORROWINGS",
+            "rawLabel": "Vay ngắn hạn",
+            "closingBalance": "9393736731992",
+            "included": true,
+            "page": 47,
+            "note": "V.15(a)",
+            "reason": "Issuer closing current caption and closing lender total; current maturities already included."
+          },
+          {
+            "component": "NONCURRENT_BANK_BORROWINGS",
+            "rawLabel": "Vay dài hạn",
+            "closingBalance": "62907826150",
+            "included": true,
+            "page": 48,
+            "note": "V.15(b)",
+            "reason": "Issuer noncurrent closing caption after reclassification; lender closing total."
+          },
+          {
+            "component": "CURRENT_PORTION_OF_LONG_TERM_BORROWINGS",
+            "rawLabel": "Phân loại lại (movement, not closing current balance)",
+            "closingBalance": null,
+            "included": "WITHIN_SHORT_CAPTION",
+            "page": 47,
+            "note": "V.15",
+            "reason": "Owner-approved included/not separately disclosed presentation. No movement substituted for closing amount; no additional addition."
+          },
+          {
+            "component": "BONDS",
+            "rawLabel": null,
+            "closingBalance": null,
+            "included": false,
+            "page": 9,
+            "note": "Balance sheet and Note15",
+            "reason": "No separately recognized bond financing identified in reported caption and lender survey. Not certified as reported zero."
+          },
+          {
+            "component": "FINANCE_LEASES_CURRENT_AND_NONCURRENT",
+            "rawLabel": null,
+            "closingBalance": null,
+            "included": false,
+            "page": 9,
+            "reason": "No issuer-recognized finance lease liability identified in reported liability captions/Note15. Operating lease policy and commitments are different. Not proof of comprehensive economic absence."
+          },
+          {
+            "component": "ACCRUED_BORROWING_INTEREST",
+            "rawLabel": "Chi phí lãi vay",
+            "closingBalance": "68472984360",
+            "included": false,
+            "page": 50,
+            "note": "V.17",
+            "reason": "Accrued expense disclosed separately; outside issuer reported borrowing carrying captions; not newly classified principal financing."
+          },
+          {
+            "component": "OTHER_PAYABLE_RESIDUAL",
+            "rawLabel": "Phải trả khác (detail row)",
+            "closingBalance": "81170549316",
+            "included": false,
+            "page": 50,
+            "note": "V.18",
+            "reason": "No explicit interest-bearing financing terms in this residual disclosure. Preserve UNKNOWN economic classification, not zero and not an identified omitted borrowing."
+          },
+          {
+            "component": "OPERATING_LEASE_COMMITMENTS",
+            "rawLabel": "Các khoản tiền thuê tối thiểu ... hợp đồng thuê hoạt động không được hủy ngang",
+            "closingBalance": "2498466976480",
+            "included": false,
+            "page": 54,
+            "note": "V.24(a)",
+            "reason": "Off-balance-sheet operating lease commitments, not recognized finance lease principal; no automatic capitalization under debt-v2."
+          }
+        ],
+        "reportedBorrowings": "9456644558142",
+        "shortRollforwardOperands": [
+          "9115435107250",
+          "26015644844895",
+          "20750493750",
+          "-25761149313776",
+          "3055599873"
+        ],
+        "longRollforwardOperands": [
+          "157903902450",
+          "-20750493750",
+          "-79137000000",
+          "4891417450"
+        ],
+        "shortRollforwardExact": true,
+        "longRollforwardExact": true,
+        "completeReportedClosingPopulationProven": true,
+        "completeComprehensiveFinancialDebtProven": false,
+        "unresolvedComprehensiveComponent": "Interest-bearing character, if any, of residual other payables; no recognized financing item demonstrated omitted. Does not block approved REPORTED_BORROWINGS alternative.",
+        "survey": "Reviewed liability captions, Note15 bank lender tables, accrued expenses, other payables, operating lease policy/commitments; no known explicit financing omitted. Full text search of original retained note pages supplements visual checks.",
+        "currentPortionAddedAgain": false
+      },
+      {
+        "periodEnd": "2026-06-30",
+        "scope": "CONSOLIDATED",
+        "unit": "VND",
+        "auditReviewStatus": "REVIEWED",
+        "source": {
+          "sha256": "a6155aa757b320b893a78093b0454473f4a581aead225af4eb4ef1fbd6628561",
+          "paths": [
+            "data/manual-download/VNM/20260730___vnm___bctc_da_soat_xet_q2_2026___hop_nhat.pdf",
+            "data/manual-download/VNM/VNM_Baocaotaichinh_Q2_2026_Soatxet_Hopnhat.pdf"
+          ],
+          "physicalPages": [
+            10,
+            52,
+            53,
+            55
+          ],
+          "note": "V.15/V.17/V.18"
+        },
+        "components": [
+          {
+            "component": "SHORT_TERM_BANK_BORROWINGS",
+            "rawLabel": "Vay ngắn hạn",
+            "closingBalance": "8323441876837",
+            "included": true,
+            "page": 52,
+            "note": "V.15(a)",
+            "reason": "Issuer closing current caption and closing lender total; current maturities already included."
+          },
+          {
+            "component": "NONCURRENT_BANK_BORROWINGS",
+            "rawLabel": "Vay dài hạn",
+            "closingBalance": "131430000000",
+            "included": true,
+            "page": 53,
+            "note": "V.15(b)",
+            "reason": "Issuer noncurrent closing caption after reclassification; lender closing total."
+          },
+          {
+            "component": "CURRENT_PORTION_OF_LONG_TERM_BORROWINGS",
+            "rawLabel": "Phân loại lại (movement, not closing current balance)",
+            "closingBalance": null,
+            "included": "WITHIN_SHORT_CAPTION",
+            "page": 52,
+            "note": "V.15",
+            "reason": "Owner-approved included/not separately disclosed presentation. No movement substituted for closing amount; no additional addition."
+          },
+          {
+            "component": "BONDS",
+            "rawLabel": null,
+            "closingBalance": null,
+            "included": false,
+            "page": 10,
+            "note": "Balance sheet and Note15",
+            "reason": "No separately recognized bond financing identified in reported caption and lender survey. Not certified as reported zero."
+          },
+          {
+            "component": "FINANCE_LEASES_CURRENT_AND_NONCURRENT",
+            "rawLabel": null,
+            "closingBalance": null,
+            "included": false,
+            "page": 10,
+            "reason": "No issuer-recognized finance lease liability identified in reported liability captions/Note15. Operating lease policy and commitments are different. Not proof of comprehensive economic absence."
+          },
+          {
+            "component": "ACCRUED_BORROWING_INTEREST",
+            "rawLabel": "Chi phí lãi vay",
+            "closingBalance": "107653359057",
+            "included": false,
+            "page": 55,
+            "note": "V.17",
+            "reason": "Accrued expense disclosed separately; outside issuer reported borrowing carrying captions; not newly classified principal financing."
+          },
+          {
+            "component": "OTHER_PAYABLE_RESIDUAL",
+            "rawLabel": "Phải trả khác (detail row)",
+            "closingBalance": "76949919753",
+            "included": false,
+            "page": 55,
+            "note": "V.18",
+            "reason": "No explicit interest-bearing financing terms in this residual disclosure. Preserve UNKNOWN economic classification, not zero and not an identified omitted borrowing."
+          }
+        ],
+        "reportedBorrowings": "8454871876837",
+        "shortRollforwardOperands": [
+          "9393736731992",
+          "10362570293768",
+          "10401978750",
+          "-11458539477010",
+          "15272349337"
+        ],
+        "longRollforwardOperands": [
+          "62907826150",
+          "131325000000",
+          "-10401978750",
+          "-52007374250",
+          "-393473150"
+        ],
+        "shortRollforwardExact": true,
+        "longRollforwardExact": true,
+        "completeReportedClosingPopulationProven": true,
+        "completeComprehensiveFinancialDebtProven": false,
+        "unresolvedComprehensiveComponent": "Interest-bearing character, if any, of residual other payables; no recognized financing item demonstrated omitted. Does not block approved REPORTED_BORROWINGS alternative.",
+        "survey": "Reviewed liability captions, Note15 bank lender tables, accrued expenses, other payables, operating lease policy/commitments; no known explicit financing omitted. Full text search of original retained note pages supplements visual checks.",
+        "currentPortionAddedAgain": false
+      }
+    ],
+    "currentPortionAuthorization": {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-19-included-current-portion/OWNER_AUTHORIZATION.json",
+      "sha256": "42c23d95bfbbcd463db2ca8731b13c010179a9385e22ede71e0822f2e622098b"
+    },
+    "noSeparateClosingCurrentPortionRequired": true,
+    "canonicalFactsWritten": false,
+    "remainingMandatoryBlockers": [],
+    "lenderClosingTables": [
+      {
+        "periodEnd": "2024-12-31",
+        "short": [
+          {
+            "lender": "Vietcombank HCM",
+            "closingVND": "7900182004250"
+          },
+          {
+            "lender": "Vietinbank HCM",
+            "closingVND": "800000000000"
+          },
+          {
+            "lender": "HSBC USA",
+            "closingVND": "45864045000"
+          },
+          {
+            "lender": "HSBC Vietnam HCM",
+            "closingVND": "306533598000"
+          },
+          {
+            "lender": "LaoViet XiengKhouang",
+            "closingVND": "39859560000"
+          },
+          {
+            "lender": "Vietinbank Laos",
+            "closingVND": "22995900000"
+          }
+        ],
+        "long": [
+          {
+            "lender": "Sacombank Laos LaneXang",
+            "closingVND": "127434334950"
+          },
+          {
+            "lender": "HSBC USA",
+            "closingVND": "30469567500"
+          }
+        ],
+        "shortSumVND": "9115435107250",
+        "longSumVND": "157903902450",
+        "matchesNote15Totals": true,
+        "source": {
+          "sha256": "a70f448abc8aa61f0b6d25a281a1af4bf0d46d7309083d18556129cc53620450",
+          "paths": [
+            "data/manual-download/VNM/VNM_Baocaotaichinh_2024_Kiemtoan_Hopnhat.pdf",
+            "data/manual-download/VNM/20250228_20250228___vnm___bctc_kiem_toan_2024___hop_nhat_vn.pdf"
+          ],
+          "physicalPages": [
+            9,
+            47,
+            48,
+            50
+          ],
+          "note": "V.15/V.17/V.18"
+        }
+      },
+      {
+        "periodEnd": "2025-12-31",
+        "short": [
+          {
+            "lender": "Vietcombank",
+            "closingVND": "4763790522906"
+          },
+          {
+            "lender": "Vietinbank",
+            "closingVND": "1297991496365"
+          },
+          {
+            "lender": "HSBC USA",
+            "closingVND": "39387431511"
+          },
+          {
+            "lender": "HSBC Vietnam HCM",
+            "closingVND": "292567281210"
+          },
+          {
+            "lender": "Agribank Saigon",
+            "closingVND": "3000000000000"
+          }
+        ],
+        "long": [
+          {
+            "lender": "Sacombank Laos LaneXang",
+            "closingVND": "52422968650"
+          },
+          {
+            "lender": "HSBC USA",
+            "closingVND": "10484857500"
+          }
+        ],
+        "shortSumVND": "9393736731992",
+        "longSumVND": "62907826150",
+        "matchesNote15Totals": true,
+        "source": {
+          "sha256": "ee996ffcb87f0699a59c20b102082666f6716fcf9be8ee314ad2de055f79c940",
+          "paths": [
+            "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+            "data/manual-download/VNM/20260227___vnm___bctc_hop_nhat_2025___da_kiem_toan.pdf"
+          ],
+          "physicalPages": [
+            9,
+            47,
+            48,
+            50
+          ],
+          "note": "V.15/V.17/V.18"
+        }
+      },
+      {
+        "periodEnd": "2026-06-30",
+        "short": [
+          {
+            "lender": "Vietcombank USD",
+            "closingVND": "3572267400000"
+          },
+          {
+            "lender": "Vietinbank VND",
+            "closingVND": "2270000000000"
+          },
+          {
+            "lender": "Vietinbank USD",
+            "closingVND": "933153000000"
+          },
+          {
+            "lender": "HSBC USA",
+            "closingVND": "20897370000"
+          },
+          {
+            "lender": "HSBC Vietnam",
+            "closingVND": "231656471504"
+          },
+          {
+            "lender": "Vietinbank Laos",
+            "closingVND": "10953575973"
+          },
+          {
+            "lender": "Lao Foreign Trade Bank",
+            "closingVND": "14514059360"
+          },
+          {
+            "lender": "Agribank",
+            "closingVND": "1270000000000"
+          }
+        ],
+        "long": [
+          {
+            "lender": "HSBC USA",
+            "closingVND": "131430000000"
+          }
+        ],
+        "shortSumVND": "8323441876837",
+        "longSumVND": "131430000000",
+        "matchesNote15Totals": true,
+        "source": {
+          "sha256": "a6155aa757b320b893a78093b0454473f4a581aead225af4eb4ef1fbd6628561",
+          "paths": [
+            "data/manual-download/VNM/20260730___vnm___bctc_da_soat_xet_q2_2026___hop_nhat.pdf",
+            "data/manual-download/VNM/VNM_Baocaotaichinh_Q2_2026_Soatxet_Hopnhat.pdf"
+          ],
+          "physicalPages": [
+            10,
+            52,
+            53,
+            55
+          ],
+          "note": "V.15/V.17/V.18"
+        }
+      }
+    ],
+    "visualReviewPages": {
+      "2024-12-31": [
+        9,
+        32,
+        47,
+        48,
+        50,
+        54,
+        55
+      ],
+      "2025-12-31": [
+        9,
+        32,
+        47,
+        48,
+        50,
+        54,
+        55
+      ],
+      "2026-06-30": [
+        10,
+        34,
+        52,
+        53,
+        55,
+        61
+      ]
+    }
+  }
+}

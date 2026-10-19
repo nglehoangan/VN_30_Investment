@@ -1,0 +1,85 @@
+{
+  "ticker": "VIB",
+  "state": "LEVEL1_CLOSED",
+  "approvalReference": "docs/fundamental-data-engine/evidence/2026-10-19-level1-promotion-partition-closure/APPROVAL_AUTHORITY.json",
+  "evidence": {
+    "path": "docs/fundamental-data-engine/evidence/2026-10-19-consolidated-financial-final-revalidation/VIB_REVALIDATION.json",
+    "sha256": "7253ffb50b320afd35e034eaccee5944b2d21a2cfcefb2fadab6a83dfb8e8a0e"
+  },
+  "scope": {
+    "ticker": "VIB",
+    "level1Result": "LEVEL1_PROMOTION_CANDIDATE",
+    "CAR": {
+      "result": "RESOLVED",
+      "metric": "BANK_REPORTED_CAR",
+      "value": "0.118",
+      "display": "11.8%",
+      "periodEnd": "2026-06-30",
+      "scope": "CONSOLIDATED",
+      "framework": "Circular14/2025/TT-NHNN",
+      "source": {
+        "path": "docs/fundamental-data-engine/evidence/2026-10-19-consolidated-financial-final-revalidation/sources/VIB_CAR_20260630.pdf",
+        "sha256": "a7001fa07e8c13fc3f701bb3475a8ff095faabe33d22c7c8c9ff37e46389ffd8",
+        "url": "https://www.vib.com.vn/wps/wcm/connect/3f9bd38a-bf26-4345-a155-e78a1bac0851/CBTT+30.06.2026_VN.pdf?MOD=AJPERES&CVID=q31KMGn",
+        "retrievedAt": "2026-10-19T10:27:07.459852+00:00",
+        "physicalPages": 20,
+        "reviewedPages": [
+          1,
+          4,
+          5
+        ],
+        "status": "ISSUER_REGULATORY_DISCLOSURE; not a BCTC audit opinion",
+        "scopeEvidence": "p4 defines VIB+VIB AMC consolidated scope; p5 distinguishes consolidated/standalone columns",
+        "standaloneCAR": "0.116",
+        "tier1Consolidated": "0.100",
+        "CET1Consolidated": "0.100",
+        "notInFrozenCombinedDataset": true,
+        "additionRole": "Independent review-only source; no production/data changes"
+      }
+    },
+    "NPL": {
+      "result": "PARTIALLY_RESOLVED",
+      "mandatoryLevel1": false,
+      "contractCategory": "SUPPORTING",
+      "source": {
+        "sha256": "77c0e4cf7c4f5d75899e68f84aa307ad56c817109a5da8a79d7afd1afd1dba6c",
+        "paths": [
+          "data/manual-download/VIB/VIB_Baocaotaichinh_6T_2026_Soatxet_Hopnhat.pdf"
+        ],
+        "physicalPages": [
+          63
+        ],
+        "note": "44.1"
+      },
+      "unit": "MILLION_VND",
+      "group3": "2726693",
+      "group4": "3148157",
+      "group5": "5742057",
+      "numeratorGroups345": "11616907",
+      "grossCustomerLoans": "397083447",
+      "purchasedDebt": "3533",
+      "investmentSecuritiesInTable": "38773550",
+      "interbankExposureInTable": "117459501",
+      "classifiedCreditRiskExposure": "553320031",
+      "offBalanceSheetIncludedInThisDenominator": "NOT_DEMONSTRATED; do not invent/add commitments",
+      "customerLoanNPLPercent": "2.925558113229534848880265714",
+      "broadCreditExposureCandidatePercent": "2.099491496630816895186648321",
+      "reportedHeadlinePercent": "2.10",
+      "issuerExplicitFormulaProven": false,
+      "reasonForDifference": "Different denominator populations can explain the arithmetic; the report places headline next to classified credit-risk asset table but does not explicitly define the headline numerator/denominator formula. Arithmetic fit is not definition authority.",
+      "exactNumeratorAndDenominator": "Groups345/gross customer loans is a fully specified calculated concept. Groups345/classified credit-risk exposure is an analytical hypothesis adopted by owner; not issuer formula proof.",
+      "tableExclusions": [
+        "Equities, SBV bills, government bonds and listed corporate/credit-institution bonds excluded from securities population",
+        "Demand interbank deposits excluded from interbank population"
+      ],
+      "balanceSheetTotalAssetsUsed": false,
+      "ownerDecision": {
+        "path": "docs/fundamental-data-engine/evidence/2026-10-19-vib-npl-user-decision/VIB_NPL_CLASSIFICATION_DECISION.json",
+        "sha256": "da6df6790c90d367891d17925980002061a9a62091d0992e2e882df69d0aafd5"
+      },
+      "historicalSeriesSpliced": false,
+      "remainingSupportingUncertainty": "Explicit issuer/regulatory definition that identifies numerator and denominator of reported2.10%."
+    },
+    "remainingMandatoryBlockers": []
+  }
+}

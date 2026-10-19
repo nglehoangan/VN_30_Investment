@@ -1,0 +1,72 @@
+{
+  "ticker": "MBB",
+  "state": "DEFERRED",
+  "status": "INSUFFICIENT",
+  "scorable": false,
+  "score": null,
+  "evidence": {
+    "ticker": "MBB",
+    "periodEnd": "2026-06-30",
+    "result": "STILL_BLOCKED",
+    "contract": "capital_strength anyOf BANK_REPORTED_CAR / BANK_REPORTED_CET1; not CAR+CET1",
+    "sourceSearch": {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-19-consolidated-financial-final-revalidation/MBB_CAPITAL_SEARCH.json",
+      "sha256": "6a53350837e0d7f8783a7d90d09ee7217ad849f940196bd67a6d5058866f3b82"
+    },
+    "candidates": [
+      {
+        "metric": "CAR",
+        "ratio": "0.1073",
+        "display": "10.73%",
+        "asOf": "2026-03-31",
+        "scope": "CONSOLIDATED",
+        "source": {
+          "path": "data/manual-download/MBB/20260806___mbb____part_1.pdf",
+          "sha256": "38b198309ad855f21128ccdf304278223d9f390e6688995ed31194060f394578",
+          "pages": [
+            62,
+            101
+          ]
+        },
+        "classification": "PERIOD_DIFFERENCE",
+        "reason": "Table13 and note explicitly Data as of March31,2026; June column does not supersede footnote."
+      },
+      {
+        "metric": "CAR",
+        "ratio": "0.1085",
+        "asOf": "2026-03-31",
+        "scope": "STANDALONE",
+        "source": {
+          "path": "data/manual-download/MBB/20260806___mbb____part_1.pdf",
+          "page": 102
+        },
+        "classification": "PERIOD_DIFFERENCE",
+        "alsoScopeDifference": true
+      },
+      {
+        "metric": "CAR",
+        "display": "10.7%",
+        "asOf": "2026-06-30 claimed in broker reports",
+        "scope": "UNCONFIRMED",
+        "source": "Prior SSI/TPS broker references retained in followup",
+        "classification": "UNKNOWN",
+        "qualifies": false
+      },
+      {
+        "metric": "CAR",
+        "asOf": "2025-12-31",
+        "scope": "CONSOLIDATED",
+        "classification": "PERIOD_DIFFERENCE",
+        "qualifies": false
+      }
+    ],
+    "authoritativeMandatoryJuneEvidenceFound": false,
+    "exactMissingInformation": "Issuer/regulatory consolidated CAR OR qualifying CET1 explicitly as of 2026-06-30, with framework, scope and source/page. Neither 2026-03-31 nor 2025-12-31 nor unscoped broker 10.7% satisfies this group.",
+    "ownerFollowup": {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-19-mbb-car-publication-followup/MBB_CAR_FOLLOWUP.json",
+      "sha256": "0e599a3bd3b81115d329dd89f0a2912fa51ff2e67cbfa0b0bfa505689464a9eb"
+    },
+    "followupWindow": "2026-11-01 through2026-12-31; owner monitoring preference, not assertion of statutory filing deadline",
+    "nonPublicationClaim": "Not found in reviewed corpus; global nonpublication not independently established."
+  }
+}

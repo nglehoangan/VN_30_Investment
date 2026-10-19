@@ -415,3 +415,14 @@ model FundamentalAdmissionRun {
   createdAt String @map("created_at")
   @@map("fundamental_admission_run")
 }
+
+// Governance-only releases: accounting admission runs remain immutable and separate.
+model FundamentalDispositionRelease {
+  id String @id
+  previousRelease String @map("previous_release")
+  approvedAt String @map("approved_at")
+  approvalHash String @map("approval_hash")
+  body String
+  bodyHash String @map("body_hash")
+  @@map("fundamental_disposition_release")
+}

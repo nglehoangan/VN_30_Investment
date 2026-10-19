@@ -1,0 +1,86 @@
+{
+  "LEVEL1_PROMOTION_CLOSURE": "PASS",
+  "fullSuiteClean": false,
+  "newAccountingRegressions": 0,
+  "remainingKnownBaselineTestFailures": 18,
+  "checks": [
+    {
+      "check": "promotion_policy_quarantine_structured_certification_and_admission",
+      "status": "PASS",
+      "files": 7,
+      "tests": 156,
+      "log": "validation-logs/promotion-policy-certification.log"
+    },
+    {
+      "check": "additive_migrations_and_registry",
+      "status": "PASS",
+      "files": 6,
+      "tests": 15,
+      "log": "validation-logs/additive-migration-retest.log"
+    },
+    {
+      "check": "architecture_and_initialization_boundaries",
+      "status": "PASS",
+      "files": 8,
+      "tests": 98,
+      "log": "validation-logs/architecture.log"
+    },
+    {
+      "check": "lint",
+      "status": "PASS",
+      "log": "validation-logs/lint.log"
+    },
+    {
+      "check": "typecheck",
+      "status": "PASS",
+      "log": "validation-logs/typecheck.log"
+    },
+    {
+      "check": "database_schema_validation",
+      "status": "PASS",
+      "log": "validation-logs/db-validation.log"
+    },
+    {
+      "check": "production_build",
+      "status": "PASS",
+      "log": "validation-logs/production-build.log"
+    },
+    {
+      "check": "browser_e2e",
+      "status": "PASS",
+      "tests": 12,
+      "log": "validation-logs/browser-e2e.log"
+    },
+    {
+      "check": "all30_protected_accounting_replay",
+      "status": "PASS",
+      "artifact": "PROTECTED_ACCOUNTING_REPLAY.json"
+    },
+    {
+      "check": "production_pinned_context_and_exception_guards",
+      "status": "PASS",
+      "artifact": "PRODUCTION_CONTEXT_REPLAY.json"
+    },
+    {
+      "check": "full_application_suite_initial",
+      "status": "FAIL",
+      "files": 130,
+      "tests": 1950,
+      "passed": 1926,
+      "failed": 24,
+      "log": "validation-logs/full-application-suite.log",
+      "analysis": "6 new additive-table expectations fixed and15 tests retested PASS;18 other failures reproduced on startingHEAD. No clean full-suite result claimed."
+    },
+    {
+      "check": "startingHEAD_historical_failure_reproduction",
+      "status": "CONFIRMED_PRE_EXISTING",
+      "tests": 335,
+      "passed": 317,
+      "failed": 18,
+      "log": "validation-logs/baseline-historical-source-regressions.log"
+    }
+  ],
+  "productionScoringExecuted": false,
+  "marketDataRefreshed": false,
+  "limits": "Baseline failures are disclosed, not skipped or rewritten. No market/DI blocker waived."
+}
