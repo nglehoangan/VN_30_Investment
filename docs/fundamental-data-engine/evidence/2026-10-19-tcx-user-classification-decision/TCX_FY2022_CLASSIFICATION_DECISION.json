@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "tcx-user-classification-decision-v1",
+  "ticker": "TCX",
+  "periodEnd": "2022-12-31",
+  "scope": "STANDALONE",
+  "unit": "VND",
+  "decisionDate": "2026-10-19",
+  "blocker": "FY2022_KET_VANG_FINANCIAL_DEBT_CLASSIFICATION",
+  "status": "RESOLVED_BY_USER_DECISION",
+  "decisionAuthority": "USER_ACCOUNTING_JUDGMENT",
+  "userInstruction": "Do là khoảng được tạo từ năm 2021 nên phần đó được xác nhận từ ket vàng nó cũng đã dc note trong 2022. không cần chứng minh nữa",
+  "decision": "Include the full FY2022 closing Két Vàng payable in analytical FINANCIAL_DEBT; waive further contractual/population proof for this specific blocker.",
+  "evidence": [
+    {
+      "path": "data/manual-extracted/tcx-ket-vang-history-v1/FY2021/checked-ket-vang.json",
+      "role": "Checked FY2021 note 17 origin and exact opening FY2022 bridge"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-16-tcx-targeted-fix/TCX_2022_KET_VANG_EVIDENCE.json",
+      "role": "FY2022 note 18 identifies the Két Vàng managed-investor payable"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-16-tcx-targeted-fix/TCX_2022_DEBT_RECONCILIATION.json",
+      "sha256": "51fb1c9ed3d7e1d36ebe65e0cf5ed398ae95a2e2b5f60111f01d8aae7966d5e3",
+      "role": "Historical reconciliation and distinct bank/bond populations"
+    }
+  ],
+  "reconciliation": {
+    "bankShortBorrowings": "6871600000000",
+    "longBondCarryingAmount": "1708634544957",
+    "knownFinancingSubtotal": "8580234544957",
+    "ketVangQualifiedAddition": "5284485167173",
+    "analyticalFinancialDebt": "13864719712130",
+    "measurement": "ISSUER_CLOSING_CARRYING_AMOUNT",
+    "formula": "bankShortBorrowings + longBondCarryingAmount + ketVangQualifiedAddition",
+    "noDoubleCounting": {
+      "ketVangOutsideBankBorrowingRow": true,
+      "ketVangOutsideBondRow": true,
+      "ketVangAddedExactlyOnce": true,
+      "transactionPayablesTotalAdded": false,
+      "openingBalanceAdded": false,
+      "netBalanceMovementAdded": false
+    }
+  },
+  "supersedesBlockerAssessments": [
+    "2026-10-16-tcx-targeted-fix",
+    "2026-10-18-consolidated-json-gap-review",
+    "2026-10-19-tcx-user-links-review"
+  ],
+  "limits": {
+    "classificationBasis": "User-approved analytical accounting judgment supported by notes; not a newly verified legal contract fact.",
+    "historicalEvidenceRewritten": false,
+    "canonicalDatabaseUpdated": false,
+    "scoringOrRankingUpdated": false,
+    "otherTickerOrPeriodAuthorization": false
+  }
+}

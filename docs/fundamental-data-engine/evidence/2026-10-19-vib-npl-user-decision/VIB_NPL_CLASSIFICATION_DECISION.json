@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "vib-npl-user-decision-v1",
+  "ticker": "VIB",
+  "recordedOn": "2026-10-19",
+  "blocker": "VIB:NPL_HEADLINE_VS_GROUPS",
+  "status": "RESOLVED_BY_USER_DECISION",
+  "authority": "USER_ACCOUNTING_JUDGMENT",
+  "userInstruction": "Thông tin công bố được sử dụng chia cho tổng cộng tài sản, sử dụng số liệu đó làm cơ sở",
+  "decision": "Use published 2.10% at 2026-06-30 as the analytical basis, with denominator equal to the total credit-risk assets in note 44.1, not balance-sheet total assets.",
+  "selectedPeriod": "2026-06-30",
+  "periods": [
+    {
+      "date": "2026-06-30",
+      "scope": "CONSOLIDATED",
+      "reportedPercent": "2.10",
+      "selectedRatio": "0.021",
+      "numerator": {
+        "value": "11616907",
+        "unit": "MILLION_VND",
+        "definition": "Sum of groups 3, 4 and 5 in the note 44.1 table"
+      },
+      "denominator": {
+        "value": "553320031",
+        "unit": "MILLION_VND",
+        "definition": "Tổng cộng: credit-risk assets covered by note 44.1 table",
+        "components": [
+          "customer loans",
+          "purchased debt",
+          "investment securities subject to table footnote exclusions",
+          "deposits and loans to other credit institutions subject to table footnote exclusions"
+        ],
+        "isBalanceSheetTotalAssets": false
+      },
+      "customerLoanNplReferencePercent": "2.925558113229534848880265714",
+      "method": "REPORTED_RATIO_WITH_USER_APPROVED_DENOMINATOR_INTERPRETATION"
+    },
+    {
+      "date": "2025-12-31",
+      "scope": "CONSOLIDATED",
+      "reportedPercent": "2.16",
+      "selectedRatio": "0.0216",
+      "numerator": {
+        "value": "11334685",
+        "unit": "MILLION_VND",
+        "definition": "Sum of groups 3, 4 and 5 in the note 44.1 table"
+      },
+      "denominator": {
+        "value": "525394779",
+        "unit": "MILLION_VND",
+        "definition": "Tổng cộng: credit-risk assets covered by note 44.1 table",
+        "components": [
+          "customer loans",
+          "purchased debt",
+          "investment securities subject to table footnote exclusions",
+          "deposits and loans to other credit institutions subject to table footnote exclusions"
+        ],
+        "isBalanceSheetTotalAssets": false
+      },
+      "customerLoanNplReferencePercent": "2.967412408557175560211719803",
+      "method": "REPORTED_RATIO_WITH_USER_APPROVED_DENOMINATOR_INTERPRETATION"
+    }
+  ],
+  "evidence": {
+    "path": "docs/fundamental-data-engine/evidence/2026-10-19-vib-npl-recheck/VIB_NPL_RECHECK.json",
+    "sha256": "fc61ddfdaae4695e169b82a9e88fa6a275072646cf93de570fbf820bb70e0eb2",
+    "sourcePdf": {
+      "path": "data/manual-download/VIB/2026-10-19/VIB_2026_6M_Reviewed_Consolidated.pdf",
+      "url": "https://cdn.24hmoney.vn/upload/file/2026-3/2026-08-07/no-name-1786041814.pdf",
+      "sha256": "35544e18432c66711b6cb1ac20d99a280ca2347418014b6b7060bd4d720494e3",
+      "bytes": 2973501,
+      "physicalPages": 75,
+      "retrievedOn": "2026-10-19",
+      "matchesHistoricalSourceHash": true,
+      "scope": "CONSOLIDATED",
+      "periodEnd": "2026-06-30",
+      "reviewFirm": "EY Vietnam",
+      "reviewReportDate": "2026-08-04",
+      "reviewConclusion": "UNMODIFIED_REVIEW_CONCLUSION",
+      "reviewReportPhysicalPages": [
+        6,
+        7
+      ]
+    },
+    "physicalPage": 63,
+    "printedPage": 61,
+    "note": "44.1"
+  },
+  "qualification": "The ratio is issuer-reported; its broader denominator interpretation is user-approved and reconciles both dates arithmetically, not an independently verified explicit issuer formula.",
+  "comparability": "Keep the customer-loan-only ratio as a separate concept; do not silently merge historical customer-loan NPL series or apply the broader denominator to other banks.",
+  "supersedes": "Prior unresolved VIB:NPL_HEADLINE_VS_GROUPS assessment only",
+  "relatedCapitalReview": "docs/fundamental-data-engine/evidence/2026-10-19-vib-capital-source-review/VIB_CAPITAL_SOURCE_REVIEW.json",
+  "remainingKnownVibBlockersInReviewedRegister": [],
+  "canonicalDatabaseUpdated": false,
+  "scoringOrRankingUpdated": false,
+  "historicalSealedEvidenceRewritten": false
+}

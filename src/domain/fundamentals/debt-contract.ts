@@ -1,4 +1,5 @@
 import contract from './debt-contract-v2.json' with {type:'json'};
+import currentPortionPolicy from './current-portion-presentation-v1.json' with {type:'json'};
 import requirementsV1 from './manual-fundamental-evidence-requirements-v1.json' with {type:'json'};
 import requirementsV2 from './manual-fundamental-evidence-requirements-v2.json' with {type:'json'};
 import {decimal} from '@/domain/portfolio/values';
@@ -6,6 +7,7 @@ import {deepFreeze} from '@/domain/portfolio/transaction';
 import {instant,dateOnly} from '@/shared/time';
 import {requireFundamental} from './validation';
 export const DEBT_CONTRACT=deepFreeze(contract);
+export const CURRENT_PORTION_PRESENTATION_POLICY=deepFreeze(currentPortionPolicy);
 export const DEBT_METRICS=['REPORTED_BORROWINGS','COMPREHENSIVE_FINANCIAL_DEBT'] as const;
 export type DebtMetric=typeof DEBT_METRICS[number];
 export type DebtMeasurement='ISSUER_REPORTED_CARRYING_AMOUNT'|'ISSUER_VERIFIED_PRINCIPAL';
@@ -15,7 +17,16 @@ export function debtRequirementsAt(at:string,knownAt=at){return debtContractActi
 export interface OpaqueLiability {readonly id:string;readonly caption:string;readonly amount:string|null;readonly interestBearing:'UNKNOWN';readonly evidenceReference:string}
 export interface DebtUncertainty {readonly components:readonly OpaqueLiability[];readonly unclassifiedLiabilityAmount:string|null;readonly unclassifiedLiabilityRatioToBorrowings:{readonly numerator:string;readonly denominator:string}|null;readonly materialityAssessment:'UNASSESSED'|'MATERIAL'|'NON_MATERIAL_VERIFIED';readonly materialityEvidenceReference:string|null}
 export interface DebtMetadata {readonly contractVersion:string;readonly ticker:string;readonly periodEnd:string;readonly scope:'CONSOLIDATED';readonly unit:'CURRENCY';readonly currency:'VND';readonly measurementBasis:DebtMeasurement;readonly leasePolicyVersion:string;readonly reportedPopulationStatus:'REPORTED_COMPLETE'|'REPORTED_PLUS_IDENTIFIED_ADDITIONS'|null;readonly comprehensivePopulationStatus:'COMPREHENSIVE_VERIFIED'|'COMPREHENSIVE_UNVERIFIED';readonly knownFinancingOmission:false;readonly sourceHashes:readonly string[];readonly evidenceReference:string;readonly evidenceHash:string;readonly reviewedAt:string;readonly uncertainty:DebtUncertainty;readonly exhaustiveEvidenceReference:string|null;readonly bodyHash:string}
-export interface DebtPopulationReceipt {readonly id:string;readonly ticker:string;readonly sector:string;readonly periodEnd:string;readonly shortCanonicalId:string;readonly longCanonicalId:string;readonly shortValue:string;readonly longValue:string;readonly currentPortion:string;readonly shortIncludesCurrentPortion:boolean;readonly longIncludesCurrentPortion:boolean;readonly knownFinancingItems:readonly {readonly id:string;readonly amount:string|null;readonly applicable:boolean;readonly verified:boolean;readonly alreadyIncludedIn:'SHORT'|'LONG'|null;readonly kind:'BOND'|'FINANCE_LEASE'|'OTHER_FINANCING';readonly inclusionEvidenceVerified:boolean;readonly evidenceReference:string}[];readonly reportedSurveyVerified:boolean;readonly currentPortionVerified:boolean;readonly metadata:DebtMetadata;readonly bodyHash:string}
+export interface IncludedCurrentPortionEvidence {
+ readonly version:'current-portion-presentation-v1';readonly status:'INCLUDED_IN_SHORT_NOT_SEPARATELY_DISCLOSED';
+ readonly ticker:string;readonly periodEnd:string;readonly scope:'CONSOLIDATED';readonly currency:'VND';readonly unit:'CURRENCY';
+ readonly shortCanonicalId:string;readonly longCanonicalId:string;readonly shortValue:string;readonly longValue:string;
+ readonly shortPresentationVerified:true;readonly noncurrentLongPresentationVerified:true;
+ readonly sourcePath:string;readonly sourceHash:string;readonly shortLocator:string;readonly longLocator:string;
+ readonly inclusionLocator:string;readonly exclusionLocator:string;
+ readonly evidenceReference:string;readonly evidenceHash:string;readonly reviewedAt:string;readonly bodyHash:string;
+}
+export interface DebtPopulationReceipt {readonly id:string;readonly ticker:string;readonly sector:string;readonly periodEnd:string;readonly shortCanonicalId:string;readonly longCanonicalId:string;readonly shortValue:string;readonly longValue:string;readonly currentPortion:string|null;readonly currentPortionPresentation?:IncludedCurrentPortionEvidence;readonly shortIncludesCurrentPortion:boolean;readonly longIncludesCurrentPortion:boolean;readonly knownFinancingItems:readonly {readonly id:string;readonly amount:string|null;readonly applicable:boolean;readonly verified:boolean;readonly alreadyIncludedIn:'SHORT'|'LONG'|null;readonly kind:'BOND'|'FINANCE_LEASE'|'OTHER_FINANCING';readonly inclusionEvidenceVerified:boolean;readonly evidenceReference:string}[];readonly reportedSurveyVerified:boolean;readonly currentPortionVerified:boolean;readonly metadata:DebtMetadata;readonly bodyHash:string}
 export interface DebtDimensionedFact {readonly id:string;readonly sourceHash?:string;readonly ticker:string;readonly itemId:string;readonly value:string;readonly period:{readonly start:string;readonly end:string};readonly scope:string;readonly unit:string;readonly currency:string|null;readonly debtMetadata?:DebtMetadata;readonly cashQualification?:CashQualification;readonly ebitdaQualification?:EbitdaQualification}
 export interface ComprehensiveDebtProof {readonly ticker:string;readonly periodEnd:string;readonly scope:'CONSOLIDATED';readonly currency:'VND';readonly measurementBasis:DebtMeasurement;readonly leasePolicyVersion:string;readonly value:string;readonly reviewedAt:string;readonly evidenceReference:string;readonly evidenceHash:string;readonly sourceHashes:readonly string[];readonly classes:readonly {readonly id:'BORROWINGS'|'BONDS'|'FINANCE_LEASES'|'OTHER_FINANCING'|'SECTOR_LEASE_FINANCING';readonly status:'PRESENT_VERIFIED'|'ABSENT_VERIFIED';readonly nonOverlappingAmount:string}[];readonly bodyHash:string}
 export interface DebtValidationContext {readonly comprehensiveDebtProofs?:readonly ComprehensiveDebtProof[];readonly analysisAt:string;readonly systemKnownAt:string;readonly sourceBindings:readonly {readonly path:string;readonly sha256:string}[];readonly statements:readonly {readonly ticker:string;readonly reportingScope:string;readonly reportingPeriod:{readonly end:string};readonly SHA256:string;readonly verifiedHash:string;readonly reviewStatus:string}[]}
@@ -48,8 +59,21 @@ export function evaluateDebtReceipt<T extends DebtDimensionedFact>(r:DebtPopulat
  requireFundamental(r.bodyHash===hash(body(r))&&r.reportedSurveyVerified&&r.currentPortionVerified&&contract.applicableSectors.includes(r.sector),'REPORTED_DEBT_SURVEY_AND_SCOPE');
  const short=facts.find(f=>f.id===r.shortCanonicalId&&f.itemId==='SHORT_TERM_FINANCIAL_BORROWINGS'),long=facts.find(f=>f.id===r.longCanonicalId&&f.itemId==='LONG_TERM_FINANCIAL_BORROWINGS');requireFundamental(short&&long,'ADMITTED_BORROWING_COMPONENTS_REQUIRED');
  for(const f of [short,long])requireFundamental(f.ticker===r.ticker&&f.value===(f===short?r.shortValue:r.longValue)&&f.period.start===f.period.end&&f.period.end===r.periodEnd&&f.scope==='CONSOLIDATED'&&f.unit==='CURRENCY'&&f.currency==='VND','REPORTED_COMPONENT_BINDING');
- const current=decimal(r.currentPortion);requireFundamental(!current.negative&&(!r.shortIncludesCurrentPortion||current.units<=decimal(short.value).units)&&(!r.longIncludesCurrentPortion||current.units<=decimal(long.value).units),'CURRENT_PORTION_ONCE');
- let value=decimal(short.value).add(decimal(long.value));if(!r.shortIncludesCurrentPortion)value=value.add(current);if(r.longIncludesCurrentPortion)value=value.sub(current);
+ requireFundamental(!decimal(short.value).negative&&!decimal(long.value).negative,'NONNEGATIVE_REPORTED_BORROWING_COMPONENTS');
+ let value=decimal(short.value).add(decimal(long.value));
+ if(r.currentPortion===null){
+  const p=r.currentPortionPresentation;
+  requireFundamental(Date.parse(c.analysisAt)>=Date.parse(currentPortionPolicy.effectiveAt)&&Date.parse(c.systemKnownAt)>=Date.parse(currentPortionPolicy.recordedAt),'CURRENT_PORTION_PRESENTATION_NOT_ACTIVE');
+  requireFundamental(p&&p.version===currentPortionPolicy.version&&p.status==='INCLUDED_IN_SHORT_NOT_SEPARATELY_DISCLOSED'&&r.shortIncludesCurrentPortion===true&&r.longIncludesCurrentPortion===false,'UNDISCLOSED_CURRENT_PORTION_CANNOT_CHANGE_SUM');
+  instant(p.reviewedAt);dateOnly(p.periodEnd);
+  requireFundamental(p.ticker===r.ticker&&p.periodEnd===r.periodEnd&&p.scope==='CONSOLIDATED'&&p.currency==='VND'&&p.unit==='CURRENCY'&&p.shortCanonicalId===r.shortCanonicalId&&p.longCanonicalId===r.longCanonicalId&&p.shortValue===r.shortValue&&p.longValue===r.longValue&&p.shortPresentationVerified===true&&p.noncurrentLongPresentationVerified===true,'CURRENT_PORTION_PRESENTATION_DIMENSIONS');
+  requireFundamental(p.bodyHash===hash(body(p))&&p.reviewedAt>=currentPortionPolicy.recordedAt&&p.reviewedAt<=c.systemKnownAt&&bind(p.evidenceReference,p.evidenceHash,c)&&bind(p.sourcePath,p.sourceHash,c)&&r.metadata.sourceHashes.includes(p.sourceHash)&&c.statements.some(d=>d.ticker===r.ticker&&d.reportingScope==='CONSOLIDATED'&&d.reportingPeriod.end>=r.periodEnd&&d.reportingPeriod.end<=c.analysisAt.slice(0,10)&&d.SHA256===p.sourceHash&&d.verifiedHash===p.sourceHash&&d.reviewStatus==='QUALIFIED')&&[p.shortLocator,p.longLocator,p.inclusionLocator,p.exclusionLocator].every(s=>typeof s==='string'&&s.trim().length>0),'CURRENT_PORTION_REVIEWED_SOURCE_AND_LOCATORS');
+  // Amount remains unknown: short + non-current long, with no current add-back/deduction.
+ }else{
+  requireFundamental(r.currentPortionPresentation===undefined,'CONTRADICTORY_CURRENT_PORTION_PRESENTATION');
+  const current=decimal(r.currentPortion);requireFundamental(!current.negative&&(!r.shortIncludesCurrentPortion||current.units<=decimal(short.value).units)&&(!r.longIncludesCurrentPortion||current.units<=decimal(long.value).units),'CURRENT_PORTION_ONCE');
+  if(!r.shortIncludesCurrentPortion)value=value.add(current);if(r.longIncludesCurrentPortion)value=value.sub(current);
+ }
  requireFundamental(new Set(r.knownFinancingItems.map(i=>i.id)).size===r.knownFinancingItems.length,'UNIQUE_IDENTIFIED_FINANCING');
  for(const i of r.knownFinancingItems){requireFundamental(i.applicable&&i.verified&&i.amount!==null&&i.inclusionEvidenceVerified&&i.evidenceReference.length>0,'KNOWN_FINANCING_CANNOT_BE_OMITTED');requireFundamental(!decimal(i.amount).negative,'NONNEGATIVE_FINANCING');if(i.alreadyIncludedIn===null)value=value.add(decimal(i.amount));else requireFundamental(decimal(i.amount).units<=decimal(i.alreadyIncludedIn==='SHORT'?short.value:long.value).units,'EMBEDDED_FINANCING_RECONCILIATION');}
  const m=r.metadata,dimension={ticker:r.ticker,itemId:'REPORTED_BORROWINGS',value:value.toString(),period:{start:r.periodEnd,end:r.periodEnd},scope:'CONSOLIDATED',unit:'CURRENCY',currency:'VND'};

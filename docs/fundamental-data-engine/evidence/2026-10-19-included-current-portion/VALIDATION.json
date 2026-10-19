@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "unitTests": {
+    "files": [
+      "tests/unit/current-portion-presentation.test.ts",
+      "tests/unit/debt-contract-activation.test.ts"
+    ],
+    "passed": 58
+  },
+  "existingNumericReceiptRegressions": {
+    "files": [
+      "fpt-ticker-closure",
+      "real-estate-ticker-closure",
+      "energy-ticker-closure",
+      "gvr-ticker-closure"
+    ],
+    "filter": "current.*portion|current debt portion",
+    "passed": 5,
+    "otherTestsNotSelected": 144
+  },
+  "typescript": "tsc --noEmit --incremental false: PASS",
+  "eslint": "changed TypeScript and tests: PASS",
+  "boundaries": "183 source modules: PASS",
+  "readableVerification": {
+    "status": "PASS",
+    "periods": 5,
+    "rows": 8820,
+    "numericScalars": 5000,
+    "visualCorrections": 2,
+    "sourcePointersAndCoordinates": "PASS",
+    "rawSourceHashesUnchanged": true,
+    "debtClosingVsMovementAndDoubleCountGuards": "PASS",
+    "currentPortionPresentationStatus": "RESOLVED",
+    "overallFinancialDebtStatus": "PARTIALLY_RESOLVED"
+  },
+  "rawNotesVerification": "PASS: all original PDF/reader hashes and 326-page inventory",
+  "productionCanonicalOrDispositionUpdated": false,
+  "notes": "Tests validate conditional receipt acceptance; they do not perform canonical admission. Reacquired PDF hashes were checked locally, not required as physical files by the new Vitest cases."
+}
