@@ -10,9 +10,10 @@ import { PrismaMethodologyRegistry } from "@/infrastructure/repositories/methodo
 import { PrismaMarginalArtifacts } from "@/infrastructure/repositories/marginal-artifacts";
 import { CurrentReadService } from "@/application/current/read-model";
 import { ReviewInitiationService } from "@/application/current/review-initiation";
+import { marketBoundaryStatus } from "./market-boundary";
 import { runtime } from "./runtime";
 export function currentServices(client:PrismaClient){
- const ledger=new PrismaPortfolioLedger(client), marginal=new PrismaMarginalArtifacts(client), current=new CurrentReadService(ledger,new LocalCurrentSource(process.env.VN30_CURRENT_SOURCE_FILE),runtime.clock);
+ const ledger=new PrismaPortfolioLedger(client), marginal=new PrismaMarginalArtifacts(client), current=new CurrentReadService(ledger,{ load: async (id:string) => marketBoundaryStatus().marketCurrent ? new LocalCurrentSource(process.env.VN30_CURRENT_SOURCE_FILE).load(id) : null },runtime.clock);
  const reviews=new ReviewInitiationService(current,ledger,new PrismaWorkflowArtifacts(client),new PrismaDecisionArtifacts(client),new PrismaAnalyticalArtifacts(client),new PrismaMethodologyRegistry(client),runtime.clock,{candidates:async(asOf)=>{
  const decisions=await client.decisionArtifact.findMany({where:{asOf},take:31,select:{id:true}});
  const rankings=await client.analyticalArtifact.findMany({where:{asOf,kind:"RANKING"},take:2,select:{id:true}});

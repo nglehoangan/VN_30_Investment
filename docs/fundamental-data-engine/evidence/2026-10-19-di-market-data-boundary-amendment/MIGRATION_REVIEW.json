@@ -1,0 +1,310 @@
+{
+  "status": "PASS",
+  "migrationId": "202610190002_market_boundary",
+  "target": "private disposable copy of production SQLite; no production deployment",
+  "legacyTableChanges": [],
+  "legacySchemaAndTriggerChanges": [],
+  "addedTables": [
+    "market_boundary_decision_seal",
+    "market_boundary_dependency_head",
+    "market_boundary_ranking_publication",
+    "market_boundary_record"
+  ],
+  "addedObjects": [
+    "market_boundary_decision_seal",
+    "market_boundary_dependency_head",
+    "market_boundary_ranking_no_delete",
+    "market_boundary_ranking_no_update",
+    "market_boundary_ranking_publication",
+    "market_boundary_record",
+    "market_boundary_record_id_body_hash_key",
+    "market_boundary_record_no_delete",
+    "market_boundary_record_no_update",
+    "market_boundary_seal_no_delete",
+    "market_boundary_seal_no_update"
+  ],
+  "before": {
+    "_prisma_migrations": {
+      "rows": 17,
+      "hash": "557b4ea7fde56a65b60b239e94b7568bec221a1f4c2cb7a6d76b8f22022aaf28"
+    },
+    "methodology_record": {
+      "rows": 3,
+      "hash": "ac58ff552303505732bba54a57d5c3055b069dd77f2e96a67126c85eaf842d90"
+    },
+    "portfolio": {
+      "rows": 1,
+      "hash": "bcf7f81825c7eb878a4c1cb6f0835b635885f4b246f54db3856b8417e1cf0afa"
+    },
+    "security": {
+      "rows": 11,
+      "hash": "ed5718021c76ceba76ee1c1dbda3f2007edf044ca95c3fdc7ea477e7a40b2ac5"
+    },
+    "corporate_action_reference": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "ledger_transaction": {
+      "rows": 12,
+      "hash": "9f5b83d0efdc6056f5a1effb576a60bc2899cc3d9df397048e29409da16b8831"
+    },
+    "ledger_leg": {
+      "rows": 24,
+      "hash": "20c9b880524c1d98ddc60732194bd52e2f097e7603d74615bd106bf1835d1b0c"
+    },
+    "portfolio_projection": {
+      "rows": 1,
+      "hash": "b0a8ca0bf955e7bc1eec7845fa7e97a39fa8d4d33aaf74e7e15913d14041388a"
+    },
+    "analytical_artifact": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "decision_artifact": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "workflow_review": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "workflow_proposal": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "workflow_audit": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "workflow_execution": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "marginal_allocation": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "broker_observation": {
+      "rows": 450,
+      "hash": "ad83ed7e8c0a88cab43877013a54f4e05f2be3e8428bdcddc5288142dc0f35db"
+    },
+    "fundamental_source_version": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_import_batch": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_raw_capture": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_observation": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_normalization": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_derivation": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_derivation_input": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_availability_assessment": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_snapshot_content": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_snapshot_run": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_snapshot_member": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_snapshot_derived_member": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "data_initialization_acceptance": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "scoring_dataset_binding": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_admission_run": {
+      "rows": 30,
+      "hash": "092ebb4fd83ee67b77d9e9d4d4cff4e60f82694641c7b05f574dc53ac1a0509c"
+    },
+    "fundamental_disposition_release": {
+      "rows": 1,
+      "hash": "1784b53fd1954b177270e7c9188c97d35f6962bd78fb0868e0a24f94747c8abe"
+    }
+  },
+  "after": {
+    "_prisma_migrations": {
+      "rows": 18,
+      "hash": "969780ab87af358c13d81ab5a0c0e443973b7ec5845a13266bc8cff72b0ca692"
+    },
+    "methodology_record": {
+      "rows": 3,
+      "hash": "ac58ff552303505732bba54a57d5c3055b069dd77f2e96a67126c85eaf842d90"
+    },
+    "portfolio": {
+      "rows": 1,
+      "hash": "bcf7f81825c7eb878a4c1cb6f0835b635885f4b246f54db3856b8417e1cf0afa"
+    },
+    "security": {
+      "rows": 11,
+      "hash": "ed5718021c76ceba76ee1c1dbda3f2007edf044ca95c3fdc7ea477e7a40b2ac5"
+    },
+    "corporate_action_reference": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "ledger_transaction": {
+      "rows": 12,
+      "hash": "9f5b83d0efdc6056f5a1effb576a60bc2899cc3d9df397048e29409da16b8831"
+    },
+    "ledger_leg": {
+      "rows": 24,
+      "hash": "20c9b880524c1d98ddc60732194bd52e2f097e7603d74615bd106bf1835d1b0c"
+    },
+    "portfolio_projection": {
+      "rows": 1,
+      "hash": "b0a8ca0bf955e7bc1eec7845fa7e97a39fa8d4d33aaf74e7e15913d14041388a"
+    },
+    "analytical_artifact": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "decision_artifact": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "workflow_review": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "workflow_proposal": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "workflow_audit": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "workflow_execution": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "marginal_allocation": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "broker_observation": {
+      "rows": 450,
+      "hash": "ad83ed7e8c0a88cab43877013a54f4e05f2be3e8428bdcddc5288142dc0f35db"
+    },
+    "fundamental_source_version": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_import_batch": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_raw_capture": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_observation": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_normalization": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_derivation": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_derivation_input": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_availability_assessment": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_snapshot_content": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_snapshot_run": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_snapshot_member": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_snapshot_derived_member": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "data_initialization_acceptance": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "scoring_dataset_binding": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fundamental_admission_run": {
+      "rows": 30,
+      "hash": "092ebb4fd83ee67b77d9e9d4d4cff4e60f82694641c7b05f574dc53ac1a0509c"
+    },
+    "fundamental_disposition_release": {
+      "rows": 1,
+      "hash": "1784b53fd1954b177270e7c9188c97d35f6962bd78fb0868e0a24f94747c8abe"
+    },
+    "market_boundary_record": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "market_boundary_dependency_head": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "market_boundary_decision_seal": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "market_boundary_ranking_publication": {
+      "rows": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "foreignKeyViolations": [],
+  "integrity": [
+    [
+      "ok"
+    ]
+  ],
+  "repeatDeploy": "see validation/migration.log",
+  "recovery": "Leave vNext tables dormant; recover via verified database backup. No destructive down migration; never delete accepted immutable evidence."
+}

@@ -426,3 +426,42 @@ model FundamentalDispositionRelease {
   bodyHash String @map("body_hash")
   @@map("fundamental_disposition_release")
 }
+
+// Prospective boundary records. Legacy snapshots remain in their original tables.
+model MarketBoundaryRecord {
+  id String @id
+  kind String
+  contractVersion String @map("contract_version")
+  createdAt String @map("created_at")
+  body String
+  bodyHash String @map("body_hash")
+  seals MarketBoundaryDecisionSeal[]
+  rankings MarketBoundaryRankingPublication[]
+  @@unique([id, bodyHash])
+  @@map("market_boundary_record")
+}
+model MarketBoundaryDependencyHead {
+  id String @id
+  bodyHash String @map("body_hash")
+  updatedAt String @map("updated_at")
+  seals MarketBoundaryDecisionSeal[]
+  @@map("market_boundary_dependency_head")
+}
+model MarketBoundaryDecisionSeal {
+  decisionId String @id @map("decision_id")
+  recordId String @unique @map("record_id")
+  record MarketBoundaryRecord @relation(fields: [recordId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  dependencyId String @map("dependency_id")
+  dependency MarketBoundaryDependencyHead @relation(fields: [dependencyId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  dependencyHash String @map("dependency_hash")
+  @@map("market_boundary_decision_seal")
+}
+
+model MarketBoundaryRankingPublication {
+  id String @id
+  analysisId String @map("analysis_id")
+  analysis MarketBoundaryRecord @relation(fields: [analysisId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  body String
+  bodyHash String @map("body_hash")
+  @@map("market_boundary_ranking_publication")
+}

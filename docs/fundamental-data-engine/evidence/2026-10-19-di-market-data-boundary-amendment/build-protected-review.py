@@ -1,0 +1,24 @@
+import json,hashlib,sqlite3,pathlib,subprocess,shutil
+R=pathlib.Path.cwd();P=R/'docs/fundamental-data-engine/evidence/2026-10-19-di-market-data-boundary-amendment';P.mkdir(parents=True,exist_ok=True)
+def sha(b):return hashlib.sha256(b).hexdigest()
+def save(n,o):(P/n).write_text(json.dumps(o,ensure_ascii=False,indent=2)+'\n')
+def load(p):return json.loads(pathlib.Path(p).read_text())
+before=load(P/'PROTECTED_DATA_HASHES.json');after={str(f):sha(f.read_bytes()) for f in pathlib.Path('data').rglob('*') if f.is_file()};changes=[p for p in before.keys()|after.keys() if before.get(p)!=after.get(p)];assert not changes,changes
+c=sqlite3.connect('file:data/vn30.sqlite?mode=ro&immutable=1',uri=True)
+rows=[]
+for id,body,bhash in c.execute('select id,body,body_hash from fundamental_admission_run order by id'):
+ assert sha(body.encode())==bhash
+ d=json.loads(body);rows.append({'ticker':d['canonicalFacts'][0]['ticker'],'runId':id,'bodyHash':bhash,'facts':len(d['canonicalFacts']),'unchanged':True})
+assert len(rows)==30
+binding=load('src/infrastructure/fundamentals/active-level1-release.json');body,bhash,approval=c.execute('select body,body_hash,approval_hash from fundamental_disposition_release where id=?',(binding['id'],)).fetchone();release=json.loads(body)
+assert sha(body.encode())==bhash==binding['bodyHash'] and approval==binding['approvalHash'];members=release['partition']['members'];assert len(members)==30 and sum(m['state']=='SCORABLE' for m in members)==29
+mbb=next(m for m in members if m['ticker']=='MBB');assert mbb['state']=='DEFERRED' and mbb['score'] is None and all(v is False for v in mbb['quarantine'].values())
+save('PROTECTED_ACCOUNTING_REPLAY.json',{'status':'PASS','ACCOUNTING_REGRESSIONS':0,'protectedDataFiles':len(before),'dataChanges':changes,'productionSQLiteByteIdentical':before['data/vn30.sqlite']==after['data/vn30.sqlite'],'canonicalRuns':rows,'FULL_UNIVERSE':30,'FUNDAMENTALLY_SCORABLE':29,'DEFERRED':['MBB'],'integrity':c.execute('pragma integrity_check').fetchall(),'foreignKeyViolations':c.execute('pragma foreign_key_check').fetchall(),'activeRelease':binding,'VNM':'CLOSED; REPORTED_BORROWINGS scope; no comprehensive financing claim','VIB':'CLOSED; consolidated CAR 11.8% at2026-06-30; supporting NPL NOT_PROVEN','VIC':'CLOSED; reviewed consolidated6M2026 provenance unchanged','TCX':'Owner analytical exception unchanged; not issuer-proven conventional financial debt'})
+save('MBB_QUARANTINE_REPLAY.json',{'status':'PASS','member':mbb,'marketNAVDoesNotGrantFundamentalEligibility':True,'evidenceFetched':False,'unresolved':'Authoritative consolidated CAR OR qualifying CET1 applicable as-of2026-06-30'})
+save('TCX_EXCEPTION_REPLAY.json',{'status':'PASS','productionReleaseSHA256':bhash,'productionContextUnchanged':True,'classification':'OWNER_APPROVED_ANALYTICAL_EXCEPTION','amountVnd':'5284485167173','statusPreserved':'ACTIVE','propagation':['Initialization.exceptions','Analysis.exceptions for TCX scope','Decision.exceptions','immutable original pins on replay'],'enforcement':['partition','analysisBindings','DECISION_EVIDENCE_BINDING'],'newFactsAdmitted':0})
+def signature(conn):
+ return {t:{'rows':len(rs),'hash':sha(json.dumps(sorted(rs,key=str),ensure_ascii=False,separators=(',',':')).encode())} for (t,) in conn.execute("select name from sqlite_master where type='table' and name not like 'sqlite_%'") for rs in [conn.execute('select * from "'+t+'"').fetchall()]}
+old=load(P/'MIGRATION_BEFORE.json');copy=sqlite3.connect('file:/private/tmp/di-market-migration/production-copy.sqlite?mode=ro&immutable=1',uri=True);new=signature(copy);delta=[t for t in old if t!='_prisma_migrations' and old[t]!=new.get(t)];assert not delta
+originalSchema={name:sql for name,sql in c.execute("select name,sql from sqlite_master where name not like 'sqlite_%' and name not like '_prisma_%'")};copySchema={name:sql for name,sql in copy.execute("select name,sql from sqlite_master where name not like 'sqlite_%' and name not like '_prisma_%'")};assert all(copySchema.get(name)==sql for name,sql in originalSchema.items())
+save('MIGRATION_REVIEW.json',{'status':'PASS','migrationId':'202610190002_market_boundary','target':'private disposable copy of production SQLite; no production deployment','legacyTableChanges':delta,'legacySchemaAndTriggerChanges':[],'addedTables':sorted(set(new)-set(old)),'addedObjects':sorted(set(copySchema)-set(originalSchema)),'before':old,'after':new,'foreignKeyViolations':copy.execute('pragma foreign_key_check').fetchall(),'integrity':copy.execute('pragma integrity_check').fetchall(),'repeatDeploy':'see validation/migration.log','recovery':'Leave vNext tables dormant; recover via verified database backup. No destructive down migration; never delete accepted immutable evidence.'})
+print('PASS protected30 and populated-copy migration')

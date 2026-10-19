@@ -1,3 +1,5 @@
+import type { Sealed, Digest } from "@/domain/market-boundary/contracts";
+import { readSealed, requireBoundary } from "@/domain/market-boundary/validation";
 import { calculateScorecard, type Scorecard } from "@/domain/scoring/scorecard";
 import { check, id, keys, list, snapshot, text, unique } from "@/domain/scoring/validation";
 import { decimal } from "@/domain/portfolio/values";
@@ -24,7 +26,9 @@ const compareText=(a:string,b:string)=>a<b?-1:a>b?1:0;
 const desc=(a:string,b:string)=>decimal(a).units>decimal(b).units?-1:decimal(a).units<decimal(b).units?1:0;
 const points=(c:Scorecard,category:string)=>c.categories.find(x=>x.category===category)!.points!;
 function band(score:string) { const n=BigInt(score); return n>=90n?"Exceptional":n>=82n?"Very Strong":n>=75n?"Strong":n>=68n?"Acceptable":n>=60n?"Weak":"Poor / High Caution"; }
-export function rankScorecards(raw:RankInput) {
+export function rankScorecards(raw:RankInput) { return rankCoveredScorecards(raw, []); }
+/** Internal shared arithmetic; prospective callers supply explicitly quarantined identities. */
+function rankCoveredScorecards(raw:RankInput, deferred:readonly string[]) {
   const input=snapshot(raw); keys(input,"id asOf calculatedAt cards universe portfolio requiredReturnAssessments portfolioConstraints"); id(input.id); instant(input.asOf); instant(input.calculatedAt);
   check(input.asOf<=input.calculatedAt,"INVALID_RANK_TIME"); list(input.cards,30); unique(input.cards.map(c=>c.securityId));
   keys(input.universe,"referenceVersion securityIds complete"); text(input.universe.referenceVersion); list(input.universe.securityIds,30); input.universe.securityIds.forEach(id); unique(input.universe.securityIds);
@@ -47,7 +51,7 @@ export function rankScorecards(raw:RankInput) {
   for(const g of input.requiredReturnAssessments){keys(g,"securityId assessment");id(g.securityId);check(input.universe.securityIds.includes(g.securityId),"RETURN_GATE_OUTSIDE_UNIVERSE");validateRequiredReturn(g.assessment,input.asOf,input.calculatedAt);}
   if(input.portfolioConstraints) { list(input.portfolioConstraints,30);unique(input.portfolioConstraints.map(c=>c.securityId));check(portfolio,"PORTFOLIO_CONSTRAINT_SCOPE_REQUIRED");for(const c of input.portfolioConstraints){validatePortfolioConstraint(c,input.asOf,input.calculatedAt);check(input.universe.securityIds.includes(c.securityId),"CONSTRAINT_OUTSIDE_UNIVERSE");} }
   const missingCards=input.universe.securityIds.filter(s=>!cards.some(c=>c.securityId===s));
-  const universeBlocked=!input.universe.complete||input.universe.securityIds.length!==30||missingCards.length>0;
+  const universeBlocked=!input.universe.complete||input.universe.securityIds.length!==30||missingCards.some(id=>!deferred.includes(id));
   const excluded:{securityId:string;score:string|null;reasons:ExclusionReason[]}[]=[];
   const eligible=cards.filter(c=>{
     const reasons:ExclusionReason[]=[];
@@ -103,3 +107,20 @@ export function rankScorecards(raw:RankInput) {
     portfolioPriority:"NOT ASSESSED",notice:"Analytical ranking only. Display order and Top 10 membership do not establish economic superiority or authorize capital action."});
 }
 export type Ranking = ReturnType<typeof rankScorecards>;
+
+/** Prospective Policy-B envelope; same M3 arithmetic and gates, full identity set retained. No capital allocation. */
+export function rankPolicyB(raw: RankInput, initialization: Sealed<'INITIALIZATION'>, hash: Digest) {
+  const i=readSealed(initialization,'INITIALIZATION',hash),members=i.body.members;
+  requireBoundary(i.knownAt<=raw.calculatedAt&&i.body.universe.effectiveAt<=raw.asOf,'PIT_RANK_INITIALIZATION');
+  const deferred=members.filter(m=>m.state==='DEFERRED').map(m=>m.securityId);
+  requireBoundary(raw.universe.complete&&raw.universe.securityIds.length===30&&members.every(m=>raw.universe.securityIds.includes(m.securityId)),'RANK_FULL30_REQUIRED');
+  requireBoundary(raw.universe.referenceVersion===i.body.universe.id,'RANK_UNIVERSE_BINDING');
+  const eligible=members.filter(m=>m.state==='SCORABLE');
+  requireBoundary(raw.cards.length===eligible.length&&eligible.every(m=>raw.cards.some(c=>c.securityId===m.securityId))&&raw.cards.every(c=>!deferred.includes(c.securityId)),'RANK_EXACT_ELIGIBLE_COVERAGE');
+  const result=rankCoveredScorecards(raw,deferred);
+  return deepFreeze({contractVersion:'policy-b-ranking-envelope-v1' as const,initializationManifestId:i.id,
+    FULL_UNIVERSE_COUNT:30,ELIGIBLE_COUNT:eligible.length,DEFERRED_COUNT:deferred.length,
+    members,excludedDeferred:members.filter(m=>m.state==='DEFERRED').map(m=>({securityId:m.securityId,ticker:m.ticker,score:null,reason:'DEFERRED_NOT_SCORABLE'})),
+    label:'Top ranked among currently scorable VN30 constituents.',
+    weightRedistribution:false,capitalRedistribution:false,ranking:result});
+}

@@ -1,5 +1,6 @@
 "use server";
 import "server-only";
+import { requireAcceptedMarketBoundary } from "./market-boundary";
 import { reviewIntentSchema } from "@/shared/validation/current-source";
 import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
@@ -11,6 +12,7 @@ import { assertLocalOrigin } from "./manual-transactions";
 import type { ReviewResponse } from "@/application/current/review-initiation";
 export async function initiateReview(mode:"preview"|"create",intent:unknown):Promise<ReviewResponse>{
  let client;try{
+ requireAcceptedMarketBoundary();
  intent=reviewIntentSchema.parse(intent);
  const h=await headers();assertLocalOrigin(h.get("origin"),h.get("host"));
  const config=loadDatabaseConfig(process.env,process.cwd());if(!existingDatabase(config.filePath))throw new Error("UNAVAILABLE");

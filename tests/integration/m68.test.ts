@@ -4,6 +4,7 @@ vi.mock("server-only",()=>({}));
 const runtimeClock=vi.hoisted(()=>({value:"2026-10-04T09:00:00.000Z"}));
 vi.mock("../../app/server/runtime",()=>({runtime:{clock:{now:()=>runtimeClock.value}}}));
 import { currentServices } from "../../app/server/current";
+import { historicalCurrentServices } from "../fixtures/historical-current-services";
 import { m68System,NOW } from "../fixtures/m68";
 import { projectAllocation } from "@/domain/portfolio/allocation-projection";
 import { buy,P,reversal } from "../fixtures/portfolio/history";
@@ -59,7 +60,7 @@ describe("M6.8 downstream formal authority chain with historical upstream scores
   const x=await m68System(true,60000);try{
    const file=path.join(x.db.directory,"delayed-current.json");writeFileSync(file,JSON.stringify(x.source));vi.stubEnv("VN30_CURRENT_SOURCE_FILE",file);
    runtimeClock.value="2026-10-04T09:01:00.000Z";x.setNow(runtimeClock.value);
-   const service=currentServices(x.db.client).reviews;
+   const service=historicalCurrentServices(x.db.client).reviews;
    const first=await service.create(P,intent);expect(first.status).toBe("READY");const original=await x.reviews.find(first.artifactId!);expect(original?.command.evidenceCutoff).toBe(runtimeClock.value);
    runtimeClock.value="2026-10-04T09:02:00.000Z";x.setNow(runtimeClock.value);
    expect((await service.create(P,intent)).artifactId).toBe(first.artifactId);
@@ -71,21 +72,29 @@ describe("M6.8 downstream formal authority chain with historical upstream scores
    expect(await x.db.client.workflowReview.count()).toBe(2);expect(await x.db.client.ledgerTransaction.count()).toBe(1);
   }finally{runtimeClock.value=NOW;vi.unstubAllEnvs();await x.db.close();}
  });
- it("production catalog cannot hide a corrupt marginal body by changing its scope before selection",async()=>{
+ it("legacy catalog cannot hide a corrupt marginal body by changing its scope before selection",async()=>{
   const x=await m68System();try{
    const m=await x.marginalEngine.create(plan(x));const file=path.join(x.db.directory,"corrupt-catalog.json");writeFileSync(file,JSON.stringify(x.source));vi.stubEnv("VN30_CURRENT_SOURCE_FILE",file);
    await x.db.client.$executeRawUnsafe("DROP TRIGGER marginal_no_update");
    await x.db.client.marginalAllocation.update({where:{id:m.id},data:{body:JSON.stringify({...m,scope:"SYNTHETIC_TEST"})}});
-   await expect(currentServices(x.db.client).reviews.create(P,intent)).rejects.toThrow();
+   await expect(historicalCurrentServices(x.db.client).reviews.create(P,intent)).rejects.toThrow();
    expect(await x.db.client.workflowReview.count()).toBe(0);expect(await x.db.client.ledgerTransaction.count()).toBe(1);
   }finally{vi.unstubAllEnvs();await x.db.close();}
  });
- it("production server composition resolves persisted marginal authority without browser input",async()=>{
+ it("frozen legacy composition resolves persisted marginal authority without browser input",async()=>{
   const x=await m68System();try{
    const m=await x.marginalEngine.create(plan(x));const file=x.db.directory+"/source.json";writeFileSync(file,JSON.stringify(x.source));vi.stubEnv("VN30_CURRENT_SOURCE_FILE",file);
-   const service=currentServices(x.db.client).reviews;expect((await service.preview(P,intent)).status).toBe("READY");
+   const service=historicalCurrentServices(x.db.client).reviews;expect((await service.preview(P,intent)).status).toBe("READY");
    const response=await service.create(P,intent),review=await x.reviews.find(response.artifactId!);expect(review?.command.marginalAllocationId).toBe(m.id);expect(review?.proposal?.items).toHaveLength(2);expect(await x.db.client.ledgerTransaction.count()).toBe(1);
    await x.marginalEngine.create({...plan(x),id:"second-authority"});expect((await service.create(P,intent)).reasons).toEqual(["AMBIGUOUS_MARGINAL_AUTHORITY"]);expect(await x.db.client.workflowReview.count()).toBe(1);
+  }finally{vi.unstubAllEnvs();await x.db.close();}
+ });
+ it("production composition blocks normalized manual source without accepted market-boundary evidence",async()=>{
+  const x=await m68System();try{
+   const file=x.db.directory+"/unqualified-source.json";writeFileSync(file,JSON.stringify(x.source));vi.stubEnv("VN30_CURRENT_SOURCE_FILE",file);
+   expect((await currentServices(x.db.client).reviews.preview(P,intent)).status).toBe("UNAVAILABLE");
+   expect((await currentServices(x.db.client).reviews.create(P,intent)).status).toBe("UNAVAILABLE");
+   expect(await x.db.client.workflowReview.count()).toBe(0);expect(await x.db.client.ledgerTransaction.count()).toBe(1);
   }finally{vi.unstubAllEnvs();await x.db.close();}
  });
  it("security: all injected authority and lineage fields fail before a review write",async()=>{

@@ -1,0 +1,1642 @@
+VN30 Value Investing OS
+DI Market-Data Boundary Amendment — Implementation & Validation
+
+Repository:
+https://github.com/nglehoangan/VN_30_Investment
+
+STARTING HEAD:
+
+9bc65ca19e8c20990d866f83bc49151306b265f9
+
+==================================================
+MISSION
+==================================================
+
+Implement the independently approved:
+
+DI Market-Data Boundary Review
+
+from:
+
+docs/fundamental-data-engine/evidence/
+2026-10-19-di-market-data-boundary-review/
+
+The approved architecture is:
+
+Data Initialization
+→ Market Data Refresh
+→ Analysis
+→ Portfolio Snapshot
+→ Decision
+→ Decision Snapshot
+
+The implementation must separate:
+
+1. durable Data Initialization,
+2. Market Data Capability,
+3. analysis-time market freshness,
+4. immutable Analysis Snapshot,
+5. current Portfolio Snapshot,
+6. atomic Decision Snapshot.
+
+This is a VERSIONED CROSS-CUTTING AMENDMENT.
+
+It must preserve all historical contracts and approved baselines.
+
+Do NOT rewrite historical evidence.
+
+Do NOT modify approved M1–M7 baseline documents in place.
+
+Do NOT fetch market data merely to make a gate green.
+
+Do NOT run investment scoring/ranking/Top10.
+
+Do NOT issue investment recommendations.
+
+Do NOT search for additional MBB evidence.
+
+==================================================
+1. GOVERNANCE PRINCIPLE
+==================================================
+
+Implement the approved lifecycle principle:
+
+DATA INITIALIZATION certifies durable/reference/fundamental state and
+market-data capability.
+
+DATA INITIALIZATION does NOT permanently certify that a particular market
+price snapshot remains current forever.
+
+Actual market observations are refreshed and freshness-qualified when an
+analysis requiring market data is performed.
+
+An investment decision must be bound atomically to the exact data and
+policy/model versions used.
+
+Historical replay must remain possible.
+
+==================================================
+2. IMMUTABILITY OF EXISTING BASELINES
+==================================================
+
+Treat approved M1–M7 baseline documents as immutable.
+
+Do NOT silently edit historical v1.0 documents to make them agree with the
+new architecture.
+
+Instead create a versioned amendment under the existing Continuous
+Improvement / M8 governance structure.
+
+Create, if consistent with repository conventions:
+
+docs/08_CONTINUOUS_IMPROVEMENT/
+DI_MARKET_DATA_BOUNDARY_AMENDMENT.md
+
+The amendment must explicitly state which existing clauses it:
+
+EXTENDS
+SUPERSEDES_PROSPECTIVELY
+DOES_NOT_CHANGE.
+
+Historical decisions continue to use the contract/version active at their
+decision time.
+
+Do not invalidate old replay merely because a new contract exists.
+
+==================================================
+3. VERSIONED CONTRACTS
+==================================================
+
+Introduce explicit prospective contract versions for at least:
+
+InitializationManifest
+
+MarketDataCapability
+
+MarketSnapshot
+
+AnalysisSnapshot
+
+PortfolioSnapshot binding
+
+DecisionSnapshot.
+
+Use repository naming/versioning conventions where possible.
+
+Do not overload an existing snapshot type if doing so makes old snapshots
+ambiguous.
+
+Old snapshot readers must continue to work.
+
+New readers must reject unknown/unsupported versions fail-closed.
+
+==================================================
+4. INITIALIZATION MANIFEST
+==================================================
+
+Implement a durable InitializationManifest representing initialized state.
+
+It must bind sufficient identity/provenance for:
+
+certified VN30 universe
+
+security/company master
+
+sector master
+
+fundamental canonical data
+
+fundamental qualifications
+
+Level-1 ticker dispositions
+
+Policy-B partition
+
+active exceptions
+
+source/provenance contracts
+
+software/schema versions
+
+MarketDataCapability qualification.
+
+Current expected fundamental partition:
+
+FULL_UNIVERSE = 30
+
+SCORABLE_BY_FUNDAMENTALS = 29
+
+DEFERRED = 1
+
+DEFERRED:
+
+MBB.
+
+TCX exception must remain ACTIVE and visible.
+
+InitializationManifest must NOT require today's market prices.
+
+It must NOT claim:
+
+AnalysisReady
+
+DecisionReady.
+
+==================================================
+5. MARKET DATA CAPABILITY CONTRACT
+==================================================
+
+Implement a MarketDataCapability contract proving that the system can
+safely acquire and process market observations.
+
+It must cover:
+
+approved source identity
+
+security identity mapping
+
+request/source identity
+
+raw response retention
+
+raw SHA256
+
+retrieval timestamp
+
+provider timestamp if available
+
+trading date/time
+
+currency
+
+price field semantics
+
+adjusted/unadjusted semantics
+
+corporate-action handling
+
+schema/version identity
+
+normalization lineage
+
+missing observation behavior
+
+duplicate/conflict handling
+
+freshness-policy identity
+
+replay.
+
+A capability PASS means:
+
+the market-data pipeline is qualified.
+
+It does NOT mean:
+
+market data is currently fresh for an arbitrary future analysis.
+
+==================================================
+6. REAL-SOURCE CAPABILITY QUALIFICATION
+==================================================
+
+The approved architecture requires REAL source evidence.
+
+Mocks alone must NOT certify MarketDataCapability.
+
+Use an approved/legitimate market-data source already supported by the
+repository if available.
+
+Do not bypass authentication, access controls, provider restrictions or
+terms.
+
+If a real source can be accessed legitimately:
+
+acquire the minimum bounded sample needed to certify capability.
+
+This sample does NOT need to be today's complete VN30 snapshot.
+
+It may be a retained historical/current sample as long as:
+
+raw bytes are retained
+
+source identity is known
+
+hash is reproducible
+
+schema is known
+
+normalization can replay
+
+security identity can be verified
+
+negative validation can be demonstrated.
+
+Prefer a small representative corpus rather than unnecessary bulk
+downloads.
+
+If no legitimate real source is available:
+
+DO NOT fabricate PASS.
+
+Return:
+
+MARKET_DATA_CAPABILITY = BLOCKED
+
+with exact reason.
+
+Do not use mocks as substitute authority.
+
+==================================================
+7. RAW MARKET RETENTION
+==================================================
+
+Unlike disposable PDF extraction artifacts, accepted market source evidence
+needed for replay must be retained.
+
+For capability evidence and accepted MarketSnapshots retain enough
+information to reproduce:
+
+raw payload
+source identity
+request identity
+retrieval timestamp
+source timestamp/trading date
+SHA256
+schema version
+parser/normalizer version.
+
+Do not delete raw market evidence if it is a replay dependency.
+
+Do not confuse this with Owner policy allowing deletion of temporary
+financial-statement OCR/render artifacts.
+
+==================================================
+8. MARKET SNAPSHOT
+==================================================
+
+Implement a versioned immutable MarketSnapshot.
+
+A MarketSnapshot represents actual market observations for a defined:
+
+universe/scope
+as-of/cutoff
+purpose
+trading session/date.
+
+It must include or bind:
+
+marketSnapshotId
+contractVersion
+createdAt
+requestedAsOf
+acceptedTradingDate/session
+universe/reference identity
+observations
+raw-source references/hashes
+normalization version
+freshness-policy version
+validation result
+content hash.
+
+Do not silently mutate an accepted MarketSnapshot.
+
+New data creates a new snapshot.
+
+==================================================
+9. MARKET DATA FRESHNESS GATE
+==================================================
+
+Implement an explicit:
+
+MARKET_DATA_FRESHNESS_GATE
+
+at actual consumption time.
+
+This gate must execute before any operation requiring current market data,
+including as applicable:
+
+valuation
+
+price-dependent scoring input
+
+ranking publication
+
+Top10 publication
+
+technical analysis
+
+money-flow analysis
+
+positive-capital recommendation
+
+DCA/new-capital authorization.
+
+The gate must evaluate freshness relative to:
+
+analysis/decision requested time
+
+approved trading calendar/session semantics
+
+purpose
+
+source timestamps
+
+accepted snapshot cutoff.
+
+Do NOT invent one universal "N calendar days" rule if the approved system
+does not define one.
+
+If required calendar/session policy cannot determine eligibility:
+
+UNKNOWN
+→ BLOCKED.
+
+==================================================
+10. STALE DATA BEHAVIOR
+==================================================
+
+Prove:
+
+InitializationManifest can remain valid while a MarketSnapshot becomes
+stale.
+
+Example acceptance case:
+
+Initialization accepted on October 19.
+
+Market snapshot accepted on October 19.
+
+A new analysis request occurs October 25.
+
+Assume October19 market data is stale under the applicable approved
+trading-session policy.
+
+Expected:
+
+InitializationManifest remains valid.
+
+MarketSnapshot remains historically valid evidence.
+
+New analysis request = BLOCKED until an eligible MarketSnapshot exists.
+
+Do NOT:
+
+invalidate historical initialization
+
+silently reuse stale market data
+
+replace stale values with zero
+
+use retrieval timestamp as trading date
+
+silently fall back to older cached quotes.
+
+==================================================
+11. ANALYSIS SNAPSHOT
+==================================================
+
+Implement an immutable versioned AnalysisSnapshot.
+
+It must bind the exact input state used by an analysis.
+
+At minimum consider:
+
+analysisSnapshotId
+analysisTimestamp
+analysisPurpose
+
+universeSnapshot/reference
+initializationManifestId
+fundamentalSnapshotId
+marketSnapshotId when required
+
+eligible/deferred partition
+
+source hashes
+freshness proof
+
+policy/amendment versions
+scoring model version where applicable
+analysis engine/software version.
+
+An AnalysisSnapshot requiring market data cannot become accepted unless:
+
+MARKET_DATA_FRESHNESS_GATE = PASS.
+
+For analyses that genuinely do not require current market data, the
+contract may explicitly represent:
+
+MARKET_DATA_NOT_REQUIRED
+
+but this must be purpose-specific.
+
+Do not create a generic bypass.
+
+==================================================
+12. PORTFOLIO SNAPSHOT BINDING
+==================================================
+
+Preserve existing portfolio accounting semantics.
+
+Add only the minimum versioned binding needed so an investment decision can
+identify the exact portfolio state used.
+
+Consider:
+
+portfolioSnapshotId
+portfolioAsOf
+ledger watermark
+cash
+positions
+cost basis
+pending transactions if applicable
+NAV inputs
+content hash.
+
+Do NOT redesign the entire portfolio subsystem.
+
+Do not alter transaction history.
+
+==================================================
+13. DECISION SNAPSHOT
+==================================================
+
+Implement an immutable DecisionSnapshot / Decision Envelope.
+
+A decision must not be considered publishable/actionable until it is
+atomically bound to the evidence used.
+
+At minimum bind:
+
+decisionId
+decisionTimestamp
+
+universe/reference snapshot ID
+initializationManifestId
+fundamentalSnapshotId
+marketSnapshotId where required
+analysisSnapshotId
+portfolioSnapshotId
+
+policy version
+Market Boundary Amendment version
+scoring model version
+decision engine version
+
+source hashes
+freshness result
+eligibility result
+
+ticker disposition
+active exceptions relevant to the ticker
+
+decision state
+execution eligibility.
+
+The snapshot must support later reconstruction of:
+
+"What information was known when this decision was made?"
+
+==================================================
+14. ATOMIC PUBLICATION
+==================================================
+
+Prevent this unsafe sequence:
+
+calculate decision
+→ expose BUY
+→ later attempt to save evidence snapshot.
+
+Instead require:
+
+build candidate
+→ validate all gates
+→ bind required snapshots
+→ persist/seal DecisionSnapshot
+→ only then expose actionable decision.
+
+If persistence/sealing fails:
+
+decision publication must fail closed.
+
+No positive-capital action may escape without its evidence envelope.
+
+==================================================
+15. POLICY-B AWARE RANKING ENVELOPE
+==================================================
+
+Fix the integration incompatibility discovered during architecture review.
+
+Legacy ranking expects complete scorecard coverage for all30 members.
+
+Approved Policy B currently allows:
+
+FULL_UNIVERSE = 30
+
+FUNDAMENTALLY_ELIGIBLE = 29
+
+DEFERRED = MBB.
+
+Implement a prospective Policy-B-aware ranking envelope.
+
+It must represent:
+
+all30 identities
+
+29 eligible/scorable members
+
+MBB explicitly excluded/deferred.
+
+Do NOT:
+
+generate MBB score = 0
+
+generate neutral/median placeholder
+
+shrink FULL_UNIVERSE to29
+
+redistribute missing score weight
+
+redistribute portfolio capital merely because MBB is deferred.
+
+Ranking output must distinguish:
+
+FULL_UNIVERSE_COUNT
+ELIGIBLE_COUNT
+DEFERRED_COUNT.
+
+When FULL_UNIVERSE contains deferred names, user-facing semantics must not
+claim unconditional:
+
+"Top 10 VN30"
+
+if only eligible names were ranked.
+
+Use semantics equivalent to:
+
+"Top ranked among currently scorable VN30 constituents."
+
+Do not run the ranking in this task.
+
+==================================================
+16. MBB QUARANTINE
+==================================================
+
+Preserve:
+
+MBB = DEFERRED
+INSUFFICIENT
+NOT_SCORABLE.
+
+Current unresolved mandatory issue remains:
+
+authoritative consolidated CAR
+OR qualifying CET1
+explicitly applicable as-of 2026-06-30.
+
+Do not fetch more evidence.
+
+Do not infer the missing metric.
+
+Market data availability for MBB must NOT make MBB fundamentally eligible.
+
+MBB market price may still be usable for legitimate portfolio NAV if MBB is
+already held, subject to market freshness rules.
+
+Fundamental eligibility and portfolio valuation are separate concepts.
+
+==================================================
+17. TCX EXCEPTION
+==================================================
+
+Preserve TCX:
+
+CLOSED_WITH_EXCEPTION.
+
+The Két Vàng amount:
+
+5,284,485,167,173 VND
+
+remains included because of the explicit Owner-approved analytical
+classification exception.
+
+Do NOT rewrite it as issuer-proven conventional financial debt.
+
+The exception must propagate into:
+
+InitializationManifest
+AnalysisSnapshot when TCX is involved
+DecisionSnapshot when TCX is involved
+audit/replay context.
+
+==================================================
+18. VNM / VIB / VIC
+==================================================
+
+Preserve approved closure state:
+
+VNM = CLOSED
+VIB = CLOSED
+VIC = CLOSED.
+
+Do not reopen accounting.
+
+Preserve:
+
+VNM:
+REPORTED_BORROWINGS scope; comprehensive financing population not claimed.
+
+VIB:
+consolidated CAR11.8% at2026-06-30;
+NPL formula remains supporting / NOT_PROVEN.
+
+VIC:
+reviewed consolidated6M2026 provenance.
+
+==================================================
+19. DI4 vNEXT
+==================================================
+
+Create a prospective versioned replacement/split for DI4.
+
+Conceptually:
+
+DI4A — MARKET SOURCE / CAPABILITY QUALIFICATION
+
+Must prove:
+
+approved source
+identity mapping
+semantics
+raw retention
+hash/replay
+schema/version
+normalization lineage
+negative-case handling.
+
+DI4B — REQUIRED MARKET OBSERVATIONS AVAILABLE
+
+Owned by analysis-time readiness, not permanent initialization.
+
+Do not necessarily use these exact names if repository conventions suggest
+better names.
+
+Existing DI4 history/status remains immutable.
+
+Do NOT retroactively convert historical DI4 FAIL to PASS.
+
+==================================================
+20. DI8 vNEXT
+==================================================
+
+Create a prospective versioned replacement/split for DI8.
+
+Conceptually:
+
+DI8A — INITIALIZATION DATA CLASS FRESHNESS POLICY QUALIFIED
+
+Checks durable/reference/fundamental reporting-cycle rules and confirms a
+market freshness evaluator/policy exists.
+
+DI8B — MARKET SNAPSHOT FRESHNESS
+
+Evaluated at analysis/decision consumption time.
+
+Market snapshot expiry must NOT invalidate historical initialization.
+
+Existing DI8 historical evidence remains immutable.
+
+==================================================
+21. DI12 vNEXT
+==================================================
+
+Create a prospective versioned replacement/split for DI12.
+
+Conceptually:
+
+DI12A — INITIALIZATION MANIFEST REPRODUCIBLE
+
+DI12B — ANALYSIS SNAPSHOT REPRODUCIBLE
+
+DI12C — DECISION SNAPSHOT REPRODUCIBLE.
+
+Do not require DI12A to contain a fresh market snapshot.
+
+Do not allow a review-bundle hash alone to substitute for runtime snapshot
+identity/replay dependencies.
+
+==================================================
+22. GLOBAL BLOCKER SPLIT
+==================================================
+
+Current issue:
+
+RELEASE-MARKET-SOURCE-REPLAY-UNAVAILABLE
+
+must NOT simply disappear.
+
+Implement prospective classification splitting it into appropriate
+children, for example:
+
+MARKET_CAPABILITY_REPLAY_NOT_QUALIFIED
+
+and
+
+CURRENT_MARKET_SNAPSHOT_NOT_AVAILABLE
+
+or equivalent repository-compatible identifiers.
+
+The original historical issue remains preserved.
+
+Rules:
+
+If MarketDataCapability cannot be certified from real retained source
+evidence:
+
+initialization capability remains BLOCKED.
+
+If capability is certified but no current market snapshot exists:
+
+durable initialization may PASS under vNext,
+but market-dependent analysis remains BLOCKED.
+
+If market snapshot exists but is stale:
+
+analysis/decision remains BLOCKED.
+
+Do not downgrade severity merely to achieve PASS.
+
+==================================================
+23. HISTORICAL PIT SAFETY
+==================================================
+
+Do NOT weaken historical Point-In-Time rules.
+
+Historical replay/backtest must use only information actually available at
+the simulated time.
+
+Must bind appropriate historical versions of:
+
+VN30 universe
+fundamentals
+market observations
+corporate actions
+policies
+exceptions
+source availability.
+
+Today's refresh must never repair a historical PIT gap.
+
+A restatement published later must not appear as if known earlier.
+
+An Owner exception approved later must not leak backward unless the
+historical replay contract explicitly models that later knowledge.
+
+==================================================
+24. CORPORATE ACTION SAFETY
+==================================================
+
+Market-data contracts must explicitly handle corporate-action semantics.
+
+At minimum distinguish where applicable:
+
+raw/unadjusted close
+adjusted close
+reference price
+split/bonus/right/dividend adjustments.
+
+Never mix adjusted and unadjusted series silently.
+
+Corporate-action version/provenance must be bound where adjustment affects
+analysis.
+
+Unknown adjustment semantics:
+
+BLOCKED for dependent analysis.
+
+==================================================
+25. SECURITY IDENTITY SAFETY
+==================================================
+
+Never trust ticker text alone when durable security identity exists.
+
+Market observation must resolve to the correct security/universe identity.
+
+Handle:
+
+ticker reuse
+listing changes
+exchange changes
+corporate rename
+VN30 reconstitution
+
+using approved identity/reference contracts.
+
+Identity ambiguity:
+
+BLOCKED.
+
+==================================================
+26. MARKET SOURCE CONFLICTS
+==================================================
+
+If multiple market sources disagree materially:
+
+do not silently choose whichever value is convenient.
+
+Apply deterministic source authority/conflict rules.
+
+Represent:
+
+MATCH
+ROUNDING_ONLY
+TIMESTAMP_DIFFERENCE
+SESSION_DIFFERENCE
+ADJUSTMENT_DIFFERENCE
+SOURCE_CONFLICT
+UNKNOWN
+
+or repository-equivalent classifications.
+
+Material unresolved source conflict:
+
+BLOCKED for dependent analysis.
+
+==================================================
+27. CURRENT INFORMATION GUARD
+==================================================
+
+The amendment must preserve the Investment Constitution rule:
+
+real market analysis uses the latest qualified information.
+
+However:
+
+"latest"
+
+does NOT mean blindly accepting the newest response.
+
+Newest data must still pass:
+
+source authority
+identity
+schema
+semantics
+freshness
+conflict
+provenance.
+
+==================================================
+28. CACHE SAFETY
+==================================================
+
+Any cached:
+
+market snapshot
+analysis result
+ranking
+Top10
+decision candidate
+DCA plan
+
+must carry dependency IDs/hashes.
+
+If a relevant dependency changes or expires:
+
+cache must not authorize a new capital action.
+
+Examples:
+
+market freshness expires
+portfolio ledger changes
+VN30 universe changes
+fundamental snapshot changes
+ticker disposition changes
+TCX exception changes
+policy/scoring version changes.
+
+Require revalidation/rebuild as appropriate.
+
+==================================================
+29. READINESS STATES
+==================================================
+
+Avoid one overloaded boolean.
+
+Model readiness explicitly.
+
+At minimum the architecture should be able to distinguish:
+
+INITIALIZED
+
+MARKET_CAPABLE
+
+MARKET_CURRENT
+
+ANALYSIS_READY
+
+DECISION_READY.
+
+These states are not interchangeable.
+
+Examples:
+
+INITIALIZED=true
+MARKET_CAPABLE=true
+MARKET_CURRENT=false
+ANALYSIS_READY=false
+DECISION_READY=false
+
+is a valid state.
+
+MBB may coexist with:
+
+INITIALIZED=true
+
+under Policy B while:
+
+MBB fundamental eligibility=false.
+
+==================================================
+30. UI / API SEMANTICS
+==================================================
+
+Update APIs/view models only as necessary to expose correct readiness.
+
+Do not expose misleading generic:
+
+READY
+
+when only initialization is complete.
+
+Where applicable expose distinct statuses:
+
+initialized
+marketCapability
+marketCurrent
+analysisReady
+decisionReady.
+
+Do not claim decision readiness solely because market data is fresh.
+
+Existing financial/qualitative/valuation/portfolio/risk gates remain
+required.
+
+==================================================
+31. DATABASE / MIGRATION
+==================================================
+
+Use additive migrations.
+
+Do NOT destructively repurpose historical snapshot tables/columns.
+
+Add versioned models/tables/fields only where needed.
+
+Migration must preserve:
+
+historical snapshots
+historical dispositions
+existing transactions
+portfolio state
+existing evidence IDs
+old replay.
+
+Migration must be deterministic and rollback/recovery aware according to
+existing repository standards.
+
+==================================================
+32. LEGACY READERS
+==================================================
+
+Existing historical snapshot/evidence readers must continue to reproduce old
+artifacts where dependencies still exist.
+
+Do not silently reinterpret legacy snapshots under vNext semantics.
+
+Use explicit version dispatch.
+
+Unsupported version:
+
+fail closed.
+
+==================================================
+33. NO AUTOMATIC CURRENT MARKET FETCH
+==================================================
+
+Do NOT build a background process that continuously fetches market prices
+just to keep Data Initialization green.
+
+Market refresh should be request/workflow driven according to approved
+analysis needs.
+
+This task may fetch only the minimum real-source sample necessary to qualify
+MarketDataCapability.
+
+Do not create a permanent current-price dependency for initialization.
+
+==================================================
+34. TEST MATRIX — INITIALIZATION
+==================================================
+
+Add tests proving:
+
+InitializationManifest excludes requirement for current price.
+
+InitializationManifest binds full30 universe.
+
+InitializationManifest binds29/1 Policy-B partition.
+
+MBB remains deferred.
+
+TCX exception remains active.
+
+Market capability PASS does not imply MARKET_CURRENT.
+
+Market capability FAIL blocks initialization vNext where capability is
+mandatory.
+
+Old initialization contract replay remains unchanged.
+
+==================================================
+35. TEST MATRIX — MARKET CAPABILITY
+==================================================
+
+Test:
+
+real retained raw source rehash PASS
+
+missing raw source → BLOCKED
+
+hash mismatch → BLOCKED
+
+unknown schema → BLOCKED
+
+wrong security identity → BLOCKED
+
+unknown currency/unit → BLOCKED
+
+unknown price semantics → BLOCKED
+
+adjustment ambiguity → BLOCKED where relevant
+
+duplicate conflict → BLOCKED
+
+mock-only proof cannot certify capability.
+
+==================================================
+36. TEST MATRIX — FRESHNESS
+==================================================
+
+Test:
+
+fresh eligible snapshot → PASS
+
+stale snapshot → BLOCKED
+
+missing snapshot → BLOCKED
+
+future-dated observation → BLOCKED
+
+retrievedAt cannot substitute tradingDate
+
+weekend/holiday semantics follow approved calendar
+
+unknown calendar/session → BLOCKED
+
+cached stale quote cannot pass.
+
+Include the conceptual regression:
+
+Oct19 initialization
++
+Oct19 market snapshot
++
+Oct25 analysis request
++
+Oct19 snapshot stale under policy
+
+=> initialization still valid
+=> analysis blocked.
+
+==================================================
+37. TEST MATRIX — POLICY B / RANKING
+==================================================
+
+Test:
+
+FULL = 30
+
+eligible = 29
+
+deferred = MBB
+
+MBB has no score
+
+MBB does not enter ranking
+
+MBB does not enter Top10
+
+MBB score0 not synthesized
+
+FULL universe does not shrink to29
+
+no missing score-weight redistribution
+
+no automatic capital redistribution.
+
+Verify user-facing ranking semantics indicate partial scorable universe.
+
+Do NOT run real investment ranking.
+
+==================================================
+38. TEST MATRIX — DECISION
+==================================================
+
+Test:
+
+decision cannot publish without accepted AnalysisSnapshot
+
+decision cannot publish without required fresh MarketSnapshot
+
+decision cannot publish without current PortfolioSnapshot
+
+decision cannot publish without policy/model/engine version
+
+decision cannot publish if disposition changed
+
+decision cannot publish if market freshness expired
+
+decision cannot publish if persistence/sealing fails
+
+positive-capital decision cannot escape before DecisionSnapshot seal.
+
+Historical decision replay uses original versions.
+
+==================================================
+39. TEST MATRIX — PIT
+==================================================
+
+Test:
+
+future fundamental information cannot leak backward
+
+future market observations cannot leak backward
+
+future universe membership cannot leak backward
+
+later corporate-action version cannot silently alter prior raw-price
+interpretation
+
+later Owner exception cannot silently rewrite earlier knowledge state.
+
+==================================================
+40. PROTECTED FUNDAMENTAL REPLAY
+==================================================
+
+Run protected replay for the current30 fundamental accounting state.
+
+Expected:
+
+29 Level-1 closed
+1 deferred MBB
+
+0 accounting value changes caused by this amendment.
+
+VNM unchanged.
+
+VIB unchanged.
+
+VIC unchanged.
+
+TCX exception unchanged.
+
+MBB unresolved blocker unchanged.
+
+Any unexplained accounting change:
+
+FAIL.
+
+==================================================
+41. VALIDATION
+==================================================
+
+Run all relevant project quality gates.
+
+At minimum:
+
+lint
+
+typecheck
+
+unit tests
+
+integration tests
+
+architecture/boundary tests
+
+DB validation
+
+migration validation
+
+fundamental-data regression suite
+
+Policy-B regressions
+
+Data Initialization regressions
+
+protected accounting replay
+
+snapshot/replay tests
+
+PIT tests
+
+browser/E2E where applicable
+
+production build.
+
+If historical baseline failures already existed before this implementation:
+
+reproduce them against STARTING HEAD.
+
+Classify:
+
+PRE_EXISTING
+
+vs
+
+NEW_REGRESSION.
+
+No new Critical/Major regression is acceptable.
+
+Do not falsely report the whole suite green if baseline failures remain.
+
+==================================================
+42. NO INVESTMENT OUTPUT
+==================================================
+
+Even if implementation succeeds:
+
+Do NOT:
+
+score VN30
+
+rank VN30
+
+produce Top10
+
+calculate actionable valuation conclusions
+
+produce STRONG BUY/BUY/ACCUMULATE
+
+produce DCA allocation
+
+place trades.
+
+This task changes infrastructure/governance only.
+
+==================================================
+43. DI14 / DI15
+==================================================
+
+Do NOT automatically approve DI14 or DI15.
+
+After implementation:
+
+produce candidate vNext gate results.
+
+DI14 requires independent approval.
+
+DI15 must be evaluated under the approved versioned contract after DI14 and
+all mandatory gates are independently accepted.
+
+Do not set:
+
+readyForScoring=true
+
+merely because implementation tests pass.
+
+==================================================
+44. EXPECTED POST-IMPLEMENTATION STATE
+==================================================
+
+If MarketDataCapability can be legitimately certified, the expected
+conceptual state is approximately:
+
+FULL_UNIVERSE = 30
+
+FUNDAMENTALLY_SCORABLE = 29
+
+DEFERRED = MBB
+
+INITIALIZED_vNEXT = candidate
+
+MARKET_CAPABLE = true
+
+MARKET_CURRENT = false
+unless an independently accepted market snapshot actually exists
+
+ANALYSIS_READY = false
+
+DECISION_READY = false.
+
+If real-source capability cannot be certified:
+
+MARKET_CAPABLE = false
+
+INITIALIZED_vNEXT remains blocked where capability is mandatory.
+
+Do NOT force expected values.
+
+==================================================
+45. EVIDENCE PACKAGE
+==================================================
+
+Create:
+
+docs/fundamental-data-engine/evidence/
+2026-10-19-di-market-data-boundary-amendment/
+
+At minimum include:
+
+README.md
+
+AMENDMENT_AUTHORITY.json
+BASELINE_IDENTITY.json
+IMPLEMENTATION_MANIFEST.json
+
+CONTRACT_VERSION_MATRIX.json
+
+INITIALIZATION_MANIFEST_REVIEW.json
+MARKET_DATA_CAPABILITY_REVIEW.json
+MARKET_SOURCE_REAL_EVIDENCE.json
+
+DI04_VNEXT_REVIEW.json
+DI08_VNEXT_REVIEW.json
+DI12_VNEXT_REVIEW.json
+
+MARKET_FRESHNESS_GATE_REVIEW.json
+ANALYSIS_SNAPSHOT_REVIEW.json
+DECISION_SNAPSHOT_REVIEW.json
+
+POLICY_B_RANKING_REVIEW.json
+MBB_QUARANTINE_REPLAY.json
+TCX_EXCEPTION_REPLAY.json
+
+PIT_REPLAY.json
+PROTECTED_ACCOUNTING_REPLAY.json
+
+MIGRATION_REVIEW.json
+LEGACY_REPLAY_REVIEW.json
+
+NEGATIVE_TEST_RESULTS.json
+REGRESSION_RESULTS.json
+TEST_RESULTS.json
+
+OPEN_ISSUES.json
+
+FINAL_REVIEW.md
+ARTIFACT_HASHES.json.
+
+Do not duplicate large raw datasets unnecessarily.
+
+For retained real market source evidence, store only what is required by the
+approved replay contract.
+
+==================================================
+46. FINAL REVIEW FORMAT
+==================================================
+
+FINAL_REVIEW.md must begin with:
+
+DI MARKET-DATA BOUNDARY AMENDMENT
+=================================
+
+IMPLEMENTATION:
+PASS / FAIL
+
+NEW_REGRESSIONS:
+count
+
+ACCOUNTING_REGRESSIONS:
+count
+
+LEGACY_REPLAY:
+PASS / FAIL
+
+FULL_UNIVERSE:
+30
+
+FUNDAMENTALLY_SCORABLE:
+29
+
+DEFERRED:
+MBB
+
+TCX_EXCEPTION:
+ACTIVE / ERROR
+
+Then report:
+
+INITIALIZATION_vNEXT:
+PASS_CANDIDATE / BLOCKED
+
+MARKET_CAPABLE:
+true / false
+
+MARKET_CURRENT:
+true / false / NOT_EVALUATED
+
+ANALYSIS_READY:
+true / false
+
+DECISION_READY:
+true / false
+
+DI4_vNEXT:
+PASS_CANDIDATE / FAIL / BLOCKED
+
+DI8_vNEXT:
+PASS_CANDIDATE / FAIL / BLOCKED
+
+DI12_vNEXT:
+PASS_CANDIDATE / FAIL / BLOCKED
+
+DI14:
+PENDING_INDEPENDENT_APPROVAL
+
+DI15:
+PENDING / FAIL
+
+readyForScoring:
+false
+
+decisionReady:
+false.
+
+Then explicitly report:
+
+REAL MARKET SOURCE USED FOR CAPABILITY:
+source / none
+
+RAW SOURCE REPLAY:
+PASS / FAIL / NOT_AVAILABLE
+
+POLICY-B RANKING ENVELOPE:
+PASS / FAIL
+
+MBB QUARANTINE:
+PASS / FAIL
+
+TCX EXCEPTION PROPAGATION:
+PASS / FAIL
+
+HISTORICAL PIT:
+PASS / FAIL
+
+==================================================
+47. FAILURE RULE
+==================================================
+
+Do not hide blockers.
+
+Examples requiring BLOCKED/FAIL:
+
+no legitimate real-source evidence
+
+raw market evidence not replayable
+
+schema ambiguity
+
+security identity ambiguity
+
+price semantics unknown
+
+new migration breaks old replay
+
+MBB accidentally becomes eligible
+
+TCX exception disappears
+
+accounting facts change unexpectedly
+
+legacy snapshots are reinterpreted
+
+market freshness can be bypassed
+
+decision can publish before evidence seal.
+
+Fix implementation defects introduced by this change.
+
+Do NOT weaken contracts/tests merely to obtain PASS.
+
+==================================================
+48. SCOPE CONTROL
+==================================================
+
+This implementation is already cross-cutting.
+
+Do NOT expand it into:
+
+new scoring methodology
+
+new valuation model
+
+new technical indicators
+
+new money-flow model
+
+new portfolio allocation logic
+
+new DCA rules
+
+new investment recommendations.
+
+Do not redesign unrelated modules.
+
+Prefer the minimum architecture required to enforce the approved lifecycle
+boundary safely.
+
+==================================================
+49. COMMIT
+==================================================
+
+After implementation and validation:
+
+create ONE scoped commit.
+
+Suggested message:
+
+Implement DI Market-Data Boundary Amendment
+
+Do not mix unrelated changes.
+
+Record:
+
+starting HEAD
+ending HEAD
+changed files
+migration IDs
+contract versions
+test results
+
+inside the evidence package.
+
+==================================================
+50. STOP
+==================================================
+
+STOP after implementation + validation + evidence generation.
+
+Do NOT independently approve the amendment.
+
+Do NOT approve DI14.
+
+Do NOT approve DI15.
+
+Do NOT run scoring/ranking/Top10.
+
+Do NOT produce investment recommendations.
+
+Wait for independent review:
+
+Review DI Market-Data Boundary Amendment

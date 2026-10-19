@@ -1,0 +1,16 @@
+{
+  "amendment": "di-market-boundary-v1",
+  "versions": {
+    "InitializationManifest": "initialization-manifest-v1",
+    "MarketDataCapability": "market-data-capability-v1",
+    "MarketSnapshot": "market-snapshot-v1",
+    "AnalysisSnapshot": "analysis-snapshot-v1",
+    "PortfolioSnapshotBinding": "portfolio-snapshot-binding-v1",
+    "DecisionSnapshot": "decision-snapshot-v1",
+    "PolicyBRankingEnvelope": "policy-b-ranking-envelope-v1",
+    "PolicyBRankingPublication": "policy-b-ranking-publication-v1"
+  },
+  "versionDispatch": "readSealed / findRanking; unknown version fails closed",
+  "legacy": "Original fundamental, portfolio, score, decision and workflow readers remain unchanged. Frozen starting-HEAD current composition retained only in disposable test fixture.",
+  "newStore": "market_boundary_record + atomic decision seal + ranking publication; legacy tables untouched"
+}
