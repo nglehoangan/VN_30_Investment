@@ -2,6 +2,7 @@
 import gzip
 import hashlib
 import json
+import os
 import pathlib
 import sys
 
@@ -9,7 +10,8 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent / "lib"))
 from manual_display import normalize_number
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-BASE = ROOT / "data/manual-extracted/display-v1"
+BASE = ROOT / os.environ.get("VN30_PDF_EXTRACT_ROOT", "data/manual-extracted-pdf")
+SOURCE = ROOT / os.environ.get("VN30_PDF_SOURCE_ROOT", "data/manual-download")
 
 
 def load(path):
@@ -28,7 +30,7 @@ def main():
     manifest = load(BASE / "display-manifest.json")
     raw_manifest = load(BASE / "manifest.json")
     assert manifest["completeRawInventory"] and raw_manifest["complete"]
-    files = sorted((ROOT / "data/manual-fundamentals").rglob("*.pdf"))
+    files = sorted(SOURCE.rglob("*.pdf"))
     sources = {path: d for d in raw_manifest["documents"] for path in d["retainedPaths"]}
     assert len(files) == len(sources) == raw_manifest["physicalPdfCount"]
     for path in files:

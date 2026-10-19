@@ -10,6 +10,7 @@ import hashlib
 import json
 import os
 import pathlib
+import select
 import subprocess
 import tempfile
 import time
@@ -17,7 +18,8 @@ import time
 import pymupdf
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-BASE = ROOT / "data/manual-extracted/display-v1"
+BASE = ROOT / os.environ.get("VN30_PDF_EXTRACT_ROOT", "data/manual-extracted-pdf")
+SOURCE = ROOT / os.environ.get("VN30_PDF_SOURCE_ROOT", "data/manual-download")
 READERS = BASE / "readers"
 DOCUMENTS = BASE / "documents"
 EXISTING = ROOT / "data/manual-extracted/current/ocr"
@@ -41,8 +43,37 @@ def relative(path):
     return str(path.relative_to(ROOT))
 
 
+# Each process-pool worker owns one recognizer. Its stdin closes when the worker
+# exits, so the helper exits at EOF. Readers still retain per-page provenance.
+_vision_stream = None
+_vision_binary_hashes = {}
+
+
+def recognize(vision, image, stream):
+    global _vision_stream
+    if not stream:
+        attempt = subprocess.run([vision, str(image)], capture_output=True, timeout=120)
+        if attempt.returncode:
+            raise RuntimeError("VISION_READ_FAILED:" + attempt.stderr.decode(errors="replace")[:200])
+        return json.loads(attempt.stdout)
+    if _vision_stream is None or _vision_stream.poll() is not None:
+        _vision_stream = subprocess.Popen([vision], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                                          stderr=subprocess.DEVNULL)
+    _vision_stream.stdin.write((str(image) + "\n").encode())
+    _vision_stream.stdin.flush()
+    if not select.select([_vision_stream.stdout], [], [], 120)[0]:
+        _vision_stream.kill()
+        _vision_stream.wait()
+        raise RuntimeError("VISION_STREAM_TIMEOUT")
+    response = _vision_stream.stdout.readline()
+    if not response:
+        raise RuntimeError("VISION_STREAM_EXIT:" + str(_vision_stream.poll()))
+    return json.loads(response)
+
+
 def extract_document(task):
-    item, vision = task
+    item, vision, *options = task
+    stream = bool(options[0]) if options else False
     path = ROOT / item["retainedPaths"][0]
     sha = item["sourceHash"]
     assert digest(path.read_bytes()) == sha, "PDF_HASH_MISMATCH"
@@ -65,8 +96,11 @@ def extract_document(task):
                 native = page.get_text("words", sort=True)
                 text = page.get_text().strip()
                 area = max(page.rect.width * page.rect.height, 1)
-                raster = any(rect.width * rect.height / area > 0.5
-                             for image in page.get_images() for rect in page.get_image_rects(image[0]))
+                # Image geometry needs no image hashes. Scanned pages with too little
+                # native text already require OCR, so avoid decoding their images twice.
+                raster = len(text) >= 150 and any(
+                    pymupdf.Rect(info["bbox"]).get_area() / area > 0.5
+                    for info in page.get_image_info(hashes=False, xrefs=False))
                 if len(text) >= 150 and not raster:
                     entry.update(method="PYMUPDF_NATIVE_WORD_COORDINATES", text=text,
                                  words=[{"text": w[4], "x": w[0] / page.rect.width,
@@ -92,12 +126,12 @@ def extract_document(task):
                             with tempfile.TemporaryDirectory(prefix="manual-display-") as tmp:
                                 image = pathlib.Path(tmp) / "page.png"
                                 page.get_pixmap(dpi=180).save(image)
-                                attempt = subprocess.run([vision, str(image)], capture_output=True, timeout=120)
-                                if attempt.returncode:
-                                    raise RuntimeError("VISION_READ_FAILED:" + attempt.stderr.decode(errors="replace")[:200])
-                                words = json.loads(attempt.stdout)
+                                words = recognize(vision, image, stream)
+                                if vision not in _vision_binary_hashes:
+                                    _vision_binary_hashes[vision] = digest(pathlib.Path(vision).read_bytes())
                                 reader = {"schemaVersion": "manual-display-reader-v1", "bodyHash": sha,
-                                          "page": page_number, "engine": "APPLE_VISION_SINGLE_READER_UNREVIEWED",
+                                          "page": page_number, "engine": "APPLE_VISION_PERSISTENT_SINGLE_READER_UNREVIEWED" if stream else "APPLE_VISION_SINGLE_READER_UNREVIEWED",
+                                          "engineExecutableSha256": _vision_binary_hashes[vision],
                                           "renderDpi": 180, "renderSha256": digest(image.read_bytes()),
                                           "words": words, "status": "RAW_EXTRACTION_UNREVIEWED"}
                                 write_json(cached_reader, reader)
@@ -125,12 +159,13 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--vision", default="/private/tmp/vn30-vision-ocr")
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--vision-stream", action="store_true", help="Use the persistent stdin/JSON-lines Vision helper")
     parser.add_argument("--ticker")
     args = parser.parse_args()
     for directory in [BASE, READERS, DOCUMENTS]:
         directory.mkdir(parents=True, exist_ok=True)
     inventory = {}
-    for path in sorted((ROOT / "data/manual-fundamentals").rglob("*.pdf")):
+    for path in sorted(SOURCE.rglob("*.pdf")):
         if args.ticker and path.parent.name != args.ticker:
             continue
         body = path.read_bytes()
@@ -143,7 +178,7 @@ def main():
     results = []
     start = time.time()
     with concurrent.futures.ProcessPoolExecutor(max_workers=args.workers) as pool:
-        futures = {pool.submit(extract_document, (item, args.vision)): item for item in inventory.values()}
+        futures = {pool.submit(extract_document, (item, args.vision, args.vision_stream)): item for item in inventory.values()}
         for future in concurrent.futures.as_completed(futures):
             item = future.result()
             results.append(item)

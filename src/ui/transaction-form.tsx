@@ -5,7 +5,7 @@ import Link from "next/link";
 import type { ManualTransactionDraft } from "@/shared/validation/manual-transaction";
 import type { TransactionResponse } from "@/application/dashboard/transaction-model";
 import { Evidence } from "./evidence";
-import { Metrics, Table } from "./dashboard";
+import { Metrics, Table } from "./primitives";
 export function TransactionForm({ action }: { action: (mode: "preview" | "confirm", payload: unknown) => Promise<TransactionResponse> }) {
   const { register, handleSubmit, control, formState: { errors } } = useForm<ManualTransactionDraft>({ defaultValues: { type: "CASH_DEPOSIT", date: "", time: "12:00", security: "", quantity: "", price: "", amount: "", fee: "0", tax: "0", reference: "", sourceReference: "" } });
   const [result, setResult] = useState<TransactionResponse | null>(null), [pending, setPending] = useState(false);

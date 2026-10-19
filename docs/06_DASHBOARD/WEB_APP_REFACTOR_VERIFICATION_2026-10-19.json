@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "web-app-refactor-verification-v1",
+  "date": "2026-10-19",
+  "nodeVersion": "22.23.2",
+  "baseline": {
+    "files": 126,
+    "total": 1933,
+    "passed": 1915,
+    "failed": 18
+  },
+  "final": {
+    "files": 128,
+    "total": 1937,
+    "passed": 1919,
+    "failed": 18,
+    "allPass": false
+  },
+  "newFailures": [],
+  "sameFailureSetAsBaseline": true,
+  "knownFailures": [
+    "tests/unit/consumer-retail-ticker-closure.test.ts > 33 all seven protected source and evidence hashes remain unchanged",
+    "tests/unit/consumer-targeted-fix.test.ts > VNM original PDF is bound to exact retained bytes",
+    "tests/unit/consumer-targeted-fix.test.ts > All protected evidence and approved contracts retain their original hashes",
+    "tests/unit/di-governance-closure.test.ts > 6 retained original HPG PDF hashes still match physical bytes",
+    "tests/unit/di-governance-closure.test.ts > 7 VJC independent producer replay is deterministic with explicit ticker",
+    "tests/unit/di-governance-closure.test.ts > 8 GVR independent producer replay is deterministic with explicit ticker",
+    "tests/unit/energy-ticker-closure.test.ts > 29 all approved closures and production contracts unchanged",
+    "tests/unit/fpt-ticker-closure.test.ts > deterministic replay requires no temporary extraction files",
+    "tests/unit/gvr-ticker-closure.test.ts > 33 all 13 approved closures, sources, contracts and prior tests remain unchanged",
+    "tests/unit/gvr-ticker-closure.test.ts > retained originals exist and current inventory components reconcile including provision",
+    "tests/unit/real-estate-ticker-closure.test.ts > 23 offline replay binds originals and raw bytes without disposable extraction",
+    "tests/unit/tcx-ket-vang-targeted.test.ts > TCX final targeted FY2022 Két Vàng forensic boundary > 19 SSI closure unchanged",
+    "tests/unit/tcx-ket-vang-targeted.test.ts > TCX final targeted FY2022 Két Vàng forensic boundary > 20 all 15 approved closures and primary TCX evidence unchanged",
+    "tests/unit/tcx-ket-vang-targeted.test.ts > TCX final targeted FY2022 Két Vàng forensic boundary > 22 no denominator or contract modifications",
+    "tests/unit/tcx-ticker-closure.test.ts > TCX Level-1 canonical accounting isolation and semantics > 32 SSI protected evidence unchanged",
+    "tests/unit/tcx-ticker-closure.test.ts > TCX Level-1 canonical accounting isolation and semantics > 33 all 15 approved closure artifacts and bound sources unchanged",
+    "tests/unit/vjc-ticker-closure.test.ts > 40 all 14 approved closures and existing contracts unchanged",
+    "tests/unit/vjc-ticker-closure.test.ts > all retained transcriptions qualify and all five source PDFs are hash-bound"
+  ],
+  "checks": {
+    "productionBuild": "PASS",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "dependencyBoundaries": {
+      "status": "PASS",
+      "modules": 187
+    },
+    "prismaSchema": "PASS",
+    "focusedTests": {
+      "passed": 85,
+      "total": 85
+    },
+    "apiHelperTests": {
+      "passed": 6,
+      "total": 6
+    },
+    "productionBrowserE2E": {
+      "passed": 12,
+      "total": 12,
+      "widths": [
+        1440,
+        390
+      ]
+    },
+    "sqliteIntegrity": "PASS",
+    "sqliteForeignKeys": "PASS",
+    "financialAdmissionRows": 30,
+    "diffWhitespace": "PASS"
+  },
+  "limitations": [
+    "Historical source PDF/OCR dependencies removed by the approved cleanup remain absent.",
+    "Historical byte-freeze expectations for previously authorized changes were not rewritten or skipped.",
+    "This refactor grants no scoring or investment approval."
+  ],
+  "changedSourceHashes": {
+    "app/[screen]/page.tsx": "9cc998f1c1ccf148b6facada3e72c43fe39eb4804c1a152c32204c0608269eb2",
+    "app/[screen]/[id]/page.tsx": "7261f7938e5fc401a98a5bba1975b584f17bc84a705e4b0b9e780c9829e843a4",
+    "app/server/dashboard.ts": "b0ff189a13137863ffa4a023d2bd40fd28bf1aaec0faf071378d61dabb9d7d1c",
+    "scripts/smoke-app.mjs": "afb41c0c938eceb4f0aa61c4cd4abebe3db65106ec36b0a021f58366bbae1d2a",
+    "src/application/dashboard/model.ts": "8c42f5f06b8fe43865c3e447b6ce329bdce8e8ba6b45a042e0a2feb58c51f26f",
+    "src/ui/dashboard.tsx": "9cba4cf73fefb93530f25d49030849583314eef898104048a5e63a985f2c6771",
+    "src/ui/data-freshness.tsx": "4d65c7ad9d55c80a1f8a2428ab7c71960056c1c28842d15aae87fe29340f745d",
+    "src/ui/policy-b-data-freshness.tsx": "5377d2bf3f67a7d2729a12b484222958ac12cfa6cfd37c1db7a5b4e2b379fdaa",
+    "src/ui/transaction-form.tsx": "d8bd2a05710b246b0862b330efea90d57d2be6d0cb23e3a78746eb3f88476233",
+    "src/ui/artifact-views.tsx": "e50f091805dfe23eea31aba31078209e681a6ed81e3c531d5b81aedcba2c598c",
+    "src/ui/broker-views.tsx": "9c0d3684a3bfaaed0368d8fc38ccb6fc0563436603e85040b62fde92469b6951",
+    "src/ui/freshness-view.tsx": "c13f56f1c4cd4bb23d1b9c0b891608c2b1936b9ab39ba61d7e2d6f91143b1b09",
+    "src/ui/navigation.ts": "9d3b2d29871032c223a843f485b5e4df95d9f278efb5d640582260393162e16e",
+    "src/ui/primitives.tsx": "a59810ce1a54a4e218b7f783d741b09237ad3fed539d8f2807ba0796159f327f",
+    "tests/unit/dashboard-screens.test.ts": "72595b2fd180bd4f5e39e14baada3dd40d074da750f159d9db0bd91e7e763936",
+    "tests/integration/dashboard-research-isolation.test.ts": "a95a5b7b8ea6c185885726aafe7164fbb10ec350d6b5fc4fb5afc83e2e50ea63"
+  },
+  "rawTestReportSha256": "2a794746474f9e797bf277a2070c9cf711bddabf485a712ed44b2f4a9f338d9a",
+  "visualReview": {
+    "desktop": "1440-dashboard.png",
+    "mobile": "390-holdings.png",
+    "temporaryDirectory": "/private/tmp/vn30-refactor-visual",
+    "historicalScreenshotBytesRestored": true
+  }
+}

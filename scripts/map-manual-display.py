@@ -3,6 +3,7 @@ import argparse
 import gzip
 import hashlib
 import json
+import os
 import pathlib
 import re
 import sys
@@ -11,7 +12,8 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent / "lib"))
 from manual_display import REPORTS, classify_page, extract_table, fold
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-BASE = ROOT / "data/manual-extracted/display-v1"
+BASE = ROOT / os.environ.get("VN30_PDF_EXTRACT_ROOT", "data/manual-extracted-pdf")
+SOURCE = ROOT / os.environ.get("VN30_PDF_SOURCE_ROOT", "data/manual-download")
 
 
 def load(path):
@@ -228,12 +230,13 @@ def main():
     manifest = load(BASE / "manifest.json")
     if not args.preview:
         assert manifest["complete"], "RAW_EXTRACTION_NOT_COMPLETE"
-        physical = sorted((ROOT / "data/manual-fundamentals").rglob("*.pdf"))
+        physical = sorted(SOURCE.rglob("*.pdf"))
         expected = {path: d["sourceHash"] for d in manifest["documents"] for path in d["retainedPaths"]}
         assert len(physical) == manifest["physicalPdfCount"] == len(expected), "CORPUS_INVENTORY_CHANGED"
         for path in physical:
             assert sha(path.read_bytes()) == expected[str(path.relative_to(ROOT))], "PDF_HASH_MISMATCH"
-    snapshot = load(ROOT / "data/manual-current/current-analysis.json")
+    snapshot_path = ROOT / os.environ.get("VN30_PDF_IDENTITY_INPUT", "docs/fundamental-data-engine/rebuild-2026-10-19/pdf-identity-input.json")
+    snapshot = load(snapshot_path) if snapshot_path.exists() else {"statements": [], "canonicalFacts": []}
     tickers, statistics, documents = build(manifest["documents"], snapshot)
     output = BASE / "preview" if args.preview else BASE
     output.mkdir(parents=True, exist_ok=True)

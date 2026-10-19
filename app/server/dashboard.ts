@@ -73,19 +73,25 @@ export async function readDashboard(client: PrismaClient, screen = "audit", refe
 export async function loadDashboard(screen = "dashboard", reference?: string,acceptanceId?:string): Promise<DashboardModel> {
   let client: PrismaClient | undefined;
   try {
-    const manualFundamentals=["data","vn30","scoring"].includes(screen)?await readManualCurrentSnapshot(process.cwd())??undefined:undefined;
+    // Optional research must not hide separately verified ledger or sealed snapshot data.
+    let manualFundamentals: DashboardModel["manualFundamentals"];
+    let manualFundamentalsIssue: string | undefined;
+    if (["data", "vn30", "scoring"].includes(screen)) {
+      try { manualFundamentals = await readManualCurrentSnapshot(process.cwd()) ?? undefined; }
+      catch { manualFundamentalsIssue = "Manual financial evidence could not be verified. Its values and readiness are unavailable."; }
+    }
     const config = loadDatabaseConfig(process.env, process.cwd());
     if (!existingDatabase(config.filePath)) {
-      if(screen==="data")return {...emptyDashboard(),manualFundamentals,dataFreshness:emptyDataFreshness(runtime.clock.now())};
+      if(screen==="data")return {...emptyDashboard(),manualFundamentals,manualFundamentalsIssue,dataFreshness:emptyDataFreshness(runtime.clock.now())};
       const brokerSnapshot = await loadBrokerSnapshot(process.env.VN30_BROKER_SNAPSHOT_FILE);
-      return { ...emptyDashboard(), status: brokerSnapshot ? "SUCCESS" : "EMPTY", brokerSnapshot: brokerSnapshot ?? undefined };
+      return { ...emptyDashboard(), manualFundamentals, manualFundamentalsIssue, status: brokerSnapshot ? "SUCCESS" : "EMPTY", brokerSnapshot: brokerSnapshot ?? undefined };
     }
     client = await openDatabase(config);
-    if(screen==="data")return {...await readDashboard(client,screen,reference,{acceptanceId}),manualFundamentals};
+    if(screen==="data")return {...await readDashboard(client,screen,reference,{acceptanceId}),manualFundamentals,manualFundamentalsIssue};
     const brokerSnapshot = await latestBrokerSnapshot(client) ?? await loadBrokerSnapshot(process.env.VN30_BROKER_SNAPSHOT_FILE);
     const brokerApiData = await latestBrokerApiData(client);
     const dashboard = await readDashboard(client, screen, reference);
-    return { ...dashboard,manualFundamentals, brokerApiData, status: dashboard.status === "EMPTY" && brokerSnapshot ? "SUCCESS" : dashboard.status, brokerSnapshot: brokerSnapshot ?? undefined };
+    return { ...dashboard,manualFundamentals,manualFundamentalsIssue, brokerApiData, status: dashboard.status === "EMPTY" && brokerSnapshot ? "SUCCESS" : dashboard.status, brokerSnapshot: brokerSnapshot ?? undefined };
   } catch (error) { return { ...emptyDashboard(), status: "BLOCKED", message: toPublicError(error).message, ...(screen==="data"?{dataFreshness:emptyDataFreshness(runtime.clock.now(),"BLOCKED",["BLOCKED_DATA_READ"])}:{}) }; }
   finally { await client?.$disconnect(); }
 }

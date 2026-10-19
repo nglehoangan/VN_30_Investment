@@ -1,0 +1,26 @@
+{
+  "checks": [
+    {
+      "command": "python3 scripts/test-manual-display.py",
+      "passed": 9
+    },
+    {
+      "command": "SourcePriorityTests excluding historical test_actual_vnm_selection_and_review_queue",
+      "passed": 7
+    },
+    {
+      "command": "python3 scripts/test-rebuilt-combine.py",
+      "passed": 5
+    },
+    {
+      "command": "node node_modules/vitest/vitest.mjs run tests/unit/cafef-display.test.ts",
+      "passed": 5
+    }
+  ],
+  "historicalArtifactCheck": {
+    "test": "test_actual_vnm_selection_and_review_queue",
+    "result": "INPUT_INTENTIONALLY_DELETED_BY_OWNER_RESET",
+    "path": "data/comparisons/VNM/FY2025/selected-pdf-first.json"
+  },
+  "scope": "Unit checks, not final corpus verification"
+}

@@ -1,5 +1,7 @@
 # Báo cáo tài chính tải thủ công
 
+**Đã thay thế bởi yêu cầu dựng lại toàn bộ data ngày 19/10/2026.** Quy trình hiện tại ở [REBUILT_DATA_WORKFLOW.md](REBUILT_DATA_WORKFLOW.md). Nội dung bên dưới ghi lại lần chuyển thư mục trước đó; symlink, manifest và các đường dẫn cũ đã bị xóa theo yêu cầu mới. PDF hiện nằm trực tiếp trong `data/manual-download/<MÃ>/`.
+
 Từ yêu cầu ngày 19/10/2026, thư mục chuẩn là `data/manual-download/` thay cho `data/reacquired-fundamentals/`.
 
 - `VNM/2026-10-19/`: giữ 5 BCTC đã tải (FY2022–FY2025 và 6M2026), nội dung và SHA-256 không đổi.

@@ -1,82 +1,25 @@
 import Link from "next/link";
-import {DataFreshnessView} from "./data-freshness";
-import {ManualFundamentalsView} from "./manual-fundamentals";
-import {emptyDataFreshness} from "@/application/dashboard/model";
-import { Evidence } from "./evidence";
-export { Evidence } from "./evidence";
 import type { ReactNode } from "react";
 import type { DashboardModel } from "@/application/dashboard/model";
-import type { BrokerSnapshot } from "@/domain/portfolio/broker-snapshot";
-import type { Decision } from "@/domain/decision/engine";
-import type { ReviewArtifact, AllocationProposal } from "@/domain/workflow/contracts";
-import type { Ranking } from "@/domain/ranking/rank";
-export const navigation = [
-  { group: "Overview", items: [["dashboard", "Dashboard"], ["holdings", "Holdings"], ["risk", "Risk"], ["performance", "Performance"]] },
-  { group: "Research & Decisions", items: [["vn30", "VN30 Universe"], ["ranking", "Scoring & Ranking"], ["decisions", "Decision Center"], ["dca", "DCA Planner"]] },
-  { group: "Operations", items: [["transactions", "Transactions"], ["reviews", "Reviews"], ["journal", "Journal"]] },
-  { group: "Data", items: [["imports", "Imports"], ["data", "Data Freshness"], ["audit", "Audit / Methodology"]] },
-  { group: "Settings", items: [["settings", "Settings"]] },
-];
-const titles: Record<string, string> = Object.fromEntries(navigation.flatMap(g => g.items));
-export function Status({ children }: { children: ReactNode }) { return <span className="status">{children}</span>; }
-export function Panel({ title, children }: { title: string; children: ReactNode }) { return <section aria-label={title}><h2>{title}</h2>{children}</section>; }
-export function Metrics({ values }: { values: Record<string, unknown> }) { return <dl className="metrics">{Object.entries(values).map(([key, value]) => <div key={key}><dt>{key}</dt><dd>{value == null ? "Unavailable" : String(value)}</dd></div>)}</dl>; }
-export function Table({ headers, rows, empty = "No records available." }: { headers: string[]; rows: ReactNode[][]; empty?: string }) {
-  return rows.length ? <div className="table-scroll" role="region" aria-label={headers.join(", ")} tabIndex={0}><table><thead><tr>{headers.map(h => <th scope="col" key={h}>{h}</th>)}</tr></thead><tbody>{rows.map((row, i) => <tr key={i}>{row.map((cell, j) => <td key={j}>{cell ?? "Unavailable"}</td>)}</tr>)}</tbody></table></div> : <p className="empty">{empty}</p>;
-}
-const brokerAmount = (value: string) => value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-export function BrokerSnapshotView({ snapshot: s, id }: { snapshot: BrokerSnapshot; id?: string }) {
-  return <Panel title={`Dữ liệu danh mục ${s.broker}`}>
-    <p>Holdings và giá theo nguồn TCBS: <strong>{s.holdingsAsOf}</strong> · Tiền cập nhật: <strong>{s.cashAsOf}</strong></p>
-    <Metrics values={{ "Tiền mặt (VND)": brokerAmount(s.cash.balance), "Cổ tức chờ về (VND)": brokerAmount(s.cash.pendingDividends),
-      "Tổng tiền và cổ tức chờ về (VND)": brokerAmount(s.cash.total), "Tiền được rút (VND)": brokerAmount(s.cash.withdrawable),
-      "Giá trị cổ phiếu theo TCBS (VND)": brokerAmount(s.totals.marketValue), "Giá vốn nhập từ TCBS (VND)": brokerAmount(s.totals.openCost),
-      "Tổng cổ phiếu": s.totals.quantity, "Cổ phiếu khả dụng theo TCBS": s.totals.tradeableQuantity }} />
-    <p className="notice">Cổ tức chờ về là khoản phải thu, chưa phải tiền khả dụng. Giá cổ phiếu theo dữ liệu nguồn; chưa có NAV hiện tại khi dữ liệu tiền và giá khác ngày. Cổ phiếu chưa khả dụng được hiển thị riêng.</p>
-    <Table headers={["Mã TCBS", "Số lượng", "Trạng thái", "Giá vốn/CP (VND)", "Tổng giá vốn (VND)", "Giá nguồn TCBS (VND)", "Giá trị nguồn TCBS (VND)"]}
-      rows={s.positions.filter(p => !id || p.symbol === id || p.symbol === `${id}_UNAVAILABLE`).map(p => [p.symbol, p.quantity, p.status,
-        brokerAmount(p.unitCost), brokerAmount(p.openCost), brokerAmount(p.price), brokerAmount(p.marketValue)])} />
-    {s.timeBasis === "RETRIEVED_AT" && <p>Thời gian trên là lúc nhận response API, không phải thời điểm định giá được sàn xác nhận.</p>}
-    <p>Mốc theo dõi từ sao kê: {s.trackingStartDate}. Hiệu suất từ mốc này chưa được tính khi chưa có baseline NAV cùng ngày được đối soát. Giá vốn vị thế giữ theo TCBS.</p>
-    <p>Snapshot nguồn đã tải vào ứng dụng. Chưa chuyển thành sổ giao dịch; dữ liệu này không tự cấp quyền giao dịch.</p>
-  </Panel>;
-}
-function BrokerMarketView({ data, compact = false }: { data: NonNullable<DashboardModel["brokerApiData"]>; compact?: boolean }) {
-  return <Panel title="Bảng giá VN30 từ TCBS">
-    <p>Ngày giao dịch: {data.tradingDate ?? "Chưa xác định"} · Nhận dữ liệu: {data.sources.find(s => s.apiId === "5.1")?.receivedAt ?? "Chưa có"}</p>
-    <Table headers={["Mã", "Giá khớp (VND)", "Tham chiếu (VND)", "Thay đổi (%)", "Khối lượng"]}
-      rows={data.quotes.slice(0, compact ? 5 : 100).map(q => [<Link key={q.symbol} href={`/holdings/${q.symbol}`}>{q.symbol}</Link>, brokerAmount(String(q.price)), brokerAmount(String(q.reference)), q.changePercent?.toFixed(2) ?? "Chưa có", brokerAmount(String(q.volume))])}
-      empty="Chưa có dữ liệu bảng giá TCBS." />
-    <p>Giá tại lần lấy dữ liệu đã lưu; bảng giá chưa tự cập nhật theo thời gian thực.</p>
-    {compact && <Link href="/vn30">Xem toàn bộ {data.quotes.length} mã</Link>}
-  </Panel>;
-}
-function BrokerSourcesView({ data }: { data: NonNullable<DashboardModel["brokerApiData"]> }) {
-  return <Panel title="Tài khoản và dữ liệu API TCBS">
-    <Table headers={["Loại tiểu khoản", "Số tài khoản", "Trạng thái"]} rows={data.accounts.map(a => [a.type, a.number, a.active ? "Hoạt động" : "Không hoạt động"])} />
-    <h3>Dữ liệu đã lưu từ API</h3>
-    <Table headers={["API", "HTTP", "Thời gian nhận"]} rows={data.sources.map(s => [s.apiId, s.httpStatus, s.receivedAt])} />
-    <p>Số tài khoản được che bớt trên giao diện. Thời gian ghi nhận là lúc nhận response.</p>
-  </Panel>;
-}
-const href = (route: string, id: string) => `/${route}/${encodeURIComponent(id)}`;
-function Ref({ route, id }: { route: string; id: string | null | undefined }) { return id ? <Link href={href(route, id)}>{id}</Link> : <>Unavailable</>; }
-export function DecisionView({ decision: d }: { decision: Decision }) {
-  return <><Panel title={`${d.ticker} · Economic Decision State`}><Status>{d.decisionState}</Status><p>Execution Status: <strong>{d.executionStatus}</strong></p><p>Review Status: <strong>{d.reviewStatus}</strong> · {d.tradeAuthorization}</p><p>{d.suggestedAction}</p><Metrics values={{ "Data as-of": d.asOf, "Evidence cutoff": d.lineage.evidenceCutoff, "Portfolio snapshot": d.lineage.snapshotId, "Methodology": d.methodology, "Scope": d.scope }} /><p className="notice">Historical as-calculated artifact. Current freshness and actionability require server revalidation. This screen does not authorize a new trade.</p></Panel><Panel title="Why this state?"><ul>{d.reasons.map(r => <li key={r}>{r}</li>)}</ul><p>Score reference: <Ref route="scoring" id={d.lineage.scorecardId} /> · Ranking: <Ref route="ranking" id={d.lineage.rankingId} /></p><p>Prior decision: <Ref route="decisions" id={d.priorDecisionId} /></p><Evidence value={{ thesis: d.input.assessment.thesis, keyPositives: d.input.assessment.keyPositives, keyRisks: d.input.assessment.keyRisks, invalidationConditions: d.input.assessment.invalidationConditions, valuation: d.input.assessment.valuation, requiredReturn: d.requiredReturn, residualRisk: d.input.assessment.risk, portfolioImpact: d.portfolioImpact, opportunityCost: d.opportunityCost, missingEvidence: d.missingEvidence }} /></Panel><Panel title="Evidence & lineage"><Evidence value={{ lineage: d.lineage, evidence: d.input.evidence, assessment: d.input.assessment }} /></Panel></>;
-}
-export function RankingView({ ranking: r }: { ranking: Ranking }) {
-  return <Panel title="Formal ranking / Top 10"><p className="notice">Top 10 ≠ Buy list. Rank #1 alone provides no purchase authorization.</p><Metrics values={{ Status: r.status, "Data as-of": r.asOf, Methodology: r.methodology, "Reference version": r.input.universe.referenceVersion }} /><Table headers={["Rank", "Security", "Score", "Top-10 eligibility", "Confidence", "Data quality", "Near-tie cluster"]} rows={r.entries.map(e => { const c = r.input.cards.find(c => c.id === e.scorecardId); return [e.displayRank, <Ref key={e.securityId} route="scoring" id={e.scorecardId} />, e.score, r.top10.some(t => t.securityId === e.securityId) ? "Selected by M6.4" : "Outside Top 10", c?.confidence, c?.dataQuality, e.cluster]; })} /><h3>Structured exclusion reasons</h3><Table headers={["Excluded security", "Score", "Reason code", "Detail", "Evidence reference"]} rows={r.excluded.flatMap(e => e.reasons.map(reason => [e.securityId, e.score, reason.code, reason.detail, reason.evidenceReference]))} /><h3>Near-tie information</h3><Table headers={["Anchor score", "Securities", "Return tie-break used", "Display-only ties"]} rows={r.clusters.map(c => [c.anchor, c.securityIds.join(", "), String(c.returnTieBreakUsed), c.displayOnlyTies.map(t => t.join(", ")).join(" · ") || "None"])} /></Panel>;
-}
-export function ProposalView({ proposal: p }: { proposal: AllocationProposal }) {
-  return <><Panel title="Allocation proposal"><p className="notice">Proposal ≠ Executed Transaction. This proposal remains a historical plan; execution is evidenced only by confirmed ledger transactions.</p><Status>{p.outcome}</Status>{p.outcome === "HOLD CASH" && <p>No qualified capital-allocation opportunity. Holding cash is valid.</p>}<Metrics values={{ "Ledger cash (VND)": p.ledgerCash, "Available capital (VND)": p.availableCapital, "Reserved cash (VND)": p.reservedCash, "Monthly contribution (already included in cash)": p.newMonthlyContribution, "Proposed allocation (VND)": p.proposedAllocation, "Residual / unallocated cash (VND)": p.unallocatedCash, "Portfolio as-of": p.portfolioAsOf, "Evidence cutoff": p.evidenceCutoff, "Data quality": p.dataQuality }} /><p>Review: <Ref route="reviews" id={p.reviewId} /> · Snapshot: <Ref route="audit" id={p.portfolioSnapshotReference} /></p><h3>Candidate decisions</h3><Table headers={["Decision", "Economic state", "Execution status", "Economic priority", "Reasons"]} rows={p.candidates.map(c => [<Ref key={c.decisionId} route="decisions" id={c.decisionId} />, c.decisionState, c.executionStatus, c.economicPriority, c.reasons.join(" · ")])} /><h3>Proposed lots</h3><Evidence value={p.items} /><h3>Risk, opportunity cost & methodology</h3><Evidence value={{ rationale: p.rationale, methodologyVersions: p.methodologyVersions }} /></Panel><Panel title="Marginal allocation trace">{p.marginalAllocation ? p.marginalAllocation.steps.map(s => <article key={s.id}><h3>Step {s.projection.step} · {s.result}</h3><Metrics values={{ "Projected cash": s.projection.context.executableCash, "Preferred candidate": s.preferredDecisionId, "Selected candidate": s.authorizedLot?.decisionId, "Substitution policy": s.substitution?.policy ?? "No substitution", "Authorized quantity": s.authorizedLot?.quantity, "Capital required": s.authorizedLot?.capital, "Stop reason": s.reasons.join(" · ") || "None recorded" }} /><Evidence value={{ assessments: s.assessments.map(a => ({ baseDecisionId: a.baseDecisionId, assessmentId: a.decision.id, decisionState: a.decision.decisionState, executionStatus: a.decision.executionStatus, reasons: a.decision.reasons, requiredReturn: a.decision.requiredReturn, portfolioImpact: a.decision.portfolioImpact, opportunityCost: a.decision.opportunityCost, lineage: a.decision.lineage, evidence: a.decision.input.evidence, assessment: a.decision.input.assessment })), substitution: s.substitution, authorizedLot: s.authorizedLot, supportingEvidence: p.marginalAllocation?.command.frames[s.projection.step]?.substitutionEvidence }} /></article>) : <p>Unavailable — no approved marginal assessment is attached.</p>}</Panel></>;
-}
-export function ReviewView({ review: r }: { review: ReviewArtifact }) {
-  return <><Panel title={`${r.command.type} review`}><Status>{r.status}</Status><p>Review disposition: <strong>{r.disposition}</strong>. Review Outcome ≠ Decision State.</p>{r.disposition === "NO ACTION" && <p>NO ACTION is a normal surveillance outcome.</p>}<Metrics values={{ "Review date": r.command.reviewDate, "Data as-of": r.command.asOf, "Evidence cutoff": r.command.evidenceCutoff, "Snapshot": r.command.snapshotId, "Methodology": r.methodology }} /><p className="notice">A review being due does not require a trade. Annual review does not change policy.</p><Evidence value={{ triggers: r.command.triggers, sections: r.command.sections, theses: r.command.theses, escalation: r.reasons, governance: r.command.governance, linkedEvents: r.linkedEventReviewIds }} /><p>Journal: <Ref route="journal" id={r.id} /></p></Panel>{r.proposal && <ProposalView proposal={r.proposal} />}</>;
-}
+import { emptyDataFreshness } from "@/application/dashboard/model";
+import { dashboardTitle, navigation } from "@/ui/navigation";
+import { DataFreshnessView } from "./data-freshness";
+import { ManualFundamentalsView } from "./manual-fundamentals";
+import { Evidence } from "./evidence";
+import { Metrics, Panel, Status, Table } from "./primitives";
+import { BrokerSnapshotView, BrokerMarketView, BrokerSourcesView } from "./broker-views";
+import { DecisionView, RankingView, ProposalView, ReviewView, Ref } from "./artifact-views";
+// Keep existing imports compatible while smaller consumers use the owning module.
+export { Evidence } from "./evidence";
+export { Metrics, Panel, Status, Table } from "./primitives";
+export { BrokerSnapshotView } from "./broker-views";
+export { DecisionView, RankingView, ProposalView, ReviewView } from "./artifact-views";
+export { navigation } from "@/ui/navigation";
+
 export function DashboardScreen({ model: m, screen = "dashboard", id, children }: { model: DashboardModel; screen?: string; id?: string; children?: ReactNode }) {
   const d = m.decisions.find(d => d.id === id), r = m.reviews.find(r => r.id === id), card = m.cards.find(c => c.id === id), ranking = id ? m.rankings.find(r => r.id === id) : m.rankings[0];
   const proposal = r?.proposal ?? m.reviews.find(r => r.proposal?.id === id)?.proposal;
-  const title = screen === "scoring" ? "Scorecards" : titles[screen] ?? "Unavailable";
+  const title = dashboardTitle(screen);
   return <div className="app-shell"><aside><Link className="brand" href="/">VN30<span>Value Investing OS</span></Link><nav aria-label="Primary navigation">{navigation.map(g => <div className="nav-group" key={g.group}><p>{g.group}</p>{g.items.map(([key, label]) => <Link key={key} href={`/${key}`} aria-current={key === screen ? "page" : undefined}>{label}</Link>)}</div>)}</nav><p className="local-label">LOCAL FIRST · VND</p></aside><div className="workspace"><header><p>{m.portfolio?.name ?? "Personal investment workspace"}</p><Link href="/data">Data status & integrity</Link></header><main id="main" tabIndex={-1}><p className="eyebrow">{screen === "data" ? "SEALED FINANCIAL SNAPSHOT · READ ONLY" : screen === "reviews" && id === "new" ? "Review initiation · server-derived readiness" : screen === "transactions" && id === "new" ? "Accounting fact entry · explicit confirmation" : id && screen !== "holdings" ? "HISTORICAL AS-OF ARTIFACT · READ ONLY" : "CURRENT READ MODEL"}</p><h1>{screen === "dashboard" ? "VN30 Value Investing OS" : title}</h1><div className="trust-strip" role="status"><strong>{m.status === "BLOCKED" ? "BLOCKED — integrity could not be verified" : `Current capital actionability: ${m.current?.actionability ?? "BLOCKED / Unavailable"}`}</strong><span>Portfolio as-of: {m.current?.portfolioAsOf ?? m.state?.asOf ?? "Unavailable"}</span><span>Reconciliation: {m.current?.reconciliation ?? "Unavailable"} · Price freshness: {m.current?.priceFreshness ?? "Unavailable"}</span><span>PASS indicates current input integrity. M6.5/M6.6 still authorize investment actions.</span></div>{(m.current?.scope === "SYNTHETIC_TEST" || m.cards.some(c => c.input.artifactScope === "SYNTHETIC_TEST") || m.decisions.some(d => d.scope === "SYNTHETIC_TEST") || m.reviews.some(r => r.command.scope === "SYNTHETIC_TEST")) && <p className="notice">SYNTHETIC TEST ONLY artifacts are present. They are not production investment evidence.</p>}{m.message && <p role="alert" className="notice">{m.message}</p>}{m.truncated && <p className="notice">Showing up to 100 records per artifact family. Older references may be outside this catalog.</p>}
   {m.brokerSnapshot && ["dashboard", "holdings", "imports"].includes(screen) && <BrokerSnapshotView snapshot={m.brokerSnapshot} id={screen === "holdings" ? id : undefined} />}
   {m.brokerApiData && ["dashboard", "vn30"].includes(screen) && <BrokerMarketView data={m.brokerApiData} compact={screen === "dashboard"} />}
@@ -98,6 +41,7 @@ export function DashboardScreen({ model: m, screen = "dashboard", id, children }
   {screen === "audit" && <><Panel title="Audit lineage"><p>Portfolio Snapshot → Scorecard → Ranking → Decision → Review → Marginal Assessment → Allocation Proposal → Transaction → Post-decision Review</p><Table headers={["Artifact", "Type", "As-of / recorded at"]} rows={[...m.cards.map(c => [<Ref key={c.id} route="scoring" id={c.id} />, "Scorecard", c.asOf]), ...m.rankings.map(r => [<Ref key={r.id} route="ranking" id={r.id} />, "Ranking", r.asOf]), ...m.decisions.map(d => [<Ref key={d.id} route="decisions" id={d.id} />, "Decision", d.asOf]), ...m.reviews.map(r => [<Ref key={r.id} route="reviews" id={r.id} />, "Review", r.recordedAt])]} />{id && <><h3>Referenced snapshot / marginal assessment</h3><p>Historical pinned evidence for {id}.</p><Evidence value={m.decisions.find(d => d.lineage.snapshotId === id)?.input.portfolio ?? m.reviews.find(r => r.command.snapshotId === id)?.portfolio ?? m.reviews.flatMap(r => r.proposal?.marginalAllocation?.steps ?? []).find(step => step.id === id) ?? null} /></>}<Evidence value={{ executionLinks: m.executions, postDecisionReviews: m.followUps, accountingLineage: m.state && { watermark: m.state.ledgerWatermark, methodologyIds: m.state.methodologyIds, asOf: m.state.asOf } }} /></Panel><Panel title="Methodology registry"><Evidence value={m.methods} /></Panel></>}
   {["settings", "imports"].includes(screen) && <Panel title={screen === "settings" ? "Local configuration" : "Data freshness & integrity"}><p>Local-first SQLite. No cloud account or broker connection is required.</p><Metrics values={{ "Portfolio as-of": m.state?.asOf, "Ledger watermark": m.state?.ledgerWatermark, "Latest score as-of": m.cards[0]?.asOf, "Latest decision as-of": m.decisions[0]?.asOf, "Price freshness": m.current?.priceFreshness, "Reference freshness": m.current?.referenceFreshness, "Reference as-of": m.current?.referenceAsOf, "Evidence cutoff": m.current?.evidenceCutoff, "Source version": m.current?.sourceVersion, "Reference version": m.current?.referenceVersion, "Valuation methodology": m.current?.valuationMethodology, "Fundamental freshness": null, Reconciliation: m.current?.reconciliation }} /><p className="notice">Current read-model status: {m.current?.status ?? "Unavailable"}. {m.current?.reasons.join(" · ")} Persisted analytical artifacts remain historical as-calculated outputs.</p><p>Refresh through the approved local data/application workflow. Import UI and methodology editing are unavailable until their approved commands exist.</p><Link href="/audit">Inspect methodology and lineage</Link></Panel>}
   {["data","vn30","scoring"].includes(screen)&&m.manualFundamentals&&<ManualFundamentalsView snapshot={m.manualFundamentals} />}
+  {["data","vn30","scoring"].includes(screen)&&m.manualFundamentalsIssue&&<Panel title="Manual financial evidence"><p role="alert">{m.manualFundamentalsIssue}</p></Panel>}
   {screen === "data" && <DataFreshnessView model={m.dataFreshness??emptyDataFreshness("1970-01-01T00:00:00.000Z")} />}
   {screen === "reviews" && children}
   </main><footer>M6.7 · Evidence before action · Proposal and transaction remain distinct</footer></div></div>;
