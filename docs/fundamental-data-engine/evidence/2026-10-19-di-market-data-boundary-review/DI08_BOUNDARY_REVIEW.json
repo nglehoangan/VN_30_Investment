@@ -1,0 +1,46 @@
+{
+  "gate": "DI8",
+  "proposalOnly": true,
+  "currentStatusUnchanged": "FAIL",
+  "currentAuthority": {
+    "path": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/DI08_REVIEW.json",
+    "sha256": "7d7eeca7c141de6fc052a89daa1ca195fc1a9ea125a6aeb8fc413292f0b866a3",
+    "lines": [
+      {
+        "line": 3,
+        "text": "\"authoritativeRequirement\": \"Freshness checks PASS\","
+      },
+      {
+        "line": 40,
+        "text": "\"status\": \"FAIL\","
+      },
+      {
+        "line": 41,
+        "text": "\"reason\": \"FAIL: current financial reporting-cycle/current-YTD checks reproduce, but full-release market freshness cannot PASS with unavailable raw responses and no reviewed current market snapshot. Archive observation dates remain2026-10-09; retrieval time is not freshness.\","
+      }
+    ]
+  },
+  "currentRule": "Freshness checks PASS across independently governed classes; §14 trading-day market cadence and reporting-cycle fundamentals; manual amendment changes BCTC freshness only. Current full-release acceptance cannot pass market freshness without qualified observations.",
+  "problem": "A single release-wide status obscures capability qualification, point-in-time evaluation and expiring live market usability. Existing code is already partly consumption-time: input.asOf/validThrough and CurrentReadService clock.",
+  "recommendation": "SPLIT",
+  "proposedRule": "DI8-vNext certifies approved per-class freshness policies, exchange-calendar/session/timezone inputs, deterministic evaluation and negative tests; at initialization evaluates durable reference/fundamental requirements as of declared cutoff. Market CURRENT is evaluated at each actual consumer cutoff and again before actionable publication, never persisted as an eternal approval.",
+  "whySafer": "Initialization certificate remains a truthful historical assertion; changing market sessions expire market usability, not the old initialization event. New issuer/reference versions may require incremental durable initialization updates; historical acceptance is not overwritten.",
+  "whenItFails": [
+    "No approved threshold/session/delay owner or evidence",
+    "Policy evaluation treats UNKNOWN/AGING as CURRENT without explicit approved eligibility",
+    "Future/corrected quote, missing session or unsupported instrument state",
+    "Analysis uses old asOf to evade trusted current clock"
+  ],
+  "lifecycleOwnership": {
+    "INITIALIZATION_TIME": [
+      "Freshness evaluator/policy capability, current durable reference and financial-cycle qualifications at cutoff"
+    ],
+    "ANALYSIS_TIME": [
+      "Price/bar/volume/estimate freshness at trusted analysis cutoff"
+    ],
+    "DECISION_TIME": [
+      "No stale dependency at recommendation/DCA authorization or execution handoff"
+    ]
+  },
+  "Oct19Oct25Example": "Assuming Oct19 snapshot is stale for the Oct25 request, initialize certificate remains historically valid and live analysis blocks until accepted eligible market observations exist. Required session comes from approved exchange calendar and purpose, not a made-up demand for a trade on every calendar date. A permitted still-current cached snapshot can be reused after full validation; no compulsory refetch just to update retrievedAt."
+}

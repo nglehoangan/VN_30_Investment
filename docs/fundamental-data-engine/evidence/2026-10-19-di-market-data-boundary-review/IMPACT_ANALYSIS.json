@@ -1,0 +1,1823 @@
+{
+  "proposalOnly": true,
+  "classificationVocabulary": [
+    "NONE",
+    "DOCUMENTATION_ONLY",
+    "CONTRACT_CHANGE",
+    "CODE_CHANGE",
+    "MIGRATION_REQUIRED"
+  ],
+  "modules": {
+    "M1": {
+      "required": true,
+      "classes": [
+        "DOCUMENTATION_ONLY",
+        "CONTRACT_CHANGE"
+      ],
+      "change": "Approve lifecycle/data-quality authority boundaries and mandatory current-info/new-capital guards. Preserve risk, return, leverage, confidence and capital-allocation rules; scoring weights and risk thresholds NONE.",
+      "references": [
+        {
+          "path": "docs/01 SYSTEM/INVESTMENT_POLICY.md",
+          "sha256": "7160610b4c415a08f4a88b5d20ca6cc079119d5da552791f0c26781da7bd8e4c",
+          "lines": []
+        },
+        {
+          "path": "docs/01 SYSTEM/DECISION_FRAMEWORK_v1.0.md",
+          "sha256": "e1929fd8d8fe337c3d80fe2c76dfbd48e1f41d2d4b4a0618b42269b2635f8b1d",
+          "lines": []
+        },
+        {
+          "path": "docs/01 SYSTEM/RISK_POLICY_v1.0.md",
+          "sha256": "3785c1bb39b80435655a1621b2afbda992c38beaff82edebc0c67b0bc54ee744",
+          "lines": []
+        }
+      ]
+    },
+    "M2": {
+      "required": true,
+      "classes": [
+        "CONTRACT_CHANGE",
+        "CODE_CHANGE",
+        "MIGRATION_REQUIRED"
+      ],
+      "change": "Version typed initialization/capability, immutable market snapshot and analysis/decision relationships. Existing raw fundamental/portfolio records are not a typed universal market store. Use additive versioned models/bindings; no in-place weakening of old formal snapshot requirements. Portfolio ledger semantics NONE.",
+      "references": [
+        {
+          "path": "docs/02 DATABASE/DATA_MODEL.md",
+          "sha256": "7ceac2bd06e77c0a36e4e0965a2ca4d1cf1444fc00a61dd52c3c12743b172b04",
+          "lines": []
+        },
+        {
+          "path": "docs/02 DATABASE/DATA_RULES.md",
+          "sha256": "24f0678bf935a8706da652f124dda96f6012765265c951465a9b5e78da703fe4",
+          "lines": []
+        },
+        {
+          "path": "docs/02 DATABASE/VN30_MASTER.md",
+          "sha256": "44df01702166b29b52b92de0a9a0424ddb41b404c7422f07a2e1ee4a2c4545df",
+          "lines": []
+        },
+        {
+          "path": "docs/02 DATABASE/SECTOR_MASTER.md",
+          "sha256": "5ed07d94b532f5a443e4ff33adb4ecba5498f6be5626bef2dc1e3b4a70ca5cb6",
+          "lines": []
+        },
+        {
+          "path": "prisma/schema.prisma",
+          "sha256": "75b23652f62156d5d08e8d8a9ad3ce5d0a42953da9af0b1d6cdbf940268c1686",
+          "lines": []
+        },
+        {
+          "path": "src/domain/fundamentals/snapshot.ts",
+          "sha256": "70721635205e45f9ae8906e13af3637942c97cf9797670fa88fadc52eb4dab12",
+          "lines": []
+        },
+        {
+          "path": "src/infrastructure/repositories/fundamental-snapshot.ts",
+          "sha256": "86ca592c38bfa25277953f4844081ee9b0570e071486f8f5fb643067456eafc4",
+          "lines": []
+        },
+        {
+          "path": "src/domain/portfolio/valuation.ts",
+          "sha256": "80850601619e1beaa101a448fd1ae036ab60e9ae5c6d37bbab681539e97c0b3e",
+          "lines": []
+        },
+        {
+          "path": "src/ports/current.ts",
+          "sha256": "7b1804efbdfeb07e6cf06ba22d952d5e5d4ad61ad5b4a592cba1632426f5fa2e",
+          "lines": []
+        },
+        {
+          "path": "src/shared/validation/current-source.ts",
+          "sha256": "6e380e1a2b1db62c863420dd65b78e5b946342c010f7b216d74b49b1cd762525",
+          "lines": []
+        },
+        {
+          "path": "src/infrastructure/current-source.ts",
+          "sha256": "5054f8cfd8439e0dbd87083fc42da96407206152e1094de13afc33aea74ba1e2",
+          "lines": []
+        }
+      ]
+    },
+    "M3": {
+      "required": true,
+      "classes": [
+        "CONTRACT_CHANGE",
+        "CODE_CHANGE"
+      ],
+      "change": "New prospective acceptance/analysis binding and market gate at actual consumption/publish; preserve weights, thresholds, score math, no-zero-fill, no redistribution, financial/manual authority and permanent flow/technical exclusion. Initialization PASS cannot be substituted for price-dependent evidence.",
+      "references": [
+        {
+          "path": "docs/03 SCORING/SCORING_ENGINE.md",
+          "sha256": "70c15d9b83d5dacfa84952c2b2f447cc4bb9e58f945e7473b76aa67ec076c1be",
+          "lines": []
+        },
+        {
+          "path": "docs/03 SCORING/RANKING_RULES_v1.0.md",
+          "sha256": "a833f260860eefc2cee2cfa96043929afaaed36fd221e1f5f55c0eb466a5f059",
+          "lines": []
+        },
+        {
+          "path": "src/domain/fundamentals/scoring-readiness.ts",
+          "sha256": "08632dfb279de43c9896b639daa384da4e22c35fcb9b6b08754b50b022517be5",
+          "lines": []
+        },
+        {
+          "path": "src/domain/fundamentals/scoring-readiness-policy-b.ts",
+          "sha256": "863f0c30cc43839c458271d22a9cf697ee53d8b52f5faadb70e565d7f7f995b4",
+          "lines": []
+        },
+        {
+          "path": "src/domain/fundamentals/scoring-bridge.ts",
+          "sha256": "e79aede87b75ba00f52cb81edf965481e8e7308cccf09cb3716fd3faa20d39b5",
+          "lines": []
+        },
+        {
+          "path": "src/domain/scoring/evidence.ts",
+          "sha256": "4664905e9580fac625df6c20cf88bae541bc70182acb5691779a9a64a7800331",
+          "lines": []
+        },
+        {
+          "path": "src/application/scoring/engine.ts",
+          "sha256": "6e89773e4f877075a399a901a82f8dc584ac7505fe47f52fc117b6260f210ce0",
+          "lines": []
+        },
+        {
+          "path": "src/infrastructure/repositories/scoring-datasets-policy-b.ts",
+          "sha256": "576a5525b12a9f121dd45014374e9a2a062e64272ac0baac6c4b5646885d849c",
+          "lines": []
+        }
+      ],
+      "implementationCaveat": {
+        "source": {
+          "path": "src/domain/ranking/rank.ts",
+          "sha256": "a5f46ac67158117dadf69d4244b1cfc5f313791b64e5ea6644865331a4b4f645",
+          "lines": [
+            {
+              "line": 49,
+              "text": "const missingCards=input.universe.securityIds.filter(s=>!cards.some(c=>c.securityId===s));"
+            },
+            {
+              "line": 50,
+              "text": "const universeBlocked=!input.universe.complete||input.universe.securityIds.length!==30||missingCards.length>0;"
+            },
+            {
+              "line": 55,
+              "text": "if (universeBlocked) add(\"INCOMPLETE_SOURCE_DATA\",\"Complete 30-member universe or formal scorecard coverage is missing\",input.universe.referenceVersion);"
+            },
+            {
+              "line": 100,
+              "text": "status:universeBlocked||portfolio?.status===\"BLOCKED\"?\"BLOCKED\":\"VALID\",entries,clusters,top10:entries.slice(0,10),"
+            },
+            {
+              "line": 102,
+              "text": "excluded:excluded.sort((a,b)=>compareText(a.securityId,b.securityId)),missingCards,portfolio,"
+            }
+          ]
+        },
+        "finding": "Legacy ranking requires full30 scorecard coverage, while approved PolicyB allows29 eligible fundamental names and MBB deferred. Fresh market data alone does not make this legacy ranking route partial-universe compatible. A prospectively approved PolicyB-aware ranking envelope must account for all30 identities, eligible29 plus explicit MBB exclusion; never synthesize an MBB score0 or silently shrink denominator/redistribute weights. Preserve legacy route and historical hashes. No ranking executed here."
+      }
+    },
+    "M4": {
+      "required": true,
+      "classes": [
+        "CONTRACT_CHANGE",
+        "CODE_CHANGE"
+      ],
+      "change": "Bind accepted analysis/market and current portfolio IDs/hash/watermark, exact policy/model/engine versions and final freshness proof atomically. Existing decision rules/positive-capital thresholds NONE.",
+      "references": [
+        {
+          "path": "docs/04_DECISION_ENGINE/DECISION_ENGINE.md",
+          "sha256": "2d75ae2ec2c513cf416745665c2d3f959a5421483a51df1bab2e90c50f8564d5",
+          "lines": []
+        },
+        {
+          "path": "docs/04_DECISION_ENGINE/DCA_RULES.md",
+          "sha256": "d2ed6a09b04246b2f9b16e7907a45700213b5e0311ddee6a3c57db1b5fab25e7",
+          "lines": []
+        },
+        {
+          "path": "src/domain/decision/contracts.ts",
+          "sha256": "17faa581a3e36a82fc5dc44a7fa432104667cfc7bc2b652cc6796eb7c0d41b06",
+          "lines": []
+        },
+        {
+          "path": "src/domain/decision/validation.ts",
+          "sha256": "bd1e1d20ab88c0df979245639b21f72cad63351b8cb50241607944b2d5d69eb8",
+          "lines": []
+        },
+        {
+          "path": "src/domain/decision/engine.ts",
+          "sha256": "5e0d80b1227c961c3d5b767e30bdbfe0421294e43c1dcac83403c9f1f715570a",
+          "lines": []
+        },
+        {
+          "path": "src/application/decision/engine.ts",
+          "sha256": "154d470e64a0ef9a332b898c0deb4b26fbf1d3eb65f924927041505e13e42909",
+          "lines": []
+        },
+        {
+          "path": "src/application/decision/portfolio-context.ts",
+          "sha256": "4682ff57047731eef1e1b92606d1ae0744f30004fcbd82cd87b3e97623fddda1",
+          "lines": []
+        },
+        {
+          "path": "src/infrastructure/repositories/decision-artifacts.ts",
+          "sha256": "0473eb532ada14f9ddb5151e99945ca0482fcccdc21cbac94e9b36bb97f5e9c1",
+          "lines": []
+        }
+      ]
+    },
+    "M5": {
+      "required": true,
+      "classes": [
+        "CONTRACT_CHANGE",
+        "CODE_CHANGE"
+      ],
+      "change": "Bind refresh/review/DCA to exact market/analysis/portfolio contexts, recheck on expiry/revision/ledger change, block cached positive-capital reuse. Do not refresh market by mutating portfolio truth.",
+      "references": [
+        {
+          "path": "docs/05_PORTFOLIO_WORKFLOW/OPERATING_MODEL.md",
+          "sha256": "cc777add1617942707a824c4fa6ab90a125c3acdbc4991ef7eadef5ad98e39de",
+          "lines": []
+        },
+        {
+          "path": "docs/05_PORTFOLIO_WORKFLOW/WEEKLY_REVIEW.md",
+          "sha256": "884b1d0ac9860f25bcb06f36fa03803140bd8f66d3ea413dca386a72a2ee9a42",
+          "lines": []
+        },
+        {
+          "path": "docs/05_PORTFOLIO_WORKFLOW/MONTHLY_DCA_REVIEW_v1.0.md",
+          "sha256": "1fe3577dcc4ea0e5ea4554784b7393ea0bfa1ebc81d0b9f5a0b6bf1196b6c434",
+          "lines": []
+        },
+        {
+          "path": "src/domain/workflow/contracts.ts",
+          "sha256": "7c11bc1c9fad74c819fd48274e4277917a5b326fda906c4b026edd43f45b0c5b",
+          "lines": []
+        },
+        {
+          "path": "src/domain/workflow/allocation.ts",
+          "sha256": "bbcfb92e61aca1e23fc88a497e0719f607c198550acdf8392092a353e0a17ec6",
+          "lines": []
+        },
+        {
+          "path": "src/domain/workflow/reviews.ts",
+          "sha256": "6ad24241eb0abf0d81f34557245cededb9969a94f82bf2ed564a5b0221358d7d",
+          "lines": []
+        },
+        {
+          "path": "src/application/workflow/engine.ts",
+          "sha256": "70bf7bc9111853ec4cee6927fc4b066558d7048cb62c8059a67be62ab45f019d",
+          "lines": []
+        },
+        {
+          "path": "src/application/current/review-initiation.ts",
+          "sha256": "b508e5b281bb98c57c8d4036efdccecb564f3ef2dc44c42a66136ea5dc6ebb2e",
+          "lines": []
+        },
+        {
+          "path": "src/infrastructure/repositories/workflow-artifacts.ts",
+          "sha256": "f4da4860bbb15a3ca9fb321253fa3dba5e84217cf69ac31db5f1ea9060bdc8f7",
+          "lines": []
+        }
+      ]
+    },
+    "M6": {
+      "required": true,
+      "classes": [
+        "DOCUMENTATION_ONLY",
+        "CODE_CHANGE"
+      ],
+      "change": "Display separately initialized-as-of, fundamental29/1, market capability, market snapshot age/source/session, analysis and decision readiness. Preserve unknown/null scores, MBB visibility and TCX exception; viewed-time aging is diagnostic, not mutation of historic acceptance.",
+      "references": [
+        {
+          "path": "docs/06_DASHBOARD/6.8 Integration & Validation/RULE_OWNERSHIP_MATRIX.md",
+          "sha256": "9dbb66eb6ad12e69986ccb7cb08f4b05cb429143ecace11603f34883f9761912",
+          "lines": []
+        },
+        {
+          "path": "src/domain/fundamentals/freshness.ts",
+          "sha256": "0c3f8a7ac686a18dcada1ebcd4a63440a2f2797316200dc991103ff1432e6c59",
+          "lines": []
+        },
+        {
+          "path": "src/domain/fundamentals/freshness-policy-b.ts",
+          "sha256": "5c146610a6befaa5c6c8eee031dde59b0701f440ecb3e82295d02a5a85fc8774",
+          "lines": []
+        },
+        {
+          "path": "src/infrastructure/repositories/data-freshness.ts",
+          "sha256": "2dab3d28ccc16141c890c4984751c6f29aeeef704014d2bd780ce379938daf45",
+          "lines": []
+        },
+        {
+          "path": "src/infrastructure/repositories/data-freshness-policy-b.ts",
+          "sha256": "afe42d10cfeb1ffaf05d09adb7808548d6327194bfe76485a6bb54f13e9dc7d4",
+          "lines": []
+        },
+        {
+          "path": "src/ui/data-freshness.tsx",
+          "sha256": "4d65c7ad9d55c80a1f8a2428ab7c71960056c1c28842d15aae87fe29340f745d",
+          "lines": []
+        },
+        {
+          "path": "src/ui/policy-b-data-freshness.tsx",
+          "sha256": "5377d2bf3f67a7d2729a12b484222958ac12cfa6cfd37c1db7a5b4e2b379fdaa",
+          "lines": []
+        },
+        {
+          "path": "src/application/current/read-model.ts",
+          "sha256": "9cdc4b23168e230b7befcf0884e3741cc5c462dc87a9e7be4aecd0a4ede56420",
+          "lines": []
+        },
+        {
+          "path": "app/server/current.ts",
+          "sha256": "4eb61f079393928caf24d3f8a66112f27adc7e5d8d6ae5a23a370bc035587e38",
+          "lines": []
+        },
+        {
+          "path": "app/server/policy-b-services.ts",
+          "sha256": "46a34f5ffc89a52642811b08fab2a007ddc86f541feba79e318be10e894e4ea3",
+          "lines": []
+        },
+        {
+          "path": "app/server/level1-disposition.ts",
+          "sha256": "2c3d798a39c5633c3aa336172afa8c2d54ae7755af1ce17f38e541f4934d9af8",
+          "lines": []
+        }
+      ]
+    },
+    "M7": {
+      "required": true,
+      "classes": [
+        "DOCUMENTATION_ONLY",
+        "CODE_CHANGE"
+      ],
+      "change": "Lifecycle conformance, immutable replay/expiry, cached artifact/current clock tests and historical PIT/corporate-action leakage tests; distinguish synthetic capability tests from real-source qualification. Existing historical failed source replays remain disclosed.",
+      "references": [
+        {
+          "path": "docs/07_VALIDATION/DATA_VALIDATION.md",
+          "sha256": "e62dd9edcc170ea41821cec43d33d5d3b38e1af3fb20faf18a11be1ea3dba94c",
+          "lines": []
+        },
+        {
+          "path": "docs/07_VALIDATION/VALIDATION_STRATEGY.md",
+          "sha256": "b5df573ccae31812f9b0c4194c576eae8b8e240cc894831fe95cfa921600f94b",
+          "lines": []
+        },
+        {
+          "path": "docs/07_VALIDATION/HISTORICAL_VALIDATION_PLAN.md",
+          "sha256": "d1725a38b48e29ae5196c279647c99be542977590963901e56a0edefd6c73980",
+          "lines": []
+        },
+        {
+          "path": "docs/07_VALIDATION/TRACEABILITY_MATRIX.md",
+          "sha256": "779093c5f6dd444cde55dc80be804fc109319c653f2f5335b8e7f4cd0fa96607",
+          "lines": []
+        }
+      ]
+    },
+    "M8": {
+      "required": true,
+      "classes": [
+        "CONTRACT_CHANGE",
+        "CODE_CHANGE",
+        "DOCUMENTATION_ONLY"
+      ],
+      "change": "Prospective DI4/8/12 and independent acceptance versions; explicitly preserve downstream gates and PolicyB semantics, separate current blocker children with reviewed resolution evidence. Existing DI14/15 status unchanged until their legitimate approvals.",
+      "references": [
+        {
+          "path": "docs/08_CONTINUOUS_IMPROVEMENT/DATA_INITIALIZATION.md",
+          "sha256": "8d959671dadcb15f4443c70aaa16c350accf6ee492d6847b9c068a1bb33265e1",
+          "lines": []
+        },
+        {
+          "path": "docs/08_CONTINUOUS_IMPROVEMENT/MANUAL_FUNDAMENTALS_ARCHITECTURE.md",
+          "sha256": "cb74f900dfd26b2f3cb0b234fc4a8ead1d4ce14fbee8991f7aae717905cfb515",
+          "lines": []
+        },
+        {
+          "path": "docs/08_CONTINUOUS_IMPROVEMENT/DI15_PARTIAL_UNIVERSE_POLICY_B.md",
+          "sha256": "8b508db4e92550b9988486ed1899a9c780a14dfdd14f55908e6f4b391f255a11",
+          "lines": []
+        },
+        {
+          "path": "docs/08_CONTINUOUS_IMPROVEMENT/PRODUCTION_ACCEPTANCE.md",
+          "sha256": "53cb1aae6809cc945b6c6778ac3b613f34e412d1cef509f409c00f3a646264e4",
+          "lines": []
+        },
+        {
+          "path": "docs/08_CONTINUOUS_IMPROVEMENT/OPERATIONAL_RUNBOOK.md",
+          "sha256": "0ab64ff2c7d073b7bc428f7a8993ce6d093e2334c85b179d62502618be60b148",
+          "lines": []
+        },
+        {
+          "path": "src/domain/fundamentals/partial-universe.ts",
+          "sha256": "dd68b8a2dbfcbea09e89347883ec60fd42fba16e5b851cd302c31c505d984503",
+          "lines": []
+        },
+        {
+          "path": "src/domain/fundamentals/level1-disposition.ts",
+          "sha256": "9f055090eedf127c559a2ecde1565fe9d56ffd0222efe53289138676858fcfe0",
+          "lines": []
+        }
+      ]
+    }
+  },
+  "codeAndSemanticDependencyInventory": [
+    {
+      "path": "app/server/current.ts",
+      "sha256": "4eb61f079393928caf24d3f8a66112f27adc7e5d8d6ae5a23a370bc035587e38",
+      "role": "EXPLICIT_OWNER_MODULE_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "app/server/level1-disposition.ts",
+      "sha256": "2c3d798a39c5633c3aa336172afa8c2d54ae7755af1ce17f38e541f4934d9af8",
+      "role": "EXPLICIT_OWNER_MODULE_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "app/server/policy-b-services.ts",
+      "sha256": "46a34f5ffc89a52642811b08fab2a007ddc86f541feba79e318be10e894e4ea3",
+      "role": "EXPLICIT_OWNER_MODULE_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/application/current/read-model.ts",
+      "sha256": "9cdc4b23168e230b7befcf0884e3741cc5c462dc87a9e7be4aecd0a4ede56420",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 31,
+          "text": "for (const p of s.prices) if (p.receivedAt > s.receivedAt || p.observedAt > p.receivedAt || (p.validThrough && p.validThrough < p.observedAt) || !decimal(p.price).positive) throw new Error(\"INVALID_PRICE_PROVENANCE\");"
+        },
+        {
+          "line": 34,
+          "text": "const unknown = selected.some(p => p && (!p.policyReference || !p.validThrough));"
+        },
+        {
+          "line": 37,
+          "text": "const stale = selected.some(p => p?.validThrough && p.validThrough < now);"
+        },
+        {
+          "line": 39,
+          "text": "const observations = s.prices.filter(p => p.quality === \"VALID\" && p.adjustment === \"RAW\" && p.policyReference && p.validThrough)"
+        },
+        {
+          "line": 40,
+          "text": ".map(p => ({ id:p.id, securityId:p.securityId, price:p.price, currency:p.currency, observedAt:instant(p.observedAt), receivedAt:instant(p.receivedAt), validThrough:instant(p.validThrough!), sourceReference:p.sourceReference }));"
+        },
+        {
+          "line": 55,
+          "text": "return { securityId:p.securityId, currentPrice:valuationValid ? o?.price ?? null : null, marketValue:valuationValid?p.marketValue:null, unrealizedPnl:valuationValid?p.unrealizedPnl:null, weight:valuationValid?p.weight:null, sector, priceAsO"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/application/current/review-initiation.ts",
+      "sha256": "b508e5b281bb98c57c8d4036efdccecb564f3ef2dc44c42a66136ea5dc6ebb2e",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 44,
+          "text": "if(!a || a.asOf!==s.asOf || a.receivedAt>s.receivedAt || a.validThrough<reviewTime || a.evidence.some(e=>e.validThrough<reviewTime)) return {readiness:{...readiness,status:\"INPUT REQUIRED\" as const,reasons:[\"CURRENT_ANALYST_EVIDENCE_REQUIRE"
+        },
+        {
+          "line": 63,
+          "text": "if (!method || method.governanceStatus!==\"APPROVED\" || method.intendedUse!==\"PRODUCTION\" || !Object.entries(method).every(([key,value])=>card.methodology[key as keyof typeof method]===value) || card.input.evidence.some(e=>e.critical&&(e.val"
+        },
+        {
+          "line": 66,
+          "text": "if(resolved.some(d=>!d||d.scope!==\"FORMAL\"||d.lineage.snapshotId!==context.integrity.snapshotId||JSON.stringify(d.input.portfolio)!==JSON.stringify(context)||d.input.evidence.some(e=>e.validThrough<reviewTime))||rank.entries.some(e=>!resolv"
+        },
+        {
+          "line": 76,
+          "text": "const fresh = m && m.steps.every(step => step.assessments.every(x => x.decision.input.evidence.every(e => e.validThrough >= reviewTime) && x.decision.input.scorecard.input.evidence.every(e => !e.critical || e.validThrough >= reviewTime)));"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/application/decision/engine.ts",
+      "sha256": "154d470e64a0ef9a332b898c0deb4b26fbf1d3eb65f924927041505e13e42909",
+      "role": "EXPLICIT_OWNER_MODULE_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/application/decision/marginal.ts",
+      "sha256": "a96797cd05020f5489aa5f798ef7fecad1c326d54c3a4fc1309cec5f57e471fa",
+      "role": "EXPLICIT_CACHED_RESULT_PIT_OR_COMPOSITION_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/application/decision/portfolio-context.ts",
+      "sha256": "4682ff57047731eef1e1b92606d1ae0744f30004fcbd82cd87b3e97623fddda1",
+      "role": "EXPLICIT_OWNER_MODULE_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/application/fundamentals/build-snapshot.ts",
+      "sha256": "207ef0ce67a94af980c9b918059be74db5584cbc2a91b4885ee4cf7e87a2d2fe",
+      "role": "EXPLICIT_CACHED_RESULT_PIT_OR_COMPOSITION_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/application/scoring/engine.ts",
+      "sha256": "6e89773e4f877075a399a901a82f8dc584ac7505fe47f52fc117b6260f210ce0",
+      "role": "EXPLICIT_OWNER_MODULE_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/application/scoring/execution-context.ts",
+      "sha256": "0cae57a4d53d764f29624ffb5853c5990609a188f19274ebb095405014600e02",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 10,
+          "text": "[observation.observedAt,observation.receivedAt,observation.validThrough].forEach(instant);text(observation.sourceReference);"
+        },
+        {
+          "line": 11,
+          "text": "check(observation.currency===\"VND\"&&observation.observedAt<=snapshot.asOf&&observation.receivedAt<=snapshot.calculatedAt&&observation.validThrough>=snapshot.asOf,\"CURRENT_DATED_PRICE_REQUIRED\");"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/application/scoring/portfolio-context.ts",
+      "sha256": "cbfc76543a5fc790ac4a271787fadc470f6c74c4be460f0ee67d242871092802",
+      "role": "EXPLICIT_CACHED_RESULT_PIT_OR_COMPOSITION_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/application/workflow/engine.ts",
+      "sha256": "70bf7bc9111853ec4cee6927fc4b066558d7048cb62c8059a67be62ab45f019d",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 87,
+          "text": "if (review.proposal?.marginalAllocation?.steps.some(step => step.assessments.some(a => a.decision.input.evidence.some(e => e.validThrough < this.clock.now())))) reasons.push(\"STALE MARGINAL EVIDENCE\");"
+        },
+        {
+          "line": 97,
+          "text": "if (!d || d.input.evidence.some(e => e.validThrough < this.clock.now()) || d.input.scorecard.input.evidence.some(e => e.critical && e.validThrough < this.clock.now())) reasons.push(\"STALE DECISION EVIDENCE\");"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/application/workflow/portfolio-context.ts",
+      "sha256": "e70db200e8e04dcaefb9665f7db454f51d58b22a7edebcb66d505f97576cf960",
+      "role": "EXPLICIT_CACHED_RESULT_PIT_OR_COMPOSITION_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/decision/contracts.ts",
+      "sha256": "17faa581a3e36a82fc5dc44a7fa432104667cfc7bc2b652cc6796eb7c0d41b06",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 14,
+          "text": "readonly validThrough: string; readonly classification: \"FACT\" | \"ESTIMATE\" | \"ASSUMPTION\";"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/decision/engine.ts",
+      "sha256": "5e0d80b1227c961c3d5b767e30bdbfe0421294e43c1dcac83403c9f1f715570a",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 68,
+          "text": "const current = x.evidenceRefs.every(ref => i.evidence.find(e => e.id === ref)!.validThrough >= i.asOf);"
+        },
+        {
+          "line": 93,
+          "text": "const missing = [...a.missingCritical, ...a.evidenceRefs.filter(ref => i.evidence.find(e => e.id === ref)!.validThrough < i.asOf).map(ref => `STALE:${ref}`)];"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/decision/marginal.ts",
+      "sha256": "ea374677b0918290f01232fdf7c7c14178a40de567046bd4bb93a9db77df1297",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 69,
+          "text": "requireDecision(e.evidenceRefs.every((ref: string) => candidate.evidence.some((v: Evidence) => v.id === ref && v.validThrough >= c.evidenceCutoff)), \"SUBSTITUTION_EVIDENCE_MISSING\");"
+        },
+        {
+          "line": 107,
+          "text": "const stale = assessments.some(a => a.decision.input.evidence.some(e => e.validThrough < recordedAt) || a.decision.input.scorecard.input.evidence.some(e => e.critical && e.validThrough < recordedAt) || a.decision.reviewStatus !== \"FINAL\" ||"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/decision/validation.ts",
+      "sha256": "bd1e1d20ab88c0df979245639b21f72cad63351b8cb50241607944b2d5d69eb8",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 57,
+          "text": "fields(e, \"id source asOf receivedAt validThrough classification summary\"); identifier(e.id); text(e.source); text(e.summary);"
+        },
+        {
+          "line": 58,
+          "text": "[e.asOf, e.receivedAt, e.validThrough].forEach(instant); enumeration(e.classification, [\"FACT\", \"ESTIMATE\", \"ASSUMPTION\"]);"
+        },
+        {
+          "line": 59,
+          "text": "requireDecision(e.asOf <= i.asOf && e.receivedAt <= i.knownAt && e.asOf <= e.receivedAt && e.validThrough >= e.asOf, \"FUTURE_EVIDENCE\");"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/fundamentals/availability.ts",
+      "sha256": "fe9b4156e8bba36823bb9b3add1aaae81117820a013374557119f4c379e9a010",
+      "role": "EXPLICIT_CACHED_RESULT_PIT_OR_COMPOSITION_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "NONE",
+      "reason": "Preserve existing arithmetic/PIT/strict legacy replay; add distinct prospective wrappers/contracts instead of weakening this implementation."
+    },
+    {
+      "path": "src/domain/fundamentals/current-qualification.ts",
+      "sha256": "ee6524c19a8a357b318b17349bc29c8ee6ee0ad02e553de49678bc476c25277c",
+      "role": "EXPLICIT_CACHED_RESULT_PIT_OR_COMPOSITION_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "NONE",
+      "reason": "Preserve existing arithmetic/PIT/strict legacy replay; add distinct prospective wrappers/contracts instead of weakening this implementation."
+    },
+    {
+      "path": "src/domain/fundamentals/derivation.ts",
+      "sha256": "e129819c0d7253791c24649858304281ab154c0eda71246f83734a7f7b6a8790",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 147,
+          "text": "const projected:MetricOperand[]=operands.map(o=>({id:o.id,value:o.value!,unit:'VND',periodStart:r.periodStart,periodEnd:r.periodEnd,quality:'VALID',validThrough:input.recordedAt}));"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "NONE",
+      "reason": "Preserve existing arithmetic/PIT/strict legacy replay; add distinct prospective wrappers/contracts instead of weakening this implementation."
+    },
+    {
+      "path": "src/domain/fundamentals/freshness-policy-b.ts",
+      "sha256": "5c146610a6befaa5c6c8eee031dde59b0701f440ecb3e82295d02a5a85fc8774",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 25,
+          "text": "readonly snapshot:{readonly runId:string;readonly contentHash:string;readonly scope:string;readonly mode:string;readonly builtAt:string;readonly decisionAsOf:string;readonly systemKnownAt:string;readonly fundamentalCutoff:string;readonly ma"
+        },
+        {
+          "line": 50,
+          "text": "return deepFreeze({...emptyDataFreshness(viewedAt),status:'VERIFIED',snapshot:{runId:r.runId,contentHash:s.contentHash,scope:r.scope,mode:r.mode,builtAt:r.builtAt,decisionAsOf:r.decisionAsOf,systemKnownAt:r.systemKnownAt,fundamentalCutoff:r"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/fundamentals/freshness.ts",
+      "sha256": "0c3f8a7ac686a18dcada1ebcd4a63440a2f2797316200dc991103ff1432e6c59",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 25,
+          "text": "readonly snapshot:{readonly runId:string;readonly contentHash:string;readonly scope:string;readonly mode:string;readonly builtAt:string;readonly decisionAsOf:string;readonly systemKnownAt:string;readonly fundamentalCutoff:string;readonly ma"
+        },
+        {
+          "line": 49,
+          "text": "return deepFreeze({...emptyDataFreshness(viewedAt),status:'VERIFIED',snapshot:{runId:r.runId,contentHash:s.contentHash,scope:r.scope,mode:r.mode,builtAt:r.builtAt,decisionAsOf:r.decisionAsOf,systemKnownAt:r.systemKnownAt,fundamentalCutoff:r"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/fundamentals/level1-disposition.ts",
+      "sha256": "9f055090eedf127c559a2ecde1565fe9d56ffd0222efe53289138676858fcfe0",
+      "role": "EXPLICIT_OWNER_MODULE_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/fundamentals/operational-freshness.ts",
+      "sha256": "b5acf7b3f0027906217273dddd823d3f10ac22f564633ec4388283ee10cca745",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 19,
+          "text": "export function assessOperationalFreshness(policy:OperationalFreshnessPolicy,e:OperationalFreshnessEvidence,hash:(v:unknown)=>string){"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/fundamentals/partial-universe.ts",
+      "sha256": "dd68b8a2dbfcbea09e89347883ec60fd42fba16e5b851cd302c31c505d984503",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 84,
+          "text": "const structuralReasons=[...reasons];for(const g of a.prerequisites)if(g.status!=='PASS')reasons.push('REQUIRED_DI_NOT_PASS:'+g.gate);"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/fundamentals/scoring-bridge.ts",
+      "sha256": "e79aede87b75ba00f52cb81edf965481e8e7308cccf09cb3716fd3faa20d39b5",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 17,
+          "text": "readonly facts:readonly {readonly observationId:string;readonly evidenceId:string;readonly validThrough:string}[];"
+        },
+        {
+          "line": 18,
+          "text": "readonly metrics:readonly {readonly derivationId:string;readonly requestId:string;readonly evidenceIds:readonly [string,string];readonly validThrough:string}[];"
+        },
+        {
+          "line": 28,
+          "text": "for(const r of p.facts){exactReadinessFields(r,'observationId evidenceId validThrough');[r.observationId,r.evidenceId].forEach(fundamentalId);instant(r.validThrough);}"
+        },
+        {
+          "line": 29,
+          "text": "for(const r of p.metrics){exactReadinessFields(r,'derivationId requestId evidenceIds validThrough');[r.derivationId,r.requestId].forEach(fundamentalId);requireFundamental(Array.isArray(r.evidenceIds)&&r.evidenceIds.length===2,'TWO_BRIDGE_OP"
+        },
+        {
+          "line": 66,
+          "text": "for(const p of plan.facts){const {o,a}=eligible(p.observationId);requireFundamental(p.validThrough>=r.decisionAsOf,'BRIDGE_FRESHNESS_REQUIRED');"
+        },
+        {
+          "line": 67,
+          "text": "evidence.push({id:p.evidenceId,version:o.recordVersion,securityId,observation:'canonical-'+o.itemId,value:o.normalized.value!,unit:unit(o),classification:'FACT',source:'canonical-source:'+o.sourceVersionId+';publication:'+o.publication.evid"
+        },
+        {
+          "line": 72,
+          "text": "requireFundamental(d!.crosswalk.recordedAt<=cutoff&&d!.request.operands.every(o=>!o.adjustment||o.adjustment.reviewedAt<=cutoff),'BRIDGE_DERIVATION_NOT_KNOWN');requireFundamental(p.validThrough>=r.decisionAsOf,'BRIDGE_FRESHNESS_REQUIRED');"
+        },
+        {
+          "line": 76,
+          "text": "evidence.push({id:p.evidenceIds[i],version:d!.crosswalk.version,securityId,observation:'operand-'+d!.request.metric+'-'+operand.role,value:operand.value!,unit:'VND',classification:adjustment?'ESTIMATE':'FACT',source:'derived:'+d!.id+';cross"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/fundamentals/scoring-readiness-policy-b.ts",
+      "sha256": "863f0c30cc43839c458271d22a9cf697ee53d8b52f5faadb70e565d7f7f995b4",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 23,
+          "text": "readonly sectors:readonly {readonly sector:Sector;readonly requiredItems:readonly string[];readonly requiredMetrics:readonly MetricId[];readonly requiredMarketObservations:readonly string[];readonly requiredValuationObservations:readonly st"
+        },
+        {
+          "line": 49,
+          "text": "for(const r of p.sectors){exactReadinessFields(r,'sector requiredItems requiredMetrics requiredMarketObservations requiredValuationObservations');requireFundamental(SECTORS.includes(r.sector)&&Array.isArray(r.requiredItems)&&r.requiredItems"
+        },
+        {
+          "line": 50,
+          "text": "for(const required of [r.requiredMarketObservations,r.requiredValuationObservations]){requireFundamental(Array.isArray(required)&&required.length>0&&new Set(required).size===required.length,'EXPLICIT_REQUIRED_MARKET_VALUATION_INPUTS');requi"
+        },
+        {
+          "line": 51,
+          "text": "requireFundamental(r.requiredMarketObservations.every((id:string)=>['price','market_cap','EV','shares'].includes(id)),'REQUIRED_MARKET_OBSERVATION_ALLOWLIST');requireFundamental(r.requiredMetrics.every((m:MetricId)=>Object.hasOwn(METRICS,m)"
+        },
+        {
+          "line": 60,
+          "text": "requireFundamental(Array.isArray(a.gates)&&a.gates.length===15&&new Set(a.gates.map(g=>g.gate)).size===15,'ALL_REQUIRED_DI_GATES');"
+        },
+        {
+          "line": 61,
+          "text": "for(const g of a.gates){exactReadinessFields(g,'gate status evidenceReference');requireFundamental(REQUIRED_DI_GATES.includes(g.gate)&&g.status==='PASS','REQUIRED_DI_NOT_PASS');ref(g.evidenceReference);}"
+        },
+        {
+          "line": 96,
+          "text": "const facts=s.members.filter(m=>sources.observations.some(o=>o.id===m.observationId&&o.securityId===t.securityId&&route.requiredItems.includes(o.itemId))).map((m,index)=>({observationId:m.observationId,evidenceId:'readiness-fact-'+index,val"
+        },
+        {
+          "line": 97,
+          "text": "const metricPlans=route.requiredMetrics.map((metric,index)=>{const d=sources.derived.find(d=>s.derivedIds.includes(d.id)&&d.request.securityId===t.securityId&&d.request.metric===metric);requireFundamental(d,'READINESS_REQUIRED_DERIVED_INPUT"
+        },
+        {
+          "line": 110,
+          "text": "function requiredExternal(kind:'MARKET'|'VALUATION',observations:readonly string[]){return observations.every(observation=>input!.evidence.some(e=>e.observation===observation&&(kind!=='MARKET'||isMarketEvidence(e))&&e.quality==='VALID'&&e.v"
+        },
+        {
+          "line": 111,
+          "text": "if(requiredExternal('MARKET',route.requiredMarketObservations))dimensions.market='READY';else blockers.push('BLOCKED_MARKET_INPUTS');"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/fundamentals/scoring-readiness.ts",
+      "sha256": "08632dfb279de43c9896b639daa384da4e22c35fcb9b6b08754b50b022517be5",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 22,
+          "text": "readonly sectors:readonly {readonly sector:Sector;readonly requiredItems:readonly string[];readonly requiredMetrics:readonly MetricId[];readonly requiredMarketObservations:readonly string[];readonly requiredValuationObservations:readonly st"
+        },
+        {
+          "line": 47,
+          "text": "for(const r of p.sectors){exactReadinessFields(r,'sector requiredItems requiredMetrics requiredMarketObservations requiredValuationObservations');requireFundamental(SECTORS.includes(r.sector)&&Array.isArray(r.requiredItems)&&r.requiredItems"
+        },
+        {
+          "line": 48,
+          "text": "for(const required of [r.requiredMarketObservations,r.requiredValuationObservations]){requireFundamental(Array.isArray(required)&&required.length>0&&new Set(required).size===required.length,'EXPLICIT_REQUIRED_MARKET_VALUATION_INPUTS');requi"
+        },
+        {
+          "line": 49,
+          "text": "requireFundamental(r.requiredMarketObservations.every((id:string)=>['price','market_cap','EV','shares'].includes(id)),'REQUIRED_MARKET_OBSERVATION_ALLOWLIST');requireFundamental(r.requiredMetrics.every((m:MetricId)=>Object.hasOwn(METRICS,m)"
+        },
+        {
+          "line": 57,
+          "text": "requireFundamental(Array.isArray(a.gates)&&a.gates.length===15&&new Set(a.gates.map(g=>g.gate)).size===15,'ALL_REQUIRED_DI_GATES');"
+        },
+        {
+          "line": 58,
+          "text": "for(const g of a.gates){exactReadinessFields(g,'gate status evidenceReference');requireFundamental(REQUIRED_DI_GATES.includes(g.gate)&&g.status==='PASS','REQUIRED_DI_NOT_PASS');ref(g.evidenceReference);}"
+        },
+        {
+          "line": 85,
+          "text": "const facts=s.members.filter(m=>sources.observations.some(o=>o.id===m.observationId&&o.securityId===t.securityId&&route.requiredItems.includes(o.itemId))).map((m,index)=>({observationId:m.observationId,evidenceId:'readiness-fact-'+index,val"
+        },
+        {
+          "line": 86,
+          "text": "const metricPlans=route.requiredMetrics.map((metric,index)=>{const d=sources.derived.find(d=>s.derivedIds.includes(d.id)&&d.request.securityId===t.securityId&&d.request.metric===metric);requireFundamental(d,'READINESS_REQUIRED_DERIVED_INPUT"
+        },
+        {
+          "line": 99,
+          "text": "function requiredExternal(kind:'MARKET'|'VALUATION',observations:readonly string[]){return observations.every(observation=>input!.evidence.some(e=>e.observation===observation&&(kind!=='MARKET'||isMarketEvidence(e))&&e.quality==='VALID'&&e.v"
+        },
+        {
+          "line": 100,
+          "text": "if(requiredExternal('MARKET',route.requiredMarketObservations))dimensions.market='READY';else blockers.push('BLOCKED_MARKET_INPUTS');"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/fundamentals/snapshot.ts",
+      "sha256": "70721635205e45f9ae8906e13af3637942c97cf9797670fa88fadc52eb4dab12",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 10,
+          "text": "import { assessOperationalFreshness } from './operational-freshness';"
+        },
+        {
+          "line": 48,
+          "text": "readonly marketCutoff:string;readonly fundamentalCutoff:string;readonly revisionCutoff:string|null;"
+        },
+        {
+          "line": 75,
+          "text": "exact(r,'runId scope mode decisionAsOf systemKnownAt marketCutoff fundamentalCutoff revisionCutoff policy requirementsVersion requirements references assessmentPins derivedIds builtAt softwareBuild operatorReference validationRunReference r"
+        },
+        {
+          "line": 77,
+          "text": "[r.decisionAsOf,r.systemKnownAt,r.marketCutoff,r.fundamentalCutoff,r.builtAt].forEach(instant);"
+        },
+        {
+          "line": 79,
+          "text": "requireFundamental(r.systemKnownAt<=r.decisionAsOf&&r.marketCutoff<=r.decisionAsOf&&r.fundamentalCutoff<=r.decisionAsOf&&r.builtAt>=r.decisionAsOf,'SNAPSHOT_CUTOFF_ORDER');"
+        },
+        {
+          "line": 87,
+          "text": "requireFundamental(r.references.length>=3&&r.references.length<=100&&['UNIVERSE','SECTOR','MARKET'].every(k=>r.references.filter(v=>v.kind===k).length===1),'SNAPSHOT_REFERENCE_SET');"
+        },
+        {
+          "line": 163,
+          "text": "else {const b=bindings[0];requireFundamental(b.evidence.class==='FUNDAMENTALS'&&b.evidence.cutoff===r.fundamentalCutoff&&b.evidence.periodOrVersion===heads[0].periodEnd&&b.evidence.contentHash===hash(heads[0])&&b.evidence.publicationUsable,"
+        },
+        {
+          "line": 182,
+          "text": "decisionAsOf:r.decisionAsOf,systemKnownAt:r.systemKnownAt,marketCutoff:r.marketCutoff,fundamentalCutoff:r.fundamentalCutoff,revisionCutoff:r.revisionCutoff,"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ],
+      "impact": "NONE",
+      "reason": "Preserve existing arithmetic/PIT/strict legacy replay; add distinct prospective wrappers/contracts instead of weakening this implementation."
+    },
+    {
+      "path": "src/domain/portfolio/valuation.ts",
+      "sha256": "80850601619e1beaa101a448fd1ae036ab60e9ae5c6d37bbab681539e97c0b3e",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 13,
+          "text": "readonly observedAt: Instant; readonly receivedAt: Instant; readonly validThrough: Instant; readonly sourceReference: string;"
+        },
+        {
+          "line": 32,
+          "text": "instant(selected.observedAt); instant(selected.receivedAt); instant(selected.validThrough);"
+        },
+        {
+          "line": 33,
+          "text": "requireRule(selected.currency === \"VND\" && selected.sourceReference.trim() && selected.validThrough >= selected.observedAt, \"INVALID_PRICE_OBSERVATION\");"
+        },
+        {
+          "line": 35,
+          "text": "const priceStatus = conflict ? \"CONFLICTING_DATA\" as const : selected.validThrough < state.asOf ? \"STALE\" as const : \"VALID\" as const;"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "NONE",
+      "reason": "Preserve existing arithmetic/PIT/strict legacy replay; add distinct prospective wrappers/contracts instead of weakening this implementation."
+    },
+    {
+      "path": "src/domain/ranking/rank.ts",
+      "sha256": "a5f46ac67158117dadf69d4244b1cfc5f313791b64e5ea6644865331a4b4f645",
+      "role": "EXPLICIT_CACHED_RESULT_PIT_OR_COMPOSITION_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/scoring/evidence.ts",
+      "sha256": "4664905e9580fac625df6c20cf88bae541bc70182acb5691779a9a64a7800331",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 33,
+          "text": "readonly receivedAt: string; readonly validThrough: string; readonly critical: boolean;"
+        },
+        {
+          "line": 67,
+          "text": "keys(e, \"id version securityId observation value unit classification source periodStart periodEnd asOf publishedAt receivedAt validThrough critical quality family\"+(e.time?\" time\":\"\")+(e.debtAccounting?\" debtAccounting\":\"\"));"
+        },
+        {
+          "line": 75,
+          "text": "[e.asOf,e.receivedAt,e.validThrough].forEach(instant); validateTime(e,knownAt);"
+        },
+        {
+          "line": 77,
+          "text": "check(e.asOf <= asOf && e.receivedAt <= knownAt && e.validThrough >= e.asOf, \"FUTURE_OR_INVALID_EVIDENCE\");"
+        },
+        {
+          "line": 84,
+          "text": "export function available(e: Pick<Evidence,\"id\" | \"quality\" | \"validThrough\">, asOf: string, conflicts: readonly string[]) { return e.quality === \"VALID\" && e.validThrough >= asOf && !conflicts.includes(e.id); }"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/scoring/metrics.ts",
+      "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 36,
+          "text": "export type MetricOperand = Pick<Evidence,'id'|'value'|'unit'|'periodStart'|'periodEnd'|'quality'|'validThrough'|'debtAccounting'>;"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "NONE",
+      "reason": "Preserve existing arithmetic/PIT/strict legacy replay; add distinct prospective wrappers/contracts instead of weakening this implementation."
+    },
+    {
+      "path": "src/domain/workflow/allocation.ts",
+      "sha256": "bbcfb92e61aca1e23fc88a497e0719f607c198550acdf8392092a353e0a17ec6",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 20,
+          "text": "if (evidence.some(e => e.validThrough < c.reviewDate) || d.input.scorecard.input.evidence.some(e => e.critical && (e.validThrough < c.reviewDate || e.quality !== \"VALID\"))) issues.push(`STALE EVIDENCE:${d.id}`);"
+        },
+        {
+          "line": 23,
+          "text": "if (c.evidence.some(e => e.validThrough < c.reviewDate)) issues.push(\"STALE REVIEW EVIDENCE\");"
+        },
+        {
+          "line": 55,
+          "text": "const fresh = m && m.steps.every(step => step.assessments.every(a => a.decision.input.evidence.every(e => e.validThrough >= c.reviewDate) && a.decision.input.scorecard.input.evidence.every(e => !e.critical || e.validThrough >= c.reviewDate)"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/workflow/contracts.ts",
+      "sha256": "7c11bc1c9fad74c819fd48274e4277917a5b326fda906c4b026edd43f45b0c5b",
+      "role": "EXPLICIT_OWNER_MODULE_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/workflow/reviews.ts",
+      "sha256": "6ad24241eb0abf0d81f34557245cededb9969a94f82bf2ed564a5b0221358d7d",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 26,
+          "text": "if (c.evidence.some(e => e.validThrough < c.reviewDate)) reasons.push(\"STALE REVIEW EVIDENCE\");"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/domain/workflow/validation.ts",
+      "sha256": "04170db85168d973f3190ab0997de6b9ecf2fa7f01c0266f464ef8cb07973dee",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 32,
+          "text": "exact(e, \"id source asOf receivedAt validThrough classification summary\"); id(e.id); text(e.source); text(e.summary);"
+        },
+        {
+          "line": 33,
+          "text": "[e.asOf, e.receivedAt, e.validThrough].forEach(instant);"
+        },
+        {
+          "line": 34,
+          "text": "requireWorkflow(e.asOf <= c.asOf && e.receivedAt <= c.evidenceCutoff && e.validThrough >= e.asOf && [\"FACT\", \"ESTIMATE\", \"ASSUMPTION\"].includes(e.classification), \"INVALID_EVIDENCE_TIME_OR_CLASS\");"
+        },
+        {
+          "line": 74,
+          "text": "for (const e of c.evidence) { exact(e, \"id source asOf receivedAt validThrough classification summary\"); id(e.id); text(e.source); text(e.summary); [e.asOf, e.receivedAt, e.validThrough].forEach(instant); requireWorkflow(e.receivedAt <= c.a"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/infrastructure/current-source.ts",
+      "sha256": "5054f8cfd8439e0dbd87083fc42da96407206152e1094de13afc33aea74ba1e2",
+      "role": "EXPLICIT_OWNER_MODULE_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/infrastructure/repositories/analytical-artifacts.ts",
+      "sha256": "866502873fff90d5e00fbf64ecad54e58edac818d0df1e3feaa33dc91a7d844b",
+      "role": "EXPLICIT_CACHED_RESULT_PIT_OR_COMPOSITION_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/infrastructure/repositories/data-freshness-policy-b.ts",
+      "sha256": "afe42d10cfeb1ffaf05d09adb7808548d6327194bfe76485a6bb54f13e9dc7d4",
+      "role": "EXPLICIT_OWNER_MODULE_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/infrastructure/repositories/data-freshness.ts",
+      "sha256": "2dab3d28ccc16141c890c4984751c6f29aeeef704014d2bd780ce379938daf45",
+      "role": "EXPLICIT_OWNER_MODULE_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/infrastructure/repositories/decision-artifacts.ts",
+      "sha256": "0473eb532ada14f9ddb5151e99945ca0482fcccdc21cbac94e9b36bb97f5e9c1",
+      "role": "EXPLICIT_OWNER_MODULE_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/infrastructure/repositories/fundamental-snapshot.ts",
+      "sha256": "86ca592c38bfa25277953f4844081ee9b0570e071486f8f5fb643067456eafc4",
+      "role": "EXPLICIT_OWNER_MODULE_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/infrastructure/repositories/scoring-datasets-policy-b.ts",
+      "sha256": "576a5525b12a9f121dd45014374e9a2a062e64272ac0baac6c4b5646885d849c",
+      "role": "EXPLICIT_OWNER_MODULE_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/infrastructure/repositories/scoring-datasets.ts",
+      "sha256": "9181afa27d76408537b257352fc56ba067cce98d73ac85598d8efa4b08df9ef2",
+      "role": "EXPLICIT_CACHED_RESULT_PIT_OR_COMPOSITION_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "NONE",
+      "reason": "Preserve existing arithmetic/PIT/strict legacy replay; add distinct prospective wrappers/contracts instead of weakening this implementation."
+    },
+    {
+      "path": "src/infrastructure/repositories/workflow-artifacts.ts",
+      "sha256": "f4da4860bbb15a3ca9fb321253fa3dba5e84217cf69ac31db5f1ea9060bdc8f7",
+      "role": "EXPLICIT_OWNER_MODULE_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/ports/current.ts",
+      "sha256": "7b1804efbdfeb07e6cf06ba22d952d5e5d4ad61ad5b4a592cba1632426f5fa2e",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 4,
+          "text": "prices:readonly {id:string;securityId:string;price:string;currency:\"VND\";observedAt:string;receivedAt:string;validThrough:string|null;sourceReference:string;provider:string;revision:string;quality:\"VALID\"|\"CONFLICTING_DATA\"|\"INVALID\";policy"
+        },
+        {
+          "line": 8,
+          "text": "analyst:{version:string;reviewer:string;asOf:string;receivedAt:string;validThrough:string;sourceReference:string;evidence:ReviewCommand[\"evidence\"];sections:readonly ReviewSection[];theses:readonly ThesisReview[];triggers:readonly ReviewTri"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/ports/decision.ts",
+      "sha256": "d20bfeb1e90ee8a31ba41c301e72a084c757ef32a22962dfd1e2f03b00e1d817",
+      "role": "EXPLICIT_CACHED_RESULT_PIT_OR_COMPOSITION_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/ports/scoring.ts",
+      "sha256": "e6f268c44a1e1dd63202adc5f9775d17e8b0ff18dad2a61c4b657a6580f6df19",
+      "role": "EXPLICIT_CACHED_RESULT_PIT_OR_COMPOSITION_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/ports/workflow.ts",
+      "sha256": "b94491b9f0495957481ec528d7a9b37504d8a7ee975eb240eb9481f457636db6",
+      "role": "EXPLICIT_CACHED_RESULT_PIT_OR_COMPOSITION_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/shared/validation/current-source.ts",
+      "sha256": "6e380e1a2b1db62c863420dd65b78e5b946342c010f7b216d74b49b1cd762525",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 5,
+          "text": "const evidence = z.strictObject({ id: text, source: text, asOf: time, receivedAt: time, validThrough: time, classification: z.enum([\"FACT\", \"ESTIMATE\", \"ASSUMPTION\"]), summary: text });"
+        },
+        {
+          "line": 10,
+          "text": "const price = z.strictObject({ id: text, securityId: text, price: amount, currency: z.literal(\"VND\"), observedAt: time, receivedAt: time, validThrough: time.nullable(), sourceReference: text, provider: text, revision: text, quality: z.enum("
+        },
+        {
+          "line": 17,
+          "text": "analyst: z.strictObject({ version: text, reviewer: text, asOf: time, receivedAt: time, validThrough: time, sourceReference: text, evidence: z.array(evidence).max(100), sections: z.array(section).max(100), theses: z.array(thesis).max(30), tr"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/ui/data-freshness.tsx",
+      "sha256": "4d65c7ad9d55c80a1f8a2428ab7c71960056c1c28842d15aae87fe29340f745d",
+      "role": "EXPLICIT_OWNER_MODULE_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/ui/freshness-view.tsx",
+      "sha256": "c13f56f1c4cd4bb23d1b9c0b891608c2b1936b9ab39ba61d7e2d6f91143b1b09",
+      "role": "REPORTING_CONSUMER",
+      "matches": [
+        {
+          "line": 20,
+          "text": "<Fields values={{'Snapshot run':s.runId,'Content hash':s.contentHash,'Scope / mode':`${s.scope} / ${s.mode}`,'Built at':s.builtAt,'Decision as-of':s.decisionAsOf,'System knowledge cutoff':s.systemKnownAt,'Fundamental cutoff':s.fundamentalCu"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    },
+    {
+      "path": "src/ui/policy-b-data-freshness.tsx",
+      "sha256": "5377d2bf3f67a7d2729a12b484222958ac12cfa6cfd37c1db7a5b4e2b379fdaa",
+      "role": "EXPLICIT_OWNER_MODULE_DEPENDENCY",
+      "matches": [],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ],
+      "impact": "CODE_CHANGE",
+      "reason": "Prospective lifecycle-aware binding, read-model, consumer or guard integration; source file remains unchanged now."
+    }
+  ],
+  "tests": [
+    {
+      "path": "tests/architecture/08b-review.test.mjs",
+      "sha256": "34d5aea0005c32a2a6e180c309abc9b20ae8606c1269c316adf62aa1a8a78b68",
+      "impact": "NONE_UNLESS_NEW_CONTRACT_TOUCHES_THIS_DEPENDENCY",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/architecture/di123-candidates.test.mjs",
+      "sha256": "d298fb701bb1715a4c492fa3d3f80762f947db41587107e1b0768f94a54c22bd",
+      "impact": "NONE_UNLESS_NEW_CONTRACT_TOUCHES_THIS_DEPENDENCY",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/architecture/initialization-preflight.test.mjs",
+      "sha256": "34a8ddd42cb78b5d833e4289c8f046361fb25729154f4d3e8bd5dba2e2528b06",
+      "impact": "CODE_CHANGE",
+      "role": "EXPLICIT_LIFECYCLE_BINDING_REGRESSION"
+    },
+    {
+      "path": "tests/e2e/data-freshness.spec.ts",
+      "sha256": "501fb69e1e64a7c9d779c1832dd94a315a8c6ffac1f1c49c455f413eb08fa77b",
+      "impact": "CODE_CHANGE",
+      "role": "EXPLICIT_LIFECYCLE_BINDING_REGRESSION"
+    },
+    {
+      "path": "tests/e2e/setup.ts",
+      "sha256": "d82dd9fa151080ff5ed44c1ef82f1918bcdab712e48fdf91b61af774c8cc8397",
+      "impact": "NONE_UNLESS_NEW_CONTRACT_TOUCHES_THIS_DEPENDENCY",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/fixtures/availability-evidence.ts",
+      "sha256": "26c91dbedf9ccfd457a6b65d28fdc26a2ef5ec8801ff41eb8ce43fafc85b346b",
+      "impact": "NONE_UNLESS_NEW_CONTRACT_TOUCHES_THIS_DEPENDENCY",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/fixtures/data-freshness.ts",
+      "sha256": "f52b6ec4a664b783c7452058aeec51ccf27ab10d6ae45d773406750fcd173355",
+      "impact": "CODE_CHANGE",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/fixtures/decision.ts",
+      "sha256": "be7c3b140a2fc02a51288d41730ed43c136af2ae3feec27fb51c247fc8c26a03",
+      "impact": "CODE_CHANGE",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/fixtures/m68.ts",
+      "sha256": "5694f5bc7f3ee825ea366dd7eab327590960ea492b81f66cf273dcb0c209d55f",
+      "impact": "NONE_UNLESS_NEW_CONTRACT_TOUCHES_THIS_DEPENDENCY",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/fixtures/scoring-readiness.ts",
+      "sha256": "07d52fd74c48c4a5c2b27e7d90c1f6f8f9460e15a6da2e3fe3b1e8f4f85c674a",
+      "impact": "CODE_CHANGE",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/fixtures/scoring.ts",
+      "sha256": "031c07bb278d719a179784c424d4365068c24471a53e7dfa58f748058935bd20",
+      "impact": "NONE_UNLESS_NEW_CONTRACT_TOUCHES_THIS_DEPENDENCY",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/fixtures/snapshot.ts",
+      "sha256": "029f6c6a758eff15e06729ada4f6a1766d6bccc0f5e3c8b928af937793056261",
+      "impact": "CODE_CHANGE",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/integration/current-remediation.test.ts",
+      "sha256": "34cac1606055e2c8b3c18655a19ec6aeea6b21cf59a8dbb18c37a1884f45cbaf",
+      "impact": "CODE_CHANGE",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/integration/decision.test.ts",
+      "sha256": "da0b22311be9a56b8ab9a62c3b6023774f9b011e54409b6d4e37fc38f6acb6bd",
+      "impact": "CODE_CHANGE",
+      "role": "EXPLICIT_LIFECYCLE_BINDING_REGRESSION"
+    },
+    {
+      "path": "tests/integration/di15-policy-b.test.ts",
+      "sha256": "9f3a01f663f502c5c0e212a45d02212f36e10834a7352127bfc6088467573fa0",
+      "impact": "CODE_CHANGE",
+      "role": "EXPLICIT_LIFECYCLE_BINDING_REGRESSION"
+    },
+    {
+      "path": "tests/integration/fundamentals-snapshot-migration.test.ts",
+      "sha256": "ed6d003025020a2fc7f9c198de021d924c05a879a3524014cebf9259db88a6ae",
+      "impact": "CODE_CHANGE",
+      "role": "EXPLICIT_LIFECYCLE_BINDING_REGRESSION"
+    },
+    {
+      "path": "tests/integration/fundamentals-snapshot.test.ts",
+      "sha256": "6c5b70b8525156447fc4f34546551b26a3394781af524c3f058a9148ec302f3a",
+      "impact": "CODE_CHANGE",
+      "role": "EXPLICIT_LIFECYCLE_BINDING_REGRESSION"
+    },
+    {
+      "path": "tests/integration/level1-disposition.test.ts",
+      "sha256": "1d60da21eb9df8747cd49d849cb697ffedc0b21270fb824ccc4a173b4a276059",
+      "impact": "CODE_CHANGE",
+      "role": "EXPLICIT_LIFECYCLE_BINDING_REGRESSION"
+    },
+    {
+      "path": "tests/integration/portfolio-regressions.test.ts",
+      "sha256": "10d039f24a0d584b2aa7294b700dee019deae74354805fa47cdf1d7140501d53",
+      "impact": "NONE_UNLESS_NEW_CONTRACT_TOUCHES_THIS_DEPENDENCY",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/integration/scoring-readiness-migration.test.ts",
+      "sha256": "9bba54ad82494c0e209e94731b2b619e3852a0f7960d0f486739567a6cb34dc3",
+      "impact": "CODE_CHANGE",
+      "role": "EXPLICIT_LIFECYCLE_BINDING_REGRESSION"
+    },
+    {
+      "path": "tests/integration/scoring-readiness.test.ts",
+      "sha256": "2038e8b755d5b453da376439a5b157c409e935ce3939c8fe2b59add48fc8e664",
+      "impact": "CODE_CHANGE",
+      "role": "EXPLICIT_LIFECYCLE_BINDING_REGRESSION"
+    },
+    {
+      "path": "tests/integration/workflow.test.ts",
+      "sha256": "f78463989a99a830119bf05e9eb711ff2001c2aa24575819911347284ad44683",
+      "impact": "CODE_CHANGE",
+      "role": "EXPLICIT_LIFECYCLE_BINDING_REGRESSION"
+    },
+    {
+      "path": "tests/unit/current-remediation-ui.test.tsx",
+      "sha256": "3febefc20daccb59e5efe0faac84b31f33251f92e97c3c6148b7fabc9a7275c4",
+      "impact": "CODE_CHANGE",
+      "role": "EXPLICIT_LIFECYCLE_BINDING_REGRESSION"
+    },
+    {
+      "path": "tests/unit/debt-contract-activation.test.ts",
+      "sha256": "e41e7d669570141eeee2dca454e1274910e9d1bbf7ae7a13aa8880c85a424da4",
+      "impact": "NONE_UNLESS_NEW_CONTRACT_TOUCHES_THIS_DEPENDENCY",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/unit/decision-portfolio.test.ts",
+      "sha256": "ed145621113cbdc51ed4abe96328ee429968a93d12e64a3ca53a14d1e2880cd4",
+      "impact": "CODE_CHANGE",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/unit/decision.test.ts",
+      "sha256": "88c32c4e4fe2be4d6d1c9dbcfaa019e1ab2a4ed3c2652b43b1af3d36a47a038e",
+      "impact": "CODE_CHANGE",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/unit/di15-policy-b.test.ts",
+      "sha256": "b153bf3efef2e9d2912df6b2aa6f936be86768d3edd7c9034c11618f2aa95a0f",
+      "impact": "CODE_CHANGE",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/unit/fundamentals-availability-evidence.test.ts",
+      "sha256": "931ebee12d6c3572b6581254709f679f80fc9c5e4454133ce64a2cd94baa41bf",
+      "impact": "NONE_UNLESS_NEW_CONTRACT_TOUCHES_THIS_DEPENDENCY",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/unit/fundamentals-live-public-disclosure.test.ts",
+      "sha256": "c008cee2fe6daee41b169f3c42ed1cdb5446ed4bad79fa3093c85f9028263ee4",
+      "impact": "NONE_UNLESS_NEW_CONTRACT_TOUCHES_THIS_DEPENDENCY",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/unit/fundamentals-operational-freshness.test.ts",
+      "sha256": "d726f40d56778dfaafaed4c033005fc5c97c7ea8625d0a01964d3e3f7d9b7940",
+      "impact": "CODE_CHANGE",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/unit/fundamentals-snapshot-derived.test.ts",
+      "sha256": "f9b4655ed88228fdcdc34df6436d5f64f82c9c58223f2bb69c4b4aab1df89363",
+      "impact": "CODE_CHANGE",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/unit/fundamentals-snapshot.test.ts",
+      "sha256": "bc16337785c7ae5dda3ecddd1d425a451d1dab7251831ff59585c53eaa6b6a08",
+      "impact": "CODE_CHANGE",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/unit/level1-promotion.test.ts",
+      "sha256": "8a02ec7e97edfd693b0b4affb47d4b984d4e6b0ecbe051cba5bfc6b6b24182a0",
+      "impact": "CODE_CHANGE",
+      "role": "EXPLICIT_LIFECYCLE_BINDING_REGRESSION"
+    },
+    {
+      "path": "tests/unit/policy-b-ports.test.ts",
+      "sha256": "917bd928c30712100956d4d0137ab677caa35fda87c772ad53215563cf5fe4fb",
+      "impact": "CODE_CHANGE",
+      "role": "EXPLICIT_LIFECYCLE_BINDING_REGRESSION"
+    },
+    {
+      "path": "tests/unit/portfolio-read-models.test.ts",
+      "sha256": "a05258c5cb653fa146b4ba11160c55a10ff440a8e010439419dbe04c7fcd7c1e",
+      "impact": "NONE_UNLESS_NEW_CONTRACT_TOUCHES_THIS_DEPENDENCY",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/unit/scoring-bridge-derived.test.ts",
+      "sha256": "f37f3ef730156c9bfa0a3a5d85cbe8199717d48521da6713ac0515091cbf50b6",
+      "impact": "NONE_UNLESS_NEW_CONTRACT_TOUCHES_THIS_DEPENDENCY",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/unit/scoring-evidence-time.test.ts",
+      "sha256": "1bcec02c66d836b301560ea9625c0a4e7738ebb5b36c8d1475293270316c85c0",
+      "impact": "NONE_UNLESS_NEW_CONTRACT_TOUCHES_THIS_DEPENDENCY",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/unit/scoring-portfolio.test.ts",
+      "sha256": "5d2165c1777d44277956eadaf1dfb1abf49f493522e00d7ae64a3d3791d6ccb5",
+      "impact": "NONE_UNLESS_NEW_CONTRACT_TOUCHES_THIS_DEPENDENCY",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/unit/scoring-readiness.test.ts",
+      "sha256": "6764b7cfe3b9f734054c0551ab25d6b1010e335eccae5c09be6331f6d3aff494",
+      "impact": "CODE_CHANGE",
+      "role": "REGRESSION_ENFORCEMENT"
+    },
+    {
+      "path": "tests/unit/workflow.test.ts",
+      "sha256": "257a530cc4c8808f824f14468e197229be7500626efafd3d6b16f3a457c5f16e",
+      "impact": "CODE_CHANGE",
+      "role": "REGRESSION_ENFORCEMENT"
+    }
+  ],
+  "evidenceGenerators": [
+    {
+      "path": "scripts/audit-final-di-candidate-market.py",
+      "sha256": "842ca5c3e118e8b88a4e4c3c2595ef66649fd34af878b9dedc984750cf8a132c",
+      "impact": "CODE_CHANGE_NEW_VERSION_ONLY",
+      "instruction": "Retain current/historical generator contract and sealed outputs. Implement a new lifecycle-aware generator; do not run an old producer to overwrite history."
+    },
+    {
+      "path": "scripts/build-di15-policy-b.mjs",
+      "sha256": "6d897de55ee29ff4c70b15d4d2df00ff35e3b674987303eb2e7e279933863e57",
+      "impact": "CODE_CHANGE_NEW_VERSION_ONLY",
+      "instruction": "New lifecycle-aware version; preserve historic producer/output."
+    },
+    {
+      "path": "scripts/build-final-di-candidate.py",
+      "sha256": "0fb57c0a3381bd611c26657698db0830203325e2f767157184c3977873f99d19",
+      "impact": "CODE_CHANGE_NEW_VERSION_ONLY",
+      "instruction": "Retain current/historical generator contract and sealed outputs. Implement a new lifecycle-aware generator; do not run an old producer to overwrite history."
+    },
+    {
+      "path": "scripts/close-level1-partition.mjs",
+      "sha256": "589113a3f0e6b372a5d1b0f425ce55436acd23d0ef3cf6cc2d56d8c6614d7872",
+      "impact": "CODE_CHANGE_NEW_VERSION_ONLY",
+      "instruction": "New lifecycle-aware version; preserve historic producer/output."
+    },
+    {
+      "path": "scripts/document-di15-policy-b.py",
+      "sha256": "f2576d681e0e8c26f2e21a76288a9248aecf7a75203bc8edd044eed404e793b5",
+      "impact": "CODE_CHANGE_NEW_VERSION_ONLY",
+      "instruction": "Retain current/historical generator contract and sealed outputs. Implement a new lifecycle-aware generator; do not run an old producer to overwrite history."
+    },
+    {
+      "path": "scripts/evaluate-final-di-candidate.mjs",
+      "sha256": "5502d47d94c0ece10b5fcf9ef4f6cd6669e14a58c44e533d7bc1d3181d4374e3",
+      "impact": "CODE_CHANGE_NEW_VERSION_ONLY",
+      "instruction": "Retain current/historical generator contract and sealed outputs. Implement a new lifecycle-aware generator; do not run an old producer to overwrite history."
+    },
+    {
+      "path": "scripts/fundamental-initialization-preflight.mjs",
+      "sha256": "e227b5683d57cfb371e49a90aeaa130298dbc6c9939f835f48f24bc865092e27",
+      "impact": "CODE_CHANGE_NEW_VERSION_ONLY",
+      "instruction": "Retain current/historical generator contract and sealed outputs. Implement a new lifecycle-aware generator; do not run an old producer to overwrite history."
+    },
+    {
+      "path": "scripts/replay-level1-partition.py",
+      "sha256": "d38c24023441709f9bc812ce5754ac02e164719c56fdd145406ef35a4917b01c",
+      "impact": "CODE_CHANGE_NEW_VERSION_ONLY",
+      "instruction": "New lifecycle-aware version; preserve historic producer/output."
+    },
+    {
+      "path": "scripts/reprocess-manual-first.mjs",
+      "sha256": "82fd9465be90074d7110f642e37e5fb1cfbae37b764f6539bdd3b34d1ff4269e",
+      "impact": "CODE_CHANGE_NEW_VERSION_ONLY",
+      "instruction": "Retain current/historical generator contract and sealed outputs. Implement a new lifecycle-aware generator; do not run an old producer to overwrite history."
+    },
+    {
+      "path": "scripts/seal-final-di-candidate.py",
+      "sha256": "7f94c9bde37472fd444d05603938f0ac25da1a46f68d5cac9ae5d664c6ba8616",
+      "impact": "CODE_CHANGE_NEW_VERSION_ONLY",
+      "instruction": "Retain current/historical generator contract and sealed outputs. Implement a new lifecycle-aware generator; do not run an old producer to overwrite history."
+    },
+    {
+      "path": "scripts/seal-level1-closure.py",
+      "sha256": "e1cafed7b784b5fabbdba2165ca9528f47205ffae1bec3c87fdd10765b5a963b",
+      "impact": "CODE_CHANGE_NEW_VERSION_ONLY",
+      "instruction": "Retain current/historical generator contract and sealed outputs. Implement a new lifecycle-aware generator; do not run an old producer to overwrite history."
+    },
+    {
+      "path": "scripts/validate-final-di-candidate.py",
+      "sha256": "54186aace8f316c7dcb5c0a00ac0541ae49f1e97234143693667d4618508f257",
+      "impact": "CODE_CHANGE_NEW_VERSION_ONLY",
+      "instruction": "New lifecycle-aware version; preserve historic producer/output."
+    },
+    {
+      "path": "scripts/verify-level1-disposition.mjs",
+      "sha256": "af28a617c6996419ea4a1b0e916f37916b5386e2453032726433dc22c2f4812b",
+      "impact": "CODE_CHANGE_NEW_VERSION_ONLY",
+      "instruction": "New lifecycle-aware version; preserve historic producer/output."
+    }
+  ],
+  "database": {
+    "path": "prisma/schema.prisma",
+    "currentMarketSnapshotModelPresent": false,
+    "currentStorage": "Fundamental source/observation/snapshot, DataInitializationAcceptance, score/decision/portfolio lineage and append-only fundamental disposition release exist; no first-class accepted marketSnapshot/marketCapabilityCertificate/decision multi-snapshot FK contract. LocalCurrentSource is a configured normalized manual dataset, not proof of full raw-market pipeline qualification.",
+    "impact": "MIGRATION_REQUIRED",
+    "minimumProspectiveChange": "Add versioned typed initialization/capability, market snapshot and analysis/decision binding entities/relationships, reusing existing content/import/portfolio/methodology infrastructure where semantics match. No table-per-concept or SQL migration mandated by this review.",
+    "backwardCompatibility": "Keep all old bodies/hashes and v1/v2 formal/DI acceptance replay. New market/inception contracts must not reinterpret existing SnapshotReference as empty or authoritative raw evidence."
+  },
+  "unchangedInvestmentSemantics": [
+    "M3 weights, rubrics and metric definitions",
+    "M1/M4 risk/return/position limits and ownership rules",
+    "M5 capital/ledger accounting",
+    "Permanent M3 flow/technical exclusion",
+    "FULL30/SCORABLE_BY_FUNDAMENTALS29/DEFERRED MBB",
+    "TCX Owner exception ACTIVE; source-proven debt not claimed"
+  ]
+}

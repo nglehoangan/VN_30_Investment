@@ -1,0 +1,62 @@
+{
+  "status": "PROPOSED_AWAITING_REVIEW",
+  "architectureRecommendation": "ACCEPT_WITH_CHANGES",
+  "approvalRequiredBeforeImplementation": true,
+  "changes": [
+    {
+      "owner": "M1",
+      "requirement": "Explicitly approve lifecycle boundary and that initialized-as-of is not AnalysisReady or DecisionReady; preserve risk/new-capital safeguards."
+    },
+    {
+      "owner": "M2",
+      "requirement": "Approve typed provenance, raw-market retention, capability corpus and immutable multi-snapshot relationship contracts; additive schema design and migration plan."
+    },
+    {
+      "owner": "M3",
+      "requirement": "Approve prospective analysis/scoring acceptance contract with mandatory price-dependency gate; preserve all investment math, no zero-fill and no weight redistribution."
+    },
+    {
+      "owner": "M4/M5",
+      "requirement": "Approve atomic decision envelope, portfolio/market coherence and revalidation on cached-result/capital/execution paths."
+    },
+    {
+      "owner": "M6/M7",
+      "requirement": "Readiness labels and complete negative/PIT/replay/capability tests; real-source proof is distinct from synthetic tests."
+    },
+    {
+      "owner": "M8",
+      "requirement": "Approve versioned DI4/DI8/DI12 replacement semantics, independent DI14 and exact-release DI15 process; keep existing versions/statuses immutable."
+    }
+  ],
+  "minimumImplementationSequence": [
+    "Independent Review DI Market-Data Boundary",
+    "Owner approves precise versioned policy/contract change, including freshness ownership and retention",
+    "Add typed manifests/models/readers/validators and additive migrations while old replay stays intact",
+    "Qualify capability from retained real-source evidence and regression corpus; do not waive raw-source proof",
+    "Construct/review durable initialization manifest and evaluate new DI gates without inventing PASS",
+    "On an authorized actual analysis request, acquire/reuse eligible snapshot and evaluate analysis gate",
+    "On an authorized decision, bind current portfolio and atomically seal decision; independent DI acceptance remains explicit"
+  ],
+  "mustNotDoNow": [
+    "Fetch market or MBB accounting evidence",
+    "Create actual market/analysis/decision snapshots",
+    "Change existing DI or PolicyB semantics or production readiness",
+    "Resolve/reclassify existing blocker or grant DI14/DI15 approval",
+    "Change financial values/TCX exception/quarantine or run scoring/ranking/Top10"
+  ],
+  "acceptanceTestsRequired": [
+    "Oct19 initialization remains historical while assumed stale Oct25 market blocks new request",
+    "Trading-session/calendar policy decides required date; no invented universal day threshold",
+    "No trusted policy/session proof → UNKNOWN/BLOCKED",
+    "Missing/raw hash corruption/schema drift/identity/unit/field/adjustment conflict → BLOCKED",
+    "No current refresh or later fundamental/restatement/owner policy leaks into historical PIT",
+    "Cached expired quote/proof/decision/DCA cannot authorize a new live action",
+    "Price change/ledger watermark/reference/corporate-action drift requires coherent rebuild",
+    "Decision publication fails atomically if any snapshot/reference is missing",
+    "Full eligible ranking scope does not shrink silently; no missing-weight redistribution",
+    "MBB remains constituent/deferred; a market price for held NAV does not grant fundamental eligibility",
+    "TCX exception cannot disappear from snapshot/context; comprehensive debt not inferred for VNM",
+    "Legacy accepted and failed evidence replays unchanged, with unavailable old raw sources disclosed",
+    "Mocks alone cannot certify actual source/capability; lifecycle recommendation alone cannot change gates"
+  ]
+}

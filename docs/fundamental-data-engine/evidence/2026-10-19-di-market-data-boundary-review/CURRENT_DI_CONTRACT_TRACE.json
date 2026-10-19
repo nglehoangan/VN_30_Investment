@@ -1,0 +1,467 @@
+{
+  "reviewHEAD": "d2e995e4ac02782db524e4f4ff7b13e2688cefe5",
+  "result": "Existing failures remain valid under existing contract; boundary change needs prospective approved versions.",
+  "authorityStatusCaveat": "Root document header still says v0.1 Approval Candidate. Operational authority is evidenced by adopted runtime contracts, subsequent owner amendments and sealed gate decisions; this review does not invent approval from the header or Git date.",
+  "literalDefinitions": {
+    "DI4": "Required market data loaded",
+    "DI8": "Freshness checks PASS",
+    "DI12": "Data Snapshot ID reproducible"
+  },
+  "originalM8Commit": "14aa8b2b1052ffb297edadd298ce90c0fb246779",
+  "originalM8GateLines": [
+    "DI4    Required market data loaded                  NOT EXECUTED",
+    "DI8    Freshness checks PASS                        NOT EXECUTED",
+    "DI12   Data Snapshot ID reproducible                NOT EXECUTED"
+  ],
+  "gitHistoryByPath": {
+    "docs/08_CONTINUOUS_IMPROVEMENT/DATA_INITIALIZATION.md": [
+      "14aa8b2b1052ffb297edadd298ce90c0fb246779|2026-10-06T08:40:29+07:00|Complete M8",
+      "a76ff3979cc0b555d718d094c24704654ea0a12a|2026-10-11T14:17:34+07:00|Update Fundamental Data Engine Slice 8"
+    ],
+    "docs/08_CONTINUOUS_IMPROVEMENT/MANUAL_FUNDAMENTALS_ARCHITECTURE.md": [
+      "a76ff3979cc0b555d718d094c24704654ea0a12a|2026-10-11T14:17:34+07:00|Update Fundamental Data Engine Slice 8"
+    ],
+    "docs/08_CONTINUOUS_IMPROVEMENT/DI15_PARTIAL_UNIVERSE_POLICY_B.md": [
+      "68aa87f9ae4478714ec6ca676e5a3b2addf0d77f|2026-10-17T14:16:59+07:00|DI15 Partial-Universe Amendment"
+    ],
+    "src/domain/fundamentals/snapshot.ts": [
+      "86a2755cbca1b4aa502ee1cfc72eb8fba936e0d5|2026-10-09T17:15:39+07:00|Update Fundamental Data Engine Slice 5",
+      "7090d3a7952f6ce062d46416cea8d8f5c7fd385d|2026-10-09T17:47:02+07:00|Update Fundamental Data Engine Slice 5",
+      "68d4165c40fb040b134b43d53285f550d34cfd7a|2026-10-10T17:24:00+07:00|Update Fundamental Data Engine Slice 8",
+      "c11c17fbe0d7b0a09099e67029662584778e35d3|2026-10-11T11:12:42+07:00|Update Fundamental Data Engine Slice 7",
+      "a76ff3979cc0b555d718d094c24704654ea0a12a|2026-10-11T14:17:34+07:00|Update Fundamental Data Engine Slice 8"
+    ],
+    "src/domain/fundamentals/scoring-readiness.ts": [
+      "b7d8b1632410fd157183da1a7597d74dfe370765|2026-10-09T20:25:45+07:00|Update Fundamental Data Engine Slice 6",
+      "06ce9d679424beac89c4189c126d3948052d8d9e|2026-10-09T21:09:57+07:00|Update Fundamental Data Engine Slice 6",
+      "a76ff3979cc0b555d718d094c24704654ea0a12a|2026-10-11T14:17:34+07:00|Update Fundamental Data Engine Slice 8"
+    ],
+    "src/domain/fundamentals/scoring-readiness-policy-b.ts": [
+      "68aa87f9ae4478714ec6ca676e5a3b2addf0d77f|2026-10-17T14:16:59+07:00|DI15 Partial-Universe Amendment"
+    ],
+    "src/domain/fundamentals/operational-freshness.ts": [
+      "c11c17fbe0d7b0a09099e67029662584778e35d3|2026-10-11T11:12:42+07:00|Update Fundamental Data Engine Slice 7"
+    ],
+    "scripts/build-final-di-candidate.py": [
+      "ad164c395cf700824871d613737d6ea62c74b1cc|2026-10-17T15:01:46+07:00|Data Initialization Final Acceptance"
+    ]
+  },
+  "authorityAndCode": [
+    {
+      "path": "docs/08_CONTINUOUS_IMPROVEMENT/DATA_INITIALIZATION.md",
+      "sha256": "8d959671dadcb15f4443c70aaa16c350accf6ee492d6847b9c068a1bb33265e1",
+      "lines": [
+        {
+          "line": 148,
+          "text": "## 8. Market Price Data"
+        },
+        {
+          "line": 262,
+          "text": "## 14. Freshness Framework"
+        },
+        {
+          "line": 427,
+          "text": "## 22. Data Snapshot Identity"
+        },
+        {
+          "line": 448,
+          "text": "## 23. Point-in-Time Safety"
+        },
+        {
+          "line": 481,
+          "text": "## 25. Initialization Workflow"
+        },
+        {
+          "line": 546,
+          "text": "DI4    Required market data loaded                  NOT EXECUTED"
+        },
+        {
+          "line": 550,
+          "text": "DI8    Freshness checks PASS                        NOT EXECUTED"
+        },
+        {
+          "line": 554,
+          "text": "DI12   Data Snapshot ID reproducible                NOT EXECUTED"
+        },
+        {
+          "line": 676,
+          "text": "2.  approval freezes the data initialization contract, not live dataset"
+        },
+        {
+          "line": 688,
+          "text": "The Project Owner approved the manual financial statement–first architecture in the current project workflow. [MANUAL_FUNDAMENTALS_ARCHITECTURE.md](MANUAL_FUNDAMENTALS_ARCHITECTURE.md) records the explicit DI5/DI7/DI8/DI9/DI10/DI11 amendment, source ownership, evidence sufficiency, reporting-cycle f"
+        }
+      ]
+    },
+    {
+      "path": "docs/08_CONTINUOUS_IMPROVEMENT/MANUAL_FUNDAMENTALS_ARCHITECTURE.md",
+      "sha256": "cb74f900dfd26b2f3cb0b234fc4a8ead1d4ce14fbee8991f7aae717905cfb515",
+      "lines": [
+        {
+          "line": 25,
+          "text": "The current financial bridge supplies facts, mechanical metrics and component limitations. It produces no scores or fabricated qualitative assessments. M3 bounded subcategory rules, weights 25/15/15/10/20/10/5, maxima, double-count controls, sector normalization and LOW-confidence restrictions are u"
+        },
+        {
+          "line": 29,
+          "text": "Reporting-cycle-v1 compares the latest qualified reporting period with completed fiscal quarter/year ends and the analysis date. Operational reporting grace: quarterly 60 days, annual-only 120 days. One missed expected cycle is AGING; two or more STALE; no qualified report or unknown fiscal calendar"
+        },
+        {
+          "line": 39,
+          "text": "| DI8 | BCTC freshness is reporting-cycle aware. Other source domains retain independent policies. |"
+        },
+        {
+          "line": 44,
+          "text": "DI1–DI4 and downstream scoring gates are not waived. The known official membership discrepancy remains visible; the dated 30-name notice is an explicit research denominator, not certified current membership. Prior Slice 08 packages remain immutable failed/candidate evidence. DI14: AWAITING_INDEPENDE"
+        }
+      ]
+    },
+    {
+      "path": "docs/08_CONTINUOUS_IMPROVEMENT/DI15_PARTIAL_UNIVERSE_POLICY_B.md",
+      "sha256": "8b508db4e92550b9988486ed1899a9c780a14dfdd14f55908e6f4b391f255a11",
+      "lines": [
+        {
+          "line": 1,
+          "text": "# DI15 amendment — Quarantined Partial-Universe"
+        },
+        {
+          "line": 5,
+          "text": "**Policy B — Quarantined Partial-Universe approved by Owner.** The exact request and its SHA256 are retained in [Owner decision](../fundamental-data-engine/evidence/2026-10-17-di15-partial-universe-amendment/OWNER_POLICY_DECISION.json). This approval changes governance and acceptance contracts. It d"
+        },
+        {
+          "line": 13,
+          "text": "FULL_UNIVERSE contains every certified effective VN30 member. SCORABLE_UNIVERSE and DEFERRED_UNIVERSE form a complete, disjoint partition by mandatory Level-1 admission evidence. SCORABLE denotes admission eligibility, not a completed score or permission to trade: existing market, valuation, qualita"
+        },
+        {
+          "line": 15,
+          "text": "## DI15 conditions"
+        },
+        {
+          "line": 21,
+          "text": "Only SOURCE_UNAVAILABLE, REGULATORY_SOURCE_UNAVAILABLE, ACCOUNTING_POPULATION_UNRESOLVED and DEFINITION_UNRESOLVED may be classified as ticker-isolated evidence insufficiency. Shared universe, registry, mapping, source/schema, calculation, unit, contamination, replay or production infrastructure fai"
+        },
+        {
+          "line": 23,
+          "text": "Universe certification must PASS. All other mandatory DI gates must remain satisfied. In accordance with the Owner's condition 8, the v2 DI15 release evaluation checks DI1–DI14, including independent DI14. The evaluator separately reports structural quarantine PASS so it does not misrepresent a pend"
+        },
+        {
+          "line": 35,
+          "text": "No DB migration is needed: append-only acceptance JSON already carries versioned contracts with body hashes. Existing trusted independent-review binding and approved methodology records must bind the entire new body, including partition and source issue ledger. A caller-authored PASS, recomputed che"
+        }
+      ]
+    },
+    {
+      "path": "src/domain/fundamentals/snapshot.ts",
+      "sha256": "70721635205e45f9ae8906e13af3637942c97cf9797670fa88fadc52eb4dab12",
+      "lines": [
+        {
+          "line": 45,
+          "text": "export interface SnapshotRequest {"
+        },
+        {
+          "line": 48,
+          "text": "readonly marketCutoff:string;readonly fundamentalCutoff:string;readonly revisionCutoff:string|null;"
+        },
+        {
+          "line": 75,
+          "text": "exact(r,'runId scope mode decisionAsOf systemKnownAt marketCutoff fundamentalCutoff revisionCutoff policy requirementsVersion requirements references assessmentPins derivedIds builtAt softwareBuild operatorReference validationRunReference reviewContext');"
+        },
+        {
+          "line": 77,
+          "text": "[r.decisionAsOf,r.systemKnownAt,r.marketCutoff,r.fundamentalCutoff,r.builtAt].forEach(instant);"
+        },
+        {
+          "line": 79,
+          "text": "requireFundamental(r.systemKnownAt<=r.decisionAsOf&&r.marketCutoff<=r.decisionAsOf&&r.fundamentalCutoff<=r.decisionAsOf&&r.builtAt>=r.decisionAsOf,'SNAPSHOT_CUTOFF_ORDER');"
+        },
+        {
+          "line": 87,
+          "text": "requireFundamental(r.references.length>=3&&r.references.length<=100&&['UNIVERSE','SECTOR','MARKET'].every(k=>r.references.filter(v=>v.kind===k).length===1),'SNAPSHOT_REFERENCE_SET');"
+        },
+        {
+          "line": 182,
+          "text": "decisionAsOf:r.decisionAsOf,systemKnownAt:r.systemKnownAt,marketCutoff:r.marketCutoff,fundamentalCutoff:r.fundamentalCutoff,revisionCutoff:r.revisionCutoff,"
+        }
+      ]
+    },
+    {
+      "path": "src/domain/fundamentals/scoring-readiness-policy-b.ts",
+      "sha256": "863f0c30cc43839c458271d22a9cf697ee53d8b52f5faadb70e565d7f7f995b4",
+      "lines": [
+        {
+          "line": 60,
+          "text": "requireFundamental(Array.isArray(a.gates)&&a.gates.length===15&&new Set(a.gates.map(g=>g.gate)).size===15,'ALL_REQUIRED_DI_GATES');"
+        },
+        {
+          "line": 72,
+          "text": "requireFundamental(r.scope==='FORMAL'&&r.mode==='AS_KNOWN'&&r.revisionCutoff===null,'FORMAL_AS_KNOWN_SNAPSHOT_REQUIRED');"
+        },
+        {
+          "line": 73,
+          "text": "requireFundamental(a.snapshotRunId===r.runId&&a.contentHash===s.contentHash&&a.manifestDigest===digest(s.manifest)&&a.requirementsHash===hash(p)&&r.requirementsVersion===p.version&&a.universeHash===hash(universe),'DI_EXACT_DATASET_BINDING');"
+        },
+        {
+          "line": 110,
+          "text": "function requiredExternal(kind:'MARKET'|'VALUATION',observations:readonly string[]){return observations.every(observation=>input!.evidence.some(e=>e.observation===observation&&(kind!=='MARKET'||isMarketEvidence(e))&&e.quality==='VALID'&&e.validThrough>=input!.asOf&&!evidenceConflicts.includes(e.id)&"
+        },
+        {
+          "line": 111,
+          "text": "if(requiredExternal('MARKET',route.requiredMarketObservations))dimensions.market='READY';else blockers.push('BLOCKED_MARKET_INPUTS');"
+        },
+        {
+          "line": 126,
+          "text": "const dataReady=dimensions.universe==='READY'&&dimensions.market==='READY'&&dimensions.fundamentals==='READY'&&(legacyReplay||dimensions.valuation==='READY'),readyForScoring=dataReady&&dimensions.valuation==='READY'&&dimensions.confidence==='READY'&&dimensions.assessmentsAndGates==='READY';"
+        }
+      ]
+    },
+    {
+      "path": "src/infrastructure/repositories/scoring-datasets-policy-b.ts",
+      "sha256": "576a5525b12a9f121dd45014374e9a2a062e64272ac0baac6c4b5646885d849c",
+      "lines": [
+        {
+          "line": 29,
+          "text": "requireFundamental(this.reviewBindings.some(b=>b.acceptanceHash===hash&&b.reviewerReference===a.reviewerReference&&b.approvalReference===a.approvalReference),'EXTERNAL_INDEPENDENT_DI_REVIEW_REQUIRED');"
+        },
+        {
+          "line": 34,
+          "text": "const s=await this.snapshots.findRun(a.snapshotRunId);requireFundamental(s,'SEALED_DI_SNAPSHOT_REQUIRED');bindDIAcceptance(a,s!,snapshotHash,manifestDigest);"
+        },
+        {
+          "line": 62,
+          "text": "const readiness=evaluateScoringReadiness(a,s,await this.sources(s),snapshotHash);requireFundamental(readiness.find(t=>t.securityId===input.securityId)?.readyForScoring,'TICKER_NOT_READY_FOR_SCORING');"
+        }
+      ]
+    },
+    {
+      "path": "src/domain/fundamentals/operational-freshness.ts",
+      "sha256": "b5acf7b3f0027906217273dddd823d3f10ac22f564633ec4388283ee10cca745",
+      "lines": [
+        {
+          "line": 4,
+          "text": "export type OperationalFreshnessClass='MARKET'|'FUNDAMENTALS'|'VN30_MEMBERSHIP'|'SECTOR_MASTER'|'ESTIMATES';"
+        },
+        {
+          "line": 5,
+          "text": "export type OperationalFreshnessStatus='CURRENT'|'AGING'|'STALE'|'UNKNOWN';"
+        },
+        {
+          "line": 12,
+          "text": "readonly class:OperationalFreshnessClass;readonly cutoff:string;readonly periodOrVersion:string;"
+        },
+        {
+          "line": 19,
+          "text": "export function assessOperationalFreshness(policy:OperationalFreshnessPolicy,e:OperationalFreshnessEvidence,hash:(v:unknown)=>string){"
+        },
+        {
+          "line": 22,
+          "text": "requireFundamental(['MARKET','FUNDAMENTALS','VN30_MEMBERSHIP','SECTOR_MASTER','ESTIMATES'].includes(e.class)&&typeof e.publicationUsable==='boolean'&&typeof e.periodOrVersion==='string'&&e.periodOrVersion.trim().length>0,'FRESHNESS_EVIDENCE_TYPES');"
+        },
+        {
+          "line": 34,
+          "text": "if(e.periodOrVersion===e.requiredPeriodOrVersion){status='CURRENT';reason='LATEST_REQUIRED_PUBLIC_PERIOD_OR_VERSION';}"
+        },
+        {
+          "line": 38,
+          "text": "if(e.class==='ESTIMATES'&&status==='CURRENT'){"
+        },
+        {
+          "line": 43,
+          "text": "return deepFreeze({policy,policyHash:hash(policy),evidence:e,evidenceHash:hash(e),status,reason,eligible:status==='CURRENT'});"
+        }
+      ]
+    },
+    {
+      "path": "src/domain/scoring/evidence.ts",
+      "sha256": "4664905e9580fac625df6c20cf88bae541bc70182acb5691779a9a64a7800331",
+      "lines": [
+        {
+          "line": 33,
+          "text": "readonly receivedAt: string; readonly validThrough: string; readonly critical: boolean;"
+        },
+        {
+          "line": 67,
+          "text": "keys(e, \"id version securityId observation value unit classification source periodStart periodEnd asOf publishedAt receivedAt validThrough critical quality family\"+(e.time?\" time\":\"\")+(e.debtAccounting?\" debtAccounting\":\"\"));"
+        },
+        {
+          "line": 75,
+          "text": "[e.asOf,e.receivedAt,e.validThrough].forEach(instant); validateTime(e,knownAt);"
+        },
+        {
+          "line": 77,
+          "text": "check(e.asOf <= asOf && e.receivedAt <= knownAt && e.validThrough >= e.asOf, \"FUTURE_OR_INVALID_EVIDENCE\");"
+        },
+        {
+          "line": 84,
+          "text": "export function available(e: Pick<Evidence,\"id\" | \"quality\" | \"validThrough\">, asOf: string, conflicts: readonly string[]) { return e.quality === \"VALID\" && e.validThrough >= asOf && !conflicts.includes(e.id); }"
+        }
+      ]
+    },
+    {
+      "path": "src/application/current/read-model.ts",
+      "sha256": "9cdc4b23168e230b7befcf0884e3741cc5c462dc87a9e7be4aecd0a4ede56420",
+      "lines": [
+        {
+          "line": 31,
+          "text": "for (const p of s.prices) if (p.receivedAt > s.receivedAt || p.observedAt > p.receivedAt || (p.validThrough && p.validThrough < p.observedAt) || !decimal(p.price).positive) throw new Error(\"INVALID_PRICE_PROVENANCE\");"
+        },
+        {
+          "line": 34,
+          "text": "const unknown = selected.some(p => p && (!p.policyReference || !p.validThrough));"
+        },
+        {
+          "line": 37,
+          "text": "const stale = selected.some(p => p?.validThrough && p.validThrough < now);"
+        },
+        {
+          "line": 38,
+          "text": "// No silent fallback to older valid rows when the latest observation is invalid/unknown."
+        },
+        {
+          "line": 39,
+          "text": "const observations = s.prices.filter(p => p.quality === \"VALID\" && p.adjustment === \"RAW\" && p.policyReference && p.validThrough)"
+        },
+        {
+          "line": 40,
+          "text": ".map(p => ({ id:p.id, securityId:p.securityId, price:p.price, currency:p.currency, observedAt:instant(p.observedAt), receivedAt:instant(p.receivedAt), validThrough:instant(p.validThrough!), sourceReference:p.sourceReference }));"
+        },
+        {
+          "line": 48,
+          "text": "if (stale) reasons.push(\"STALE_PRICE\");"
+        },
+        {
+          "line": 49,
+          "text": "const referenceFreshness = !s.referencePolicy || !s.referenceValidThrough ? \"UNKNOWN\" : s.referenceValidThrough < now ? \"STALE\" : \"VALID\";"
+        },
+        {
+          "line": 55,
+          "text": "return { securityId:p.securityId, currentPrice:valuationValid ? o?.price ?? null : null, marketValue:valuationValid?p.marketValue:null, unrealizedPnl:valuationValid?p.unrealizedPnl:null, weight:valuationValid?p.weight:null, sector, priceAsOf:o?.observedAt??null, provider:o?.provider??null, retrieved"
+        }
+      ]
+    },
+    {
+      "path": "scripts/build-final-di-candidate.py",
+      "sha256": "0fb57c0a3381bd611c26657698db0830203325e2f767157184c3977873f99d19",
+      "lines": [
+        {
+          "line": 20,
+          "text": "write('MARKET_EVIDENCE_AUDIT.json',{'status':'FAIL','archivedRows':30,'archivedTradingDates':marketDates,'archivedRowsProof':proof('data/initialization-08b-remediation-work/market.json'),'archiveStatus':market['status'],'archiveApprovalReference':market['approvalReference'],'rawSourceRecheck':proof("
+        },
+        {
+          "line": 30,
+          "text": "'FAIL: all30 archived market raw source paths fail presence/hash proof. Diagnostic dated archive rows alone cannot prove required market data loaded into this exact release. No fetch or fabricated prices.',"
+        },
+        {
+          "line": 33,
+          "text": "'All25 candidates satisfy mandatory financial coverage/current-YTD checks; known material absence is explicitly quarantined forfive. Supporting/optional gaps are disclosed, with no neutral fill or redistribution. DI4 separately blocks market admission.',"
+        },
+        {
+          "line": 34,
+          "text": "'FAIL: current financial reporting-cycle/current-YTD checks reproduce, but full-release market freshness cannot PASS with unavailable raw responses and no reviewed current market snapshot. Archive observation dates remain2026-10-09; retrieval time is not freshness.',"
+        },
+        {
+          "line": 45,
+          "text": "releaseCore={'implementationCommit':H,'universeHash':p['universe']['hash'],'policyBinding':policyBinding,'partitionHash':semantic(partitionCore),'originalExceptionRegisterSHA256':sha(O/'EXCEPTION_REGISTER.json'),'canonicalSnapshotHashes':snapshotHashes,'canonicalFileHashes':snapshotFiles,'marketSnap"
+        },
+        {
+          "line": 46,
+          "text": "releaseId='di-final-review-'+semantic(releaseCore);binding={**releaseCore,'releaseId':releaseId,'startingCommit':H,'finalImplementationCommit':H,'finalImplementationCommitMeaning':'Runtime code is unchanged at this exact commit. New candidate scripts/evidence are pinned by ARTIFACT_HASHES.json; no i"
+        },
+        {
+          "line": 62,
+          "text": "write('OPEN_ISSUES.json',{'originalSixTickerMajors':originalIssues,'originalTickerIssuesUnchanged':True,'newAccountingIssues':0,'releaseGlobalIssues':[globalIssue],'failedGates':sorted(failed),'DI14':'PENDING_INDEPENDENT_APPROVAL','DI15':'FAIL','neededToResolve':[{'issue':globalIssue['id'],'requirem"
+        }
+      ]
+    }
+  ],
+  "currentGateEvidence": {
+    "DI4": {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/DI04_REVIEW.json",
+      "sha256": "8779202fb6399b43e870c956b8318470e2b639fd941ff8f709850100a139b141",
+      "lines": [
+        {
+          "line": 3,
+          "text": "\"authoritativeRequirement\": \"Required market data loaded\","
+        },
+        {
+          "line": 35,
+          "text": "\"status\": \"FAIL\","
+        },
+        {
+          "line": 36,
+          "text": "\"reason\": \"FAIL: all30 archived market raw source paths fail presence/hash proof. Diagnostic dated archive rows alone cannot prove required market data loaded into this exact release. No fetch or fabricated prices.\","
+        }
+      ]
+    },
+    "DI8": {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/DI08_REVIEW.json",
+      "sha256": "7d7eeca7c141de6fc052a89daa1ca195fc1a9ea125a6aeb8fc413292f0b866a3",
+      "lines": [
+        {
+          "line": 3,
+          "text": "\"authoritativeRequirement\": \"Freshness checks PASS\","
+        },
+        {
+          "line": 40,
+          "text": "\"status\": \"FAIL\","
+        },
+        {
+          "line": 41,
+          "text": "\"reason\": \"FAIL: current financial reporting-cycle/current-YTD checks reproduce, but full-release market freshness cannot PASS with unavailable raw responses and no reviewed current market snapshot. Archive observation dates remain2026-10-09; retrieval time is not freshness.\","
+        }
+      ]
+    },
+    "DI12": {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/DI12_REVIEW.json",
+      "sha256": "c40a745c6a6c0be7c70c9c112c8495cece9a69f5f4d5063ca6b946d4152e4215",
+      "lines": [
+        {
+          "line": 3,
+          "text": "\"authoritativeRequirement\": \"Data Snapshot ID reproducible\","
+        },
+        {
+          "line": 44,
+          "text": "\"status\": \"FAIL\","
+        },
+        {
+          "line": 45,
+          "text": "\"reason\": \"FAIL for final acceptance: 30 accounting snapshots and the review-bundle identity are reproducible, but no complete eligible formal snapshotRunId/contentHash/manifestDigest binds market plus fundamentals under the unchanged acceptance contract. Default DB has no formal snapshot/acceptance"
+        }
+      ]
+    }
+  },
+  "enforcementInventory": "ENFORCEMENT_INVENTORY.json",
+  "historyInterpretation": [
+    {
+      "stage": "M8 original baseline, Oct6 Git commit",
+      "finding": "Initialization workflow explicitly loads market data; section22 anchors deterministic dataset identity to each scoring/recommendation run. It does not say snapshots remain fresh forever."
+    },
+    {
+      "stage": "Fundamental snapshot/scoring readiness implementation, Oct9–11 Git history",
+      "finding": "Formal snapshot has mandatory nonempty MARKET reference; scoring acceptance exact-binds FORMAL AS_KNOWN snapshot and all15 PASS gates. Runtime evidence validThrough is evaluated against run asOf, while current read model compares to current clock."
+    },
+    {
+      "stage": "Manual-first prospective amendment",
+      "finding": "DI8 fundamental freshness becomes reporting-cycle specific; independent market policies and DI1–DI4 are explicitly not waived."
+    },
+    {
+      "stage": "PolicyB Oct17",
+      "finding": "Allows ticker-isolated Level1 quarantine; all release-wide market/PIT/snapshot/DI acceptance guards retained."
+    },
+    {
+      "stage": "Final acceptance Oct17",
+      "finding": "0/30 archived raw market paths qualified; financial replay does not substitute for a complete formal market+fundamental snapshot. DI4/DI8/DI12 FAIL."
+    },
+    {
+      "stage": "Approved Level1 promotion Oct19",
+      "finding": "29/1 fundamental partition adopted; global market blocker OPEN, DI14 PENDING and DI15 FAIL intentionally retained."
+    }
+  ],
+  "historicalRunbookReference": {
+    "recorded": {
+      "path": "docs/fundamental-data-engine/SLICE_8_INITIALIZATION_RUNBOOK.md",
+      "sha256": "1671745fae502a29d4cd4c63e8b01740ecdce7cae4dda5e9731f7196d7b33c6f"
+    },
+    "currentPathSHA256": "9f7a1bf8daf1560ddb3e8e44a216bd64c574059f9318c3cdc6180d144dffea3e",
+    "sameBytes": false,
+    "interpretation": "Old gate result is pinned to historical runbook bytes. Current path text must not be treated as a retroactive amendment or substituted for recorded authority; Git history and original hashes remain explicit."
+  }
+}

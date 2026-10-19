@@ -1,0 +1,46 @@
+{
+  "gate": "DI12",
+  "proposalOnly": true,
+  "currentStatusUnchanged": "FAIL",
+  "currentAuthority": {
+    "path": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/DI12_REVIEW.json",
+    "sha256": "c40a745c6a6c0be7c70c9c112c8495cece9a69f5f4d5063ca6b946d4152e4215",
+    "lines": [
+      {
+        "line": 3,
+        "text": "\"authoritativeRequirement\": \"Data Snapshot ID reproducible\","
+      },
+      {
+        "line": 44,
+        "text": "\"status\": \"FAIL\","
+      },
+      {
+        "line": 45,
+        "text": "\"reason\": \"FAIL for final acceptance: 30 accounting snapshots and the review-bundle identity are reproducible, but no complete eligible formal snapshotRunId/contentHash/manifestDigest binds market plus fundamentals under the unchanged acceptance contract. Default DB has no formal snapshot/acceptance"
+      }
+    ]
+  },
+  "currentRule": "Data Snapshot ID reproducible. §22 every scoring/recommendation binds deterministic universe, market/fundamental cutoffs, source/import versions, quality/freshness and exceptions. Current SnapshotRequest requires MARKET and bindDIAcceptance requires exact FORMAL AS_KNOWN snapshot.",
+  "problem": "One formal snapshot contract is used both as initialization acceptance evidence and analysis/decision data binding. Fundamental hashes or a review-bundle hash do not satisfy the current composite formal snapshot contract.",
+  "recommendation": "SPLIT",
+  "proposedRule": "DI12-vNext verifies an immutable InitializationManifest binding certified universe/master/sector versions, qualified canonical accounting and history, provenance, Level1 dispositions, PolicyB29/1 and ACTIVE TCX exception, policies/software/import versions and capability certificate hashes. AnalysisSnapshot separately freezes the as-of compatible fundamental, market, universe/sector and model inputs; DecisionSnapshot atomically freezes the analysis and current portfolio context.",
+  "whySafer": "A durable initialization identifier can replay after market values age, while every investment output remains pinned to a complete fresh-as-consumed analysis and decision envelope.",
+  "whenItFails": [
+    "Initialization content/provenance/qualification/exception is missing or hash does not replay",
+    "Only a documentation bundle identity is offered instead of typed initialization manifest",
+    "Analysis or decision binding omits required market/portfolio/policy/model references",
+    "Hash-only identifiers exist without retained bytes or approved replay dependencies"
+  ],
+  "lifecycleOwnership": {
+    "INITIALIZATION_TIME": [
+      "InitializationManifest replay under new approved contract"
+    ],
+    "ANALYSIS_TIME": [
+      "Complete AnalysisSnapshot replay, including required market source bytes"
+    ],
+    "DECISION_TIME": [
+      "Atomic DecisionSnapshot binding and portfolio watermark"
+    ]
+  },
+  "compatibility": "Do not edit v1 SnapshotRequest to allow empty MARKET or null marketCutoff, nor weaken existing FORMAL_AS_KNOWN validation. Add a distinct initialization contract and prospective analysis/decision bindings; legacy accepted snapshots replay unchanged."
+}

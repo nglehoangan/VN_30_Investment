@@ -1,0 +1,1534 @@
+{
+  "searchPattern": "\\bDI0?(?:4|8|12)\\b|RELEASE-MARKET-SOURCE-REPLAY-UNAVAILABLE|REQUIRED_DI_NOT_PASS|ALL_REQUIRED_DI_GATES|requiredMarketObservations|marketCutoff|SNAPSHOT_REFERENCE_SET|validThrough|assessOperationalFreshness",
+  "scope": "Tracked policy/specification and source/script/test trees, excluding generated code and historical evidence copies. Hits include reporters and dependencies; a keyword hit alone is not a normative gate. Exact active enforcement paths are enumerated separately.",
+  "files": [
+    {
+      "path": "src/application/current/read-model.ts",
+      "sha256": "9cdc4b23168e230b7befcf0884e3741cc5c462dc87a9e7be4aecd0a4ede56420",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 31,
+          "text": "for (const p of s.prices) if (p.receivedAt > s.receivedAt || p.observedAt > p.receivedAt || (p.validThrough && p.validThrough < p.observedAt) || !decimal(p.price).positive) throw new Error(\"INVALID_PRICE_PROVENANCE\");"
+        },
+        {
+          "line": 34,
+          "text": "const unknown = selected.some(p => p && (!p.policyReference || !p.validThrough));"
+        },
+        {
+          "line": 37,
+          "text": "const stale = selected.some(p => p?.validThrough && p.validThrough < now);"
+        },
+        {
+          "line": 39,
+          "text": "const observations = s.prices.filter(p => p.quality === \"VALID\" && p.adjustment === \"RAW\" && p.policyReference && p.validThrough)"
+        },
+        {
+          "line": 40,
+          "text": ".map(p => ({ id:p.id, securityId:p.securityId, price:p.price, currency:p.currency, observedAt:instant(p.observedAt), receivedAt:instant(p.receivedAt), validThrough:instant(p.validThrough!), sourceReference:p.sourceReference }));"
+        },
+        {
+          "line": 55,
+          "text": "return { securityId:p.securityId, currentPrice:valuationValid ? o?.price ?? null : null, marketValue:valuationValid?p.marketValue:null, unrealizedPnl:valuationValid?p.unrealizedPnl:null, weight:valuationValid?p.weight:null, sector, priceAsO"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/application/current/review-initiation.ts",
+      "sha256": "b508e5b281bb98c57c8d4036efdccecb564f3ef2dc44c42a66136ea5dc6ebb2e",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 44,
+          "text": "if(!a || a.asOf!==s.asOf || a.receivedAt>s.receivedAt || a.validThrough<reviewTime || a.evidence.some(e=>e.validThrough<reviewTime)) return {readiness:{...readiness,status:\"INPUT REQUIRED\" as const,reasons:[\"CURRENT_ANALYST_EVIDENCE_REQUIRE"
+        },
+        {
+          "line": 63,
+          "text": "if (!method || method.governanceStatus!==\"APPROVED\" || method.intendedUse!==\"PRODUCTION\" || !Object.entries(method).every(([key,value])=>card.methodology[key as keyof typeof method]===value) || card.input.evidence.some(e=>e.critical&&(e.val"
+        },
+        {
+          "line": 66,
+          "text": "if(resolved.some(d=>!d||d.scope!==\"FORMAL\"||d.lineage.snapshotId!==context.integrity.snapshotId||JSON.stringify(d.input.portfolio)!==JSON.stringify(context)||d.input.evidence.some(e=>e.validThrough<reviewTime))||rank.entries.some(e=>!resolv"
+        },
+        {
+          "line": 76,
+          "text": "const fresh = m && m.steps.every(step => step.assessments.every(x => x.decision.input.evidence.every(e => e.validThrough >= reviewTime) && x.decision.input.scorecard.input.evidence.every(e => !e.critical || e.validThrough >= reviewTime)));"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/application/scoring/execution-context.ts",
+      "sha256": "0cae57a4d53d764f29624ffb5853c5990609a188f19274ebb095405014600e02",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 10,
+          "text": "[observation.observedAt,observation.receivedAt,observation.validThrough].forEach(instant);text(observation.sourceReference);"
+        },
+        {
+          "line": 11,
+          "text": "check(observation.currency===\"VND\"&&observation.observedAt<=snapshot.asOf&&observation.receivedAt<=snapshot.calculatedAt&&observation.validThrough>=snapshot.asOf,\"CURRENT_DATED_PRICE_REQUIRED\");"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/application/workflow/engine.ts",
+      "sha256": "70bf7bc9111853ec4cee6927fc4b066558d7048cb62c8059a67be62ab45f019d",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 87,
+          "text": "if (review.proposal?.marginalAllocation?.steps.some(step => step.assessments.some(a => a.decision.input.evidence.some(e => e.validThrough < this.clock.now())))) reasons.push(\"STALE MARGINAL EVIDENCE\");"
+        },
+        {
+          "line": 97,
+          "text": "if (!d || d.input.evidence.some(e => e.validThrough < this.clock.now()) || d.input.scorecard.input.evidence.some(e => e.critical && e.validThrough < this.clock.now())) reasons.push(\"STALE DECISION EVIDENCE\");"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/decision/contracts.ts",
+      "sha256": "17faa581a3e36a82fc5dc44a7fa432104667cfc7bc2b652cc6796eb7c0d41b06",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 14,
+          "text": "readonly validThrough: string; readonly classification: \"FACT\" | \"ESTIMATE\" | \"ASSUMPTION\";"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/decision/engine.ts",
+      "sha256": "5e0d80b1227c961c3d5b767e30bdbfe0421294e43c1dcac83403c9f1f715570a",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 68,
+          "text": "const current = x.evidenceRefs.every(ref => i.evidence.find(e => e.id === ref)!.validThrough >= i.asOf);"
+        },
+        {
+          "line": 93,
+          "text": "const missing = [...a.missingCritical, ...a.evidenceRefs.filter(ref => i.evidence.find(e => e.id === ref)!.validThrough < i.asOf).map(ref => `STALE:${ref}`)];"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/decision/marginal.ts",
+      "sha256": "ea374677b0918290f01232fdf7c7c14178a40de567046bd4bb93a9db77df1297",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 69,
+          "text": "requireDecision(e.evidenceRefs.every((ref: string) => candidate.evidence.some((v: Evidence) => v.id === ref && v.validThrough >= c.evidenceCutoff)), \"SUBSTITUTION_EVIDENCE_MISSING\");"
+        },
+        {
+          "line": 107,
+          "text": "const stale = assessments.some(a => a.decision.input.evidence.some(e => e.validThrough < recordedAt) || a.decision.input.scorecard.input.evidence.some(e => e.critical && e.validThrough < recordedAt) || a.decision.reviewStatus !== \"FINAL\" ||"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/decision/validation.ts",
+      "sha256": "bd1e1d20ab88c0df979245639b21f72cad63351b8cb50241607944b2d5d69eb8",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 57,
+          "text": "fields(e, \"id source asOf receivedAt validThrough classification summary\"); identifier(e.id); text(e.source); text(e.summary);"
+        },
+        {
+          "line": 58,
+          "text": "[e.asOf, e.receivedAt, e.validThrough].forEach(instant); enumeration(e.classification, [\"FACT\", \"ESTIMATE\", \"ASSUMPTION\"]);"
+        },
+        {
+          "line": 59,
+          "text": "requireDecision(e.asOf <= i.asOf && e.receivedAt <= i.knownAt && e.asOf <= e.receivedAt && e.validThrough >= e.asOf, \"FUTURE_EVIDENCE\");"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/fundamentals/derivation.ts",
+      "sha256": "e129819c0d7253791c24649858304281ab154c0eda71246f83734a7f7b6a8790",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 147,
+          "text": "const projected:MetricOperand[]=operands.map(o=>({id:o.id,value:o.value!,unit:'VND',periodStart:r.periodStart,periodEnd:r.periodEnd,quality:'VALID',validThrough:input.recordedAt}));"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/fundamentals/freshness-policy-b.ts",
+      "sha256": "5c146610a6befaa5c6c8eee031dde59b0701f440ecb3e82295d02a5a85fc8774",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 25,
+          "text": "readonly snapshot:{readonly runId:string;readonly contentHash:string;readonly scope:string;readonly mode:string;readonly builtAt:string;readonly decisionAsOf:string;readonly systemKnownAt:string;readonly fundamentalCutoff:string;readonly ma"
+        },
+        {
+          "line": 50,
+          "text": "return deepFreeze({...emptyDataFreshness(viewedAt),status:'VERIFIED',snapshot:{runId:r.runId,contentHash:s.contentHash,scope:r.scope,mode:r.mode,builtAt:r.builtAt,decisionAsOf:r.decisionAsOf,systemKnownAt:r.systemKnownAt,fundamentalCutoff:r"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/fundamentals/freshness.ts",
+      "sha256": "0c3f8a7ac686a18dcada1ebcd4a63440a2f2797316200dc991103ff1432e6c59",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 25,
+          "text": "readonly snapshot:{readonly runId:string;readonly contentHash:string;readonly scope:string;readonly mode:string;readonly builtAt:string;readonly decisionAsOf:string;readonly systemKnownAt:string;readonly fundamentalCutoff:string;readonly ma"
+        },
+        {
+          "line": 49,
+          "text": "return deepFreeze({...emptyDataFreshness(viewedAt),status:'VERIFIED',snapshot:{runId:r.runId,contentHash:s.contentHash,scope:r.scope,mode:r.mode,builtAt:r.builtAt,decisionAsOf:r.decisionAsOf,systemKnownAt:r.systemKnownAt,fundamentalCutoff:r"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/fundamentals/operational-freshness.ts",
+      "sha256": "b5acf7b3f0027906217273dddd823d3f10ac22f564633ec4388283ee10cca745",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 19,
+          "text": "export function assessOperationalFreshness(policy:OperationalFreshnessPolicy,e:OperationalFreshnessEvidence,hash:(v:unknown)=>string){"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/fundamentals/partial-universe.ts",
+      "sha256": "dd68b8a2dbfcbea09e89347883ec60fd42fba16e5b851cd302c31c505d984503",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 84,
+          "text": "const structuralReasons=[...reasons];for(const g of a.prerequisites)if(g.status!=='PASS')reasons.push('REQUIRED_DI_NOT_PASS:'+g.gate);"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/fundamentals/scoring-bridge.ts",
+      "sha256": "e79aede87b75ba00f52cb81edf965481e8e7308cccf09cb3716fd3faa20d39b5",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 17,
+          "text": "readonly facts:readonly {readonly observationId:string;readonly evidenceId:string;readonly validThrough:string}[];"
+        },
+        {
+          "line": 18,
+          "text": "readonly metrics:readonly {readonly derivationId:string;readonly requestId:string;readonly evidenceIds:readonly [string,string];readonly validThrough:string}[];"
+        },
+        {
+          "line": 28,
+          "text": "for(const r of p.facts){exactReadinessFields(r,'observationId evidenceId validThrough');[r.observationId,r.evidenceId].forEach(fundamentalId);instant(r.validThrough);}"
+        },
+        {
+          "line": 29,
+          "text": "for(const r of p.metrics){exactReadinessFields(r,'derivationId requestId evidenceIds validThrough');[r.derivationId,r.requestId].forEach(fundamentalId);requireFundamental(Array.isArray(r.evidenceIds)&&r.evidenceIds.length===2,'TWO_BRIDGE_OP"
+        },
+        {
+          "line": 66,
+          "text": "for(const p of plan.facts){const {o,a}=eligible(p.observationId);requireFundamental(p.validThrough>=r.decisionAsOf,'BRIDGE_FRESHNESS_REQUIRED');"
+        },
+        {
+          "line": 67,
+          "text": "evidence.push({id:p.evidenceId,version:o.recordVersion,securityId,observation:'canonical-'+o.itemId,value:o.normalized.value!,unit:unit(o),classification:'FACT',source:'canonical-source:'+o.sourceVersionId+';publication:'+o.publication.evid"
+        },
+        {
+          "line": 72,
+          "text": "requireFundamental(d!.crosswalk.recordedAt<=cutoff&&d!.request.operands.every(o=>!o.adjustment||o.adjustment.reviewedAt<=cutoff),'BRIDGE_DERIVATION_NOT_KNOWN');requireFundamental(p.validThrough>=r.decisionAsOf,'BRIDGE_FRESHNESS_REQUIRED');"
+        },
+        {
+          "line": 76,
+          "text": "evidence.push({id:p.evidenceIds[i],version:d!.crosswalk.version,securityId,observation:'operand-'+d!.request.metric+'-'+operand.role,value:operand.value!,unit:'VND',classification:adjustment?'ESTIMATE':'FACT',source:'derived:'+d!.id+';cross"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/fundamentals/scoring-readiness-policy-b.ts",
+      "sha256": "863f0c30cc43839c458271d22a9cf697ee53d8b52f5faadb70e565d7f7f995b4",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 23,
+          "text": "readonly sectors:readonly {readonly sector:Sector;readonly requiredItems:readonly string[];readonly requiredMetrics:readonly MetricId[];readonly requiredMarketObservations:readonly string[];readonly requiredValuationObservations:readonly st"
+        },
+        {
+          "line": 49,
+          "text": "for(const r of p.sectors){exactReadinessFields(r,'sector requiredItems requiredMetrics requiredMarketObservations requiredValuationObservations');requireFundamental(SECTORS.includes(r.sector)&&Array.isArray(r.requiredItems)&&r.requiredItems"
+        },
+        {
+          "line": 50,
+          "text": "for(const required of [r.requiredMarketObservations,r.requiredValuationObservations]){requireFundamental(Array.isArray(required)&&required.length>0&&new Set(required).size===required.length,'EXPLICIT_REQUIRED_MARKET_VALUATION_INPUTS');requi"
+        },
+        {
+          "line": 51,
+          "text": "requireFundamental(r.requiredMarketObservations.every((id:string)=>['price','market_cap','EV','shares'].includes(id)),'REQUIRED_MARKET_OBSERVATION_ALLOWLIST');requireFundamental(r.requiredMetrics.every((m:MetricId)=>Object.hasOwn(METRICS,m)"
+        },
+        {
+          "line": 60,
+          "text": "requireFundamental(Array.isArray(a.gates)&&a.gates.length===15&&new Set(a.gates.map(g=>g.gate)).size===15,'ALL_REQUIRED_DI_GATES');"
+        },
+        {
+          "line": 61,
+          "text": "for(const g of a.gates){exactReadinessFields(g,'gate status evidenceReference');requireFundamental(REQUIRED_DI_GATES.includes(g.gate)&&g.status==='PASS','REQUIRED_DI_NOT_PASS');ref(g.evidenceReference);}"
+        },
+        {
+          "line": 96,
+          "text": "const facts=s.members.filter(m=>sources.observations.some(o=>o.id===m.observationId&&o.securityId===t.securityId&&route.requiredItems.includes(o.itemId))).map((m,index)=>({observationId:m.observationId,evidenceId:'readiness-fact-'+index,val"
+        },
+        {
+          "line": 97,
+          "text": "const metricPlans=route.requiredMetrics.map((metric,index)=>{const d=sources.derived.find(d=>s.derivedIds.includes(d.id)&&d.request.securityId===t.securityId&&d.request.metric===metric);requireFundamental(d,'READINESS_REQUIRED_DERIVED_INPUT"
+        },
+        {
+          "line": 110,
+          "text": "function requiredExternal(kind:'MARKET'|'VALUATION',observations:readonly string[]){return observations.every(observation=>input!.evidence.some(e=>e.observation===observation&&(kind!=='MARKET'||isMarketEvidence(e))&&e.quality==='VALID'&&e.v"
+        },
+        {
+          "line": 111,
+          "text": "if(requiredExternal('MARKET',route.requiredMarketObservations))dimensions.market='READY';else blockers.push('BLOCKED_MARKET_INPUTS');"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/fundamentals/scoring-readiness.ts",
+      "sha256": "08632dfb279de43c9896b639daa384da4e22c35fcb9b6b08754b50b022517be5",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 22,
+          "text": "readonly sectors:readonly {readonly sector:Sector;readonly requiredItems:readonly string[];readonly requiredMetrics:readonly MetricId[];readonly requiredMarketObservations:readonly string[];readonly requiredValuationObservations:readonly st"
+        },
+        {
+          "line": 47,
+          "text": "for(const r of p.sectors){exactReadinessFields(r,'sector requiredItems requiredMetrics requiredMarketObservations requiredValuationObservations');requireFundamental(SECTORS.includes(r.sector)&&Array.isArray(r.requiredItems)&&r.requiredItems"
+        },
+        {
+          "line": 48,
+          "text": "for(const required of [r.requiredMarketObservations,r.requiredValuationObservations]){requireFundamental(Array.isArray(required)&&required.length>0&&new Set(required).size===required.length,'EXPLICIT_REQUIRED_MARKET_VALUATION_INPUTS');requi"
+        },
+        {
+          "line": 49,
+          "text": "requireFundamental(r.requiredMarketObservations.every((id:string)=>['price','market_cap','EV','shares'].includes(id)),'REQUIRED_MARKET_OBSERVATION_ALLOWLIST');requireFundamental(r.requiredMetrics.every((m:MetricId)=>Object.hasOwn(METRICS,m)"
+        },
+        {
+          "line": 57,
+          "text": "requireFundamental(Array.isArray(a.gates)&&a.gates.length===15&&new Set(a.gates.map(g=>g.gate)).size===15,'ALL_REQUIRED_DI_GATES');"
+        },
+        {
+          "line": 58,
+          "text": "for(const g of a.gates){exactReadinessFields(g,'gate status evidenceReference');requireFundamental(REQUIRED_DI_GATES.includes(g.gate)&&g.status==='PASS','REQUIRED_DI_NOT_PASS');ref(g.evidenceReference);}"
+        },
+        {
+          "line": 85,
+          "text": "const facts=s.members.filter(m=>sources.observations.some(o=>o.id===m.observationId&&o.securityId===t.securityId&&route.requiredItems.includes(o.itemId))).map((m,index)=>({observationId:m.observationId,evidenceId:'readiness-fact-'+index,val"
+        },
+        {
+          "line": 86,
+          "text": "const metricPlans=route.requiredMetrics.map((metric,index)=>{const d=sources.derived.find(d=>s.derivedIds.includes(d.id)&&d.request.securityId===t.securityId&&d.request.metric===metric);requireFundamental(d,'READINESS_REQUIRED_DERIVED_INPUT"
+        },
+        {
+          "line": 99,
+          "text": "function requiredExternal(kind:'MARKET'|'VALUATION',observations:readonly string[]){return observations.every(observation=>input!.evidence.some(e=>e.observation===observation&&(kind!=='MARKET'||isMarketEvidence(e))&&e.quality==='VALID'&&e.v"
+        },
+        {
+          "line": 100,
+          "text": "if(requiredExternal('MARKET',route.requiredMarketObservations))dimensions.market='READY';else blockers.push('BLOCKED_MARKET_INPUTS');"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/fundamentals/snapshot.ts",
+      "sha256": "70721635205e45f9ae8906e13af3637942c97cf9797670fa88fadc52eb4dab12",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 10,
+          "text": "import { assessOperationalFreshness } from './operational-freshness';"
+        },
+        {
+          "line": 48,
+          "text": "readonly marketCutoff:string;readonly fundamentalCutoff:string;readonly revisionCutoff:string|null;"
+        },
+        {
+          "line": 75,
+          "text": "exact(r,'runId scope mode decisionAsOf systemKnownAt marketCutoff fundamentalCutoff revisionCutoff policy requirementsVersion requirements references assessmentPins derivedIds builtAt softwareBuild operatorReference validationRunReference r"
+        },
+        {
+          "line": 77,
+          "text": "[r.decisionAsOf,r.systemKnownAt,r.marketCutoff,r.fundamentalCutoff,r.builtAt].forEach(instant);"
+        },
+        {
+          "line": 79,
+          "text": "requireFundamental(r.systemKnownAt<=r.decisionAsOf&&r.marketCutoff<=r.decisionAsOf&&r.fundamentalCutoff<=r.decisionAsOf&&r.builtAt>=r.decisionAsOf,'SNAPSHOT_CUTOFF_ORDER');"
+        },
+        {
+          "line": 87,
+          "text": "requireFundamental(r.references.length>=3&&r.references.length<=100&&['UNIVERSE','SECTOR','MARKET'].every(k=>r.references.filter(v=>v.kind===k).length===1),'SNAPSHOT_REFERENCE_SET');"
+        },
+        {
+          "line": 163,
+          "text": "else {const b=bindings[0];requireFundamental(b.evidence.class==='FUNDAMENTALS'&&b.evidence.cutoff===r.fundamentalCutoff&&b.evidence.periodOrVersion===heads[0].periodEnd&&b.evidence.contentHash===hash(heads[0])&&b.evidence.publicationUsable,"
+        },
+        {
+          "line": 182,
+          "text": "decisionAsOf:r.decisionAsOf,systemKnownAt:r.systemKnownAt,marketCutoff:r.marketCutoff,fundamentalCutoff:r.fundamentalCutoff,revisionCutoff:r.revisionCutoff,"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/portfolio/valuation.ts",
+      "sha256": "80850601619e1beaa101a448fd1ae036ab60e9ae5c6d37bbab681539e97c0b3e",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 13,
+          "text": "readonly observedAt: Instant; readonly receivedAt: Instant; readonly validThrough: Instant; readonly sourceReference: string;"
+        },
+        {
+          "line": 32,
+          "text": "instant(selected.observedAt); instant(selected.receivedAt); instant(selected.validThrough);"
+        },
+        {
+          "line": 33,
+          "text": "requireRule(selected.currency === \"VND\" && selected.sourceReference.trim() && selected.validThrough >= selected.observedAt, \"INVALID_PRICE_OBSERVATION\");"
+        },
+        {
+          "line": 35,
+          "text": "const priceStatus = conflict ? \"CONFLICTING_DATA\" as const : selected.validThrough < state.asOf ? \"STALE\" as const : \"VALID\" as const;"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/scoring/evidence.ts",
+      "sha256": "4664905e9580fac625df6c20cf88bae541bc70182acb5691779a9a64a7800331",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 33,
+          "text": "readonly receivedAt: string; readonly validThrough: string; readonly critical: boolean;"
+        },
+        {
+          "line": 67,
+          "text": "keys(e, \"id version securityId observation value unit classification source periodStart periodEnd asOf publishedAt receivedAt validThrough critical quality family\"+(e.time?\" time\":\"\")+(e.debtAccounting?\" debtAccounting\":\"\"));"
+        },
+        {
+          "line": 75,
+          "text": "[e.asOf,e.receivedAt,e.validThrough].forEach(instant); validateTime(e,knownAt);"
+        },
+        {
+          "line": 77,
+          "text": "check(e.asOf <= asOf && e.receivedAt <= knownAt && e.validThrough >= e.asOf, \"FUTURE_OR_INVALID_EVIDENCE\");"
+        },
+        {
+          "line": 84,
+          "text": "export function available(e: Pick<Evidence,\"id\" | \"quality\" | \"validThrough\">, asOf: string, conflicts: readonly string[]) { return e.quality === \"VALID\" && e.validThrough >= asOf && !conflicts.includes(e.id); }"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/scoring/metrics.ts",
+      "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 36,
+          "text": "export type MetricOperand = Pick<Evidence,'id'|'value'|'unit'|'periodStart'|'periodEnd'|'quality'|'validThrough'|'debtAccounting'>;"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/workflow/allocation.ts",
+      "sha256": "bbcfb92e61aca1e23fc88a497e0719f607c198550acdf8392092a353e0a17ec6",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 20,
+          "text": "if (evidence.some(e => e.validThrough < c.reviewDate) || d.input.scorecard.input.evidence.some(e => e.critical && (e.validThrough < c.reviewDate || e.quality !== \"VALID\"))) issues.push(`STALE EVIDENCE:${d.id}`);"
+        },
+        {
+          "line": 23,
+          "text": "if (c.evidence.some(e => e.validThrough < c.reviewDate)) issues.push(\"STALE REVIEW EVIDENCE\");"
+        },
+        {
+          "line": 55,
+          "text": "const fresh = m && m.steps.every(step => step.assessments.every(a => a.decision.input.evidence.every(e => e.validThrough >= c.reviewDate) && a.decision.input.scorecard.input.evidence.every(e => !e.critical || e.validThrough >= c.reviewDate)"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/workflow/reviews.ts",
+      "sha256": "6ad24241eb0abf0d81f34557245cededb9969a94f82bf2ed564a5b0221358d7d",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 26,
+          "text": "if (c.evidence.some(e => e.validThrough < c.reviewDate)) reasons.push(\"STALE REVIEW EVIDENCE\");"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/domain/workflow/validation.ts",
+      "sha256": "04170db85168d973f3190ab0997de6b9ecf2fa7f01c0266f464ef8cb07973dee",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 32,
+          "text": "exact(e, \"id source asOf receivedAt validThrough classification summary\"); id(e.id); text(e.source); text(e.summary);"
+        },
+        {
+          "line": 33,
+          "text": "[e.asOf, e.receivedAt, e.validThrough].forEach(instant);"
+        },
+        {
+          "line": 34,
+          "text": "requireWorkflow(e.asOf <= c.asOf && e.receivedAt <= c.evidenceCutoff && e.validThrough >= e.asOf && [\"FACT\", \"ESTIMATE\", \"ASSUMPTION\"].includes(e.classification), \"INVALID_EVIDENCE_TIME_OR_CLASS\");"
+        },
+        {
+          "line": 74,
+          "text": "for (const e of c.evidence) { exact(e, \"id source asOf receivedAt validThrough classification summary\"); id(e.id); text(e.source); text(e.summary); [e.asOf, e.receivedAt, e.validThrough].forEach(instant); requireWorkflow(e.receivedAt <= c.a"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/ports/current.ts",
+      "sha256": "7b1804efbdfeb07e6cf06ba22d952d5e5d4ad61ad5b4a592cba1632426f5fa2e",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 4,
+          "text": "prices:readonly {id:string;securityId:string;price:string;currency:\"VND\";observedAt:string;receivedAt:string;validThrough:string|null;sourceReference:string;provider:string;revision:string;quality:\"VALID\"|\"CONFLICTING_DATA\"|\"INVALID\";policy"
+        },
+        {
+          "line": 8,
+          "text": "analyst:{version:string;reviewer:string;asOf:string;receivedAt:string;validThrough:string;sourceReference:string;evidence:ReviewCommand[\"evidence\"];sections:readonly ReviewSection[];theses:readonly ThesisReview[];triggers:readonly ReviewTri"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/shared/validation/current-source.ts",
+      "sha256": "6e380e1a2b1db62c863420dd65b78e5b946342c010f7b216d74b49b1cd762525",
+      "role": "SEMANTIC_RUNTIME_ENFORCER_OR_DEPENDENCY",
+      "matches": [
+        {
+          "line": 5,
+          "text": "const evidence = z.strictObject({ id: text, source: text, asOf: time, receivedAt: time, validThrough: time, classification: z.enum([\"FACT\", \"ESTIMATE\", \"ASSUMPTION\"]), summary: text });"
+        },
+        {
+          "line": 10,
+          "text": "const price = z.strictObject({ id: text, securityId: text, price: amount, currency: z.literal(\"VND\"), observedAt: time, receivedAt: time, validThrough: time.nullable(), sourceReference: text, provider: text, revision: text, quality: z.enum("
+        },
+        {
+          "line": 17,
+          "text": "analyst: z.strictObject({ version: text, reviewer: text, asOf: time, receivedAt: time, validThrough: time, sourceReference: text, evidence: z.array(evidence).max(100), sections: z.array(section).max(100), theses: z.array(thesis).max(30), tr"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "src/ui/freshness-view.tsx",
+      "sha256": "c13f56f1c4cd4bb23d1b9c0b891608c2b1936b9ab39ba61d7e2d6f91143b1b09",
+      "role": "REPORTING_CONSUMER",
+      "matches": [
+        {
+          "line": 20,
+          "text": "<Fields values={{'Snapshot run':s.runId,'Content hash':s.contentHash,'Scope / mode':`${s.scope} / ${s.mode}`,'Built at':s.builtAt,'Decision as-of':s.decisionAsOf,'System knowledge cutoff':s.systemKnownAt,'Fundamental cutoff':s.fundamentalCu"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "scripts/audit-final-di-candidate-market.py",
+      "sha256": "842ca5c3e118e8b88a4e4c3c2595ef66649fd34af878b9dedc984750cf8a132c",
+      "role": "EVIDENCE_GENERATOR_OR_OFFLINE_CHECK; inspect before any execution",
+      "matches": [
+        {
+          "line": 8,
+          "text": "if v.get('id')=='DI4' and 'measurement' in v:found.extend(v['measurement']['sourceProofs'])"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "scripts/build-final-di-candidate.py",
+      "sha256": "0fb57c0a3381bd611c26657698db0830203325e2f767157184c3977873f99d19",
+      "role": "EVIDENCE_GENERATOR_OR_OFFLINE_CHECK; inspect before any execution",
+      "matches": [
+        {
+          "line": 22,
+          "text": "globalIssue={'id':'RELEASE-MARKET-SOURCE-REPLAY-UNAVAILABLE','securityId':None,'kind':'GLOBAL_SYSTEM_BLOCKER','severity':'MAJOR','status':'OPEN','classification':'SHARED_SOURCE_CONTRACT','detail':'Required full-universe market evidence cann"
+        },
+        {
+          "line": 33,
+          "text": "'All25 candidates satisfy mandatory financial coverage/current-YTD checks; known material absence is explicitly quarantined forfive. Supporting/optional gaps are disclosed, with no neutral fill or redistribution. DI4 separately blocks marke"
+        },
+        {
+          "line": 46,
+          "text": "releaseId='di-final-review-'+semantic(releaseCore);binding={**releaseCore,'releaseId':releaseId,'startingCommit':H,'finalImplementationCommit':H,'finalImplementationCommitMeaning':'Runtime code is unchanged at this exact commit. New candida"
+        },
+        {
+          "line": 62,
+          "text": "write('OPEN_ISSUES.json',{'originalSixTickerMajors':originalIssues,'originalTickerIssuesUnchanged':True,'newAccountingIssues':0,'releaseGlobalIssues':[globalIssue],'failedGates':sorted(failed),'DI14':'PENDING_INDEPENDENT_APPROVAL','DI15':'F"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "scripts/document-di15-policy-b.py",
+      "sha256": "f2576d681e0e8c26f2e21a76288a9248aecf7a75203bc8edd044eed404e793b5",
+      "role": "EVIDENCE_GENERATOR_OR_OFFLINE_CHECK; inspect before any execution",
+      "matches": [
+        {
+          "line": 83,
+          "text": "The Owner's condition 8 requires every other mandatory DI gate to remain satisfied. Therefore this implementation separates structural quarantine PASS from release DI15 PASS. The reconstructed partition is valid, all 25 admission candidates"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "scripts/evaluate-final-di-candidate.mjs",
+      "sha256": "5502d47d94c0ece10b5fcf9ef4f6cd6669e14a58c44e533d7bc1d3181d4374e3",
+      "role": "EVIDENCE_GENERATOR_OR_OFFLINE_CHECK; inspect before any execution",
+      "matches": [
+        {
+          "line": 11,
+          "text": "for(const gate of ['DI4','DI8','DI12','DI14'])assert(review.reasons.includes('REQUIRED_DI_NOT_PASS:'+gate));"
+        },
+        {
+          "line": 14,
+          "text": "writeFileSync(O+'DI15_REVIEW.json',JSON.stringify({gateId:'DI15',authoritativeRequirement:'Approved Policy B: complete partition, preserved exact issue ledger, deferred exclusion, no global blocker, all mandatory preceding gates including a"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "scripts/fundamental-initialization-preflight.mjs",
+      "sha256": "e227b5683d57cfb371e49a90aeaa130298dbc6c9939f835f48f24bc865092e27",
+      "role": "EVIDENCE_GENERATOR_OR_OFFLINE_CHECK; inspect before any execution",
+      "matches": [
+        {
+          "line": 10,
+          "text": "['DI1','VN30 master source/effective date verified'],['DI2','Active universe complete/no duplicates'],['DI3','Sector mapping complete'],['DI4','Required market data loaded'],['DI5','Required fundamentals loaded'],['DI6','Period/unit normali"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "scripts/reprocess-manual-first.mjs",
+      "sha256": "82fd9465be90074d7110f642e37e5fb1cfbae37b764f6539bdd3b34d1ff4269e",
+      "role": "EVIDENCE_GENERATOR_OR_OFFLINE_CHECK; inspect before any execution",
+      "matches": [
+        {
+          "line": 128,
+          "text": "write('DI_IMPACT_REPORT.json',{amendments:{DI5:'MATERIAL_CORE_AND_SECTOR_CORE',DI7:'SUPPORTING_OPTIONAL_NOT_AUTOMATIC_BLOCKERS',DI8:'REPORTING_CYCLE',DI9:'AUTHORITATIVE_MANUAL_CONFLICTS_ONLY',DI10:'REQUIRED_EXACT_MECHANICAL_DERIVATIONS',DI1"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "scripts/seal-final-di-candidate.py",
+      "sha256": "7f94c9bde37472fd444d05603938f0ac25da1a46f68d5cac9ae5d664c6ba8616",
+      "role": "EVIDENCE_GENERATOR_OR_OFFLINE_CHECK; inspect before any execution",
+      "matches": [
+        {
+          "line": 35,
+          "text": "# DI12 evidence includes the DB inventory hash. Refresh that one hash after append-only before/after proof."
+        },
+        {
+          "line": 48,
+          "text": "write('DI14_REVIEW_CANDIDATE.json',{'gateId':'DI14','status':'PENDING_INDEPENDENT_APPROVAL','authoritativeRequirement':'Independent data-quality review PASS; actual trusted authority must bind exact release and artifact.','authority':[proof"
+        },
+        {
+          "line": 59,
+          "text": "The request's premise that DI3–DI12 were pending only for re-acceptance could not be fully verified. Direct revalidation found a release-wide market-source evidence gap. There are 30 archived diagnostic market rows dated2026-10-09, but **0/"
+        },
+        {
+          "line": 61,
+          "text": "Global system blocker count: **1**, `RELEASE-MARKET-SOURCE-REPLAY-UNAVAILABLE`, an OPEN Major shared source-contract availability issue. This is not an assertion that accounting data is corrupt. No universe mismatch, cross-ticker contaminat"
+        },
+        {
+          "line": 91,
+          "text": "(O/'README.md').write_text('# Final independent Data Initialization acceptance candidate\\n\\nRead [FINAL_ACCEPTANCE_CANDIDATE.md](FINAL_ACCEPTANCE_CANDIDATE.md), [RELEASE_BINDING.json](RELEASE_BINDING.json), [DI14_REVIEW_CANDIDATE.json](DI14"
+        },
+        {
+          "line": 98,
+          "text": "print(json.dumps({'status':'SEALED_BLOCKED_CANDIDATE','artifacts':len(files),'DI1_DI13_FAILED':['DI4','DI8','DI12'],'DI14':'PENDING_INDEPENDENT_APPROVAL','DI15':'FAIL','partition':[30,25,5],'globalSystemBlockerCount':1,'fullSuitePassed':190"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "scripts/seal-level1-closure.py",
+      "sha256": "e1cafed7b784b5fabbdba2165ca9528f47205ffae1bec3c87fdd10765b5a963b",
+      "role": "EVIDENCE_GENERATOR_OR_OFFLINE_CHECK; inspect before any execution",
+      "matches": [
+        {
+          "line": 38,
+          "text": "GLOBAL_SYSTEM_BLOCKERS: **{len(globalIssues)} OPEN** — RELEASE-MARKET-SOURCE-REPLAY-UNAVAILABLE. Nguồn market của toàn bộ30 mã chưa replay được, chưa có snapshot release đầy đủ được chấp nhận; DI4, DI8, DI12 vẫn FAIL. Đây là blocker toàn hệ"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "tests/architecture/08b-review.test.mjs",
+      "sha256": "34d5aea0005c32a2a6e180c309abc9b20ae8606c1269c316adf62aa1a8a78b68",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 59,
+          "text": "const cutoff='2026-06-30T23:59:59.999Z',request={...f.request,decisionAsOf:cutoff,systemKnownAt:cutoff,marketCutoff:cutoff,fundamentalCutoff:cutoff,assessmentPins:[],builtAt:'2026-10-10T10:01:00.000Z'};"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "tests/architecture/di123-candidates.test.mjs",
+      "sha256": "d298fb701bb1715a4c492fa3d3f80762f947db41587107e1b0768f94a54c22bd",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 39,
+          "text": "it('does not evaluate or promote DI4+',()=>expect(gates().map(g=>g.id)).toEqual(['DI1','DI2','DI3']));"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "tests/e2e/setup.ts",
+      "sha256": "d82dd9fa151080ff5ed44c1ef82f1918bcdab712e48fdf91b61af774c8cc8397",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 24,
+          "text": "writeFileSync(sourceFile, JSON.stringify({ version: \"synthetic-price-1\", portfolioId: \"portfolio-1\", scope: \"SYNTHETIC_TEST\", asOf: stamp, receivedAt: stamp, ledgerWatermark: \"2\", taxonomy: \"SYNTHETIC\", valuationMethodologyId: \"m63-valuatio"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "tests/fixtures/availability-evidence.ts",
+      "sha256": "26c91dbedf9ccfd457a6b65d28fdc26a2ef5ec8801ff41eb8ce43fafc85b346b",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 16,
+          "text": "const request={...f.request,policy,decisionAsOf:'2026-07-25T16:01:00.000Z',systemKnownAt:'2026-07-25T16:01:00.000Z',marketCutoff:'2026-07-25T16:01:00.000Z',fundamentalCutoff:'2026-07-25T16:01:00.000Z'};"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "tests/fixtures/data-freshness.ts",
+      "sha256": "f52b6ec4a664b783c7452058aeec51ccf27ab10d6ae45d773406750fcd173355",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 17,
+          "text": "const request={...f.request,policy,decisionAsOf:'2026-10-09T10:00:00.000Z',systemKnownAt:'2026-10-09T10:00:00.000Z',fundamentalCutoff:'2026-10-09T10:00:00.000Z',marketCutoff:'2026-10-09T10:00:00.000Z',builtAt:'2026-10-09T10:01:00.000Z',refe"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "tests/fixtures/decision.ts",
+      "sha256": "be7c3b140a2fc02a51288d41730ed43c136af2ae3feec27fb51c247fc8c26a03",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 12,
+          "text": "evidence: [{ id: \"decision-evidence\", source: \"SYNTHETIC HUMAN ASSESSMENT — not market data\", asOf: ASOF, receivedAt: ASOF, validThrough: ASOF, classification: \"ESTIMATE\", summary: \"Synthetic complete underwriting evidence including indepen"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "tests/fixtures/m68.ts",
+      "sha256": "5694f5bc7f3ee825ea366dd7eab327590960ea492b81f66cf273dcb0c209d55f",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 28,
+          "text": "const validThrough = \"2026-10-05T09:00:00.000Z\";"
+        },
+        {
+          "line": 41,
+          "text": "return {...f,calculatedAt:currentTime,artifactScope:\"FORMAL\" as const,methodology:{...f.methodology,family:\"SCORING\",governanceStatus:\"APPROVED\" as const,intendedUse:\"PRODUCTION\" as const,approvalReference:\"TEST ONLY scoring governance\"},ev"
+        },
+        {
+          "line": 43,
+          "text": "const source:CurrentSource={version:\"m68-prices-A\",portfolioId:P,scope:\"FORMAL\",asOf:NOW,receivedAt:NOW,ledgerWatermark:\"1\",taxonomy:inputs[0].reference.taxonomy,valuationMethodologyId:\"m63-valuation-v1\",prices:IDS.map(id=>({id:`quote-${id}"
+        },
+        {
+          "line": 60,
+          "text": "i.assessment.stage0.methodologyId=i.methods.stage0.methodologyId;i.scope=\"FORMAL\";i.knownAt=currentTime;i.id=\"m68-decision-A\";i.assessment.sizing.fees=\"0\";i.assessment.sizing.economicTargetUpper=\"0.04\";i.evidence[0].validThrough=validThroug"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "tests/fixtures/scoring-readiness.ts",
+      "sha256": "07d52fd74c48c4a5c2b27e7d90c1f6f8f9460e15a6da2e3fe3b1e8f4f85c674a",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 17,
+          "text": "const requirements:ScoringReadinessRequirements={version:mode==='legacy'?'synthetic-readiness-v1':'synthetic-readiness-v2',algorithm:mode==='legacy'?'strict-canonical-m3-readiness-v1':'strict-canonical-m3-readiness-v2',governanceStatus:'APP"
+        },
+        {
+          "line": 21,
+          "text": "const plan:ScoringBridgePlan={facts:[{observationId:observations[0].id,evidenceId:'canonical-net-income',validThrough:request.decisionAsOf}],metrics:[],external:external.map(e=>({evidenceId:e.id,kind:e.observation==='price'?'MARKET':e.obser"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "tests/fixtures/scoring.ts",
+      "sha256": "031c07bb278d719a179784c424d4365068c24471a53e7dfa58f748058935bd20",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 12,
+          "text": "const evidence:Evidence[]=RUBRICS.flatMap(r=>r.topics.map(topic=>({id:`${r.id}-${topic}`,version:\"fixture-v1\",securityId:sid,observation:`${r.id}-${topic}`,value:`Synthetic disclosed evidence for ${topic}; no real company data`,unit:\"TEXT\" "
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "tests/fixtures/snapshot.ts",
+      "sha256": "029f6c6a758eff15e06729ada4f6a1766d6bccc0f5e3c8b928af937793056261",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 12,
+          "text": "const request:SnapshotRequest={runId:'run-'+suffix,scope:'SYNTHETIC_TEST',mode:'AS_KNOWN',decisionAsOf:'2026-07-27T00:00:00.000Z',systemKnownAt:'2026-07-27T00:00:00.000Z',marketCutoff:'2026-07-27T00:00:00.000Z',fundamentalCutoff:'2026-07-27"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "tests/integration/current-remediation.test.ts",
+      "sha256": "34cac1606055e2c8b3c18655a19ec6aeea6b21cf59a8dbb18c37a1884f45cbaf",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 34,
+          "text": "source={version:\"price-1\",portfolioId:P,scope:\"FORMAL\",asOf:NOW,receivedAt:NOW,ledgerWatermark:\"2\",taxonomy:\"test-taxonomy\",valuationMethodologyId:\"m63-existing-valuation\",prices:[{id:\"price-a\",securityId:A,price:\"20\",currency:\"VND\",observe"
+        },
+        {
+          "line": 45,
+          "text": "for(const prices of [[],[{...source.prices[0],validThrough:\"2026-09-16T11:00:00.000Z\",observedAt:\"2026-09-15T12:00:00.000Z\"}],[{...source.prices[0],policyReference:null}],[{...source.prices[0],quality:\"CONFLICTING_DATA\" as const}]]){source."
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "tests/integration/portfolio-regressions.test.ts",
+      "sha256": "10d039f24a0d584b2aa7294b700dee019deae74354805fa47cdf1d7140501d53",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 33,
+          "text": "const result=await engine.snapshot(P,cutoff,{version:'prices',methodologyId:'v1',observations:[{id:'price',securityId:A,price:'10',currency:'VND',observedAt:cutoff,receivedAt:cutoff,validThrough:cutoff,sourceReference:'fixture'}]},null,{ver"
+        },
+        {
+          "line": 72,
+          "text": "const inceptionPrices=()=>({version:'inception-prices-v1',methodologyId:'valuation-v1',observations:[{id:'opening-price',securityId:A,price:'20',currency:'VND' as const,observedAt:at(1),receivedAt:at(1),validThrough:at(1),sourceReference:'i"
+        },
+        {
+          "line": 77,
+          "text": "const currentPrices=()=>({version:'current-prices-v1',methodologyId:'valuation-v1',observations:[{...inceptionPrices().observations[0],id:'current-price',price:'30',observedAt:at(3),receivedAt:at(3),validThrough:at(3)}]});"
+        },
+        {
+          "line": 104,
+          "text": "if(kind==='stale') inputs.prices.observations[0]={...inputs.prices.observations[0],observedAt:instant('2025-12-31T09:00:00.000Z'),validThrough:instant('2025-12-31T09:00:00.000Z')};"
+        },
+        {
+          "line": 105,
+          "text": "if(kind==='future') inputs.prices.observations[0]={...inputs.prices.observations[0],observedAt:at(2),validThrough:at(2)};"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "tests/unit/debt-contract-activation.test.ts",
+      "sha256": "e41e7d669570141eeee2dca454e1274910e9d1bbf7ae7a13aa8880c85a424da4",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 39,
+          "text": "it('M3 calculation refuses legacy generic debt/cash inputs after activation',()=>{const operand=(id:string):MetricOperand=>({id,value:'100',unit:'VND',periodStart:'2026-06-30',periodEnd:'2026-06-30',quality:'VALID',validThrough:'2027-01-01'"
+        },
+        {
+          "line": 44,
+          "text": "it('M3 net-debt and normalized ratio arithmetic require compatible lease/cash metadata',()=>{const base=bridgeApprovedDebtAccounting(snapshot,input,financialHash).inputs[0].debtAccounting,operand=(id:string,value:string,role:typeof base.rol"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "tests/unit/decision-portfolio.test.ts",
+      "sha256": "ed145621113cbdc51ed4abe96328ee429968a93d12e64a3ca53a14d1e2880cd4",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 12,
+          "text": "const snapshot = await engine.snapshot(P, at(12), { version: \"p\", methodologyId: \"test-valuation\", observations: [A, B].map((securityId, index) => ({ id: `price-${index}`, securityId, price: index ? \"60\" : \"15\", currency: \"VND\", observedAt:"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "tests/unit/decision.test.ts",
+      "sha256": "88c32c4e4fe2be4d6d1c9dbcfaa019e1ab2a4ed3c2652b43b1af3d36a47a038e",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 107,
+          "text": "it(\"stale comparator cannot authorize a switch\", () => { const i = switchInput(); i.evidence[0].validThrough = \"2025-06-29T09:00:00.000Z\"; i.evidence[0].asOf = \"2025-06-28T09:00:00.000Z\"; expect(decide(i).opportunityCost.switchEligible).toB"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "tests/unit/di15-policy-b.test.ts",
+      "sha256": "b153bf3efef2e9d2912df6b2aa6f936be86768d3edd7c9034c11618f2aa95a0f",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 39,
+          "text": "it.each(['DI3','DI4','DI5','DI6','DI7','DI8','DI9','DI10','DI11','DI12'])('%s is not waived',gate=>{const a=p();fail({...a,prerequisites:a.prerequisites.map(g=>g.gate===gate?{...g,status:'NOT_EXECUTED'}:g)});});"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "tests/unit/fundamentals-availability-evidence.test.ts",
+      "sha256": "931ebee12d6c3572b6581254709f679f80fc9c5e4454133ce64a2cd94baa41bf",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 24,
+          "text": "const before={...f.request,decisionAsOf:'2026-07-25T16:00:59.999Z',systemKnownAt:'2026-07-25T16:00:59.999Z',marketCutoff:'2026-07-25T16:00:59.999Z',fundamentalCutoff:'2026-07-25T16:00:59.999Z',assessmentPins:[]};expect(buildFundamentalSnaps"
+        },
+        {
+          "line": 70,
+          "text": "const at='2026-07-25T16:02:00.000Z',revised=buildFundamentalSnapshot({...r,mode:'AS_REVISED',revisionCutoff:at,fundamentalCutoff:at,decisionAsOf:at,marketCutoff:at},inputs,snapshotHash);expect(revised.derivedIds).toEqual([result.id]);const "
+        },
+        {
+          "line": 71,
+          "text": "expect(buildFundamentalSnapshot({...r,systemKnownAt:at,fundamentalCutoff:at,decisionAsOf:at,marketCutoff:at},inputs,snapshotHash).derivedIds).toEqual([result.id]);"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "tests/unit/fundamentals-live-public-disclosure.test.ts",
+      "sha256": "c008cee2fe6daee41b169f3c42ed1cdb5446ed4bad79fa3093c85f9028263ee4",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 31,
+          "text": "const request={...base.request,scope:'REVIEW_CANDIDATE' as const,runId:'new-live-run',policy:f.policy,decisionAsOf:at,systemKnownAt:at,fundamentalCutoff:at,marketCutoff:at,builtAt:at,"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "tests/unit/fundamentals-operational-freshness.test.ts",
+      "sha256": "d726f40d56778dfaafaed4c033005fc5c97c7ea8625d0a01964d3e3f7d9b7940",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 2,
+          "text": "import {assessOperationalFreshness} from '@/domain/fundamentals/operational-freshness';"
+        },
+        {
+          "line": 6,
+          "text": "it('current cycle facts stay current without a universal age rule',()=>expect(assessOperationalFreshness(policy,evidence,snapshotHash).status).toBe('CURRENT'));"
+        },
+        {
+          "line": 8,
+          "text": "const e={...evidence,requiredPeriodOrVersion:'2026-09-30'};expect(assessOperationalFreshness(policy,e,snapshotHash).status).toBe('STALE');expect(assessOperationalFreshness(policy,{...e,graceUntil:'2026-10-11T00:00:00.000Z',graceEvidenceRefe"
+        },
+        {
+          "line": 11,
+          "text": "for(const patch of [{publicationUsable:false},{inventoryVerifiedThrough:null},{requiredPeriodOrVersion:null}])expect(assessOperationalFreshness(policy,{...evidence,...patch},snapshotHash).status).toBe('UNKNOWN');"
+        },
+        {
+          "line": 14,
+          "text": "expect(()=>assessOperationalFreshness(policy,{...evidence,requirementKnownAt:'2026-10-11T00:00:00.000Z'},snapshotHash)).toThrow();expect(assessOperationalFreshness(policy,{...evidence,class:'ESTIMATES'},snapshotHash).status).toBe('UNKNOWN')"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "tests/unit/fundamentals-snapshot-derived.test.ts",
+      "sha256": "f9b4655ed88228fdcdc34df6436d5f64f82c9c58223f2bb69c4b4aab1df89363",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 23,
+          "text": "const f=fixture(),cutoff='2026-07-25T23:59:59.999Z',r={...f.request,decisionAsOf:cutoff,systemKnownAt:cutoff,marketCutoff:cutoff,fundamentalCutoff:cutoff,assessmentPins:[]},s=buildFundamentalSnapshot(r,f.inputs,snapshotHash);expect(s.derive"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "tests/unit/fundamentals-snapshot.test.ts",
+      "sha256": "bc16337785c7ae5dda3ecddd1d425a451d1dab7251831ff59585c53eaa6b6a08",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 15,
+          "text": "const r={...f.request,decisionAsOf:cutoff,systemKnownAt:cutoff,marketCutoff:cutoff,fundamentalCutoff:cutoff,assessmentPins:[]};const s=build(f,r);expect(s.members).toEqual([]);expect(s.blockers).toContain('BLOCKED_REQUIRED_FACT_MISSING');"
+        },
+        {
+          "line": 17,
+          "text": "const boundary=f.assessment.availableAt!,r={...f.request,decisionAsOf:boundary,systemKnownAt:boundary,marketCutoff:boundary,fundamentalCutoff:boundary};expect(build(f,r).members).toHaveLength(1);"
+        },
+        {
+          "line": 55,
+          "text": "const r:SnapshotRequest={...f.request,decisionAsOf:'2026-08-02T00:00:00.000Z',systemKnownAt:'2026-08-02T00:00:00.000Z',marketCutoff:'2026-08-02T00:00:00.000Z',fundamentalCutoff:'2026-08-02T00:00:00.000Z',builtAt:'2026-08-03T00:00:00.000Z',a"
+        },
+        {
+          "line": 57,
+          "text": "const diagnostic=build(g,{...r,mode:'AS_REVISED',decisionAsOf:f.request.decisionAsOf,systemKnownAt:f.request.systemKnownAt,marketCutoff:f.request.marketCutoff,fundamentalCutoff:f.request.fundamentalCutoff,revisionCutoff:r.systemKnownAt});ex"
+        },
+        {
+          "line": 79,
+          "text": "for(const cutoff of ['2026-07-25T16:59:59.999Z','2026-07-25T17:00:00.000Z']){const s=build(g,{...g.request,decisionAsOf:cutoff,systemKnownAt:cutoff,marketCutoff:cutoff,fundamentalCutoff:cutoff});expect(s.members.length).toBe(cutoff.endsWith"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "tests/unit/portfolio-read-models.test.ts",
+      "sha256": "a05258c5cb653fa146b4ba11160c55a10ff440a8e010439419dbe04c7fcd7c1e",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 11,
+          "text": "{ id: \"price-a\", securityId: A, price: \"15\", currency: \"VND\", observedAt: at(12), receivedAt: at(12), validThrough: at(12), sourceReference: \"fixture-a\" },"
+        },
+        {
+          "line": 12,
+          "text": "{ id: \"price-b\", securityId: B, price: \"60\", currency: \"VND\", observedAt: at(12), receivedAt: at(12), validThrough: at(12), sourceReference: \"fixture-b\" }] });"
+        },
+        {
+          "line": 21,
+          "text": "const p = { ...prices(), observations: [{ ...prices().observations[0], observedAt: at(2), receivedAt: at(2), validThrough: at(2), price: \"10\" }] };"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "tests/unit/scoring-bridge-derived.test.ts",
+      "sha256": "f37f3ef730156c9bfa0a3a5d85cbe8199717d48521da6713ac0515091cbf50b6",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 12,
+          "text": "function fixture(mixed=false){const original=snapshotDerivationFixture(),observations=original.observations.map((o,i)=>mixed&&i===1?{...o,publication:{publishedAt:null,publicationDate:'2026-07-25',publicationPrecision:'DATE_ONLY' as const,p"
+        },
+        {
+          "line": 24,
+          "text": "const f=snapshotDerivationFixture(),policy={...f.policy,algorithm:'operational-evidence-v2' as const,dateOnlyEvidenceClasses:[],governanceStatus:'APPROVED' as const,approvalReference:'synthetic-YTD-availability'},observations=f.observations"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "tests/unit/scoring-evidence-time.test.ts",
+      "sha256": "1bcec02c66d836b301560ea9625c0a4e7738ebb5b36c8d1475293270316c85c0",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 10,
+          "text": "function dateOnly(){const f=dateOnlyEvidenceFixture('score-time'),snapshot=buildFundamentalSnapshot(f.request,f.inputs,snapshotHash),plan={facts:[{observationId:f.observation.id,evidenceId:'date-only-fact',validThrough:f.request.decisionAsO"
+        },
+        {
+          "line": 14,
+          "text": "const s={...f.snapshot,request:{...f.request,systemKnownAt:cutoff,fundamentalCutoff:cutoff,decisionAsOf:cutoff}},e=bridgeScoringInputs(s,f.observation.securityId,{...f.plan,facts:f.plan.facts.map(p=>({...p,validThrough:cutoff}))},f.inputs)."
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "tests/unit/scoring-portfolio.test.ts",
+      "sha256": "5d2165c1777d44277956eadaf1dfb1abf49f493522e00d7ae64a3d3791d6ccb5",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 14,
+          "text": "const snapshot=await engine.snapshot(P,at(12),{version:\"p\",methodologyId:\"test-valuation\",observations:[A,B].map((sid,i)=>({id:`price-${i}`,securityId:sid,price:i?\"60\":\"15\",currency:\"VND\",observedAt:at(12),receivedAt:at(12),validThrough:at("
+        },
+        {
+          "line": 20,
+          "text": "const price={id:\"expensive-fixture-price\",securityId:A,price:\"100\",currency:\"VND\" as const,observedAt:at(12),receivedAt:at(12),validThrough:at(12),sourceReference:\"Synthetic price\"};"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "tests/unit/scoring-readiness.test.ts",
+      "sha256": "6764b7cfe3b9f734054c0551ab25d6b1010e335eccae5c09be6331f6d3aff494",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 40,
+          "text": "const f=scoringReadinessFixture(),late={...f.sources,assessments:f.assessments.map(a=>({...a,availableAt:'2026-07-29T00:00:00.000Z'}))};expect(()=>bridgeScoringInputs(f.snapshot,f.input.securityId,f.plan,late)).toThrow();expect(()=>bridgeSc"
+        },
+        {
+          "line": 43,
+          "text": "it('global DI4/valuation declarations cannot hide absent per-ticker required evidence',()=>{"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME",
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "tests/unit/workflow.test.ts",
+      "sha256": "257a530cc4c8808f824f14468e197229be7500626efafd3d6b16f3a457c5f16e",
+      "role": "REGRESSION_ENFORCEMENT",
+      "matches": [
+        {
+          "line": 12,
+          "text": "it(\"week elapsed alone does not force a refresh with valid evidence\", () => { const p = weekly(); p.command.reviewDate = \"2026-10-08T09:00:00.000Z\"; p.recordedAt = p.command.reviewDate; p.command.evidence.forEach(e => { e.validThrough = p.c"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "docs/06_DASHBOARD/6.6 DCA & Portfolio Workflow/CHANGE_REQUESTS.md",
+      "sha256": "dea951f4c04032541686f4e9156ca7ebcc6c0ce5d76a838a83be481b606deb9c",
+      "role": "POLICY_OR_SPECIFICATION_REFERENCE_NOT_AUTOMATIC_APPROVAL",
+      "matches": [
+        {
+          "line": 15,
+          "text": "M5 explicitly leaves exact event thresholds, recurrence counts and review weekdays flexible. Use sourced human findings and upstream validThrough dates. Do not introduce a days-to-expiry rule, keyword classifier or numeric bias count. Capit"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "docs/06_DASHBOARD/6.6 DCA & Portfolio Workflow/RULE_OWNERSHIP_MATRIX.md",
+      "sha256": "6bcf28b2e9ab939a3842733992a07c593d7228c5685b3e2fec0d03bfa977b123",
+      "role": "POLICY_OR_SPECIFICATION_REFERENCE_NOT_AUTOMATIC_APPROVAL",
+      "matches": [
+        {
+          "line": 18,
+          "text": "| Freshness | M1 §16; M6.1 Architecture §24; M6.4/5 evidence | Compare pinned dates only | asOf/knownAt/validThrough/watermark | Explicit data-quality failure | No invented TTL; mismatched cutoff blocks capital |"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "docs/06_DASHBOARD/6.7.1 Current Read Model/ARCHITECTURE_AUDIT.md",
+      "sha256": "8a9ebd9490d3abb728629d549fbd6c7ad4e962872b1d4552da2959f208844e98",
+      "role": "POLICY_OR_SPECIFICATION_REFERENCE_NOT_AUTOMATIC_APPROVAL",
+      "matches": [
+        {
+          "line": 12,
+          "text": "| Freshness | MARKET_DATA_ADAPTER §15 and existing M6.3 `validThrough`: source validity is explicit and policy referenced. No numeric age threshold. Missing validity or policy reference is UNKNOWN and blocks current valuation/readiness. Rec"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "docs/06_DASHBOARD/6.7.1 Current Read Model/SOURCE_OPERATION.md",
+      "sha256": "f9b36897d35bcd617fe0ab28712e70ba95ebc3494ba9849b08921c58535d15ad",
+      "role": "POLICY_OR_SPECIFICATION_REFERENCE_NOT_AUTOMATIC_APPROVAL",
+      "matches": [
+        {
+          "line": 10,
+          "text": "- Prices in unscaled VND with canonical security IDs, actual observedAt, receivedAt, revision, provider, source reference, RAW/ADJUSTED status, quality and externally established validThrough/policyReference. Without an approved determinist"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "docs/08_CONTINUOUS_IMPROVEMENT/DATA_INITIALIZATION.md",
+      "sha256": "8d959671dadcb15f4443c70aaa16c350accf6ee492d6847b9c068a1bb33265e1",
+      "role": "POLICY_OR_SPECIFICATION_REFERENCE_NOT_AUTOMATIC_APPROVAL",
+      "matches": [
+        {
+          "line": 546,
+          "text": "DI4    Required market data loaded                  NOT EXECUTED"
+        },
+        {
+          "line": 550,
+          "text": "DI8    Freshness checks PASS                        NOT EXECUTED"
+        },
+        {
+          "line": 554,
+          "text": "DI12   Data Snapshot ID reproducible                NOT EXECUTED"
+        },
+        {
+          "line": 688,
+          "text": "The Project Owner approved the manual financial statement–first architecture in the current project workflow. [MANUAL_FUNDAMENTALS_ARCHITECTURE.md](MANUAL_FUNDAMENTALS_ARCHITECTURE.md) records the explicit DI5/DI7/DI8/DI9/DI10/DI11 amendmen"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "docs/08_CONTINUOUS_IMPROVEMENT/MANUAL_FUNDAMENTALS_ARCHITECTURE.md",
+      "sha256": "cb74f900dfd26b2f3cb0b234fc4a8ead1d4ce14fbee8991f7aae717905cfb515",
+      "role": "POLICY_OR_SPECIFICATION_REFERENCE_NOT_AUTOMATIC_APPROVAL",
+      "matches": [
+        {
+          "line": 39,
+          "text": "| DI8 | BCTC freshness is reporting-cycle aware. Other source domains retain independent policies. |"
+        },
+        {
+          "line": 44,
+          "text": "DI1–DI4 and downstream scoring gates are not waived. The known official membership discrepancy remains visible; the dated 30-name notice is an explicit research denominator, not certified current membership. Prior Slice 08 packages remain i"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "docs/adr/0004-portfolio-ledger-and-accounting.md",
+      "sha256": "f41e73cb72ad67109fab0d3e0357cbeb3583a74000836dec9d9799a21b664df2",
+      "role": "POLICY_OR_SPECIFICATION_REFERENCE_NOT_AUTOMATIC_APPROVAL",
+      "matches": [
+        {
+          "line": 53,
+          "text": "Price inputs are normalized, versioned observations, not a provider. Only observations at/before the historical as-of are eligible. `validThrough` must come from the supplied pricing policy; the engine invents no freshness threshold. Missin"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "docs/fundamental-data-engine/DESIGN_REVIEW.md",
+      "sha256": "ef4365787f0cb7204edfd47023eaade8e7e10768c674a0a8a8e3dba8d87b331e",
+      "role": "POLICY_OR_SPECIFICATION_REFERENCE_NOT_AUTOMATIC_APPROVAL",
+      "matches": [
+        {
+          "line": 40,
+          "text": "| `src/domain/scoring/evidence.ts` | Versioned Evidence with durable securityId, source, FACT/ESTIMATE/ASSUMPTION, period, publishedAt, receivedAt, validThrough, units and quality. Validates future evidence and duplicate observation/period "
+        },
+        {
+          "line": 245,
+          "text": "Seal content, members, readiness and run provenance atomically. Rebuilds create immutable new run envelopes and may reuse content; corrections never modify old runs/content. DI12 compares canonical content/input reproducibility, while repla"
+        },
+        {
+          "line": 287,
+          "text": "| DI4 Required market data loaded | Partial/source coverage unverified | Full required price/history/corporate-action coverage with the required history and adjustment semantics | Every required ticker/field/cutoff with provenance, quality,"
+        },
+        {
+          "line": 291,
+          "text": "| DI8 Freshness checks PASS | Partial current price/reference; fundamental policy absent | Class-specific disclosure monitoring/freshness policy | Latest-public-period/audited-FY evidence at cutoff; stale/unknown/new-disclosure regression a"
+        },
+        {
+          "line": 295,
+          "text": "| DI12 Data Snapshot ID reproducible | Fundamental snapshot not implemented | Deterministic manifest, seal/load and integrity verification | Identical governed content/policies reproduce contentHash across order/reopen/new build time; disti"
+        },
+        {
+          "line": 471,
+          "text": "| MAJOR-3 identity | D/E split canonical contentHash from immutable runId/build envelope, require verified binding and six reproducibility/tamper tests; DI12 remains evidence-dependent. |"
+        }
+      ],
+      "proposedLifecycle": [
+        "ANALYSIS_TIME",
+        "DECISION_TIME"
+      ]
+    },
+    {
+      "path": "docs/fundamental-data-engine/SLICE_08B_CANONICAL_ADMISSION_REPORT.md",
+      "sha256": "45f8da8085240eb615e9689871e3974c87f6bfa563e12ef451dfc37cbdfbea57",
+      "role": "POLICY_OR_SPECIFICATION_REFERENCE_NOT_AUTOMATIC_APPROVAL",
+      "matches": [
+        {
+          "line": 94,
+          "text": "| DI4 — Required market data loaded | No dataset-bound required market inputs or snapshot | BLOCKED |"
+        },
+        {
+          "line": 98,
+          "text": "| DI8 — Freshness checks PASS | No bound freshness evaluation or availability assessments | BLOCKED |"
+        },
+        {
+          "line": 102,
+          "text": "| DI12 — Data Snapshot ID reproducible | No sealed reproducible snapshot | BLOCKED |"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "docs/fundamental-data-engine/SLICE_08B_DI123_REFERENCE_REPORT.md",
+      "sha256": "622afdeeab864e5b33e41b918592f24e3d7d8eba7570eefa06a4d8c9c68014ce",
+      "role": "POLICY_OR_SPECIFICATION_REFERENCE_NOT_AUTOMATIC_APPROVAL",
+      "matches": [
+        {
+          "line": 45,
+          "text": "17. **DI4–DI15.** Retained existing BLOCKED/NOT_EXECUTED state. No evaluation or promotion performed. Existing initialization evaluation artifacts were not rewritten."
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "docs/fundamental-data-engine/SLICE_08B_FINAL_RECONCILIATION_COMMIT_BINDING.md",
+      "sha256": "fa18fee88265da5c4876820c410329d4ccf4eb956652aaaabceee2cf7a725efd",
+      "role": "POLICY_OR_SPECIFICATION_REFERENCE_NOT_AUTOMATIC_APPROVAL",
+      "matches": [
+        {
+          "line": 27,
+          "text": "DI1–4, DI6, DI12–13 PASS. DI5, DI7–8, DI10–11 BLOCKED. DI9 FAIL due to unresolved source/selector conflicts. DI14 = AWAITING_INDEPENDENT_REVIEW. DI15 = AWAITING_FINAL_ISSUE_CLOSURE. Thirty readiness rows, zero readyForScoring; no admission "
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "docs/fundamental-data-engine/SLICE_08B_MAPPING_CLOSURE_COMMIT_BINDING.md",
+      "sha256": "b2242f6b76c508be44cf02c996331d4e1f9cafd93d14d8c2b497e3918692b3d5",
+      "role": "POLICY_OR_SPECIFICATION_REFERENCE_NOT_AUTOMATIC_APPROVAL",
+      "matches": [
+        {
+          "line": 31,
+          "text": "DI1–4, DI6, DI12–13 PASS; DI5, DI7–8, DI10–11 BLOCKED; DI9 FAIL. DI14 AWAITING_INDEPENDENT_REVIEW; DI15 AWAITING_FINAL_ISSUE_CLOSURE."
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "docs/fundamental-data-engine/SLICE_08B_MAPPING_CLOSURE_REVIEW_CANDIDATE.md",
+      "sha256": "b2242f6b76c508be44cf02c996331d4e1f9cafd93d14d8c2b497e3918692b3d5",
+      "role": "POLICY_OR_SPECIFICATION_REFERENCE_NOT_AUTOMATIC_APPROVAL",
+      "matches": [
+        {
+          "line": 31,
+          "text": "DI1–4, DI6, DI12–13 PASS; DI5, DI7–8, DI10–11 BLOCKED; DI9 FAIL. DI14 AWAITING_INDEPENDENT_REVIEW; DI15 AWAITING_FINAL_ISSUE_CLOSURE."
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    },
+    {
+      "path": "docs/fundamental-data-engine/SLICE_6_IMPLEMENTATION_REPORT.md",
+      "sha256": "40c27b1c18c83a74dd5edb1bb02cf720795b249167999ac51bcc4a83a77aace4",
+      "role": "POLICY_OR_SPECIFICATION_REFERENCE_NOT_AUTOMATIC_APPROVAL",
+      "matches": [
+        {
+          "line": 35,
+          "text": "Every accepted universe member receives computed dimensions: universe, market, fundamentals, valuation, flow/technical, confidence, assessments/gates, dataReady, readyForScoring and reproducible blockers. Whole-universe data acceptance does"
+        }
+      ],
+      "proposedLifecycle": [
+        "INITIALIZATION_TIME"
+      ]
+    }
+  ]
+}

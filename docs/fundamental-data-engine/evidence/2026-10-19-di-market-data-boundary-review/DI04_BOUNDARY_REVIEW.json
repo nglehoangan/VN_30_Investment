@@ -1,0 +1,47 @@
+{
+  "gate": "DI4",
+  "proposalOnly": true,
+  "currentStatusUnchanged": "FAIL",
+  "currentAuthority": {
+    "path": "docs/fundamental-data-engine/evidence/2026-10-17-data-initialization-final-acceptance/DI04_REVIEW.json",
+    "sha256": "8779202fb6399b43e870c956b8318470e2b639fd941ff8f709850100a139b141",
+    "lines": [
+      {
+        "line": 3,
+        "text": "\"authoritativeRequirement\": \"Required market data loaded\","
+      },
+      {
+        "line": 35,
+        "text": "\"status\": \"FAIL\","
+      },
+      {
+        "line": 36,
+        "text": "\"reason\": \"FAIL: all30 archived market raw source paths fail presence/hash proof. Diagnostic dated archive rows alone cannot prove required market data loaded into this exact release. No fetch or fabricated prices.\","
+      }
+    ]
+  },
+  "currentRule": "Required market data loaded: current workflow §25 loads market data during initialization; §8 requires temporal semantics/provenance, valid price and explicit conflict/adjustment treatment. Current acceptance requires replayable market evidence in the exact release.",
+  "problem": "Provider/schema/replay capability and presence of a usable price set are coupled to initialization acceptance. Neither an adapter function nor normalized rows alone proves raw-source replay.",
+  "findingOnIntent": "Current contract enforces B (market data loaded at initialization), not merely A (capability). It never establishes permanent freshness of that loaded snapshot. Moving to capability is a contract change, not a textual reinterpretation.",
+  "recommendation": "SPLIT",
+  "proposedRule": "DI4-vNext: approved market source/identity/field/unit contracts and an independently reviewed ingestion→normalization→retention→snapshot→replay capability certificate using retained, dated real-source evidence (may be historical) plus deterministic negative tests. Analysis gate separately requires complete accepted market observations for the declared request scope.",
+  "whySafer": "Real-source capability remains auditable without requiring daily prices to keep initialization approved; no artificial empty MARKET reference or mock-only provider approval.",
+  "whenItFails": [
+    "Unapproved source/schema/price meaning or unverified security identity",
+    "Only normalized/manual numbers with no permitted raw-source evidence or qualified replay equivalent",
+    "Replay/hash/corporate-action/unit handling fails",
+    "No real source qualification even if synthetic parser tests pass"
+  ],
+  "lifecycleOwnership": {
+    "INITIALIZATION_TIME": [
+      "Source approval, schema and retention/replay capability qualification",
+      "Explicit supported coverage and use-case matrix"
+    ],
+    "ANALYSIS_TIME": [
+      "Requested observation coverage and accepted source-bound immutable market snapshot"
+    ],
+    "DECISION_TIME": [
+      "Revalidate market eligibility and references before publication/new capital"
+    ]
+  }
+}
