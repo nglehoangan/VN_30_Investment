@@ -1,0 +1,120 @@
+{
+  "status": "BLOCKED",
+  "rows": [
+    {
+      "pair": "POLICY:RISK_POLICY",
+      "result": "COMPATIBLE",
+      "rationale": "Risk header explicitly consumes Investment Policy v1.1; risk veto/capital preservation/no margin remain authoritative. No executable risk/Stage0 approval inferred.",
+      "evidencePaths": [
+        "docs/01 SYSTEM/RISK_POLICY_v1.0.md",
+        "docs/06_DASHBOARD/6.5 Decision Engine/M653_SECTOR_POLICY.md",
+        "src/domain/decision/incremental-size.ts",
+        "src/domain/decision/engine.ts"
+      ]
+    },
+    {
+      "pair": "POLICY:SCORING_MODEL",
+      "result": "BLOCKED",
+      "rationale": "Constitution 100-point baseline approved; executable m64-clarification-1 remains PROPOSED/TEST.",
+      "evidencePaths": [
+        "docs/06_DASHBOARD/6.4 Scoring & Ranking/M6_4_2_REMEDIATION_REPORT.md",
+        "docs/06_DASHBOARD/6.5 Decision Engine/M652_OWNER_APPROVAL.md",
+        "src/domain/scoring/scorecard.ts",
+        "src/domain/decision/validation.ts"
+      ]
+    },
+    {
+      "pair": "POLICY:DECISION_ENGINE",
+      "result": "BLOCKED",
+      "rationale": "Known Decision1.0.2 and CR-01/02/03 have approval; complete transitive scoring approval absent. No unconditional production compatibility receipt may be granted.",
+      "evidencePaths": [
+        "docs/06_DASHBOARD/6.4 Scoring & Ranking/M6_4_2_REMEDIATION_REPORT.md",
+        "docs/06_DASHBOARD/6.5 Decision Engine/M652_OWNER_APPROVAL.md",
+        "src/domain/scoring/scorecard.ts",
+        "src/domain/decision/validation.ts"
+      ]
+    },
+    {
+      "pair": "SCORING_MODEL:DECISION_ENGINE",
+      "result": "BLOCKED",
+      "rationale": "Decision FORMAL validator requires approved production scoring method; actual DB has none.",
+      "evidencePaths": [
+        "docs/06_DASHBOARD/6.4 Scoring & Ranking/M6_4_2_REMEDIATION_REPORT.md",
+        "docs/06_DASHBOARD/6.5 Decision Engine/M652_OWNER_APPROVAL.md",
+        "src/domain/scoring/scorecard.ts",
+        "src/domain/decision/validation.ts"
+      ]
+    },
+    {
+      "pair": "RISK_POLICY:DECISION_ENGINE",
+      "result": "COMPATIBLE",
+      "rationale": "M653 restores monotone sector capacity with no representable sector-add exception; approved CRs preserve veto precedence. Upstream score/Stage0/risk evidence gates remain required.",
+      "evidencePaths": [
+        "docs/01 SYSTEM/RISK_POLICY_v1.0.md",
+        "docs/06_DASHBOARD/6.5 Decision Engine/M653_SECTOR_POLICY.md",
+        "src/domain/decision/incremental-size.ts",
+        "src/domain/decision/engine.ts"
+      ]
+    },
+    {
+      "pair": "POLICY_B:SCORING_MODEL",
+      "result": "BLOCKED",
+      "rationale": "30/29/1 partition remains proven; an approved executable scoring authority is absent.",
+      "evidencePaths": [
+        "docs/06_DASHBOARD/6.4 Scoring & Ranking/M6_4_2_REMEDIATION_REPORT.md",
+        "docs/06_DASHBOARD/6.5 Decision Engine/M652_OWNER_APPROVAL.md",
+        "src/domain/scoring/scorecard.ts",
+        "src/domain/decision/validation.ts"
+      ]
+    },
+    {
+      "pair": "POLICY_B:DECISION_ENGINE",
+      "result": "COMPATIBLE",
+      "rationale": "Existing lifecycle and dependency validators quarantine MBB and preserve TCX analytical exception.",
+      "evidencePaths": [
+        "src/domain/dependencies/validation.ts",
+        "src/application/dependencies/service.ts"
+      ]
+    },
+    {
+      "pair": "MARKET_BOUNDARY:ANALYSIS",
+      "result": "COMPATIBLE",
+      "rationale": "Existing consumption-time freshness and trusted clock gate; EOD valuation only, no execution qualification.",
+      "evidencePaths": [
+        "src/domain/dependencies/validation.ts",
+        "src/application/dependencies/service.ts"
+      ]
+    },
+    {
+      "pair": "DEPENDENCY_HEAD:ANALYSIS",
+      "result": "COMPATIBLE",
+      "rationale": "Existing complete-head validation, CAS/atomic activation, trusted resolver; no scoring-authority bypass.",
+      "evidencePaths": [
+        "src/domain/dependencies/validation.ts",
+        "src/application/dependencies/service.ts"
+      ]
+    }
+  ],
+  "materialUnresolved": [
+    "SCORING_EXECUTABLE_APPROVAL_MISSING"
+  ],
+  "receiptHashes": [
+    {
+      "type": "POLICY",
+      "hash": "a4cb43c2b6c15bc4c38522f01aaf39f7b91292c2841be1d3b945871125d7d8df"
+    },
+    {
+      "type": "RISK_POLICY",
+      "hash": "a32f7a09d76e4425a87792bce7506ce3a9aad4a99f26f4ab1b973d78d4987e63"
+    },
+    {
+      "type": "SCORING_MODEL",
+      "hash": "052413fe31c429e42debcc81701137d3ab725f1a76eb1fdeca5874b8509c9c81"
+    },
+    {
+      "type": "DECISION_ENGINE",
+      "hash": "98cce32e14e42910a8381b6929ebe6ee00efb926701a8379c5e1c30d7949bd26"
+    }
+  ],
+  "conditionalCompatibilityCannotActivate": true
+}

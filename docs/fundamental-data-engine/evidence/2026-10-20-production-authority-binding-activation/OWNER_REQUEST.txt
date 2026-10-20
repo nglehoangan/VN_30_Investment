@@ -1,0 +1,1518 @@
+VN30 Value Investing OS
+Production Authority Binding & Activation Closure
+
+Repository:
+https://github.com/nglehoangan/VN_30_Investment
+
+==================================================
+MISSION
+==================================================
+
+Close the remaining production-analysis activation blockers identified by:
+
+Production Analysis Dependency Head Closure
+
+Latest independently reviewed closure commit:
+
+84cdba3c41a804d6fea23001e8ca4c5b9ddc9805
+
+The Dependency Head implementation has already been independently approved.
+
+Do NOT redesign it.
+
+The remaining blockers are authority binding / activation only.
+
+Known unresolved authority classes:
+
+1. POLICY
+2. SCORING_MODEL
+3. RISK_POLICY
+4. explicit DECISION_ENGINE ↔ POLICY compatibility authority
+
+The project already has approved baseline artifacts for these authorities.
+
+This task must:
+
+1. locate the already-approved baseline artifacts;
+2. prove their exact identity/version/hash;
+3. bind them through immutable machine-readable authority receipts;
+4. complete the authoritative DependencyRelease;
+5. validate cross-contract compatibility;
+6. bootstrap authoritative heads;
+7. activate the release safely using the already-approved CAS/atomic mechanism;
+8. prove independent deterministic replay;
+9. close Production Analysis Activation if and only if all evidence passes.
+
+Do NOT introduce new investment logic.
+
+Do NOT alter approved investment rules.
+
+Do NOT change scoring weights.
+
+Do NOT change risk thresholds.
+
+Do NOT change Decision Engine behavior.
+
+Do NOT reopen Data Initialization.
+
+Do NOT run VN30 scoring/ranking/Top10.
+
+Do NOT generate investment recommendations.
+
+==================================================
+1. STARTING STATE
+==================================================
+
+Start from actual repository HEAD.
+
+Expected lineage includes:
+
+0f4680e0b484c091c99679b2ce9eeb73785ba18d
+  DI14 / DI15 Final Acceptance Closure
+
+84cdba3c41a804d6fea23001e8ca4c5b9ddc9805
+  Production Analysis Dependency Head Closure
+
+Do NOT assume HEAD automatically equals 84cdba3.
+
+First record:
+
+- actual starting HEAD
+- commits after 84cdba3
+- working-tree status
+- active migrations
+- current production DB state
+- dependency registry state
+- current dependency releases
+- authority receipts already present, if any
+- current bootstrap blockers
+
+If unrelated changes exist:
+
+identify them.
+
+Do not silently overwrite or incorporate unrelated work.
+
+==================================================
+2. ACCEPTED STATE — DO NOT REOPEN
+==================================================
+
+The following is already approved:
+
+DATA_INITIALIZATION_vNEXT = ACCEPTED
+
+FULL_UNIVERSE = 30
+
+FUNDAMENTALLY_ELIGIBLE = 29
+
+DEFERRED = 1
+
+DEFERRED_LIST = MBB
+
+MBB remains:
+
+DEFERRED
+INSUFFICIENT
+NOT_SCORABLE
+score = null
+
+MBB must not enter:
+
+- scoring
+- ranking
+- Top10
+- STRONG BUY
+- BUY
+- ACCUMULATE
+- DCA
+- new capital
+
+TCX remains:
+
+CLOSED_WITH_EXCEPTION
+
+with Owner-approved analytical classification exception:
+
+5,284,485,167,173 VND
+
+Do NOT convert this into issuer-proven conventional financial debt.
+
+VNM/VIB/VIC remain CLOSED.
+
+Canonical accounting facts must not change.
+
+MarketDataCapability remains qualified only for:
+
+LATEST_COMPLETED_HOSE_EOD_VALUATION_ONLY
+
+Do NOT broaden market-source scope.
+
+==================================================
+3. APPROVED DEPENDENCY HEAD ARCHITECTURE
+==================================================
+
+The following mechanisms are already approved:
+
+- authoritative dependency registry
+- immutable release history
+- system-owned production resolution
+- content-hash verification
+- CAS activation
+- atomic multi-head release activation
+- compatibility validation
+- production vs historical replay separation
+- analysis invalidation
+- decision invalidation
+- Policy-B enforcement
+- market freshness revalidation
+
+Do NOT redesign these mechanisms unless a Critical/Major implementation
+defect is discovered.
+
+This task should primarily populate the missing authority layer.
+
+==================================================
+4. AUTHORITY PRINCIPLE
+==================================================
+
+A document being present in the repository is NOT sufficient authority.
+
+A filename containing "v1.0" is NOT sufficient authority.
+
+A git commit containing a file is NOT sufficient authority by itself.
+
+"Latest file" is NOT sufficient authority.
+
+A machine-readable production authority must bind:
+
+- authority type
+- exact artifact path
+- artifact content hash
+- semantic version
+- approval status
+- approval provenance
+- effective state
+- applicable contract
+- compatibility scope
+- supersession state
+- source commit where appropriate
+
+Never infer approval merely from file age or filename.
+
+==================================================
+5. APPROVED BASELINE ARTIFACTS TO RESOLVE
+==================================================
+
+Inspect repository governance/history/evidence and locate the authoritative
+approved baseline artifacts corresponding to at least:
+
+INVESTMENT POLICY
+
+RISK POLICY
+
+SCORING MODEL
+
+DECISION FRAMEWORK where required for policy compatibility
+
+DECISION ENGINE
+
+BUY RULES / SELL RULES only if the Decision Engine contract actually
+depends on their explicit versions
+
+SYSTEM PROMPT only if production runtime formally depends on it
+
+Do NOT bind documentation that is not an actual runtime/governance
+dependency.
+
+Use the smallest complete authority set.
+
+==================================================
+6. KNOWN PROJECT APPROVAL HISTORY
+==================================================
+
+The project governance history establishes that:
+
+Milestone 1 approved baseline includes:
+
+INVESTMENT_POLICY.md
+DECISION_FRAMEWORK.md
+RISK_POLICY.md
+SCORING_MODEL.md
+SYSTEM_PROMPT.md
+
+Milestone 4 approved baseline includes:
+
+DECISION_ENGINE.md
+BUY_RULES.md
+SELL_RULES.md
+and other approved M4 decision-engine documents where applicable.
+
+Approved files were promoted to baseline v1.0 under project governance.
+
+However:
+
+Do NOT rely only on this prompt text as runtime authority.
+
+Verify the repository's actual artifacts, versions, hashes and approval
+evidence.
+
+If repository evidence cannot prove a required authority:
+
+BLOCK.
+
+Do not fabricate a receipt.
+
+==================================================
+7. AUTHORITY RECEIPT MODEL
+==================================================
+
+Implement or finalize a machine-readable immutable authority receipt model.
+
+Suggested semantic structure:
+
+authorityReceiptId
+
+authorityType
+
+artifactPath
+
+artifactSha256
+
+semanticVersion
+
+approvalState
+
+approvalEvidence
+
+approvalEvidenceHash where applicable
+
+sourceCommit
+
+effectiveFrom
+
+supersedesReceiptId
+
+compatibilityContract
+
+recordedAt
+
+recordedBy / activationMode
+
+receiptSha256
+
+Use existing repository conventions if an equivalent model already exists.
+
+Authority receipt content must be immutable after activation.
+
+A superseding authority creates a new receipt.
+
+Do not edit old receipts in place.
+
+==================================================
+8. REQUIRED AUTHORITY TYPES
+==================================================
+
+At minimum resolve:
+
+POLICY
+
+RISK_POLICY
+
+SCORING_MODEL
+
+DECISION_ENGINE
+
+and any minimal dependency required to prove:
+
+DECISION_ENGINE ↔ POLICY compatibility.
+
+If Decision Engine compatibility formally depends on:
+
+DECISION_FRAMEWORK
+
+BUY_RULES
+
+SELL_RULES
+
+then bind them explicitly or bind an immutable composite Decision Engine
+manifest containing their exact hashes.
+
+Do not leave transitive dependencies implicit.
+
+==================================================
+9. COMPOSITE AUTHORITY OPTION
+==================================================
+
+If repository architecture benefits from composite manifests, it is
+acceptable to create:
+
+POLICY_AUTHORITY_MANIFEST
+
+SCORING_AUTHORITY_MANIFEST
+
+DECISION_ENGINE_AUTHORITY_MANIFEST
+
+RISK_AUTHORITY_MANIFEST
+
+Each manifest must contain exact child artifact hashes.
+
+Example:
+
+DECISION_ENGINE_AUTHORITY_MANIFEST:
+
+- DECISION_ENGINE.md hash
+- BUY_RULES.md hash
+- SELL_RULES.md hash
+- relevant execution/decision rules
+- semantic version
+- compatibility declarations
+
+Do not duplicate document content.
+
+Bind hashes and identities only.
+
+==================================================
+10. APPROVAL PROVENANCE
+==================================================
+
+For every authority receipt determine how approval is proven.
+
+Preferred evidence order:
+
+1. existing machine-readable approved-baseline registry/evidence
+2. existing milestone final-review evidence
+3. immutable repository approval/version metadata
+4. exact historical commit evidence consistent with project governance
+
+Do not use:
+
+"the file looks final"
+
+as approval proof.
+
+If approval provenance is human-governance evidence rather than a
+cryptographic registry, encode that fact explicitly.
+
+Example:
+
+approvalMode:
+OWNER_GOVERNANCE_APPROVAL
+
+not:
+
+AUTOMATICALLY_VERIFIED
+
+unless it truly was automatically verified.
+
+==================================================
+11. ARTIFACT HASHING
+==================================================
+
+Compute deterministic SHA256 over exact repository artifact bytes.
+
+Record:
+
+path
+size
+sha256
+source commit.
+
+Re-read and rehash independently before activation.
+
+Any mismatch:
+
+BLOCK.
+
+Do not normalize markdown before hashing unless an existing approved
+contract explicitly defines canonical normalization.
+
+Prefer exact-byte hashing.
+
+==================================================
+12. POLICY AUTHORITY
+==================================================
+
+Resolve the exact active Investment Policy authority.
+
+It must represent the already-approved investment constitution.
+
+Do NOT edit policy to make compatibility pass.
+
+Do NOT create new policy rules.
+
+Bind the existing approved baseline.
+
+Where the Market-Data Boundary Amendment prospectively extends lifecycle
+semantics, bind the amendment separately as an applicable cross-cutting
+authority rather than rewriting the historical Investment Policy baseline.
+
+==================================================
+13. RISK POLICY AUTHORITY
+==================================================
+
+Resolve exact approved Risk Policy authority.
+
+Preserve existing approved rules including relevant:
+
+- position/concentration controls
+- sector controls
+- drawdown rules
+- no-margin rule
+- exception governance
+- capital preservation hierarchy
+- new-capital controls
+
+Do NOT recalibrate thresholds.
+
+This task binds authority only.
+
+==================================================
+14. SCORING MODEL AUTHORITY
+==================================================
+
+Resolve exact approved Scoring Model baseline.
+
+Preserve:
+
+100-point model
+
+sector normalization
+
+existing weights
+
+existing required-return / scoring semantics
+
+existing eligibility behavior.
+
+Do NOT modify weights or metrics.
+
+Do NOT run scores.
+
+Bind exact approved scoring artifact/version/hash.
+
+If executable implementation has its own scoring schema/version:
+
+prove documentation ↔ executable compatibility.
+
+If incompatible:
+
+BLOCK.
+
+Do not silently select one.
+
+==================================================
+15. DECISION ENGINE AUTHORITY
+==================================================
+
+Resolve exact approved Decision Engine authority.
+
+Bind all material transitive components necessary to reconstruct its
+decision contract.
+
+At minimum verify compatibility with:
+
+Investment Policy
+
+Decision Framework where applicable
+
+Risk Policy
+
+Scoring Model
+
+Policy-B eligibility boundary
+
+Market Data Boundary Amendment
+
+Dependency Head production rules.
+
+Do NOT alter Decision Engine behavior.
+
+==================================================
+16. DECISION ENGINE ↔ POLICY COMPATIBILITY RECEIPT
+==================================================
+
+Create explicit machine-readable compatibility evidence.
+
+Example semantic structure:
+
+compatibilityReceiptId
+
+leftAuthority:
+DECISION_ENGINE
+
+rightAuthority:
+POLICY
+
+leftReceiptHash
+
+rightReceiptHash
+
+compatibilityContractVersion
+
+result:
+COMPATIBLE / INCOMPATIBLE / BLOCKED
+
+evidence
+
+verifiedAt
+
+receiptHash
+
+Do not merely assert:
+
+compatible = true.
+
+Prove compatibility against actual rules/contracts.
+
+==================================================
+17. CROSS-AUTHORITY COMPATIBILITY
+==================================================
+
+Validate at minimum:
+
+POLICY ↔ RISK_POLICY
+
+POLICY ↔ SCORING_MODEL
+
+POLICY ↔ DECISION_ENGINE
+
+SCORING_MODEL ↔ DECISION_ENGINE
+
+RISK_POLICY ↔ DECISION_ENGINE
+
+POLICY-B ↔ SCORING_MODEL
+
+POLICY-B ↔ DECISION_ENGINE
+
+MARKET_BOUNDARY ↔ SCORING/ANALYSIS lifecycle
+
+DEPENDENCY_HEAD_CONTRACT ↔ production analysis lifecycle.
+
+Classify each:
+
+COMPATIBLE
+
+INCOMPATIBLE
+
+NOT_APPLICABLE
+
+BLOCKED.
+
+Any material unresolved incompatibility:
+
+BLOCK production activation.
+
+==================================================
+18. DOCUMENTATION ↔ EXECUTABLE IMPLEMENTATION
+==================================================
+
+Where executable code implements an approved authority:
+
+verify material consistency.
+
+Do NOT require byte-level equivalence.
+
+Check behavioral contract.
+
+Examples:
+
+decision states
+
+eligibility rules
+
+MBB quarantine
+
+score-null semantics
+
+risk vetoes
+
+new-capital restrictions
+
+market freshness requirements
+
+Policy-B partial-universe semantics.
+
+If documentation says one thing and executable implementation materially
+does another:
+
+classify as MATERIAL_DIVERGENCE.
+
+Do not activate.
+
+==================================================
+19. BUILD COMPLETE DEPENDENCY RELEASE
+==================================================
+
+Using the approved Dependency Head mechanism, construct a complete candidate
+DependencyRelease.
+
+It must bind all required authoritative heads.
+
+At minimum expected dependency classes include:
+
+UNIVERSE
+
+SECURITY_MASTER / REFERENCE_DATA where required
+
+INITIALIZATION_MANIFEST
+
+FUNDAMENTAL_RELEASE
+
+TICKER_DISPOSITION / POLICY_B_PARTITION
+
+EXCEPTION_REGISTRY
+
+MARKET_CAPABILITY_CONTRACT
+
+MARKET_SESSION_CALENDAR_POLICY
+
+POLICY
+
+RISK_POLICY
+
+SCORING_MODEL
+
+DECISION_ENGINE
+
+plus other mandatory dependencies identified by actual code.
+
+No mandatory authority may remain caller-selected.
+
+==================================================
+20. RELEASE CONTENT HASH
+==================================================
+
+DependencyRelease must have a deterministic content hash over its immutable
+dependency set.
+
+Recompute independently.
+
+Expected:
+
+stored hash == independently recomputed hash.
+
+If not:
+
+BLOCK.
+
+==================================================
+21. BOOTSTRAP AUTHORITATIVE HEADS
+==================================================
+
+Bootstrap only from approved/accepted artifacts.
+
+Do not bootstrap:
+
+draft
+candidate-only
+superseded
+unapproved
+ambiguous
+
+authority.
+
+The resulting registry must have exactly one active authoritative head per
+required dependency class unless the contract explicitly supports scoped
+heads.
+
+Ambiguous multiple active heads:
+
+BLOCK.
+
+Missing mandatory head:
+
+BLOCK.
+
+==================================================
+22. CAS ACTIVATION
+==================================================
+
+Use the approved compare-and-swap mechanism.
+
+Activation must include:
+
+expected previous release/head
+
+candidate release ID
+
+candidate release hash.
+
+If current authority changed after candidate construction:
+
+CAS must fail.
+
+Do not retry blindly.
+
+Re-resolve and revalidate compatibility before retry.
+
+==================================================
+23. ATOMIC ACTIVATION
+==================================================
+
+All mandatory authority heads must become active atomically through the
+approved DependencyRelease mechanism.
+
+Never expose:
+
+new policy
++
+old scoring model
+
+or:
+
+new Decision Engine
++
+old Risk Policy
+
+during activation.
+
+Failure must leave previous authoritative release intact.
+
+==================================================
+24. PRODUCTION DB ACTIVATION
+==================================================
+
+This task is explicitly authorized to perform the minimum production
+activation required for the already-approved Dependency Head architecture,
+ONLY IF:
+
+- migration is already independently validated
+- backup/recovery requirements are satisfied
+- candidate authority receipts all PASS
+- compatibility PASS
+- CAS preconditions PASS
+- production DB identity is verified
+- activation is additive/atomic
+- no accounting/fundamental facts are modified
+
+Before mutation:
+
+record production DB hash / identity / schema version / row counts as
+applicable.
+
+Create a recovery-safe pre-activation state according to existing project
+production governance.
+
+IMPORTANT:
+
+Do not create unnecessary backup copies contrary to owner retention policy.
+
+Use the project's approved DB backup/recovery mechanism if one exists.
+
+Do not duplicate financial extraction artifacts.
+
+After activation:
+
+prove only expected authority/dependency rows changed.
+
+If production mutation cannot be performed safely:
+
+do NOT force it.
+
+Return:
+
+ACTIVATION_BLOCKED
+
+with exact reason.
+
+==================================================
+25. ACTIVATION IS NOT MARKET REFRESH
+==================================================
+
+Do NOT fetch fresh market data in this task.
+
+Activation of:
+
+MARKET_CAPABILITY_CONTRACT
+
+does not imply:
+
+MARKET_CURRENT = true.
+
+After successful closure, expected lifecycle remains:
+
+Production authority active
+→ request analysis
+→ market refresh
+→ freshness gate
+→ AnalysisSnapshot
+→ scoring.
+
+==================================================
+26. ACTIVATION IS NOT SCORING
+==================================================
+
+Do NOT run scoring after activation.
+
+Even if scoring authority becomes active:
+
+SCORING_RUN = false.
+
+The purpose is to make the next scoring cycle possible, not execute it.
+
+==================================================
+27. POLICY-B POST-ACTIVATION REPLAY
+==================================================
+
+After activation prove:
+
+FULL = 30
+
+ELIGIBLE = 29
+
+DEFERRED = 1
+
+MBB = DEFERRED.
+
+MBB:
+
+score = null
+
+No ranking eligibility.
+
+No new-capital eligibility.
+
+No weight redistribution.
+
+No capital redistribution.
+
+Authority activation must not change ticker eligibility.
+
+==================================================
+28. TCX POST-ACTIVATION REPLAY
+==================================================
+
+Verify active DependencyRelease binds the correct exception authority.
+
+TCX exception:
+
+5,284,485,167,173 VND
+
+must remain visible as:
+
+OWNER_APPROVED_ANALYTICAL_EXCEPTION.
+
+Do not change canonical accounting facts.
+
+==================================================
+29. PROTECTED ACCOUNTING REPLAY
+==================================================
+
+Replay all protected canonical accounting bodies.
+
+Expected:
+
+ACCOUNTING_REGRESSIONS = 0.
+
+Verify:
+
+VNM unchanged
+
+VIB unchanged
+
+VIC unchanged
+
+TCX accounting unchanged
+
+MBB blocker unchanged.
+
+Any accounting mutation caused by this task:
+
+FAIL.
+
+==================================================
+30. PRODUCTION RESOLUTION TEST
+==================================================
+
+After activation, invoke production dependency resolution WITHOUT caller
+authority overrides.
+
+It must resolve:
+
+the newly active DependencyRelease.
+
+Verify all required heads and hashes.
+
+Then attempt controlled negative probes:
+
+old policy receipt
+
+old scoring authority
+
+unknown risk authority
+
+caller-selected Decision Engine
+
+superseded release.
+
+All must fail for new production analysis.
+
+Do NOT actually execute scoring.
+
+==================================================
+31. HISTORICAL REPLAY TEST
+==================================================
+
+Verify historical replay still allows the appropriate superseded dependency
+release where PIT contract permits.
+
+Historical replay must not change current authoritative heads.
+
+Historical replay output must not become production-publishable merely
+because its hashes are valid.
+
+==================================================
+32. AUTHORITY CHANGE INVALIDATION
+==================================================
+
+Test prospectively:
+
+if POLICY head changes:
+
+existing production-current analysis becomes stale/revalidation-required.
+
+If SCORING_MODEL changes:
+
+cached score/ranking cannot authorize current output.
+
+If RISK_POLICY changes:
+
+decision must revalidate.
+
+If DECISION_ENGINE changes:
+
+decision candidate must rebuild/revalidate.
+
+Do not actually alter approved production authority merely for testing.
+
+Use disposable DB/test transactions.
+
+==================================================
+33. NEGATIVE TESTS
+==================================================
+
+At minimum:
+
+MISSING_POLICY_AUTHORITY
+
+MISSING_RISK_AUTHORITY
+
+MISSING_SCORING_AUTHORITY
+
+MISSING_DECISION_ENGINE_AUTHORITY
+
+UNAPPROVED_AUTHORITY
+
+AMBIGUOUS_AUTHORITY
+
+ARTIFACT_HASH_MISMATCH
+
+APPROVAL_PROVENANCE_MISSING
+
+POLICY_SCORING_INCOMPATIBLE
+
+POLICY_DECISION_INCOMPATIBLE
+
+RISK_DECISION_INCOMPATIBLE
+
+SCORING_DECISION_INCOMPATIBLE
+
+MBB_QUARANTINE_MISMATCH
+
+TCX_EXCEPTION_MISMATCH
+
+DEPENDENCY_RELEASE_HASH_MISMATCH
+
+CAS_CONFLICT
+
+PARTIAL_ACTIVATION
+
+CALLER_SELECTED_SUPERSEDED_AUTHORITY
+
+HISTORICAL_REPLAY_PRODUCTION_ESCAPE.
+
+All must fail closed.
+
+==================================================
+34. MIGRATION / PRODUCTION SAFETY
+==================================================
+
+If no new migration is necessary:
+
+do not invent one.
+
+If schema changes are necessary:
+
+additive migration only.
+
+Validate against:
+
+fresh disposable DB
+
+populated production-copy DB.
+
+Production mutation must not occur until all pre-activation validation
+passes.
+
+==================================================
+35. FULL VALIDATION
+==================================================
+
+Run all relevant quality gates:
+
+lint
+
+typecheck
+
+architecture/boundary tests
+
+authority-binding tests
+
+dependency-head tests
+
+Policy-B tests
+
+Decision Engine compatibility tests
+
+Risk compatibility tests
+
+Scoring compatibility tests
+
+migration tests if applicable
+
+full unit/integration suite
+
+browser/E2E where applicable
+
+production build
+
+protected accounting replay
+
+production dependency-resolution replay.
+
+Classify every failure:
+
+NEW_REGRESSION
+
+PRE_EXISTING
+
+EXPECTED_NEGATIVE
+
+ENVIRONMENTAL.
+
+No new Critical/Major regression is acceptable.
+
+Do not hide the existing historical failing tests.
+
+==================================================
+36. ACTIVATION ACCEPTANCE CRITERIA
+==================================================
+
+PRODUCTION_ANALYSIS_ACTIVATION_CANDIDATE may PASS only if:
+
+1. POLICY authority exact and approved
+2. RISK_POLICY authority exact and approved
+3. SCORING_MODEL authority exact and approved
+4. DECISION_ENGINE authority exact and approved
+5. approval provenance retained
+6. exact artifact hashes retained
+7. cross-authority compatibility PASS
+8. no material documentation/executable divergence
+9. complete DependencyRelease constructed
+10. release hash deterministic
+11. authoritative heads bootstrap successfully
+12. CAS activation succeeds
+13. activation is atomic
+14. production resolver returns active release
+15. stale/caller-selected authorities rejected
+16. historical replay remains functional
+17. Policy B remains30/29/1
+18. MBB remains NOT_SCORABLE
+19. TCX exception remains active
+20. accounting regressions =0
+21. new regressions =0
+22. no scoring/ranking/investment decision executed.
+
+If any mandatory item fails:
+
+BLOCK.
+
+Do not weaken the contract.
+
+==================================================
+37. POST-ACTIVATION STATE
+==================================================
+
+If all acceptance criteria pass, expected candidate state is:
+
+DATA_INITIALIZATION = ACCEPTED
+
+PRODUCTION_AUTHORITY = ACTIVE
+
+DEPENDENCY_RELEASE = ACTIVE
+
+PRODUCTION_ANALYSIS_ACTIVATION_CANDIDATE = PASS_CANDIDATE
+
+FULL_UNIVERSE =30
+
+FUNDAMENTALLY_ELIGIBLE =29
+
+DEFERRED = MBB
+
+MARKET_CAPABLE = true
+
+MARKET_CURRENT = false / NOT_EVALUATED
+
+SCORING_RUN = false
+
+RANKING_RUN = false
+
+INVESTMENT_DECISION_CREATED = false
+
+readyForScoring = false
+until independent review approves this closure
+
+decisionReady = false.
+
+Do not force expected state if evidence contradicts it.
+
+==================================================
+38. EVIDENCE PACKAGE
+==================================================
+
+Create:
+
+docs/fundamental-data-engine/evidence/
+2026-10-20-production-authority-binding-activation/
+
+At minimum include:
+
+README.md
+
+BASELINE_IDENTITY.json
+
+AUTHORITY_INVENTORY.json
+
+AUTHORITY_RECEIPTS.json
+
+POLICY_AUTHORITY.json
+
+RISK_POLICY_AUTHORITY.json
+
+SCORING_MODEL_AUTHORITY.json
+
+DECISION_ENGINE_AUTHORITY.json
+
+APPROVAL_PROVENANCE.json
+
+ARTIFACT_HASH_VERIFICATION.json
+
+CROSS_AUTHORITY_COMPATIBILITY.json
+
+DOCUMENTATION_EXECUTABLE_COMPATIBILITY.json
+
+DECISION_POLICY_COMPATIBILITY.json
+
+DEPENDENCY_RELEASE.json
+
+DEPENDENCY_RELEASE_HASH_REPLAY.json
+
+BOOTSTRAP_HEADS.json
+
+CAS_ACTIVATION_REVIEW.json
+
+ATOMIC_ACTIVATION_REVIEW.json
+
+PRODUCTION_DB_PRE_ACTIVATION.json
+
+PRODUCTION_DB_POST_ACTIVATION.json
+
+PRODUCTION_RESOLUTION_REPLAY.json
+
+HISTORICAL_REPLAY_REVIEW.json
+
+POLICY_B_REPLAY.json
+
+MBB_QUARANTINE_REPLAY.json
+
+TCX_EXCEPTION_REPLAY.json
+
+PROTECTED_ACCOUNTING_REPLAY.json
+
+NEGATIVE_TEST_RESULTS.json
+
+REGRESSION_RESULTS.json
+
+OPEN_ISSUES.json
+
+TEST_RESULTS.json
+
+ARTIFACT_HASHES.json
+
+FINAL_REVIEW.md.
+
+If activation is blocked before production mutation:
+
+still create the evidence package.
+
+Mark production post-activation evidence:
+
+NOT_PERFORMED_BLOCKED
+
+rather than fabricating results.
+
+==================================================
+39. FINAL_REVIEW FORMAT
+==================================================
+
+FINAL_REVIEW.md must report:
+
+STARTING_HEAD
+
+ENDING_HEAD
+
+POLICY_AUTHORITY
+
+RISK_POLICY_AUTHORITY
+
+SCORING_MODEL_AUTHORITY
+
+DECISION_ENGINE_AUTHORITY
+
+APPROVAL_PROVENANCE
+
+DECISION_POLICY_COMPATIBILITY
+
+CROSS_AUTHORITY_COMPATIBILITY
+
+DOCUMENTATION_EXECUTABLE_COMPATIBILITY
+
+DEPENDENCY_RELEASE
+
+DEPENDENCY_RELEASE_HASH
+
+BOOTSTRAP_STATUS
+
+CAS_ACTIVATION
+
+ATOMIC_ACTIVATION
+
+PRODUCTION_DB_MUTATED
+
+PRODUCTION_RESOLUTION
+
+HISTORICAL_REPLAY
+
+POLICY_B
+
+FULL_UNIVERSE
+
+ELIGIBLE
+
+DEFERRED
+
+MBB_STATUS
+
+TCX_EXCEPTION
+
+ACCOUNTING_REGRESSIONS
+
+NEW_REGRESSIONS
+
+SCORING_RUN
+
+RANKING_RUN
+
+TOP10_CREATED
+
+INVESTMENT_DECISION_CREATED
+
+MARKET_REFRESH_PERFORMED
+
+MARKET_CURRENT
+
+PRODUCTION_ANALYSIS_ACTIVATION_CANDIDATE
+
+readyForScoring
+
+decisionReady
+
+OPEN_BLOCKERS.
+
+If successful, expected safe result:
+
+POLICY_AUTHORITY = PASS
+
+RISK_POLICY_AUTHORITY = PASS
+
+SCORING_MODEL_AUTHORITY = PASS
+
+DECISION_ENGINE_AUTHORITY = PASS
+
+APPROVAL_PROVENANCE = PASS
+
+DECISION_POLICY_COMPATIBILITY = PASS
+
+CROSS_AUTHORITY_COMPATIBILITY = PASS
+
+DOCUMENTATION_EXECUTABLE_COMPATIBILITY = PASS
+
+DEPENDENCY_RELEASE = ACTIVE
+
+BOOTSTRAP_STATUS = PASS
+
+CAS_ACTIVATION = PASS
+
+ATOMIC_ACTIVATION = PASS
+
+PRODUCTION_RESOLUTION = PASS
+
+HISTORICAL_REPLAY = PASS
+
+POLICY_B = PASS
+
+FULL_UNIVERSE =30
+
+ELIGIBLE =29
+
+DEFERRED =1
+
+MBB_STATUS = DEFERRED / NOT_SCORABLE
+
+TCX_EXCEPTION = ACTIVE
+
+ACCOUNTING_REGRESSIONS =0
+
+NEW_REGRESSIONS =0
+
+SCORING_RUN = false
+
+RANKING_RUN = false
+
+TOP10_CREATED = false
+
+INVESTMENT_DECISION_CREATED = false
+
+MARKET_REFRESH_PERFORMED = false
+
+MARKET_CURRENT = false / NOT_EVALUATED
+
+PRODUCTION_ANALYSIS_ACTIVATION_CANDIDATE = PASS_CANDIDATE
+
+readyForScoring = false
+
+decisionReady = false.
+
+Do not force PASS if evidence contradicts it.
+
+==================================================
+40. ABSOLUTE PROHIBITIONS
+==================================================
+
+DO NOT:
+
+change Investment Policy
+
+change Risk Policy
+
+change Scoring Model
+
+change scoring weights
+
+change Decision Engine rules
+
+change canonical accounting facts
+
+reopen DI14/DI15
+
+reopen Level-1 ticker closures
+
+search MBB evidence
+
+change TCX classification
+
+fetch market data merely for activation
+
+run scoring
+
+run ranking
+
+create Top10
+
+calculate production valuation
+
+create STRONG BUY / BUY / ACCUMULATE
+
+create DCA allocation
+
+create investment decisions
+
+place trades
+
+silently select "latest" policy/model
+
+fabricate approval provenance
+
+hide compatibility conflicts
+
+weaken tests to obtain PASS.
+
+==================================================
+41. COMMIT
+==================================================
+
+After implementation, validation, activation where safe, and evidence:
+
+create ONE scoped commit.
+
+Suggested commit message:
+
+Production Authority Binding and Activation Closure
+
+Do not mix unrelated changes.
+
+Record:
+
+starting HEAD
+ending HEAD
+authority receipt IDs
+artifact hashes
+DependencyRelease ID/hash
+production activation status
+DB mutation status
+test results.
+
+==================================================
+42. STOP
+==================================================
+
+STOP after authority binding + safe activation + validation + evidence.
+
+Do NOT begin First Production VN30 Scoring Cycle.
+
+Do NOT self-approve Production Analysis Activation.
+
+Return:
+
+1. ending commit SHA
+2. evidence folder
+3. POLICY authority result
+4. RISK_POLICY authority result
+5. SCORING_MODEL authority result
+6. DECISION_ENGINE authority result
+7. cross-authority compatibility result
+8. DependencyRelease ID/hash
+9. bootstrap result
+10. CAS/atomic activation result
+11. production DB mutation result
+12. production resolver result
+13. Policy-B result
+14. accounting regressions
+15. new regressions
+16. remaining blockers
+17. confirmation that no market refresh/scoring/ranking/Top10/investment
+    decision was performed
+
+End exactly with:
+
+Awaiting independent review: Review Production Authority Binding & Activation Closure

@@ -1,0 +1,964 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+ ❯ tests/unit/di-governance-closure.test.ts (18 tests | 3 failed) 1580ms
+   ✓ 1 official membership is not inferred from the undated API 25ms
+   ✓ 2 dated notice is not assumed current without subsequent-change review 23ms
+   ✓ 3 universe changes cannot silently enter this scoring candidate 40ms
+   ✓ 4 compact projection changes no accounting fact, dimension or retained provenance 128ms
+   ✓ 5 HPG replay rejects any residual disposable extraction reference 13ms
+   × 6 retained original HPG PDF hashes still match physical bytes 2ms
+   × 7 VJC independent producer replay is deterministic with explicit ticker 624ms
+   × 8 GVR independent producer replay is deterministic with explicit ticker 639ms
+   ✓ 9 VJC/GVR canonical bytes remain unchanged 2ms
+   ✓ 10 blocked original source issues remain deferred 3ms
+   ✓ 11 a deferred ticker receives a null score rather than a neutral fill 0ms
+   ✓ 12 deferred tickers cannot enter this candidate Top10 0ms
+   ✓ 13 deferred tickers cannot receive positive capital eligibility 0ms
+   ✓ 14 complete effective research universe has exactly one disposition each 1ms
+   ✓ 15 readyForScoring stays false and production eligibility blocks missing input/bridge 36ms
+   ✓ 16 decisionReady stays false throughout the review candidate 0ms
+   ✓ 17 DI14 cannot be self-approved by candidate author 23ms
+   ✓ 18 DI15 rejects an unresolved Major even if the associated input is quarantined 19ms
+ ❯ tests/unit/consumer-retail-ticker-closure.test.ts (43 tests | 1 failed) 582ms
+   ✓ 1 MCH accounting evidence cannot enter MSN 2ms
+   ✓ 2 MSN accounting evidence cannot enter MCH 0ms
+   ✓ 3 rejects associate revenue 0ms
+   ✓ 4 rejects JV assets 0ms
+   ✓ 5 rejects retail operating sales 0ms
+   ✓ 6 rejects GMV 0ms
+   ✓ 7 rejects store count 0ms
+   ✓ 12 rejects customer advance as revenue 0ms
+   ✓ 15 rejects term deposit as cash 0ms
+   ✓ 16 rejects financial investment as cash 0ms
+   ✓ 22 rejects investing outflow as CapEx 0ms
+   ✓ 23 rejects acquisition as CapEx 0ms
+   ✓ 24 rejects investment purchase as CapEx 0ms
+   ✓ 8 gross inventory cannot replace net inventory 0ms
+   ✓ 9 inventory provision cannot disappear 0ms
+   ✓ 10 commercial TRADE_PAYABLE requires financing proof 0ms
+   ✓ 11 commercial SUPPLIER_PAYABLE requires financing proof 0ms
+   ✓ 13 commercial CUSTOMER_ADVANCE requires financing proof 0ms
+   ✓ 14 commercial RELATED_PARTY_PAYABLE requires financing proof 0ms
+   ✓ 17 generic cash cannot become unrestricted cash 0ms
+   ✓ 18 NET_DEBT stays unavailable without qualified cash 49ms
+   ✓ 19 current borrowing portion is counted only once 31ms
+   ✓ 20 a known financing bond omission invalidates debt receipt 29ms
+   ✓ 21 principal cannot silently replace carrying value 0ms
+   ✓ 25 quarter cannot masquerade as YTD 0ms
+   ✓ 26 unapproved interim annualization is rejected 0ms
+   ✓ 27 standalone evidence cannot enter consolidated facts 0ms
+   ✓ 28 restated observations have bound predecessor lineage 18ms
+   ✓ 29 missing inventory cannot be neutral filled 0ms
+   ✓ 30 qualified issuer nonzero defeats provider conflict 51ms
+   ✓ 31 historical PIT does not block current Level 1 0ms
+   ✓ 32 offline inputs need no disposable extraction files 187ms
+   × 33 all seven protected source and evidence hashes remain unchanged 71ms
+   ✓ MSN has isolated candidates, originals, verifications and canonical facts 26ms
+   ✓ MSN every new source row has exact accounting population, units and window 2ms
+   ✓ MWG has isolated candidates, originals, verifications and canonical facts 26ms
+   ✓ MWG every new source row has exact accounting population, units and window 2ms
+   ✓ VNM has isolated candidates, originals, verifications and canonical facts 26ms
+   ✓ VNM every new source row has exact accounting population, units and window 2ms
+   ✓ SAB has isolated candidates, originals, verifications and canonical facts 25ms
+   ✓ SAB every new source row has exact accounting population, units and window 1ms
+   ✓ MCH has isolated candidates, originals, verifications and canonical facts 29ms
+   ✓ MCH every new source row has exact accounting population, units and window 1ms
+ ❯ tests/unit/consumer-targeted-fix.test.ts (18 tests | 2 failed) 399ms
+   ✓ MSN replay is deterministic and preserves original observations 78ms
+   ✓ VNM replay is deterministic and preserves original observations 37ms
+   ✓ SAB replay is deterministic and preserves original observations 36ms
+   ✓ MSN all five periods add only carrying amounts outside the borrowing captions 28ms
+   ✓ MSN current bank/bond/lease deductions equal the one embedded current portion 1ms
+   ✓ MSN unverified financing addition fails the unchanged debt contract 29ms
+   ✓ MSN unknown financing amount cannot enter the addition sum as a verified item 26ms
+   ✓ MSN opaque deferred procurement fees remain unknown rather than commercial or zero 0ms
+   ✓ MSN reported debt cannot imply unrestricted net debt 25ms
+   × VNM original PDF is bound to exact retained bytes 3ms
+   ✓ VNM current flow uses six-month YTD, not standalone Q2 or parent-only income 24ms
+   ✓ VNM current inventory reconciles gross less provision 1ms
+   ✓ VNM later annual transfers never become closing current portions or admitted debt 26ms
+   ✓ VNM exact closing current portions from 2022/2023 are admitted only once 25ms
+   ✓ SAB reclassification is an exact operating/investing bridge with unchanged total cash 0ms
+   ✓ SAB every predecessor has explicit lineage and current analysis uses comparative 32ms
+   ✓ SAB removing revision lineage restores the conflict rather than preferring the newer number 25ms
+   × All protected evidence and approved contracts retain their original hashes 2ms
+ ❯ tests/unit/tcx-ticker-closure.test.ts (36 tests | 2 failed) 211ms
+   ❯ TCX Level-1 canonical accounting isolation and semantics (36)
+     ✓ 01 SSI observations cannot satisfy TCX requirements 11ms
+     ✓ 02 SSI PDF cannot serve as TCX evidence 14ms
+     ✓ 03 SSI provider code cannot be forced onto TCX without schema proof 2ms
+     ✓ 04 margin loans remain separate from advances 0ms
+     ✓ 05 other receivables cannot become margin loans 0ms
+     ✓ 06 combined loan population cannot be split without evidence 0ms
+     ✓ 07 FVTPL balance cannot become proprietary trading profit 1ms
+     ✓ 08 FVTPL balance change cannot become earnings 1ms
+     ✓ 09 client money cannot become company cash 1ms
+     ✓ 10 client money cannot become unrestricted cash 0ms
+     ✓ 11 customer money cannot automatically become debt; explicit iSave borrowing stays financing 1ms
+     ✓ 12 bank borrowing current portion counted once 0ms
+     ✓ 13 bond face value cannot replace carrying amount 0ms
+     ✓ 14 commercial payable cannot become financial debt 0ms
+     ✓ 15 generic cash cannot become unrestricted cash 0ms
+     ✓ 16 industrial revenue semantics cannot be forced onto TCX 0ms
+     ✓ 17 parent earnings cannot replace total net income 0ms
+     ✓ 18 AS_REPORTED EPS cannot become normalized EPS 0ms
+     ✓ 19 regulatory safety ratio cannot be invented 2ms
+     ✓ 20 equity/assets cannot substitute regulatory capital 2ms
+     ✓ 21 quarter cannot masquerade as YTD 21ms
+     ✓ 22 interim flows cannot be annualized 13ms
+     ✓ 23 consolidated and standalone observations cannot mix 13ms
+     ✓ 24 pre-listing issuer data requires provenance 1ms
+     ✓ 25 listing date cannot fabricate periods or shrink denominators 2ms
+     ✓ 26 revised EPS retains original and explicit lineage 25ms
+     ✓ 27 missing metric cannot be neutral-filled 31ms
+     ✓ 28 provider zero cannot overwrite issuer nonzero 13ms
+     ✓ 29 unknown template drift fails closed 6ms
+     ✓ 30 historical PIT NOT_READY does not block complete CURRENT_ANALYSIS 0ms
+     ✓ 31 deleted extraction artifacts unnecessary for replay 25ms
+     × 32 SSI protected evidence unchanged 4ms
+     × 33 all 15 approved closure artifacts and bound sources unchanged 1ms
+     ✓ 34 VNM remains DEFERRED BLOCKED 0ms
+     ✓ 35 readyForScoring remains false 14ms
+     ✓ 36 decisionReady remains false 0ms
+ ❯ tests/unit/gvr-ticker-closure.test.ts (44 tests | 2 failed) 153ms
+   ✓ 1 rejects REVENUE from ASSOCIATE_REVENUE 1ms
+   ✓ 1 rejects REVENUE from JV_REVENUE 0ms
+   ✓ 2 rejects TOTAL_ASSETS from ASSOCIATE_ASSETS 0ms
+   ✓ 2 rejects TOTAL_ASSETS from JV_ASSETS 0ms
+   ✓ 3 rejects REVENUE from RUBBER_PRICE 0ms
+   ✓ 4 rejects REVENUE from RUBBER_VOLUME 0ms
+   ✓ 5 rejects INVENTORY from RUBBER_PLANTATION 0ms
+   ✓ 5 rejects INVENTORY from BIOLOGICAL_ASSET 0ms
+   ✓ 7 rejects INVENTORY from INVESTMENT_PROPERTY 0ms
+   ✓ 8 rejects INVENTORY from CONSTRUCTION_IN_PROGRESS 0ms
+   ✓ 9 rejects INVENTORY from LAND_USE_RIGHT 0ms
+   ✓ 12 rejects REVENUE from CUSTOMER_ADVANCE 0ms
+   ✓ 20 rejects CASH_AND_EQUIVALENTS from TERM_DEPOSIT 0ms
+   ✓ 22 rejects CASH_CAPEX_REPORTED from TOTAL_INVESTING_OUTFLOW 0ms
+   ✓ 23 rejects CASH_CAPEX_REPORTED from LAND_PAYMENT 0ms
+   ✓ 24 rejects CASH_CAPEX_REPORTED from JV_INVESTMENT 0ms
+   ✓ 24 rejects CASH_CAPEX_REPORTED from ASSOCIATE_INVESTMENT 0ms
+   ✓ 6 inventory cannot become a fabricated plantation metric 0ms
+   ✓ 10 gross inventory cannot replace net inventory 0ms
+   ✓ 11 inventory provision cannot disappear 0ms
+   ✓ 13 CUSTOMER_ADVANCE cannot automatically become debt 0ms
+   ✓ 14 CONTRACTOR_PAYABLE cannot automatically become debt 0ms
+   ✓ 15 RELATED_PARTY_PAYABLE cannot automatically become debt 0ms
+   ✓ 16 current debt portion counted once across all five qualified receipts 2ms
+   ✓ 17 known bond cannot be silently omitted 0ms
+   ✓ 18 principal cannot silently replace carrying value 0ms
+   ✓ 19 accounting cash cannot become unrestricted cash 0ms
+   ✓ 21 NET_DEBT remains N_R without qualified unrestricted cash 0ms
+   ✓ 25 quarter cannot masquerade as YTD 0ms
+   ✓ 26 interim flows cannot be annualized 0ms
+   ✓ 27 standalone cannot patch consolidated observations 0ms
+   ✓ 28 revised comparatives retain originals and exact lineage 1ms
+   ✓ 29 missing required sector metric cannot be neutral filled 24ms
+   ✓ 30 provider zero cannot overwrite verified issuer nonzero CFO 23ms
+   ✓ 31 historical PIT NOT_READY does not block CURRENT_ANALYSIS Level1 0ms
+   ✓ 32 separate retained inputs replay without OCR, page images or extraction artifacts 11ms
+   × 33 all 13 approved closures, sources, contracts and prior tests remain unchanged 3ms
+   ✓ 34 VNM remains DEFERRED BLOCKED 0ms
+   ✓ GVR isolation rejects every foreign ticker observation 0ms
+   ✓ exact approved denominators and current reviewed YTD survive closure 1ms
+   ✓ every source transcription qualifies exact accounting category, value, period, scope and unit 1ms
+   ✓ finance leases identified in later lender notes are embedded and never added twice 1ms
+   ✓ original retained observations survive unchanged apart from disposable reader proof removal 81ms
+   × retained originals exist and current inventory components reconcile including provision 2ms
+ ❯ tests/unit/energy-ticker-closure.test.ts (44 tests | 1 failed) 115ms
+   ✓ 1 GAS observations cannot satisfy BSR 1ms
+   ✓ 2 BSR observations cannot satisfy GAS 0ms
+   ✓ 3 rejects non-accounting REVENUE / BRENT_PRICE 0ms
+   ✓ 3 rejects non-accounting REVENUE / GAS_PRICE 0ms
+   ✓ 4 rejects non-accounting NET_INCOME / GRM 0ms
+   ✓ 4 rejects non-accounting NET_INCOME / CRACK_SPREAD 0ms
+   ✓ 5 rejects non-accounting REVENUE / PHYSICAL_VOLUME 0ms
+   ✓ 14 rejects non-accounting CASH_AND_EQUIVALENTS / TERM_DEPOSIT 0ms
+   ✓ 16 rejects non-accounting CASH_CAPEX_REPORTED / INVESTING_CASH_OUTFLOW 0ms
+   ✓ 17 rejects non-accounting CASH_CAPEX_REPORTED / FINANCIAL_INVESTMENT 0ms
+   ✓ 18 rejects non-accounting CASH_CAPEX_REPORTED / BUSINESS_ACQUISITION 0ms
+   ✓ 19 rejects non-accounting NET_INCOME / PROFIT_EXCLUDING_TURNAROUND 0ms
+   ✓ 6 gross inventory cannot replace net 0ms
+   ✓ 7 inventory provision cannot disappear 0ms
+   ✓ 8 rejects automatic debt from TRADE_PAYABLE 0ms
+   ✓ 8 rejects automatic debt from FEEDSTOCK_PAYABLE 0ms
+   ✓ 8 rejects automatic debt from GAS_PURCHASE_PAYABLE 0ms
+   ✓ 9 rejects automatic debt from RELATED_PARTY_PAYABLE 0ms
+   ✓ 10 rejects automatic debt from ENVIRONMENTAL_PROVISION 0ms
+   ✓ 12 bond principal cannot replace carrying amount 0ms
+   ✓ 13 generic cash is not unrestricted cash 0ms
+   ✓ 20 quarter cannot masquerade as YTD 0ms
+   ✓ 21 interim flow cannot be annualized 0ms
+   ✓ 22 standalone cannot patch consolidated 0ms
+   ✓ 24 missing cannot be neutral filled 0ms
+   ✓ 27 historical PIT NOT_READY does not block current Level1 0ms
+   ✓ GAS production contract and complete mandatory groups stay independent 2ms
+   ✓ GAS 11 current portion reconciles once in all five periods 1ms
+   ✓ GAS 15 net debt unavailable without qualified cash 0ms
+   ✓ GAS 23 revised comparatives preserve predecessors and bound evidence 0ms
+   ✓ GAS 25 provider zero cannot overwrite issuer nonzero CFO 23ms
+   ✓ GAS 28 offline replay needs no extraction artifacts 11ms
+   ✓ GAS every admitted transcription uses exact population and source dimensions 2ms
+   ✓ BSR production contract and complete mandatory groups stay independent 1ms
+   ✓ BSR 11 current portion reconciles once in all five periods 1ms
+   ✓ BSR 15 net debt unavailable without qualified cash 0ms
+   ✓ BSR 23 revised comparatives preserve predecessors and bound evidence 0ms
+   ✓ BSR 25 provider zero cannot overwrite issuer nonzero CFO 28ms
+   ✓ BSR 28 offline replay needs no extraction artifacts 10ms
+   ✓ BSR every admitted transcription uses exact population and source dimensions 2ms
+   ✓ 26 BSR abnormal fiscal quarter remains quarantined 27ms
+   × 29 all approved closures and production contracts unchanged 4ms
+   ✓ 30 VNM remains deferred blocked 1ms
+   ✓ 26 BSR quater=-1 can never be reinterpreted as a valid NAM or QUY period 0ms
+ ❯ tests/unit/vjc-ticker-closure.test.ts (46 tests | 2 failed) 96ms
+   ✓ 1 rejects REVENUE substitution from PASSENGER_COUNT 1ms
+   ✓ 2 rejects REVENUE substitution from TICKET_BOOKINGS 0ms
+   ✓ 3 rejects REVENUE substitution from CUSTOMER_ADVANCES 0ms
+   ✓ 5 rejects REVENUE substitution from AIRCRAFT_SALE_CASH_PROCEEDS 0ms
+   ✓ 13 rejects PPE substitution from AIRCRAFT_DEPOSIT 0ms
+   ✓ 14 rejects CASH_AND_EQUIVALENTS substitution from AIRCRAFT_DEPOSIT 0ms
+   ✓ 15 rejects CASH_AND_EQUIVALENTS substitution from MAINTENANCE_DEPOSIT 0ms
+   ✓ 18 rejects OWNED_PPE substitution from RIGHT_OF_USE_ASSET 0ms
+   ✓ 19 rejects INVENTORY substitution from AIRCRAFT_UNQUALIFIED 0ms
+   ✓ 24 rejects CASH_CAPEX_REPORTED substitution from TOTAL_INVESTING_OUTFLOW 0ms
+   ✓ 25 rejects CASH_CAPEX_REPORTED substitution from LEASE_PAYMENT 0ms
+   ✓ 26 rejects CASH_CAPEX_REPORTED substitution from AIRCRAFT_DEPOSIT 0ms
+   ✓ 27 rejects CASH_CAPEX_REPORTED substitution from FINANCIAL_INVESTMENT 0ms
+   ✓ 35 rejects NET_INCOME substitution from FUEL_PRICE 0ms
+   ✓ 36 rejects NET_INCOME substitution from FX_ASSUMPTION 0ms
+   ✓ 37 rejects REVENUE substitution from ASK_RPK_LOAD_FACTOR 0ms
+   ✓ 4 DEFERRED_PASSENGER_REVENUE is not automatically financial debt 0ms
+   ✓ 6 SALE_LEASEBACK_PROCEEDS is not automatically financial debt 0ms
+   ✓ 7 FUTURE_LEASE_COMMITMENTS is not automatically financial debt 0ms
+   ✓ 12 AIRCRAFT_PURCHASE_COMMITMENT is not automatically financial debt 0ms
+   ✓ 16 MAINTENANCE_RESERVE is not automatically financial debt 0ms
+   ✓ 28 LEASE_INTEREST is not automatically financial debt 0ms
+   ✓ 8 known recognized financing lease cannot be silently omitted 1ms
+   ✓ 9 recognized finance lease counted exactly once; duplicated identity rejected 1ms
+   ✓ 10 current bank/bond/lease portions counted once 1ms
+   ✓ 11 carrying amount cannot silently become bond principal 0ms
+   ✓ 17 maintenance expense cannot be silently normalized away 0ms
+   ✓ 20 gross inventory cannot replace issuer net inventory 0ms
+   ✓ 21 provision cannot be discarded 0ms
+   ✓ 22 generic cash cannot become unrestricted cash 0ms
+   ✓ 23 NET_DEBT unavailable without qualified unrestricted cash 0ms
+   ✓ 29 quarter cannot masquerade as YTD 0ms
+   ✓ 30 interim flow cannot be annualized 0ms
+   ✓ 31 standalone and consolidated cannot mix 0ms
+   ✓ 32 comparative reclassification retains original and lineage 26ms
+   ✓ 33 missing sector metric cannot be neutral-filled 23ms
+   ✓ 34 provider zero cannot overwrite issuer nonzero CFO 22ms
+   ✓ 38 historical PIT NOT_READY does not block CURRENT_ANALYSIS 0ms
+   ✓ 39 retained replay needs no extraction artifacts 10ms
+   × 40 all 14 approved closures and existing contracts unchanged 4ms
+   ✓ 41 VNM remains DEFERRED BLOCKED 0ms
+   ✓ fixed denominators and reviewed consolidated current period are exact 1ms
+   × all retained transcriptions qualify and all five source PDFs are hash-bound 1ms
+   ✓ VJC isolation and NAM/QUY only; no foreign calibration observations 0ms
+   ✓ CapEx sign correction retains prior observation without silently changing issuer numbers 0ms
+   ✓ reviewed lease components cannot be omitted or duplicated before v2 receipt creation 1ms
+ ❯ tests/unit/real-estate-ticker-closure.test.ts (43 tests | 1 failed) 93ms
+   ✓ 01 investment property cannot enter reported inventory 1ms
+   ✓ 02 noncurrent construction in progress cannot become inventory 0ms
+   ✓ 03 customer advances cannot become presales 0ms
+   ✓ 04 contract liabilities cannot become revenue 0ms
+   ✓ 05 presales cannot become accounting revenue 0ms
+   ✓ 06 customer advances cannot become financial debt 0ms
+   ✓ 07 contractor payables cannot become financial debt 0ms
+   ✓ 08 related payables need explicit financing evidence 0ms
+   ✓ 09 related receivable cannot become cash 0ms
+   ✓ 10 current portion counted once 1ms
+   ✓ 11 unverified identified bond blocks a receipt 0ms
+   ✓ 12 principal and carrying amount cannot mix 0ms
+   ✓ 13 generic cash cannot qualify unrestricted cash 0ms
+   ✓ 14 NET_DEBT cannot be manufactured from generic cash 0ms
+   ✓ 15 JV assets cannot enter consolidated total 0ms
+   ✓ 16 associate revenue cannot enter consolidated sales 0ms
+   ✓ 17 investing outflow cannot automatically become CapEx 0ms
+   ✓ 18 quarter flow cannot masquerade as YTD 7ms
+   ✓ 19 no unsupported interim annualization 0ms
+   ✓ 20 standalone and consolidated cannot mix 0ms
+   ✓ 21 missing inventory cannot be neutral filled 11ms
+   ✓ 22 historical PIT NOT_READY does not block current Level1 0ms
+   × 23 offline replay binds originals and raw bytes without disposable extraction 5ms
+   ✓ 24 approved HPG VCB SSI FPT evidence remains sealed 54ms
+   ✓ VHM independently completes fixed annual and reviewed YTD requirements 1ms
+   ✓ VHM debt components reconcile exactly and include bonds, leases, additions once 1ms
+   ✓ VHM no other ticker evidence enters scoped admission and only NAM QUY preserved 0ms
+   ✓ VHM unknown financing remains null and comprehensive debt unavailable 0ms
+   ✓ VHM declared units and signed CapEx source values bind every new original row 2ms
+   ✓ VRE independently completes fixed annual and reviewed YTD requirements 1ms
+   ✓ VRE debt components reconcile exactly and include bonds, leases, additions once 0ms
+   ✓ VRE no other ticker evidence enters scoped admission and only NAM QUY preserved 0ms
+   ✓ VRE unknown financing remains null and comprehensive debt unavailable 0ms
+   ✓ VRE declared units and signed CapEx source values bind every new original row 1ms
+   ✓ VPL independently completes fixed annual and reviewed YTD requirements 1ms
+   ✓ VPL debt components reconcile exactly and include bonds, leases, additions once 0ms
+   ✓ VPL no other ticker evidence enters scoped admission and only NAM QUY preserved 0ms
+   ✓ VPL unknown financing remains null and comprehensive debt unavailable 0ms
+   ✓ VPL declared units and signed CapEx source values bind every new original row 1ms
+   ✓ later comparative debt is admitted but future, unbound, wrong ticker sources are rejected 0ms
+   ✓ all proven revisions preserve original values and explicit predecessor identities 0ms
+   ✓ VRE investment deposits and VPL prior-column EPS remain unavailable 0ms
+   ✓ inventory and explanatory revenue component sums preserve issuer categories 1ms
+ ❯ tests/unit/fpt-ticker-closure.test.ts (18 tests | 1 failed) 18ms
+   ✓ unknown debt amount stays null with explicit uncertainty, never zero 1ms
+   ✓ reported borrowing metadata cannot qualify comprehensive financial debt 0ms
+   ✓ current portion counted once even if both source captions include it 0ms
+   ✓ principal cannot silently substitute carrying amount 0ms
+   ✓ operating liabilities stay excluded and unidentified financing cannot enter receipts 0ms
+   ✓ generic cash never qualifies as unrestricted economically available cash 0ms
+   ✓ net debt unavailable without qualified cash 0ms
+   ✓ parent or standalone scope cannot bind consolidated source identity 1ms
+   ✓ quarter flow cannot fill required YTD 3ms
+   ✓ interim flows stay YTD and are never annualized 0ms
+   ✓ segments cannot substitute consolidated sales; elimination and rounding retained 0ms
+   ✓ FPT carries no bank/securities/FVTPL canonical concepts or foreign admissions 0ms
+   ✓ CapEx is only fixed-asset cash row, excluding investment and acquisitions 1ms
+   ✓ missing supporting common earnings never neutral filled from parent earnings 0ms
+   ✓ historical PIT NOT_READY does not block complete CURRENT_ANALYSIS Level-1 1ms
+   × deterministic replay requires no temporary extraction files 6ms
+   ✓ Debt Contract v2 stays identical to approved SSI baseline 0ms
+   ✓ original and restated comparatives retain explicit revision links 0ms
+ ❯ tests/unit/tcx-ket-vang-targeted.test.ts (25 tests | 3 failed) 19ms
+   ❯ TCX final targeted FY2022 Két Vàng forensic boundary (25)
+     ✓ 01 caption alone cannot classify financing or non-financing 1ms
+     ✓ 02 FY2023 iSave does not retroactively classify FY2022 0ms
+     ✓ 03 mixed note-28 cost cannot automatically become interest 0ms
+     ✓ 04 client transaction money stays outside company cash 2ms
+     ✓ 05 managed on-balance payable is not automatically off-balance client money 0ms
+     ✓ 06 managed payable cannot automatically become financial debt 0ms
+     ✓ 07 counterfactual proven full financing includes carrying amount exactly once 1ms
+     ✓ 08 counterfactual evidenced exclusion retains bank/bond subtotal unchanged 0ms
+     ✓ 09 no double counting bank borrowing 0ms
+     ✓ 10 no double counting bonds 0ms
+     ✓ 11 cash receipt or repayment flow cannot replace closing carrying amount 0ms
+     ✓ 12 2023-12-31 financial debt unchanged 1ms
+     ✓ 13 2024-12-31 financial debt unchanged 1ms
+     ✓ 14 2025-12-31 financial debt unchanged 1ms
+     ✓ 15 2026-06-30 financial debt unchanged 1ms
+     ✓ 16 TCX margin series unchanged 2ms
+     ✓ 17 customer-money semantics unchanged 0ms
+     ✓ 18 FVTPL semantics unchanged 1ms
+     × 19 SSI closure unchanged 2ms
+     × 20 all 15 approved closures and primary TCX evidence unchanged 1ms
+     ✓ 21 VNM remains deferred blocked 0ms
+     × 22 no denominator or contract modifications 3ms
+     ✓ 23 no neutral fill or approximate partial allocation 1ms
+     ✓ 24 readyForScoring remains false 0ms
+     ✓ 25 decisionReady remains false 0ms
+(node:54619) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+stdout | tests/integration/m68.test.ts > M6.8 downstream formal authority chain with historical upstream scores (disposable test evidence) > performance sanity: current reads at 30 holdings preserve exact NAV and record local latency
+{"profile":"VN30 30 holdings / 31 immutable ledger events","currentReadMilliseconds":[14.174917000003916,11.96654199999466,12.19024999999965,11.546957999998995,12.519333000003826],"meanMilliseconds":12.47960000000021,"ledgerReadsPerCaptureFromSourceAudit":5,"limitation":"full-history reconstruction; measurements are local, not an SLA"}
+
+ ✓ tests/integration/m68.test.ts (13 tests) 34523ms
+   ✓ M6.8 downstream formal authority chain with historical upstream scores (disposable test evidence) (13)
+     ✓ A: contribution, cash-only current state, excluded formal universe and HOLD CASH never buy 1181ms
+     ✓ B/G/U/Q/S: score → BUY → persisted marginal lots → review/proposal → explicit ledger → reconstruction/reversal; history survives 4573ms
+     ✓ ambiguous, mismatched, missing and tampered marginal authority never falls back to an allocation 1719ms
+     ✓ later calculations use issuance cutoff; retry preserves time and revised proposal supersedes history 4326ms
+     ✓ legacy catalog cannot hide a corrupt marginal body by changing its scope before selection 1611ms
+     ✓ frozen legacy composition resolves persisted marginal authority without browser input 4056ms
+     ✓ production composition blocks normalized manual source without accepted market-boundary evidence 1382ms
+     ✓ security: all injected authority and lineage fields fail before a review write 863ms
+     ✓ fresh/populated M6.7 database: repeated deploy/status preserves all rows and historical replay 6836ms
+     ✓ adapter failures and future source times block formal action without fallback 908ms
+     ✓ concurrent/repeated monthly initiation is idempotent and never changes accounting 4830ms
+     ✓ V: corrected dataset B creates a new score and current context without rewriting decision A 1170ms
+     ✓ performance sanity: current reads at 30 holdings preserve exact NAV and record local latency 1068ms
+ ✓ tests/integration/decision.test.ts (14 tests) 22115ms
+   ✓ M6.5 immutable persisted decisions (4)
+     ✓ append/read, duplicate rejection, prior/snapshot/score/method/evidence lineage, later artifacts cannot rewrite history 1916ms
+     ✓ application resolves stored artifacts and rechecks portfolio instead of accepting client decision authority 647ms
+     ✓ rejects missing prior record, invented result and mismatched prior security 654ms
+     ✓ populated M6.4 SQLite upgrade preserves exact upstream rows and supports repeated migrations 2299ms
+   ✓ pending candidate cannot claim approval; retirement never rewrites historical synthetic decisions 638ms
+   ✓ M6.5.2 approved methodology persistence (4)
+     ✓ append-only migration over populated M6.4/M6.5; decision history false 2324ms
+     ✓ append-only migration over populated M6.4/M6.5; decision history true 2333ms
+     ✓ fresh database pins immutable approval, rejects forged metadata and leaves historical candidates non-production 628ms
+     ✓ approved identity creates a new formal artifact through server resolution, without upgrading synthetic history 658ms
+   ✓ M6.5.3 immutable sector remediation (5)
+     ✓ populated M6.4 upgrade/repeat preserves every historical row 2894ms
+     ✓ populated M6.5.1 upgrade/repeat preserves every historical row 2894ms
+     ✓ populated M6.5.2 upgrade/repeat preserves every historical row 2931ms
+     ✓ fresh registry pins the corrected record and cannot rewrite either approved version 629ms
+     ✓ server blocks old-version selection and arbitrary approval/plan/state strings; new formal truth leaves historical BUY intact 671ms
+ ✓ tests/integration/m68-backup.test.ts (3 tests) 21502ms
+   ✓ backup → disposable restore → integrity, complete historical rows, accounting and artifact replay 2230ms
+   ✓ backup/restore refuses overwrite, same path, public output, symlinks, missing checksums and altered backup bytes 17945ms
+   ✓ corrupt authoritative artifact cannot be published as a validated backup 1327ms
+ ✓ tests/integration/marginal.test.ts (5 tests) 19696ms
+   ✓ M6.6.1 persisted marginal boundary (5)
+     ✓ persists/replays two authoritative lots and stop, creates a new review, never posts trades 3829ms
+     ✓ rejects forged authority, corrupted artifacts, stale snapshots and formal/synthetic crossing 2422ms
+     ✓ substitution history is persisted, required on later reviews, and cannot be omitted or forged 4249ms
+     ✓ links actual fills to individual marginal lots and rejects duplicate or missing lot references 5252ms
+     ✓ M6.6 populated upgrade preserves reviews, proposals, embedded journals, audits, decision and execution links byte-for-byte 3944ms
+ ✓ tests/integration/portfolio.test.ts (18 tests) 17494ms
+   ✓ M6.3 real SQLite ledger / commands / migrations (18)
+     ✓ VC-L01 Command -> validation -> repository -> SQLite -> reload -> replay 678ms
+     ✓ VC-L05 / VC-SEC02 duplicate key/source and stale double submit cannot post twice 618ms
+     ✓ same values with distinct economic identities are not silently merged 604ms
+     ✓ VC-L03 oversell rejects before authoritative commit and revision advance 606ms
+     ✓ VC-SEC03 stale draft is rejected; never posts against stale quantity 605ms
+     ✓ raw late-leg insert/update/delete/replace/header destructive mutation fail 612ms
+     ✓ failed required leg insert rolls back header, revision and all legs 596ms
+     ✓ VC-L07 projection failure retains authoritative event and stale old projection 603ms
+     ✓ VC-L08 new event invalidates historical snapshot watermark 604ms
+     ✓ VC-L06 settled trade correction is atomic, queryable, survives reload 612ms
+     ✓ independent connections racing at one watermark permit at most one economic command 6020ms
+     ✓ decimal TEXT round-trip beyond safe integer and fractional charge 620ms
+     ✓ migration repeat/reopen retains methodology and reconstructs the golden fixture 1713ms
+     ✓ historical watermark reproduces the input set before a later backdated contribution 600ms
+     ✓ an old rebuild cannot overwrite a projection from a newer ledger revision 602ms
+     ✓ snapshot includes valuation/reconciliation versions and blocks missing evidence or changed inputs 601ms
+     ✓ corporate reference and staged accounting effects persist separately and are immutable 602ms
+     ✓ FK and value exclusivity constraints enabled 596ms
+ ✓ tests/integration/workflow.test.ts (11 tests) 18307ms
+   ✓ M6.6 immutable application and persistence (11)
+     ✓ persists proposal/journal atomically, deduplicates runs, never posts transactions 1520ms
+     ✓ same weekly invocation is idempotent; elapsed week creates no trades 1285ms
+     ✓ missing, stale, corrupt and client-injected authority all fail closed 1547ms
+     ✓ production boundary rejects synthetic history 1129ms
+     ✓ event supersedes pending schedule, blocks new monthly runs and preserves historical proposal 1725ms
+     ✓ decision audit preserves contemporaneous evidence and separates profit from quality 1460ms
+     ✓ historical R1/A1 survive new cash, snapshot, score/rank/decision and scoring identity 2214ms
+     ✓ execution readiness expires on new evidence, changed portfolio or an event 1483ms
+     ✓ execution links require a posted matching M6.3 transaction 1275ms
+     ✓ links an explicit posted trade without changing the original proposal or ledger 1370ms
+     ✓ fresh and populated M6.5 migration repeatability preserves every upstream row 3299ms
+ ✓ tests/integration/portfolio-review-remediation.test.ts (22 tests) 13352ms
+   ✓ R2-C01 future oversell rejects before commit; 100 current shares and watermark remain unchanged 690ms
+   ✓ R2-C01 future BUY then SELL and both settlements are accepted at valid economic transitions 637ms
+   ✓ R2-C01 future corporate-action duplicate EFFECTIVE stage is rejected before commit 609ms
+   ✓ R2-C01 future unfunded payable cannot hide beyond now 596ms
+   ✓ R2-C01 new earlier SELL cannot consume shares promised to an existing later future SELL 610ms
+   ✓ R2-C01 validates intermediate boundaries even when final future quantity would recover 611ms
+   ✓ R2-C01 future excessive settlement is rejected atomically 608ms
+   ✓ R2-C01 future settlement before originating obligation is rejected 602ms
+   ✓ R2-C01 future reversal cannot invalidate an already committed later sale 607ms
+   ✓ R2-C01 future settled-trade correction preserves atomicity and reversal lineage 611ms
+   ✓ R2-C01 future speculative event is still rejected, separate from confirmed future effect 592ms
+   ✓ R2-M01 projection infrastructure failure preserves ledger without claiming accounting corruption 592ms
+   ✓ R2-M01 concurrent watermark produces STALE even if rebuild throws ConflictError=false 597ms
+   ✓ R2-M01 concurrent watermark produces STALE even if rebuild throws ConflictError=true 598ms
+   ✓ R2-M01 unexpected post-commit reconstruction failure explicitly blocks trust without compensation 598ms
+   ✓ R2-M01 typed integrity error from projection is not an ordinary rebuild failure 600ms
+   ✓ R2-M01 post-commit integrity read failure is explicit and contains only safe diagnostics 592ms
+   ✓ R2-m03 persisted malformed-json rejects with safe DataIntegrityError 598ms
+   ✓ R2-m03 persisted column-mismatch rejects with safe DataIntegrityError 598ms
+   ✓ R2-m03 persisted leg-mismatch rejects with safe DataIntegrityError 598ms
+   ✓ R2-m03 persisted unknown-method rejects with safe DataIntegrityError 600ms
+   ✓ R2-m03 persisted action-terms rejects with safe DataIntegrityError 605ms
+ ✓ tests/unit/workflow.test.ts (36 tests) 12441ms
+   ✓ M5 review workflows (35)
+     ✓ all documented bias tags require contemporaneous evidence 3882ms
+ ✓ tests/integration/portfolio-regressions.test.ts (20 tests) 12211ms
+   ✓ AUDIT-C01 must reject a second active split backdated before the first reversal 687ms
+   ✓ AUDIT-M01 snapshot must resolve January 3 reference at January 2 18:00 UTC (January 3 01:00 Vietnam) 601ms
+   ✓ AUDIT-M02 a snapshot before supported inception must not claim VALID zero-state history 610ms
+   ✓ C01 replacement after reversal preserves original historical state and accepts one active stage 659ms
+   ✓ C01 replay rejects a duplicate backdated before the original even if latest active state appears free 604ms
+   ✓ C01 atomic replacement at reversal effective time follows deterministic economic ordering 601ms
+   ✓ M03 imported NAV baseline is priced, reproducible, versioned and separate from cost and contributions 597ms
+   ✓ M03 absent inception inputs block actionable imported snapshot while preserving current NAV 597ms
+   ✓ M03 missing inception evidence cannot be replaced with cost basis or current inputs 595ms
+   ✓ M03 stale inception evidence cannot be replaced with cost basis or current inputs 602ms
+   ✓ M03 future inception evidence cannot be replaced with cost basis or current inputs 606ms
+   ✓ M03 conflicting inception evidence cannot be replaced with cost basis or current inputs 604ms
+   ✓ M03 missing-sector inception evidence cannot be replaced with cost basis or current inputs 603ms
+   ✓ M03 missing-membership inception evidence cannot be replaced with cost basis or current inputs 603ms
+   ✓ M03 revised inception evidence recomputes gain without changing ledger 644ms
+   ✓ M02 inception itself is supported and empty zero-start history is distinct from pre-inception 592ms
+   ✓ M01 reference day boundary 2026-01-02T16:59:59.999Z resolves sector and identifier to OLD 602ms
+   ✓ M01 reference day boundary 2026-01-02T17:00:00.000Z resolves sector and identifier to NEW 604ms
+   ✓ M01 reference day boundary 2026-01-02T23:59:59.999Z resolves sector and identifier to NEW 600ms
+   ✓ M01 reference day boundary 2026-01-03T00:00:00.000Z resolves sector and identifier to NEW 598ms
+(node:55604) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/dependency-head.test.ts (15 tests) 11464ms
+   ✓ production resolves internally; caller-selected IDs/mode rejected; every head hash and required slot is checked 866ms
+   ✓ CAS A→B succeeds; concurrent A→C fails; retry after B checks compatibility; no partial release leaks 883ms
+   ✓ analysis fundamental change mid-flight blocks sealing; historical release remains replayable and cache stale 897ms
+   ✓ PARTITION authority change mid-analysis fails closed; market alone cannot promote MBB 824ms
+   ✓ TCX_EXCEPTION authority change mid-analysis fails closed; market alone cannot promote MBB 828ms
+   ✓ stale/missing market blocks refresh; expiry during analysis and at SQL publication rolls back 993ms
+   ✓ policy/release and live ledger changes invalidate decisions; persistence never trusts stale portfolio watermark 962ms
+   ✓ dependency change between final validation and SQL transaction rejects atomically 853ms
+   ✓ market activation cannot promote MBB; expiry at final transaction check leaves no partial snapshot 800ms
+   ✓ same immutable object ID with changed content is an integrity error; projection remains unchanged 803ms
+   ✓ missing market requests refresh, and incompatible/unknown dependencies cannot activate 764ms
+   ✓ policy supersession blocks new decision from old analysis while historical binding stays immutable 948ms
+   ✓ staged lifecycle receives original snapshot binding time while freshness revalidation uses the trusted current clock 839ms
+ ✓ tests/unit/marginal.test.ts (22 tests) 10921ms
+   ✓ M6.6.1 M6.5-owned marginal authorization (22)
+     ✓ A/B: two lots authorized; third blocked; post-lot exposures and residual are preserved 358ms
+     ✓ C: projected sector capacity stops the next lot 324ms
+     ✓ D: cash stops after one lot without exhausting the residual 309ms
+     ✓ G: only refreshed authoritative comparisons permit A then B 454ms
+     ✓ H: a new tie requires review, never alphabetical selection 419ms
+     ✓ I: 15 candidates use comparison evidence, with deterministic replay 4034ms
+     ✓ J: affordable alternative that fails required return receives no substitution 359ms
+     ✓ K: approved §12 conjunction permits B, then cash stops; preserves A's merit 405ms
+     ✓ L: lower share price alone grants no substitution authority 354ms
+     ✓ missing mosNotMateriallyWeaker evidence retains cash 359ms
+     ✓ missing concentrationNotWorse evidence retains cash 381ms
+     ✓ missing diversionDoesNotStarvePreferred evidence retains cash 354ms
+     ✓ recurring diversion requires fresh competitive evidence 367ms
+ ✓ tests/integration/scoring-readiness.test.ts (11 tests) 10311ms
+   ✓ FORMAL writes score plus immutable exact dataset binding, computes all-ticker readiness and reopens 1411ms
+   ✓ direct/default FORMAL engine and artifact repository cannot bypass DI; synthetic scope remains intact 747ms
+   ✓ a stored caller-authored DI PASS or a different run cannot manufacture independent review authority 797ms
+   ✓ reviewed financial/model/human inputs and clocks cannot be changed behind a valid acceptance 955ms
+   ✓ immutable guards, restrictive links and rollback retain both datasets and legacy score artifacts 1041ms
+   ✓ transport hashes cannot hide tampered DI review, readiness bindings or forged domain scores 982ms
+   ✓ historical FORMAL artifacts without dataset links remain readable but cannot claim readiness at the ranking boundary 767ms
+   ✓ configured review hashes still require an exact approved production methodology and requirements binding 748ms
+   ✓ governed DATE_ONLY persists, reopens and cannot be forged through reviewed input or external evidence 1159ms
+   ✓ stored v1 score, acceptance and dataset binding replay unchanged; v1 cannot authorize a new FORMAL write 839ms
+   ✓ even an externally pinned reviewed package cannot authorize caller-created DATE_ONLY lineage outside the canonical bridge 864ms
+ ✓ tests/unit/dca.test.ts (32 tests) 10159ms
+   ✓ M6.6 DCA baseline (32)
+     ✓ DCA-09 M6.5 robust comparator evidence determines priority 325ms
+     ✓ 2 equal candidates preserve economic tie regardless of affordability 330ms
+     ✓ 5 equal candidates preserve economic tie regardless of affordability 504ms
+     ✓ 15 equal candidates preserve economic tie regardless of affordability 1059ms
+     ✓ economically preferred but unaffordable does not substitute next affordable 327ms
+     ✓ old proposal remains immutable when all current artifacts change 553ms
+ ✓ tests/integration/current-remediation.test.ts (12 tests) 7892ms
+   ✓ A: authoritative NAV includes payable; price changes never alter accounting or transactions 696ms
+   ✓ B/C: missing, stale, unknown and conflicted latest price fail closed 638ms
+   ✓ D: effective-dated sector changes do not mutate old captured evidence 612ms
+   ✓ E: reconciliation discrepancy and stale ledger block actionability despite valid prices 608ms
+   ✓ F/H: preview does not write; concurrent weekly submissions persist one formal review without refresh/trade 629ms
+   ✓ I/security: browser authority fields are rejected before any formal write 601ms
+   ✓ J/K/L: missing analyst evidence, synthetic sources and arbitrary events cannot create reviews 605ms
+   ✓ G: posted monthly contribution with formal excluded universe preserves HOLD CASH and cash 1062ms
+   ✓ annual evidence remains separate from policy; missing quarterly evidence fails closed 616ms
+   ✓ normalized local adapter rejects forged outputs and preserves source as-of separately from retrieval 609ms
+   ✓ missing one of two held prices suppresses total NAV instead of a partial total 602ms
+   ✓ latest invalid or ambiguous quote cannot fall back to an older valid quote 613ms
+ ✓ tests/integration/registry.test.ts (10 tests) 7082ms
+   ✓ actual SQLite methodology registry (10)
+     ✓ migrates an empty DB with expected foundation/ledger tables and private permissions 1181ms
+     ✓ round-trips full metadata and date/instant semantics and freezes the mapped record 619ms
+     ✓ maps duplicates to ConflictError without replacing the original 597ms
+     ✓ preserves find missing/null and maps required missing to NotFoundError 590ms
+     ✓ rejects malformed metadata before writing 592ms
+     ✓ rolls back the entire transaction on a duplicate append 593ms
+     ✓ blocks update, delete and REPLACE through supported connections 593ms
+     ✓ preserves records on reconnect and repeated migration deploy 1132ms
+     ✓ detects invalid persisted metadata instead of returning trusted domain state 592ms
+     ✓ supports canonical effective-date filtering without implicit timezone shifts 593ms
+ ✓ tests/integration/fundamentals-snapshot.test.ts (9 tests) 5666ms
+   ✓ atomically seals/reopens content, selected/excluded members, provenance and independent build runs 729ms
+   ✓ authoritative enumeration rejects hidden conflicts, incomplete pins and forged availability with no partial content 632ms
+   ✓ new imports after frozen cutoff reproduce original content and eligible lineage while retained raw evidence stays immutable 618ms
+   ✓ all artifact/member writes reject update/delete/replace and restrictive FK violations 608ms
+   ✓ detects run/manifest/member tampering even if the attacker recomputes transport body hashes 616ms
+   ✓ raw capture tampering is detected during replay and future builds, despite apparently valid content identity 611ms
+   ✓ proposed registry/policy and request self-approval cannot produce a FORMAL run 597ms
+   ✓ persists derived membership with restrictive FKs and rejects output tampering through derivation replay 636ms
+   ✓ FORMAL availability requires an exact external policy hash binding and production methodology record 616ms
+(node:55913) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/data-freshness.test.ts (9 tests) 5610ms
+   ✓ empty data never invents universe or readiness counters and the data read bypasses portfolio/broker services 655ms
+   ✓ exact 30-member coverage and governed DATE_ONLY clocks are shown independently of DI readiness, with no writes 979ms
+   ✓ stored DI PASS cannot establish readiness without trusted review capabilities; mismatched acceptance/run stays blocked 904ms
+   ✓ unknown publication and excluded/missing requirements stay visible; public DTO withholds raw payloads, private references and credential URLs 606ms
+   ✓ a verified DATE_ONLY snapshot is readable by default composition without creating approvals or fabricated issuer times 607ms
+   ✓ tampered snapshot and malformed/absent run references fail closed without exposing diagnostics 611ms
+   ✓ revision provenance resolves the pinned predecessor without including operator or raw capture bodies 619ms
+   ✓ governed derived lineage displays actual ordered operands and selected canonical constituent IDs 628ms
+ ✓ tests/integration/fundamentals-normalization.test.ts (7 tests) 4652ms
+   ✓ qualification-bound normalization and immutable validation storage (7)
+     ✓ persists validated observations, exact lineage and unknown publication/availability; reopens and rejects duplicate writes 755ms
+     ✓ retains cross-receipt conflicts and unknown mappings as BLOCKED artifacts without overwriting prior facts 670ms
+     ✓ missing data stays null; corrected/revoked qualification and FORMAL unapproved maps block normalization 630ms
+     ✓ atomic persistence rejects forged output/context and rollback leaves no partial artifact 636ms
+     ✓ SQL mutation/replacement guards, restrictive foreign keys and read tamper detection hold 619ms
+     ✓ retains issuer, provider and mapping revision chains with exact replay and no availability inference 729ms
+     ✓ legacy assessments replay without relabeling history; new legacy append is rejected 612ms
+(node:55991) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/authority-invalidation.test.ts (4 tests) 3941ms
+   ✓ POLICY supersession invalidates current publication/cache and preserves historical replay 1064ms
+   ✓ SCORING_MODEL supersession invalidates current publication/cache and preserves historical replay 959ms
+   ✓ RISK_POLICY supersession invalidates current publication/cache and preserves historical replay 960ms
+   ✓ DECISION_ENGINE supersession invalidates current publication/cache and preserves historical replay 958ms
+(node:56012) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/dashboard-ui.test.ts (6 tests) 4175ms
+   ✓ M6.7 local read / confirmed command integration (6)
+     ✓ preview does not write; confirmation posts; repeat confirmation cannot duplicate 864ms
+     ✓ rejects tampering, browser business outputs, expired confirmation and stale watermark 605ms
+     ✓ reversal appends a new fact instead of mutating original 758ms
+     ✓ BUY preview resolves amount on server and rejects oversell without posting 606ms
+     ✓ read validates immutable ledger rather than trusting projection payload 746ms
+     ✓ rejects missing/cross-origin and remote host writes 596ms
+ ✓ tests/integration/fundamentals-repository.test.ts (6 tests) 3707ms
+   ✓ immutable fundamental SQLite repository (6)
+     ✓ exact source/capture/import/observation round-trip, reopen and no ledger mutation 687ms
+     ✓ retains conflicts and every correction kind without latest-wins or overwrites 618ms
+     ✓ raw invalid payload remains available and failed/partial imports cannot imply completeness 597ms
+     ✓ rejects unknown Security/capture/lineage and forged registry/formal production writes 607ms
+     ✓ guards UPDATE DELETE REPLACE and ON CONFLICT mutation at the database boundary 602ms
+     ✓ detects body, scalar metadata and raw payload tampering on read 595ms
+ ✓ tests/integration/scoring-artifacts.test.ts (4 tests) 3462ms
+   ✓ immutable scoring artifacts, actual SQLite (4)
+     ✓ fresh migration, immutable roundtrip, correction and registered methodology only 699ms
+     ✓ populated M6.3 upgrade and repeat deploy preserve existing data 1665ms
+     ✓ ranking persists only from formal scorecards and replays after method/evidence revisions 1082ms
+ ✓ tests/integration/fundamentals-derivation.test.ts (5 tests) 7309ms
+   ✓ persists exact formula/input/adjustment lineage atomically, reopens and retains canonical facts 717ms
+   ✓ rejects forged output, missing inputs and formal proposed release without partial writes 639ms
+   ✓ keeps N/R evidence, guards artifact/input mutation and replacement, restrictive FKs and tamper replay 647ms
+   ✓ persists/reopens/replays complete monetary review dimensions and N/R mismatches without mutating facts 768ms
+   ✓ legacy adjusted bodies stay immutable and replay fails closed rather than guessing missing dimensions 4537ms
+ ✓ tests/integration/fundamentals-availability-evidence.test.ts (5 tests) 4039ms
+   ✓ persists trusted boundaries and independently verifies authority on reopen; missing composition fails closed 906ms
+   ✓ adding a trusted binding does not reinterpret pinned fallback or legacy artifacts; new assessment has a separate identity 843ms
+   ✓ source/provider/hash/receipt mismatches reject governed input without persisting any assessment 849ms
+   ✓ a forged stored trusted assessment cannot create authority even with a recomputed body hash 724ms
+   ✓ FORMAL v2 requires independent exact registry, policy and publicly receivable provider methodology bindings 716ms
+ ✓ tests/integration/scoring-readiness-migration.test.ts (1 test) 2726ms
+   ✓ populated Slice05 upgrade preserves every old table, trigger, snapshot and historical score without retroactive bindings 2725ms
+ ✓ tests/unit/scoring.test.ts (59 tests) 2488ms
+ ✓ tests/integration/fundamentals-migration.test.ts (1 test) 2323ms
+   ✓ populated latest baseline upgrade, repeat deployment and all previous rows/triggers/portfolio replay are preserved 2322ms
+ ✓ tests/integration/fundamentals-snapshot-migration.test.ts (1 test) 2326ms
+   ✓ upgrades populated Slice4 baseline additively and preserves every prior table, trigger and row 2325ms
+ ✓ tests/integration/fundamentals-derivation-migration.test.ts (1 test) 2297ms
+   ✓ upgrades populated Slice 3 baseline additively, preserves every old table/trigger/row and repeats deployment 2296ms
+ ✓ tests/integration/fundamentals-normalization-migration.test.ts (1 test) 2262ms
+   ✓ upgrades populated Slice 2 baseline additively, preserves every old table/trigger/row and repeats deployment 2261ms
+ ✓ tests/integration/portfolio-migration.test.ts (1 test) 2263ms
+   ✓ populated M6.2 -> M6.3 additive migration preserves config records and replays fixture 2262ms
+ ✓ tests/unit/dashboard-ui.test.tsx (29 tests) 2221ms
+   ✓ renders marginal authorization, stop reasons and substitution policy with supporting evidence 460ms
+ ✓ tests/integration/di15-policy-b.test.ts (2 tests) 1865ms
+   ✓ trusted versioned acceptance persists all30 states and rejects deferred formal inputs before any score write 1079ms
+   ✓ PolicyB cannot manufacture independent approval, bypass pinned release or relabel issues 786ms
+ ✓ tests/integration/market-boundary.test.ts (4 tests) 1868ms
+   ✓ additive migration preserves legacy rows; immutable vNext reader fails unknown/hash/index; decision append cannot bypass seal 1226ms
+   ✓ atomic decision insert+seal rolls back on missing dependencies, changed head or seal failure 631ms
+ ✓ tests/unit/m68-policy.test.ts (5 tests) 1706ms
+   ✓ D/W: gain above 20 percent and biased rationales do not overwrite formal HOLD 1393ms
+ ✓ tests/unit/di15-policy-b.test.ts (88 tests) 1415ms
+ ✓ tests/unit/data-freshness-ui.test.tsx (6 tests) 1409ms
+   ✓ shows exact coverage denominator, historical readiness and current diagnostic staleness without trade controls 557ms
+ ✓ tests/unit/fpt-collector.test.ts (7 tests) 1336ms
+   ✓ FPT raw documents, no live network (7)
+     ✓ preserves binary bytes and hashes, captures landing page and stays PARTIAL 1323ms
+ ✓ tests/integration/isolation.test.ts (1 test) 1342ms
+   ✓ independent database fixtures never share records and remove only their owned directories 1341ms
+(node:56367) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/tcbs-pipeline.test.ts (7 tests) 1237ms
+   ✓ market expiry never invalidates historical capability/init replay; runtime status separates technical candidate from acceptance 313ms
+   ✓ additive immutable snapshot storage replays real candidate contracts on isolated DB; no production writes 664ms
+ ✓ tests/unit/scoring-golden.test.ts (32 tests) 924ms
+ ✓ tests/unit/vn30-final-closure-review.test.ts (3 tests) 818ms
+   ✓ reconstructs every material denominator and admission without scoring or losing blocked members 735ms
+ ✓ tests/unit/decision-sector.test.ts (36 tests) 758ms
+ ✓ tests/integration/fundamentals-ingest.test.ts (1 test) 744ms
+   ✓ persists immutable raw page/error/PDF manifests and retains independent refreshes 743ms
+(node:56384) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/dashboard-research-isolation.test.ts (1 test) 704ms
+   ✓ withholds unverifiable optional research while preserving independently sealed data 704ms
+ ✓ tests/integration/level1-disposition.test.ts (1 test) 689ms
+   ✓ persists governance independently, refuses mutation/untrusted approval and propagates TCX exception 689ms
+ ✓ tests/unit/decision.test.ts (139 tests) 679ms
+ ✓ tests/integration/issuer-documents.test.ts (1 test) 669ms
+   ✓ generic issuer collection persists only raw events and document lineage with no canonical/DI promotion 669ms
+ ✓ tests/integration/fundamental-admission.test.ts (1 test) 659ms
+   ✓ retains admission append-only, rejects identity reuse and never accepts scoring approval 659ms
+ ✓ tests/integration/numeric.test.ts (11 tests) 661ms
+ ✓ tests/unit/scoring-readiness.test.ts (10 tests) 497ms
+ ✓ tests/unit/policy-b-reporting.test.tsx (1 test) 477ms
+   ✓ PolicyB report preserves full denominator, deferred visibility, real Major severity and reopen conditions 476ms
+ ✓ tests/architecture/boundaries.test.mjs (33 tests) 465ms
+   ✓ dependency boundaries (33)
+     ✓ accepts the real nonempty source graph 395ms
+ ✓ tests/unit/hpg-debt-final-closure.test.ts (9 tests) 334ms
+(node:56419) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/di14-di15-final-closure.test.ts (6 tests) 331ms
+ ✓ tests/unit/bank-group-ticker-closure.test.ts (44 tests) 246ms
+ ✓ tests/unit/scoring-portfolio.test.ts (9 tests) 239ms
+ ✓ tests/unit/market-boundary.test.ts (36 tests) 204ms
+ ✓ tests/unit/document-qualification.test.ts (11 tests) 206ms
+ ✓ tests/unit/ssi-ticker-closure.test.ts (16 tests) 167ms
+ ✓ tests/unit/hpg-decision-grade.test.ts (17 tests) 137ms
+ ✓ tests/unit/current-remediation-ui.test.tsx (3 tests) 143ms
+ ✓ tests/unit/policy-b-ports.test.ts (7 tests) 132ms
+ ✓ tests/unit/vcb-ticker-closure.test.ts (12 tests) 110ms
+ ✓ tests/unit/vic-ticker-closure.test.ts (38 tests) 125ms
+ ✓ tests/unit/broker-snapshot.test.tsx (3 tests) 113ms
+ ✓ tests/unit/debt-contract-activation.test.ts (32 tests) 111ms
+ ✓ tests/unit/manual-fundamentals-ui.test.tsx (2 tests) 93ms
+ ✓ tests/unit/app-shell.test.tsx (2 tests) 93ms
+ ✓ tests/unit/scoring-evidence-time.test.ts (4 tests) 88ms
+ ✓ tests/unit/vic-accounting-qualification.test.ts (28 tests) 74ms
+ ✓ tests/unit/debt-metric-contract-proposal.test.ts (20 tests) 68ms
+ ✓ tests/architecture/initialization-preflight.test.mjs (3 tests) 69ms
+ ✓ tests/unit/fundamentals-snapshot.test.ts (18 tests) 68ms
+ ✓ tests/integration/authority-binding.test.ts (18 tests) 65ms
+ ✓ tests/unit/cafef-poc.test.ts (42 tests) 58ms
+ ✓ tests/unit/level1-promotion.test.ts (12 tests) 55ms
+ ✓ tests/unit/structured-certification.test.ts (45 tests) 54ms
+ ✓ tests/unit/fundamentals-availability-evidence.test.ts (10 tests) 45ms
+ ✓ tests/unit/issuer-documents.test.ts (12 tests) 41ms
+ ✓ tests/architecture/ui-authority.test.mjs (1 test) 35ms
+ ✓ tests/unit/hpg-ticker-closure.test.ts (8 tests) 32ms
+ ✓ tests/unit/fundamentals-revisions.test.ts (7 tests) 32ms
+ ✓ tests/unit/fundamentals-normalization.test.ts (12 tests) 28ms
+ ✓ tests/unit/fundamentals-live-public-disclosure.test.ts (4 tests) 27ms
+ ✓ tests/unit/scoring-bridge-derived.test.ts (5 tests) 27ms
+ ✓ tests/unit/portfolio-accounting.test.ts (54 tests) 26ms
+ ✓ tests/unit/fundamentals-fact-equivalence.test.ts (5 tests) 21ms
+ ✓ tests/integration/manual-first.test.ts (6 tests) 29ms
+ ✓ tests/unit/bank-accounting-qualification.test.ts (32 tests) 25ms
+ ✓ tests/unit/fundamentals-snapshot-derived.test.ts (4 tests) 24ms
+ ✓ tests/unit/fundamentals-derivation.test.ts (10 tests) 23ms
+ ✓ tests/architecture/08b-review.test.mjs (20 tests) 22ms
+ ✓ tests/unit/fundamentals-review-candidate.test.ts (4 tests) 21ms
+ ✓ tests/unit/manual-first.test.ts (41 tests) 23ms
+ ✓ tests/unit/fundamentals-adjustment.test.ts (7 tests) 17ms
+ ✓ tests/unit/fundamentals-equivalence-pit-selection.test.ts (2 tests) 16ms
+ ✓ tests/unit/fundamentals-financial-disclosure.test.ts (3 tests) 16ms
+ ✓ tests/unit/current-portion-presentation.test.ts (26 tests) 15ms
+ ✓ tests/unit/portfolio-read-models.test.ts (20 tests) 16ms
+ ✓ tests/unit/fundamentals-source-period-withdrawal.test.ts (3 tests) 15ms
+ ✓ tests/unit/fundamentals-comparative-period.test.ts (1 test) 16ms
+ ✓ tests/integration/broker-snapshot.test.ts (2 tests) 13ms
+ ✓ tests/unit/fundamentals-source-fact-rejection.test.ts (2 tests) 12ms
+ ✓ tests/architecture/di123-candidates.test.mjs (27 tests) 10ms
+ ✓ tests/unit/hybrid-targets.test.ts (2 tests) 9ms
+ ✓ tests/unit/fundamentals-contracts.test.ts (10 tests) 9ms
+ ✓ tests/unit/cafef-display.test.ts (5 tests) 10ms
+ ✓ tests/integration/file-safety.test.ts (14 tests) 8ms
+ ✓ tests/unit/cafef-refresh.test.ts (5 tests) 8ms
+ ✓ tests/unit/validation.test.ts (25 tests) 7ms
+(node:56478) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/broker-observations.test.ts (2 tests) 7ms
+ ✓ tests/unit/config-errors.test.ts (21 tests) 6ms
+ ✓ tests/unit/methodology-validation.test.ts (13 tests) 7ms
+ ✓ tests/unit/decision-portfolio.test.ts (2 tests) 6ms
+ ✓ tests/unit/tcbs-pipeline.test.ts (19 tests) 6ms
+ ✓ tests/unit/fundamentals-availability-legacy.test.ts (1 test) 6ms
+ ✓ tests/unit/portfolio-command.test.ts (1 test) 5ms
+ ✓ tests/unit/fundamentals-manual-document.test.ts (9 tests) 5ms
+ ✓ tests/unit/foundation.test.ts (15 tests) 5ms
+ ✓ tests/architecture/m68-authority.test.mjs (2 tests) 5ms
+ ✓ tests/unit/broker-api-data.test.ts (2 tests) 4ms
+ ✓ tests/unit/fundamentals-public-resource.test.ts (4 tests) 3ms
+ ✓ tests/unit/fundamentals-operational-freshness.test.ts (4 tests) 3ms
+ ✓ tests/unit/logging.test.ts (6 tests) 3ms
+ ✓ tests/architecture/fundamentals-governance-boundary.test.mjs (8 tests) 3ms
+ ✓ tests/architecture/fundamentals-mapping-closure.test.mjs (4 tests) 3ms
+ ✓ tests/unit/dashboard-screens.test.ts (3 tests) 2ms
+ ✓ tests/architecture/market-boundary.test.mjs (2 tests) 2ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 18 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/consumer-retail-ticker-closure.test.ts > 33 all seven protected source and evidence hashes remain unchanged
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/HPG/HPG_Baocaotaichinh_6T_2026_Soatxet_Hopnhat.pdf'
+ ❯ tests/unit/consumer-retail-ticker-closure.test.ts:39:170
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/18]⎯
+
+ FAIL  tests/unit/consumer-targeted-fix.test.ts > VNM original PDF is bound to exact retained bytes
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/VNM/VNM_2026_6M_Reviewed_Consolidated.pdf'
+ ❯ tests/unit/consumer-targeted-fix.test.ts:32:146
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/18]⎯
+
+ FAIL  tests/unit/consumer-targeted-fix.test.ts > All protected evidence and approved contracts retain their original hashes
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/FPT/FPT_Baocaotaichinh_2022_Kiemtoan_Hopnhat.pdf'
+ ❯ tests/unit/consumer-targeted-fix.test.ts:40:246
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/18]⎯
+
+ FAIL  tests/unit/di-governance-closure.test.ts > 6 retained original HPG PDF hashes still match physical bytes
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/HPG/HPG_Baocaotaichinh_6T_2026_Soatxet_Hopnhat.pdf'
+ ❯ tests/unit/di-governance-closure.test.ts:26:173
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/18]⎯
+
+ FAIL  tests/unit/di-governance-closure.test.ts > 7 VJC independent producer replay is deterministic with explicit ticker
+Error: Command failed: /private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-vjc-ticker.mjs --ticker=VJC
+node:fs:560
+  return binding.open(
+                 ^
+
+Error: ENOENT: no such file or directory, open 'data/providers/cafef/poc-2026-10-13/raw/4e7a254ac3a9039dcd466c56c0bc264c293839b3fa06bebcbcec7960d26b2d63.json'
+    at Object.openSync (node:fs:560:18)
+    at readFileSync (node:fs:444:35)
+    at sha (file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-vjc-ticker.mjs:15:98)
+    at file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-vjc-ticker.mjs:19:118
+    at check (file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-vjc-ticker.mjs:18:25)
+    at file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-vjc-ticker.mjs:19:1 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'data/providers/cafef/poc-2026-10-13/raw/4e7a254ac3a9039dcd466c56c0bc264c293839b3fa06bebcbcec7960d26b2d63.json'
+}
+
+Node.js v22.23.2
+
+ ❯ sha scripts/verify-vjc-ticker.mjs:15:98
+ ❯ scripts/verify-vjc-ticker.mjs:19:118
+ ❯ check scripts/verify-vjc-ticker.mjs:18:25
+ ❯ tests/unit/di-governance-closure.test.ts:27:83
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/18]⎯
+
+ FAIL  tests/unit/di-governance-closure.test.ts > 8 GVR independent producer replay is deterministic with explicit ticker
+Error: Command failed: /private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-gvr-ticker.mjs --ticker=GVR
+node:fs:560
+  return binding.open(
+                 ^
+
+Error: ENOENT: no such file or directory, open 'data/providers/cafef/poc-2026-10-13/raw/d57582a4e8f8e5450b3428f1fedd399944b1074ffc9b85fd1575edeaa3a7860d.json'
+    at Object.openSync (node:fs:560:18)
+    at readFileSync (node:fs:444:35)
+    at sha (file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-gvr-ticker.mjs:15:98)
+    at file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-gvr-ticker.mjs:19:118
+    at check (file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-gvr-ticker.mjs:18:25)
+    at file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-gvr-ticker.mjs:19:1 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'data/providers/cafef/poc-2026-10-13/raw/d57582a4e8f8e5450b3428f1fedd399944b1074ffc9b85fd1575edeaa3a7860d.json'
+}
+
+Node.js v22.23.2
+
+ ❯ sha scripts/verify-gvr-ticker.mjs:15:98
+ ❯ scripts/verify-gvr-ticker.mjs:19:118
+ ❯ check scripts/verify-gvr-ticker.mjs:18:25
+ ❯ tests/unit/di-governance-closure.test.ts:28:83
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/18]⎯
+
+ FAIL  tests/unit/energy-ticker-closure.test.ts > 29 all approved closures and production contracts unchanged
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/FPT/FPT_Baocaotaichinh_2022_Kiemtoan_Hopnhat.pdf'
+ ❯ tests/unit/energy-ticker-closure.test.ts:36:163
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/18]⎯
+
+ FAIL  tests/unit/fpt-ticker-closure.test.ts > deterministic replay requires no temporary extraction files
+Error: ENOENT: no such file or directory, open '/Users/nglehoangan/Documents/Working/VN_30_Investment/data/providers/cafef/poc-2026-10-13/raw/8577968e8df0cfa41f466b62f18cd61704ef0c96444ef0dd24d5c4c99c9721ca.json'
+ ❯ tests/unit/fpt-ticker-closure.test.ts:31:237
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/18]⎯
+
+ FAIL  tests/unit/gvr-ticker-closure.test.ts > 33 all 13 approved closures, sources, contracts and prior tests remain unchanged
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/BSR/BSR_2026_6M_Reviewed_Consolidated.pdf'
+ ❯ tests/unit/gvr-ticker-closure.test.ts:36:178
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/18]⎯
+
+ FAIL  tests/unit/gvr-ticker-closure.test.ts > retained originals exist and current inventory components reconcile including provision
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/unit/gvr-ticker-closure.test.ts:43:167
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/18]⎯
+
+ FAIL  tests/unit/real-estate-ticker-closure.test.ts > 23 offline replay binds originals and raw bytes without disposable extraction
+Error: ENOENT: no such file or directory, open 'data/providers/cafef/poc-2026-10-13/raw/5331d5bd01815f7ad894c85d418d8f26a974437ed5e8f5b831aa615e5a25e8c7.json'
+ ❯ tests/unit/real-estate-ticker-closure.test.ts:39:289
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/18]⎯
+
+ FAIL  tests/unit/tcx-ket-vang-targeted.test.ts > TCX final targeted FY2022 Két Vàng forensic boundary > 19 SSI closure unchanged
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/SSI/SSI_Baocaotaichinh_2022_Kiemtoan_Hopnhat.pdf'
+ ❯ protectedBytes tests/unit/tcx-ket-vang-targeted.test.ts:12:190
+
+ ❯ tests/unit/tcx-ket-vang-targeted.test.ts:29:36
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/18]⎯
+
+ FAIL  tests/unit/tcx-ket-vang-targeted.test.ts > TCX final targeted FY2022 Két Vàng forensic boundary > 20 all 15 approved closures and primary TCX evidence unchanged
+Error: ENOENT: no such file or directory, open 'data/manual-extracted/current/ocr/00b0d4dfa991b380ea4814db6bce9d1cb50ec6979a629270413bf279c9bf44d5-p10.json'
+ ❯ protectedBytes tests/unit/tcx-ket-vang-targeted.test.ts:12:190
+
+ ❯ tests/unit/tcx-ket-vang-targeted.test.ts:30:74
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/18]⎯
+
+ FAIL  tests/unit/tcx-ket-vang-targeted.test.ts > TCX final targeted FY2022 Két Vàng forensic boundary > 22 no denominator or contract modifications
+AssertionError: src/domain/fundamentals/debt-contract.ts: expected '356431c6a3659f3bb3ba41900d9481c276960…' to be 'f4810fd87fa31364fbc29093b91d37bd46f1c…' // Object.is equality
+
+Expected: "f4810fd87fa31364fbc29093b91d37bd46f1ce062a7088136279e519ea3a5f55"
+Received: "356431c6a3659f3bb3ba41900d9481c2769604376ee6234bc46eec0d0a5737fc"
+
+ ❯ protectedBytes tests/unit/tcx-ket-vang-targeted.test.ts:12:234
+
+ ❯ tests/unit/tcx-ket-vang-targeted.test.ts:32:56
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/18]⎯
+
+ FAIL  tests/unit/tcx-ticker-closure.test.ts > TCX Level-1 canonical accounting isolation and semantics > 32 SSI protected evidence unchanged
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/SSI/SSI_Baocaotaichinh_2022_Kiemtoan_Hopnhat.pdf'
+ ❯ tests/unit/tcx-ticker-closure.test.ts:49:227
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/18]⎯
+
+ FAIL  tests/unit/tcx-ticker-closure.test.ts > TCX Level-1 canonical accounting isolation and semantics > 33 all 15 approved closure artifacts and bound sources unchanged
+Error: ENOENT: no such file or directory, open 'data/manual-extracted/current/ocr/00b0d4dfa991b380ea4814db6bce9d1cb50ec6979a629270413bf279c9bf44d5-p10.json'
+ ❯ tests/unit/tcx-ticker-closure.test.ts:50:168
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/18]⎯
+
+ FAIL  tests/unit/vjc-ticker-closure.test.ts > 40 all 14 approved closures and existing contracts unchanged
+Error: ENOENT: no such file or directory, open '.gitattributes 2'
+ ❯ tests/unit/vjc-ticker-closure.test.ts:40:211
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/18]⎯
+
+ FAIL  tests/unit/vjc-ticker-closure.test.ts > all retained transcriptions qualify and all five source PDFs are hash-bound
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/VJC/VJC_Baocaotaichinh_2022_Kiemtoan_Hopnhat.pdf'
+ ❯ tests/unit/vjc-ticker-closure.test.ts:43:321
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/18]⎯
+
+
+ Test Files  10 failed | 129 passed (139)
+      Tests  18 failed | 2044 passed (2062)
+   Start at  07:00:54
+   Duration  371.27s (tests 88%, environment 7%, setup 3%, import 2%, transform 1%)
+
+    Isolate  139 workers spawned · ~229ms startup each (spawn + environment, per file)
+             at least ~31.60s faster with isolate: false — reuses workers across files instead of one per file
+
+JSON report written to /private/tmp/authority-full-final.json

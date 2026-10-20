@@ -1,0 +1,41 @@
+{
+  "status": "ACTIVATION_BLOCKED",
+  "issues": [
+    {
+      "id": "SCORING_EXECUTABLE_APPROVAL_MISSING",
+      "severity": "MAJOR_ACTIVATION_BLOCKER",
+      "implementationIdentity": "m64-clarification-1",
+      "semanticVersion": "1.0.0",
+      "state": "PROPOSED / TEST; PRODUCTION_APPROVAL_PENDING",
+      "evidence": [
+        {
+          "path": "docs/06_DASHBOARD/6.4 Scoring & Ranking/M6_4_2_REMEDIATION_REPORT.md",
+          "size": 2631,
+          "sha256": "63d37e9aa305a8ab42a2f921ce95e66eae8b8a23638bd11828ce111247ea7004",
+          "sourceCommit": "16d8240bbf7b94b55a260408cf7acca1674eb15a"
+        },
+        {
+          "path": "docs/06_DASHBOARD/6.4 Scoring & Ranking/METHODOLOGY_CLARIFICATION.md",
+          "size": 30108,
+          "sha256": "283db289de29e203e6e9361b058fd1917a7029db3b2df40b7e42683dd4d53222",
+          "sourceCommit": "16d8240bbf7b94b55a260408cf7acca1674eb15a"
+        },
+        {
+          "path": "docs/06_DASHBOARD/6.5 Decision Engine/M652_OWNER_APPROVAL.md",
+          "size": 2977,
+          "sha256": "4e65616dc568c7d0ceab51c859e890d916a8b6e1aac13d9855de478bc594875d",
+          "sourceCommit": "56b267274c888708970493159e20398702866bb9"
+        }
+      ],
+      "resolution": "A genuine external approval for this exact executable clarification, with approval reference, effective date and exact immutable implementation/configuration identity; or an already-approved compatible executable artifact proven by repository evidence. This task does not grant that approval."
+    }
+  ],
+  "consequences": [
+    "No complete SCORING_MODEL production head",
+    "Cross-authority and Decision–Policy production compatibility cannot PASS",
+    "No DependencyRelease bootstrap/CAS/atomic activation",
+    "Production resolver correctly rejects absent active release"
+  ],
+  "readyForScoring": false,
+  "decisionReady": false
+}

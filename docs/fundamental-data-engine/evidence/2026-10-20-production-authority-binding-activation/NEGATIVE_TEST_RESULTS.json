@@ -1,0 +1,166 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "requirement": "MISSING_POLICY_AUTHORITY",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/authority-binding.test.ts::authority binding: staging cannot grant executable approval MISSING_POLICY_AUTHORITY"
+      ]
+    },
+    {
+      "requirement": "MISSING_RISK_AUTHORITY",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/authority-binding.test.ts::authority binding: staging cannot grant executable approval MISSING_RISK_POLICY_AUTHORITY"
+      ]
+    },
+    {
+      "requirement": "MISSING_SCORING_AUTHORITY",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/authority-binding.test.ts::authority binding: staging cannot grant executable approval MISSING_SCORING_MODEL_AUTHORITY"
+      ]
+    },
+    {
+      "requirement": "MISSING_DECISION_ENGINE_AUTHORITY",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/authority-binding.test.ts::authority binding: staging cannot grant executable approval MISSING_DECISION_ENGINE_AUTHORITY"
+      ]
+    },
+    {
+      "requirement": "UNAPPROVED_AUTHORITY",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/authority-binding.test.ts::authority binding: staging cannot grant executable approval UNAPPROVED_AUTHORITY and future authority"
+      ]
+    },
+    {
+      "requirement": "AMBIGUOUS_AUTHORITY",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/authority-binding.test.ts::authority binding: staging cannot grant executable approval AMBIGUOUS_AUTHORITY"
+      ]
+    },
+    {
+      "requirement": "ARTIFACT_HASH_MISMATCH",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/authority-binding.test.ts::authority binding: staging cannot grant executable approval ARTIFACT_HASH_MISMATCH even when receipt stays intact"
+      ]
+    },
+    {
+      "requirement": "APPROVAL_PROVENANCE_MISSING",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/authority-binding.test.ts::authority binding: staging cannot grant executable approval APPROVAL_PROVENANCE_MISSING cannot be repaired by rehashing"
+      ]
+    },
+    {
+      "requirement": "POLICY_SCORING_INCOMPATIBLE",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/authority-binding.test.ts::authority binding: staging cannot grant executable approval POLICY:SCORING_MODEL incompatibility/missing evidence/hash mismatch fail closed"
+      ]
+    },
+    {
+      "requirement": "POLICY_DECISION_INCOMPATIBLE",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/authority-binding.test.ts::authority binding: staging cannot grant executable approval POLICY:DECISION_ENGINE incompatibility/missing evidence/hash mismatch fail closed",
+        "integration/authority-binding.test.ts::authority binding: staging cannot grant executable approval RISK_POLICY:DECISION_ENGINE incompatibility/missing evidence/hash mismatch fail closed"
+      ]
+    },
+    {
+      "requirement": "RISK_DECISION_INCOMPATIBLE",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/authority-binding.test.ts::authority binding: staging cannot grant executable approval RISK_POLICY:DECISION_ENGINE incompatibility/missing evidence/hash mismatch fail closed"
+      ]
+    },
+    {
+      "requirement": "SCORING_DECISION_INCOMPATIBLE",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/authority-binding.test.ts::authority binding: staging cannot grant executable approval SCORING_MODEL:DECISION_ENGINE incompatibility/missing evidence/hash mismatch fail closed"
+      ]
+    },
+    {
+      "requirement": "MBB_QUARANTINE_MISMATCH",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/dependency-head.test.ts::market activation cannot promote MBB; expiry at final transaction check leaves no partial snapshot"
+      ]
+    },
+    {
+      "requirement": "TCX_EXCEPTION_MISMATCH",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/dependency-head.test.ts::TCX_EXCEPTION authority change mid-analysis fails closed; market alone cannot promote MBB"
+      ]
+    },
+    {
+      "requirement": "DEPENDENCY_RELEASE_HASH_MISMATCH",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/dependency-head.test.ts::analysis fundamental change mid-flight blocks sealing; historical release remains replayable and cache stale"
+      ]
+    },
+    {
+      "requirement": "CAS_CONFLICT",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/dependency-head.test.ts::CAS A→B succeeds; concurrent A→C fails; retry after B checks compatibility; no partial release leaks"
+      ]
+    },
+    {
+      "requirement": "PARTIAL_ACTIVATION",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/dependency-head.test.ts::CAS A→B succeeds; concurrent A→C fails; retry after B checks compatibility; no partial release leaks"
+      ]
+    },
+    {
+      "requirement": "CALLER_SELECTED_SUPERSEDED_AUTHORITY",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/authority-invalidation.test.ts::POLICY supersession invalidates current publication/cache and preserves historical replay",
+        "integration/authority-invalidation.test.ts::SCORING_MODEL supersession invalidates current publication/cache and preserves historical replay",
+        "integration/authority-invalidation.test.ts::RISK_POLICY supersession invalidates current publication/cache and preserves historical replay",
+        "integration/authority-invalidation.test.ts::DECISION_ENGINE supersession invalidates current publication/cache and preserves historical replay"
+      ]
+    },
+    {
+      "requirement": "HISTORICAL_REPLAY_PRODUCTION_ESCAPE",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/dependency-head.test.ts::analysis fundamental change mid-flight blocks sealing; historical release remains replayable and cache stale"
+      ]
+    }
+  ],
+  "authorityBindingTests": 18,
+  "prospectiveAuthorityInvalidationTests": 4,
+  "existingDependencyTests": 15,
+  "productionAuthorityMutatedForTesting": false,
+  "syntheticFixturesConferApproval": false
+}
