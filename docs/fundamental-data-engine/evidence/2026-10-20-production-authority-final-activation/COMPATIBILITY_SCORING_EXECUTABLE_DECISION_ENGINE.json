@@ -1,0 +1,164 @@
+{
+  "contract": "production-authority-compatibility-v1",
+  "id": "compatibility-scoring_executable-decision_engine-20261020",
+  "pair": "SCORING_EXECUTABLE:DECISION_ENGINE",
+  "result": "COMPATIBLE",
+  "scope": "STATIC_AUTHORITY_ONLY; independent runtime data/market/portfolio/action gates remain mandatory",
+  "authorities": [
+    {
+      "type": "SCORING_EXECUTABLE",
+      "id": "scoring-executable-production-m64-clarification-1-v1.0.0-20261020",
+      "hash": "e5072c4fd8d3ffc7ae5c513100e962cbf7f065de705a4e3a1b44d5513ea71de2"
+    },
+    {
+      "type": "DECISION_ENGINE",
+      "id": "authority-decision_engine-1.0.2-20261020",
+      "hash": "98cce32e14e42910a8381b6929ebe6ee00efb926701a8379c5e1c30d7949bd26"
+    }
+  ],
+  "rules": [
+    {
+      "id": "100 points and unchanged category maxima 25/15/15/10/20/10/5",
+      "result": "PASS",
+      "governing": {
+        "path": "docs/01 SYSTEM/SCORING_MODEL_v1.0.md",
+        "sha256": "2afc75a20e13d08b88459f57b39a6ebb13f91452fc8b3313a0e817ea0dd44aff"
+      },
+      "implementation": {
+        "path": "src/domain/scoring/methodology/identity.ts",
+        "sha256": "d3ebed4882d4f04d53623d5c462280873b3f514beaa97345324f3eab6a1bbf7e"
+      },
+      "testReferences": [
+        "tests/unit/scoring.test.ts",
+        "tests/unit/scoring-golden.test.ts"
+      ]
+    },
+    {
+      "id": "Missing evidence is explicit; no neutral-fill, renormalization or isolated-ratio automatic award",
+      "result": "PASS",
+      "governing": {
+        "path": "docs/01 SYSTEM/SCORING_MODEL_v1.0.md",
+        "sha256": "2afc75a20e13d08b88459f57b39a6ebb13f91452fc8b3313a0e817ea0dd44aff"
+      },
+      "implementation": {
+        "path": "src/domain/scoring/scorecard.ts",
+        "sha256": "2a778e3291cac295fab9f3f18358ed43415d3fea893bd912e6608302a8b18d18"
+      },
+      "testReferences": [
+        "tests/unit/scoring.test.ts"
+      ]
+    },
+    {
+      "id": "Sector normalization and metric definitions retained",
+      "result": "PASS",
+      "governing": {
+        "path": "docs/01 SYSTEM/SCORING_MODEL_v1.0.md",
+        "sha256": "2afc75a20e13d08b88459f57b39a6ebb13f91452fc8b3313a0e817ea0dd44aff"
+      },
+      "implementation": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "testReferences": [
+        "tests/unit/scoring-golden.test.ts"
+      ]
+    },
+    {
+      "id": "Stage0/investability and risk veto precede scored actionability; required return does not change arithmetic",
+      "result": "PASS",
+      "governing": {
+        "path": "docs/01 SYSTEM/RISK_POLICY_v1.0.md",
+        "sha256": "3785c1bb39b80435655a1621b2afbda992c38beaff82edebc0c67b0bc54ee744"
+      },
+      "implementation": {
+        "path": "src/domain/scoring/eligibility.ts",
+        "sha256": "cf113959ae2084c56b57b4a77e7d567d60b24948787eedc24b7e6da4809dba71"
+      },
+      "testReferences": [
+        "tests/unit/scoring.test.ts",
+        "tests/unit/scoring-portfolio.test.ts"
+      ]
+    },
+    {
+      "id": "Scoring does not directly issue Buy/Sell",
+      "result": "PASS",
+      "governing": {
+        "path": "docs/01 SYSTEM/DECISION_FRAMEWORK_v1.0.md",
+        "sha256": "e1929fd8d8fe337c3d80fe2c76dfbd48e1f41d2d4b4a0618b42269b2635f8b1d"
+      },
+      "implementation": {
+        "path": "src/domain/decision/engine.ts",
+        "sha256": "5e0d80b1227c961c3d5b767e30bdbfe0421294e43c1dcac83403c9f1f715570a"
+      },
+      "testReferences": [
+        "tests/unit/decision.test.ts"
+      ]
+    },
+    {
+      "id": "PolicyB partition and MBB null-score/no-ranking/no-capital quarantine retained",
+      "result": "PASS",
+      "governing": {
+        "path": "docs/01 SYSTEM/INVESTMENT_POLICY.md",
+        "sha256": "7160610b4c415a08f4a88b5d20ca6cc079119d5da552791f0c26781da7bd8e4c"
+      },
+      "implementation": {
+        "path": "src/domain/fundamentals/partial-universe.ts",
+        "sha256": "dd68b8a2dbfcbea09e89347883ec60fd42fba16e5b851cd302c31c505d984503"
+      },
+      "testReferences": [
+        "tests/unit/fundamentals-policy-b.test.ts",
+        "tests/integration/dependency-head.test.ts"
+      ]
+    },
+    {
+      "id": "Approved decision states; BUY/ACCUMULATE ownership, final action, LOW-confidence no capital and investability precedence",
+      "result": "PASS",
+      "governing": {
+        "path": "docs/01 SYSTEM/DECISION_FRAMEWORK_v1.0.md",
+        "sha256": "e1929fd8d8fe337c3d80fe2c76dfbd48e1f41d2d4b4a0618b42269b2635f8b1d"
+      },
+      "implementation": {
+        "path": "src/domain/decision/engine.ts",
+        "sha256": "5e0d80b1227c961c3d5b767e30bdbfe0421294e43c1dcac83403c9f1f715570a"
+      },
+      "testReferences": [
+        "tests/unit/decision.test.ts"
+      ]
+    },
+    {
+      "id": "Valuation-only SELL switching hurdle, pending/escalated review, temporary deferral, residual thesis and execution sub-status",
+      "result": "PASS",
+      "governing": {
+        "path": "docs/01 SYSTEM/DECISION_FRAMEWORK_v1.0.md",
+        "sha256": "e1929fd8d8fe337c3d80fe2c76dfbd48e1f41d2d4b4a0618b42269b2635f8b1d"
+      },
+      "implementation": {
+        "path": "src/domain/decision/validation.ts",
+        "sha256": "bd1e1d20ab88c0df979245639b21f72cad63351b8cb50241607944b2d5d69eb8"
+      },
+      "testReferences": [
+        "tests/unit/decision.test.ts",
+        "tests/integration/decision.test.ts"
+      ]
+    },
+    {
+      "id": "Portfolio impact, risk vetoes, constrained sizing and Technical WAIT limitations; approved CR and monotone sector correction",
+      "result": "PASS",
+      "governing": {
+        "path": "docs/01 SYSTEM/RISK_POLICY_v1.0.md",
+        "sha256": "3785c1bb39b80435655a1621b2afbda992c38beaff82edebc0c67b0bc54ee744"
+      },
+      "implementation": {
+        "path": "src/domain/decision/incremental-size.ts",
+        "sha256": "ac79e62e4dffd0b8f874bfc953203e270072a8eb75e1896df7596541deb26f95"
+      },
+      "testReferences": [
+        "tests/unit/decision-sector.test.ts",
+        "tests/unit/decision-portfolio.test.ts"
+      ]
+    }
+  ],
+  "approvalBasis": "Exact approved baseline/unchanged source bytes plus explicit Owner approval of the previously unapproved scoring clarification; prior review identities retained.",
+  "recordedAt": "2026-10-20T08:40:36.038Z",
+  "contentHash": "0128caa0c32775a8f459b064373b95cff5fad7760f579e3235de99055465d633"
+}

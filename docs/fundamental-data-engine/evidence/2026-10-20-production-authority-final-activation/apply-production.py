@@ -1,0 +1,31 @@
+"""One-shot minimum production migration + CAS activation, guarded by validated recovery and exact pre-state.
+Never retries a changed production DB/head. No scoring, market fetch, portfolio or accounting writes.
+"""
+import importlib.util,json,os,pathlib,subprocess,sys
+assert sys.argv[1:]==['--activate'],'Explicit --activate required'
+R=pathlib.Path.cwd();P=R/'docs/fundamental-data-engine/evidence/2026-10-20-production-authority-final-activation';NODE='/private/tmp/node-v22.23.2-darwin-arm64/bin/node'
+spec=importlib.util.spec_from_file_location('state',P/'inspect-state.py');state=importlib.util.module_from_spec(spec);spec.loader.exec_module(state)
+def load(p):return json.loads(pathlib.Path(p).read_text())
+def save(n,x):(P/n).write_text(json.dumps(x,indent=2)+'\n')
+gate=load(P/'PRE_ACTIVATION_GATES.json');recovery=load(P/'RECOVERY_REVIEW.json');base=load(P/'BASELINE_IDENTITY.json');assert gate['status']=='PASS' and recovery['status']=='PASS' and gate['expectedPreviousHead'] is None
+assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==base['startingHEAD']
+for p,h in gate['codeAndConfigPins'].items():assert state.sha((R/p).read_bytes())==h,'CONCURRENT_AUTHORITY_CHANGE'
+assert state.sha(pathlib.Path(recovery['backupPath']).read_bytes())==recovery['backupSHA256']
+source=R/'data/vn30.sqlite';before=state.inspect(source);assert before['sha256']==gate['sourceDatabaseSHA256'],'CONCURRENT_PRODUCTION_DB_CHANGE';assert not before['dependencyHeads']
+back=state.inspect(pathlib.Path(recovery['backupPath']));assert back['tables']==before['tables'] and back['schemaObjects']==before['schemaObjects']
+gate['recoveryVerified']=True;gate['recoveryReceipt']={'path':str((P/'RECOVERY_REVIEW.json').relative_to(R)),'sha256':state.sha((P/'RECOVERY_REVIEW.json').read_bytes())};save('PRE_ACTIVATION_GATES.json',gate)
+result=subprocess.run([NODE,'scripts/database.mjs','migrate','--no-env-file'],cwd=R,env={**os.environ,'DATABASE_URL':'file:'+str(source)},capture_output=True,text=True,timeout=75);(P/'validation/production-migration.log').write_text((result.stdout+result.stderr).rstrip()+'\n');assert result.returncode==0,'PRODUCTION_MIGRATION_FAILED: inspect evidence, do not retry blindly'
+migrated=state.inspect(source);assert len(migrated['migrations'])==len(before['migrations'])+2
+assert all(migrated['tables'][k]==v for k,v in before['tables'].items() if k!='_prisma_migrations');assert all(migrated['schemaObjects'][k]==v for k,v in before['schemaObjects'].items());assert not migrated['dependencyHeads'];save('MIGRATION_APPLIED_STATE.json',migrated)
+result=subprocess.run([NODE,str(P/'activate-authority.mjs'),str(source),'--production'],cwd=R,capture_output=True,text=True,timeout=75);(P/'validation/production-activation.log').write_text((result.stdout+result.stderr).rstrip()+'\n');assert result.returncode==0,'PRODUCTION_ACTIVATION_FAILED: retain recovery and inspect; no blind retry'
+after=state.inspect(source);save('POST_ACTIVATION_STATE.json',after);allowed={'_prisma_migrations','methodology_record','market_boundary_record','market_boundary_dependency_head','dependency_object_identity','dependency_release'}
+changes=[]
+for name in sorted(set(before['tables'])|set(after['tables'])):
+ a=before['tables'].get(name,{'rows':0,'rowHashes':{}});b=after['tables'].get(name,{'rows':0,'rowHashes':{}});old=a['rowHashes'];new=b['rowHashes'];inserted=len(set(new)-set(old));deleted=len(set(old)-set(new));updated=sum(old[k]!=new[k] for k in set(old)&set(new))
+ if inserted or deleted or updated:changes.append({'table':name,'before':a['rows'],'after':b['rows'],'inserted':inserted,'updated':updated,'deleted':deleted});assert name in allowed,(name,'unauthorized table change');assert updated==0 and deleted==0,(name,'non-additive mutation')
+assert all(after['schemaObjects'][k]==v for k,v in before['schemaObjects'].items())
+release=load(P/'DEPENDENCY_RELEASE.json');assert after['dependencyHeads']==[{'id':'production-dependencies-v1','hash':release['contentHash'],'updatedAt':release['recordedAt']}]
+audit={'status':'PASS','productionDBMutated':True,'sourcePath':'data/vn30.sqlite','beforeSHA256':before['sha256'],'afterSHA256':after['sha256'],'tablesChanged':changes,'totals':{'inserted':sum(x['inserted'] for x in changes),'updated':0,'deleted':0},'schemaChanges':'Only two already-approved additive migrations; all pre-existing schema objects and table rows preserved.','newTables':sorted(set(after['tables'])-set(before['tables'])),'accountingRowsChanged':0,'portfolioRowsChanged':0,'marketObservationRowsChanged':0,'scoringOutputRowsChanged':0,'rankingRowsChanged':0,'decisionRowsChanged':0,'marketBoundaryRecordsInserted':'CAPABILITY and INITIALIZATION only; no MARKET/ANALYSIS/PORTFOLIO/DECISION records','necessaryAuthorityMetadata':'One immutable APPROVED/PRODUCTION SCORING methodology record inserted in the SAME CAS transaction as the release/head, rollback tested.','recovery':recovery['backupPath']};save('PRODUCTION_DB_MUTATION_AUDIT.json',audit)
+save('CAS_ACTIVATION_REVIEW.json',{'status':'PASS','expectedPreviousHead':None,'previousHead':None,'activeHead':{'id':'production-dependencies-v1','hash':release['contentHash']},'release':{'id':release['id'],'hash':release['contentHash']},'mechanism':'Existing ProductionDependencies.activate → PrismaDependencyRegistry.activate CAS; no bypass or blind retry','conflicts':'Rejected on disposable tests; actual bootstrap observed no prior head'})
+save('ATOMIC_ACTIVATION_REVIEW.json',{'status':'PASS','release':{'id':release['id'],'hash':release['contentHash']},'headCount':len(release['heads']),'authorityBundle':next(h for h in release['heads'] if h['type']=='SCORING_MODEL')['content']['authorityBundle'],'atomicMethodRegistration':True,'rollbackProof':'Production-authority integration test injected failure before release insert; no method, head or identity row leaked.','partialStateExposed':False,'migrationSchemaActivation':'Additive schema is prepared first; no authority is current until one complete release CAS transaction commits.'})
+print(json.dumps({'productionMutation':'PASS_ADDITIVE_GOVERNANCE_ONLY','activeRelease':release['id'],'hash':release['contentHash'],'tableChanges':changes,'updates':0,'deletes':0,'accountingRegressions':0,'scoringExecuted':False}))

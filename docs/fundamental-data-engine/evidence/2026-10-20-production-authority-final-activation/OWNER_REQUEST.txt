@@ -1,0 +1,1400 @@
+VN30 Value Investing OS
+Production Authority Final Activation Closure
+
+Repository:
+https://github.com/nglehoangan/VN_30_Investment
+
+==================================================
+MISSION
+==================================================
+
+Complete the FINAL production-authority activation after explicit owner
+approval of the previously blocked scoring executable.
+
+The owner has now explicitly approved:
+
+SCORING_EXECUTABLE:
+  implementation = m64-clarification-1
+  version = 1.0.0
+  status = APPROVED / PRODUCTION
+
+Owner approval date:
+2026-10-20
+
+IMPORTANT:
+
+This approval applies ONLY to the exact reviewed implementation:
+
+m64-clarification-1 v1.0.0
+
+It does NOT automatically approve:
+
+- future scoring methodology versions
+- changed source code
+- changed methodology hashes
+- new weights
+- new scoring semantics
+- MBB scoring
+- ranking publication
+- Top10 publication
+- Buy/Sell decisions
+- DCA
+- portfolio allocation.
+
+The previous Production Authority Binding & Activation Closure correctly
+stopped because:
+
+SCORING_EXECUTABLE_APPROVAL_MISSING
+
+That governance blocker has now been resolved by explicit owner approval.
+
+This task must:
+
+1. record the exact owner approval as durable machine-readable evidence;
+2. bind it to the exact reviewed scoring executable bytes/hash;
+3. complete SCORING_MODEL production authority;
+4. complete all previously blocked cross-authority compatibility receipts;
+5. construct the complete DependencyRelease;
+6. activate it using the approved CAS/atomic dependency-head mechanism;
+7. independently replay production resolution;
+8. determine whether Production Analysis Activation can now PASS.
+
+This is an ACTIVATION CLOSURE.
+
+Do NOT redesign the system.
+
+Do NOT run investment analysis.
+
+Do NOT run scoring.
+
+Do NOT rank VN30.
+
+==================================================
+1. STARTING STATE
+==================================================
+
+Start from actual repository HEAD.
+
+Expected relevant lineage includes:
+
+84cdba3c41a804d6fea23001e8ca4c5b9ddc9805
+  Production Analysis Dependency Head Closure
+
+d97e9486e28cb5b3164234c7f35a2a43dc092401
+  Production Authority Binding and Activation Closure
+
+Do NOT assume HEAD == d97e948.
+
+Record:
+
+- actual starting HEAD
+- commits after d97e948
+- working-tree status
+- DB/schema state
+- active migrations
+- authority receipt state
+- dependency release state
+- production dependency head state
+- production DB identity.
+
+If unrelated changes exist:
+
+identify them and do not overwrite them.
+
+==================================================
+2. PRIOR INDEPENDENT REVIEW STATE
+==================================================
+
+Treat the following findings as accepted unless current evidence proves a
+new Critical/Major defect.
+
+Already independently accepted:
+
+POLICY authority = PASS
+
+RISK_POLICY authority = PASS
+
+SCORING_MODEL document authority = PASS
+
+DECISION_ENGINE identity/authority = PASS within reviewed scope
+
+authority receipt hashing = PASS
+
+independent receipt replay = PASS
+
+Policy B = PASS
+
+MBB quarantine = PASS
+
+TCX exception = PASS
+
+accounting regressions = 0
+
+new regressions = 0.
+
+Previous activation was BLOCKED only because:
+
+SCORING_EXECUTABLE_APPROVAL_MISSING.
+
+Do NOT reopen unrelated authority work.
+
+==================================================
+3. OWNER APPROVAL EVENT
+==================================================
+
+The owner explicitly approved:
+
+"Approve m64-clarification-1 v1.0.0 for Production"
+
+on:
+
+2026-10-20.
+
+Record this as:
+
+approvalMode:
+OWNER_GOVERNANCE_APPROVAL
+
+approvalScope:
+SCORING_EXECUTABLE_PRODUCTION
+
+implementation:
+m64-clarification-1
+
+version:
+1.0.0
+
+Do NOT represent this as:
+
+AUTOMATIC_APPROVAL
+
+or:
+
+CODE_SELF_APPROVAL.
+
+The human owner is the approval authority.
+
+==================================================
+4. APPROVAL EVIDENCE BOUNDARY
+==================================================
+
+The owner approval statement is governance evidence.
+
+However, approval MUST bind to the exact executable previously reviewed.
+
+Therefore independently resolve and hash the exact implementation artifacts
+that constitute:
+
+m64-clarification-1 v1.0.0.
+
+Do not simply bind:
+
+version = 1.0.0.
+
+Bind exact bytes.
+
+If source bytes have changed since the reviewed version:
+
+STOP.
+
+Return:
+
+SCORING_EXECUTABLE_CHANGED_AFTER_APPROVAL
+
+and do NOT activate.
+
+==================================================
+5. SCORING EXECUTABLE IDENTITY
+==================================================
+
+Identify the complete executable identity for:
+
+m64-clarification-1 v1.0.0.
+
+At minimum inspect the existing methodology identity and all material source
+files required to implement that methodology.
+
+Create or reuse an immutable manifest containing:
+
+implementationId
+
+version
+
+artifact paths
+
+artifact SHA256 values
+
+aggregate manifest SHA256
+
+methodology contract/version
+
+approved Scoring Model authority hash
+
+source commit(s)
+
+owner approval reference
+
+approval date
+
+approval mode.
+
+Do not include unrelated files merely to inflate the manifest.
+
+Do not omit material scoring logic.
+
+==================================================
+6. VERIFY NO POST-REVIEW DRIFT
+==================================================
+
+Compare the executable being approved against the implementation that was
+independently reviewed immediately before owner approval.
+
+Require:
+
+NO_MATERIAL_DRIFT.
+
+Verify at minimum:
+
+- methodology identity unchanged
+- category weights unchanged
+- 100-point total unchanged
+- rubric semantics unchanged
+- missing-data behavior unchanged
+- sector-normalization behavior unchanged
+- valuation bands unchanged
+- scoring/decision separation unchanged
+- Policy-B handling unchanged
+- MBB remains non-scorable.
+
+If any material change exists:
+
+BLOCK.
+
+Do not extend owner approval to modified code.
+
+==================================================
+7. SCORING EXECUTABLE AUTHORITY RECEIPT
+==================================================
+
+Create a new immutable production authority receipt for the executable.
+
+It should bind at minimum:
+
+authorityType:
+SCORING_EXECUTABLE
+
+implementation:
+m64-clarification-1
+
+version:
+1.0.0
+
+status:
+APPROVED_PRODUCTION
+
+ownerApprovalDate:
+2026-10-20
+
+approvalMode:
+OWNER_GOVERNANCE_APPROVAL
+
+artifactManifestId
+
+artifactManifestSha256
+
+scoringModelAuthorityReceiptId
+
+scoringModelAuthorityReceiptSha256
+
+compatibility namespace/version
+
+recordedAt
+
+receipt ID
+
+receipt SHA256.
+
+Do not modify historical candidate receipts in place.
+
+Create a new approved authority record.
+
+==================================================
+8. SCORING MODEL ↔ EXECUTABLE COMPATIBILITY
+==================================================
+
+Produce explicit final compatibility evidence:
+
+SCORING_MODEL v1.0
+↔
+m64-clarification-1 v1.0.0.
+
+Reconfirm:
+
+- total = 100
+- category maxima = 25/15/15/10/20/10/5
+- no weight changes
+- sector normalization retained
+- missing evidence not neutral-filled
+- missing score not renormalized to 100
+- no automatic score from isolated ratios
+- score does not directly generate Buy/Sell
+- Stage 0 / Investability cannot be overridden
+- required-return decision hurdle remains outside scoring arithmetic
+- Policy-B deferred ticker receives no score.
+
+Result must be:
+
+COMPATIBLE
+
+or:
+
+BLOCKED.
+
+Only COMPATIBLE can proceed.
+
+==================================================
+9. COMPLETE CROSS-AUTHORITY COMPATIBILITY
+==================================================
+
+Re-evaluate only the previously blocked compatibility chain.
+
+At minimum finalize:
+
+POLICY ↔ SCORING_MODEL
+
+POLICY ↔ SCORING_EXECUTABLE
+
+RISK_POLICY ↔ SCORING_EXECUTABLE
+
+SCORING_MODEL ↔ DECISION_ENGINE
+
+SCORING_EXECUTABLE ↔ DECISION_ENGINE
+
+POLICY ↔ DECISION_ENGINE.
+
+Do not reopen already-passed authority identities unless exact hashes
+changed.
+
+Produce immutable compatibility receipts.
+
+Any material incompatibility:
+
+BLOCK.
+
+==================================================
+10. DECISION ↔ POLICY FINAL COMPATIBILITY
+==================================================
+
+The previous closure could not finalize the complete Decision↔Policy chain
+because executable scoring authority was missing.
+
+Now complete that chain.
+
+Verify the Decision Engine still preserves:
+
+- approved decision states
+- Investability precedence
+- BUY vs ACCUMULATE ownership distinction
+- Final Decision as portfolio action
+- LOW confidence no-new-capital rule
+- valuation-only SELL switching hurdle
+- Technical WAIT limitations
+- portfolio impact rules
+- execution sub-status
+- residual thesis behavior
+- PENDING behavior
+- temporary deferral
+- escalated review
+- risk vetoes.
+
+Do NOT change the Decision Engine.
+
+==================================================
+11. PRODUCTION AUTHORITY BUNDLE
+==================================================
+
+Construct the final immutable ProductionAuthorityBundle.
+
+It must bind the accepted production authorities required by actual
+architecture, including at least:
+
+POLICY
+
+RISK_POLICY
+
+SCORING_MODEL
+
+SCORING_EXECUTABLE
+
+DECISION_ENGINE
+
+required compatibility receipts.
+
+Record:
+
+bundle ID
+
+bundle contract version
+
+constituent receipt IDs
+
+constituent hashes
+
+bundle content hash
+
+activation status
+
+supersession state
+
+approval provenance.
+
+Independently recompute bundle hash.
+
+==================================================
+12. COMPLETE DEPENDENCY RELEASE
+==================================================
+
+Using the already-approved dependency-head architecture, construct the
+complete candidate DependencyRelease.
+
+Bind all mandatory static production dependencies, including:
+
+UNIVERSE
+
+REFERENCE/SECURITY MASTER where required
+
+INITIALIZATION_MANIFEST
+
+FUNDAMENTAL_RELEASE
+
+LEVEL1 / POLICY-B PARTITION
+
+EXCEPTION_REGISTRY
+
+MARKET_CAPABILITY
+
+SESSION/CALENDAR POLICY
+
+POLICY
+
+RISK_POLICY
+
+SCORING_MODEL
+
+SCORING_EXECUTABLE
+
+DECISION_ENGINE
+
+PRODUCTION_AUTHORITY_BUNDLE
+
+and any other dependency already defined as mandatory by the approved
+resolver contract.
+
+Do NOT invent new dependency classes unless implementation actually
+requires them.
+
+==================================================
+13. RELEASE COMPATIBILITY
+==================================================
+
+Before activation prove:
+
+FULL_UNIVERSE = 30
+
+ELIGIBLE = 29
+
+DEFERRED = MBB
+
+Universe ↔ partition compatible
+
+Initialization ↔ fundamentals compatible
+
+Fundamentals ↔ scoring requirements compatible
+
+Policy ↔ Risk compatible
+
+Policy ↔ Scoring compatible
+
+Scoring Model ↔ executable compatible
+
+Scoring executable ↔ Decision Engine compatible
+
+Policy ↔ Decision Engine compatible
+
+TCX exception ↔ disposition compatible
+
+Market capability ↔ session policy compatible
+
+all IDs ↔ hashes valid.
+
+Any mandatory incompatibility:
+
+BLOCK.
+
+==================================================
+14. POLICY-B MUST REMAIN EXACT
+==================================================
+
+Require:
+
+FULL = 30
+
+SCORABLE/FUNDAMENTALLY_ELIGIBLE = 29
+
+DEFERRED = 1
+
+MBB = DEFERRED.
+
+MBB must remain:
+
+score = null
+
+NOT_SCORABLE
+
+not ranked
+
+not new-capital eligible.
+
+Do not redistribute score weight.
+
+Do not redistribute capital because MBB is excluded.
+
+Owner approval of scoring executable does NOT approve MBB scoring.
+
+==================================================
+15. TCX EXCEPTION
+==================================================
+
+Require exact active TCX exception:
+
+OWNER_APPROVED_ANALYTICAL_EXCEPTION
+
+amount:
+
+5,284,485,167,173 VND.
+
+Bind its current authority/hash through the release.
+
+Do not convert it into canonical accounting debt.
+
+==================================================
+16. MARKET BOUNDARY
+==================================================
+
+Do not fetch fresh market data.
+
+Retain:
+
+LATEST_COMPLETED_HOSE_EOD_VALUATION_ONLY
+
+as currently qualified market capability.
+
+Authority activation does NOT imply:
+
+MARKET_CURRENT = true.
+
+Market freshness remains consumption-time.
+
+==================================================
+17. PROTECTED ACCOUNTING REPLAY
+==================================================
+
+Before activation replay protected accounting.
+
+Require:
+
+ACCOUNTING_REGRESSIONS = 0.
+
+No changes to:
+
+VNM
+
+VIB
+
+VIC
+
+TCX accounting
+
+MBB blocker
+
+or any other canonical accounting fact.
+
+Any accounting divergence:
+
+STOP.
+
+==================================================
+18. PRE-ACTIVATION DATABASE SAFETY
+==================================================
+
+Verify production/local-production DB identity.
+
+Record before activation:
+
+DB path/identity
+
+schema version
+
+migration state
+
+relevant table counts
+
+active dependency release/head
+
+deterministic DB hash where existing project governance supports it.
+
+Verify required migration:
+
+202610200001_dependency_release
+
+or its accepted successor
+
+is correctly applied/available according to production governance.
+
+Do not re-run destructive migration.
+
+==================================================
+19. AUTHORIZED PRODUCTION ACTIVATION
+==================================================
+
+This task is authorized to perform the minimum authority/dependency
+activation required to close Production Analysis Activation IF AND ONLY IF
+all preconditions PASS.
+
+Activation may write only the necessary:
+
+authority receipts
+
+compatibility receipts
+
+authority bundle
+
+dependency release
+
+dependency head/activation records
+
+and associated audit metadata.
+
+Do NOT mutate:
+
+canonical accounting facts
+
+portfolio transactions
+
+holdings
+
+cash
+
+market observations
+
+scoring results
+
+rankings
+
+decisions.
+
+==================================================
+20. CAS ACTIVATION
+==================================================
+
+Use the existing approved CAS mechanism.
+
+Read the authoritative current head immediately before activation.
+
+Activation must specify:
+
+expectedPreviousHead
+
+newDependencyReleaseId
+
+newDependencyReleaseHash.
+
+If current head differs from expected:
+
+STOP with:
+
+CONCURRENT_AUTHORITY_CHANGE.
+
+Do not overwrite.
+
+==================================================
+21. ATOMICITY
+==================================================
+
+Activation must be atomic.
+
+Either:
+
+all required authority/dependency state becomes active
+
+or:
+
+none becomes active.
+
+No half-state such as:
+
+new scoring executable
++
+old policy
+
+or:
+
+new authority bundle
++
+old DependencyRelease.
+
+Test rollback/failure behavior before actual activation using disposable
+state if necessary.
+
+==================================================
+22. POST-ACTIVATION HASH REPLAY
+==================================================
+
+After activation independently reload and rehash:
+
+owner approval receipt
+
+scoring executable manifest
+
+Scoring Model receipt
+
+Scoring Executable receipt
+
+compatibility receipts
+
+ProductionAuthorityBundle
+
+DependencyRelease
+
+active dependency head.
+
+Require exact hash equality.
+
+==================================================
+23. PRODUCTION RESOLVER REPLAY
+==================================================
+
+Invoke production dependency resolution using only the trusted minimal
+production request contract.
+
+Do NOT manually pass:
+
+Policy ID
+
+Scoring ID
+
+Risk ID
+
+Decision Engine ID
+
+or arbitrary dependency IDs.
+
+Resolver must return the newly activated authoritative release.
+
+Verify exact:
+
+POLICY authority
+
+RISK authority
+
+SCORING_MODEL authority
+
+SCORING_EXECUTABLE authority
+
+DECISION_ENGINE authority
+
+partition
+
+TCX exception
+
+market capability
+
+calendar/session policy.
+
+==================================================
+24. CALLER OVERRIDE NEGATIVE REPLAY
+==================================================
+
+Attempt controlled negative requests using:
+
+old scoring executable
+
+unapproved scoring executable
+
+old policy
+
+unknown Risk Policy
+
+caller-selected Decision Engine
+
+superseded DependencyRelease.
+
+Production resolver must reject/bypass caller overrides and resolve only
+system authority.
+
+Do not run scoring.
+
+==================================================
+25. HISTORICAL REPLAY
+==================================================
+
+Verify historical replay remains functional.
+
+Historical mode may explicitly reference an older valid dependency release.
+
+But:
+
+historical replay cannot publish as current production analysis.
+
+Replay path cannot update authoritative head.
+
+Replay path cannot bypass production authority.
+
+==================================================
+26. STATIC VS RUNTIME READINESS
+==================================================
+
+After successful activation report separately:
+
+STATIC_SCORING_AUTHORITY_READY
+
+RUNTIME_SCORING_READY
+
+STATIC_DECISION_AUTHORITY_READY
+
+RUNTIME_DECISION_READY.
+
+Expected immediately after this closure:
+
+STATIC_SCORING_AUTHORITY_READY = true
+
+RUNTIME_SCORING_READY = false
+
+because no market refresh/current AnalysisSnapshot has been created.
+
+STATIC_DECISION_AUTHORITY_READY = true
+
+RUNTIME_DECISION_READY = false
+
+because no current AnalysisSnapshot/PortfolioSnapshot/decision-time
+validation exists.
+
+Do not conflate static authority with runtime readiness.
+
+==================================================
+27. readyForScoring SEMANTICS
+==================================================
+
+The old global boolean may exist for backward compatibility.
+
+Do not interpret it as:
+
+"current market is fresh and scores may immediately publish."
+
+After independent activation approval, production infrastructure may be
+authorized to START a scoring workflow.
+
+Actual scoring still requires:
+
+production authority
++
+fundamental eligibility
++
+market refresh where required
++
+freshness gate
++
+AnalysisSnapshot.
+
+Document this distinction explicitly.
+
+==================================================
+28. NEGATIVE TESTS
+==================================================
+
+At minimum verify:
+
+OWNER_APPROVAL_MISSING
+
+OWNER_APPROVAL_SCOPE_MISMATCH
+
+SCORING_EXECUTABLE_VERSION_MISMATCH
+
+SCORING_EXECUTABLE_HASH_MISMATCH
+
+SCORING_EXECUTABLE_CHANGED_AFTER_APPROVAL
+
+SCORING_MODEL_EXECUTABLE_INCOMPATIBLE
+
+POLICY_SCORING_INCOMPATIBLE
+
+SCORING_DECISION_INCOMPATIBLE
+
+PARTIAL_AUTHORITY_BUNDLE
+
+DEPENDENCY_RELEASE_HASH_MISMATCH
+
+MISSING_REQUIRED_HEAD
+
+CAS_CONFLICT
+
+PARTIAL_ACTIVATION_FAILURE
+
+CALLER_SELECTED_UNAPPROVED_SCORING
+
+MBB_SCORING_ATTEMPT
+
+TCX_EXCEPTION_MISMATCH
+
+HISTORICAL_REPLAY_PRODUCTION_ESCAPE.
+
+All must fail closed.
+
+==================================================
+29. REGRESSION VALIDATION
+==================================================
+
+Run strongest relevant validation:
+
+lint
+
+typecheck
+
+schema/DB validation
+
+authority receipt tests
+
+compatibility tests
+
+dependency-head tests
+
+CAS tests
+
+Policy-B tests
+
+scoring methodology tests
+
+Decision Engine compatibility tests
+
+market-boundary tests
+
+protected accounting replay
+
+migration tests where applicable
+
+full unit/integration suite
+
+browser E2E where applicable
+
+production build
+
+post-activation resolver replay.
+
+Classify failures:
+
+NEW_REGRESSION
+
+PRE_EXISTING
+
+EXPECTED_NEGATIVE
+
+ENVIRONMENTAL.
+
+Do not hide known historical failures.
+
+Any new Critical/Major regression blocks activation.
+
+==================================================
+30. PRODUCTION MUTATION AUDIT
+==================================================
+
+If production/local-production activation occurs, produce exact mutation
+evidence.
+
+Report:
+
+tables changed
+
+rows inserted
+
+rows updated
+
+rows deleted
+
+before/after counts
+
+before/after DB hash if deterministic hashing contract exists.
+
+Expected:
+
+accounting rows changed = 0
+
+portfolio rows changed = 0
+
+market observation rows changed = 0
+
+scoring output rows changed = 0
+
+ranking rows changed = 0
+
+decision rows changed = 0.
+
+Only governance/authority/dependency activation state may change.
+
+==================================================
+31. EVIDENCE PACKAGE
+==================================================
+
+Create:
+
+docs/fundamental-data-engine/evidence/
+2026-10-20-production-authority-final-activation/
+
+At minimum:
+
+README.md
+
+BASELINE_IDENTITY.json
+
+OWNER_APPROVAL_RECEIPT.json
+
+SCORING_EXECUTABLE_MANIFEST.json
+
+SCORING_EXECUTABLE_HASH_REPLAY.json
+
+SCORING_EXECUTABLE_AUTHORITY.json
+
+SCORING_MODEL_EXECUTABLE_COMPATIBILITY.json
+
+FINAL_CROSS_AUTHORITY_COMPATIBILITY.json
+
+DECISION_POLICY_FINAL_COMPATIBILITY.json
+
+PRODUCTION_AUTHORITY_BUNDLE.json
+
+AUTHORITY_BUNDLE_HASH_REPLAY.json
+
+DEPENDENCY_RELEASE.json
+
+DEPENDENCY_RELEASE_HASH_REPLAY.json
+
+PRE_ACTIVATION_STATE.json
+
+CAS_ACTIVATION_REVIEW.json
+
+ATOMIC_ACTIVATION_REVIEW.json
+
+PRODUCTION_DB_MUTATION_AUDIT.json
+
+POST_ACTIVATION_STATE.json
+
+POST_ACTIVATION_HASH_REPLAY.json
+
+PRODUCTION_RESOLUTION_REPLAY.json
+
+CALLER_OVERRIDE_NEGATIVE_REPLAY.json
+
+HISTORICAL_REPLAY_REVIEW.json
+
+POLICY_B_REPLAY.json
+
+MBB_QUARANTINE_REPLAY.json
+
+TCX_EXCEPTION_REPLAY.json
+
+MARKET_BOUNDARY_REPLAY.json
+
+PROTECTED_ACCOUNTING_REPLAY.json
+
+NEGATIVE_TEST_RESULTS.json
+
+REGRESSION_RESULTS.json
+
+OPEN_ISSUES.json
+
+TEST_RESULTS.json
+
+ARTIFACT_HASHES.json
+
+FINAL_REVIEW.md.
+
+Do not duplicate large source corpora.
+
+==================================================
+32. FINAL_REVIEW FORMAT
+==================================================
+
+FINAL_REVIEW.md must report:
+
+STARTING_HEAD
+
+ENDING_HEAD
+
+OWNER_SCORING_APPROVAL
+
+SCORING_EXECUTABLE_IDENTITY
+
+SCORING_EXECUTABLE_HASH
+
+SCORING_EXECUTABLE_DRIFT
+
+SCORING_EXECUTABLE_AUTHORITY
+
+SCORING_MODEL_EXECUTABLE_COMPATIBILITY
+
+FINAL_CROSS_AUTHORITY_COMPATIBILITY
+
+DECISION_POLICY_COMPATIBILITY
+
+PRODUCTION_AUTHORITY_BUNDLE
+
+AUTHORITY_BUNDLE_HASH
+
+DEPENDENCY_RELEASE
+
+DEPENDENCY_RELEASE_HASH
+
+PREVIOUS_HEAD
+
+ACTIVE_HEAD
+
+CAS_ACTIVATION
+
+ATOMIC_ACTIVATION
+
+PRODUCTION_DB_MUTATED
+
+PRODUCTION_RESOLUTION
+
+CALLER_OVERRIDE_PROTECTION
+
+HISTORICAL_REPLAY
+
+POLICY_B
+
+FULL_UNIVERSE
+
+ELIGIBLE
+
+DEFERRED
+
+MBB_STATUS
+
+TCX_EXCEPTION
+
+MARKET_CAPABILITY
+
+MARKET_REFRESH_PERFORMED
+
+MARKET_CURRENT
+
+ACCOUNTING_REGRESSIONS
+
+NEW_REGRESSIONS
+
+STATIC_SCORING_AUTHORITY_READY
+
+RUNTIME_SCORING_READY
+
+STATIC_DECISION_AUTHORITY_READY
+
+RUNTIME_DECISION_READY
+
+SCORING_RUN
+
+RANKING_RUN
+
+TOP10_CREATED
+
+INVESTMENT_DECISION_CREATED
+
+PRODUCTION_ANALYSIS_ACTIVATION_CANDIDATE
+
+OPEN_BLOCKERS.
+
+Expected successful state:
+
+OWNER_SCORING_APPROVAL = PASS
+
+SCORING_EXECUTABLE_IDENTITY = m64-clarification-1 v1.0.0
+
+SCORING_EXECUTABLE_DRIFT = NONE
+
+SCORING_EXECUTABLE_AUTHORITY = PASS
+
+SCORING_MODEL_EXECUTABLE_COMPATIBILITY = PASS
+
+FINAL_CROSS_AUTHORITY_COMPATIBILITY = PASS
+
+DECISION_POLICY_COMPATIBILITY = PASS
+
+PRODUCTION_AUTHORITY_BUNDLE = ACTIVE
+
+DEPENDENCY_RELEASE = ACTIVE
+
+CAS_ACTIVATION = PASS
+
+ATOMIC_ACTIVATION = PASS
+
+PRODUCTION_RESOLUTION = PASS
+
+CALLER_OVERRIDE_PROTECTION = PASS
+
+HISTORICAL_REPLAY = PASS
+
+POLICY_B = PASS
+
+FULL_UNIVERSE = 30
+
+ELIGIBLE = 29
+
+DEFERRED = 1
+
+MBB_STATUS = DEFERRED / NOT_SCORABLE / score=null
+
+TCX_EXCEPTION = ACTIVE
+
+MARKET_REFRESH_PERFORMED = false
+
+MARKET_CURRENT = NOT_EVALUATED
+
+ACCOUNTING_REGRESSIONS = 0
+
+NEW_REGRESSIONS = 0
+
+STATIC_SCORING_AUTHORITY_READY = true
+
+RUNTIME_SCORING_READY = false
+
+STATIC_DECISION_AUTHORITY_READY = true
+
+RUNTIME_DECISION_READY = false
+
+SCORING_RUN = false
+
+RANKING_RUN = false
+
+TOP10_CREATED = false
+
+INVESTMENT_DECISION_CREATED = false
+
+PRODUCTION_ANALYSIS_ACTIVATION_CANDIDATE = PASS_CANDIDATE.
+
+Do not force these values if evidence disagrees.
+
+==================================================
+33. ABSOLUTE PROHIBITIONS
+==================================================
+
+DO NOT:
+
+modify m64-clarification-1 to make approval fit
+
+extend approval to another scoring version
+
+change SCORING_MODEL v1.0
+
+change weights
+
+change scoring rubrics
+
+change Policy
+
+change Risk Policy
+
+change Decision Engine
+
+change canonical accounting facts
+
+reopen DI14/DI15
+
+reopen ticker Level-1 closures
+
+search MBB evidence
+
+change TCX classification
+
+fetch market data
+
+run real scoring
+
+run ranking
+
+create Top10
+
+perform valuation recommendations
+
+produce Buy/Hold/Sell
+
+produce DCA
+
+change portfolio allocation
+
+place trades
+
+self-approve the final independent closure
+
+hide test failures
+
+weaken fail-closed behavior.
+
+==================================================
+34. COMMIT
+==================================================
+
+After successful activation, validation and evidence generation:
+
+create ONE scoped commit.
+
+Suggested commit message:
+
+Production Authority Final Activation Closure
+
+Do not mix unrelated changes.
+
+Record:
+
+starting HEAD
+ending HEAD
+owner approval receipt ID/hash
+scoring executable authority ID/hash
+ProductionAuthorityBundle ID/hash
+DependencyRelease ID/hash
+previous head
+active head
+production DB mutation summary
+test results.
+
+==================================================
+35. STOP CONDITION
+==================================================
+
+STOP after activation + replay + evidence.
+
+Do NOT start First Production VN30 Scoring Cycle.
+
+Return:
+
+1. ending commit SHA
+2. evidence folder
+3. owner approval receipt ID/hash
+4. scoring executable authority ID/hash
+5. scoring executable drift result
+6. cross-authority compatibility
+7. ProductionAuthorityBundle ID/hash
+8. DependencyRelease ID/hash
+9. previous/active dependency heads
+10. CAS/atomic activation result
+11. production DB mutation summary
+12. production resolver result
+13. Policy-B result
+14. accounting regressions
+15. new regressions
+16. static/runtime scoring readiness
+17. remaining blockers
+18. confirmation that market refresh/scoring/ranking/Top10/investment
+    decisions were NOT executed
+
+End exactly with:
+
+Awaiting independent review: Review Production Authority Final Activation Closure

@@ -1,0 +1,262 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "requirement": "OWNER_APPROVAL_MISSING",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/production-authority.test.ts::OWNER_APPROVAL_MISSING pinned artifacts fail closed"
+      ]
+    },
+    {
+      "requirement": "OWNER_APPROVAL_SCOPE_MISMATCH",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/production-authority.test.ts::OWNER_APPROVAL_SCOPE_MISMATCH pinned artifacts fail closed"
+      ]
+    },
+    {
+      "requirement": "SCORING_EXECUTABLE_VERSION_MISMATCH",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/production-authority.test.ts::SCORING_EXECUTABLE_VERSION_MISMATCH pinned artifacts fail closed"
+      ]
+    },
+    {
+      "requirement": "SCORING_EXECUTABLE_HASH_MISMATCH",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/production-authority.test.ts::SCORING_EXECUTABLE_HASH_MISMATCH pinned artifacts fail closed"
+      ]
+    },
+    {
+      "requirement": "SCORING_EXECUTABLE_CHANGED_AFTER_APPROVAL",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/production-authority.test.ts::actual executable source drift fails the real bundle verifier despite unchanged version text"
+      ]
+    },
+    {
+      "requirement": "SCORING_MODEL_EXECUTABLE_INCOMPATIBLE",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/production-authority.test.ts::SCORING_MODEL_EXECUTABLE_INCOMPATIBLE pinned artifacts fail closed"
+      ]
+    },
+    {
+      "requirement": "POLICY_SCORING_INCOMPATIBLE",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/production-authority.test.ts::POLICY_SCORING_INCOMPATIBLE pinned artifacts fail closed"
+      ]
+    },
+    {
+      "requirement": "SCORING_DECISION_INCOMPATIBLE",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/production-authority.test.ts::SCORING_DECISION_INCOMPATIBLE pinned artifacts fail closed"
+      ]
+    },
+    {
+      "requirement": "PARTIAL_AUTHORITY_BUNDLE",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/production-authority.test.ts::PARTIAL_AUTHORITY_BUNDLE pinned artifacts fail closed"
+      ]
+    },
+    {
+      "requirement": "DEPENDENCY_RELEASE_HASH_MISMATCH",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/dependency-head.test.ts::analysis fundamental change mid-flight blocks sealing; historical release remains replayable and cache stale"
+      ]
+    },
+    {
+      "requirement": "MISSING_REQUIRED_HEAD",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/dependency-head.test.ts::production resolves internally; caller-selected IDs/mode rejected; every head hash and required slot is checked"
+      ]
+    },
+    {
+      "requirement": "CAS_CONFLICT",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/dependency-head.test.ts::CAS A→B succeeds; concurrent A→C fails; retry after B checks compatibility; no partial release leaks"
+      ]
+    },
+    {
+      "requirement": "PARTIAL_ACTIVATION_FAILURE",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/production-authority.test.ts::approved method registration + release/CAS bootstrap atomic; rollback leaks no method or partial heads"
+      ]
+    },
+    {
+      "requirement": "CALLER_SELECTED_UNAPPROVED_SCORING",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/production-authority.test.ts::approved method registration + release/CAS bootstrap atomic; rollback leaks no method or partial heads"
+      ]
+    },
+    {
+      "requirement": "MBB_SCORING_ATTEMPT",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/dependency-head.test.ts::market activation cannot promote MBB; expiry at final transaction check leaves no partial snapshot"
+      ]
+    },
+    {
+      "requirement": "TCX_EXCEPTION_MISMATCH",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/dependency-head.test.ts::TCX_EXCEPTION authority change mid-analysis fails closed; market alone cannot promote MBB"
+      ]
+    },
+    {
+      "requirement": "HISTORICAL_REPLAY_PRODUCTION_ESCAPE",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "cases": [
+        "integration/dependency-head.test.ts::analysis fundamental change mid-flight blocks sealing; historical release remains replayable and cache stale"
+      ]
+    }
+  ],
+  "newAuthorityTestsPassed": 12,
+  "focusedAuthorityDependencyPassed": 49,
+  "productionOverrides": {
+    "status": "PASS",
+    "probes": [
+      {
+        "key": "scoringExecutable",
+        "result": "REJECTED"
+      },
+      {
+        "key": "scoringModel",
+        "result": "REJECTED"
+      },
+      {
+        "key": "policy",
+        "result": "REJECTED"
+      },
+      {
+        "key": "riskPolicy",
+        "result": "REJECTED"
+      },
+      {
+        "key": "decisionEngine",
+        "result": "REJECTED"
+      },
+      {
+        "key": "release",
+        "result": "REJECTED"
+      }
+    ]
+  },
+  "productionPITReplay": {
+    "status": "PASS",
+    "productionPITReplay": {
+      "release": {
+        "id": "dependency-release-73f499cab0e71d93f81e35723bc804db3dac6a798c3ce21818b841872d77be2e",
+        "hash": "8d1e0909d377a4e1225b54f26cca0833a0fd24a9af3271d4cdd26419e193d01a"
+      },
+      "mode": "HISTORICAL_REPLAY",
+      "publicationAuthority": false
+    },
+    "olderSupersededRelease": "No prior real production release exists at bootstrap; older-release behavior covered on disposable tests. No fake historical production release created.",
+    "productionEscape": "REJECTED",
+    "activeHeadUnchanged": true
+  },
+  "productionMBB": {
+    "status": "PASS",
+    "member": {
+      "blockerIds": [
+        "MBB:LEVEL1:1"
+      ],
+      "levelOneEvidence": {
+        "reference": "docs/fundamental-data-engine/evidence/2026-10-19-level1-promotion-partition-closure/MBB_DEFERRED.json",
+        "sha256": "97bc1dce4d4a746d1b2b2662cbfbb90c813c4a6c2fc5519d8234f5b81602a993"
+      },
+      "levelOnePass": false,
+      "quarantine": {
+        "capitalRedistribution": false,
+        "dca": false,
+        "positiveCapital": false,
+        "ranking": false,
+        "scoring": false,
+        "top10": false,
+        "weightRedistribution": false
+      },
+      "reopenTriggers": [
+        {
+          "condition": "Authoritative consolidated CAR OR qualifying CET1 explicitly as of2026-06-30 remains missing. March31/2025 year-end/standalone-only/unscoped broker10.7% cannot satisfy it.",
+          "evidenceReference": "docs/fundamental-data-engine/evidence/2026-10-19-level1-promotion-partition-closure/MBB_DEFERRED.json",
+          "type": "REGULATORY_DISCLOSURE"
+        }
+      ],
+      "score": null,
+      "securityId": "ff699c86-8eaf-4178-af14-0b38fd5b1255",
+      "state": "DEFERRED",
+      "ticker": "MBB"
+    },
+    "actionsDenied": [
+      {
+        "action": "SCORING",
+        "result": "DENIED"
+      },
+      {
+        "action": "RANKING",
+        "result": "DENIED"
+      },
+      {
+        "action": "TOP10",
+        "result": "DENIED"
+      },
+      {
+        "action": "STRONG BUY",
+        "result": "DENIED"
+      },
+      {
+        "action": "BUY",
+        "result": "DENIED"
+      },
+      {
+        "action": "ACCUMULATE",
+        "result": "DENIED"
+      },
+      {
+        "action": "NEW_CAPITAL",
+        "result": "DENIED"
+      },
+      {
+        "action": "DCA",
+        "result": "DENIED"
+      },
+      {
+        "action": "SCORE_WEIGHT_REDISTRIBUTION",
+        "result": "DENIED"
+      },
+      {
+        "action": "CAPITAL_REDISTRIBUTION",
+        "result": "DENIED"
+      }
+    ]
+  },
+  "noProductionScoringDecisionPerformed": true
+}

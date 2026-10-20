@@ -7,6 +7,8 @@ import type {Pin} from '@/domain/market-boundary/contracts';
 import {requireBoundary as check,same} from '@/domain/market-boundary/validation';
 import {snapshotHash as hash} from '@/infrastructure/fundamentals/snapshot-hash';
 import {canonicalJson} from '@/domain/fundamentals/snapshot';
+import {PrismaMethodologyRegistry} from './methodology-registry';
+import {validateMethodology} from './methodology-schema';
 export class PrismaDependencyRegistry implements DependencyRegistry {
  constructor(private readonly db:PrismaClient){}
  async current(){const p=await this.db.marketBoundaryDependencyHead.findUnique({where:{id:PROJECTION_ID}});if(!p)return null;const r=await this.db.dependencyRelease.findUnique({where:{bodyHash:p.bodyHash}});check(r,'UNKNOWN_HEAD');return this.find({id:r.id,hash:r.bodyHash});}
@@ -16,6 +18,8 @@ export class PrismaDependencyRegistry implements DependencyRegistry {
    const p=await tx.marketBoundaryDependencyHead.findUnique({where:{id:PROJECTION_ID}});
    check(expected?p?.bodyHash===expected.hash:!p,'CAS_CONFLICT');
    if(expected){const old=await tx.dependencyRelease.findUnique({where:{id:expected.id}});check(old?.bodyHash===expected.hash,'CAS_CONFLICT');}
+   const method=(head(release.heads,'SCORING_MODEL').content as {methodology?:unknown}).methodology;
+   if(method){const record=validateMethodology(method);check(record.family==='SCORING'&&record.governanceStatus==='APPROVED'&&record.intendedUse==='PRODUCTION','SCORING_METHOD_AUTHORITY_BINDING');const registry=new PrismaMethodologyRegistry(tx),existing=await registry.findById(record.methodologyId);if(existing)check(same(existing,record),'SCORING_METHOD_AUTHORITY_BINDING');else await registry.append(record);}
    for(const h of release.heads){const key=hash({type:h.type,id:h.pin.id}),old=await tx.dependencyObjectIdentity.findUnique({where:{key}});if(old)check(old.bodyHash===h.pin.hash,'HEAD_ID_CONTENT_CHANGED');else await tx.dependencyObjectIdentity.create({data:{key,type:h.type,objectId:h.pin.id,bodyHash:h.pin.hash}});}
    for(const h of release.heads.filter(h=>h.scheme==='BOUNDARY')){const record=h.content as import('@/domain/market-boundary/contracts').Sealed;const existing=await tx.marketBoundaryRecord.findUnique({where:{id:record.id}});if(existing)check(existing.bodyHash===record.contentHash&&existing.body===canonicalJson(record),'HEAD_OBJECT_CONTENT_CHANGED');else await tx.marketBoundaryRecord.create({data:{id:record.id,kind:record.kind,contractVersion:record.contractVersion,createdAt:record.createdAt,body:canonicalJson(record),bodyHash:record.contentHash}});}
    await tx.dependencyRelease.create({data:{id:release.id,body:canonicalJson(release),bodyHash:release.contentHash,recordedAt:release.recordedAt,supersedesId:expected?.id??null}});
