@@ -1,0 +1,80 @@
+{
+  "contract": "authoritative-dependency-release-v1",
+  "dependencies": [
+    {
+      "dependency": "UNIVERSE",
+      "classification": "INITIALIZATION_HEAD",
+      "owner": "UNIVERSE"
+    },
+    {
+      "dependency": "SECURITY_MASTER / REFERENCE_DATA",
+      "classification": "INITIALIZATION_HEAD",
+      "owner": "REFERENCE_DATA; exact Initialization security/sector hashes"
+    },
+    {
+      "dependency": "INITIALIZATION_MANIFEST",
+      "classification": "INITIALIZATION_HEAD",
+      "owner": "INITIALIZATION"
+    },
+    {
+      "dependency": "FUNDAMENTAL_SNAPSHOT",
+      "classification": "ANALYSIS_STATIC_HEAD",
+      "owner": "FUNDAMENTALS; exact existing canonical run IDs/body hashes"
+    },
+    {
+      "dependency": "TICKER_DISPOSITION / POLICY_B_PARTITION / EXCEPTION_REGISTRY",
+      "classification": "INITIALIZATION_HEAD",
+      "owner": "LEVEL1_RELEASE owns all three atomically; no redundant heads"
+    },
+    {
+      "dependency": "MARKET_CAPABILITY_CONTRACT",
+      "classification": "INITIALIZATION_HEAD",
+      "owner": "MARKET_CAPABILITY"
+    },
+    {
+      "dependency": "MARKET_SESSION_CALENDAR_POLICY",
+      "classification": "ANALYSIS_STATIC_HEAD",
+      "owner": "SESSION_POLICY"
+    },
+    {
+      "dependency": "MARKET_SNAPSHOT",
+      "classification": "ANALYSIS_RUNTIME_HEAD",
+      "owner": "MARKET plus consumption-time freshness"
+    },
+    {
+      "dependency": "POLICY_VERSION",
+      "classification": "ANALYSIS_STATIC_HEAD",
+      "owner": "POLICY; authority unresolved"
+    },
+    {
+      "dependency": "SCORING_MODEL_VERSION",
+      "classification": "ANALYSIS_STATIC_HEAD",
+      "owner": "SCORING_MODEL; authority unresolved"
+    },
+    {
+      "dependency": "DECISION_ENGINE_VERSION",
+      "classification": "ANALYSIS_STATIC_HEAD",
+      "owner": "DECISION_ENGINE; MONOTONIC_METHOD1.0.2 active selector proven, Policy compatibility pending"
+    },
+    {
+      "dependency": "PORTFOLIO_SNAPSHOT / LEDGER_WATERMARK",
+      "classification": "DECISION_RUNTIME_HEAD",
+      "owner": "PORTFOLIO; ownerId and live Portfolio.revision inside publication transaction"
+    },
+    {
+      "dependency": "RISK_POLICY",
+      "classification": "ANALYSIS_STATIC_HEAD",
+      "owner": "RISK_POLICY; authority unresolved"
+    },
+    {
+      "dependency": "RISK_STATE",
+      "classification": "DECISION_RUNTIME_HEAD",
+      "owner": "RISK_STATE; exact risk-policy compatibility plus existing prerequisite validator"
+    },
+    {
+      "dependency": "SUPERSEDED_RELEASE",
+      "classification": "HISTORICAL_REPLAY_ONLY",
+      "owner": "Explicit internal historical API; never production mode"
+    }
+  ]
+}

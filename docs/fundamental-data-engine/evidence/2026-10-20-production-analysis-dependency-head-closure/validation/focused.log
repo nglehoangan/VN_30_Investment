@@ -1,0 +1,48 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+(node:40744) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/dependency-head.test.ts (13 tests) 10679ms
+   ✓ production resolves internally; caller-selected IDs/mode rejected; every head hash and required slot is checked 980ms
+   ✓ CAS A→B succeeds; concurrent A→C fails; retry after B checks compatibility; no partial release leaks 887ms
+   ✓ analysis fundamental change mid-flight blocks sealing; historical release remains replayable and cache stale 893ms
+   ✓ PARTITION authority change mid-analysis fails closed; market alone cannot promote MBB 821ms
+   ✓ TCX_EXCEPTION authority change mid-analysis fails closed; market alone cannot promote MBB 823ms
+   ✓ stale/missing market blocks refresh; expiry during analysis and at SQL publication rolls back 1003ms
+   ✓ policy/release and live ledger changes invalidate decisions; persistence never trusts stale portfolio watermark 935ms
+   ✓ dependency change between final validation and SQL transaction rejects atomically 850ms
+   ✓ market activation cannot promote MBB; expiry at final transaction check leaves no partial snapshot 829ms
+   ✓ same immutable object ID with changed content is an integrity error; projection remains unchanged 796ms
+   ✓ missing market requests refresh, and incompatible/unknown dependencies cannot activate 767ms
+   ✓ policy supersession blocks new decision from old analysis while historical binding stays immutable 892ms
+ ✓ tests/integration/di15-policy-b.test.ts (2 tests) 1856ms
+   ✓ trusted versioned acceptance persists all30 states and rejects deferred formal inputs before any score write 1078ms
+   ✓ PolicyB cannot manufacture independent approval, bypass pinned release or relabel issues 778ms
+ ✓ tests/integration/market-boundary.test.ts (4 tests) 1833ms
+   ✓ additive migration preserves legacy rows; immutable vNext reader fails unknown/hash/index; decision append cannot bypass seal 1210ms
+   ✓ atomic decision insert+seal rolls back on missing dependencies, changed head or seal failure 612ms
+ ✓ tests/unit/di15-policy-b.test.ts (88 tests) 1404ms
+(node:40850) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/tcbs-pipeline.test.ts (7 tests) 1219ms
+   ✓ additive immutable snapshot storage replays real candidate contracts on isolated DB; no production writes 690ms
+ ✓ tests/integration/level1-disposition.test.ts (1 test) 690ms
+   ✓ persists governance independently, refuses mutation/untrusted approval and propagates TCX exception 689ms
+(node:40863) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/di14-di15-final-closure.test.ts (6 tests) 416ms
+ ✓ tests/unit/market-boundary.test.ts (36 tests) 243ms
+ ✓ tests/unit/level1-promotion.test.ts (12 tests) 60ms
+ ✓ tests/unit/tcbs-pipeline.test.ts (19 tests) 7ms
+ ✓ tests/architecture/market-boundary.test.mjs (2 tests) 2ms
+
+ Test Files  11 passed (11)
+      Tests  190 passed (190)
+   Start at  05:18:52
+   Duration  23.79s (tests 80%, environment 12%, setup 4%, transform 2%, import 2%)
+
+    Isolate  11 workers spawned · ~309ms startup each (spawn + environment, per file)
+             at least ~3.09s faster with isolate: false — reuses workers across files instead of one per file
+
+JSON report written to /private/tmp/dependency-focused.json

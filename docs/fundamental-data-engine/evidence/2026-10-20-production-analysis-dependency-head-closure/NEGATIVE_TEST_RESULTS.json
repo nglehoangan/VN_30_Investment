@@ -1,0 +1,178 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "requirement": "CALLER_SELECTED_STALE_HEAD",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::production resolves internally; caller-selected IDs/mode rejected; every head hash and required slot is checked"
+      ]
+    },
+    {
+      "requirement": "UNKNOWN_HEAD",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::production resolves internally; caller-selected IDs/mode rejected; every head hash and required slot is checked"
+      ]
+    },
+    {
+      "requirement": "MISSING_HEAD",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::production resolves internally; caller-selected IDs/mode rejected; every head hash and required slot is checked"
+      ]
+    },
+    {
+      "requirement": "HASH_MISMATCH",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::production resolves internally; caller-selected IDs/mode rejected; every head hash and required slot is checked"
+      ]
+    },
+    {
+      "requirement": "INCOMPATIBLE_DEPENDENCY_SET",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::CAS A→B succeeds; concurrent A→C fails; retry after B checks compatibility; no partial release leaks",
+        "integration/dependency-head.test.ts::missing market requests refresh, and incompatible/unknown dependencies cannot activate"
+      ]
+    },
+    {
+      "requirement": "CAS_CONFLICT",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::CAS A→B succeeds; concurrent A→C fails; retry after B checks compatibility; no partial release leaks"
+      ]
+    },
+    {
+      "requirement": "PARTIAL_RELEASE_FAILURE",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::CAS A→B succeeds; concurrent A→C fails; retry after B checks compatibility; no partial release leaks"
+      ]
+    },
+    {
+      "requirement": "STALE_MARKET",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::stale/missing market blocks refresh; expiry during analysis and at SQL publication rolls back"
+      ]
+    },
+    {
+      "requirement": "EXPIRED_MARKET_DURING_ANALYSIS",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::stale/missing market blocks refresh; expiry during analysis and at SQL publication rolls back"
+      ]
+    },
+    {
+      "requirement": "FUNDAMENTAL_CHANGED_DURING_ANALYSIS",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::analysis fundamental change mid-flight blocks sealing; historical release remains replayable and cache stale"
+      ]
+    },
+    {
+      "requirement": "PARTITION_CHANGED_DURING_ANALYSIS",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::PARTITION authority change mid-analysis fails closed; market alone cannot promote MBB"
+      ]
+    },
+    {
+      "requirement": "POLICY_CHANGED_DURING_DECISION",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::policy supersession blocks new decision from old analysis while historical binding stays immutable"
+      ]
+    },
+    {
+      "requirement": "PORTFOLIO_CHANGED_DURING_DECISION",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::policy/release and live ledger changes invalidate decisions; persistence never trusts stale portfolio watermark"
+      ]
+    },
+    {
+      "requirement": "TCX_EXCEPTION_CHANGED",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::TCX_EXCEPTION authority change mid-analysis fails closed; market alone cannot promote MBB"
+      ]
+    },
+    {
+      "requirement": "MBB_ELIGIBILITY_BYPASS",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::market activation cannot promote MBB; expiry at final transaction check leaves no partial snapshot"
+      ]
+    },
+    {
+      "requirement": "REPLAY_MODE_PRODUCTION_ESCAPE",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::analysis fundamental change mid-flight blocks sealing; historical release remains replayable and cache stale"
+      ]
+    },
+    {
+      "requirement": "SAME_ID_CHANGED_CONTENT",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::same immutable object ID with changed content is an integrity error; projection remains unchanged"
+      ]
+    },
+    {
+      "requirement": "UNREVIEWED_CANDIDATE_PROMOTION",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::bootstrap ignores newer unapproved candidate pointers and checks the accepted-review seal"
+      ]
+    },
+    {
+      "requirement": "DEPENDENCY_CHANGED_AT_TRANSACTION",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::dependency change between final validation and SQL transaction rejects atomically"
+      ]
+    },
+    {
+      "requirement": "EXPIRY_AT_FINAL_SQL_CHECK",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::market activation cannot promote MBB; expiry at final transaction check leaves no partial snapshot"
+      ]
+    },
+    {
+      "requirement": "TRUSTED_CLOCK_BINDING",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE",
+      "testCases": [
+        "integration/dependency-head.test.ts::staged lifecycle receives original snapshot binding time while freshness revalidation uses the trusted current clock"
+      ]
+    }
+  ],
+  "dependencyTestsPassed": 15,
+  "failed": 0,
+  "testAuthority": "Real retained immutable data references plus explicitly synthetic policy/model/risk authority on disposable DBs; not production approvals",
+  "noScoringRankingOrActualDecision": true
+}

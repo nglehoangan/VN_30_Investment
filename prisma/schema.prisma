@@ -465,3 +465,30 @@ model MarketBoundaryRankingPublication {
   bodyHash String @map("body_hash")
   @@map("market_boundary_ranking_publication")
 }
+
+// Append-only release history; existing dependency-head table is the CAS projection.
+model DependencyRelease {
+  id String @id
+  body String
+  bodyHash String @unique @map("body_hash")
+  recordedAt String @map("recorded_at")
+  supersedesId String? @map("supersedes_id")
+  @@map("dependency_release")
+}
+model ProductionDependencyPublication {
+  id String @id
+  kind String
+  recordId String @unique @map("record_id")
+  releaseHash String @map("release_hash")
+  body String
+  bodyHash String @map("body_hash")
+  @@map("production_dependency_publication")
+}
+model DependencyObjectIdentity {
+  key String @id
+  type String
+  objectId String @map("object_id")
+  bodyHash String @map("body_hash")
+  @@unique([type,objectId])
+  @@map("dependency_object_identity")
+}

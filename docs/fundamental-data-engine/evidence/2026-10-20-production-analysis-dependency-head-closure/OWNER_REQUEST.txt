@@ -1,0 +1,1414 @@
+VN30 Value Investing OS
+Production Analysis Activation — Dependency Head Closure
+
+Repository:
+https://github.com/nglehoangan/VN_30_Investment
+
+==================================================
+MISSION
+==================================================
+
+Close the final production-analysis activation blocker identified during:
+
+DI14 / DI15 Final Acceptance Closure
+
+Issue:
+
+AUTHORITATIVE_DEPENDENCY_HEAD_MAINTENANCE_NOT_CONFIGURED
+
+Data Initialization vNext has already been independently approved.
+
+Do NOT reopen Data Initialization.
+
+Do NOT modify canonical accounting facts.
+
+Do NOT fetch new fundamental evidence.
+
+Do NOT search for MBB evidence.
+
+Do NOT run VN30 scoring/ranking/Top10.
+
+Do NOT generate investment recommendations.
+
+Do NOT create Buy/Hold/Sell/DCA outputs.
+
+This task has ONE purpose:
+
+Implement and validate authoritative dependency-head management so future
+production analysis and decision publication cannot consume stale,
+caller-selected, superseded, or mutually inconsistent dependency versions.
+
+After this task, the system should be technically capable of beginning the
+first production Analysis/Scoring cycle, subject to runtime market refresh
+and all normal analysis gates.
+
+==================================================
+1. STARTING STATE
+==================================================
+
+Start from current repository HEAD.
+
+Expected lineage includes:
+
+b0c6ff21a19320e9f8f2a0b575b9a43dbed178c9
+  DI Market-Data Boundary Amendment
+
+0f4680e0b484c091c99679b2ce9eeb73785ba18d
+  DI14 / DI15 Final Acceptance Closure
+
+Do NOT assume HEAD automatically equals0f4680e.
+
+First record:
+
+- actual HEAD
+- commits after0f4680e, if any
+- working-tree status
+- DB/schema version
+- active migration state
+- existing dependency-head implementation
+- existing snapshot/version registries
+- existing publication guards
+
+If unrelated changes exist:
+
+identify them explicitly.
+
+Do not overwrite unrelated work.
+
+==================================================
+2. ACCEPTED GOVERNANCE — IMMUTABLE
+==================================================
+
+Treat the following as approved baseline.
+
+Data Initialization vNext:
+
+ACCEPTED.
+
+FULL_UNIVERSE:
+
+30
+
+FUNDAMENTALLY_ELIGIBLE / LEVEL1_CLOSED:
+
+29
+
+DEFERRED:
+
+MBB
+
+MBB remains:
+
+DEFERRED
+INSUFFICIENT
+NOT_SCORABLE
+score = null
+
+MBB cannot enter:
+
+- scoring
+- ranking
+- Top10
+- STRONG BUY
+- BUY
+- ACCUMULATE
+- DCA
+- new capital.
+
+TCX remains:
+
+CLOSED_WITH_EXCEPTION
+
+with:
+
+OWNER_APPROVED_ANALYTICAL_EXCEPTION
+
+for:
+
+5,284,485,167,173 VND.
+
+Do not rewrite this as issuer-proven conventional debt.
+
+VNM/VIB/VIC remain CLOSED under their accepted scopes.
+
+No accounting values may change.
+
+==================================================
+3. MARKET-DATA BOUNDARY — IMMUTABLE
+==================================================
+
+Preserve:
+
+Data Initialization
+→ Market Refresh
+→ Analysis Snapshot
+→ Portfolio Snapshot
+→ Decision Snapshot.
+
+MarketDataCapability currently supports only:
+
+LATEST_COMPLETED_HOSE_EOD_VALUATION_ONLY
+
+Do NOT broaden this scope.
+
+Do NOT qualify:
+
+- intraday execution
+- volume/liquidity
+- money flow
+- adjusted historical series
+- total return
+- historical technical analysis
+- backtesting.
+
+Market freshness remains consumption-time.
+
+Current market data is NOT required to keep Data Initialization valid.
+
+==================================================
+4. PROBLEM TO SOLVE
+==================================================
+
+The system currently has transaction guards and versioned snapshots, but
+production activation does not yet prove that every mutable dependency has
+an authoritative active head maintained by the system.
+
+Unsafe example:
+
+Caller supplies:
+
+old fundamental snapshot
++
+old market snapshot
++
+old policy version
++
+old portfolio state
+
+while newer authoritative dependencies already exist.
+
+The system must not publish analysis/actionable decisions merely because
+the caller supplied internally valid old IDs.
+
+The application itself must resolve and enforce authoritative dependency
+heads.
+
+==================================================
+5. CORE PRINCIPLE
+==================================================
+
+Production workflows must distinguish:
+
+HISTORICAL REPLAY
+
+from:
+
+NEW PRODUCTION ANALYSIS / DECISION.
+
+Historical replay:
+
+may explicitly request historical dependency IDs.
+
+Production analysis:
+
+must use authoritative active heads according to the applicable
+as-of/purpose contract.
+
+Production decision:
+
+must use the accepted analysis snapshot plus authoritative current
+portfolio/risk/execution dependencies.
+
+Caller-provided IDs must not override authoritative production heads.
+
+==================================================
+6. AUTHORITATIVE DEPENDENCY REGISTRY
+==================================================
+
+Implement a durable authoritative dependency-head registry.
+
+Use repository architecture/conventions.
+
+The registry must be system-controlled.
+
+At minimum model:
+
+dependency type
+head ID
+head content hash
+contract/version
+effectiveFrom
+recordedAt
+status
+supersedes
+activation reason
+source/evidence reference
+activation actor/mode where appropriate.
+
+Do not allow arbitrary caller mutation.
+
+Prefer append-only activation history plus an authoritative current-head
+projection/resolution mechanism.
+
+Historical head history must remain auditable.
+
+==================================================
+7. REQUIRED DEPENDENCY CLASSES
+==================================================
+
+Review actual code and identify all mutable dependencies affecting
+production analysis/decision.
+
+At minimum explicitly evaluate:
+
+UNIVERSE
+
+SECURITY_MASTER / REFERENCE_DATA
+
+INITIALIZATION_MANIFEST
+
+FUNDAMENTAL_SNAPSHOT / FUNDAMENTAL_RELEASE
+
+TICKER_DISPOSITION / POLICY_B_PARTITION
+
+EXCEPTION_REGISTRY
+
+MARKET_CAPABILITY_CONTRACT
+
+MARKET_SESSION_CALENDAR_POLICY
+
+MARKET_SNAPSHOT
+
+POLICY_VERSION
+
+SCORING_MODEL_VERSION
+
+DECISION_ENGINE_VERSION
+
+PORTFOLIO_SNAPSHOT / LEDGER_WATERMARK
+
+RISK_POLICY / RISK_STATE if separately versioned.
+
+Do not create unnecessary duplicate heads where one existing durable object
+already correctly owns the dependency.
+
+Document ownership.
+
+==================================================
+8. DEPENDENCY CLASSIFICATION
+==================================================
+
+Classify each dependency as one of:
+
+INITIALIZATION_HEAD
+
+ANALYSIS_STATIC_HEAD
+
+ANALYSIS_RUNTIME_HEAD
+
+DECISION_RUNTIME_HEAD
+
+HISTORICAL_REPLAY_ONLY
+
+or equivalent explicit taxonomy.
+
+Example intent:
+
+Universe:
+static/current authoritative reference head.
+
+Fundamentals:
+latest accepted eligible fundamental release appropriate to analysis
+as-of.
+
+MarketSnapshot:
+runtime dependency; must additionally satisfy freshness.
+
+Portfolio:
+decision-time current ledger/snapshot dependency.
+
+Historical replay:
+explicit historical selection permitted only in replay mode.
+
+Do not treat all dependencies identically.
+
+==================================================
+9. INITIAL HEAD BOOTSTRAP
+==================================================
+
+Bootstrap authoritative heads only from already accepted durable artifacts.
+
+Do NOT create new accounting facts.
+
+Do NOT create new market observations.
+
+Do NOT fabricate versions.
+
+Bootstrap should bind exact accepted IDs/hashes.
+
+At minimum include the accepted:
+
+Data Initialization vNext state
+
+29/1 partition
+
+active TCX exception
+
+market capability contract
+
+2026 market session/calendar policy
+
+current approved policy/scoring/decision-engine versions where existing
+baseline authority is clear.
+
+If authority is ambiguous:
+
+do NOT guess.
+
+Mark:
+
+BLOCKED / REQUIRES_AUTHORITY_RESOLUTION.
+
+==================================================
+10. MARKET SNAPSHOT IS SPECIAL
+==================================================
+
+Do NOT make one old market snapshot a permanent authoritative head.
+
+Market observations expire.
+
+The dependency registry may record the latest accepted MarketSnapshot, but
+production analysis must still execute:
+
+MARKET_DATA_FRESHNESS_GATE.
+
+Therefore:
+
+latestHead != automatically fresh.
+
+If latest market head is stale:
+
+analysis must BLOCK or refresh.
+
+Do not fetch market data in this task merely to populate a fresh head.
+
+==================================================
+11. PORTFOLIO SNAPSHOT IS SPECIAL
+==================================================
+
+A decision requiring portfolio context must use the current authoritative
+portfolio/ledger state.
+
+If:
+
+ledger watermark changes
+
+cash changes
+
+position changes
+
+transaction posts
+
+dividend posts
+
+corporate action modifies holdings
+
+or another material portfolio dependency changes,
+
+a previously prepared decision must not remain automatically executable.
+
+Require rebuild/revalidation as appropriate.
+
+Do not redesign portfolio accounting.
+
+==================================================
+12. ANALYSIS HEAD RESOLUTION
+==================================================
+
+Create a deterministic resolver for NEW production analysis.
+
+Conceptually:
+
+resolveProductionAnalysisDependencies({
+  purpose,
+  requestedAsOf
+})
+
+The application, not the caller, must resolve:
+
+universe
+initialization
+fundamental release
+partition
+exceptions
+market capability
+calendar/session policy
+policy version
+scoring version
+other required analysis dependencies.
+
+MarketSnapshot may be:
+
+resolved from latest eligible retained snapshot
+
+OR
+
+reported as REFRESH_REQUIRED.
+
+Caller cannot choose an arbitrary older production dependency.
+
+==================================================
+13. DECISION HEAD RESOLUTION
+==================================================
+
+Create deterministic resolution/validation for production decision
+publication.
+
+A decision must bind:
+
+accepted AnalysisSnapshot
+
+current authoritative portfolio dependency
+
+current applicable risk/policy dependencies
+
+current ticker disposition
+
+active exceptions
+
+required execution dependencies.
+
+If any authoritative dependency changed after analysis:
+
+classify whether:
+
+REANALYSIS_REQUIRED
+
+REVALIDATION_REQUIRED
+
+or
+
+NO_MATERIAL_EFFECT
+
+according to explicit approved rules.
+
+Do not silently publish using stale dependencies.
+
+When uncertain:
+
+fail closed.
+
+==================================================
+14. HISTORICAL REPLAY MODE
+==================================================
+
+Historical replay must remain possible.
+
+Explicitly separate modes:
+
+PRODUCTION
+
+HISTORICAL_REPLAY.
+
+Only HISTORICAL_REPLAY may request old dependency heads intentionally.
+
+Historical replay must preserve PIT rules.
+
+Production endpoints/services must not accept replay mode merely through
+untrusted user input without appropriate internal authorization/path.
+
+Do not let replay become a stale-data bypass.
+
+==================================================
+15. COMPARE-AND-SWAP / CONCURRENCY
+==================================================
+
+Dependency-head activation must be concurrency-safe.
+
+Implement deterministic optimistic concurrency or equivalent.
+
+Example:
+
+current head = A
+
+writer1 intends A→B
+
+writer2 intends A→C.
+
+Only one may succeed without reconciling the new head.
+
+Require:
+
+expectedPreviousHead
+
+or equivalent CAS semantics.
+
+No silent last-write-wins for authoritative heads.
+
+==================================================
+16. ATOMIC HEAD ACTIVATION
+==================================================
+
+If multiple heads must change as one accepted release:
+
+activate them atomically or through an immutable release-set/envelope.
+
+Do not expose half-updated states such as:
+
+new partition
++
+old initialization manifest
+
+or:
+
+new policy
++
+old scoring compatibility contract.
+
+If a multi-dependency release is required, introduce a:
+
+DependencyRelease
+
+or equivalent immutable envelope.
+
+Prefer the smallest design consistent with repository architecture.
+
+==================================================
+17. COMPATIBILITY VALIDATION
+==================================================
+
+Before activation, validate cross-dependency compatibility.
+
+Examples:
+
+Universe ↔ partition exact identity
+
+InitializationManifest ↔ fundamental release
+
+partition ↔ dispositions
+
+TCX exception ↔ TCX disposition
+
+scoring model ↔ required canonical metrics
+
+market capability ↔ market snapshot contract
+
+calendar policy ↔ market snapshot trading date
+
+analysis snapshot ↔ scoring version
+
+decision engine ↔ policy version
+
+portfolio snapshot ↔ ledger watermark.
+
+Incompatible head combination:
+
+BLOCKED.
+
+==================================================
+18. CONTENT HASHES
+==================================================
+
+Heads must bind immutable content hashes.
+
+An ID alone is insufficient.
+
+On resolution/use:
+
+verify object hash where appropriate.
+
+If:
+
+same ID
++
+different content
+
+=> integrity failure.
+
+Do not continue.
+
+==================================================
+19. SUPERSESSION
+==================================================
+
+New authoritative release must not destroy the old one.
+
+Activation should produce history similar to:
+
+A ACTIVE
+→ B ACTIVE, A SUPERSEDED
+
+Historical replay can still use A.
+
+New production analysis resolves B.
+
+Superseded dependencies must not be silently used in new production work.
+
+==================================================
+20. INVALIDATION EVENTS
+==================================================
+
+Implement or document deterministic invalidation for at least:
+
+VN30 reconstitution
+
+new accepted fundamental release
+
+ticker disposition change
+
+exception change
+
+market capability version change
+
+calendar/session policy change
+
+market snapshot expiry
+
+policy version change
+
+scoring model version change
+
+decision engine version change
+
+portfolio ledger change.
+
+Do not over-invalidate unrelated historical artifacts.
+
+Historical AnalysisSnapshot remains valid historical evidence even if its
+dependencies are superseded.
+
+It simply cannot authorize a new production action without revalidation.
+
+==================================================
+21. POLICY-B SAFETY
+==================================================
+
+Dependency-head activation must preserve:
+
+FULL = 30
+
+ELIGIBLE = 29
+
+DEFERRED = MBB.
+
+Test that activating a new market head cannot change fundamental
+eligibility.
+
+Test that caller cannot supply an older partition where MBB was handled
+differently.
+
+MBB must remain null-score/not-scorable until a separately approved
+fundamental disposition release changes that state.
+
+==================================================
+22. TCX EXCEPTION SAFETY
+==================================================
+
+Active exception registry must remain an authoritative dependency.
+
+Production analysis involving TCX must bind the exact active exception
+version/hash.
+
+If the exception changes or is revoked:
+
+old AnalysisSnapshot remains historical evidence
+
+but a new production decision must revalidate/rebuild.
+
+Do not convert the exception into accounting fact.
+
+==================================================
+23. CACHE INVALIDATION
+==================================================
+
+Cached:
+
+analysis
+score
+ranking
+Top10
+valuation
+decision candidate
+DCA candidate
+
+must not be considered production-current solely by cache age.
+
+Bind caches to dependency release/hash set.
+
+If relevant head changes:
+
+cache becomes:
+
+STALE_DEPENDENCY
+
+and cannot authorize new action.
+
+Do NOT implement actual ranking/Top10 in this task.
+
+Only enforce dependency semantics.
+
+==================================================
+24. ANALYSIS SNAPSHOT BINDING
+==================================================
+
+Future production AnalysisSnapshot must bind the resolved authoritative
+dependency release.
+
+At minimum preserve:
+
+dependencyReleaseId
+dependencyReleaseHash
+
+plus exact dependency IDs/hashes where required for audit.
+
+Before sealing:
+
+re-resolve authoritative heads.
+
+If changed during analysis:
+
+do not seal as current production analysis.
+
+Return:
+
+DEPENDENCY_CHANGED_DURING_ANALYSIS
+
+or equivalent fail-closed state.
+
+==================================================
+25. DECISION SNAPSHOT BINDING
+==================================================
+
+Future production DecisionSnapshot must bind:
+
+analysis dependency release
+
+decision-time dependency release
+
+portfolio snapshot
+
+applicable market snapshot
+
+policy/engine versions
+
+active exceptions
+
+eligibility.
+
+Immediately before atomic publication:
+
+revalidate authoritative heads.
+
+If relevant dependency changed:
+
+publication must fail.
+
+==================================================
+26. PRODUCTION FORMAL PATH
+==================================================
+
+Current FORMAL production paths may remain hard-denied until this closure is
+independently approved.
+
+Do not prematurely enable real investment decisions.
+
+Implement activation capability and evidence.
+
+The task's result is:
+
+PRODUCTION_ANALYSIS_ACTIVATION_CANDIDATE
+
+not automatic live trading or decision activation.
+
+==================================================
+27. SCORING ACTIVATION BOUNDARY
+==================================================
+
+After this closure is independently approved, the next workflow may run:
+
+Market Refresh
+→ Freshness Gate
+→ AnalysisSnapshot
+→ VN30 Scoring on29 eligible tickers.
+
+This task itself MUST NOT execute it.
+
+Keep:
+
+readyForScoring = false
+
+inside this implementation run until independent approval.
+
+Do not produce scorecards.
+
+==================================================
+28. DATABASE / MIGRATION
+==================================================
+
+Use additive migration only if persistence changes are necessary.
+
+Do not repurpose historical tables destructively.
+
+Validate on:
+
+fresh disposable DB
+
+and
+
+populated disposable production copy.
+
+Protect:
+
+existing transactions
+portfolio
+fundamentals
+snapshots
+decisions
+historical evidence.
+
+Production DB must not be mutated merely to create closure evidence unless
+existing governance explicitly requires and authorizes it.
+
+==================================================
+29. TESTS — HEAD RESOLUTION
+==================================================
+
+Add tests proving:
+
+new production analysis resolves authoritative heads internally
+
+caller cannot override with old universe
+
+caller cannot override with old fundamentals
+
+caller cannot override with old partition
+
+caller cannot override exception registry
+
+caller cannot override policy/scoring version
+
+market head still requires freshness
+
+unknown head fails closed
+
+missing head fails closed
+
+hash mismatch fails closed.
+
+==================================================
+30. TESTS — CONCURRENCY
+==================================================
+
+Test:
+
+A→B with expected A succeeds
+
+concurrent A→C after B activation fails
+
+retry using B may proceed only after compatibility validation
+
+multi-head release does not expose partial state
+
+failed activation leaves previous release fully authoritative.
+
+==================================================
+31. TESTS — ANALYSIS INVALIDATION
+==================================================
+
+Test:
+
+analysis begins with release R1
+
+fundamental head changes to R2 before seal
+
+=> analysis cannot seal as production-current.
+
+Test:
+
+market snapshot expires during analysis
+
+=> analysis cannot seal as market-current.
+
+Test:
+
+partition changes during analysis
+
+=> analysis cannot seal.
+
+Test:
+
+TCX exception changes during TCX analysis
+
+=> analysis cannot seal without revalidation.
+
+==================================================
+32. TESTS — DECISION INVALIDATION
+==================================================
+
+Test:
+
+accepted analysis exists
+
+portfolio ledger changes
+
+=> decision publication blocked/revalidation required.
+
+Policy changes:
+
+=> decision blocked.
+
+Ticker disposition changes:
+
+=> decision blocked.
+
+Market freshness expires:
+
+=> market-dependent decision blocked.
+
+Dependency release changes between validation and DB transaction:
+
+=> publication fails atomically.
+
+==================================================
+33. TESTS — HISTORICAL REPLAY
+==================================================
+
+Test:
+
+superseded release remains replayable.
+
+Historical replay may explicitly request old release.
+
+Production analysis cannot use old release.
+
+Replay mode cannot escape into production publication.
+
+Old AnalysisSnapshot/DecisionSnapshot remains immutable.
+
+==================================================
+34. TESTS — POLICY B
+==================================================
+
+Verify:
+
+FULL =30
+
+eligible =29
+
+MBB deferred
+
+MBB score null
+
+MBB excluded from ranking eligibility
+
+market head activation cannot promote MBB
+
+old partition cannot be caller-selected to bypass quarantine
+
+no missing-weight redistribution
+
+no capital redistribution.
+
+==================================================
+35. TESTS — TCX
+==================================================
+
+Verify:
+
+TCX active exception exact amount:
+
+5284485167173
+
+exception hash bound to dependency release
+
+exception remains analytical
+
+revoked/changed exception invalidates new TCX production analysis as
+appropriate
+
+historical TCX analysis retains historical exception reference.
+
+==================================================
+36. NEGATIVE TESTS
+==================================================
+
+At minimum cover:
+
+CALLER_SELECTED_STALE_HEAD
+
+UNKNOWN_HEAD
+
+MISSING_HEAD
+
+HASH_MISMATCH
+
+INCOMPATIBLE_DEPENDENCY_SET
+
+CAS_CONFLICT
+
+PARTIAL_RELEASE_FAILURE
+
+STALE_MARKET
+
+EXPIRED_MARKET_DURING_ANALYSIS
+
+FUNDAMENTAL_CHANGED_DURING_ANALYSIS
+
+PARTITION_CHANGED_DURING_ANALYSIS
+
+POLICY_CHANGED_DURING_DECISION
+
+PORTFOLIO_CHANGED_DURING_DECISION
+
+TCX_EXCEPTION_CHANGED
+
+MBB_ELIGIBILITY_BYPASS
+
+REPLAY_MODE_PRODUCTION_ESCAPE.
+
+All must fail closed.
+
+==================================================
+37. PROTECTED REPLAY
+==================================================
+
+Run protected fundamental/accounting replay.
+
+Expected:
+
+30 FULL
+
+29 Level-1 closed
+
+1 deferred MBB
+
+0 accounting regressions
+
+TCX exception unchanged
+
+VNM/VIB/VIC unchanged.
+
+Also replay:
+
+Data Initialization vNext accepted candidate
+
+market capability retained candidate
+
+historical legacy artifacts where currently supported.
+
+Do not manufacture restoration of known missing legacy files.
+
+==================================================
+38. VALIDATION
+==================================================
+
+Run all relevant gates:
+
+lint
+typecheck
+DB validation
+architecture/boundary tests
+dependency-head tests
+market-boundary tests
+Policy-B tests
+migration fresh DB
+migration populated copy
+full unit/integration suite
+browser E2E where applicable
+production build
+protected accounting replay.
+
+Classify failures:
+
+NEW_REGRESSION
+
+PRE_EXISTING
+
+EXPECTED_NEGATIVE
+
+ENVIRONMENTAL.
+
+No new Critical/Major regression allowed.
+
+Do not weaken tests.
+
+==================================================
+39. ACCEPTANCE CRITERIA
+==================================================
+
+Closure candidate may PASS only if:
+
+1. authoritative dependency heads are durable/system-owned
+2. production analysis resolves heads internally
+3. caller-selected stale heads cannot bypass current authority
+4. historical replay remains possible
+5. CAS/concurrency is deterministic
+6. multi-dependency activation is atomic
+7. compatibility is validated
+8. exact content hashes are bound
+9. stale market still requires refresh
+10. dependency change during analysis blocks current sealing
+11. dependency change during decision blocks publication
+12. Policy B29/1 remains intact
+13. MBB remains quarantined
+14. TCX exception remains active and explicit
+15. accounting regressions =0
+16. new regressions =0
+17. production DB not improperly mutated
+18. no real scoring/ranking/decision run occurred.
+
+==================================================
+40. EVIDENCE PACKAGE
+==================================================
+
+Create:
+
+docs/fundamental-data-engine/evidence/
+2026-10-20-production-analysis-dependency-head-closure/
+
+At minimum:
+
+README.md
+
+BASELINE_IDENTITY.json
+
+DEPENDENCY_TAXONOMY.json
+
+DEPENDENCY_OWNER_MATRIX.json
+
+BOOTSTRAP_HEADS.json
+
+DEPENDENCY_RELEASE.json
+
+DEPENDENCY_HEAD_REGISTRY_REVIEW.json
+
+HEAD_RESOLUTION_REVIEW.json
+
+COMPATIBILITY_MATRIX.json
+
+CAS_CONCURRENCY_REVIEW.json
+
+ATOMIC_RELEASE_REVIEW.json
+
+ANALYSIS_INVALIDATION_REVIEW.json
+
+DECISION_INVALIDATION_REVIEW.json
+
+HISTORICAL_REPLAY_REVIEW.json
+
+CACHE_INVALIDATION_REVIEW.json
+
+POLICY_B_REPLAY.json
+
+MBB_QUARANTINE_REPLAY.json
+
+TCX_EXCEPTION_REPLAY.json
+
+MARKET_FRESHNESS_REPLAY.json
+
+PROTECTED_ACCOUNTING_REPLAY.json
+
+MIGRATION_REVIEW.json
+
+NEGATIVE_TEST_RESULTS.json
+
+REGRESSION_RESULTS.json
+
+OPEN_ISSUES.json
+
+TEST_RESULTS.json
+
+ARTIFACT_HASHES.json
+
+FINAL_REVIEW.md.
+
+Do not duplicate large source corpora.
+
+Reference accepted artifacts by exact path/hash.
+
+==================================================
+41. FINAL REVIEW FORMAT
+==================================================
+
+FINAL_REVIEW.md must report:
+
+STARTING_HEAD
+
+ENDING_HEAD
+
+IMPLEMENTATION_STATUS
+
+DEPENDENCY_HEAD_REGISTRY
+
+BOOTSTRAP_STATUS
+
+DEPENDENCY_RELEASE
+
+HEAD_RESOLUTION
+
+CAS_CONCURRENCY
+
+ATOMIC_ACTIVATION
+
+COMPATIBILITY_VALIDATION
+
+HISTORICAL_REPLAY
+
+ANALYSIS_INVALIDATION
+
+DECISION_INVALIDATION
+
+MARKET_FRESHNESS
+
+POLICY_B
+
+FULL_UNIVERSE
+
+ELIGIBLE
+
+DEFERRED
+
+MBB_STATUS
+
+TCX_EXCEPTION
+
+ACCOUNTING_REGRESSIONS
+
+NEW_REGRESSIONS
+
+PRODUCTION_DB_MUTATED
+
+SCORING_RUN
+
+RANKING_RUN
+
+INVESTMENT_DECISION_CREATED
+
+PRODUCTION_ANALYSIS_ACTIVATION_CANDIDATE
+
+readyForScoring
+
+decisionReady.
+
+Expected safe candidate state if implementation succeeds:
+
+FULL_UNIVERSE =30
+
+ELIGIBLE =29
+
+DEFERRED =1
+
+MBB_STATUS = DEFERRED / NOT_SCORABLE
+
+TCX_EXCEPTION = ACTIVE
+
+ACCOUNTING_REGRESSIONS =0
+
+NEW_REGRESSIONS =0
+
+SCORING_RUN = false
+
+RANKING_RUN = false
+
+INVESTMENT_DECISION_CREATED = false
+
+PRODUCTION_ANALYSIS_ACTIVATION_CANDIDATE = PASS_CANDIDATE
+
+readyForScoring = false
+until independent approval
+
+decisionReady = false.
+
+Do not force expected values if evidence contradicts them.
+
+==================================================
+42. ABSOLUTE PROHIBITIONS
+==================================================
+
+DO NOT:
+
+reopen DI14/DI15
+
+change Data Initialization acceptance
+
+change accounting facts
+
+search MBB evidence
+
+change TCX classification
+
+fetch market data merely to make tests green
+
+run VN30 scoring
+
+run ranking
+
+produce Top10
+
+perform valuation recommendation
+
+produce Buy/Hold/Sell
+
+produce DCA
+
+place trades
+
+enable live decision publication automatically
+
+rewrite historical evidence
+
+hide pre-existing failures
+
+weaken fail-closed behavior.
+
+==================================================
+43. COMMIT
+==================================================
+
+After implementation + validation + evidence:
+
+create ONE scoped commit.
+
+Suggested message:
+
+Production Analysis Dependency Head Closure
+
+Do not mix unrelated changes.
+
+Record:
+
+starting HEAD
+ending HEAD
+migration IDs
+contract versions
+changed files
+test results.
+
+==================================================
+44. STOP
+==================================================
+
+STOP after implementation, validation and evidence generation.
+
+Do NOT self-approve.
+
+Do NOT start First Live VN30 Scoring Cycle.
+
+Return:
+
+1. ending commit SHA
+2. evidence folder
+3. dependency registry status
+4. dependency release status
+5. CAS/concurrency status
+6. analysis invalidation status
+7. decision invalidation status
+8. Policy-B status
+9. accounting regressions
+10. new regressions
+11. blockers
+12. confirmation no scoring/ranking/investment decision was run
+
+End exactly with:
+
+Awaiting independent review: Review Production Analysis Dependency Head Closure

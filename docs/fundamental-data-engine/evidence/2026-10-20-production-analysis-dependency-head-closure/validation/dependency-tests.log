@@ -1,0 +1,26 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+(node:47127) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/dependency-head.test.ts (15 tests) 11510ms
+   ✓ production resolves internally; caller-selected IDs/mode rejected; every head hash and required slot is checked 1016ms
+   ✓ CAS A→B succeeds; concurrent A→C fails; retry after B checks compatibility; no partial release leaks 894ms
+   ✓ analysis fundamental change mid-flight blocks sealing; historical release remains replayable and cache stale 914ms
+   ✓ PARTITION authority change mid-analysis fails closed; market alone cannot promote MBB 837ms
+   ✓ TCX_EXCEPTION authority change mid-analysis fails closed; market alone cannot promote MBB 815ms
+   ✓ stale/missing market blocks refresh; expiry during analysis and at SQL publication rolls back 965ms
+   ✓ policy/release and live ledger changes invalidate decisions; persistence never trusts stale portfolio watermark 959ms
+   ✓ dependency change between final validation and SQL transaction rejects atomically 852ms
+   ✓ market activation cannot promote MBB; expiry at final transaction check leaves no partial snapshot 804ms
+   ✓ same immutable object ID with changed content is an integrity error; projection remains unchanged 789ms
+   ✓ missing market requests refresh, and incompatible/unknown dependencies cannot activate 758ms
+   ✓ policy supersession blocks new decision from old analysis while historical binding stays immutable 908ms
+   ✓ staged lifecycle receives original snapshot binding time while freshness revalidation uses the trusted current clock 824ms
+
+ Test Files  1 passed (1)
+      Tests  15 passed (15)
+   Start at  05:49:41
+   Duration  11.98s (tests 97%, transform 2%, setup 1%, import 1%)
+
+JSON report written to /private/tmp/dependency-head-final.json

@@ -1,0 +1,118 @@
+{
+  "startingHEAD": "0f4680e0b484c091c99679b2ce9eeb73785ba18d",
+  "historyAfter0f4680e": [],
+  "dirtyWorkingTree": [],
+  "databaseSHA256": "559ba416f708db1b6eff240b741295ff180e3ef2c2cb77b22d92ae16bd8fe7c4",
+  "schemaVersion": 146,
+  "migrations": [
+    [
+      "202609100001_methodology_registry",
+      1791436543830,
+      null
+    ],
+    [
+      "202609160001_portfolio_ledger",
+      1791436543836,
+      null
+    ],
+    [
+      "202609170001_scoring_artifacts",
+      1791436543839,
+      null
+    ],
+    [
+      "202609200001_methodology_governance",
+      1791436543841,
+      null
+    ],
+    [
+      "202609200002_decision_artifacts",
+      1791436543843,
+      null
+    ],
+    [
+      "202609300001_approved_decision_methodology",
+      1791436543844,
+      null
+    ],
+    [
+      "202610010001_sector_monotonicity",
+      1791436543845,
+      null
+    ],
+    [
+      "202610010002_workflow_artifacts",
+      1791436543854,
+      null
+    ],
+    [
+      "202610030001_marginal_allocation",
+      1791436543855,
+      null
+    ],
+    [
+      "202610080001_broker_observations",
+      1791436543857,
+      null
+    ],
+    [
+      "202610080002_fundamental_foundation",
+      1792397395053,
+      null
+    ],
+    [
+      "202610090001_fundamental_normalization",
+      1792397395055,
+      null
+    ],
+    [
+      "202610090002_fundamental_derivation",
+      1792397395057,
+      null
+    ],
+    [
+      "202610090003_fundamental_snapshot",
+      1792397395062,
+      null
+    ],
+    [
+      "202610090004_scoring_readiness",
+      1792397395065,
+      null
+    ],
+    [
+      "202610130001_structured_admission",
+      1792397395066,
+      null
+    ],
+    [
+      "202610190001_level1_disposition",
+      1792406762450,
+      null
+    ]
+  ],
+  "schemaSHA256": "41bb46220c3f1c6238238901d67455227db9b019a2eb8d6931f011c3bc9c4c0b",
+  "recordedAt": "2026-10-20T05:05:49.581775+00:00",
+  "pendingMigrationsAtStart": [
+    "202610190002_market_boundary"
+  ],
+  "newMigration": "202610200001_dependency_release",
+  "existingMechanism": {
+    "projection": "market_boundary_dependency_head (pending migration on production)",
+    "guards": "BoundaryLifecycle rechecks trusted currentDependencies; store rechecks projection in transaction",
+    "gap": "No system-owned complete head catalog/activation history/atomic release resolver before this task",
+    "snapshotRegistries": [
+      "market_boundary_record",
+      "fundamental_admission_run",
+      "fundamental_disposition_release",
+      "methodology_record",
+      "portfolio revision/projection"
+    ],
+    "publicationGuards": [
+      "app/server/market-boundary.ts",
+      "src/application/market-boundary/lifecycle.ts",
+      "src/infrastructure/repositories/market-boundary.ts"
+    ]
+  },
+  "unrelatedChanges": []
+}
