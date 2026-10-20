@@ -18,7 +18,7 @@ const port = probe.address().port;
 await new Promise((resolve, reject) => probe.close(error => error ? reject(error) : resolve()));
 const child = spawn(process.execPath, ['node_modules/next/dist/bin/next', mode, '--hostname', '127.0.0.1', '--port', String(port)], {
   stdio: ['ignore', 'pipe', 'pipe'], detached: true,
-  env: { ...process.env, NEXT_TELEMETRY_DISABLED: '1', DATABASE_URL: `file:${testFile}`, VN30_BROKER_SNAPSHOT_FILE: '', VN30_CURRENT_SOURCE_FILE: path.join(testDirectory, "current-source.json"), LOG_LEVEL: invalidConfig ? canary : 'info' },
+  env: { ...process.env, NEXT_TELEMETRY_DISABLED: '1', DATABASE_URL: `file:${testFile}`, VN30_MARKET_CANDIDATE_ENABLED:'0', VN30_BROKER_SNAPSHOT_FILE: '', VN30_CURRENT_SOURCE_FILE: path.join(testDirectory, "current-source.json"), LOG_LEVEL: invalidConfig ? canary : 'info' },
 });
 let output = '';
 let leakedCanary = false;

@@ -1,0 +1,282 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+ ❯ tests/unit/di-governance-closure.test.ts (18 tests | 3 failed) 1360ms
+   × 6 retained original HPG PDF hashes still match physical bytes 4ms
+   × 7 VJC independent producer replay is deterministic with explicit ticker 549ms
+   × 8 GVR independent producer replay is deterministic with explicit ticker 527ms
+ ❯ tests/unit/consumer-retail-ticker-closure.test.ts (43 tests | 1 failed) 456ms
+   × 33 all seven protected source and evidence hashes remain unchanged 66ms
+ ❯ tests/unit/consumer-targeted-fix.test.ts (18 tests | 2 failed) 316ms
+   × VNM original PDF is bound to exact retained bytes 3ms
+   × All protected evidence and approved contracts retain their original hashes 1ms
+ ❯ tests/unit/tcx-ticker-closure.test.ts (36 tests | 2 failed) 172ms
+   ❯ TCX Level-1 canonical accounting isolation and semantics (36)
+     × 32 SSI protected evidence unchanged 4ms
+     × 33 all 15 approved closure artifacts and bound sources unchanged 1ms
+ ❯ tests/unit/gvr-ticker-closure.test.ts (44 tests | 2 failed) 123ms
+   × 33 all 13 approved closures, sources, contracts and prior tests remain unchanged 3ms
+   × retained originals exist and current inventory components reconcile including provision 2ms
+ ❯ tests/unit/energy-ticker-closure.test.ts (44 tests | 1 failed) 91ms
+   × 29 all approved closures and production contracts unchanged 3ms
+ ❯ tests/unit/real-estate-ticker-closure.test.ts (43 tests | 1 failed) 87ms
+   × 23 offline replay binds originals and raw bytes without disposable extraction 5ms
+ ❯ tests/unit/vjc-ticker-closure.test.ts (46 tests | 2 failed) 81ms
+   × 40 all 14 approved closures and existing contracts unchanged 4ms
+   × all retained transcriptions qualify and all five source PDFs are hash-bound 1ms
+ ❯ tests/unit/tcx-ket-vang-targeted.test.ts (25 tests | 3 failed) 18ms
+   ❯ TCX final targeted FY2022 Két Vàng forensic boundary (25)
+     × 19 SSI closure unchanged 2ms
+     × 20 all 15 approved closures and primary TCX evidence unchanged 1ms
+     × 22 no denominator or contract modifications 3ms
+ ❯ tests/unit/fpt-ticker-closure.test.ts (18 tests | 1 failed) 18ms
+   × deterministic replay requires no temporary extraction files 6ms
+(node:31585) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33103) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33187) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33621) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/integration/tcbs-pipeline.test.ts (7 tests | 2 failed) 1018ms
+   × REAL retained full30 corpus replays canonical/market evidence with29/1 and activeTCX; no investment output 170ms
+   × market expiry never invalidates historical capability/init replay; runtime status separates technical candidate from acceptance 152ms
+(node:33656) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33765) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 20 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/tcbs-pipeline.test.ts > REAL retained full30 corpus replays canonical/market evidence with29/1 and activeTCX; no investment output
+Error: MARKET_BOUNDARY:TCBS_PIPELINE_REPLAY_MISMATCH
+ ❯ requireBoundary src/domain/market-boundary/validation.ts:5:91
+      3| import { instant, dateOnly } from '@/shared/time';
+      4| import { AMENDMENT, VERSIONS, type Digest, type Evidence, type Kind, t…
+      5| export function requireBoundary(ok: unknown, reason: string): asserts …
+       |                                                                                           ^
+      6| export const nonempty = (s: unknown): s is string => typeof s === 'str…
+      7| export function pin(p: Pin) { requireBoundary(p && nonempty(p.id) && /…
+ ❯ replayTcbsPipeline src/infrastructure/market-boundary/tcbs-pipeline.ts:107:303
+ ❯ tests/integration/tcbs-pipeline.test.ts:17:76
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/20]⎯
+
+ FAIL  tests/integration/tcbs-pipeline.test.ts > market expiry never invalidates historical capability/init replay; runtime status separates technical candidate from acceptance
+AssertionError: expected { initialized: false, …(11) } to match object { marketCapability: true, …(6) }
+(5 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "analysisReady": false,
+    "decisionReady": false,
+-   "initializationCandidate": "PASS_CANDIDATE",
++   "initializationCandidate": "BLOCKED",
+    "initialized": false,
+-   "marketCapability": true,
++   "marketCapability": false,
+    "marketCurrent": false,
+    "marketSnapshotCandidate": "BLOCKED",
+  }
+
+ ❯ tests/integration/tcbs-pipeline.test.ts:31:12
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/20]⎯
+
+ FAIL  tests/unit/consumer-retail-ticker-closure.test.ts > 33 all seven protected source and evidence hashes remain unchanged
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/HPG/HPG_Baocaotaichinh_6T_2026_Soatxet_Hopnhat.pdf'
+ ❯ tests/unit/consumer-retail-ticker-closure.test.ts:39:170
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/20]⎯
+
+ FAIL  tests/unit/consumer-targeted-fix.test.ts > VNM original PDF is bound to exact retained bytes
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/VNM/VNM_2026_6M_Reviewed_Consolidated.pdf'
+ ❯ tests/unit/consumer-targeted-fix.test.ts:32:146
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/20]⎯
+
+ FAIL  tests/unit/consumer-targeted-fix.test.ts > All protected evidence and approved contracts retain their original hashes
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/FPT/FPT_Baocaotaichinh_2022_Kiemtoan_Hopnhat.pdf'
+ ❯ tests/unit/consumer-targeted-fix.test.ts:40:246
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/20]⎯
+
+ FAIL  tests/unit/di-governance-closure.test.ts > 6 retained original HPG PDF hashes still match physical bytes
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/HPG/HPG_Baocaotaichinh_6T_2026_Soatxet_Hopnhat.pdf'
+ ❯ tests/unit/di-governance-closure.test.ts:26:173
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/20]⎯
+
+ FAIL  tests/unit/di-governance-closure.test.ts > 7 VJC independent producer replay is deterministic with explicit ticker
+Error: Command failed: /private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-vjc-ticker.mjs --ticker=VJC
+node:fs:560
+  return binding.open(
+                 ^
+
+Error: ENOENT: no such file or directory, open 'data/providers/cafef/poc-2026-10-13/raw/4e7a254ac3a9039dcd466c56c0bc264c293839b3fa06bebcbcec7960d26b2d63.json'
+    at Object.openSync (node:fs:560:18)
+    at readFileSync (node:fs:444:35)
+    at sha (file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-vjc-ticker.mjs:15:98)
+    at file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-vjc-ticker.mjs:19:118
+    at check (file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-vjc-ticker.mjs:18:25)
+    at file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-vjc-ticker.mjs:19:1 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'data/providers/cafef/poc-2026-10-13/raw/4e7a254ac3a9039dcd466c56c0bc264c293839b3fa06bebcbcec7960d26b2d63.json'
+}
+
+Node.js v22.23.2
+
+ ❯ sha scripts/verify-vjc-ticker.mjs:15:98
+ ❯ scripts/verify-vjc-ticker.mjs:19:118
+ ❯ check scripts/verify-vjc-ticker.mjs:18:25
+ ❯ tests/unit/di-governance-closure.test.ts:27:83
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/20]⎯
+
+ FAIL  tests/unit/di-governance-closure.test.ts > 8 GVR independent producer replay is deterministic with explicit ticker
+Error: Command failed: /private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-gvr-ticker.mjs --ticker=GVR
+node:fs:560
+  return binding.open(
+                 ^
+
+Error: ENOENT: no such file or directory, open 'data/providers/cafef/poc-2026-10-13/raw/d57582a4e8f8e5450b3428f1fedd399944b1074ffc9b85fd1575edeaa3a7860d.json'
+    at Object.openSync (node:fs:560:18)
+    at readFileSync (node:fs:444:35)
+    at sha (file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-gvr-ticker.mjs:15:98)
+    at file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-gvr-ticker.mjs:19:118
+    at check (file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-gvr-ticker.mjs:18:25)
+    at file:///Users/nglehoangan/Documents/Working/VN_30_Investment/scripts/verify-gvr-ticker.mjs:19:1 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'data/providers/cafef/poc-2026-10-13/raw/d57582a4e8f8e5450b3428f1fedd399944b1074ffc9b85fd1575edeaa3a7860d.json'
+}
+
+Node.js v22.23.2
+
+ ❯ sha scripts/verify-gvr-ticker.mjs:15:98
+ ❯ scripts/verify-gvr-ticker.mjs:19:118
+ ❯ check scripts/verify-gvr-ticker.mjs:18:25
+ ❯ tests/unit/di-governance-closure.test.ts:28:83
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/20]⎯
+
+ FAIL  tests/unit/energy-ticker-closure.test.ts > 29 all approved closures and production contracts unchanged
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/FPT/FPT_Baocaotaichinh_2022_Kiemtoan_Hopnhat.pdf'
+ ❯ tests/unit/energy-ticker-closure.test.ts:36:163
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/20]⎯
+
+ FAIL  tests/unit/fpt-ticker-closure.test.ts > deterministic replay requires no temporary extraction files
+Error: ENOENT: no such file or directory, open '/Users/nglehoangan/Documents/Working/VN_30_Investment/data/providers/cafef/poc-2026-10-13/raw/8577968e8df0cfa41f466b62f18cd61704ef0c96444ef0dd24d5c4c99c9721ca.json'
+ ❯ tests/unit/fpt-ticker-closure.test.ts:31:237
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/20]⎯
+
+ FAIL  tests/unit/gvr-ticker-closure.test.ts > 33 all 13 approved closures, sources, contracts and prior tests remain unchanged
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/BSR/BSR_2026_6M_Reviewed_Consolidated.pdf'
+ ❯ tests/unit/gvr-ticker-closure.test.ts:36:178
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/20]⎯
+
+ FAIL  tests/unit/gvr-ticker-closure.test.ts > retained originals exist and current inventory components reconcile including provision
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/unit/gvr-ticker-closure.test.ts:43:167
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/20]⎯
+
+ FAIL  tests/unit/real-estate-ticker-closure.test.ts > 23 offline replay binds originals and raw bytes without disposable extraction
+Error: ENOENT: no such file or directory, open 'data/providers/cafef/poc-2026-10-13/raw/5331d5bd01815f7ad894c85d418d8f26a974437ed5e8f5b831aa615e5a25e8c7.json'
+ ❯ tests/unit/real-estate-ticker-closure.test.ts:39:289
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/20]⎯
+
+ FAIL  tests/unit/tcx-ket-vang-targeted.test.ts > TCX final targeted FY2022 Két Vàng forensic boundary > 19 SSI closure unchanged
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/SSI/SSI_Baocaotaichinh_2022_Kiemtoan_Hopnhat.pdf'
+ ❯ protectedBytes tests/unit/tcx-ket-vang-targeted.test.ts:12:190
+
+ ❯ tests/unit/tcx-ket-vang-targeted.test.ts:29:36
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/20]⎯
+
+ FAIL  tests/unit/tcx-ket-vang-targeted.test.ts > TCX final targeted FY2022 Két Vàng forensic boundary > 20 all 15 approved closures and primary TCX evidence unchanged
+Error: ENOENT: no such file or directory, open 'data/manual-extracted/current/ocr/00b0d4dfa991b380ea4814db6bce9d1cb50ec6979a629270413bf279c9bf44d5-p10.json'
+ ❯ protectedBytes tests/unit/tcx-ket-vang-targeted.test.ts:12:190
+
+ ❯ tests/unit/tcx-ket-vang-targeted.test.ts:30:74
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/20]⎯
+
+ FAIL  tests/unit/tcx-ket-vang-targeted.test.ts > TCX final targeted FY2022 Két Vàng forensic boundary > 22 no denominator or contract modifications
+AssertionError: src/domain/fundamentals/debt-contract.ts: expected '356431c6a3659f3bb3ba41900d9481c276960…' to be 'f4810fd87fa31364fbc29093b91d37bd46f1c…' // Object.is equality
+
+Expected: "f4810fd87fa31364fbc29093b91d37bd46f1ce062a7088136279e519ea3a5f55"
+Received: "356431c6a3659f3bb3ba41900d9481c2769604376ee6234bc46eec0d0a5737fc"
+
+ ❯ protectedBytes tests/unit/tcx-ket-vang-targeted.test.ts:12:234
+
+ ❯ tests/unit/tcx-ket-vang-targeted.test.ts:32:56
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/20]⎯
+
+ FAIL  tests/unit/tcx-ticker-closure.test.ts > TCX Level-1 canonical accounting isolation and semantics > 32 SSI protected evidence unchanged
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/SSI/SSI_Baocaotaichinh_2022_Kiemtoan_Hopnhat.pdf'
+ ❯ tests/unit/tcx-ticker-closure.test.ts:49:227
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/20]⎯
+
+ FAIL  tests/unit/tcx-ticker-closure.test.ts > TCX Level-1 canonical accounting isolation and semantics > 33 all 15 approved closure artifacts and bound sources unchanged
+Error: ENOENT: no such file or directory, open 'data/manual-extracted/current/ocr/00b0d4dfa991b380ea4814db6bce9d1cb50ec6979a629270413bf279c9bf44d5-p10.json'
+ ❯ tests/unit/tcx-ticker-closure.test.ts:50:168
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/20]⎯
+
+ FAIL  tests/unit/vjc-ticker-closure.test.ts > 40 all 14 approved closures and existing contracts unchanged
+Error: ENOENT: no such file or directory, open '.gitattributes 2'
+ ❯ tests/unit/vjc-ticker-closure.test.ts:40:211
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/20]⎯
+
+ FAIL  tests/unit/vjc-ticker-closure.test.ts > all retained transcriptions qualify and all five source PDFs are hash-bound
+Error: ENOENT: no such file or directory, open 'data/manual-fundamentals/VJC/VJC_Baocaotaichinh_2022_Kiemtoan_Hopnhat.pdf'
+ ❯ tests/unit/vjc-ticker-closure.test.ts:43:321
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/20]⎯
+
+
+ Test Files  11 failed | 124 passed (135)
+      Tests  20 failed | 1999 passed (2019)
+   Start at  01:22:22
+   Duration  364.52s (tests 88%, environment 7%, setup 3%, import 2%, transform 1%)
+
+    Isolate  135 workers spawned · ~236ms startup each (spawn + environment, per file)
+             at least ~31.65s faster with isolate: false — reuses workers across files instead of one per file
+

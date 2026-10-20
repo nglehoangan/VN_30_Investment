@@ -56,3 +56,43 @@ Custody code local đã được sửa thành tài khoản được xác minh t�
 `node api/import-captured.mjs` nhập offline từ `data/api-import/capture.json` vào database cấu hình bởi `DATABASE_URL` (mặc định `data/vn30.sqlite`), sau `pnpm db:migrate`. Lệnh không gọi API hoặc xin token. Account của response được đối chiếu với tiểu khoản NORMAL đang hoạt động trong response 2.1; không cần account number trong config.
 
 Bảng `broker_observation` giữ response gốc và snapshot chuẩn hóa với SHA-256, chỉ thêm bản ghi, import lại không trùng. Dashboard ưu tiên snapshot mới nhất trong database. Thời gian API là lúc nhận response, không phải thời điểm sàn xác nhận giá. Cổ tức chờ về và cổ phiếu chưa khả dụng được giữ riêng; snapshot không tự tạo giao dịch kế toán hay hiệu suất lịch sử. Database, response cá nhân, API key và token đều thuộc đường dẫn Git ignore.
+
+## Mẫu nguồn market cho capability
+
+`node api/capture-market.mjs` chỉ dùng JWT cache còn hạn. Khi cần xác thực, chạy **trong terminal riêng trên máy** bằng Node22.23.2:
+
+```sh
+node api/capture-market.mjs --authenticate --ticker=TCB
+```
+
+Smart OTP được nhập ẩn tại terminal; không lưu OTP hoặc đưa token vào log/raw. Sau xác thực, quy trình lấy mẫu giới hạn:5.1 cho ngày giao dịch đầy đủ,5.5 trang0/tối đa20 bản ghi,5.2 request snapshot một lần cho một mã. Không truy vấn tài sản tài khoản, đặt lệnh, nhập database hay chạy scoring. Dừng khi401/429, không tự retry.
+
+Kết quả riêng tư tại `data/market-source/tcbs/<capture-time>/`: raw response market, raw data frame5.2 (loại auth/control), manifest gồm request/time/status/SHA256. Lỗi HTTP chỉ giữ status, không lưu response lỗi có thể chứa thông tin xác thực. Capture thực vẫn là `NOT_QUALIFIED` cho đến khi kiểm tra schema, đơn vị, ngày/phiên, identity, adjustment và replay. Không tự đổi blocker hoặc readiness.
+
+Sau khi tải mẫu, kiểm tra offline bằng `python3 api/replay-market.py data/market-source/tcbs/<capture-time>`. Script rehash toàn bộ raw, giữ lossless decimal strings và JSON pointers, đối chiếu giá/identity/ngày giữa5.1/5.2/5.5, rồi ghi riêng `review-v1/extracted-review.json`. Không sửa raw/manifest, không suy đoán đơn vị/adjustment, không deduplicate lịch sử theo giá/thời gian, không tự chứng nhận capability hoặc tạo runtime snapshot.
+
+## Pipeline TCBS VN30 hoàn chỉnh (ứng viên EOD)
+
+Node 22.23.2, chạy từ project root; JWT cache còn hạn:
+
+```sh
+node api/tcbs-market-pipeline.mjs --refresh
+```
+
+Lệnh lấy bảng giá 5.3 và metadata 5.11/nến ngày 5.13 cho đúng 30 mã (61 GET), lưu raw bất biến và request inventory riêng TCBS, chuẩn hóa lossless decimal strings, đối chiếu giá đóng cửa, replay hai lần rồi ghi ứng viên và binding nguyên tử. Không tự xác thực lại. 401/429 hoặc nguồn không đủ thì dừng, giữ raw và ứng viên trước đó.
+
+Trước giờ mở cửa, bảng 5.3 có thể chuyển sang ngày mới nhưng chưa có `matchPrice`. Không lấy `refPrice`, không gán zero, không giả lập giá khớp. Có thể chỉ định bản chụp bảng giá của phiên hoàn tất để đối chiếu với nến ngày mới tải:
+
+```sh
+node api/tcbs-market-pipeline.mjs --refresh --board=<explicit-completed-board-folder>
+node api/tcbs-market-pipeline.mjs --capture=<explicit-capture-folder> --board=<explicit-completed-board-folder>
+node scripts/build-tcbs-pipeline.mjs --replay=<candidate.json>
+```
+
+Không tự chọn file mới nhất. Bản chụp bảng giá được chỉ định phải đủ 30 mã và cùng ngày/giá với nến được chuẩn hóa. Nếu nến của ngày được chỉ định không còn trong cửa sổ hai ngày, tải bản chụp phù hợp; không nới điều kiện.
+
+Đầu ra: `data/market-source/tcbs/<capture>/` giữ raw/inventory; `data/market-boundary/candidates/<hash>/candidate.json` giữ capability, initialization, market snapshot, chính sách phiên và toàn bộ source pins; `data/market-boundary/active-candidate.json` chỉ bind ứng viên kỹ thuật. Web `/api/readiness` replay ứng viên để hiển thị trạng thái. `VN30_MARKET_CANDIDATE_ENABLED=0` tắt nguồn ứng viên cho môi trường kiểm thử cách ly. Cleanup giữ cả hai namespace này.
+
+Phạm vi phiên bản `tcbs-vn30-eod-pipeline-v1`: giá đóng cửa phiên HOSE hoàn tất, VND/cổ phiếu, multiplier 1, đối chiếu bảng cùng ngày, dùng cho EOD valuation. `tradeUnit` không phải hệ số giá. Giữ thời gian lấy và ngày nến; HTTP Date chỉ là đồng hồ HTTP server, không phải thời điểm sàn xác nhận giá. Mốc 15:00 là ranh giới phiên bảo thủ, được khai báo là thời gian suy ra. Lịch 2026 có ngày nghỉ rõ ràng; ngoài năm đã xác thực thì chặn. Không bao gồm giá intraday/execution hoặc lịch sử điều chỉnh/total return. Volume khác nguồn vẫn được giữ trong raw, không được trộn vào hợp đồng price-only.
+
+Capability và initialization có thể `PASS_CANDIDATE` trong khi `initialized`, `marketCurrent`, `analysisReady`, `decisionReady`, `readyForScoring` vẫn false. DI14/DI15 cần independent acceptance theo governance hiện hành. Composition ở `app/server/tcbs-boundary-services.ts` chỉ mở sau khi có hash phê duyệt được cấp bởi trusted caller; request/browser không có nút tự phê duyệt. Không thay đổi dữ liệu tài chính, ngoại lệ TCX hoặc trạng thái deferred MBB.

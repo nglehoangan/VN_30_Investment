@@ -1,0 +1,145 @@
+[
+  {
+    "apiId": "5.1",
+    "documentation": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/market-symbol/",
+    "transport": "GET",
+    "purpose": "Price snapshot",
+    "fields": "Symbol, matched/bid/offer/reference prices, OHLC and tradingDate",
+    "role": "CORE_CANDIDATE",
+    "liveStatus": "CAPTURED_REHASH_PASS",
+    "sampleRows": 1,
+    "caveat": "Raw LAST/reference quote; full intraday timestamp not supplied on each row"
+  },
+  {
+    "apiId": "5.2",
+    "documentation": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/ws-price-board/",
+    "transport": "WSS",
+    "purpose": "Market board",
+    "fields": "Orderbook, raw matched price, one-shot snapshot/channel38",
+    "role": "OPTIONAL_REALTIME",
+    "liveStatus": "CAPTURED_REHASH_PASS",
+    "sampleRows": 1,
+    "caveat": "Keep pipe protocol and data-frame bytes; distinguish capture time from exchange event time"
+  },
+  {
+    "apiId": "5.3",
+    "documentation": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/foreign-room/",
+    "transport": "GET",
+    "purpose": "Basket snapshot/foreign room",
+    "fields": "VN30 prices, volumes, foreign flows and tradingDate",
+    "role": "SUPPLEMENTAL",
+    "liveStatus": "CAPTURED_REHASH_PASS",
+    "sampleRows": 30,
+    "caveat": "Provider basket matches retained30 in this sample; not an independent historical universe authority"
+  },
+  {
+    "apiId": "5.4",
+    "documentation": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/put-through/",
+    "transport": "GET",
+    "purpose": "Negotiated trades",
+    "fields": "Separate negotiated prices and volume",
+    "role": "SUPPLEMENTAL",
+    "liveStatus": "CAPTURED_REHASH_PASS",
+    "sampleRows": 904,
+    "caveat": "Not a replacement for normal matched/official close price"
+  },
+  {
+    "apiId": "5.5",
+    "documentation": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/price-history/",
+    "transport": "GET",
+    "purpose": "Intraday executions",
+    "fields": "Match price, volume, exchange receipt time; paginated",
+    "role": "TRACE_CANDIDATE",
+    "liveStatus": "CAPTURED_REHASH_PASS",
+    "sampleRows": 20,
+    "caveat": "Only intraday history; day/month lacks year; retain equal occurrences without inventing trade IDs"
+  },
+  {
+    "apiId": "5.6",
+    "documentation": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/supply-demand-intraday/",
+    "transport": "GET",
+    "purpose": "Intraday supply/demand",
+    "fields": "Buy/sell-active volumes and ratios with time fields",
+    "role": "OPTIONAL_SEPARATE_ANALYSIS",
+    "liveStatus": "CAPTURED_REHASH_PASS",
+    "sampleRows": 225,
+    "caveat": "Observed s is epoch-seconds, unlike the millisecond-sized documentation example; parser version needs explicit unit handling"
+  },
+  {
+    "apiId": "5.7",
+    "documentation": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/supply-demand-daily/",
+    "transport": "GET",
+    "purpose": "Daily supply/demand",
+    "fields": "Provider buy/sell-active series",
+    "role": "OPTIONAL_SEPARATE_ANALYSIS",
+    "liveStatus": "CAPTURED_REHASH_PASS",
+    "sampleRows": 0,
+    "caveat": "Actual sample is empty for20/10 before open; do not fill zero or substitute prior day"
+  },
+  {
+    "apiId": "5.8",
+    "documentation": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/supply-demand-monthly/",
+    "transport": "GET",
+    "purpose": "Monthly-window supply/demand",
+    "fields": "Historical active-buy/sell ratios",
+    "role": "OPTIONAL_SEPARATE_ANALYSIS",
+    "liveStatus": "CAPTURED_REHASH_PASS",
+    "sampleRows": 21,
+    "caveat": "Observed date labels DD/MM lack year; investor-size groups are provider classifications"
+  },
+  {
+    "apiId": "5.9",
+    "documentation": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/ws-order-matching/",
+    "transport": "WSS",
+    "purpose": "PRIVATE account order updates",
+    "fields": "STOCK_ORDER state updates for the authenticated account",
+    "role": "EXCLUDE_FROM_MARKET_SOURCE",
+    "liveStatus": "NOT_CALLED_PRIVATE_ACCOUNT",
+    "sampleRows": null,
+    "caveat": "Detailed official page describes account orders, despite generic sidebar matching title; not called"
+  },
+  {
+    "apiId": "5.10",
+    "documentation": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/ws-history/",
+    "transport": "WSS",
+    "purpose": "Market minute stream",
+    "fields": "C001 price/timeSec, C002 supply/demand and flow",
+    "role": "OPTIONAL_REALTIME",
+    "liveStatus": "DOCUMENTATION_ONLY",
+    "sampleRows": null,
+    "caveat": "Documentation reviewed only; not live qualified; one-minute closePrice is not daily official close"
+  },
+  {
+    "apiId": "5.11",
+    "documentation": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/securities-info/",
+    "transport": "GET",
+    "purpose": "Security reference",
+    "fields": "codeId, issuerId, ISIN in live payload, tradePlace, type/status/halt and tradeLot",
+    "role": "CORE_IDENTITY_CANDIDATE",
+    "liveStatus": "CAPTURED_REHASH_PASS",
+    "sampleRows": 1,
+    "caveat": "Live issuerName is blank; txDate is2016, not observation date; tradeUnit1000 is not proof to multiply quote values"
+  },
+  {
+    "apiId": "5.12",
+    "documentation": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/bars/",
+    "transport": "GET",
+    "purpose": "Intraday OHLCV",
+    "fields": "Five sampled hourly candles, UTC tradingDate",
+    "role": "OPTIONAL_SERIES_CANDIDATE",
+    "liveStatus": "CAPTURED_REHASH_PASS",
+    "sampleRows": 5,
+    "caveat": "Unfinished bars and adjustment basis require purpose-specific validation"
+  },
+  {
+    "apiId": "5.13",
+    "documentation": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/bars-long-term/",
+    "transport": "GET",
+    "purpose": "Daily/weekly/monthly OHLCV",
+    "fields": "Five sampled daily candles with UTC date and close",
+    "role": "CORE_EOD_CANDIDATE",
+    "liveStatus": "CAPTURED_REHASH_PASS",
+    "sampleRows": 5,
+    "caveat": "Adjustment/revision policy not explicit in reviewed endpoint schema; latest close matching does not prove historical adjustment semantics"
+  }
+]

@@ -1,0 +1,67 @@
+{
+  "lint": "PASS",
+  "typecheck": "PASS",
+  "dbSchemaValidation": "PASS",
+  "productionBuild": "PASS",
+  "focusedBoundaryAndPipeline": {
+    "passed": 68,
+    "failed": 0
+  },
+  "captureNodeTests": {
+    "passed": 2,
+    "failed": 0
+  },
+  "browserE2E": {
+    "passed": 13,
+    "failed": 0,
+    "isolatedDatabase": true
+  },
+  "unitIntegrationFullSuite": {
+    "passed": 2001,
+    "failed": 18,
+    "preExisting": 18,
+    "newRegressions": 0,
+    "exactBaselineFailedCasesMatched": true,
+    "baseline": "docs/fundamental-data-engine/evidence/2026-10-19-di-market-data-boundary-amendment/validation/final-vitest.json",
+    "failedCases": [
+      "unit/consumer-retail-ticker-closure.test.ts::33 all seven protected source and evidence hashes remain unchanged",
+      "unit/consumer-targeted-fix.test.ts::All protected evidence and approved contracts retain their original hashes",
+      "unit/consumer-targeted-fix.test.ts::VNM original PDF is bound to exact retained bytes",
+      "unit/di-governance-closure.test.ts::6 retained original HPG PDF hashes still match physical bytes",
+      "unit/di-governance-closure.test.ts::7 VJC independent producer replay is deterministic with explicit ticker",
+      "unit/di-governance-closure.test.ts::8 GVR independent producer replay is deterministic with explicit ticker",
+      "unit/energy-ticker-closure.test.ts::29 all approved closures and production contracts unchanged",
+      "unit/fpt-ticker-closure.test.ts::deterministic replay requires no temporary extraction files",
+      "unit/gvr-ticker-closure.test.ts::33 all 13 approved closures, sources, contracts and prior tests remain unchanged",
+      "unit/gvr-ticker-closure.test.ts::retained originals exist and current inventory components reconcile including provision",
+      "unit/real-estate-ticker-closure.test.ts::23 offline replay binds originals and raw bytes without disposable extraction",
+      "unit/tcx-ket-vang-targeted.test.ts::TCX final targeted FY2022 K\u00e9t V\u00e0ng forensic boundary 19 SSI closure unchanged",
+      "unit/tcx-ket-vang-targeted.test.ts::TCX final targeted FY2022 K\u00e9t V\u00e0ng forensic boundary 20 all 15 approved closures and primary TCX evidence unchanged",
+      "unit/tcx-ket-vang-targeted.test.ts::TCX final targeted FY2022 K\u00e9t V\u00e0ng forensic boundary 22 no denominator or contract modifications",
+      "unit/tcx-ticker-closure.test.ts::TCX Level-1 canonical accounting isolation and semantics 32 SSI protected evidence unchanged",
+      "unit/tcx-ticker-closure.test.ts::TCX Level-1 canonical accounting isolation and semantics 33 all 15 approved closure artifacts and bound sources unchanged",
+      "unit/vjc-ticker-closure.test.ts::40 all 14 approved closures and existing contracts unchanged",
+      "unit/vjc-ticker-closure.test.ts::all retained transcriptions qualify and all five source PDFs are hash-bound"
+    ]
+  },
+  "firstFullRun": {
+    "passed": 1999,
+    "failed": 20,
+    "note": "Two additional source-replay failures occurred while code pins were being updated during the run. Retained full-during-pin-update.log; final frozen full run reproduces only the baseline18 failures."
+  },
+  "realSourceEndToEnd": "PASS61GET_FULL30_NORMALIZE_REPLAY_BIND_CANDIDATE",
+  "finalCandidateReplay": "PASS111_INPUT_AND_CODE_PINS",
+  "cleanupRetention": "PASS_NO_DELETION_EXECUTED",
+  "databaseUnchanged": true,
+  "independentAcceptance": "PENDING_INDEPENDENT_REVIEW",
+  "readyForScoring": false,
+  "decisionReady": false,
+  "notClaimed": [
+    "WHOLE_SUITE_GREEN",
+    "DI14_APPROVAL",
+    "DI15_ACCEPTANCE",
+    "INTRADAY_EXECUTION",
+    "ADJUSTED_HISTORY",
+    "INVESTMENT_OUTPUTS"
+  ]
+}

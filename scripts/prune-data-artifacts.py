@@ -21,6 +21,8 @@ def retained(path):
     relative=path.relative_to(DATA);parts=relative.parts
     if relative.as_posix()=='retained-data-index.json':return True
     if len(parts)==1 and (parts[0]=='vn30.sqlite' or parts[0].startswith('vn30.sqlite-')):return True
+    # Market raw and immutable capability/snapshot candidates are replay dependencies, not disposable OCR.
+    if parts[0] in ('market-source','market-boundary'):return True
     if path.suffix!='.json':return False
     return (parts[0]=='comparisons' or parts[:2]==('providers','cafef')
             or (parts[:2]==('manual-extracted','display-v1') and len(parts)==3)
