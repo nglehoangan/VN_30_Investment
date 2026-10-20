@@ -1,0 +1,957 @@
+VN30 Value Investing OS
+Data Initialization vNext — DI14 / DI15 Final Acceptance Closure
+
+ROLE
+
+Act as:
+- Production Readiness Engineer
+- Data Governance Engineer
+- Investment System Architect
+- Validation Engineer
+- Audit / Replay Engineer
+
+This task is a FINAL ACCEPTANCE CLOSURE.
+
+Do NOT introduce new investment logic.
+Do NOT redesign the approved Market-Data Boundary architecture.
+Do NOT run investment scoring, ranking, Top 10, DCA, Buy/Hold/Sell,
+valuation recommendations, or portfolio allocation.
+
+The purpose is to determine whether the already-implemented
+Data Initialization vNext can now pass DI14 and DI15.
+
+==================================================
+1. REPOSITORY / BASELINE
+==================================================
+
+Repository:
+
+nglehoangan/VN_30_Investment
+
+Start from the current repository HEAD.
+
+Expected relevant lineage includes:
+
+9bc65ca19e8c20990d866f83bc49151306b265f9
+  DI Market-Data Boundary
+
+39ea8d6072023759625ed1aab540ecc4072f0fd4
+  Implement DI Market-Data Boundary Amendment
+
+b0c6ff21a19320e9f8f2a0b575b9a43dbed178c9
+  DI Market-Data Boundary Amendment / TCBS real-market pipeline
+
+Do NOT blindly assume HEAD == b0c6ff2.
+
+First record:
+
+- actual starting HEAD
+- commit history since b0c6ff2
+- dirty working tree status
+- relevant changed files
+- active DB/schema/migration state
+
+If unrelated changes exist, identify them explicitly.
+
+Do not overwrite or silently absorb unrelated work.
+
+==================================================
+2. ACCEPTED GOVERNANCE STATE
+==================================================
+
+The following state is already accepted and MUST NOT be reopened
+without a new Critical/Major data-integrity finding.
+
+FULL VN30 UNIVERSE = 30
+
+Level-1 CLOSED / fundamentally eligible = 29
+
+DEFERRED = 1:
+MBB
+
+MBB requirements:
+
+- remains VN30 constituent
+- state = DEFERRED / INSUFFICIENT / NOT_SCORABLE
+- score = null
+- no ranking
+- no Top10
+- no STRONG BUY / BUY / ACCUMULATE
+- no DCA/new capital
+- no synthetic/neutral/zero score
+- no weight redistribution
+- no capital redistribution
+
+MBB unresolved Level-1 blocker:
+
+authoritative consolidated CAR OR qualifying CET1 explicitly
+applicable as of 2026-06-30 remains unavailable.
+
+Do NOT search for new MBB evidence in this task.
+
+TCX remains CLOSED under:
+
+OWNER_APPROVED_ANALYTICAL_EXCEPTION
+
+Amount:
+
+5,284,485,167,173 VND
+
+Do NOT reinterpret this as issuer-proven conventional financial debt.
+
+VNM remains CLOSED using REPORTED_BORROWINGS scope.
+Do not claim comprehensive financing population.
+
+VIB remains CLOSED:
+consolidated CAR = 11.8% at 2026-06-30.
+NPL denominator/formula uncertainty remains SUPPORTING / NOT_PROVEN.
+
+VIC remains CLOSED using reviewed consolidated 6M2026 source evidence.
+
+No canonical accounting facts may be changed in this closure.
+
+==================================================
+3. APPROVED MARKET-DATA ARCHITECTURE
+==================================================
+
+The approved lifecycle is:
+
+A. DATA INITIALIZATION
+
+Durable/reference/fundamental state:
+
+- certified VN30 universe
+- security/company master
+- sector/reference data
+- canonical accounting facts
+- fundamental history
+- source provenance
+- Level-1 dispositions
+- Policy-B partition
+- approved market-data capability contract
+
+Data Initialization MUST NOT require today's quote merely to remain
+initialized.
+
+B. MARKET DATA REFRESH
+
+Executed at analysis/consumption time.
+
+Responsible for:
+
+- current/latest completed market observations
+- market source provenance
+- normalization
+- identity validation
+- freshness
+- market snapshot
+- purpose-specific market readiness
+
+C. ANALYSIS SNAPSHOT
+
+Binds:
+
+- Initialization/Fundamental snapshot
+- market snapshot
+- universe
+- Policy-B partition
+- TCX exception
+- policy/model/engine versions
+- input hashes
+- freshness proof
+
+D. DECISION SNAPSHOT
+
+Binds:
+
+- accepted analysis snapshot
+- portfolio snapshot
+- prerequisite/risk evidence
+- policy/model/engine versions
+- active exceptions
+- source/raw hashes
+- dependency state
+
+Decision publication must be atomic.
+
+==================================================
+4. MARKET SOURCE SCOPE
+==================================================
+
+The current TCBS real-source pipeline has been independently reviewed
+as an acceptable candidate ONLY for:
+
+LATEST_COMPLETED_HOSE_EOD_VALUATION_ONLY
+
+Do NOT expand the accepted scope.
+
+Allowed candidate scope:
+
+- latest completed HOSE EOD price
+- VND/share
+- multiplier = 1
+- raw/unadjusted valuation observation
+- exact retained raw evidence
+- exact identity/security mapping
+
+NOT automatically qualified:
+
+- intraday execution price
+- liquidity analysis
+- money-flow analysis
+- volume-based signals
+- adjusted historical series
+- total-return history
+- corporate-action-adjusted backtest
+- long-term technical series
+
+Historical-bar adjustment/revision semantics are not proven.
+
+Volume discrepancies are not globally resolved.
+
+Do not silently qualify these additional purposes.
+
+==================================================
+5. CALENDAR / FRESHNESS SCOPE
+==================================================
+
+Current HOSE session/calendar qualification is limited to the
+explicitly validated policy/version.
+
+Current evidence supports calendar behavior for 2026.
+
+Do NOT silently extrapolate the calendar to future years.
+
+The conservative session completion boundary currently used by the
+candidate must remain explicitly documented as policy behavior,
+not represented as an exchange event timestamp unless proven.
+
+Freshness MUST be evaluated at consumption time.
+
+Never substitute:
+
+retrieval timestamp == trading timestamp
+
+Never treat stale market data as current.
+
+Unknown calendar/session/source identity must fail closed.
+
+==================================================
+6. PURPOSE OF THIS CLOSURE
+==================================================
+
+Evaluate and produce an independent-review candidate for:
+
+DI14 — Independent Data Initialization vNext Acceptance
+
+and, only if DI14 prerequisites are satisfied:
+
+DI15 — Final Data Initialization Release Acceptance
+
+This implementation run itself MUST NOT claim:
+
+DI14 = APPROVED
+
+or:
+
+DI15 = APPROVED
+
+Those approvals belong to the independent reviewer / owner governance
+step after Codex finishes.
+
+Codex may conclude only:
+
+PASS_CANDIDATE
+BLOCKED
+FAIL
+
+for each gate.
+
+==================================================
+7. RECONSTRUCT THE vNEXT GATE MATRIX
+==================================================
+
+Reconstruct the complete Data Initialization vNext gate matrix.
+
+At minimum evaluate:
+
+DI1
+DI2
+DI3
+DI4-vNext
+DI5
+DI6
+DI7
+DI8-vNext
+DI9
+DI10
+DI11
+DI12-vNext
+DI13
+DI14
+DI15
+
+Do not copy historical statuses blindly.
+
+For every gate record:
+
+- gate ID
+- contract/version
+- purpose
+- evidence
+- exact hashes where applicable
+- current candidate status
+- blockers
+- whether blocker is:
+  GLOBAL
+  TICKER_ISOLATED
+  ANALYSIS_TIME
+  HISTORICAL_ONLY
+  NON_BLOCKING
+
+Historical DI4/DI8/DI12 FAIL states may remain in historical records.
+
+Do not rewrite history.
+
+Evaluate the new vNext contracts separately.
+
+==================================================
+8. DI4-vNEXT
+==================================================
+
+Evaluate DI4 under the amended boundary.
+
+DI4-vNext should prove:
+
+A. approved market-data capability exists
+
+B. a real supported source adapter exists
+
+C. source identity/provenance is retained
+
+D. raw evidence is immutable/hash-bound
+
+E. deterministic replay works
+
+F. normalization semantics are versioned
+
+G. security identity is checked
+
+H. market source cannot redefine the certified VN30 universe
+
+I. unknown/drift/conflict fails closed
+
+J. capability qualification does NOT depend on today's quote
+
+Use the retained TCBS real-source corpus and pipeline.
+
+Do NOT fetch a new market snapshot merely to make DI4 pass.
+
+If the retained corpus is sufficient for capability qualification,
+use it.
+
+Expected result if all evidence remains valid:
+
+DI4-vNext = PASS_CANDIDATE
+
+Otherwise report the exact blocker.
+
+==================================================
+9. DI8-vNEXT
+==================================================
+
+Evaluate DI8 under the amended boundary.
+
+DI8-vNext must distinguish:
+
+DI8A:
+durable market freshness/session/calendar evaluator qualification
+
+from:
+
+DI8B:
+actual market freshness at analysis/decision consumption time.
+
+Data Initialization requires DI8A.
+
+Data Initialization MUST NOT require DI8B to remain permanently fresh.
+
+Prove:
+
+- explicit timezone/session/calendar contract
+- versioned policy
+- fail-closed unknown sessions
+- stale data rejection
+- trusted clock semantics
+- trading date not replaced by retrieval date
+- consumption-time revalidation
+- 2026 calendar scope explicitly bounded
+
+Use synthetic/retained negative tests where appropriate.
+
+Do not fetch new market data solely for this gate.
+
+Expected:
+
+DI8A = PASS_CANDIDATE
+
+DI8B = ANALYSIS_TIME_GATE / NOT_REQUIRED_FOR_INITIALIZATION
+
+if supported by evidence.
+
+==================================================
+10. DI12-vNEXT
+==================================================
+
+Evaluate the new snapshot architecture.
+
+Separate:
+
+DI12A — Initialization Manifest
+
+DI12B — Analysis Snapshot contract
+
+DI12C — Decision Snapshot contract
+
+For DI12A prove that Initialization can be reconstructed from durable
+inputs without requiring a current quote.
+
+Initialization Manifest should bind at minimum:
+
+- certified universe
+- security identities
+- fundamental/canonical accounting state
+- 29/1 Policy-B partition
+- MBB quarantine
+- TCX active exception
+- applicable policy versions
+- market capability contract/version
+- source/provenance references
+- exact content hashes
+
+For DI12B prove the contract exists and correctly requires market
+snapshot/freshness at analysis time.
+
+Do NOT require an Analysis Snapshot to exist merely to initialize.
+
+For DI12C prove atomic decision publication contract exists.
+
+Do NOT create an investment decision.
+
+Expected architecture:
+
+DI12A = PASS_CANDIDATE
+
+DI12B = CONTRACT_QUALIFIED / RUNTIME_NOT_REQUIRED_FOR_INITIALIZATION
+
+DI12C = CONTRACT_QUALIFIED / RUNTIME_NOT_REQUIRED_FOR_INITIALIZATION
+
+if evidence supports it.
+
+==================================================
+11. MARKET CAPABILITY ACCEPTANCE
+==================================================
+
+Independently replay the current TCBS candidate.
+
+Verify:
+
+- all 30 certified symbols represented where contract requires
+- exact set reconciliation against certified VN30 universe
+- source cannot add/remove VN30 members
+- retained request/source identity
+- raw hashes
+- manifest hashes
+- schema/parser/version pins
+- EOD observation semantics
+- VND/share
+- multiplier 1
+- security identity mapping
+- trading date
+- completed-session rule
+- deterministic replay
+- no missing-to-zero
+- no stale fallback
+- no HTTP-200-means-qualified shortcut
+
+Verify the existing candidate hash rather than manufacturing a new one.
+
+Record the exact:
+
+independentAcceptanceCandidateHash
+
+from the currently reviewed candidate.
+
+Do NOT write it into an approved registry yourself.
+
+==================================================
+12. POLICY-B REPLAY
+==================================================
+
+Replay the production/candidate partition.
+
+Must prove:
+
+FULL = 30
+
+SCORABLE / FUNDAMENTALLY ELIGIBLE = 29
+
+DEFERRED = 1
+
+DEFERRED = MBB
+
+Sets must be:
+
+- exhaustive
+- disjoint
+- stable-ID based
+
+MBB:
+
+score = null
+
+No placeholder.
+
+No redistribution.
+
+No capital eligibility.
+
+No market-price availability may promote MBB.
+
+Market readiness and fundamental eligibility are orthogonal.
+
+==================================================
+13. PROTECTED ACCOUNTING REPLAY
+==================================================
+
+Replay all 30 canonical accounting admission bodies.
+
+Verify:
+
+- canonical fact body hashes unchanged
+- no accounting values changed
+- no Level-1 ticker reopened
+- VNM unchanged
+- VIB unchanged
+- VIC unchanged
+- TCX exception unchanged
+- MBB blocker unchanged
+
+Expected:
+
+ACCOUNTING_REGRESSIONS = 0
+
+If any canonical accounting body changed:
+
+STOP.
+
+Classify as GLOBAL/MAJOR or appropriate severity.
+
+Do not repair it silently.
+
+==================================================
+14. LEGACY / HISTORICAL REPLAY
+==================================================
+
+Do NOT rewrite historical evidence.
+
+The historical issue:
+
+RELEASE-MARKET-SOURCE-REPLAY-UNAVAILABLE
+
+may remain true for old deleted market-source artifacts.
+
+That historical failure does NOT automatically block vNext if the new
+market capability has independently retained/replayable real evidence.
+
+Explicitly distinguish:
+
+HISTORICAL_LEGACY_REPLAY
+
+from:
+
+CURRENT_vNEXT_CAPABILITY_REPLAY
+
+Do not claim deleted historical raw files were restored.
+
+Existing known historical test failures must not be hidden.
+
+==================================================
+15. DEPENDENCY-HEAD / ACTIVATION SAFETY
+==================================================
+
+Review whether the authoritative dependency-head mechanism is safe for
+production activation.
+
+Relevant mutable dependencies include at minimum:
+
+- universe
+- fundamental release
+- disposition partition
+- exceptions
+- market capability authority
+- session/calendar policy
+- policy version
+- scoring model version
+- decision engine version
+- portfolio/ledger where required
+
+Verify that production cannot publish an actionable decision using
+caller-selected stale dependency pins.
+
+If dependency-head maintenance is incomplete, determine whether it:
+
+A. blocks Data Initialization DI15
+
+or
+
+B. blocks only future Decision activation.
+
+Do not automatically classify it.
+
+Use contract semantics and actual implementation.
+
+Document the conclusion with evidence.
+
+==================================================
+16. DATABASE / MIGRATION SAFETY
+==================================================
+
+Validate the market-boundary migration on:
+
+1. fresh disposable DB
+2. populated disposable copy of production DB
+
+Verify:
+
+- additive migration
+- no protected row mutation
+- no legacy table corruption
+- FK integrity
+- indexes/triggers
+- immutable snapshot protections
+- rollback/failure behavior where applicable
+
+Do NOT migrate production DB as part of this closure unless already
+explicitly authorized by existing project governance.
+
+This task is acceptance evidence generation, not uncontrolled
+production mutation.
+
+==================================================
+17. NEGATIVE TESTS
+==================================================
+
+At minimum verify failure behavior for:
+
+- unknown market source
+- wrong source hash
+- schema drift
+- wrong ticker/security identity
+- wrong venue
+- unknown currency/unit
+- missing price
+- duplicate conflicting price
+- stale observation
+- future-dated observation
+- unfinished session
+- unknown calendar
+- unsupported calendar year
+- retrieval date substituted for trading date
+- market provider universe mismatch
+- MBB accidentally scored
+- MBB accidentally ranked
+- MBB receives new capital
+- TCX exception missing
+- stale dependency head
+- analysis snapshot missing market freshness
+- decision publication persistence failure
+- decision dependency changes during publication
+- old market snapshot reused after freshness expiry
+
+All must fail closed.
+
+==================================================
+18. VALIDATION
+==================================================
+
+Run the strongest relevant validation available in the repository.
+
+At minimum:
+
+- lint
+- typecheck
+- DB/schema validation
+- architecture/boundary tests
+- market-boundary focused tests
+- Policy-B tests
+- accounting replay
+- migration tests
+- unit/integration full suite
+- browser/E2E where applicable
+- production build
+
+Do not weaken tests.
+
+Do not skip failing tests to obtain PASS.
+
+For every failure classify:
+
+NEW_REGRESSION
+PRE_EXISTING
+EXPECTED_NEGATIVE_TEST
+ENVIRONMENTAL
+
+Compare exact failing cases against the accepted baseline.
+
+Any NEW_REGRESSION blocks DI14 candidate acceptance.
+
+==================================================
+19. RETENTION POLICY
+==================================================
+
+Respect owner retention policy.
+
+For financial-statement extraction:
+
+- original BCTC PDFs under manual remain durable
+- disposable OCR/text/page renders/temp parser outputs should not be
+  archived merely for evidence
+
+For accepted market-source evidence:
+
+raw source bytes required for deterministic market capability/snapshot
+replay ARE durable provenance and must NOT be deleted as disposable OCR.
+
+Keep only what is required for:
+
+- canonical data
+- provenance
+- replay
+- accepted market-source evidence
+- compact validation evidence
+- runtime/tests
+
+Do not create unnecessary duplicate archives.
+
+==================================================
+20. EVIDENCE PACKAGE
+==================================================
+
+Create:
+
+docs/fundamental-data-engine/evidence/
+2026-10-20-di14-di15-final-acceptance/
+
+At minimum include:
+
+README.md
+
+BASELINE_IDENTITY.json
+
+VNEXT_GATE_MATRIX.json
+
+DI04_FINAL_REVIEW.json
+
+DI08_FINAL_REVIEW.json
+
+DI12_FINAL_REVIEW.json
+
+MARKET_CAPABILITY_ACCEPTANCE.json
+
+MARKET_SOURCE_REPLAY.json
+
+MARKET_FRESHNESS_POLICY_REVIEW.json
+
+INITIALIZATION_MANIFEST_ACCEPTANCE.json
+
+POLICY_B_REPLAY.json
+
+MBB_QUARANTINE_REPLAY.json
+
+TCX_EXCEPTION_REPLAY.json
+
+PROTECTED_ACCOUNTING_REPLAY.json
+
+LEGACY_REPLAY_CLASSIFICATION.json
+
+DEPENDENCY_HEAD_REVIEW.json
+
+MIGRATION_REVIEW.json
+
+NEGATIVE_TEST_RESULTS.json
+
+REGRESSION_RESULTS.json
+
+OPEN_ISSUES.json
+
+TEST_RESULTS.json
+
+ARTIFACT_HASHES.json
+
+FINAL_REVIEW.md
+
+Do not duplicate huge raw files into the evidence folder.
+
+Reference retained raw market files by exact path + SHA256.
+
+==================================================
+21. FINAL_REVIEW FORMAT
+==================================================
+
+FINAL_REVIEW.md must clearly report:
+
+STARTING_HEAD
+
+ENDING_HEAD
+
+FULL_UNIVERSE
+
+LEVEL1_CLOSED
+
+DEFERRED
+
+DEFERRED_LIST
+
+ACCOUNTING_REGRESSIONS
+
+NEW_REGRESSIONS
+
+DI4_vNEXT
+
+DI8A_vNEXT
+
+DI8B_RUNTIME
+
+DI12A_vNEXT
+
+DI12B_CONTRACT
+
+DI12C_CONTRACT
+
+MARKET_CAPABILITY
+
+CURRENT_MARKET_REQUIRED_FOR_INITIALIZATION
+
+POLICY_B
+
+MBB_QUARANTINE
+
+TCX_EXCEPTION
+
+DEPENDENCY_HEAD
+
+LEGACY_REPLAY
+
+DI14_CANDIDATE
+
+DI15_CANDIDATE
+
+readyForScoring
+
+decisionReady
+
+PRODUCTION_MUTATION_PERFORMED
+
+SCORING_RUN_PERFORMED
+
+RANKING_RUN_PERFORMED
+
+INVESTMENT_DECISION_CREATED
+
+Expected safe ending before independent review:
+
+FULL_UNIVERSE = 30
+
+LEVEL1_CLOSED = 29
+
+DEFERRED = 1
+
+DEFERRED_LIST = MBB
+
+ACCOUNTING_REGRESSIONS = 0
+
+NEW_REGRESSIONS = 0
+
+CURRENT_MARKET_REQUIRED_FOR_INITIALIZATION = false
+
+POLICY_B = PASS
+
+MBB_QUARANTINE = PASS
+
+TCX_EXCEPTION = ACTIVE
+
+SCORING_RUN_PERFORMED = false
+
+RANKING_RUN_PERFORMED = false
+
+INVESTMENT_DECISION_CREATED = false
+
+readyForScoring MUST remain false until independent DI14/DI15 approval.
+
+decisionReady MUST remain false.
+
+DI14_CANDIDATE and DI15_CANDIDATE may be PASS_CANDIDATE only if all
+their actual prerequisites pass.
+
+Do NOT force these expected values if evidence contradicts them.
+
+==================================================
+22. ABSOLUTE PROHIBITIONS
+==================================================
+
+DO NOT:
+
+- score VN30
+- rank VN30
+- create Top10
+- recommend DCA
+- create Buy/Hold/Sell outputs
+- change canonical accounting facts
+- search for new MBB financial evidence
+- reinterpret TCX exception
+- make MBB eligible because market price exists
+- fetch fresh market data just to make Initialization green
+- broaden TCBS qualification beyond approved EOD scope
+- silently treat volume as qualified
+- silently treat historical bars as adjusted
+- silently extend 2026 calendar policy into future years
+- rewrite historical DI failures
+- mark DI14 APPROVED
+- mark DI15 APPROVED
+- set readyForScoring=true
+- set decisionReady=true
+- weaken tests
+- hide existing failures
+- mutate production merely to manufacture acceptance evidence
+
+==================================================
+23. STOP CONDITION
+==================================================
+
+After producing the evidence package and candidate verdict:
+
+STOP.
+
+Do not proceed to M3 scoring.
+
+Do not perform a second remediation round automatically.
+
+Return:
+
+1. ending commit SHA
+2. evidence folder
+3. DI4-vNext result
+4. DI8-vNext result
+5. DI12-vNext result
+6. DI14 candidate result
+7. DI15 candidate result
+8. blockers, if any
+9. new regressions
+10. accounting regressions
+11. exact independentAcceptanceCandidateHash
+12. confirmation that scoring/ranking/investment decisions were not run
+
+End with exactly:
+
+"Awaiting independent review: Review DI14 / DI15 Final Acceptance Closure"

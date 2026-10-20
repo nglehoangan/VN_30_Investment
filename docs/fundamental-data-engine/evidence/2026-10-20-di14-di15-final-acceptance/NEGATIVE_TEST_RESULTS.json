@@ -1,0 +1,249 @@
+{
+  "status": "PASS",
+  "requiredCoverage": [
+    {
+      "requirement": "unknown_market_source",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "integration/market-boundary.test.ts::retained raw bytes rehash/replay; missing raw, mismatch and unknown schema block (synthetic corpus, no production certification)",
+        "unit/market-boundary.test.ts::prospective market boundary (synthetic enforcement tests, not source qualification) unapproved source/schema cannot certify real capability"
+      ]
+    },
+    {
+      "requirement": "wrong_source_hash",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "integration/market-boundary.test.ts::retained raw bytes rehash/replay; missing raw, mismatch and unknown schema block (synthetic corpus, no production certification)",
+        "integration/tcbs-pipeline.test.ts::raw hash mismatch and unknown candidate version fail closed without changing retained evidence"
+      ]
+    },
+    {
+      "requirement": "schema_drift",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "integration/market-boundary.test.ts::retained raw bytes rehash/replay; missing raw, mismatch and unknown schema block (synthetic corpus, no production certification)",
+        "integration/tcbs-pipeline.test.ts::raw hash mismatch and unknown candidate version fail closed without changing retained evidence"
+      ]
+    },
+    {
+      "requirement": "wrong_ticker_security_identity",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "unit/market-boundary.test.ts::prospective market boundary (synthetic enforcement tests, not source qualification) wrong identity blocks acceptance at consumption",
+        "unit/tcbs-pipeline.test.ts::TCBS EOD contract: synthetic parser/negative tests, never source certification blocks wrong ticker, conflicting board, duplicate bars, missing close and incomplete day"
+      ]
+    },
+    {
+      "requirement": "wrong_venue",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "unit/tcbs-pipeline.test.ts::TCBS EOD contract: synthetic parser/negative tests, never source certification rejects wrong venue, duplicate security response and halted stock"
+      ]
+    },
+    {
+      "requirement": "unknown_currency",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "unit/market-boundary.test.ts::prospective market boundary (synthetic enforcement tests, not source qualification) unknown currency blocks",
+        "unit/tcbs-pipeline.test.ts::TCBS EOD contract: synthetic parser/negative tests, never source certification rejects unsupported unit/adjustment/session {\"currency\":\"USD\"}"
+      ]
+    },
+    {
+      "requirement": "unknown_unit",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "unit/market-boundary.test.ts::prospective market boundary (synthetic enforcement tests, not source qualification) unknown unit blocks",
+        "unit/tcbs-pipeline.test.ts::TCBS EOD contract: synthetic parser/negative tests, never source certification rejects unsupported unit/adjustment/session {\"unit\":\"THOUSAND_VND\"}"
+      ]
+    },
+    {
+      "requirement": "missing_price",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "integration/di14-di15-final-closure.test.ts::missing close never becomes zero; retrieval date cannot replace original bar trading date"
+      ]
+    },
+    {
+      "requirement": "duplicate_conflicting_price",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "unit/market-boundary.test.ts::prospective market boundary (synthetic enforcement tests, not source qualification) duplicate observation blocks",
+        "unit/tcbs-pipeline.test.ts::TCBS EOD contract: synthetic parser/negative tests, never source certification blocks wrong ticker, conflicting board, duplicate bars, missing close and incomplete day"
+      ]
+    },
+    {
+      "requirement": "stale_observation",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "integration/tcbs-pipeline.test.ts::market expiry never invalidates historical capability/init replay; runtime status separates technical candidate from acceptance",
+        "unit/market-boundary.test.ts::prospective market boundary (synthetic enforcement tests, not source qualification) retrieval timestamp never makes old session fresh"
+      ]
+    },
+    {
+      "requirement": "future_observation",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "unit/market-boundary.test.ts::prospective market boundary (synthetic enforcement tests, not source qualification) future observation blocks"
+      ]
+    },
+    {
+      "requirement": "unfinished_session",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "unit/tcbs-pipeline.test.ts::TCBS EOD contract: synthetic parser/negative tests, never source certification blocks wrong ticker, conflicting board, duplicate bars, missing close and incomplete day"
+      ]
+    },
+    {
+      "requirement": "unknown_calendar",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "unit/market-boundary.test.ts::prospective market boundary (synthetic enforcement tests, not source qualification) unknown calendar blocks; approved Sunday window uses preceding Friday"
+      ]
+    },
+    {
+      "requirement": "unsupported_calendar_year",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "unit/tcbs-pipeline.test.ts::TCBS EOD contract: synthetic parser/negative tests, never source certification unknown calendar year blocks; EOD policy expires at next completed session, not N days"
+      ]
+    },
+    {
+      "requirement": "retrieval_date_replaces_trading_date",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "integration/di14-di15-final-closure.test.ts::missing close never becomes zero; retrieval date cannot replace original bar trading date"
+      ]
+    },
+    {
+      "requirement": "market_provider_universe_mismatch",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "integration/di14-di15-final-closure.test.ts::provider universe missing cannot redefine certified30 (temporary synthetic mutation)",
+        "integration/di14-di15-final-closure.test.ts::provider universe added cannot redefine certified30 (temporary synthetic mutation)",
+        "integration/di14-di15-final-closure.test.ts::provider universe replaced cannot redefine certified30 (temporary synthetic mutation)"
+      ]
+    },
+    {
+      "requirement": "MBB_accidentally_scored",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "unit/di15-policy-b.test.ts::deferred cannot enter SCORING",
+        "unit/market-boundary.test.ts::prospective market boundary (synthetic enforcement tests, not source qualification) legacy ranking still requires full coverage; vNext rejects MBB placeholder"
+      ]
+    },
+    {
+      "requirement": "MBB_accidentally_ranked",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "unit/di15-policy-b.test.ts::deferred cannot enter RANKING",
+        "unit/market-boundary.test.ts::prospective market boundary (synthetic enforcement tests, not source qualification) legacy ranking still requires full coverage; vNext rejects MBB placeholder"
+      ]
+    },
+    {
+      "requirement": "MBB_receives_new_capital",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "unit/di15-policy-b.test.ts::deferred cannot enter NEW_CAPITAL",
+        "unit/market-boundary.test.ts::prospective market boundary (synthetic enforcement tests, not source qualification) MBB price can support held NAV but never fundamental eligibility or new capital"
+      ]
+    },
+    {
+      "requirement": "TCX_exception_missing",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "unit/market-boundary.test.ts::prospective market boundary (synthetic enforcement tests, not source qualification) TCX exception omission cannot be admitted"
+      ]
+    },
+    {
+      "requirement": "stale_dependency_head",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "integration/market-boundary.test.ts::atomic decision insert+seal rolls back on missing dependencies, changed head or seal failure",
+        "unit/market-boundary.test.ts::prospective market boundary (synthetic enforcement tests, not source qualification) missing/stale portfolio and changed dependency fail publication"
+      ]
+    },
+    {
+      "requirement": "decision_persistence_failure",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "integration/market-boundary.test.ts::atomic decision insert+seal rolls back on missing dependencies, changed head or seal failure",
+        "unit/market-boundary.test.ts::prospective market boundary (synthetic enforcement tests, not source qualification) publishes only after analysis, portfolio and successful seal; persistence failure exposes nothing"
+      ]
+    },
+    {
+      "requirement": "dependency_changes_during_publication",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "integration/di14-di15-final-closure.test.ts::dependency change between authorization and publication rejects synthetic decision without exposing a record"
+      ]
+    },
+    {
+      "requirement": "old_market_reused_after_expiry",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "testCases": [
+        "unit/market-boundary.test.ts::prospective market boundary (synthetic enforcement tests, not source qualification) Oct19 initialization persists, Oct19 market remains replayable, Oct25 analysis blocks",
+        "unit/market-boundary.test.ts::prospective market boundary (synthetic enforcement tests, not source qualification) missing portfolio, changed disposition and expired freshness prevent candidate publication"
+      ]
+    },
+    {
+      "requirement": "analysis_snapshot_missing_market_freshness",
+      "status": "PASS_FAIL_CLOSED",
+      "classification": "EXPECTED_NEGATIVE_TEST",
+      "evidence": "SUPPLEMENTAL_NEGATIVE_RESULTS.json#results/0"
+    }
+  ],
+  "supplemental": {
+    "status": "PASS",
+    "results": [
+      {
+        "id": "analysis_missing_market_freshness",
+        "status": "PASS_REJECTED",
+        "fixture": "SYNTHETIC_CONTRACT_ONLY"
+      },
+      {
+        "id": "analysis_failed_market_freshness",
+        "status": "PASS_REJECTED",
+        "fixture": "SYNTHETIC_CONTRACT_ONLY"
+      },
+      {
+        "id": "analysis_missing_market_snapshot",
+        "status": "PASS_REJECTED",
+        "fixture": "SYNTHETIC_CONTRACT_ONLY"
+      },
+      {
+        "id": "provider_schema_drift_missing_data_array",
+        "status": "PASS_REJECTED",
+        "fixture": "SYNTHETIC_PROVIDER_SHAPE_ONLY"
+      }
+    ],
+    "productionWrites": 0,
+    "investmentDecisionCreated": false
+  },
+  "focusedPassed": 185,
+  "focusedFailed": 0,
+  "noInvestmentOutputs": "Synthetic tests only; no production scoring/ranking/actionable decisions"
+}

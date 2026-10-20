@@ -1,0 +1,63 @@
+{
+  "DI14_CANDIDATE": "PASS_CANDIDATE",
+  "DI15_CANDIDATE": "BLOCKED",
+  "issues": [
+    {
+      "id": "ACTUAL_INDEPENDENT_DI14_APPROVAL_PENDING",
+      "classification": "GLOBAL",
+      "severity": "GOVERNANCE_APPROVAL_BOUNDARY",
+      "status": "OPEN",
+      "blocks": [
+        "DI15_FINAL_RELEASE",
+        "PRODUCTION_ACTIVATION"
+      ],
+      "notAccountingIntegrityRegression": true,
+      "required": "Independent reviewer binds exact retained candidate hash and sealed gate overlay; owner governance step follows. No self-approval."
+    },
+    {
+      "id": "MBB_CAPITAL_ADEQUACY_SOURCE_UNAVAILABLE",
+      "classification": "TICKER_ISOLATED",
+      "severity": "MAJOR",
+      "status": "OPEN",
+      "disposition": "DEFERRED",
+      "blocks": [
+        "MBB_SCORING",
+        "MBB_RANKING",
+        "MBB_TOP10",
+        "MBB_NEW_CAPITAL",
+        "MBB_DCA"
+      ],
+      "evidenceFetched": false
+    },
+    {
+      "id": "AUTHORITATIVE_DEPENDENCY_HEAD_MAINTENANCE_NOT_CONFIGURED",
+      "classification": "ANALYSIS_TIME",
+      "status": "OPEN",
+      "blocks": [
+        "FUTURE_ACTIONABLE_DECISION_ACTIVATION"
+      ],
+      "blocksInitialization": false,
+      "productionGuard": "FAIL_CLOSED"
+    },
+    {
+      "id": "LEGACY_REPLAY_BASELINE_FAILURES",
+      "classification": "HISTORICAL_ONLY",
+      "status": "PRESERVED",
+      "count": 18,
+      "newRegressions": 0
+    },
+    {
+      "id": "EOD_SCOPE_2026_CALENDAR_LIMIT",
+      "classification": "NON_BLOCKING",
+      "status": "EXPLICIT_SCOPE_LIMIT",
+      "unsupported": [
+        "intraday execution",
+        "volume/liquidity/moneyflow",
+        "adjusted history/total return",
+        "calendar outside2026"
+      ]
+    }
+  ],
+  "noSecondRemediationRound": true,
+  "noNewCriticalMajorDataIntegrityFinding": true
+}

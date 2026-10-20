@@ -1,0 +1,12 @@
+{
+  "classification": "ENVIRONMENTAL",
+  "initialMigrationAttempt": {
+    "result": "REJECTED_BY_PRIVATE_DB_FILE_CHECK",
+    "target": "fresh disposable SQLite only",
+    "reason": "Python-created SQLite file had default0644 mode; project requires0600",
+    "productionMutation": false
+  },
+  "resolution": "Tightened owned temporary DB file modes to0600; repeated fresh/populated-copy checks passed. Runtime and migration code unchanged. No test weakened.",
+  "expectedNegativeTests": "Tests asserting rejection are successful validation, not failed cases.",
+  "investmentRunMeaning": "Synthetic contract fixtures in validation do not constitute real VN30 scoring/ranking, actionable decisions or published outputs."
+}

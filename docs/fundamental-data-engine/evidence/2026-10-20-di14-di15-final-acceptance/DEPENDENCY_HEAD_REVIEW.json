@@ -1,0 +1,51 @@
+{
+  "reviewType": "CANDIDATE_ONLY",
+  "productionApprovalWritten": false,
+  "independentReviewer": null,
+  "independentAcceptanceCandidateHash": "ef550f4cc1a8dff696cd82b62f6daeda1e057e5b4262c49d94c71b1a96da6996",
+  "implementationHEAD": "b0c6ff21a19320e9f8f2a0b575b9a43dbed178c9",
+  "status": "DECISION_ACTIVATION_BLOCKED_NOT_INITIALIZATION",
+  "classification": "ANALYSIS_TIME",
+  "blocksDI15Initialization": false,
+  "maintenanceComplete": false,
+  "requiredHeads": [
+    "universe",
+    "fundamental release",
+    "disposition partition",
+    "exceptions",
+    "market capability authority",
+    "session/calendar",
+    "policy",
+    "scoring model",
+    "decision engine",
+    "portfolio/ledger"
+  ],
+  "findings": [
+    "Runtime publication checks trusted currentDependencies before validation and before seal; SQL transaction rechecks dependency head and pins.",
+    "No production head-maintenance/updater composition exists; caller-supplied trusted callback is mandatory. Stale mutable authority cannot be assumed safe for activation.",
+    "Production FORMAL routes hard-deny unaccepted boundary; EOD capability does not authorize NEW_CAPITAL/DCA/EXECUTION. No actionable production publication is enabled.",
+    "Initialization does not consume dependency head; exact durable canonical/release/source pins are independently replayed. Future decision activation must supply authoritative invalidation/maintenance for every mutable dependency and independent acceptance."
+  ],
+  "evidence": [
+    {
+      "path": "src/application/market-boundary/lifecycle.ts",
+      "sha256": "b2f94591f391dd3a7eceabd7842e483077911320f318ca14856e3a8caf4fa13d"
+    },
+    {
+      "path": "src/infrastructure/repositories/market-boundary.ts",
+      "sha256": "9ea05f2257658e9d8be822300ba572233c026b45597fe48cf43b1eff08761aec"
+    },
+    {
+      "path": "app/server/tcbs-boundary-services.ts",
+      "sha256": "51ef640b5630aa8056d7d956318277297a1ee440fdc1d5d895c62de32ea1e581"
+    },
+    {
+      "path": "app/server/market-boundary.ts",
+      "sha256": "aeac674a8d644d382749b7e0c4b7a724388c6717157c0dcffdc5bc3a27a28409"
+    },
+    {
+      "path": "tests/architecture/market-boundary.test.mjs",
+      "sha256": "ba2b91076ffb8be38193fb02bc8261de8ecab7c569d8483b38ab3d88aaececb2"
+    }
+  ]
+}
