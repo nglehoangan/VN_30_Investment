@@ -1,0 +1,926 @@
+{
+  "status": "PENDING_OWNER_APPROVAL",
+  "existingMethodRegistrations": [
+    {
+      "id": "m63-tcbs-opening-local-v1",
+      "status": "PROPOSED",
+      "use": "PRODUCTION",
+      "configurationReference": "BROKER_SNAPSHOT:cc46785ff2d4f7477911d0cb7dad6ee38b872b5cc6a8566a78683637fdf43852"
+    },
+    {
+      "id": "m64-clarification-1-production-20261020",
+      "status": "APPROVED",
+      "use": "PRODUCTION",
+      "configurationReference": "scoring-executable-manifest-sha256:dd2e5882d7a88cc6194f9600838fa8da8e22a3be54098e638def31885ea0dfad"
+    },
+    {
+      "id": "m65-decision-v1-approved-resolutions-20260930",
+      "status": "APPROVED",
+      "use": "PRODUCTION",
+      "configurationReference": "m65-decision-v1-approved-resolutions-20260930"
+    },
+    {
+      "id": "m65-decision-v1-sector-monotonicity-20261001",
+      "status": "APPROVED",
+      "use": "PRODUCTION",
+      "configurationReference": "m65-decision-v1-sector-monotonicity-20261001"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "runtime-authority-candidate-registry-80804db9834eef4ce6f3e56b",
+      "version": "1.0.0",
+      "kind": "registry",
+      "contentHash": "80804db9834eef4ce6f3e56b844e2a1bcccd6ce5cfae801c8c7e50cd1210970e",
+      "payload": {
+        "registryVersion": "1.0.0",
+        "methodologyIdentity": "fundamentals-items-v1",
+        "crosswalkVersion": "1.0.0",
+        "governanceStatus": "PROPOSED",
+        "approvalReference": null,
+        "recordedAt": "2026-10-08T00:00:00.000Z",
+        "effectiveDate": "2026-10-08",
+        "authorityReferences": [
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+          "docs/01 SYSTEM/SCORING_MODEL_v1.0.md"
+        ],
+        "items": [
+          {
+            "itemId": "REVENUE",
+            "name": "Reported revenue",
+            "meaning": "Issuer-reported non-financial revenue for the stated window and scope; not bank net interest income or normalized growth.",
+            "statementType": "INCOME",
+            "measurementSemantic": "FLOW",
+            "allowedUnits": [
+              "CURRENCY"
+            ],
+            "currencyApplicability": "REQUIRED",
+            "signConvention": "SIGNED",
+            "allowedReportingScopes": [
+              "CONSOLIDATED",
+              "SEPARATE_STANDALONE"
+            ],
+            "sectorApplicability": [
+              "REAL_ESTATE",
+              "RETAIL",
+              "TECHNOLOGY",
+              "INDUSTRIAL",
+              "MATERIALS",
+              "UTILITIES",
+              "ENERGY",
+              "CONGLOMERATE"
+            ],
+            "evidenceTopicMappings": [
+              {
+                "documentMetricId": "GQ-HIST-01",
+                "rubricId": "GQ-HIST",
+                "topic": "trend",
+                "requirement": "Comparable consolidated windows, eligible original vintage; endpoint operands require later reviewed construction."
+              }
+            ],
+            "operandMappings": [],
+            "itemDefinitionVersion": "1.0.0",
+            "methodologyIdentity": "fundamentals-items-v1",
+            "authorityReferences": [
+              "docs/03 SCORING/METRIC_DEFINITIONS.md"
+            ],
+            "status": "ACTIVE",
+            "deprecatedFrom": null,
+            "supersededBy": null
+          },
+          {
+            "itemId": "EBIT",
+            "name": "Reported EBIT",
+            "meaning": "Explicitly reconciled issuer EBIT; not any operating-profit label and not automatically normalized EBIT.",
+            "statementType": "INCOME",
+            "measurementSemantic": "FLOW",
+            "allowedUnits": [
+              "CURRENCY"
+            ],
+            "currencyApplicability": "REQUIRED",
+            "signConvention": "SIGNED",
+            "allowedReportingScopes": [
+              "CONSOLIDATED",
+              "SEPARATE_STANDALONE"
+            ],
+            "sectorApplicability": [
+              "REAL_ESTATE",
+              "RETAIL",
+              "TECHNOLOGY",
+              "INDUSTRIAL",
+              "MATERIALS",
+              "UTILITIES",
+              "ENERGY",
+              "CONGLOMERATE"
+            ],
+            "evidenceTopicMappings": [
+              {
+                "documentMetricId": "BQ-EQ-03",
+                "rubricId": "BQ-EQ",
+                "topic": "margins",
+                "requirement": "Comparable definition and documented cycle/one-off normalization before scoring."
+              }
+            ],
+            "operandMappings": [],
+            "itemDefinitionVersion": "1.0.0",
+            "methodologyIdentity": "fundamentals-items-v1",
+            "authorityReferences": [
+              "docs/03 SCORING/METRIC_DEFINITIONS.md"
+            ],
+            "status": "ACTIVE",
+            "deprecatedFrom": null,
+            "supersededBy": null
+          },
+          {
+            "itemId": "NET_INCOME",
+            "name": "Reported net income",
+            "meaning": "Reported total net profit after tax in the stated consolidation scope, including minority interests when present; not common-attributable profit.",
+            "statementType": "INCOME",
+            "measurementSemantic": "FLOW",
+            "allowedUnits": [
+              "CURRENCY"
+            ],
+            "currencyApplicability": "REQUIRED",
+            "signConvention": "SIGNED",
+            "allowedReportingScopes": [
+              "CONSOLIDATED",
+              "SEPARATE_STANDALONE"
+            ],
+            "sectorApplicability": [
+              "BANK",
+              "REAL_ESTATE",
+              "RETAIL",
+              "TECHNOLOGY",
+              "INDUSTRIAL",
+              "MATERIALS",
+              "UTILITIES",
+              "ENERGY",
+              "SECURITIES",
+              "INSURANCE",
+              "CONGLOMERATE"
+            ],
+            "evidenceTopicMappings": [
+              {
+                "documentMetricId": "BQ-CASH-03",
+                "rubricId": "BQ-CASH",
+                "topic": "one_offs",
+                "requirement": "Only reported evidence; normalization and attribution need separate lineage."
+              }
+            ],
+            "operandMappings": [],
+            "itemDefinitionVersion": "1.0.0",
+            "methodologyIdentity": "fundamentals-items-v1",
+            "authorityReferences": [
+              "docs/03 SCORING/METRIC_DEFINITIONS.md"
+            ],
+            "status": "ACTIVE",
+            "deprecatedFrom": null,
+            "supersededBy": null
+          },
+          {
+            "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+            "name": "Reported common-attributable net income",
+            "meaning": "Reported net profit attributable to common shareholders; attribution must be evidenced, not inferred from total net income.",
+            "statementType": "INCOME",
+            "measurementSemantic": "FLOW",
+            "allowedUnits": [
+              "CURRENCY"
+            ],
+            "currencyApplicability": "REQUIRED",
+            "signConvention": "SIGNED",
+            "allowedReportingScopes": [
+              "CONSOLIDATED",
+              "SEPARATE_STANDALONE"
+            ],
+            "sectorApplicability": [
+              "BANK",
+              "REAL_ESTATE",
+              "RETAIL",
+              "TECHNOLOGY",
+              "INDUSTRIAL",
+              "MATERIALS",
+              "UTILITIES",
+              "ENERGY",
+              "SECURITIES",
+              "INSURANCE",
+              "CONGLOMERATE"
+            ],
+            "evidenceTopicMappings": [
+              {
+                "documentMetricId": "BQ-EQ-02",
+                "rubricId": "BQ-EQ",
+                "topic": "returns",
+                "requirement": "Reported fact supports review; ROE requires normalized profit and average common equity, neither inferred here."
+              }
+            ],
+            "operandMappings": [],
+            "itemDefinitionVersion": "1.0.0",
+            "methodologyIdentity": "fundamentals-items-v1",
+            "authorityReferences": [
+              "docs/03 SCORING/METRIC_DEFINITIONS.md"
+            ],
+            "status": "ACTIVE",
+            "deprecatedFrom": null,
+            "supersededBy": null
+          },
+          {
+            "itemId": "TOTAL_ASSETS",
+            "name": "Total assets",
+            "meaning": "Reported total assets at the balance-sheet date and stated scope.",
+            "statementType": "BALANCE",
+            "measurementSemantic": "STOCK",
+            "allowedUnits": [
+              "CURRENCY"
+            ],
+            "currencyApplicability": "REQUIRED",
+            "signConvention": "NONNEGATIVE",
+            "allowedReportingScopes": [
+              "CONSOLIDATED",
+              "SEPARATE_STANDALONE"
+            ],
+            "sectorApplicability": [
+              "BANK",
+              "REAL_ESTATE",
+              "RETAIL",
+              "TECHNOLOGY",
+              "INDUSTRIAL",
+              "MATERIALS",
+              "UTILITIES",
+              "ENERGY",
+              "SECURITIES",
+              "INSURANCE",
+              "CONGLOMERATE"
+            ],
+            "evidenceTopicMappings": [],
+            "operandMappings": [],
+            "itemDefinitionVersion": "1.0.0",
+            "methodologyIdentity": "fundamentals-items-v1",
+            "authorityReferences": [
+              "docs/03 SCORING/METRIC_DEFINITIONS.md"
+            ],
+            "status": "ACTIVE",
+            "deprecatedFrom": null,
+            "supersededBy": null
+          },
+          {
+            "itemId": "COMMON_EQUITY",
+            "name": "Common equity",
+            "meaning": "Equity attributable to common shareholders excluding minority/preferred interests as applicable, not automatically total equity.",
+            "statementType": "BALANCE",
+            "measurementSemantic": "STOCK",
+            "allowedUnits": [
+              "CURRENCY"
+            ],
+            "currencyApplicability": "REQUIRED",
+            "signConvention": "SIGNED",
+            "allowedReportingScopes": [
+              "CONSOLIDATED",
+              "SEPARATE_STANDALONE"
+            ],
+            "sectorApplicability": [
+              "BANK",
+              "REAL_ESTATE",
+              "RETAIL",
+              "TECHNOLOGY",
+              "INDUSTRIAL",
+              "MATERIALS",
+              "UTILITIES",
+              "ENERGY",
+              "SECURITIES",
+              "INSURANCE",
+              "CONGLOMERATE"
+            ],
+            "evidenceTopicMappings": [
+              {
+                "documentMetricId": "BQ-EQ-02",
+                "rubricId": "BQ-EQ",
+                "topic": "returns",
+                "requirement": "Average common equity is a later governed derivation from comparable dated balances."
+              }
+            ],
+            "operandMappings": [],
+            "itemDefinitionVersion": "1.0.0",
+            "methodologyIdentity": "fundamentals-items-v1",
+            "authorityReferences": [
+              "docs/03 SCORING/METRIC_DEFINITIONS.md"
+            ],
+            "status": "ACTIVE",
+            "deprecatedFrom": null,
+            "supersededBy": null
+          },
+          {
+            "itemId": "CFO",
+            "name": "Operating cash flow",
+            "meaning": "Issuer net cash from operating activities over the stated window; unrelated to investor portfolio cash.",
+            "statementType": "CASH_FLOW",
+            "measurementSemantic": "FLOW",
+            "allowedUnits": [
+              "CURRENCY"
+            ],
+            "currencyApplicability": "REQUIRED",
+            "signConvention": "SIGNED",
+            "allowedReportingScopes": [
+              "CONSOLIDATED",
+              "SEPARATE_STANDALONE"
+            ],
+            "sectorApplicability": [
+              "REAL_ESTATE",
+              "RETAIL",
+              "TECHNOLOGY",
+              "INDUSTRIAL",
+              "MATERIALS",
+              "UTILITIES",
+              "ENERGY",
+              "CONGLOMERATE"
+            ],
+            "evidenceTopicMappings": [
+              {
+                "documentMetricId": "BQ-CASH-01",
+                "rubricId": "BQ-CASH",
+                "topic": "realization",
+                "requirement": "Comparable multi-year cumulative CFO/normalized NPAT; bank CFO substitution prohibited."
+              }
+            ],
+            "operandMappings": [
+              {
+                "metricId": "FCF",
+                "position": 0,
+                "operand": "CFO",
+                "requirement": "Compatible non-financial reporting window; capex definition and sign reconciled; no automatic scoring."
+              }
+            ],
+            "itemDefinitionVersion": "1.0.0",
+            "methodologyIdentity": "fundamentals-items-v1",
+            "authorityReferences": [
+              "docs/03 SCORING/METRIC_DEFINITIONS.md"
+            ],
+            "status": "ACTIVE",
+            "deprecatedFrom": null,
+            "supersededBy": null
+          },
+          {
+            "itemId": "CAPEX",
+            "name": "Issuer capital expenditure",
+            "meaning": "Positive issuer expenditure required to sustain/grow operations, explicitly identified/reconciled from disclosed capex items; not investing cash flow.",
+            "statementType": "CASH_FLOW",
+            "measurementSemantic": "FLOW",
+            "allowedUnits": [
+              "CURRENCY"
+            ],
+            "currencyApplicability": "REQUIRED",
+            "signConvention": "NONNEGATIVE",
+            "allowedReportingScopes": [
+              "CONSOLIDATED",
+              "SEPARATE_STANDALONE"
+            ],
+            "sectorApplicability": [
+              "REAL_ESTATE",
+              "RETAIL",
+              "TECHNOLOGY",
+              "INDUSTRIAL",
+              "MATERIALS",
+              "UTILITIES",
+              "ENERGY",
+              "CONGLOMERATE"
+            ],
+            "evidenceTopicMappings": [
+              {
+                "documentMetricId": "BQ-CASH-02",
+                "rubricId": "BQ-CASH",
+                "topic": "realization",
+                "requirement": "Disclose total vs maintenance capex; no inference from total investing outflow."
+              }
+            ],
+            "operandMappings": [
+              {
+                "metricId": "FCF",
+                "position": 1,
+                "operand": "issuer_capex",
+                "requirement": "Positive issuer expenditure for compatible CFO window; maintenance vs total scope documented."
+              }
+            ],
+            "itemDefinitionVersion": "1.0.0",
+            "methodologyIdentity": "fundamentals-items-v1",
+            "authorityReferences": [
+              "docs/03 SCORING/METRIC_DEFINITIONS.md"
+            ],
+            "status": "ACTIVE",
+            "deprecatedFrom": null,
+            "supersededBy": null
+          }
+        ]
+      },
+      "governanceStatus": "PROPOSED",
+      "activationStatus": "PENDING_OWNER_APPROVAL",
+      "approvalProvenance": null,
+      "effectiveInterval": {
+        "from": null,
+        "through": null
+      },
+      "intendedMethodConfigurationReference": "registry-sha256:80804db9834eef4ce6f3e56b844e2a1bcccd6ce5cfae801c8c7e50cd1210970e",
+      "dependencies": [
+        "existing approved scoring executable",
+        "exact broad registry",
+        "exact public availability/source evidence",
+        "exact reviewed 29/1 runtime dataset"
+      ],
+      "compatibility": "Existing canonical/availability/derivation/Policy-B contracts; incomplete candidate specifications are NOT registrable authority payloads",
+      "replay": "Canonical JSON SHA256; source modules pinned in package seal",
+      "productionRowsCreated": 0
+    },
+    {
+      "id": "runtime-authority-candidate-availability-2a2eabd50dbe047ddc68bf0f",
+      "version": "1.0.0",
+      "kind": "availability",
+      "contentHash": "2a2eabd50dbe047ddc68bf0f0b96f92c1714bc6aab4540530de7b0ff9dfe82c9",
+      "payload": {
+        "version": "production-runtime-availability-candidate-v1",
+        "algorithm": "operational-evidence-v2",
+        "governanceStatus": "PROPOSED",
+        "approvalReference": null,
+        "recordedAt": "2026-10-21T06:41:57.866Z",
+        "dateOnlyZones": [],
+        "dateOnlyEvidenceClasses": []
+      },
+      "governanceStatus": "PROPOSED",
+      "activationStatus": "PENDING_OWNER_APPROVAL",
+      "approvalProvenance": null,
+      "effectiveInterval": {
+        "from": null,
+        "through": null
+      },
+      "intendedMethodConfigurationReference": "availability-sha256:2a2eabd50dbe047ddc68bf0f0b96f92c1714bc6aab4540530de7b0ff9dfe82c9",
+      "dependencies": [
+        "existing approved scoring executable",
+        "exact broad registry",
+        "exact public availability/source evidence",
+        "exact reviewed 29/1 runtime dataset"
+      ],
+      "compatibility": "Existing canonical/availability/derivation/Policy-B contracts; incomplete candidate specifications are NOT registrable authority payloads",
+      "replay": "Canonical JSON SHA256; source modules pinned in package seal",
+      "productionRowsCreated": 0
+    },
+    {
+      "id": "runtime-authority-candidate-derivation-crosswalk-cc347a9ab1ea3582300adef1",
+      "version": "1.0.0",
+      "kind": "derivation-crosswalk",
+      "contentHash": "cc347a9ab1ea3582300adef11300298c448705204b33e9599af6500467d789cf",
+      "payload": {
+        "version": "fundamental-derivations-1.0.0",
+        "governanceStatus": "PROPOSED",
+        "approvalReference": null,
+        "registryHash": "80804db9834eef4ce6f3e56b844e2a1bcccd6ce5cfae801c8c7e50cd1210970e",
+        "formulaVersion": "existing-metrics-v1",
+        "precisionPolicy": "decimal-12-half-even-v1",
+        "authorityReferences": [
+          "docs/03 SCORING/METRIC_DEFINITIONS.md:sha256:6aac73fbf8e72e64111880d152d3c0da09eb114addcf4c0cb616425864ea2f7f",
+          "docs/03 SCORING/SECTOR_NORMALIZATION.md:sha256:0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4",
+          "src/domain/scoring/metrics.ts:sha256:5fc2ac2cef83218b898b6ba5803e36b26dd923c7251ac7dfeb62d3840f71f32d"
+        ],
+        "routes": [
+          {
+            "sector": "REAL_ESTATE",
+            "metric": "ROE",
+            "operands": [
+              {
+                "role": "normalized_common_profit",
+                "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+                "operation": "HUMAN_NORMALIZED"
+              },
+              {
+                "role": "average_common_equity",
+                "itemId": "COMMON_EQUITY",
+                "operation": "AVERAGE_ENDPOINTS"
+              }
+            ]
+          },
+          {
+            "sector": "REAL_ESTATE",
+            "metric": "FCF",
+            "operands": [
+              {
+                "role": "CFO",
+                "itemId": "CFO",
+                "operation": "REPORTED"
+              },
+              {
+                "role": "issuer_capex",
+                "itemId": "CAPEX",
+                "operation": "REPORTED"
+              }
+            ]
+          },
+          {
+            "sector": "RETAIL",
+            "metric": "ROE",
+            "operands": [
+              {
+                "role": "normalized_common_profit",
+                "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+                "operation": "HUMAN_NORMALIZED"
+              },
+              {
+                "role": "average_common_equity",
+                "itemId": "COMMON_EQUITY",
+                "operation": "AVERAGE_ENDPOINTS"
+              }
+            ]
+          },
+          {
+            "sector": "RETAIL",
+            "metric": "FCF",
+            "operands": [
+              {
+                "role": "CFO",
+                "itemId": "CFO",
+                "operation": "REPORTED"
+              },
+              {
+                "role": "issuer_capex",
+                "itemId": "CAPEX",
+                "operation": "REPORTED"
+              }
+            ]
+          },
+          {
+            "sector": "TECHNOLOGY",
+            "metric": "ROE",
+            "operands": [
+              {
+                "role": "normalized_common_profit",
+                "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+                "operation": "HUMAN_NORMALIZED"
+              },
+              {
+                "role": "average_common_equity",
+                "itemId": "COMMON_EQUITY",
+                "operation": "AVERAGE_ENDPOINTS"
+              }
+            ]
+          },
+          {
+            "sector": "TECHNOLOGY",
+            "metric": "FCF",
+            "operands": [
+              {
+                "role": "CFO",
+                "itemId": "CFO",
+                "operation": "REPORTED"
+              },
+              {
+                "role": "issuer_capex",
+                "itemId": "CAPEX",
+                "operation": "REPORTED"
+              }
+            ]
+          },
+          {
+            "sector": "INDUSTRIAL",
+            "metric": "ROE",
+            "operands": [
+              {
+                "role": "normalized_common_profit",
+                "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+                "operation": "HUMAN_NORMALIZED"
+              },
+              {
+                "role": "average_common_equity",
+                "itemId": "COMMON_EQUITY",
+                "operation": "AVERAGE_ENDPOINTS"
+              }
+            ]
+          },
+          {
+            "sector": "INDUSTRIAL",
+            "metric": "FCF",
+            "operands": [
+              {
+                "role": "CFO",
+                "itemId": "CFO",
+                "operation": "REPORTED"
+              },
+              {
+                "role": "issuer_capex",
+                "itemId": "CAPEX",
+                "operation": "REPORTED"
+              }
+            ]
+          },
+          {
+            "sector": "MATERIALS",
+            "metric": "ROE",
+            "operands": [
+              {
+                "role": "normalized_common_profit",
+                "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+                "operation": "HUMAN_NORMALIZED"
+              },
+              {
+                "role": "average_common_equity",
+                "itemId": "COMMON_EQUITY",
+                "operation": "AVERAGE_ENDPOINTS"
+              }
+            ]
+          },
+          {
+            "sector": "MATERIALS",
+            "metric": "FCF",
+            "operands": [
+              {
+                "role": "CFO",
+                "itemId": "CFO",
+                "operation": "REPORTED"
+              },
+              {
+                "role": "issuer_capex",
+                "itemId": "CAPEX",
+                "operation": "REPORTED"
+              }
+            ]
+          },
+          {
+            "sector": "UTILITIES",
+            "metric": "ROE",
+            "operands": [
+              {
+                "role": "normalized_common_profit",
+                "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+                "operation": "HUMAN_NORMALIZED"
+              },
+              {
+                "role": "average_common_equity",
+                "itemId": "COMMON_EQUITY",
+                "operation": "AVERAGE_ENDPOINTS"
+              }
+            ]
+          },
+          {
+            "sector": "UTILITIES",
+            "metric": "FCF",
+            "operands": [
+              {
+                "role": "CFO",
+                "itemId": "CFO",
+                "operation": "REPORTED"
+              },
+              {
+                "role": "issuer_capex",
+                "itemId": "CAPEX",
+                "operation": "REPORTED"
+              }
+            ]
+          },
+          {
+            "sector": "ENERGY",
+            "metric": "ROE",
+            "operands": [
+              {
+                "role": "normalized_common_profit",
+                "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+                "operation": "HUMAN_NORMALIZED"
+              },
+              {
+                "role": "average_common_equity",
+                "itemId": "COMMON_EQUITY",
+                "operation": "AVERAGE_ENDPOINTS"
+              }
+            ]
+          },
+          {
+            "sector": "ENERGY",
+            "metric": "FCF",
+            "operands": [
+              {
+                "role": "CFO",
+                "itemId": "CFO",
+                "operation": "REPORTED"
+              },
+              {
+                "role": "issuer_capex",
+                "itemId": "CAPEX",
+                "operation": "REPORTED"
+              }
+            ]
+          },
+          {
+            "sector": "CONGLOMERATE",
+            "metric": "ROE",
+            "operands": [
+              {
+                "role": "normalized_common_profit",
+                "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+                "operation": "HUMAN_NORMALIZED"
+              },
+              {
+                "role": "average_common_equity",
+                "itemId": "COMMON_EQUITY",
+                "operation": "AVERAGE_ENDPOINTS"
+              }
+            ]
+          },
+          {
+            "sector": "CONGLOMERATE",
+            "metric": "FCF",
+            "operands": [
+              {
+                "role": "CFO",
+                "itemId": "CFO",
+                "operation": "REPORTED"
+              },
+              {
+                "role": "issuer_capex",
+                "itemId": "CAPEX",
+                "operation": "REPORTED"
+              }
+            ]
+          },
+          {
+            "sector": "BANK",
+            "metric": "ROE",
+            "operands": [
+              {
+                "role": "normalized_common_profit",
+                "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+                "operation": "HUMAN_NORMALIZED"
+              },
+              {
+                "role": "average_common_equity",
+                "itemId": "COMMON_EQUITY",
+                "operation": "AVERAGE_ENDPOINTS"
+              }
+            ]
+          },
+          {
+            "sector": "BANK",
+            "metric": "CASA",
+            "operands": [
+              {
+                "role": "current_and_savings",
+                "itemId": null,
+                "operation": "REPORTED"
+              },
+              {
+                "role": "deposits",
+                "itemId": null,
+                "operation": "REPORTED"
+              }
+            ]
+          },
+          {
+            "sector": "BANK",
+            "metric": "NPL",
+            "operands": [
+              {
+                "role": "NPL",
+                "itemId": null,
+                "operation": "REPORTED"
+              },
+              {
+                "role": "gross_loans",
+                "itemId": null,
+                "operation": "REPORTED"
+              }
+            ]
+          }
+        ],
+        "recordedAt": "2026-10-09T00:00:00.000Z",
+        "effectiveDate": "2026-10-09"
+      },
+      "governanceStatus": "PROPOSED",
+      "activationStatus": "PENDING_OWNER_APPROVAL",
+      "approvalProvenance": null,
+      "effectiveInterval": {
+        "from": null,
+        "through": null
+      },
+      "intendedMethodConfigurationReference": "derivation-crosswalk-sha256:cc347a9ab1ea3582300adef11300298c448705204b33e9599af6500467d789cf",
+      "dependencies": [
+        "existing approved scoring executable",
+        "exact broad registry",
+        "exact public availability/source evidence",
+        "exact reviewed 29/1 runtime dataset"
+      ],
+      "compatibility": "Existing canonical/availability/derivation/Policy-B contracts; incomplete candidate specifications are NOT registrable authority payloads",
+      "replay": "Canonical JSON SHA256; source modules pinned in package seal",
+      "productionRowsCreated": 0
+    },
+    {
+      "id": "runtime-authority-candidate-readiness-requirements-a5aa9f6f4160a5e33dfdf8d3",
+      "version": "1.0.0",
+      "kind": "readiness-requirements",
+      "contentHash": "a5aa9f6f4160a5e33dfdf8d3591bf7145ccf0dc4be2859132567eaf05530efb3",
+      "payload": {
+        "version": "production-runtime-readiness-candidate-v1",
+        "status": "INCOMPLETE_SECTOR_ROUTE_REVIEW_REQUIRED",
+        "targetAlgorithm": "strict-canonical-m3-readiness-v2",
+        "requiredContract": "ScoringReadinessRequirements",
+        "canonicalItemIdsObserved": [
+          "BANK_CUSTOMER_DEPOSITS",
+          "BANK_GROSS_CUSTOMER_LOANS",
+          "BANK_LOAN_LOSS_RESERVES",
+          "BANK_NET_INTEREST_INCOME",
+          "BANK_REPORTED_CAR",
+          "BANK_REPORTED_CET1",
+          "BANK_REPORTED_NPL",
+          "BASIC_EPS",
+          "CASH_AND_EQUIVALENTS",
+          "CASH_CAPEX_REPORTED",
+          "CFO",
+          "CONVERTIBLE_AND_EXCHANGEABLE_BOND_LIABILITIES",
+          "CURRENT_ASSETS",
+          "CURRENT_LIABILITIES",
+          "FINANCIAL_DEBT",
+          "GROSS_PROFIT",
+          "INVENTORY",
+          "LONG_TERM_FINANCIAL_BORROWINGS",
+          "NET_INCOME",
+          "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "NET_INCOME_ATTRIBUTABLE_PARENT",
+          "OPERATING_PROFIT",
+          "RECEIVABLES",
+          "REPORTED_BORROWINGS",
+          "REVENUE",
+          "SECURITIES_MARGIN_LOANS",
+          "SHORT_TERM_FINANCIAL_BORROWINGS",
+          "TOTAL_ASSETS",
+          "TOTAL_EQUITY"
+        ],
+        "unresolvedItems": [
+          "BANK_CUSTOMER_DEPOSITS",
+          "BANK_GROSS_CUSTOMER_LOANS",
+          "BANK_LOAN_LOSS_RESERVES",
+          "BANK_NET_INTEREST_INCOME",
+          "BANK_REPORTED_CAR",
+          "BANK_REPORTED_CET1",
+          "BANK_REPORTED_NPL",
+          "BASIC_EPS",
+          "CASH_AND_EQUIVALENTS",
+          "CASH_CAPEX_REPORTED",
+          "CONVERTIBLE_AND_EXCHANGEABLE_BOND_LIABILITIES",
+          "CURRENT_ASSETS",
+          "CURRENT_LIABILITIES",
+          "FINANCIAL_DEBT",
+          "GROSS_PROFIT",
+          "INVENTORY",
+          "LONG_TERM_FINANCIAL_BORROWINGS",
+          "NET_INCOME_ATTRIBUTABLE_PARENT",
+          "OPERATING_PROFIT",
+          "RECEIVABLES",
+          "REPORTED_BORROWINGS",
+          "SECURITIES_MARGIN_LOANS",
+          "SHORT_TERM_FINANCIAL_BORROWINGS",
+          "TOTAL_EQUITY"
+        ],
+        "routeValues": null
+      },
+      "governanceStatus": "PROPOSED",
+      "activationStatus": "PENDING_OWNER_APPROVAL",
+      "approvalProvenance": null,
+      "effectiveInterval": {
+        "from": null,
+        "through": null
+      },
+      "intendedMethodConfigurationReference": "readiness-requirements-sha256:a5aa9f6f4160a5e33dfdf8d3591bf7145ccf0dc4be2859132567eaf05530efb3",
+      "dependencies": [
+        "existing approved scoring executable",
+        "exact broad registry",
+        "exact public availability/source evidence",
+        "exact reviewed 29/1 runtime dataset"
+      ],
+      "compatibility": "Existing canonical/availability/derivation/Policy-B contracts; incomplete candidate specifications are NOT registrable authority payloads",
+      "replay": "Canonical JSON SHA256; source modules pinned in package seal",
+      "productionRowsCreated": 0
+    },
+    {
+      "id": "runtime-authority-candidate-di-acceptance-77d4a9265c587505adbcc0d3",
+      "version": "1.0.0",
+      "kind": "di-acceptance",
+      "contentHash": "77d4a9265c587505adbcc0d39b726ab6e538c28828015737382bb555920d08c0",
+      "payload": {
+        "version": "production-runtime-di-candidate-v1",
+        "status": "WAITING_EXACT_RUNTIME_DATASET_AND_INDEPENDENT_REVIEW",
+        "targetContract": "independent-di-acceptance-v2",
+        "exactAcceptance": null
+      },
+      "governanceStatus": "PROPOSED",
+      "activationStatus": "PENDING_OWNER_APPROVAL",
+      "approvalProvenance": null,
+      "effectiveInterval": {
+        "from": null,
+        "through": null
+      },
+      "intendedMethodConfigurationReference": "di-acceptance-sha256:77d4a9265c587505adbcc0d39b726ab6e538c28828015737382bb555920d08c0",
+      "dependencies": [
+        "existing approved scoring executable",
+        "exact broad registry",
+        "exact public availability/source evidence",
+        "exact reviewed 29/1 runtime dataset"
+      ],
+      "compatibility": "Existing canonical/availability/derivation/Policy-B contracts; incomplete candidate specifications are NOT registrable authority payloads",
+      "replay": "Canonical JSON SHA256; source modules pinned in package seal",
+      "productionRowsCreated": 0
+    }
+  ],
+  "warning": "Architecture approval is not approval of these exact payloads. Proposed payload hashes change when governance metadata or source/sector routes change; the final approved hash must be reviewed and bound explicitly."
+}

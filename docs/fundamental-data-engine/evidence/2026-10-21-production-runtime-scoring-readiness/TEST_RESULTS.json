@@ -1,0 +1,66 @@
+{
+  "status": "COMPLETE",
+  "checks": [
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "log": "validation/lint-rerun.log"
+    },
+    {
+      "name": "typecheck",
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "log": "validation/typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": "pnpm build",
+      "exitCode": 0,
+      "log": "validation/build.log"
+    },
+    {
+      "name": "scoring",
+      "command": "pnpm test:scoring",
+      "exitCode": 0,
+      "passed": 127,
+      "failed": 0,
+      "log": "validation/scoring.log"
+    },
+    {
+      "name": "focused-runtime-and-authority",
+      "command": "pnpm exec vitest run <8 explicit files in focused.log>",
+      "exitCode": 0,
+      "passed": 80,
+      "failed": 0,
+      "newRuntimeTests": 32,
+      "log": "validation/focused.log"
+    },
+    {
+      "name": "full",
+      "command": "pnpm test --reporter=json --outputFile=<package>/validation/full-results.json",
+      "exitCode": 1,
+      "passed": 2095,
+      "failed": 18,
+      "total": 2113,
+      "newFailures": [],
+      "log": "validation/full.log"
+    },
+    {
+      "name": "api",
+      "command": "node --test api/capture-market.test.mjs api/token-session.test.mjs api/sub-account.test.mjs api/tcbs-unified.test.mjs",
+      "exitCode": 0,
+      "passed": 18,
+      "failed": 0,
+      "log": "validation/api.log"
+    },
+    {
+      "name": "independent-authority-replay",
+      "exitCode": 0,
+      "sealedJSONFiles": 22,
+      "canonicalRuns": 30,
+      "log": "AUTHORITY_REPLAY.json"
+    }
+  ],
+  "developmentIterations": "Initial new test assertions matched generic localized error strings instead of structured ValidationError reasons; corrected to assert exact domain reasons. Initial type errors were readonly fixture mutation/type narrowing; fixed. Initial lint prefer-const fixed. Full logs of those development iterations are retained; final gates above are authoritative."
+}

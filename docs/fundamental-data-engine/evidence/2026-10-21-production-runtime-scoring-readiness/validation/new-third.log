@@ -1,0 +1,29 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+ ❯ tests/unit/runtime-readiness.test.ts (13 tests | 1 failed) 381ms
+   × runtime snapshot builds exactly29 evidence dossiers, quarantines the deferred issuer and requires trusted lineage 106ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/runtime-readiness.test.ts > runtime snapshot builds exactly29 evidence dossiers, quarantines the deferred issuer and requires trusted lineage
+ValidationError: Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập.
+ ❯ requireFundamental src/domain/fundamentals/validation.ts:11:21
+      9|
+     10| export function requireFundamental(value: unknown, reason: string): as…
+     11|   if (!value) throw new ValidationError([{field:'fundamentals', reason…
+       |                     ^
+     12| }
+     13| function fields(value: object, names: string) {
+ ❯ buildFundamentalSnapshot src/domain/fundamentals/snapshot.ts:129:3
+ ❯ RuntimeReadiness.snapshot src/application/fundamentals/runtime-readiness.ts:66:13
+ ❯ tests/unit/runtime-readiness.test.ts:90:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 30 passed (31)
+   Start at  06:34:38
+   Duration  6.53s (tests 87%, setup 7%, transform 4%, import 2%)
+

@@ -1,0 +1,94 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+ ❯ tests/unit/runtime-readiness.test.ts (12 tests | 2 failed) 353ms
+   × lineage changes and unregistered receipts block preparation 21ms
+   × missing required input blocks readiness and dossier never supplies HUMAN outcomes 18ms
+ ❯ tests/unit/runtime-human-review.test.ts (11 tests | 3 failed) 272ms
+   × authenticated selection transitions draft → reviewed → approved, append-only with CAS 44ms
+   × AI draft cannot become HUMAN approval or submit request-controlled analyst identity 23ms
+   × reviewer capability is required and owner invalidation is terminal 19ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/runtime-human-review.test.ts > authenticated selection transitions draft → reviewed → approved, append-only with CAS
+AssertionError: expected [Function] to throw error including 'CAS' but got 'Dữ liệu chưa hợp lệ. Vui lòng kiểm tr…'
+
+Expected: "CAS"
+Received: "Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập."
+
+ ❯ tests/unit/runtime-human-review.test.ts:24:76
+     22|   const approved=await f.service.transition(draft.id,reviewed.contentH…
+     23|   expect((await new FileHumanReviews((f.store as unknown as {root:stri…
+     24|   await expect(f.service.transition(draft.id,draft.contentHash,'REJECT…
+       |                                                                            ^
+     25|   expect(assessmentReuseCandidate(approved,f.context,f.context.asOf,f.…
+     26|  }finally{f.close();}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/unit/runtime-human-review.test.ts > AI draft cannot become HUMAN approval or submit request-controlled analyst identity
+AssertionError: expected [Function] to throw error including 'TRANSITION' but got 'Dữ liệu chưa hợp lệ. Vui lòng kiểm tr…'
+
+Expected: "TRANSITION"
+Received: "Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập."
+
+ ❯ tests/unit/runtime-human-review.test.ts:31:68
+     29|  const f=setup();try{
+     30|   const d=await f.service.draft('ai-draft',f.context,'AI recommendatio…
+     31|   await expect(f.service.transition(d.id,d.contentHash,'APPROVED')).re…
+       |                                                                    ^
+     32|   await expect(f.service.transition(d.id,d.contentHash,'REVIEWED',{...…
+     33|   await expect(f.service.transition(d.id,d.contentHash,'REVIEWED',{...…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/unit/runtime-human-review.test.ts > reviewer capability is required and owner invalidation is terminal
+AssertionError: expected [Function] to throw error including 'AUTHENTICATED_ANALYST' but got 'Dữ liệu chưa hợp lệ. Vui lòng kiểm tr…'
+
+Expected: "AUTHENTICATED_ANALYST"
+Received: "Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập."
+
+ ❯ tests/unit/runtime-human-review.test.ts:39:72
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/unit/runtime-readiness.test.ts > lineage changes and unregistered receipts block preparation
+AssertionError: expected [Function] to throw error including 'TRUSTED_LINEAGE' but got 'Dữ liệu chưa hợp lệ. Vui lòng kiểm tr…'
+
+Expected: "TRUSTED_LINEAGE"
+Received: "Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập."
+
+ ❯ tests/unit/runtime-readiness.test.ts:42:150
+     40| });
+     41| it('lineage changes and unregistered receipts block preparation',async…
+     42|  const f=runtimeFixture();await expect(service(f).prepareObservation({…
+       |                                                                                                                                                      ^
+     43|  expect(()=>prepareFormalObservation({...f.preparation,capture:{...f.p…
+     44| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/unit/runtime-readiness.test.ts > missing required input blocks readiness and dossier never supplies HUMAN outcomes
+AssertionError: expected [Function] to throw error including 'DEFERRED' but got 'Dữ liệu chưa hợp lệ. Vui lòng kiểm tr…'
+
+Expected: "DEFERRED"
+Received: "Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập."
+
+ ❯ tests/unit/runtime-readiness.test.ts:64:81
+     62|  const dossier=buildIssuerDossier(f.input.securityId,'SCORABLE',s,sour…
+     63|  expect(dossier.rubrics).toHaveLength(23);expect(dossier.rubrics.every…
+     64|  expect(()=>buildIssuerDossier(f.input.securityId,'DEFERRED',s,sources…
+       |                                                                                 ^
+     65| });
+     66| it('governed derivation propagates max operand availability and reject…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  5 failed | 18 passed (23)
+   Start at  06:31:14
+   Duration  1.54s (tests 47%, transform 27%, setup 19%, import 6%)
+
