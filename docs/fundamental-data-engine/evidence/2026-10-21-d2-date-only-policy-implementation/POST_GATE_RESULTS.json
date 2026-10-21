@@ -1,0 +1,52 @@
+{
+  "status": "COMPLETE",
+  "results": [
+    {
+      "name": "d2-lint",
+      "command": [
+        "pnpm",
+        "exec",
+        "eslint",
+        "src/domain/fundamentals/d2-availability.ts",
+        "src/infrastructure/fundamentals/d2-source-evidence.ts",
+        "tests/fixtures/d2-availability.ts",
+        "tests/unit/d2-availability.test.ts",
+        "tests/integration/d2-source-evidence.test.ts",
+        "--max-warnings=0"
+      ],
+      "exitCode": 0,
+      "seconds": 1.0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/post-d2-lint.log"
+    },
+    {
+      "name": "boundaries",
+      "command": [
+        "node",
+        "scripts/check-boundaries.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 0.55,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/post-boundaries.log"
+    },
+    {
+      "name": "typecheck-final",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 2.79,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/post-typecheck-final.log"
+    },
+    {
+      "name": "build-final",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 8.76,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/post-build-final.log"
+    }
+  ]
+}

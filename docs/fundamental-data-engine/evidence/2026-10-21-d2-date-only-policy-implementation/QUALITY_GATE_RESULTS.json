@@ -1,0 +1,105 @@
+{
+  "status": "COMPLETE",
+  "results": [
+    {
+      "name": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitCode": 1,
+      "seconds": 7.36,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/final-lint.log"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 2.83,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/final-typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 10.29,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/final-build.log"
+    },
+    {
+      "name": "scoring",
+      "command": [
+        "pnpm",
+        "test:scoring"
+      ],
+      "exitCode": 0,
+      "seconds": 18.48,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/final-scoring.log"
+    },
+    {
+      "name": "focused",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "tests/unit/d2-availability.test.ts",
+        "tests/integration/d2-source-evidence.test.ts",
+        "tests/unit/fundamentals-availability-legacy.test.ts",
+        "tests/unit/fundamentals-availability-evidence.test.ts",
+        "tests/integration/fundamentals-availability-evidence.test.ts",
+        "tests/unit/fundamentals-live-public-disclosure.test.ts",
+        "tests/unit/sector-requirements.test.ts",
+        "tests/unit/supported-derivation-routes.test.ts",
+        "tests/unit/tcbs-pipeline.test.ts",
+        "tests/integration/tcbs-pipeline.test.ts",
+        "tests/unit/completed-session.test.ts",
+        "tests/unit/source-publication.test.ts",
+        "tests/unit/runtime-readiness.test.ts",
+        "tests/unit/runtime-human-review.test.ts",
+        "tests/unit/runtime-dataset-acceptance.test.ts",
+        "tests/integration/runtime-evidence.test.ts",
+        "tests/unit/scoring-readiness.test.ts",
+        "tests/integration/scoring-readiness.test.ts",
+        "tests/integration/production-authority.test.ts",
+        "tests/integration/dependency-head.test.ts",
+        "--reporter=json",
+        "--outputFile=/Users/nglehoangan/Documents/Working/VN_30_Investment/docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/focused-results.json"
+      ],
+      "exitCode": 0,
+      "seconds": 39.77,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/final-focused.log"
+    },
+    {
+      "name": "full",
+      "command": [
+        "pnpm",
+        "test",
+        "--reporter=json",
+        "--outputFile=/Users/nglehoangan/Documents/Working/VN_30_Investment/docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/full-results.json"
+      ],
+      "exitCode": 1,
+      "seconds": 367.12,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/final-full.log"
+    },
+    {
+      "name": "api",
+      "command": [
+        "node",
+        "--test",
+        "api/capture-market.test.mjs",
+        "api/token-session.test.mjs",
+        "api/sub-account.test.mjs",
+        "api/tcbs-unified.test.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 1.19,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/final-api.log"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "status": "ADDITIVE_CANDIDATE_EXISTING_AUTHORITIES_UNCHANGED",
+  "baselineHead": "a1cd42ca787e6a4e03ec03f973fb71560fa25e5d",
+  "protectedImplementations": [
+    {
+      "path": "src/domain/fundamentals/source-publication.ts",
+      "sha256": "52c1d95256d7dddc35b3333c8fc66e3087798223982208f81d6b189fdfbb4cab",
+      "equalsBaselineHEAD": true
+    },
+    {
+      "path": "src/infrastructure/fundamentals/source-publication.ts",
+      "sha256": "8da86f8eb903723a89759304291b84e46e134b67856529016aef89fac61358e2",
+      "equalsBaselineHEAD": true
+    },
+    {
+      "path": "src/domain/fundamentals/availability.ts",
+      "sha256": "fe9b4156e8bba36823bb9b3add1aaae81117820a013374557119f4c379e9a010",
+      "equalsBaselineHEAD": true
+    },
+    {
+      "path": "src/domain/fundamentals/availability-evidence.ts",
+      "sha256": "a23b9d2ff7d47e9daa3beeb6b0eed8548aae638ac7acb9193977e3c517288a3a",
+      "equalsBaselineHEAD": true
+    },
+    {
+      "path": "src/domain/fundamentals/live-public-disclosure.ts",
+      "sha256": "c88302e2083d50f36c5d0539fd811fa2e2f133e293fc60bb1accf429db021c8f",
+      "equalsBaselineHEAD": true
+    },
+    {
+      "path": "src/domain/fundamentals/runtime-provenance.ts",
+      "sha256": "607d8fbbb900db338a1804a12b47294bf1d941c606906627f8c239f0504878fd",
+      "equalsBaselineHEAD": true
+    },
+    {
+      "path": "src/domain/fundamentals/scoring-bridge.ts",
+      "sha256": "e79aede87b75ba00f52cb81edf965481e8e7308cccf09cb3716fd3faa20d39b5",
+      "equalsBaselineHEAD": true
+    },
+    {
+      "path": "src/infrastructure/dependencies/active-authorities.json",
+      "sha256": "9d4a6f685d09421249b65fd65eea71c41f1bd4d61ce5fdc393da26e791394279",
+      "equalsBaselineHEAD": true
+    }
+  ],
+  "existingTimestampBehavior": "Existing assessAvailability/source-publication code unmodified; regression tested exact TIMESTAMP publicBoundary and unchanged old assessment. D2 timestamp candidate retains exact timestamp; required extra knowledge can delay its candidate availability, never rewrite publication.",
+  "dateOnlyBehavior": "New D2 evidence evaluator uses fixed Vietnam next-local-day boundary and all required clocks; no trusted-provider-receipt advance is permitted",
+  "nativeContractCompatibility": "D2_POLICY_CANDIDATE is a versioned additive candidate contract, not silently passed off as an existing AvailabilityPolicy or APPROVED runtime method. Existing timestamp-only FormalPreparation remains unchanged and will reject DATE_ONLY until a separately reviewed versioned production integration is explicitly authorized.",
+  "sourceIdentityTrust": "Both exact source-publication contract/method and exact document/metadata identity binding/method must independently be approved; D2 approval grants neither",
+  "activatedAuthorities": 0,
+  "newProductionAdmissionReceipts": 0,
+  "methodologyOrScoringChanged": false,
+  "fiveRuntimeAuthorityCandidatesModified": false,
+  "MBB": "DEFERRED"
+}

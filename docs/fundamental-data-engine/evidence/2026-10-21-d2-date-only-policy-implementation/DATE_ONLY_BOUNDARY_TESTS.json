@@ -1,0 +1,94 @@
+{
+  "status": "PASS",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "rule": "Start of next local calendar day;17:00Z on the disclosed date; conservative availability boundary only",
+  "publishedAtRemainsNull": true,
+  "tests": [
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "next-local-calendar-day boundary for 2026-10-21 is 2026-10-21T17:00:00.000Z",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "next-local-calendar-day boundary for 2026-01-31 is 2026-01-31T17:00:00.000Z",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "next-local-calendar-day boundary for 2026-12-31 is 2026-12-31T17:00:00.000Z",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "next-local-calendar-day boundary for 2024-02-28 is 2024-02-28T17:00:00.000Z",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "next-local-calendar-day boundary for 2024-02-29 is 2024-02-29T17:00:00.000Z",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "next-local-calendar-day boundary for 2026-02-28 is 2026-02-28T17:00:00.000Z",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "next-local-calendar-day boundary for 2000-02-29 is 2000-02-29T17:00:00.000Z",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "next-local-calendar-day boundary for 2100-02-28 is 2100-02-28T17:00:00.000Z",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "rejects invalid calendar dates and noncanonical date/timestamp strings",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "preserves original DATE_ONLY precision and publishedAt=null without activating or admitting evidence",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "one millisecond before boundary blocks; exact boundary passes with no implicit intraday publication time",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "missing verification, ingestion and additional required contract boundary evidence blocks",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "calendar boundary is independent of host timezone, including leap-day and year rollover",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "DATE_ONLY UTC timezone is not silently reinterpreted as Vietnam local date",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "an earlier provider receipt cannot advance the next-local-day conservative boundary",
+      "status": "passed"
+    }
+  ],
+  "covers": [
+    "UTC+7 independent of host timezone",
+    "month rollover",
+    "year rollover",
+    "leap day2024/2000",
+    "non-leap century2100",
+    "invalid dates rejected",
+    "one millisecond before boundary vs exact boundary",
+    "UTC date-only not reinterpreted as Vietnam local date",
+    "provider receipt cannot advance boundary"
+  ]
+}

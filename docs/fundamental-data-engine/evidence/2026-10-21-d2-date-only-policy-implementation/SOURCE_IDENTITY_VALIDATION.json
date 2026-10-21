@@ -1,0 +1,107 @@
+{
+  "status": "IMPLEMENTED_TESTED_CANDIDATE_ONLY",
+  "tests": [
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "read-only pinned composition verifies actual metadata/document/observation/knowledge bytes and returns only a D2 candidate",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "replacing source.pdf invalidates the immutable source binding",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "replacing metadata.json invalidates the immutable source binding",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "replacing knowledge.json invalidates the immutable source binding",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "replacing observation.json invalidates the immutable source binding",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "unverifiable/missing documents, caller-substituted hashes and duplicated configured filings fail closed",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "missing or unapproved identity verification cannot be made authoritative by a valid PDF hash",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "source version replacement and undisclosed capture-set substitution cannot inherit the approved identity",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "symlink and relative path escapes never supply source evidence",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "two exact pinned authoritative captures with conflicting dates block without latest-wins replacement",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "documentVerifiedAt may delay effectiveKnownAt and cannot be ignored",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "one millisecond before boundary blocks; exact boundary passes with no implicit intraday publication time",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "missing required mappingKnownAt blocks rather than defaulting to capture/publication time",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "missing required methodologyKnownAt blocks rather than defaulting to capture/publication time",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "source-contract clocks and identity/method knowledge are lower bounds, never ignored for a historical cutoff",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "unverified VHM-style date leads and non-issuer/exchange date-only sources never qualify",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "source identity must be independently approved with exact immutable binding, not granted by D2 semantics",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "conflicting independently bound publication dates block; no latest-wins choice is made",
+      "status": "passed"
+    }
+  ],
+  "requirements": [
+    "Actual document bytes hash equals exact independently approved identity binding",
+    "Metadata/observation/knowledge bytes match configured immutable pins",
+    "Exact source version/hash and publication contract hash and identity method approval binding",
+    "Exact ticker/document URL/hash and capture set, not same-host or label matching",
+    "Original public disclosure captures only; no automatic VHM lead promotion",
+    "Knowledge evidence binds exact observation, source, document, registry and mapping version",
+    "No request-supplied files, approvals or clock substitutions in pinned composition"
+  ],
+  "sourceFactsAdmitted": 0,
+  "sourceIdentityAuthoritiesApprovedByD2": 0,
+  "unverifiedVHMLeads": "REMAIN_BLOCKED"
+}

@@ -1,0 +1,112 @@
+{
+  "status": "PASS",
+  "formula": "effectiveKnownAt = max(conservative DATE_ONLY boundary OR verified exact timestamp, document/metadata retrieval and verification, ingestion, mappingKnownAt, methodologyKnownAt, source/registry/policy/identity/contract/method knowledge and contract effectivity boundary, provider receipt/correction clocks when applicable, all required additional contract boundaries)",
+  "missingRequiredKnowledge": "BLOCK_NO_DEFAULTS",
+  "eligibility": "effectiveKnownAt<=systemKnownAt<=decisionAsOf<=assessedAt; economic period and authority effectivity checked; candidate output binds all cutoffs by contentHash",
+  "tests": [
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "read-only pinned composition verifies actual metadata/document/observation/knowledge bytes and returns only a D2 candidate",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "replacing knowledge.json invalidates the immutable source binding",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "unverifiable/missing documents, caller-substituted hashes and duplicated configured filings fail closed",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "missing or unapproved identity verification cannot be made authoritative by a valid PDF hash",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "an immutable late mapping proof still blocks historical AS_KNOWN admission rather than backdating availability",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "documentVerifiedAt may delay effectiveKnownAt and cannot be ignored",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "mappingKnownAt may delay effectiveKnownAt and cannot be ignored",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "methodologyKnownAt may delay effectiveKnownAt and cannot be ignored",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "other may delay effectiveKnownAt and cannot be ignored",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "one millisecond before boundary blocks; exact boundary passes with no implicit intraday publication time",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "missing required mappingKnownAt blocks rather than defaulting to capture/publication time",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "missing required methodologyKnownAt blocks rather than defaulting to capture/publication time",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "missing verification, ingestion and additional required contract boundary evidence blocks",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "source-contract clocks and identity/method knowledge are lower bounds, never ignored for a historical cutoff",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "ingestion is an operational lower bound and cannot move availability backwards",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "retrieval is an operational lower bound and cannot move availability backwards",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "correction is an operational lower bound and cannot move availability backwards",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "providerReceipt is an operational lower bound and cannot move availability backwards",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "an earlier provider receipt cannot advance the next-local-day conservative boundary",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "candidate receipt binds exact decision/system/assessment cutoffs and cannot be replayed as a different context",
+      "status": "passed"
+    }
+  ],
+  "futureInformationUsed": false,
+  "availabilityBackdated": false,
+  "publishedAtManufactured": false,
+  "productionAdmissionAuthorized": false
+}

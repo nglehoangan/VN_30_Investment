@@ -1,0 +1,465 @@
+{
+  "summary": {
+    "repositoryLint": "FAIL_PREEXISTING_SEALED_HELPER_UNUSED_BINDING",
+    "newD2FilesLint": "PASS",
+    "architecturalBoundaries": "PASS",
+    "typecheck": "PASS",
+    "build": "PASS",
+    "scoring": "PASS",
+    "sourceAvailabilityAndRelevantIntegrationFocusedPassed": 201,
+    "D2NewTestsPassed": 42,
+    "fullPassed": 2163,
+    "fullFailed": 18,
+    "fullTotal": 2181,
+    "newUnexplainedRegressions": 0
+  },
+  "commands": [
+    {
+      "name": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitCode": 1,
+      "seconds": 7.36,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/final-lint.log"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 2.83,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/final-typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 10.29,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/final-build.log"
+    },
+    {
+      "name": "scoring",
+      "command": [
+        "pnpm",
+        "test:scoring"
+      ],
+      "exitCode": 0,
+      "seconds": 18.48,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/final-scoring.log"
+    },
+    {
+      "name": "focused",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "tests/unit/d2-availability.test.ts",
+        "tests/integration/d2-source-evidence.test.ts",
+        "tests/unit/fundamentals-availability-legacy.test.ts",
+        "tests/unit/fundamentals-availability-evidence.test.ts",
+        "tests/integration/fundamentals-availability-evidence.test.ts",
+        "tests/unit/fundamentals-live-public-disclosure.test.ts",
+        "tests/unit/sector-requirements.test.ts",
+        "tests/unit/supported-derivation-routes.test.ts",
+        "tests/unit/tcbs-pipeline.test.ts",
+        "tests/integration/tcbs-pipeline.test.ts",
+        "tests/unit/completed-session.test.ts",
+        "tests/unit/source-publication.test.ts",
+        "tests/unit/runtime-readiness.test.ts",
+        "tests/unit/runtime-human-review.test.ts",
+        "tests/unit/runtime-dataset-acceptance.test.ts",
+        "tests/integration/runtime-evidence.test.ts",
+        "tests/unit/scoring-readiness.test.ts",
+        "tests/integration/scoring-readiness.test.ts",
+        "tests/integration/production-authority.test.ts",
+        "tests/integration/dependency-head.test.ts",
+        "--reporter=json",
+        "--outputFile=/Users/nglehoangan/Documents/Working/VN_30_Investment/docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/focused-results.json"
+      ],
+      "exitCode": 0,
+      "seconds": 39.77,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/final-focused.log"
+    },
+    {
+      "name": "full",
+      "command": [
+        "pnpm",
+        "test",
+        "--reporter=json",
+        "--outputFile=/Users/nglehoangan/Documents/Working/VN_30_Investment/docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/full-results.json"
+      ],
+      "exitCode": 1,
+      "seconds": 367.12,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/final-full.log"
+    },
+    {
+      "name": "api",
+      "command": [
+        "node",
+        "--test",
+        "api/capture-market.test.mjs",
+        "api/token-session.test.mjs",
+        "api/sub-account.test.mjs",
+        "api/tcbs-unified.test.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 1.19,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/final-api.log"
+    }
+  ],
+  "finalSourceChecks": [
+    {
+      "name": "d2-lint",
+      "command": [
+        "pnpm",
+        "exec",
+        "eslint",
+        "src/domain/fundamentals/d2-availability.ts",
+        "src/infrastructure/fundamentals/d2-source-evidence.ts",
+        "tests/fixtures/d2-availability.ts",
+        "tests/unit/d2-availability.test.ts",
+        "tests/integration/d2-source-evidence.test.ts",
+        "--max-warnings=0"
+      ],
+      "exitCode": 0,
+      "seconds": 1.0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/post-d2-lint.log"
+    },
+    {
+      "name": "boundaries",
+      "command": [
+        "node",
+        "scripts/check-boundaries.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 0.55,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/post-boundaries.log"
+    },
+    {
+      "name": "typecheck-final",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 2.79,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/post-typecheck-final.log"
+    },
+    {
+      "name": "build-final",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 8.76,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-d2-date-only-policy-implementation/validation/post-build-final.log"
+    }
+  ],
+  "D2Tests": [
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "read-only pinned composition verifies actual metadata/document/observation/knowledge bytes and returns only a D2 candidate",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "replacing source.pdf invalidates the immutable source binding",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "replacing metadata.json invalidates the immutable source binding",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "replacing knowledge.json invalidates the immutable source binding",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "replacing observation.json invalidates the immutable source binding",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "unverifiable/missing documents, caller-substituted hashes and duplicated configured filings fail closed",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "missing or unapproved identity verification cannot be made authoritative by a valid PDF hash",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "source version replacement and undisclosed capture-set substitution cannot inherit the approved identity",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "an immutable late mapping proof still blocks historical AS_KNOWN admission rather than backdating availability",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "symlink and relative path escapes never supply source evidence",
+      "status": "passed"
+    },
+    {
+      "file": "tests/integration/d2-source-evidence.test.ts",
+      "name": "two exact pinned authoritative captures with conflicting dates block without latest-wins replacement",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "next-local-calendar-day boundary for 2026-10-21 is 2026-10-21T17:00:00.000Z",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "next-local-calendar-day boundary for 2026-01-31 is 2026-01-31T17:00:00.000Z",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "next-local-calendar-day boundary for 2026-12-31 is 2026-12-31T17:00:00.000Z",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "next-local-calendar-day boundary for 2024-02-28 is 2024-02-28T17:00:00.000Z",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "next-local-calendar-day boundary for 2024-02-29 is 2024-02-29T17:00:00.000Z",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "next-local-calendar-day boundary for 2026-02-28 is 2026-02-28T17:00:00.000Z",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "next-local-calendar-day boundary for 2000-02-29 is 2000-02-29T17:00:00.000Z",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "next-local-calendar-day boundary for 2100-02-28 is 2100-02-28T17:00:00.000Z",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "rejects invalid calendar dates and noncanonical date/timestamp strings",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "preserves original DATE_ONLY precision and publishedAt=null without activating or admitting evidence",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "documentVerifiedAt may delay effectiveKnownAt and cannot be ignored",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "mappingKnownAt may delay effectiveKnownAt and cannot be ignored",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "methodologyKnownAt may delay effectiveKnownAt and cannot be ignored",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "other may delay effectiveKnownAt and cannot be ignored",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "one millisecond before boundary blocks; exact boundary passes with no implicit intraday publication time",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "missing required mappingKnownAt blocks rather than defaulting to capture/publication time",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "missing required methodologyKnownAt blocks rather than defaulting to capture/publication time",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "missing verification, ingestion and additional required contract boundary evidence blocks",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "verified exact TIMESTAMP remains exact and existing timestamp availability behavior remains unchanged",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "source-contract clocks and identity/method knowledge are lower bounds, never ignored for a historical cutoff",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "unverified VHM-style date leads and non-issuer/exchange date-only sources never qualify",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "source identity must be independently approved with exact immutable binding, not granted by D2 semantics",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "conflicting independently bound publication dates block; no latest-wins choice is made",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "ingestion is an operational lower bound and cannot move availability backwards",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "retrieval is an operational lower bound and cannot move availability backwards",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "correction is an operational lower bound and cannot move availability backwards",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "providerReceipt is an operational lower bound and cannot move availability backwards",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "calendar boundary is independent of host timezone, including leap-day and year rollover",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "DATE_ONLY UTC timezone is not silently reinterpreted as Vietnam local date",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "an earlier provider receipt cannot advance the next-local-day conservative boundary",
+      "status": "passed"
+    },
+    {
+      "file": "tests/unit/d2-availability.test.ts",
+      "name": "candidate receipt binds exact decision/system/assessment cutoffs and cannot be replayed as a different context",
+      "status": "passed"
+    }
+  ],
+  "historicalFailures": {
+    "count": 18,
+    "exactPriorFailureSetUnchanged": true,
+    "failures": [
+      [
+        "tests/unit/consumer-retail-ticker-closure.test.ts",
+        "33 all seven protected source and evidence hashes remain unchanged"
+      ],
+      [
+        "tests/unit/consumer-targeted-fix.test.ts",
+        "All protected evidence and approved contracts retain their original hashes"
+      ],
+      [
+        "tests/unit/consumer-targeted-fix.test.ts",
+        "VNM original PDF is bound to exact retained bytes"
+      ],
+      [
+        "tests/unit/di-governance-closure.test.ts",
+        "6 retained original HPG PDF hashes still match physical bytes"
+      ],
+      [
+        "tests/unit/di-governance-closure.test.ts",
+        "7 VJC independent producer replay is deterministic with explicit ticker"
+      ],
+      [
+        "tests/unit/di-governance-closure.test.ts",
+        "8 GVR independent producer replay is deterministic with explicit ticker"
+      ],
+      [
+        "tests/unit/energy-ticker-closure.test.ts",
+        "29 all approved closures and production contracts unchanged"
+      ],
+      [
+        "tests/unit/fpt-ticker-closure.test.ts",
+        "deterministic replay requires no temporary extraction files"
+      ],
+      [
+        "tests/unit/gvr-ticker-closure.test.ts",
+        "33 all 13 approved closures, sources, contracts and prior tests remain unchanged"
+      ],
+      [
+        "tests/unit/gvr-ticker-closure.test.ts",
+        "retained originals exist and current inventory components reconcile including provision"
+      ],
+      [
+        "tests/unit/real-estate-ticker-closure.test.ts",
+        "23 offline replay binds originals and raw bytes without disposable extraction"
+      ],
+      [
+        "tests/unit/tcx-ket-vang-targeted.test.ts",
+        "TCX final targeted FY2022 Két Vàng forensic boundary 19 SSI closure unchanged"
+      ],
+      [
+        "tests/unit/tcx-ket-vang-targeted.test.ts",
+        "TCX final targeted FY2022 Két Vàng forensic boundary 20 all 15 approved closures and primary TCX evidence unchanged"
+      ],
+      [
+        "tests/unit/tcx-ket-vang-targeted.test.ts",
+        "TCX final targeted FY2022 Két Vàng forensic boundary 22 no denominator or contract modifications"
+      ],
+      [
+        "tests/unit/tcx-ticker-closure.test.ts",
+        "TCX Level-1 canonical accounting isolation and semantics 32 SSI protected evidence unchanged"
+      ],
+      [
+        "tests/unit/tcx-ticker-closure.test.ts",
+        "TCX Level-1 canonical accounting isolation and semantics 33 all 15 approved closure artifacts and bound sources unchanged"
+      ],
+      [
+        "tests/unit/vjc-ticker-closure.test.ts",
+        "40 all 14 approved closures and existing contracts unchanged"
+      ],
+      [
+        "tests/unit/vjc-ticker-closure.test.ts",
+        "all retained transcriptions qualify and all five source PDFs are hash-bound"
+      ]
+    ],
+    "testsSkippedOrDeleted": false,
+    "limitationsWaived": false
+  },
+  "inheritedLintFailure": "LINT_BASELINE_COMPARISON.json",
+  "developmentFindings": [
+    "Initial negative fixtures violated existing canonical UNKNOWN/revision/receipt chronology invariants; fixtures corrected without weakening validators",
+    "Initial test helper inferred overly narrow fixture types; annotated with public evaluator input type",
+    "Added cutoff-bound candidate receipt identity before final focused/full tests; final source lint/typecheck/build rerun after implementation was complete"
+  ]
+}
