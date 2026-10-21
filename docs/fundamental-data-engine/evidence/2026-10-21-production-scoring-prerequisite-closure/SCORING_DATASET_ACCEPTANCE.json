@@ -1,0 +1,38 @@
+{
+  "status": "MISSING_NOT_CREATED",
+  "phase2": "NOT_EXECUTED_PHASE1_STOP",
+  "observedProductionCounts": {
+    "data_initialization_acceptance": 0,
+    "scoring_dataset_binding": 0,
+    "fundamental_snapshot_run": 0,
+    "fundamental_observation": 0,
+    "fundamental_availability_assessment": 0,
+    "fundamental_derivation": 0,
+    "fundamental_admission_run": 30
+  },
+  "distinction": "30 canonical admission runs are retained. They are not the immutable AS_KNOWN runtime snapshot/observation/assessment/derivation records consumed by the formal scoring bridge.",
+  "contractInspectionOnly": {
+    "acceptance": "independent-di-acceptance-v2",
+    "newReadinessAlgorithm": "strict-canonical-m3-readiness-v2",
+    "snapshotScope": "FORMAL",
+    "snapshotMode": "AS_KNOWN",
+    "revisionCutoff": null,
+    "requiredBindings": [
+      "canonical snapshot content/manifest/member/derived hashes",
+      "reference universe and sector versions",
+      "reviewed ScoreInput and paired ScoringBridgePlan for each SCORABLE identity",
+      "source observation/availability assessment and derived operand lineage",
+      "approved requirements and scoring methodology hashes",
+      "15 passed DI gates with evidence",
+      "separate producer and reviewer references",
+      "external independently pinned acceptanceHash/reviewerReference/approvalReference",
+      "time cutoffs; public/operational knowledge; source evidence",
+      "MBB input=null and bridge=null"
+    ],
+    "sources": [
+      "src/domain/fundamentals/scoring-readiness-policy-b.ts",
+      "src/domain/fundamentals/scoring-bridge.ts",
+      "src/infrastructure/repositories/scoring-datasets-policy-b.ts"
+    ]
+  }
+}

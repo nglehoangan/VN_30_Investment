@@ -1,0 +1,36 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+(node:73848) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:73930) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/integration/tcbs-pipeline.test.ts (7 tests | 1 failed) 1177ms
+   × protected production database bytes retain starting fingerprint 15ms
+(node:73963) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/tcbs-pipeline.test.ts > protected production database bytes retain starting fingerprint
+AssertionError: expected '45fa5e849a38367ceef78d6fb0d38c98853ee…' to be '559ba416f708db1b6eff240b741295ff180e3…' // Object.is equality
+
+Expected: "559ba416f708db1b6eff240b741295ff180e3ef2c2cb77b22d92ae16bd8fe7c4"
+Received: "45fa5e849a38367ceef78d6fb0d38c98853ee0ebd03ad7eb35eed33fc8228210"
+
+ ❯ tests/integration/tcbs-pipeline.test.ts:49:54
+     47| it('protected production database bytes retain starting fingerprint',(…
+     48|  const baseline=JSON.parse(readFileSync('docs/fundamental-data-engine/…
+     49|  expect(hashBytes(readFileSync('data/vn30.sqlite'))).toBe(baseline['da…
+       |                                                      ^
+     50| });
+     51|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 10 passed (11)
+      Tests  1 failed | 123 passed (124)
+   Start at  03:07:41
+   Duration  34.76s (tests 92%, setup 3%, environment 2%, import 2%, transform 2%)
+

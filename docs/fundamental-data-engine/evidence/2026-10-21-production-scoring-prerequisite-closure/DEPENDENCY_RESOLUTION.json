@@ -1,0 +1,64 @@
+{
+  "status": "BLOCKED",
+  "at": "2026-10-21T03:08:39.202Z",
+  "probes": [
+    {
+      "purpose": "FUNDAMENTAL_DESCRIPTION",
+      "status": "PASS",
+      "release": {
+        "id": "dependency-release-73f499cab0e71d93f81e35723bc804db3dac6a798c3ce21818b841872d77be2e",
+        "hash": "8d1e0909d377a4e1225b54f26cca0833a0fd24a9af3271d4cdd26419e193d01a"
+      }
+    },
+    {
+      "purpose": "VALUATION",
+      "status": "BLOCKED",
+      "reason": "MARKET_BOUNDARY:REFRESH_REQUIRED:UNKNOWN_OR_AMBIGUOUS_SESSION,CURRENT_MARKET_SNAPSHOT_NOT_AVAILABLE"
+    }
+  ],
+  "source": "PREFLIGHT.json",
+  "activeSessionPolicy": {
+    "authorityReference": "OWNER_ACCEPTED_DATA_INITIALIZATION_VNEXT; Production Analysis Dependency Head Closure request",
+    "content": {
+      "adjustment": "RAW",
+      "calendar": {
+        "effectiveAt": "2026-10-20T01:26:52.262Z",
+        "hash": "aa7e96a356763105fc74770b2cfb44a9ee8fcf79ae8c09e1380a21dc9bfca605",
+        "id": "hose-calendar-2026-v1",
+        "knownAt": "2026-10-20T01:26:52.262Z"
+      },
+      "effectiveAt": "2026-10-20T01:26:52.262Z",
+      "field": "CLOSE",
+      "hash": "d0cb73f8c266efa31ff3928036eab4a6dc5109fadff260fab3076a0864fc114f",
+      "id": "tcbs-eod-valuation-session-v1",
+      "knownAt": "2026-10-20T01:26:52.262Z",
+      "purposes": [
+        "VALUATION"
+      ],
+      "timezone": "Asia/Ho_Chi_Minh",
+      "windows": [
+        {
+          "from": "2026-10-19T08:00:00.000Z",
+          "observationCutoff": "2026-10-19T08:00:00.000Z",
+          "session": "HOSE_DAILY_COMPLETED",
+          "through": "2026-10-20T07:59:59.999Z",
+          "tradingDate": "2026-10-19"
+        }
+      ]
+    },
+    "contract": "hose-calendar-2026-v1",
+    "effectiveFrom": "2026-10-20T01:26:52.262Z",
+    "pin": {
+      "hash": "d0cb73f8c266efa31ff3928036eab4a6dc5109fadff260fab3076a0864fc114f",
+      "id": "tcbs-eod-valuation-session-v1"
+    },
+    "recordedAt": "2026-10-20T01:26:52.262Z",
+    "requires": [],
+    "scheme": "SESSION",
+    "sourceReference": "data/market-boundary/candidates/d0477bb68f5807282a9aff54a411b1a8f6321f818eb75da71bad0cfd457d9dac/candidate.json",
+    "status": "ACCEPTED",
+    "type": "SESSION_POLICY"
+  },
+  "marketHeadPresent": false,
+  "interpretation": "Active approved window is 2026-10-19 15:00 through 2026-10-20 14:59:59.999 Vietnam time; current request is outside that window. Actual fresh board is 2026-10-21 intraday, not a completed-session close. No timestamp/window override was performed."
+}

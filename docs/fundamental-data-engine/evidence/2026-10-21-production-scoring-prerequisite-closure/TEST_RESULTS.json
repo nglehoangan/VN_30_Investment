@@ -1,0 +1,117 @@
+{
+  "status": "COMPLETE",
+  "results": [
+    {
+      "name": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitCode": 0,
+      "seconds": 8.87,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-production-scoring-prerequisite-closure/validation/lint.log"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 3.17,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-production-scoring-prerequisite-closure/validation/typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 18.27,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-production-scoring-prerequisite-closure/validation/build.log"
+    },
+    {
+      "name": "scoring",
+      "command": [
+        "pnpm",
+        "test:scoring"
+      ],
+      "exitCode": 0,
+      "seconds": 19.26,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-production-scoring-prerequisite-closure/validation/scoring.log"
+    },
+    {
+      "name": "focused",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "tests/unit/scoring-readiness.test.ts",
+        "tests/unit/scoring-bridge-derived.test.ts",
+        "tests/unit/scoring-evidence-time.test.ts",
+        "tests/integration/scoring-readiness.test.ts",
+        "tests/integration/scoring-readiness-migration.test.ts",
+        "tests/integration/production-authority.test.ts",
+        "tests/integration/dependency-head.test.ts",
+        "tests/unit/market-boundary.test.ts",
+        "tests/integration/market-boundary.test.ts",
+        "tests/unit/tcbs-pipeline.test.ts",
+        "tests/integration/tcbs-pipeline.test.ts"
+      ],
+      "exitCode": 1,
+      "seconds": 35.21,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-production-scoring-prerequisite-closure/validation/focused.log"
+    },
+    {
+      "name": "full",
+      "command": [
+        "pnpm",
+        "test",
+        "--reporter=json",
+        "--outputFile=/Users/nglehoangan/Documents/Working/VN_30_Investment/docs/fundamental-data-engine/evidence/2026-10-21-production-scoring-prerequisite-closure/validation/full-results.json"
+      ],
+      "exitCode": 1,
+      "seconds": 1272.22,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-production-scoring-prerequisite-closure/validation/full.log"
+    },
+    {
+      "name": "api",
+      "command": [
+        "node",
+        "--test",
+        "api/capture-market.test.mjs",
+        "api/token-session.test.mjs",
+        "api/sub-account.test.mjs",
+        "api/tcbs-unified.test.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 1.78,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-production-scoring-prerequisite-closure/validation/api.log"
+    }
+  ],
+  "summaries": {
+    "full": {
+      "passed": 2055,
+      "failed": 19,
+      "total": 2074
+    },
+    "scoring": {
+      "passed": 127,
+      "failed": 0
+    },
+    "focused": {
+      "passed": 123,
+      "failed": 1
+    },
+    "api": {
+      "passed": 18,
+      "failed": 0
+    }
+  },
+  "productionScoringReplay": {
+    "status": "NOT_RUN",
+    "reason": "Phase1 market prerequisite blocked; no production scorecards or accepted immutable scoring dataset exist. Existing scoring/golden/readiness tests are not a production replay."
+  }
+}
