@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, rmSync, statSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { getTokenSession, invalidateTokenSession } from './token-session.mjs';
+import { getTokenSession, invalidateTokenSession, rateLimitSession } from './tcbs.mjs';
 const now=()=>1800000000000;
 const custody='TEST_CUSTODY';
 const jwt='header.'+Buffer.from(JSON.stringify({custodyID:custody,exp:1800000600})).toString('base64url')+'.signature';
@@ -37,5 +37,15 @@ test('invalid custody claim is not cached and same OTP cannot be retried',async(
  try {
   await assert.rejects(getTokenSession(options),/CUSTODY_MISMATCH/);
   await assert.rejects(getTokenSession(options),/OTP_ALREADY_ATTEMPTED/);
+ }finally{rmSync(s.folder,{recursive:true,force:true});}
+});
+test('REST cooldown blocks a valid cached token too, then allows reuse without another OTP',async()=>{
+ const s=setup();let calls=0;
+ const options={...s,readOtp:async()=> '123456',request:async()=>{calls++;return {ok:true,status:200,data:{token:jwt}};}};
+ try{
+  await getTokenSession(options);rateLimitSession(s.folder,120000,now());
+  await assert.rejects(getTokenSession({...options,readOtp:async()=>{throw Error('must not prompt');}}),/COOLDOWN/);
+  const reused=await getTokenSession({...options,now:()=>now()+120001,readOtp:async()=>{throw Error('must not prompt');}});
+  assert.equal(reused.reused,true);assert.equal(calls,1);
  }finally{rmSync(s.folder,{recursive:true,force:true});}
 });

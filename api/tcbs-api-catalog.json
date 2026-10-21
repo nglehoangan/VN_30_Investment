@@ -1,130 +1,469 @@
 {
-  "format": "vvios-tcbs-api-catalog-v1",
+  "format": "vvios-tcbs-api-catalog-v2",
   "documentation_version": "1.0.0",
+  "reviewedAt": "2026-10-21",
   "base_url": "https://openapi.tcbs.com.vn",
-  "approval": {
+  "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/introduction/",
+  "historicalApproval": {
     "scope": "User approved saving these 10 API entries; live account calls are not authorized by this approval",
     "date": "2026-10-08"
   },
-  "integration_status": "DOCUMENTED_ONLY; NOT_IMPLEMENTED",
-  "live_account_calls_enabled": false,
-  "credentials_file": ".env.local",
+  "currentScope": "Owner requested unified read-only account and market acquisition; no orders, money movements, credential renewal or ledger admission",
+  "entrypoint": "api/tcbs.mjs",
+  "defaultIncludesAccounts": true,
+  "authentication": "Exactly one getTokenSession per run, shared JWT for REST and WSS; no re-auth on failure",
   "endpoints": [
     {
       "id": "1.1",
       "method": "POST",
       "path": "/gaia/v1/oauth2/openapi/token",
       "name": "Xác thực",
-      "purpose": "Đổi API Key và Smart OTP lấy JWT",
-      "priority": "CORE",
-      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/auth/token/",
-      "sub_account_type": null
+      "execution": "DEFAULT_IF_EXPIRED",
+      "sub_account_type": null,
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/auth/token/"
     },
     {
       "id": "2.1",
       "method": "GET",
       "path": "/eros/v2/get-profile/by-username/{custodyCode}",
-      "name": "Thông tin tiểu khoản",
-      "purpose": "Xác định tiểu khoản được chọn để đồng bộ",
-      "priority": "CORE",
-      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/account/sub-account/",
-      "sub_account_type": null
-    },
-    {
-      "id": "4.14",
-      "method": "GET",
-      "path": "/aion/v1/accounts/{accountNo}/se",
-      "name": "Tài sản cổ phiếu",
-      "purpose": "Mã, số lượng, giá trung bình và giá trị thị trường",
-      "priority": "CORE",
-      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/asset/",
-      "sub_account_type": "NORMAL"
-    },
-    {
-      "id": "4.15",
-      "method": "GET",
-      "path": "/aion/v1/accounts/{accountNo}/cashInvestments",
-      "name": "Số dư tiền",
-      "purpose": "Tiền mặt theo tiểu khoản",
-      "priority": "CORE",
-      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/cash-balance/",
-      "sub_account_type": "NORMAL"
-    },
-    {
-      "id": "4.16",
-      "method": "GET",
-      "path": "/erebos/v2/digital/trans-hist-cashStatements",
-      "name": "Sao kê tiền",
-      "purpose": "Dòng tiền từ mốc khởi tạo; phân trang và đối soát",
-      "priority": "CORE",
-      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/cash-statement/",
-      "sub_account_type": "NORMAL"
-    },
-    {
-      "id": "5.1",
-      "method": "GET",
-      "path": "/tartarus/v1/tickerCommons",
-      "name": "Mã và giá",
-      "purpose": "Giá holdings hoặc rổ VN30 hiện tại với index=2",
-      "priority": "CORE",
-      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/market-symbol/",
-      "sub_account_type": null
-    },
-    {
-      "id": "4.6",
-      "method": "GET",
-      "path": "/aion/v1/accounts/{accountNo}/matching-details",
-      "name": "Thông tin khớp lệnh",
-      "purpose": "Đối soát mua/bán thực tế; chưa xác nhận phạm vi lịch sử",
-      "priority": "SUPPLEMENTAL",
-      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/matching-details/",
-      "sub_account_type": "NORMAL"
+      "name": "Profile và tiểu khoản",
+      "execution": "DEFAULT",
+      "sub_account_type": null,
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/account/sub-account/"
     },
     {
       "id": "4.4",
       "method": "GET",
       "path": "/aion/v1/accounts/{accountNo}/orders",
       "name": "Sổ lệnh",
-      "purpose": "Trạng thái lệnh; không đồng nhất với giao dịch đã khớp",
-      "priority": "SUPPLEMENTAL",
-      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/get-orders/",
-      "sub_account_type": "NORMAL"
+      "execution": "DEFAULT",
+      "sub_account_type": "NORMAL",
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/get-orders/"
+    },
+    {
+      "id": "4.6",
+      "method": "GET",
+      "path": "/aion/v1/accounts/{accountNo}/matching-details",
+      "name": "Khớp lệnh",
+      "execution": "DEFAULT",
+      "sub_account_type": "NORMAL",
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/matching-details/"
+    },
+    {
+      "id": "4.7",
+      "method": "GET",
+      "path": "/aion/v1/accounts/{accountNo}/ppse",
+      "name": "Sức mua tham khảo",
+      "execution": "DEFAULT",
+      "sub_account_type": "NORMAL",
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/purchasing-power/"
+    },
+    {
+      "id": "4.14",
+      "method": "GET",
+      "path": "/aion/v1/accounts/{accountNo}/se",
+      "name": "Tài sản cổ phiếu",
+      "execution": "DEFAULT",
+      "sub_account_type": "NORMAL",
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/asset/"
+    },
+    {
+      "id": "4.15",
+      "method": "GET",
+      "path": "/aion/v1/accounts/{accountNo}/cashInvestments",
+      "name": "Số dư tiền",
+      "execution": "DEFAULT",
+      "sub_account_type": "NORMAL",
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/cash-balance/"
+    },
+    {
+      "id": "4.16",
+      "method": "GET",
+      "path": "/erebos/v2/digital/trans-hist-cashStatements",
+      "name": "Sao kê tiền",
+      "execution": "DEFAULT",
+      "sub_account_type": "NORMAL",
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/cash-statement/"
     },
     {
       "id": "4.17",
       "method": "GET",
       "path": "/erebos/v2/digital/margin-info",
-      "name": "Tra cứu nợ",
-      "purpose": "Đối soát nợ margin, lãi và phí nếu có",
-      "priority": "SUPPLEMENTAL",
-      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/debt-lookup/",
-      "sub_account_type": "MARGIN"
+      "name": "Kiểm tra nợ nếu có tiểu khoản margin",
+      "execution": "DEFAULT_IF_ACCOUNT_RESOLVED",
+      "sub_account_type": "MARGIN",
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/debt-lookup/"
+    },
+    {
+      "id": "5.1",
+      "method": "GET",
+      "path": "/tartarus/v1/tickerCommons",
+      "name": "Mã và giá",
+      "execution": "DEFAULT",
+      "sub_account_type": null,
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/market-symbol/"
+    },
+    {
+      "id": "5.2",
+      "method": "WSS",
+      "path": "/ws/thesis/v1/stream/normal",
+      "name": "Bảng giá trực tiếp",
+      "execution": "DEFAULT",
+      "sub_account_type": null,
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/introduction/"
+    },
+    {
+      "id": "5.3",
+      "method": "GET",
+      "path": "/tartarus/v1/tickerSnaps",
+      "name": "Room nước ngoài và snapshot rổ",
+      "execution": "DEFAULT",
+      "sub_account_type": null,
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/foreign-room/"
+    },
+    {
+      "id": "5.4",
+      "method": "GET",
+      "path": "/tartarus/v1/putThroughSnaps",
+      "name": "Thoả thuận",
+      "execution": "EXTENDED_MARKET",
+      "sub_account_type": null,
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/introduction/"
+    },
+    {
+      "id": "5.5",
+      "method": "GET",
+      "path": "/nyx/v1/intraday/{ticker}/his/paging",
+      "name": "Lịch sử khớp",
+      "execution": "EXTENDED_MARKET",
+      "sub_account_type": null,
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/introduction/"
+    },
+    {
+      "id": "5.6",
+      "method": "GET",
+      "path": "/nyx/v1/intraday/{ticker}/bsa-ext",
+      "name": "Cung cầu trong phiên",
+      "execution": "EXTENDED_MARKET",
+      "sub_account_type": null,
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/introduction/"
+    },
+    {
+      "id": "5.7",
+      "method": "GET",
+      "path": "/nyx/v1/intraday/{ticker}/bsa",
+      "name": "Cung cầu theo ngày",
+      "execution": "EXTENDED_MARKET",
+      "sub_account_type": null,
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/introduction/"
+    },
+    {
+      "id": "5.8",
+      "method": "GET",
+      "path": "/nyx/v1/intraday/{ticker}/bsa-month",
+      "name": "Cung cầu theo tháng",
+      "execution": "EXTENDED_MARKET",
+      "sub_account_type": null,
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/introduction/"
     },
     {
       "id": "5.11",
       "method": "GET",
       "path": "/ananke/v1/securities",
-      "name": "Thông tin chứng khoán",
-      "purpose": "Định danh, sàn, loại và trạng thái chứng khoán",
-      "priority": "SUPPLEMENTAL",
-      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/securities-info/",
-      "sub_account_type": null
+      "name": "Định danh chứng khoán",
+      "execution": "DEFAULT",
+      "sub_account_type": null,
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/securities-info/"
+    },
+    {
+      "id": "5.12",
+      "method": "GET",
+      "path": "/nyx/v2/stock/bars",
+      "name": "Nến intraday",
+      "execution": "EXTENDED_MARKET",
+      "sub_account_type": null,
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/bars/"
+    },
+    {
+      "id": "5.13",
+      "method": "GET",
+      "path": "/nyx/v2/stock/bars-long-term",
+      "name": "Nến ngày cổ phiếu và chỉ số",
+      "execution": "DEFAULT",
+      "sub_account_type": null,
+      "documentation_url": "https://developers.tcbs.com.vn/docs/v1.0.0/stock/bars-long-term/"
+    }
+  ],
+  "fullDocumentationReview": [
+    {
+      "id": "1.1",
+      "disposition": "DEFAULT",
+      "reason": "Xác thực"
+    },
+    {
+      "id": "1.2",
+      "disposition": "OPTIONAL_NOT_IMPLEMENTED",
+      "reason": "Key-expiry administration; not required for dataset capture"
+    },
+    {
+      "id": "1.3",
+      "disposition": "EXCLUDED",
+      "reason": "Key renewal changes credentials; separate maintenance workflow"
+    },
+    {
+      "id": "2.1",
+      "disposition": "DEFAULT",
+      "reason": "Profile và tiểu khoản"
+    },
+    {
+      "id": "3.1",
+      "disposition": "EXCLUDED",
+      "reason": "Money movement or order mutation outside read-only app scope"
+    },
+    {
+      "id": "3.2",
+      "disposition": "EXCLUDED",
+      "reason": "Money movement or order mutation outside read-only app scope"
+    },
+    {
+      "id": "3.3",
+      "disposition": "EXCLUDED",
+      "reason": "Money movement or order mutation outside read-only app scope"
+    },
+    {
+      "id": "4.1",
+      "disposition": "EXCLUDED",
+      "reason": "Money movement or order mutation outside read-only app scope"
+    },
+    {
+      "id": "4.2",
+      "disposition": "EXCLUDED",
+      "reason": "Money movement or order mutation outside read-only app scope"
+    },
+    {
+      "id": "4.3",
+      "disposition": "EXCLUDED",
+      "reason": "Money movement or order mutation outside read-only app scope"
+    },
+    {
+      "id": "4.4",
+      "disposition": "DEFAULT",
+      "reason": "Sổ lệnh"
+    },
+    {
+      "id": "4.5",
+      "disposition": "OPTIONAL_NOT_IMPLEMENTED",
+      "reason": "On-demand order/execution detail; no bulk web-app requirement"
+    },
+    {
+      "id": "4.6",
+      "disposition": "DEFAULT",
+      "reason": "Khớp lệnh"
+    },
+    {
+      "id": "4.7",
+      "disposition": "DEFAULT",
+      "reason": "Sức mua tham khảo"
+    },
+    {
+      "id": "4.8",
+      "disposition": "OPTIONAL_NOT_IMPLEMENTED",
+      "reason": "On-demand order/execution detail; no bulk web-app requirement"
+    },
+    {
+      "id": "4.9",
+      "disposition": "OPTIONAL_NOT_IMPLEMENTED",
+      "reason": "On-demand order/execution detail; no bulk web-app requirement"
+    },
+    {
+      "id": "4.10",
+      "disposition": "EXCLUDED",
+      "reason": "Margin financing products outside no-margin app policy; 4.17 retains debt reconciliation"
+    },
+    {
+      "id": "4.11",
+      "disposition": "EXCLUDED",
+      "reason": "Margin financing products outside no-margin app policy; 4.17 retains debt reconciliation"
+    },
+    {
+      "id": "4.12",
+      "disposition": "EXCLUDED",
+      "reason": "Margin financing products outside no-margin app policy; 4.17 retains debt reconciliation"
+    },
+    {
+      "id": "4.13",
+      "disposition": "EXCLUDED",
+      "reason": "Margin financing products outside no-margin app policy; 4.17 retains debt reconciliation"
+    },
+    {
+      "id": "4.14",
+      "disposition": "DEFAULT",
+      "reason": "Tài sản cổ phiếu"
+    },
+    {
+      "id": "4.15",
+      "disposition": "DEFAULT",
+      "reason": "Số dư tiền"
+    },
+    {
+      "id": "4.16",
+      "disposition": "DEFAULT",
+      "reason": "Sao kê tiền"
+    },
+    {
+      "id": "4.17",
+      "disposition": "DEFAULT",
+      "reason": "Kiểm tra nợ nếu có tiểu khoản margin"
+    },
+    {
+      "id": "4.18",
+      "disposition": "EXCLUDED",
+      "reason": "Margin financing products outside no-margin app policy; 4.17 retains debt reconciliation"
+    },
+    {
+      "id": "5.1",
+      "disposition": "DEFAULT",
+      "reason": "Mã và giá"
+    },
+    {
+      "id": "5.2",
+      "disposition": "DEFAULT",
+      "reason": "Bảng giá trực tiếp"
+    },
+    {
+      "id": "5.3",
+      "disposition": "DEFAULT",
+      "reason": "Room nước ngoài và snapshot rổ"
+    },
+    {
+      "id": "5.4",
+      "disposition": "OPTIONAL",
+      "reason": "Thoả thuận"
+    },
+    {
+      "id": "5.5",
+      "disposition": "OPTIONAL",
+      "reason": "Lịch sử khớp"
+    },
+    {
+      "id": "5.6",
+      "disposition": "OPTIONAL",
+      "reason": "Cung cầu trong phiên"
+    },
+    {
+      "id": "5.7",
+      "disposition": "OPTIONAL",
+      "reason": "Cung cầu theo ngày"
+    },
+    {
+      "id": "5.8",
+      "disposition": "OPTIONAL",
+      "reason": "Cung cầu theo tháng"
+    },
+    {
+      "id": "5.9",
+      "disposition": "OPTIONAL_NOT_IMPLEMENTED",
+      "reason": "Continuous event ingestion not needed for bounded local-first capture"
+    },
+    {
+      "id": "5.10",
+      "disposition": "OPTIONAL_NOT_IMPLEMENTED",
+      "reason": "Continuous event ingestion not needed for bounded local-first capture"
+    },
+    {
+      "id": "5.11",
+      "disposition": "DEFAULT",
+      "reason": "Định danh chứng khoán"
+    },
+    {
+      "id": "5.12",
+      "disposition": "OPTIONAL",
+      "reason": "Nến intraday"
+    },
+    {
+      "id": "5.13",
+      "disposition": "DEFAULT",
+      "reason": "Nến ngày cổ phiếu và chỉ số"
+    },
+    {
+      "id": "6.1",
+      "disposition": "EXCLUDED",
+      "reason": "Derivatives outside cash VN30 scope"
+    },
+    {
+      "id": "6.2",
+      "disposition": "EXCLUDED",
+      "reason": "Derivatives outside cash VN30 scope"
+    },
+    {
+      "id": "6.3",
+      "disposition": "EXCLUDED",
+      "reason": "Derivatives outside cash VN30 scope"
+    },
+    {
+      "id": "6.4",
+      "disposition": "EXCLUDED",
+      "reason": "Derivatives outside cash VN30 scope"
+    },
+    {
+      "id": "6.5",
+      "disposition": "EXCLUDED",
+      "reason": "Derivatives outside cash VN30 scope"
+    },
+    {
+      "id": "6.6",
+      "disposition": "EXCLUDED",
+      "reason": "Derivatives outside cash VN30 scope"
+    },
+    {
+      "id": "6.7",
+      "disposition": "EXCLUDED",
+      "reason": "Derivatives outside cash VN30 scope"
+    },
+    {
+      "id": "6.8",
+      "disposition": "EXCLUDED",
+      "reason": "Derivatives outside cash VN30 scope"
+    },
+    {
+      "id": "6.9",
+      "disposition": "EXCLUDED",
+      "reason": "Derivatives outside cash VN30 scope"
+    },
+    {
+      "id": "6.10",
+      "disposition": "EXCLUDED",
+      "reason": "Derivatives outside cash VN30 scope"
+    },
+    {
+      "id": "6.11",
+      "disposition": "EXCLUDED",
+      "reason": "Derivatives outside cash VN30 scope"
+    },
+    {
+      "id": "7.1",
+      "disposition": "EXCLUDED",
+      "reason": "Derivatives outside cash VN30 scope"
+    },
+    {
+      "id": "7.2",
+      "disposition": "EXCLUDED",
+      "reason": "Derivatives outside cash VN30 scope"
+    },
+    {
+      "id": "7.3",
+      "disposition": "EXCLUDED",
+      "reason": "Derivatives outside cash VN30 scope"
     }
   ],
   "unresolved": [
-    "Pending dividend and restricted WFT fields not confirmed by published response schemas",
-    "Matching-details historical coverage and pagination query parameters not confirmed",
-    "Fundamental financial statements require an additional source",
-    "Token lifetime/renewal and rate limits must be verified before implementation",
-    "Validate monetary precision, units, dates and transaction-code mappings before financial posting"
+    "New combined account/history/index flow tested with mocks; live account endpoints and VN30 index identity/schema still require source validation",
+    "252 bars is a request bound, not guaranteed history completeness",
+    "Historical price adjustment, corporate actions and total-return benchmark compatibility remain unqualified",
+    "Matching-details historical coverage is not established; cash statements cannot reconstruct missing fills",
+    "Raw captures do not automatically update the app database, ledger, scoring admission or portfolio cash",
+    "Financial statements and explicit corporate-action entitlements still require other source evidence"
   ],
-  "account_resolution": {
-    "source_api": "2.1",
-    "fields": "basicInfo,bankSubAccounts",
-    "persistence": "No accountNo config/disk persistence; API 2.1 response cached only in memory for current test run",
-    "active_status": "1",
-    "ambiguity_policy": "BLOCK; do not choose first or fallback to another type"
-  },
   "token_session": {
     "storage": "data/tcbs-session/session.json",
     "permissions": "0600; directory 0700",

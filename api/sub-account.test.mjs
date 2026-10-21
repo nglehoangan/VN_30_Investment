@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { resolveSubAccount } from './sub-account.mjs';
+import { resolveSubAccount } from './tcbs.mjs';
 const custody='TEST_CUSTODY';
 const result=accounts=>({ok:true,data:{basicInfo:{code105C:custody},bankSubAccounts:accounts}});
 const account=(accountNo,accountType='NORMAL',status='1')=>({accountNo,accountType,status});
