@@ -1,0 +1,181 @@
+TAP version 13
+# Subtest: retains only market frame candidates, excludes auth and heartbeat
+ok 1 - retains only market frame candidates, excludes auth and heartbeat
+  ---
+  duration_ms: 1.164792
+  type: 'test'
+  ...
+# Subtest: raw byte hash is deterministic and content-sensitive
+ok 2 - raw byte hash is deterministic and content-sensitive
+  ---
+  duration_ms: 0.332
+  type: 'test'
+  ...
+# Subtest: 5.2 authenticates before subscribing; keeps exact raw decimals and cleans up at frame limit
+ok 3 - 5.2 authenticates before subscribing; keeps exact raw decimals and cleans up at frame limit
+  ---
+  duration_ms: 10.533584
+  type: 'test'
+  ...
+# Subtest: auth rejection never subscribes and returns no auth/control frame
+ok 4 - auth rejection never subscribes and returns no auth/control frame
+  ---
+  duration_ms: 0.505375
+  type: 'test'
+  ...
+# Subtest: quiet stream is explicitly missing, never a fabricated quote
+ok 5 - quiet stream is explicitly missing, never a fabricated quote
+  ---
+  duration_ms: 5.000125
+  type: 'test'
+  ...
+# Subtest: batch identity coverage and partial disconnect are preserved
+ok 6 - batch identity coverage and partial disconnect are preserved
+  ---
+  duration_ms: 0.322542
+  type: 'test'
+  ...
+# Subtest: auth timeout and data before auth fail closed
+ok 7 - auth timeout and data before auth fail closed
+  ---
+  duration_ms: 6.724375
+  type: 'test'
+  ...
+# Subtest: one plan covers full30 EOD inventory plus all former market REST reads
+ok 8 - one plan covers full30 EOD inventory plus all former market REST reads
+  ---
+  duration_ms: 0.591291
+  type: 'test'
+  ...
+# Subtest: default capture keeps EOD replay distinct from history and index observations
+ok 9 - default capture keeps EOD replay distinct from history and index observations
+  ---
+  duration_ms: 0.232417
+  type: 'test'
+  ...
+# Subtest: refreshes from API 2.1 on every request and picks requested type
+ok 10 - refreshes from API 2.1 on every request and picks requested type
+  ---
+  duration_ms: 0.551792
+  type: 'test'
+  ...
+# Subtest: does not choose first/default, inactive or wrong account type
+ok 11 - does not choose first/default, inactive or wrong account type
+  ---
+  duration_ms: 0.251375
+  type: 'test'
+  ...
+# Subtest: blocks identity mismatch, HTTP failure and malformed profile
+ok 12 - blocks identity mismatch, HTTP failure and malformed profile
+  ---
+  duration_ms: 0.118625
+  type: 'test'
+  ...
+# {"authentication":"AUTHENTICATED","symbols":30}
+# {"apiId":"5.3","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T00","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T00","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T01","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T01","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T02","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T02","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T03","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T03","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T04","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T04","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T05","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T05","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T06","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T06","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T07","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T07","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T08","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T08","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T09","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T09","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T10","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T10","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T11","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T11","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T12","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T12","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T13","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T13","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T14","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T14","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T15","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T15","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T16","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T16","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T17","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T17","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T18","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T18","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T19","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T19","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T20","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T20","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T21","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T21","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T22","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T22","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T23","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T23","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T24","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T24","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T25","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T25","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T26","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T26","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T27","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T27","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T28","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T28","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T29","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T29","state":"CAPTURED_NOT_QUALIFIED"}
+# {"state":"CAPTURED_NOT_QUALIFIED","result":"data/market-source/tcbs/2026-10-21T09-13-43.429Z-unified/capture.json","requests":102,"websocketFrames":1}
+# Subtest: one OTP/token fetches accounts, two cash pages, full30 EOD, history, index and WSS together
+ok 13 - one OTP/token fetches accounts, two cash pages, full30 EOD, history, index and WSS together
+  ---
+  duration_ms: 1048.212417
+  type: 'test'
+  ...
+# Subtest: cash pagination refuses unknown totals, wrong pages and unconfirmed schema
+ok 14 - cash pagination refuses unknown totals, wrong pages and unconfirmed schema
+  ---
+  duration_ms: 0.383417
+  type: 'test'
+  ...
+# Subtest: one OTP exchange; subsequent run reuses token without OTP or auth call
+ok 15 - one OTP exchange; subsequent run reuses token without OTP or auth call
+  ---
+  duration_ms: 2.735458
+  type: 'test'
+  ...
+# Subtest: 429 blocks immediate repeat without rereading OTP or network
+ok 16 - 429 blocks immediate repeat without rereading OTP or network
+  ---
+  duration_ms: 1.075208
+  type: 'test'
+  ...
+# Subtest: invalid custody claim is not cached and same OTP cannot be retried
+ok 17 - invalid custody claim is not cached and same OTP cannot be retried
+  ---
+  duration_ms: 0.896625
+  type: 'test'
+  ...
+# Subtest: REST cooldown blocks a valid cached token too, then allows reuse without another OTP
+ok 18 - REST cooldown blocks a valid cached token too, then allows reuse without another OTP
+  ---
+  duration_ms: 1.74525
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1096.769916

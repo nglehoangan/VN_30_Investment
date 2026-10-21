@@ -1,0 +1,73 @@
+{
+  "version": "source-defined-bank-items-review-v1",
+  "status": "PROPOSED_SPECIFICATION_ONLY",
+  "items": [
+    {
+      "itemId": "BANK_CURRENT_AND_SAVINGS_DEPOSITS",
+      "definition": "BANK_CURRENT_AND_SAVINGS_DEPOSITS: sum only explicitly disclosed current-account and savings-account balances belonging to the owner-approved issuer CASA definition. Demand deposits alone are not evidence of that sum. Do not include all term savings or Auto-Earning products by name; require their evidenced classification and inclusion/exclusion decision.",
+      "authority": {
+        "path": "src/infrastructure/fundamentals/casa-npl-source-contract-v1.json",
+        "pointer": "/contracts/0/proposedContract/numerator"
+      },
+      "sector": "BANK",
+      "measurementSemantic": "STOCK",
+      "period": "Identical explicit as-of date",
+      "unit": "Matching currency with approved scale; never percentages as balances",
+      "scope": "Exact owner-approved issuer scope",
+      "issuerMappings": [],
+      "status": "DEFINITION_SUPPORTED_SOURCE_MAPPING_MISSING",
+      "runtimeRegistryAdmission": false
+    },
+    {
+      "itemId": "BANK_CUSTOMER_DEPOSITS",
+      "definition": "BANK_CUSTOMER_DEPOSITS: gross customer-deposit balance for the identical issuer, reporting perimeter and as-of date. Exclude interbank, central-bank deposits and issued debt unless an explicitly approved issuer definition states otherwise; any departure must be separately labelled and owner-approved, not silently replace M3 denominator.",
+      "authority": {
+        "path": "src/infrastructure/fundamentals/casa-npl-source-contract-v1.json",
+        "pointer": "/contracts/0/proposedContract/denominator"
+      },
+      "sector": "BANK",
+      "measurementSemantic": "STOCK",
+      "period": "Identical explicit as-of date",
+      "unit": "Matching currency with approved scale; never percentages as balances",
+      "scope": "Exact owner-approved issuer scope",
+      "issuerMappings": [],
+      "status": "DEFINITION_SUPPORTED_SOURCE_MAPPING_MISSING",
+      "runtimeRegistryAdmission": false
+    },
+    {
+      "itemId": "BANK_NONPERFORMING_LOANS",
+      "definition": "BANK_NPL_AMOUNT: gross outstanding balance classified non-performing under the explicitly identified regulatory classification version/class set in the qualified disclosure, before deduction of reserves. Owner approves the enumerated class set and treatment of restructured, purchased, written-off/off-balance exposures; no unnamed regulatory convention or net-loan proxy is inferred.",
+      "authority": {
+        "path": "src/infrastructure/fundamentals/casa-npl-source-contract-v1.json",
+        "pointer": "/contracts/1/proposedContract/grossNPLNumerator"
+      },
+      "sector": "BANK",
+      "measurementSemantic": "STOCK",
+      "period": "Identical explicit as-of date",
+      "unit": "Matching currency with approved scale; never percentages as balances",
+      "scope": "Exact owner-approved issuer scope",
+      "issuerMappings": [],
+      "status": "DEFINITION_SUPPORTED_SOURCE_MAPPING_MISSING",
+      "runtimeRegistryAdmission": false
+    },
+    {
+      "itemId": "BANK_GROSS_CUSTOMER_LOANS",
+      "definition": "BANK_GROSS_CUSTOMER_LOANS: gross customer lending before impairment reserves, for the identical regulatory population, issuer, scope and as-of date. Interbank exposure, securities and non-customer credit are excluded unless explicitly included by the separately approved definition. Derived ratio requires both compatible operands.",
+      "authority": {
+        "path": "src/infrastructure/fundamentals/casa-npl-source-contract-v1.json",
+        "pointer": "/contracts/1/proposedContract/grossCustomerLoanDenominator"
+      },
+      "sector": "BANK",
+      "measurementSemantic": "STOCK",
+      "period": "Identical explicit as-of date",
+      "unit": "Matching currency with approved scale; never percentages as balances",
+      "scope": "Exact owner-approved issuer scope",
+      "issuerMappings": [],
+      "status": "DEFINITION_SUPPORTED_SOURCE_MAPPING_MISSING",
+      "runtimeRegistryAdmission": false
+    }
+  ],
+  "nativeCandidateProduced": false,
+  "reason": "Approved contract explicitly excludes registry promotion; global schema topic/operand/effectivity binding and bank-specific mappings remain unresolved",
+  "approved": false
+}

@@ -1,0 +1,3251 @@
+{
+  "status": "INCOMPLETE",
+  "baseRegistryItemCount": 8,
+  "separateApprovedDebtItemCount": 4,
+  "baseSufficientFor29": false,
+  "eligibleSectors": 9,
+  "eligibleIssuers": 29,
+  "formalScoringSectorsComplete": 0,
+  "scope": "Manual admission requirement groups preserved exactly as a source specification, not silently converted to runtime requiredItems. These groups do not exhaust qualitative/valuation/M1 requirements.",
+  "sectors": [
+    {
+      "sector": "BANK",
+      "eligibleTickers": [
+        "ACB",
+        "BID",
+        "CTG",
+        "HDB",
+        "LPB",
+        "SHB",
+        "SSB",
+        "STB",
+        "TCB",
+        "VCB",
+        "VIB",
+        "VPB"
+      ],
+      "eligibleCount": 12,
+      "sourceRequirements": {
+        "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+        "sha256": "11cd53d5f52913f0365f8749538d5023cc5fdf5a27a7f212ab03bcb64ad4749e"
+      },
+      "nativeFormalRequirementsNotEquivalent": true,
+      "groups": [
+        {
+          "group": "CORE",
+          "requirementId": "assets",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/BANK/CORE/0",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_ASSETS",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/4",
+              "issuerFactCounts": {
+                "ACB": 5,
+                "BID": 5,
+                "CTG": 5,
+                "HDB": 5,
+                "LPB": 5,
+                "SHB": 5,
+                "SSB": 5,
+                "STB": 5,
+                "TCB": 5,
+                "VCB": 7,
+                "VIB": 5,
+                "VPB": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "equity",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/BANK/CORE/1",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_EQUITY",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "ACB": 5,
+                "BID": 5,
+                "CTG": 5,
+                "HDB": 5,
+                "LPB": 5,
+                "SHB": 5,
+                "SSB": 5,
+                "STB": 5,
+                "TCB": 5,
+                "VCB": 7,
+                "VIB": 5,
+                "VPB": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "earnings",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/BANK/CORE/2",
+          "alternatives": [
+            {
+              "itemId": "NET_INCOME",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/2",
+              "issuerFactCounts": {
+                "ACB": 5,
+                "BID": 5,
+                "CTG": 5,
+                "HDB": 5,
+                "LPB": 5,
+                "SHB": 5,
+                "SSB": 5,
+                "STB": 5,
+                "TCB": 5,
+                "VCB": 7,
+                "VIB": 5,
+                "VPB": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "SECTOR_CORE",
+          "requirementId": "loan_population",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "BANK_GROSS_CUSTOMER_LOANS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/BANK/SECTOR_CORE/0",
+          "alternatives": [
+            {
+              "itemId": "BANK_GROSS_CUSTOMER_LOANS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "ACB": 5,
+                "BID": 5,
+                "CTG": 5,
+                "HDB": 5,
+                "LPB": 5,
+                "SHB": 5,
+                "SSB": 5,
+                "STB": 5,
+                "TCB": 5,
+                "VCB": 6,
+                "VIB": 5,
+                "VPB": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "SECTOR_CORE",
+          "requirementId": "funding_population",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "BANK_CUSTOMER_DEPOSITS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/BANK/SECTOR_CORE/1",
+          "alternatives": [
+            {
+              "itemId": "BANK_CUSTOMER_DEPOSITS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "ACB": 5,
+                "BID": 5,
+                "CTG": 5,
+                "HDB": 5,
+                "LPB": 5,
+                "SHB": 5,
+                "SSB": 5,
+                "STB": 5,
+                "TCB": 5,
+                "VCB": 6,
+                "VIB": 5,
+                "VPB": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "SECTOR_CORE",
+          "requirementId": "asset_quality",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "BANK_LOAN_LOSS_RESERVES"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/BANK/SECTOR_CORE/2",
+          "alternatives": [
+            {
+              "itemId": "BANK_LOAN_LOSS_RESERVES",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "ACB": 5,
+                "BID": 5,
+                "CTG": 5,
+                "HDB": 5,
+                "LPB": 5,
+                "SHB": 5,
+                "SSB": 5,
+                "STB": 5,
+                "TCB": 5,
+                "VCB": 7,
+                "VIB": 5,
+                "VPB": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "SECTOR_CORE",
+          "requirementId": "capital_strength",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "BANK_REPORTED_CAR",
+            "BANK_REPORTED_CET1"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/BANK/SECTOR_CORE/3",
+          "alternatives": [
+            {
+              "itemId": "BANK_REPORTED_CAR",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "ACB": 5,
+                "BID": 5,
+                "CTG": 5,
+                "HDB": 5,
+                "LPB": 5,
+                "SHB": 5,
+                "SSB": 5,
+                "STB": 5,
+                "TCB": 5,
+                "VCB": 5,
+                "VIB": 5,
+                "VPB": 5
+              }
+            },
+            {
+              "itemId": "BANK_REPORTED_CET1",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "ACB": 2,
+                "BID": 0,
+                "CTG": 0,
+                "HDB": 0,
+                "LPB": 0,
+                "SHB": 0,
+                "SSB": 0,
+                "STB": 0,
+                "TCB": 0,
+                "VCB": 1,
+                "VIB": 1,
+                "VPB": 0
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        }
+      ],
+      "supportingItems": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "BANK_NET_INTEREST_INCOME",
+        "BANK_REPORTED_NIM",
+        "BANK_REPORTED_NPL",
+        "BANK_REPORTED_CREDIT_GROWTH"
+      ],
+      "optionalItems": [
+        "BANK_CURRENT_AND_SAVINGS_DEPOSITS",
+        "CASA"
+      ],
+      "requiredDerivationsInAdmissionContract": [],
+      "observedCanonicalItems": [
+        "BANK_CUSTOMER_DEPOSITS",
+        "BANK_GROSS_CUSTOMER_LOANS",
+        "BANK_LOAN_LOSS_RESERVES",
+        "BANK_NET_INTEREST_INCOME",
+        "BANK_REPORTED_CAR",
+        "BANK_REPORTED_CET1",
+        "BANK_REPORTED_NPL",
+        "BASIC_EPS",
+        "CASH_CAPEX_REPORTED",
+        "CFO",
+        "NET_INCOME",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "TOTAL_ASSETS",
+        "TOTAL_EQUITY"
+      ],
+      "observedScopes": [
+        "CONSOLIDATED",
+        "STANDALONE"
+      ],
+      "specificationGaps": [
+        {
+          "id": "BROAD_DEFINITION:BANK_CUSTOMER_DEPOSITS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:BANK_GROSS_CUSTOMER_LOANS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:BANK_LOAN_LOSS_RESERVES",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:BANK_NET_INTEREST_INCOME",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:BANK_REPORTED_CAR",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:BANK_REPORTED_CET1",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:BANK_REPORTED_NPL",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:BASIC_EPS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CASH_CAPEX_REPORTED",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:NET_INCOME_ATTRIBUTABLE_PARENT",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:TOTAL_EQUITY",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BANK_SPECIFIC_PERIMETER_MAPPING",
+          "reason": "Approved CASA/NPL source contract has zero bankSpecificMappings; formulas do not certify issuer products/regulatory classes"
+        },
+        {
+          "id": "REGULATORY_VAS_SCOPE_BRIDGE",
+          "reason": "Source-specific capital/NPL regulatory population must match exact reporting scope/basis"
+        },
+        {
+          "id": "CANONICAL_TO_FORMAL_SCOPE_ENUM",
+          "reason": "Canonical STANDALONE and formal SEPARATE_STANDALONE require an explicit versioned representation/source scope binding; no implicit bridge"
+        }
+      ],
+      "productionScoringCoverage": "INCOMPLETE",
+      "all23HumanRubricsStillRequired": true,
+      "uncoveredBaseGroups": 5,
+      "approvedSectorSpecification": "# 5. Banks\n\n## 5.1 Business Quality\n\nPrimary evidence:\n\n- sustainable ROE/ROTE;\n- normalized NIM;\n- cost-to-income;\n- fee-income quality;\n- CASA/funding franchise;\n- asset-quality-adjusted earnings;\n- franchise durability.\n\n### Normalization rules\n\nHigh ROE receives reduced credit when driven by:\n\n- under-provisioning;\n- unusually low credit cost;\n- aggressive loan growth;\n- low capital buffers;\n- temporary NIM expansion.\n\nUse multi-year normalized credit cost when current provisioning is abnormally low/high.\n\n## 5.2 Financial Health\n\nPrimary evidence:\n\n- CET1/common-equity ratio where available;\n- CAR;\n- NPL ratio;\n- special-mention/problem loans where disclosed;\n- loan-loss coverage;\n- LDR;\n- liquidity/funding concentration;\n- deposit franchise;\n- stress capital resilience.\n\n### Prohibited substitutions\n\nDo not use:\n\n- Debt/Equity;\n- current ratio;\n- industrial interest-coverage formula;\n- CFO/NPAT.\n\n## 5.3 Growth\n\nReward:\n\n- loan growth with stable/improving credit quality;\n- fee-income growth;\n- BVPS growth;\n- per-share earnings growth;\n- deposit growth supporting funding;\n- capital-efficient growth.\n\nPenalize:\n\n- growth requiring repeated equity raises;\n- loan growth with worsening NPL/provisioning;\n- growth driven by temporary credit-cycle looseness.\n\n## 5.4 Valuation\n\nPrimary:\n\n- P/B versus sustainable ROE and cost of equity;\n- residual income / justified P/B.\n\nCross-check:\n\n- normalized P/E;\n- sustainable dividend yield;\n- own-history valuation.\n\nLow P/B is not cheap if sustainable ROE is weak or asset quality is overstated.\n\n## 5.5 Risk\n\nKey sector risks:\n\n- credit cycle;\n- property exposure;\n- concentration;\n- regulatory capital;\n- funding concentration;\n- recognition/provisioning quality;\n- related-party lending.\n\n---\n\n",
+      "normalizationReference": {
+        "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+        "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4"
+      },
+      "anyOfPreserved": true,
+      "preferencePreserved": true,
+      "modelSelectionStatus": "OWNER_MUST_FREEZE_ALLOWED_ROUTE_AND_INPUTS_PER_SECTOR; no change to approved alternatives",
+      "ownerDecisionIds": [
+        "OD-01",
+        "OD-02",
+        "OD-03"
+      ]
+    },
+    {
+      "sector": "ENERGY",
+      "eligibleTickers": [
+        "BSR"
+      ],
+      "eligibleCount": 1,
+      "sourceRequirements": {
+        "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+        "sha256": "11cd53d5f52913f0365f8749538d5023cc5fdf5a27a7f212ab03bcb64ad4749e"
+      },
+      "nativeFormalRequirementsNotEquivalent": true,
+      "groups": [
+        {
+          "group": "CORE",
+          "requirementId": "assets",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/ENERGY/CORE/0",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_ASSETS",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/4",
+              "issuerFactCounts": {
+                "BSR": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "equity",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/ENERGY/CORE/1",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_EQUITY",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "BSR": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "earnings",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/ENERGY/CORE/2",
+          "alternatives": [
+            {
+              "itemId": "NET_INCOME",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/2",
+              "issuerFactCounts": {
+                "BSR": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "sales",
+          "component": "GROWTH_QUALITY",
+          "anyOf": [
+            "REVENUE"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/ENERGY/CORE/3",
+          "alternatives": [
+            {
+              "itemId": "REVENUE",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/0",
+              "issuerFactCounts": {
+                "BSR": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "cash_generation",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "CFO"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/ENERGY/CORE/4",
+          "alternatives": [
+            {
+              "itemId": "CFO",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/6",
+              "issuerFactCounts": {
+                "BSR": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "debt",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "preference": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "sourcePointer": "/sectors/ENERGY/CORE/5",
+          "alternatives": [
+            {
+              "itemId": "COMPREHENSIVE_FINANCIAL_DEBT",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": true,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/debt-canonical-items-v2.json#/items/1",
+              "issuerFactCounts": {
+                "BSR": 0
+              }
+            },
+            {
+              "itemId": "REPORTED_BORROWINGS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": true,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/debt-canonical-items-v2.json#/items/0",
+              "issuerFactCounts": {
+                "BSR": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "cash",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "CASH_AND_EQUIVALENTS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/ENERGY/CORE/6",
+          "alternatives": [
+            {
+              "itemId": "CASH_AND_EQUIVALENTS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "BSR": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "SECTOR_CORE",
+          "requirementId": "cycle_margin",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "GROSS_PROFIT",
+            "OPERATING_PROFIT"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/ENERGY/SECTOR_CORE/0",
+          "alternatives": [
+            {
+              "itemId": "GROSS_PROFIT",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "BSR": 5
+              }
+            },
+            {
+              "itemId": "OPERATING_PROFIT",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "BSR": 0
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        }
+      ],
+      "supportingItems": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optionalItems": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "requiredDerivationsInAdmissionContract": [],
+      "observedCanonicalItems": [
+        "BASIC_EPS",
+        "CASH_AND_EQUIVALENTS",
+        "CASH_CAPEX_REPORTED",
+        "CFO",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "GROSS_PROFIT",
+        "INVENTORY",
+        "LONG_TERM_FINANCIAL_BORROWINGS",
+        "NET_INCOME",
+        "RECEIVABLES",
+        "REPORTED_BORROWINGS",
+        "REVENUE",
+        "SHORT_TERM_FINANCIAL_BORROWINGS",
+        "TOTAL_ASSETS",
+        "TOTAL_EQUITY"
+      ],
+      "observedScopes": [
+        "CONSOLIDATED"
+      ],
+      "specificationGaps": [
+        {
+          "id": "BROAD_DEFINITION:BASIC_EPS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CASH_AND_EQUIVALENTS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CASH_CAPEX_REPORTED",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CURRENT_ASSETS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CURRENT_LIABILITIES",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:GROSS_PROFIT",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:INVENTORY",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:LONG_TERM_FINANCIAL_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:RECEIVABLES",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:REPORTED_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": true
+        },
+        {
+          "id": "BROAD_DEFINITION:SHORT_TERM_FINANCIAL_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:TOTAL_EQUITY",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        }
+      ],
+      "productionScoringCoverage": "INCOMPLETE",
+      "all23HumanRubricsStillRequired": true,
+      "uncoveredBaseGroups": 4,
+      "approvedSectorSpecification": "# 12. Energy / Fuel Distribution\n\nWhere applicable, distinguish:\n\n- upstream commodity exposure;\n- refining margin exposure;\n- regulated/distribution economics;\n- inventory-price effects.\n\nNormalize:\n\n- crack spreads;\n- inventory gains/losses;\n- commodity price impacts;\n- regulated margins.\n\nInventory gains from price increases are not recurring business-quality evidence.\n\n---\n\n",
+      "normalizationReference": {
+        "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+        "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4"
+      },
+      "anyOfPreserved": true,
+      "preferencePreserved": true,
+      "modelSelectionStatus": "OWNER_MUST_FREEZE_ALLOWED_ROUTE_AND_INPUTS_PER_SECTOR; no change to approved alternatives",
+      "ownerDecisionIds": [
+        "OD-01",
+        "OD-02",
+        "OD-03"
+      ]
+    },
+    {
+      "sector": "INDUSTRIAL",
+      "eligibleTickers": [
+        "VJC"
+      ],
+      "eligibleCount": 1,
+      "sourceRequirements": {
+        "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+        "sha256": "11cd53d5f52913f0365f8749538d5023cc5fdf5a27a7f212ab03bcb64ad4749e"
+      },
+      "nativeFormalRequirementsNotEquivalent": true,
+      "groups": [
+        {
+          "group": "CORE",
+          "requirementId": "assets",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/INDUSTRIAL/CORE/0",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_ASSETS",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/4",
+              "issuerFactCounts": {
+                "VJC": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "equity",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/INDUSTRIAL/CORE/1",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_EQUITY",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "VJC": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "earnings",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/INDUSTRIAL/CORE/2",
+          "alternatives": [
+            {
+              "itemId": "NET_INCOME",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/2",
+              "issuerFactCounts": {
+                "VJC": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "sales",
+          "component": "GROWTH_QUALITY",
+          "anyOf": [
+            "REVENUE"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/INDUSTRIAL/CORE/3",
+          "alternatives": [
+            {
+              "itemId": "REVENUE",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/0",
+              "issuerFactCounts": {
+                "VJC": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "cash_generation",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "CFO"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/INDUSTRIAL/CORE/4",
+          "alternatives": [
+            {
+              "itemId": "CFO",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/6",
+              "issuerFactCounts": {
+                "VJC": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "debt",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "preference": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "sourcePointer": "/sectors/INDUSTRIAL/CORE/5",
+          "alternatives": [
+            {
+              "itemId": "COMPREHENSIVE_FINANCIAL_DEBT",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": true,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/debt-canonical-items-v2.json#/items/1",
+              "issuerFactCounts": {
+                "VJC": 0
+              }
+            },
+            {
+              "itemId": "REPORTED_BORROWINGS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": true,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/debt-canonical-items-v2.json#/items/0",
+              "issuerFactCounts": {
+                "VJC": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "cash",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "CASH_AND_EQUIVALENTS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/INDUSTRIAL/CORE/6",
+          "alternatives": [
+            {
+              "itemId": "CASH_AND_EQUIVALENTS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "VJC": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "SECTOR_CORE",
+          "requirementId": "cash_reinvestment",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "CASH_CAPEX_REPORTED"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/INDUSTRIAL/SECTOR_CORE/0",
+          "alternatives": [
+            {
+              "itemId": "CASH_CAPEX_REPORTED",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "VJC": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        }
+      ],
+      "supportingItems": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optionalItems": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "requiredDerivationsInAdmissionContract": [],
+      "observedCanonicalItems": [
+        "BASIC_EPS",
+        "CASH_AND_EQUIVALENTS",
+        "CASH_CAPEX_REPORTED",
+        "CFO",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "LONG_TERM_FINANCIAL_BORROWINGS",
+        "NET_INCOME",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "OPERATING_PROFIT",
+        "RECEIVABLES",
+        "REPORTED_BORROWINGS",
+        "REVENUE",
+        "SHORT_TERM_FINANCIAL_BORROWINGS",
+        "TOTAL_ASSETS",
+        "TOTAL_EQUITY"
+      ],
+      "observedScopes": [
+        "CONSOLIDATED"
+      ],
+      "specificationGaps": [
+        {
+          "id": "BROAD_DEFINITION:BASIC_EPS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CASH_AND_EQUIVALENTS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CASH_CAPEX_REPORTED",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CURRENT_ASSETS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CURRENT_LIABILITIES",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:LONG_TERM_FINANCIAL_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:NET_INCOME_ATTRIBUTABLE_PARENT",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:OPERATING_PROFIT",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:RECEIVABLES",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:REPORTED_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": true
+        },
+        {
+          "id": "BROAD_DEFINITION:SHORT_TERM_FINANCIAL_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:TOTAL_EQUITY",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        }
+      ],
+      "productionScoringCoverage": "INCOMPLETE",
+      "all23HumanRubricsStillRequired": true,
+      "uncoveredBaseGroups": 4,
+      "approvedSectorSpecification": "# 9. Industrials\n\n## 9.1 Business Quality\n\nPrimary:\n\n- normalized ROIC;\n- margin stability;\n- backlog quality;\n- customer concentration;\n- cost position;\n- maintenance-capex intensity;\n- cash conversion.\n\n## 9.2 Financial Health\n\nUse:\n\n- net debt/normalized EBITDA;\n- interest coverage;\n- liquidity;\n- debt maturity;\n- working-capital stress.\n\n## 9.3 Growth\n\nDistinguish:\n\n- organic capacity growth;\n- backlog conversion;\n- M&A;\n- cyclical rebound.\n\nReward growth only if incremental ROIC remains attractive.\n\n## 9.4 Valuation\n\nUse:\n\n- normalized P/E;\n- EV/EBIT;\n- EV/EBITDA when capex distortion is controlled;\n- FCF yield;\n- DCF.\n\n## 9.5 Risk\n\nKey risks:\n\n- customer concentration;\n- capex cycle;\n- input cost;\n- construction/execution;\n- receivables;\n- FX.\n\n---\n\n",
+      "normalizationReference": {
+        "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+        "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4"
+      },
+      "anyOfPreserved": true,
+      "preferencePreserved": true,
+      "modelSelectionStatus": "OWNER_MUST_FREEZE_ALLOWED_ROUTE_AND_INPUTS_PER_SECTOR; no change to approved alternatives",
+      "ownerDecisionIds": [
+        "OD-01",
+        "OD-02",
+        "OD-03"
+      ]
+    },
+    {
+      "sector": "MATERIALS",
+      "eligibleTickers": [
+        "GVR",
+        "HPG"
+      ],
+      "eligibleCount": 2,
+      "sourceRequirements": {
+        "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+        "sha256": "11cd53d5f52913f0365f8749538d5023cc5fdf5a27a7f212ab03bcb64ad4749e"
+      },
+      "nativeFormalRequirementsNotEquivalent": true,
+      "groups": [
+        {
+          "group": "CORE",
+          "requirementId": "assets",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/MATERIALS/CORE/0",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_ASSETS",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/4",
+              "issuerFactCounts": {
+                "GVR": 5,
+                "HPG": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "equity",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/MATERIALS/CORE/1",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_EQUITY",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "GVR": 5,
+                "HPG": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "earnings",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/MATERIALS/CORE/2",
+          "alternatives": [
+            {
+              "itemId": "NET_INCOME",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/2",
+              "issuerFactCounts": {
+                "GVR": 6,
+                "HPG": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "sales",
+          "component": "GROWTH_QUALITY",
+          "anyOf": [
+            "REVENUE"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/MATERIALS/CORE/3",
+          "alternatives": [
+            {
+              "itemId": "REVENUE",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/0",
+              "issuerFactCounts": {
+                "GVR": 6,
+                "HPG": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "cash_generation",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "CFO"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/MATERIALS/CORE/4",
+          "alternatives": [
+            {
+              "itemId": "CFO",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/6",
+              "issuerFactCounts": {
+                "GVR": 5,
+                "HPG": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "debt",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "preference": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "sourcePointer": "/sectors/MATERIALS/CORE/5",
+          "alternatives": [
+            {
+              "itemId": "COMPREHENSIVE_FINANCIAL_DEBT",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": true,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/debt-canonical-items-v2.json#/items/1",
+              "issuerFactCounts": {
+                "GVR": 0,
+                "HPG": 0
+              }
+            },
+            {
+              "itemId": "REPORTED_BORROWINGS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": true,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/debt-canonical-items-v2.json#/items/0",
+              "issuerFactCounts": {
+                "GVR": 5,
+                "HPG": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "cash",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "CASH_AND_EQUIVALENTS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/MATERIALS/CORE/6",
+          "alternatives": [
+            {
+              "itemId": "CASH_AND_EQUIVALENTS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "GVR": 5,
+                "HPG": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "SECTOR_CORE",
+          "requirementId": "cycle_margin",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "GROSS_PROFIT",
+            "OPERATING_PROFIT"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/MATERIALS/SECTOR_CORE/0",
+          "alternatives": [
+            {
+              "itemId": "GROSS_PROFIT",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "GVR": 5,
+                "HPG": 5
+              }
+            },
+            {
+              "itemId": "OPERATING_PROFIT",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "GVR": 0,
+                "HPG": 0
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        }
+      ],
+      "supportingItems": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optionalItems": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "requiredDerivationsInAdmissionContract": [],
+      "observedCanonicalItems": [
+        "BASIC_EPS",
+        "CASH_AND_EQUIVALENTS",
+        "CASH_CAPEX_REPORTED",
+        "CFO",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "GROSS_PROFIT",
+        "INVENTORY",
+        "LONG_TERM_FINANCIAL_BORROWINGS",
+        "NET_INCOME",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "RECEIVABLES",
+        "REPORTED_BORROWINGS",
+        "REVENUE",
+        "SHORT_TERM_FINANCIAL_BORROWINGS",
+        "TOTAL_ASSETS",
+        "TOTAL_EQUITY"
+      ],
+      "observedScopes": [
+        "CONSOLIDATED"
+      ],
+      "specificationGaps": [
+        {
+          "id": "BROAD_DEFINITION:BASIC_EPS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CASH_AND_EQUIVALENTS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CASH_CAPEX_REPORTED",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CURRENT_ASSETS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CURRENT_LIABILITIES",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:GROSS_PROFIT",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:INVENTORY",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:LONG_TERM_FINANCIAL_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:NET_INCOME_ATTRIBUTABLE_PARENT",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:RECEIVABLES",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:REPORTED_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": true
+        },
+        {
+          "id": "BROAD_DEFINITION:SHORT_TERM_FINANCIAL_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:TOTAL_EQUITY",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        }
+      ],
+      "productionScoringCoverage": "INCOMPLETE",
+      "all23HumanRubricsStillRequired": true,
+      "uncoveredBaseGroups": 4,
+      "approvedSectorSpecification": "# 10. Materials / Commodities\n\n## 10.1 Mandatory cycle normalization\n\nSpot earnings must never be the only scoring denominator.\n\nUse, where possible:\n\n- 5–10Y mid-cycle margin;\n- normalized commodity spread;\n- normalized utilization;\n- cost-curve position;\n- through-cycle ROIC;\n- through-cycle FCF.\n\n## 10.2 Business Quality\n\nReward:\n\n- low-cost production;\n- durable resource/assets;\n- strong cost curve;\n- efficient capital base;\n- cycle-surviving balance sheet.\n\nDo not treat commodity price strength as moat.\n\n## 10.3 Financial Health\n\nUse trough or normalized EBITDA for leverage.\n\nPeak-cycle leverage ratios are not sufficient.\n\n## 10.4 Growth\n\nCapacity expansion earns credit only when:\n\n- returns exceed cost of capital under normalized prices;\n- balance sheet remains resilient;\n- demand/supply economics support the investment.\n\n## 10.5 Valuation\n\nPrimary:\n\n- normalized earnings;\n- mid-cycle EV/EBITDA/EV/EBIT;\n- replacement value where defensible;\n- normalized FCF yield.\n\nPeak P/E may look low because earnings are temporarily high; this is a value-trap risk.\n\n## 10.6 Cycle scoring\n\nThe favorable-cycle component remains capped within Industry Cycle Position /2.\n\nCommodity momentum cannot become a fundamental score driver.\n\n---\n\n",
+      "normalizationReference": {
+        "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+        "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4"
+      },
+      "anyOfPreserved": true,
+      "preferencePreserved": true,
+      "modelSelectionStatus": "OWNER_MUST_FREEZE_ALLOWED_ROUTE_AND_INPUTS_PER_SECTOR; no change to approved alternatives",
+      "ownerDecisionIds": [
+        "OD-01",
+        "OD-02",
+        "OD-03"
+      ]
+    },
+    {
+      "sector": "REAL_ESTATE",
+      "eligibleTickers": [
+        "VHM",
+        "VIC",
+        "VPL",
+        "VRE"
+      ],
+      "eligibleCount": 4,
+      "sourceRequirements": {
+        "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+        "sha256": "11cd53d5f52913f0365f8749538d5023cc5fdf5a27a7f212ab03bcb64ad4749e"
+      },
+      "nativeFormalRequirementsNotEquivalent": true,
+      "groups": [
+        {
+          "group": "CORE",
+          "requirementId": "assets",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/REAL_ESTATE/CORE/0",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_ASSETS",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/4",
+              "issuerFactCounts": {
+                "VHM": 5,
+                "VIC": 5,
+                "VPL": 5,
+                "VRE": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "equity",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/REAL_ESTATE/CORE/1",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_EQUITY",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "VHM": 5,
+                "VIC": 5,
+                "VPL": 5,
+                "VRE": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "earnings",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/REAL_ESTATE/CORE/2",
+          "alternatives": [
+            {
+              "itemId": "NET_INCOME",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/2",
+              "issuerFactCounts": {
+                "VHM": 5,
+                "VIC": 5,
+                "VPL": 5,
+                "VRE": 6
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "sales",
+          "component": "GROWTH_QUALITY",
+          "anyOf": [
+            "REVENUE"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/REAL_ESTATE/CORE/3",
+          "alternatives": [
+            {
+              "itemId": "REVENUE",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/0",
+              "issuerFactCounts": {
+                "VHM": 5,
+                "VIC": 5,
+                "VPL": 5,
+                "VRE": 6
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "cash_generation",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "CFO"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/REAL_ESTATE/CORE/4",
+          "alternatives": [
+            {
+              "itemId": "CFO",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/6",
+              "issuerFactCounts": {
+                "VHM": 5,
+                "VIC": 5,
+                "VPL": 5,
+                "VRE": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "debt",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "preference": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "sourcePointer": "/sectors/REAL_ESTATE/CORE/5",
+          "alternatives": [
+            {
+              "itemId": "COMPREHENSIVE_FINANCIAL_DEBT",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": true,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/debt-canonical-items-v2.json#/items/1",
+              "issuerFactCounts": {
+                "VHM": 0,
+                "VIC": 0,
+                "VPL": 0,
+                "VRE": 0
+              }
+            },
+            {
+              "itemId": "REPORTED_BORROWINGS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": true,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/debt-canonical-items-v2.json#/items/0",
+              "issuerFactCounts": {
+                "VHM": 5,
+                "VIC": 5,
+                "VPL": 5,
+                "VRE": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "cash",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "CASH_AND_EQUIVALENTS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/REAL_ESTATE/CORE/6",
+          "alternatives": [
+            {
+              "itemId": "CASH_AND_EQUIVALENTS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "VHM": 5,
+                "VIC": 5,
+                "VPL": 5,
+                "VRE": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "SECTOR_CORE",
+          "requirementId": "project_capital",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "INVENTORY"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/REAL_ESTATE/SECTOR_CORE/0",
+          "alternatives": [
+            {
+              "itemId": "INVENTORY",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "VHM": 5,
+                "VIC": 5,
+                "VPL": 5,
+                "VRE": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        }
+      ],
+      "supportingItems": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optionalItems": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "requiredDerivationsInAdmissionContract": [],
+      "observedCanonicalItems": [
+        "BASIC_EPS",
+        "CASH_AND_EQUIVALENTS",
+        "CASH_CAPEX_REPORTED",
+        "CFO",
+        "CONVERTIBLE_AND_EXCHANGEABLE_BOND_LIABILITIES",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "GROSS_PROFIT",
+        "INVENTORY",
+        "LONG_TERM_FINANCIAL_BORROWINGS",
+        "NET_INCOME",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "OPERATING_PROFIT",
+        "RECEIVABLES",
+        "REPORTED_BORROWINGS",
+        "REVENUE",
+        "SHORT_TERM_FINANCIAL_BORROWINGS",
+        "TOTAL_ASSETS",
+        "TOTAL_EQUITY"
+      ],
+      "observedScopes": [
+        "CONSOLIDATED"
+      ],
+      "specificationGaps": [
+        {
+          "id": "BROAD_DEFINITION:BASIC_EPS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CASH_AND_EQUIVALENTS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CASH_CAPEX_REPORTED",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CONVERTIBLE_AND_EXCHANGEABLE_BOND_LIABILITIES",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CURRENT_ASSETS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CURRENT_LIABILITIES",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:GROSS_PROFIT",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:INVENTORY",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:LONG_TERM_FINANCIAL_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:NET_INCOME_ATTRIBUTABLE_PARENT",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:OPERATING_PROFIT",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:RECEIVABLES",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:REPORTED_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": true
+        },
+        {
+          "id": "BROAD_DEFINITION:SHORT_TERM_FINANCIAL_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:TOTAL_EQUITY",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        }
+      ],
+      "productionScoringCoverage": "INCOMPLETE",
+      "all23HumanRubricsStillRequired": true,
+      "uncoveredBaseGroups": 4,
+      "approvedSectorSpecification": "# 6. Real Estate Developers\n\n## 6.1 Business Quality\n\nPrimary evidence:\n\n- project execution;\n- land-bank quality;\n- legal-clearance capability;\n- presales conversion;\n- collection quality;\n- project economics;\n- normalized ROE;\n- brand/distribution;\n- access to financing without excessive leverage.\n\nReported gross margin alone is insufficient.\n\n## 6.2 Financial Health\n\nPrimary:\n\n- net debt;\n- net debt/equity;\n- cash;\n- debt maturity ladder;\n- interest burden;\n- refinancing dependence;\n- secured debt;\n- presale liabilities;\n- project-level funding.\n\n### Inventory normalization\n\nClassify inventory where possible:\n\n- legally clear/marketable;\n- active construction;\n- completed unsold;\n- delayed/legal risk;\n- land bank;\n- speculative/low-visibility.\n\nHigh inventory is not automatically negative.\n\nLow-quality, legally blocked or highly leveraged inventory is.\n\n## 6.3 Growth\n\nUse:\n\n- normalized presales;\n- backlog;\n- collections;\n- deliveries;\n- project launches with legal readiness;\n- NAV growth;\n- per-share value creation.\n\nDo not reward a handover spike from timing alone.\n\n## 6.4 Valuation\n\nPrimary:\n\n- conservative RNAV;\n- normalized project cash-flow value.\n\nCross-check:\n\n- P/B;\n- normalized P/E.\n\nRNAV must haircut:\n\n- legal uncertainty;\n- execution delay;\n- funding/refinancing risk;\n- tax/fees;\n- minority interests;\n- realization timing.\n\nA large headline RNAV discount without realizability is not a strong MOS.\n\n## 6.5 Risk\n\nKey risks:\n\n- legal approvals;\n- refinancing;\n- bond maturity;\n- project concentration;\n- related-party transactions;\n- presale collection;\n- regulatory changes.\n\n---\n\n",
+      "normalizationReference": {
+        "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+        "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4"
+      },
+      "anyOfPreserved": true,
+      "preferencePreserved": true,
+      "modelSelectionStatus": "OWNER_MUST_FREEZE_ALLOWED_ROUTE_AND_INPUTS_PER_SECTOR; no change to approved alternatives",
+      "ownerDecisionIds": [
+        "OD-01",
+        "OD-02",
+        "OD-03"
+      ]
+    },
+    {
+      "sector": "RETAIL",
+      "eligibleTickers": [
+        "MCH",
+        "MSN",
+        "MWG",
+        "SAB",
+        "VNM"
+      ],
+      "eligibleCount": 5,
+      "sourceRequirements": {
+        "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+        "sha256": "11cd53d5f52913f0365f8749538d5023cc5fdf5a27a7f212ab03bcb64ad4749e"
+      },
+      "nativeFormalRequirementsNotEquivalent": true,
+      "groups": [
+        {
+          "group": "CORE",
+          "requirementId": "assets",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/RETAIL/CORE/0",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_ASSETS",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/4",
+              "issuerFactCounts": {
+                "MCH": 5,
+                "MSN": 5,
+                "MWG": 5,
+                "SAB": 5,
+                "VNM": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "equity",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/RETAIL/CORE/1",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_EQUITY",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "MCH": 5,
+                "MSN": 5,
+                "MWG": 5,
+                "SAB": 5,
+                "VNM": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "earnings",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/RETAIL/CORE/2",
+          "alternatives": [
+            {
+              "itemId": "NET_INCOME",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/2",
+              "issuerFactCounts": {
+                "MCH": 5,
+                "MSN": 5,
+                "MWG": 5,
+                "SAB": 5,
+                "VNM": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "sales",
+          "component": "GROWTH_QUALITY",
+          "anyOf": [
+            "REVENUE"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/RETAIL/CORE/3",
+          "alternatives": [
+            {
+              "itemId": "REVENUE",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/0",
+              "issuerFactCounts": {
+                "MCH": 5,
+                "MSN": 5,
+                "MWG": 5,
+                "SAB": 6,
+                "VNM": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "cash_generation",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "CFO"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/RETAIL/CORE/4",
+          "alternatives": [
+            {
+              "itemId": "CFO",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/6",
+              "issuerFactCounts": {
+                "MCH": 5,
+                "MSN": 5,
+                "MWG": 5,
+                "SAB": 5,
+                "VNM": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "debt",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "preference": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "sourcePointer": "/sectors/RETAIL/CORE/5",
+          "alternatives": [
+            {
+              "itemId": "COMPREHENSIVE_FINANCIAL_DEBT",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": true,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/debt-canonical-items-v2.json#/items/1",
+              "issuerFactCounts": {
+                "MCH": 0,
+                "MSN": 0,
+                "MWG": 0,
+                "SAB": 0,
+                "VNM": 0
+              }
+            },
+            {
+              "itemId": "REPORTED_BORROWINGS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": true,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/debt-canonical-items-v2.json#/items/0",
+              "issuerFactCounts": {
+                "MCH": 5,
+                "MSN": 5,
+                "MWG": 5,
+                "SAB": 5,
+                "VNM": 2
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "cash",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "CASH_AND_EQUIVALENTS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/RETAIL/CORE/6",
+          "alternatives": [
+            {
+              "itemId": "CASH_AND_EQUIVALENTS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "MCH": 5,
+                "MSN": 5,
+                "MWG": 5,
+                "SAB": 5,
+                "VNM": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "SECTOR_CORE",
+          "requirementId": "working_capital",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "INVENTORY"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/RETAIL/SECTOR_CORE/0",
+          "alternatives": [
+            {
+              "itemId": "INVENTORY",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "MCH": 5,
+                "MSN": 5,
+                "MWG": 5,
+                "SAB": 5,
+                "VNM": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        }
+      ],
+      "supportingItems": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optionalItems": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "requiredDerivationsInAdmissionContract": [],
+      "observedCanonicalItems": [
+        "CASH_AND_EQUIVALENTS",
+        "CFO",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "GROSS_PROFIT",
+        "INVENTORY",
+        "LONG_TERM_FINANCIAL_BORROWINGS",
+        "NET_INCOME",
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "RECEIVABLES",
+        "REPORTED_BORROWINGS",
+        "REVENUE",
+        "SHORT_TERM_FINANCIAL_BORROWINGS",
+        "TOTAL_ASSETS",
+        "TOTAL_EQUITY"
+      ],
+      "observedScopes": [
+        "CONSOLIDATED"
+      ],
+      "specificationGaps": [
+        {
+          "id": "BROAD_DEFINITION:CASH_AND_EQUIVALENTS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CURRENT_ASSETS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CURRENT_LIABILITIES",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:GROSS_PROFIT",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:INVENTORY",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:LONG_TERM_FINANCIAL_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:NET_INCOME_ATTRIBUTABLE_PARENT",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:RECEIVABLES",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:REPORTED_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": true
+        },
+        {
+          "id": "BROAD_DEFINITION:SHORT_TERM_FINANCIAL_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:TOTAL_EQUITY",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        }
+      ],
+      "productionScoringCoverage": "INCOMPLETE",
+      "all23HumanRubricsStillRequired": true,
+      "uncoveredBaseGroups": 4,
+      "approvedSectorSpecification": "# 8. Retail / Consumer\n\n## 8.1 Business Quality\n\nPrimary:\n\n- same-store sales;\n- mature-store economics;\n- gross/EBIT margins;\n- inventory turns;\n- brand;\n- distribution;\n- pricing power;\n- working-capital economics.\n\n## 8.2 Financial Health\n\nPrimary:\n\n- net debt/EBITDA;\n- lease-adjusted leverage where material;\n- interest coverage;\n- liquidity;\n- inventory financing dependence.\n\nLease treatment must be consistent across peers.\n\n## 8.3 Growth\n\nSeparate:\n\n- same-store growth;\n- new-store growth;\n- acquisition growth;\n- price inflation.\n\nNew store expansion receives high credit only if:\n\n- payback is attractive;\n- mature-store productivity is stable;\n- cannibalization is controlled;\n- working capital does not deteriorate materially.\n\n## 8.4 Valuation\n\nPrimary:\n\n- normalized P/E;\n- EV/EBIT;\n- DCF.\n\nCross-check:\n\n- FCF yield.\n\nDo not annualize a temporary consumer rebound as permanent growth.\n\n## 8.5 Risk\n\nKey risks:\n\n- discretionary-demand cycle;\n- inventory obsolescence;\n- supplier concentration;\n- store saturation;\n- execution risk;\n- consumer credit exposure where applicable.\n\n---\n\n",
+      "normalizationReference": {
+        "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+        "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4"
+      },
+      "anyOfPreserved": true,
+      "preferencePreserved": true,
+      "modelSelectionStatus": "OWNER_MUST_FREEZE_ALLOWED_ROUTE_AND_INPUTS_PER_SECTOR; no change to approved alternatives",
+      "ownerDecisionIds": [
+        "OD-01",
+        "OD-02",
+        "OD-03"
+      ]
+    },
+    {
+      "sector": "SECURITIES",
+      "eligibleTickers": [
+        "SSI",
+        "TCX"
+      ],
+      "eligibleCount": 2,
+      "sourceRequirements": {
+        "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+        "sha256": "11cd53d5f52913f0365f8749538d5023cc5fdf5a27a7f212ab03bcb64ad4749e"
+      },
+      "nativeFormalRequirementsNotEquivalent": true,
+      "groups": [
+        {
+          "group": "CORE",
+          "requirementId": "assets",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/SECURITIES/CORE/0",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_ASSETS",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/4",
+              "issuerFactCounts": {
+                "SSI": 5,
+                "TCX": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "equity",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/SECURITIES/CORE/1",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_EQUITY",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "SSI": 5,
+                "TCX": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "earnings",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/SECURITIES/CORE/2",
+          "alternatives": [
+            {
+              "itemId": "NET_INCOME",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/2",
+              "issuerFactCounts": {
+                "SSI": 5,
+                "TCX": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "SECTOR_CORE",
+          "requirementId": "liquidity",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "CASH_AND_EQUIVALENTS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/SECURITIES/SECTOR_CORE/0",
+          "alternatives": [
+            {
+              "itemId": "CASH_AND_EQUIVALENTS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "SSI": 5,
+                "TCX": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "SECTOR_CORE",
+          "requirementId": "leverage",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "FINANCIAL_DEBT"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/SECURITIES/SECTOR_CORE/1",
+          "alternatives": [
+            {
+              "itemId": "FINANCIAL_DEBT",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "SSI": 5,
+                "TCX": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "SECTOR_CORE",
+          "requirementId": "margin_risk",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "SECURITIES_MARGIN_LOANS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/SECURITIES/SECTOR_CORE/2",
+          "alternatives": [
+            {
+              "itemId": "SECURITIES_MARGIN_LOANS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "SSI": 5,
+                "TCX": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        }
+      ],
+      "supportingItems": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optionalItems": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "requiredDerivationsInAdmissionContract": [],
+      "observedCanonicalItems": [
+        "BASIC_EPS",
+        "CASH_AND_EQUIVALENTS",
+        "CASH_CAPEX_REPORTED",
+        "CFO",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "FINANCIAL_DEBT",
+        "NET_INCOME",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "SECURITIES_MARGIN_LOANS",
+        "TOTAL_ASSETS",
+        "TOTAL_EQUITY"
+      ],
+      "observedScopes": [
+        "CONSOLIDATED",
+        "STANDALONE"
+      ],
+      "specificationGaps": [
+        {
+          "id": "BROAD_DEFINITION:BASIC_EPS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CASH_AND_EQUIVALENTS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CASH_CAPEX_REPORTED",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CURRENT_ASSETS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CURRENT_LIABILITIES",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:FINANCIAL_DEBT",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:NET_INCOME_ATTRIBUTABLE_PARENT",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:SECURITIES_MARGIN_LOANS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:TOTAL_EQUITY",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "SECURITIES_EXECUTABLE_DERIVATION_ROUTE",
+          "reason": "Existing generic crosswalk has no SECURITIES route; do not copy bank or industrial FCF/debt rules"
+        },
+        {
+          "id": "CANONICAL_TO_FORMAL_SCOPE_ENUM",
+          "reason": "Canonical STANDALONE and formal SEPARATE_STANDALONE require an explicit versioned representation/source scope binding; no implicit bridge"
+        }
+      ],
+      "productionScoringCoverage": "INCOMPLETE",
+      "all23HumanRubricsStillRequired": true,
+      "uncoveredBaseGroups": 4,
+      "approvedSectorSpecification": "# 13. Non-Bank Financial Services\n\nFor securities, insurance or other financial services, do not mechanically apply bank rules.\n\n## 13.1 Securities / Brokerage\n\nPossible metrics:\n\n- ROE through cycle;\n- recurring fee income;\n- market-share economics;\n- proprietary-trading dependence;\n- margin-loan concentration;\n- liquidity/capital adequacy;\n- earnings sensitivity to market turnover.\n\nValuation:\n\n- P/B / P/E relative to sustainable through-cycle ROE.\n\nPeak bull-market brokerage earnings must be normalized.\n\n",
+      "normalizationReference": {
+        "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+        "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4"
+      },
+      "anyOfPreserved": true,
+      "preferencePreserved": true,
+      "modelSelectionStatus": "OWNER_MUST_FREEZE_ALLOWED_ROUTE_AND_INPUTS_PER_SECTOR; no change to approved alternatives",
+      "ownerDecisionIds": [
+        "OD-01",
+        "OD-02",
+        "OD-03"
+      ]
+    },
+    {
+      "sector": "TECHNOLOGY",
+      "eligibleTickers": [
+        "FPT"
+      ],
+      "eligibleCount": 1,
+      "sourceRequirements": {
+        "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+        "sha256": "11cd53d5f52913f0365f8749538d5023cc5fdf5a27a7f212ab03bcb64ad4749e"
+      },
+      "nativeFormalRequirementsNotEquivalent": true,
+      "groups": [
+        {
+          "group": "CORE",
+          "requirementId": "assets",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/TECHNOLOGY/CORE/0",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_ASSETS",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/4",
+              "issuerFactCounts": {
+                "FPT": 6
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "equity",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/TECHNOLOGY/CORE/1",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_EQUITY",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "FPT": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "earnings",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/TECHNOLOGY/CORE/2",
+          "alternatives": [
+            {
+              "itemId": "NET_INCOME",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/2",
+              "issuerFactCounts": {
+                "FPT": 6
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "sales",
+          "component": "GROWTH_QUALITY",
+          "anyOf": [
+            "REVENUE"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/TECHNOLOGY/CORE/3",
+          "alternatives": [
+            {
+              "itemId": "REVENUE",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/0",
+              "issuerFactCounts": {
+                "FPT": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "cash_generation",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "CFO"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/TECHNOLOGY/CORE/4",
+          "alternatives": [
+            {
+              "itemId": "CFO",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/6",
+              "issuerFactCounts": {
+                "FPT": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "debt",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "preference": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "sourcePointer": "/sectors/TECHNOLOGY/CORE/5",
+          "alternatives": [
+            {
+              "itemId": "COMPREHENSIVE_FINANCIAL_DEBT",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": true,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/debt-canonical-items-v2.json#/items/1",
+              "issuerFactCounts": {
+                "FPT": 0
+              }
+            },
+            {
+              "itemId": "REPORTED_BORROWINGS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": true,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/debt-canonical-items-v2.json#/items/0",
+              "issuerFactCounts": {
+                "FPT": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "cash",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "CASH_AND_EQUIVALENTS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/TECHNOLOGY/CORE/6",
+          "alternatives": [
+            {
+              "itemId": "CASH_AND_EQUIVALENTS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "FPT": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "SECTOR_CORE",
+          "requirementId": "cash_reinvestment",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "CASH_CAPEX_REPORTED"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/TECHNOLOGY/SECTOR_CORE/0",
+          "alternatives": [
+            {
+              "itemId": "CASH_CAPEX_REPORTED",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "FPT": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        }
+      ],
+      "supportingItems": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optionalItems": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "requiredDerivationsInAdmissionContract": [],
+      "observedCanonicalItems": [
+        "BASIC_EPS",
+        "CASH_AND_EQUIVALENTS",
+        "CASH_CAPEX_REPORTED",
+        "CFO",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "GROSS_PROFIT",
+        "INVENTORY",
+        "LONG_TERM_FINANCIAL_BORROWINGS",
+        "NET_INCOME",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "OPERATING_PROFIT",
+        "RECEIVABLES",
+        "REPORTED_BORROWINGS",
+        "REVENUE",
+        "SHORT_TERM_FINANCIAL_BORROWINGS",
+        "TOTAL_ASSETS",
+        "TOTAL_EQUITY"
+      ],
+      "observedScopes": [
+        "CONSOLIDATED"
+      ],
+      "specificationGaps": [
+        {
+          "id": "BROAD_DEFINITION:BASIC_EPS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CASH_AND_EQUIVALENTS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CASH_CAPEX_REPORTED",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CURRENT_ASSETS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CURRENT_LIABILITIES",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:GROSS_PROFIT",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:INVENTORY",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:LONG_TERM_FINANCIAL_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:NET_INCOME_ATTRIBUTABLE_PARENT",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:OPERATING_PROFIT",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:RECEIVABLES",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:REPORTED_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": true
+        },
+        {
+          "id": "BROAD_DEFINITION:SHORT_TERM_FINANCIAL_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:TOTAL_EQUITY",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        }
+      ],
+      "productionScoringCoverage": "INCOMPLETE",
+      "all23HumanRubricsStillRequired": true,
+      "uncoveredBaseGroups": 4,
+      "approvedSectorSpecification": "# 7. Technology / IT Services\n\n## 7.1 Business Quality\n\nPrimary:\n\n- ROIC;\n- recurring/repeat revenue;\n- customer retention;\n- margin quality;\n- FCF conversion;\n- incremental margin;\n- employee productivity;\n- intellectual capital;\n- customer concentration.\n\nLow tangible assets are not a weakness by themselves.\n\n## 7.2 Financial Health\n\nPrimary:\n\n- net cash/debt;\n- cash conversion;\n- acquisition leverage;\n- working-capital profile;\n- recurring cash generation.\n\n## 7.3 Growth\n\nUse:\n\n- organic revenue growth;\n- recurring revenue growth;\n- backlog/contract visibility;\n- international expansion;\n- incremental margin;\n- incremental ROIC.\n\nAcquisition-driven growth must be separated from organic growth.\n\n## 7.4 Valuation\n\nPrimary:\n\n- DCF / owner earnings;\n- EV/EBIT;\n- normalized P/E.\n\nCross-check:\n\n- FCF yield;\n- historical multiple relative to growth quality.\n\nHigh growth does not justify unlimited terminal multiple expansion.\n\n## 7.5 Risk\n\nKey risks:\n\n- customer concentration;\n- talent retention;\n- wage inflation;\n- technological disruption;\n- acquisition integration;\n- FX exposure.\n\n---\n\n",
+      "normalizationReference": {
+        "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+        "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4"
+      },
+      "anyOfPreserved": true,
+      "preferencePreserved": true,
+      "modelSelectionStatus": "OWNER_MUST_FREEZE_ALLOWED_ROUTE_AND_INPUTS_PER_SECTOR; no change to approved alternatives",
+      "ownerDecisionIds": [
+        "OD-01",
+        "OD-02",
+        "OD-03"
+      ]
+    },
+    {
+      "sector": "UTILITIES",
+      "eligibleTickers": [
+        "GAS"
+      ],
+      "eligibleCount": 1,
+      "sourceRequirements": {
+        "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+        "sha256": "11cd53d5f52913f0365f8749538d5023cc5fdf5a27a7f212ab03bcb64ad4749e"
+      },
+      "nativeFormalRequirementsNotEquivalent": true,
+      "groups": [
+        {
+          "group": "CORE",
+          "requirementId": "assets",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/UTILITIES/CORE/0",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_ASSETS",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/4",
+              "issuerFactCounts": {
+                "GAS": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "equity",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/UTILITIES/CORE/1",
+          "alternatives": [
+            {
+              "itemId": "TOTAL_EQUITY",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "GAS": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "earnings",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/UTILITIES/CORE/2",
+          "alternatives": [
+            {
+              "itemId": "NET_INCOME",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/2",
+              "issuerFactCounts": {
+                "GAS": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "sales",
+          "component": "GROWTH_QUALITY",
+          "anyOf": [
+            "REVENUE"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/UTILITIES/CORE/3",
+          "alternatives": [
+            {
+              "itemId": "REVENUE",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/0",
+              "issuerFactCounts": {
+                "GAS": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "cash_generation",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "CFO"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/UTILITIES/CORE/4",
+          "alternatives": [
+            {
+              "itemId": "CFO",
+              "baseDefinitionAvailable": true,
+              "baseSectorCompatible": true,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": false,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/canonical-items-v1.json#/items/6",
+              "issuerFactCounts": {
+                "GAS": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": true,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "debt",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "preference": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "sourcePointer": "/sectors/UTILITIES/CORE/5",
+          "alternatives": [
+            {
+              "itemId": "COMPREHENSIVE_FINANCIAL_DEBT",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": true,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/debt-canonical-items-v2.json#/items/1",
+              "issuerFactCounts": {
+                "GAS": 0
+              }
+            },
+            {
+              "itemId": "REPORTED_BORROWINGS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": true,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "src/infrastructure/fundamentals/debt-canonical-items-v2.json#/items/0",
+              "issuerFactCounts": {
+                "GAS": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "CORE",
+          "requirementId": "cash",
+          "component": "FINANCIAL_HEALTH",
+          "anyOf": [
+            "CASH_AND_EQUIVALENTS"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/UTILITIES/CORE/6",
+          "alternatives": [
+            {
+              "itemId": "CASH_AND_EQUIVALENTS",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "GAS": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        },
+        {
+          "group": "SECTOR_CORE",
+          "requirementId": "cash_reinvestment",
+          "component": "BUSINESS_QUALITY",
+          "anyOf": [
+            "CASH_CAPEX_REPORTED"
+          ],
+          "preference": [],
+          "sourcePointer": "/sectors/UTILITIES/SECTOR_CORE/0",
+          "alternatives": [
+            {
+              "itemId": "CASH_CAPEX_REPORTED",
+              "baseDefinitionAvailable": false,
+              "baseSectorCompatible": false,
+              "separateScopedDebtDefinition": false,
+              "missingBroadDefinition": true,
+              "nativeDefinitionReference": "SPECIFICATION_GAP",
+              "issuerFactCounts": {
+                "GAS": 5
+              }
+            }
+          ],
+          "baseDefinitionCoverage": false,
+          "formalReadiness": false
+        }
+      ],
+      "supportingItems": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optionalItems": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "requiredDerivationsInAdmissionContract": [],
+      "observedCanonicalItems": [
+        "CASH_AND_EQUIVALENTS",
+        "CASH_CAPEX_REPORTED",
+        "CFO",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "GROSS_PROFIT",
+        "INVENTORY",
+        "LONG_TERM_FINANCIAL_BORROWINGS",
+        "NET_INCOME",
+        "RECEIVABLES",
+        "REPORTED_BORROWINGS",
+        "REVENUE",
+        "SHORT_TERM_FINANCIAL_BORROWINGS",
+        "TOTAL_ASSETS",
+        "TOTAL_EQUITY"
+      ],
+      "observedScopes": [
+        "CONSOLIDATED"
+      ],
+      "specificationGaps": [
+        {
+          "id": "BROAD_DEFINITION:CASH_AND_EQUIVALENTS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CASH_CAPEX_REPORTED",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CURRENT_ASSETS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:CURRENT_LIABILITIES",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:GROSS_PROFIT",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:INVENTORY",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:LONG_TERM_FINANCIAL_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:RECEIVABLES",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:REPORTED_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": true
+        },
+        {
+          "id": "BROAD_DEFINITION:SHORT_TERM_FINANCIAL_BORROWINGS",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        },
+        {
+          "id": "BROAD_DEFINITION:TOTAL_EQUITY",
+          "reason": "No broad registry item; no caption/total/common-equity/code/amount alias is inferred",
+          "scopedDefinitionAvailable": false
+        }
+      ],
+      "productionScoringCoverage": "INCOMPLETE",
+      "all23HumanRubricsStillRequired": true,
+      "uncoveredBaseGroups": 4,
+      "approvedSectorSpecification": "# 11. Utilities / Infrastructure\n\n## 11.1 Business Quality\n\nPrimary:\n\n- regulated/contracted return quality;\n- utilization;\n- asset availability;\n- concession duration;\n- operating efficiency;\n- cash-flow stability.\n\n## 11.2 Financial Health\n\nUse:\n\n- project/corporate leverage;\n- DSCR where available;\n- interest coverage;\n- maturity profile;\n- refinancing;\n- currency mismatch.\n\nHigh leverage may be acceptable only when cash flows are contractually stable and sufficiently covered.\n\n## 11.3 Growth\n\nUse:\n\n- committed projects;\n- capacity additions;\n- tariff framework;\n- demand growth;\n- reinvestment returns.\n\n## 11.4 Valuation\n\nUse:\n\n- DCF;\n- EV/EBITDA with leverage/capex context;\n- dividend yield only when sustainable.\n\n---\n\n",
+      "normalizationReference": {
+        "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+        "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4"
+      },
+      "anyOfPreserved": true,
+      "preferencePreserved": true,
+      "modelSelectionStatus": "OWNER_MUST_FREEZE_ALLOWED_ROUTE_AND_INPUTS_PER_SECTOR; no change to approved alternatives",
+      "ownerDecisionIds": [
+        "OD-01",
+        "OD-02",
+        "OD-03"
+      ]
+    }
+  ],
+  "unusedTaxonomySectors": [
+    "CONGLOMERATE",
+    "INSURANCE"
+  ]
+}

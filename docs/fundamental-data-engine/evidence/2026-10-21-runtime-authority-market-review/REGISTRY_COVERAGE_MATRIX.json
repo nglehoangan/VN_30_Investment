@@ -1,0 +1,2810 @@
+{
+  "status": "INCOMPLETE",
+  "definitionSections": [
+    {
+      "concept": "BQ-EQ-01 — Normalized Return on Invested Capital",
+      "metricId": "BQ-EQ-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 362,
+        "verbatimSection": "### BQ-EQ-01 — Normalized Return on Invested Capital\n\n**Purpose:** measure return generated on operating capital.\n\n**Formula — non-financial companies:**\n\n`NOPAT / average invested capital`\n\nWhere:\n\n- NOPAT = normalized EBIT × (1 − normalized tax rate)\n- invested capital = operating assets − non-interest-bearing operating liabilities\n\n**Preferred period:** 5Y normalized average plus latest TTM.\n\n**Applicability:** non-financial businesses where invested capital is economically meaningful.\n\n**Scoring evidence anchor:**\n\n| Normalized ROIC | Evidence signal |\n|---|---|\n| ≥ 20% | Exceptional |\n| 15–20% | Strong |\n| 10–15% | Good |\n| 7–10% | Average |\n| < 7% | Weak |\n| consistently below estimated cost of capital | Value destructive |\n\nROIC alone does not determine the /8 subcategory score.\n\n**Normalization:** exclude excess cash and material non-operating assets where appropriate; normalize cycle-sensitive EBIT.\n\n**Double-count:** primary home = Business Quality. Incremental ROIC belongs to Growth Quality.\n\n**Missing:** substitute sector-equivalent return metric; never assign zero automatically.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "BQ-EQ-02 — Sustainable ROE / ROTE",
+      "metricId": "BQ-EQ-02",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 398,
+        "verbatimSection": "### BQ-EQ-02 — Sustainable ROE / ROTE\n\n**Purpose:** sector-appropriate economic return where ROIC is not meaningful.\n\n**Primary applicability:** banks and financial institutions; secondary cross-check elsewhere.\n\n**Formula:**\n\n`normalized net profit attributable to common shareholders / average common equity`\n\nROTE may use tangible common equity when goodwill materially distorts comparability.\n\n**Indicative bank anchor:**\n\n| Sustainable ROE | Evidence signal |\n|---|---|\n| ≥ 20% with sound asset quality/capital | Exceptional |\n| 17–20% | Strong |\n| 14–17% | Good |\n| 11–14% | Average |\n| 8–11% | Weak |\n| < 8% | Poor |\n\nHigh ROE caused by undercapitalization, weak provisioning or excessive risk does not receive full credit.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "BQ-EQ-03 — Margin Quality and Stability",
+      "metricId": "BQ-EQ-03",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 423,
+        "verbatimSection": "### BQ-EQ-03 — Margin Quality and Stability\n\n**Purpose:** assess sustainable operating profitability and pricing power.\n\n**Measures may include:**\n\n- gross margin;\n- EBIT margin;\n- EBITDA margin only where economically appropriate;\n- net interest margin for banks;\n- pre-provision operating profitability for banks.\n\n**Assessment inputs:**\n\n- current normalized margin;\n- 5Y median;\n- dispersion / volatility;\n- performance under stress;\n- peer position.\n\n**Rubric:**\n\n- top score evidence requires structurally superior and durable margins;\n- temporary peak-cycle margins receive limited credit;\n- rising margin with deteriorating cash conversion does not receive full credit.\n\n---\n\n## 4.2 Competitive Advantage / Moat — 6 Points\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "BQ-MOAT-01 — Competitive Advantage Assessment",
+      "metricId": "BQ-MOAT-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 453,
+        "verbatimSection": "### BQ-MOAT-01 — Competitive Advantage Assessment\n\n**Evidence type:** QLT / MIXED.\n\n**Evaluate:**\n\n- brand;\n- distribution;\n- switching costs;\n- cost advantage;\n- network effects;\n- licenses / regulatory barriers;\n- scale;\n- proprietary data / know-how;\n- customer stickiness;\n- ecosystem control.\n\n**Rubric:**\n\n| Score | Standard |\n|---:|---|\n| 6 | Multiple durable advantages evidenced through economics and behavior |\n| 5 | Strong advantage with long demonstrated durability |\n| 4 | Meaningful advantage but partially contestable |\n| 3 | Some differentiation; moat uncertain |\n| 2 | Weak / narrow advantage |\n| 1 | Minimal advantage |\n| 0 | Commodity / structurally disadvantaged |\n\nMaximum score requires evidence of **persistence**, not narrative alone.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "BQ-MOAT-02 — Market Share Quality",
+      "metricId": "BQ-MOAT-02",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 484,
+        "verbatimSection": "### BQ-MOAT-02 — Market Share Quality\n\nMarket share is corroborating evidence, not an automatic moat score.\n\nHigh share receives limited credit if produced by:\n\n- uneconomic pricing;\n- excessive incentives;\n- leverage;\n- regulatory favoritism that may reverse;\n- acquisitions without return discipline.\n\nPrimary scoring home remains Industry Position unless market share directly proves durable moat economics.\n\n---\n\n## 4.3 Operating Earnings Quality / Cash Conversion — 6 Points\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "BQ-CASH-01 — CFO / Normalized Net Profit",
+      "metricId": "BQ-CASH-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 502,
+        "verbatimSection": "### BQ-CASH-01 — CFO / Normalized Net Profit\n\n**Formula:**\n\n`CFO / normalized NPAT`\n\n**Preferred period:** cumulative 3Y and 5Y.\n\n**Indicative anchor for non-financial companies:**\n\n| 3–5Y CFO / NPAT | Signal |\n|---|---|\n| ≥ 110% | Strong |\n| 90–110% | Good |\n| 70–90% | Watch |\n| 50–70% | Weak |\n| < 50% | Poor |\n\nInterpret with working-capital model.\n\nA structurally negative-working-capital retailer may naturally exceed 100%; this does not automatically imply exceptional earnings quality.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "BQ-CASH-02 — Free Cash Flow Conversion",
+      "metricId": "BQ-CASH-02",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 524,
+        "verbatimSection": "### BQ-CASH-02 — Free Cash Flow Conversion\n\n**Formula:**\n\n`normalized FCF / normalized NPAT`\n\nor, when more meaningful:\n\n`normalized FCF / normalized EBIT after tax`\n\nFCF must distinguish maintenance from growth capex where feasible.\n\n**Use cautiously for:**\n\n- high-growth businesses;\n- developers;\n- banks.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "BQ-CASH-03 — Accrual / One-Off Dependence",
+      "metricId": "BQ-CASH-03",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 542,
+        "verbatimSection": "### BQ-CASH-03 — Accrual / One-Off Dependence\n\nAssess:\n\n- receivables growth vs revenue;\n- inventory growth vs revenue;\n- capitalized costs;\n- non-cash gains;\n- related-party receivables;\n- repeated \"one-off\" income;\n- provision reversals;\n- fair-value gains.\n\n**Penalty trigger:** persistent divergence between earnings and cash/economic realization.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "Bank substitute — BQ-CASH-BANK",
+      "metricId": "Bank substitute",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 557,
+        "verbatimSection": "### Bank substitute — BQ-CASH-BANK\n\nUse:\n\n- NPL recognition quality;\n- provisioning coverage;\n- credit-cost adequacy;\n- accrued interest quality;\n- fee-income recurrence;\n- off-balance-sheet risk where material.\n\nDo not use CFO/NPAT for banks as if it were an industrial cash-flow measure.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "Property substitute — BQ-CASH-RE",
+      "metricId": "Property substitute",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 570,
+        "verbatimSection": "### Property substitute — BQ-CASH-RE\n\nUse:\n\n- presale-to-collection conversion;\n- handover-to-cash conversion;\n- operating cash realization;\n- inventory monetization;\n- receivables quality.\n\n---\n\n## 4.4 Business Model Resilience — 5 Points\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "BQ-RES-01 — Revenue / Earnings Concentration",
+      "metricId": "BQ-RES-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 584,
+        "verbatimSection": "### BQ-RES-01 — Revenue / Earnings Concentration\n\nEvaluate:\n\n- customer concentration;\n- product concentration;\n- supplier concentration;\n- geographic concentration;\n- project concentration;\n- funding concentration.\n\n**Generic customer anchor where disclosed:**\n\n- no customer >10% revenue = generally positive;\n- >20% single-customer exposure = material risk unless contract quality is exceptional;\n- >30% = major concentration requiring explicit mitigation.\n\nThresholds are context, not automatic points.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "BQ-RES-02 — Pricing Power",
+      "metricId": "BQ-RES-02",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 603,
+        "verbatimSection": "### BQ-RES-02 — Pricing Power\n\nEvidence:\n\n- ability to pass input inflation;\n- stable/growing gross margin;\n- low churn after price increases;\n- non-price differentiation;\n- premium pricing durability.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "BQ-RES-03 — Cyclicality / Stress Behavior",
+      "metricId": "BQ-RES-03",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 613,
+        "verbatimSection": "### BQ-RES-03 — Cyclicality / Stress Behavior\n\nAssess normalized earnings drawdown through prior stress periods.\n\nMaximum resilience score requires evidence that the business can protect franchise value and avoid distressed capital actions during a severe but plausible downturn.\n\n---\n\n# 5. Financial Health — 15 Points\n\n## 5.1 Balance-Sheet Strength — 6 Points\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "FH-BS-01 — Net Debt / EBITDA",
+      "metricId": "FH-BS-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 625,
+        "verbatimSection": "### FH-BS-01 — Net Debt / EBITDA\n\n**Applicability:** non-financial companies with meaningful EBITDA.\n\n**Formula:**\n\n`(interest-bearing debt − unrestricted cash) / normalized EBITDA`\n\n**Indicative anchor:**\n\n| Net Debt / EBITDA | Signal |\n|---|---|\n| net cash | Exceptional |\n| 0–1.0x | Strong |\n| 1.0–2.0x | Good |\n| 2.0–3.0x | Watch |\n| 3.0–4.0x | Weak |\n| >4.0x | High risk |\n\nFor cyclical businesses use normalized/downside EBITDA, not peak EBITDA.\n\nLease liabilities must be treated consistently within sector comparisons.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "FH-BS-02 — Debt / Equity",
+      "metricId": "FH-BS-02",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 648,
+        "verbatimSection": "### FH-BS-02 — Debt / Equity\n\nSecondary metric only for suitable non-financial companies.\n\nDo **not** use as a universal leverage metric.\n\nDo **not** use for banks as a Financial Health scoring input.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "FH-BS-03 — Net Debt / Equity",
+      "metricId": "FH-BS-03",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 656,
+        "verbatimSection": "### FH-BS-03 — Net Debt / Equity\n\nUseful for developers and asset-heavy companies when earnings are unstable.\n\nInterpret with asset quality and cash realizability.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "FH-BS-BANK-01 — Capital Adequacy",
+      "metricId": "FH-BS-BANK-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 662,
+        "verbatimSection": "### FH-BS-BANK-01 — Capital Adequacy\n\nUse the most authoritative disclosed regulatory capital ratio available, ideally CET1/common-equity or equivalent plus total CAR.\n\nScoring must consider:\n\n- regulatory minimum;\n- management buffer;\n- risk-weight density;\n- growth requirements;\n- asset-quality uncertainty.\n\nA ratio barely above minimum cannot receive a strong balance-sheet score.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "FH-BS-BANK-02 — NPL Ratio",
+      "metricId": "FH-BS-BANK-02",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 676,
+        "verbatimSection": "### FH-BS-BANK-02 — NPL Ratio\n\n**Formula:**\n\n`non-performing loans / gross customer loans`\n\nGeneric context:\n\n- <1% = strong asset-quality signal;\n- 1–2% = generally healthy;\n- 2–3% = watch;\n- >3% = elevated.\n\nThis is not standalone scoring because recognition practices differ.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "FH-BS-BANK-03 — Loan-Loss Coverage",
+      "metricId": "FH-BS-BANK-03",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 691,
+        "verbatimSection": "### FH-BS-BANK-03 — Loan-Loss Coverage\n\n**Formula:**\n\n`loan-loss reserves / NPL`\n\nGeneric context:\n\n- >150% = strong coverage signal;\n- 100–150% = adequate/good;\n- 70–100% = watch;\n- <70% = weak unless justified by collateral/structure.\n\nMust be read together with NPL recognition quality.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "FH-BS-BANK-04 — Funding Quality / CASA",
+      "metricId": "FH-BS-BANK-04",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 706,
+        "verbatimSection": "### FH-BS-BANK-04 — Funding Quality / CASA\n\nCASA is supporting evidence of funding franchise, not a standalone safety metric.\n\nHigh CASA may support:\n\n- funding stability;\n- NIM resilience;\n- franchise quality.\n\nIt must not double-count both Business Quality and Financial Health without distinct rationale.\n\n---\n\n## 5.2 Liquidity & Refinancing Resilience — 4 Points\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "FH-LIQ-01 — Current / Quick Liquidity",
+      "metricId": "FH-LIQ-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 722,
+        "verbatimSection": "### FH-LIQ-01 — Current / Quick Liquidity\n\nUse only when meaningful for sector economics.\n\nGeneric current ratio is **not** suitable for banks and can be misleading for developers/retailers.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "FH-LIQ-02 — Short-Term Debt Coverage",
+      "metricId": "FH-LIQ-02",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 728,
+        "verbatimSection": "### FH-LIQ-02 — Short-Term Debt Coverage\n\n**Formula options:**\n\n`unrestricted cash / debt due within 12 months`\n\nor\n\n`(cash + committed undrawn facilities + highly liquid assets) / obligations due within 12 months`\n\nIndicative anchor:\n\n- ≥1.5x = strong;\n- 1.0–1.5x = adequate;\n- 0.75–1.0x = watch;\n- <0.75x = weak unless refinancing visibility is exceptionally strong.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "FH-LIQ-03 — Interest Coverage",
+      "metricId": "FH-LIQ-03",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 745,
+        "verbatimSection": "### FH-LIQ-03 — Interest Coverage\n\n**Formula:**\n\n`normalized EBIT / net interest expense`\n\nor EBITDA/interest only if capex intensity is explicitly considered.\n\nIndicative anchor:\n\n| Interest coverage | Signal |\n|---|---|\n| ≥8x | Strong |\n| 5–8x | Good |\n| 3–5x | Watch |\n| 2–3x | Weak |\n| <2x | High risk |\n\nFor developers, use cash interest burden and debt maturity in addition to accounting coverage.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "FH-LIQ-04 — Debt Maturity Concentration",
+      "metricId": "FH-LIQ-04",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 765,
+        "verbatimSection": "### FH-LIQ-04 — Debt Maturity Concentration\n\nQualitative/quantitative assessment:\n\n- % debt due in 12 months;\n- % due in 24 months;\n- refinancing source diversity;\n- secured/unsecured composition;\n- covenant headroom.\n\n---\n\n## 5.3 Downside Survivability — 5 Points\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "FH-STRESS-01 — Stress Coverage Assessment",
+      "metricId": "FH-STRESS-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 779,
+        "verbatimSection": "### FH-STRESS-01 — Stress Coverage Assessment\n\nRequired downside test.\n\nAt minimum evaluate a severe but plausible scenario appropriate to sector.\n\nExamples:\n\n**Non-financial:**\n- revenue −15% to −25%;\n- margin compression;\n- working-capital outflow;\n- higher funding cost.\n\n**Banks:**\n- higher credit cost;\n- NPL formation;\n- NIM compression;\n- capital consumption.\n\n**Property:**\n- 12–24 month sales/handover delay;\n- refinancing stress;\n- lower presale collection;\n- project legal delay.\n\n**Materials:**\n- mid/down-cycle commodity price;\n- utilization decline.\n\nHigh score requires survival **without** emergency dilution, distressed asset sale or structurally damaging refinancing.\n\n---\n\n# 6. Growth Quality — 15 Points\n\n## 6.1 Historical Growth Quality — 5 Points\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "GQ-HIST-01 — Revenue CAGR",
+      "metricId": "GQ-HIST-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 817,
+        "verbatimSection": "### GQ-HIST-01 — Revenue CAGR\n\n**Formula:**\n\n`(Revenue_end / Revenue_start)^(1/n) − 1`\n\nPreferred period: 3Y and 5Y.\n\nInterpret alongside:\n\n- acquisitions;\n- inflation;\n- share issuance;\n- cyclicality;\n- base effects.\n\nIndicative cross-sector context:\n\n| Normalized CAGR | Signal |\n|---|---|\n| ≥15% | Strong growth |\n| 10–15% | Good |\n| 5–10% | Moderate |\n| 0–5% | Low |\n| <0% | Contraction |\n\nNot a direct point table.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "GQ-HIST-02 — Normalized EPS / NPAT CAGR",
+      "metricId": "GQ-HIST-02",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 845,
+        "verbatimSection": "### GQ-HIST-02 — Normalized EPS / NPAT CAGR\n\nUse corporate-action-comparable per-share figures where possible.\n\nA high EPS CAGR from:\n\n- low base;\n- provision reversal;\n- asset sale;\n- temporary commodity peak\n\nmust be normalized.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "GQ-HIST-03 — Book Value per Share CAGR",
+      "metricId": "GQ-HIST-03",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 858,
+        "verbatimSection": "### GQ-HIST-03 — Book Value per Share CAGR\n\nEspecially useful for banks and financials.\n\nMust adjust for:\n\n- capital raises;\n- bonus shares;\n- retained earnings;\n- dilution.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "GQ-HIST-04 — FCF / Owner-Earnings Growth",
+      "metricId": "GQ-HIST-04",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 869,
+        "verbatimSection": "### GQ-HIST-04 — FCF / Owner-Earnings Growth\n\nUseful only where FCF is economically meaningful and stable.\n\nDo not penalize businesses automatically for negative FCF caused by high-return expansion if reinvestment economics are independently strong.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "GQ-FWD-01 — 3–5Y Sustainable Growth Estimate",
+      "metricId": "GQ-FWD-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 903,
+        "verbatimSection": "### GQ-FWD-01 — 3–5Y Sustainable Growth Estimate\n\nEvidence type: ESTIMATE / MIXED.\n\nRequired components:\n\n- revenue/volume runway;\n- reinvestment capacity;\n- competitive position;\n- balance-sheet funding capacity;\n- addressable market;\n- regulatory constraints;\n- execution history.\n\n**Rubric:**\n\n| Score | Standard |\n|---:|---|\n| 5 | High-confidence multi-year runway with attractive economics |\n| 4 | Good runway, manageable uncertainty |\n| 3 | Moderate/normal growth visibility |\n| 2 | Limited or cyclical growth |\n| 1 | Weak visibility / likely stagnation |\n| 0 | Structural decline |\n\nA broker consensus number alone cannot justify 5/5.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "GQ-FWD-02 — Backlog / Pipeline Visibility",
+      "metricId": "GQ-FWD-02",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 930,
+        "verbatimSection": "### GQ-FWD-02 — Backlog / Pipeline Visibility\n\nUse only where economically meaningful.\n\nExamples:\n\n- contracted backlog;\n- presales;\n- recurring contracts;\n- committed capacity;\n- customer renewal base.\n\nPipeline without conversion evidence receives limited credit.\n\n---\n\n## 6.3 Incremental Returns on Growth — 5 Points\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "GQ-INC-01 — Incremental ROIC",
+      "metricId": "GQ-INC-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 948,
+        "verbatimSection": "### GQ-INC-01 — Incremental ROIC\n\n**Conceptual formula:**\n\n`change in normalized NOPAT / change in invested capital`\n\nUse multi-year periods to reduce noise.\n\nIndicative anchor:\n\n- ≥20% = exceptional incremental economics;\n- 15–20% = strong;\n- 10–15% = acceptable/good;\n- 7–10% = mediocre;\n- <7% or below cost of capital = weak.\n\nDo not calculate mechanically when denominator is very small or distorted by acquisitions/corporate actions.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "GQ-INC-BANK — Incremental ROE / Capital Efficiency",
+      "metricId": "GQ-INC-BANK",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 966,
+        "verbatimSection": "### GQ-INC-BANK — Incremental ROE / Capital Efficiency\n\nAssess whether loan/asset growth creates attractive incremental profit **after**:\n\n- credit cost;\n- capital consumption;\n- funding cost.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "GQ-INC-RETAIL — Store Economics",
+      "metricId": "GQ-INC-RETAIL",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 974,
+        "verbatimSection": "### GQ-INC-RETAIL — Store Economics\n\nPossible evidence:\n\n- mature-store ROIC;\n- payback period;\n- sales/store;\n- profit/store;\n- same-store sales;\n- closure rate.\n\nStore expansion with deteriorating unit economics cannot score highly.\n\n---\n\n# 7. Industry & Competitive Position — 10 Points\n\n## 7.1 Industry Structure — 4 Points\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "IC-IND-01 — Industry Attractiveness Assessment",
+      "metricId": "IC-IND-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 993,
+        "verbatimSection": "### IC-IND-01 — Industry Attractiveness Assessment\n\nEvaluate:\n\n- barriers to entry;\n- competitive intensity;\n- pricing discipline;\n- customer bargaining power;\n- supplier bargaining power;\n- capital intensity;\n- disruption;\n- regulatory structure;\n- structural demand.\n\n**Rubric:**\n\n| Score | Standard |\n|---:|---|\n| 4 | Structurally attractive, rational competition, durable demand |\n| 3 | Generally attractive with manageable risks |\n| 2 | Mixed / cyclical / average |\n| 1 | Structurally difficult |\n| 0 | Persistently value-destructive industry economics |\n\nBeing the best company in a weak sector does not make the industry score high.\n\n---\n\n## 7.2 Company Position Within Industry — 4 Points\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "IC-POS-01 — Relative Competitive Position",
+      "metricId": "IC-POS-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 1023,
+        "verbatimSection": "### IC-POS-01 — Relative Competitive Position\n\nEvaluate:\n\n- market share;\n- cost position;\n- distribution;\n- product/service quality;\n- operating efficiency;\n- scale;\n- strategic assets.\n\n**Rubric:**\n\n| Score | Standard |\n|---:|---|\n| 4 | Clear leader with sustainable advantage |\n| 3 | Strong top-tier position |\n| 2 | Competitive but not advantaged |\n| 1 | Weak position |\n| 0 | Structurally disadvantaged |\n\nAvoid double-counting moat.\n\n---\n\n## 7.3 Cycle Position — 2 Points\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "IC-CYCLE-01 — Cycle Assessment",
+      "metricId": "IC-CYCLE-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 1051,
+        "verbatimSection": "### IC-CYCLE-01 — Cycle Assessment\n\nPossible states:\n\n- `DEPRESSED`\n- `EARLY RECOVERY`\n- `MID-CYCLE`\n- `LATE-CYCLE`\n- `PEAK / OVERHEATED`\n- `STRUCTURAL DECLINE`\n- `NOT CYCLICAL / N.A.`\n\nScoring logic:\n\n- maximum 2 points is reserved for favorable **normalized forward asymmetry**, not simply strong current momentum;\n- peak-cycle profits with poor forward asymmetry should not receive 2/2;\n- depressed cycle with sound survivability and improving supply/demand may receive positive credit.\n\nThis metric cannot duplicate valuation discount from the same cycle assumption.\n\n---\n\n# 8. Valuation & Forward Return — 20 Points\n\n## 8.1 Primary Valuation Attractiveness — 8 Points\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "VAL-PRIMARY-01 — Primary Valuation Assessment",
+      "metricId": "VAL-PRIMARY-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 1077,
+        "verbatimSection": "### VAL-PRIMARY-01 — Primary Valuation Assessment\n\nThis is a method-selection metric rather than one universal ratio.\n\nEach company must identify:\n\n1. primary valuation method;\n2. normalized denominator;\n3. base case;\n4. conservative case;\n5. cross-checks.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "VAL-RET-01 — Expected 5Y Annualized Total Return",
+      "metricId": "VAL-RET-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 1152,
+        "verbatimSection": "### VAL-RET-01 — Expected 5Y Annualized Total Return\n\nConceptual decomposition:\n\n`fundamental per-share value growth + dividends/distributions + valuation normalization − dilution/leakage`\n\nWhere multiple scenarios are modeled, use a probability-weighted or explicitly conservative base case.\n\nApproved base score:\n\n| Expected 5Y annualized return | Base score |\n|---|---:|\n| ≥22% | 8 |\n| 18% to <22% | 7 |\n| 15% to <18% | 6 |\n| 12% to <15% | 4–5 |\n| 8% to <12% | 2–3 |\n| <8% | 0–1 |\n\nWithin a range:\n\n- use lower point for high uncertainty;\n- use upper point only with strong evidence and downside support.\n\nReturn above 22% driven primarily by aggressive multiple expansion does not automatically receive 8/8.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "VAL-MOS-01 — Conservative Intrinsic Value Discount",
+      "metricId": "VAL-MOS-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 1195,
+        "verbatimSection": "### VAL-MOS-01 — Conservative Intrinsic Value Discount\n\n**Formula where point estimate is valid:**\n\n`(conservative intrinsic value − market price) / conservative intrinsic value`\n\nIndicative context:\n\n| Discount | Signal |\n|---|---|\n| ≥35% | Strong MOS candidate |\n| 25–35% | Attractive |\n| 15–25% | Moderate |\n| 0–15% | Thin |\n| <0% | No MOS |\n\nThis table is supporting context, not an automatic /4 score.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "VAL-MOS-02 — Downside Case",
+      "metricId": "VAL-MOS-02",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 1213,
+        "verbatimSection": "### VAL-MOS-02 — Downside Case\n\nRequired inputs:\n\n- stressed earnings;\n- stressed valuation;\n- balance-sheet response;\n- dilution/refinancing risk;\n- asset backing where relevant.\n\n**Rubric:**\n\n| Score | Standard |\n|---:|---|\n| 4 | Strong discount + contained downside + high evidence quality |\n| 3 | Attractive asymmetry |\n| 2 | Balanced / fair |\n| 1 | Thin MOS / meaningful downside |\n| 0 | Poor asymmetry |\n\n---\n\n## 8.4 Valuation Dependency Controls\n\nThe following are correlated evidence families:\n\n- P/E, earnings yield and expected-return model using same EPS;\n- FCF yield, P/FCF and DCF using same FCF;\n- P/B, justified P/B and residual income using same ROE/book-value assumptions;\n- EV/EBITDA and EV/EBIT using same enterprise value and operating forecast.\n\nThey may serve as cross-checks but cannot be counted as independent proof without distinct information.\n\n---\n\n# 9. Risk & Governance — 10 Points\n\n## 9.1 Governance & Shareholder Alignment — 4 Points\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "RG-GOV-01 — Governance Assessment",
+      "metricId": "RG-GOV-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 1252,
+        "verbatimSection": "### RG-GOV-01 — Governance Assessment\n\nEvaluate:\n\n- related-party transactions;\n- disclosure timeliness;\n- financial-reporting quality;\n- controlling shareholder behavior;\n- minority shareholder treatment;\n- board oversight;\n- capital-market conduct;\n- regulatory sanctions;\n- unusual auditor issues.\n\n**Rubric:**\n\n| Score | Standard |\n|---:|---|\n| 4 | Strong disclosure, alignment and minority treatment |\n| 3 | Generally sound, minor concerns |\n| 2 | Mixed / recurring concerns |\n| 1 | Significant concerns |\n| 0 | Serious governance weakness short of hard veto |\n\nA hard veto is handled outside score arithmetic.\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "RG-GOV-02 — Reporting Reliability",
+      "metricId": "RG-GOV-02",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 1278,
+        "verbatimSection": "### RG-GOV-02 — Reporting Reliability\n\nIf accounting or disclosures are insufficiently reliable to underwrite value:\n\n- reduce Confidence;\n- potentially trigger Stage 0 pending/fail;\n- do not merely subtract one point and continue.\n\n---\n\n## 9.2 Residual Business / Financial Risk — 4 Points\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "RG-RISK-01 — Residual Risk Mapping",
+      "metricId": "RG-RISK-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 1290,
+        "verbatimSection": "### RG-RISK-01 — Residual Risk Mapping\n\nUse approved Risk Policy residual risk classification:\n\n| Residual Risk | Score |\n|---|---:|\n| LOW | 4 |\n| MODERATE | 3 |\n| ELEVATED — controlled | 2 |\n| ELEVATED — weakly mitigated / near HIGH | 1 |\n| HIGH | 0 |\n| UNACCEPTABLE | scoring cannot override veto |\n\nRisk already fully reflected in Financial Health must not be deducted twice.\n\nThis category captures residual risk after category-specific analysis.\n\n---\n\n## 9.3 Thesis Uncertainty — 2 Points\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "RG-UNC-01 — Thesis Uncertainty",
+      "metricId": "RG-UNC-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 1311,
+        "verbatimSection": "### RG-UNC-01 — Thesis Uncertainty\n\nEvaluate:\n\n- forecast range;\n- business-model uncertainty;\n- data reliability;\n- valuation sensitivity;\n- dependence on unverified assumptions;\n- cyclicality;\n- event dependence.\n\n**Rubric:**\n\n| Score | Standard |\n|---:|---|\n| 2 | Narrow, well-supported thesis range |\n| 1 | Material but manageable uncertainty |\n| 0 | High uncertainty |\n\nLOW Data Confidence may coexist with 0/2, but Confidence is not mechanically multiplied into score.\n\n---\n\n# 10. Capital Allocation Quality — 5 Points\n\n## 10.1 Reinvestment Discipline — 2 Points\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "CA-REINV-01 — Reinvestment Quality",
+      "metricId": "CA-REINV-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 1339,
+        "verbatimSection": "### CA-REINV-01 — Reinvestment Quality\n\nEvaluate:\n\n- reinvestment returns;\n- capex discipline;\n- acquisition returns;\n- divestment discipline;\n- balance between growth and distributions.\n\n**Rubric:**\n\n| Score | Standard |\n|---:|---|\n| 2 | Consistently value-accretive reinvestment |\n| 1 | Mixed / acceptable |\n| 0 | Repeated low-return or value-destructive reinvestment |\n\nDo not duplicate incremental ROIC points from Growth without distinct capital-allocation evidence.\n\n---\n\n## 10.2 Dividend / Buyback Discipline — 1 Point\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "CA-DIST-01 — Distribution Discipline",
+      "metricId": "CA-DIST-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 1363,
+        "verbatimSection": "### CA-DIST-01 — Distribution Discipline\n\nAward 1 only when management:\n\n- distributes capital when reinvestment returns are unattractive;\n- retains capital when high-return reinvestment is available;\n- executes buybacks only at sensible valuation;\n- maintains balance-sheet resilience.\n\nHigh dividend yield alone is not positive evidence.\n\n---\n\n## 10.3 Dilution Discipline — 1 Point\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "CA-DIL-01 — Economic Dilution",
+      "metricId": "CA-DIL-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 1378,
+        "verbatimSection": "### CA-DIL-01 — Economic Dilution\n\nEvaluate:\n\n- repeated equity issuance;\n- ESOP / option dilution;\n- rights issues;\n- acquisition shares;\n- conversion;\n- issue price versus conservative per-share value;\n- proceeds received and returns earned on those proceeds;\n- per-share value impact.\n\n**Scoring:**\n\n- 1 = disciplined / value-accretive or economically neutral issuance history;\n- 0 = material value-destructive dilution.\n\nDo not score dilution from raw share-count growth alone.\n\nMechanical share-count changes from splits/bonus shares are not economic dilution.\n\nFor rights issues and other capital raises, compare pre- and post-transaction per-share economics using authoritative issue terms. A large increase in shares may still be economically neutral if value/proceeds are transferred proportionally; a small issuance can be harmful if issued materially below value without adequate strategic benefit.\n\n---\n\n## 10.4 Per-Share Value Creation — 1 Point\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "concept": "CA-PSV-01 — Per-Share Intrinsic Value Outcome",
+      "metricId": "CA-PSV-01",
+      "authoritativeDefinition": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "line": 1406,
+        "verbatimSection": "### CA-PSV-01 — Per-Share Intrinsic Value Outcome\n\nAssess whether management's historical capital decisions increased:\n\n- normalized EPS;\n- BVPS;\n- FCF/share;\n- intrinsic value/share\n\nafter adjusting for corporate actions and cycle.\n\nAward 1 only when evidence supports real per-share compounding.\n\n---\n\n# 11. Sector-Specific Metric Set\n\nThis section defines minimum principle-equivalent metric families. Exact sector matrices are finalized in `SECTOR_NORMALIZATION.md`.\n\n## 11.1 Banks\n\nMinimum scoring evidence should normally cover:\n\n**Business Quality**\n- sustainable ROE/ROTE;\n- NIM quality;\n- fee-income quality;\n- cost-to-income;\n- CASA / franchise quality;\n- asset-quality-adjusted earnings quality.\n\n**Financial Health**\n- CAR/CET1 where available;\n- NPL;\n- loan-loss coverage;\n- funding/LDR/liquidity;\n- credit-cost stress resilience.\n\n**Growth**\n- loan/deposit growth;\n- fee growth;\n- BVPS/EPS growth;\n- capital consumption;\n- incremental risk-adjusted returns.\n\n**Valuation**\n- P/B vs sustainable ROE;\n- residual income / justified P/B;\n- normalized P/E;\n- dividends.\n\n**Do not use**\n- Debt/Equity as if bank leverage were industrial debt;\n- industrial CFO conversion.\n\n---\n\n## 11.2 Real Estate\n\nMinimum evidence:\n\n- net debt;\n- debt maturity;\n- interest burden;\n- unrestricted cash;\n- presales;\n- backlog;\n- collections;\n- inventory quality;\n- legal/project risk;\n- handover timing;\n- normalized project margins;\n- RNAV realization probability.\n\nInventory must be decomposed where possible into:\n\n- legally clear/marketable;\n- under development;\n- delayed/legal-risk;\n- land bank;\n- completed unsold.\n\nHigh inventory is not automatically bad; low-quality/unfinanceable inventory is.\n\n---\n\n## 11.3 Technology\n\nMinimum evidence:\n\n- ROIC;\n- recurring/repeat revenue;\n- margin stability;\n- FCF conversion;\n- incremental margin;\n- customer concentration;\n- contract backlog/renewal;\n- acquisition dependence;\n- employee/talent dependence where material.\n\nDo not penalize low tangible book value by itself.\n\n---\n\n## 11.4 Retail / Consumer\n\nMinimum evidence:\n\n- same-store sales where available;\n- store count and store productivity;\n- gross/EBIT margin;\n- inventory turns/aging;\n- working capital;\n- CFO conversion;\n- store payback / ROIC;\n- brand/distribution;\n- consumer-cycle resilience.\n\nRevenue growth from store openings with declining mature-store economics receives limited credit.\n\n---\n\n## 11.5 Industrials / Materials\n\nMinimum evidence:\n\n- normalized ROIC;\n- mid-cycle margin;\n- through-cycle FCF;\n- capacity utilization;\n- cost curve;\n- leverage under trough earnings;\n- maintenance capex;\n- commodity/input sensitivity.\n\nSpot earnings at cycle peak cannot be used as normalized valuation denominator.\n\n---\n\n# 12. Common Quantitative Definitions\n\n## 12.1 Revenue CAGR\n\n`(Revenue_t / Revenue_t-n)^(1/n) − 1`\n\nUse comparable consolidated revenue.\n\n## 12.2 EPS CAGR\n\n`(Adjusted EPS_t / Adjusted EPS_t-n)^(1/n) − 1`\n\nUse corporate-action-adjusted shares.\n\nIf starting EPS ≤0, CAGR is not meaningful; use N/R and alternative trend assessment.\n\n## 12.3 ROE\n\n`NPAT attributable to common shareholders / average common equity`\n\nUse normalized NPAT for scoring.\n\n## 12.4 ROIC\n\n`NOPAT / average invested capital`\n\nDefinition must be consistently applied by company/sector.\n\n## 12.5 CFO Conversion\n\n`cumulative CFO / cumulative normalized NPAT`\n\nPrefer multi-year cumulative measure.\n\n## 12.6 FCF\n\nBaseline **issuer-level** non-financial definition:\n\n`company CFO − company capital expenditure required to sustain/grow operations`\n\nThis formula refers to the company's financial statements, **not portfolio cash movements**.\n\nIf maintenance capex cannot be isolated, disclose whether total capex is used.\n\nInvestor BUY/SELL cash, deposits, withdrawals, dividends received, broker fees and taxes must never enter issuer FCF.\n\n## 12.7 Net Debt\n\n`interest-bearing debt − unrestricted cash and cash equivalents`\n\nDo not net restricted cash unless economically available.\n\n## 12.8 Interest Coverage\n\n`normalized EBIT / net interest expense`\n\nAlternative definitions require explicit label.\n\n## 12.9 NPL Ratio\n\n`NPL / gross customer loans`\n\nFollow reported regulatory definition and disclose changes.\n\n## 12.10 Loan-Loss Coverage\n\n`loan-loss reserves / NPL`\n\nUse consistent NPL definition.\n\n## 12.11 CASA Ratio\n\n`current accounts + savings accounts / customer deposits`\n\nUse bank-reported definitions where available.\n\n## 12.12 FCF Yield\n\n`normalized FCF to equity / market capitalization`\n\nor\n\n`FCFF / enterprise value`\n\nDo not mix equity and enterprise denominators.\n\n## 12.13 Earnings Yield\n\n`normalized EPS / price`\n\nInverse P/E only when earnings are positive and normalized.\n\n## 12.14 Dividend Yield\n\n`expected sustainable issuer cash dividend per share / current market price`\n\nThe numerator is a forward issuer-level capital-distribution assumption supported by company/disclosure evidence.\n\nDo **not** use the investor portfolio's last dividend cash receipt as the numerator because receipt amount also depends on quantity held, ex-date eligibility, withholding tax and portfolio history.\n\nSpecial dividends are excluded unless recurring evidence supports inclusion.\n\n## 12.15 P/B\n\n`market price / current book value per share`\n\nFor banks, analyze relative to sustainable ROE/cost of equity.\n\n## 12.16 EV / EBIT\n\n`enterprise value / normalized EBIT`\n\nEnterprise value must use consistent debt/cash definitions.\n\n## 12.17 Margin of Safety\n\n`(conservative intrinsic value − market price) / conservative intrinsic value`\n\nDo not calculate if intrinsic value range is too wide to support meaningful precision.\n\n---\n\n# 13. Missing Data Rules by Metric Type\n\n## 13.1 Core quantitative metric unavailable\n\nUse, in order:\n\n1. principle-equivalent metric;\n2. defensible conservative range;\n3. N/R with reduced evidence coverage;\n4. `NOT RELIABLY SCORABLE` if decision-critical.\n\n## 13.2 Qualitative evidence unavailable\n\nDo not assign neutral/midpoint automatically.\n\nIf the assessment cannot be supported, mark N/R and reduce Confidence.\n\n## 13.3 Sector peer data unavailable\n\nUse:\n\n- own-history anchors;\n- absolute economics;\n- broader listed-sector peers when comparable.\n\nDo not compute meaningless percentiles from tiny samples.\n\n## 13.4 Forward consensus unavailable\n\nUse conservative analyst estimate only when:\n\n- assumptions are explicit;\n- source data is current;\n- sensitivity is shown.\n\nOtherwise valuation expected-return score may become N/R or total score may be blocked if decision-critical.\n\n---\n\n# 14. Data Freshness Classes\n\nExact provider-specific thresholds may be refined later, but the baseline methodology is:\n\n| Data type | Preferred freshness |\n|---|---|\n| Market price | latest valid trading date for current ranking |\n| VN30 membership | effective as of analysis date |\n| Sector classification | effective as of analysis date |\n| Quarterly financials | latest officially available period |\n| Annual audited data | latest audited FY when required for audit-quality assessment |\n| Management guidance | latest valid disclosure, secondary to official financial facts |\n| Consensus estimates | current enough to reflect latest material disclosure |\n| Corporate-action terms | authoritative terms effective for affected periods |\n\nIf a newer authoritative disclosure is known to exist but not incorporated, the metric must be marked stale/provisional.\n\n---\n\n# 15. Metric Confidence Sensitivity\n\n## High-sensitivity metrics\n\nMissing/weak evidence strongly affects Confidence:\n\n- normalized earnings;\n- expected 5Y return;\n- intrinsic value;\n- NPL/provisioning quality for banks;\n- developer debt maturity/legal status;\n- corporate-action comparability;\n- governance/reporting reliability.\n\n## Medium-sensitivity metrics\n\n- ROIC/ROE;\n- margins;\n- historical growth;\n- FCF conversion;\n- market share.\n\n## Low-sensitivity / contextual metrics\n\n- non-critical peer percentiles;\n- supplementary ratios;\n- secondary valuation cross-checks.\n\nA large number of low-sensitivity missing metrics does not automatically equal a single high-sensitivity missing metric; materiality matters.\n\n---\n\n# 16. Evidence Ownership & Double-Count Map\n\n| Evidence family | Primary home | Common forbidden duplicate |\n|---|---|---|\n| normalized ROIC/ROE | Business Quality | Capital Allocation without distinct reinvestment evidence |\n| historical revenue/EPS growth | Growth | Business Quality solely because growth is high |\n| incremental ROIC | Growth | Business Quality unless measuring level/persistence |\n| leverage/liquidity | Financial Health | Risk penalty for identical exposure |\n| NPL/provisioning | Financial Health / earnings-quality evidence | repeated penalty in every bank subcategory |\n| moat | Business Quality | Industry score for identical evidence |\n| market share | Industry Position | Moat unless durability economics are shown |\n| FCF conversion | Business Quality | Valuation quality reward beyond valuation denominator use |\n| cycle position | Industry | Growth + Valuation cycle bonus |\n| expected 5Y growth | Growth durability evidence | Expected Return only as model input, not double reward |\n| dilution | Capital Allocation | Growth adjustment only; governance only if integrity/alignment issue |\n| dividend policy | Capital Allocation | Valuation only via cash return |\n| governance event | Risk & Governance | Capital Allocation unless separate economic outcome |\n| investor cost basis/P&L | no fundamental category | any fundamental scoring category |\n\nWhen ambiguity exists, assign one primary home and explain secondary channels.\n\n---\n\n# 17. Scoring Documentation Requirement\n\nEvery subcategory score must record:\n\n1. metrics used;\n2. metrics unavailable;\n3. raw values;\n4. normalized values;\n5. as-of/reporting periods;\n6. source;\n7. FACT / ESTIMATE / ASSUMPTION;\n8. scoring rationale;\n9. point awarded;\n10. double-count check;\n11. confidence impact;\n12. any corporate-action adjustment;\n13. any cyclical normalization.\n\nTop-band scores require written justification.\n\n---\n\n# 18. Threshold Governance\n\nThe thresholds in v0.1 are **baseline calibration anchors**, not timeless truths.\n\nThey may change only through versioned methodology review.\n\nA change must record:\n\n- metric;\n- old threshold;\n- new threshold;\n- reason;\n- validation evidence;\n- sector impact;\n- expected ranking impact;\n- whether prior scores are preserved as-calculated or restated.\n\nThresholds must never be tuned solely to improve hindsight performance.\n\n---\n\n# 19. Validation Requirements for This File\n\nBefore production use, `VALIDATION_CASES.md` must test at least:\n\n1. high-ROIC industrial vs high-ROE bank;\n2. bank with high ROE but poor NPL/provisioning;\n3. developer with low P/E but weak collections/refinancing;\n4. materials company at peak earnings;\n5. retailer with fast store growth but deteriorating store economics;\n6. technology company with low tangible book but high recurring cash economics;\n7. high FCF yield + low P/FCF + DCF all driven by one forecast;\n8. company with missing critical valuation input;\n9. corporate-action-adjusted EPS growth;\n10. economic dilution vs mechanical split/bonus shares;\n11. high historical growth caused by low base;\n12. strong quality but inadequate forward return;\n13. issuer CFO correctly separated from portfolio cash ledger;\n14. portfolio dividend receipt not double-counted as issuer capital-allocation evidence;\n15. unreconciled investor cost basis not leaking into valuation;\n16. broker cash mismatch not altering fundamental metrics;\n17. split/bonus-share denominator adjustment without false dilution;\n18. rights issue with value-accretive vs value-destructive per-share outcome;\n19. merger/spinoff with missing authoritative terms causing N/R rather than guessed metrics;\n20. portfolio-aware metric cache reproducible from transaction history.\n\n---\n\n# 20. Integrity Re-Review — CIO / Equity Research / Quant / Risk\n\n## 20.1 CIO Review\n"
+      },
+      "sectorApplicability": "See explicit applicability and sector overlay; not universal",
+      "sourceMapping": "UNRESOLVED_PER_ISSUER_UNLESS_EXACT_CANONICAL_MAPPING_QUALIFIED",
+      "reportingScope": "Exact required issuer scope; no implicit bridge",
+      "periodSemantics": "As defined in source section; annual/TTM/YTD/stock remain distinct",
+      "unit": "As defined; ratios dimensionless, currency/per-share require native unit proof",
+      "normalizationRequirements": "Explicit normalization/action/cycle review per source section; no automatic HUMAN normalization",
+      "derivationDependencies": "See executable operand matrix and approved section",
+      "implementationCoverage": "DEFINITION_EXISTS; formal source/topic/operand completeness unproven",
+      "missingSpecification": "Exact sector route/model/source selection and normalized input evidence",
+      "gapClass": [
+        "IMPLEMENTATION_GAP",
+        "MISSING_SOURCE_MAPPING"
+      ]
+    }
+  ],
+  "executableOperands": [
+    {
+      "requiredFinancialConcept": "NOPAT",
+      "metricId": "ROIC",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "NOPAT",
+        "average_invested_capital"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "average_invested_capital",
+      "metricId": "ROIC",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "NOPAT",
+        "average_invested_capital"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "normalized_common_profit",
+      "metricId": "ROE",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [
+        "BANK",
+        "CONGLOMERATE",
+        "ENERGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "UTILITIES"
+      ],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "normalized_common_profit",
+        "average_common_equity"
+      ],
+      "currentImplementationCoverage": "NATIVE_CROSSWALK_ROUTE",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "average_common_equity",
+      "metricId": "ROE",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [
+        "BANK",
+        "CONGLOMERATE",
+        "ENERGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "UTILITIES"
+      ],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "normalized_common_profit",
+        "average_common_equity"
+      ],
+      "currentImplementationCoverage": "NATIVE_CROSSWALK_ROUTE",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "cumulative_CFO",
+      "metricId": "CFO_CONVERSION",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "cumulative_CFO",
+        "cumulative_normalized_NPAT"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "cumulative_normalized_NPAT",
+      "metricId": "CFO_CONVERSION",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "cumulative_CFO",
+        "cumulative_normalized_NPAT"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "CFO",
+      "metricId": "FCF",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [
+        "CONGLOMERATE",
+        "ENERGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "UTILITIES"
+      ],
+      "sourceMapping": [
+        {
+          "itemId": "CFO",
+          "mapping": {
+            "metricId": "FCF",
+            "position": 0,
+            "operand": "CFO",
+            "requirement": "Compatible non-financial reporting window; capex definition and sign reconciled; no automatic scoring."
+          }
+        }
+      ],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "CFO",
+        "issuer_capex"
+      ],
+      "currentImplementationCoverage": "NATIVE_CROSSWALK_ROUTE",
+      "missingSpecification": [],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "issuer_capex",
+      "metricId": "FCF",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [
+        "CONGLOMERATE",
+        "ENERGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "UTILITIES"
+      ],
+      "sourceMapping": [
+        {
+          "itemId": "CAPEX",
+          "mapping": {
+            "metricId": "FCF",
+            "position": 1,
+            "operand": "issuer_capex",
+            "requirement": "Positive issuer expenditure for compatible CFO window; maintenance vs total scope documented."
+          }
+        }
+      ],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "CFO",
+        "issuer_capex"
+      ],
+      "currentImplementationCoverage": "NATIVE_CROSSWALK_ROUTE",
+      "missingSpecification": [],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "interest_bearing_debt",
+      "metricId": "NET_DEBT",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "interest_bearing_debt",
+        "unrestricted_cash"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "unrestricted_cash",
+      "metricId": "NET_DEBT",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "interest_bearing_debt",
+        "unrestricted_cash"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "normalized_EBIT",
+      "metricId": "INTEREST_COVERAGE",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "normalized_EBIT",
+        "net_interest"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "net_interest",
+      "metricId": "INTEREST_COVERAGE",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "normalized_EBIT",
+        "net_interest"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "NPL",
+      "metricId": "NPL",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [
+        "BANK"
+      ],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "NPL",
+        "gross_loans"
+      ],
+      "currentImplementationCoverage": "NATIVE_CROSSWALK_ROUTE",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "gross_loans",
+      "metricId": "NPL",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [
+        "BANK"
+      ],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "NPL",
+        "gross_loans"
+      ],
+      "currentImplementationCoverage": "NATIVE_CROSSWALK_ROUTE",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "loan_loss_reserves",
+      "metricId": "COVERAGE",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "loan_loss_reserves",
+        "NPL"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "NPL",
+      "metricId": "COVERAGE",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "loan_loss_reserves",
+        "NPL"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "current_and_savings",
+      "metricId": "CASA",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [
+        "BANK"
+      ],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "current_and_savings",
+        "deposits"
+      ],
+      "currentImplementationCoverage": "NATIVE_CROSSWALK_ROUTE",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "deposits",
+      "metricId": "CASA",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [
+        "BANK"
+      ],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "current_and_savings",
+        "deposits"
+      ],
+      "currentImplementationCoverage": "NATIVE_CROSSWALK_ROUTE",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "normalized_FCFE",
+      "metricId": "FCF_YIELD",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "normalized_FCFE",
+        "market_cap"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "market_cap",
+      "metricId": "FCF_YIELD",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "normalized_FCFE",
+        "market_cap"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "normalized_EPS",
+      "metricId": "EARNINGS_YIELD",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "normalized_EPS",
+        "price"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "price",
+      "metricId": "EARNINGS_YIELD",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "normalized_EPS",
+        "price"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "sustainable_DPS",
+      "metricId": "DIVIDEND_YIELD",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "sustainable_DPS",
+        "price"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "price",
+      "metricId": "DIVIDEND_YIELD",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "sustainable_DPS",
+        "price"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "price",
+      "metricId": "PB",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "price",
+        "BVPS"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "BVPS",
+      "metricId": "PB",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "price",
+        "BVPS"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "EV",
+      "metricId": "EV_EBIT",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "EV",
+        "normalized_EBIT"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "normalized_EBIT",
+      "metricId": "EV_EBIT",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "EV",
+        "normalized_EBIT"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "conservative_value",
+      "metricId": "MOS",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "conservative_value",
+        "price"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "price",
+      "metricId": "MOS",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "conservative_value",
+        "price"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "revenue_end",
+      "metricId": "REVENUE_CAGR",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "revenue_end",
+        "revenue_start"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "revenue_start",
+      "metricId": "REVENUE_CAGR",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "revenue_end",
+        "revenue_start"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "adjusted_EPS_end",
+      "metricId": "EPS_CAGR",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "adjusted_EPS_end",
+        "adjusted_EPS_start"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "adjusted_EPS_start",
+      "metricId": "EPS_CAGR",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "adjusted_EPS_end",
+        "adjusted_EPS_start"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "change_normalized_NOPAT",
+      "metricId": "INCREMENTAL_ROIC",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "change_normalized_NOPAT",
+        "change_invested_capital"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "change_invested_capital",
+      "metricId": "INCREMENTAL_ROIC",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "change_normalized_NOPAT",
+        "change_invested_capital"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "net_debt",
+      "metricId": "NET_DEBT_EBITDA",
+      "position": 0,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "net_debt",
+        "normalized_EBITDA"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    },
+    {
+      "requiredFinancialConcept": "normalized_EBITDA",
+      "metricId": "NET_DEBT_EBITDA",
+      "position": 1,
+      "authoritativeDefinition": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "sectorApplicability": [],
+      "sourceMapping": [],
+      "reportingScope": "Same ticker and exact approved scope; no consolidated/standalone mixing",
+      "periodSemantics": "Compatible economic windows; average endpoints require both boundary stocks, growth requires action-adjusted endpoints and 3/5-year span",
+      "unit": "Matching currency/per-share units; result ratio except FCF and NET_DEBT currency",
+      "normalizationRequirements": "Approved normalized/action/cycle evidence when required; not raw aliases",
+      "derivationDependencies": [
+        "net_debt",
+        "normalized_EBITDA"
+      ],
+      "currentImplementationCoverage": "ARITHMETIC_ONLY_NO_FORMAL_CROSSWALK",
+      "missingSpecification": [
+        "Canonical operand/topic definitions and exact source mapping"
+      ],
+      "gapClass": [
+        "MISSING_SOURCE_MAPPING",
+        "IMPLEMENTATION_GAP"
+      ]
+    }
+  ],
+  "baseItems": [
+    {
+      "itemId": "REVENUE",
+      "name": "Reported revenue",
+      "meaning": "Issuer-reported non-financial revenue for the stated window and scope; not bank net interest income or normalized growth.",
+      "statementType": "INCOME",
+      "measurementSemantic": "FLOW",
+      "allowedUnits": [
+        "CURRENCY"
+      ],
+      "currencyApplicability": "REQUIRED",
+      "signConvention": "SIGNED",
+      "allowedReportingScopes": [
+        "CONSOLIDATED",
+        "SEPARATE_STANDALONE"
+      ],
+      "sectorApplicability": [
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "UTILITIES",
+        "ENERGY",
+        "CONGLOMERATE"
+      ],
+      "evidenceTopicMappings": [
+        {
+          "documentMetricId": "GQ-HIST-01",
+          "rubricId": "GQ-HIST",
+          "topic": "trend",
+          "requirement": "Comparable consolidated windows, eligible original vintage; endpoint operands require later reviewed construction."
+        }
+      ],
+      "operandMappings": [],
+      "itemDefinitionVersion": "1.0.0",
+      "methodologyIdentity": "fundamentals-items-v1",
+      "authorityReferences": [
+        "docs/03 SCORING/METRIC_DEFINITIONS.md"
+      ],
+      "status": "ACTIVE",
+      "deprecatedFrom": null,
+      "supersededBy": null
+    },
+    {
+      "itemId": "EBIT",
+      "name": "Reported EBIT",
+      "meaning": "Explicitly reconciled issuer EBIT; not any operating-profit label and not automatically normalized EBIT.",
+      "statementType": "INCOME",
+      "measurementSemantic": "FLOW",
+      "allowedUnits": [
+        "CURRENCY"
+      ],
+      "currencyApplicability": "REQUIRED",
+      "signConvention": "SIGNED",
+      "allowedReportingScopes": [
+        "CONSOLIDATED",
+        "SEPARATE_STANDALONE"
+      ],
+      "sectorApplicability": [
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "UTILITIES",
+        "ENERGY",
+        "CONGLOMERATE"
+      ],
+      "evidenceTopicMappings": [
+        {
+          "documentMetricId": "BQ-EQ-03",
+          "rubricId": "BQ-EQ",
+          "topic": "margins",
+          "requirement": "Comparable definition and documented cycle/one-off normalization before scoring."
+        }
+      ],
+      "operandMappings": [],
+      "itemDefinitionVersion": "1.0.0",
+      "methodologyIdentity": "fundamentals-items-v1",
+      "authorityReferences": [
+        "docs/03 SCORING/METRIC_DEFINITIONS.md"
+      ],
+      "status": "ACTIVE",
+      "deprecatedFrom": null,
+      "supersededBy": null
+    },
+    {
+      "itemId": "NET_INCOME",
+      "name": "Reported net income",
+      "meaning": "Reported total net profit after tax in the stated consolidation scope, including minority interests when present; not common-attributable profit.",
+      "statementType": "INCOME",
+      "measurementSemantic": "FLOW",
+      "allowedUnits": [
+        "CURRENCY"
+      ],
+      "currencyApplicability": "REQUIRED",
+      "signConvention": "SIGNED",
+      "allowedReportingScopes": [
+        "CONSOLIDATED",
+        "SEPARATE_STANDALONE"
+      ],
+      "sectorApplicability": [
+        "BANK",
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "UTILITIES",
+        "ENERGY",
+        "SECURITIES",
+        "INSURANCE",
+        "CONGLOMERATE"
+      ],
+      "evidenceTopicMappings": [
+        {
+          "documentMetricId": "BQ-CASH-03",
+          "rubricId": "BQ-CASH",
+          "topic": "one_offs",
+          "requirement": "Only reported evidence; normalization and attribution need separate lineage."
+        }
+      ],
+      "operandMappings": [],
+      "itemDefinitionVersion": "1.0.0",
+      "methodologyIdentity": "fundamentals-items-v1",
+      "authorityReferences": [
+        "docs/03 SCORING/METRIC_DEFINITIONS.md"
+      ],
+      "status": "ACTIVE",
+      "deprecatedFrom": null,
+      "supersededBy": null
+    },
+    {
+      "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+      "name": "Reported common-attributable net income",
+      "meaning": "Reported net profit attributable to common shareholders; attribution must be evidenced, not inferred from total net income.",
+      "statementType": "INCOME",
+      "measurementSemantic": "FLOW",
+      "allowedUnits": [
+        "CURRENCY"
+      ],
+      "currencyApplicability": "REQUIRED",
+      "signConvention": "SIGNED",
+      "allowedReportingScopes": [
+        "CONSOLIDATED",
+        "SEPARATE_STANDALONE"
+      ],
+      "sectorApplicability": [
+        "BANK",
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "UTILITIES",
+        "ENERGY",
+        "SECURITIES",
+        "INSURANCE",
+        "CONGLOMERATE"
+      ],
+      "evidenceTopicMappings": [
+        {
+          "documentMetricId": "BQ-EQ-02",
+          "rubricId": "BQ-EQ",
+          "topic": "returns",
+          "requirement": "Reported fact supports review; ROE requires normalized profit and average common equity, neither inferred here."
+        }
+      ],
+      "operandMappings": [],
+      "itemDefinitionVersion": "1.0.0",
+      "methodologyIdentity": "fundamentals-items-v1",
+      "authorityReferences": [
+        "docs/03 SCORING/METRIC_DEFINITIONS.md"
+      ],
+      "status": "ACTIVE",
+      "deprecatedFrom": null,
+      "supersededBy": null
+    },
+    {
+      "itemId": "TOTAL_ASSETS",
+      "name": "Total assets",
+      "meaning": "Reported total assets at the balance-sheet date and stated scope.",
+      "statementType": "BALANCE",
+      "measurementSemantic": "STOCK",
+      "allowedUnits": [
+        "CURRENCY"
+      ],
+      "currencyApplicability": "REQUIRED",
+      "signConvention": "NONNEGATIVE",
+      "allowedReportingScopes": [
+        "CONSOLIDATED",
+        "SEPARATE_STANDALONE"
+      ],
+      "sectorApplicability": [
+        "BANK",
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "UTILITIES",
+        "ENERGY",
+        "SECURITIES",
+        "INSURANCE",
+        "CONGLOMERATE"
+      ],
+      "evidenceTopicMappings": [],
+      "operandMappings": [],
+      "itemDefinitionVersion": "1.0.0",
+      "methodologyIdentity": "fundamentals-items-v1",
+      "authorityReferences": [
+        "docs/03 SCORING/METRIC_DEFINITIONS.md"
+      ],
+      "status": "ACTIVE",
+      "deprecatedFrom": null,
+      "supersededBy": null
+    },
+    {
+      "itemId": "COMMON_EQUITY",
+      "name": "Common equity",
+      "meaning": "Equity attributable to common shareholders excluding minority/preferred interests as applicable, not automatically total equity.",
+      "statementType": "BALANCE",
+      "measurementSemantic": "STOCK",
+      "allowedUnits": [
+        "CURRENCY"
+      ],
+      "currencyApplicability": "REQUIRED",
+      "signConvention": "SIGNED",
+      "allowedReportingScopes": [
+        "CONSOLIDATED",
+        "SEPARATE_STANDALONE"
+      ],
+      "sectorApplicability": [
+        "BANK",
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "UTILITIES",
+        "ENERGY",
+        "SECURITIES",
+        "INSURANCE",
+        "CONGLOMERATE"
+      ],
+      "evidenceTopicMappings": [
+        {
+          "documentMetricId": "BQ-EQ-02",
+          "rubricId": "BQ-EQ",
+          "topic": "returns",
+          "requirement": "Average common equity is a later governed derivation from comparable dated balances."
+        }
+      ],
+      "operandMappings": [],
+      "itemDefinitionVersion": "1.0.0",
+      "methodologyIdentity": "fundamentals-items-v1",
+      "authorityReferences": [
+        "docs/03 SCORING/METRIC_DEFINITIONS.md"
+      ],
+      "status": "ACTIVE",
+      "deprecatedFrom": null,
+      "supersededBy": null
+    },
+    {
+      "itemId": "CFO",
+      "name": "Operating cash flow",
+      "meaning": "Issuer net cash from operating activities over the stated window; unrelated to investor portfolio cash.",
+      "statementType": "CASH_FLOW",
+      "measurementSemantic": "FLOW",
+      "allowedUnits": [
+        "CURRENCY"
+      ],
+      "currencyApplicability": "REQUIRED",
+      "signConvention": "SIGNED",
+      "allowedReportingScopes": [
+        "CONSOLIDATED",
+        "SEPARATE_STANDALONE"
+      ],
+      "sectorApplicability": [
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "UTILITIES",
+        "ENERGY",
+        "CONGLOMERATE"
+      ],
+      "evidenceTopicMappings": [
+        {
+          "documentMetricId": "BQ-CASH-01",
+          "rubricId": "BQ-CASH",
+          "topic": "realization",
+          "requirement": "Comparable multi-year cumulative CFO/normalized NPAT; bank CFO substitution prohibited."
+        }
+      ],
+      "operandMappings": [
+        {
+          "metricId": "FCF",
+          "position": 0,
+          "operand": "CFO",
+          "requirement": "Compatible non-financial reporting window; capex definition and sign reconciled; no automatic scoring."
+        }
+      ],
+      "itemDefinitionVersion": "1.0.0",
+      "methodologyIdentity": "fundamentals-items-v1",
+      "authorityReferences": [
+        "docs/03 SCORING/METRIC_DEFINITIONS.md"
+      ],
+      "status": "ACTIVE",
+      "deprecatedFrom": null,
+      "supersededBy": null
+    },
+    {
+      "itemId": "CAPEX",
+      "name": "Issuer capital expenditure",
+      "meaning": "Positive issuer expenditure required to sustain/grow operations, explicitly identified/reconciled from disclosed capex items; not investing cash flow.",
+      "statementType": "CASH_FLOW",
+      "measurementSemantic": "FLOW",
+      "allowedUnits": [
+        "CURRENCY"
+      ],
+      "currencyApplicability": "REQUIRED",
+      "signConvention": "NONNEGATIVE",
+      "allowedReportingScopes": [
+        "CONSOLIDATED",
+        "SEPARATE_STANDALONE"
+      ],
+      "sectorApplicability": [
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "UTILITIES",
+        "ENERGY",
+        "CONGLOMERATE"
+      ],
+      "evidenceTopicMappings": [
+        {
+          "documentMetricId": "BQ-CASH-02",
+          "rubricId": "BQ-CASH",
+          "topic": "realization",
+          "requirement": "Disclose total vs maintenance capex; no inference from total investing outflow."
+        }
+      ],
+      "operandMappings": [
+        {
+          "metricId": "FCF",
+          "position": 1,
+          "operand": "issuer_capex",
+          "requirement": "Positive issuer expenditure for compatible CFO window; maintenance vs total scope documented."
+        }
+      ],
+      "itemDefinitionVersion": "1.0.0",
+      "methodologyIdentity": "fundamentals-items-v1",
+      "authorityReferences": [
+        "docs/03 SCORING/METRIC_DEFINITIONS.md"
+      ],
+      "status": "ACTIVE",
+      "deprecatedFrom": null,
+      "supersededBy": null
+    }
+  ],
+  "baseItemCount": 8,
+  "separateApprovedDebtItems": {
+    "registryVersion": "nonfinancial-debt-contract-v2",
+    "methodologyIdentity": "nonfinancial-debt-contract-v2",
+    "crosswalkVersion": "qualified-debt-unrestricted-cash-v2",
+    "governanceStatus": "APPROVED",
+    "approvalReference": "PROJECT_OWNER_PROMPT_SHA256:61f49c16d37b82ad173fa03ba49897703471995742f16a926afcd97485f25689",
+    "recordedAt": "2026-10-14T08:37:39.885Z",
+    "effectiveDate": "2026-10-14",
+    "authorityReferences": [
+      "src/domain/fundamentals/debt-contract-v2.json"
+    ],
+    "items": [
+      {
+        "itemId": "REPORTED_BORROWINGS",
+        "name": "Reported Borrowings",
+        "meaning": "Issuer-reported carrying borrowing population plus all identified qualifying financing, current portions once; unknown miscellaneous liabilities retained as uncertainty.",
+        "statementType": "SUPPLEMENTARY",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "NONNEGATIVE",
+        "allowedReportingScopes": [
+          "CONSOLIDATED"
+        ],
+        "sectorApplicability": [
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "nonfinancial-debt-contract-v2",
+        "methodologyIdentity": "nonfinancial-debt-contract-v2",
+        "authorityReferences": [
+          "src/domain/fundamentals/debt-contract-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null,
+        "metadataRequirements": [
+          "ticker",
+          "period",
+          "scope",
+          "currency",
+          "measurementBasis",
+          "leasePolicyVersion",
+          "sourceEvidence",
+          "populationStatus",
+          "uncertaintyStatus"
+        ]
+      },
+      {
+        "itemId": "COMPREHENSIVE_FINANCIAL_DEBT",
+        "name": "Comprehensive Financial Debt",
+        "meaning": "Exhaustively verified consolidated interest-bearing financing population on approved compatible carrying basis; not an alias of reported borrowings.",
+        "statementType": "SUPPLEMENTARY",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "NONNEGATIVE",
+        "allowedReportingScopes": [
+          "CONSOLIDATED"
+        ],
+        "sectorApplicability": [
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "nonfinancial-debt-contract-v2",
+        "methodologyIdentity": "nonfinancial-debt-contract-v2",
+        "authorityReferences": [
+          "src/domain/fundamentals/debt-contract-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null,
+        "metadataRequirements": [
+          "ticker",
+          "period",
+          "scope",
+          "currency",
+          "measurementBasis",
+          "leasePolicyVersion",
+          "sourceEvidence",
+          "populationStatus",
+          "uncertaintyStatus"
+        ]
+      },
+      {
+        "itemId": "UNRESTRICTED_ECONOMICALLY_AVAILABLE_CASH",
+        "name": "Unrestricted Economically Available Cash",
+        "meaning": "Explicitly issuer-qualified unrestricted economically available stock; reported CASH_AND_EQUIVALENTS is not automatically eligible.",
+        "statementType": "SUPPLEMENTARY",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "NONNEGATIVE",
+        "allowedReportingScopes": [
+          "CONSOLIDATED"
+        ],
+        "sectorApplicability": [
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "nonfinancial-debt-contract-v2",
+        "methodologyIdentity": "nonfinancial-debt-contract-v2",
+        "authorityReferences": [
+          "src/domain/fundamentals/debt-contract-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null,
+        "metadataRequirements": [
+          "ticker",
+          "period",
+          "scope",
+          "currency",
+          "measurementBasis",
+          "leasePolicyVersion",
+          "sourceEvidence",
+          "populationStatus",
+          "uncertaintyStatus"
+        ]
+      },
+      {
+        "itemId": "NORMALIZED_EBITDA",
+        "name": "Normalized Ebitda",
+        "meaning": "Independently qualified normalized/downside EBITDA with explicit compatible sector lease policy; never automatic annualization.",
+        "statementType": "SUPPLEMENTARY",
+        "measurementSemantic": "FLOW",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED"
+        ],
+        "sectorApplicability": [
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "nonfinancial-debt-contract-v2",
+        "methodologyIdentity": "nonfinancial-debt-contract-v2",
+        "authorityReferences": [
+          "src/domain/fundamentals/debt-contract-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null,
+        "metadataRequirements": [
+          "ticker",
+          "period",
+          "scope",
+          "currency",
+          "measurementBasis",
+          "leasePolicyVersion",
+          "sourceEvidence",
+          "populationStatus",
+          "uncertaintyStatus"
+        ]
+      }
+    ]
+  },
+  "approvedSourceDefinitions": {
+    "version": "casa-npl-source-contract-v1",
+    "status": "APPROVED",
+    "approvalRecordedAt": "2026-10-12T14:57:36.000Z",
+    "approvalText": "Tôi approve hãy thông qua và làm tiếp",
+    "approvalAuthority": "PROJECT_OWNER_SESSION_INSTRUCTION",
+    "proposalPath": "docs/fundamental-data-engine/evidence/2026-10-12-di14-blocker-closure/GOVERNANCE_AMENDMENT_PROPOSAL.json",
+    "proposalSha256": "04d8c26363b6790b5ecf47ad17ad33bddbc20bd579c89a29aea187b4c5c2ee55",
+    "contracts": [
+      {
+        "defectId": "CASA_ISSUER_PERIMETER_MAPPING_CONTRACT",
+        "approvedM3Section": "12.11",
+        "approvedRequirement": "(current accounts + savings accounts) / customer deposits; bank-reported definitions where available",
+        "proposedContract": {
+          "numerator": "BANK_CURRENT_AND_SAVINGS_DEPOSITS: sum only explicitly disclosed current-account and savings-account balances belonging to the owner-approved issuer CASA definition. Demand deposits alone are not evidence of that sum. Do not include all term savings or Auto-Earning products by name; require their evidenced classification and inclusion/exclusion decision.",
+          "denominator": "BANK_CUSTOMER_DEPOSITS: gross customer-deposit balance for the identical issuer, reporting perimeter and as-of date. Exclude interbank, central-bank deposits and issued debt unless an explicitly approved issuer definition states otherwise; any departure must be separately labelled and owner-approved, not silently replace M3 denominator.",
+          "allowedReportingPerimeter": "Owner specifies customer/product populations and exclusions per bank. A reported CASA ratio is usable only when both numerator and denominator match that approved product/perimeter contract and their authority is evidenced.",
+          "issuerDisclosureAuthority": "Qualified issuer financial report, signed disclosure or issuer investor-relations release with exact metric definition/table and disclosure evidence. Being issuer-hosted does not itself approve a product/perimeter mapping.",
+          "regulatoryDisclosureAuthority": "Qualified regulator disclosure with exact issuer and metric perimeter can corroborate or supply inputs only after an owner-approved equivalent-perimeter bridge. Not automatically interchangeable with issuer CASA.",
+          "consolidatedStandalone": "Match the exact required reportingScope. No standalone fallback, scope aggregation or regulatory-to-VAS bridge without separately owner-approved scope/issuer/period bridge.",
+          "periodCompatibility": "Stock amounts and reported ratio must refer to the same explicit as-of date. Do not use publication/signing date as economic period or combine adjacent periods.",
+          "currencyUnit": "Amounts must have matching currencies and approved unit scaling. No FX inference. Ratio is dimensionless; percent and decimal representation require explicit conversion. Never mix balances with percentages or zero-fill missing inputs.",
+          "conflictHandling": "Retain all source occurrences. Resolve only through the existing explicit comparable revision chain or governed equivalence proof; differing definitions/scopes are incompatible rather than competing comparable facts. Comparable unresolved conflicts block the affected mandatory path.",
+          "PIT": "Apply frozen AS_KNOWN policy independently to every operand and definition/bridge. Publication, provider authority, mapping knowledge and correction-known-at must be evidenced and at/before the pinned cutoff. UNKNOWN stays UNKNOWN. Signing date/local receipt/filename do not establish public disclosure.",
+          "sourcePrecedence": "No automatic issuer/regulator/audited/latest-document priority. Source rank, if ever desired, is a separate owner-approved versioned amendment; none is proposed here.",
+          "bankSpecificApplicability": "Owner approves an explicit bank-by-bank, period-effective mapping table: exact issuer, authority, product/class set, source captions, scope, unit and version. No cross-bank caption alias or Auto-Earning/savings assumption."
+        },
+        "comparisonToApprovedM3": "Formula is preserved. The amendment supplies the absent source-specific savings/product/perimeter rules and reported-versus-derived admissibility; M3 currently supplies none of those executable mappings.",
+        "ownerDecisionRequired": [
+          "Approve exact numerator and denominator populations",
+          "Approve permitted reporting scope and bridges, if any",
+          "Approve source authorities and effective bank-specific mappings",
+          "Approve reported-ratio admissibility and period/unit/PIT rules",
+          "Confirm no automatic source precedence"
+        ]
+      },
+      {
+        "defectId": "NPL_REGULATORY_PERIMETER_MAPPING_CONTRACT",
+        "approvedM3Section": "12.9 / 12.10",
+        "approvedRequirement": "NPL / gross customer loans; follow reported regulatory definition and disclose changes; coverage uses consistent NPL definition",
+        "proposedContract": {
+          "grossNPLNumerator": "BANK_NPL_AMOUNT: gross outstanding balance classified non-performing under the explicitly identified regulatory classification version/class set in the qualified disclosure, before deduction of reserves. Owner approves the enumerated class set and treatment of restructured, purchased, written-off/off-balance exposures; no unnamed regulatory convention or net-loan proxy is inferred.",
+          "grossCustomerLoanDenominator": "BANK_GROSS_CUSTOMER_LOANS: gross customer lending before impairment reserves, for the identical regulatory population, issuer, scope and as-of date. Interbank exposure, securities and non-customer credit are excluded unless explicitly included by the separately approved definition. Derived ratio requires both compatible operands.",
+          "regulatoryLoanClassPerimeter": "Record exact class identifiers/labels, regulatory authority/version, effective dates, included loan/product populations and definition changes. Store a reported NPL ratio only where that disclosure matches the owner-approved gross numerator/gross customer-loan denominator contract.",
+          "VASRegulatoryCompatibility": "VAS presentation is not proof of regulatory classification or identical population. Require an explicit evidenced reconciliation/bridge with owner approval when bases differ. A basis mismatch remains blocked without that bridge.",
+          "issuerAuthority": "Qualified issuer statement/credit-quality note/regulatory disclosure identifying the regulatory definition and version; preserve exact disclosure context and issuer/perimeter.",
+          "regulatoryAuthority": "Qualified regulator disclosure identifying issuer, classification version, scope and population. No precedence over issuer evidence; resolve comparable conflicts using existing lineage only.",
+          "consolidatedStandalone": "Match the exact required reportingScope. No standalone fallback, scope aggregation or regulatory-to-VAS bridge without separately owner-approved scope/issuer/period bridge.",
+          "periodCompatibility": "Stock amounts and reported ratio must refer to the same explicit as-of date. Do not use publication/signing date as economic period or combine adjacent periods.",
+          "currencyUnit": "Amounts must have matching currencies and approved unit scaling. No FX inference. Ratio is dimensionless; percent and decimal representation require explicit conversion. Never mix balances with percentages or zero-fill missing inputs.",
+          "conflictHandling": "Retain all source occurrences. Resolve only through the existing explicit comparable revision chain or governed equivalence proof; differing definitions/scopes are incompatible rather than competing comparable facts. Comparable unresolved conflicts block the affected mandatory path.",
+          "PIT": "Apply frozen AS_KNOWN policy independently to every operand and definition/bridge. Publication, provider authority, mapping knowledge and correction-known-at must be evidenced and at/before the pinned cutoff. UNKNOWN stays UNKNOWN. Signing date/local receipt/filename do not establish public disclosure.",
+          "sourcePrecedence": "No automatic issuer/regulator/audited/latest-document priority. Source rank, if ever desired, is a separate owner-approved versioned amendment; none is proposed here.",
+          "bankSpecificApplicability": "Owner approves an explicit bank-by-bank, period-effective mapping table: exact issuer, authority, product/class set, source captions, scope, unit and version. No cross-bank caption alias or Auto-Earning/savings assumption."
+        },
+        "comparisonToApprovedM3": "Formula and regulatory-definition/change-disclosure obligation are preserved. The amendment defines the absent gross-versus-net/class-population/basis bridge and source authority contract; coverage must reuse the same approved NPL definition.",
+        "ownerDecisionRequired": [
+          "Approve gross NPL and gross customer-loan populations",
+          "Approve enumerated regulatory loan classes/version",
+          "Approve VAS/regulatory and scope compatibility/bridges",
+          "Approve issuer/regulator authority and period/PIT/conflict rules"
+        ]
+      }
+    ],
+    "bankSpecificMappings": [],
+    "canonicalItemClarification": {
+      "BANK_NPL_AMOUNT": "BANK_NONPERFORMING_LOANS"
+    },
+    "implementationScope": "Prospective source-contract governance and diagnostics. Bank-specific mapping evidence remains required. No numeric mapping, registry/crosswalk promotion or historical reclassification."
+  },
+  "noSilentAliases": [
+    "TOTAL_EQUITY != COMMON_EQUITY",
+    "NET_INCOME != normalized_common_profit",
+    "CASH_AND_EQUIVALENTS != unrestricted_cash",
+    "BANK_NPL_AMOUNT clarification requires approved source contract; no generic net-loan proxy"
+  ],
+  "amendments": "REGISTRY_AMENDMENT_SPEC.json; definition-only extraction, not native approved registry"
+}

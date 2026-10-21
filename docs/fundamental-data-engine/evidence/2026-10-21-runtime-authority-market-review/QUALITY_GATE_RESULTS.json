@@ -1,0 +1,92 @@
+{
+  "status": "COMPLETE",
+  "results": [
+    {
+      "name": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitCode": 0,
+      "seconds": 8.15,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-market-review/validation/final-lint.log"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 2.83,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-market-review/validation/final-typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 8.92,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-market-review/validation/final-build.log"
+    },
+    {
+      "name": "scoring",
+      "command": [
+        "pnpm",
+        "test:scoring"
+      ],
+      "exitCode": 0,
+      "seconds": 19.05,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-market-review/validation/final-scoring.log"
+    },
+    {
+      "name": "focused",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "tests/unit/source-publication.test.ts",
+        "tests/unit/runtime-readiness.test.ts",
+        "tests/unit/runtime-human-review.test.ts",
+        "tests/unit/runtime-dataset-acceptance.test.ts",
+        "tests/integration/runtime-evidence.test.ts",
+        "tests/unit/scoring-readiness.test.ts",
+        "tests/integration/scoring-readiness.test.ts",
+        "tests/integration/production-authority.test.ts",
+        "tests/integration/dependency-head.test.ts"
+      ],
+      "exitCode": 0,
+      "seconds": 32.72,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-market-review/validation/final-focused.log"
+    },
+    {
+      "name": "full",
+      "command": [
+        "pnpm",
+        "test",
+        "--reporter=json",
+        "--outputFile=/Users/nglehoangan/Documents/Working/VN_30_Investment/docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-market-review/validation/full-results.json"
+      ],
+      "exitCode": 1,
+      "seconds": 369.32,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-market-review/validation/final-full.log"
+    },
+    {
+      "name": "api",
+      "command": [
+        "node",
+        "--test",
+        "api/capture-market.test.mjs",
+        "api/token-session.test.mjs",
+        "api/sub-account.test.mjs",
+        "api/tcbs-unified.test.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 1.17,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-market-review/validation/final-api.log"
+    }
+  ]
+}

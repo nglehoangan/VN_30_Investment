@@ -1,0 +1,91 @@
+{
+  "contract": "market-session-cas-review-candidate-v1",
+  "status": "PROPOSED_NOT_EXECUTED",
+  "expectedPriorRelease": {
+    "id": "dependency-release-73f499cab0e71d93f81e35723bc804db3dac6a798c3ce21818b841872d77be2e",
+    "hash": "8d1e0909d377a4e1225b54f26cca0833a0fd24a9af3271d4cdd26419e193d01a"
+  },
+  "projection": "production-dependencies-v1",
+  "candidateFile": {
+    "path": "data/market-boundary/candidates/e4c32fc1663303d634eadcd1a31dc00378ee6965ea00adf33e03cb3f0c3df3ba/candidate.json",
+    "sha256": "fdc195824d139e7b075ea34eb865798d196cedf540b7861fbb43f482cc6fe934",
+    "contentHash": "e4c32fc1663303d634eadcd1a31dc00378ee6965ea00adf33e03cb3f0c3df3ba"
+  },
+  "expectedPriorHeads": [
+    {
+      "type": "INITIALIZATION",
+      "pin": {
+        "hash": "9a21806e4642ba13a7be34b6a27ac554392dfe72b8edbfe83bd136c9dd9166d5",
+        "id": "tcbs-initialization-7caf5c0dff6496cbc937e6e0"
+      }
+    },
+    {
+      "type": "MARKET_CAPABILITY",
+      "pin": {
+        "hash": "14c41e3c186941bce19d134c61f663d1664300bc2c0d113d204e3a3723acb5b8",
+        "id": "tcbs-capability-306837540f6119f104aebf28"
+      }
+    },
+    {
+      "type": "SESSION_POLICY",
+      "pin": {
+        "hash": "d0cb73f8c266efa31ff3928036eab4a6dc5109fadff260fab3076a0864fc114f",
+        "id": "tcbs-eod-valuation-session-v1"
+      }
+    }
+  ],
+  "proposedArtifacts": {
+    "MARKET": {
+      "id": "tcbs-market-c9582b96b9870968e6efbc48",
+      "hash": "d869bb08b0486d190e21ad0c26198d9ee96eea7812b55ffd41f806e83fa1e494"
+    },
+    "MARKET_CAPABILITY": {
+      "id": "tcbs-capability-94b7674e391c654a78e5b93e",
+      "hash": "53e1ea878465a6bd9550143479ab3da7cc9437581f713e4b89531a0c12ae0ba2"
+    },
+    "INITIALIZATION": {
+      "id": "tcbs-initialization-74c99ec603b50990ea663c72",
+      "hash": "40e5df7e864287b1307807cfe3c9a4dd74f92dec197a1340a1525c0647296bd4"
+    },
+    "SESSION_POLICY": {
+      "id": "tcbs-eod-valuation-session-v1",
+      "hash": "51039ca1bd84dfce755d6dd290f424d153b63d59667eefb619258091c8ed0bb2"
+    }
+  },
+  "marketHeadAdditionRequired": true,
+  "independentReviewDigest": "bd1118265d64eea389fdf3b1c3a966390c7975cfb2076a8ebec6ffc8fe9c253b",
+  "acceptedHeadsCreated": false,
+  "casExecuted": false,
+  "workflow": "independent candidate replay/approval → durable accepted source bindings → ProductionDependencies.activate(expectedPriorRelease) → verify new projection/replay → resolve VALUATION",
+  "forbiddenShortcut": "This is not an ACCEPTED Head or an approval receipt; do not pass request-controlled proposals into trusted catalog",
+  "expectedMarketHead": null,
+  "approvalGranted": false,
+  "operation": {
+    "service": "ProductionDependencies.activate",
+    "expected": {
+      "id": "dependency-release-73f499cab0e71d93f81e35723bc804db3dac6a798c3ce21818b841872d77be2e",
+      "hash": "8d1e0909d377a4e1225b54f26cca0833a0fd24a9af3271d4cdd26419e193d01a"
+    },
+    "reason": "Owner-authorized exact TCBS 2026-10-21 EOD market/session activation (authorization not yet supplied)"
+  },
+  "catalogRequirements": {
+    "trustedAcceptedOnly": true,
+    "replaceHeads": [
+      "INITIALIZATION",
+      "MARKET_CAPABILITY",
+      "SESSION_POLICY"
+    ],
+    "addHead": "MARKET",
+    "preserveOtherHeads": true,
+    "candidateCannotBePassedAsAcceptedHead": true
+  },
+  "rollbackRecovery": {
+    "beforeActivation": "Retain current immutable release plus accepted catalog/binding configuration; verify read-only replay",
+    "atomicity": "CAS projection from exact expected release; mismatch aborts, no force update",
+    "afterFailure": "Re-read active projection. If unchanged, leave baseline. If advanced, stop publication, inspect exact committed release and audit; never blindly retry",
+    "recovery": "Owner-authorized compensating release against then-current head restoring prior accepted bindings only when current validity permits. Old expired session is audit-only, not valid valuation authority. No SQL overwrite/deletion or time backdating",
+    "postActivation": "Replay full release, verify all preserved heads and MBB, resolve VALUATION using current clock; remain blocked if other authorities missing"
+  },
+  "executionAuthorization": "REQUIRED_SEPARATELY",
+  "expiresAt": "2026-10-22T07:59:59.999Z"
+}

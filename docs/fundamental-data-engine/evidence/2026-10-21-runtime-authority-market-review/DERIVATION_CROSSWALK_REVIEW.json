@@ -1,0 +1,527 @@
+{
+  "routes": [
+    {
+      "sector": "REAL_ESTATE",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [],
+      "status": "DEFINITION_SUPPORTED_PENDING_APPROVAL_AND_QUALIFIED_INPUTS",
+      "executableNow": false
+    },
+    {
+      "sector": "REAL_ESTATE",
+      "metric": "FCF",
+      "operands": [
+        {
+          "role": "CFO",
+          "itemId": "CFO",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "issuer_capex",
+          "itemId": "CAPEX",
+          "operation": "REPORTED"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [],
+      "status": "DEFINITION_SUPPORTED_PENDING_APPROVAL_AND_QUALIFIED_INPUTS",
+      "executableNow": false
+    },
+    {
+      "sector": "RETAIL",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [],
+      "status": "DEFINITION_SUPPORTED_PENDING_APPROVAL_AND_QUALIFIED_INPUTS",
+      "executableNow": false
+    },
+    {
+      "sector": "RETAIL",
+      "metric": "FCF",
+      "operands": [
+        {
+          "role": "CFO",
+          "itemId": "CFO",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "issuer_capex",
+          "itemId": "CAPEX",
+          "operation": "REPORTED"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [],
+      "status": "DEFINITION_SUPPORTED_PENDING_APPROVAL_AND_QUALIFIED_INPUTS",
+      "executableNow": false
+    },
+    {
+      "sector": "TECHNOLOGY",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [],
+      "status": "DEFINITION_SUPPORTED_PENDING_APPROVAL_AND_QUALIFIED_INPUTS",
+      "executableNow": false
+    },
+    {
+      "sector": "TECHNOLOGY",
+      "metric": "FCF",
+      "operands": [
+        {
+          "role": "CFO",
+          "itemId": "CFO",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "issuer_capex",
+          "itemId": "CAPEX",
+          "operation": "REPORTED"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [],
+      "status": "DEFINITION_SUPPORTED_PENDING_APPROVAL_AND_QUALIFIED_INPUTS",
+      "executableNow": false
+    },
+    {
+      "sector": "INDUSTRIAL",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [],
+      "status": "DEFINITION_SUPPORTED_PENDING_APPROVAL_AND_QUALIFIED_INPUTS",
+      "executableNow": false
+    },
+    {
+      "sector": "INDUSTRIAL",
+      "metric": "FCF",
+      "operands": [
+        {
+          "role": "CFO",
+          "itemId": "CFO",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "issuer_capex",
+          "itemId": "CAPEX",
+          "operation": "REPORTED"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [],
+      "status": "DEFINITION_SUPPORTED_PENDING_APPROVAL_AND_QUALIFIED_INPUTS",
+      "executableNow": false
+    },
+    {
+      "sector": "MATERIALS",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [],
+      "status": "DEFINITION_SUPPORTED_PENDING_APPROVAL_AND_QUALIFIED_INPUTS",
+      "executableNow": false
+    },
+    {
+      "sector": "MATERIALS",
+      "metric": "FCF",
+      "operands": [
+        {
+          "role": "CFO",
+          "itemId": "CFO",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "issuer_capex",
+          "itemId": "CAPEX",
+          "operation": "REPORTED"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [],
+      "status": "DEFINITION_SUPPORTED_PENDING_APPROVAL_AND_QUALIFIED_INPUTS",
+      "executableNow": false
+    },
+    {
+      "sector": "UTILITIES",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [],
+      "status": "DEFINITION_SUPPORTED_PENDING_APPROVAL_AND_QUALIFIED_INPUTS",
+      "executableNow": false
+    },
+    {
+      "sector": "UTILITIES",
+      "metric": "FCF",
+      "operands": [
+        {
+          "role": "CFO",
+          "itemId": "CFO",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "issuer_capex",
+          "itemId": "CAPEX",
+          "operation": "REPORTED"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [],
+      "status": "DEFINITION_SUPPORTED_PENDING_APPROVAL_AND_QUALIFIED_INPUTS",
+      "executableNow": false
+    },
+    {
+      "sector": "ENERGY",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [],
+      "status": "DEFINITION_SUPPORTED_PENDING_APPROVAL_AND_QUALIFIED_INPUTS",
+      "executableNow": false
+    },
+    {
+      "sector": "ENERGY",
+      "metric": "FCF",
+      "operands": [
+        {
+          "role": "CFO",
+          "itemId": "CFO",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "issuer_capex",
+          "itemId": "CAPEX",
+          "operation": "REPORTED"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [],
+      "status": "DEFINITION_SUPPORTED_PENDING_APPROVAL_AND_QUALIFIED_INPUTS",
+      "executableNow": false
+    },
+    {
+      "sector": "CONGLOMERATE",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [],
+      "status": "DEFINITION_SUPPORTED_PENDING_APPROVAL_AND_QUALIFIED_INPUTS",
+      "executableNow": false
+    },
+    {
+      "sector": "CONGLOMERATE",
+      "metric": "FCF",
+      "operands": [
+        {
+          "role": "CFO",
+          "itemId": "CFO",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "issuer_capex",
+          "itemId": "CAPEX",
+          "operation": "REPORTED"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [],
+      "status": "DEFINITION_SUPPORTED_PENDING_APPROVAL_AND_QUALIFIED_INPUTS",
+      "executableNow": false
+    },
+    {
+      "sector": "BANK",
+      "metric": "ROE",
+      "operands": [
+        {
+          "role": "normalized_common_profit",
+          "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "operation": "HUMAN_NORMALIZED"
+        },
+        {
+          "role": "average_common_equity",
+          "itemId": "COMMON_EQUITY",
+          "operation": "AVERAGE_ENDPOINTS"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [],
+      "status": "DEFINITION_SUPPORTED_PENDING_APPROVAL_AND_QUALIFIED_INPUTS",
+      "executableNow": false
+    },
+    {
+      "sector": "BANK",
+      "metric": "CASA",
+      "operands": [
+        {
+          "role": "current_and_savings",
+          "itemId": "BANK_CURRENT_AND_SAVINGS_DEPOSITS",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "deposits",
+          "itemId": "BANK_CUSTOMER_DEPOSITS",
+          "operation": "REPORTED"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [
+        "BANK_CURRENT_AND_SAVINGS_DEPOSITS",
+        "BANK_CUSTOMER_DEPOSITS"
+      ],
+      "status": "BLOCKED_REGISTRY_AND_SOURCE_MAPPING",
+      "executableNow": false
+    },
+    {
+      "sector": "BANK",
+      "metric": "NPL",
+      "operands": [
+        {
+          "role": "NPL",
+          "itemId": "BANK_NONPERFORMING_LOANS",
+          "operation": "REPORTED"
+        },
+        {
+          "role": "gross_loans",
+          "itemId": "BANK_GROSS_CUSTOMER_LOANS",
+          "operation": "REPORTED"
+        }
+      ],
+      "formulaAuthority": "src/domain/scoring/metrics.ts:METRICS + approved Metric Definitions",
+      "orderedOperandMatch": true,
+      "units": "Same approved native currency/scale; ratio output except FCF",
+      "periodCompatibility": "FCF matched flow windows; ROE normalized common flow / compatible average boundary stocks; CASA/NPL identical stock date",
+      "scope": "Same issuer and required scope; no implicit bridge",
+      "knownAt": "max(operand availability, source/mapping/normalization/formula/method knowledge); all <= AS_KNOWN cutoff",
+      "missingRegistryItems": [
+        "BANK_NONPERFORMING_LOANS",
+        "BANK_GROSS_CUSTOMER_LOANS"
+      ],
+      "status": "BLOCKED_REGISTRY_AND_SOURCE_MAPPING",
+      "executableNow": false
+    }
+  ],
+  "reviewedRoutes": 19,
+  "allExecutableMetrics": [
+    "ROIC",
+    "ROE",
+    "CFO_CONVERSION",
+    "FCF",
+    "NET_DEBT",
+    "INTEREST_COVERAGE",
+    "NPL",
+    "COVERAGE",
+    "CASA",
+    "FCF_YIELD",
+    "EARNINGS_YIELD",
+    "DIVIDEND_YIELD",
+    "PB",
+    "EV_EBIT",
+    "MOS",
+    "REVENUE_CAGR",
+    "EPS_CAGR",
+    "INCREMENTAL_ROIC",
+    "NET_DEBT_EBITDA"
+  ],
+  "missingFormalMetricRoutes": [
+    "ROIC",
+    "CFO_CONVERSION",
+    "NET_DEBT",
+    "INTEREST_COVERAGE",
+    "COVERAGE",
+    "FCF_YIELD",
+    "EARNINGS_YIELD",
+    "DIVIDEND_YIELD",
+    "PB",
+    "EV_EBIT",
+    "MOS",
+    "REVENUE_CAGR",
+    "EPS_CAGR",
+    "INCREMENTAL_ROIC",
+    "NET_DEBT_EBITDA"
+  ],
+  "SECURITIES": "Approved through-cycle ROE applicability exists; no native crosswalk or qualified source/normalization route. Do not borrow BANK CASA/NPL or industrial FCF/debt.",
+  "finalCandidateHash": null,
+  "reason": "Incomplete registry and source mappings; no final executable hash issued"
+}
