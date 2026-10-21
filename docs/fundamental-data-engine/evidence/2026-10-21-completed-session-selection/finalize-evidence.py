@@ -1,0 +1,14 @@
+import pathlib,json,hashlib,subprocess
+P=pathlib.Path('docs/fundamental-data-engine/evidence/2026-10-21-completed-session-selection')
+def failures(d):
+ return sorted((t['name'],a['fullName']) for t in d['testResults'] for a in t['assertionResults'] if a['status']=='failed')
+new=json.loads((P/'validation/full-results.json').read_text());old=json.loads(pathlib.Path('docs/fundamental-data-engine/evidence/2026-10-21-production-scoring-blocker-resolution/validation/full-results.json').read_text());nf,of=failures(new),failures(old)
+probe=json.loads((P/'SESSION_SCORING_CHECK.json').read_text());db=hashlib.sha256(pathlib.Path('data/vn30.sqlite').read_bytes()).hexdigest();assert db==probe['preflight']['databaseBeforeSHA256']==probe['preflight']['databaseAfterSHA256']
+result={'status':'BLOCKED — PRODUCTION SCORING NOT EXECUTED','targetTradingDate':probe['targetTradingDate'],'quality':{'lint':'PASS','typecheckInitial':'FAIL_GENERATED_DUPLICATE_TYPES','typecheckRerun':'PASS','build':'PASS','scoring':{'passed':127,'failed':0},'focused':{'passed':60,'failed':0},'api':{'passed':18,'failed':0},'full':{'passed':new['numPassedTests'],'failed':new['numFailedTests'],'total':new['numTotalTests'],'newFailures':sorted(set(nf)-set(of)),'resolvedFailures':sorted(set(of)-set(nf))}},'market':probe['qualification'],'datasetAcceptance':'MISSING','humanInputs':'MISSING_NOT_FABRICATED','universe':{'total':30,'eligible':29,'scored':0,'blocked':29,'deferred':1},'MBB':{'status':'DEFERRED','score':None,'rank':None},'databaseSHA256':db,'databaseUnchanged':True,'headChanged':False,'apiCalls':0,'transactionsCreated':0,'ordersSubmitted':0,'issues':{'critical':[],'major':['COMPLETED_SESSION_BOARD_EVIDENCE_MISSING','ACCEPTED_MARKET_SESSION_HEAD_MISSING','RUNTIME_DATASET_ACCEPTANCE_MISSING','HUMAN_OWNER_REVIEWS_MISSING'],'minor':['HISTORICAL_FULL_SUITE_FAILURES_REMAIN']}}
+(P/'FINAL_STATUS.json').write_text(json.dumps(result,indent=2)+'\n')
+(P/'QUALITY_GATE_RECONCILIATION.json').write_text(json.dumps({'previousEvidence':'2026-10-21-production-scoring-blocker-resolution','previousFailures':of,'currentFailures':nf,'exactFailureSetUnchanged':nf==of},indent=2)+'\n')
+source=['scripts/build-tcbs-pipeline.mjs','scripts/check-completed-session-scoring.mjs','src/domain/market-boundary/completed-session.ts','tests/unit/completed-session.test.ts']
+(P/'CHANGE.patch').write_bytes(subprocess.check_output(['git','diff','--','scripts/build-tcbs-pipeline.mjs']))
+files={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in P.rglob('*') if p.is_file() and p.name!='ARTIFACT_HASHES.json'}
+(P/'ARTIFACT_HASHES.json').write_text(json.dumps({'files':files,'sourceChanges':{p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest() for p in source},'sealIsApproval':False},indent=2)+'\n')
+print(json.dumps(result,indent=2))

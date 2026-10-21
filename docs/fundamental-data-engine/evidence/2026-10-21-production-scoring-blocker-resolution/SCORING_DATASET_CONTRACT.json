@@ -1,0 +1,244 @@
+{
+  "contract": "formal-runtime-scoring-dataset-contract-review-v1",
+  "status": "DOCUMENTED_NOT_ADMITTED",
+  "currentProductionCounts": {
+    "fundamental_source_version": 0,
+    "fundamental_import_batch": 0,
+    "fundamental_raw_capture": 0,
+    "fundamental_normalization": 0,
+    "fundamental_observation": 0,
+    "fundamental_availability_assessment": 0,
+    "fundamental_derivation": 0,
+    "fundamental_derivation_input": 0,
+    "fundamental_snapshot_content": 0,
+    "fundamental_snapshot_run": 0,
+    "fundamental_snapshot_member": 0,
+    "data_initialization_acceptance": 0,
+    "scoring_dataset_binding": 0,
+    "analytical_artifact": 0,
+    "fundamental_admission_run": 30
+  },
+  "requiredRuntimeAuthorityMethodMatches": {
+    "registry-sha256:": 0,
+    "availability-sha256:": 0,
+    "readiness-requirements-sha256:": 0,
+    "di-acceptance-sha256:": 0
+  },
+  "observedMethodologyRecords": [
+    {
+      "id": "m63-tcbs-opening-local-v1",
+      "family": "ACCOUNTING",
+      "configurationReference": "BROKER_SNAPSHOT:cc46785ff2d4f7477911d0cb7dad6ee38b872b5cc6a8566a78683637fdf43852",
+      "status": "PROPOSED",
+      "use": "PRODUCTION"
+    },
+    {
+      "id": "m64-clarification-1-production-20261020",
+      "family": "SCORING",
+      "configurationReference": "scoring-executable-manifest-sha256:dd2e5882d7a88cc6194f9600838fa8da8e22a3be54098e638def31885ea0dfad",
+      "status": "APPROVED",
+      "use": "PRODUCTION"
+    },
+    {
+      "id": "m65-decision-v1-approved-resolutions-20260930",
+      "family": "M4_DECISION",
+      "configurationReference": "m65-decision-v1-approved-resolutions-20260930",
+      "status": "APPROVED",
+      "use": "PRODUCTION"
+    },
+    {
+      "id": "m65-decision-v1-sector-monotonicity-20261001",
+      "family": "M4_DECISION",
+      "configurationReference": "m65-decision-v1-sector-monotonicity-20261001",
+      "status": "APPROVED",
+      "use": "PRODUCTION"
+    }
+  ],
+  "fullBaseRegistry": {
+    "methodologyIdentity": "fundamentals-items-v1",
+    "governanceStatus": "PROPOSED",
+    "approvalReference": null,
+    "path": "src/infrastructure/fundamentals/canonical-items-v1.json",
+    "sha256": "dfc9be8bc4a46bdb07310d096704274a44447d5e139033251bd996ab3811dc60"
+  },
+  "debtRegistry": {
+    "methodologyIdentity": "nonfinancial-debt-contract-v2",
+    "governanceStatus": "APPROVED",
+    "scope": "Debt subset only; approval does not promote unrelated proposed base registry",
+    "path": "src/infrastructure/fundamentals/debt-canonical-items-v2.json",
+    "sha256": "b9314cd523cfb0dd06f62597d018697c83a0c56e289892387fc6dddd29f0cabb"
+  },
+  "canonicalDefinition": {
+    "scope": "FORMAL",
+    "mode": "AS_KNOWN",
+    "revisionCutoff": null,
+    "decisionAsOf": "Must be chosen from real runtime clock/evidence, not a fabricated timestamp",
+    "requirements": "Must derive from independently approved full runtime ScoringReadinessRequirements plus sector/item coverage; static manual-fundamental requirements JSON has a different shape and is not a substitute",
+    "lineage": [
+      "source/version+raw capture/import hash",
+      "normalization+observation/semantic hash",
+      "availability evidence/policy hash",
+      "derivation+formula+operand hashes",
+      "sealed snapshot content/manifest/member hashes",
+      "bridge plan+external evidence binding",
+      "reviewed ScoreInput hash",
+      "actual immutable scorecard hash+atomic dataset binding"
+    ]
+  },
+  "requiredStateTransition": [
+    {
+      "state": "SOURCE_AND_REGISTRY_GOVERNANCE",
+      "requires": [
+        "exact broad canonical-registry approval/binding/method record",
+        "source version and immutable raw capture/import inventory",
+        "accepted data mapping/normalization; lossless values/native units/explicit scale and period/scope",
+        "real source identity and publication evidence, not guessed report date or retrieval date"
+      ]
+    },
+    {
+      "state": "FORMAL_OBSERVATIONS",
+      "requires": [
+        "verified normalized observations using the approved registry",
+        "capture/source/import/normalization IDs and hashes",
+        "actual ingestedAt; reporting period/scope; field locator; no hidden source/scope fallback"
+      ]
+    },
+    {
+      "state": "AVAILABILITY_AND_DERIVATION",
+      "requires": [
+        "independently approved availability policy/method binding",
+        "VERIFIED TIMESTAMP or DATE_ONLY publication evidence with governed boundaries; trusted receipt only under its approved evidence policy",
+        "availableAt reconciles public and operational knowledge and correction/review timing",
+        "approved derivation formulaVersion, ordered operand IDs/hashes, period/scope/unit and status"
+      ]
+    },
+    {
+      "state": "SEALED_AS_KNOWN_SNAPSHOT",
+      "requires": [
+        "scope FORMAL; mode AS_KNOWN; revisionCutoff=null",
+        "systemKnownAt/marketCutoff/fundamentalCutoff <= decisionAsOf; builtAt>=decisionAsOf",
+        "explicit issuer/item/period/reporting-scope requirements with approved maxAgeDays",
+        "effective universe/sector/reference versions and knownAt",
+        "observation/assessment/member/derived pins; contentHash and exact manifest digest",
+        "repository re-enumerates eligible observations/conflicts; no caller omission"
+      ]
+    },
+    {
+      "state": "REVIEWED_BRIDGE_AND_SCOREINPUT",
+      "requires": [
+        "fact observationId/evidenceId/validThrough mapping; no amount-based concept mapping",
+        "derived metric requestId/derivationId/two operand evidence IDs",
+        "external HUMAN/MARKET/VALUATION evidence-origin bindings",
+        "exact bridgeScoringInputs replay and assertBridgeMatches against reviewed ScoreInput",
+        "all23 HUMAN rubrics and reviewed owner gates/confidence/valuation/context per29 issuers",
+        "same approved scoring methodology; no future approval/availability/receivedAt; required sector route and metric/topic coverage"
+      ]
+    },
+    {
+      "state": "INDEPENDENT_DATASET_ACCEPTANCE",
+      "requires": [
+        "contract independent-di-acceptance-v2; algorithm strict-canonical-m3-readiness-v2",
+        "all30 identities represented; PolicyB partition29/1 unchanged; MBB input=null/bridge=null",
+        "15 DI gate references and issue register; exact snapshot/manifest/universe/requirements/scoring-method hashes",
+        "producerReference!=reviewerReference, real external review binding of acceptanceHash/reviewer/approval references",
+        "APPROVED PRODUCTION method records configuration readiness-requirements-sha256:<hash> and di-acceptance-sha256:<hash>",
+        "independently reproduce readiness PASS for29 before operational acceptance; do not exploit schema allowance for a metadata row with missing inputs"
+      ]
+    },
+    {
+      "state": "READ_ONLY_SCORING_AUTHORIZATION",
+      "requires": [
+        "persisted pinned acceptanceId and snapshotRunId",
+        "PrismaPolicyBScoringDatasets.authorize exact semantic input comparison; registered method; no future acceptance; fresh source/readiness/PolicyB checks",
+        "no persisted ScoringDatasetBinding yet; authorization object is not a scorecard or publishable ranking"
+      ]
+    },
+    {
+      "state": "CONDITIONAL_SCORE_AND_BIND",
+      "requires": [
+        "all A-D mandatory readiness gates PASS first; not executed in this task",
+        "ScoringEngine.score invokes frozen domain calculation and repository re-authorization",
+        "analytical_artifact SCORECARD and scoring_dataset_binding append atomically in same transaction",
+        "binding FK scorecardId must point to actual scorecard; no placeholder pre-score binding",
+        "deterministic replay of accepted immutable inputs before ranking/Top10; no MBB"
+      ]
+    }
+  ],
+  "transitionExecuted": false,
+  "whyNoAcceptance": "Missing broad runtime registry/availability/readiness/acceptance authority bindings, FORMAL observations/snapshots, evidenced publication/availability and reviewed HUMAN/model inputs. Creating a row would misrepresent readiness.",
+  "existingCompositionBlocks": [
+    "app/server/market-boundary.ts requireAcceptedMarketBoundary unconditionally rejects until accepted composition is legitimately supplied",
+    "app/server/production-dependencies.ts requireProductionDependencyActivation remains a static denial helper; trusted active-release resolver is separate",
+    "PrismaPolicyBScoringDatasets constructor requires real independently configured reviewBindings; request JSON cannot approve itself"
+  ],
+  "sources": [
+    {
+      "path": "src/domain/fundamentals/contracts.ts",
+      "sha256": "5efed0307fddcdf80cf395bb12f22649e48666ab1e253ce7f513d1b8ad78976d"
+    },
+    {
+      "path": "src/domain/fundamentals/snapshot.ts",
+      "sha256": "70721635205e45f9ae8906e13af3637942c97cf9797670fa88fadc52eb4dab12"
+    },
+    {
+      "path": "src/domain/fundamentals/availability.ts",
+      "sha256": "fe9b4156e8bba36823bb9b3add1aaae81117820a013374557119f4c379e9a010"
+    },
+    {
+      "path": "src/domain/fundamentals/scoring-bridge.ts",
+      "sha256": "e79aede87b75ba00f52cb81edf965481e8e7308cccf09cb3716fd3faa20d39b5"
+    },
+    {
+      "path": "src/domain/fundamentals/scoring-readiness.ts",
+      "sha256": "08632dfb279de43c9896b639daa384da4e22c35fcb9b6b08754b50b022517be5"
+    },
+    {
+      "path": "src/domain/fundamentals/scoring-readiness-policy-b.ts",
+      "sha256": "863f0c30cc43839c458271d22a9cf697ee53d8b52f5faadb70e565d7f7f995b4"
+    },
+    {
+      "path": "src/infrastructure/repositories/fundamentals.ts",
+      "sha256": "54aef14c138eed97ed68c1228f7e904f50d42273f36064c8c1cb608e3d8a7340"
+    },
+    {
+      "path": "src/infrastructure/repositories/fundamental-snapshot.ts",
+      "sha256": "86ca592c38bfa25277953f4844081ee9b0570e071486f8f5fb643067456eafc4"
+    },
+    {
+      "path": "src/infrastructure/repositories/fundamental-derivation.ts",
+      "sha256": "e55464ace5f15d782181c3fd2a4b65a6bae9ac5c95201f049e94fbff24e36e98"
+    },
+    {
+      "path": "src/infrastructure/repositories/scoring-datasets.ts",
+      "sha256": "9181afa27d76408537b257352fc56ba067cce98d73ac85598d8efa4b08df9ef2"
+    },
+    {
+      "path": "src/infrastructure/repositories/scoring-datasets-policy-b.ts",
+      "sha256": "576a5525b12a9f121dd45014374e9a2a062e64272ac0baac6c4b5646885d849c"
+    },
+    {
+      "path": "src/ports/scoring.ts",
+      "sha256": "e6f268c44a1e1dd63202adc5f9775d17e8b0ff18dad2a61c4b657a6580f6df19"
+    },
+    {
+      "path": "src/infrastructure/fundamentals/canonical-registry.ts",
+      "sha256": "bc63ab9de332daab00e184057a305a710793e55212adf8f8c50dbed65591416c"
+    },
+    {
+      "path": "prisma/schema.prisma",
+      "sha256": "abc1431e887fd478b6875cf85724b88461bcfda0508aea69c200427207914be7"
+    },
+    {
+      "path": "app/server/policy-b-services.ts",
+      "sha256": "e04a7d3c1cc021da818e1d092c424d62e0243dc2ed13d9f96d10dfbab18003a4"
+    },
+    {
+      "path": "app/server/market-boundary.ts",
+      "sha256": "aeac674a8d644d382749b7e0c4b7a724388c6717157c0dcffdc5bc3a27a28409"
+    },
+    {
+      "path": "app/server/production-dependencies.ts",
+      "sha256": "243044f521fbbf191ac86cdb8d79108f7f37c862e4342cd5fbf9cb4f5adb10f0"
+    }
+  ]
+}

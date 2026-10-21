@@ -1,0 +1,10 @@
+{
+  "status": "NOT_CREATED_PRE_SCORING",
+  "observedRows": 0,
+  "foreignKey": "ScoringDatasetBinding.scorecardId -> AnalyticalArtifact.id",
+  "repositoryRule": "PrismaPolicyBScoringDatasets.append writes actual frozen/recomputed scorecard + binding atomically after re-authorization",
+  "readyStateAlternative": "Read-only authorize() returns verified selection/input/acceptance/requirements hashes once acceptance and reviewed inputs exist. They do not exist now.",
+  "why": "A persisted binding before an actual legitimate scorecard would require a fake artifact or changed contract. Neither is authorized.",
+  "inMemoryAuthorizationCreated": false,
+  "scorecardCreated": false
+}

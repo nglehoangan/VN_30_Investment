@@ -1,0 +1,46 @@
+diff --git a/tests/integration/tcbs-pipeline.test.ts b/tests/integration/tcbs-pipeline.test.ts
+index 29f6e05..de511aa 100644
+--- a/tests/integration/tcbs-pipeline.test.ts
++++ b/tests/integration/tcbs-pipeline.test.ts
+@@ -1,5 +1,5 @@
+ // @vitest-environment node
+-import {it,expect} from 'vitest';
++import {it,expect,beforeAll,afterAll} from 'vitest';
+ import {readFileSync,mkdtempSync,rmSync,writeFileSync,mkdirSync} from 'node:fs';
+ import {tmpdir} from 'node:os';
+ import {join} from 'node:path';
+@@ -13,6 +13,24 @@ import {PrismaBoundaryStore} from '@/infrastructure/repositories/market-boundary
+ import {reference,seal} from '@/domain/market-boundary/validation';
+ const binding=()=>JSON.parse(readFileSync('data/market-boundary/active-candidate.json','utf8')) as TcbsCandidateBinding;
+ const candidate=()=>JSON.parse(readFileSync(binding().path,'utf8')) as TcbsPipelineCandidate;
++const productionStartingHash=hashBytes(readFileSync('data/vn30.sqlite'));
++beforeAll(()=>{
++ // The accepted activation legitimately superseded the pre-activation DB fingerprint.
++ // Verify its sealed transition, then retain exact byte protection across this file.
++ const folder='docs/fundamental-data-engine/evidence/2026-10-20-production-authority-final-activation/';
++ const path=folder+'PRODUCTION_DB_MUTATION_AUDIT.json',bytes=readFileSync(path);
++ const ledger=JSON.parse(readFileSync(folder+'ARTIFACT_HASHES.json','utf8'));
++ expect(hashBytes(bytes)).toBe(ledger.files[path]);
++ const audit=JSON.parse(bytes.toString('utf8'));
++ const previous=JSON.parse(readFileSync('docs/fundamental-data-engine/evidence/2026-10-19-di-market-data-boundary-amendment/PROTECTED_DATA_HASHES.json','utf8'));
++ expect(audit.status).toBe('PASS');expect(audit.sourcePath).toBe('data/vn30.sqlite');
++ expect(audit.beforeSHA256).toBe(previous['data/vn30.sqlite']);
++ expect(audit.totals).toEqual({inserted:18,updated:0,deleted:0});
++ expect(audit.accountingRowsChanged).toBe(0);expect(audit.portfolioRowsChanged).toBe(0);
++ expect(audit.scoringOutputRowsChanged).toBe(0);expect(audit.rankingRowsChanged).toBe(0);expect(audit.decisionRowsChanged).toBe(0);
++ expect(productionStartingHash).toBe(audit.afterSHA256);
++});
++afterAll(()=>{expect(hashBytes(readFileSync('data/vn30.sqlite'))).toBe(productionStartingHash);});
+ it('REAL retained full30 corpus replays canonical/market evidence with29/1 and activeTCX; no investment output',()=>{
+  const c=candidate();expect(snapshotHash(c)).toBe(binding().sha256);expect(replayTcbsPipeline(process.cwd(),c)).toEqual(c);
+  expect(c.market.body.observations).toHaveLength(30);expect(c.capability.body.rawSamples.every(s=>s.origin==='REAL_SOURCE')).toBe(true);
+@@ -45,8 +63,7 @@ it('additive immutable snapshot storage replays real candidate contracts on isol
+  }finally{await db.close();}
+ });
+ it('protected production database bytes retain starting fingerprint',()=>{
+- const baseline=JSON.parse(readFileSync('docs/fundamental-data-engine/evidence/2026-10-19-di-market-data-boundary-amendment/PROTECTED_DATA_HASHES.json','utf8'));
+- expect(hashBytes(readFileSync('data/vn30.sqlite'))).toBe(baseline['data/vn30.sqlite']);
++ expect(hashBytes(readFileSync('data/vn30.sqlite'))).toBe(productionStartingHash);
+ });
+ 
+ it('preopen board without matchPrice never replaces a completed-session candidate or becomes zero',()=>{

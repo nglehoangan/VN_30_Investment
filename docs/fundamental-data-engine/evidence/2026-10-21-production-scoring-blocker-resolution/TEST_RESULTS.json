@@ -1,0 +1,127 @@
+{
+  "status": "COMPLETE",
+  "results": [
+    {
+      "name": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitCode": 0,
+      "seconds": 8.3,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-production-scoring-blocker-resolution/validation/lint.log"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 3.05,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-production-scoring-blocker-resolution/validation/typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 16.2,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-production-scoring-blocker-resolution/validation/build.log"
+    },
+    {
+      "name": "scoring",
+      "command": [
+        "pnpm",
+        "test:scoring"
+      ],
+      "exitCode": 0,
+      "seconds": 18.76,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-production-scoring-blocker-resolution/validation/scoring.log"
+    },
+    {
+      "name": "focused",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "tests/unit/scoring-readiness.test.ts",
+        "tests/unit/scoring-bridge-derived.test.ts",
+        "tests/unit/scoring-evidence-time.test.ts",
+        "tests/integration/scoring-readiness.test.ts",
+        "tests/integration/scoring-readiness-migration.test.ts",
+        "tests/integration/production-authority.test.ts",
+        "tests/integration/dependency-head.test.ts",
+        "tests/unit/market-boundary.test.ts",
+        "tests/integration/market-boundary.test.ts",
+        "tests/unit/tcbs-pipeline.test.ts",
+        "tests/integration/tcbs-pipeline.test.ts"
+      ],
+      "exitCode": 0,
+      "seconds": 34.25,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-production-scoring-blocker-resolution/validation/focused.log"
+    },
+    {
+      "name": "full",
+      "command": [
+        "pnpm",
+        "test",
+        "--reporter=json",
+        "--outputFile=/Users/nglehoangan/Documents/Working/VN_30_Investment/docs/fundamental-data-engine/evidence/2026-10-21-production-scoring-blocker-resolution/validation/full-results.json"
+      ],
+      "exitCode": 1,
+      "seconds": 358.72,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-production-scoring-blocker-resolution/validation/full.log"
+    },
+    {
+      "name": "api",
+      "command": [
+        "node",
+        "--test",
+        "api/capture-market.test.mjs",
+        "api/token-session.test.mjs",
+        "api/sub-account.test.mjs",
+        "api/tcbs-unified.test.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 1.14,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-production-scoring-blocker-resolution/validation/api.log"
+    }
+  ],
+  "summaries": {
+    "full": {
+      "passed": 2056,
+      "failed": 18,
+      "total": 2074
+    },
+    "scoring": {
+      "passed": 127,
+      "failed": 0
+    },
+    "focused": {
+      "passed": 124,
+      "failed": 0
+    },
+    "api": {
+      "passed": 18,
+      "failed": 0
+    }
+  },
+  "repairedStandaloneTest": {
+    "command": [
+      "node",
+      "node_modules/vitest/vitest.mjs",
+      "run",
+      "tests/integration/tcbs-pipeline.test.ts"
+    ],
+    "exitCode": 0,
+    "log": "validation/repaired-tcbs-test.log"
+  },
+  "productionScoringReplay": {
+    "status": "NOT_RUN",
+    "reason": "No accepted runtime dataset/current MARKET/legitimate HUMAN inputs; no production scorecards exist."
+  }
+}
