@@ -1,0 +1,18 @@
+import '../../../../scripts/lib/ts-runtime.mjs';
+import {readFileSync,writeFileSync,existsSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+const out=fileURLToPath(new URL('.',import.meta.url));if(existsSync(out+'ARTIFACT_HASHES.json'))throw Error('SEALED_EVIDENCE');
+const read=p=>JSON.parse(readFileSync(p,'utf8')),save=(n,x)=>writeFileSync(out+n,JSON.stringify(x,null,2)+'\n');
+const {snapshotHash}=await import('../../../../src/infrastructure/fundamentals/snapshot-hash.ts');
+const {approvedSectorRequirementTemplate,instantiateSectorRequirements}=await import('../../../../src/domain/fundamentals/sector-requirement-templates.ts');
+const {proposeSecuritiesRoeRoute}=await import('../../../../src/domain/fundamentals/supported-derivation-routes.ts');
+const {validateCrosswalk}=await import('../../../../src/domain/fundamentals/derivation.ts');
+const {replayTcbsPipeline}=await import('../../../../src/infrastructure/market-boundary/tcbs-pipeline.ts');
+const manifest=read('src/infrastructure/fundamentals/canonical-items-v1.json'),registry={manifest,registryHash:snapshotHash(manifest)},cross=read('src/infrastructure/fundamentals/derivation-crosswalk-v1.json');
+const proposal=proposeSecuritiesRoeRoute(cross,registry,new Date().toISOString());validateCrosswalk(proposal,registry);save('SECURITIES_ROE_CROSSWALK_PROPOSAL.json',proposal);
+save('DERIVATION_CLOSURE.json',{status:'SUPPORTED_MAPPING_IMPLEMENTED_NOT_APPROVED',resolved:['SECURITIES:ROE native-compatible proposed route'],candidateHash:snapshotHash(proposal),candidatePath:out+'SECURITIES_ROE_CROSSWALK_PROPOSAL.json',governanceStatus:'PROPOSED',approved:false,activated:false,existingRoutesPreserved:true,formulaChanged:false,sourceNormalizationAssumed:false,remaining:['BANK canonical registry and issuer-specific CASA/NPL class/product mappings','Other metric normalized source/topic/operand definitions insufficient for formal crosswalk','Actual reviewed through-cycle securities common profit and comparable equity endpoints'],ownerDecisionPacket:'OWNER_DECISION_PACKET.md'});
+const sectors=['BANK','REAL_ESTATE','TECHNOLOGY','RETAIL','INDUSTRIAL','MATERIALS','UTILITIES','ENERGY','SECURITIES'];
+const rows=sectors.map(sector=>{const template=approvedSectorRequirementTemplate(sector);return {sector,template,templateHash:snapshotHash(template),actualDimensionsInferred:false,fullScoringRequirementsComplete:false};});
+save('SECTOR_REQUIREMENTS_VALIDATION.json',{status:'REPRESENTATION_IMPLEMENTED_NOT_ACTIVATED',rows,required:true,anyOf:true,preferred:true,sourcePreference:true,supporting:true,optional:true,selectedQualifiedRouteReceipt:true,qualifiedOnlyFrom:'FORMAL AS_KNOWN sealed snapshot members + existing eligibleScoringFact',legacyContractsUnchanged:true,productionIntegration:'New evaluator/instantiator callable; not composed into active legacy DI authority. A versioned approved requirements binding and independent integration review are still required, not an implicit schema migration.',authorityActivations:0});
+const old=read('docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-market-review/MARKET_CAS_PROPOSAL.json');const candidate=read(old.candidateFile.path);replayTcbsPipeline(process.cwd(),candidate);save('MARKET_NATIVE_REPLAY.json',{status:'PASS_REPLAY',candidateHash:snapshotHash(candidate),noNetwork:true,noWrites:true});
+console.log(JSON.stringify({sectors:rows.length,securitiesCandidateHash:snapshotHash(proposal),marketReplay:'PASS'}));

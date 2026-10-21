@@ -1,0 +1,894 @@
+{
+  "status": "REPRESENTATION_IMPLEMENTED_NOT_ACTIVATED",
+  "rows": [
+    {
+      "sector": "BANK",
+      "template": {
+        "contract": "approved-sector-requirement-template-v1",
+        "sourceVersion": "manual-fundamental-evidence-requirements-debt-v2",
+        "sourceApproval": "PROJECT_OWNER_PROMPT_SHA256:61f49c16d37b82ad173fa03ba49897703471995742f16a926afcd97485f25689",
+        "sector": "BANK",
+        "groups": [
+          {
+            "id": "assets",
+            "anyOf": [
+              "TOTAL_ASSETS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "equity",
+            "anyOf": [
+              "TOTAL_EQUITY"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "earnings",
+            "anyOf": [
+              "NET_INCOME"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "loan_population",
+            "anyOf": [
+              "BANK_GROSS_CUSTOMER_LOANS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "SECTOR_CORE"
+          },
+          {
+            "id": "funding_population",
+            "anyOf": [
+              "BANK_CUSTOMER_DEPOSITS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "SECTOR_CORE"
+          },
+          {
+            "id": "asset_quality",
+            "anyOf": [
+              "BANK_LOAN_LOSS_RESERVES"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "SECTOR_CORE"
+          },
+          {
+            "id": "capital_strength",
+            "anyOf": [
+              "BANK_REPORTED_CAR",
+              "BANK_REPORTED_CET1"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "SECTOR_CORE"
+          }
+        ],
+        "supporting": [
+          "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "NET_INCOME_ATTRIBUTABLE_PARENT",
+          "BASIC_EPS",
+          "OPERATING_PROFIT",
+          "CASH_CAPEX_REPORTED",
+          "BANK_NET_INTEREST_INCOME",
+          "BANK_REPORTED_NIM",
+          "BANK_REPORTED_NPL",
+          "BANK_REPORTED_CREDIT_GROWTH"
+        ],
+        "optional": [
+          "BANK_CURRENT_AND_SAVINGS_DEPOSITS",
+          "CASA"
+        ],
+        "requiredDerivations": [],
+        "sectorRuleReference": "docs/03 SCORING/SECTOR_NORMALIZATION.md#5",
+        "fullScoringRequirementsComplete": false
+      },
+      "templateHash": "048830b5ef44f43ea6d58c336c6d8d01900315c528378e8823bd2441bdde2cc4",
+      "actualDimensionsInferred": false,
+      "fullScoringRequirementsComplete": false
+    },
+    {
+      "sector": "REAL_ESTATE",
+      "template": {
+        "contract": "approved-sector-requirement-template-v1",
+        "sourceVersion": "manual-fundamental-evidence-requirements-debt-v2",
+        "sourceApproval": "PROJECT_OWNER_PROMPT_SHA256:61f49c16d37b82ad173fa03ba49897703471995742f16a926afcd97485f25689",
+        "sector": "REAL_ESTATE",
+        "groups": [
+          {
+            "id": "assets",
+            "anyOf": [
+              "TOTAL_ASSETS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "equity",
+            "anyOf": [
+              "TOTAL_EQUITY"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "earnings",
+            "anyOf": [
+              "NET_INCOME"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "sales",
+            "anyOf": [
+              "REVENUE"
+            ],
+            "component": "GROWTH_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "cash_generation",
+            "anyOf": [
+              "CFO"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "debt",
+            "anyOf": [
+              "COMPREHENSIVE_FINANCIAL_DEBT",
+              "REPORTED_BORROWINGS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "preference": [
+              "COMPREHENSIVE_FINANCIAL_DEBT",
+              "REPORTED_BORROWINGS"
+            ],
+            "category": "CORE"
+          },
+          {
+            "id": "cash",
+            "anyOf": [
+              "CASH_AND_EQUIVALENTS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "project_capital",
+            "anyOf": [
+              "INVENTORY"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "SECTOR_CORE"
+          }
+        ],
+        "supporting": [
+          "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "NET_INCOME_ATTRIBUTABLE_PARENT",
+          "BASIC_EPS",
+          "OPERATING_PROFIT",
+          "CASH_CAPEX_REPORTED",
+          "CURRENT_ASSETS",
+          "CURRENT_LIABILITIES",
+          "RECEIVABLES"
+        ],
+        "optional": [
+          "ROIC",
+          "ROA",
+          "MARGIN_STABILITY"
+        ],
+        "requiredDerivations": [],
+        "sectorRuleReference": "docs/03 SCORING/SECTOR_NORMALIZATION.md#6",
+        "fullScoringRequirementsComplete": false
+      },
+      "templateHash": "aa5514ed5311c7692e8b2d76929c37706172fb6298fa0277a49c37b707e132f6",
+      "actualDimensionsInferred": false,
+      "fullScoringRequirementsComplete": false
+    },
+    {
+      "sector": "TECHNOLOGY",
+      "template": {
+        "contract": "approved-sector-requirement-template-v1",
+        "sourceVersion": "manual-fundamental-evidence-requirements-debt-v2",
+        "sourceApproval": "PROJECT_OWNER_PROMPT_SHA256:61f49c16d37b82ad173fa03ba49897703471995742f16a926afcd97485f25689",
+        "sector": "TECHNOLOGY",
+        "groups": [
+          {
+            "id": "assets",
+            "anyOf": [
+              "TOTAL_ASSETS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "equity",
+            "anyOf": [
+              "TOTAL_EQUITY"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "earnings",
+            "anyOf": [
+              "NET_INCOME"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "sales",
+            "anyOf": [
+              "REVENUE"
+            ],
+            "component": "GROWTH_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "cash_generation",
+            "anyOf": [
+              "CFO"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "debt",
+            "anyOf": [
+              "COMPREHENSIVE_FINANCIAL_DEBT",
+              "REPORTED_BORROWINGS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "preference": [
+              "COMPREHENSIVE_FINANCIAL_DEBT",
+              "REPORTED_BORROWINGS"
+            ],
+            "category": "CORE"
+          },
+          {
+            "id": "cash",
+            "anyOf": [
+              "CASH_AND_EQUIVALENTS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "cash_reinvestment",
+            "anyOf": [
+              "CASH_CAPEX_REPORTED"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "SECTOR_CORE"
+          }
+        ],
+        "supporting": [
+          "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "NET_INCOME_ATTRIBUTABLE_PARENT",
+          "BASIC_EPS",
+          "OPERATING_PROFIT",
+          "CASH_CAPEX_REPORTED",
+          "CURRENT_ASSETS",
+          "CURRENT_LIABILITIES",
+          "RECEIVABLES"
+        ],
+        "optional": [
+          "ROIC",
+          "ROA",
+          "MARGIN_STABILITY"
+        ],
+        "requiredDerivations": [],
+        "sectorRuleReference": "docs/03 SCORING/SECTOR_NORMALIZATION.md#7",
+        "fullScoringRequirementsComplete": false
+      },
+      "templateHash": "8b2484fe660c4478773a0986adcf62a4ff7dd4221daeee5ee0ebf16737d06840",
+      "actualDimensionsInferred": false,
+      "fullScoringRequirementsComplete": false
+    },
+    {
+      "sector": "RETAIL",
+      "template": {
+        "contract": "approved-sector-requirement-template-v1",
+        "sourceVersion": "manual-fundamental-evidence-requirements-debt-v2",
+        "sourceApproval": "PROJECT_OWNER_PROMPT_SHA256:61f49c16d37b82ad173fa03ba49897703471995742f16a926afcd97485f25689",
+        "sector": "RETAIL",
+        "groups": [
+          {
+            "id": "assets",
+            "anyOf": [
+              "TOTAL_ASSETS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "equity",
+            "anyOf": [
+              "TOTAL_EQUITY"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "earnings",
+            "anyOf": [
+              "NET_INCOME"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "sales",
+            "anyOf": [
+              "REVENUE"
+            ],
+            "component": "GROWTH_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "cash_generation",
+            "anyOf": [
+              "CFO"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "debt",
+            "anyOf": [
+              "COMPREHENSIVE_FINANCIAL_DEBT",
+              "REPORTED_BORROWINGS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "preference": [
+              "COMPREHENSIVE_FINANCIAL_DEBT",
+              "REPORTED_BORROWINGS"
+            ],
+            "category": "CORE"
+          },
+          {
+            "id": "cash",
+            "anyOf": [
+              "CASH_AND_EQUIVALENTS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "working_capital",
+            "anyOf": [
+              "INVENTORY"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "SECTOR_CORE"
+          }
+        ],
+        "supporting": [
+          "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "NET_INCOME_ATTRIBUTABLE_PARENT",
+          "BASIC_EPS",
+          "OPERATING_PROFIT",
+          "CASH_CAPEX_REPORTED",
+          "CURRENT_ASSETS",
+          "CURRENT_LIABILITIES",
+          "RECEIVABLES"
+        ],
+        "optional": [
+          "ROIC",
+          "ROA",
+          "MARGIN_STABILITY"
+        ],
+        "requiredDerivations": [],
+        "sectorRuleReference": "docs/03 SCORING/SECTOR_NORMALIZATION.md#8",
+        "fullScoringRequirementsComplete": false
+      },
+      "templateHash": "f3218c971d67b1ec8bedd1e831cd63e72f2f2b82ffef931c7305b9b4796484d9",
+      "actualDimensionsInferred": false,
+      "fullScoringRequirementsComplete": false
+    },
+    {
+      "sector": "INDUSTRIAL",
+      "template": {
+        "contract": "approved-sector-requirement-template-v1",
+        "sourceVersion": "manual-fundamental-evidence-requirements-debt-v2",
+        "sourceApproval": "PROJECT_OWNER_PROMPT_SHA256:61f49c16d37b82ad173fa03ba49897703471995742f16a926afcd97485f25689",
+        "sector": "INDUSTRIAL",
+        "groups": [
+          {
+            "id": "assets",
+            "anyOf": [
+              "TOTAL_ASSETS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "equity",
+            "anyOf": [
+              "TOTAL_EQUITY"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "earnings",
+            "anyOf": [
+              "NET_INCOME"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "sales",
+            "anyOf": [
+              "REVENUE"
+            ],
+            "component": "GROWTH_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "cash_generation",
+            "anyOf": [
+              "CFO"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "debt",
+            "anyOf": [
+              "COMPREHENSIVE_FINANCIAL_DEBT",
+              "REPORTED_BORROWINGS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "preference": [
+              "COMPREHENSIVE_FINANCIAL_DEBT",
+              "REPORTED_BORROWINGS"
+            ],
+            "category": "CORE"
+          },
+          {
+            "id": "cash",
+            "anyOf": [
+              "CASH_AND_EQUIVALENTS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "cash_reinvestment",
+            "anyOf": [
+              "CASH_CAPEX_REPORTED"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "SECTOR_CORE"
+          }
+        ],
+        "supporting": [
+          "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "NET_INCOME_ATTRIBUTABLE_PARENT",
+          "BASIC_EPS",
+          "OPERATING_PROFIT",
+          "CASH_CAPEX_REPORTED",
+          "CURRENT_ASSETS",
+          "CURRENT_LIABILITIES",
+          "RECEIVABLES"
+        ],
+        "optional": [
+          "ROIC",
+          "ROA",
+          "MARGIN_STABILITY"
+        ],
+        "requiredDerivations": [],
+        "sectorRuleReference": "docs/03 SCORING/SECTOR_NORMALIZATION.md#9",
+        "fullScoringRequirementsComplete": false
+      },
+      "templateHash": "5c8673dd09f9a74ac5b1214a4972d066267c721af464889d8d950d2d5d4a0c7e",
+      "actualDimensionsInferred": false,
+      "fullScoringRequirementsComplete": false
+    },
+    {
+      "sector": "MATERIALS",
+      "template": {
+        "contract": "approved-sector-requirement-template-v1",
+        "sourceVersion": "manual-fundamental-evidence-requirements-debt-v2",
+        "sourceApproval": "PROJECT_OWNER_PROMPT_SHA256:61f49c16d37b82ad173fa03ba49897703471995742f16a926afcd97485f25689",
+        "sector": "MATERIALS",
+        "groups": [
+          {
+            "id": "assets",
+            "anyOf": [
+              "TOTAL_ASSETS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "equity",
+            "anyOf": [
+              "TOTAL_EQUITY"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "earnings",
+            "anyOf": [
+              "NET_INCOME"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "sales",
+            "anyOf": [
+              "REVENUE"
+            ],
+            "component": "GROWTH_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "cash_generation",
+            "anyOf": [
+              "CFO"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "debt",
+            "anyOf": [
+              "COMPREHENSIVE_FINANCIAL_DEBT",
+              "REPORTED_BORROWINGS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "preference": [
+              "COMPREHENSIVE_FINANCIAL_DEBT",
+              "REPORTED_BORROWINGS"
+            ],
+            "category": "CORE"
+          },
+          {
+            "id": "cash",
+            "anyOf": [
+              "CASH_AND_EQUIVALENTS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "cycle_margin",
+            "anyOf": [
+              "GROSS_PROFIT",
+              "OPERATING_PROFIT"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "SECTOR_CORE"
+          }
+        ],
+        "supporting": [
+          "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "NET_INCOME_ATTRIBUTABLE_PARENT",
+          "BASIC_EPS",
+          "OPERATING_PROFIT",
+          "CASH_CAPEX_REPORTED",
+          "CURRENT_ASSETS",
+          "CURRENT_LIABILITIES",
+          "RECEIVABLES"
+        ],
+        "optional": [
+          "ROIC",
+          "ROA",
+          "MARGIN_STABILITY"
+        ],
+        "requiredDerivations": [],
+        "sectorRuleReference": "docs/03 SCORING/SECTOR_NORMALIZATION.md#10",
+        "fullScoringRequirementsComplete": false
+      },
+      "templateHash": "6baf47cd9e0277263371e68c64308e5e27a0140923790582e1dde5095d2fb050",
+      "actualDimensionsInferred": false,
+      "fullScoringRequirementsComplete": false
+    },
+    {
+      "sector": "UTILITIES",
+      "template": {
+        "contract": "approved-sector-requirement-template-v1",
+        "sourceVersion": "manual-fundamental-evidence-requirements-debt-v2",
+        "sourceApproval": "PROJECT_OWNER_PROMPT_SHA256:61f49c16d37b82ad173fa03ba49897703471995742f16a926afcd97485f25689",
+        "sector": "UTILITIES",
+        "groups": [
+          {
+            "id": "assets",
+            "anyOf": [
+              "TOTAL_ASSETS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "equity",
+            "anyOf": [
+              "TOTAL_EQUITY"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "earnings",
+            "anyOf": [
+              "NET_INCOME"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "sales",
+            "anyOf": [
+              "REVENUE"
+            ],
+            "component": "GROWTH_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "cash_generation",
+            "anyOf": [
+              "CFO"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "debt",
+            "anyOf": [
+              "COMPREHENSIVE_FINANCIAL_DEBT",
+              "REPORTED_BORROWINGS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "preference": [
+              "COMPREHENSIVE_FINANCIAL_DEBT",
+              "REPORTED_BORROWINGS"
+            ],
+            "category": "CORE"
+          },
+          {
+            "id": "cash",
+            "anyOf": [
+              "CASH_AND_EQUIVALENTS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "cash_reinvestment",
+            "anyOf": [
+              "CASH_CAPEX_REPORTED"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "SECTOR_CORE"
+          }
+        ],
+        "supporting": [
+          "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "NET_INCOME_ATTRIBUTABLE_PARENT",
+          "BASIC_EPS",
+          "OPERATING_PROFIT",
+          "CASH_CAPEX_REPORTED",
+          "CURRENT_ASSETS",
+          "CURRENT_LIABILITIES",
+          "RECEIVABLES"
+        ],
+        "optional": [
+          "ROIC",
+          "ROA",
+          "MARGIN_STABILITY"
+        ],
+        "requiredDerivations": [],
+        "sectorRuleReference": "docs/03 SCORING/SECTOR_NORMALIZATION.md#11",
+        "fullScoringRequirementsComplete": false
+      },
+      "templateHash": "431c2d74696c5fe7527455d4aebbbccfa752ef64466725c275a5936b9a38822a",
+      "actualDimensionsInferred": false,
+      "fullScoringRequirementsComplete": false
+    },
+    {
+      "sector": "ENERGY",
+      "template": {
+        "contract": "approved-sector-requirement-template-v1",
+        "sourceVersion": "manual-fundamental-evidence-requirements-debt-v2",
+        "sourceApproval": "PROJECT_OWNER_PROMPT_SHA256:61f49c16d37b82ad173fa03ba49897703471995742f16a926afcd97485f25689",
+        "sector": "ENERGY",
+        "groups": [
+          {
+            "id": "assets",
+            "anyOf": [
+              "TOTAL_ASSETS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "equity",
+            "anyOf": [
+              "TOTAL_EQUITY"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "earnings",
+            "anyOf": [
+              "NET_INCOME"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "sales",
+            "anyOf": [
+              "REVENUE"
+            ],
+            "component": "GROWTH_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "cash_generation",
+            "anyOf": [
+              "CFO"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "debt",
+            "anyOf": [
+              "COMPREHENSIVE_FINANCIAL_DEBT",
+              "REPORTED_BORROWINGS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "preference": [
+              "COMPREHENSIVE_FINANCIAL_DEBT",
+              "REPORTED_BORROWINGS"
+            ],
+            "category": "CORE"
+          },
+          {
+            "id": "cash",
+            "anyOf": [
+              "CASH_AND_EQUIVALENTS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "cycle_margin",
+            "anyOf": [
+              "GROSS_PROFIT",
+              "OPERATING_PROFIT"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "SECTOR_CORE"
+          }
+        ],
+        "supporting": [
+          "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "NET_INCOME_ATTRIBUTABLE_PARENT",
+          "BASIC_EPS",
+          "OPERATING_PROFIT",
+          "CASH_CAPEX_REPORTED",
+          "CURRENT_ASSETS",
+          "CURRENT_LIABILITIES",
+          "RECEIVABLES"
+        ],
+        "optional": [
+          "ROIC",
+          "ROA",
+          "MARGIN_STABILITY"
+        ],
+        "requiredDerivations": [],
+        "sectorRuleReference": "docs/03 SCORING/SECTOR_NORMALIZATION.md#12",
+        "fullScoringRequirementsComplete": false
+      },
+      "templateHash": "bb566ce50505f646bdf6382b40c933445d81d95e3e1f72294cad862f2a0b8c5e",
+      "actualDimensionsInferred": false,
+      "fullScoringRequirementsComplete": false
+    },
+    {
+      "sector": "SECURITIES",
+      "template": {
+        "contract": "approved-sector-requirement-template-v1",
+        "sourceVersion": "manual-fundamental-evidence-requirements-debt-v2",
+        "sourceApproval": "PROJECT_OWNER_PROMPT_SHA256:61f49c16d37b82ad173fa03ba49897703471995742f16a926afcd97485f25689",
+        "sector": "SECURITIES",
+        "groups": [
+          {
+            "id": "assets",
+            "anyOf": [
+              "TOTAL_ASSETS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "equity",
+            "anyOf": [
+              "TOTAL_EQUITY"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "CORE"
+          },
+          {
+            "id": "earnings",
+            "anyOf": [
+              "NET_INCOME"
+            ],
+            "component": "BUSINESS_QUALITY",
+            "category": "CORE"
+          },
+          {
+            "id": "liquidity",
+            "anyOf": [
+              "CASH_AND_EQUIVALENTS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "SECTOR_CORE"
+          },
+          {
+            "id": "leverage",
+            "anyOf": [
+              "FINANCIAL_DEBT"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "SECTOR_CORE"
+          },
+          {
+            "id": "margin_risk",
+            "anyOf": [
+              "SECURITIES_MARGIN_LOANS"
+            ],
+            "component": "FINANCIAL_HEALTH",
+            "category": "SECTOR_CORE"
+          }
+        ],
+        "supporting": [
+          "NET_INCOME_ATTRIBUTABLE_COMMON",
+          "NET_INCOME_ATTRIBUTABLE_PARENT",
+          "BASIC_EPS",
+          "OPERATING_PROFIT",
+          "CASH_CAPEX_REPORTED",
+          "CURRENT_ASSETS",
+          "CURRENT_LIABILITIES",
+          "RECEIVABLES"
+        ],
+        "optional": [
+          "ROIC",
+          "ROA",
+          "MARGIN_STABILITY"
+        ],
+        "requiredDerivations": [],
+        "sectorRuleReference": "docs/03 SCORING/SECTOR_NORMALIZATION.md#13.1",
+        "fullScoringRequirementsComplete": false
+      },
+      "templateHash": "24d3d5080974a3ee886264ec0fbf206d666ad1cf9800ca0f5d2a58cb19679618",
+      "actualDimensionsInferred": false,
+      "fullScoringRequirementsComplete": false
+    }
+  ],
+  "required": true,
+  "anyOf": true,
+  "preferred": true,
+  "sourcePreference": true,
+  "supporting": true,
+  "optional": true,
+  "selectedQualifiedRouteReceipt": true,
+  "qualifiedOnlyFrom": "FORMAL AS_KNOWN sealed snapshot members + existing eligibleScoringFact",
+  "legacyContractsUnchanged": true,
+  "productionIntegration": "New evaluator/instantiator callable; not composed into active legacy DI authority. A versioned approved requirements binding and independent integration review are still required, not an implicit schema migration.",
+  "authorityActivations": 0
+}
