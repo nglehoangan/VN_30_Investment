@@ -1,0 +1,306 @@
+{
+  "status": "BLOCKED_CONFIGURATION_OR_SPECIFICATION_GAPS",
+  "conditionalApproval": "INFRASTRUCTURE_ONLY",
+  "newRuntimeAuthoritiesApproved": 0,
+  "newRuntimeAuthoritiesActive": 0,
+  "approvedLegacySourceContractsDoNotPromoteRuntime": {
+    "scopedDebt": {
+      "path": "src/infrastructure/fundamentals/debt-canonical-items-v2.json",
+      "sha256": "b9314cd523cfb0dd06f62597d018697c83a0c56e289892387fc6dddd29f0cabb"
+    },
+    "casaNplSource": {
+      "path": "src/infrastructure/fundamentals/casa-npl-source-contract-v1.json",
+      "sha256": "7dcdd5e4090f9360153ddd9684024fe9e9a9090eeda3ec6acd3455cdf1e29a45"
+    }
+  },
+  "candidates": [
+    {
+      "id": "runtime-authority-closure-registry-80804db9834eef4ce6f3e56b",
+      "kind": "registry",
+      "version": "1.0.0",
+      "contentHash": "80804db9834eef4ce6f3e56b844e2a1bcccd6ce5cfae801c8c7e50cd1210970e",
+      "payloadPath": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-source-closure/authority/registry.json",
+      "governanceStatus": "PROPOSED",
+      "activationStatus": "NOT_AUTHORIZED",
+      "approvalProvenance": {
+        "state": "NONE",
+        "architectureApprovalOnly": true
+      },
+      "effectiveInterval": {
+        "state": "OWNER_MUST_SET_BEFORE_ACTIVATION",
+        "existingPayloadDeclaredEffectiveDate": "2026-10-08"
+      },
+      "dependencies": [],
+      "sectorApplicability": [
+        "BANK",
+        "ENERGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "REAL_ESTATE",
+        "RETAIL",
+        "SECURITIES",
+        "TECHNOLOGY",
+        "UTILITIES"
+      ],
+      "configurationForm": "NATIVE_PROPOSED_PAYLOAD",
+      "descriptionComplete": true,
+      "productionCandidateComplete": false,
+      "missing": [
+        "Broad item definitions/topic/operand/sector coverage",
+        "No global approval, runtime method or trusted activation binding"
+      ],
+      "selfApproval": false,
+      "sourceAuthority": {
+        "existingFinancialSourcePolicy": {
+          "path": "src/domain/fundamentals/source-authority.ts",
+          "sha256": "d5733a930660c74f313cd531a09e48d4ed3f242afd0928f32b5a77645693bc79"
+        },
+        "perFactAccountingQualificationRequired": true,
+        "publicationSourceContract": "UNRESOLVED_APPROVED_METADATA_CAPTURE_BINDINGS",
+        "newSourceApproved": false
+      }
+    },
+    {
+      "id": "runtime-authority-closure-availability-2a2eabd50dbe047ddc68bf0f",
+      "kind": "availability",
+      "version": "production-runtime-availability-candidate-v1",
+      "contentHash": "2a2eabd50dbe047ddc68bf0f0b96f92c1714bc6aab4540530de7b0ff9dfe82c9",
+      "payloadPath": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-source-closure/authority/availability.json",
+      "governanceStatus": "PROPOSED",
+      "activationStatus": "NOT_AUTHORIZED",
+      "approvalProvenance": {
+        "state": "NONE",
+        "architectureApprovalOnly": true
+      },
+      "effectiveInterval": {
+        "state": "OWNER_MUST_SET_BEFORE_ACTIVATION",
+        "existingPayloadDeclaredEffectiveDate": null
+      },
+      "dependencies": [
+        {
+          "kind": "registry",
+          "candidatePayloadHash": "80804db9834eef4ce6f3e56b844e2a1bcccd6ce5cfae801c8c7e50cd1210970e",
+          "relation": "PROPOSED_COMPATIBILITY_DEPENDENCY_NOT_ACTIVE"
+        }
+      ],
+      "sectorApplicability": [
+        "BANK",
+        "ENERGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "REAL_ESTATE",
+        "RETAIL",
+        "SECURITIES",
+        "TECHNOLOGY",
+        "UTILITIES"
+      ],
+      "configurationForm": "NATIVE_PROPOSED_PAYLOAD",
+      "descriptionComplete": true,
+      "productionCandidateComplete": false,
+      "missing": [
+        "Exact source publication/receipt authorities not certified",
+        "No runtime method/approval/effective activation binding"
+      ],
+      "selfApproval": false,
+      "sourceAuthority": {
+        "existingFinancialSourcePolicy": {
+          "path": "src/domain/fundamentals/source-authority.ts",
+          "sha256": "d5733a930660c74f313cd531a09e48d4ed3f242afd0928f32b5a77645693bc79"
+        },
+        "perFactAccountingQualificationRequired": true,
+        "publicationSourceContract": "UNRESOLVED_APPROVED_METADATA_CAPTURE_BINDINGS",
+        "newSourceApproved": false
+      }
+    },
+    {
+      "id": "runtime-authority-closure-derivation-crosswalk-10c6b975e3527c4bb24cc4b9",
+      "kind": "derivation-crosswalk",
+      "version": "runtime-derivation-crosswalk-candidate-v2",
+      "contentHash": "10c6b975e3527c4bb24cc4b904904d6bd52a8edbf999e132b046aac7e50614eb",
+      "payloadPath": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-source-closure/authority/derivation-crosswalk.json",
+      "governanceStatus": "PROPOSED",
+      "activationStatus": "NOT_AUTHORIZED",
+      "approvalProvenance": {
+        "state": "NONE",
+        "architectureApprovalOnly": true
+      },
+      "effectiveInterval": {
+        "state": "OWNER_MUST_SET_BEFORE_ACTIVATION",
+        "existingPayloadDeclaredEffectiveDate": "2026-10-09"
+      },
+      "dependencies": [
+        {
+          "kind": "registry",
+          "candidatePayloadHash": "80804db9834eef4ce6f3e56b844e2a1bcccd6ce5cfae801c8c7e50cd1210970e",
+          "relation": "PROPOSED_COMPATIBILITY_DEPENDENCY_NOT_ACTIVE"
+        },
+        {
+          "kind": "availability",
+          "candidatePayloadHash": "2a2eabd50dbe047ddc68bf0f0b96f92c1714bc6aab4540530de7b0ff9dfe82c9",
+          "relation": "PROPOSED_COMPATIBILITY_DEPENDENCY_NOT_ACTIVE"
+        }
+      ],
+      "sectorApplicability": [
+        "BANK",
+        "ENERGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "REAL_ESTATE",
+        "RETAIL",
+        "SECURITIES",
+        "TECHNOLOGY",
+        "UTILITIES"
+      ],
+      "configurationForm": "NATIVE_PROPOSED_PAYLOAD",
+      "descriptionComplete": true,
+      "productionCandidateComplete": false,
+      "missing": [
+        "Bank logical item definitions absent from broad registry",
+        "Bank-by-bank mapping and regulatory perimeter evidence missing",
+        "SECURITIES native route absent; other actual required derived metrics need explicit route approval"
+      ],
+      "selfApproval": false,
+      "sourceAuthority": {
+        "existingFinancialSourcePolicy": {
+          "path": "src/domain/fundamentals/source-authority.ts",
+          "sha256": "d5733a930660c74f313cd531a09e48d4ed3f242afd0928f32b5a77645693bc79"
+        },
+        "perFactAccountingQualificationRequired": true,
+        "publicationSourceContract": "UNRESOLVED_APPROVED_METADATA_CAPTURE_BINDINGS",
+        "newSourceApproved": false
+      }
+    },
+    {
+      "id": "runtime-authority-closure-readiness-requirements-d6a4d343f61f962dd3df25e5",
+      "kind": "readiness-requirements",
+      "version": "runtime-readiness-reusable-specification-v1",
+      "contentHash": "d6a4d343f61f962dd3df25e5d5b5f13d642b4487b6df039c9344d9b038bfcf2e",
+      "payloadPath": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-source-closure/authority/readiness-requirements.json",
+      "governanceStatus": "PROPOSED",
+      "activationStatus": "NOT_AUTHORIZED",
+      "approvalProvenance": {
+        "state": "NONE",
+        "architectureApprovalOnly": true
+      },
+      "effectiveInterval": {
+        "state": "OWNER_MUST_SET_BEFORE_ACTIVATION",
+        "existingPayloadDeclaredEffectiveDate": null
+      },
+      "dependencies": [
+        {
+          "kind": "registry",
+          "candidatePayloadHash": "80804db9834eef4ce6f3e56b844e2a1bcccd6ce5cfae801c8c7e50cd1210970e",
+          "relation": "PROPOSED_COMPATIBILITY_DEPENDENCY_NOT_ACTIVE"
+        },
+        {
+          "kind": "availability",
+          "candidatePayloadHash": "2a2eabd50dbe047ddc68bf0f0b96f92c1714bc6aab4540530de7b0ff9dfe82c9",
+          "relation": "PROPOSED_COMPATIBILITY_DEPENDENCY_NOT_ACTIVE"
+        },
+        {
+          "kind": "derivation-crosswalk",
+          "candidatePayloadHash": "10c6b975e3527c4bb24cc4b904904d6bd52a8edbf999e132b046aac7e50614eb",
+          "relation": "PROPOSED_COMPATIBILITY_DEPENDENCY_NOT_ACTIVE"
+        }
+      ],
+      "sectorApplicability": [
+        "BANK",
+        "ENERGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "REAL_ESTATE",
+        "RETAIL",
+        "SECURITIES",
+        "TECHNOLOGY",
+        "UTILITIES"
+      ],
+      "configurationForm": "REUSABLE_METHOD_SPECIFICATION_NOT_A_RECEIPT",
+      "descriptionComplete": true,
+      "productionCandidateComplete": false,
+      "missing": [
+        "ScoringReadinessRequirements.requiredItems cannot express anyOf/preference groups; do not flatten alternatives into conjunction or select one without evidence/method authority",
+        "Required metrics and market/valuation observations must be frozen per supported sector/model; an empty metric list is not a completeness proof",
+        "Registry topic/operand mappings and source/period/scope definitions must cover each selected requirement",
+        "Missing FORMAL observations/publication and actual HUMAN/M1/independent review remain separate gates"
+      ],
+      "selfApproval": false,
+      "sourceAuthority": {
+        "existingFinancialSourcePolicy": {
+          "path": "src/domain/fundamentals/source-authority.ts",
+          "sha256": "d5733a930660c74f313cd531a09e48d4ed3f242afd0928f32b5a77645693bc79"
+        },
+        "perFactAccountingQualificationRequired": true,
+        "publicationSourceContract": "UNRESOLVED_APPROVED_METADATA_CAPTURE_BINDINGS",
+        "newSourceApproved": false
+      }
+    },
+    {
+      "id": "runtime-authority-closure-di-acceptance-37bde2f80baa54c138a1ece5",
+      "kind": "di-acceptance",
+      "version": "runtime-independent-di-method-specification-v1",
+      "contentHash": "37bde2f80baa54c138a1ece5107d6909c76d514b6b321e6e65c21e05ff88922b",
+      "payloadPath": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-source-closure/authority/di-acceptance.json",
+      "governanceStatus": "PROPOSED",
+      "activationStatus": "NOT_AUTHORIZED",
+      "approvalProvenance": {
+        "state": "NONE",
+        "architectureApprovalOnly": true
+      },
+      "effectiveInterval": {
+        "state": "OWNER_MUST_SET_BEFORE_ACTIVATION",
+        "existingPayloadDeclaredEffectiveDate": null
+      },
+      "dependencies": [
+        {
+          "kind": "registry",
+          "candidatePayloadHash": "80804db9834eef4ce6f3e56b844e2a1bcccd6ce5cfae801c8c7e50cd1210970e",
+          "relation": "PROPOSED_COMPATIBILITY_DEPENDENCY_NOT_ACTIVE"
+        },
+        {
+          "kind": "availability",
+          "candidatePayloadHash": "2a2eabd50dbe047ddc68bf0f0b96f92c1714bc6aab4540530de7b0ff9dfe82c9",
+          "relation": "PROPOSED_COMPATIBILITY_DEPENDENCY_NOT_ACTIVE"
+        },
+        {
+          "kind": "derivation-crosswalk",
+          "candidatePayloadHash": "10c6b975e3527c4bb24cc4b904904d6bd52a8edbf999e132b046aac7e50614eb",
+          "relation": "PROPOSED_COMPATIBILITY_DEPENDENCY_NOT_ACTIVE"
+        },
+        {
+          "kind": "readiness-requirements",
+          "candidatePayloadHash": "d6a4d343f61f962dd3df25e5d5b5f13d642b4487b6df039c9344d9b038bfcf2e",
+          "relation": "PROPOSED_COMPATIBILITY_DEPENDENCY_NOT_ACTIVE"
+        }
+      ],
+      "sectorApplicability": [
+        "BANK",
+        "ENERGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "REAL_ESTATE",
+        "RETAIL",
+        "SECURITIES",
+        "TECHNOLOGY",
+        "UTILITIES"
+      ],
+      "configurationForm": "REUSABLE_METHOD_SPECIFICATION_NOT_A_RECEIPT",
+      "descriptionComplete": true,
+      "productionCandidateComplete": false,
+      "missing": [
+        "Independent acceptance is dataset-specific; no snapshot/reviewed input exists",
+        "Reusable method specification cannot replace a future exact review receipt"
+      ],
+      "selfApproval": false,
+      "sourceAuthority": {
+        "existingFinancialSourcePolicy": {
+          "path": "src/domain/fundamentals/source-authority.ts",
+          "sha256": "d5733a930660c74f313cd531a09e48d4ed3f242afd0928f32b5a77645693bc79"
+        },
+        "perFactAccountingQualificationRequired": true,
+        "publicationSourceContract": "UNRESOLVED_APPROVED_METADATA_CAPTURE_BINDINGS",
+        "newSourceApproved": false
+      }
+    }
+  ],
+  "datasetReceiptCreated": false
+}

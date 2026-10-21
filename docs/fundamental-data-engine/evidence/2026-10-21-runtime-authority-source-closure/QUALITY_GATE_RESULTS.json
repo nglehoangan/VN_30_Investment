@@ -1,0 +1,119 @@
+{
+  "status": "COMPLETE",
+  "results": [
+    {
+      "name": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitCode": 0,
+      "seconds": 7.85,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-source-closure/validation/final-lint.log"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 2.89,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-source-closure/validation/final-typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 11.06,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-source-closure/validation/final-build.log"
+    },
+    {
+      "name": "scoring",
+      "command": [
+        "pnpm",
+        "test:scoring"
+      ],
+      "exitCode": 0,
+      "seconds": 19.0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-source-closure/validation/final-scoring.log"
+    },
+    {
+      "name": "focused",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "tests/unit/source-publication.test.ts",
+        "tests/unit/runtime-readiness.test.ts",
+        "tests/unit/runtime-human-review.test.ts",
+        "tests/unit/runtime-dataset-acceptance.test.ts",
+        "tests/integration/runtime-evidence.test.ts",
+        "tests/unit/scoring-readiness.test.ts",
+        "tests/integration/scoring-readiness.test.ts",
+        "tests/integration/production-authority.test.ts",
+        "tests/integration/dependency-head.test.ts"
+      ],
+      "exitCode": 0,
+      "seconds": 31.76,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-source-closure/validation/final-focused.log"
+    },
+    {
+      "name": "full",
+      "command": [
+        "pnpm",
+        "test",
+        "--reporter=json",
+        "--outputFile=/Users/nglehoangan/Documents/Working/VN_30_Investment/docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-source-closure/validation/full-results.json"
+      ],
+      "exitCode": 1,
+      "seconds": 366.09,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-source-closure/validation/final-full.log"
+    },
+    {
+      "name": "api",
+      "command": [
+        "node",
+        "--test",
+        "api/capture-market.test.mjs",
+        "api/token-session.test.mjs",
+        "api/sub-account.test.mjs",
+        "api/tcbs-unified.test.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 1.2,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-21-runtime-authority-source-closure/validation/final-api.log"
+    }
+  ],
+  "summary": {
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "build": "PASS",
+    "scoringPassed": 127,
+    "focusedPassed": 93,
+    "newSourcePublicationPassed": 13,
+    "apiPassed": 18,
+    "fullPassed": 2108,
+    "fullFailed": 18,
+    "fullTotal": 2126,
+    "newUnexplainedFailures": 0
+  },
+  "developmentFindings": [
+    {
+      "issue": "Parallel Prisma generators raced with EEXIST before scoring tests started",
+      "resolution": "All final gates run sequentially; no skipped or weakened tests"
+    },
+    {
+      "issue": "Boundary checker rejects identifier document even as a pure function argument",
+      "resolution": "Renamed new domain argument/result to filing; existing boundary rule unchanged"
+    },
+    {
+      "issue": "Default Node22.12 lacked registerHooks; previous temporary supported runtime absent",
+      "resolution": "Restored exact Node22.23.2 official archive with official SHA256 verification; qualification and all final gates used supported version"
+    }
+  ]
+}

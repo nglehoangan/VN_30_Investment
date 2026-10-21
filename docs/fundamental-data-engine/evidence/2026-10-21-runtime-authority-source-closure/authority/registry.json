@@ -1,0 +1,379 @@
+{
+  "registryVersion": "1.0.0",
+  "methodologyIdentity": "fundamentals-items-v1",
+  "crosswalkVersion": "1.0.0",
+  "governanceStatus": "PROPOSED",
+  "approvalReference": null,
+  "recordedAt": "2026-10-08T00:00:00.000Z",
+  "effectiveDate": "2026-10-08",
+  "authorityReferences": [
+    "docs/03 SCORING/METRIC_DEFINITIONS.md",
+    "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+    "docs/01 SYSTEM/SCORING_MODEL_v1.0.md"
+  ],
+  "items": [
+    {
+      "itemId": "REVENUE",
+      "name": "Reported revenue",
+      "meaning": "Issuer-reported non-financial revenue for the stated window and scope; not bank net interest income or normalized growth.",
+      "statementType": "INCOME",
+      "measurementSemantic": "FLOW",
+      "allowedUnits": [
+        "CURRENCY"
+      ],
+      "currencyApplicability": "REQUIRED",
+      "signConvention": "SIGNED",
+      "allowedReportingScopes": [
+        "CONSOLIDATED",
+        "SEPARATE_STANDALONE"
+      ],
+      "sectorApplicability": [
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "UTILITIES",
+        "ENERGY",
+        "CONGLOMERATE"
+      ],
+      "evidenceTopicMappings": [
+        {
+          "documentMetricId": "GQ-HIST-01",
+          "rubricId": "GQ-HIST",
+          "topic": "trend",
+          "requirement": "Comparable consolidated windows, eligible original vintage; endpoint operands require later reviewed construction."
+        }
+      ],
+      "operandMappings": [],
+      "itemDefinitionVersion": "1.0.0",
+      "methodologyIdentity": "fundamentals-items-v1",
+      "authorityReferences": [
+        "docs/03 SCORING/METRIC_DEFINITIONS.md"
+      ],
+      "status": "ACTIVE",
+      "deprecatedFrom": null,
+      "supersededBy": null
+    },
+    {
+      "itemId": "EBIT",
+      "name": "Reported EBIT",
+      "meaning": "Explicitly reconciled issuer EBIT; not any operating-profit label and not automatically normalized EBIT.",
+      "statementType": "INCOME",
+      "measurementSemantic": "FLOW",
+      "allowedUnits": [
+        "CURRENCY"
+      ],
+      "currencyApplicability": "REQUIRED",
+      "signConvention": "SIGNED",
+      "allowedReportingScopes": [
+        "CONSOLIDATED",
+        "SEPARATE_STANDALONE"
+      ],
+      "sectorApplicability": [
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "UTILITIES",
+        "ENERGY",
+        "CONGLOMERATE"
+      ],
+      "evidenceTopicMappings": [
+        {
+          "documentMetricId": "BQ-EQ-03",
+          "rubricId": "BQ-EQ",
+          "topic": "margins",
+          "requirement": "Comparable definition and documented cycle/one-off normalization before scoring."
+        }
+      ],
+      "operandMappings": [],
+      "itemDefinitionVersion": "1.0.0",
+      "methodologyIdentity": "fundamentals-items-v1",
+      "authorityReferences": [
+        "docs/03 SCORING/METRIC_DEFINITIONS.md"
+      ],
+      "status": "ACTIVE",
+      "deprecatedFrom": null,
+      "supersededBy": null
+    },
+    {
+      "itemId": "NET_INCOME",
+      "name": "Reported net income",
+      "meaning": "Reported total net profit after tax in the stated consolidation scope, including minority interests when present; not common-attributable profit.",
+      "statementType": "INCOME",
+      "measurementSemantic": "FLOW",
+      "allowedUnits": [
+        "CURRENCY"
+      ],
+      "currencyApplicability": "REQUIRED",
+      "signConvention": "SIGNED",
+      "allowedReportingScopes": [
+        "CONSOLIDATED",
+        "SEPARATE_STANDALONE"
+      ],
+      "sectorApplicability": [
+        "BANK",
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "UTILITIES",
+        "ENERGY",
+        "SECURITIES",
+        "INSURANCE",
+        "CONGLOMERATE"
+      ],
+      "evidenceTopicMappings": [
+        {
+          "documentMetricId": "BQ-CASH-03",
+          "rubricId": "BQ-CASH",
+          "topic": "one_offs",
+          "requirement": "Only reported evidence; normalization and attribution need separate lineage."
+        }
+      ],
+      "operandMappings": [],
+      "itemDefinitionVersion": "1.0.0",
+      "methodologyIdentity": "fundamentals-items-v1",
+      "authorityReferences": [
+        "docs/03 SCORING/METRIC_DEFINITIONS.md"
+      ],
+      "status": "ACTIVE",
+      "deprecatedFrom": null,
+      "supersededBy": null
+    },
+    {
+      "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+      "name": "Reported common-attributable net income",
+      "meaning": "Reported net profit attributable to common shareholders; attribution must be evidenced, not inferred from total net income.",
+      "statementType": "INCOME",
+      "measurementSemantic": "FLOW",
+      "allowedUnits": [
+        "CURRENCY"
+      ],
+      "currencyApplicability": "REQUIRED",
+      "signConvention": "SIGNED",
+      "allowedReportingScopes": [
+        "CONSOLIDATED",
+        "SEPARATE_STANDALONE"
+      ],
+      "sectorApplicability": [
+        "BANK",
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "UTILITIES",
+        "ENERGY",
+        "SECURITIES",
+        "INSURANCE",
+        "CONGLOMERATE"
+      ],
+      "evidenceTopicMappings": [
+        {
+          "documentMetricId": "BQ-EQ-02",
+          "rubricId": "BQ-EQ",
+          "topic": "returns",
+          "requirement": "Reported fact supports review; ROE requires normalized profit and average common equity, neither inferred here."
+        }
+      ],
+      "operandMappings": [],
+      "itemDefinitionVersion": "1.0.0",
+      "methodologyIdentity": "fundamentals-items-v1",
+      "authorityReferences": [
+        "docs/03 SCORING/METRIC_DEFINITIONS.md"
+      ],
+      "status": "ACTIVE",
+      "deprecatedFrom": null,
+      "supersededBy": null
+    },
+    {
+      "itemId": "TOTAL_ASSETS",
+      "name": "Total assets",
+      "meaning": "Reported total assets at the balance-sheet date and stated scope.",
+      "statementType": "BALANCE",
+      "measurementSemantic": "STOCK",
+      "allowedUnits": [
+        "CURRENCY"
+      ],
+      "currencyApplicability": "REQUIRED",
+      "signConvention": "NONNEGATIVE",
+      "allowedReportingScopes": [
+        "CONSOLIDATED",
+        "SEPARATE_STANDALONE"
+      ],
+      "sectorApplicability": [
+        "BANK",
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "UTILITIES",
+        "ENERGY",
+        "SECURITIES",
+        "INSURANCE",
+        "CONGLOMERATE"
+      ],
+      "evidenceTopicMappings": [],
+      "operandMappings": [],
+      "itemDefinitionVersion": "1.0.0",
+      "methodologyIdentity": "fundamentals-items-v1",
+      "authorityReferences": [
+        "docs/03 SCORING/METRIC_DEFINITIONS.md"
+      ],
+      "status": "ACTIVE",
+      "deprecatedFrom": null,
+      "supersededBy": null
+    },
+    {
+      "itemId": "COMMON_EQUITY",
+      "name": "Common equity",
+      "meaning": "Equity attributable to common shareholders excluding minority/preferred interests as applicable, not automatically total equity.",
+      "statementType": "BALANCE",
+      "measurementSemantic": "STOCK",
+      "allowedUnits": [
+        "CURRENCY"
+      ],
+      "currencyApplicability": "REQUIRED",
+      "signConvention": "SIGNED",
+      "allowedReportingScopes": [
+        "CONSOLIDATED",
+        "SEPARATE_STANDALONE"
+      ],
+      "sectorApplicability": [
+        "BANK",
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "UTILITIES",
+        "ENERGY",
+        "SECURITIES",
+        "INSURANCE",
+        "CONGLOMERATE"
+      ],
+      "evidenceTopicMappings": [
+        {
+          "documentMetricId": "BQ-EQ-02",
+          "rubricId": "BQ-EQ",
+          "topic": "returns",
+          "requirement": "Average common equity is a later governed derivation from comparable dated balances."
+        }
+      ],
+      "operandMappings": [],
+      "itemDefinitionVersion": "1.0.0",
+      "methodologyIdentity": "fundamentals-items-v1",
+      "authorityReferences": [
+        "docs/03 SCORING/METRIC_DEFINITIONS.md"
+      ],
+      "status": "ACTIVE",
+      "deprecatedFrom": null,
+      "supersededBy": null
+    },
+    {
+      "itemId": "CFO",
+      "name": "Operating cash flow",
+      "meaning": "Issuer net cash from operating activities over the stated window; unrelated to investor portfolio cash.",
+      "statementType": "CASH_FLOW",
+      "measurementSemantic": "FLOW",
+      "allowedUnits": [
+        "CURRENCY"
+      ],
+      "currencyApplicability": "REQUIRED",
+      "signConvention": "SIGNED",
+      "allowedReportingScopes": [
+        "CONSOLIDATED",
+        "SEPARATE_STANDALONE"
+      ],
+      "sectorApplicability": [
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "UTILITIES",
+        "ENERGY",
+        "CONGLOMERATE"
+      ],
+      "evidenceTopicMappings": [
+        {
+          "documentMetricId": "BQ-CASH-01",
+          "rubricId": "BQ-CASH",
+          "topic": "realization",
+          "requirement": "Comparable multi-year cumulative CFO/normalized NPAT; bank CFO substitution prohibited."
+        }
+      ],
+      "operandMappings": [
+        {
+          "metricId": "FCF",
+          "position": 0,
+          "operand": "CFO",
+          "requirement": "Compatible non-financial reporting window; capex definition and sign reconciled; no automatic scoring."
+        }
+      ],
+      "itemDefinitionVersion": "1.0.0",
+      "methodologyIdentity": "fundamentals-items-v1",
+      "authorityReferences": [
+        "docs/03 SCORING/METRIC_DEFINITIONS.md"
+      ],
+      "status": "ACTIVE",
+      "deprecatedFrom": null,
+      "supersededBy": null
+    },
+    {
+      "itemId": "CAPEX",
+      "name": "Issuer capital expenditure",
+      "meaning": "Positive issuer expenditure required to sustain/grow operations, explicitly identified/reconciled from disclosed capex items; not investing cash flow.",
+      "statementType": "CASH_FLOW",
+      "measurementSemantic": "FLOW",
+      "allowedUnits": [
+        "CURRENCY"
+      ],
+      "currencyApplicability": "REQUIRED",
+      "signConvention": "NONNEGATIVE",
+      "allowedReportingScopes": [
+        "CONSOLIDATED",
+        "SEPARATE_STANDALONE"
+      ],
+      "sectorApplicability": [
+        "REAL_ESTATE",
+        "RETAIL",
+        "TECHNOLOGY",
+        "INDUSTRIAL",
+        "MATERIALS",
+        "UTILITIES",
+        "ENERGY",
+        "CONGLOMERATE"
+      ],
+      "evidenceTopicMappings": [
+        {
+          "documentMetricId": "BQ-CASH-02",
+          "rubricId": "BQ-CASH",
+          "topic": "realization",
+          "requirement": "Disclose total vs maintenance capex; no inference from total investing outflow."
+        }
+      ],
+      "operandMappings": [
+        {
+          "metricId": "FCF",
+          "position": 1,
+          "operand": "issuer_capex",
+          "requirement": "Positive issuer expenditure for compatible CFO window; maintenance vs total scope documented."
+        }
+      ],
+      "itemDefinitionVersion": "1.0.0",
+      "methodologyIdentity": "fundamentals-items-v1",
+      "authorityReferences": [
+        "docs/03 SCORING/METRIC_DEFINITIONS.md"
+      ],
+      "status": "ACTIVE",
+      "deprecatedFrom": null,
+      "supersededBy": null
+    }
+  ]
+}
