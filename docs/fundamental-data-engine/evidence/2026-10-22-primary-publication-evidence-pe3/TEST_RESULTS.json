@@ -1,0 +1,262 @@
+{
+  "status": "COMPLETE_WITH_KNOWN_BASELINE_FAILURES",
+  "qualityGates": {
+    "status": "COMPLETE",
+    "results": [
+      {
+        "name": "lint",
+        "command": [
+          "pnpm",
+          "lint"
+        ],
+        "exitCode": 1,
+        "seconds": 8.38,
+        "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe3/validation/lint.log"
+      },
+      {
+        "name": "typecheck",
+        "command": [
+          "pnpm",
+          "typecheck"
+        ],
+        "exitCode": 0,
+        "seconds": 3.17,
+        "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe3/validation/typecheck.log"
+      },
+      {
+        "name": "build",
+        "command": [
+          "pnpm",
+          "build"
+        ],
+        "exitCode": 0,
+        "seconds": 14.67,
+        "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe3/validation/build.log"
+      },
+      {
+        "name": "scoring",
+        "command": [
+          "pnpm",
+          "test:scoring"
+        ],
+        "exitCode": 0,
+        "seconds": 19.3,
+        "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe3/validation/scoring.log"
+      },
+      {
+        "name": "focused",
+        "command": [
+          "pnpm",
+          "exec",
+          "vitest",
+          "run",
+          "tests/unit/d2-availability.test.ts",
+          "tests/integration/d2-source-evidence.test.ts",
+          "tests/unit/fundamentals-availability-legacy.test.ts",
+          "tests/unit/fundamentals-availability-evidence.test.ts",
+          "tests/integration/fundamentals-availability-evidence.test.ts",
+          "tests/unit/fundamentals-live-public-disclosure.test.ts",
+          "tests/unit/sector-requirements.test.ts",
+          "tests/unit/supported-derivation-routes.test.ts",
+          "tests/unit/tcbs-pipeline.test.ts",
+          "tests/integration/tcbs-pipeline.test.ts",
+          "tests/unit/completed-session.test.ts",
+          "tests/unit/source-publication.test.ts",
+          "tests/unit/runtime-readiness.test.ts",
+          "tests/unit/runtime-human-review.test.ts",
+          "tests/unit/runtime-dataset-acceptance.test.ts",
+          "tests/integration/runtime-evidence.test.ts",
+          "tests/unit/scoring-readiness.test.ts",
+          "tests/integration/scoring-readiness.test.ts",
+          "tests/integration/production-authority.test.ts",
+          "tests/integration/dependency-head.test.ts",
+          "tests/unit/issuer-documents.test.ts",
+          "tests/integration/issuer-documents.test.ts",
+          "tests/unit/vietstock-collection-policy.test.ts",
+          "tests/integration/fundamentals-normalization.test.ts",
+          "--reporter=json",
+          "--outputFile=docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe3/validation/focused-results.json"
+        ],
+        "exitCode": 0,
+        "seconds": 49.38,
+        "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe3/validation/focused.log"
+      },
+      {
+        "name": "full",
+        "command": [
+          "pnpm",
+          "test",
+          "--reporter=json",
+          "--outputFile=docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe3/validation/full-results.json"
+        ],
+        "exitCode": 1,
+        "seconds": 376.47,
+        "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe3/validation/full.log"
+      },
+      {
+        "name": "backup-diagnostic",
+        "command": [
+          "pnpm",
+          "exec",
+          "vitest",
+          "run",
+          "tests/integration/m68-backup.test.ts",
+          "--testTimeout=60000",
+          "--reporter=json",
+          "--outputFile=docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe3/validation/backup-diagnostic-results.json"
+        ],
+        "exitCode": 0,
+        "seconds": 22.02,
+        "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe3/validation/backup-diagnostic.log"
+      }
+    ]
+  },
+  "lint": {
+    "status": "FAIL_BASELINE",
+    "newWarnings": 0,
+    "reason": "Existing unused instantiateSectorRequirements in sealed 2026-10-21-escalated-blocker-resolution/verify-engineering.mjs; historical helper and warning budget unchanged"
+  },
+  "typecheck": "PASS",
+  "build": "PASS",
+  "scoring": {
+    "passed": 127,
+    "failed": 0
+  },
+  "focused": {
+    "passed": 224,
+    "failed": 0
+  },
+  "additionalNormalizationDebtMigration": {
+    "passed": 45,
+    "failed": 0,
+    "command": "pnpm exec vitest run tests/unit/fundamentals-normalization.test.ts tests/unit/debt-contract-activation.test.ts tests/integration/fundamentals-normalization-migration.test.ts --reporter=json --outputFile=.../validation/normalization-results.json"
+  },
+  "PE3AdversarialTests": {
+    "passed": 27,
+    "failed": 0,
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/test-pe3-evidence.py",
+    "log": "validation/pe3-replay-tests.log",
+    "coverage": [
+      "document/cell substitution",
+      "occurrence-aware repeated codes",
+      "period/scope/unit/factor/sign",
+      "unresolved-digit promotion rejection",
+      "all 45 receipt/canonical bindings",
+      "bank closing reserve versus expense",
+      "VNM H1 versus Q2",
+      "D2 leap/month/year boundaries",
+      "missing clocks/cutoffs/authority",
+      "late mapping/retrieval/verification and other-boundary maximum"
+    ]
+  },
+  "deterministicReplay": {
+    "runs": 2,
+    "byteIdentical": true,
+    "sha256": "cbfdee233f52b32cbc9cf9a3d99f6ef21071f8706d9b0fd554d222826f48bb74",
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/replay-pe3-evidence.py"
+  },
+  "full": {
+    "previousPE2": {
+      "passed": 2166,
+      "failed": 19
+    },
+    "PE3": {
+      "passed": 2167,
+      "failed": 18,
+      "total": 2185
+    },
+    "newRegressions": [],
+    "retainedHistoricalFailures": [
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/consumer-retail-ticker-closure.test.ts",
+        "test": "33 all seven protected source and evidence hashes remain unchanged"
+      },
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/consumer-targeted-fix.test.ts",
+        "test": "All protected evidence and approved contracts retain their original hashes"
+      },
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/consumer-targeted-fix.test.ts",
+        "test": "VNM original PDF is bound to exact retained bytes"
+      },
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/di-governance-closure.test.ts",
+        "test": "6 retained original HPG PDF hashes still match physical bytes"
+      },
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/di-governance-closure.test.ts",
+        "test": "7 VJC independent producer replay is deterministic with explicit ticker"
+      },
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/di-governance-closure.test.ts",
+        "test": "8 GVR independent producer replay is deterministic with explicit ticker"
+      },
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/energy-ticker-closure.test.ts",
+        "test": "29 all approved closures and production contracts unchanged"
+      },
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/fpt-ticker-closure.test.ts",
+        "test": "deterministic replay requires no temporary extraction files"
+      },
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/gvr-ticker-closure.test.ts",
+        "test": "33 all 13 approved closures, sources, contracts and prior tests remain unchanged"
+      },
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/gvr-ticker-closure.test.ts",
+        "test": "retained originals exist and current inventory components reconcile including provision"
+      },
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/real-estate-ticker-closure.test.ts",
+        "test": "23 offline replay binds originals and raw bytes without disposable extraction"
+      },
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/tcx-ket-vang-targeted.test.ts",
+        "test": "TCX final targeted FY2022 Két Vàng forensic boundary 19 SSI closure unchanged"
+      },
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/tcx-ket-vang-targeted.test.ts",
+        "test": "TCX final targeted FY2022 Két Vàng forensic boundary 20 all 15 approved closures and primary TCX evidence unchanged"
+      },
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/tcx-ket-vang-targeted.test.ts",
+        "test": "TCX final targeted FY2022 Két Vàng forensic boundary 22 no denominator or contract modifications"
+      },
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/tcx-ticker-closure.test.ts",
+        "test": "TCX Level-1 canonical accounting isolation and semantics 32 SSI protected evidence unchanged"
+      },
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/tcx-ticker-closure.test.ts",
+        "test": "TCX Level-1 canonical accounting isolation and semantics 33 all 15 approved closure artifacts and bound sources unchanged"
+      },
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/vjc-ticker-closure.test.ts",
+        "test": "40 all 14 approved closures and existing contracts unchanged"
+      },
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/unit/vjc-ticker-closure.test.ts",
+        "test": "all retained transcriptions qualify and all five source PDFs are hash-bound"
+      }
+    ],
+    "noLongerFailing": [
+      {
+        "file": "/Users/nglehoangan/Documents/Working/VN_30_Investment/tests/integration/m68-backup.test.ts",
+        "test": "backup/restore refuses overwrite, same path, public output, symlinks, missing checksums and altered backup bytes"
+      }
+    ],
+    "interpretation": "All 18 historical missing-artifact failures retained. PE2 default-budget backup timing failure did not recur; full default assertions passed. Diagnostic backup also passed. No tests suppressed, configs or assertions changed."
+  },
+  "boundaries": {
+    "status": "PASS",
+    "command": "node scripts/check-boundaries.mjs",
+    "log": "validation/boundaries.log"
+  },
+  "backupDiagnostic": {
+    "passed": 3,
+    "failed": 0
+  },
+  "newUnexplainedRegressions": 0,
+  "defaultFullSuiteGreen": false
+}
