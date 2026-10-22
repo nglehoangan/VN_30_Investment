@@ -1,3 +1,5 @@
+> Superseded acquisition configuration (2026-10-22): [Vietstock-only source policy](VIETSTOCK_ONLY_SOURCE_POLICY.md) governs current collection. Issuer fallback is disabled. The material below describes historical observations, not current authorized routes.
+
 # Vietstock public mirror source check — 2026-10-10
 
 Subsequent owner-authorized imports and period checks are recorded in [the raw coverage report](VIETSTOCK_RAW_COVERAGE_REPORT.md). The no-import statement below describes this earlier source-check stage.

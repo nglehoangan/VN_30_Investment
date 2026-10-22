@@ -7,7 +7,7 @@ import json
 import pathlib
 import shutil
 import sqlite3
-import subprocess
+from lib.vietstock_source_policy import require_vietstock_url, download_vietstock
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 CONTROL = ROOT / 'docs/fundamental-data-engine/rebuild-2026-10-19'
@@ -52,18 +52,17 @@ def reset():
 
 
 def fetch(item):
+    require_vietstock_url(item['url'])
     target = ROOT / item['path']
     if target.exists():
         data = target.read_bytes()
         if data.startswith(b'%PDF-'):
             return {**PREVIOUS.get(item['url'], {}), **item, 'status': 'DOWNLOADED', 'sha256': digest(target), 'bytes': len(data), 'cachedWithinFreshRun': True}
     stamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
+    temp = target.with_suffix('.part')
     try:
         target.parent.mkdir(parents=True, exist_ok=True)
-        temp = target.with_suffix('.part')
-        response = subprocess.run(['curl', '--silent', '--show-error', '--location', '--fail',
-            '--proto', '=https', '--proto-redir', '=https', '--max-time', '55', '--max-filesize', '100000000',
-            '--output', str(temp), '--write-out', '%{http_code}', item['url']], capture_output=True, text=True, timeout=60)
+        response = download_vietstock(item['url'], temp)
         status = int(response.stdout[-3:]) if response.stdout[-3:].isdigit() else None
         if response.returncode:
             temp.unlink(missing_ok=True)
@@ -77,6 +76,7 @@ def fetch(item):
         return {**item, 'status': 'DOWNLOADED', 'retrievedAt': stamp, 'httpStatus': status,
                 'sha256': hashlib.sha256(data).hexdigest(), 'bytes': len(data)}
     except Exception as error:
+        temp.unlink(missing_ok=True)
         return {**item, 'status': 'FAILED', 'retrievedAt': stamp, 'httpStatus': None, 'error': str(error)[:250]}
 
 
@@ -86,6 +86,8 @@ def main():
     parser.add_argument('--workers', type=int, default=4)
     args = parser.parse_args()
     plan = json.loads((CONTROL / 'source-plan.json').read_text())
+    for source in plan['sources']:
+        require_vietstock_url(source['url'])
     if args.reset:
         reset()
     global PREVIOUS

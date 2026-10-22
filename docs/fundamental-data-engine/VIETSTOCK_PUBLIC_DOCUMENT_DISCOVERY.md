@@ -1,3 +1,5 @@
+> Superseded acquisition configuration (2026-10-22): [Vietstock-only source policy](VIETSTOCK_ONLY_SOURCE_POLICY.md) governs current collection. Issuer fallback is disabled. The material below describes historical observations, not current authorized routes.
+
 # Vietstock public document discovery
 
 Checked 2026-10-11. All 30 registered research-basket tickers returned public financial-document metadata for the requested 2025/2026 filters. All 30 have PDF links; SSI and TCX also distribute some reports as ZIP archives. This verifies the discovery mechanism, not complete coverage of every required period or canonical admission.

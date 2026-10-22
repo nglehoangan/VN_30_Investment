@@ -1,3 +1,5 @@
+> Superseded acquisition configuration (2026-10-22): [Vietstock-only source policy](VIETSTOCK_ONLY_SOURCE_POLICY.md) governs current collection. Issuer fallback is disabled. The material below describes historical observations, not current authorized routes.
+
 # Fundamental source register
 
 Lifecycle boundary: **source discovered ≠ source operationally qualified ≠ document identity qualified ≠ financial observation accepted**. `issuer-sources.json` remains discovery configuration only. `PDF_OPENED` and visible links are browsing results; none grants normalization eligibility. The Slice 02 document gate requires separate hash-bound content review.
