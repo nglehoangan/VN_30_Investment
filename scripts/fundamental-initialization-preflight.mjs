@@ -9,6 +9,18 @@ const hash=value=>createHash('sha256').update(value).digest('hex');
 const gates=[
  ['DI1','VN30 master source/effective date verified'],['DI2','Active universe complete/no duplicates'],['DI3','Sector mapping complete'],['DI4','Required market data loaded'],['DI5','Required fundamentals loaded'],['DI6','Period/unit normalization validated'],['DI7','Missing-data checks PASS'],['DI8','Freshness checks PASS'],['DI9','Conflict/impossible-value checks PASS'],['DI10','Derived metric lineage verified'],['DI11','Point-in-time controls verified'],['DI12','Data Snapshot ID reproducible'],['DI13','Required per-ticker readiness determined'],['DI14','Independent data-quality review PASS'],['DI15','No Critical/Major data issue unresolved'],
 ];
+/** Discovery schema compatibility is not source approval or initialization authority. */
+export function validateSourceDiscoveryRegister(register){
+ if(![1,2].includes(register.schemaVersion)||!Array.isArray(register.sources)||!register.sources.length)throw new Error('INVALID_SOURCE_REGISTER');
+ if(register.schemaVersion===2){
+  const p=register.policy;
+  if(p?.version!=='vietstock-only-financial-document-acquisition-v1'||JSON.stringify([...(p.allowedHosts??[])].sort())!==JSON.stringify(['finance.vietstock.vn','static2.vietstock.vn'])||p.issuerWebsiteFallback!==false||p.exchangeWebsiteFallback!==false)throw new Error('INVALID_SOURCE_REGISTER');
+  for(const source of register.sources){
+   const url=new URL(source.discoveryUrl);
+   if(url.protocol!=='https:'||url.hostname!=='finance.vietstock.vn'||url.username||url.password||url.port||url.hash||url.pathname!==`/${source.ticker.toLowerCase()}/tai-tai-lieu.htm`||url.search!=='?doctype=1')throw new Error('INVALID_SOURCE_REGISTER');
+  }
+ }
+}
 /** Repository qualification inventory only. No env, database, network, import or scoring capability. */
 export function initializationPreflight({asOf=null,target=null}={}){
  if(asOf!==null&&(typeof asOf!=='string'||!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(asOf)||!Number.isFinite(Date.parse(asOf))||new Date(asOf).toISOString()!==asOf))throw new Error('INVALID_AS_OF');
@@ -16,7 +28,7 @@ export function initializationPreflight({asOf=null,target=null}={}){
  const evidence=Object.entries(files).map(([kind,file])=>{const bytes=readFileSync(path.join(root,file));return {kind,path:file,sha256:hash(bytes),bytes};});
  const json=kind=>JSON.parse(evidence.find(e=>e.kind===kind).bytes.toString('utf8'));
  const register=json('sources'),registry=json('registry'),mapping=json('mapping'),derivations=json('derivations');
- if(register.schemaVersion!==1||!Array.isArray(register.sources)||!register.sources.length)throw new Error('INVALID_SOURCE_REGISTER');
+ validateSourceDiscoveryRegister(register);
  const seen=new Set();
  for(const s of register.sources){if(!/^[A-Z0-9]{2,10}$/.test(s.ticker)||seen.has(s.ticker)||!['research_basket','supplemental_historical_candidate'].includes(s.scope)||typeof s.status!=='string')throw new Error('INVALID_SOURCE_REGISTER');seen.add(s.ticker);}
  const blockers=['NO_VERIFIED_INITIALIZATION_DATASET','OFFICIAL_UNIVERSE_AND_EFFECTIVE_MEMBERSHIP_REVIEW_REQUIRED','SECTOR_AND_MARKET_INPUTS_REQUIRED','REAL_SOURCE_ACCESS_AND_RETENTION_REVIEW_REQUIRED','INDEPENDENT_NORMALIZATION_FORMULA_PUBLICATION_REVIEW_REQUIRED','EXTERNAL_GOVERNANCE_CAPABILITIES_REQUIRED','DI14_DI15_INDEPENDENT_SIGN_OFF_REQUIRED','EXACT_SOURCE_TARGET_COMMAND_REVIEW_REQUIRED'];
@@ -25,7 +37,7 @@ export function initializationPreflight({asOf=null,target=null}={}){
  const packet={schemaVersion:1,kind:'VN30_INITIALIZATION_REPOSITORY_PREFLIGHT',status:'BLOCKED',dataset:null,snapshotRunId:null,contentHash:null,formalUniverseCount:null,sourceAccessExecuted:false,databaseAccessExecuted:false,scoringExecuted:false,
   requestedDecisionAsOf:asOf,target:{selected:target!==null,pathWithheld:true,pathHash:target?hash(path.resolve(target)):null,reviewRequired:true},
   repositoryEvidence:evidence.map(({kind,path,sha256})=>({kind,path,sha256})),
-  inventory:{researchCandidates:register.sources.filter(s=>s.scope==='research_basket').length,supplementalCandidates:register.sources.filter(s=>s.scope==='supplemental_historical_candidate').length,officialConstituentValidation:register.universe.officialConstituentValidation,sourceRegisterCheckedOn:register.checkedOn,liveVerificationPerformed:false,registry:{version:registry.registryVersion,declaredGovernanceStatus:registry.governanceStatus,externalApprovalVerified:false},providerMappings:[{version:mapping.version,sourceVersionId:mapping.sourceVersionId,declaredGovernanceStatus:mapping.governanceStatus,externalApprovalVerified:false}],derivations:{version:derivations.version,declaredGovernanceStatus:derivations.governanceStatus,externalApprovalVerified:false}},
+  inventory:{researchCandidates:register.sources.filter(s=>s.scope==='research_basket').length,supplementalCandidates:register.sources.filter(s=>s.scope==='supplemental_historical_candidate').length,officialConstituentValidation:register.universe?.officialConstituentValidation??'UNKNOWN_NOT_ESTABLISHED',sourceRegisterCheckedOn:register.checkedOn??register.updatedAt?.slice(0,10)??null,liveVerificationPerformed:false,registry:{version:registry.registryVersion,declaredGovernanceStatus:registry.governanceStatus,externalApprovalVerified:false},providerMappings:[{version:mapping.version,sourceVersionId:mapping.sourceVersionId,declaredGovernanceStatus:mapping.governanceStatus,externalApprovalVerified:false}],derivations:{version:derivations.version,declaredGovernanceStatus:derivations.governanceStatus,externalApprovalVerified:false}},
   candidates:register.sources.map(s=>({ticker:s.ticker,scope:s.scope,discoveryStatus:s.status,sourceRegisterReference:`${files.sources}#${s.ticker}`,activeMembership:'UNKNOWN',sector:'UNKNOWN',market:'UNKNOWN',fundamentals:'UNKNOWN',dataReady:null,readyForScoring:null,status:'BLOCKED',blockers:['OFFICIAL_MEMBERSHIP_NOT_ESTABLISHED','NO_VERIFIED_TICKER_INPUT_PACKAGE','SOURCE_QUALIFICATION_NOT_ESTABLISHED']})),
   gates:gates.map(([id,requirement])=>({id,requirement,status:'NOT_EXECUTED',datasetBoundEvidence:[],measurement:null,independentReviewer:null})),
   issueRegister:[{id:'INIT-001',severity:'MAJOR',status:'OPEN',issue:'No exact initialization dataset or official membership/sector/market evidence supplied.'},{id:'INIT-002',severity:'MAJOR',status:'OPEN',issue:'Real source qualification and externally approved interpretation/availability capabilities remain unverified.'},{id:'INIT-003',severity:'MAJOR',status:'OPEN',issue:'Independent dataset-specific review, DI acceptance and issue closure not executed.'}],blockers};

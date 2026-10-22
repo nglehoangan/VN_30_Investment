@@ -1,0 +1,94 @@
+{
+  "status": "COMPLETE",
+  "results": [
+    {
+      "name": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitCode": 1,
+      "seconds": 10.53,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe2/validation/lint.log"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "seconds": 3.67,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe2/validation/typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 20.9,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe2/validation/build.log"
+    },
+    {
+      "name": "scoring",
+      "command": [
+        "pnpm",
+        "test:scoring"
+      ],
+      "exitCode": 0,
+      "seconds": 22.33,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe2/validation/scoring.log"
+    },
+    {
+      "name": "focused",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "tests/unit/d2-availability.test.ts",
+        "tests/integration/d2-source-evidence.test.ts",
+        "tests/unit/fundamentals-availability-legacy.test.ts",
+        "tests/unit/fundamentals-availability-evidence.test.ts",
+        "tests/integration/fundamentals-availability-evidence.test.ts",
+        "tests/unit/fundamentals-live-public-disclosure.test.ts",
+        "tests/unit/sector-requirements.test.ts",
+        "tests/unit/supported-derivation-routes.test.ts",
+        "tests/unit/tcbs-pipeline.test.ts",
+        "tests/integration/tcbs-pipeline.test.ts",
+        "tests/unit/completed-session.test.ts",
+        "tests/unit/source-publication.test.ts",
+        "tests/unit/runtime-readiness.test.ts",
+        "tests/unit/runtime-human-review.test.ts",
+        "tests/unit/runtime-dataset-acceptance.test.ts",
+        "tests/integration/runtime-evidence.test.ts",
+        "tests/unit/scoring-readiness.test.ts",
+        "tests/integration/scoring-readiness.test.ts",
+        "tests/integration/production-authority.test.ts",
+        "tests/integration/dependency-head.test.ts",
+        "tests/unit/issuer-documents.test.ts",
+        "tests/unit/vietstock-collection-policy.test.ts",
+        "tests/integration/issuer-documents.test.ts",
+        "--reporter=json",
+        "--outputFile=docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe2/validation/focused-results.json"
+      ],
+      "exitCode": 0,
+      "seconds": 49.66,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe2/validation/focused.log"
+    },
+    {
+      "name": "full",
+      "command": [
+        "pnpm",
+        "test",
+        "--reporter=json",
+        "--outputFile=docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe2/validation/full-results.json"
+      ],
+      "exitCode": 1,
+      "seconds": 422.62,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe2/validation/full.log"
+    }
+  ]
+}

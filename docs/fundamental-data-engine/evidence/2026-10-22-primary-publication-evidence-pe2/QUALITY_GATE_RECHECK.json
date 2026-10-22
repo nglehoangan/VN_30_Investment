@@ -1,0 +1,63 @@
+{
+  "status": "COMPLETE",
+  "results": [
+    {
+      "name": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitCode": 1,
+      "seconds": 9.04,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe2/validation/recheck-lint.log"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitCode": 2,
+      "seconds": 15.13,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe2/validation/recheck-typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 11.6,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe2/validation/recheck-build.log"
+    },
+    {
+      "name": "full",
+      "command": [
+        "pnpm",
+        "test",
+        "--reporter=json",
+        "--outputFile=docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe2/validation/final-full-results.json"
+      ],
+      "exitCode": 1,
+      "seconds": 422.93,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe2/validation/recheck-full.log"
+    },
+    {
+      "name": "backup-diagnostic",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "tests/integration/m68-backup.test.ts",
+        "--testTimeout=60000",
+        "--reporter=json",
+        "--outputFile=docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe2/validation/backup-diagnostic-results.json"
+      ],
+      "exitCode": 0,
+      "seconds": 25.25,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-22-primary-publication-evidence-pe2/validation/recheck-backup-diagnostic.log"
+    }
+  ]
+}
