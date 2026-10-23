@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "pec2-admission-contract-v1",
+  "allFieldsRequired": true,
+  "previewNulls": "Preserve missing evidence explicitly; null is never approval or a zero value.",
+  "fieldRules": {
+    "contract": "Exact literal pec2-source-admission-v1; exact record keys, no undeclared extensions.",
+    "admissionId": "pec2-admission-sha256: + canonical SHA-256({candidateId,evidenceHash,datasetScope}); deterministic. Duplicate ID blocks, including identical replay in an inventory.",
+    "candidateId": "Exact immutable PEC-1 candidate ID; independent owner receipt digest anchored to that ID.",
+    "ownerApprovalReference": "Null means dependency blocked. Otherwise exact authenticated PEC-1 receipt approvalEvidenceReference; cannot infer from file existence.",
+    "evidenceBundleReference": "Repository-relative file plus exact JSON Pointer; no absolute paths, traversal, outside-root symlinks or substitution; resolved JSON must exactly equal submitted core.",
+    "evidenceHash": "SHA-256 over canonical core JSON, UTF-8, sorted keys, compact separators, no NaN. Owner and both acceptance receipts bind this digest.",
+    "publisherIdentity": "Nonempty exact issuer identity equal to document and PEC-1 snapshot; any change invalidates approvals. Must also equal the issuer in the original hash-verified PE3 candidate envelope, not just a copied preview field.",
+    "sourceIdentity": "Exact sourceURL/sourceHash/sourceVersion; HTTPS URL, source hash matches PEC-1 provenance; source bytes rehashed via pins. Archived URLs authorize no acquisition.",
+    "documentIdentity": "Exact path/sha256/publisherIdentity/ticker/period/consolidation/reportType. Safe path, exact PDF bytes, matching PEC-1 provenance. Requested dataset period must be within original document period.",
+    "datasetScope": "Exact ticker, period {start,end}, frame, statementType, consolidation, sorted unique metrics, sourceVersion. Must equal authenticated owner approvedScope and acceptance scope. One ticker, one period, one statement type per admission; new scope needs new binding. Empty metrics allowed only in deferred previews; cannot become eligible.",
+    "tickerCoverage": "Exactly singleton datasetScope.ticker from retained 30 research tickers. Unsupported tickers rejected; MBB remains deferred. No assertion of current exchange constituent certification.",
+    "reportingPeriods": "Exactly singleton datasetScope.period; ISO calendar dates, start<=end, period ended by actual decision cutoff; no annual/quarter/YTD substitution.",
+    "statementType": "Exact scope value: BALANCE_SHEET, INCOME_STATEMENT, CASH_FLOW, NOTES or FINANCIAL_STATEMENTS. Report-level preview is not acceptance of all component facts.",
+    "financialMetricCoverage": "Exactly sorted unique scope metrics. Nonempty for eligibility; exact accepted receipt per metric and exact period/statement/consolidation/version/document binding. Mapping file bytes and target JSON digest rehashed. Each referenced source mapping body must preserve the same canonical concept, period, consolidation and original source-cell document hashes.",
+    "publicationTimestamp": "Null for DATE_ONLY, otherwise exact qualified TIMESTAMP. DATE_ONLY keeps verified date, Asia/Ho_Chi_Minh zone and next-local-day boundary in core; never manufactures a timestamp. Publication must not be in future. Publication identity must equal the original PE3 publication-method date/precision/timezone/publishedAt fields.",
+    "knowledgeCutoff": "Null blocks; otherwise exact core.systemKnownAt. All 14 named clocks plus explicit other-required event list must be qualified instants; max(all clocks)<=systemKnownAt<=decisionAsOf<=evaluation time. Unknown other-boundary list cannot become empty by assumption. Every named clock has a pinned file/JSON Pointer resolving exactly to its value; replacement or missing immutable evidence blocks.",
+    "admissionRestrictions": "Unique explicit strings; exactly authenticated owner receipt restrictions; preserved on offline RESTRICTED result. Free-text restrictions never authorize production; a future adapter must implement restrictions or deny use.",
+    "admissionStatus": "Input preview state is an enum only; cannot grant authority. Derived effective state is stored in evaluation envelope and reevaluated every use.",
+    "validationResult": "Input must be PENDING_EVALUATION; PASS/FAIL only generated in evaluation envelope. Caller PASS is not proof.",
+    "admissionTimestamp": "Input null only. Derived event timestamp requires separate authenticated owner admission event, exact decisionBindingHash, qualified clock after owner decision and no later than evaluation time. No timestamp is generated for real blocked candidates. Event time must be no earlier than owner effectivity, both acceptance events and all required knowledge boundaries.",
+    "revocationStatus": "UNKNOWN, NOT_REVOKED or REVOKED; claimed NOT_REVOKED is never trusted. Fresh externally authenticated snapshot must cover candidate, approval digest and admission ID; unknown/stale status blocks. Any revocation denies reuse.",
+    "auditReferences": "Nonempty unique reference strings; packet binds full prior register/source/acceptance and current dependency references."
+  },
+  "states": [
+    "ELIGIBLE",
+    "ADMITTED",
+    "RESTRICTED",
+    "DEFERRED",
+    "REJECTED",
+    "REVOKED"
+  ],
+  "stateRules": {
+    "ELIGIBLE": "All admission prerequisites verified, no explicit admission event; no use authorized.",
+    "ADMITTED": "Offline effective replay only after all prerequisites and separate authenticated explicit owner admission event. No production adapter installed.",
+    "RESTRICTED": "Same conditions as ADMITTED, with exact preserved owner restrictions; no production authority implied.",
+    "DEFERRED": "Missing approval, knowledge, accepted mapping, independent acceptance or fresh revocation evidence.",
+    "REJECTED": "Malformed, unsupported, modified, duplicate or conflicting input; does not change an owner decision.",
+    "REVOKED": "Current authoritative revocation covers candidate, owner receipt or admission; immediate fail-closed on reevaluation."
+  },
+  "hashLayering": "Core contains immutable PEC-1 snapshot with ownerReceipt null. Separately authenticated receipts bind core hash; receipts are not included in core hash. Thus no circular self-hash. PEC-1 original evidenceBundleHash remains separate from PEC-2 evidenceHash.",
+  "receiptRules": {
+    "ownerApproval": "PEC-1 evaluator must return APPROVED/APPROVED_WITH_RESTRICTIONS with all G1-G8 PASS, unexpired validity and prospective effectivity. Receipt additionally binds admissionEvidenceHash, approvedScope and sourceVersion. Approval decision cannot postdate source-contract knowledge and effectivity cannot postdate the actual system cutoff.",
+    "mappingAcceptance": "Independently pinned Data Quality Owner PASS, candidate/evidence/scope bound, reviewer differs from producer, accepted by systemKnownAt.",
+    "independentAcceptance": "Independently pinned Independent Validator PASS, same exact bindings, reviewer differs from producer, accepted by systemKnownAt. Technical replay alone is insufficient.",
+    "admissionEvent": "Separate independently pinned Investment System Owner event, exact admissionId and decision binding; no automatic transition from ELIGIBLE.",
+    "revocation": "Authenticated read-only composition supplies fresh snapshot; every consumption rechecks it. Caller fields cannot supply trust."
+  },
+  "productionBoundary": "Offline evaluator never writes data or returns productionUseAuthorized, runtimeActivationAuthorized or scoringAuthorized true."
+}

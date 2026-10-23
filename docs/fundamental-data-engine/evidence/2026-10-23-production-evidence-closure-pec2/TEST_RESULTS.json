@@ -1,0 +1,60 @@
+{
+  "runs": [
+    {
+      "name": "pec2",
+      "command": [
+        "python3",
+        "scripts/test-pec2-admission.py"
+      ],
+      "exitCode": 0,
+      "seconds": 0.287,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-23-production-evidence-closure-pec2/validation/pec2.log"
+    },
+    {
+      "name": "pec1",
+      "command": [
+        "python3",
+        "scripts/test-pec1-authority.py"
+      ],
+      "exitCode": 0,
+      "seconds": 0.054,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-23-production-evidence-closure-pec2/validation/pec1.log"
+    },
+    {
+      "name": "pe4",
+      "command": [
+        "python3",
+        "scripts/test-pe4-evidence.py"
+      ],
+      "exitCode": 0,
+      "seconds": 2.069,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-23-production-evidence-closure-pec2/validation/pe4.log"
+    },
+    {
+      "name": "runtime-safety",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "tests/unit/d2-availability.test.ts",
+        "tests/integration/d2-source-evidence.test.ts",
+        "tests/integration/production-authority.test.ts",
+        "tests/unit/scoring-readiness.test.ts",
+        "tests/integration/scoring-readiness.test.ts",
+        "tests/integration/fundamental-admission.test.ts",
+        "--reporter=json",
+        "--outputFile=docs/fundamental-data-engine/evidence/2026-10-23-production-evidence-closure-pec2/validation/runtime-results.json"
+      ],
+      "exitCode": 0,
+      "seconds": 18.086,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-23-production-evidence-closure-pec2/validation/runtime-safety.log"
+    }
+  ],
+  "environment": {
+    "node": "v22.23.2",
+    "pnpm": "10.34.5"
+  },
+  "syntheticFixturePolicy": "All positive approval/admission tests use temporary synthetic files and externally simulated trust; no real approvals or admissions are created.",
+  "fullApplicationChecks": "No production code or dependencies changed. Full suite/build/lint/typecheck not rerun; prior PE4 results remain historical, including known full-suite/lint failures."
+}
