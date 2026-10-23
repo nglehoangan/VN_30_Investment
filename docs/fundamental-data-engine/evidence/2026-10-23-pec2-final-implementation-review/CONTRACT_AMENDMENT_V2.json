@@ -1,0 +1,28 @@
+{
+  "version": "pec2-admission-evaluator-v2",
+  "baseContract": {
+    "path": "docs/fundamental-data-engine/evidence/2026-10-23-production-evidence-closure-pec2/ADMISSION_CONTRACT.json",
+    "sha256": "0fd6a624f17b58d5b71e65ee67863beedb10aba0e5fdf110dbc1d987a08a796e",
+    "pointer": ""
+  },
+  "mandatoryAdditionalProofs": {
+    "otherRequiredContractBoundaries": "Each event has exact id, at, evidenceReference and evidencePin fields. Pin bytes and pointer resolve to at; evidenceReference equals path#pointer. Unknown remains blocking.",
+    "admissionHistory": "Independently authenticated composition supplies exact asOf, validThrough and records. Each admission ID has state, evidenceHash, recordedAt; source request cannot supply trust. Unknown/stale histories block.",
+    "terminalStates": "REVOKED and authenticated REJECTED cannot reopen under the same admission ID. A new reviewed evidence version and explicit authorization are required.",
+    "restrictedTransition": "Prior RESTRICTED cannot become unrestricted with the same admission ID; an active history requires replay of its authenticated event.",
+    "eventChronology": "Admission event must follow the history record as well as owner effectivity, acceptances and all knowledge events.",
+    "inventory": "Unique admission ID must refer to the exact record being evaluated. Whole-report and component-statement overlaps cannot silently coexist.",
+    "instantPeriod": "INSTANT uses equal start/end dates.",
+    "jsonPointer": "Strict RFC 6901 escaping and nonnegative canonical array indices."
+  },
+  "schemaEvolution": "Original sealed v1 artifacts and implementation stay intact. V2 is an explicitly selected stricter evaluator over the retained record shape; additional proof content changes evidence hashes and requires new approvals. No live schema or adapter is activated.",
+  "states": [
+    "ELIGIBLE",
+    "ADMITTED",
+    "RESTRICTED",
+    "DEFERRED",
+    "REJECTED",
+    "REVOKED"
+  ],
+  "productionAuthorization": "Always false; real trust remains empty. No database persistence or authenticated history provider is installed."
+}

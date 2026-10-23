@@ -1,0 +1,129 @@
+{
+  "criticalImplementationDefects": 0,
+  "majorFixed": 4,
+  "minorFixed": 2,
+  "unresolvedImplementationDefects": 0,
+  "severityContext": "Latent offline admission contract defects. Every production permission flag was false at the target commit; no actual source was admitted and no production bypass was observed.",
+  "records": [
+    {
+      "id": "F001",
+      "severity": "MAJOR",
+      "title": "Mandatory archived source evidence could escape rehashing",
+      "confirmedAtTarget": "An optional core evidence pin tree could omit the PEC-1 source capture while preserving its declared SHA in the candidate. Modifying that source capture still returned offline ADMITTED with synthetic authenticated receipts.",
+      "affectedFunction": "identities",
+      "reproductionTests": "test_mandatory_source_bytes_cannot_be_omitted_from_optional_pin_tree",
+      "fix": "Rehash all mandatory PEC-1 evidence pins, independently of optional core pins; enforce pin schema.",
+      "status": "FIXED_IN_VERSIONED_EVALUATOR_V2",
+      "originalSource": {
+        "path": "scripts/lib/pec2_admission.py",
+        "sha256": "c99daf18a0a79f2d73fb4118fbffa9cf9e224481bceaa8a3e08a980eaa6b2f98",
+        "pointer": ""
+      },
+      "fixedSource": {
+        "path": "scripts/lib/pec2_admission_v2.py",
+        "sha256": "ac1a650f25e9041393bf75462cd934db96522565fb9632daaed364197e7121a5",
+        "pointer": ""
+      }
+    },
+    {
+      "id": "F002",
+      "severity": "MAJOR",
+      "title": "Additional required knowledge events accepted unproven references",
+      "confirmedAtTarget": "Other required contract boundaries checked only a timestamp and nonempty reference string; a nonexistent evidence file was sufficient.",
+      "affectedFunction": "publication_and_knowledge",
+      "reproductionTests": "test_other_required_clock_requires_immutable_proof",
+      "fix": "Require an evidencePin, rehash bytes, resolve the exact pointer and bind its timestamp and reference.",
+      "status": "FIXED_IN_VERSIONED_EVALUATOR_V2",
+      "originalSource": {
+        "path": "scripts/lib/pec2_admission.py",
+        "sha256": "c99daf18a0a79f2d73fb4118fbffa9cf9e224481bceaa8a3e08a980eaa6b2f98",
+        "pointer": ""
+      },
+      "fixedSource": {
+        "path": "scripts/lib/pec2_admission_v2.py",
+        "sha256": "ac1a650f25e9041393bf75462cd934db96522565fb9632daaed364197e7121a5",
+        "pointer": ""
+      }
+    },
+    {
+      "id": "F003",
+      "severity": "MAJOR",
+      "title": "Inventory alias and whole-report conflicts were not rejected",
+      "confirmedAtTarget": "Inventory membership counted only matching admission IDs; a different candidate/scope could alias that ID. FINANCIAL_STATEMENTS did not conflict with a component statement for the same metric and overlapping period.",
+      "affectedFunction": "conflicts",
+      "reproductionTests": "test_inventory_member_cannot_alias_another_candidate; test_whole_report_authority_conflicts_with_component_statement",
+      "fix": "Require the unique inventory member to equal the reviewed record; treat whole-report/component overlap as conflicting.",
+      "status": "FIXED_IN_VERSIONED_EVALUATOR_V2",
+      "originalSource": {
+        "path": "scripts/lib/pec2_admission.py",
+        "sha256": "c99daf18a0a79f2d73fb4118fbffa9cf9e224481bceaa8a3e08a980eaa6b2f98",
+        "pointer": ""
+      },
+      "fixedSource": {
+        "path": "scripts/lib/pec2_admission_v2.py",
+        "sha256": "ac1a650f25e9041393bf75462cd934db96522565fb9632daaed364197e7121a5",
+        "pointer": ""
+      }
+    },
+    {
+      "id": "F004",
+      "severity": "MAJOR",
+      "title": "State history was not enforced across admission evaluations",
+      "confirmedAtTarget": "The evaluator recomputed state from current receipts and a revocation snapshot only. Authenticated terminal rejection/revocation or prior restrictions could be lost; stale/missing history was ignored. A caller REVOKED status could also yield validation PASS despite denying use.",
+      "affectedFunction": "history",
+      "reproductionTests": "test_revoked_history_cannot_reactivate_from_later_snapshot_omission; test_rejected_history_requires_new_review_version; test_active_admission_requires_authenticated_history; test_restricted_history_cannot_expand_to_unrestricted; test_stale_history_blocks; test_revoked_result_cannot_report_validation_pass; test_state_transition_matrix",
+      "fix": "Require a fresh authenticated history snapshot bound to admission ID and evidence digest; terminal states require new evidence version; prevent restricted-to-unrestricted expansion, require active-event replay and mark revoked validation FAIL.",
+      "status": "FIXED_IN_VERSIONED_EVALUATOR_V2",
+      "originalSource": {
+        "path": "scripts/lib/pec2_admission.py",
+        "sha256": "c99daf18a0a79f2d73fb4118fbffa9cf9e224481bceaa8a3e08a980eaa6b2f98",
+        "pointer": ""
+      },
+      "fixedSource": {
+        "path": "scripts/lib/pec2_admission_v2.py",
+        "sha256": "ac1a650f25e9041393bf75462cd934db96522565fb9632daaed364197e7121a5",
+        "pointer": ""
+      }
+    },
+    {
+      "id": "F005",
+      "severity": "MINOR",
+      "title": "INSTANT reporting frame allowed a range spanning a year",
+      "confirmedAtTarget": "The period validator checked date order and an allowed frame enum, but an INSTANT range did not need equal start/end.",
+      "affectedFunction": "scope",
+      "reproductionTests": "test_instant_period_cannot_span_a_year",
+      "fix": "Require equal period boundaries for INSTANT. No fiscal year assumptions or investment policy changes.",
+      "status": "FIXED_IN_VERSIONED_EVALUATOR_V2",
+      "originalSource": {
+        "path": "scripts/lib/pec2_admission.py",
+        "sha256": "c99daf18a0a79f2d73fb4118fbffa9cf9e224481bceaa8a3e08a980eaa6b2f98",
+        "pointer": ""
+      },
+      "fixedSource": {
+        "path": "scripts/lib/pec2_admission_v2.py",
+        "sha256": "ac1a650f25e9041393bf75462cd934db96522565fb9632daaed364197e7121a5",
+        "pointer": ""
+      }
+    },
+    {
+      "id": "F006",
+      "severity": "MINOR",
+      "title": "JSON Pointer accepted negative Python array indices",
+      "confirmedAtTarget": "int(token) accepted -1 as a JSON Pointer array index, permitting a non-RFC pointer alias to the last array entry.",
+      "affectedFunction": "resolve_pointer",
+      "reproductionTests": "test_negative_array_index_is_not_json_pointer",
+      "fix": "Use strict RFC 6901 escapes and canonical nonnegative array index tokens consistently across bundle, mapping and file pin resolution.",
+      "status": "FIXED_IN_VERSIONED_EVALUATOR_V2",
+      "originalSource": {
+        "path": "scripts/lib/pec2_admission.py",
+        "sha256": "c99daf18a0a79f2d73fb4118fbffa9cf9e224481bceaa8a3e08a980eaa6b2f98",
+        "pointer": ""
+      },
+      "fixedSource": {
+        "path": "scripts/lib/pec2_admission_v2.py",
+        "sha256": "ac1a650f25e9041393bf75462cd934db96522565fb9632daaed364197e7121a5",
+        "pointer": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "records": [
+    {
+      "gate": "Source identity",
+      "status": "PASS_TECHNICAL",
+      "evidence": "Mandatory source captures, original PE3 envelope, source version and byte pins rehashed; F001 closed.",
+      "gateState": "PASS"
+    },
+    {
+      "gate": "Publisher identity",
+      "status": "PASS_TECHNICAL",
+      "evidence": "Exact issuer legal name matches original source/document binding; falsification regression passes.",
+      "gateState": "PASS"
+    },
+    {
+      "gate": "Publication evidence",
+      "status": "PASS_TECHNICAL_NOT_AUTHORITY",
+      "evidence": "Original date/precision/timezone and DATE_ONLY boundary preserved; unknown authority remains blocked.",
+      "gateState": "PASS"
+    },
+    {
+      "gate": "Bundle hash",
+      "status": "PASS_TECHNICAL",
+      "evidence": "Exact core digest, bundle reference/pointer and receipt bindings; replacement or index alias denied.",
+      "gateState": "PASS"
+    },
+    {
+      "gate": "Financial mapping",
+      "status": "BLOCKED_PENDING_ACCEPTANCE",
+      "evidence": "Technical PE4 receipts preserved; authenticated accepted mapping receipts missing; F003 overlap checks closed.",
+      "gateState": "PENDING"
+    },
+    {
+      "gate": "Knowledge cutoff",
+      "status": "BLOCKED_MISSING_FORMAL_EVIDENCE",
+      "evidence": "Null required clocks/cutoffs remain blocking; future dates and unproven extra clocks rejected; F002 closed.",
+      "gateState": "PENDING"
+    },
+    {
+      "gate": "Independent acceptance",
+      "status": "BLOCKED_MISSING_HUMAN_ACCEPTANCE",
+      "evidence": "No real authenticated independent acceptance; synthetic negative and positive tests only.",
+      "gateState": "PENDING"
+    },
+    {
+      "gate": "Owner approval",
+      "status": "BLOCKED_PEC1_NOT_APPROVED",
+      "evidence": "No exact authenticated owner decisions; recommendations cannot substitute.",
+      "gateState": "PENDING"
+    },
+    {
+      "gate": "State history/revocation",
+      "status": "BLOCKED_NO_AUTHENTICATED_SERVICE",
+      "evidence": "Fresh history and revocation snapshots required. Terminal state and transition matrix pass in simulation only; F004 closed.",
+      "gateState": "PENDING"
+    }
+  ],
+  "allRealCandidatesDeferred": true,
+  "effectiveAdmissions": 0
+}

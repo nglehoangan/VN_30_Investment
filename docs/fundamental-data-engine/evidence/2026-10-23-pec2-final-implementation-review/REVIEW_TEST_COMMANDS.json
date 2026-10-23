@@ -1,0 +1,64 @@
+[
+  {
+    "name": "v1-review-regressions",
+    "command": [
+      "python3",
+      "scripts/test-pec2-final-review.py",
+      "--json",
+      "docs/fundamental-data-engine/evidence/2026-10-23-pec2-final-implementation-review/validation/v1-results.json"
+    ],
+    "environment": {
+      "PEC2_REVIEW_ENGINE": "v1",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exitCode": 1,
+    "seconds": 0.479,
+    "interpretation": "Negative reproduction: target defects and v2-only proof schema expected to fail"
+  },
+  {
+    "name": "v2-review-regressions",
+    "command": [
+      "python3",
+      "scripts/test-pec2-final-review.py",
+      "--json",
+      "docs/fundamental-data-engine/evidence/2026-10-23-pec2-final-implementation-review/validation/v2-results.json"
+    ],
+    "environment": {
+      "PEC2_REVIEW_ENGINE": "v2",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exitCode": 0,
+    "seconds": 0.507,
+    "interpretation": "Current corrected implementation; all cases must pass"
+  },
+  {
+    "name": "pec1-tests",
+    "command": [
+      "python3",
+      "scripts/test-pec1-authority.py"
+    ],
+    "exitCode": 0,
+    "seconds": 0.223,
+    "log": "validation/pec1-tests.log"
+  },
+  {
+    "name": "pe4-tests",
+    "command": [
+      "python3",
+      "scripts/test-pe4-evidence.py"
+    ],
+    "exitCode": 0,
+    "seconds": 6.869,
+    "log": "validation/pe4-tests.log"
+  },
+  {
+    "name": "pec1-current-verifier",
+    "command": [
+      "python3",
+      "scripts/verify-pec1-evidence.py"
+    ],
+    "exitCode": 0,
+    "seconds": 20.335,
+    "log": "validation/pec1-current-verifier.log"
+  }
+]
