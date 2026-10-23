@@ -1,0 +1,15 @@
+# PEC-2 integration boundary
+
+## Implemented compatibility boundary
+
+`scripts/lib/pec1b_workflow.py::pec2_preparation_boundary` calls the unchanged `scripts/lib/pec2_admission_v2.py::evaluate` with trust={}. It accepts no caller trust configuration, never synthesizes an owner/mapping/independent/admission receipt and never writes formal tables or runtime state. It rejects any unexpectedly eligible/admitted/restricted result. Every return has qualifiedEvidenceExported=false and production/runtime/scoring authorization=false. Existing source records remain DEFERRED; malformed attempts may be REJECTED.
+
+No unapproved preparation event is inserted into PEC-2 core knowledge.clockEvidence, owner receipts or history. Eight real existing candidates are replayed with original cores/receipts, empty trust and exact evidence pins. Synthetic tests use isolated temporary files only.
+
+## Future qualified adapter contract — not connected
+
+A separately reviewed authenticated composition must resolve original immutable events/audit evidence, permissions, exact core/fact/dataset scope, current revocation/history, approved actual contract versions, exhaustive required boundaries, Dataset Owner cutoff receipt and producer-distinct acceptance. Each of the existing fourteen CLOCKS and any additional boundaries needs a rehashed file/JSON-Pointer proof of the exact timestamp, tied to the authenticated event receipt. Other-required boundaries need id/at/evidenceReference/evidencePin in the exact v2 schema. An event hash/reference alone cannot populate trust.
+
+The existing PEC-2 core binds owner approval to its complete evidence hash and knowledgeCutoff. Mapping acceptance and independent acceptance each require exact candidate/evidenceHash/scope, named role, producer-distinct reviewer and actual acceptedAt <= systemKnownAt. Owner authority must have exact source/version/scope and availability/effectivity before the declared cutoffs. A newly generated core changes its evidence hash and invalidates prior core-bound approvals: requalify and obtain new exact receipts rather than copying old signatures or retrofitting timestamps. Do not solve owner/core/knowledge ordering by inventing historical events; stage component governance and actual prerequisites, freeze the proposed core, then obtain actual approvals/acceptance with a consistent new prospective version. If this cannot satisfy the unchanged contract, keep it blocked and request a separate design decision.
+
+The bridge must adapt to the existing exact receipt schema and authenticated composition only after independent review. Preserve all PEC-1 gates, exact source/PDF/publication binding, financial mapping scope, cutoff gate, inventory collision gate, revocation freshness, terminal history and explicit owner admission-event requirements. Source qualification/approval, mapping acceptance, independent dataset acceptance, admission, D2 activation and scoring remain distinct. No evaluator code, frozen policy, active-authorities configuration or production runtime is changed by PEC-1B.

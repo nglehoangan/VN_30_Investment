@@ -1,0 +1,269 @@
+"""Build PEC-1B design/implementation evidence. No authority or database writes."""
+import datetime
+import hashlib
+import json
+import sqlite3
+import subprocess
+from pathlib import Path
+from lib.pe4_evidence import sha, digest, verify_seal, replay_package
+from lib.pec1b_workflow import ROLES, BOUNDARIES, EVENT_FIELDS
+ROOT=Path(__file__).resolve().parents[1];E=ROOT/'docs/fundamental-data-engine/evidence';OUT=E/'2026-10-23-pec1b-prospective-evidence-workflow'
+
+def save(name,value):(OUT/name).write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n')
+def md(name,text):(OUT/name).write_text(text.strip()+'\n')
+def baseline():
+    tracked=subprocess.check_output(['git','ls-files','-z'],cwd=ROOT).decode().split('\0')
+    paths={ROOT/p for p in tracked if p}
+    paths.update(p for folder in [ROOT/'data',E] for p in folder.rglob('*') if p.is_file() and OUT not in p.parents and '__pycache__' not in p.parts)
+    return {str(p.relative_to(ROOT)):sha(p) for p in sorted(paths) if p.is_file() and OUT not in p.parents}
+def database():
+    p=ROOT/'data/vn30.sqlite';con=sqlite3.connect('file:'+str(p)+'?mode=ro',uri=True);con.row_factory=sqlite3.Row
+    names=[x[0] for x in con.execute("select name from sqlite_master where type='table' order by name")]
+    result={'sha256':sha(p),'logicalHash':digest(list(con.iterdump())),'tableCounts':{n:con.execute('select count(*) from "'+n+'"').fetchone()[0] for n in names},'methodologyRows':[dict(r) for r in con.execute('select * from methodology_record')],'schemaObjects':[dict(r) for r in con.execute("select type,name,tbl_name,sql from sqlite_master order by type,name")],'mode':'READ_ONLY'};con.close();return result
+
+def main():
+    require_new=not (OUT/'PROTECTED_INPUT_HASHES.json').exists()
+    if not require_new:raise SystemExit('Refuse to overwrite an evidence baseline.')
+    OUT.mkdir(exist_ok=True);(OUT/'validation').mkdir(exist_ok=True)
+    save('PROTECTED_INPUT_HASHES.json',baseline());save('DATABASE_BASELINE.json',database())
+    base=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+    package_names=['2026-10-21-primary-publication-evidence-pe1','2026-10-22-primary-publication-evidence-pe2','2026-10-22-primary-publication-evidence-pe3','2026-10-22-primary-publication-evidence-pe4','2026-10-22-production-evidence-closure-pec1','2026-10-23-production-evidence-closure-pec2','2026-10-23-pec2-final-implementation-review','2026-10-23-pec1a-authenticated-source-authority-decision']
+    save('PRIOR_EVIDENCE_VERIFICATION.json',{'baseCommit':base,'seals':[verify_seal(ROOT,E/n) for n in package_names],'PE4Replay':replay_package(ROOT)})
+    inspected=['src/ports/runtime-readiness.ts','src/application/fundamentals/review-assessment.ts','src/application/fundamentals/accept-runtime-dataset.ts','src/infrastructure/repositories/fundamentals.ts','src/infrastructure/repositories/methodology-registry.ts','src/infrastructure/repositories/methodology-schema.ts','src/infrastructure/repositories/scoring-datasets.ts','src/infrastructure/repositories/scoring-datasets-policy-b.ts','src/infrastructure/fundamentals/canonical-registry.ts','src/domain/fundamentals/runtime-provenance.ts','src/domain/fundamentals/availability.ts','src/domain/fundamentals/snapshot.ts','src/domain/fundamentals/runtime-review.ts','src/domain/fundamentals/d2-policy-candidate-v1.json','src/infrastructure/dependencies/production-authority.ts','scripts/lib/pec2_admission_v2.py','prisma/schema.prisma']
+    inspected += [str(p.relative_to(ROOT)) for p in sorted((ROOT/'prisma/migrations').glob('*/migration.sql'))]
+    save('ARCHITECTURE_INPUTS.json',{'baseCommit':base,'files':[{'path':p,'sha256':sha(ROOT/p)} for p in inspected],'authenticationFinding':'RuntimeReviewerIdentity exists as a port; inspected source has no configured production implementation for this workflow. A sessionReference string, owner metadata, or a test fixture is not an authenticated capability. Seven PEC-1B permission mappings are not configured.','inspectionScope':'Local source, migrations, read-only SQLite and eight prior evidence packages. External identity/control planes were not asserted inspected.'})
+    properties={k:{'type':'string','minLength':1} for k in EVENT_FIELDS}
+    for k in ['sourceEvidenceHash','evidenceHash','eventHash']:properties[k]={'type':'string','pattern':'^[a-f0-9]{64}$'}
+    properties['previousEventHash']={'anyOf':[{'type':'null'},{'type':'string','pattern':'^[a-f0-9]{64}$'}]}
+    properties['eventType']={'enum':list(ROLES)};properties['actorRole']={'enum':sorted(set(ROLES.values()))}
+    for k in ['occurredAt','recordedAt','effectiveAt','knownAt']:properties[k]={'type':'string','format':'date-time','pattern':'Z$'}
+    properties['validationStatus']={'const':'AUTHENTICATED_VALIDATED'}
+    save('FORMAL_KNOWLEDGE_EVENT.schema.json',{'$schema':'https://json-schema.org/draft/2020-12/schema','$id':'urn:vn30:pec1b:formal-knowledge-event:v1','title':'Future authenticated formal event; NOT generated by PEC-1B preparation','type':'object','additionalProperties':False,'required':sorted(EVENT_FIELDS),'properties':properties,'$comment':'Schema validity is necessary only. Authentication, authorization, immutable evidence, exact scope, causal chain, trusted capture clock and revocation must be independently resolved. No authoritative writer/provider is implemented.'})
+    md('PEC1B_ARCHITECTURE.md',f'''# PEC-1B architecture and gap assessment
+
+Status: **IMPLEMENTATION_READY_DEPENDENCY_BLOCKED**. Base commit `{base}`.
+
+## Inspected and reused infrastructure
+
+ARCHITECTURE_INPUTS.json pins the exact source and every existing SQL migration. PRIOR_EVIDENCE_VERIFICATION.json rehashes PE1–PE4, PEC-1, PEC-2/final review and PEC-1A without rewriting their seals or execution receipts. DATABASE_BASELINE.json records a read-only schema and count inventory.
+
+| Capability | Existing component | Reuse and remaining gap |
+|---|---|---|
+| Exact source/publication evidence | PE1/PE2 captures and receipts; PE3 authority proposals | Reference immutable bytes; do not reacquire sources or backfill formal clocks. |
+| Mapping/perimeter | PE4 45 receipts, 51 operands and A–I assessments | Reuse exact scopes; none becomes accepted by this work. PEC-1A's 41 older mapping/bridge leads remain unaccepted. |
+| Formal storage | PrismaFundamentals; fundamental_source_version/import_batch/raw_capture/observation/normalization | Existing transaction/FK/hash/identity rules and immutable triggers. No duplicate formal event store or migration introduced. A stored observation timestamp alone is not authenticated prospective capture. |
+| Structured candidate storage | fundamental_admission_run | CURRENT_ANALYSIS-style candidate history; not a formal ingestion clock. No candidate relabeling. |
+| Methodology | PrismaMethodologyRegistry and methodology_record | Append-only metadata, approved configuration hashes/external reference checks. Metadata validation is not external authentication. |
+| Registry | canonical-registry.ts; verifyRegistryApproval | Exact release/hash/methodology binding; no new registry or approval table. |
+| Knowledge | availability.ts, runtime-provenance.ts, PEC-2 v2 CLOCKS | Preserve operational maximum, D2 date-only semantics and cutoff gates. Legacy runtime-provenance requires TIMESTAMP publication; PEC-1B does not bypass it using DATE_ONLY or alter that gate. |
+| Dataset identity | fundamental_snapshot_content/run/member and snapshot.ts | Reuse immutable manifests and run identities. Prospective cutoff contract below is a review artifact over these records, not a second dataset authority store. |
+| Human review | RuntimeReviewerIdentity, HumanReviewStore, ReviewAssessment, AcceptRuntimeDataset | Reuse identity/CAS/review/producer distinction contracts. No concrete authenticated provider/store composition for PEC-1B was found. |
+| Admission | scripts/lib/pec2_admission_v2.py | Unmodified. Offline adapter supplies empty trust and cannot emit qualified authority. |
+
+## Implemented preparation boundary
+
+`scripts/lib/pec1b_workflow.py` provides strict event intents, exclusive append of non-authoritative preparation artifacts with evidence-byte snapshots, idempotent retries, chain/integrity/order checks, knowledge/dataset/request denial, a PEC-2 empty-trust adapter and unconditional activation denial. It opens no production DB and installs no HTTP route, new identity provider, event/approval store, migration, registry entry or runtime composition.
+
+The preparation workspace follows the existing filesystem evidence-package convention. Its JSON records are proposals and its `recordedAt` is a local preparation time. It is not an authenticated event log. Actual use in this change is restricted to temporary synthetic test directories; no candidate preparation events are emitted for the eight real sources.
+
+## Gaps and release conditions
+
+1. Authenticated subject/session resolver with verified owner/reviewer authority, independently controlled session/role revocation and exact operation/scope permissions. An injected test identity or request JSON cannot satisfy it.
+2. Trusted capture composition to obtain execution clocks and commit evidence with existing formal repositories transactionally. Existing caller-supplied record metadata is not automatically trusted. Clock rollback, partial commit and duplicate races must fail closed.
+3. Exact authenticated governance and producer-distinct acceptance linked to unchanged registry/method contracts; formal event resolver must verify original bytes, event chain and current invalidation state.
+4. Authorized prospective dataset creation/cutoff review using genuine new events. All real source authorities, mapping/perimeter decisions and AS_KNOWN gates remain unsatisfied.
+
+These are dependencies, not waived requirements. The user-authorized fallback is implemented; formal capture, authenticated boundary resolution, authoritative dataset approval and acceptance are deliberately unavailable. Authentication-provider integration requires a separately reviewed implementation and owner-governance decision, not a toggle on this preparation module.
+''')
+    role_table='\n'.join('| '+kind+' | '+role+' |' for kind,role in ROLES.items())
+    md('FORMAL_KNOWLEDGE_EVENT_CONTRACT.md','''# Formal knowledge event contract
+
+## Future authoritative contract
+
+`FORMAL_KNOWLEDGE_EVENT.schema.json` defines all nineteen requested fields with no extra fields. It is a design/schema, not an authentication provider. No formal event conforming to its AUTHENTICATED_VALIDATED state is generated in PEC-1B.
+
+| Field | Meaning and verification |
+|---|---|
+| eventId | Unique immutable operation ID allocated by the trusted composition; never reused on a changed submission. |
+| eventType | One of the twelve types below. No extra event types introduced. |
+| subjectId / subjectVersion | Exact immutable source/mapping/contract/registry/dataset subject; never latest-version lookup. |
+| sourceEvidenceHash | Original source-byte digest, distinct from the operation-receipt digest. |
+| actorId / actorRole | Verified session subject and operation permission resolved server-side; never copied from request claims. |
+| authenticationReference | Immutable authentication/audit evidence reference and verification outcome; a string/hash alone is insufficient. |
+| occurredAt | Actual execution/decision completion observed at the trusted boundary. Historical report/publication dates never substitute. |
+| recordedAt | Actual append/commit timestamp generated at the trusted capture boundary, never a caller parameter. |
+| effectiveAt | Actual authorized prospective applicability boundary. It does not backdate system knowledge. |
+| knownAt | Conservative maximum of occurredAt, recordedAt, effectiveAt, authentication-verification availability and required predecessor knownAt values. |
+| evidenceReference / evidenceHash | Immutable operation receipt bytes (including exact scope, producer identities, dependencies and source bindings) and SHA-256 of those bytes. |
+| previousEventHash | Exact predecessor in the subject/version capture chain, null only at an authorized genesis. Causal dependency hashes are additionally pinned in the receipt. |
+| eventHash | SHA-256 of canonical JSON of every field except eventHash; sorted keys, compact UTF-8, no NaN, native financial amounts preserved as strings. |
+| validationStatus | AUTHENTICATED_VALIDATED only after identity, permissions, bytes, scope, time and chain checks. No caller can assert this state. |
+
+## Event permissions
+
+| Event type | Proposed exact permission role |
+|---|---|
+'''+role_table+'''
+
+These seven role permissions are a proposed governance contract, not configured identity grants. The existing identity port exposes ANALYST, OWNER and INDEPENDENT_DATASET_REVIEWER only. Do not infer that OWNER holds every new permission or that ANALYST can approve mappings/methods. Reuse the port only after independently configured subject-to-permission bindings and authentication verification. Ingestion execution service identity may be delegated only by an explicit reviewed capability bound to the exact source and operation; it is not the independent reviewer.
+
+Financial Mapping Accepted and Independent Validation Accepted require actor distinct from every producer of the evidence being accepted. An Independent Validator must also differ from the mapping producer, dataset producer and scope-specific author. Codex cannot be an owner or independent human reviewer. Authentication/session/permission revocation is checked on each decision and consumption.
+
+## Preparation representation implemented now
+
+The intent contains submissionId, eventType, exact subject/version, source and operation evidence hashes, claimed actor/role/authentication reference, all producer IDs, scopeHash and causal predecessor hashes. Extra fields, including caller recordedAt/knownAt/effectiveAt/occurredAt, are rejected. Claimed roles are checked for consistency only; claimed references never become trusted identity.
+
+A preparation artifact contains all nineteen event keys. occurredAt, effectiveAt and knownAt are null; recordedAt comes from the local preparation operation; validationStatus is PREPARED_NON_AUTHORITATIVE. Its deterministic preparation eventHash covers the exact event object (excluding eventHash) PLUS the wrapper intentHash, so scope/dependency/producer changes invalidate it. The future authenticated event uses its separate event-only formula because its immutable operation receipt must itself bind those dimensions. The artifact wrapper and intentHash bind scope, dependencies and producer claims. eventId is namespaced pec1b-preparation-sha256, never a formal-event ID. It cannot satisfy the future schema, formal knowledge, source authority or PEC-2 trust.
+
+## Temporal and integrity rejection rules
+
+Require actual occurredAt <= recordedAt, effectiveAt >= occurredAt for this prospective workflow, knownAt >= all mandatory causal/authentication/applicability boundaries, and all observable event timestamps <= the trusted evaluation time before use. Future-effective decisions remain unavailable until then. Clock rollback, unauthenticated clocks, unknown dependency lists, missing causal predecessors, forks, reused identities with changed content, altered evidence, missing subject/version/scope or invalidated authority deny qualification. New evidence/version requires a new event; never update/delete an accepted event. Current revocation/invalidations are separate append-only governance records using existing review/history infrastructure; omission from a later snapshot does not un-revoke a record.
+''')
+    md('PROSPECTIVE_EVIDENCE_WORKFLOW.md','''# Prospective evidence workflow
+
+## Executable preparation now
+
+1. Construct an exact intent from a newly commissioned evidence operation. Do not put old report/publication times into event fields. No actual source acquisition or real candidate event occurs in PEC-1B.
+2. Call append_preparation(workspace, intent, evidence_bytes). It checks the bytes against evidenceHash, intent fields, role consistency and producer separation. Capture_formal_event always raises BLOCKED_AUTHENTICATED_IDENTITY_AND_TRUSTED_CAPTURE_UNAVAILABLE.
+3. The preparation appender exclusively locks its workspace. It rehashes all existing records/evidence, verifies a single nonforked chain and causal references, then checks source acquisition -> verification -> ingestion -> mapping proposal order for the same subject/version/source/scope. Root governance proposals need not pretend to be ingestion events.
+4. Snapshot evidence with exclusive create; identical byte retries reuse it. Create the new record exclusively and fsync. Local recordedAt is generated inside the boundary; callers cannot inject clocks. Identical submissionId/intents return the prior unchanged record and timestamp; changed retry raises a conflict. Wall-clock reversal fails closed.
+5. Persist proposals only in a new review-package preparation workspace and seal the package for external review. No proposals are exported to authority tables or runtime. The tests use TemporaryDirectory exclusively.
+
+Read-only file modes, SHA-256 and a local lock provide integrity checks, not authentication, WORM storage, rollback protection or a trusted production clock. A lock left by a crash blocks further preparation pending inspection. A crash can leave an unreferenced evidence snapshot; it grants no event or authority. Deleting/truncating and recomputing an entire unsealed workspace cannot be distinguished from a new workspace by hashes alone; an externally retained package seal/head is required. Never claim local artifact history is an authoritative audit store.
+
+## Future authenticated capture — specified, unavailable
+
+Configure the existing identity port with a real verified provider, permission mapping and revocation checks; configure a trusted clock and operation executor. Resolve exact approved source/method/registry contracts independently of request JSON. Allocate operation ID; resolve subject/version, exact evidence bytes and producer identities. Execute a NEW authorized acquisition/verification/import/governance action; obtain actual execution and commit times from that service boundary. In one reviewed transactional composition persist the original source/import/capture/normalization/observation or governance/snapshot receipt through the existing append-only repository and bind the event to that exact receipt. No second event/approval database is proposed.
+
+Before commit, recheck causal head/version CAS, authentication freshness, permissions, source bytes, source policy and current revocations. On rollback, record no completed formal event. On retry, resolve the exact already committed receipt; do not execute again under a new timestamp or broaden scope. External audit infrastructure must durably bind the operation and local commit; its integration/atomicity is a blocking dependency, not implemented two-phase success.
+
+Only genuine new events can supply ingestedAt/mappingKnownAt/etc. An existing PEC-1A report may be referenced as immutable source evidence, but merely wrapping it now is not acquisition, source verification, formal ingestion, owner approval or independent acceptance. No historical formal events are emitted for the eight candidates.
+
+All future financial-document acquisition remains restricted to finance.vietstock.vn/static2.vietstock.vn with redirect validation; archived issuer captures are audit records, not new acquisition authorization. Formal source approval and production admission remain separate decisions after prerequisites close.
+''')
+    boundary_table='\n'.join('| '+name+' | '+kind+' |' for name,kind in BOUNDARIES.items())
+    md('DATASET_CUTOFF_CONTRACT.md','''# Dataset version and cutoff contract
+
+## Mandatory authenticated knowledge
+
+| Boundary | Required authenticated event type |
+|---|---|
+'''+boundary_table+'''
+
+Policy approval uses METHODOLOGY_APPROVED with the exact policy subject/version and hash, distinct from the financial methodology subject. The two cannot substitute merely because their event type matches. Identity/source method contracts and binding receipts must each match their own exact subject/hash. otherRequiredContractBoundaries must be an explicitly verified exhaustive list; null/unknown is incomplete, and an empty list requires authenticated contract evidence that no additional boundaries apply.
+
+Each boundary resolves an authenticated immutable event, exact subject/version/scope/source/hash, evidence bytes, current invalidation status and knownAt. effectiveKnownAt = MAX(all mandatory verified boundaries, publication boundary, source/document retrieval and verification boundaries, every additional contract/correction boundary). PEC-2 CLOCKS remains authoritative for the full set: the nine formal mappings here supplement rather than replace its fourteen mandatory fields. Publication DATE_ONLY remains the approved conservative D2 boundary, not a fabricated publishedAt. Publication/retrieval proofs cannot stand in for formal ingestion/governance clocks.
+
+If any event is missing, invalid, unknown, revoked or not authenticated, knowledgeChainStatus=INCOMPLETE, effectiveKnownAt=null, AS_KNOWN=false and production admission=false. assess_knowledge always returns this outcome because no authenticated event resolver is configured. No MAX over unauthenticated proposals is presented as effective knowledge.
+
+## Deterministic dataset manifest
+
+Required fields: datasetId, datasetVersion, sourceEvidenceReferences, financialMappingReferences, methodologyVersion, registryVersion, sourceAuthorityReferences, effectiveKnownAt, systemKnownAt, decisionAsOf, creationEventId, approvalEventId, datasetContentHash, immutableAuditReference.
+
+References are sorted unique {id,hash} lists. Source/fact definitions, issuer, report period, statement/stock-flow/consolidation, units, variants, exact component versions and knowledge receipt belong inside the pinned referenced manifests. IDs are immutable; no latest-version resolution. Registry and methodology version identifiers must resolve to exact existing approved release hashes and their governance receipts. Empty sources/mappings/authority references are invalid for a formal dataset.
+
+datasetContentHash = canonical SHA-256 of all fields EXCEPT datasetVersion, datasetContentHash, approvalEventId and immutableAuditReference. datasetVersion = sha256:<datasetContentHash>. Changing source/mapping/authority/version/cutoff/creation identity changes the hash. Approval attachments are excluded to avoid an approval/hash self-reference; exclusion does not exempt approval/audit verification. Attachments must be independently authenticated, rehashed and bound to the exact datasetContentHash, creation record and cutoff receipt.
+
+creationEventId refers to the existing immutable fundamental_snapshot_run runId, namespaced snapshot-run:<runId>, plus its original committed body/hash/audit reference; this introduces no thirteenth generic event type. A run ID/builtAt alone is not an authenticated creation event. Trusted composition must verify the new execution and commit audit. approvalEventId resolves a separately authenticated DATASET_CUTOFF_APPROVED event. No such creation/approval is executed here.
+
+## Cutoff ordering and non-circular approval
+
+Require effectiveKnownAt <= systemKnownAt <= decisionAsOf <= trusted evaluation time, all exact constituent facts/events available by systemKnownAt, economic periods not after decisionAsOf, and unchanged publication/period semantics. The Dataset Owner chooses actual intended cutoffs with an audit receipt; the app must not fill them from now, report dates, candidate created_at or Git time. Null cutoffs fail.
+
+The content cutoff describes evidence knowledge, not future governance approval availability. A cutoff approval can reference an already frozen content hash without being included in that same content's effectiveKnownAt. It can authorize review only at/after its actual knownAt; any downstream admitted analysis must additionally include approval and independent-acceptance availability under PEC-2 and have systemKnownAt at least that maximum. If that changes a cutoff, create a new dataset hash/version and revalidate; never overwrite the prior manifest or reuse a generic approval. Production use is unavailable in this implementation.
+
+assess_dataset verifies manifest shape, canonical identity, sorted references, explicit cutoffs and temporal inequalities. It ALWAYS reports BLOCKED for absent authenticated creation/approval, even if callers claim COMPLETE knowledge. It is a preparation inspector, not a production dataset acceptance service.
+''')
+    md('INDEPENDENT_ACCEPTANCE_WORKFLOW.md','''# Independent acceptance workflow
+
+## Validation request and assignment
+
+Prepare requestId plus candidateId, sourceEvidenceHash, financialMappingHashes, methodologyVersion, registryVersion, knowledgeChainHash, datasetVersion, datasetContentHash, cutoffReceiptHash, all producerIds, assignedReviewerId, result, revoked and revalidationRequired. Each hash must resolve through a sealed evidence manifest. The scope also resolves exact issuer/report/fact/period/consolidation/statement dimensions through that manifest. An independently resolved expected scope is compared in full; no caller may choose the trusted expected scope in a future authenticated composition.
+
+Assign a named authenticated Independent Validator with capability for this exact scope. The validator cannot be any evidence, mapping or dataset producer and cannot be Codex. The existing RuntimeReviewerIdentity/HumanReviewStore/ReviewAssessment contracts are reused; their test implementations and role-name strings are not identity verification. New permission mapping remains blocked.
+
+## Execution and immutable disposition
+
+The validator rehashes source and evidence bytes, reviews captions, populations, units and normalization, checks exact methodology/registry/authority scope, actual knowledge events/cutoffs and every applicable PE4 A–I criterion. Persist actual ACCEPT or REJECT decision through the existing append-only review/CAS mechanism with exact expected head and authenticated subject/session/permission evidence, operation times, reviewed dataset/cutoff hash, predecessor hash, and receipt bytes/hash. Reject is not acceptance; a PENDING or analyst DRAFT cannot become independent acceptance by renaming it.
+
+INDEPENDENT_VALIDATION_ACCEPTED is emitted only after the real accepted review transaction and authenticated capture commit. Rejection and invalidation remain existing review workflow records rather than adding unneeded generic event types. ImmutableValidationReceipt contains request/scope hashes, exact candidate/source/mapping/methodology/registry/knowledge/dataset/cutoff references, producer and reviewer identities, verified auth/audit reference, actual execution/recording/knownAt, result and previous review hash. No acceptance receipt is created for real candidates in PEC-1B.
+
+## Revocation and revalidation
+
+Any source/evidence change, corrected amount/mapping, period/scope/definition/perimeter change, method/registry/authority version change, knowledge-boundary correction, changed dataset/cutoff, reviewer permission invalidation or expired verification requires revalidation against a new exact scope/hash. Rejected/invalidated/revoked acceptance cannot be revived by omission from a newer snapshot. Fail closed on unknown/stale revocation or review history. Reuse existing review INVALIDATED transitions and current PEC-2 revocation/history contracts; do not edit old receipts.
+
+assess_independent_request checks exact scope binding, producer distinction and rejection/revalidation/revocation flags, but ALWAYS returns accepted=false and AUTHENTICATED_INDEPENDENT_ACCEPTANCE_UNAVAILABLE. A structurally valid preparation, generic approval, existing CASA policy sign-off or source publication proof cannot authorize any dataset. Final source owner approval and effective production admission are separate later decisions, neither executed here.
+''')
+    md('PEC2_INTEGRATION_BOUNDARY.md','''# PEC-2 integration boundary
+
+## Implemented compatibility boundary
+
+`scripts/lib/pec1b_workflow.py::pec2_preparation_boundary` calls the unchanged `scripts/lib/pec2_admission_v2.py::evaluate` with trust={}. It accepts no caller trust configuration, never synthesizes an owner/mapping/independent/admission receipt and never writes formal tables or runtime state. It rejects any unexpectedly eligible/admitted/restricted result. Every return has qualifiedEvidenceExported=false and production/runtime/scoring authorization=false. Existing source records remain DEFERRED; malformed attempts may be REJECTED.
+
+No unapproved preparation event is inserted into PEC-2 core knowledge.clockEvidence, owner receipts or history. Eight real existing candidates are replayed with original cores/receipts, empty trust and exact evidence pins. Synthetic tests use isolated temporary files only.
+
+## Future qualified adapter contract — not connected
+
+A separately reviewed authenticated composition must resolve original immutable events/audit evidence, permissions, exact core/fact/dataset scope, current revocation/history, approved actual contract versions, exhaustive required boundaries, Dataset Owner cutoff receipt and producer-distinct acceptance. Each of the existing fourteen CLOCKS and any additional boundaries needs a rehashed file/JSON-Pointer proof of the exact timestamp, tied to the authenticated event receipt. Other-required boundaries need id/at/evidenceReference/evidencePin in the exact v2 schema. An event hash/reference alone cannot populate trust.
+
+The existing PEC-2 core binds owner approval to its complete evidence hash and knowledgeCutoff. Mapping acceptance and independent acceptance each require exact candidate/evidenceHash/scope, named role, producer-distinct reviewer and actual acceptedAt <= systemKnownAt. Owner authority must have exact source/version/scope and availability/effectivity before the declared cutoffs. A newly generated core changes its evidence hash and invalidates prior core-bound approvals: requalify and obtain new exact receipts rather than copying old signatures or retrofitting timestamps. Do not solve owner/core/knowledge ordering by inventing historical events; stage component governance and actual prerequisites, freeze the proposed core, then obtain actual approvals/acceptance with a consistent new prospective version. If this cannot satisfy the unchanged contract, keep it blocked and request a separate design decision.
+
+The bridge must adapt to the existing exact receipt schema and authenticated composition only after independent review. Preserve all PEC-1 gates, exact source/PDF/publication binding, financial mapping scope, cutoff gate, inventory collision gate, revocation freshness, terminal history and explicit owner admission-event requirements. Source qualification/approval, mapping acceptance, independent dataset acceptance, admission, D2 activation and scoring remain distinct. No evaluator code, frozen policy, active-authorities configuration or production runtime is changed by PEC-1B.
+''')
+    md('VALIDATION_CASES.md','''# PEC-1B validation cases
+
+Command: `PYTHONDONTWRITEBYTECODE=1 python3 scripts/test-pec1b-workflow.py --json <package>/validation/pec1b-tests.json`.
+
+| Requested case | Coverage |
+|---|---|
+| 1 Valid prospective ingestion | test_01: new acquisition -> verification -> ingestion PREPARATIONS with actual local capture window, all formal clocks null. This is NOT a positive authenticated FORMAL ingestion test; that remains dependency blocked. |
+| 2 Missing authentication | test_02, test_18: even a reference or authenticated=true argument cannot enable formal capture. |
+| 3 Unauthorized actor | test_03: wrong operation role rejected. |
+| 4 Producer self-approval | test_04: mapping/independent producer distinction. |
+| 5 Duplicate event | test_05: exact retry idempotent, modified retry conflicts. |
+| 6 Modified evidence | test_06: byte change detected on replay. |
+| 7 Backdated recordedAt | test_07: caller timestamps forbidden. |
+| 8 Missing knowledge | test_08, test_22: incomplete chain, no clock promotion. |
+| 9 Invalid order | test_09, test_23: missing/foreign predecessor and ingestion without verification. |
+| 10 Future leakage | test_10: knowledge after cutoff rejected. |
+| 11 Missing dataset cutoff | test_11: null cutoff denied. |
+| 12 Invalid dataset version | test_12, test_14: noncanonical/changed content denied. |
+| 13 Revoked acceptance | test_13: acceptance=false, revoked blocker retained. |
+| 14 Changed source | test_14, test_21: exact source/method/dataset/cutoff binding. |
+| 15 Invalid PEC-2 admission | test_15 plus original eight real empty-trust replays and existing v2 regressions. |
+| 16 Unauthorized activation | test_16: unconditional denial. |
+
+Additional tests cover modified events, field completeness, false auth claims, structurally valid dataset still blocked, scope-bound reviewer preparation and explicit revalidation. All positive examples use SYNTHETIC identifiers and TemporaryDirectory outside real authority stores. No test grants production authority. Authenticated end-to-end capture/commit, provider permission revocation, formal ingestion, complete authenticated MAX-boundary chain and actual independent acceptance cannot be tested as successful production operations without the missing provider/composition; these are explicitly NOT claimed passed.
+
+Applicable existing commands: `PYTHONDONTWRITEBYTECODE=1 python3 scripts/test-pec2-final-review.py --json <package>/validation/pec2-regressions.json`, `PYTHONDONTWRITEBYTECODE=1 python3 scripts/test-pec1-authority.py`, and `node scripts/check-boundaries.mjs`. No schema migration or app/runtime build is needed for this offline Python preparation change. Prior evidence verifiers that assert a closed evidence namespace are not modified to admit new packages; actual historical seals/code pins are directly rehashed. PEC-1A verifier is not rerun because it rewrites its own historical execution receipt; its seal is verified read-only instead.
+''')
+    save('BLOCKER_STATUS.json',{'status':'IMPLEMENTATION_READY_DEPENDENCY_BLOCKED','authenticationReadiness':'BLOCKED_NO_CONFIGURED_AUTHENTICATED_PROVIDER','formalCapture':'BLOCKED_NO_TRUSTED_CAPTURE_COMPOSITION','datasetCutoffReadiness':'CONTRACT_AND_PREPARATION_ONLY_NO_AUTHENTICATED_DATASET','independentAcceptanceReadiness':'REQUEST_PREPARATION_ONLY_NO_AUTHENTICATED_ACCEPTANCE','PEC2Compatibility':'EMPTY_TRUST_OFFLINE_ADAPTER_ONLY','blockers':[{'id':'PEC1B_AUTHENTICATED_IDENTITY','status':'BLOCKED','responsibleRole':'Investment System Owner / identity administrator','minimumAction':'Select and configure a real authenticated RuntimeReviewerIdentity implementation, exact seven-role permission mapping, authority/audit verification and current session/role revocation. No fake provider or caller claims.'},{'id':'PEC1B_TRUSTED_CAPTURE_AND_ATOMIC_LINEAGE','status':'BLOCKED','responsibleRole':'Data infrastructure owner / audit engineer','minimumAction':'Review actual execution/clock capture and transactional audit binding to existing formal repositories. No duplicate authority/event store, historical event creation or producer-time substitution.'},{'id':'PE3_FORMAL_KNOWLEDGE','status':'ESCALATED_BLOCKING','responsibleRole':'Lineage custodian and component governance owners','minimumAction':'After real capture readiness, execute newly authorized operations and resolve every exact authenticated boundary. All current candidate chains remain incomplete.'},{'id':'PE3_ACTUAL_DATASET_CUTOFFS','status':'ESCALATED_BLOCKING','responsibleRole':'Dataset Owner','minimumAction':'Authorize actual prospective snapshot creation, exact content/version, genuine availability/cutoff and independent audit references. Null current cutoffs remain null.'},{'id':'PE3_INDEPENDENT_ACCEPTANCE_AND_D2_ACTIVATION','status':'ESCALATED_BLOCKING','responsibleRole':'Independent Validator / Investment System Owner','minimumAction':'Assign a producer-distinct authenticated reviewer; bind exact source/mapping/methodology/knowledge/dataset/cutoff acceptance. D2 activation remains separately unauthorized.'}],'otherInheritedBlockersUnchanged':['PE3_EXACT_SOURCE_AUTHORITY','PE3_ECONOMIC_PERIMETER_LIMITATIONS','MINIMUM_DATASET_OUTSIDE_PE4_REVIEW_SCOPE'],'effectiveAdmissions':0,'ownerApprovalsCreated':0,'productionScoring':'BLOCKED_NOT_EXECUTED','PEC3Started':False})
+    md('CLOSURE_REPORT.md','''# PEC-1B closure report
+
+**Final status: IMPLEMENTATION_READY_DEPENDENCY_BLOCKED. PEC-1B is not APPROVED.**
+
+The authorized no-authentication fallback is implemented: deterministic non-authoritative preparation artifacts with local preparation timestamps, exclusive append/idempotency, evidence/chain/order validation, complete formal-event design, dataset/cutoff identity inspection, exact independent review request binding, and an empty-trust PEC-2 boundary. Formal capture/approval/admission and production integration remain unavailable.
+
+## Reuse and changes
+
+Reused existing source/publication/mapping evidence, immutable storage and methodology/registry/snapshot/review contracts, canonical SHA-256 helpers and PEC-2 v2 evaluator. Added only scripts/lib/pec1b_workflow.py, scripts/test-pec1b-workflow.py, this evidence builder, a read-only safety verifier and this versioned evidence package. No existing code, migration, active authority or frozen investment policy is modified. No new event database, approval registry, authentication provider or acquisition route is created.
+
+PEC1B_ARCHITECTURE.md and ARCHITECTURE_INPUTS.json document the actual gaps. FORMAL_KNOWLEDGE_EVENT_CONTRACT.md and its schema distinguish future authenticated events from the null-clock preparation representation. PROSPECTIVE_EVIDENCE_WORKFLOW.md documents execution and crash/rollback limits. DATASET_CUTOFF_CONTRACT.md covers all requested fields, deterministic versioning and non-circular approval attachment. INDEPENDENT_ACCEPTANCE_WORKFLOW.md covers exact scope, producer distinction, immutable disposition and invalidation. PEC2_INTEGRATION_BOUNDARY.md preserves mandatory gates and explains future core-bound approval constraints.
+
+## Readiness
+
+- Authentication: BLOCKED. Ports and test identities are available; a configured independently verified provider/permission composition is absent.
+- Formal knowledge: BLOCKED. No authenticated prospective events are emitted; all real candidate chains remain incomplete.
+- Dataset cutoff: contract/preparation ready; actual authenticated creation/cutoff receipts absent. A current preparation time cannot create historical availability.
+- Independent acceptance: request preparation ready; authenticated producer-distinct acceptance absent.
+- PEC-2: compatible via unchanged evaluator and empty-trust offline adapter. No qualified evidence export or admission performed.
+
+## Validation and safety
+
+VALIDATION_CASES.md maps all sixteen requested cases to isolated tests and states which successful authenticated operations remain untestable. VALIDATION_RESULTS.json and validation/ contain exact commands, exits and counts. The safety verifier rehashes pre-existing tracked/data/evidence files, all eight prior package seals and implementation pins, read-only DB bytes/logical dump/counts and original eight candidate evaluations. It verifies unchanged owner metadata, zero effective source admissions and false production/runtime/scoring flags. New-package seals prove content integrity only, not authentication or independent human acceptance.
+
+No source is acquired, no real authority event or approval is created, no production admission, D2/scoring activation or PEC-3 work occurs. Remaining owner/infrastructure actions are concrete in BLOCKER_STATUS.json. Stop after PEC-1B.
+''')
+    print('PEC-1B architecture, contracts and non-authoritative workflow packet prepared.')
+
+if __name__=='__main__':main()
