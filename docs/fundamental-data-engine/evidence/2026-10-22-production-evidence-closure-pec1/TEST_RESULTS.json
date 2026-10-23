@@ -1,0 +1,41 @@
+{
+  "currentRuns": [
+    {
+      "name": "pec1",
+      "command": [
+        "python3",
+        "scripts/test-pec1-authority.py"
+      ],
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-22-production-evidence-closure-pec1/validation/pec1.log"
+    },
+    {
+      "name": "pe4",
+      "command": [
+        "python3",
+        "scripts/test-pe4-evidence.py"
+      ],
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-22-production-evidence-closure-pec1/validation/pe4.log"
+    },
+    {
+      "name": "runtime-safety",
+      "command": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "tests/unit/d2-availability.test.ts",
+        "tests/integration/d2-source-evidence.test.ts",
+        "tests/integration/production-authority.test.ts",
+        "tests/unit/scoring-readiness.test.ts",
+        "tests/integration/scoring-readiness.test.ts",
+        "--reporter=json",
+        "--outputFile=docs/fundamental-data-engine/evidence/2026-10-22-production-evidence-closure-pec1/validation/runtime-results.json"
+      ],
+      "exitCode": 0,
+      "log": "docs/fundamental-data-engine/evidence/2026-10-22-production-evidence-closure-pec1/validation/runtime-safety.log"
+    }
+  ],
+  "historicalOnly": "PE4 full suite 2167 passed/18 failed; lint known warning. Not rerun for Python-only offline tooling. See pinned PE4 QUALITY_GATE_RESULTS.json."
+}
