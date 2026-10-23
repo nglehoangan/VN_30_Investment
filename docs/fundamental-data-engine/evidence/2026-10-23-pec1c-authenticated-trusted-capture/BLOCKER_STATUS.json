@@ -1,0 +1,48 @@
+{
+  "status": "IMPLEMENTATION_READY_DEPENDENCY_BLOCKED",
+  "implementedAndTested": [
+    "Provider-neutral authenticated capture/permission contracts",
+    "Exact operation/source/subject/version/scope authorization checks",
+    "Session expiry, current revocation hooks and producer distinction",
+    "UTC/monotonic/persisted-clock guards",
+    "Atomic inline audit/evidence/operation transaction and replay",
+    "Database immutability schema/chain/CAS constraints",
+    "PEC-1B field/role/typed boundary compatibility",
+    "No automatic PEC-2 trust/admission/runtime connection"
+  ],
+  "implementedNotOperationallyConfigured": [
+    "Real IdentityAuthority adapter/composition",
+    "Real OperationExecutor over existing financial/governance repositories",
+    "SQL schema installation/migration ownership and any Prisma bridge",
+    "Server clock health and independently anchored audit retention"
+  ],
+  "blockers": [
+    {
+      "id": "PEC1B_AUTHENTICATED_IDENTITY",
+      "status": "BLOCKED_EXTERNAL_CONFIGURATION",
+      "role": "Investment System Owner + identity/security administrator",
+      "requiredAction": "Select/verify real provider issuer/audience, secure session verification, exact seven-role assignments, live role/session/subject revocation and immutable authentication audit; configure reviewed server adapter. Do not use fixtures."
+    },
+    {
+      "id": "PEC1B_TRUSTED_CAPTURE_AND_ATOMIC_LINEAGE",
+      "status": "IMPLEMENTED_TESTED_OPERATIONALLY_BLOCKED",
+      "role": "Database/data infrastructure owner + audit engineer",
+      "requiredAction": "Review/install additive schema through actual DB ownership workflow and configure real same-transaction operation executors, healthy clock and external durable audit/head controls. No live migration or business event executed here."
+    }
+  ],
+  "inheritedSourceAndDatasetBlockersRemain": [
+    "PE3_EXACT_SOURCE_AUTHORITY",
+    "PE3_FORMAL_KNOWLEDGE",
+    "PE3_ACTUAL_DATASET_CUTOFFS",
+    "PE3_ECONOMIC_PERIMETER_LIMITATIONS",
+    "PE3_INDEPENDENT_ACCEPTANCE_AND_D2_ACTIVATION",
+    "MINIMUM_DATASET_OUTSIDE_PE4_REVIEW_SCOPE"
+  ],
+  "realAuthenticatedEventsCreated": 0,
+  "ownerSourceApprovalsCreated": 0,
+  "effectiveAdmissions": 0,
+  "D2Activated": false,
+  "productionScoringActivated": false,
+  "PEC1DStarted": false,
+  "PEC3Started": false
+}

@@ -1,0 +1,13 @@
+{
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/test-pec1c-capture.py",
+  "exitCode": 1,
+  "testsRun": 27,
+  "failures": 2,
+  "errors": 1,
+  "details": {
+    "test_11": "Replay used pre-lock evaluation time; concurrent committed event appeared future relative to stale time. Fixture also used independent frozen clocks.",
+    "test_15": "Clock rollback was rejected as EVENT_CLOCK_BINDING, not the expected explicit CLOCK_ROLLBACK diagnostic.",
+    "test_27": "Concurrent-head fixture inherited the same stale/frozen time behavior and did not test one-winner CAS correctly."
+  },
+  "resolution": "Resample time and recheck identity/permission inside the acquired transaction. Use one synchronized fixture clock for concurrent operations; test one successful append and one stale-head rejection. Preserve all temporal gates."
+}
