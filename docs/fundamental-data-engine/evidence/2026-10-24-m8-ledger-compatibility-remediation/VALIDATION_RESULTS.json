@@ -1,0 +1,66 @@
+{
+  "status": "PASS",
+  "commands": [
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --import ./scripts/lib/ts-runtime.mjs scripts/validate-m8-ledger-replay.mjs",
+      "result": "PASS",
+      "evidence": "LEDGER_REPLAY_RESULTS.json"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --import ./scripts/lib/ts-runtime.mjs scripts/validate-m8-ledger-local-data.mjs",
+      "result": "PASS",
+      "evidence": "ACTUAL_DATA_RECONSTRUCTION.json"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/validate-m8-ledger-live.mjs",
+      "result": "PASS",
+      "evidence": "LIVE_RUNTIME_RESULTS.json"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/opening-receivable-compatibility.test.ts tests/unit/portfolio-accounting.test.ts tests/unit/portfolio-read-models.test.ts tests/unit/dashboard-ui.test.tsx tests/unit/dashboard-screens.test.ts tests/unit/current-remediation-ui.test.tsx tests/unit/manual-fundamentals-ui.test.tsx tests/unit/data-freshness-ui.test.tsx tests/unit/runtime-readiness.test.ts tests/unit/runtime-dataset-acceptance.test.ts --reporter=json --outputFile=docs/fundamental-data-engine/evidence/2026-10-24-m8-ledger-compatibility-remediation/validation/unit-regressions.json",
+      "result": "PASS",
+      "passed": 162,
+      "failed": 0,
+      "classification": "SYNTHETIC_UNIT_AND_ADAPTER_SEAM_TESTS"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/test-pec2-final-review.py --json docs/fundamental-data-engine/evidence/2026-10-24-m8-ledger-compatibility-remediation/validation/pec2-regressions.json",
+      "result": "PASS",
+      "passed": 62
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/check-boundaries.mjs",
+      "result": "PASS"
+    },
+    {
+      "command": "NEXT_TELEMETRY_DISABLED=1 /private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/next/dist/bin/next build",
+      "result": "PASS",
+      "notes": "Fresh build and TypeScript; existing tracing and experimental SQLite warnings."
+    },
+    {
+      "command": "NEXT_TELEMETRY_DISABLED=1 DATABASE_URL='file:/Users/nglehoangan/Documents/Working/VN_30_Investment/data/vn30.sqlite' /private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 38417",
+      "result": "PASS_LOOPBACK_ONLY_STOPPED_AFTER_REVIEW"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts python3 scripts/close-m8-ledger-remediation.py",
+      "result": "PASS",
+      "notes": "Includes RAM-copy immutable constraints, exact retained broker source hash, actual read-only database snapshots, historical seals and eight admission evaluations."
+    }
+  ],
+  "unitPassed": 162,
+  "unitFailed": 0,
+  "PEC2TestsPassed": 62,
+  "actualTransactionsReplayedExactly": 12,
+  "actualOriginalLegs": 24,
+  "actualPositionsVerified": 11,
+  "liveRoutesHTTP200": 18,
+  "liveFixturesInjected": false,
+  "knownFailures": [],
+  "limitations": [
+    "No accepted current market snapshot; NAV unavailable.",
+    "No pre-inception transaction reconstruction or new dividend settlement contract.",
+    "No original importer executable found in retained source/history searches; exact retained source, facts, legs and migration identity verified instead.",
+    "Existing read-only application connection setup runs PRAGMAs; before/after database bytes and logical state remain identical.",
+    "Visual QA performed on redacted Holdings screenshot; GET browser checks inspect exact actual values without persisting private amounts in reports."
+  ]
+}

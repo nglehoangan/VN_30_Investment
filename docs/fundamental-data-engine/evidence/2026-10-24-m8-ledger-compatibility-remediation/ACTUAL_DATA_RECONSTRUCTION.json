@@ -1,0 +1,94 @@
+{
+  "classification": "ACTUAL_LOCAL_SQLITE_PRISMA_AND_DOMAIN_READS_NOT_SYNTHETIC",
+  "database": "/Users/nglehoangan/Documents/Working/VN_30_Investment/data/vn30.sqlite",
+  "prismaSelectOne": [
+    {
+      "ok": "1"
+    }
+  ],
+  "prismaPortfolioCount": 1,
+  "sqliteIntegrity": {
+    "integrity_check": "ok"
+  },
+  "foreignKeyViolations": 0,
+  "portfolioCount": 1,
+  "summaries": [
+    {
+      "cashMatchesOriginalLegs": true,
+      "nonzeroReceivableMatchesOriginalLegs": true,
+      "holdingsAndBasisMatchOriginalLegs": true,
+      "portfolioIdentityHash": "c45ccc912484dae94c8416cf49a846eae11309a01f3c7c6a8503b7186bf4f285",
+      "revision": "1",
+      "transactionCount": 12,
+      "transactionTypes": [
+        "OPENING_BALANCE"
+      ],
+      "supportedInception": "IMPORTED",
+      "supportedInceptionAt": "2026-10-08T11:38:01.705Z",
+      "asOf": "2026-10-24T04:36:05.473Z",
+      "positions": 11,
+      "nonzeroPositions": 11,
+      "cashPresent": true,
+      "cashIsNegative": false,
+      "allQuantityCostValuesAreDecimalStrings": true,
+      "reconstructionHash": "e18e76e5a0ae44402494417ba0dd9151cc3277395bbb12a0525ac75a80f228a0",
+      "storedProjectionHash": "e18e76e5a0ae44402494417ba0dd9151cc3277395bbb12a0525ac75a80f228a0",
+      "storedProjectionMatchesCurrentReconstruction": true,
+      "storedProjectionAsOf": "2026-10-08T11:38:01.705Z",
+      "ledgerWatermarkMatchesProjection": true,
+      "dividendLedgerEvents": 0,
+      "tradeLedgerEvents": 0,
+      "dividendAmountsRepresentEvents": "NO_DIVIDEND_EVENTS_ZERO_TOTAL_IS_NOT_COMPLETE_DIVIDEND_HISTORY"
+    }
+  ],
+  "ledgerCountBefore": 12,
+  "ledgerCountAfter": 12,
+  "fundamentalAvailability": {
+    "pdfPhysicalDocuments": 337,
+    "pdfUniqueDocuments": 330,
+    "apiRawCaptureCount": 248,
+    "apiSchemaQuarantineCount": 8,
+    "apiStatus": "COMPLETE_WITH_SCHEMA_QUARANTINE",
+    "presentationCombinedProductionAdmissible": false,
+    "legacyDashboardResearchSnapshotExists": false,
+    "legacyManualPdfDirectoryExists": false,
+    "currentCombinedDirectoryExists": true,
+    "note": "Manifest inventory only; no new semantic/source-image validation or corpus regeneration."
+  },
+  "manifests": [
+    {
+      "path": "data/manual-download/manifest.json",
+      "sha256": "c9ee60cfed1263a520a2772cc3e2c29b63a489c3552b25f924bd5a5745ba5d05"
+    },
+    {
+      "path": "data/manual-extracted-pdf/manifest.json",
+      "sha256": "ceff79e14f34a139b8f3f0179776342b86572b4f7de563855168693091ccf6c4"
+    },
+    {
+      "path": "data/manual-extracted-api/manifest.json",
+      "sha256": "1fc2dfa29ee46f7018f9c40c4e7fcd3a6907685fd5ee85f82923739a7500ea35"
+    },
+    {
+      "path": "data/combine/manifest.json",
+      "sha256": "e5156145e2b2c5955fd65a04d7724a2fd82265a3e2b17492c74b59a80acac2aa"
+    },
+    {
+      "path": "data/combine/verification.json",
+      "sha256": "fbd21c41a70d150809ccad835f13f0425c01e8debee348bbf60c636ad42d0405"
+    }
+  ],
+  "operationsPerformed": [
+    "Prisma connect and SELECT/readonly ledger transaction",
+    "Existing authoritative ledger validation and domain reconstruction",
+    "SQLite readonly SELECT and integrity checks"
+  ],
+  "operationsNotPerformed": [
+    "post",
+    "projection rebuild",
+    "migrate",
+    "admit",
+    "accept",
+    "score",
+    "source acquisition"
+  ]
+}

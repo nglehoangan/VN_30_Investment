@@ -18,7 +18,7 @@ const schema = z.strictObject({
   settlesId: id.optional(), reversesId: id.optional(), correctionGroupId: id.optional(), notes: text.optional(),
   dividend: z.strictObject({ net: amount, gross: amount.nullable(), withholding: amount.nullable(), entitlementDate: date.optional(), eventReference: text.optional() }).optional(),
   adjustment: z.strictObject({ reasonCode: text, evidence: text, note: text }).optional(),
-  opening: z.strictObject({ cost: amount, migrationVersion: text, evidence: text }).optional(),
+  opening: z.strictObject({ cost: amount, receivable: amount.optional(), migrationVersion: text, evidence: text }).optional(),
   corporateAction: z.strictObject({ id, subtype: text, numerator: amount, denominator: amount, evidence: text, stage: z.enum(["EFFECTIVE", "SETTLEMENT"]), basis: amount.optional(), destinationSecurityId: id.optional(), destinationQuantity: amount.optional(), originatingTransactionId: id.optional() }).optional(),
 });
 /** Domain constructors subsequently validate nominal IDs, calendar dates and economic invariants. */

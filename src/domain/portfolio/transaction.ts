@@ -19,7 +19,7 @@ export interface TransactionInput {
   readonly fee?: string; readonly tax?: string; readonly representation?: "NET_SETTLEMENT" | "SPLIT_SETTLEMENT";
   readonly settlesId?: TransactionId; readonly reversesId?: TransactionId; readonly correctionGroupId?: string;
   readonly dividend?: { readonly net: string; readonly gross: string | null; readonly withholding: string | null; readonly entitlementDate?: DateOnly; readonly eventReference?: string };
-  readonly opening?: { readonly cost: string; readonly migrationVersion: string; readonly evidence: string };
+  readonly opening?: { readonly cost: string; readonly receivable?: string; readonly migrationVersion: string; readonly evidence: string };
   readonly corporateAction?: { readonly id: string; readonly subtype: string; readonly numerator: string; readonly denominator: string; readonly evidence: string; readonly stage: "EFFECTIVE" | "SETTLEMENT"; readonly basis?: string; readonly destinationSecurityId?: SecurityId; readonly destinationQuantity?: string; readonly originatingTransactionId?: TransactionId };
   readonly adjustment?: { readonly reasonCode: string; readonly evidence: string; readonly note: string };
   readonly notes?: string;
@@ -120,6 +120,12 @@ export function buildTransaction(input: TransactionInput, now: Instant, history:
     case "OPENING_BALANCE": {
       requireRule(f.opening && f.opening.evidence.trim() && f.opening.migrationVersion.trim(), "OPENING_BALANCE_EVIDENCE_MISSING");
       if (f.amount) { requireRule(!decimal(f.amount).negative, "NEGATIVE_OPENING_CASH_UNSUPPORTED"); leg("CASH", decimal(f.amount).toString()); }
+      // Evidenced opening obligations remain separate from settled cash and income.
+      if (f.opening.receivable !== undefined) {
+        const receivable = decimal(f.opening.receivable);
+        requireRule(!receivable.negative, "NEGATIVE_OPENING_RECEIVABLE_UNSUPPORTED");
+        if (receivable.positive) leg("RECEIVABLE", receivable.toString());
+      }
       if (f.securityId) {
         const q = shareQuantity(f.quantity ?? ""); const cost = decimal(f.opening.cost);
         requireRule(q.positive && !cost.negative, "OPENING_HOLDING_INVALID");
