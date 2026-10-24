@@ -1,0 +1,99 @@
+{
+  "status": "PASS_AMENDMENT_REGRESSIONS_AND_SAFETY",
+  "amendmentStatus": "READY_FOR_OWNER_REVIEW",
+  "authenticationStatus": "DEFERRED_BY_OWNER",
+  "googleOIDCStatus": "DEFERRED_BY_OWNER",
+  "commands": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/record-pec1d-auth-deferral.py",
+      "exitCode": 0
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/dashboard-ui.test.tsx tests/unit/dashboard-screens.test.ts tests/unit/current-remediation-ui.test.tsx tests/unit/manual-fundamentals-ui.test.tsx tests/unit/data-freshness-ui.test.tsx --reporter=json --outputFile=docs/fundamental-data-engine/evidence/2026-10-24-pec1d-authentication-deferral-amendment/validation/local-viewing-tests.json",
+      "exitCode": 0,
+      "testsPassed": 43,
+      "testFiles": 5,
+      "resultReference": "validation/local-viewing-tests.json",
+      "log": "validation/local-viewing-tests.log",
+      "migrationCommandsExecuted": false
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/test-pec1b-workflow.py --json docs/fundamental-data-engine/evidence/2026-10-24-pec1d-authentication-deferral-amendment/validation/pec1b-regressions.json",
+      "exitCode": 0,
+      "testsPassed": 25,
+      "resultReference": "validation/pec1b-regressions.json",
+      "log": "validation/pec1b-regressions.log"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/test-pec2-final-review.py --json docs/fundamental-data-engine/evidence/2026-10-24-pec1d-authentication-deferral-amendment/validation/pec2-regressions.json",
+      "exitCode": 0,
+      "testsPassed": 62,
+      "resultReference": "validation/pec2-regressions.json",
+      "log": "validation/pec2-regressions.log"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/check-boundaries.mjs",
+      "exitCode": 0,
+      "log": "validation/architecture-boundaries.log"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/record-pec1d-auth-deferral.py --verify",
+      "exitCode": 0,
+      "result": "PASS_TECHNICAL_SAFETY_NOT_AUTHENTICATED_APPROVAL"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/record-pec1d-auth-deferral.py --verify --require-seal",
+      "resultReference": "validation/safety-verification.json",
+      "purpose": "Final sealed execution receipt excluded from self-hash"
+    }
+  ],
+  "testSummary": {
+    "passed": 130,
+    "failed": 0,
+    "errors": 0,
+    "localViewingUI": 43,
+    "PEC1B": 25,
+    "PEC2V2": 62
+  },
+  "safetySummary": {
+    "status": "PASS_TECHNICAL_SAFETY_NOT_AUTHENTICATED_APPROVAL",
+    "protectedFilesUnchanged": 7126,
+    "priorSealsVerified": 11,
+    "databaseUnchanged": true,
+    "applicationAndPolicyCodeUnchanged": true,
+    "ordinaryLocalViewingTestsPassed": 43,
+    "PEC1BRegressions": 25,
+    "PEC2Regressions": 62,
+    "candidateStates": {
+      "DEFERRED": 8
+    },
+    "authenticatedApprovalsCreated": 0,
+    "effectiveAdmissions": 0,
+    "providerInstallations": 0,
+    "sessionsCreated": 0,
+    "identitiesAssigned": 0,
+    "databaseMigrationsExecuted": 0,
+    "D2Activated": false,
+    "scoringActivated": false,
+    "PEC1EStarted": false,
+    "PEC3Started": false
+  },
+  "syntaxCheck": "PASS_ast.parse_no_bytecode_write",
+  "verificationLimits": "Selected migration-free synthetic unit/UI fixtures and read-only actual input/DB/source-candidate checks. Not a new live browser/deployment acceptance, authenticated source approval or operational independent validation. Existing data-quality/actionability gates may still withhold unsafe or unavailable results.",
+  "runtimeChanges": "NONE; local view composition already has no login prerequisite",
+  "PEC1CContracts": "UNCHANGED_PINNED_BY_PRIOR_SEALS",
+  "databaseMigrationsExecuted": 0,
+  "authenticationLibrariesInstalled": 0,
+  "loginScreensCreated": 0,
+  "sessionsCreated": 0,
+  "authenticatedIdentitiesAssigned": 0,
+  "sourceApprovalOrIndependentAcceptanceCreated": false,
+  "productionScoringActivated": false,
+  "PEC1EStarted": false,
+  "PEC3Started": false,
+  "sealSemantics": "Integrity only. No local artifact is authentication or source authority. validation/safety-verification.json excluded from its own seal."
+}
