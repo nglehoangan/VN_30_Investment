@@ -1,0 +1,9 @@
+# Implementation report
+
+New contracts/parser/reader/view: `src/domain/fundamentals/retained-research.ts`, `src/infrastructure/config/retained-research.ts`, `src/infrastructure/fundamentals/retained-research.ts`, `src/ui/retained-research.tsx`. DashboardModel gains an optional presentation-only DTO. Server composition now reads current-layout research for Data Freshness, VN30 and Scorecards. VN30 ticker details accept bounded variant/page queries. Existing data acceptance parameters and production readers are unchanged. The data-page eyebrow now accurately labels financial data status rather than claiming every displayed record is sealed.
+
+UI includes thirty ticker links, report/period/scope variant selector, exact native-unit values, missing/withheld warnings, capture/publication distinction, provenance details and all eight quarantine entries. Explicit scope and unknown scope are kept apart. Large statements paginate by 100 rows; numeric values remain on one line within scrollable tables. Research access creates no financial write, admission or scoring operation.
+
+Validation: 185 unit tests; 25 targeted adapter/UI tests rerun after the final accessibility fix; 62 PEC-2 gate tests. Actual reads parse all thirty files, inspect default pages and representative VNM consolidated/parent-labelled/API variants. Actual ledger replay still reproduces twelve transactions/24 legs and eleven holdings. Fresh build, architecture checks and live browser comparisons pass. Existing tests changed only for the explicit new VN30 research-detail route and accurate data-page wording; frozen contracts and gate checks remain intact.
+
+No dependencies installed, original financial JSON changed, legacy directories restored, database migration or market-data remediation started. Known implementation-time test/harness failures and resolutions are recorded in VALIDATION_RESULTS.json.

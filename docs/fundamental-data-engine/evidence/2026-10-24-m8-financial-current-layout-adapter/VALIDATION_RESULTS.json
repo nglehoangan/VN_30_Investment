@@ -1,0 +1,105 @@
+{
+  "status": "PASS",
+  "commands": [
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --import ./scripts/lib/ts-runtime.mjs scripts/validate-m8-financial-research.mjs",
+      "result": "PASS",
+      "classification": "ACTUAL_RETAINED_FILES"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --import ./scripts/lib/ts-runtime.mjs scripts/validate-m8-financial-ledger.mjs",
+      "result": "PASS",
+      "classification": "ACTUAL_SQLITE_PRISMA_REPLAY"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --import ./scripts/lib/ts-runtime.mjs scripts/validate-m8-financial-live.mjs",
+      "result": "PASS",
+      "classification": "ACTUAL_BROWSER_GET_ONLY"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/retained-financial-research.test.tsx tests/unit/opening-receivable-compatibility.test.ts tests/unit/portfolio-accounting.test.ts tests/unit/portfolio-read-models.test.ts tests/unit/dashboard-ui.test.tsx tests/unit/dashboard-screens.test.ts tests/unit/manual-fundamentals-ui.test.tsx tests/unit/data-freshness-ui.test.tsx tests/unit/runtime-readiness.test.ts tests/unit/runtime-dataset-acceptance.test.ts --reporter=json --outputFile=docs/fundamental-data-engine/evidence/2026-10-24-m8-financial-current-layout-adapter/validation/unit-regressions.json",
+      "result": "PASS",
+      "passed": 185,
+      "failed": 0,
+      "classification": "SYNTHETIC_UNIT_TESTS_NOT_LIVE_ACCEPTANCE"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/retained-financial-research.test.tsx --reporter=json --outputFile=docs/fundamental-data-engine/evidence/2026-10-24-m8-financial-current-layout-adapter/validation/adapter-tests.json",
+      "result": "PASS",
+      "passed": 25,
+      "note": "Rerun after final accessibility wrapper correction."
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/test-pec2-final-review.py --json docs/fundamental-data-engine/evidence/2026-10-24-m8-financial-current-layout-adapter/validation/pec2-regressions.json",
+      "result": "PASS",
+      "passed": 62
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/check-boundaries.mjs",
+      "result": "PASS"
+    },
+    {
+      "command": "NEXT_TELEMETRY_DISABLED=1 /private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/next/dist/bin/next build",
+      "result": "PASS",
+      "note": "Fresh production build and TypeScript; existing DB filesystem tracing/experimental SQLite warnings."
+    },
+    {
+      "command": "NEXT_TELEMETRY_DISABLED=1 DATABASE_URL='file:/Users/nglehoangan/Documents/Working/VN_30_Investment/data/vn30.sqlite' /private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 38417",
+      "result": "PASS_STOPPED_AFTER_REVIEW"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts python3 scripts/close-m8-financial-adapter.py",
+      "result": "PASS"
+    }
+  ],
+  "unitPassed": 185,
+  "unitFailed": 0,
+  "adapterTestsPassed": 25,
+  "PEC2TestsPassed": 62,
+  "actualTickerFilesParsed": 30,
+  "actualRetainedDefaultPagesChecked": 30,
+  "actualTransactionsReplayedExactly": 12,
+  "actualHoldingsUnchanged": 11,
+  "liveComparisons": 5,
+  "liveRoutes": 15,
+  "resolvedDuringImplementation": [
+    {
+      "check": "Initial actual-data parser probe",
+      "failure": "Null asOf rejected although retained schema explicitly permits unknown boundaries.",
+      "resolution": "Accepted explicit null without filling it; unknown-period values withheld."
+    },
+    {
+      "check": "Initial architecture check",
+      "failure": "Zod import outside approved schema/configuration layer.",
+      "resolution": "Moved parsing schemas to infrastructure/config; boundary checker unchanged."
+    },
+    {
+      "check": "Initial broad regression run",
+      "failure": "181 passed, 2 failed: route catalog still expected no VN30 detail; data eyebrow expected sealed-only wording.",
+      "resolution": "Added explicit research-detail route test and updated the presentation label expectation; gate assertions retained. Final expanded suite passes."
+    },
+    {
+      "check": "First live browser run",
+      "failure": "Duplicate accessible research region from nested outer section and Panel.",
+      "resolution": "Changed outer wrapper to div; rebuilt, reran targeted UI/adapter tests and actual browser acceptance."
+    },
+    {
+      "check": "Browser navigation timing",
+      "failure": "URL changed before streamed research rows completed (0 observed versus 73 expected).",
+      "resolution": "Browser assertions now wait for the expected server-rendered row count; final exact comparisons pass."
+    },
+    {
+      "check": "Optional supplemental screenshot clip",
+      "failure": "Additional top-of-panel clip fell outside the viewport after completed live acceptance.",
+      "resolution": "Existing successful full-panel desktop/mobile screenshots retained for visual QA; no application or acceptance failure."
+    }
+  ],
+  "remainingTestFailures": [],
+  "validationLimits": [
+    "Full consumed schema and combined hash checked for all 30 ticker files. Source/value lineage checked for displayed pages and representative live variants, not every retained corpus cell.",
+    "Extraction/OCR and caption/period/scope/unit correctness are not independently accepted.",
+    "Publication timestamps are unqualified; no historical AS_KNOWN analysis enabled.",
+    "No market-data freshness threshold invented; current NAV and scoring readiness stay blocked.",
+    "Prisma/runtime connection performs existing connection PRAGMAs; database bytes and logical state remain identical."
+  ]
+}

@@ -4,7 +4,7 @@ const screens = [
   { id: "holdings", title: "Holdings", group: "Overview", detail: true },
   { id: "risk", title: "Risk", group: "Overview", detail: false },
   { id: "performance", title: "Performance", group: "Overview", detail: false },
-  { id: "vn30", title: "VN30 Universe", group: "Research & Decisions", detail: false },
+  { id: "vn30", title: "VN30 Universe", group: "Research & Decisions", detail: true },
   { id: "ranking", title: "Scoring & Ranking", group: "Research & Decisions", detail: true },
   { id: "decisions", title: "Decision Center", group: "Research & Decisions", detail: true },
   { id: "dca", title: "DCA Planner", group: "Research & Decisions", detail: true },

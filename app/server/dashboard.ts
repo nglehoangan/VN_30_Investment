@@ -1,5 +1,5 @@
 import "server-only";
-import {readManualCurrentSnapshot} from "@/infrastructure/fundamentals/manual-current";
+import {readRetainedResearch} from "@/infrastructure/fundamentals/retained-research";
 import {readDataFreshness,type DataFreshnessServices} from "@/infrastructure/repositories/data-freshness";
 import {emptyDataFreshness} from "@/domain/fundamentals/freshness";
 import { currentServices } from "./current";
@@ -70,28 +70,29 @@ export async function readDashboard(client: PrismaClient, screen = "audit", refe
   result.status = result.portfolio || result.cards.length || result.reviews.length || result.decisions.length ? "SUCCESS" : "EMPTY";
   return result;
 }
-export async function loadDashboard(screen = "dashboard", reference?: string,acceptanceId?:string): Promise<DashboardModel> {
+export async function loadDashboard(screen = "dashboard", reference?: string,acceptanceId?:string,research?:{variant?:string;page?:string}): Promise<DashboardModel> {
   let client: PrismaClient | undefined;
   try {
     // Optional research must not hide separately verified ledger or sealed snapshot data.
+    let retainedResearch: DashboardModel["retainedResearch"];
     let manualFundamentals: DashboardModel["manualFundamentals"];
     let manualFundamentalsIssue: string | undefined;
     if (["data", "vn30", "scoring"].includes(screen)) {
-      try { manualFundamentals = await readManualCurrentSnapshot(process.cwd()) ?? undefined; }
-      catch { manualFundamentalsIssue = "Manual financial evidence could not be verified. Its values and readiness are unavailable."; }
+      try { retainedResearch = await readRetainedResearch(process.cwd(),screen==="vn30"?reference:undefined,research?.variant,research?.page,runtime.clock.now()); }
+      catch { manualFundamentalsIssue = "Retained financial research could not be verified for this selection. Values are unavailable; portfolio accounting and production gates are independent."; }
     }
     const config = loadDatabaseConfig(process.env, process.cwd());
     if (!existingDatabase(config.filePath)) {
-      if(screen==="data")return {...emptyDashboard(),manualFundamentals,manualFundamentalsIssue,dataFreshness:emptyDataFreshness(runtime.clock.now())};
+      if(screen==="data")return {...emptyDashboard(),retainedResearch,manualFundamentals,manualFundamentalsIssue,dataFreshness:emptyDataFreshness(runtime.clock.now())};
       const brokerSnapshot = await loadBrokerSnapshot(process.env.VN30_BROKER_SNAPSHOT_FILE);
-      return { ...emptyDashboard(), manualFundamentals, manualFundamentalsIssue, status: brokerSnapshot ? "SUCCESS" : "EMPTY", brokerSnapshot: brokerSnapshot ?? undefined };
+      return { ...emptyDashboard(), retainedResearch, manualFundamentals, manualFundamentalsIssue, status: brokerSnapshot ? "SUCCESS" : "EMPTY", brokerSnapshot: brokerSnapshot ?? undefined };
     }
     client = await openDatabase(config);
-    if(screen==="data")return {...await readDashboard(client,screen,reference,{acceptanceId}),manualFundamentals,manualFundamentalsIssue};
+    if(screen==="data")return {...await readDashboard(client,screen,reference,{acceptanceId}),retainedResearch,manualFundamentals,manualFundamentalsIssue};
     const brokerSnapshot = await latestBrokerSnapshot(client) ?? await loadBrokerSnapshot(process.env.VN30_BROKER_SNAPSHOT_FILE);
     const brokerApiData = await latestBrokerApiData(client);
     const dashboard = await readDashboard(client, screen, reference);
-    return { ...dashboard,manualFundamentals,manualFundamentalsIssue, brokerApiData, status: dashboard.status === "EMPTY" && brokerSnapshot ? "SUCCESS" : dashboard.status, brokerSnapshot: brokerSnapshot ?? undefined };
+    return { ...dashboard,retainedResearch,manualFundamentals,manualFundamentalsIssue, brokerApiData, status: dashboard.status === "EMPTY" && brokerSnapshot ? "SUCCESS" : dashboard.status, brokerSnapshot: brokerSnapshot ?? undefined };
   } catch (error) { return { ...emptyDashboard(), status: "BLOCKED", message: toPublicError(error).message, ...(screen==="data"?{dataFreshness:emptyDataFreshness(runtime.clock.now(),"BLOCKED",["BLOCKED_DATA_READ"])}:{}) }; }
   finally { await client?.$disconnect(); }
 }

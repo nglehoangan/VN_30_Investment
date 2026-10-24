@@ -18,12 +18,13 @@ describe("dashboard route catalog", () => {
     expect(navigation.flatMap(group => group.items).some(([id]) => id === "scoring")).toBe(false);
   });
 
+  it("supports retained research ticker detail",()=>expect(supportsDashboardDetail("vn30")).toBe(true));
   it("rejects unknown routes and detail pages that have no artifact contract", () => {
     for (const value of ["__proto__", "constructor", "unknown", "settings/new", ""]) {
       expect(isDashboardScreen(value)).toBe(false);
       expect(supportsDashboardDetail(value)).toBe(false);
     }
-    for (const value of ["dashboard", "risk", "performance", "settings", "imports", "vn30"]) {
+    for (const value of ["dashboard", "risk", "performance", "settings", "imports"]) {
       expect(isDashboardScreen(value)).toBe(true);
       expect(supportsDashboardDetail(value)).toBe(false);
     }
