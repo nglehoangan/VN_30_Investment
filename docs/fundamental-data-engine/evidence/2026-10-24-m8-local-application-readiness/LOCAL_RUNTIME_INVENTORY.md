@@ -1,0 +1,13 @@
+# M8 actual local runtime inventory
+
+Prerequisite satisfied by the user's explicit “Approve” reply to the amendment approval question; recorded in PREREQUISITE_APPROVAL.json. This approves authentication deferral and beginning this review only, not source authority or scoring.
+
+Next.js 16.3.4 / React 19.3.0 / Prisma 7.10.0 with SQLite; supported Node v22.23.2 was used explicitly. A fresh `next build` completed, including TypeScript, without installing dependencies or running migrations. Existing build emitted four Turbopack dynamic-filesystem tracing warnings from db/files.ts and experimental Node SQLite notices. These are limitations for later build/deployment cleanup, not a claimed safe-to-deploy package certification.
+
+Started `next start --hostname 127.0.0.1 --port 38417` against explicit `file:/Users/nglehoangan/Documents/Working/VN_30_Investment/data/vn30.sqlite`. It used the existing local configuration and freshly built app; no synthetic DB, market enablement override or fixture data was injected. lsof verified an exclusively 127.0.0.1 listener. Actual startup hook logged application.started. Browser ran headless Chromium over the real local server, with only same-origin GET/HEAD allowed; no transaction/review form submission or external fetch was made.
+
+Eighteen routes including dashboard, holdings, transactions, performance, VN30, data, scoring/ranking, decisions, reviews/journal, audit/DCA, risk, settings/imports and new-entry/preview screens returned HTTP 200. Browser recorded actual headings, alerts, table/metric availability and button states; no client page errors, login redirects or session cookies were observed. Sidebar navigation worked. The 390px data page had document width equal to viewport; this is not full populated/mobile acceptance. Redacted desktop screenshots were visually inspected; financial values, table cells and portfolio header were masked.
+
+Crucially, many HTTP-200 pages show BLOCKED integrity and no financial values. Readiness is classified by actual content, not status code. The /data empty-snapshot view renders independently. Holdings detail navigation is NOT_TESTED because the blocked page offers no populated position links. New transaction/review writes are NOT_TESTED and were not attempted.
+
+The sandbox initially denied local listening and Chromium process launch. Authorized loopback/GET-only review was rerun with execution permission; this was an execution-environment constraint, not an application authentication failure. The review server was stopped after inspection; it is not left running or published. No authentication implementation, production migration or investment policy change was made.

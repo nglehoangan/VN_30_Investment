@@ -1,0 +1,74 @@
+{
+  "reviewStatus": "COMPLETE_AWAITING_OWNER_REVIEW",
+  "overallLocalPortfolioReadiness": "BLOCKED",
+  "localShellAvailability": "WORKING_WITH_LIMITATIONS",
+  "authentication": "DEFERRED_BY_OWNER_NOT_THE_CAUSE_OF_DATA_FAILURE",
+  "blockers": [
+    {
+      "id": "M8_LEDGER_OPENING_RECEIVABLE_REPLAY",
+      "severity": "MAJOR",
+      "status": "BLOCKED",
+      "impact": "Authoritative cash/holdings/history/cost basis cannot load",
+      "evidence": "LEDGER_DIAGNOSTIC.json; src/infrastructure/repositories/portfolio-ledger.ts; src/domain/portfolio/transaction.ts",
+      "requiredAction": "Separately review original opening-receivable evidence, current accounting contract and lossless compatible correction/replay plan; preserve nonzero receivable and original records. Do not drop leg or relax gate."
+    },
+    {
+      "id": "M8_RESEARCH_CURRENT_LAYOUT_INTEGRATION",
+      "severity": "MAJOR",
+      "status": "BLOCKED",
+      "impact": "Retained research JSON not connected to dashboard legacy reader",
+      "evidence": "src/infrastructure/fundamentals/manual-current.ts; ACTUAL_DATA_RECONSTRUCTION.json",
+      "requiredAction": "Review a versioned read-only current-layout adapter without restoring removed legacy paths or granting accounting/scoring admission."
+    },
+    {
+      "id": "M8_CURRENT_ACCEPTED_MARKET_NAV",
+      "severity": "MAJOR",
+      "status": "BLOCKED",
+      "impact": "No current accepted valuation/NAV or actionable current analysis",
+      "evidence": "LIVE_RUNTIME_RESULTS.json readinessApi",
+      "requiredAction": "Keep current-value gate; any future market source/current acceptance workflow requires exact evidence and independent acceptance. Do not infer current prices from old broker/file captures."
+    },
+    {
+      "id": "M8_CURRENT_MEMBERSHIP_QUERY",
+      "severity": "LIMITATION",
+      "status": "NOT_IMPLEMENTED",
+      "impact": "No complete accepted current universe query in dashboard",
+      "requiredAction": "Future separately reviewed exact-time reference integration; retained basket is not current exchange certification."
+    },
+    {
+      "id": "M8_HISTORICAL_PERFORMANCE_QUERY",
+      "severity": "LIMITATION",
+      "status": "NOT_IMPLEMENTED",
+      "impact": "NAV history, benchmark, TWR/XIRR/CAGR not available",
+      "requiredAction": "Do not fabricate series/returns or infer them from opening-only ledger. Needs separate approved scope and actual time-series."
+    },
+    {
+      "id": "M8_MISLEADING_EMPTY_STATES",
+      "severity": "MINOR",
+      "status": "WORKING_WITH_LIMITATIONS",
+      "impact": "Integrity failure also displays no-portfolio/no-transactions copy",
+      "requiredAction": "Separately review clear unavailable-due-to-integrity wording without hiding the error or inventing data."
+    },
+    {
+      "id": "M8_BUILD_TRACING_WARNINGS",
+      "severity": "MINOR",
+      "status": "WORKING_WITH_LIMITATIONS",
+      "impact": "Four existing filesystem tracing/over-bundling warnings",
+      "requiredAction": "Future bounded build-trace cleanup if authorized; no deployment confidentiality certification from this local review."
+    },
+    {
+      "id": "INHERITED_FORMAL_SOURCE_ACCEPTANCE_ADMISSION",
+      "severity": "GOVERNANCE_GATE",
+      "status": "BLOCKED",
+      "impact": "Source approvals, independent acceptance, formal knowledge/cutoffs and scoring remain unavailable",
+      "requiredAction": "Retain all gates; authentication deferred, no substitution by local records. No request to implement login in this review."
+    }
+  ],
+  "repairsPerformed": false,
+  "sourceApprovalsCreated": 0,
+  "effectiveAdmissions": 0,
+  "D2Activated": false,
+  "scoringActivated": false,
+  "databaseMigrationsExecuted": 0,
+  "newMilestoneStarted": false
+}

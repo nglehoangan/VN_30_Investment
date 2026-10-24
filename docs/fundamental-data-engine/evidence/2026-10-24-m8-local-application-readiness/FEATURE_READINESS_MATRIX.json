@@ -1,0 +1,132 @@
+{
+  "allowedStatuses": [
+    "WORKING",
+    "WORKING_WITH_LIMITATIONS",
+    "BLOCKED",
+    "NOT_IMPLEMENTED",
+    "NOT_TESTED"
+  ],
+  "overallLocalPortfolioReadiness": "BLOCKED",
+  "liveRuntimeReviewPerformed": true,
+  "features": [
+    {
+      "scope": "1",
+      "feature": "Local Next.js startup/runtime",
+      "status": "WORKING_WITH_LIMITATIONS",
+      "finding": "Fresh production build and actual loopback server started successfully; 18 read-only browser routes HTTP 200. Existing four Turbopack tracing warnings and Node experimental SQLite notices.",
+      "evidence": "LIVE_RUNTIME_RESULTS.json; validation/next-build.log"
+    },
+    {
+      "scope": "2",
+      "feature": "SQLite and Prisma connectivity",
+      "status": "WORKING",
+      "finding": "Actual retained DB: integrity_check=ok, zero FK violations; Prisma SELECT 1 and portfolio count succeed. This does not establish ledger semantic compatibility.",
+      "evidence": "ACTUAL_DATA_RECONSTRUCTION.json"
+    },
+    {
+      "scope": "3",
+      "feature": "Holdings and cash reconstruction",
+      "status": "BLOCKED",
+      "finding": "Authoritative PrismaPortfolioLedger.read rejects the opening receivable contract mismatch; live holdings/cash withheld. No bypass using raw rows or stale projection.",
+      "evidence": "LEDGER_DIAGNOSTIC.json; LIVE_RUNTIME_RESULTS.json /holdings"
+    },
+    {
+      "scope": "4",
+      "feature": "Transaction history",
+      "status": "BLOCKED",
+      "finding": "12 POSTED opening entries physically exist but current live reader rejects one. No post-inception trade/deposit/dividend history is present. UI incorrectly also shows an empty-history message under the integrity alert.",
+      "evidence": "LOCAL_DATA_SUMMARY.json; LIVE_RUNTIME_RESULTS.json /transactions"
+    },
+    {
+      "scope": "5a",
+      "feature": "Cost basis",
+      "status": "BLOCKED",
+      "finding": "11 security opening records exist; portfolio-level authoritative reconstruction is blocked. Synthetic cost-basis tests do not validate current live balances.",
+      "evidence": "DATABASE_BASELINE.json; LEDGER_DIAGNOSTIC.json"
+    },
+    {
+      "scope": "5b",
+      "feature": "Dividend posting/settlement",
+      "status": "NOT_TESTED",
+      "finding": "No live dividend events; no posting/settlement/receivable repair attempted. Stored nonzero opening RECEIVABLE is not a DIVIDEND_CASH event. Domain synthetic tests cover implemented accounting logic only.",
+      "evidence": "LOCAL_DATA_SUMMARY.json; validation/unit-regressions.json"
+    },
+    {
+      "scope": "6a",
+      "feature": "Current NAV and unrealized performance",
+      "status": "BLOCKED",
+      "finding": "No accepted current market snapshot; current source is withheld and ledger replay is blocked. /api/readiness marketCurrent=false; live NAV unavailable.",
+      "evidence": "LIVE_RUNTIME_RESULTS.json; app/server/current.ts"
+    },
+    {
+      "scope": "6b",
+      "feature": "NAV history, benchmark, TWR/XIRR/CAGR",
+      "status": "NOT_IMPLEMENTED",
+      "finding": "Current performance UI explicitly has no compatible approved benchmark/time-series query and renders unavailable placeholders. This is not fixed by login deferral or unit NAV bridge calculations.",
+      "evidence": "src/ui/dashboard.tsx; LIVE_RUNTIME_RESULTS.json /performance"
+    },
+    {
+      "scope": "7a",
+      "feature": "Current VN30 master/membership acceptance",
+      "status": "BLOCKED",
+      "finding": "Retained research universe/candidate count 30 is not authenticated current exchange membership. DB security table has 11 instruments; current accepted reference/market context absent.",
+      "evidence": "DATABASE_BASELINE.json; LIVE_RUNTIME_RESULTS.json /api/readiness"
+    },
+    {
+      "scope": "7b",
+      "feature": "Complete current membership dashboard query",
+      "status": "NOT_IMPLEMENTED",
+      "finding": "UI explicitly says a complete current universe query is unavailable; historical scorecard membership table currently empty.",
+      "evidence": "src/ui/dashboard.tsx; LIVE_RUNTIME_RESULTS.json /vn30"
+    },
+    {
+      "scope": "8a",
+      "feature": "Retained fundamental files",
+      "status": "WORKING_WITH_LIMITATIONS",
+      "finding": "Manifests describe 337 PDF captures/330 unique, 248 API raw captures with 8 schema quarantines; current combined files retained. Inventory availability only, not new source-image or semantic validation.",
+      "evidence": "ACTUAL_DATA_RECONSTRUCTION.json; DATA_AVAILABILITY_REPORT.md"
+    },
+    {
+      "scope": "8b",
+      "feature": "Admitted financial snapshot/coverage",
+      "status": "BLOCKED",
+      "finding": "Formal observation/import/snapshot/independent acceptance tables are empty. Live /data reports EMPTY and review UNAVAILABLE, not score-ready.",
+      "evidence": "DATABASE_BASELINE.json; LIVE_RUNTIME_RESULTS.json /data"
+    },
+    {
+      "scope": "9",
+      "feature": "Dashboard shell/rendering/navigation",
+      "status": "WORKING_WITH_LIMITATIONS",
+      "finding": "Actual browser: 18 routes rendered, no page JS errors/login redirects, Holdings navigation click works; desktop visual review and 390px data page show usable shell. Most portfolio content is integrity-blocked. No populated holdings detail link available.",
+      "evidence": "LIVE_RUNTIME_RESULTS.json; validation/*-redacted.png"
+    },
+    {
+      "scope": "10",
+      "feature": "Missing-data/freshness warnings",
+      "status": "WORKING_WITH_LIMITATIONS",
+      "finding": "Actual integrity alerts, UNKNOWN/Unavailable values and empty snapshot state appear; readiness API reports unaccepted/ambiguous-session market candidate. Blocked views also misleadingly say no portfolio/transactions exist. No false score-ready/zero financial fallback observed.",
+      "evidence": "LIVE_RUNTIME_RESULTS.json"
+    },
+    {
+      "scope": "11a",
+      "feature": "Research dashboard integration",
+      "status": "BLOCKED",
+      "finding": "readManualCurrentSnapshot still reads removed data/manual-current/current-analysis.json and old manual-fundamentals layout; retained rebuilt JSON is not connected through that reader. Do not recreate deleted historical folders/symlinks.",
+      "evidence": "src/infrastructure/fundamentals/manual-current.ts; ACTUAL_DATA_RECONSTRUCTION.json"
+    },
+    {
+      "scope": "11b",
+      "feature": "Populated historical artifact analysis",
+      "status": "NOT_TESTED",
+      "finding": "No analytical/decision/workflow artifacts or formal snapshots exist in actual DB. Empty routes render; populated artifact acceptance is only synthetic in this review.",
+      "evidence": "DATABASE_BASELINE.json; LIVE_RUNTIME_RESULTS.json"
+    },
+    {
+      "scope": "12",
+      "feature": "Production scoring/admission protection",
+      "status": "WORKING_WITH_LIMITATIONS",
+      "finding": "Expected denial observed: live readyForScoring/analysisReady/decisionReady=false; eight original candidates DEFERRED, no accepted source/DI rows or score artifacts. No live mutation/activation endpoint was invoked; revocation/provider acceptance remain unconfigured.",
+      "evidence": "validation/safety-verification.json; SECURITY_BOUNDARY_REVIEW.md"
+    }
+  ]
+}

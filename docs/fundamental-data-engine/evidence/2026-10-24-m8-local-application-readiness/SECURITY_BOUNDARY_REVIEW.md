@@ -1,0 +1,13 @@
+# Security and governance boundary review
+
+The explicit owner approval satisfies this M8 review's authentication-deferral prerequisite only. Google OIDC/authentication remain DEFERRED_BY_OWNER. No identity, role, session, provider or login implementation is created; the approval metadata is not an authenticated financial source-authority receipt.
+
+Actual local application access required no login. The review listener was loopback-only and was stopped afterwards. This fits the owner-approved personal-Mac scope, not an assertion that HTTP loopback authenticates users or is safe against hostile local processes, OS administrators, remote tunnels or a future public deployment. Such deployment/access scenarios were NOT_TESTED.
+
+No write/activation endpoint was exercised. GET-only browser routing blocked external/non-GET traffic; none was requested. The local app's financial model remained integrity-blocked rather than bypassing its ledger validation. Live /api/readiness returned initialized=false, marketCurrent=false, analysisReady=false, decisionReady=false, readyForScoring=false and pending independent approval. app/server/market-boundary.ts::requireAcceptedMarketBoundary always throws; production policy-B composition does not auto-activate from local access.
+
+Existing PEC-1B/PEC-2 regressions and actual empty-trust evaluation keep all eight source candidates DEFERRED. Existing owner methodology/approval records, zero data_initialization_acceptance and zero scoring_dataset_binding/score artifacts are unchanged. PEC-1C contracts remain pinned. Local JSON, OS username, broker token, Codex output and unsigned approvals do not populate trust or replace independent acceptance. Clock/anchor/restore limitations remain unresolved formal-workflow prerequisites, not a reason to implement deferred login now.
+
+Database bytes/logical rows/counts, original policies/source contracts/schema and every prior seal are checked after actual runtime access. No source authority approval, financial admission, formal event, D2/scoring activation, source acquisition or production migration occurs. Synthetic tests explicitly remain synthetic; no positive fixture is written into actual authority stores.
+
+One UI concern is misleading empty-state text: dashboard says no portfolio initialized and transactions say no records while a portfolio/12 entries exist but are withheld. The prominent integrity alert is correct; empty copy must not be interpreted as permission to initialize/import again. Current ledger and accepted-market failures must be addressed under separately reviewed remediation, not by disabling safety gates.

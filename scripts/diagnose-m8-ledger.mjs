@@ -1,0 +1,19 @@
+/** Read-only root-cause diagnostics; does NOT bypass the application ledger gate. */
+import {DatabaseSync} from 'node:sqlite';import {createHash} from 'node:crypto';import {writeFileSync} from 'node:fs';
+import {buildTransaction} from '../src/domain/portfolio/transaction.ts';
+import {instant} from '../src/shared/time.ts';
+const db=new DatabaseSync(process.cwd()+'/data/vn30.sqlite',{readOnly:true});
+const rows=db.prepare('SELECT * FROM ledger_transaction WHERE status=?').all('POSTED');const saved=rows.map(r=>JSON.parse(r.facts));const results=[];
+try{for(const [i,row] of rows.entries()){
+ const s=saved[i];const result={transactionIdentityHash:createHash('sha256').update(row.id).digest('hex'),type:row.type};
+ try{
+  const rebuilt=buildTransaction(s.facts,instant(row.created_at),saved.filter(t=>t.facts.id!==row.id&&!(s.facts.reversesId&&t.facts.reversesId===s.facts.reversesId)));
+  const legs=db.prepare('SELECT * FROM ledger_leg WHERE transaction_id=? ORDER BY sequence').all(row.id).map(l=>({id:l.id,sequence:l.sequence,type:l.type,effectiveAt:l.effective_at,securityId:l.security_id,quantity:l.quantity,amount:l.amount,settlementReference:l.settlement_reference}));
+  Object.assign(result,{rebuildSucceeded:true,savedLegCount:s.legs.length,rebuiltLegCount:rebuilt.legs.length,openingExtraFields:Object.keys(s.facts.opening??{}).filter(k=>!['cost','migrationVersion','evidence'].includes(k)),savedReceivableMatchesExtraOpeningField:s.legs.some(l=>l.type==='RECEIVABLE'&&l.amount===s.facts.opening?.receivable),savedLegTypes:s.legs.map(l=>l.type),rebuiltLegTypes:rebuilt.legs.map(l=>l.type),storedAmountZero:s.facts.amount==='0',openingCashZero:s.facts.opening?.cash==='0',serializedTransactionEqual:JSON.stringify(rebuilt)===JSON.stringify(s),canonicalContentEqual:JSON.stringify(sort(rebuilt))===JSON.stringify(sort(s)),storedLegsMatchPersistedRows:JSON.stringify(s.legs)===JSON.stringify(legs),rebuiltLegsEqual:JSON.stringify(rebuilt.legs)===JSON.stringify(legs),mismatchedTopLevelFields:Object.keys(rebuilt).filter(k=>JSON.stringify(rebuilt[k])!==JSON.stringify(s[k])),legDifferences:rebuilt.legs.flatMap((leg,j)=>Object.keys(leg).filter(k=>JSON.stringify(leg[k])!==JSON.stringify(s.legs[j]?.[k])).map(k=>({leg:j,type:leg.type,field:k,storedValueType:typeof s.legs[j]?.[k],rebuiltValueType:typeof leg[k],storedIsZero:s.legs[j]?.[k]==='0',rebuiltIsZero:leg[k]==='0',storedIsNull:s.legs[j]?.[k]===null,rebuiltIsNull:leg[k]===null}))),factKeysEqual:JSON.stringify(Object.keys(rebuilt.facts))===JSON.stringify(Object.keys(s.facts)),factCanonicalContentEqual:JSON.stringify(sort(rebuilt.facts))===JSON.stringify(sort(s.facts)),indexMismatchFields:Object.entries({idempotency_key:s.facts.idempotencyKey,event_at:s.facts.eventAt,security_id:s.facts.securityId??null,id:s.facts.id,type:s.facts.type,portfolio_id:s.facts.portfolioId,leg_count:legs.length,source:s.facts.source.source,source_reference:s.facts.source.reference,methodology_id:s.facts.methodologyId}).filter(([k,v])=>row[k]!==v).map(([k])=>k)});
+ }catch(e){Object.assign(result,{rebuildSucceeded:false,errorCode:e.code??e.name,errorMessage:e.message,issues:e.issues??null});}
+ results.push(result);
+ }
+ const output={classification:'READ_ONLY_DIAGNOSIS_NOT_ADMISSION_OR_REPAIR',rows:results,serializedTransactionFailures:results.filter(r=>r.serializedTransactionEqual===false).length,semanticMismatchCount:results.filter(r=>r.canonicalContentEqual===false).length};
+ writeFileSync('docs/fundamental-data-engine/evidence/2026-10-24-m8-local-application-readiness/LEDGER_DIAGNOSTIC.json',JSON.stringify(output,null,2)+'\n');console.log(JSON.stringify(output,null,2));
+}finally{db.close();}
+function sort(x){return x&&typeof x==='object'?Array.isArray(x)?x.map(sort):Object.fromEntries(Object.keys(x).sort().map(k=>[k,sort(x[k])])):x;}
