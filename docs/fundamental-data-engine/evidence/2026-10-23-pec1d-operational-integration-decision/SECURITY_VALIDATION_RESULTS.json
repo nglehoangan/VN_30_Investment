@@ -1,0 +1,205 @@
+{
+  "status": "PASS_APPLICABLE_REGRESSIONS_AND_DIAGNOSTICS",
+  "operationalSecurityStatus": "BLOCKED_NOT_VALIDATED",
+  "finalStatus": "OWNER_ARCHITECTURE_DECISION_REQUIRED",
+  "commands": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/prepare-pec1d-evidence.py",
+      "exitCode": 0
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/test-pec1d-boundary.py --json docs/fundamental-data-engine/evidence/2026-10-23-pec1d-operational-integration-decision/validation/decision-gate-tests.json",
+      "exitCode": 0,
+      "testsRun": 3,
+      "classification": "ISOLATED_DIAGNOSTICS_INCLUDING_EXPECTED_RESTORE_LIMITATION",
+      "resultReference": "validation/decision-gate-tests.json",
+      "log": "validation/decision-gate-tests.log"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/test-pec1c-capture.py --json docs/fundamental-data-engine/evidence/2026-10-23-pec1d-operational-integration-decision/validation/pec1c-regressions.json",
+      "exitCode": 0,
+      "testsRun": 31,
+      "classification": "SYNTHETIC_AUTHENTICATION_REAL_ISOLATED_SQLITE_REGRESSIONS",
+      "resultReference": "validation/pec1c-regressions.json",
+      "log": "validation/pec1c-regressions.log"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/test-pec1b-workflow.py --json docs/fundamental-data-engine/evidence/2026-10-23-pec1d-operational-integration-decision/validation/pec1b-regressions.json",
+      "exitCode": 0,
+      "testsRun": 25,
+      "resultReference": "validation/pec1b-regressions.json",
+      "log": "validation/pec1b-regressions.log"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/test-pec2-final-review.py --json docs/fundamental-data-engine/evidence/2026-10-23-pec1d-operational-integration-decision/validation/pec2-regressions.json",
+      "exitCode": 0,
+      "testsRun": 62,
+      "resultReference": "validation/pec2-regressions.json",
+      "log": "validation/pec2-regressions.log"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/check-boundaries.mjs",
+      "exitCode": 0,
+      "log": "validation/architecture-boundaries.log"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify-pec1d-decision.py",
+      "exitCode": 0,
+      "result": "PASS_TECHNICAL_SAFETY_NOT_HUMAN_ACCEPTANCE"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify-pec1d-decision.py --require-seal",
+      "resultReference": "validation/safety-verification.json",
+      "purpose": "Final execution receipt excluded from its own seal"
+    }
+  ],
+  "runnableTestSummary": {
+    "passed": 121,
+    "failed": 0,
+    "errors": 0,
+    "existingRegressions": 118,
+    "decisionGateDiagnostics": 3,
+    "restoreAttackPreventionCountedAsPassed": false
+  },
+  "securityCoverage": [
+    {
+      "requirement": "Real provider integration",
+      "status": "NOT_RUN_BLOCKED",
+      "evidence": "No approved configured provider/tenant"
+    },
+    {
+      "requirement": "Invalid signatures",
+      "status": "NOT_RUN_BLOCKED",
+      "evidence": "No provider-specific cryptographic adapter or approved signing policy"
+    },
+    {
+      "requirement": "Wrong issuer/audience",
+      "status": "NOT_RUN_BLOCKED",
+      "evidence": "No approved issuer/audience or real adapter; binding mocks are not these tests"
+    },
+    {
+      "requirement": "Expired session",
+      "status": "PASS_SYNTHETIC_UNIT",
+      "evidence": "PEC-1C test_03/test_26"
+    },
+    {
+      "requirement": "Revoked role/session",
+      "status": "PASS_SYNTHETIC_UNIT",
+      "evidence": "PEC-1C test_04/test_05/test_21/test_30/test_31"
+    },
+    {
+      "requirement": "Unauthorized owner operation",
+      "status": "PASS_DENIAL_SYNTHETIC",
+      "evidence": "PEC-1C test_16; PEC-1D default-unconfigured gate"
+    },
+    {
+      "requirement": "Producer self-approval",
+      "status": "PASS_SYNTHETIC_UNIT",
+      "evidence": "PEC-1C test_08"
+    },
+    {
+      "requirement": "Transaction rollback",
+      "status": "PASS_ISOLATED_SQLITE",
+      "evidence": "PEC-1C test_12/test_14/test_26/test_31"
+    },
+    {
+      "requirement": "Concurrent submissions",
+      "status": "PASS_ISOLATED_SQLITE",
+      "evidence": "PEC-1C test_11/test_27"
+    },
+    {
+      "requirement": "Clock rollback",
+      "status": "PASS_LOCAL_GUARDS_SYNTHETIC_TIME",
+      "evidence": "PEC-1C test_15/test_24; operational UTC health unverified"
+    },
+    {
+      "requirement": "Audit tampering",
+      "status": "PASS_ISOLATED_SQLITE_LOCAL_CHECKS",
+      "evidence": "PEC-1C test_19/test_20/test_28; external durable authenticity unconfigured"
+    },
+    {
+      "requirement": "Restore/rollback attack",
+      "status": "BLOCKED_EXPECTED_LIMITATION_REPRODUCED",
+      "evidence": "PEC-1D test_restore_of_valid_prefix_exposes_external_anchor_dependency: older valid prefix accepted without external anchor; prevention NOT passed"
+    },
+    {
+      "requirement": "Unauthorized admission",
+      "status": "PASS_DENIAL",
+      "evidence": "PEC-1C test_17, PEC-2 regressions and eight original empty-trust evaluations"
+    },
+    {
+      "requirement": "Unauthorized scoring activation",
+      "status": "PASS_DENIAL",
+      "evidence": "PEC-1C test_18 and original false production/runtime/scoring flags"
+    }
+  ],
+  "realProviderIntegrationTestsExecuted": 0,
+  "productionMigrationsExecuted": 0,
+  "architectureApprovalsCreated": 0,
+  "newRuntimeImplementation": "NONE_ARCHITECTURE_GATE",
+  "syntaxCheck": {
+    "files": [
+      "scripts/prepare-pec1d-evidence.py",
+      "scripts/test-pec1d-boundary.py",
+      "scripts/verify-pec1d-decision.py"
+    ],
+    "method": "ast.parse without filesystem writes",
+    "result": "PASS"
+  },
+  "initialVerifierFailure": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify-pec1d-decision.py",
+    "exitCode": 1,
+    "error": "MIGRATION_OR_PRISMA_CHANGE",
+    "rootCause": "New verifier compared tracked Prisma baseline against all physical files, including existing ignored macOS prisma/.DS_Store. Exact difference was only that Finder metadata file; schema and migrations were unchanged.",
+    "correction": "Exclude .DS_Store from the schema/migration namespace comparison. Every schema/migration/other non-Finder file and all protected file hashes remain checked; no migration/security gate weakened.",
+    "diagnosticDifference": {
+      "untrackedPhysicalFiles": [
+        "prisma/.DS_Store"
+      ],
+      "missingTrackedFiles": []
+    }
+  },
+  "safetySummary": {
+    "status": "PASS_TECHNICAL_SAFETY_NOT_HUMAN_ACCEPTANCE",
+    "protectedFilesUnchanged": 7094,
+    "priorSealsVerified": 10,
+    "databaseBytesLogicalDumpCountsUnchanged": true,
+    "ownerApprovalsUnchanged": true,
+    "frozenPoliciesUnchanged": true,
+    "candidateStates": {
+      "DEFERRED": 8
+    },
+    "effectiveSourceAdmissions": 0,
+    "qualifiedEventsCreated": 0,
+    "realCandidatePreparationsCreated": 0,
+    "productionScoringExecuted": false,
+    "D2Activated": false,
+    "newSourceAcquisitions": 0,
+    "PEC3Started": false,
+    "tests": {
+      "PEC1DDecisionDiagnostics": 3,
+      "PEC1C": 31,
+      "PEC1B": 25,
+      "PEC2V2": 62,
+      "total": 121
+    },
+    "authenticationReadiness": "BLOCKED_NO_CONFIGURED_REAL_PROVIDER",
+    "auditSchemaInstalledInProduction": false,
+    "PEC1EStarted": false,
+    "architectureDecisionRequired": true,
+    "realProviderIntegration": "NOT_RUN_BLOCKED",
+    "restoreAttackPrevention": "BLOCKED_EXTERNAL_ANCHOR_REQUIRED",
+    "formalDatasetReadiness": "BLOCKED",
+    "independentAcceptanceReadiness": "BLOCKED"
+  },
+  "skippedAppBuildTypecheck": "No application/provider/Prisma code or dependency changes; offline evidence/test-only scope. Architecture gate still run.",
+  "independentOperationalAcceptance": "NOT_CREATED",
+  "productionScoringActivated": false,
+  "PEC1EStarted": false,
+  "PEC3Started": false,
+  "sealSemantics": "SHA-256 integrity only, not authentication, architecture approval or independent acceptance. validation/safety-verification.json excluded to avoid self-reference."
+}

@@ -1,0 +1,185 @@
+{
+  "baseCommit": "ea3b4cd1a87800ac3f816733318b76e7ad3124db",
+  "references": {
+    "framework": {
+      "path": "package.json",
+      "sha256": "fef18afdda35121dd846c79be63eae98074b1f8ded71019b8677a05e7cf6f1ba",
+      "line": 59,
+      "matchedText": "\"next\": \"16.3.4\","
+    },
+    "node": {
+      "path": "package.json",
+      "sha256": "fef18afdda35121dd846c79be63eae98074b1f8ded71019b8677a05e7cf6f1ba",
+      "line": 7,
+      "matchedText": "\"node\": \">=22.23.2 <23\""
+    },
+    "loopback": {
+      "path": "package.json",
+      "sha256": "fef18afdda35121dd846c79be63eae98074b1f8ded71019b8677a05e7cf6f1ba",
+      "line": 11,
+      "matchedText": "\"start\": \"next start --hostname 127.0.0.1\","
+    },
+    "sqlite": {
+      "path": "prisma/schema.prisma",
+      "sha256": "abc1431e887fd478b6875cf85724b88461bcfda0508aea69c200427207914be7",
+      "line": 7,
+      "matchedText": "provider = \"sqlite\""
+    },
+    "defaultDb": {
+      "path": "src/infrastructure/config/database.ts",
+      "sha256": "1253a7d6b7da07805029ef52d6df454b65736ded336d23b69173f52ebdf58593",
+      "line": 22,
+      "matchedText": "const supplied = environment.DATABASE_URL;"
+    },
+    "dbAdapter": {
+      "path": "src/infrastructure/db/client.ts",
+      "sha256": "54ca459494611f91561acf9d5053564d7cedff7086eaf5b4327cf0c42a0eea2e",
+      "line": 8,
+      "matchedText": "const client = new PrismaClient({ adapter: new PrismaBetterSqlite3({ url: config.url }), log: [] });"
+    },
+    "dbModes": {
+      "path": "src/infrastructure/db/client.ts",
+      "sha256": "54ca459494611f91561acf9d5053564d7cedff7086eaf5b4327cf0c42a0eea2e",
+      "line": 14,
+      "matchedText": "await client.$queryRawUnsafe(\"PRAGMA journal_mode = DELETE\");"
+    },
+    "dbPrivate": {
+      "path": "src/infrastructure/db/files.ts",
+      "sha256": "e1dd22788b254330b63af9f727b3d2f0a021f27058be5324ed2ea054463f85b0",
+      "line": 24,
+      "matchedText": "if (!stat.isFile() || stat.isSymbolicLink() || stat.nlink !== 1 || (stat.mode & 0o077) !== 0) throw databaseConfigurationError();"
+    },
+    "dbCli": {
+      "path": "scripts/database.mjs",
+      "sha256": "5141aac8f65a33529a80c19a540c47ce8b2e2340e49f905062cdfbc381df14cc",
+      "line": 8,
+      "matchedText": "const commands = { validate: ['validate'], generate: ['generate'], migrate: ['migrate', 'deploy'], status: ['migrate', 'status'] };"
+    },
+    "persistence": {
+      "path": "app/server/persistence.ts",
+      "sha256": "4372f96704a41b327fcff0978f3b49929f3ba9f8e4026b4ce73bb18ae8f6e469",
+      "line": 7,
+      "matchedText": "export async function openPersistence() {"
+    },
+    "transactions": {
+      "path": "src/infrastructure/repositories/workflow-artifacts.ts",
+      "sha256": "f4da4860bbb15a3ca9fb321253fa3dba5e84217cf69ac31db5f1ea9060bdc8f7",
+      "line": 61,
+      "matchedText": "return await this.client.$transaction(async tx => {"
+    },
+    "formalWrites": {
+      "path": "src/infrastructure/repositories/fundamentals.ts",
+      "sha256": "54aef14c138eed97ed68c1228f7e904f50d42273f36064c8c1cb608e3d8a7340",
+      "line": 42,
+      "matchedText": "async appendImport(raw:FundamentalImportBatch,rawCaptures:readonly FundamentalRawCapture[]) {"
+    },
+    "identityPort": {
+      "path": "src/ports/runtime-readiness.ts",
+      "sha256": "b953e2b3e6e545dfaaabd27c97bec71cf96b13caacf02bf59b923dc00a02c22e",
+      "line": 6,
+      "matchedText": "export interface RuntimeReviewerIdentity {"
+    },
+    "reviewPort": {
+      "path": "src/ports/runtime-readiness.ts",
+      "sha256": "b953e2b3e6e545dfaaabd27c97bec71cf96b13caacf02bf59b923dc00a02c22e",
+      "line": 9,
+      "matchedText": "export interface HumanReviewStore {"
+    },
+    "reviewStore": {
+      "path": "src/infrastructure/repositories/file-human-reviews.ts",
+      "sha256": "cfedb85ed9fc218f4383b7f6abed172480115ddca6cba520d2288b3e9911132c",
+      "line": 10,
+      "matchedText": "/** Isolated append-only review staging; no production database or authority activation. */"
+    },
+    "independence": {
+      "path": "src/application/fundamentals/accept-runtime-dataset.ts",
+      "sha256": "48e0fca97c0350cb0679a23242b432eed11d323fc5607fe1f1604ca8ec35f49b",
+      "line": 69,
+      "matchedText": "requireFundamental(actor.subject===packet.acceptance.reviewerReference&&actor.subject!==packet.acceptance.producerReference,'PRODUCER_CANNOT_SELF_ACCEPT');"
+    },
+    "brokerSession": {
+      "path": "api/tcbs.mjs",
+      "sha256": "1671560457caa40b69feedf6bfaa6e46b3bf363e419c92678e88dbda4912caf2",
+      "line": 11,
+      "matchedText": "export async function getTokenSession({ folder, key, custody, request, readOtp, now = () => Date.now() }) {"
+    },
+    "brokerScope": {
+      "path": "api/tcbs.mjs",
+      "sha256": "1671560457caa40b69feedf6bfaa6e46b3bf363e419c92678e88dbda4912caf2",
+      "line": 47,
+      "matchedText": "if(claims.custodyID!==custody)throw new Error('TOKEN_CUSTODY_MISMATCH');"
+    },
+    "confirmation": {
+      "path": "src/infrastructure/dashboard-support.ts",
+      "sha256": "cd2f2f9b3198cb27722862cbab03223c7faba4998b52f7df15d30bea5dc69c6b",
+      "line": 4,
+      "matchedText": "const secret = randomBytes(32);"
+    },
+    "diagnosticLogs": {
+      "path": "src/infrastructure/logging/logger.ts",
+      "sha256": "f70cb5da99eae0536882b647f9aae6c5d31c70972016c5945ab4b68044bb38c8",
+      "line": 11,
+      "matchedText": "/** Allowlist redaction: no raw message, payload, request, headers, environment or error object. */"
+    },
+    "clock": {
+      "path": "src/infrastructure/runtime.ts",
+      "sha256": "254084cbcb9b4abce10c27fff53ecdd2f39c40e595a4ed6b7292ca8cc7b0237f",
+      "line": 4,
+      "matchedText": "export const systemClock: Clock = Object.freeze({ now: () => instant(new Date().toISOString()) });"
+    },
+    "checkedClock": {
+      "path": "scripts/lib/pec1c_capture.py",
+      "sha256": "1e447f0d08b7664a470a917642eddac52ea2196f57cd2f622324cc5ecc0b041d",
+      "line": 88,
+      "matchedText": "class CheckedClock:"
+    },
+    "unconfiguredCapture": {
+      "path": "scripts/lib/pec1c_capture.py",
+      "sha256": "1e447f0d08b7664a470a917642eddac52ea2196f57cd2f622324cc5ecc0b041d",
+      "line": 215,
+      "matchedText": "def production_capture(database):"
+    },
+    "captureTransaction": {
+      "path": "scripts/lib/pec1c_capture.py",
+      "sha256": "1e447f0d08b7664a470a917642eddac52ea2196f57cd2f622324cc5ecc0b041d",
+      "line": 142,
+      "matchedText": "c.execute('BEGIN IMMEDIATE')"
+    },
+    "auditContract": {
+      "path": "scripts/contracts/pec1c-audit.sql",
+      "sha256": "bb3bbb1f6c5b632fbd87f033d2887cd900ff6d7deaddce215856badaa3edfd5c",
+      "line": 3,
+      "matchedText": "CREATE TABLE formal_knowledge_audit ("
+    },
+    "backup": {
+      "path": "scripts/backup.mjs",
+      "sha256": "1f23342b6228851b161450ed71b86c427a8d52e2ede29cb7a692a2f5babfe327",
+      "line": 49,
+      "matchedText": "export function snapshotDatabase(sourceFile, targetFile, { restore = false, projectDirectory = process.cwd() } = {}) {"
+    },
+    "restoreCandidate": {
+      "path": "scripts/backup.mjs",
+      "sha256": "1f23342b6228851b161450ed71b86c427a8d52e2ede29cb7a692a2f5babfe327",
+      "line": 104,
+      "matchedText": "console.log(JSON.stringify({status:'RESTORE_CANDIDATE_VALIDATED',rows:manifest.totalRows,activation:'Explicit DATABASE_URL configuration and current-source/reconciliation verification required'}));"
+    },
+    "secretExclusion": {
+      "path": "next.config.ts",
+      "sha256": "56b6fc861569655ca24daf6e908857f7d0546857050bf012976b67ba042a2e9d",
+      "line": 6,
+      "matchedText": "outputFileTracingExcludes: {"
+    },
+    "envExample": {
+      "path": ".env.example",
+      "sha256": "46c19a84bb0c48205d1bd32567648e675efa616fdd4c250747f5e81703c36453",
+      "line": 5,
+      "matchedText": "# Optional DATABASE_URL: unset resolves to private data/vn30.sqlite in this project."
+    },
+    "gitExclusion": {
+      "path": ".gitignore",
+      "sha256": "e1b8c810dab6ac2e384c7f3ac02245063fe10be3410052420fdaea6f34ff3ac3",
+      "line": 5,
+      "matchedText": ".env*"
+    }
+  }
+}

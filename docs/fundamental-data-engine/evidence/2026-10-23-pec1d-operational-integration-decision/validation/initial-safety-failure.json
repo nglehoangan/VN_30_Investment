@@ -1,0 +1,13 @@
+{
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify-pec1d-decision.py",
+  "exitCode": 1,
+  "error": "MIGRATION_OR_PRISMA_CHANGE",
+  "rootCause": "New verifier compared tracked Prisma baseline against all physical files, including existing ignored macOS prisma/.DS_Store. Exact difference was only that Finder metadata file; schema and migrations were unchanged.",
+  "correction": "Exclude .DS_Store from the schema/migration namespace comparison. Every schema/migration/other non-Finder file and all protected file hashes remain checked; no migration/security gate weakened.",
+  "diagnosticDifference": {
+    "untrackedPhysicalFiles": [
+      "prisma/.DS_Store"
+    ],
+    "missingTrackedFiles": []
+  }
+}

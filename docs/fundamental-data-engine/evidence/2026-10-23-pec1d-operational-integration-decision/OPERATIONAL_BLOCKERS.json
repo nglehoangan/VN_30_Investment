@@ -1,0 +1,49 @@
+{
+  "status": "OWNER_ARCHITECTURE_DECISION_REQUIRED",
+  "architectureApproved": false,
+  "providerSelected": null,
+  "authenticatedOwnerDecision": null,
+  "blockers": [
+    {
+      "id": "D1_IDENTITY_ARCHITECTURE_PROVIDER",
+      "status": "OWNER_DECISION_REQUIRED",
+      "role": "Investment System Owner + security administrator",
+      "requiredAction": "Identify an existing approved OIDC tenant or approve managed OIDC architecture and a named provider/tenant/entitlements. C requires separately approved local credential/reviewer security design."
+    },
+    {
+      "id": "D2_DATABASE_DEPLOYMENT_EXECUTOR_OWNER",
+      "status": "OWNER_CONFIRMATION_REQUIRED",
+      "role": "Database owner + production engineer",
+      "requiredAction": "Attest actual runtime/target database, operator and same-transaction writer runtime; recommended Next/Prisma-owned audit and business transaction. OS file ownership is insufficient."
+    },
+    {
+      "id": "D3_PRODUCTION_MIGRATION",
+      "status": "NOT_AUTHORIZED_NOT_EXECUTED",
+      "role": "Accountable database owner",
+      "requiredAction": "After D1/D2, review a concrete additive model/migration and isolated recovery rehearsal; separately authorize exact production execution. No current package grants this authorization."
+    },
+    {
+      "id": "D4_CLOCK_ANCHOR_BACKUP",
+      "status": "EXTERNAL_CONTROL_DECISION_REQUIRED",
+      "role": "Production/security owner + independent audit custodian",
+      "requiredAction": "Choose measured UTC health bounds, separately controlled off-device append-only anchor and durable backup/restore policies; require anchor acknowledgement before qualification."
+    },
+    {
+      "id": "D5_OPERATIONAL_INDEPENDENT_ACCEPTANCE",
+      "status": "BLOCKED_PREREQUISITES_MISSING",
+      "role": "Named Independent Validator distinct from all producers",
+      "requiredAction": "Validate actual configured provider/signature/issuer/audience/current revocation, business+audit transaction, approved migration rehearsal, clock and anchored restore-rejection evidence. Synthetic tests do not close this."
+    }
+  ],
+  "noProviderOrSDKInstalled": true,
+  "noNewProductionAdapterOrMigration": true,
+  "realProviderIntegrationTests": "NOT_RUN_NO_APPROVED_CONFIGURED_PROVIDER",
+  "invalidSignatureWrongIssuerAudienceTests": "NOT_RUN_NO_ADAPTER",
+  "restoreAttackPrevention": "BLOCKED_VALID_PREFIX_LIMITATION_REPRODUCED",
+  "ownerSourceApprovalsCreated": 0,
+  "effectiveAdmissions": 0,
+  "D2Activated": false,
+  "productionScoringActivated": false,
+  "PEC1EStarted": false,
+  "PEC3Started": false
+}
