@@ -1,0 +1,62 @@
+{
+  "status": "PASS_ASSESSMENT_NAV_BLOCKED",
+  "commands": [
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --import ./scripts/lib/ts-runtime.mjs scripts/assess-m8-market-nav.mjs",
+      "result": "PASS_READ_ONLY_ASSESSMENT",
+      "classification": "ACTUAL_RETAINED_SQLITE_AND_FILES_NO_LIVE_QUOTES"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/market-boundary.test.ts tests/unit/tcbs-pipeline.test.ts tests/unit/portfolio-read-models.test.ts tests/unit/portfolio-accounting.test.ts tests/unit/opening-receivable-compatibility.test.ts tests/unit/broker-snapshot.test.tsx tests/unit/broker-api-data.test.ts tests/unit/runtime-readiness.test.ts tests/unit/current-remediation-ui.test.tsx --reporter=json --outputFile=docs/fundamental-data-engine/evidence/2026-10-24-m8-current-market-nav-readiness/validation/contract-tests.json",
+      "result": "PASS",
+      "passed": 177,
+      "failed": 0,
+      "classification": "SYNTHETIC_CONTRACT_TESTS_NOT_LIVE_ACCEPTANCE"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/test-pec2-final-review.py --json docs/fundamental-data-engine/evidence/2026-10-24-m8-current-market-nav-readiness/validation/pec2-regressions.json",
+      "result": "PASS",
+      "passed": 62
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/check-boundaries.mjs",
+      "result": "PASS"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts python3 scripts/close-m8-market-nav-assessment.py",
+      "result": "PASS_PROTECTED_INPUTS_AND_GATE_VERIFICATION"
+    }
+  ],
+  "actualDataChecks": {
+    "brokerBodyHashesVerified": 450,
+    "brokerSnapshotsParsed": 12,
+    "activePipelineReplay": {
+      "status": "PASS"
+    },
+    "candidateSourceHashesVerified": 30,
+    "transactionsReplayedExactly": 12,
+    "ledgerLegsReplayedExactly": 24,
+    "holdings": 11,
+    "exactMarketIdentityCoverage": 0,
+    "tickerCorrespondencesNotApplied": 11,
+    "acceptedMarketRecords": 0,
+    "futureActiveObservations": false,
+    "freshness": "BLOCKED",
+    "effectiveNAV": null
+  },
+  "failures": [],
+  "notPerformed": [
+    "New source/provider implementation or acquisition",
+    "Production/source approval",
+    "Live HTTP/browser or market refresh",
+    "Migration",
+    "Build: no application changes",
+    "Scoring activation"
+  ],
+  "limits": [
+    "Gate-selected null CurrentReadService is inspected/exercised against retained portfolio services, not claimed as a new live browser run.",
+    "Technical calendar source URLs are retained references only; no external re-verification.",
+    "Historical candidates and raw bytes are not current accepted snapshots.",
+    "No public synthetic NAV value reported."
+  ]
+}

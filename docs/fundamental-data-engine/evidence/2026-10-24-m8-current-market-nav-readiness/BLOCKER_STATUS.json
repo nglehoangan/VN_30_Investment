@@ -1,0 +1,68 @@
+{
+  "assessmentStatus": "READY_FOR_OWNER_REVIEW",
+  "currentNAVReadiness": "BLOCKED",
+  "marketCurrent": false,
+  "authoritativeNAV": null,
+  "minimalUnresolvedNAVWorkstreams": [
+    "M8_NAV_MARKET_AUTHORITY",
+    "M8_NAV_CURRENT_SESSION",
+    "M8_NAV_LEDGER_MARKET_IDENTITY",
+    "M8_NAV_PURPOSE_AND_COMPOSITION"
+  ],
+  "additionalCurrentAccountAndActionabilityLimitations": [
+    "M8_NAV_LEDGER_COMPLETENESS",
+    "M8_NAV_REFERENCE_RECONCILIATION_INCEPTION"
+  ],
+  "blockers": [
+    {
+      "id": "M8_NAV_MARKET_AUTHORITY",
+      "status": "BLOCKED",
+      "dependencyClassification": "BLOCKED",
+      "evidence": "activeCandidate.independentAcceptance; runtimeMarketStatus; persistedBoundaryRecords",
+      "requiredAction": "Authenticated independent source/capability/policy acceptance and explicit owner-scoped NAV authority. No approval follows from retained records or this assessment.",
+      "ownerDecisionRequired": true
+    },
+    {
+      "id": "M8_NAV_CURRENT_SESSION",
+      "status": "BLOCKED",
+      "dependencyClassification": "BLOCKED",
+      "evidence": "activeCandidate.window; activeCandidate.currentValuationProof; calendar.technicalExpectedCompletedSession",
+      "requiredAction": "Obtain a successful retained capture for the applicable completed session, replay exact source bytes and approved temporal policy. No acquisition performed here.",
+      "ownerDecisionRequired": true
+    },
+    {
+      "id": "M8_NAV_LEDGER_MARKET_IDENTITY",
+      "status": "BLOCKED",
+      "dependencyClassification": "NOT_IMPLEMENTED",
+      "evidence": "activeCandidate.heldIdentityCorrespondence; activeCandidate.exactLedgerIdentityCoverage",
+      "requiredAction": "Review immutable UUID/security/ISIN/venue-to-ledger identity bindings and implement a scoped normalization bridge only after authorization. Preserve original ledger IDs; ticker equality alone is not authority.",
+      "ownerDecisionRequired": true
+    },
+    {
+      "id": "M8_NAV_PURPOSE_AND_COMPOSITION",
+      "status": "BLOCKED",
+      "dependencyClassification": "NOT_IMPLEMENTED",
+      "evidence": "activeCandidate.portfolioNavPurposeProof; app/server/current.ts; app/server/market-boundary.ts",
+      "requiredAction": "Approve the intended valuation/NAV purpose and calendar, then separately implement accepted-market to CurrentSource integration with exact prices, validThrough, identities and version pins. Do not merely flip an environment flag.",
+      "ownerDecisionRequired": true
+    },
+    {
+      "id": "M8_NAV_LEDGER_COMPLETENESS",
+      "status": "OPEN",
+      "dependencyClassification": "WORKING_WITH_LIMITATIONS",
+      "evidence": "ledger.lastLedgerEventAt; brokerSnapshots; original opening records",
+      "requiredAction": "Confirm as-of holdings/cash completeness and reconcile all actual post-inception activity through authorized ledger processes. Reconstruction alone cannot prove a current broker account. No transaction fabricated.",
+      "ownerDecisionRequired": true
+    },
+    {
+      "id": "M8_NAV_REFERENCE_RECONCILIATION_INCEPTION",
+      "status": "OPEN",
+      "dependencyClassification": "BLOCKED",
+      "evidence": "src/application/current/read-model.ts; src/domain/portfolio/inception.ts",
+      "requiredAction": "Provide contemporaneous reconciliation/reference evidence for actionable current state and priced inception evidence for since-inception performance. These are distinct from arithmetic point NAV.",
+      "ownerDecisionRequired": true
+    }
+  ],
+  "priorFinancialAuthorityCandidatesRemainDeferred": 8,
+  "authorizationGrantedByAssessment": false
+}
