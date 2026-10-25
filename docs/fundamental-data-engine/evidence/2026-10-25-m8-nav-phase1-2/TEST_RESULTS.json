@@ -1,0 +1,198 @@
+{
+  "status": "PASS",
+  "finalFocusedContractTests": {
+    "passed": 52,
+    "failed": 0,
+    "classification": "SYNTHETIC_ISOLATED_FIXTURES_NO_ACCEPTANCE"
+  },
+  "combinedRegressionRun": {
+    "passed": 220,
+    "failed": 0,
+    "note": "Broader run passed before final exclusive authority-expiry case and design-version-name alignment; focused tests and typechecking rerun on final files. Counts overlap; do not add them."
+  },
+  "PEC2Tests": {
+    "passed": 62,
+    "failed": 0
+  },
+  "requirements": [
+    {
+      "requirement": "Exact identity match",
+      "status": "PASS",
+      "testNames": [
+        "Phase 1 offline immutable identity bridge resolves exact ledger ID, UUID, provider code, ISIN, venue/class with no ticker lookup or approval"
+      ]
+    },
+    {
+      "requirement": "Duplicate/ambiguous identity rejection",
+      "status": "PASS",
+      "testNames": [
+        "Phase 1 offline immutable identity bridge rejects duplicate row IDs and overlapping identity intervals"
+      ]
+    },
+    {
+      "requirement": "Missing ISIN and alternate evidence",
+      "status": "PASS",
+      "testNames": [
+        "Phase 1 offline immutable identity bridge requires ISIN or a structured stable-key/venue/class continuity witness"
+      ]
+    },
+    {
+      "requirement": "Venue/class mismatch",
+      "status": "PASS",
+      "testNames": [
+        "Phase 1 offline immutable identity bridge rejects request venue mismatch",
+        "Phase 1 offline immutable identity bridge rejects request securityClass mismatch",
+        "Phase 1 offline immutable identity bridge rejects future evidence, portfolio/namespace mismatch and missing anchors",
+        "Phase 2 NAV-purpose offline contracts blocks portfolio namespace mismatch, price identity swaps and expired bridge knowledge"
+      ]
+    },
+    {
+      "requirement": "Effective interval overlap",
+      "status": "PASS",
+      "testNames": [
+        "Phase 1 offline immutable identity bridge rejects duplicate row IDs and overlapping identity intervals"
+      ]
+    },
+    {
+      "requirement": "Unknown knowledge cutoff",
+      "status": "PASS",
+      "testNames": [
+        "Phase 2 NAV-purpose offline contracts rejects future capture, future knowledge, unqualified clock and source pins"
+      ]
+    },
+    {
+      "requirement": "Ticker rename/reuse",
+      "status": "PASS",
+      "testNames": [
+        "Phase 1 offline immutable identity bridge models a rename or ticker reuse only through disjoint evidenced intervals"
+      ]
+    },
+    {
+      "requirement": "Corporate-action uncertainty",
+      "status": "PASS",
+      "testNames": [
+        "Phase 1 offline immutable identity bridge blocks corporate-action uncertainty and successor remapping"
+      ]
+    },
+    {
+      "requirement": "Missing/expired price",
+      "status": "PASS",
+      "testNames": [
+        "Phase 2 NAV-purpose offline contracts rejects expired session/price and overridden price policy windows"
+      ]
+    },
+    {
+      "requirement": "Invalid source hash",
+      "status": "PASS",
+      "testNames": [
+        "Phase 2 NAV-purpose offline contracts rejects corrupt envelope and source hashes without fetching any source"
+      ]
+    },
+    {
+      "requirement": "Wrong purpose",
+      "status": "PASS",
+      "testNames": [
+        "Phase 2 NAV-purpose offline contracts rejects wrong purpose VALUATION",
+        "Phase 2 NAV-purpose offline contracts rejects wrong purpose INDICATIVE_BROKER_VALUE",
+        "Phase 2 NAV-purpose offline contracts rejects wrong purpose INVESTMENT_ACTIONABILITY",
+        "Phase 2 NAV-purpose offline contracts rejects wrong purpose PRODUCTION_SCORING"
+      ]
+    },
+    {
+      "requirement": "Missing independent acceptance",
+      "status": "PASS",
+      "testNames": [
+        "Phase 2 NAV-purpose offline contracts passes technical preparation while keeping NAV unavailable, authority missing and every production flag false"
+      ]
+    },
+    {
+      "requirement": "Revoked authority",
+      "status": "PASS",
+      "testNames": [
+        "Phase 2 NAV-purpose offline contracts rejects REVOKED independent-acceptance placeholder"
+      ]
+    },
+    {
+      "requirement": "Future information",
+      "status": "PASS",
+      "testNames": [
+        "Phase 1 offline immutable identity bridge rejects future evidence, portfolio/namespace mismatch and missing anchors",
+        "Phase 2 NAV-purpose offline contracts rejects future capture, future knowledge, unqualified clock and source pins",
+        "Phase 2 NAV-purpose offline contracts rejects forged ACCEPTED state, wrong authority scope and future authority evidence"
+      ]
+    },
+    {
+      "requirement": "Decimal precision",
+      "status": "PASS",
+      "testNames": [
+        "Phase 2 NAV-purpose offline contracts keeps exact large decimal price/quantity strings and immutable content"
+      ]
+    },
+    {
+      "requirement": "All-held security coverage",
+      "status": "PASS",
+      "testNames": [
+        "Phase 2 NAV-purpose offline contracts binds every held security without applying fundamental eligibility filters"
+      ]
+    },
+    {
+      "requirement": "No scoring side effects",
+      "status": "PASS",
+      "testNames": [
+        "Phase 2 NAV-purpose offline contracts has no scoring effects and never mutates input even across repeated assessment"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/nav-preparation.test.ts --reporter=json --outputFile=docs/fundamental-data-engine/evidence/2026-10-25-m8-nav-phase1-2/validation/nav-contract-tests.json",
+      "result": "PASS_FINAL_FOCUSED"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/nav-preparation.test.ts tests/unit/market-boundary.test.ts tests/unit/tcbs-pipeline.test.ts tests/unit/portfolio-read-models.test.ts tests/unit/portfolio-accounting.test.ts tests/unit/opening-receivable-compatibility.test.ts tests/unit/runtime-readiness.test.ts --reporter=json --outputFile=docs/fundamental-data-engine/evidence/2026-10-25-m8-nav-phase1-2/validation/regressions.json",
+      "result": "PASS_COMBINED"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/typescript/bin/tsc --noEmit --incremental false",
+      "result": "PASS_FINAL",
+      "evidence": "validation/typecheck.log"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/check-boundaries.mjs",
+      "result": "PASS",
+      "evidence": "validation/boundaries.log"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/test-pec2-final-review.py --json docs/fundamental-data-engine/evidence/2026-10-25-m8-nav-phase1-2/validation/pec2-regressions.json",
+      "result": "PASS"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --import ./scripts/lib/ts-runtime.mjs --input-type=module -",
+      "result": "PASS_READ_ONLY_LEDGER_SAFETY",
+      "method": "Inline SELECT of actual saved aggregates and relational legs; unchanged buildTransaction replay; reconstructPortfolio compared exactly with stored projection and approved prior state hash. No imports of new preparation code or data mutation.",
+      "evidence": "LEDGER_SAFETY.json"
+    }
+  ],
+  "resolvedDuringImplementation": [
+    {
+      "check": "TypeScript synthetic test",
+      "failure": "TS2540: attempted assignment to readonly EvidenceRef.knownAt in an intentionally mutated test copy.",
+      "resolution": "Replace copied evidence object; final noEmit typecheck passes. Production immutability unchanged."
+    }
+  ],
+  "remainingFailures": [],
+  "notPerformed": [
+    "Production reader integration",
+    "Phase 3 capture",
+    "Operational authentication or acceptance",
+    "Production approval artifacts",
+    "Live NAV or scoring activation",
+    "Migration or provider installation"
+  ],
+  "limits": [
+    "Bridge/source evidence references are structurally checked offline; referenced real documents are not accepted or automatically fetched.",
+    "Calendar/session proof consistency is not independent calendar qualification.",
+    "No accepted authority status exists; NAV is always null.",
+    "Existing source/admission authorization and all protected files remain unchanged."
+  ]
+}
