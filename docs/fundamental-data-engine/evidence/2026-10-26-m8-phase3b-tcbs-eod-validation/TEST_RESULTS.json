@@ -1,0 +1,39 @@
+{
+  "classification": "SYNTHETIC_CONTRACT_TESTS_SEPARATE_FROM_ACTUAL_CAPTURE",
+  "commands": [
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --test api/capture-market.test.mjs api/token-session.test.mjs api/sub-account.test.mjs api/tcbs-unified.test.mjs",
+      "passed": 18,
+      "failed": 0,
+      "exitCode": 0,
+      "log": "acquisition-tests.log"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/completed-session.test.ts tests/unit/tcbs-pipeline.test.ts tests/integration/tcbs-pipeline.test.ts tests/unit/market-boundary.test.ts tests/integration/market-boundary.test.ts tests/unit/nav-preparation.test.ts tests/architecture/market-boundary.test.mjs",
+      "passed": 127,
+      "failed": 0,
+      "files": 7,
+      "exitCode": 0,
+      "log": "regression-tests.log"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/check-boundaries.mjs",
+      "status": "PASS",
+      "modules": 246,
+      "exitCode": 0
+    }
+  ],
+  "totalTestsPassed": 145,
+  "failures": 0,
+  "actualEvidence": "ACTUAL_VALIDATION.json",
+  "expectedActualCaptureRejection": "26/10 UNFINISHED_DAILY_BAR",
+  "validationHarnessInitialFailure": {
+    "error": "ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX",
+    "cause": "Static imports evaluated before runtime hook",
+    "resolution": "Reran with --import ./scripts/lib/ts-runtime.mjs; PASS; no product change"
+  },
+  "actualCommands": [
+    "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --import ./scripts/lib/ts-runtime.mjs /private/tmp/phase3b.mjs",
+    "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --import ./scripts/lib/ts-runtime.mjs /private/tmp/phase3b-ledger.mjs"
+  ]
+}
