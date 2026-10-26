@@ -1,0 +1,13 @@
+# M8 identity bridge evidence preparation closure
+
+Final status: **PARTIAL_EVIDENCE**. Owner approved Phase 3C and authorized this offline preparation. All seven requested deliverables are present.
+
+Read-only actual ledger inspection and authoritative replay: 12 transactions, 24 legs and 11 holdings unchanged, original IDs/quantities preserved, balances/cost basis match projection. Located the original opening broker snapshot by its exact body hash and linked each original transaction and /positions/N row. Extracted all eleven TCBS market identifiers from the separately selected retained 23/10 EOD capture and pinned local UUID release; original capture remains PARTIAL_CAPTURE.
+
+Historical search found 111 retained database security-master observations and 110 raw identity captures relevant to holdings; all hashes verified. All 11 provider histories are consistent with selected code/ISIN/venue/class. Retained HOSE list corroboration is recorded per holding, but original ledger anchors lack stable instrument identifiers and no exact ledger-to-market economic continuity interval is proved. corporate_action_reference is empty; lifecycle/rename/reuse clearance and effective/formal-knowledge witnesses are missing for every holding.
+
+**11 incomplete evidence dossiers; 0 complete Bridge candidates; 0 accepted mappings.** IDENTITY_BRIDGE_CANDIDATES.json is explicitly a preparation inventory, not a Bridge DTO. UNKNOWN fields are preserved rather than fabricated. It contains canonical immutable-content hashes and exact source references. These hashes provide local integrity, not write-once storage, trusted time or authenticated authority. Existing Phase 1 validator rejects all 11 unsupported projections and rejects an empty bridge, so no invalid Bridge is emitted. No contract changes.
+
+Validation: 52 synthetic offline contract tests PASS, boundary checker 246 modules PASS, actual ledger replay PASS; these do not grant independent acceptance. Safety rehash confirms 2143 protected files unchanged, including SQLite, raw captures and active candidate. No API calls, imports, migrations, source approval, accepted mappings, NAV/scoring/D2 activation, login or Phase 4.
+
+Next evidence action, subject to owner review: request broker/depository/exchange records that bind each original ledger holding to stable instrument identity and establish dated continuity/action coverage. Assign a reference-data producer and distinct validator; leave unsupported relationships/intervals UNKNOWN until evidence exists. Task approval is not a substitute for authenticated operational acceptance. Stop after preparation and await owner review.

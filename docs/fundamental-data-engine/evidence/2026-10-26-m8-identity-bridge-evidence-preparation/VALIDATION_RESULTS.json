@@ -1,0 +1,43 @@
+{
+  "status": "PASS_EVIDENCE_PREPARATION_WITH_GAPS",
+  "finalStatus": "PARTIAL_EVIDENCE",
+  "actualEvidence": {
+    "heldSecurities": 11,
+    "originalIDsPreserved": true,
+    "ledgerTransactions": 12,
+    "ledgerLegs": 24,
+    "sourceSnapshotBodyHashVerified": true,
+    "dbHistoricalMasterBodiesHashVerified": 111,
+    "selectedRawIdentityHashesVerified": 11,
+    "historicalRawMasterCaptures": 110,
+    "allHistoricalRawHashesMatch": true,
+    "completeBridgeCandidates": 0,
+    "incompleteEvidenceDossiers": 11,
+    "economicContinuityEstablished": 0,
+    "acceptedMappings": 0
+  },
+  "existingContractValidation": "CONTRACT_VALIDATION.json",
+  "expectedActualDraftRejections": 11,
+  "emptyBridgeRejected": true,
+  "syntheticTests": {
+    "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/nav-preparation.test.ts",
+    "passed": 52,
+    "failed": 0,
+    "exitCode": 0,
+    "log": "contract-tests.log",
+    "classification": "SYNTHETIC_ISOLATED_CONTRACT_TESTS_NOT_ACTUAL_ACCEPTANCE"
+  },
+  "boundaryCheck": {
+    "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/check-boundaries.mjs",
+    "sourceModules": 246,
+    "status": "PASS"
+  },
+  "actualLedgerReplay": {
+    "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --import ./scripts/lib/ts-runtime.mjs /private/tmp/identity-ledger.mjs",
+    "result": "LEDGER_REPLAY_RESULTS.json",
+    "status": "PASS",
+    "classification": "ACTUAL_RETAINED_DATABASE_SELECT_ONLY_AND_IN_MEMORY_RECONSTRUCTION"
+  },
+  "evidenceValidationCommand": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --import ./scripts/lib/ts-runtime.mjs /private/tmp/identity-validate.mjs",
+  "hashConvention": "SHA-256 of existing canonicalPreparationJson; per dossier excludes dossierContentHash and hashSemantics; root excludes contentHash and hashSemantics. These are evidence document hashes, never Bridge.contentHash."
+}
