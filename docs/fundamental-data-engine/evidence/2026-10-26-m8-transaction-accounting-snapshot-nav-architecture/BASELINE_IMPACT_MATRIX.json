@@ -1,0 +1,326 @@
+[
+  {
+    "path": "docs/01 SYSTEM/INVESTMENT_POLICY.md",
+    "classification": "NO_CHANGE",
+    "existingRule": "Long-term return/risk constitution and VN30 universe",
+    "proposedModification": "Keep objectives, no-margin and decision rules intact",
+    "rationaleAndCompatibilityRisk": "Direction does not amend investment rules",
+    "requiredApproval": "None for unchanged file; policy owner if scope ever changes",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "docs/01 SYSTEM/RISK_POLICY_v1.0.md",
+    "classification": "CONTRACT_CHANGE",
+    "existingRule": "§5.2 cash-flow-adjusted drawdown; normal/critical ladder",
+    "proposedModification": "Proposed addendum: disclose observed sparse coverage; keep official drawdown unavailable when unitization insufficient",
+    "rationaleAndCompatibilityRisk": "Observed risk is not continuous maximum drawdown; never default unknown to NORMAL",
+    "requiredApproval": "D5 explicit risk-policy measurement amendment; thresholds unchanged",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "docs/02 DATABASE/DATA_MODEL.md",
+    "classification": "CONTRACT_CHANGE",
+    "existingRule": "§6.10 derived snapshot already allowed, optional/recommended unitized fields",
+    "proposedModification": "Strengthen snapshot provenance/revisions; explicitly split valuation/return/risk capabilities and unknown obligations",
+    "rationaleAndCompatibilityRisk": "No daily series gate for point NAV; no zero-by-default evidence shortcut",
+    "requiredApproval": "D1 contract amendment",
+    "migrationImplications": "Future additive snapshot tables only under D3"
+  },
+  {
+    "path": "docs/02 DATABASE/PORTFOLIO.md",
+    "classification": "DOCUMENTATION_CHANGE",
+    "existingRule": "§17 reproducible snapshots; §14 flow-adjusted risk-series reference",
+    "proposedModification": "Clarify sparse observation coverage and period-specific metric availability",
+    "rationaleAndCompatibilityRisk": "Keep historical/lifetime and current readiness distinct",
+    "requiredApproval": "D1; D5 if risk meaning changes",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "docs/02 DATABASE/TRANSACTIONS.md",
+    "classification": "CONTRACT_CHANGE",
+    "existingRule": "Trade settlement only links trades; opening receivable supported",
+    "proposedModification": "Propose separately versioned non-trade claim settlement after exact evidence; do not rewrite existing facts",
+    "rationaleAndCompatibilityRisk": "Avoid cash receipt plus duplicated opening receivable/income",
+    "requiredApproval": "D4 accounting contract review/approval before code",
+    "migrationImplications": "Possible new versioned facts/leg schema; no old-row rewrite"
+  },
+  {
+    "path": "docs/05_PORTFOLIO_WORKFLOW/PERFORMANCE_REVIEW_v1.0.md",
+    "classification": "CONTRACT_CHANGE",
+    "existingRule": "TWR official strategy comparison; XIRR investor metric; no raw NAV growth return",
+    "proposedModification": "Add snapshot coverage/availability and explicitly conditional period metrics; retain official TWR",
+    "rationaleAndCompatibilityRisk": "Do not substitute XIRR/observed drawdown for approved strategy metrics",
+    "requiredApproval": "D5 methodology/workflow addendum",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "docs/05_PORTFOLIO_WORKFLOW/PORTFOLIO_RISK_REVIEW_v1.0.md",
+    "classification": "CONTRACT_CHANGE",
+    "existingRule": "Review binds current snapshot and risk evidence",
+    "proposedModification": "Add sparse coverage/UNKNOWN disclosure and response workflow",
+    "rationaleAndCompatibilityRisk": "Monitoring can be partial; execution remains blocked on missing required risk evidence",
+    "requiredApproval": "D5 workflow amendment",
+    "migrationImplications": "No historical review rewrite"
+  },
+  {
+    "path": "docs/07_VALIDATION/FINAL_VALIDATION_REPORT.md",
+    "classification": "NO_CHANGE",
+    "existingRule": "Retained restrictive M7 release verdict",
+    "proposedModification": "Leave sealed/baseline text; create future scoped capability acceptance as separate artifact",
+    "rationaleAndCompatibilityRisk": "Direction is not broad M7 validation",
+    "requiredApproval": "D8 resolve exact release manifest/status separately",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "docs/07_VALIDATION/ACCOUNTING_VALIDATION.md",
+    "classification": "VALIDATION_CHANGE",
+    "existingRule": "Independent golden accounting, MWAC and NAV oracles",
+    "proposedModification": "Add new settlement/snapshot cases with independent Expected values",
+    "rationaleAndCompatibilityRisk": "Existing tests cannot self-certify new operational evidence",
+    "requiredApproval": "D6 versioned validation addendum",
+    "migrationImplications": "Fixture DBs only"
+  },
+  {
+    "path": "docs/07_VALIDATION/RISK_VALIDATION.md",
+    "classification": "VALIDATION_CHANGE",
+    "existingRule": "RV-F01 official flow-adjusted drawdown open dependency",
+    "proposedModification": "Separate sparse observed diagnostics from official risk gate; preserve cash-flow mutation tests",
+    "rationaleAndCompatibilityRisk": "Missing peaks/flow-time marks must not weaken escalation",
+    "requiredApproval": "D5/D6",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "docs/07_VALIDATION/HISTORICAL_VALIDATION_PLAN.md",
+    "classification": "DOCUMENTATION_CHANGE",
+    "existingRule": "Historical campaign validates historical strategy/results",
+    "proposedModification": "Clarify it is optional input to current NAV but retained gate for claims that depend on it",
+    "rationaleAndCompatibilityRisk": "No retroactive PASS or deletion of failed history",
+    "requiredApproval": "D8 scoped release decision",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "docs/fundamental-data-engine/M8_LOCAL_READINESS_CURRENT.md",
+    "classification": "DOCUMENTATION_CHANGE",
+    "existingRule": "Old ledger blocker/status summary",
+    "proposedModification": "Future versioned pointer to later remediation and independent capability readiness",
+    "rationaleAndCompatibilityRisk": "Avoid treating historical summary as current fault or daily-NAV gate",
+    "requiredApproval": "D1 documentation review",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "docs/fundamental-data-engine/evidence/* prior sealed packages",
+    "classification": "NO_CHANGE",
+    "existingRule": "Immutable review history, data gaps and approval scopes",
+    "proposedModification": "Append this assessment; no rewrites",
+    "rationaleAndCompatibilityRisk": "Keep rejected/incomplete states auditable",
+    "requiredApproval": "None",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "src/domain/portfolio/values.ts",
+    "classification": "NO_CHANGE",
+    "existingRule": "m63-mwac-decimal12-half-even-v1",
+    "proposedModification": "Reuse exact arithmetic/method identity",
+    "rationaleAndCompatibilityRisk": "No FIFO/broker rounding substitution",
+    "requiredApproval": "None",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "src/domain/portfolio/transaction.ts",
+    "classification": "CONTRACT_CHANGE",
+    "existingRule": "DIVIDEND_CASH cash/income only; TRADE_SETTLEMENT BUY/SELL only",
+    "proposedModification": "D4 only: additive explicit claim clearing semantics with versioning, exact source linkage and no duplicate income",
+    "rationaleAndCompatibilityRisk": "Cannot settle opening claim via current trade-settlement or cash-adjustment bypass",
+    "requiredApproval": "D4 and implementation approval",
+    "migrationImplications": "New schema/method version may be required; old facts immutable"
+  },
+  {
+    "path": "src/domain/portfolio/reconstruct.ts",
+    "classification": "IMPLEMENTATION_CHANGE",
+    "existingRule": "MWAC, obligations, action stages and correction replay",
+    "proposedModification": "Only if D4 approved: replay new versioned claim-clearing facts, preserving all old behavior",
+    "rationaleAndCompatibilityRisk": "Daily price history unnecessary; obligation integrity essential",
+    "requiredApproval": "D4; no generic replay rewrite",
+    "migrationImplications": "Backward-compatible method dispatch, no silent method upgrade"
+  },
+  {
+    "path": "src/domain/portfolio/reconciliation.ts",
+    "classification": "NO_CHANGE",
+    "existingRule": "Exact-time complete evidence, zero tolerance; blocks unresolved difference",
+    "proposedModification": "Reuse strict comparator; new diagnostic views cannot count as full MATCH",
+    "rationaleAndCompatibilityRisk": "No materiality tolerance invented for105 or missing cost",
+    "requiredApproval": "Separate approval only if contract change later proposed",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "src/domain/portfolio/valuation.ts",
+    "classification": "NO_CHANGE",
+    "existingRule": "Point NAV and separately blocked inception-dependent economic P&L",
+    "proposedModification": "Reuse math with fully qualified inputs; new orchestration enforces acceptance",
+    "rationaleAndCompatibilityRisk": "No daily history required, no value-on-missing",
+    "requiredApproval": "None for math; D1 for new consumer",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "src/domain/portfolio/inception.ts",
+    "classification": "NO_CHANGE",
+    "existingRule": "Imported inception baseline needed for since-inception gains",
+    "proposedModification": "Keep for analytics/actionability; never replace opening market NAV with cost",
+    "rationaleAndCompatibilityRisk": "Current point valuation and lifetime P&L differ",
+    "requiredApproval": "None",
+    "migrationImplications": "No rebase authorized"
+  },
+  {
+    "path": "src/application/portfolio/engine.ts",
+    "classification": "CONTRACT_CHANGE",
+    "existingRule": "Composite snapshot/actionability includes inception/reference/reconciliation",
+    "proposedModification": "Prefer additive NAV-only orchestration rather than weakening legacy snapshot status",
+    "rationaleAndCompatibilityRisk": "Keep old decision/scoring semantics; separate capability readiness",
+    "requiredApproval": "D1/D2 implementation scope",
+    "migrationImplications": "None for existing book"
+  },
+  {
+    "path": "src/ports/portfolio.ts",
+    "classification": "NO_CHANGE",
+    "existingRule": "Ledger/read/revision and projection ports",
+    "proposedModification": "Reuse immutable reads/CAS; new snapshot repository gets separate port",
+    "rationaleAndCompatibilityRisk": "Projection is not snapshot history",
+    "requiredApproval": "D1 for new port only",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "src/domain/nav-preparation/contracts.ts; identity.ts; purpose.ts",
+    "classification": "NO_CHANGE",
+    "existingRule": "Offline-only strict preparation, no ACCEPTED mappings",
+    "proposedModification": "Preserve versions and unavailable fail-closed outputs; future operational DTOs separate",
+    "rationaleAndCompatibilityRisk": "Cannot flip fixtures/placeholder authority into real authorization",
+    "requiredApproval": "Separate future authority integration approval",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "src/ports/current.ts",
+    "classification": "CONTRACT_CHANGE",
+    "existingRule": "CurrentSource bundles valuation/reference/analyst evidence",
+    "proposedModification": "Add distinct NAV-only read DTO, purpose/quality metadata; retain existing port behavior",
+    "rationaleAndCompatibilityRisk": "Avoid FORMAL scope or actionability expansion",
+    "requiredApproval": "D1",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "src/application/current/read-model.ts",
+    "classification": "IMPLEMENTATION_CHANGE",
+    "existingRule": "capture display and context actionability share old composite snapshot",
+    "proposedModification": "Add separate NAV reader/status composition after approved contract; context gates unchanged",
+    "rationaleAndCompatibilityRisk": "Current numeric display cannot authorize action or require full daily path",
+    "requiredApproval": "D1/D2",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "app/server/current.ts; app/server/market-boundary.ts",
+    "classification": "IMPLEMENTATION_CHANGE",
+    "existingRule": "marketCurrent gates LocalCurrentSource and review composition",
+    "proposedModification": "Wire approved NAV-purpose provider separately; preserve authority gate",
+    "rationaleAndCompatibilityRisk": "Never set marketCurrent=true to unlock new feature",
+    "requiredApproval": "D1/D2 + actual authority prerequisites",
+    "migrationImplications": "No migration for wiring"
+  },
+  {
+    "path": "src/application/current/review-initiation.ts",
+    "classification": "VALIDATION_CHANGE",
+    "existingRule": "Reviews need exact current formal context/ranking/decisions",
+    "proposedModification": "Test new diagnostic reader cannot start formal reviews; optional future informational review DTO separate",
+    "rationaleAndCompatibilityRisk": "Snapshot availability is not buy authority",
+    "requiredApproval": "D6; D5 for changed workflow",
+    "migrationImplications": "No existing review rewrite"
+  },
+  {
+    "path": "src/application/scoring/portfolio-context.ts; src/application/decision/portfolio-context.ts",
+    "classification": "NO_CHANGE",
+    "existingRule": "Full integrity/actionability/inception and formal evidence",
+    "proposedModification": "Keep existing gate; valuation-only DTO must not be accepted as this context",
+    "rationaleAndCompatibilityRisk": "No scoring scope expansion",
+    "requiredApproval": "Any future adapter change requires separate approval",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "src/application/dashboard/model.ts; src/ui/dashboard.tsx",
+    "classification": "CONTRACT_CHANGE",
+    "existingRule": "Performance/risk unavailable placeholders, current DTO",
+    "proposedModification": "Add snapshot date/coverage/status and independent metric results; no misleading lifetime/current label",
+    "rationaleAndCompatibilityRisk": "Show local accounting even when analytics unavailable",
+    "requiredApproval": "D1/D2 implementation approval",
+    "migrationImplications": "No historical UI artifact rewrite"
+  },
+  {
+    "path": "app/api/readiness/route.ts",
+    "classification": "CONTRACT_CHANGE",
+    "existingRule": "Returns market readiness only",
+    "proposedModification": "Add separate capability response/route after approval; existing response remains compatible",
+    "rationaleAndCompatibilityRisk": "Do not make NAV availability imply source/scoring readiness",
+    "requiredApproval": "D1/D2 API version decision",
+    "migrationImplications": "None"
+  },
+  {
+    "path": "prisma/schema.prisma; proposed additive migration (NOT CREATED)",
+    "classification": "CONTRACT_CHANGE",
+    "existingRule": "PortfolioProjection only; no NAV snapshot store",
+    "proposedModification": "Dedicated append-only content/run/supersession/evidence refs, constraints/indexes",
+    "rationaleAndCompatibilityRisk": "Avoid abusing generic-looking analytical tables",
+    "requiredApproval": "D3 database owner/deployment/migration approval",
+    "migrationImplications": "Additive only; preview/rollback/backup; no execution now"
+  },
+  {
+    "path": "src/infrastructure/repositories/portfolio-ledger.ts",
+    "classification": "NO_CHANGE",
+    "existingRule": "Immutable history, watermark, inception constraints, CAS",
+    "proposedModification": "Reuse transaction owner; do not append pre-inception2025 trades to opening book",
+    "rationaleAndCompatibilityRisk": "Prevents duplicate opening/purchases and implicit rebase",
+    "requiredApproval": "D7 if separate audited rebase desired",
+    "migrationImplications": "No current ledger mutation"
+  },
+  {
+    "path": "src/infrastructure/repositories/analytical-artifacts.ts",
+    "classification": "NO_CHANGE",
+    "existingRule": "Accepts Scorecard|Ranking, not arbitrary JSON",
+    "proposedModification": "Do not coerce NAV into SCORECARD/RANKING; new repository separate",
+    "rationaleAndCompatibilityRisk": "Preserves authority/kind boundaries",
+    "requiredApproval": "D1/D3 for new repo",
+    "migrationImplications": "None to existing artifacts"
+  },
+  {
+    "path": "proposed nav-snapshot domain/application/port/repository modules (NOT CREATED)",
+    "classification": "IMPLEMENTATION_CHANGE",
+    "existingRule": "No operational persisted NAV feature",
+    "proposedModification": "Minimal pure calculator/orchestrator + dedicated port/repo + read DTO",
+    "rationaleAndCompatibilityRisk": "Reuse architecture; no new provider, auth or infrastructure",
+    "requiredApproval": "D1/D2/D3 plus admission evidence",
+    "migrationImplications": "Additive only after separate migration approval"
+  },
+  {
+    "path": "proposed performance snapshot/XIRR and risk observation modules (NOT CREATED)",
+    "classification": "IMPLEMENTATION_CHANGE",
+    "existingRule": "No dedicated XIRR/sparse drawdown implementation found",
+    "proposedModification": "Pure versioned metrics with precise unavailable reasons and no trading side effects",
+    "rationaleAndCompatibilityRisk": "Each metric needs its own coverage/method evidence",
+    "requiredApproval": "D5/D6 and implementation approval",
+    "migrationImplications": "Derived only; preserve input snapshot versions"
+  },
+  {
+    "path": "tests/unit/portfolio-accounting.test.ts; tests/unit/portfolio-read-models.test.ts; tests/integration/portfolio-regressions.test.ts",
+    "classification": "VALIDATION_CHANGE",
+    "existingRule": "Existing accounting/valuation/correction invariants",
+    "proposedModification": "Extend independent no-history/current-NAV and claim-settlement negative cases",
+    "rationaleAndCompatibilityRisk": "No mirror tests or weakening gates",
+    "requiredApproval": "D6",
+    "migrationImplications": "Private fixture DBs only"
+  },
+  {
+    "path": "tests/unit/nav-preparation.test.ts; tests/integration/current-remediation.test.ts; tests/architecture/m68-authority.test.mjs",
+    "classification": "VALIDATION_CHANGE",
+    "existingRule": "Offline authority, source freshness and architectural boundaries",
+    "proposedModification": "Assert new reader cannot produce acceptance/context/scoring; preserve existing cases",
+    "rationaleAndCompatibilityRisk": "No historical NAV required, but safety gates remain",
+    "requiredApproval": "D6",
+    "migrationImplications": "None outside isolated fixtures"
+  }
+]

@@ -1,0 +1,869 @@
+[
+  {
+    "path": "docs/01 SYSTEM/INVESTMENT_POLICY.md",
+    "sha256": "7160610b4c415a08f4a88b5d20ca6cc079119d5da552791f0c26781da7bd8e4c",
+    "anchors": [
+      {
+        "line": 355,
+        "text": "### 9.1 Portfolio drawdown objective"
+      },
+      {
+        "line": 357,
+        "text": "A portfolio peak-to-trough drawdown of approximately **20%** is a **soft risk-tolerance and escalation threshold**, not a guaranteed maximum loss, stop-loss rul"
+      },
+      {
+        "line": 367,
+        "text": "- sell high-quality holdings merely because portfolio drawdown approaches 20%;"
+      },
+      {
+        "line": 371,
+        "text": "Risk response must identify the **source of drawdown** before prescribing action. The review should distinguish among:"
+      },
+      {
+        "line": 384,
+        "text": "Market-driven drawdown and business-driven permanent impairment must not be treated as the same risk event."
+      },
+      {
+        "line": 390,
+        "text": "However, volatility and drawdown remain relevant because they affect capital availability, concentration, behavioral discipline, and portfolio resilience."
+      },
+      {
+        "line": 634,
+        "text": "Material changes to investment universe, use of leverage, return objective, drawdown philosophy, investment horizon, or core investment style require explicit p"
+      },
+      {
+        "line": 692,
+        "text": "- exact drawdown response ladder;"
+      },
+      {
+        "line": 718,
+        "text": "- portfolio drawdown target;"
+      },
+      {
+        "line": 741,
+        "text": "10. **20% drawdown is a soft escalation threshold, not a stop-loss.** Drawdown must trigger diagnosis of its source; market beta and permanent business impairme"
+      }
+    ]
+  },
+  {
+    "path": "docs/01 SYSTEM/RISK_POLICY_v1.0.md",
+    "sha256": "3785c1bb39b80435655a1621b2afbda992c38beaff82edebc0c67b0bc54ee744",
+    "anchors": [
+      {
+        "line": 15,
+        "text": "This Risk Policy is the authoritative source of portfolio risk limits, hard risk vetoes, escalation rules, concentration controls, drawdown response, cash-reser"
+      },
+      {
+        "line": 23,
+        "text": "- drawdown escalation rules;"
+      },
+      {
+        "line": 62,
+        "text": "- **temporary mark-to-market drawdown**;"
+      },
+      {
+        "line": 141,
+        "text": "The portfolio-level drawdown objective is to keep peak-to-trough drawdown **around or below 20% under normal adverse market conditions**, as stated in `INVESTME"
+      },
+      {
+        "line": 145,
+        "text": "The system must never sell a fundamentally sound security solely because portfolio drawdown crosses a numerical threshold."
+      },
+      {
+        "line": 149,
+        "text": "Portfolio drawdown must be measured on a **cash-flow-adjusted basis** so that monthly DCA contributions or withdrawals do not artificially create or erase drawd"
+      },
+      {
+        "line": 168,
+        "text": "Until Milestone 2 implements the formal NAV model, every drawdown calculation must explicitly state:"
+      },
+      {
+        "line": 192,
+        "text": "1. identify whether drawdown is market-wide, sector-driven, concentration-driven, or thesis-specific;"
+      },
+      {
+        "line": 193,
+        "text": "2. review top contributors to drawdown;"
+      },
+      {
+        "line": 204,
+        "text": "2. mandatory review of all positions contributing materially to drawdown;"
+      },
+      {
+        "line": 218,
+        "text": "1. classify the source of drawdown;"
+      },
+      {
+        "line": 226,
+        "text": "A CRITICAL drawdown does **not** automatically require broad portfolio liquidation."
+      },
+      {
+        "line": 246,
+        "text": "The **Current Drawdown Band** is determined only by the current cash-flow-adjusted drawdown level."
+      },
+      {
+        "line": 254,
+        "text": "A recovery in NAV immediately changes the Current Drawdown Band according to the measured drawdown, even if a prior WATCH / ELEVATED / CRITICAL / SEVERE review "
+      },
+      {
+        "line": 423,
+        "text": "- drawdown / escalation constraints;"
+      },
+      {
+        "line": 441,
+        "text": "- no drawdown, concentration, or risk-escalation rule requires additional liquidity;"
+      }
+    ]
+  },
+  {
+    "path": "docs/02 DATABASE/DATA_MODEL.md",
+    "sha256": "7ceac2bd06e77c0a36e4e0965a2ca4d1cf1444fc00a61dd52c3c12743b172b04",
+    "anchors": [
+      {
+        "line": 33,
+        "text": "- cash-flow-adjusted NAV and drawdown;"
+      },
+      {
+        "line": 72,
+        "text": "- cash-flow-adjusted NAV and drawdown calculations;"
+      },
+      {
+        "line": 216,
+        "text": "- `PortfolioValuationSnapshot` — derived snapshot"
+      },
+      {
+        "line": 249,
+        "text": "1 ───────< PortfolioValuationSnapshot"
+      },
+      {
+        "line": 253,
+        "text": "+ PortfolioValuationSnapshot"
+      },
+      {
+        "line": 312,
+        "text": "| `dividend_income` | No | Sum of qualifying posted `DIVIDEND_CASH` events and linked cash/tax effects, with gross/net views explicitly defined. |"
+      },
+      {
+        "line": 487,
+        "text": "**DIVIDEND_CASH**"
+      },
+      {
+        "line": 506,
+        "text": "- `DIVIDEND_CASH`"
+      },
+      {
+        "line": 695,
+        "text": "- portfolio NAV lives in `PortfolioValuationSnapshot`;"
+      },
+      {
+        "line": 700,
+        "text": "# 6.10 PortfolioValuationSnapshot — Derived Snapshot"
+      },
+      {
+        "line": 704,
+        "text": "Stores a reproducible portfolio valuation as of a defined timestamp for reporting, drawdown, analytics, and audit."
+      },
+      {
+        "line": 723,
+        "text": "| `drawdown_pct` | decimal | SNAPSHOT_DERIVED | Recommended | Flow-adjusted drawdown. |"
+      },
+      {
+        "line": 750,
+        "text": "Use `DIVIDEND_CASH` transactions for authoritative received income."
+      },
+      {
+        "line": 856,
+        "text": "| Dividend received? | `Transaction[DIVIDEND_CASH]` + cash leg | dividend analytics |"
+      },
+      {
+        "line": 857,
+        "text": "| Historical drawdown? | Valuation snapshots / unitized NAV | drawdown series |"
+      },
+      {
+        "line": 893,
+        "text": "- drawdown;"
+      }
+    ]
+  },
+  {
+    "path": "docs/02 DATABASE/TRANSACTIONS.md",
+    "sha256": "254e0c9886e02d8ee63f7d93d4f0617b21410ac11a1dc5b2e2f2d82843db7e4b",
+    "anchors": [
+      {
+        "line": 121,
+        "text": "| `settles_transaction_id` | FK | Conditional | RAW | Required for `TRADE_SETTLEMENT`; references originating BUY/SELL. |"
+      },
+      {
+        "line": 241,
+        "text": "| `TRADE_SETTLEMENT` | Settle the cash receivable/payable of one posted BUY/SELL | No |"
+      },
+      {
+        "line": 242,
+        "text": "| `DIVIDEND_CASH` | Receive dividend cash | No |"
+      },
+      {
+        "line": 313,
+        "text": "Actual settlement is a separate immutable `TRADE_SETTLEMENT` transaction with `settles_transaction_id = originating BUY transaction_id`. On settlement date it c"
+      },
+      {
+        "line": 331,
+        "text": "The linked `TRADE_SETTLEMENT` event posts:"
+      },
+      {
+        "line": 398,
+        "text": "Actual settlement is a separate immutable `TRADE_SETTLEMENT` transaction with `settles_transaction_id = originating SELL transaction_id`. It posts:"
+      },
+      {
+        "line": 449,
+        "text": "Dividend income is recorded as `DIVIDEND_CASH`."
+      },
+      {
+        "line": 457,
+        "text": "For reconstructable dividend analytics, `DIVIDEND_CASH` must carry authoritative event facts sufficient to distinguish income from cash mechanics. Minimum logic"
+      },
+      {
+        "line": 518,
+        "text": "linked TRADE_SETTLEMENT at settlement date: cash -, payable -"
+      },
+      {
+        "line": 525,
+        "text": "linked TRADE_SETTLEMENT at settlement date: cash +, receivable -"
+      },
+      {
+        "line": 536,
+        "text": "- `TRADE_SETTLEMENT` without a valid `settles_transaction_id` pointing to a posted BUY/SELL;"
+      },
+      {
+        "line": 639,
+        "text": "- a rights subscription that creates an obligation before cash payment may create a `PAYABLE`, followed by a later corporate-action settlement transaction that "
+      },
+      {
+        "line": 759,
+        "text": "If the event being corrected is a BUY/SELL that already has one or more posted `TRADE_SETTLEMENT` events, the trade must not be reversed in isolation. The corre"
+      },
+      {
+        "line": 763,
+        "text": "1. identify all posted `TRADE_SETTLEMENT` transactions linked to the trade;"
+      },
+      {
+        "line": 856,
+        "text": "| Dividend counted twice | DividendEvent changes income/cash + DIVIDEND_CASH changes cash | DividendEvent metadata only; transaction carries economic posting |"
+      },
+      {
+        "line": 880,
+        "text": "11. Trade settlement is a separate `TRADE_SETTLEMENT` event linked to exactly one originating BUY/SELL and cannot realize P&L or cost basis again."
+      }
+    ]
+  },
+  {
+    "path": "docs/02 DATABASE/PORTFOLIO.md",
+    "sha256": "27185a4a1149ff0d8134c076a55eea6a104ad2a023e858f4c50542ab17ab5989",
+    "anchors": [
+      {
+        "line": 722,
+        "text": "- cash-flow-adjusted performance series reference for drawdown."
+      },
+      {
+        "line": 797,
+        "text": "Persisting `PortfolioValuationSnapshot` is allowed for performance, audit and dashboard speed, provided the snapshot is explicitly derived."
+      }
+    ]
+  },
+  {
+    "path": "docs/05_PORTFOLIO_WORKFLOW/PERFORMANCE_REVIEW_v1.0.md",
+    "sha256": "5644356e80362b966189329359e73c6ae3c63438328f596a2fc373cbf3b50039",
+    "anchors": [
+      {
+        "line": 34,
+        "text": "- drawdown;"
+      },
+      {
+        "line": 70,
+        "text": "- excessive drawdown;"
+      },
+      {
+        "line": 105,
+        "text": "- drawdown."
+      },
+      {
+        "line": 142,
+        "text": "17. benchmark drawdown"
+      },
+      {
+        "line": 327,
+        "text": "- drawdown %;"
+      },
+      {
+        "line": 330,
+        "text": "- benchmark drawdown;"
+      },
+      {
+        "line": 782,
+        "text": "- drawdown methodology ambiguity;"
+      }
+    ]
+  },
+  {
+    "path": "docs/05_PORTFOLIO_WORKFLOW/PORTFOLIO_RISK_REVIEW_v1.0.md",
+    "sha256": "515ce73eb33a6224cefe93b32d4439cfcf4f842982e4a33c24fcfa3dccf4a53e",
+    "anchors": [
+      {
+        "line": 76,
+        "text": "Portfolio drawdown is a trigger for diagnosis."
+      },
+      {
+        "line": 115,
+        "text": "- drawdown escalates;"
+      },
+      {
+        "line": 138,
+        "text": "- portfolio drawdown;"
+      },
+      {
+        "line": 139,
+        "text": "- benchmark drawdown where comparable;"
+      },
+      {
+        "line": 188,
+        "text": "- drawdown within normal tolerance;"
+      },
+      {
+        "line": 201,
+        "text": "- drawdown is rising;"
+      },
+      {
+        "line": 217,
+        "text": "- drawdown diagnosis is mandatory."
+      },
+      {
+        "line": 230,
+        "text": "- severe drawdown escalation rule is activated;"
+      },
+      {
+        "line": 380,
+        "text": "- current drawdown;"
+      },
+      {
+        "line": 382,
+        "text": "- drawdown duration;"
+      },
+      {
+        "line": 388,
+        "text": "The approximate 20% portfolio drawdown objective is a soft escalation threshold per approved policy, not an automatic stop-loss."
+      },
+      {
+        "line": 390,
+        "text": "At material drawdown:"
+      },
+      {
+        "line": 531,
+        "text": "- drawdown analysis."
+      },
+      {
+        "line": 602,
+        "text": "6. Review drawdown"
+      },
+      {
+        "line": 686,
+        "text": "Short-term drawdown must not automatically be treated as permanent impairment."
+      },
+      {
+        "line": 778,
+        "text": "When portfolio drawdown materially escalates:"
+      }
+    ]
+  },
+  {
+    "path": "docs/07_VALIDATION/FINAL_VALIDATION_REPORT.md",
+    "sha256": "ba526ca47489dda29357794cd32bf826dde7d4763922ddc158fdc83a389edea4",
+    "anchors": [
+      {
+        "line": 5,
+        "text": "**Status:** Baseline Candidate --- Awaiting User Approval\\"
+      },
+      {
+        "line": 14,
+        "text": "> **DO NOT RELEASE AS VALIDATED FOR REAL-MONEY DECISION SUPPORT**"
+      },
+      {
+        "line": 318,
+        "text": "-   drawdown governance;"
+      },
+      {
+        "line": 324,
+        "text": "> **flow-adjusted drawdown has not been independently"
+      },
+      {
+        "line": 348,
+        "text": "-   historical max drawdown;"
+      },
+      {
+        "line": 402,
+        "text": "-   drawdown does not create automatic liquidation;"
+      },
+      {
+        "line": 419,
+        "text": "-   flow-adjusted drawdown unproven;"
+      },
+      {
+        "line": 430,
+        "text": "-   drawdown target not guaranteed;"
+      },
+      {
+        "line": 454,
+        "text": "The portfolio target is approximately 20% drawdown."
+      },
+      {
+        "line": 530,
+        "text": "-   \"The OS guarantees drawdown below 20%.\""
+      },
+      {
+        "line": 601,
+        "text": "-   DO NOT RELEASE."
+      },
+      {
+        "line": 655,
+        "text": "**Verdict: DO NOT RELEASE AS VALIDATED.**"
+      },
+      {
+        "line": 662,
+        "text": "**Verdict: DO NOT RELEASE AS VALIDATED.**"
+      },
+      {
+        "line": 669,
+        "text": "**Verdict: DO NOT RELEASE AS VALIDATED.**"
+      },
+      {
+        "line": 675,
+        "text": "**Verdict: DO NOT RELEASE AS VALIDATED.**"
+      },
+      {
+        "line": 677,
+        "text": "Flow-adjusted drawdown and full concentration/risk execution evidence"
+      }
+    ]
+  },
+  {
+    "path": "docs/07_VALIDATION/ACCOUNTING_VALIDATION.md",
+    "sha256": "fdb7e7cd53518e88bf0e00461b6648f379009651eced5e407010a5d5b8b25597",
+    "anchors": [
+      {
+        "line": 5,
+        "text": "**Status:** Baseline Candidate --- Awaiting User Approval\\"
+      }
+    ]
+  },
+  {
+    "path": "docs/07_VALIDATION/RISK_VALIDATION.md",
+    "sha256": "79e07351a7a3cce13cace31e7efb66f20df04678830fa4840e8f4cc51ce09fc3",
+    "anchors": [
+      {
+        "line": 5,
+        "text": "**Status:** Baseline Candidate --- Awaiting User Approval\\"
+      },
+      {
+        "line": 26,
+        "text": "-   drawdown measurement and escalation;"
+      },
+      {
+        "line": 27,
+        "text": "-   flow-adjusted drawdown;"
+      },
+      {
+        "line": 210,
+        "text": "## 10. Portfolio drawdown doctrine"
+      },
+      {
+        "line": 212,
+        "text": "The \\~20% portfolio drawdown objective is a risk-management target, not"
+      },
+      {
+        "line": 217,
+        "text": "-   rising drawdown triggers review/escalation/restriction according to"
+      },
+      {
+        "line": 219,
+        "text": "-   drawdown can block new risk pending approval;"
+      },
+      {
+        "line": 220,
+        "text": "-   drawdown alone does not automatically SELL good holdings;"
+      },
+      {
+        "line": 222,
+        "text": "-   a −25% portfolio drawdown is not blanket liquidation authority;"
+      },
+      {
+        "line": 228,
+        "text": "## 11. Flow-adjusted drawdown"
+      },
+      {
+        "line": 255,
+        "text": "-   raw NAV drawdown and flow-adjusted drawdown are not conflated."
+      },
+      {
+        "line": 261,
+        "text": "A material flow-adjustment error affecting drawdown regime is Critical."
+      },
+      {
+        "line": 265,
+        "text": "For every approved drawdown regime, test:"
+      },
+      {
+        "line": 278,
+        "text": "-   drawdown value;"
+      },
+      {
+        "line": 335,
+        "text": "## 16. Thesis vs drawdown"
+      },
+      {
+        "line": 342,
+        "text": "automatic SELL solely from drawdown."
+      }
+    ]
+  },
+  {
+    "path": "docs/07_VALIDATION/HISTORICAL_VALIDATION_PLAN.md",
+    "sha256": "d1725a38b48e29ae5196c279647c99be542977590963901e56a0edefd6c73980",
+    "anchors": [
+      {
+        "line": 5,
+        "text": "**Status:** Baseline Candidate --- Awaiting User Approval\\"
+      },
+      {
+        "line": 367,
+        "text": "-   at least one severe market drawdown/stress segment;"
+      },
+      {
+        "line": 393,
+        "text": "-   high drawdown;"
+      },
+      {
+        "line": 412,
+        "text": "-   drawdown path;"
+      },
+      {
+        "line": 432,
+        "text": "-   max flow-adjusted drawdown;"
+      },
+      {
+        "line": 450,
+        "text": "-   market drawdown regime;"
+      }
+    ]
+  },
+  {
+    "path": "docs/07_VALIDATION/VALIDATION_STRATEGY.md",
+    "sha256": "b5df573ccae31812f9b0c4194c576eae8b8e240cc894831fe95cfa921600f94b",
+    "anchors": [
+      {
+        "line": 54,
+        "text": "- DCA, position sizing, opportunity cost, concentration, drawdown, and risk behavior;"
+      },
+      {
+        "line": 215,
+        "text": "10. concentration, drawdown, thesis break, stale data, and risk vetoes cannot be bypassed through another layer;"
+      },
+      {
+        "line": 607,
+        "text": "- `DO NOT RELEASE`."
+      }
+    ]
+  },
+  {
+    "path": "docs/adr/0004-portfolio-ledger-and-accounting.md",
+    "sha256": "f41e73cb72ad67109fab0d3e0357cbeb3583a74000836dec9d9799a21b664df2",
+    "anchors": [
+      {
+        "line": 35,
+        "text": "BUY recognizes quantity and capitalized gross plus supplied attributable fees/taxes, with a positive liability PAYABLE. SELL removes quantity, releases MWAC bas"
+      },
+      {
+        "line": 55,
+        "text": "Reconciliation compares a complete, exact-time reference to internal cash, quantity, optional supplied cost and obligations. Difference is external minus intern"
+      }
+    ]
+  },
+  {
+    "path": "docs/adr/0005-local-authentication-deferral.md",
+    "sha256": "b7cb79851797a0fa375b13a8cee9a390c3849a96d06e5b8957196682bf11d725",
+    "anchors": []
+  },
+  {
+    "path": "src/domain/portfolio/transaction.ts",
+    "sha256": "82d172c5fd0bbdefba74af096a649c950b71b8b0d5c486f23e02899769d66051",
+    "anchors": [
+      {
+        "line": 3,
+        "text": "import { ACCOUNTING_METHOD, decimal, price, shareQuantity, requireRule, sourceReference, transactionId, portfolioId, securityId, type PortfolioId, type Security"
+      },
+      {
+        "line": 5,
+        "text": "export const transactionTypes = [\"CASH_DEPOSIT\", \"BUY\", \"SELL\", \"TRADE_SETTLEMENT\", \"DIVIDEND_CASH\", \"CASH_WITHDRAWAL\", \"FEE\", \"TAX\", \"REVERSAL\", \"OPENING_BALAN"
+      },
+      {
+        "line": 29,
+        "text": "readonly accountingMethod: typeof ACCOUNTING_METHOD; readonly externalFlow: \"NONE\" | \"CONTRIBUTION\" | \"WITHDRAWAL\";"
+      },
+      {
+        "line": 47,
+        "text": "if (f.type === \"TRADE_SETTLEMENT\") requireRule(f.settlementDate === effectiveDate, \"SETTLEMENT_EFFECTIVE_DATE_MISMATCH\");"
+      },
+      {
+        "line": 53,
+        "text": "requireRule(!f.securityId || isTrade || [\"DIVIDEND_CASH\", \"OPENING_BALANCE\", \"CORPORATE_ACTION\"].includes(f.type), \"SECURITY_FACT_NOT_APPLICABLE\");"
+      },
+      {
+        "line": 54,
+        "text": "requireRule(!f.representation || isTrade || f.type === \"DIVIDEND_CASH\", \"SETTLEMENT_REPRESENTATION_NOT_APPLICABLE\");"
+      },
+      {
+        "line": 59,
+        "text": "requireRule(!f.settlesId || f.type === \"TRADE_SETTLEMENT\", \"UNEXPECTED_SETTLEMENT_LINK\");"
+      },
+      {
+        "line": 61,
+        "text": "requireRule(!f.dividend || f.type === \"DIVIDEND_CASH\", \"UNEXPECTED_DIVIDEND_DETAIL\");"
+      },
+      {
+        "line": 90,
+        "text": "case \"TRADE_SETTLEMENT\": {"
+      },
+      {
+        "line": 105,
+        "text": "case \"DIVIDEND_CASH\": {"
+      },
+      {
+        "line": 179,
+        "text": "return deepFreeze({ facts: f, status: \"POSTED\" as const, createdAt: now, accountingMethod: ACCOUNTING_METHOD, externalFlow, legs });"
+      }
+    ]
+  },
+  {
+    "path": "src/domain/portfolio/reconstruct.ts",
+    "sha256": "7e17ed6109dd1bfe3b45866db3f11797d79cb20583127f7409e3cf838a4c5d76",
+    "anchors": [
+      {
+        "line": 2,
+        "text": "import { ACCOUNTING_METHOD, Decimal, decimal, requireRule, type PortfolioId, type LedgerWatermark } from \"./values\";"
+      },
+      {
+        "line": 24,
+        "text": "if (f.type === \"TRADE_SETTLEMENT\") requireRule(old.transactionId === f.settlesId && !reversed.has(old.transactionId), \"SETTLEMENT_ORIGIN_MISMATCH\");"
+      },
+      {
+        "line": 58,
+        "text": "requireRule(t.accountingMethod === ACCOUNTING_METHOD, \"UNSUPPORTED_ACCOUNTING_METHOD\");"
+      },
+      {
+        "line": 99,
+        "text": "if (f.type === \"DIVIDEND_CASH\") {"
+      },
+      {
+        "line": 136,
+        "text": "return deepFreeze({ supportedInceptionAt: inceptionAt ?? null, portfolioId, asOf, ledgerWatermark, accountingMethod: ACCOUNTING_METHOD,"
+      }
+    ]
+  },
+  {
+    "path": "src/domain/portfolio/values.ts",
+    "sha256": "7cc8c44a342f913f380c709707292faa0b23889a0bfedd9fca3bd8bb0a0b92e1",
+    "anchors": [
+      {
+        "line": 85,
+        "text": "export const ACCOUNTING_METHOD = \"m63-mwac-decimal12-half-even-v1\";"
+      }
+    ]
+  },
+  {
+    "path": "src/domain/portfolio/valuation.ts",
+    "sha256": "80850601619e1beaa101a448fd1ae036ab60e9ae5c6d37bbab681539e97c0b3e",
+    "anchors": [
+      {
+        "line": 22,
+        "text": "export function valuePortfolio(state: PortfolioState, inputs: ValuationInputs, inception?: InceptionBaseline) {"
+      }
+    ]
+  },
+  {
+    "path": "src/domain/portfolio/inception.ts",
+    "sha256": "b489ec8c75a033ac6f1ed22ebcbe46fbbc2aeb8aeac17950b71cdfa6d3e36deb",
+    "anchors": []
+  },
+  {
+    "path": "src/domain/portfolio/reconciliation.ts",
+    "sha256": "5941ae8a3a7633e01f063bbf727faf13a26d561e51cc5b5d3f3a70b726e3777e",
+    "anchors": [
+      {
+        "line": 39,
+        "text": "methodology: \"m63-exact-reconciliation-v1\", sourceReference: reference?.sourceReference ?? null, evidenceId: reference?.id ?? null,"
+      }
+    ]
+  },
+  {
+    "path": "src/domain/nav-preparation/contracts.ts",
+    "sha256": "e03ade4cb810f9670ea2b17bfd54de9b28209318fe22c9e2f8da3c709a392da2",
+    "anchors": []
+  },
+  {
+    "path": "src/domain/nav-preparation/identity.ts",
+    "sha256": "a068afddc63b2bd845fedd6e15528aec1815943beb0faf908ca7f1f295921eb6",
+    "anchors": []
+  },
+  {
+    "path": "src/domain/nav-preparation/purpose.ts",
+    "sha256": "d8e3353aa8d53d843c621517c9852e061014791f9b189355dc2d6066c10d7c69",
+    "anchors": []
+  },
+  {
+    "path": "src/ports/current.ts",
+    "sha256": "7b1804efbdfeb07e6cf06ba22d952d5e5d4ad61ad5b4a592cba1632426f5fa2e",
+    "anchors": []
+  },
+  {
+    "path": "src/ports/portfolio.ts",
+    "sha256": "07d6c250bac507eef0af10183a1ea4d6c749bbcc1fa5e2714e5749a0691365f1",
+    "anchors": []
+  },
+  {
+    "path": "src/application/portfolio/engine.ts",
+    "sha256": "58ff6cc0d9e2147e0d1ae7caeabee7572fc53a9e70069002cf770e79e15b7e0b",
+    "anchors": [
+      {
+        "line": 35,
+        "text": "async snapshot(id: PortfolioId, asOf: Instant, prices: ValuationInputs, evidence: ReconciliationEvidence | null, references: ReferenceData, taxonomy: string, in"
+      },
+      {
+        "line": 46,
+        "text": "referenceVersion: references.version, status: stale ? \"STALE\" : valuation.status === \"VALID\" && inception.status === \"VALID\" && !reconciliation.actionabilityBlo"
+      },
+      {
+        "line": 47,
+        "text": "actionabilityBlocked: stale || valuation.status !== \"VALID\" || inception.status !== \"VALID\" || reconciliation.actionabilityBlocked || referenceBlocked } as cons"
+      }
+    ]
+  },
+  {
+    "path": "src/application/current/read-model.ts",
+    "sha256": "9cdc4b23168e230b7befcf0884e3741cc5c462dc87a9e7be4aecd0a4ede56420",
+    "anchors": [
+      {
+        "line": 21,
+        "text": "export class CurrentReadService {"
+      }
+    ]
+  },
+  {
+    "path": "src/application/current/review-initiation.ts",
+    "sha256": "b508e5b281bb98c57c8d4036efdccecb564f3ef2dc44c42a66136ea5dc6ebb2e",
+    "anchors": [
+      {
+        "line": 16,
+        "text": "import { CurrentReadService } from \"./read-model\";"
+      },
+      {
+        "line": 28,
+        "text": "constructor(private readonly current: CurrentReadService, private readonly ledger: Pick<PortfolioLedger, \"read\">,"
+      }
+    ]
+  },
+  {
+    "path": "src/application/scoring/portfolio-context.ts",
+    "sha256": "cbfc76543a5fc790ac4a271787fadc470f6c74c4be460f0ee67d242871092802",
+    "anchors": [
+      {
+        "line": 11,
+        "text": "if(s.inception.status!==\"VALID\")reasons.push(\"UNSUPPORTED_INCEPTION\");"
+      }
+    ]
+  },
+  {
+    "path": "src/application/decision/portfolio-context.ts",
+    "sha256": "4682ff57047731eef1e1b92606d1ae0744f30004fcbd82cd87b3e97623fddda1",
+    "anchors": []
+  },
+  {
+    "path": "src/application/dashboard/model.ts",
+    "sha256": "5eed95a94c18b3119b17fd43b57a827cdb9b62bcf6debabf179bed0aaa48981b",
+    "anchors": []
+  },
+  {
+    "path": "src/ui/dashboard.tsx",
+    "sha256": "84ea4e5ec672840d560fc784a19e6573093dd3891a795a353c13e3ccd413065c",
+    "anchors": [
+      {
+        "line": 40,
+        "text": "{screen === \"risk\" && <Panel title=\"Risk evidence\"><p>Current concentration, sector exposure and drawdown: Unavailable. Risk evidence below is historical as-of;"
+      },
+      {
+        "line": 41,
+        "text": "{screen === \"performance\" && <Panel title=\"Portfolio performance\"><Metrics values={{ \"Realized P&L (VND)\": m.state?.realizedPnl, \"Net dividends (VND)\": m.state?"
+      }
+    ]
+  },
+  {
+    "path": "app/server/current.ts",
+    "sha256": "99779fc020c57b5b3bae995cbb8ad7eb5779b68bcb2cfe58f1d042f04d0690f9",
+    "anchors": [
+      {
+        "line": 11,
+        "text": "import { CurrentReadService } from \"@/application/current/read-model\";"
+      },
+      {
+        "line": 16,
+        "text": "const ledger=new PrismaPortfolioLedger(client), marginal=new PrismaMarginalArtifacts(client), current=new CurrentReadService(ledger,{ load: async (id:string) =>"
+      }
+    ]
+  },
+  {
+    "path": "app/api/readiness/route.ts",
+    "sha256": "bdc518d84512fbd18f467cc2c14d914f7f6083381127be6f5cdc26ecf4f10164",
+    "anchors": []
+  },
+  {
+    "path": "src/infrastructure/repositories/portfolio-ledger.ts",
+    "sha256": "a8eadf3f62e4e2968ec3a0ef6f52f5408203bfd76188d6b16b3bc9af4e460646",
+    "anchors": [
+      {
+        "line": 51,
+        "text": "requireRule(method && method.implementationIdentity === t.accountingMethod && method.effectiveDate <= vietnamBusinessDate(f.effectiveAt), \"ACCOUNTING_METHODOLOG"
+      }
+    ]
+  },
+  {
+    "path": "src/infrastructure/repositories/analytical-artifacts.ts",
+    "sha256": "866502873fff90d5e00fbf64ecad54e58edac818d0df1e3feaa33dc91a7d844b",
+    "anchors": []
+  },
+  {
+    "path": "prisma/schema.prisma",
+    "sha256": "abc1431e887fd478b6875cf85724b88461bcfda0508aea69c200427207914be7",
+    "anchors": []
+  },
+  {
+    "path": "docs/fundamental-data-engine/M8_LOCAL_READINESS_CURRENT.md",
+    "sha256": "3b487efec9fc8248d9423c694b05a06a558258dea155ab2a77ed14b2fc6b1d86",
+    "anchors": []
+  },
+  {
+    "path": "docs/fundamental-data-engine/evidence/2026-10-26-m8-historical-market-price-validation/CLOSURE_REPORT.md",
+    "sha256": "0c035e9a77efb62a3a29067116c262dae06842a4cabdf19a38ade2952e478fd1"
+  },
+  {
+    "path": "docs/fundamental-data-engine/evidence/2026-10-26-m8-historical-nav-cash-trade-integration/SUMMARY.json",
+    "sha256": "2669facd0b7363a006de367c6ba6d9477afb1874717b3fff3469383ad0f829f9"
+  },
+  {
+    "path": "docs/fundamental-data-engine/evidence/2026-10-26-m8-broker-statement-fpt-wft-investigation/CLOSURE_REPORT.md",
+    "sha256": "3ccb4e4f295bed5e5b8806d12c4dd7a5f421b7dcfcb47fafb872717d0fe2a43c"
+  },
+  {
+    "path": "docs/fundamental-data-engine/evidence/2026-10-25-m8-nav-phase1-2/IDENTITY_BRIDGE_CONTRACT.md",
+    "sha256": "ec644e2d50c1d5b9919661d9671030296068ccfa620a62da6e08dd37e63eeed8"
+  },
+  {
+    "path": "docs/fundamental-data-engine/evidence/2026-10-25-m8-nav-phase1-2/NAV_PURPOSE_CONTRACT.md",
+    "sha256": "eb76784c80b4c7f352649c2535fc7e07faeedcc2947e3f0991aa2e5f481aec1c"
+  }
+]
