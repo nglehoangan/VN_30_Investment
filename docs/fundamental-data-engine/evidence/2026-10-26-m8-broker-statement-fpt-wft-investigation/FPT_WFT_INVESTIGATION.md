@@ -1,0 +1,13 @@
+# FPT_WFT conversion investigation
+
+Statement-backed: 07/10 page 1 II STOCK shows FPT 200 Giao dịch and FPT_WFT 20 Chờ giao dịch, both unit cost 73,023 and reference market price 59,700. Historical distinction is retained. Original ledger has case A: 220 FPT, zero pending-symbol positions. Total/basis arithmetic already includes 20; not proof conversion had completed.
+
+All 12 original broker snapshots, 11 DB 4.14 observations, raw 21/10 4.14, ledger facts and corporate-action table were inspected. READ_ONLY_RECONCILIATION.json has exact source body hashes, pointers, observation times and FPT fields. On every retained 4.14 observation FPT totalQtty=220, availableTrading=200, stockDividend=20. The latest source observation is 2026-10-21T02:45:04.543Z.
+
+FPT_UNAVAILABLE is a **local normalized availability bucket**, not a new instrument returned by TCBS and not an accepted alias for FPT_WFT. api/import-captured.mjs lines 25–30 constructs unavailable as totalQtty minus availableTrading; this explains the normalized 200+20 representation only. waitForTrade=0 does not overrule stockDividend=20/availableTrading=200 or establish legal trading eligibility.
+
+Owner confirmation that all 20 eventually became ordinary shares: **OWNER_ATTESTED**. conversionDate=UNKNOWN; conversionRatio=UNKNOWN; firstObservedConverted=UNKNOWN; legal/trading-availability date UNKNOWN. Last observed pending/unavailable state above is a point observation, not an exact event boundary. A full LAST_OBSERVED_PENDING → FIRST_OBSERVED_CONVERTED interval cannot be closed without the latter. Do not use opening ledger 220 as first converted evidence because it already aggregates unavailable shares.
+
+New retained issuer lead: parent interim 2026 PDF physical page 42, printed page 38, section 28, visually checked. It reports a 31/07/2026 board plan to issue equity-funded shares to existing shareholders at a stated 10% rate. It does not identify this account/FPT_WFT entitlement or provide completion/trading date. 20/200 numerical compatibility is a hypothesis, not entitlement proof or 1:1 pending-to-ordinary conversion ratio. Its separate 16/07 employee issuance must not be conflated with this position. Exact hashes/pointer in ISSUER_ACTION_LEAD.json.
+
+No authoritative conversion debit/credit, dated broker notification, exchange trading-eligibility notice, registration/crediting document or cost-allocation event linking these exact 20 was established. No conversion transaction is created. No cost-basis change proposed. Retained source search includes issuer notes/direct PDF candidates and HOSE/depository gap results; scan/text limitations documented. No API call or source substitution.

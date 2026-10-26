@@ -1,0 +1,98 @@
+{
+  "status": "PASS_INVESTIGATION_WITH_UNRESOLVED_RECONCILIATION",
+  "finalDecision": "PARTIALLY_RECONCILED",
+  "classification": "ACTUAL_PRIVATE_STATEMENT_AND_RETAINED_SQLITE_OFFLINE_READ_ONLY",
+  "checks": {
+    "pdfSha256": "e5e131affcabf090a4fc5c260204f09a82e84c4d8dc43a92722e25873ea240c5",
+    "privateInputAvailable": true,
+    "pagesRead": 2,
+    "financialPagesVisuallyInspected": [
+      1,
+      2
+    ],
+    "statementRows": 12,
+    "allRowQuantityPriceChecks": true,
+    "allDisplayedPLAndDerivedCostChecks": true,
+    "all11HoldingsCompared": true,
+    "tenNonFPTQuantityCostMatches": true,
+    "statementNAVArithmetic": 78915815,
+    "statementNAVMatches": true,
+    "cashResidual": "500000",
+    "crossDateDiagnosticNAVDifference": "70105",
+    "ownerAttestationNotIndependentVerification": true,
+    "conversionDate": "UNKNOWN",
+    "conversionRatio": "UNKNOWN",
+    "corporateActionTableRows": 0,
+    "sourceObservationHashChecks": 450,
+    "raw21OctoberHashMatches": true,
+    "noPostOpeningTransactions": true,
+    "nativeTextIssuerPDFSearchLimited": true,
+    "issuerPlanPageVisuallyChecked": 42
+  },
+  "authoritativeLedgerReplay": {
+    "classification": "ACTUAL_SQLITE_PRISMA_AND_DOMAIN_NO_FIXTURES",
+    "status": "PASS",
+    "transactionsReplayedExactly": 12,
+    "originalLegsReplayedExactly": 24,
+    "holdings": 11,
+    "cashReceivablesHoldingsAndCostMatchOriginalProjection": true,
+    "stateHash": "e18e76e5a0ae44402494417ba0dd9151cc3277395bbb12a0525ac75a80f228a0",
+    "originalSavedAggregatesHash": "d62426000661f97b405b071c2909e0d57bc6084153c946f711a05dbed385a8f2",
+    "databaseIntegrity": {
+      "integrity_check": "ok"
+    },
+    "foreignKeyViolations": 0,
+    "operations": [
+      "SELECT",
+      "authoritative ledger read",
+      "domain reconstruction"
+    ],
+    "mutations": 0
+  },
+  "financialChecks": {
+    "statementRows": 12,
+    "quantityTimesPriceChecksPassed": 12,
+    "valueMinusDerivedCostEqualsPLChecksPassed": 12,
+    "stockRowSum": "78183500",
+    "historicalNAV": "78915815",
+    "arithmeticDifference": "0",
+    "nonFPTQuantityAndBasisMatches": 10,
+    "fptOrdinaryVsLedgerQuantityGap": "20",
+    "fptPendingAlreadyIncludedNumerically": "20",
+    "fptCombinedBasisDifference": "0",
+    "unresolvedCrossDateCashEquivalentGap": "70000",
+    "unresolvedBorrowingVsLedgerPayablesGap": "105",
+    "crossDateDiagnosticDifference": "70105"
+  },
+  "commandsAndMethods": [
+    {
+      "method": "Read-only macOS PDFKit extraction of private PDF and visual inspection of masked financial sections on both pages",
+      "result": "PASS",
+      "privateInputPathAndFilenamePublished": false
+    },
+    {
+      "command": "python3 /private/tmp/statement-investigate.py",
+      "result": "PASS actual assertions; financial rows and retained evidence comparisons",
+      "initialDependencyFailure": "pypdf import unavailable; used native PDFKit fallback without installation"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --import ./scripts/lib/ts-runtime.mjs /private/tmp/statement-ledger.mjs",
+      "result": "PASS actual authoritative ledger read/reconstruct; 12 transactions/24 legs/11 holdings"
+    },
+    {
+      "method": "Retained FPT scanned PDFs native text search; retained notes search then original parent-interim page42 visual verification",
+      "result": "PLAN_LEAD_ONLY; exact conversion evidence not established",
+      "limitation": "Native PDF text empty in all seven retained issuer PDFs; no full-corpus OCR/visual negative inference"
+    },
+    {
+      "method": "Protected input hashes before/after and privacy scan",
+      "result": "PASS"
+    }
+  ],
+  "syntheticTestsRun": 0,
+  "testSuiteRationale": "No source code changed. Actual row arithmetic, observation hash checks and authoritative ledger replay were used instead of synthetic fixtures.",
+  "independentAcceptancePerformed": false,
+  "conversionDate": "UNKNOWN",
+  "conversionRatio": "UNKNOWN",
+  "completeIdentityBridgeQualified": false
+}
