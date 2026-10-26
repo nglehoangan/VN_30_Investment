@@ -1,0 +1,153 @@
+{
+  "catalogPath": "api/tcbs-api-catalog.json",
+  "sha256": "28c66a794781f50188f4984fdda07296574f77642fbed76e022121be64584a76",
+  "clientPath": "api/tcbs.mjs",
+  "clientSha256": "1671560457caa40b69feedf6bfaa6e46b3bf363e419c92678e88dbda4912caf2",
+  "endpoints": [
+    {
+      "id": "1.1",
+      "method": "POST",
+      "path": "/gaia/v1/oauth2/openapi/token",
+      "name": "Xác thực",
+      "execution": "DEFAULT_IF_EXPIRED"
+    },
+    {
+      "id": "2.1",
+      "method": "GET",
+      "path": "/eros/v2/get-profile/by-username/{custodyCode}",
+      "name": "Profile và tiểu khoản",
+      "execution": "DEFAULT"
+    },
+    {
+      "id": "4.4",
+      "method": "GET",
+      "path": "/aion/v1/accounts/{accountNo}/orders",
+      "name": "Sổ lệnh",
+      "execution": "DEFAULT"
+    },
+    {
+      "id": "4.6",
+      "method": "GET",
+      "path": "/aion/v1/accounts/{accountNo}/matching-details",
+      "name": "Khớp lệnh",
+      "execution": "DEFAULT"
+    },
+    {
+      "id": "4.7",
+      "method": "GET",
+      "path": "/aion/v1/accounts/{accountNo}/ppse",
+      "name": "Sức mua tham khảo",
+      "execution": "DEFAULT"
+    },
+    {
+      "id": "4.14",
+      "method": "GET",
+      "path": "/aion/v1/accounts/{accountNo}/se",
+      "name": "Tài sản cổ phiếu",
+      "execution": "DEFAULT"
+    },
+    {
+      "id": "4.15",
+      "method": "GET",
+      "path": "/aion/v1/accounts/{accountNo}/cashInvestments",
+      "name": "Số dư tiền",
+      "execution": "DEFAULT"
+    },
+    {
+      "id": "4.16",
+      "method": "GET",
+      "path": "/erebos/v2/digital/trans-hist-cashStatements",
+      "name": "Sao kê tiền",
+      "execution": "DEFAULT"
+    },
+    {
+      "id": "4.17",
+      "method": "GET",
+      "path": "/erebos/v2/digital/margin-info",
+      "name": "Kiểm tra nợ nếu có tiểu khoản margin",
+      "execution": "DEFAULT_IF_ACCOUNT_RESOLVED"
+    },
+    {
+      "id": "5.1",
+      "method": "GET",
+      "path": "/tartarus/v1/tickerCommons",
+      "name": "Mã và giá",
+      "execution": "DEFAULT"
+    },
+    {
+      "id": "5.2",
+      "method": "WSS",
+      "path": "/ws/thesis/v1/stream/normal",
+      "name": "Bảng giá trực tiếp",
+      "execution": "DEFAULT"
+    },
+    {
+      "id": "5.3",
+      "method": "GET",
+      "path": "/tartarus/v1/tickerSnaps",
+      "name": "Room nước ngoài và snapshot rổ",
+      "execution": "DEFAULT"
+    },
+    {
+      "id": "5.4",
+      "method": "GET",
+      "path": "/tartarus/v1/putThroughSnaps",
+      "name": "Thoả thuận",
+      "execution": "EXTENDED_MARKET"
+    },
+    {
+      "id": "5.5",
+      "method": "GET",
+      "path": "/nyx/v1/intraday/{ticker}/his/paging",
+      "name": "Lịch sử khớp",
+      "execution": "EXTENDED_MARKET"
+    },
+    {
+      "id": "5.6",
+      "method": "GET",
+      "path": "/nyx/v1/intraday/{ticker}/bsa-ext",
+      "name": "Cung cầu trong phiên",
+      "execution": "EXTENDED_MARKET"
+    },
+    {
+      "id": "5.7",
+      "method": "GET",
+      "path": "/nyx/v1/intraday/{ticker}/bsa",
+      "name": "Cung cầu theo ngày",
+      "execution": "EXTENDED_MARKET"
+    },
+    {
+      "id": "5.8",
+      "method": "GET",
+      "path": "/nyx/v1/intraday/{ticker}/bsa-month",
+      "name": "Cung cầu theo tháng",
+      "execution": "EXTENDED_MARKET"
+    },
+    {
+      "id": "5.11",
+      "method": "GET",
+      "path": "/ananke/v1/securities",
+      "name": "Định danh chứng khoán",
+      "execution": "DEFAULT"
+    },
+    {
+      "id": "5.12",
+      "method": "GET",
+      "path": "/nyx/v2/stock/bars",
+      "name": "Nến intraday",
+      "execution": "EXTENDED_MARKET"
+    },
+    {
+      "id": "5.13",
+      "method": "GET",
+      "path": "/nyx/v2/stock/bars-long-term",
+      "name": "Nến ngày cổ phiếu và chỉ số",
+      "execution": "DEFAULT"
+    }
+  ],
+  "accountHistoryDateArguments": "--from/--to apply to cash/debt account history, not market EOD or historical fill selection",
+  "historicalFillCompletenessProven": false,
+  "knownIdentityBearingEndpoint": "5.11 codeId/isinCode/tradePlace/secType",
+  "accountToStableInstrumentEndpointConfirmed": false,
+  "newClientImplemented": false
+}

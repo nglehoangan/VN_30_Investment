@@ -1,0 +1,67 @@
+[
+  {
+    "source": "Original ledger facts and opening snapshot",
+    "classification": "AVAILABLE_AND_VERIFIED",
+    "qualification": "Exact original ticker/position/transaction source hash verified; proves ledger origin only, not economic continuity"
+  },
+  {
+    "source": "4.14 historical DB and 21/10 raw account positions",
+    "classification": "AVAILABLE_BUT_INSUFFICIENT",
+    "qualification": "Account-linked ticker/secType/sbType, no stable security code/ISIN/venue field"
+  },
+  {
+    "source": "4.4 orders / 4.6 fills retained captures",
+    "classification": "AVAILABLE_BUT_INSUFFICIENT",
+    "qualification": "No nonempty trade rows; cannot assess unobserved row identity schema or original confirmations"
+  },
+  {
+    "source": "4.13 retained responses",
+    "classification": "AVAILABLE_BUT_INSUFFICIENT",
+    "qualification": "Empty content; legacy margin-product response, not retained trade confirmations"
+  },
+  {
+    "source": "4.16 cash / 4.17 debt",
+    "classification": "AVAILABLE_BUT_INSUFFICIENT",
+    "qualification": "Historical arrays empty; 21/10 raw requests HTTP400 without raw successful body; cash-only history cannot bind instrument identity"
+  },
+  {
+    "source": "5.11 TCBS security master",
+    "classification": "AVAILABLE_AND_VERIFIED",
+    "qualification": "Existing exact code/ISIN/venue/class point observations; not account-to-instrument bridge"
+  },
+  {
+    "source": "Pinned release market UUID assignment",
+    "classification": "AVAILABLE_AND_VERIFIED",
+    "qualification": "Local namespace assignment, not TCBS-returned UUID or independent economic identity"
+  },
+  {
+    "source": "Retained HOSE security list / membership / history",
+    "classification": "AVAILABLE_BUT_INSUFFICIENT",
+    "qualification": "11/11 exact ticker/ISIN corroboration; no account ledger anchor or complete lifecycle interval"
+  },
+  {
+    "source": "Original broker trade confirmations in retained scope",
+    "classification": "NOT_AVAILABLE",
+    "qualification": "No nonempty confirmation documents located; UI transaction-confirmation screenshots are app test evidence"
+  },
+  {
+    "source": "Primary depository instrument certificate/lifecycle record retained",
+    "classification": "NOT_AVAILABLE",
+    "qualification": "No primary VSD/VSDC record located in inspected retained reference evidence"
+  },
+  {
+    "source": "Account-specific broker statement with stable code/ISIN and dated mapping",
+    "classification": "REQUIRES_EXTERNAL_ACQUISITION",
+    "qualification": "Ask TCBS for actual original record or formal historical instrument mapping addendum"
+  },
+  {
+    "source": "Authoritative instrument lifecycle/action coverage for 11 holdings",
+    "classification": "REQUIRES_EXTERNAL_ACQUISITION",
+    "qualification": "Request/locate exact registration/listing/rename/reuse and corporate-action records for target interval"
+  },
+  {
+    "source": "Formal trusted knowledge/acceptance witnesses",
+    "classification": "REQUIRES_EXTERNAL_ACQUISITION",
+    "qualification": "Future approved governance workflow; cannot reconstruct from local file mtime or printed issue date"
+  }
+]
