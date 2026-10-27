@@ -1,0 +1,404 @@
+{
+  "classification": "SYNTHETIC_ISOLATED_SQLITE_NOT_PRODUCTION_ACCEPTANCE",
+  "status": "PASS",
+  "expected": {
+    "cash": "1171",
+    "receivables": "30",
+    "payables": "0",
+    "realizedPnl": "72.5",
+    "netDividends": "9",
+    "netContributions": "150",
+    "expenses": "4",
+    "quantity": "30",
+    "openCost": "226.5",
+    "averageCost": "7.55",
+    "transactions": 17,
+    "legs": 25,
+    "revision": "5"
+  },
+  "actual": {
+    "cash": "1171",
+    "receivables": "30",
+    "payables": "0",
+    "realizedPnl": "72.5",
+    "netDividends": "9",
+    "netContributions": "150",
+    "expenses": "4",
+    "positions": [
+      {
+        "securityId": "security-a",
+        "quantity": "30",
+        "openCost": "226.5",
+        "averageCost": "7.55",
+        "realizedPnl": "72.5"
+      }
+    ],
+    "transactionCount": 17,
+    "legCount": 25,
+    "revision": "5"
+  },
+  "independentCashTerms": [
+    "1000",
+    "200",
+    "-202",
+    "148",
+    "9",
+    "40",
+    "30",
+    "-3",
+    "-2",
+    "-50",
+    "3",
+    "2",
+    "-4"
+  ],
+  "bookCarryingComponentBridge": "1427.5-1200 = 150+72.5+9-4 = 227.5; NOT NAV",
+  "inputCommands": [
+    {
+      "id": "capital",
+      "portfolioId": "portfolio-test",
+      "type": "CASH_DEPOSIT",
+      "eventAt": "2026-01-03T09:00:00.000Z",
+      "effectiveAt": "2026-01-03T09:00:00.000Z",
+      "currency": "VND",
+      "source": {
+        "source": "FIXTURE",
+        "reference": "capital"
+      },
+      "idempotencyKey": "capital",
+      "methodologyId": "accounting-test-v1",
+      "amount": "200"
+    },
+    {
+      "id": "buy",
+      "portfolioId": "portfolio-test",
+      "type": "BUY",
+      "eventAt": "2026-01-04T09:00:00.000Z",
+      "effectiveAt": "2026-01-04T09:00:00.000Z",
+      "currency": "VND",
+      "source": {
+        "source": "FIXTURE",
+        "reference": "buy"
+      },
+      "idempotencyKey": "buy",
+      "methodologyId": "accounting-test-v1",
+      "securityId": "security-a",
+      "quantity": "10",
+      "price": "20",
+      "amount": "200",
+      "tradeDate": "2026-01-04",
+      "representation": "NET_SETTLEMENT",
+      "fee": "2"
+    },
+    {
+      "id": "buy-settle",
+      "portfolioId": "portfolio-test",
+      "type": "TRADE_SETTLEMENT",
+      "eventAt": "2026-01-05T09:00:00.000Z",
+      "effectiveAt": "2026-01-05T09:00:00.000Z",
+      "currency": "VND",
+      "source": {
+        "source": "FIXTURE",
+        "reference": "buy-settle"
+      },
+      "idempotencyKey": "buy-settle",
+      "methodologyId": "accounting-test-v1",
+      "settlesId": "buy",
+      "amount": "202",
+      "settlementDate": "2026-01-05"
+    },
+    {
+      "id": "sell",
+      "portfolioId": "portfolio-test",
+      "type": "SELL",
+      "eventAt": "2026-01-06T09:00:00.000Z",
+      "effectiveAt": "2026-01-06T09:00:00.000Z",
+      "currency": "VND",
+      "source": {
+        "source": "FIXTURE",
+        "reference": "sell"
+      },
+      "idempotencyKey": "sell",
+      "methodologyId": "accounting-test-v1",
+      "securityId": "security-a",
+      "quantity": "5",
+      "price": "30",
+      "amount": "150",
+      "tradeDate": "2026-01-06",
+      "representation": "NET_SETTLEMENT",
+      "fee": "1",
+      "tax": "1"
+    },
+    {
+      "id": "sell-settle",
+      "portfolioId": "portfolio-test",
+      "type": "TRADE_SETTLEMENT",
+      "eventAt": "2026-01-07T09:00:00.000Z",
+      "effectiveAt": "2026-01-07T09:00:00.000Z",
+      "currency": "VND",
+      "source": {
+        "source": "FIXTURE",
+        "reference": "sell-settle"
+      },
+      "idempotencyKey": "sell-settle",
+      "methodologyId": "accounting-test-v1",
+      "settlesId": "sell",
+      "amount": "148",
+      "settlementDate": "2026-01-07"
+    },
+    {
+      "id": "income",
+      "portfolioId": "portfolio-test",
+      "type": "DIVIDEND_CASH",
+      "eventAt": "2026-01-08T09:00:00.000Z",
+      "effectiveAt": "2026-01-08T09:00:00.000Z",
+      "currency": "VND",
+      "source": {
+        "source": "FIXTURE",
+        "reference": "income"
+      },
+      "idempotencyKey": "income",
+      "methodologyId": "accounting-test-v1",
+      "securityId": "security-a",
+      "dividend": {
+        "net": "9",
+        "gross": "10",
+        "withholding": "1"
+      }
+    },
+    {
+      "id": "claim-part-1",
+      "portfolioId": "portfolio-test",
+      "type": "DIVIDEND_RECEIVABLE_SETTLEMENT",
+      "eventAt": "2026-01-09T09:00:00.000Z",
+      "effectiveAt": "2026-01-09T09:00:00.000Z",
+      "currency": "VND",
+      "source": {
+        "source": "FIXTURE",
+        "reference": "claim-part-1"
+      },
+      "idempotencyKey": "claim-part-1",
+      "methodologyId": "accounting-test-v1",
+      "amount": "40",
+      "securityId": "security-a",
+      "dividendSettlement": {
+        "version": "dividend-receivable-settlement-v1",
+        "correctionOf": null,
+        "allocation": {
+          "id": "fixture-allocation",
+          "portfolioId": "portfolio-test",
+          "originalTransactionId": "opening-claim",
+          "originalLegId": "opening-claim:leg:2",
+          "currency": "VND",
+          "basis": "NET",
+          "acceptanceReference": "SYNTHETIC_ACCEPTANCE_NOT_PRODUCTION",
+          "knownAt": "2026-01-02T09:00:00.000Z",
+          "claims": [
+            {
+              "id": "claim-a",
+              "securityId": "security-a",
+              "actionId": "action-a",
+              "amount": "70",
+              "evidence": [
+                {
+                  "reference": "SYNTHETIC_ONLY",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                  "pointer": "/fixture",
+                  "knownAt": "2026-01-02T09:00:00.000Z"
+                }
+              ]
+            },
+            {
+              "id": "claim-b",
+              "securityId": "security-b",
+              "actionId": "action-b",
+              "amount": "30",
+              "evidence": [
+                {
+                  "reference": "SYNTHETIC_ONLY",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                  "pointer": "/fixture",
+                  "knownAt": "2026-01-02T09:00:00.000Z"
+                }
+              ]
+            }
+          ]
+        },
+        "claimId": "claim-a",
+        "actionId": "action-a",
+        "knownAt": "2026-09-16T12:00:00.000Z",
+        "receipt": {
+          "namespace": "SYNTHETIC",
+          "id": "receipt-claim-part-1",
+          "portfolioId": "portfolio-test",
+          "securityId": "security-a",
+          "actionId": "action-a",
+          "currency": "VND",
+          "net": "40",
+          "effectiveAt": "2026-01-09T09:00:00.000Z",
+          "knownAt": "2026-09-16T12:00:00.000Z",
+          "evidence": [
+            {
+              "reference": "SYNTHETIC_ONLY",
+              "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "pointer": "/fixture",
+              "knownAt": "2026-01-02T09:00:00.000Z"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "claim-part-2",
+      "portfolioId": "portfolio-test",
+      "type": "DIVIDEND_RECEIVABLE_SETTLEMENT",
+      "eventAt": "2026-01-10T09:00:00.000Z",
+      "effectiveAt": "2026-01-10T09:00:00.000Z",
+      "currency": "VND",
+      "source": {
+        "source": "FIXTURE",
+        "reference": "claim-part-2"
+      },
+      "idempotencyKey": "claim-part-2",
+      "methodologyId": "accounting-test-v1",
+      "amount": "30",
+      "securityId": "security-a",
+      "dividendSettlement": {
+        "version": "dividend-receivable-settlement-v1",
+        "correctionOf": null,
+        "allocation": {
+          "id": "fixture-allocation",
+          "portfolioId": "portfolio-test",
+          "originalTransactionId": "opening-claim",
+          "originalLegId": "opening-claim:leg:2",
+          "currency": "VND",
+          "basis": "NET",
+          "acceptanceReference": "SYNTHETIC_ACCEPTANCE_NOT_PRODUCTION",
+          "knownAt": "2026-01-02T09:00:00.000Z",
+          "claims": [
+            {
+              "id": "claim-a",
+              "securityId": "security-a",
+              "actionId": "action-a",
+              "amount": "70",
+              "evidence": [
+                {
+                  "reference": "SYNTHETIC_ONLY",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                  "pointer": "/fixture",
+                  "knownAt": "2026-01-02T09:00:00.000Z"
+                }
+              ]
+            },
+            {
+              "id": "claim-b",
+              "securityId": "security-b",
+              "actionId": "action-b",
+              "amount": "30",
+              "evidence": [
+                {
+                  "reference": "SYNTHETIC_ONLY",
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                  "pointer": "/fixture",
+                  "knownAt": "2026-01-02T09:00:00.000Z"
+                }
+              ]
+            }
+          ]
+        },
+        "claimId": "claim-a",
+        "actionId": "action-a",
+        "knownAt": "2026-09-16T12:00:00.000Z",
+        "receipt": {
+          "namespace": "SYNTHETIC",
+          "id": "receipt-claim-part-2",
+          "portfolioId": "portfolio-test",
+          "securityId": "security-a",
+          "actionId": "action-a",
+          "currency": "VND",
+          "net": "30",
+          "effectiveAt": "2026-01-10T09:00:00.000Z",
+          "knownAt": "2026-09-16T12:00:00.000Z",
+          "evidence": [
+            {
+              "reference": "SYNTHETIC_ONLY",
+              "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "pointer": "/fixture",
+              "knownAt": "2026-01-02T09:00:00.000Z"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "split",
+      "portfolioId": "portfolio-test",
+      "type": "CORPORATE_ACTION",
+      "eventAt": "2026-01-11T09:00:00.000Z",
+      "effectiveAt": "2026-01-11T09:00:00.000Z",
+      "currency": "VND",
+      "source": {
+        "source": "FIXTURE",
+        "reference": "split"
+      },
+      "idempotencyKey": "split",
+      "methodologyId": "accounting-test-v1",
+      "securityId": "security-a",
+      "quantity": "15",
+      "corporateAction": {
+        "id": "SYNTHETIC_SPLIT",
+        "subtype": "SPLIT",
+        "numerator": "2",
+        "denominator": "1",
+        "evidence": "SYNTHETIC_ONLY",
+        "stage": "EFFECTIVE"
+      }
+    },
+    {
+      "id": "fee",
+      "portfolioId": "portfolio-test",
+      "type": "FEE",
+      "eventAt": "2026-01-12T09:00:00.000Z",
+      "effectiveAt": "2026-01-12T09:00:00.000Z",
+      "currency": "VND",
+      "source": {
+        "source": "FIXTURE",
+        "reference": "fee"
+      },
+      "idempotencyKey": "fee",
+      "methodologyId": "accounting-test-v1",
+      "amount": "3"
+    },
+    {
+      "id": "tax",
+      "portfolioId": "portfolio-test",
+      "type": "TAX",
+      "eventAt": "2026-01-13T09:00:00.000Z",
+      "effectiveAt": "2026-01-13T09:00:00.000Z",
+      "currency": "VND",
+      "source": {
+        "source": "FIXTURE",
+        "reference": "tax"
+      },
+      "idempotencyKey": "tax",
+      "methodologyId": "accounting-test-v1",
+      "amount": "2"
+    },
+    {
+      "id": "withdraw",
+      "portfolioId": "portfolio-test",
+      "type": "CASH_WITHDRAWAL",
+      "eventAt": "2026-01-14T09:00:00.000Z",
+      "effectiveAt": "2026-01-14T09:00:00.000Z",
+      "currency": "VND",
+      "source": {
+        "source": "FIXTURE",
+        "reference": "withdraw"
+      },
+      "idempotencyKey": "withdraw",
+      "methodologyId": "accounting-test-v1",
+      "amount": "50"
+    }
+  ],
+  "originalHistoryUnchanged": true
+}

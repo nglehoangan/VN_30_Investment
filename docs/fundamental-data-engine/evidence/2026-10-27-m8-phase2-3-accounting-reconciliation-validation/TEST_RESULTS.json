@@ -1,0 +1,31 @@
+{
+  "status": "PASS_TECHNICAL_TEST_SCOPE",
+  "approvedRegression": {
+    "passed": 211,
+    "failed": 0
+  },
+  "newIntegratedEvidenceSuite": {
+    "passed": 4,
+    "failed": 0
+  },
+  "totalPassed": 215,
+  "actualOpeningReplay": "PASS_12_TRANSACTIONS_24_LEGS_11_POSITIONS",
+  "projectionDifferences": 0,
+  "newTestsClassification": "SYNTHETIC_ISOLATED_NOT_PRODUCTION_ACCEPTANCE",
+  "commands": [
+    "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/forward-intake.test.ts tests/integration/forward-intake.test.ts tests/unit/dividend-settlement.test.ts tests/integration/dividend-settlement.test.ts tests/unit/portfolio-accounting.test.ts tests/unit/portfolio-command.test.ts tests/unit/portfolio-read-models.test.ts tests/integration/portfolio.test.ts tests/integration/portfolio-migration.test.ts tests/integration/portfolio-regressions.test.ts tests/integration/portfolio-review-remediation.test.ts --reporter=json --outputFile=/private/tmp/m8-phase23/regression.json",
+    "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run --config docs/fundamental-data-engine/evidence/2026-10-27-m8-phase2-3-accounting-reconciliation-validation/validation/vitest.config.mts --reporter=json --outputFile=/private/tmp/m8-phase23/integrated-initial.json",
+    "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --loader ./docs/fundamental-data-engine/evidence/2026-10-27-m8-phase2-3-accounting-reconciliation-validation/validation/readonly-loader.mjs ./docs/fundamental-data-engine/evidence/2026-10-27-m8-phase2-3-accounting-reconciliation-validation/validation/opening-readonly.mjs",
+    "python3 docs/fundamental-data-engine/evidence/2026-10-27-m8-phase2-3-accounting-reconciliation-validation/validation/gather-retained.py",
+    "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/typescript/bin/tsc --noEmit --incremental false",
+    "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/check-boundaries.mjs",
+    "DATABASE_URL=file:/private/tmp/m8-phase23/schema-only.sqlite /private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/database.mjs validate --no-env-file",
+    "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/eslint/bin/eslint.js docs/fundamental-data-engine/evidence/2026-10-27-m8-phase2-3-accounting-reconciliation-validation/validation/integrated-accounting.test.ts docs/fundamental-data-engine/evidence/2026-10-27-m8-phase2-3-accounting-reconciliation-validation/validation/vitest.config.mts --max-warnings=0"
+  ],
+  "typecheck": "PASS",
+  "boundaries": "PASS_252_SOURCE_MODULES",
+  "schemaValidation": "PASS_SOURCE_ONLY_NOT_MIGRATED",
+  "validationArtifactLint": "PASS",
+  "productionTestsOrMigrationsRun": false,
+  "independentAcceptance": "PENDING_INDEPENDENT_ACCEPTANCE"
+}
