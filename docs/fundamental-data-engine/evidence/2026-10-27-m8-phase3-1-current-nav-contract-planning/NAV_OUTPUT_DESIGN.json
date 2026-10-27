@@ -1,0 +1,102 @@
+{
+  "recordKind": "DESIGN_SPECIFICATION_NOT_A_NAV_RESULT",
+  "implemented": false,
+  "contractVersionProposal": "current-nav-result-v1",
+  "fields": [
+    {
+      "name": "contractVersion",
+      "meaning": "current-nav-result-v1 (PROPOSED, no implementation)"
+    },
+    {
+      "name": "origin",
+      "meaning": "SYNTHETIC_TEST or RETAINED_RESEARCH or VERIFIED_OPERATIONAL; origin is never authority"
+    },
+    {
+      "name": "portfolioId/perimeter/currency",
+      "meaning": "Exact IDs, scope/version, VND"
+    },
+    {
+      "name": "purpose/valuationMode/knowledgeMode",
+      "meaning": "PORTFOLIO_NAV / LATEST_COMPLETED_EOD / RETROSPECTIVE; other modesblocked"
+    },
+    {
+      "name": "valuationAt/tradingDate/session/timezone",
+      "meaning": "Accepted economic cutoffT and calendar/policy identities"
+    },
+    {
+      "name": "requestedAt/calculatedAt/knowledgeCutoff",
+      "meaning": "Actual timestamps and clock-assurance refs; no inventedknownAt"
+    },
+    {
+      "name": "navState/requiredProfile",
+      "meaning": "QUALIFIED_NAV,INDICATIVE_NAV,NAV_BLOCKED plus approved gate-profile identity"
+    },
+    {
+      "name": "cash/securitiesMarketValue/receivables/liabilities",
+      "meaning": "Component envelopes with exactstring|null, coverage, confidence, source/time/reconciliation"
+    },
+    {
+      "name": "totalNav",
+      "meaning": "Exactstring only whenQUALIFIED_NAV; otherwise null"
+    },
+    {
+      "name": "indicativeValue",
+      "meaning": "Exactstring only opt-in INDICATIVE_NAV fullobserved scope; otherwise null"
+    },
+    {
+      "name": "researchSubtotals",
+      "meaning": "Named scope, exact subtotal, included/excluded IDs, limitations; no defaultNAVlabel"
+    },
+    {
+      "name": "positions/claims/obligations",
+      "meaning": "Original ledger IDs/economic units, quantities, status partitions, linked leg/action/price IDs; no duplicates"
+    },
+    {
+      "name": "componentCompleteness/sourceQualification",
+      "meaning": "Ten dimensions, percomponent confidence/acceptance and independent evidencerefs"
+    },
+    {
+      "name": "missingInputs/blockingReasons/limitations",
+      "meaning": "Stable reasoncodes+affected IDs; UNKNOWN distinct from0"
+    },
+    {
+      "name": "accountingMethod/valuationMethod/calculationVersion",
+      "meaning": "Approvedregistry refs, existingMWAC identity, versionedpointNAVrules and exact softwarecommit"
+    },
+    {
+      "name": "priceQualification/identity/calendar",
+      "meaning": "Exact contract/version/hash/coverage/purpose and revocationheads"
+    },
+    {
+      "name": "reconciliation/validationEvidence",
+      "meaning": "NAVeconomicassessment separately fromlegacyfull/inception/risk status"
+    },
+    {
+      "name": "ledgerRevision/stateHash/inputManifestHash/resultContentHash",
+      "meaning": "Canonical orderedcontent and immutable inputreferences, schema/code/methodversion"
+    },
+    {
+      "name": "runId/reproducibility/lineage",
+      "meaning": "Content versus auditrun identity, correction/supersession links, realknownAt"
+    },
+    {
+      "name": "effectiveCurrentEligibility/usePermissions",
+      "meaning": "OfficialNAVpublication/performance/risk/decision/scoring are distinct; defaultsdeny; no autoPASS"
+    }
+  ],
+  "numericBranches": {
+    "QUALIFIED_NAV": {
+      "totalNav": "exact decimal string",
+      "indicativeValue": null
+    },
+    "INDICATIVE_NAV": {
+      "totalNav": null,
+      "indicativeValue": "exact decimal string only complete declared observed portfolio"
+    },
+    "NAV_BLOCKED": {
+      "totalNav": null,
+      "indicativeValue": null
+    }
+  },
+  "actualPortfolioResultCreated": false
+}

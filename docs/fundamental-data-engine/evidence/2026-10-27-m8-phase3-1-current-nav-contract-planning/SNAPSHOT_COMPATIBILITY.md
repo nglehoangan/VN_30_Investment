@@ -1,0 +1,13 @@
+# Future dated snapshot compatibility
+
+2026-10-27 · Phase 3.1 DESIGN PROPOSAL ONLY. No calculator, adapter, schema validator, snapshot store, migration, acceptance artifact or Phase 3.2 implementation is created. Proposed amendments require explicit owner review.
+
+No persistence, migration, scheduler or snapshot acceptance implemented. Logical PortfolioValuationSnapshot already exists in M2 design; physical PortfolioProjection is a rebuildable single cache, not immutable NAVhistory. AnalyticalArtifact repository only supportsScorecard/Ranking; do not hide NAVJSON there.
+
+Future snapshot content binds portfolio/perimeter,purpose,valuationAt/session,knowledgeMode/cutoff,exact ledger revision and accepted input population/statehash; each price identity/source/raw/hash/pointer/lexeme/normalizer/adjustment/quantity binding; cash/claim/liability original IDs and amounts; accepted status/action/identity policy; accounting/valuation/calculation/code/schema versions; complete coverage/reconciliation; accepted profile/authority/revocation heads; outputstate/scalars/limitations. No dailyhistoricalbackfill required; on-demand qualified datedpoint is sufficient initialcadence.
+
+Separate deterministic content identity from auditrun/calculatedAt. Canonical serialization and decimal strings, ordered position/evidence arrays under pinned sort rules. Identical fullinputmanifest+versions yields same content/result; a run records actual calculation clock and actor assurance separately. Different ledger/source/evidence/method/knowledgecutoff creates different content, even if same numericNAV. Idempotency cannot ignore corrected inputs. Input hashes demonstrate integrity, not authentication or restore immunity.
+
+Corrections fix upstream evidence/book only through authorized accounting/evidence processes, then append new snapshot content with explicit supersedes/reason/actualknownAt. Never rewrite prior accepted content or backdate approvals. Acceptance/revocation/current-head decisions append separately; recheck at consumption. An old snapshot may remain reproducible while no longercurrent/authorized.
+
+Futurestorage plan may use smallcontent/run/lineage/acceptance tables, reviewed additive migration and atomic snapshot+audit/CAS on currentledger/evidenceheads. This is a later separate persistence slice, not needed for isolated purecalculator. Source backup/restore and trusted external anchors required where rollback resistance is claimed; SQLitetriggers/SHA256alone insufficient. No claim that storedtimestamps enable AS_KNOWN queries: bitemporal dependency closure remains notimplemented. Replayretrospective/restated versus historicallyknown views must never be conflated.

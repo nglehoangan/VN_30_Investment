@@ -1,0 +1,86 @@
+[
+  {
+    "path": "src/domain/portfolio/reconstruct.ts",
+    "reuse": "Exact immutable as-of ledger replay; claims/quantities/MWAC",
+    "constraint": "Reuse unchanged; not AS_KNOWN query and not external completeness certification",
+    "sha256": "450d24b7fa7bdd98b1638887f3ceeea5756753cfc64c5265a6a69c919710ea6b"
+  },
+  {
+    "path": "src/domain/portfolio/values.ts",
+    "reuse": "Decimal12 half-even and integer shares",
+    "constraint": "Reuse exact primitives; do not change method identity or add float/FX math",
+    "sha256": "7cc8c44a342f913f380c709707292faa0b23889a0bfedd9fca3bd8bb0a0b92e1"
+  },
+  {
+    "path": "src/domain/portfolio/valuation.ts",
+    "reuse": "Existing point arithmetic",
+    "constraint": "Reuse only after complete qualification/compatible ordinary plan; do not interpret VALID as accepted NAV or drop extra obligations",
+    "sha256": "80850601619e1beaa101a448fd1ae036ab60e9ae5c6d37bbab681539e97c0b3e"
+  },
+  {
+    "path": "src/domain/portfolio/reconciliation.ts",
+    "reuse": "Exact comparable broker reconciliation",
+    "constraint": "Keep full MATCH semantics; NAV-only economic addendum is proposed separately, no basis waiver in legacy gate",
+    "sha256": "5941ae8a3a7633e01f063bbf727faf13a26d561e51cc5b5d3f3a70b726e3777e"
+  },
+  {
+    "path": "src/application/portfolio/engine.ts",
+    "reuse": "One accounting engine and revision reads",
+    "constraint": "Do not change snapshot actionability/inception contract",
+    "sha256": "c772f7ec0ade65005065c4a6d27bb92ec6f9fe56727888026866db20c4e78744"
+  },
+  {
+    "path": "src/domain/nav-preparation/identity.ts",
+    "reuse": "Immutable candidate bridge checks",
+    "constraint": "Reuse structural validators; no accepted mappings exist or become accepted by design",
+    "sha256": "a068afddc63b2bd845fedd6e15528aec1815943beb0faf908ca7f1f295921eb6"
+  },
+  {
+    "path": "src/domain/nav-preparation/purpose.ts",
+    "reuse": "PORTFOLIO_NAV offline envelope and fail-closed authority placeholders",
+    "constraint": "Keep always-UNAVAILABLE behavior; future accepted port is a separate version, never add ACCEPTED to placeholders",
+    "sha256": "d8e3353aa8d53d843c621517c9852e061014791f9b189355dc2d6066c10d7c69"
+  },
+  {
+    "path": "src/domain/market-boundary/freshness.ts",
+    "reuse": "Purpose/session/capability/content binding",
+    "constraint": "Reuse with an independently accepted NAV-specific policy; VALUATION proof insufficient",
+    "sha256": "6ce50ddb05c8e05c480bc2ae1a168cf4662d8fc30cbf70d4e4e45c2b3fa9187a"
+  },
+  {
+    "path": "src/domain/market-boundary/tcbs-eod.ts",
+    "reuse": "Exact lexeme normalization/RAW latest close matched to board",
+    "constraint": "Reuse supported technical scope; technical match is not exchange finality, independent acceptance or historical RAW proof",
+    "sha256": "1bc7991ad843ed527c1607b5e6fc1e941b399daf14560bff9519dae07b984000"
+  },
+  {
+    "path": "src/domain/market-boundary/hose-calendar.ts",
+    "reuse": "Calendar-window technical helpers",
+    "constraint": "Existing2026 candidate and VALUATION-only eodPolicy not a NAV acceptance",
+    "sha256": "a9b50fff672f84d4dd25d73f85c0c3623ab9b1545955fc9fa383af658f6ce25f"
+  },
+  {
+    "path": "src/application/current/read-model.ts",
+    "reuse": "Current composite view and decision context",
+    "constraint": "Preserve unchanged; add future NAV-only read model rather than coercing status/nav",
+    "sha256": "9cdc4b23168e230b7befcf0884e3741cc5c462dc87a9e7be4aecd0a4ede56420"
+  },
+  {
+    "path": "src/infrastructure/current-source.ts",
+    "reuse": "Read-only normalized dataset loader",
+    "constraint": "FORMAL client/file field is not authenticated authority",
+    "sha256": "5054f8cfd8439e0dbd87083fc42da96407206152e1094de13afc33aea74ba1e2"
+  },
+  {
+    "path": "src/infrastructure/repositories/portfolio-ledger.ts",
+    "reuse": "Canonical read/CAS/atomic ledger and guards",
+    "constraint": "Read only for calculator; never post/reconcile balances as a side effect",
+    "sha256": "5b8a1938ee594252d0528c90a33a339ceb078b3298f52e4fe5b6b8353b916d56"
+  },
+  {
+    "path": "prisma/schema.prisma",
+    "reuse": "Projection cache and existing audit models",
+    "constraint": "No NAV snapshot table implemented; no storage migration in3.1 or initial isolated calculator",
+    "sha256": "5700f102715703d0ebafb36f281d9e8cf7aaa63cde9ee5735f92492d75755fc7"
+  }
+]

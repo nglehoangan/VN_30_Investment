@@ -1,0 +1,78 @@
+{
+  "recordKind": "DESIGN_SPECIFICATION_NOT_RUNTIME_CONFIGURATION",
+  "implemented": false,
+  "profile": "NAV_ECONOMIC_POINT_V1_PROPOSED_REQUIRES_OWNER_ADDENDUM",
+  "rows": [
+    {
+      "dimension": "Ledger replay correctness",
+      "indicativeOrNarrowResearch": "Required for ledger-derived subtotal/indication",
+      "qualifiedNav": "Required COMPLETE for pinned supported book",
+      "officialPerformance": "Required for all ledger-based metrics",
+      "productionDecisions": "All existing full-integrity/registry checks retained"
+    },
+    {
+      "dimension": "Transaction completeness",
+      "indicativeOrNarrowResearch": "Required for stated quantity/period only; partial scope explicitly excluded",
+      "qualifiedNav": "Complete throughT for perimeter; not lifetime or dailyNAV history",
+      "officialPerformance": "Complete relevant flows/events for metric interval",
+      "productionDecisions": "Current plus decision/execution-scope completeness"
+    },
+    {
+      "dimension": "Cash completeness",
+      "indicativeOrNarrowResearch": "Not needed for securities-only subtotal; required for full indicativeNAV",
+      "qualifiedNav": "Complete settledcash atT, bank excluded, accepted source reconciliation",
+      "officialPerformance": "Required for endpoint/flow accounting",
+      "productionDecisions": "Existing full checks"
+    },
+    {
+      "dimension": "Receivable completeness",
+      "indicativeOrNarrowResearch": "May be excluded only from named non-NAVsubtotal; full indication requires known disjoint claims",
+      "qualifiedNav": "Every recognized claim/residual/netbasis accepted; no unresolved or unposted assets",
+      "officialPerformance": "Required where claims affect endpoint/income/flows",
+      "productionDecisions": "Existing full checks"
+    },
+    {
+      "dimension": "Liability completeness",
+      "indicativeOrNarrowResearch": "Full indication cannot ignore unknown debt/fees/tax; subtotal never impliesfullNAV",
+      "qualifiedNav": "Mandatory known/accepted coverage and true zero proof; no105waiver",
+      "officialPerformance": "Mandatory for qualified endpoint/returns",
+      "productionDecisions": "Mandatory; unknown risk neverNORMAL"
+    },
+    {
+      "dimension": "Securities quantity completeness",
+      "indicativeOrNarrowResearch": "Exact quantity for each displayed instrument; omissions named",
+      "qualifiedNav": "Every held economic unit and relevant action/identity accepted atT",
+      "officialPerformance": "Required at endpoint and flow-time marks where needed",
+      "productionDecisions": "Full execution/portfolio controls"
+    },
+    {
+      "dimension": "Trading availability",
+      "indicativeOrNarrowResearch": "Research price math may omit execution availability if economic unit proved; pending ambiguity blocks full indication",
+      "qualifiedNav": "Accepted economic-unit/quantity/rights classification required. Proposed D3 allows evidenced TRADE_UNSETTLED_ORDINARY with exact payable/receivable; corporate pending/suspended/unknown rights block. No execution availability grant; refinement requires owner/policy acceptance.",
+      "officialPerformance": "Depends on accepted endpoint valuation policy, not presumed saleability",
+      "productionDecisions": "Mandatory for contemplated order, plus existing constraints"
+    },
+    {
+      "dimension": "Cost-basis provenance",
+      "indicativeOrNarrowResearch": "Not needed for pureMVsubtotal or point arithmetic; P&Lunavailable if missing",
+      "qualifiedNav": "Mathematically not needed; proposed NAV-only addendum may allowPARTIAL only if no quantity/rights/claim uncertainty. Until approved, old stricter reconciliation gate retained",
+      "officialPerformance": "Required for realized/unrealized P&L; TWR/XIRR endpoints/flows have metric-specific needs; no lifetime P&L from importedbook",
+      "productionDecisions": "All old M7/full-reconciliation/decision gates retained"
+    },
+    {
+      "dimension": "Source identity acceptance",
+      "indicativeOrNarrowResearch": "Evidence-supported exact correspondence required; formal acceptance may remain unqualified for labelled research. No ticker-only trust",
+      "qualifiedNav": "Mandatory authentic NAV-purpose source/identity/owner scope and revocation-aware acceptance",
+      "officialPerformance": "Qualified endpoints plus metric-source requirements",
+      "productionDecisions": "All data-class/purpose/approval gates; NAVgrant never scoring grant"
+    },
+    {
+      "dimension": "Independent validation",
+      "indicativeOrNarrowResearch": "Not approval for research; explicitunreviewedlabel",
+      "qualifiedNav": "Mandatory exact NAVcontract/method/input scope",
+      "officialPerformance": "Independent metric methodology+inputs+release scope",
+      "productionDecisions": "All M7/model/risk/release requirements"
+    }
+  ],
+  "existingProductionGatesChanged": false
+}

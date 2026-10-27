@@ -1,0 +1,182 @@
+{
+  "recordKind": "DESIGN_TEST_PLAN_NOT_EXECUTED",
+  "phase32Implemented": false,
+  "cases": [
+    {
+      "id": "01",
+      "case": "Fully qualified synthetic point",
+      "setup": "All mocked accepted gates/perimeter+session+revision; fictional cash1000,2ordinaryunits×100,claims30,liabilities10",
+      "expected": "QUALIFIED_NAV,totalNav=\"1220\",indicativeValue=null;originSYNTHETIC_TEST and officialUseEligible=false",
+      "control": "Future isolated test only",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "02",
+      "case": "Missing one held price",
+      "setup": "Known completeheldset but onecloseabsent",
+      "expected": "NAV_BLOCKED;fullMV/total/indicative null;missingIDlisted;namedpartialresearch allowed",
+      "control": "No silently droppedholding",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "03",
+      "case": "Stale completed price",
+      "setup": "Next accepted sessioncompleted;newcapturefailed",
+      "expected": "NAV_BLOCKED/STALE_SESSION;no olderfallback",
+      "control": "Calendar-windowexpiry,notageTTL",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "04",
+      "case": "Conflicting sources",
+      "setup": "Two same-scopecloserevisions disagree withoutacceptedresolution",
+      "expected": "NAV_BLOCKED/SOURCE_CONFLICT;no latestwins oraverage",
+      "control": "Exactsourceversionsretained",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "05",
+      "case": "Missing security continuity",
+      "setup": "Ticker/code/marketmatch withoutaccountstableanchor",
+      "expected": "NAV_BLOCKED/IDENTITY_UNRESOLVED",
+      "control": "No ticker-only grant",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "06",
+      "case": "Missing cash evidence",
+      "setup": "Cashbooknumber lacks completeacceptedcutoff/perimeter",
+      "expected": "NAV_BLOCKED;cashunknown not0",
+      "control": "Narrowsecurities subtotal remainsnonNAV",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "07",
+      "case": "Unknown liability",
+      "setup": "Storedpayable0 butunresolved105sourceobligation",
+      "expected": "NAV_BLOCKED/UNKNOWN_LIABILITY;no I fallback",
+      "control": "No materialitywaiver",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "08",
+      "case": "Unaccepted receivable",
+      "setup": "570kclaim identity/netbasis/receiptallocationnotaccepted",
+      "expected": "QUALIFIED_ONLY requestNAV_BLOCKED;notautomatically included inI",
+      "control": "No fabricated95ksettlement",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "09",
+      "case": "Pending shares",
+      "setup": "RetainedFPTshape200ordinary+20pending inside220;currentstatus/eligibilityunproven",
+      "expected": "NAV_BLOCKED;no220+20;noinventedconversiondate;ordinarysubtotalonlyiflabelled/proved",
+      "control": "Syntheticshape test,notcurrentFPTqualification",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "10",
+      "case": "Corporate-action basis",
+      "setup": "Pre-actionqty100 versuspost-splitRAWclose50;properaccepted2:1replaywouldqty200",
+      "expected": "MismatchedbasisBLOCKED;acceptedalignedcaseMV=\"10000\" using200×50",
+      "control": "Neveradjustpricetoavoidledgeraction",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "11",
+      "case": "Date-only observations",
+      "setup": "Broker cash/position dateonlywithoutend-sessionstate/roll-forward proof",
+      "expected": "NAV_BLOCKED/INCOMPATIBLE_ASOF;do notassignmidnight",
+      "control": "FinalEODprice date normalization requiresseparateacceptedpolicy",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "12",
+      "case": "Holiday/weekend",
+      "setup": "Accepted calendar says no session;priorcompletedS remainslatestwithinwindow",
+      "expected": "MayQ onlyforS withallgates;actualholidaynotfabricatedsession;unknowncalendarBLOCKED",
+      "control": "No Ndaystaleness",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "13",
+      "case": "Late actual event",
+      "setup": "Eventeffective≤T learned/postedlaterwithacceptedproof",
+      "expected": "Newrevision/restatedretrospective result;oldcontentpreserved;notAS_KNOWN_T",
+      "control": "No knowledgebackdating",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "14",
+      "case": "Corrected transaction",
+      "setup": "Authorizedimmutable reversal/replacement changesinputs",
+      "expected": "Newresultcontent/lineage;noeditold snapshot orledger",
+      "control": "UnauthorizedcorrectionBLOCKED",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "15",
+      "case": "Revision race",
+      "setup": "Ledger/evidenceheads changeaftercapturebeforepublish",
+      "expected": "NAV_BLOCKED/REVISION_CHANGED or explicitretrynonepublishedmixed",
+      "control": "CAS/readconsistency",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "16",
+      "case": "Decimal precision",
+      "setup": "3integerunits×0.123456789012;allotherrequireddataavailable",
+      "expected": "MV=\"0.370370367036\" exact;over12scale/outofrangereject notroundinput",
+      "control": "No floatingpoint",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "17",
+      "case": "Sourceauthorityfailure",
+      "setup": "Hashvalidbutwrongpurpose/expired/revokedauthority",
+      "expected": "QUALIFIED_ONLY NAV_BLOCKED;hashnotapproval;neverexpandVALUATIONtoNAV",
+      "control": "No clientacceptedflag",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "18",
+      "case": "Independent acceptance missing",
+      "setup": "Technicallycompleteprice/book butno authenticatedreview",
+      "expected": "QUALIFIED_ONLY NAV_BLOCKED;PENDING_INDEPENDENT_ACCEPTANCE",
+      "control": "No selfapproval",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "19",
+      "case": "Indicative restrictions",
+      "setup": "Completeconsistentobservedportfolio,documentedunacceptedformalstate;explicitresearch opt-in",
+      "expected": "INDICATIVE_NAV,totalNav=null,indicativeValuepresent;officialperformance/risk/decision/scoringdenied",
+      "control": "Ifanyunknownmandatoryeconomiccomponent,case20 instead",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "20",
+      "case": "Blocked propagation",
+      "setup": "Ordinarysubtotalvalid butpending/claims/debtunknown",
+      "expected": "NAV_BLOCKED;totalNav/indicativeValue=null;subtotalsnotfullNAV/bounds",
+      "control": "No silentlypartialNAV",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "21",
+      "case": "Snapshot reproducibility",
+      "setup": "Identicalinputmanifest/schema/method/code/knowledgecutoff;laterdifferentcalc clock",
+      "expected": "Samecontent/numericresult,separaterun;changeanymandatoryinput→newhash/reassessment",
+      "control": "Persistence notimplementednow",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    },
+    {
+      "id": "22",
+      "case": "Futureinformation",
+      "setup": "Priceeconomicdate>T orsource/approvalknownAt>K;AS_KNOWNrequestedwithoutclosure",
+      "expected": "NAV_BLOCKED appropriatefuture/BITEMPORALreason;lateknownretrospectiveexplicitlabelonly",
+      "control": "No historicalknowledgeupgrade",
+      "execution": "NOT_EXECUTED_PHASE3_1_DESIGN_ONLY"
+    }
+  ]
+}

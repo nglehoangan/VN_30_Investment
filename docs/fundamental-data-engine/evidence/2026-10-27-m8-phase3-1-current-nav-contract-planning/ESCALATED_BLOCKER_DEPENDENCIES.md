@@ -1,0 +1,19 @@
+# Escalated blockers by valuation scope
+
+2026-10-27 · Phase 3.1 DESIGN PROPOSAL ONLY. No calculator, adapter, schema validator, snapshot store, migration, acceptance artifact or Phase 3.2 implementation is created. Proposed amendments require explicit owner review.
+
+Carry-forward source is Phase2.3 ESCALATED_BLOCKER_STATUS.json, exact hash inSOURCE_REFERENCES. Roots, first retained dates, prior requests/acceptance criteria and role responsibilities remain unchanged in machine matrix. Minimum cycle counts increment one focuseddesigncycle, not claimed exactlifetime totals. No new source discovery/acquisition or acceptance occurred: **NO_NEW_EVIDENCE — EXTERNAL_ACTION_REQUIRED** for missing external proof. All repeatedCritical/Major remainESCALATED; noRESOLVED decision.
+
+|Blocker|Indicative / research|QualifiedNAV|ProductionNAV/use|Historicalsnapshot reconstruction|
+|---|---|---|---|---|
+|B1 EXACT_SOURCE_IDENTITY_ACCEPTANCE|Blocks fullportfolioI when exactcorrespondence absent; narrowlabelledresearch mayshow source observations only|Blocks|Blocks|Blocksqualifiedmapping/knowledge intervals; descriptiveunacceptedhistoryonly|
+|B2 CASH_EQUIVALENT_AND_DEBT|Blocks fullportfolioI; unknownliability/500kcomponent cannot become0|Blocks|Blocks|Blocksaffectedpoints/intervals; isolatedsettledcash arithmetic maystillbereported|
+|B3 FPT_PENDING_LIFECYCLE|Blocks fullportfolioI whilequantity/status/pendingvaluationunknown; ordinarysubtotalexplicitlypartial|Blocksinitialconservativeprofile untilacceptedeligibleordinary/status proof|Blocks|Historicalconversion/entitlementintervalunknown; currentproof mayallowprospective scopeonly|
+|B4 GAS_MWG_CLAIM_LINKAGE|Blocks fullportfolioI forunexplained/unacceptedclaimscope; paymentamountalone insufficient|Blocks|Blocks|Blocksclaimaffectedhistoricalpoints; no inventedsettlementdate|
+|B5 COST_BASIS_PROVENANCE|No block to pureMVsubtotal if quantities/rightsotherwiseproved; noqualifiedP&L|Conditional: proposedbasis-independentpointprofile needsowneraddendum; otherwiseoldgate blocks; CAquantityuncertainty alwaysblocks|Existingfullreconciliation/M7P&Lgates unchanged|No automaticblockto purepointarithmeticonknownunits; blocksbasis/P&L/lifetimereconstruction|
+|B6 M7_RELEASE_EVIDENCE|No gatewaiver; labellednonproductionresearch mayremainpossible|Numericpointqualification stillrequiresNAVspecificacceptance;M7release notinferred|Blocksrealmoneyproductiondecision/release|No blocker to unauthoritativeresearchreconstruction; officialreleasedhistoricalmetrics stillblocked|
+|B7 PRODUCTION_MIGRATION_READINESS|No block to isolatedreadonlyresearch; cannotclaimupdatedrealbook fromunpostedforwardevents|Realqualifiedcurrentbook blockedwheremigration/forwardevents/acceptance needed; pureisolatedcontractsnotblocked|Blocksunauthorizeddeployment/posting|No block to readonly existingbook technicalreplay; cannotassumepreparedschemaapplied|
+
+Exact actions unchanged: B1broker-certified11instrumentaccountcontinuity and accepted independentidentity/source; B2exact500kcategory/105fee-debtlifecycle anddatedcash/obligationmovements; B3accountFPTaction/status/basis/currentwitness and conversioninterval; B4GAS/MWGentitlement/netbasis/openingallocation/paymentrefs; B5brokerbasis/precision/actionledger; B6executedindependentrelease/deployment/methodregistryapprovalscope; B7independentacceptanceofactual-copyrehearsal, target/recovery/window andexplicitmigrationauthorization.
+
+Historicalsnapshot can mean (a) exact originalstoredinput replay, (b) retrospectiveeconomicreconstruction or (c) AS_KNOWNatthetime. Only(a) may be technicallyreplayable with extantpinnedinputs; missingprices/claims/identity stillblockqualified(b);(c)notimplemented. Scope-specific no-block does not resolve the blocker or certify officialresults. CurrentregistryPROPOSED andno realauthorityports remainoperationaldependencies. No full actual indicative or qualifiedCurrentNAV is made available by this design.
