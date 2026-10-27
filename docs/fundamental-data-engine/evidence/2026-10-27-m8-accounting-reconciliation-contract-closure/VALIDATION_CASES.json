@@ -1,0 +1,122 @@
+[
+  {
+    "id": "V01",
+    "case": "Actual opening",
+    "expected": "12 saved transactions rebuild equal;24 ordered legs equal;11 exact positions,cash232420,claims570000,payables0; projection agrees",
+    "execution": "ACTUAL_READ_ONLY_EXECUTED"
+  },
+  {
+    "id": "V02",
+    "case": "Cash conservation",
+    "expected": "93 supplied rows, each rolling balance and year boundary; final327420;17 trade settlement/fee/tax matches;29 event count",
+    "execution": "RETAINED_EVIDENCE_RECHECK"
+  },
+  {
+    "id": "V03",
+    "case": "Claim full settlement",
+    "expected": "Synthetic net95k claim + accepted receipt95k: cash+95k,claim0,newincome0,flow0,basis0",
+    "execution": "PLANNED_SYNTHETIC"
+  },
+  {
+    "id": "V04",
+    "case": "Claim partial settlement",
+    "expected": "40k then55k against95k: residual55k then0; extra1 rejected atomically",
+    "execution": "PLANNED_SYNTHETIC"
+  },
+  {
+    "id": "V05",
+    "case": "Duplicate dividend",
+    "expected": "Same receipt via cash row,API and DIVIDEND_CASH cannot book twice; retry returns existing; changed content conflicts",
+    "execution": "PLANNED_SYNTHETIC"
+  },
+  {
+    "id": "V06",
+    "case": "Gross/net tax",
+    "expected": "Net claim must not clear gross amount; unknown tax stays unknown; gross mode reconciles G=N+T without duplicate tax",
+    "execution": "PLANNED_SYNTHETIC"
+  },
+  {
+    "id": "V07",
+    "case": "Opening allocation",
+    "expected": "GAS475k+MWG95k=570k accepted allocation conserves parent; overlapping or mismatched sums fail",
+    "execution": "PLANNED_SYNTHETIC"
+  },
+  {
+    "id": "V08",
+    "case": "Pending conversion",
+    "expected": "FPT220 aggregate,200 available20pending→220available0pending: aggregate/basis/flow/income unchanged; unknown date fails",
+    "execution": "PLANNED_SYNTHETIC"
+  },
+  {
+    "id": "V09",
+    "case": "Entitlement versus transfer",
+    "expected": "29 historical rows not reimported; pending credit and paired conversion not two economic share credits",
+    "execution": "PLANNED_SYNTHETIC"
+  },
+  {
+    "id": "V10",
+    "case": "MWAC",
+    "expected": "12decimal half-even tie cases; capitalized BUYcost; partialSELL proportional; full exit releases all; settlement no newPnl",
+    "execution": "PLANNED_EXISTING_REGRESSION_AND_EXTENSION"
+  },
+  {
+    "id": "V11",
+    "case": "Pre-opening duplicate",
+    "expected": "17 old trades rejected for this book; same-day date-only ambiguity quarantined; newbook requires separate approval",
+    "execution": "PLANNED_SYNTHETIC"
+  },
+  {
+    "id": "V12",
+    "case": "Trade versus settlement",
+    "expected": "Trade owns quantity/claim effective date; settlement cash once; settled cash cannot spend receivable; no doubleqty from stockstatement",
+    "execution": "PLANNED_SYNTHETIC"
+  },
+  {
+    "id": "V13",
+    "case": "Unknown liabilities",
+    "expected": "0stored payables with source105 debt/unknown resolution remains BLOCKED;500k unknown category never CASH plug",
+    "execution": "PLANNED_SYNTHETIC_AND_ACTUAL_REVIEW"
+  },
+  {
+    "id": "V14",
+    "case": "Reversal/correction",
+    "expected": "Append reversal restores claim/cash, preserves earlier asOf; dependent settlement correctiongroup; downstream funded cash rechecked",
+    "execution": "PLANNED_SYNTHETIC"
+  },
+  {
+    "id": "V15",
+    "case": "Concurrency/idempotency",
+    "expected": "Two concurrent partial settlements against95k cannot overclear; wrong revision fails; business/audit crash rolls all back",
+    "execution": "PLANNED_ISOLATED_DATABASE_INTEGRATION"
+  },
+  {
+    "id": "V16",
+    "case": "Missing source/identity",
+    "expected": "Absent hash,row,scope,eventID or mismatchedissuer blocks; hash tamper fails; ticker/amount alone cannot settle",
+    "execution": "PLANNED_SYNTHETIC"
+  },
+  {
+    "id": "V17",
+    "case": "Knowledge future leakage",
+    "expected": "Effective16Oct knowledge26Oct excluded as-known20Oct; clearly labelled retrospective view allowed; no guessedintradaytime",
+    "execution": "PLANNED_SYNTHETIC"
+  },
+  {
+    "id": "V18",
+    "case": "Projection failure",
+    "expected": "Committed result survives cache failure; projectionSTALE until rebuild; user retry cannot repost",
+    "execution": "PLANNED_ISOLATED_DATABASE_INTEGRATION"
+  },
+  {
+    "id": "V19",
+    "case": "Safety/authority",
+    "expected": "No-login viewing never grants acceptance;0approved mappings; candidatesDEFERRED; NAV/scoring/D2 untouched",
+    "execution": "PLANNED_SYNTHETIC_AND_SAFETY_CHECK"
+  },
+  {
+    "id": "V20",
+    "case": "Actual claim linkage",
+    "expected": "Independent reviewer matches MWGreceipt to exact opening action; GASresidual,500k,105 and FPT lifecycle documentary closure",
+    "execution": "NOT_EXECUTABLE_MISSING_EVIDENCE"
+  }
+]
