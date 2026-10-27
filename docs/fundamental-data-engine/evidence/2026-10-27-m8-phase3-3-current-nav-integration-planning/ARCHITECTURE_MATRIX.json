@@ -1,0 +1,218 @@
+{
+  "recordKind": "PROPOSED_DESIGN_NOT_RUNTIME_CONFIGURATION",
+  "implementedByPhase33": false,
+  "components": [
+    {
+      "id": "A",
+      "name": "Portfolio Accounting Reader",
+      "sourcePaths": [
+        "src/ports/portfolio.ts",
+        "src/infrastructure/repositories/portfolio-ledger.ts",
+        "src/domain/portfolio/reconstruct.ts"
+      ],
+      "existingImplementation": "Implemented integrity-checked ledger read in a transaction and existing deterministic reconstructPortfolio; read-only subset used by CurrentNavReadService.",
+      "missingFunctionality": "Restrict deployment access to read-only handles; bind real account/perimeter and a consistent revision/facts hash; no write port exposed.",
+      "inputContract": "portfolioId, ledgerRevision, T, K, approved accounting implementation",
+      "outputContract": "immutable history, factsHash, stateHash, state(T), supported opening boundary",
+      "trustBoundary": "Saved ledger integrity does not certify external completeness.",
+      "evidenceRequirements": "Exact facts/legs, registry method, accepted starting balances and forward coverage",
+      "failureBehavior": "integrity/revision/knowledge mismatch -> NAV_BLOCKED; no projection fallback",
+      "ownership": "Accounting engineer; financial acceptance by distinct reviewer",
+      "dependencies": []
+    },
+    {
+      "id": "B",
+      "name": "Broker Evidence Reader",
+      "sourcePaths": [
+        "src/infrastructure/broker-snapshot.ts",
+        "src/infrastructure/repositories/broker-observations.ts"
+      ],
+      "existingImplementation": "Retained broker PDF/API observations and research loaders exist, not a CurrentNavInputProvider or authenticated NAV acceptance reader.",
+      "missingFunctionality": "Bounded immutable byte reader/decoder preserving account, times, precision, original fields and conflicts; accepted-source lookup.",
+      "inputContract": "content-addressed document/capture inventory plus exact account/perimeter and scope",
+      "outputContract": "BrokerEvidenceBundle proposal, normalized observations with pointers and unresolved discrepancies",
+      "trustBoundary": "Provider data and parsed values are not accepted accounting facts.",
+      "evidenceRequirements": "Source bytes/hash, account linkage, capture/document identity, source contract and disjoint field semantics",
+      "failureBehavior": "missing/corrupt/ambiguous/date-only unproved cutoff -> blocked; no balancing record",
+      "ownership": "Broker supplies records; evidence producer prepares; financial reviewer accepts",
+      "dependencies": [
+        "A"
+      ]
+    },
+    {
+      "id": "C",
+      "name": "Securities Identity Resolver",
+      "sourcePaths": [
+        "src/domain/nav-preparation/identity.ts",
+        "src/domain/nav-preparation/contracts.ts"
+      ],
+      "existingImplementation": "Offline immutable bridge structural resolver returns acceptedMapping:false; calculator checks identity/partition/reverse uniqueness.",
+      "missingFunctionality": "Revocation-aware accepted continuity resolver for all held units; no accepted mappings currently established.",
+      "inputContract": "ledger namespace/ID, market namespace/UUID/code/ISIN, venue/class, T/K, bridge pins",
+      "outputContract": "one exact eligible mapping per economic unit, interval and acceptance evidence; otherwise reasons",
+      "trustBoundary": "Ticker/code coincidence is insufficient; provider ISIN is not independent acceptance.",
+      "evidenceRequirements": "Account anchor, market anchor, effective/knowledge intervals and lifecycle witnesses",
+      "failureBehavior": "zero/multiple/overlap/reuse/uncertain CA -> blocked; never rewrite ledger IDs",
+      "ownership": "Identity reviewer distinct from bridge producer",
+      "dependencies": [
+        "B"
+      ]
+    },
+    {
+      "id": "D",
+      "name": "Market Price Evidence Reader",
+      "sourcePaths": [
+        "api/tcbs.mjs",
+        "src/domain/market-boundary/tcbs-eod.ts",
+        "src/infrastructure/market-boundary/tcbs-pipeline.ts"
+      ],
+      "existingImplementation": "Existing acquisition, lossless raw parser, EOD normalizer and replay pipeline; VALUATION-only trusted composition.",
+      "missingFunctionality": "Read-only NAV translation/qualification with purpose-specific source/calendar/finality grants; no new client.",
+      "inputContract": "pinned raw manifests/board/master, accepted mapping, exact session and price policy",
+      "outputContract": "CurrentNavPriceV1 rows with RAW price/identity/source/CA pins, or unavailable",
+      "trustBoundary": "Technical EOD normalization is neither exchange finality nor PORTFOLIO_NAV source authority.",
+      "evidenceRequirements": "Raw SHA-256, request/response lineage, board-date match, unit contract, accepted policy/finality",
+      "failureBehavior": "missing/stale/conflicting/adjusted/revoked/unsupported security -> blocked; no last-price fallback",
+      "ownership": "Market-data engineer prepares; independent market-source reviewer accepts",
+      "dependencies": [
+        "C",
+        "E"
+      ]
+    },
+    {
+      "id": "E",
+      "name": "Trading Calendar Resolver",
+      "sourcePaths": [
+        "src/domain/market-boundary/hose-calendar.ts",
+        "src/domain/market-boundary/completed-session.ts"
+      ],
+      "existingImplementation": "Technical 2026 calendar/session helpers exist; accepted NAV calendar absent.",
+      "missingFunctionality": "Accepted schedule/exceptions/closure/finality resolver with exclusive next-completed boundary, expiry and revocation.",
+      "inputContract": "valuation request/time, venue, accepted calendar and NAV price-policy pins",
+      "outputContract": "session/tradingDate/T/nextCompletedAt/calendar span and normalized-time provenance",
+      "trustBoundary": "Local date or weekday heuristic cannot establish accepted trading session.",
+      "evidenceRequirements": "Calendar issuer/source records, exceptional closures, effective/knowledge interval, accepted exact policy",
+      "failureBehavior": "missing exceptions/outside coverage/no completed session -> blocked",
+      "ownership": "Calendar authority reviewer; owner approves NAV scope",
+      "dependencies": [
+        "D_SOURCE_POLICY"
+      ]
+    },
+    {
+      "id": "F",
+      "name": "Accounting Completeness Evaluator",
+      "sourcePaths": [
+        "src/domain/current-nav/qualification.ts",
+        "src/domain/portfolio/reconciliation.ts",
+        "src/domain/portfolio/dividend-settlement.ts",
+        "src/domain/portfolio/forward-intake.ts"
+      ],
+      "existingImplementation": "NAV ten-dimension gate and unchanged exact full reconciliation; dividend/intake contracts and guards implemented, prepared migrations unapplied.",
+      "missingFunctionality": "Evidence-backed evaluator assembling coherent economic completeness, forward continuity and NAV-only addendum, retaining full legacy reconciliation.",
+      "inputContract": "A/B/C outputs, accepted opening/coverage/claim/action/obligation witnesses atT/K",
+      "outputContract": "CurrentNavPlanV1 completeness/components/unit partitions and limitations; raw legacy report hash",
+      "trustBoundary": "Import/replay/PASS alone cannot assert completeness; writes are outside this flow.",
+      "evidenceRequirements": "No gaps/duplicates, exact reconciled cash/claims/debt/quantity/rights; accounting scope acceptance",
+      "failureBehavior": "unknown liability/claim/continuity/CA/conflict -> blocked even indicative; basis partial only with no economic effect",
+      "ownership": "Accounting producer; financial reviewer validates independently",
+      "dependencies": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "id": "G",
+      "name": "Source Authority Verifier",
+      "sourcePaths": [
+        "src/domain/current-nav/contracts.ts",
+        "src/infrastructure/market-boundary-authority.ts",
+        "scripts/lib/pec1c_capture.py"
+      ],
+      "existingImplementation": "NavQualificationAuthorityV1 synchronous interface and retained-market trusted bindings exist; real NAV verifier/authenticated records absent. PEC-1C provider/executor neutral contracts remain fail closed.",
+      "missingFunctionality": "Server-only verification of authenticated role/scoped grants, bytes, intervals, revocation and supersession; approved trust infrastructure prerequisite.",
+      "inputContract": "Pinned decision envelope + issuer/reviewer/role-grant audit + exact subject hashes",
+      "outputContract": "exact NavAuthorityProofV1 projection for requested kind/hash/portfolio/purpose; no extra serialized fields",
+      "trustBoundary": "Local JSON, OS identity, Codex output and synthetic verifier cannot authenticate authority.",
+      "evidenceRequirements": "Authentic decision, authorized role, source/interpretation scope, current revocation and audit anchor",
+      "failureBehavior": "unknown signature/issuer/role/revocation/scope -> no proof/block; never auto-create approval",
+      "ownership": "Security/governance reviewer; owner chooses future trust mechanism",
+      "dependencies": [
+        "TRUST_INFRA"
+      ]
+    },
+    {
+      "id": "H",
+      "name": "Independent Acceptance Verifier",
+      "sourcePaths": [
+        "src/domain/current-nav/contracts.ts",
+        "tests/fixtures/current-nav.ts"
+      ],
+      "existingImplementation": "Distinct producer/validator fields enforced; only synthetic trusted verifier in tests. No operational independent NAV acceptance.",
+      "missingFunctionality": "Verify genuinely distinct authorized human reviewer and exact accepted bundle, not string inequality alone.",
+      "inputContract": "AcceptanceSubjectV1 proposal, signed/audited reviewer decision and current role/revocation proof",
+      "outputContract": "technical/financial/methodology acceptance results separately, exact subject hash proofs",
+      "trustBoundary": "Same-person aliases or self-assigned distinct names fail separation of duties.",
+      "evidenceRequirements": "Full bound bundle, reviewer identity and role/independence audit, limitations, decision time",
+      "failureBehavior": "missing/self-review/stale/partial/wrong scope -> blocked; technical tests not substituted",
+      "ownership": "Independent financial/system reviewer; no agent/self approval",
+      "dependencies": [
+        "F",
+        "G",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "id": "I",
+      "name": "Current NAV Calculator",
+      "sourcePaths": [
+        "src/application/current-nav/read-service.ts",
+        "src/ports/current-nav.ts",
+        "src/domain/current-nav/calculate.ts",
+        "src/domain/current-nav/qualification.ts"
+      ],
+      "existingImplementation": "Approved isolated Phase3.2 calculator/read service; immutable manifests and all operational rights false.",
+      "missingFunctionality": "Concrete CurrentNavInputProvider and securely prepared authority view; no arithmetic duplication or calculator edits in this phase.",
+      "inputContract": "CurrentNavRequestV1 + pinned plan/state + injected authority/context",
+      "outputContract": "CurrentNavResultV1, manifest/input/result/run hashes, qualified/indicative/blocked",
+      "trustBoundary": "QUALIFIED_NAV is calculation qualification, never publication/release authority.",
+      "evidenceRequirements": "All dependencies and proofs; exact revision/head checks; calculation version",
+      "failureBehavior": "failed qualification -> null full totals; explicit indication only if coherent; races block",
+      "ownership": "Application architect; separate acceptance reviewer",
+      "dependencies": [
+        "A",
+        "F",
+        "D",
+        "E",
+        "G",
+        "H"
+      ]
+    },
+    {
+      "id": "J",
+      "name": "NAV Publication Gate",
+      "sourcePaths": [
+        "app/server/current.ts",
+        "app/server/dashboard.ts",
+        "app/server/market-boundary.ts",
+        "src/domain/current-nav/contracts.ts"
+      ],
+      "existingImplementation": "Existing legacy dashboard/current composition and hard independent-market blocker; no CurrentNavReadService composition or NAV gate. V1 output explicitly denies official use.",
+      "missingFunctionality": "Proposed separate release-gated publication envelope/view with an explicitly approved contract amendment before any integration.",
+      "inputContract": "exact resultHash/runHash plus current ledger/evidence/authority heads, destination/purpose and publication/release decisions atP",
+      "outputContract": "NavPublicationDecisionV1 proposal: DENY by default; explicit scoped destination envelope only after later authorization",
+      "trustBoundary": "No copying qualified arithmetic into legacy current.nav or flipping V1 false flags; no read-driven approval/write.",
+      "evidenceRequirements": "Authenticated operational permission + applicable release/M7 evidence + final atomic/current-head check",
+      "failureBehavior": "missing authority/race/expiry/revocation/M7 restriction -> deny/hide official value; no cached stale fallback",
+      "ownership": "Release owner and independent operational validator",
+      "dependencies": [
+        "I",
+        "H",
+        "G",
+        "M7_RELEASE",
+        "PUBLICATION_AMENDMENT"
+      ]
+    }
+  ]
+}

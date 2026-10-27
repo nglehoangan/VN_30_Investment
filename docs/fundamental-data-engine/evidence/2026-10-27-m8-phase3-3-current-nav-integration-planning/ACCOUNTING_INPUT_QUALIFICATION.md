@@ -1,0 +1,18 @@
+# Accounting input qualification
+
+2026-10-27 · Phase 3.3 · DESIGN ONLY — NOT IMPLEMENTED / NOT ACCEPTED
+
+Proposed assembly sequence:
+
+1. Select exact portfolio/account/perimeter using broker-certified account linkage; retain sensitive account identity in protected evidence, expose only opaque portfolio references. No account selection by ticker or display name.
+2. Read one ledger revision and exact immutable transaction/leg hashes through existing PortfolioLedger.read. Verify accepted accounting implementation and scoped registry decision; the retained opening method is PROPOSED, intended PRODUCTION, not an effective grant.
+3. Reconstruct using existing reconstructPortfolio atT. Never use the mutable projection or broker position as a second ledger. Opening integrity establishes a supported starting state only; obtain independently accepted starting scope and complete forward event coverage from that boundary throughT.
+4. Obtain broker full statements/sequence or interval completeness witnesses for trades/settlements, cash movements, claims/payments/taxes/fees, transfers and corporate actions. Distinguish no activity with evidenced coverage from absence of records. Every supported actual event requires separately authorized existing intake/posting before it can change accounting. The NAV reader only reports gaps; it does not post the known MWG receipt or fabricate balances.
+5. Resolve each held ledger ID and disjoint ordinary/trade-unsettled/pending unit partition using accepted exact identity/lifecycle evidence. Sum units equals reconstructed quantity. Reject duplicate market UUID/provider/ISIN across ledger IDs, overlap and implicit ticker reuse. Corporate transfers move availability/rights without creating extra shares.
+6. Reconcile disjoint cash, claims, liabilities, quantities and availability at the sameT/account/currency. Reject mixed economic dates or unsupported roll-forward. Payable0 is a recorded fact; complete account/fee/debt evidence is required to assert economic liabilities known.
+7. Produce all ten NavDimensionAssessment values plus exact evidence, limitations, sourcePins and conflict list. First six economics require COMPLETE/evidence. Cost basis PARTIAL may support point NAV only if ownership/rights unaffected under approved D2; no P&L/full-MATCH waiver. Unknown or uncertain economic impact blocks.
+8. Build CurrentNavPlanV1 whose amounts equal reconstructed state(T), not broker overrides. If broker facts differ, mark dimensions incomplete/conflicted, retain null official output, and route separately to authorized accounting reconciliation. Recheck revision, evidence and authority heads.
+
+Proposed NavEconomicReconciliationV1 addendum binds portfolio/account/perimeter, T/K, revision/facts/state hashes, broker bundle hash, mapping/CA hashes, implementation/profile, each cash/claim/debt/quantity difference, forward coverage intervals, accepted limitations and reviewer receipt. It is a distinct NAV-only assessment, not a relabelled legacy MATCH. Keep the original m63-exact-reconciliation-v1 report/hash and actionability block unchanged. Current plan carries only legacy status/actionability; the full report and addendum must live in the pinned evidence bundle with exact references, not extra ad hoc V1 fields.
+
+Actual retained Phase2.3/3.2 observations:12POSTED opening transactions/24legs/11holdings, revision1, cash232420, receivables570000, payable0. They do not prove complete forward accounting. No source/account/identity acceptance,105obligation or500000cash-equivalent resolution is inferred. Actual NAV remains blocked.

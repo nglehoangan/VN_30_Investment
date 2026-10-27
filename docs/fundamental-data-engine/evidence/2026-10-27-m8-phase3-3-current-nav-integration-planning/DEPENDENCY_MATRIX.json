@@ -1,0 +1,222 @@
+{
+  "recordKind": "PROPOSED_DEPENDENCY_PLAN",
+  "dependencies": [
+    {
+      "id": "A",
+      "kind": "COMPONENT",
+      "requires": [],
+      "implementedStatus": "Implemented integrity-checked ledger read in a transaction and existing deterministic reconstructPortfolio; read-only subset used by CurrentNavReadService.",
+      "operationalReadiness": "INTEGRITY_REPLAY_ONLY_NOT_EXTERNAL_COMPLETENESS"
+    },
+    {
+      "id": "B",
+      "kind": "COMPONENT",
+      "requires": [
+        "A"
+      ],
+      "implementedStatus": "Retained broker PDF/API observations and research loaders exist, not a CurrentNavInputProvider or authenticated NAV acceptance reader.",
+      "operationalReadiness": "BLOCKED"
+    },
+    {
+      "id": "C",
+      "kind": "COMPONENT",
+      "requires": [
+        "B"
+      ],
+      "implementedStatus": "Offline immutable bridge structural resolver returns acceptedMapping:false; calculator checks identity/partition/reverse uniqueness.",
+      "operationalReadiness": "BLOCKED"
+    },
+    {
+      "id": "D",
+      "kind": "COMPONENT",
+      "requires": [
+        "C",
+        "E"
+      ],
+      "implementedStatus": "Existing acquisition, lossless raw parser, EOD normalizer and replay pipeline; VALUATION-only trusted composition.",
+      "operationalReadiness": "BLOCKED"
+    },
+    {
+      "id": "E",
+      "kind": "COMPONENT",
+      "requires": [
+        "D_SOURCE_POLICY"
+      ],
+      "implementedStatus": "Technical 2026 calendar/session helpers exist; accepted NAV calendar absent.",
+      "operationalReadiness": "BLOCKED"
+    },
+    {
+      "id": "F",
+      "kind": "COMPONENT",
+      "requires": [
+        "A",
+        "B",
+        "C"
+      ],
+      "implementedStatus": "NAV ten-dimension gate and unchanged exact full reconciliation; dividend/intake contracts and guards implemented, prepared migrations unapplied.",
+      "operationalReadiness": "BLOCKED"
+    },
+    {
+      "id": "G",
+      "kind": "COMPONENT",
+      "requires": [
+        "TRUST_INFRA"
+      ],
+      "implementedStatus": "NavQualificationAuthorityV1 synchronous interface and retained-market trusted bindings exist; real NAV verifier/authenticated records absent. PEC-1C provider/executor neutral contracts remain fail closed.",
+      "operationalReadiness": "BLOCKED"
+    },
+    {
+      "id": "H",
+      "kind": "COMPONENT",
+      "requires": [
+        "F",
+        "G",
+        "D",
+        "E"
+      ],
+      "implementedStatus": "Distinct producer/validator fields enforced; only synthetic trusted verifier in tests. No operational independent NAV acceptance.",
+      "operationalReadiness": "BLOCKED"
+    },
+    {
+      "id": "I",
+      "kind": "COMPONENT",
+      "requires": [
+        "A",
+        "F",
+        "D",
+        "E",
+        "G",
+        "H"
+      ],
+      "implementedStatus": "Approved isolated Phase3.2 calculator/read service; immutable manifests and all operational rights false.",
+      "operationalReadiness": "BLOCKED"
+    },
+    {
+      "id": "J",
+      "kind": "COMPONENT",
+      "requires": [
+        "I",
+        "H",
+        "G",
+        "M7_RELEASE",
+        "PUBLICATION_AMENDMENT"
+      ],
+      "implementedStatus": "Existing legacy dashboard/current composition and hard independent-market blocker; no CurrentNavReadService composition or NAV gate. V1 output explicitly denies official use.",
+      "operationalReadiness": "BLOCKED"
+    },
+    {
+      "id": "TRUST_INFRA",
+      "kind": "EXTERNAL_OR_OWNER_GATE",
+      "requires": [],
+      "gap": "No configured real authenticated NAV authority, independent role/revocation/audit/clock/restore verification; login deferred",
+      "responsibleParty": "Owner/security authority, separately authorized architecture decision",
+      "status": "OPEN_NOT_AUTHORIZED_BY_PLAN"
+    },
+    {
+      "id": "NAV_CALENDAR_FINALITY",
+      "kind": "EXTERNAL_OR_OWNER_GATE",
+      "requires": [],
+      "gap": "No independently accepted PORTFOLIO_NAV calendar/exception/finality/source-policy scope",
+      "responsibleParty": "Independent calendar/market reviewer and owner methodology scope",
+      "status": "OPEN_NOT_AUTHORIZED_BY_PLAN"
+    },
+    {
+      "id": "D_SOURCE_POLICY",
+      "kind": "EXTERNAL_OR_OWNER_GATE",
+      "requires": [],
+      "gap": "Accepted NAV calendar input requires exact source/finality policy; technical TCBS candidate insufficient",
+      "responsibleParty": "Market/calendar reviewers",
+      "status": "OPEN_NOT_AUTHORIZED_BY_PLAN"
+    },
+    {
+      "id": "PUBLICATION_AMENDMENT",
+      "kind": "EXTERNAL_OR_OWNER_GATE",
+      "requires": [],
+      "gap": "V1rightsfalse and research origins; no approved operational envelope semantics",
+      "responsibleParty": "Owner approves separate versioned contract before integration",
+      "status": "OPEN_NOT_AUTHORIZED_BY_PLAN"
+    },
+    {
+      "id": "M7_RELEASE",
+      "kind": "EXTERNAL_OR_OWNER_GATE",
+      "requires": [],
+      "gap": "DO_NOT_RELEASE for formal real-money support; exact deployment/GO absent",
+      "responsibleParty": "Release authority/independent validator",
+      "status": "OPEN_NOT_AUTHORIZED_BY_PLAN"
+    },
+    {
+      "id": "B5_SCOPE",
+      "kind": "EXTERNAL_OR_OWNER_GATE",
+      "requires": [],
+      "gap": "Basis independent point-profile only with accepted noneconomic limitation and ownership complete",
+      "responsibleParty": "Financial/methodology reviewer",
+      "status": "OPEN_NOT_AUTHORIZED_BY_PLAN"
+    },
+    {
+      "id": "OWNER_SLICE_AUTHORIZATION",
+      "kind": "EXTERNAL_OR_OWNER_GATE",
+      "requires": [],
+      "gap": "Phase3.3design does not authorize any adapter/integration slice",
+      "responsibleParty": "Owner",
+      "status": "OPEN_NOT_AUTHORIZED_BY_PLAN"
+    },
+    {
+      "id": "B1",
+      "kind": "ESCALATED_BLOCKER",
+      "requires": [],
+      "status": "EXTERNAL_EVIDENCE_REQUIRED",
+      "currentNavImpact": "All-held source/identity scope prevents qualified and exact observed full NAV",
+      "productionActivationImpact": "No authenticated admission/publication"
+    },
+    {
+      "id": "B2",
+      "kind": "ESCALATED_BLOCKER",
+      "requires": [],
+      "status": "EXTERNAL_EVIDENCE_REQUIRED",
+      "currentNavImpact": "Unknown disjoint cash/claims/debt blocks even indicative full value",
+      "productionActivationImpact": "No economic completeness acceptance"
+    },
+    {
+      "id": "B3",
+      "kind": "ESCALATED_BLOCKER",
+      "requires": [],
+      "status": "EXTERNAL_EVIDENCE_REQUIRED",
+      "currentNavImpact": "Unknown pending20eligibility blocks full economic valuation",
+      "productionActivationImpact": "No qualified NAV until lifecycle scope supported"
+    },
+    {
+      "id": "B4",
+      "kind": "ESCALATED_BLOCKER",
+      "requires": [],
+      "status": "EXTERNAL_EVIDENCE_REQUIRED",
+      "currentNavImpact": "570kclaims/95kreceipt unresolved; no implicit ledger settlement",
+      "productionActivationImpact": "No complete claims input acceptance"
+    },
+    {
+      "id": "B5",
+      "kind": "ESCALATED_BLOCKER",
+      "requires": [],
+      "status": "EXTERNAL_EVIDENCE_REQUIRED",
+      "currentNavImpact": "Point NAV only may be basis-independent if accepted NONE ownership impact; P&L/full reconciliation stillblocked",
+      "productionActivationImpact": "No implicit P&L/risk/decision release"
+    },
+    {
+      "id": "B6",
+      "kind": "ESCALATED_BLOCKER",
+      "requires": [],
+      "status": "EXTERNAL_EVIDENCE_REQUIRED",
+      "currentNavImpact": "Technical point result does not remove formal release restrictions",
+      "productionActivationImpact": "Applicable M7 real-money/publication/release remainsNO_GO"
+    },
+    {
+      "id": "B7",
+      "kind": "ESCALATED_BLOCKER",
+      "requires": [],
+      "status": "READY_FOR_INDEPENDENT_ACCEPTANCE",
+      "currentNavImpact": "No posting/settlement migration allowed; prepared migrations not applied",
+      "productionActivationImpact": "Deployment/migration independent acceptance and owner authorization absent"
+    }
+  ],
+  "currentActualPortfolio": "NAV_BLOCKED",
+  "runtimeConfiguration": false
+}

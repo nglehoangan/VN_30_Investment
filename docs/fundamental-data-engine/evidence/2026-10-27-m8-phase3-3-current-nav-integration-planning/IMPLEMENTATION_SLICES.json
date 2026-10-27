@@ -1,0 +1,113 @@
+{
+  "recordKind": "PROPOSED_SEQUENTIAL_PLAN_NOT_EXECUTION",
+  "slices": [
+    {
+      "id": "A",
+      "slice": "Read-only adapters",
+      "dependencies": [
+        "OWNER_SLICE_AUTHORIZATION"
+      ],
+      "scope": "Implement bounded retained BrokerEvidenceReader, ledger-read adapter and CurrentNavInputProvider skeleton in isolation; no grants inferred.",
+      "acceptanceCriteria": "Immutable source replay, path/size/hash/schema negatives, no writes, state/input hashes.",
+      "validationEvidence": "Unit/disposable SQLite tests and protected-byte comparison.",
+      "safetyBoundary": "No providers/auth/route/DB migration/posting; return blocked without accepted inputs.",
+      "requiredOwnerApproval": "Owner authorizes exact isolated adapter files/tests only.",
+      "status": "PROPOSED_NOT_AUTHORIZED_OR_IMPLEMENTED"
+    },
+    {
+      "id": "B",
+      "slice": "Source identity qualification",
+      "dependencies": [
+        "A",
+        "B1",
+        "TRUST_INFRA"
+      ],
+      "scope": "Resolve accepted account/security continuity for all held units without rewriting existing bridge DTO.",
+      "acceptanceCriteria": "Exact account+market anchors and intervals/lifecycle independently accepted, unique all-held mapping.",
+      "validationEvidence": "Hashed source annex, candidate→accepted scoped review, rename/reuse/action negatives.",
+      "safetyBoundary": "No ticker-only approval or placeholder ACCEPTED mutation.",
+      "requiredOwnerApproval": "Owner authorizes targeted missing evidence acquisition separately; approve future trust architecture before authenticated workflow.",
+      "status": "PROPOSED_NOT_AUTHORIZED_OR_IMPLEMENTED"
+    },
+    {
+      "id": "C",
+      "slice": "Broker accounting reconciliation",
+      "dependencies": [
+        "A",
+        "B",
+        "B2",
+        "B3",
+        "B4",
+        "B5_SCOPE"
+      ],
+      "scope": "Complete starting/forward accounting/claims/obligations and NAV-economic reconciliation addendum.",
+      "acceptanceCriteria": "No economic discrepancy/coverage gap; full legacy report preserved; basis-only limitation explicitly scoped.",
+      "validationEvidence": "Broker coverage/reconciliation/claim/action evidence and independent review.",
+      "safetyBoundary": "No balancing transactions; any legitimate correction/intake/posting requires separate authority.",
+      "requiredOwnerApproval": "Owner approves reconciliation contract and any separately scoped accounting operation; design is not posting permission.",
+      "status": "PROPOSED_NOT_AUTHORIZED_OR_IMPLEMENTED"
+    },
+    {
+      "id": "D",
+      "slice": "Market price qualification",
+      "dependencies": [
+        "A",
+        "B",
+        "NAV_CALENDAR_FINALITY",
+        "TRUST_INFRA"
+      ],
+      "scope": "Translate existing retained TCBS normalizer output under exact PORTFOLIO_NAV policy.",
+      "acceptanceCriteria": "All-held fresh RAW exact-identity EOD coverage, accepted calendar/finality/source; no conflicts.",
+      "validationEvidence": "Byte replay, schema/unit/CA/session/freshness and authority negative tests.",
+      "safetyBoundary": "No VALUATION grant reuse, new API client, provider calls or active-candidate binding by adapter read.",
+      "requiredOwnerApproval": "Owner approves NAV-specific policy and exact future adapter implementation; fresh acquisition separately authorized.",
+      "status": "PROPOSED_NOT_AUTHORIZED_OR_IMPLEMENTED"
+    },
+    {
+      "id": "E",
+      "slice": "Independent acceptance",
+      "dependencies": [
+        "B",
+        "C",
+        "D",
+        "TRUST_INFRA"
+      ],
+      "scope": "Independent reviewer verifies exact subject and all technical/financial/methodology decision types.",
+      "acceptanceCriteria": "Authenticated producer-distinct role evidence; exact hashes/scopes/intervals/revocation and limitations.",
+      "validationEvidence": "Reproduction records, decision/audit references and security validation.",
+      "safetyBoundary": "No synthetic verifier, agent output or local JSON as acceptance.",
+      "requiredOwnerApproval": "Owner commissions qualified independent review; no self-approval.",
+      "status": "PROPOSED_NOT_AUTHORIZED_OR_IMPLEMENTED"
+    },
+    {
+      "id": "F",
+      "slice": "NAV publication authorization",
+      "dependencies": [
+        "E",
+        "PUBLICATION_AMENDMENT",
+        "B6"
+      ],
+      "scope": "Approve versioned default-deny destination/purpose gate contract without changing V1false semantics.",
+      "acceptanceCriteria": "Separate Odecision and applicable release authority; races/expiry/revocation cannot expose official value.",
+      "validationEvidence": "Publication matrix, denied-path tests, full dependency token and M7 review.",
+      "safetyBoundary": "No dashboard/metrics/scoring activation merely fromQ.",
+      "requiredOwnerApproval": "Owner explicitly approves operational contract amendment and exact scoped publication; no automatic deployment.",
+      "status": "PROPOSED_NOT_AUTHORIZED_OR_IMPLEMENTED"
+    },
+    {
+      "id": "G",
+      "slice": "Production integration and deployment",
+      "dependencies": [
+        "F",
+        "B6",
+        "B7"
+      ],
+      "scope": "Compose only approved read components and explicitly approved view; independently validate target/recovery/release.",
+      "acceptanceCriteria": "Exact build/config/schema/registry/source decisions, executed M7 conditions and scoped GO; read-only non-authorized paths remain blocked.",
+      "validationEvidence": "Deployment manifest, no-write/recovery rehearsal, controlled operational acceptance and signoffs.",
+      "safetyBoundary": "No migration unless separately explicitly authorized; no scoring/D2/Phase4 scope expansion.",
+      "requiredOwnerApproval": "Owner separately authorizes integration code, deployment window, any migration and final production GO.",
+      "status": "PROPOSED_NOT_AUTHORIZED_OR_IMPLEMENTED"
+    }
+  ]
+}

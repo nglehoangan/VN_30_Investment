@@ -1,0 +1,124 @@
+{
+  "recordKind": "PROPOSED_ACCEPTANCE_CONTRACT_NOT_APPROVAL_RECORDS",
+  "subjectVersion": "nav-acceptance-subject-v1-PROPOSED",
+  "boundFields": [
+    "exactSourceHashes",
+    "portfolioAccountPerimeter",
+    "ledgerRevision",
+    "ledgerFactsHash",
+    "ledgerStateHash",
+    "valuationAt",
+    "knowledgeCutoff",
+    "calculationVersion",
+    "accountingMethodologyIdAndImplementation",
+    "navProfile",
+    "marketPricePolicyHash",
+    "tradingCalendarHash",
+    "identityBridgeHashesAndIntervals",
+    "corporateActionHashes",
+    "brokerReconciliationHash",
+    "forwardCoverageWitnessHash",
+    "validationResultHashes",
+    "acceptedLimitations",
+    "producerVerifiedIdentity",
+    "reviewerVerifiedIdentityAndRole",
+    "approvalTime",
+    "effectiveAndExpiryIntervals",
+    "revocationAndSupersession",
+    "buildConfigSchemaIdentities"
+  ],
+  "decisions": [
+    {
+      "id": "T",
+      "decisionType": "Technical acceptance",
+      "scope": "exact code/calculator build, source bytes/schema/replay, tests and manifest",
+      "responsibleRole": "INDEPENDENT_VALIDATOR",
+      "status": "NOT_OBTAINED_FOR_OPERATIONAL_NAV",
+      "requiresAuthenticatedDecision": true,
+      "recommendationIsApproval": false,
+      "grantsOtherDecisionTypes": false,
+      "decisionRecord": null
+    },
+    {
+      "id": "F",
+      "decisionType": "Financial source acceptance",
+      "scope": "broker account/fields/coverage/reconciliation; market identity/price semantics/source scope",
+      "responsibleRole": "FINANCIAL_SOURCE_REVIEWER",
+      "status": "NOT_OBTAINED_FOR_OPERATIONAL_NAV",
+      "requiresAuthenticatedDecision": true,
+      "recommendationIsApproval": false,
+      "grantsOtherDecisionTypes": false,
+      "decisionRecord": null
+    },
+    {
+      "id": "M",
+      "decisionType": "NAV methodology acceptance",
+      "scope": "accounting implementation, NAV_ECONOMIC_POINT_V1, calculation, price/finality/calendar policies",
+      "responsibleRole": "METHODOLOGY_AUTHORITY",
+      "status": "NOT_OBTAINED_FOR_OPERATIONAL_NAV",
+      "requiresAuthenticatedDecision": true,
+      "recommendationIsApproval": false,
+      "grantsOtherDecisionTypes": false,
+      "decisionRecord": null
+    },
+    {
+      "id": "O",
+      "decisionType": "Operational publication acceptance",
+      "scope": "exact eligible result and destination/purpose/time/dependency-head/permitted limitations",
+      "responsibleRole": "OPERATIONAL_PUBLICATION_OWNER",
+      "status": "NOT_OBTAINED_FOR_OPERATIONAL_NAV",
+      "requiresAuthenticatedDecision": true,
+      "recommendationIsApproval": false,
+      "grantsOtherDecisionTypes": false,
+      "decisionRecord": null
+    },
+    {
+      "id": "R",
+      "decisionType": "Production release authorization",
+      "scope": "executed independent release gates, deployment/build/config/schema/registry and recovery",
+      "responsibleRole": "RELEASE_AUTHORITY",
+      "status": "NOT_OBTAINED_FOR_OPERATIONAL_NAV",
+      "requiresAuthenticatedDecision": true,
+      "recommendationIsApproval": false,
+      "grantsOtherDecisionTypes": false,
+      "decisionRecord": null
+    }
+  ],
+  "roles": [
+    {
+      "role": "EVIDENCE_PRODUCER",
+      "allowed": "Retain/decode/hash and propose bundles; run technical validation",
+      "prohibited": "Cannot accept own source/identity/financial interpretation or publish"
+    },
+    {
+      "role": "IDENTITY_REVIEWER",
+      "allowed": "Accept exact account/instrument continuity with dated evidence",
+      "prohibited": "Cannot widen to source prices or operational publication"
+    },
+    {
+      "role": "FINANCIAL_SOURCE_REVIEWER",
+      "allowed": "Accept broker interpretation, reconciliation/coverage and exact market-source scope within qualified role",
+      "prohibited": "Cannot change ledger or waive unresolved obligations"
+    },
+    {
+      "role": "METHODOLOGY_AUTHORITY",
+      "allowed": "Accept exact NAV calculation/profile/price/calendar contracts",
+      "prohibited": "Cannot accept particular dataset or release production"
+    },
+    {
+      "role": "INDEPENDENT_VALIDATOR",
+      "allowed": "Reproduce exact bundle and validate producer-distinct scoped acceptance",
+      "prohibited": "Must be a different verified person, not a different string/alias"
+    },
+    {
+      "role": "OPERATIONAL_PUBLICATION_OWNER",
+      "allowed": "Authorize exact destination, portfolio/purpose, build/result/dependency scope and validity",
+      "prohibited": "Cannot substitute for technical/financial independent review or M7 GO"
+    },
+    {
+      "role": "RELEASE_AUTHORITY",
+      "allowed": "Approve exact deployment/build/config/schema and applicable executed M7 release",
+      "prohibited": "Does not expand any data/methodology scope"
+    }
+  ]
+}
