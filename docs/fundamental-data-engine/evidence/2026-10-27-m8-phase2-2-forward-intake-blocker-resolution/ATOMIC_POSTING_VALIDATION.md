@@ -1,0 +1,11 @@
+# Atomic posting and audit
+
+Assessment: 2026-10-27 Asia/Ho_Chi_Minh. Owner authorizes Phase2.2 isolated implementation and targeted blocker investigation only. No Phase2.3, Current NAV implementation, production posting/migration or acceptance changes.
+
+Post first obtains a non-authoritative review plan. Then existing ledger.commit claims expected revision, reads authoritative history, runs the single pure prepareCandidate builder/replay over all new commands, persists facts/ordered legs and existing Phase2.1 guards, requalifies all records under the SAME SQL transaction and compares the exact plan, then inserts all intake audit/identity rows. Changed authority, duplicate race, insufficient funds, margin, invalid lineage, source conflict or any audit failure aborts everything including revision, claims and receipts.
+
+Bounded batch up to100records can contain different effective times; this is an atomic intake transaction, not arbitrary weakening of PortfolioEngine.post's existing same-time correction-group restriction. Correction commands still need the exact source revision/reversal pairing and existing replay ordering/group invariants. Builder/replay code is shared, not copied. New audit result records exact original POSTED identity/revision; synthetic failure tests confirm no partial ledger/audit success.
+
+After enrollment, an unguarded old repository posting facade is blocked. Phase2.1 receipt adapter remains additionally mandatory where needed. Projection is NOT_REBUILT, actionabilityBlocked=true, so stale caches cannot be mistaken for current certified state. Durable posting success is separate from query/decision readiness. No production route or source provider wired. Atomic audit proven is local persistence/content binding only, not authenticated real acceptance, independent external anchoring or absolute tamper-proof storage.
+
+Review now reads ledger history, economic registry and source qualification in one SQL read transaction snapshot. This prevents a competing import from making DUPLICATE refer to a posting newer than the returned ledger watermark. Commit still independently revalidates under the revision claim. Shared internal reader preserves all legacy/Phase2.1 audit checks.

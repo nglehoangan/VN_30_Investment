@@ -1,0 +1,11 @@
+# Cash-equivalent and liability investigation
+
+Assessment: 2026-10-27 Asia/Ho_Chi_Minh. Owner authorizes Phase2.2 isolated implementation and targeted blocker investigation only. No Phase2.3, Current NAV implementation, production posting/migration or acceptance changes.
+
+Exact raw-body hashes, retained times and JSON Pointers in CASH_SOURCE_TRACE.json. Every inspected broker_observation body hash verified read-only. Opening source4.15 body `e68ca9cebecad8c09bd84912334f160408f5bb0068f67fe2df0f09c44990e051` at08/10T11:38:01.705Z `/data/data/0` exposes cashBalance232420, cashDevident570000, avlWithdraw232315, depoFee105, adused0,mrused0. Earlier08/10samples repeat;09/10depoFee120 and10/10depoFee165. This narrows105 to a provider fee field, not evidence of margin borrowing. PDF07/10liability attribution remains unaccepted without exact broker linkage/definitions across dates; stored opening payable0 cannot certify no obligation.
+
+PDF07/10cash-equivalent732420 minus settled cash232420 leaves500000 UNKNOWN.08/10cash+pending570000 totals802420, not732420. Cross-date difference70000 and liability105 are diagnostics, not balancing entries. No retained categorization proves whether500000 is gross dividend, another cash product/account, settlement claim or another broker category. Linked-bank balances shown in4.15 are outside proposed broker perimeter; do not add them or assume they explain500k.
+
+21/10raw4.15 `/data/0`:cashBalance327420, cashDevident475000, avlWithdraw327120, depoFee300, adused/mrused0. Stock4.14 still shows GAS475000+MWG95000 pending. This is a real endpoint inconsistency, not authorization to clear the book. Existing normalizeCapture checks equality and would reject this mismatched pair; do not weaken it or run importer to force acceptance.
+
+Required broker response: exact07/10cash-equivalent732420 component codes/gross/net breakdown;500000instrument/action/account reference and eligibility;105debt/fee line definition, accrual and subsequent settlement; full07→08and later cash/claim/liability movements including interest/custody deductions, timestamp precision and identifiers. Independent reviewer must reconcile disjoint categories and dates. No actual cash/fee/debt/claim transaction created. Status EXTERNAL_EVIDENCE_REQUIRED, ESCALATED.

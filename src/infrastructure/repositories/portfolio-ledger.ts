@@ -1,3 +1,4 @@
+import { requireIntakeGuard, verifyIntakeRead, type IntakePostingGuard } from "./forward-intake-storage";
 import { persistDividendGuards, verifyDividendGuardsRead, type DividendSettlementAuthority } from "./dividend-settlement-guard";
 import { settlementCanonical } from "@/domain/portfolio/dividend-settlement";
 import type { PrismaClient, Prisma } from "@/infrastructure/db/generated/client";
@@ -28,10 +29,11 @@ async function read(storage: Storage, id: PortfolioId, through?: LedgerWatermark
     if (JSON.stringify(rebuilt) !== JSON.stringify(saved) || JSON.stringify(rebuilt.legs) !== JSON.stringify(legs) || row.reversesId !== (saved.facts.reversesId ?? null) || row.settlesId !== (saved.facts.settlesId ?? null) || row.corporateActionId !== (saved.facts.corporateAction?.id ?? null) || row.idempotencyKey !== saved.facts.idempotencyKey || row.eventAt !== saved.facts.eventAt || row.securityId !== (saved.facts.securityId ?? null) || row.id !== saved.facts.id || row.type !== saved.facts.type || row.portfolioId !== saved.facts.portfolioId || row.legCount !== legs.length || row.source !== saved.facts.source.source || row.sourceReference !== saved.facts.source.reference || row.methodologyId !== saved.facts.methodologyId) throw new DataIntegrityError();
   }
   await verifyDividendGuardsRead(storage, history);
+  await verifyIntakeRead(storage, history);
   return { inceptionAt: instant(portfolio.inceptionAt), watermark: through ?? watermark(portfolio.revision), transactions: history };
 }
 export class PrismaPortfolioLedger implements PortfolioLedger {
-  constructor(private readonly client: PrismaClient, private readonly dividendAuthority?: DividendSettlementAuthority) {}
+  constructor(private readonly client: PrismaClient, private readonly dividendAuthority?: DividendSettlementAuthority, private readonly intakeGuard?: IntakePostingGuard) {}
   async read(id: PortfolioId, through?: LedgerWatermark) {
     try { return await this.client.$transaction(tx => read(tx, id, through)); }
     catch (e) { if (e instanceof NotFoundError) throw e; throw new DataIntegrityError(); }
@@ -50,6 +52,7 @@ export class PrismaPortfolioLedger implements PortfolioLedger {
   async commit(id: PortfolioId, expected: LedgerWatermark, prepare: (history: readonly Transaction[]) => readonly Transaction[]) {
     try {
       return await this.client.$transaction(async tx => {
+        await requireIntakeGuard(tx, id, this.intakeGuard);
         const next = watermark((BigInt(expected) + 1n).toString());
         // Write claim before read/validation: independent SQLite connections serialize or fail closed.
         const claimed = await tx.portfolio.updateMany({ where: { id, revision: expected }, data: { revision: next } });
@@ -76,6 +79,7 @@ export class PrismaPortfolioLedger implements PortfolioLedger {
           await tx.ledgerTransaction.update({ where: { id: f.id }, data: { status: "POSTED" } });
         }
         await persistDividendGuards(tx, current.transactions, additions, this.dividendAuthority);
+        await this.intakeGuard?.(tx, current.transactions, additions, next);
         return { inceptionAt: current.inceptionAt, watermark: next, transactions: [...current.transactions, ...additions] };
       });
     } catch (e) {
@@ -122,3 +126,6 @@ export class PrismaPortfolioSetup {
     } catch (e) { if (e instanceof AppError) throw e; throw new ConflictError(); }
   }
 }
+
+// Shared internal reader for one-snapshot intake classification; preserves all integrity checks.
+export { read as readPortfolioLedger };

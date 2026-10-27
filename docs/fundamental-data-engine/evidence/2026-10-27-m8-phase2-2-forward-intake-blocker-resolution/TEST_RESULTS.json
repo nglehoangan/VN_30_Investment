@@ -1,0 +1,23 @@
+{
+  "status": "PASS_ISOLATED_IMPLEMENTATION_SCOPE",
+  "total": 211,
+  "passed": 211,
+  "failed": 0,
+  "commands": [
+    "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/forward-intake.test.ts tests/integration/forward-intake.test.ts tests/unit/dividend-settlement.test.ts tests/integration/dividend-settlement.test.ts tests/unit/portfolio-accounting.test.ts tests/unit/portfolio-command.test.ts tests/unit/portfolio-read-models.test.ts tests/integration/portfolio.test.ts tests/integration/portfolio-migration.test.ts tests/integration/portfolio-regressions.test.ts tests/integration/portfolio-review-remediation.test.ts --reporter=json --outputFile=/private/tmp/m8-phase22/snapshot-regression.json",
+    "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/typescript/bin/tsc --noEmit --incremental false",
+    "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/check-boundaries.mjs",
+    "DATABASE_URL=file:/private/tmp/m8-phase22/schema-only.sqlite /private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/database.mjs validate --no-env-file",
+    "python3 /private/tmp/m8-phase22/investigate.py",
+    "python3 /private/tmp/m8-phase22/matrices.py",
+    "python3 docs/08_CONTINUOUS_IMPROVEMENT/release-manifest-v1.0/verify.py",
+    "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --loader /private/tmp/m8-accounting-ro-loader.mjs /private/tmp/m8-accounting-ro.mjs",
+    "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/eslint/bin/eslint.js src/application/portfolio/candidate.ts src/domain/portfolio/candidate.ts src/domain/portfolio/forward-intake.ts src/infrastructure/repositories/forward-intake-storage.ts src/infrastructure/repositories/forward-intake.ts src/infrastructure/repositories/portfolio-ledger.ts tests/fixtures/portfolio/forward-intake.ts tests/integration/forward-intake.test.ts tests/unit/forward-intake.test.ts --max-warnings=0"
+  ],
+  "syntheticNewBehaviorOnly": true,
+  "actualPortfolioReadOnlyReplay": "PASS_12_24_11",
+  "actualCopyMigration": "PASS_NO_PRODUCTION_EXECUTION",
+  "m7Manifest": "PASS_SOURCE_IDENTITY_ONLY_NOT_RELEASE",
+  "productionAcceptance": "NOT_PERFORMED",
+  "finalEvidence": "validation/snapshot-regression.json"
+}

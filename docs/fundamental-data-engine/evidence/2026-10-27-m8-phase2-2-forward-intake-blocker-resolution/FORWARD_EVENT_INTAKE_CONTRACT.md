@@ -1,0 +1,11 @@
+# Forward event intake v1
+
+Assessment: 2026-10-27 Asia/Ho_Chi_Minh. Owner authorizes Phase2.2 isolated implementation and targeted blocker investigation only. No Phase2.3, Current NAV implementation, production posting/migration or acceptance changes.
+
+Record fields: version `forward-event-intake-v1`; source namespace/documentId/documentHash/original eventId/reference/accountId/portfolioId/contentHash/originalValues/exact effective precision/value/knownAt/retrievedAt/provenance; exact security ledgerId+evidence reference when applicable; explicit category and proposed typed TransactionInput. Original source values and pointers retained immutably. Source content hash is verified over supplied originalValues; document authenticity, exact raw-pointer financial interpretation and lossless decoding must be verified by the trusted authority adapter, not inferred by the intake. No live decoder/provider is activated.
+
+Supported explicit categories: BUY,SELL,TRADE_SETTLEMENT,CASH_DEPOSIT,CASH_WITHDRAWAL,DIVIDEND_CASH,DIVIDEND_RECEIVABLE_SETTLEMENT,CORPORATE_ACTION,FEE,TAX and linked REVERSAL. Only existing supported corporate-action subtypes pass; unknown interest descriptions, pending-credit guesses, CASH_ADJUSTMENT, opening imports and lifetime rebase are excluded. No free-text keyword→event inference.
+
+Trusted adapter qualifies exact recordHash/commandHash, account/portfolio/security/category scopes, source authority reference, identity acceptance reference where required, producer-distinct validator and stable economic namespace/event/component/revision. Server checks exact digests/scope; constructor callback is not a public/client acceptance flag. It must resolve authenticated accepted records and revocation within the supplied transaction; no implementation or operational acceptance exists here. Missing/invalid authority fails closed.
+
+Original financial facts remain authoritative through existing build/replay; proposed command is not itself an accepted broker fact. Exact decimal VND/whole shares and approved method checks remain. Net receipts keep Phase2.1 allocation/receipt protection. GROSS/shared receipt splitting/new accrual/pending conversion stay unsupported. Safe research viewing, current source authority, market admission and investment/scoring gates remain separate.
