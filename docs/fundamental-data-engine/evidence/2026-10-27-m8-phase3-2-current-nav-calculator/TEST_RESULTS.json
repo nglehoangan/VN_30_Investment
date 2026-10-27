@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "finalUniquePassingTests": 262,
+  "legacyRegressionTests": 211,
+  "finalNavTests": 51,
+  "singleAllGreenCombinedRun": false,
+  "explanation": "Legacy211 all passed in combined run. One new test fixture failed, then all51 new NAV tests passed after fixture-only fixes/additions. Legacy implementation/tests did not change; no reason to rerun unchanged legacy suite.",
+  "commands": [
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/current-nav.test.ts tests/integration/current-nav.test.ts tests/unit/forward-intake.test.ts tests/integration/forward-intake.test.ts tests/unit/dividend-settlement.test.ts tests/integration/dividend-settlement.test.ts tests/unit/portfolio-accounting.test.ts tests/unit/portfolio-command.test.ts tests/unit/portfolio-read-models.test.ts tests/integration/portfolio.test.ts tests/integration/portfolio-migration.test.ts tests/integration/portfolio-regressions.test.ts tests/integration/portfolio-review-remediation.test.ts --reporter=json --outputFile=/private/tmp/m8-phase32/regression-final.json > /private/tmp/m8-phase32/regression-final.log 2>&1",
+      "exitCode": 1,
+      "result": "211/211 unchanged legacy tests PASS; 45/46 NAV tests PASS; new correction fixture tradeDate mismatch, fixed in test only",
+      "artifact": "validation/regression-final.json"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/current-nav.test.ts tests/integration/current-nav.test.ts --reporter=json --outputFile=/private/tmp/m8-phase32/nav-closure.json > /private/tmp/m8-phase32/nav-closure.log 2>&1",
+      "exitCode": 0,
+      "result": "51/51 NAV tests PASS, after correction fixture fix and added3authority cases",
+      "artifact": "validation/nav-closure.json"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/typescript/bin/tsc --noEmit --incremental false > /private/tmp/m8-phase32/typecheck-complete.log 2>&1",
+      "exitCode": 0
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/eslint/bin/eslint.js src/domain/current-nav src/application/current-nav src/ports/current-nav.ts tests/fixtures/current-nav.ts tests/unit/current-nav.test.ts tests/integration/current-nav.test.ts > /private/tmp/m8-phase32/lint-complete.log 2>&1",
+      "exitCode": 0
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/check-boundaries.mjs > /private/tmp/m8-phase32/boundaries-final.log 2>&1",
+      "exitCode": 0,
+      "result": "257 source modules PASS"
+    },
+    {
+      "command": "DATABASE_URL=file:/private/tmp/m8-phase32/schema-only.sqlite /private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/database.mjs validate --no-env-file > /private/tmp/m8-phase32/prisma-final.log 2>&1",
+      "exitCode": 0,
+      "result": "schema validation only, dummy /tmp URL; no migration"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --experimental-loader ./docs/fundamental-data-engine/evidence/2026-10-27-m8-phase3-2-current-nav-calculator/validation/readonly-loader.mjs docs/fundamental-data-engine/evidence/2026-10-27-m8-phase3-2-current-nav-calculator/validation/opening-readonly.mjs",
+      "exitCode": 0,
+      "result": "PASS; actual read-only"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --experimental-loader ./docs/fundamental-data-engine/evidence/2026-10-27-m8-phase3-2-current-nav-calculator/validation/readonly-loader.mjs docs/fundamental-data-engine/evidence/2026-10-27-m8-phase3-2-current-nav-calculator/validation/actual-blocked.mjs",
+      "exitCode": 0,
+      "result": "PASS; actual read-only"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --experimental-loader ./docs/fundamental-data-engine/evidence/2026-10-27-m8-phase3-2-current-nav-calculator/validation/readonly-loader.mjs docs/fundamental-data-engine/evidence/2026-10-27-m8-phase3-2-current-nav-calculator/validation/synthetic-examples.mjs",
+      "exitCode": 0,
+      "result": "PASS; synthetic only"
+    }
+  ],
+  "priorFailures": [
+    {
+      "artifact": "validation/unit-initial.json",
+      "result": "33/35; date-only reason and proof fixture reproducibility fixed"
+    },
+    {
+      "artifact": "validation/typecheck-initial.log",
+      "result": "branded time/test callback types corrected"
+    },
+    {
+      "artifact": "validation/typecheck-final.log",
+      "result": "new synthetic branded IDs/time corrected"
+    },
+    {
+      "artifact": "validation/regression-final.json",
+      "result": "256/257, correction fixture tradeDate fixed to Jan3; domain invariant unchanged"
+    }
+  ],
+  "actualReplay": "validation/opening-replay.json",
+  "actualFailClosed": "validation/actual-nav-blocked.json",
+  "expectedActual": "validation/synthetic-expected-actual.json",
+  "scenarios": "SCENARIO_MATRIX.json",
+  "independentOperationalAcceptance": "NOT_OBTAINED"
+}

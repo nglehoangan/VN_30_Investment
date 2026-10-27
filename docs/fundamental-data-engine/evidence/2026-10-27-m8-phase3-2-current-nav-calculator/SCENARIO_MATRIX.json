@@ -1,0 +1,428 @@
+{
+  "scenarios": [
+    {
+      "id": "01",
+      "case": "Fully qualified synthetic point",
+      "expected": "QUALIFIED_NAV,totalNav=\"1220\",indicativeValue=null;originSYNTHETIC_TEST and officialUseEligible=false",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 01 qualified synthetic1220 uses reconstructed2shares/cash1000/claims30/payable10 and denies all operational uses"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "02",
+      "case": "Missing one held price",
+      "expected": "NAV_BLOCKED;fullMV/total/indicative null;missingIDlisted;namedpartialresearch allowed",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 02 missing held price blocks total;03 stale price never falls back"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "03",
+      "case": "Stale completed price",
+      "expected": "NAV_BLOCKED/STALE_SESSION;no olderfallback",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 02 missing held price blocks total;03 stale price never falls back"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "04",
+      "case": "Conflicting sources",
+      "expected": "NAV_BLOCKED/SOURCE_CONFLICT;no latestwins oraverage",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 04 conflicting source revisions cannot be averaged or latest-selected"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "05",
+      "case": "Missing security continuity",
+      "expected": "NAV_BLOCKED/IDENTITY_UNRESOLVED",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 05 exact identity evidence required,06 cash unknown never0,07 liability unknown blocks even indicative"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "06",
+      "case": "Missing cash evidence",
+      "expected": "NAV_BLOCKED;cashunknown not0",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 05 exact identity evidence required,06 cash unknown never0,07 liability unknown blocks even indicative"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "07",
+      "case": "Unknown liability",
+      "expected": "NAV_BLOCKED/UNKNOWN_LIABILITY;no I fallback",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 05 exact identity evidence required,06 cash unknown never0,07 liability unknown blocks even indicative"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "08",
+      "case": "Unaccepted receivable",
+      "expected": "QUALIFIED_ONLY requestNAV_BLOCKED;notautomatically included inI",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 08 unaccepted unresolved receivable blocks rather than treating money as settled"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "09",
+      "case": "Pending shares",
+      "expected": "NAV_BLOCKED;no220+20;noinventedconversiondate;ordinarysubtotalonlyiflabelled/proved",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 09 pending rights partition is never ordinary value or extra economic shares"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "10",
+      "case": "Corporate-action basis",
+      "expected": "MismatchedbasisBLOCKED;acceptedalignedcaseMV=\"10000\" using200\u00d750",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 10 adjustment/CA mismatch blocks, including adjusted quotes with ordinary ledger quantity"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "11",
+      "case": "Date-only observations",
+      "expected": "NAV_BLOCKED/INCOMPATIBLE_ASOF;do notassignmidnight",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 11 date-only component evidence cannot become an intraday cutoff"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "12",
+      "case": "Holiday/weekend",
+      "expected": "MayQ onlyforS withallgates;actualholidaynotfabricatedsession;unknowncalendarBLOCKED",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 12 weekend/holiday can retain the latest accepted completed session, never calendar-day staleness"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "13",
+      "case": "Late actual event",
+      "expected": "Newrevision/restatedretrospective result;oldcontentpreserved;notAS_KNOWN_T",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 13 late-arriving event changes revision and content; prior evidence is immutable"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "14",
+      "case": "Corrected transaction",
+      "expected": "Newresultcontent/lineage;noeditold snapshot orledger",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 14 corrected immutable inputs produce new evidence,15 revision mismatch blocks"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "15",
+      "case": "Revision race",
+      "expected": "NAV_BLOCKED/REVISION_CHANGED or explicitretrynonepublishedmixed",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 14 corrected immutable inputs produce new evidence,15 revision mismatch blocks"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "16",
+      "case": "Decimal precision",
+      "expected": "MV=\"0.370370367036\" exact;over12scale/outofrangereject notroundinput",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 16 decimal exactness and output scale, with no floating financial rounding"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "17",
+      "case": "Sourceauthorityfailure",
+      "expected": "QUALIFIED_ONLY NAV_BLOCKED;hashnotapproval;neverexpandVALUATIONtoNAV",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 17 source authority absent or invalid and18 independent acceptance missing cannot be JSON accepted flags"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "18",
+      "case": "Independent acceptance missing",
+      "expected": "QUALIFIED_ONLY NAV_BLOCKED;PENDING_INDEPENDENT_ACCEPTANCE",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 17 source authority absent or invalid and18 independent acceptance missing cannot be JSON accepted flags"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "19",
+      "case": "Indicative restrictions",
+      "expected": "INDICATIVE_NAV,totalNav=null,indicativeValuepresent;officialperformance/risk/decision/scoringdenied",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 19 indicative requires opt-in complete observations and never acquires official output permissions"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "20",
+      "case": "Blocked propagation",
+      "expected": "NAV_BLOCKED;totalNav/indicativeValue=null;subtotalsnotfullNAV/bounds",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 20 NAV_BLOCKED propagates null totals even when ordinary component subtotal is available"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "21",
+      "case": "Snapshot reproducibility",
+      "expected": "Samecontent/numericresult,separaterun;changeanymandatoryinput\u2192newhash/reassessment",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 21 content reproducible within valid window; separate calculation run hash and ordered inputs"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "22",
+      "case": "Futureinformation",
+      "expected": "NAV_BLOCKED appropriatefuture/BITEMPORALreason;lateknownretrospectiveexplicitlabelonly",
+      "actual": {
+        "assertions": [
+          "M8Phase3.2 pure NAV / approved22scenario matrix 22 no future source/approval knowledge, actual provider time remainsnull when normalization policy allows"
+        ],
+        "status": "PASS",
+        "testArtifact": "validation/nav-closure.json"
+      },
+      "scope": "SYNTHETIC_CONTRACT_VALIDATION_NOT_OPERATIONAL_ACCEPTANCE"
+    }
+  ],
+  "extraAssertions": [
+    {
+      "name": "Phase3.2 readonly service on isolated actual SQLite assembles pinned ledger-derived plan, returns1220 immutable manifest and makes no writes",
+      "status": "passed"
+    },
+    {
+      "name": "Phase3.2 readonly service on isolated actual SQLite defaults to nonoperational retained mode and no authority, never trusts test/JSONflags",
+      "status": "passed"
+    },
+    {
+      "name": "Phase3.2 readonly service on isolated actual SQLite missing real input source returnsNAV_BLOCKED without reconstructing fake prices",
+      "status": "passed"
+    },
+    {
+      "name": "Phase3.2 readonly service on isolated actual SQLite rechecks ledger revision after reading source and blocks racing results",
+      "status": "passed"
+    },
+    {
+      "name": "Phase3.2 readonly service on isolated actual SQLite evidence-head race, source failure and clock rollback fail closed",
+      "status": "passed"
+    },
+    {
+      "name": "Phase3.2 readonly service on isolated actual SQLite does not claim AS_KNOWN or ignore late-known ledger facts",
+      "status": "passed"
+    },
+    {
+      "name": "Phase3.2 readonly service on isolated actual SQLite post-close known events are not mixed into earlier EOD cash",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix negative arithmetic is preserved, never clamped or used to bypass M2 no-margin",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix zero NAV cash-only qualified fixture requires explicit empty-market proof",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on duplicate security",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on duplicate pending quantity",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on revoked raw evidence",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on wrong purpose",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on unaccepted basis affects shares",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on price zero",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on bad source hash",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on wrong calendar",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on provider time invented",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on different cash cutoff",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on off-ledger liability overlay",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix partial security subtotal lists exclusions; duplicate identical price is harmless but distinct identity cannot be reused",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix legacy reconciliation/P&L gates preserved when basis provenance isPARTIAL but ownership not affected",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix QUALIFIED_ONLY never downgrades; revoked or self-approving authority also blocks indicative",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix synthetic proofs cannot qualify retained research origin",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix unsupported current-account-now and AS_KNOWN modes failclosed",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix result hash independently binds all semantic permissions and nonpositive flag",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix unrecognized proof fields reject and verifier-owned objects remain mutable",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix two held ledger securities require coverage and cannot reuse a market identity",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix corrected transaction reuses reversal and immutable domain replay, no financial rewriting",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix historical200 ordinary plus20 pending partition stays220 and blocks full NAV",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix accepted synthetic aligned split replay conserves basis and values200 RAW shares at50",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix authority expired fails closed including indicative",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix authority wrong-scope fails closed including indicative",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.2 pure NAV / approved22scenario matrix authority wrong-subject fails closed including indicative",
+      "status": "passed"
+    }
+  ]
+}

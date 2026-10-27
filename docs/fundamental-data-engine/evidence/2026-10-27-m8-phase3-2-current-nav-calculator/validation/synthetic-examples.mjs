@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {writeFileSync} from 'node:fs';
+import {navFixture,alterNav} from '../../../../../tests/fixtures/current-nav.ts';
+import {calculateCurrentNav,sumNavComponents} from '../../../../../src/domain/current-nav/calculate.ts';
+const calc=f=>calculateCurrentNav(f.request,f.state,f.plan,f.context);
+const f=navFixture(),qualified=calc(f);
+const research=alterNav(f,x=>{x.request.resultScope='OBSERVED_FULL_PORTFOLIO';x.request.allowIndicative=true;});
+const indicative=calc({...research,context:{...research.context,authority:undefined}});
+const blocked=calc(alterNav(f,x=>{x.plan.components[2].amount=null;}));
+assert.equal(qualified.totalNav,'1220');assert.equal(indicative.totalNav,null);assert.equal(indicative.indicativeValue,'1220');assert.equal(blocked.totalNav,null);assert.equal(blocked.indicativeValue,null);
+writeFileSync(new URL('./synthetic-expected-actual.json',import.meta.url),JSON.stringify({classification:'SYNTHETIC_ONLY_NOT_PRODUCTION_ACCEPTANCE',cases:[{expected:{navState:'QUALIFIED_NAV',totalNav:'1220'},actual:qualified},{expected:{navState:'INDICATIVE_NAV',totalNav:null,indicativeValue:'1220'},actual:indicative},{expected:{navState:'NAV_BLOCKED',totalNav:null,indicativeValue:null},actual:blocked},{expected:'-10',actual:sumNavComponents('0','10','0','20'),scope:'ARITHMETIC_ONLY_NOT_NO_MARGIN_WAIVER'}]},null,2));
+console.log('PASS synthetic expected/actual manifests; no real approval');
