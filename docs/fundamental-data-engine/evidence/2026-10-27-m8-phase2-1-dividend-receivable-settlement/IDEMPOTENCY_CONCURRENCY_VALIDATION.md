@@ -1,0 +1,13 @@
+# Idempotency, receipt ownership and concurrency
+
+Date: 2026-10-27 (Asia/Ho_Chi_Minh). Scope: owner-authorized Phase 2.1 implementation and isolated validation only. No Phase 2.2, production posting, source acceptance or migration execution authorized.
+
+Stable economic receipt identity is resolved by a trusted server adapter across representations, not guessed from ticker/amount/file row. Before first settlement enrollment, all prior CASH_DEPOSIT/DIVIDEND_CASH representations are resolved too: an already-booked receipt blocks settlement. After enrollment a legacy credit also requires the adapter, even on a new repository instance with no configured authority. Missing identity fails closed. Resolver must throw on unknown identities; merely hashing a file row is not economic deduplication.
+
+Immutable SQL receipt owner PK(portfolio, namespace, receiptId), unique transactionId, existing unique event/idempotency/source keys and expected portfolio revision CAS serialize claims. Full history/subclaim residuals validate inside the transaction after revision claim. Original receipt reservation remains through reversal; correction reuses only the explicit original lineage. Single receipt split is unsupported.
+
+One SQLite transaction commits event identity, ordered legs, receipt ownership, acceptance audit (exact facts hash and accepted digests), original POSTED result identity/watermark/idempotencyKey and revision. Audit insertion failure rolls all back, including receipt and business legs. Projection is optional derived cache, outside the authoritative posting and not part of posting success. Retry must never repost a committed aggregate.
+
+Identical durable event/key/content resolves original posting watermark without a revision advance; conflicting content fails. During concurrent in-flight writes, SQLite may return transient CAS conflict before a winning identical event is visible. A retry after the winner commits resolves the same durable event/result. This is not a second posting or silent lost update. Tests cover independent connections for different50+50 receipts against claim70 (one winner; second overclaim cannot succeed), and identical concurrent request + retry (one event/audit only). No arbitrary sleep/backoff or weakened lock/invariant added.
+
+Atomicity proven is **local business and acceptance-audit persistence** on isolated SQLite. No real authenticated acceptance provider, external audit anchor, absolute tamper-proofing or operational governance acceptance is claimed. A malicious DB administrator can defeat same-host controls; trigger/hash tests do not prove protection against complete rollback.

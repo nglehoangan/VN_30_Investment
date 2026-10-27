@@ -1,0 +1,11 @@
+# Claim allocation implementation
+
+Date: 2026-10-27 (Asia/Ho_Chi_Minh). Scope: owner-authorized Phase 2.1 implementation and isolated validation only. No Phase 2.2, production posting, source acceptance or migration execution authorized.
+
+Allocation is immutable evidence metadata inside the settlement aggregate, not additional financial postings. It must reference a positive original OPENING_BALANCE RECEIVABLE leg in the same portfolio, before settlement effective time. Claims are positive exact decimals, unique by claim ID and issuer/action, and must sum exactly to original leg amount. Any later event for this parent must carry the byte-equivalent canonical allocation. No replacement allocation can expand or duplicate assets.
+
+At economic replay each claim accumulates settlements minus immutable reversals, with remaining = allocated − consumed; over-consumption rejects even when aggregate parent still has spare funds. Parent obligation remains linked to original leg via settlementReference and existing negative-residual/no-margin validation. `PortfolioState.dividendClaims` lists allocated/remaining per subclaim after the allocation enters history; legacy states omit this field. A reversed original recognition has no active residual DTO. No standalone accepted allocation is written to real data.
+
+Structural checks prove totals/identity consistency, not source authenticity. Trusted adapter must resolve current authenticated, nonrevoked, producer-distinct acceptance and verify exact portfolio/issuer/action/knowledge scope inside the supplied database transaction. It returns accepted allocation/receipt digests, compared to canonical SHA256 of actual event contents and the exact allocation acceptance reference. Missing adapter, missing reference, failed authentication or digest mismatch rolls back.
+
+Gross claims fail with GROSS_CLAIM_REQUIRES_ACCOUNTING_AMENDMENT. Unknown gross/tax remain unknown. v1 consumes one whole evidenced net receipt; splitting one receipt across multiple claims is deliberately rejected rather than approximated. Multiple distinct receipts can partially settle a claim. GAS/MWG570k was not hardcoded; all new behavioral fixtures use unrelated synthetic100/70/30 amounts and fixture identities.

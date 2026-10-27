@@ -8,6 +8,7 @@ export interface PortfolioState {
   readonly cash: string; readonly receivables: string; readonly payables: string; readonly netContributions: string;
   readonly realizedPnl: string; readonly netDividends: string; readonly grossDividends: string | null; readonly dividendTax: string | null;
   readonly expenses: string; readonly cashAdjustments: string; readonly supportedInception: "ZERO" | "IMPORTED";
+  readonly dividendClaims?: readonly { readonly allocationId: string; readonly originalLegId: string; readonly claimId: string; readonly allocated: string; readonly remaining: string }[];
   readonly positions: readonly PositionState[]; readonly obligations: readonly { id: string; transactionId: string; type: "PAYABLE" | "RECEIVABLE"; amount: string }[];
 }
 type Position = { quantity: Decimal; cost: Decimal; realized: Decimal };
@@ -38,6 +39,7 @@ export function reconstructPortfolio(portfolioId: PortfolioId, history: readonly
     .sort((a, b) => compare(a.l.effectiveAt, b.l.effectiveAt) || compare(a.t.facts.eventAt, b.t.facts.eventAt) || compare(a.t.facts.id, b.t.facts.id) || a.l.sequence - b.l.sequence);
   const positions = new Map<string, Position>(), obligations = new Map<string, Obligation>();
   const activeActions = new Map<string, string>();
+  const settledClaims = new Map<string, Decimal>();
   const effects = new Map<string, Effect>(), visited = new Set<string>(), reversed = new Set<string>();
   let cash = Decimal.zero, totals = emptyEffect(), imported = false;
   const position = (id: string) => { if (!positions.has(id)) positions.set(id, { quantity: Decimal.zero, cost: Decimal.zero, realized: Decimal.zero }); return positions.get(id)!; };
@@ -59,12 +61,23 @@ export function reconstructPortfolio(portfolioId: PortfolioId, history: readonly
     if (!visited.has(f.id)) {
       visited.add(f.id);
       const e = emptyEffect();
+      if (f.type === "DIVIDEND_RECEIVABLE_SETTLEMENT") {
+        const s = f.dividendSettlement!, key = JSON.stringify([s.allocation.originalLegId, s.claimId]);
+        const used = (settledClaims.get(key) ?? Decimal.zero).add(decimal(f.amount!));
+        const claim = s.allocation.claims.find(c => c.id === s.claimId)!;
+        requireRule(used.units <= decimal(claim.amount).units, "DIVIDEND_CLAIM_OVER_SETTLED");
+        settledClaims.set(key, used);
+      }
       if (f.type === "REVERSAL") {
         const original = byId.get(f.reversesId!);
         requireRule(original && effects.has(original.facts.id) && !reversed.has(original.facts.id), "REVERSAL_MISMATCH");
         if (original.facts.type === "BUY" || original.facts.type === "SELL") {
           const activeSettlements = transactions.filter(s => s.facts.settlesId === original.facts.id && visited.has(s.facts.id) && !reversed.has(s.facts.id));
           requireRule(activeSettlements.every(s => f.correctionGroupId && transactions.some(r => r.facts.reversesId === s.facts.id && r.facts.correctionGroupId === f.correctionGroupId && r.facts.effectiveAt === f.effectiveAt)), "SETTLED_TRADE_REQUIRES_CORRECTION_GROUP");
+        }
+        if (original.facts.dividendSettlement) {
+          const s = original.facts.dividendSettlement, key = JSON.stringify([s.allocation.originalLegId, s.claimId]);
+          settledClaims.set(key, settledClaims.get(key)!.sub(decimal(original.facts.amount!)));
         }
         const old = effects.get(original.facts.id)!;
         for (const key of ["cost", "realized", "flow", "net", "gross", "tax", "expenses", "adjustments"] as const) e[key] = old[key].neg();
@@ -131,9 +144,14 @@ export function reconstructPortfolio(portfolioId: PortfolioId, history: readonly
     // Complete same-effective-time correction groups are atomic; ordinary events validate individually.
     if (!next || (next.t.facts.id !== f.id && !(f.correctionGroupId && next.t.facts.correctionGroupId === f.correctionGroupId && next.l.effectiveAt === l.effectiveAt))) verify();
   }
+  const allocations = new Map<string, NonNullable<Transaction["facts"]["dividendSettlement"]>["allocation"]>();
+  for (const t of transactions) if (visited.has(t.facts.id) && t.facts.dividendSettlement && !reversed.has(t.facts.dividendSettlement.allocation.originalTransactionId)) {
+    const a = t.facts.dividendSettlement.allocation; allocations.set(a.originalLegId, a);
+  }
+  const dividendClaims = [...allocations.values()].flatMap(a => a.claims.map(c => ({ allocationId: a.id, originalLegId: a.originalLegId, claimId: c.id, allocated: c.amount, remaining: decimal(c.amount).sub(settledClaims.get(JSON.stringify([a.originalLegId,c.id])) ?? Decimal.zero).toString() }))).sort((a,b) => compare(a.originalLegId,b.originalLegId) || compare(a.claimId,b.claimId));
   const obligationRows = [...obligations].sort(([a], [b]) => compare(a, b));
   const sum = (type: TransactionLeg["type"]) => obligationRows.filter(([, o]) => o.type === type).reduce((a, [, o]) => a.add(o.amount), Decimal.zero).toString();
-  return deepFreeze({ supportedInceptionAt: inceptionAt ?? null, portfolioId, asOf, ledgerWatermark, accountingMethod: ACCOUNTING_METHOD,
+  return deepFreeze({ ...(dividendClaims.length ? { dividendClaims } : {}), supportedInceptionAt: inceptionAt ?? null, portfolioId, asOf, ledgerWatermark, accountingMethod: ACCOUNTING_METHOD,
     methodologyIds: [...new Set(transactions.filter(t => visited.has(t.facts.id)).map(t => t.facts.methodologyId))].sort(), transactionIds: [...visited],
     cash: cash.toString(), receivables: sum("RECEIVABLE"), payables: sum("PAYABLE"), netContributions: totals.flow.toString(), realizedPnl: totals.realized.toString(),
     netDividends: totals.net.toString(), grossDividends: totals.unknown ? null : totals.gross.toString(), dividendTax: totals.unknown ? null : totals.tax.toString(), expenses: totals.expenses.toString(), cashAdjustments: totals.adjustments.toString(), supportedInception: imported ? "IMPORTED" : "ZERO",

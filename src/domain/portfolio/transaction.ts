@@ -1,8 +1,9 @@
+import { validateDividendSettlement, type DividendSettlement } from "./dividend-settlement";
 import { instant, dateOnly, vietnamBusinessDate, type Instant, type DateOnly } from "@/shared/time";
 import { type MethodologyId } from "@/shared/ids";
 import { ACCOUNTING_METHOD, decimal, price, shareQuantity, requireRule, sourceReference, transactionId, portfolioId, securityId, type PortfolioId, type SecurityId, type TransactionId, type SourceReference } from "./values";
 
-export const transactionTypes = ["CASH_DEPOSIT", "BUY", "SELL", "TRADE_SETTLEMENT", "DIVIDEND_CASH", "CASH_WITHDRAWAL", "FEE", "TAX", "REVERSAL", "OPENING_BALANCE", "CORPORATE_ACTION", "CASH_ADJUSTMENT"] as const;
+export const transactionTypes = ["CASH_DEPOSIT", "BUY", "SELL", "TRADE_SETTLEMENT", "DIVIDEND_CASH", "CASH_WITHDRAWAL", "FEE", "TAX", "REVERSAL", "OPENING_BALANCE", "CORPORATE_ACTION", "CASH_ADJUSTMENT", "DIVIDEND_RECEIVABLE_SETTLEMENT"] as const;
 export type TransactionType = typeof transactionTypes[number];
 export type LegType = "CASH" | "FEE_CASH" | "TAX_CASH" | "OTHER_CASH" | "SECURITY_QUANTITY" | "COST_BASIS_ADJUSTMENT" | "RECEIVABLE" | "PAYABLE";
 export interface TransactionLeg {
@@ -22,6 +23,7 @@ export interface TransactionInput {
   readonly opening?: { readonly cost: string; readonly receivable?: string; readonly migrationVersion: string; readonly evidence: string };
   readonly corporateAction?: { readonly id: string; readonly subtype: string; readonly numerator: string; readonly denominator: string; readonly evidence: string; readonly stage: "EFFECTIVE" | "SETTLEMENT"; readonly basis?: string; readonly destinationSecurityId?: SecurityId; readonly destinationQuantity?: string; readonly originatingTransactionId?: TransactionId };
   readonly adjustment?: { readonly reasonCode: string; readonly evidence: string; readonly note: string };
+  readonly dividendSettlement?: DividendSettlement;
   readonly notes?: string;
 }
 export interface Transaction {
@@ -50,7 +52,7 @@ export function buildTransaction(input: TransactionInput, now: Instant, history:
   requireRule(!f.price || isTrade, "EXECUTION_PRICE_REQUIRES_TRADE");
   requireRule(!f.quantity || isTrade || f.type === "OPENING_BALANCE" || f.type === "CORPORATE_ACTION", "QUANTITY_FACT_NOT_APPLICABLE");
   requireRule(!f.tradeDate || isTrade, "TRADE_DATE_NOT_APPLICABLE");
-  requireRule(!f.securityId || isTrade || ["DIVIDEND_CASH", "OPENING_BALANCE", "CORPORATE_ACTION"].includes(f.type), "SECURITY_FACT_NOT_APPLICABLE");
+  requireRule(!f.securityId || isTrade || ["DIVIDEND_CASH", "OPENING_BALANCE", "CORPORATE_ACTION", "DIVIDEND_RECEIVABLE_SETTLEMENT"].includes(f.type), "SECURITY_FACT_NOT_APPLICABLE");
   requireRule(!f.representation || isTrade || f.type === "DIVIDEND_CASH", "SETTLEMENT_REPRESENTATION_NOT_APPLICABLE");
   if (f.type === "REVERSAL") requireRule(!f.amount, "REVERSAL_FACTS_DERIVE_FROM_ORIGINAL");
   const fee = decimal(f.fee ?? "0"), tax = decimal(f.tax ?? "0");
@@ -62,6 +64,7 @@ export function buildTransaction(input: TransactionInput, now: Instant, history:
   requireRule(!f.adjustment || f.type === "CASH_ADJUSTMENT", "UNEXPECTED_ADJUSTMENT_DETAIL");
   requireRule(!f.opening || f.type === "OPENING_BALANCE", "UNEXPECTED_OPENING_DETAIL");
   requireRule(!f.corporateAction || f.type === "CORPORATE_ACTION", "UNEXPECTED_ACTION_DETAIL");
+  requireRule(!f.dividendSettlement || f.type === "DIVIDEND_RECEIVABLE_SETTLEMENT", "UNEXPECTED_DIVIDEND_SETTLEMENT");
   const legs: TransactionLeg[] = [];
   const leg = (type: LegType, value: string, sec: SecurityId | null = null, reference: string | null = null) => {
     const sequence = legs.length + 1;
@@ -116,6 +119,11 @@ export function buildTransaction(input: TransactionInput, now: Instant, history:
         if (!decimal(d.withholding).isZero) leg("TAX_CASH", decimal(d.withholding).neg().toString());
       } else leg("CASH", net.toString());
       break;
+    }
+    case "DIVIDEND_RECEIVABLE_SETTLEMENT": {
+      const { leg: original } = validateDividendSettlement(f, now, history);
+      const a = positiveAmount(); leg("CASH", a.toString());
+      leg("RECEIVABLE", a.neg().toString(), null, original.id); break;
     }
     case "OPENING_BALANCE": {
       requireRule(f.opening && f.opening.evidence.trim() && f.opening.migrationVersion.trim(), "OPENING_BALANCE_EVIDENCE_MISSING");

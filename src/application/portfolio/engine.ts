@@ -1,3 +1,4 @@
+import { ConflictError } from "@/shared/errors";
 import { prepareCandidate } from "./candidate";
 import { completePost } from "./post-commit";
 import { deriveSupportedInception, type InceptionInputs } from "@/domain/portfolio/inception";
@@ -19,8 +20,16 @@ export class PortfolioEngine {
     const id = drafts[0].portfolioId, now = this.clock.now();
     requireRule(drafts.every(f => f.portfolioId === id), "MIXED_PORTFOLIO_BATCH");
     if (drafts.length > 1) requireRule(drafts[0].correctionGroupId && drafts.every(f => f.correctionGroupId === drafts[0].correctionGroupId && f.effectiveAt === drafts[0].effectiveAt), "ATOMIC_CORRECTION_GROUP_REQUIRED");
+    const retry = drafts.length === 1 ? await this.ledger.settlementRetry?.(drafts[0]) : null;
+    if (retry) return completePost(id, retry, now, this.ledger, this.projection);
     const committed = await this.ledger.commit(id, expected, history =>
-      prepareCandidate(id, history, drafts, now, watermark((BigInt(expected) + 1n).toString())));
+      prepareCandidate(id, history, drafts, now, watermark((BigInt(expected) + 1n).toString()))).catch(async error => {
+        if (error instanceof ConflictError && drafts.length === 1) {
+          const duplicate = await this.ledger.settlementRetry?.(drafts[0]);
+          if (duplicate) return duplicate;
+        }
+        throw error;
+      });
     return completePost(id, committed, now, this.ledger, this.projection);
   }
 

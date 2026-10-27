@@ -1,9 +1,10 @@
 import type { Instant } from "@/shared/time";
 import type { PortfolioId, LedgerWatermark } from "@/domain/portfolio/values";
-import type { Transaction } from "@/domain/portfolio/transaction";
+import type { Transaction, TransactionInput } from "@/domain/portfolio/transaction";
 import type { PortfolioState } from "@/domain/portfolio/reconstruct";
 export interface LedgerRead { readonly inceptionAt: Instant; readonly watermark: LedgerWatermark; readonly transactions: readonly Transaction[] }
 export interface PortfolioLedger {
+  settlementRetry?(input: TransactionInput): Promise<LedgerRead | null>;
   read(portfolioId: PortfolioId, through?: LedgerWatermark): Promise<LedgerRead>;
   commit(portfolioId: PortfolioId, expected: LedgerWatermark, prepare: (history: readonly Transaction[]) => readonly Transaction[]): Promise<LedgerRead>;
 }

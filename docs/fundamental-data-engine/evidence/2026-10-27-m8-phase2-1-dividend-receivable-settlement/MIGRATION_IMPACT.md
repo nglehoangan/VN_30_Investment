@@ -1,0 +1,9 @@
+# Migration impact and execution prohibition
+
+Date: 2026-10-27 (Asia/Ho_Chi_Minh). Scope: owner-authorized Phase 2.1 implementation and isolated validation only. No Phase 2.2, production posting, source acceptance or migration execution authorized.
+
+Prepared `prisma/migrations/202610270001_dividend_settlement/migration.sql` only. Original SQLite ledger_transaction has a fixed CHECK list. SQLite cannot add a permitted value without reconstructing that table. Migration disables FK enforcement on its isolated connection, starts an IMMEDIATE transaction, drops/recreates the same ledger immutability/finalization/leg triggers, copies all old columns unchanged into the new table, restores the same indexes/constraints and adds the one allowed event type. Two additive tables store audit and receipt ownership; both have append-only SQL guards and foreign keys. Prisma schema describes these tables. No old migration file modified.
+
+Rebuild is a schema operation, not a rewrite of historical financial facts. It nevertheless needs owner authorization, quiesced writers, verified backup/restore, actual-target schema compatibility review, post-copy row/hash/FK verification and a rollback plan. No production migration execution occurred or is authorized here. `db:migrate` must not be run against actual data as part of this task. Tests use disposable test databases only. Schema validation uses a temporary dummy URL without a DB migration.
+
+All-or-nothing local transaction guards migration failure; migrations against a real target require separately reviewed recovery/restore rehearsal. Prisma-generated client changes are not checked in; standard generate can expose new models later, while this implementation uses typed raw SQL for the new audit/ownership path. Existing client API and transaction boundaries reused. No new package/infrastructure/provider installed. There is no production event transport or login screen added.

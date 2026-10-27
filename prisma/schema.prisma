@@ -48,6 +48,7 @@ model Portfolio {
   revision String @default("0")
   transactions LedgerTransaction[]
   projection PortfolioProjection?
+  dividendReceipts DividendReceiptOwner[]
   @@map("portfolio")
 }
 model Security {
@@ -93,6 +94,8 @@ model LedgerTransaction {
   settled LedgerTransaction? @relation("settlement", fields: [settlesId], references: [id], onDelete: Restrict, onUpdate: Restrict)
   settlements LedgerTransaction[] @relation("settlement")
   legs LedgerLeg[]
+  dividendAudit DividendSettlementAudit?
+  dividendReceipt DividendReceiptOwner?
   @@unique([portfolioId, idempotencyKey])
   @@unique([portfolioId, source, sourceReference])
   @@index([portfolioId, eventAt])
@@ -491,4 +494,23 @@ model DependencyObjectIdentity {
   bodyHash String @map("body_hash")
   @@unique([type,objectId])
   @@map("dependency_object_identity")
+}
+
+// Phase 2.1 isolated-validation extension. No production acceptance artifacts.
+model DividendSettlementAudit {
+  transactionId String @id @map("transaction_id")
+  transaction LedgerTransaction @relation(fields: [transactionId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  body String
+  bodyHash String @map("body_hash")
+  @@map("dividend_settlement_audit")
+}
+model DividendReceiptOwner {
+  portfolioId String @map("portfolio_id")
+  portfolio Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  namespace String
+  receiptId String @map("receipt_id")
+  transactionId String @unique @map("transaction_id")
+  transaction LedgerTransaction @relation(fields: [transactionId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  @@id([portfolioId, namespace, receiptId])
+  @@map("dividend_receipt_owner")
 }

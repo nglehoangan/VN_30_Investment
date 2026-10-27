@@ -1,3 +1,5 @@
+import { persistDividendGuards, verifyDividendGuardsRead, type DividendSettlementAuthority } from "./dividend-settlement-guard";
+import { settlementCanonical } from "@/domain/portfolio/dividend-settlement";
 import type { PrismaClient, Prisma } from "@/infrastructure/db/generated/client";
 import type { PortfolioLedger, PortfolioProjection, LedgerRead } from "@/ports/portfolio";
 import { buildTransaction, type Transaction, type TransactionInput } from "@/domain/portfolio/transaction";
@@ -25,13 +27,25 @@ async function read(storage: Storage, id: PortfolioId, through?: LedgerWatermark
     const legs = row.legs.map(l => ({ id: l.id, sequence: l.sequence, type: l.type, effectiveAt: l.effectiveAt, securityId: l.securityId, quantity: l.quantity, amount: l.amount, settlementReference: l.settlementReference }));
     if (JSON.stringify(rebuilt) !== JSON.stringify(saved) || JSON.stringify(rebuilt.legs) !== JSON.stringify(legs) || row.reversesId !== (saved.facts.reversesId ?? null) || row.settlesId !== (saved.facts.settlesId ?? null) || row.corporateActionId !== (saved.facts.corporateAction?.id ?? null) || row.idempotencyKey !== saved.facts.idempotencyKey || row.eventAt !== saved.facts.eventAt || row.securityId !== (saved.facts.securityId ?? null) || row.id !== saved.facts.id || row.type !== saved.facts.type || row.portfolioId !== saved.facts.portfolioId || row.legCount !== legs.length || row.source !== saved.facts.source.source || row.sourceReference !== saved.facts.source.reference || row.methodologyId !== saved.facts.methodologyId) throw new DataIntegrityError();
   }
+  await verifyDividendGuardsRead(storage, history);
   return { inceptionAt: instant(portfolio.inceptionAt), watermark: through ?? watermark(portfolio.revision), transactions: history };
 }
 export class PrismaPortfolioLedger implements PortfolioLedger {
-  constructor(private readonly client: PrismaClient) {}
+  constructor(private readonly client: PrismaClient, private readonly dividendAuthority?: DividendSettlementAuthority) {}
   async read(id: PortfolioId, through?: LedgerWatermark) {
     try { return await this.client.$transaction(tx => read(tx, id, through)); }
     catch (e) { if (e instanceof NotFoundError) throw e; throw new DataIntegrityError(); }
+  }
+  async settlementRetry(input: TransactionInput) {
+    if (input.type !== "DIVIDEND_RECEIVABLE_SETTLEMENT") return null;
+    return this.client.$transaction(async tx => {
+      const current = await read(tx, input.portfolioId);
+      const existing = current.transactions.find(t => t.facts.id === input.id || t.facts.idempotencyKey === input.idempotencyKey);
+      if (!existing) return null;
+      if (settlementCanonical(existing.facts) !== settlementCanonical(input)) throw new ConflictError();
+      const row = await tx.ledgerTransaction.findUniqueOrThrow({ where: { id: existing.facts.id } });
+      return read(tx, input.portfolioId, watermark(row.revision));
+    });
   }
   async commit(id: PortfolioId, expected: LedgerWatermark, prepare: (history: readonly Transaction[]) => readonly Transaction[]) {
     try {
@@ -61,6 +75,7 @@ export class PrismaPortfolioLedger implements PortfolioLedger {
           for (const l of t.legs) await tx.ledgerLeg.create({ data: { ...l, transactionId: f.id } });
           await tx.ledgerTransaction.update({ where: { id: f.id }, data: { status: "POSTED" } });
         }
+        await persistDividendGuards(tx, current.transactions, additions, this.dividendAuthority);
         return { inceptionAt: current.inceptionAt, watermark: next, transactions: [...current.transactions, ...additions] };
       });
     } catch (e) {
