@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "finalUniquePassingTests": 308,
+  "existingRegressionTests": 262,
+  "newAdapterTests": 46,
+  "singleCombined308Run": false,
+  "segments": "Combined302PASS then final46newPASS following6additional tests; existing262source/tests unchanged. Not a claim of a single308test run.",
+  "commands": [
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/nav-read-adapters.test.ts tests/integration/nav-read-adapters.test.ts tests/unit/current-nav.test.ts tests/integration/current-nav.test.ts tests/unit/forward-intake.test.ts tests/integration/forward-intake.test.ts tests/unit/dividend-settlement.test.ts tests/integration/dividend-settlement.test.ts tests/unit/portfolio-accounting.test.ts tests/unit/portfolio-command.test.ts tests/unit/portfolio-read-models.test.ts tests/integration/portfolio.test.ts tests/integration/portfolio-migration.test.ts tests/integration/portfolio-regressions.test.ts tests/integration/portfolio-review-remediation.test.ts --reporter=json --outputFile=/private/tmp/m8-phase34/regression-final.json > /private/tmp/m8-phase34/regression-final.log 2>&1",
+      "exitCode": 0,
+      "result": "302/302PASS:262existing+40adapteratthatstage"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run tests/unit/nav-read-adapters.test.ts tests/integration/nav-read-adapters.test.ts --reporter=json --outputFile=/private/tmp/m8-phase34/adapters-closure.json > /private/tmp/m8-phase34/adapters-closure.log 2>&1",
+      "exitCode": 0,
+      "result": "46/46PASS after6extra boundary/head/through tests; existing262untouched"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/typescript/bin/tsc --noEmit --incremental false > /private/tmp/m8-phase34/typecheck-delivery.log 2>&1",
+      "exitCode": 0
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/eslint/bin/eslint.js src/ports/nav-read-adapters.ts src/application/current-nav/ledger-read-adapter.ts src/application/current-nav/input-provider-skeleton.ts src/infrastructure/current-nav/broker-evidence-reader.ts src/infrastructure/config/nav-broker-observations.ts tests/fixtures/nav-adapter-composition.ts tests/fixtures/nav-adapter-evidence.ts tests/unit/nav-read-adapters.test.ts tests/integration/nav-read-adapters.test.ts > /private/tmp/m8-phase34/lint-delivery.log 2>&1",
+      "exitCode": 0
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/check-boundaries.mjs > /private/tmp/m8-phase34/boundaries-closure.log 2>&1",
+      "exitCode": 0,
+      "result": "262source modules PASS"
+    },
+    {
+      "command": "DATABASE_URL=file:/private/tmp/m8-phase34/schema-only.sqlite /private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/database.mjs validate --no-env-file > /private/tmp/m8-phase34/prisma.log 2>&1",
+      "exitCode": 0,
+      "result": "Schema-only, /tmp URL; no actual migration"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --experimental-loader ./docs/fundamental-data-engine/evidence/2026-10-28-m8-phase3-4-read-only-nav-adapters/validation/readonly-loader.mjs docs/fundamental-data-engine/evidence/2026-10-28-m8-phase3-4-read-only-nav-adapters/validation/opening-readonly.mjs",
+      "exitCode": 0,
+      "result": "PASS actual read-only"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --experimental-loader ./docs/fundamental-data-engine/evidence/2026-10-28-m8-phase3-4-read-only-nav-adapters/validation/readonly-loader.mjs docs/fundamental-data-engine/evidence/2026-10-28-m8-phase3-4-read-only-nav-adapters/validation/actual-ledger-adapter.mjs",
+      "exitCode": 0,
+      "result": "PASS actual read-only"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node --experimental-loader ./docs/fundamental-data-engine/evidence/2026-10-28-m8-phase3-4-read-only-nav-adapters/validation/readonly-loader.mjs docs/fundamental-data-engine/evidence/2026-10-28-m8-phase3-4-read-only-nav-adapters/validation/synthetic-adapter-replay.mjs",
+      "exitCode": 0,
+      "result": "PASS synthetic only"
+    }
+  ],
+  "priorFailures": [
+    {
+      "artifact": "validation/regression.json",
+      "result": "301/302PASS; immutable trigger correctly blocked test fault setup; test fixed to assert denial then private fault injection/restore"
+    },
+    {
+      "artifact": "validation/typecheck-v2.log",
+      "result": "TypeScript callback-flow inferrednull/never; explicit composition return type fixed"
+    },
+    {
+      "artifact": "validation/boundaries.log",
+      "result": "Zod import outside designated config boundary; moved schema, checker unchanged"
+    },
+    {
+      "artifact": "validation/lint-initial.log",
+      "result": "Unused parameter warning, fixed"
+    }
+  ],
+  "actualReadOnly": [
+    "validation/opening-replay.json",
+    "validation/actual-ledger-adapter.json"
+  ],
+  "syntheticExpectedActual": "validation/synthetic-expected-actual.json",
+  "scenarioCoverage": "SCENARIO_COVERAGE.json",
+  "independentOperationalAcceptance": "NOT_OBTAINED",
+  "realBrokerRawParserAcceptance": "NOT_IMPLEMENTED_NOT_CLAIMED"
+}

@@ -1,0 +1,399 @@
+{
+  "requiredCaseCount": 28,
+  "coveredCaseCount": 28,
+  "cases": [
+    {
+      "id": "01",
+      "case": "Valid immutable ledger read",
+      "expected": "Exact existing replay, immutable history/state hashes, completenessfalse",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 01 valid immutable ledger snapshot reuses reconstruction, no completeness claim/write API"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "02",
+      "case": "Ledger revision mismatch",
+      "expected": "Reject mismatch/stale revision",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 02 revision mismatch and stale revisions are rejected"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "03",
+      "case": "Ledger state hash mismatch",
+      "expected": "Reject state/facts pin mismatch",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 03 expected ledger state/facts hash must match exact replay"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "04",
+      "case": "Valid broker evidence read",
+      "expected": "Preserve account/time/fields/decimal strings; acceptedfalse",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 04 valid broker read preserves immutable account/time/original fields/decimal provenance"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "05",
+      "case": "Missing broker file",
+      "expected": "BLOCKED/BROKER_FILE_MISSING",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 05 missing file"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "06",
+      "case": "Modified broker file",
+      "expected": "BLOCKED/BROKER_HASH_MISMATCH",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 06 modified bytes cannot match original pin"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "07",
+      "case": "Incorrect SHA256",
+      "expected": "BLOCKED malformed or mismatched hash",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 07 incorrect or malformed SHA256"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "08",
+      "case": "Oversized broker file",
+      "expected": "BLOCKED declared/actual byte limit",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 08 oversized actual file and declared size are bounded"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "09",
+      "case": "Path traversal",
+      "expected": "BLOCKED all relative/absolute/dotdot/backslash variants",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 09 reject traversal ../broker.json",
+        "M8Phase3.4 isolated read adapters 09 reject traversal /private/tmp/broker.json",
+        "M8Phase3.4 isolated read adapters 09 reject traversal x/../broker.json",
+        "M8Phase3.4 isolated read adapters 09 reject traversal x\\broker.json"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "10",
+      "case": "Unsupported broker schema",
+      "expected": "BLOCKED exact version/schema required",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 10 unsupported schema rejected even with correct bytes/hash"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "11",
+      "case": "Wrong account identity",
+      "expected": "BLOCKED account/document mismatch",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 11 exact account and document identity required, not filename"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "12",
+      "case": "Conflicting broker observations",
+      "expected": "BLOCKED with preserved conflict details",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 12 conflicting observations retain source conflict details but reject usable output"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "13",
+      "case": "Missing cash observation",
+      "expected": "MISSING_CASH_OBSERVATION, no0fallback",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 13-15 missing CASH never0"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "14",
+      "case": "Unknown liability",
+      "expected": "UNKNOWN_LIABILITY, no0fallback",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 13-15 missing LIABILITY never0"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "15",
+      "case": "Missing receivable evidence",
+      "expected": "MISSING_RECEIVABLE_EVIDENCE",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 13-15 missing RECEIVABLE never0"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "16",
+      "case": "Pending CA ambiguity",
+      "expected": "Unqualified lifecycle, no conversion",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 16 pending CA ambiguity and unsupported lifecycle block"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "17",
+      "case": "Duplicate security identity",
+      "expected": "DUPLICATE_SECURITY_IDENTITY",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 17 duplicate security identity rejected even with distinct field IDs"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "18",
+      "case": "Knowledge cutoff violation",
+      "expected": "Reject future ledger/source knowledge",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 18 ledger/source knowledge beyondK rejected without backdating"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "19",
+      "case": "Valuation timestamp mismatch",
+      "expected": "No historical/current substitution",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 19 inconsistent valuation timestamp never substitutes broker current balances"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "20",
+      "case": "Evidence-head mismatch",
+      "expected": "EVIDENCE_HEAD_MISMATCH",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 20 evidence-head mismatch explicit"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "21",
+      "case": "Missing source authority",
+      "expected": "SOURCE_AUTHORITY_MISSING",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 21-23 absent authority/acceptance and continuity always block both full NAVs"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "22",
+      "case": "Missing independent acceptance",
+      "expected": "INDEPENDENT_ACCEPTANCE_MISSING",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 21-23 absent authority/acceptance and continuity always block both full NAVs"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "23",
+      "case": "Full NAV blocked",
+      "expected": "NAV_BLOCKED, both totalsnull, preparationBLOCKED",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 21-23 absent authority/acceptance and continuity always block both full NAVs"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "24",
+      "case": "Synthetic accepted input compatibility",
+      "expected": "Existing fictional qualifiedNAV1220only, no adapter authority",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 24-25 synthetic accepted calculator inputs stay compatible; adapter never creates acceptance"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "25",
+      "case": "Existing calculator regression",
+      "expected": "Approved calculator compatibility plus51existingNAVtests",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 24-25 synthetic accepted calculator inputs stay compatible; adapter never creates acceptance"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "26",
+      "case": "No production mutations",
+      "expected": "Original broker bytes/DBfinancial rows/protected data unchanged",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 26-28 deterministic replay, exact decimal and unchanged original bytes"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "27",
+      "case": "Deterministic replay",
+      "expected": "Repeated preparation hashes equal",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 26-28 deterministic replay, exact decimal and unchanged original bytes"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    },
+    {
+      "id": "28",
+      "case": "Decimal precision preservation",
+      "expected": "Exact1000.000000000000 lexeme preserved",
+      "actual": "PASS assertions verified",
+      "assertions": [
+        "M8Phase3.4 isolated read adapters 26-28 deterministic replay, exact decimal and unchanged original bytes"
+      ],
+      "artifact": "validation/adapters-closure.json",
+      "evidenceType": "SYNTHETIC_ISOLATED_NOT_OPERATIONAL_ACCEPTANCE"
+    }
+  ],
+  "additionalNegatives": [
+    {
+      "name": "SliceA disposable SQLite integration (synthetic only) repository integrity, ledger snapshot and isolated composition leave every financial row/revision unchanged",
+      "status": "passed"
+    },
+    {
+      "name": "SliceA disposable SQLite integration (synthetic only) corrupt saved transaction or leg fails repository integrity and blocks adapter output",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters symlink final and intermediate components rejected",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters TOCTOU replacement after descriptor open rejected even with identical bytes",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters unsupported UTF8/UTF16/BOM encoding rejected with valid byte hashes",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters duplicate evidence identifiers in fields or manifests rejected",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters duplicate JSON keys are not accepted last-wins",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters future observations and unsupported economic dates reject",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters inconsistent account/perimeter never imports or leaks another account",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters cash discrepancy and missing/null liabilities never trigger balancing",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters conflicting cross-document observations remain blocked rather than latest-selected",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters QUALIFIED_ONLY and opted-in indicative remain fully blocked through adapter",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters composition exposes only read; concurrent requests cannot share diagnostics",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters forged provenance pointers and untrusted approval fields are unsupported",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters blocked evidence heads still bind exact invalid pins and request revision",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters same-revision facts replacement is stale, not an unchanged ledger",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters large actual file with understated manifest size fails before parsing",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters nonregular files and symlink root are rejected",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters ambiguous account structure and unsupported precision are not repaired",
+      "status": "passed"
+    },
+    {
+      "name": "M8Phase3.4 isolated read adapters read capability preserves optional existing through-revision semantics",
+      "status": "passed"
+    }
+  ]
+}
