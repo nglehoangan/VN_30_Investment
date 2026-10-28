@@ -1,0 +1,227 @@
+{
+  "recordKind": "NEGATIVE_VALIDATION_PLAN_NOT_EXECUTED_RESULTS",
+  "plannedCaseCount": 20,
+  "executedCaseCount": 0,
+  "cases": [
+    {
+      "id": "NEG-01",
+      "case": "Wrong account",
+      "input": "Package privately belongs to a different full broker account",
+      "expectedIntakeOutcome": "REJECTED_INTAKE",
+      "expectedBlockingReason": "EXACT_ACCOUNT_MISMATCH",
+      "requiredControl": "Compare authentic private account source, not alias",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-02",
+      "case": "Masked account ambiguity",
+      "input": "Only last-four or masked account and similar balances",
+      "expectedIntakeOutcome": "RECEIVED_UNVERIFIED; readiness BLOCKED",
+      "expectedBlockingReason": "EXACT_ACCOUNT_PROOF_MISSING",
+      "requiredControl": "Require full private account/ownership binding",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-03",
+      "case": "Wrong portfolio",
+      "input": "Source account/perimeter not linked to requested portfolio",
+      "expectedIntakeOutcome": "REJECTED_INTAKE",
+      "expectedBlockingReason": "PORTFOLIO_SCOPE_MISMATCH",
+      "requiredControl": "Preserve exact portfolio/perimeter scope",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-04",
+      "case": "Missing document identity",
+      "input": "Original source has no attributable document/request/response reference",
+      "expectedIntakeOutcome": "RECEIVED_UNVERIFIED; readiness BLOCKED",
+      "expectedBlockingReason": "DOCUMENT_ID_MISSING",
+      "requiredControl": "Require genuine original identity or attributable cross-reference",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-05",
+      "case": "Missing issuer attribution",
+      "input": "Letterhead/image or file hash presented as sole issuer proof",
+      "expectedIntakeOutcome": "RECEIVED_UNVERIFIED; readiness BLOCKED",
+      "expectedBlockingReason": "ISSUER_AUTHENTICITY_UNVERIFIED",
+      "requiredControl": "Require genuine issuer-controlled source and authorized review",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-06",
+      "case": "Missing instrument code",
+      "input": "Only symbol, quantity or unexplained ID supplied",
+      "expectedIntakeOutcome": "RECEIVED_UNVERIFIED; readiness BLOCKED",
+      "expectedBlockingReason": "STABLE_INSTRUMENT_LINK_MISSING",
+      "requiredControl": "No ticker-only substitute; exact stable code/cross-reference required",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-07",
+      "case": "Ticker-only matching",
+      "input": "Same ticker and quantity across account/master",
+      "expectedIntakeOutcome": "RECEIVED_UNVERIFIED; readiness BLOCKED",
+      "expectedBlockingReason": "TICKER_ONLY_NOT_PROOF",
+      "requiredControl": "Do not manufacture mapping",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-08",
+      "case": "Conflicting ISIN",
+      "input": "Account annex and instrument source disagree",
+      "expectedIntakeOutcome": "RECEIVED_UNVERIFIED; readiness BLOCKED",
+      "expectedBlockingReason": "IDENTIFIER_CONFLICT",
+      "requiredControl": "Retain both sources; no preferred-field override",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-09",
+      "case": "Missing effective interval",
+      "input": "No witnessed applicability dates or end UNKNOWN",
+      "expectedIntakeOutcome": "RECEIVED_UNVERIFIED; readiness BLOCKED",
+      "expectedBlockingReason": "INTERVAL_UNPROVEN",
+      "requiredControl": "Do not use opening/listing/retrieval as inferred effective date",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-10",
+      "case": "Current snapshot substituted",
+      "input": "New snapshot offered as opening-to-23Oct continuity",
+      "expectedIntakeOutcome": "RECEIVED_UNVERIFIED; readiness BLOCKED",
+      "expectedBlockingReason": "HISTORICAL_CONTINUITY_MISSING",
+      "requiredControl": "Request exact historical source/attestation; honest later knowledge",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-11",
+      "case": "FPT lifecycle ambiguity",
+      "input": "200 ordinary plus 20 pending, no credit/availability witness",
+      "expectedIntakeOutcome": "RECEIVED_UNVERIFIED; readiness BLOCKED",
+      "expectedBlockingReason": "FPT_LIFECYCLE_UNKNOWN",
+      "requiredControl": "Keep 220 total and unknown conversion/date; no tradability assumption",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-12",
+      "case": "Duplicate position identity",
+      "input": "Two overlapping rows claim the same economic allocation",
+      "expectedIntakeOutcome": "RECEIVED_UNVERIFIED; readiness BLOCKED",
+      "expectedBlockingReason": "DUPLICATE_ECONOMIC_IDENTITY",
+      "requiredControl": "Reject duplicate qualification; preserve separate source rows",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-13",
+      "case": "Modified source bytes",
+      "input": "Private file differs from original pinned bytes",
+      "expectedIntakeOutcome": "REJECTED_INTAKE",
+      "expectedBlockingReason": "CONTENT_CHANGED",
+      "requiredControl": "Quarantine and investigate; never rewrite pin to hide alteration",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-14",
+      "case": "Incorrect SHA-256",
+      "input": "Manifest checksum not equal to original byte digest",
+      "expectedIntakeOutcome": "REJECTED_INTAKE",
+      "expectedBlockingReason": "CONTENT_HASH_MISMATCH",
+      "requiredControl": "Recompute exact original bytes under authorized custody",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-15",
+      "case": "Superseded document",
+      "input": "Old version presented without current revision scope",
+      "expectedIntakeOutcome": "SUPERSEDED if genuinely verified; otherwise readiness BLOCKED",
+      "expectedBlockingReason": "SOURCE_SUPERSESSION_UNVERIFIED",
+      "requiredControl": "Retain original and replacement; no latest-wins",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-16",
+      "case": "Revoked document",
+      "input": "Genuine source/acceptance revocation affects scope, or current revocation unknown",
+      "expectedIntakeOutcome": "REJECTED_INTAKE if genuinely invalid; otherwise readiness BLOCKED",
+      "expectedBlockingReason": "SOURCE_REVOKED_OR_UNKNOWN",
+      "requiredControl": "No reuse of stale authority; preserve audit",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-17",
+      "case": "Synthetic approval",
+      "input": "Test verifier or local accepted=true presented as real approval",
+      "expectedIntakeOutcome": "REJECTED_INTAKE for attempted authority; readiness BLOCKED",
+      "expectedBlockingReason": "SYNTHETIC_APPROVAL_PROHIBITED",
+      "requiredControl": "Clearly labelled synthetic metadata is planning only, never real receipt",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-18",
+      "case": "Missing independent reviewer",
+      "input": "No genuinely distinct authenticated authorized reviewer available",
+      "expectedIntakeOutcome": "INTEGRITY_VERIFIED at most; readiness BLOCKED",
+      "expectedBlockingReason": "INDEPENDENT_REVIEWER_UNAVAILABLE",
+      "requiredControl": "Do not fabricate a role or self-approve",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-19",
+      "case": "Cross-account contamination",
+      "input": "Documents or fields from multiple private accounts blended",
+      "expectedIntakeOutcome": "REJECTED_INTAKE or quarantine; readiness BLOCKED",
+      "expectedBlockingReason": "CROSS_ACCOUNT_CONTAMINATION",
+      "requiredControl": "Keep originals separate, verify exact account for every row",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    },
+    {
+      "id": "NEG-20",
+      "case": "Unauthorized publication",
+      "input": "Original statement, account ID or private path proposed for GitHub/logs",
+      "expectedIntakeOutcome": "REJECTED_INTAKE for unsafe export; readiness BLOCKED",
+      "expectedBlockingReason": "PRIVATE_EVIDENCE_PUBLICATION_PROHIBITED",
+      "requiredControl": "Do not commit/export; private custody and reviewed metadata projection only",
+      "status": "PLANNED",
+      "operationalExecution": false,
+      "identityOrFinancialAcceptance": false
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "recordKind": "PROPOSED_MODEL_NOT_STATE_MACHINE_IMPLEMENTATION",
+  "states": [
+    {
+      "state": "REQUEST_PREPARED",
+      "entryRequirements": "A draft request/checklist exists; no evidence acquisition or receipt is implied",
+      "allowedTransitions": "AWAITING_SOURCE after separate owner acquisition authorization and actual sending; RECEIVED_UNVERIFIED only for separately authorized intake of originals already privately held",
+      "requiredEvidence": "Draft scope, owner authorization and actual action reference kept private; never invent a sent request",
+      "financialOrIdentityAcceptanceGranted": false
+    },
+    {
+      "state": "AWAITING_SOURCE",
+      "entryRequirements": "A separately authorized request was actually sent and source delivery is pending",
+      "allowedTransitions": "RECEIVED_UNVERIFIED on separately authorized actual private receipt; REQUEST_PREPARED for revised unsent scope",
+      "requiredEvidence": "Private request/channel reference, scope and honest dates; no source assumed available",
+      "financialOrIdentityAcceptanceGranted": false
+    },
+    {
+      "state": "RECEIVED_UNVERIFIED",
+      "entryRequirements": "Original bytes privately received under separate authorization, quarantined; no identity or source acceptance",
+      "allowedTransitions": "INTEGRITY_VERIFIED after technical byte/custody checks; REJECTED_INTAKE on failed safety/scope checks; SUPERSEDED when a genuine replacement is documented",
+      "requiredEvidence": "Private custody receipt, original byte identity/size, schema and outstanding issues; no original contents in logs",
+      "financialOrIdentityAcceptanceGranted": false
+    },
+    {
+      "state": "INTEGRITY_VERIFIED",
+      "entryRequirements": "Original retained bytes and manifest pins/schema/custody have passed technical integrity checks only",
+      "allowedTransitions": "IDENTITY_REVIEW_PENDING only when every mandatory qualification-readiness gate is met; REJECTED_INTAKE for new invalidity; SUPERSEDED on evidenced revision",
+      "requiredEvidence": "Exact original/derivative hashes, technical validation reference and current issues; issuer authenticity and identity are separate",
+      "financialOrIdentityAcceptanceGranted": false
+    },
+    {
+      "state": "IDENTITY_REVIEW_PENDING",
+      "entryRequirements": "All review-entry gates supported, no unresolved mandatory issue, real authorized reviewer available; review not yet acceptance",
+      "allowedTransitions": "RECEIVED_UNVERIFIED if new uncertainty requires quarantine; REJECTED_INTAKE for invalid input; SUPERSEDED on replacement",
+      "requiredEvidence": "Gate bundle, scope, authentic reviewer-availability proof and private source references; no invented reviewer identity",
+      "financialOrIdentityAcceptanceGranted": false
+    },
+    {
+      "state": "REJECTED_INTAKE",
+      "entryRequirements": "An authorized intake operator declines unsafe, corrupt, wrong-scope or otherwise unsuitable intake; this is not a financial rejection decision",
+      "allowedTransitions": "Terminal for this evidence version; a corrected new version starts separately",
+      "requiredEvidence": "Safe issue codes, private rationale/custody record, original bytes preserved according to future approved policy",
+      "financialOrIdentityAcceptanceGranted": false
+    },
+    {
+      "state": "SUPERSEDED",
+      "entryRequirements": "A genuine source revision/replacement and its exact affected scope are documented",
+      "allowedTransitions": "Terminal for this evidence version; replacement has a new opaque evidence ID and fresh checks",
+      "requiredEvidence": "Predecessor/replacement references and issuer revision provenance; no latest-wins or deletion of original audit",
+      "financialOrIdentityAcceptanceGranted": false
+    }
+  ],
+  "actualRealEvidenceStateEvents": []
+}

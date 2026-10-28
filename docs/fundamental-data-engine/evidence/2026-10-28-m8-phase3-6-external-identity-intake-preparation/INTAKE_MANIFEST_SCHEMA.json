@@ -1,0 +1,657 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:vn30:planning:external-identity-intake-manifest:v1",
+  "title": "Proposed private evidence intake metadata, not acceptance",
+  "description": "Design only. No real manifest is instantiated in Phase3.6. Original evidence and sensitive document IDs stay private; public metadata requires a separate reviewed projection. Schema validity never proves issuer authenticity, custody, identity or review.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "external-identity-intake-manifest-v1-PROPOSED"
+    },
+    "recordClass": {
+      "enum": [
+        "SYNTHETIC_EXAMPLE",
+        "FUTURE_PRIVATE_INTAKE_METADATA"
+      ]
+    },
+    "purpose": {
+      "const": "INTAKE_ONLY_NOT_ACCEPTANCE"
+    },
+    "visibility": {
+      "const": "PRIVATE_CUSTODY_METADATA_NOT_PUBLIC_EXPORT"
+    },
+    "evidenceId": {
+      "type": "string",
+      "pattern": "^EV-[A-F0-9]{32}$"
+    },
+    "sourceProvider": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "documentType": {
+      "enum": [
+        "ACCOUNT_OWNERSHIP_AND_PERIMETER",
+        "POSITION_INSTRUMENT_ANNEX",
+        "CORPORATE_ACTION_ENTITLEMENT_STATUS",
+        "SOURCE_ATTRIBUTION_RECORD",
+        "COMBINED_IDENTITY_PACKAGE"
+      ]
+    },
+    "documentId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 512,
+      "$comment": "Original source ID may contain personal data: private only. Never copy directly into public metadata."
+    },
+    "publicDocumentAlias": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^REF-[A-F0-9]{32}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "accountAlias": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+    },
+    "economicPerimeter": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "portfolioAlias": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "scopeDefinitionPrivateRef": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^REF-[A-F0-9]{32}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "UNKNOWN",
+            "SOURCE_STATED_NOT_ACCEPTED"
+          ]
+        }
+      },
+      "required": [
+        "portfolioAlias",
+        "scopeDefinitionPrivateRef",
+        "status"
+      ]
+    },
+    "relevantHoldings": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "FPT",
+          "GAS",
+          "HPG",
+          "MBB",
+          "MWG",
+          "SSI",
+          "TCB",
+          "VCB",
+          "VHM",
+          "VPL",
+          "VRE"
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 11,
+      "uniqueItems": true
+    },
+    "effectiveInterval": {
+      "$ref": "#/$defs/interval"
+    },
+    "observationTimestamp": {
+      "$ref": "#/$defs/timestamp"
+    },
+    "publicationTimestamp": {
+      "$ref": "#/$defs/timestamp"
+    },
+    "retrievalTimestamp": {
+      "$ref": "#/$defs/timestamp"
+    },
+    "knowledgeTimestamp": {
+      "$ref": "#/$defs/timestamp"
+    },
+    "contentSha256": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "fileSize": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "sourceCustodyRef": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^REF-[A-F0-9]{32}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "intakeState": {
+      "enum": [
+        "REQUEST_PREPARED",
+        "AWAITING_SOURCE",
+        "RECEIVED_UNVERIFIED",
+        "INTEGRITY_VERIFIED",
+        "IDENTITY_REVIEW_PENDING",
+        "REJECTED_INTAKE",
+        "SUPERSEDED"
+      ]
+    },
+    "qualificationStatus": {
+      "const": "NOT_QUALIFIED"
+    },
+    "integrityStatus": {
+      "enum": [
+        "NOT_CHECKED",
+        "VERIFIED_BYTES_ONLY",
+        "FAILED"
+      ]
+    },
+    "outstandingIssues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "enum": [
+              "SOURCE_NOT_REQUESTED",
+              "SOURCE_NOT_RECEIVED",
+              "EXACT_ACCOUNT_UNVERIFIED",
+              "PERIMETER_UNVERIFIED",
+              "DOCUMENT_ID_MISSING",
+              "ISSUER_UNVERIFIED",
+              "POSITION_LINK_MISSING",
+              "INSTRUMENT_CODE_MISSING",
+              "ISIN_OR_ALTERNATE_UNVERIFIED",
+              "INTERVAL_UNKNOWN",
+              "FPT_LIFECYCLE_UNKNOWN",
+              "CONTENT_HASH_UNCHECKED",
+              "SOURCE_CONFLICT",
+              "SUPERSESSION_UNVERIFIED",
+              "REVOCATION_UNVERIFIED",
+              "REVIEWER_UNAVAILABLE",
+              "PRIVACY_REVIEW_REQUIRED"
+            ]
+          },
+          "privateDetailRef": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^REF-[A-F0-9]{32}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "privateDetailRef"
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 100
+    },
+    "predecessorEvidenceRef": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^REF-[A-F0-9]{32}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "replacementEvidenceRef": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^REF-[A-F0-9]{32}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "sourceRevisionProofRef": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^REF-[A-F0-9]{32}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reviewEntryGateBundleRef": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^REF-[A-F0-9]{32}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "authenticityStatus": {
+      "enum": [
+        "NOT_ASSESSED",
+        "UNVERIFIED",
+        "REQUIRES_AUTHENTICATED_REVIEW",
+        "PRE_REVIEW_ATTRIBUTION_EVIDENCE_LINKED_NOT_ACCEPTED"
+      ]
+    },
+    "operationalPermissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "identityAcceptance": {
+          "const": false
+        },
+        "financialAcceptance": {
+          "const": false
+        },
+        "navPublication": {
+          "const": false
+        },
+        "dashboardActivation": {
+          "const": false
+        },
+        "scoring": {
+          "const": false
+        },
+        "ledgerImport": {
+          "const": false
+        }
+      },
+      "required": [
+        "identityAcceptance",
+        "financialAcceptance",
+        "navPublication",
+        "dashboardActivation",
+        "scoring",
+        "ledgerImport"
+      ]
+    },
+    "syntheticNotice": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "recordClass",
+    "purpose",
+    "visibility",
+    "evidenceId",
+    "sourceProvider",
+    "documentType",
+    "documentId",
+    "publicDocumentAlias",
+    "accountAlias",
+    "economicPerimeter",
+    "relevantHoldings",
+    "effectiveInterval",
+    "observationTimestamp",
+    "publicationTimestamp",
+    "retrievalTimestamp",
+    "knowledgeTimestamp",
+    "contentSha256",
+    "fileSize",
+    "sourceCustodyRef",
+    "intakeState",
+    "qualificationStatus",
+    "integrityStatus",
+    "outstandingIssues",
+    "predecessorEvidenceRef",
+    "replacementEvidenceRef",
+    "sourceRevisionProofRef",
+    "reviewEntryGateBundleRef",
+    "authenticityStatus",
+    "operationalPermissions"
+  ],
+  "$defs": {
+    "timestamp": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "maxLength": 40
+            }
+          ]
+        },
+        "precision": {
+          "enum": [
+            "UNKNOWN",
+            "DATE",
+            "INSTANT"
+          ]
+        },
+        "basis": {
+          "enum": [
+            "UNESTABLISHED",
+            "SOURCE_STATED",
+            "LOCAL_RETRIEVAL_EVENT"
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "precision",
+        "basis"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "precision": {
+                "const": "UNKNOWN"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "basis": {
+                "const": "UNESTABLISHED"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "precision": {
+                "const": "INSTANT"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "precision": {
+                "const": "DATE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "string",
+                "format": "date",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "basis": {
+                "const": "SOURCE_STATED"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "knownTimestamp": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/timestamp"
+        },
+        {
+          "properties": {
+            "precision": {
+              "enum": [
+                "DATE",
+                "INSTANT"
+              ]
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "interval": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "to": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "endPolicy": {
+          "enum": [
+            "UNKNOWN",
+            "EXPLICIT_BOUNDED",
+            "EXPLICIT_OPEN"
+          ]
+        },
+        "sourceIntervalProofRef": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^REF-[A-F0-9]{32}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "endPolicy",
+        "sourceIntervalProofRef"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "endPolicy": {
+                "const": "EXPLICIT_OPEN"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "to": {
+                "type": "null"
+              },
+              "sourceIntervalProofRef": {
+                "type": "string",
+                "pattern": "^REF-[A-F0-9]{32}$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "endPolicy": {
+                "const": "EXPLICIT_BOUNDED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "to": {
+                "$ref": "#/$defs/knownTimestamp"
+              },
+              "from": {
+                "$ref": "#/$defs/knownTimestamp"
+              },
+              "sourceIntervalProofRef": {
+                "type": "string",
+                "pattern": "^REF-[A-F0-9]{32}$"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "intakeState": {
+            "enum": [
+              "INTEGRITY_VERIFIED",
+              "IDENTITY_REVIEW_PENDING"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "contentSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "fileSize": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sourceCustodyRef": {
+            "type": "string",
+            "pattern": "^REF-[A-F0-9]{32}$"
+          },
+          "integrityStatus": {
+            "const": "VERIFIED_BYTES_ONLY"
+          },
+          "retrievalTimestamp": {
+            "$ref": "#/$defs/knownTimestamp"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "recordClass": {
+            "const": "SYNTHETIC_EXAMPLE"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "syntheticNotice"
+        ],
+        "properties": {
+          "syntheticNotice": {
+            "const": "SYNTHETIC_METADATA_ONLY_NO_SOURCE_DOCUMENT_OR_APPROVAL"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "intakeState": {
+            "const": "IDENTITY_REVIEW_PENDING"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "reviewEntryGateBundleRef": {
+            "type": "string",
+            "pattern": "^REF-[A-F0-9]{32}$"
+          },
+          "authenticityStatus": {
+            "const": "PRE_REVIEW_ATTRIBUTION_EVIDENCE_LINKED_NOT_ACCEPTED"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "intakeState": {
+            "const": "SUPERSEDED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "replacementEvidenceRef": {
+            "type": "string",
+            "pattern": "^REF-[A-F0-9]{32}$"
+          },
+          "sourceRevisionProofRef": {
+            "type": "string",
+            "pattern": "^REF-[A-F0-9]{32}$"
+          }
+        }
+      }
+    }
+  ]
+}
