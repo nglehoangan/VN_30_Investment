@@ -1,0 +1,45 @@
+{
+  "recordKind": "PROPOSED_IDENTITY_REQUIREMENTS_NOT_POSTINGS",
+  "actions": [
+    {
+      "actionType": "Cash dividend",
+      "requiredEvidence": "Issuer action/event ID, record/ex/payable dates, account entitlement/allocation ID, security anchor, gross/net/tax basis, exact receipt/payment ID",
+      "boundary": "Claim/receipt identity is separate from cash movement; equal amount is not a link; never an external contribution"
+    },
+    {
+      "actionType": "Stock dividend",
+      "requiredEvidence": "Issuer/depository action ID, terms/ratio/rounding, record/allocation/credit dates, account quantity and current status",
+      "boundary": "Legal entitlement, allocated pending shares, credited ordinary and tradable quantity are different facts"
+    },
+    {
+      "actionType": "Bonus shares",
+      "requiredEvidence": "Exact legal action/terms, account allocation and quantity/rounding/lifecycle evidence",
+      "boundary": "Model identity requirements only; no new unsupported BONUSposting or automatic availability"
+    },
+    {
+      "actionType": "Rights issue",
+      "requiredEvidence": "Distinct right/instrument/action ID, record/subscription/exercise/payment/allocation/expiry evidence",
+      "boundary": "Rights are not ordinary shares; subscription obligations/cash must not be omitted; no automatic equivalent pricing"
+    },
+    {
+      "actionType": "Stock split",
+      "requiredEvidence": "Instrument/action identity, official ratio/effective date, account quantity adjustment and RAWprice alignment",
+      "boundary": "Existing engine must own any authorized replay; no manual quantity/price adjustment in identity reader"
+    },
+    {
+      "actionType": "Pending shares",
+      "requiredEvidence": "Origin entitlement/action/allocation ID, disjoint pending/ordinary quantities and dated credit/trading notices",
+      "boundary": "Do not infer conversion date or ordinary eligibility from aggregate/current ticker"
+    },
+    {
+      "actionType": "Settlement completion",
+      "requiredEvidence": "Exact originating trade/claim/event, settlement reference/date/account and quantity/cash legs",
+      "boundary": "Settlement identity does not follow from a matching balance or source flag alone"
+    },
+    {
+      "actionType": "Trading availability",
+      "requiredEvidence": "Dated account status plus applicable exchange/depository/broker restriction/release evidence",
+      "boundary": "Available/tradable is distinct from legal entitlement, economic ownership and recorded quantity"
+    }
+  ]
+}

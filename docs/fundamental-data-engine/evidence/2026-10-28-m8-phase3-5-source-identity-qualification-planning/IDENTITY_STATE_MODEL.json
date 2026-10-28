@@ -1,0 +1,55 @@
+{
+  "recordKind": "PROPOSED_STATE_MODEL_NOT_LIVE_RECORDS",
+  "states": [
+    {
+      "state": "UNRESOLVED",
+      "entryRequirements": "Missing/contradictory account, security, interval or authority evidence; default",
+      "allowedTransitions": "OBSERVED, REJECTED",
+      "requiredEvidence": "Gap list and exact source references where available",
+      "reviewer": "No reviewer inferred; objective failure recorded only as technical result",
+      "permissionsAndRevocation": "No operational use; keep blocked on missing/revoked dependency"
+    },
+    {
+      "state": "OBSERVED",
+      "entryRequirements": "Integrity/schema validated retained fact and honest times; identity relation not proved",
+      "allowedTransitions": "MATCH_CANDIDATE, REJECTED, UNRESOLVED",
+      "requiredEvidence": "Pinned original bytes, account/perimeter observations and provenance",
+      "reviewer": "Technical validation may be automated; no human acceptance inferred",
+      "permissionsAndRevocation": "Read/research observation only, never automatic qualification"
+    },
+    {
+      "state": "MATCH_CANDIDATE",
+      "entryRequirements": "Unique scoped proposed relationship supported by required technical identifiers and interval witnesses, no unresolved contradiction",
+      "allowedTransitions": "QUALIFIED, REJECTED, UNRESOLVED",
+      "requiredEvidence": "Exact ledger/account/market anchors, venue/class, interval/action continuity and no duplicates",
+      "reviewer": "Producer proposes; distinct authenticated reviewers still required",
+      "permissionsAndRevocation": "Candidate only; no NAV/full-plan/authority grant"
+    },
+    {
+      "state": "QUALIFIED",
+      "entryRequirements": "Exact relationship scope with authentic source/identity interpretation and producer-distinct acceptance; all required intervals/current grants valid",
+      "allowedTransitions": "REVOKED, UNRESOLVED",
+      "requiredEvidence": "Exact accepted subject/hash, reviewer/role/audit, scope, expiry/revocation and validation pins",
+      "reviewer": "Authorized authenticated identity reviewer distinct from producer; independence verified as persons not aliases",
+      "permissionsAndRevocation": "Identity scope only; NAVeconomics/price/publication gates remain independent"
+    },
+    {
+      "state": "REJECTED",
+      "entryRequirements": "Documented decision that this exact candidate/version is incorrect or unacceptable",
+      "allowedTransitions": "No same-version reactivation; new version starts UNRESOLVED",
+      "requiredEvidence": "Exact rejected subject/reasons and decision provenance",
+      "reviewer": "Authenticated authorized review for a formal rejection; local parse failure is only blocked diagnostic",
+      "permissionsAndRevocation": "No use; preserve immutable rejected version"
+    },
+    {
+      "state": "REVOKED",
+      "entryRequirements": "Previously accepted mapping invalidated by authentic revocation/supersession within exact scope",
+      "allowedTransitions": "No same-version reactivation; new version starts UNRESOLVED",
+      "requiredEvidence": "Prior decision and bound revocation/correction/supersession event",
+      "reviewer": "Authorized authenticated revoker and current audit/role verification",
+      "permissionsAndRevocation": "Deny downstream use immediately; retain historical audit"
+    }
+  ],
+  "runtimeImplemented": false,
+  "identityAcceptanceRecords": []
+}

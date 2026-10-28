@@ -1,0 +1,118 @@
+{
+  "recordKind": "READ_ONLY_BASELINE_ASSESSMENT_NOT_QUALIFICATION_RECORDS",
+  "baselineCommit": "81e2e8e669f2bea1a60aecf71de3952edd38965c",
+  "items": [
+    {
+      "id": "PORTFOLIO",
+      "sourcePath": "src/ports/portfolio.ts",
+      "existing": "PortfolioDefinition/ledger IDs; existing read/reconstruction and Phase3.4hash snapshot",
+      "implementationStatus": "IMPLEMENTED",
+      "limitation": "Exact external account-owner/perimeter binding not established",
+      "evidenceOrOperationalStatus": "EXTERNAL_EVIDENCE_REQUIRED"
+    },
+    {
+      "id": "BROKER_UI",
+      "sourcePath": "src/domain/portfolio/broker-snapshot.ts",
+      "existing": "vvios-broker-snapshot-v1symbol/quantity/status/cash; no exact account/stable instrument fields",
+      "implementationStatus": "IMPLEMENTED",
+      "limitation": "Not a complete identity proof",
+      "evidenceOrOperationalStatus": "EXTERNAL_EVIDENCE_REQUIRED"
+    },
+    {
+      "id": "BROKER_UI_MASK",
+      "sourcePath": "src/infrastructure/config/broker-api-data.ts",
+      "existing": "UI account output masks numbers and uses display-oriented DTO",
+      "implementationStatus": "IMPLEMENTED",
+      "limitation": "Masked number cannot prove account equality; parser is not NAV authority",
+      "evidenceOrOperationalStatus": "MISSING"
+    },
+    {
+      "id": "BROKER_ENVELOPE",
+      "sourcePath": "src/ports/nav-read-adapters.ts",
+      "existing": "nav-broker-observations-v1exact structural account/document/perimeter/time fields; reader returns acceptedfalse",
+      "implementationStatus": "IMPLEMENTED",
+      "limitation": "Positive envelopes synthetic; real source conversion/authentication absent",
+      "evidenceOrOperationalStatus": "EXTERNAL_EVIDENCE_REQUIRED"
+    },
+    {
+      "id": "LEDGER_READER",
+      "sourcePath": "src/application/current-nav/ledger-read-adapter.ts",
+      "existing": "Immutable read/snapshot/facts+state hashes and cutoff/revision checks",
+      "implementationStatus": "IMPLEMENTED",
+      "limitation": "financiallyCompletefalse; replay not accepted source linkage",
+      "evidenceOrOperationalStatus": "EXTERNAL_EVIDENCE_REQUIRED"
+    },
+    {
+      "id": "MARKET_MASTER",
+      "sourcePath": "src/domain/market-boundary/tcbs-eod.ts",
+      "existing": "TCBS master codeId/isinCode/symbol/tradePlace/secType/status/halt parsing",
+      "implementationStatus": "IMPLEMENTED",
+      "limitation": "Market-side observations not personal ledger linkage; technicalfrom=knowledge date is not legal effective date",
+      "evidenceOrOperationalStatus": "EXTERNAL_EVIDENCE_REQUIRED"
+    },
+    {
+      "id": "VN30_MASTER",
+      "sourcePath": "docs/fundamental-data-engine/evidence/2026-10-19-level1-promotion-partition-closure/RELEASE.json",
+      "existing": "Pinned30members/local UUID namespace; membership/reference context",
+      "implementationStatus": "IMPLEMENTED",
+      "limitation": "UUID assignment provenance/namespace authority and account continuity unaccepted",
+      "evidenceOrOperationalStatus": "EXTERNAL_EVIDENCE_REQUIRED"
+    },
+    {
+      "id": "OFFLINE_BRIDGE",
+      "sourcePath": "src/domain/nav-preparation/identity.ts",
+      "existing": "Strict immutable offline Bridge structural validation and resolveBridge(acceptedMapping:false)",
+      "implementationStatus": "IMPLEMENTED",
+      "limitation": "Real11dossiers incomplete; no actual complete Bridge rows emitted",
+      "evidenceOrOperationalStatus": "EXTERNAL_EVIDENCE_REQUIRED"
+    },
+    {
+      "id": "IDENTITY_DOSSIERS",
+      "sourcePath": "docs/fundamental-data-engine/evidence/2026-10-26-m8-identity-bridge-evidence-preparation/IDENTITY_BRIDGE_CANDIDATES.json",
+      "existing": "11incomplete evidence dossiers; bridgeCandidates and acceptedMappings empty",
+      "implementationStatus": "DESIGNED",
+      "limitation": "Relationship/effective/formal knowledge/action clearance UNKNOWN",
+      "evidenceOrOperationalStatus": "EXTERNAL_EVIDENCE_REQUIRED"
+    },
+    {
+      "id": "CA_STRUCTURAL",
+      "sourcePath": "src/domain/portfolio/dividend-settlement.ts",
+      "existing": "Claim/action/payment/allocation identity contracts; original ledger corporate action rules unchanged",
+      "implementationStatus": "IMPLEMENTED",
+      "limitation": "FPTlifecycle/GAS-MWGclaim source linkage incomplete",
+      "evidenceOrOperationalStatus": "EXTERNAL_EVIDENCE_REQUIRED"
+    },
+    {
+      "id": "NAV_QUALIFICATION",
+      "sourcePath": "src/domain/current-nav/qualification.ts",
+      "existing": "Exact unit identity, reverse uniqueness, evidence/time/authority gates",
+      "implementationStatus": "IMPLEMENTED",
+      "limitation": "No real accepted identity/authority provider",
+      "evidenceOrOperationalStatus": "MISSING"
+    },
+    {
+      "id": "NAV_PROVIDER",
+      "sourcePath": "src/application/current-nav/input-provider-skeleton.ts",
+      "existing": "SliceAprepare typedBLOCKED/loadnull; source/identity/independent/market/continuity missing reasons",
+      "implementationStatus": "IMPLEMENTED",
+      "limitation": "Never complete plan; no production root binding",
+      "evidenceOrOperationalStatus": "MISSING"
+    },
+    {
+      "id": "AUTH_MODEL",
+      "sourcePath": "docs/fundamental-data-engine/evidence/2026-10-27-m8-phase3-3-current-nav-integration-planning/SOURCE_AUTHORITY_MODEL.md",
+      "existing": "Separate identity/financial/independent/publication/release responsibilities",
+      "implementationStatus": "DESIGNED",
+      "limitation": "Real authenticated reviewer/role/revocation/audit integration absent",
+      "evidenceOrOperationalStatus": "EXTERNAL_EVIDENCE_REQUIRED"
+    },
+    {
+      "id": "LOCAL_AUTH",
+      "sourcePath": "docs/adr/0005-local-authentication-deferral.md",
+      "existing": "Owner no-login decision; existing PEC-1Csecurity contracts preserved",
+      "implementationStatus": "DESIGNED",
+      "limitation": "Authenticated independent acceptance remains blocked, not substituted locally",
+      "evidenceOrOperationalStatus": "MISSING"
+    }
+  ]
+}
