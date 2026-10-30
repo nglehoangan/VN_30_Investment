@@ -1,0 +1,532 @@
+{
+  "contract": "b6-vnm-conditional-owner-cash-valuation-v1",
+  "ticker": "VNM",
+  "reviewedAt": "2026-10-30T13:05:59.992Z",
+  "classification": "ANALYST_ESTIMATE_REQUIRES_UNDERWRITING_ACCEPTANCE",
+  "sourceScope": "STANDALONE_PARENT",
+  "sourceInput": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-30/b6-underwriting-r4/vnm-parent-owner-cash-input.json",
+  "sourceInputSha256": "470feaca93f119e58e686915cbb8350646a1caaccc883d5b9ec8c51ed65e3358",
+  "sourceReportedCommonEarnings": "8423414672066",
+  "workingCapital": {
+    "signedFlowsByYear": {
+      "2024": "903653134818",
+      "2025": "-1414952025062"
+    },
+    "twoYearSignedMean": "-255649445122",
+    "modelReinvestmentReserve": "676743665122",
+    "reserveBasis": "Positive mean working-capital cash absorption plus knownFY2025 subsidiary/associate cash investment; no inferred zero fromFY2024dash"
+  },
+  "referenceShareCount": {
+    "value": "2089955445",
+    "basis": "FY2025PDFoutstanding ordinary shares, matches observedVietstock profile",
+    "profileRawPath": "data/manual-extracted-api/vietstock-profile-v1/20261030T121210Z/VNM.html",
+    "providerProvisionalRightsWarning": [
+      "Khối lượng cổ phiếu lưu hành đã bao gồm phần cổ phiếu tạm tính phát sinh từ các sự kiện quyền của cổ phiếu."
+    ],
+    "formalActionBridgeAccepted": false
+  },
+  "marketReference": {
+    "observationId": "TCBS_MARKET_PRICE:9caac36c4926fa06528d25e157ca104c45c3c6bf0c80b98a0459833a270bf9de",
+    "value": "56900",
+    "tradingDate": "2026-10-30",
+    "unit": "VND_PER_SHARE"
+  },
+  "assumptions": [
+    "All scenarios are estimates, not issuer forecasts or approved points",
+    "Remove specifically captioned net disposal gain; keep recurring supplier support instead of calling all other income one-off",
+    "Normalize volatile other-finance-cost credit separately; do not pretend it is an issuer-confirmed exceptional item",
+    "Model10%non-shareholder allocation after earnings adjustments; original source allocations remain unchanged",
+    "Growth is funded through an explicit incremental-return budget; standing WC/subsidiary reserve is included once",
+    "Maintenance replacement assumptions are explicit; observed total acquisitions are not relabelled as proven maintenance spending",
+    "Keep existing financing/financial income in parent earnings; do not add cash, net cash or subsidiary carrying values a second time",
+    "Future incremental borrowing and external common-equity issuance are assumed zero; existing financial costs remain in net earnings",
+    "Year1through5 are annual cashflow capacity forecasts from the review date, not H1doubling or reportedFY2026TTM",
+    "The12%bull discount is sensitivity only, not an approved exception to the15%normalBUYhurdle"
+  ],
+  "counterEvidence": [
+    "Only two years of parent cashflow detail reviewed here; group historical series is longer",
+    "Maintenance/growth split and future reinvestment returns are model assumptions",
+    "LatestFY2026cash/earnings and post-report actions still need explicit common-owner bridge before score admission",
+    "Subsidiary distributions, financial-income reinvestment and management control of surplus cash affect value",
+    "Source-period common count matching a public reference does not itself approve a current action registry"
+  ],
+  "scenarios": [
+    {
+      "name": "BEAR",
+      "assumptions": {
+        "name": "BEAR",
+        "taxRate": "0.15",
+        "earningsHaircut": "0.90",
+        "otherFinanceCost": "52683250000",
+        "maintenance": "1391673079280",
+        "growth": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "incrementalReturn": "0.12",
+        "discount": "0.18",
+        "terminal": "0"
+      },
+      "pretaxDisposalGainRemoved": "6136383841",
+      "otherFinanceCostAdjustment": "-100366317251",
+      "normalization": {
+        "classification": "ANALYST_NORMALIZATION_ESTIMATE",
+        "sourceReportedCommon": "8423414672066",
+        "afterTaxAdjustment": "-90527295928.2",
+        "adjustedParentNpat": "9268822339700.8",
+        "modelFund": "926882233970.08",
+        "modelCommonEarnings": "8341940105730.72",
+        "fundPolicy": {
+          "kind": "REESTIMATE_AS_MODEL_ASSUMPTION",
+          "rate": "0.10"
+        },
+        "transactionSpecificTaxProven": false,
+        "comprehensiveNormalizationClaimed": false,
+        "productionScoringAuthorized": false
+      },
+      "normalizedCommonEarningsAfterScenarioHaircut": "7507746095157.648",
+      "forecast": {
+        "classification": "CONDITIONAL_ANALYST_OWNER_CASH_FORECAST",
+        "years": [
+          {
+            "year": 1,
+            "growth": "0",
+            "commonEarnings": "7507746095157.648",
+            "depreciation": "1113338463424",
+            "maintenanceCapex": "1391673079280",
+            "growthFundingRequired": "0",
+            "standingReinvestmentReserve": "676743665122",
+            "totalReinvestment": "676743665122",
+            "forecastOwnerCash": "6552667814179.648"
+          },
+          {
+            "year": 2,
+            "growth": "0",
+            "commonEarnings": "7507746095157.648",
+            "depreciation": "1113338463424",
+            "maintenanceCapex": "1391673079280",
+            "growthFundingRequired": "0",
+            "standingReinvestmentReserve": "676743665122",
+            "totalReinvestment": "676743665122",
+            "forecastOwnerCash": "6552667814179.648"
+          },
+          {
+            "year": 3,
+            "growth": "0",
+            "commonEarnings": "7507746095157.648",
+            "depreciation": "1113338463424",
+            "maintenanceCapex": "1391673079280",
+            "growthFundingRequired": "0",
+            "standingReinvestmentReserve": "676743665122",
+            "totalReinvestment": "676743665122",
+            "forecastOwnerCash": "6552667814179.648"
+          },
+          {
+            "year": 4,
+            "growth": "0",
+            "commonEarnings": "7507746095157.648",
+            "depreciation": "1113338463424",
+            "maintenanceCapex": "1391673079280",
+            "growthFundingRequired": "0",
+            "standingReinvestmentReserve": "676743665122",
+            "totalReinvestment": "676743665122",
+            "forecastOwnerCash": "6552667814179.648"
+          },
+          {
+            "year": 5,
+            "growth": "0",
+            "commonEarnings": "7507746095157.648",
+            "depreciation": "1113338463424",
+            "maintenanceCapex": "1391673079280",
+            "growthFundingRequired": "0",
+            "standingReinvestmentReserve": "676743665122",
+            "totalReinvestment": "676743665122",
+            "forecastOwnerCash": "6552667814179.648"
+          }
+        ],
+        "cashflows": [
+          "6552667814179.648",
+          "6552667814179.648",
+          "6552667814179.648",
+          "6552667814179.648",
+          "6552667814179.648"
+        ],
+        "terminalGrowth": "0",
+        "externalEquityAndIncrementalBorrowingAssumed": "0",
+        "cashAndSubsidiaryValuesAddedSeparately": false,
+        "productionScoringAuthorized": false
+      },
+      "valuation": {
+        "model": "OWNER_EARNINGS_DCF",
+        "unit": "VND",
+        "equityValue": "36403710078775.822222222223",
+        "forecast": [
+          {
+            "year": 1,
+            "cashflow": "6552667814179.648",
+            "discountFactor": "1.18",
+            "presentValue": "5553108317101.396610169492"
+          },
+          {
+            "year": 2,
+            "cashflow": "6552667814179.648",
+            "discountFactor": "1.3924",
+            "presentValue": "4706023997543.556449296179"
+          },
+          {
+            "year": 3,
+            "cashflow": "6552667814179.648",
+            "discountFactor": "1.643032",
+            "presentValue": "3988155930121.658007878118"
+          },
+          {
+            "year": 4,
+            "cashflow": "6552667814179.648",
+            "discountFactor": "1.93877776",
+            "presentValue": "3379793161120.049159218744"
+          },
+          {
+            "year": 5,
+            "cashflow": "6552667814179.648",
+            "discountFactor": "2.2877577568",
+            "presentValue": "2864231492474.617931541309"
+          }
+        ],
+        "terminalValue": "36403710078775.822222222222",
+        "productionScoringAuthorized": false,
+        "qualification": "CONDITIONAL_MODEL_VALUE_NOT_ACCEPTED_FAIR_VALUE",
+        "equityValuePerReferenceShare": "17418.414428818516",
+        "acceptedFairValuePerShare": null,
+        "currentDenominatorFormallyQualified": false
+      },
+      "returnEstimate": {
+        "annualIrr": "-0.121858190858",
+        "classification": "CONDITIONAL_MODEL_IRR_NOT_GUARANTEED_RETURN",
+        "periodConvention": "ANNUAL_END_OF_PERIOD",
+        "productionScoringAuthorized": false
+      }
+    },
+    {
+      "name": "BASE",
+      "assumptions": {
+        "name": "BASE",
+        "taxRate": "0.20",
+        "earningsHaircut": "1",
+        "otherFinanceCost": "2500091374.5",
+        "maintenance": "1113338463424",
+        "growth": [
+          "0.02",
+          "0.02",
+          "0.015",
+          "0.01",
+          "0.01"
+        ],
+        "incrementalReturn": "0.15",
+        "discount": "0.15",
+        "terminal": "0.01"
+      },
+      "pretaxDisposalGainRemoved": "6136383841",
+      "otherFinanceCostAdjustment": "-50183158625.5",
+      "normalization": {
+        "classification": "ANALYST_NORMALIZATION_ESTIMATE",
+        "sourceReportedCommon": "8423414672066",
+        "afterTaxAdjustment": "-45055633973.2",
+        "adjustedParentNpat": "9314294001655.8",
+        "modelFund": "931429400165.58",
+        "modelCommonEarnings": "8382864601490.22",
+        "fundPolicy": {
+          "kind": "REESTIMATE_AS_MODEL_ASSUMPTION",
+          "rate": "0.10"
+        },
+        "transactionSpecificTaxProven": false,
+        "comprehensiveNormalizationClaimed": false,
+        "productionScoringAuthorized": false
+      },
+      "normalizedCommonEarningsAfterScenarioHaircut": "8382864601490.22",
+      "forecast": {
+        "classification": "CONDITIONAL_ANALYST_OWNER_CASH_FORECAST",
+        "years": [
+          {
+            "year": 1,
+            "growth": "0.02",
+            "commonEarnings": "8550521893520.0244",
+            "depreciation": "1135605232692.48",
+            "maintenanceCapex": "1135605232692.48",
+            "growthFundingRequired": "1140069585799.819746035493",
+            "standingReinvestmentReserve": "690278538424.44",
+            "totalReinvestment": "1140069585799.819746035493",
+            "forecastOwnerCash": "7410452307720.204653964507"
+          },
+          {
+            "year": 2,
+            "growth": "0.02",
+            "commonEarnings": "8721532331390.424888",
+            "depreciation": "1158317337346.3296",
+            "maintenanceCapex": "1158317337346.3296",
+            "growthFundingRequired": "1162870977515.816140956203",
+            "standingReinvestmentReserve": "704084109192.9288",
+            "totalReinvestment": "1162870977515.816140956203",
+            "forecastOwnerCash": "7558661353874.608747043797"
+          },
+          {
+            "year": 3,
+            "growth": "0.015",
+            "commonEarnings": "8852355316361.28126132",
+            "depreciation": "1175692097406.524544",
+            "maintenanceCapex": "1175692097406.524544",
+            "growthFundingRequired": "885235531636.128126132",
+            "standingReinvestmentReserve": "714645370830.822732",
+            "totalReinvestment": "885235531636.128126132",
+            "forecastOwnerCash": "7967119784725.153135188"
+          },
+          {
+            "year": 4,
+            "growth": "0.01",
+            "commonEarnings": "8940878869524.8940739332",
+            "depreciation": "1187449018380.58978944",
+            "maintenanceCapex": "1187449018380.58978944",
+            "growthFundingRequired": "596058591304.639897885388",
+            "standingReinvestmentReserve": "721791824539.13095932",
+            "totalReinvestment": "721791824539.13095932",
+            "forecastOwnerCash": "8219087044985.7631146132"
+          },
+          {
+            "year": 5,
+            "growth": "0.01",
+            "commonEarnings": "9030287658220.143014672532",
+            "depreciation": "1199323508564.3956873344",
+            "maintenanceCapex": "1199323508564.3956873344",
+            "growthFundingRequired": "602019177217.686296864242",
+            "standingReinvestmentReserve": "729009742784.5222689132",
+            "totalReinvestment": "729009742784.5222689132",
+            "forecastOwnerCash": "8301277915435.620745759332"
+          }
+        ],
+        "cashflows": [
+          "7410452307720.204653964507",
+          "7558661353874.608747043797",
+          "7967119784725.153135188",
+          "8219087044985.7631146132",
+          "8301277915435.620745759332"
+        ],
+        "terminalGrowth": "0.01",
+        "externalEquityAndIncrementalBorrowingAssumed": "0",
+        "cashAndSubsidiaryValuesAddedSeparately": false,
+        "productionScoringAuthorized": false
+      },
+      "valuation": {
+        "model": "OWNER_EARNINGS_DCF",
+        "unit": "VND",
+        "equityValue": "55999124271016.414204675877",
+        "forecast": [
+          {
+            "year": 1,
+            "cashflow": "7410452307720.204653964507",
+            "discountFactor": "1.15",
+            "presentValue": "6443871571930.612742577832"
+          },
+          {
+            "year": 2,
+            "cashflow": "7558661353874.608747043797",
+            "discountFactor": "1.3225",
+            "presentValue": "5715433915973.239128199468"
+          },
+          {
+            "year": 3,
+            "cashflow": "7967119784725.153135188",
+            "discountFactor": "1.520875",
+            "presentValue": "5238510584186.835298882551"
+          },
+          {
+            "year": 4,
+            "cashflow": "8219087044985.7631146132",
+            "discountFactor": "1.74900625",
+            "presentValue": "4699289693782.262421654125"
+          },
+          {
+            "year": 5,
+            "cashflow": "8301277915435.620745759332",
+            "discountFactor": "2.0113571875",
+            "presentValue": "4127202252800.073952931014"
+          }
+        ],
+        "terminalValue": "59887790675642.692522978036",
+        "productionScoringAuthorized": false,
+        "qualification": "CONDITIONAL_MODEL_VALUE_NOT_ACCEPTED_FAIR_VALUE",
+        "equityValuePerReferenceShare": "26794.410572238976",
+        "acceptedFairValuePerShare": null,
+        "currentDenominatorFormallyQualified": false
+      },
+      "returnEstimate": {
+        "annualIrr": "-0.041291861862",
+        "classification": "CONDITIONAL_MODEL_IRR_NOT_GUARANTEED_RETURN",
+        "periodConvention": "ANNUAL_END_OF_PERIOD",
+        "productionScoringAuthorized": false
+      }
+    },
+    {
+      "name": "BULL",
+      "assumptions": {
+        "name": "BULL",
+        "taxRate": "0.20",
+        "earningsHaircut": "1",
+        "otherFinanceCost": "-47683067251",
+        "maintenance": "1029529085769",
+        "growth": [
+          "0.04",
+          "0.035",
+          "0.03",
+          "0.02",
+          "0.02"
+        ],
+        "incrementalReturn": "0.18",
+        "discount": "0.12",
+        "terminal": "0.02"
+      },
+      "pretaxDisposalGainRemoved": "6136383841",
+      "otherFinanceCostAdjustment": "0",
+      "normalization": {
+        "classification": "ANALYST_NORMALIZATION_ESTIMATE",
+        "sourceReportedCommon": "8423414672066",
+        "afterTaxAdjustment": "-4909107072.8",
+        "adjustedParentNpat": "9354440528556.2",
+        "modelFund": "935444052855.62",
+        "modelCommonEarnings": "8418996475700.58",
+        "fundPolicy": {
+          "kind": "REESTIMATE_AS_MODEL_ASSUMPTION",
+          "rate": "0.10"
+        },
+        "transactionSpecificTaxProven": false,
+        "comprehensiveNormalizationClaimed": false,
+        "productionScoringAuthorized": false
+      },
+      "normalizedCommonEarningsAfterScenarioHaircut": "8418996475700.58",
+      "forecast": {
+        "classification": "CONDITIONAL_ANALYST_OWNER_CASH_FORECAST",
+        "years": [
+          {
+            "year": 1,
+            "growth": "0.04",
+            "commonEarnings": "8755756334728.6032",
+            "depreciation": "1157872001960.96",
+            "maintenanceCapex": "1070710249199.76",
+            "growthFundingRequired": "1945723629937.74387637006",
+            "standingReinvestmentReserve": "703813411726.88",
+            "totalReinvestment": "1945723629937.74387637006",
+            "forecastOwnerCash": "6897194457552.05932362994"
+          },
+          {
+            "year": 2,
+            "growth": "0.035",
+            "commonEarnings": "9062207806444.104312",
+            "depreciation": "1198397522029.5936",
+            "maintenanceCapex": "1108185107921.7516",
+            "growthFundingRequired": "1762095962360.103746086025",
+            "standingReinvestmentReserve": "728446881137.3208",
+            "totalReinvestment": "1762095962360.103746086025",
+            "forecastOwnerCash": "7390324258191.842565913975"
+          },
+          {
+            "year": 3,
+            "growth": "0.03",
+            "commonEarnings": "9334074040637.42744136",
+            "depreciation": "1234349447690.481408",
+            "maintenanceCapex": "1141430661159.404148",
+            "growthFundingRequired": "1555679006776.015931573546",
+            "standingReinvestmentReserve": "750300287571.440424",
+            "totalReinvestment": "1555679006776.015931573546",
+            "forecastOwnerCash": "7871313820392.488769786454"
+          },
+          {
+            "year": 4,
+            "growth": "0.02",
+            "commonEarnings": "9520755521450.1759901872",
+            "depreciation": "1259036436644.29103616",
+            "maintenanceCapex": "1164259274382.59223096",
+            "growthFundingRequired": "1057861724604.517248296194",
+            "standingReinvestmentReserve": "765306293322.86923248",
+            "totalReinvestment": "1057861724604.517248296194",
+            "forecastOwnerCash": "8557670959107.357547091006"
+          },
+          {
+            "year": 5,
+            "growth": "0.02",
+            "commonEarnings": "9711170631879.179509990944",
+            "depreciation": "1284217165377.1768568832",
+            "maintenanceCapex": "1187544459870.2440755792",
+            "growthFundingRequired": "1079018959096.607593262118",
+            "standingReinvestmentReserve": "780612419189.3266171296",
+            "totalReinvestment": "1079018959096.607593262118",
+            "forecastOwnerCash": "8728824378289.504698032826"
+          }
+        ],
+        "cashflows": [
+          "6897194457552.05932362994",
+          "7390324258191.842565913975",
+          "7871313820392.488769786454",
+          "8557670959107.357547091006",
+          "8728824378289.504698032826"
+        ],
+        "terminalGrowth": "0.02",
+        "externalEquityAndIncrementalBorrowingAssumed": "0",
+        "cashAndSubsidiaryValuesAddedSeparately": false,
+        "productionScoringAuthorized": false
+      },
+      "valuation": {
+        "model": "OWNER_EARNINGS_DCF",
+        "unit": "VND",
+        "equityValue": "78564187850334.131806100786",
+        "forecast": [
+          {
+            "year": 1,
+            "cashflow": "6897194457552.05932362994",
+            "discountFactor": "1.12",
+            "presentValue": "6158209337100.052967526732"
+          },
+          {
+            "year": 2,
+            "cashflow": "7390324258191.842565913975",
+            "discountFactor": "1.2544",
+            "presentValue": "5891521251747.32347410234"
+          },
+          {
+            "year": 3,
+            "cashflow": "7871313820392.488769786454",
+            "discountFactor": "1.404928",
+            "presentValue": "5602645701696.093159070396"
+          },
+          {
+            "year": 4,
+            "cashflow": "8557670959107.357547091006",
+            "discountFactor": "1.57351936",
+            "presentValue": "5438554603552.737696910832"
+          },
+          {
+            "year": 5,
+            "cashflow": "8728824378289.504698032826",
+            "discountFactor": "1.7623416832",
+            "presentValue": "4952969371092.671831115222"
+          }
+        ],
+        "terminalValue": "89034008658552.94791993483",
+        "productionScoringAuthorized": false,
+        "qualification": "CONDITIONAL_MODEL_VALUE_NOT_ACCEPTED_FAIR_VALUE",
+        "equityValuePerReferenceShare": "37591.321881186865",
+        "acceptedFairValuePerShare": null,
+        "currentDenominatorFormallyQualified": false
+      },
+      "returnEstimate": {
+        "annualIrr": "0.01768362278",
+        "classification": "CONDITIONAL_MODEL_IRR_NOT_GUARANTEED_RETURN",
+        "periodConvention": "ANNUAL_END_OF_PERIOD",
+        "productionScoringAuthorized": false
+      }
+    }
+  ],
+  "confidence": "LOW_PENDING_FULL_UNDERWRITING",
+  "readyForScoring": false,
+  "productionScoringAuthorized": false
+}

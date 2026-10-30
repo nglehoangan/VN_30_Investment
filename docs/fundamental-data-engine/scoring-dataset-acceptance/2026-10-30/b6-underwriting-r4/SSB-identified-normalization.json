@@ -1,0 +1,52 @@
+{
+  "contract": "b6-ssb-identified-normalization-v1",
+  "ticker": "SSB",
+  "reviewedAt": "2026-10-30T13:04:30.385Z",
+  "scenarios": [
+    {
+      "fundTreatment": "RETAIN_PRINTED_ALLOCATION",
+      "classification": "ANALYST_NORMALIZATION_ESTIMATE",
+      "sourceReportedCommon": "5344253000000",
+      "afterTaxAdjustment": "-2085854400000",
+      "adjustedParentNpat": "3423684600000",
+      "modelFund": "165286000000",
+      "modelCommonEarnings": "3258398600000",
+      "fundPolicy": {
+        "kind": "RETAIN_PRINTED_ALLOCATION"
+      },
+      "transactionSpecificTaxProven": false,
+      "comprehensiveNormalizationClaimed": false,
+      "productionScoringAuthorized": false
+    },
+    {
+      "fundTreatment": "REESTIMATE_AS_MODEL_ASSUMPTION",
+      "classification": "ANALYST_NORMALIZATION_ESTIMATE",
+      "sourceReportedCommon": "5344253000000",
+      "afterTaxAdjustment": "-2085854400000",
+      "adjustedParentNpat": "3423684600000",
+      "modelFund": "102710538000",
+      "modelCommonEarnings": "3320974062000",
+      "fundPolicy": {
+        "kind": "REESTIMATE_AS_MODEL_ASSUMPTION",
+        "rate": "0.03"
+      },
+      "transactionSpecificTaxProven": false,
+      "comprehensiveNormalizationClaimed": false,
+      "productionScoringAuthorized": false
+    }
+  ],
+  "source": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-30/b6-underwriting-r4/ssb-disposal-adjustment-input.json",
+  "laterEvidence": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-30/b6-underwriting-r4/ssb-later-fund-and-capital.json",
+  "limitations": [
+    "20%transaction tax is assumed, not separately disclosed",
+    "3%fund reestimate is a model assumption, not a restated issuerEPS",
+    "275billionapproved allocation period not explicit in the checked paragraph; never silently substitute it intoFY2025",
+    "4.3trillion sale proceeds are not the2.607318trillion pretaxgain",
+    "Do not remove realized sale gain from book equity again",
+    "Historic PTF consolidation changes credit/earnings scope; no unbridged credit-cost average",
+    "Unknown convertible share number remains a valuation dependency"
+  ],
+  "comprehensiveNormalizationAccepted": false,
+  "readyForScoring": false,
+  "productionScoringAuthorized": false
+}

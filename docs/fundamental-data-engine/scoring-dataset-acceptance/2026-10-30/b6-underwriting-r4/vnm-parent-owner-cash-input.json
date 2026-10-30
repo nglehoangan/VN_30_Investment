@@ -1,0 +1,102 @@
+{
+  "contract": "b6-vnm-standalone-owner-cash-input-v1",
+  "ticker": "VNM",
+  "period": "FY2025",
+  "sourceScope": "STANDALONE",
+  "currency": "VND",
+  "currencyMultiplier": "1",
+  "valuesByYear": {
+    "2025": {
+      "npat": "9359349635629",
+      "netOtherIncome": "90004585240",
+      "depreciationAmortization": "1113338463424",
+      "cashAcquisitionSpending": "1029529085769",
+      "cfo": "7690701645261",
+      "currentTaxExpense": "2128415483304",
+      "cashTaxPaid": "1353040369936",
+      "interestExpense": "289972001368",
+      "cashInterestPaid": "274593598630",
+      "cashInterestAndDividendsReceived": "1571241822856",
+      "fundAccrued": "935934963563",
+      "fundUsed": "660758742471",
+      "signedWorkingCapitalFlows": [
+        "-133439350148",
+        "-725457016090",
+        "-286915893560",
+        "-269139765264"
+      ],
+      "subsidiaryAndAssociateCashInvestment": "421094220000",
+      "subsidiaryInvestmentPresence": "NUMERIC_CASH_OUTFLOW",
+      "newBorrowing": "18411000000000",
+      "principalRepayment": "17890000000000",
+      "ordinarySharesOutstanding": "2089955445",
+      "depositInterestIncome": "1063216675831",
+      "dividendProfitShareIncome": "496172279490"
+    },
+    "2024": {
+      "npat": "9262413822949",
+      "netOtherIncome": "88915419235",
+      "depreciationAmortization": "1035105570071",
+      "cashAcquisitionSpending": "671303275149",
+      "cfo": "8845818265750",
+      "currentTaxExpense": "2058534807543",
+      "cashTaxPaid": "1997458922345",
+      "interestExpense": "227618556891",
+      "cashInterestPaid": "287004644127",
+      "cashInterestAndDividendsReceived": "1740624672263",
+      "fundAccrued": "926241382296",
+      "fundUsed": "812661187033",
+      "signedWorkingCapitalFlows": [
+        "44926814930",
+        "456078350449",
+        "326630261710",
+        "76017707729"
+      ],
+      "subsidiaryAndAssociateCashInvestment": null,
+      "subsidiaryInvestmentPresence": "PDF_DASH_NOT_ZERO",
+      "newBorrowing": "15620000000000",
+      "principalRepayment": "14893280000000",
+      "ordinarySharesOutstanding": "2089955445"
+    }
+  },
+  "source": {
+    "pdfPath": "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf",
+    "sha256": "4541aaf79e96f343bf277bde2101c304ae8283836f0aad65427fbef1bde5f06d",
+    "pages": [
+      10,
+      11,
+      12,
+      26,
+      41,
+      43,
+      47,
+      49,
+      50
+    ],
+    "hrefs": [
+      "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=10",
+      "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=11",
+      "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=12",
+      "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=26",
+      "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=41",
+      "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=43",
+      "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=47",
+      "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=49",
+      "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=50"
+    ],
+    "review": {
+      "actor": "CHATGPT",
+      "fullPageImagesInspected": true,
+      "reviewedAt": "2026-10-30T13:05:59.536723+00:00"
+    }
+  },
+  "scopeRules": [
+    "Standalone parent cash avoids guessing allocation of consolidated CFO to NCI",
+    "Subsidiary dividends already affect parent earnings/cash; do not add subsidiary carrying/market value to this same cashflow model",
+    "Fund used is not automatically an independently identified CFO cash payment",
+    "Do not add gross borrowing or equity issuance as recurring internally generated owner cash",
+    "Do not equate CFO-minus-acquisitions with maintenance-adjusted FCFE",
+    "No missing or dashed subsidiary cash investment becomes reported zero"
+  ],
+  "productionScoringAuthorized": false
+}
