@@ -1,4 +1,5 @@
 // @vitest-environment node
+import {expectPreservedSchema,migrateAndRepeat} from '../fixtures/migration-invariants';
 import { it,expect } from 'vitest';
 import { testDatabase } from '../fixtures/database';
 import { fundamentalFixture } from '../fixtures/fundamentals';
@@ -13,11 +14,11 @@ it('upgrades populated Slice 3 baseline additively, preserves every old table/tr
     const tables=schema.filter(s=>s.type==='table').map(s=>s.name),before=new Map<string,unknown>();
     expect(tables).not.toContain('fundamental_derivation');
     for(const table of tables){expect(table).toMatch(/^[a-z_]+$/);before.set(table,await db.client.$queryRawUnsafe(`SELECT * FROM "${table}" ORDER BY rowid`));}
-    expect(db.migration('migrate')).toBe(0);expect(db.migration('migrate')).toBe(0);
+    await migrateAndRepeat(db);
     const after=await db.client.$queryRawUnsafe<Array<{name:string;type:string;sql:string}>>("SELECT name,type,sql FROM sqlite_master WHERE name NOT LIKE 'sqlite_%' AND name NOT LIKE '_prisma_%' ORDER BY name");
-    for(const old of schema)expect(after.find(s=>s.name===old.name)).toEqual(old);
+    expectPreservedSchema(schema,after);
     for(const table of tables)expect(await db.client.$queryRawUnsafe(`SELECT * FROM "${table}" ORDER BY rowid`)).toEqual(before.get(table));
-    expect(after.filter(s=>s.type==='table'&&!tables.includes(s.name)).map(s=>s.name)).toEqual(["data_initialization_acceptance","dependency_object_identity","dependency_release","fundamental_admission_run","fundamental_availability_assessment","fundamental_derivation","fundamental_derivation_input","fundamental_disposition_release","fundamental_snapshot_content","fundamental_snapshot_derived_member","fundamental_snapshot_member","fundamental_snapshot_run","market_boundary_decision_seal","market_boundary_dependency_head","market_boundary_ranking_publication","market_boundary_record","production_dependency_publication","scoring_dataset_binding"]);
+    expect(after.filter(s=>s.type==='table'&&!tables.includes(s.name)).map(s=>s.name)).toEqual(["data_initialization_acceptance","dependency_object_identity","dependency_release","dividend_receipt_owner","dividend_settlement_audit","forward_intake_event","fundamental_admission_run","fundamental_availability_assessment","fundamental_derivation","fundamental_derivation_input","fundamental_disposition_release","fundamental_snapshot_content","fundamental_snapshot_derived_member","fundamental_snapshot_member","fundamental_snapshot_run","market_boundary_decision_seal","market_boundary_dependency_head","market_boundary_ranking_publication","market_boundary_record","production_dependency_publication","scoring_dataset_binding"]);
     expect(await repo.findObservation(f.observation.id)).toEqual(f.observation);
     expect(await db.client.$queryRawUnsafe('PRAGMA foreign_key_check')).toEqual([]);
     expect(db.migration('status')).toBe(0);

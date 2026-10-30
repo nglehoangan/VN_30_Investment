@@ -1,0 +1,106 @@
+{
+  "contract": "personal-ai-dataset-review-criteria-v1",
+  "version": "1.0.0",
+  "reviewMode": "OWNER_AUTHORIZED_AI_SELF_REVIEW",
+  "ownerInstruction": "Đây là dự án riêng sẽ không có người nghiệm thu độc lập, hãy đưa ra các tiêu chí đế chat gpt nghiệm thu. tiếp tục đối chiếu phạm vi/đơn vị trên PDF đang giữ, kiểm tra bằng chứng thời điểm, soạn policy và tạo bảng input/bridge cho từng mã. Chỉ những dữ kiện thực sự thiếu mới cần bổ sung",
+  "ownerInstructionSha256": "7f9eafe97b0c35b12d5ec6a1d668fba8f40b877e6b1c9754f51a1b163c5654e2",
+  "recordedAt": "2026-10-29T08:47:24.347Z",
+  "humanIndependentReviewerRequired": false,
+  "notEquivalentToHumanIndependentReview": true,
+  "acceptanceRule": "All applicable required criteria PASS, each bound to expected/actual and hashed evidence; no unresolved Critical/Major. BLOCKED/FAIL cannot be converted to PASS by self-attestation.",
+  "criteria": [
+    {
+      "id": "AI01",
+      "name": "Source integrity",
+      "passCondition": "All retained PDF/API/JSON hashes and exact provenance resolve; failed requests remain visible.",
+      "required": true
+    },
+    {
+      "id": "AI02",
+      "name": "Universe and sector",
+      "passCondition": "Exactly 30 unique security IDs; effective universe/sector bindings checked; deferred members retained.",
+      "required": true
+    },
+    {
+      "id": "AI03",
+      "name": "Scope and statement identity",
+      "passCondition": "Confirm issuer, statement, consolidated/separate scope and revision directly in relevant PDF pages; mixed cover letters cannot decide statement scope.",
+      "required": true
+    },
+    {
+      "id": "AI04",
+      "name": "Units and precision",
+      "passCondition": "Confirm declared unit/currency/scale; preserve decimal strings, zero/null/dash and per-share exceptions; no guessed conversions.",
+      "required": true
+    },
+    {
+      "id": "AI05",
+      "name": "Periods and comparability",
+      "passCondition": "Separate instant/annual/quarter/YTD and current/prior columns; do not mix standalone/consolidated or annualize YTD without explicit model.",
+      "required": true
+    },
+    {
+      "id": "AI06",
+      "name": "Required accounting coverage",
+      "passCondition": "Evaluate every sector anyOf group per period with definition-qualified alternatives; do not flatten alternatives or match by amount.",
+      "required": true
+    },
+    {
+      "id": "AI07",
+      "name": "Point-in-time",
+      "passCondition": "Verify publication evidence precision; availableAt is no earlier than public boundary, retrieval, ingestion and review. Date-only uses governed conservative boundary; no backdating.",
+      "required": true
+    },
+    {
+      "id": "AI08",
+      "name": "Market and actions",
+      "passCondition": "Purpose-qualified dated prices, shares/market-cap/EV where the valuation model needs them, action adjustment and calendar/session/freshness checks.",
+      "required": true
+    },
+    {
+      "id": "AI09",
+      "name": "Derived metrics",
+      "passCondition": "Replay exact formulas with compatible scope/period/unit, operand IDs and normalized/debt qualification; denominator and cycle failures remain N/R.",
+      "required": true
+    },
+    {
+      "id": "AI10",
+      "name": "Valuation and assumptions",
+      "passCondition": "Explicit sector valuation model, conservative/base/downside assumptions and sensitivity; estimates are labelled and traced.",
+      "required": true
+    },
+    {
+      "id": "AI11",
+      "name": "Assessment coverage",
+      "passCondition": "All 23 rubric assessments and required topics have reasoned evidence and counter-evidence, with no fabricated neutral points or HUMAN attribution for AI.",
+      "required": true
+    },
+    {
+      "id": "AI12",
+      "name": "Input and bridge equality",
+      "passCondition": "Exact snapshot, methodology, source/assessment/derivation IDs; runtime-validated ScoreInput and bridge reproduce identical evidence and metrics.",
+      "required": true
+    },
+    {
+      "id": "AI13",
+      "name": "Adversarial check",
+      "passCondition": "Second checking pass reopens sources and attempts to refute producer conclusions; uses separate expected/actual records plus mutation/negative tests. This is AI self-review, not human independence.",
+      "required": true
+    },
+    {
+      "id": "AI14",
+      "name": "Reproducibility and issue closure",
+      "passCondition": "Repeatable hashes and tests; no unresolved Critical/Major issue affecting requested use. One blocked ticker does not get a fabricated score.",
+      "required": true
+    },
+    {
+      "id": "AI15",
+      "name": "Personal AI release record",
+      "passCondition": "Exact dataset hash, review tool/model/session identity where available, date and owner-authorized review mode recorded; no synthetic legacy independent reviewer.",
+      "required": true
+    }
+  ],
+  "legacyRuntimeContract": "independent-di-acceptance-v1",
+  "legacyRuntimeContractUnchanged": true,
+  "newReviewContractMustNotMasqueradeAsLegacy": true
+}

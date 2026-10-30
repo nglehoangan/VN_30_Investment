@@ -1,0 +1,175 @@
+{
+  "runs": {
+    "beforeFixFull30": {
+      "observationId": "TCBS_CAPTURE_RUN:19d69b92a8f2021730d88455380b6244bdbfeb66cc277800e87e6bfc18b65cf4",
+      "bodyHash": "19d69b92a8f2021730d88455380b6244bdbfeb66cc277800e87e6bfc18b65cf4",
+      "createdAt": "2026-10-29T04:54:50.271Z",
+      "finishedAt": "2026-10-29T04:56:30.529Z",
+      "symbols": 30,
+      "state": "PARTIAL_CAPTURE",
+      "accounts": {
+        "state": "PARTIAL_CAPTURE",
+        "requests": [
+          {
+            "apiId": "2.1",
+            "httpStatus": 200,
+            "state": "CAPTURED_NOT_QUALIFIED"
+          },
+          {
+            "apiId": "4.14",
+            "httpStatus": 200,
+            "state": "CAPTURED_NOT_QUALIFIED"
+          },
+          {
+            "apiId": "4.15",
+            "httpStatus": 200,
+            "state": "CAPTURED_NOT_QUALIFIED"
+          },
+          {
+            "apiId": "4.16",
+            "httpStatus": 400,
+            "state": "HTTP_400"
+          },
+          {
+            "apiId": "4.6",
+            "httpStatus": 200,
+            "state": "CAPTURED_NOT_QUALIFIED"
+          },
+          {
+            "apiId": "4.4",
+            "httpStatus": 200,
+            "state": "CAPTURED_NOT_QUALIFIED"
+          },
+          {
+            "apiId": "4.7",
+            "httpStatus": 200,
+            "state": "CAPTURED_NOT_QUALIFIED"
+          },
+          {
+            "apiId": "4.17",
+            "httpStatus": 400,
+            "state": "HTTP_400"
+          }
+        ],
+        "issues": [
+          {
+            "scope": "ACCOUNT",
+            "apiId": "4.16",
+            "accountType": "NORMAL",
+            "reason": "HTTP_400"
+          },
+          {
+            "scope": "ACCOUNT",
+            "apiId": "4.17",
+            "accountType": "MARGIN",
+            "reason": "HTTP_400"
+          }
+        ]
+      },
+      "displayPrices": {
+        "state": "UPDATED",
+        "published": 30,
+        "requested": 30,
+        "missing": [],
+        "rejected": []
+      },
+      "cashHistory": null,
+      "marketREST": {
+        "requests": 93,
+        "allHTTP200": true
+      },
+      "websocketState": "NO_MARKET_FRAMES"
+    },
+    "afterFixEntryPoint": {
+      "observationId": "TCBS_CAPTURE_RUN:1595a007c1a8b0054fe1b3b140600efe75e593c37c2ec8b9a80e3c32628ec5a2",
+      "bodyHash": "1595a007c1a8b0054fe1b3b140600efe75e593c37c2ec8b9a80e3c32628ec5a2",
+      "createdAt": "2026-10-29T04:56:23.625Z",
+      "finishedAt": "2026-10-29T04:56:36.771Z",
+      "symbols": 1,
+      "state": "PARTIAL_CAPTURE",
+      "accounts": {
+        "state": "CAPTURED_NOT_QUALIFIED",
+        "requests": [
+          {
+            "apiId": "2.1",
+            "httpStatus": 200,
+            "state": "CAPTURED_NOT_QUALIFIED"
+          },
+          {
+            "apiId": "4.14",
+            "httpStatus": 200,
+            "state": "CAPTURED_NOT_QUALIFIED"
+          },
+          {
+            "apiId": "4.15",
+            "httpStatus": 200,
+            "state": "CAPTURED_NOT_QUALIFIED"
+          },
+          {
+            "apiId": "4.16",
+            "httpStatus": 200,
+            "state": "CAPTURED_NOT_QUALIFIED"
+          },
+          {
+            "apiId": "4.6",
+            "httpStatus": 200,
+            "state": "CAPTURED_NOT_QUALIFIED"
+          },
+          {
+            "apiId": "4.4",
+            "httpStatus": 200,
+            "state": "CAPTURED_NOT_QUALIFIED"
+          },
+          {
+            "apiId": "4.7",
+            "httpStatus": 200,
+            "state": "CAPTURED_NOT_QUALIFIED"
+          },
+          {
+            "apiId": "4.17",
+            "httpStatus": 200,
+            "state": "CAPTURED_NOT_QUALIFIED"
+          }
+        ],
+        "issues": []
+      },
+      "displayPrices": {
+        "state": "UPDATED",
+        "published": 1,
+        "requested": 1,
+        "missing": [],
+        "rejected": []
+      },
+      "cashHistory": {
+        "from": "2026-10-01",
+        "to": "2026-10-29",
+        "totalCount": 1,
+        "receivedRows": 1,
+        "complete": true
+      },
+      "marketREST": {
+        "requests": 6,
+        "allHTTP200": true
+      },
+      "websocketState": "NO_MARKET_FRAMES"
+    }
+  },
+  "backendContractErrors": [
+    {
+      "apiId": "4.16",
+      "httpStatus": 400,
+      "providerCode": "878000",
+      "message": "Required request parameter acctno for method parameter type 'String' is not present",
+      "observationId": "TCBS_API_RESPONSE:9f4f8568a42e4b9deb9fc3d8b027216d28337977f9aca2d347ad156b40541fa3",
+      "bodyHash": "9f4f8568a42e4b9deb9fc3d8b027216d28337977f9aca2d347ad156b40541fa3"
+    },
+    {
+      "apiId": "4.17",
+      "httpStatus": 400,
+      "providerCode": "878000",
+      "message": "Required request parameter todate for method parameter type 'String' is not present",
+      "observationId": "TCBS_API_RESPONSE:8e663490bddd9f7a6c11aeece7f7a9fff81d6027d49e0a2b7635c1d76f786037",
+      "bodyHash": "8e663490bddd9f7a6c11aeece7f7a9fff81d6027d49e0a2b7635c1d76f786037"
+    }
+  ]
+}

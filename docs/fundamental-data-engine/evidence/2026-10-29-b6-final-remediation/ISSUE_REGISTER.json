@@ -1,0 +1,50 @@
+{
+  "assessment": "CURRENT_ENGINEERING_CHECKS_PASS_B6_RELEASE_REMAINS_BLOCKED",
+  "resolvedTechnicalIssues": [
+    "B6-01",
+    "B6-02",
+    "B6-03",
+    "B6-04",
+    "B6-05",
+    "B6-07",
+    "B6-09"
+  ],
+  "classifiedNotExecuted": {
+    "issue": "B6-06",
+    "cases": 18,
+    "currentRetainedCorpusTests": 34,
+    "historicalReplayPassed": false
+  },
+  "remainingBlockers": [
+    {
+      "id": "B6-10",
+      "priority": "P1",
+      "status": "BLOCKED_PRODUCTION_SCHEMA_DEPLOYMENT",
+      "finding": "Actual database has19/21migrations; current verified-backup schema gate remains blocked.",
+      "missing": [
+        "202610270001_dividend_settlement",
+        "202610270002_forward_intake"
+      ],
+      "rehearsal": "PASS_ON_DISPOSABLE_ACTUAL_DATA_COPY",
+      "productionMigrated": false
+    },
+    {
+      "id": "B6-MARKET",
+      "priority": "RELEASE_GATE",
+      "status": "BLOCKED",
+      "finding": "Qualified market snapshot/session unavailable; display prices are current but not production admission."
+    },
+    {
+      "id": "B6-DATASET",
+      "priority": "RELEASE_GATE",
+      "status": "BLOCKED",
+      "finding": "FORMAL_SCORING_DATASET_ACCEPTANCE_MISSING"
+    },
+    {
+      "id": "B6-08",
+      "priority": "RELEASE_GATE",
+      "status": "PENDING_INDEPENDENT_ACCEPTANCE",
+      "finding": "E3/M7 historical and production acceptance not closed;18archival assertions not executed."
+    }
+  ]
+}

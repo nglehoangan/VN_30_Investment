@@ -1,3 +1,4 @@
+import {historicalReplay} from '../fixtures/historical-replay';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {describe,it,expect} from 'vitest';
@@ -46,8 +47,8 @@ describe('TCX Level-1 canonical accounting isolation and semantics',()=>{
  it('29 unknown template drift fails closed',()=>{const i=input(),s=build({...i,verifications:[],candidates:i.candidates.map(c=>({...c,contractMetadata:{...c.contractMetadata!,schemaFingerprint:'0'.repeat(64)}}))});expect(s.canonicalFacts).toEqual([]);expect(s.observationValidations?.every(v=>!v.accepted)).toBe(true);});
  it('30 historical PIT NOT_READY does not block complete CURRENT_ANALYSIS',()=>expect(securitiesLevelOneReadiness({coreMissing:0,sectorCoreMissing:0,materialConflicts:0,currentYtdMissing:false,historicalPit:'NOT_READY'}).levelOneReady).toBe(true));
  it('31 deleted extraction artifacts unnecessary for replay',()=>{expect(JSON.stringify(input())).not.toMatch(/retainedReaderProof|manual-extracted|\.png"|\/tmp\/|ocr\//);expect(build()).toEqual(read('TCX_CANONICAL_FACTS.json'));});
- it('32 SSI protected evidence unchanged',()=>{const p=read('PROTECTED_BASELINE.json');for(const b of p.bindings.filter((b:{path:string})=>b.path.includes('-SSI/')||b.path.includes('/SSI/')))expect(createHash('sha256').update(readFileSync(b.path)).digest('hex')).toBe(b.sha256);});
- it('33 all 15 approved closure artifacts and bound sources unchanged',()=>{for(const b of read('PROTECTED_BASELINE.json').bindings)expect(createHash('sha256').update(readFileSync(b.path)).digest('hex')).toBe(b.sha256);});
+ historicalReplay('ARCH-15','32 SSI protected evidence unchanged',()=>{const p=read('PROTECTED_BASELINE.json');for(const b of p.bindings.filter((b:{path:string})=>b.path.includes('-SSI/')||b.path.includes('/SSI/')))expect(createHash('sha256').update(readFileSync(b.path)).digest('hex')).toBe(b.sha256);});
+ historicalReplay('ARCH-16','33 all 15 approved closure artifacts and bound sources unchanged',()=>{for(const b of read('PROTECTED_BASELINE.json').bindings)expect(createHash('sha256').update(readFileSync(b.path)).digest('hex')).toBe(b.sha256);});
  it('34 VNM remains DEFERRED BLOCKED',()=>{const p='docs/fundamental-data-engine/evidence/2026-10-15-ticker-closure-VNM/VNM_FINAL_SUFFICIENCY.json';const s=JSON.parse(readFileSync(p,'utf8'));expect(s.verdict).toMatch(/BLOCKED/);expect(s.levelOneReady).toBe(false);});
  it('35 readyForScoring remains false',()=>expect(build().readyForScoring).toBe(false));
  it('36 decisionReady remains false',()=>expect(read('TCX_FINAL_SUFFICIENCY.json').decisionReady).toBe(false));

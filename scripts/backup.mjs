@@ -10,6 +10,14 @@ const hash = value => createHash('sha256').update(value).digest('hex');
 const applicationVersion = JSON.parse(readFileSync(new URL('../package.json',import.meta.url),'utf8')).version;
 const canonical = value => JSON.stringify(value, (_key, v) => typeof v === 'bigint' ? { sqliteInteger: v.toString() } : v);
 const fail = () => { throw new DataIntegrityError(); };
+// These repositories store a canonical contentHash excluding that field, not a hash of the envelope text.
+const sealedTables = new Set(['market_boundary_record','dependency_release','production_dependency_publication','market_boundary_ranking_publication']);
+function codePointOrder(a,b){const x=Array.from(a),y=Array.from(b);for(let i=0;i<Math.min(x.length,y.length);i++){const d=x[i].codePointAt(0)-y[i].codePointAt(0);if(d)return d;}return x.length-y.length;}
+function envelopeJson(value){
+ if(value===null||typeof value!=='object')return JSON.stringify(value);
+ if(Array.isArray(value))return '['+value.map(envelopeJson).join(',')+']';
+ return '{'+Object.keys(value).sort(codePointOrder).map(k=>JSON.stringify(k)+':'+envelopeJson(value[k])).join(',')+'}';
+}
 function syncFile(file) { const fd = openSync(file, 'r'); try { fsyncSync(fd); } finally { closeSync(fd); } }
 function readRows(db, sql) { const statement = db.prepare(sql); statement.setReadBigInts(true); return statement.all(); }
 /** Exact logical rows, schema and artifact checksums; no accounting calculation is introduced here. */
@@ -33,9 +41,15 @@ export function inspectBackup(file) {
       // Schema names are quoted as identifiers, never concatenated as SQL expressions.
       const rows = readRows(db, `SELECT * FROM "${name.replaceAll('"', '""')}"`);
       for (const row of rows) if (typeof row.body === 'string' && typeof row.body_hash === 'string') {
-        if (hash(row.body) !== row.body_hash) fail();
         const artifact = JSON.parse(row.body);
-        if ((artifact.id ?? artifact.command?.id) !== row.id) fail();
+        if(sealedTables.has(name)){
+          const {contentHash,...payload}=artifact;
+          if(typeof contentHash!=='string'||contentHash!==row.body_hash||hash(envelopeJson(payload))!==contentHash)fail();
+        }else if(hash(row.body)!==row.body_hash)fail();
+        // Raw broker observations have an external storage ID; admission snapshots bind snapshotId.
+        if(name==='fundamental_admission_run'){
+          if(artifact.snapshotId!==row.id||artifact.contentHash!==row.content_hash)fail();
+        }else if(name!=='broker_observation'&&(artifact.id??artifact.command?.id)!==row.id)fail();
         if (row.review_id && (artifact.reviewId ?? artifact.command?.reviewId) !== row.review_id) fail();
       }
       if (name === 'ledger_transaction' && rows.some(row => row.status !== 'POSTED')) fail();

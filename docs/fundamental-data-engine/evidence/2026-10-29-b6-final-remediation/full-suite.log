@@ -1,0 +1,632 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+stdout | tests/integration/m68-backup.test.ts > backup → disposable restore → integrity, complete historical rows, accounting and artifact replay
+{"probe":"backup-subprocess","mode":"backup","durationMs":870,"status":0,"timedOut":false}
+{"probe":"backup-subprocess","mode":"restore","durationMs":1109,"status":0,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases
+{"probe":"backup-subprocess","mode":"backup","durationMs":644,"status":0,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > same source path
+{"probe":"backup-subprocess","mode":"backup","durationMs":322,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > existing backup is never overwritten
+{"probe":"backup-subprocess","mode":"backup","durationMs":267,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > public output is refused
+{"probe":"backup-subprocess","mode":"backup","durationMs":344,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > symlink source is refused
+{"probe":"backup-subprocess","mode":"backup","durationMs":273,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > altered backup bytes are refused
+{"probe":"backup-subprocess","mode":"restore","durationMs":271,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > missing manifest is refused
+{"probe":"backup-subprocess","mode":"restore","durationMs":266,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > existing restore is never overwritten
+{"probe":"backup-subprocess","mode":"restore","durationMs":802,"status":0,"timedOut":false}
+{"probe":"backup-subprocess","mode":"restore","durationMs":293,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > forged manifest counts are refused
+{"probe":"backup-subprocess","mode":"restore","durationMs":488,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > corrupt authoritative artifact cannot be published as a validated backup
+{"probe":"backup-subprocess","mode":"backup","durationMs":676,"status":1,"timedOut":false}
+
+ ✓ tests/integration/m68-backup.test.ts (10 tests) 25515ms
+   ✓ backup → disposable restore → integrity, complete historical rows, accounting and artifact replay 12430ms
+   ✓ bounded independent backup/restore safety cases (8)
+     ✓ same source path 347ms
+     ✓ public output is refused 376ms
+     ✓ existing restore is never overwritten 1113ms
+     ✓ forged manifest counts are refused 506ms
+   ✓ corrupt authoritative artifact cannot be published as a validated backup 5112ms
+ ✓ tests/unit/di-governance-closure.test.ts (18 tests | 3 skipped) 1374ms
+   ✓ 4 compact projection changes no accounting fact, dimension or retained provenance 565ms
+ ✓ tests/unit/consumer-retail-ticker-closure.test.ts (43 tests | 1 skipped) 510ms
+ ✓ tests/unit/consumer-targeted-fix.test.ts (18 tests | 2 skipped) 387ms
+ ✓ tests/unit/tcx-ticker-closure.test.ts (36 tests | 2 skipped) 261ms
+ ✓ tests/unit/energy-ticker-closure.test.ts (44 tests | 1 skipped) 93ms
+ ✓ tests/unit/real-estate-ticker-closure.test.ts (43 tests | 1 skipped) 122ms
+ ✓ tests/unit/vjc-ticker-closure.test.ts (46 tests | 2 skipped) 87ms
+ ✓ tests/unit/tcx-ket-vang-targeted.test.ts (25 tests | 3 skipped) 60ms
+ ✓ tests/unit/fpt-ticker-closure.test.ts (18 tests | 1 skipped) 21ms
+(node:76643) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+stdout | tests/integration/m68.test.ts > M6.8 downstream formal authority chain with historical upstream scores (disposable test evidence) > performance sanity: current reads at 30 holdings preserve exact NAV and record local latency
+{"profile":"VN30 30 holdings / 31 immutable ledger events","currentReadMilliseconds":[67.00608400000783,57.374875000008615,51.4495409999945,57.36212499999965,60.6792909999931],"meanMilliseconds":58.77438320000074,"ledgerReadsPerCaptureFromSourceAudit":5,"limitation":"full-history reconstruction; measurements are local, not an SLA"}
+
+ ❯ tests/integration/m68.test.ts (13 tests | 1 failed) 119886ms
+   ❯ M6.8 downstream formal authority chain with historical upstream scores (disposable test evidence) (13)
+     ✓ A: contribution, cash-only current state, excluded formal universe and HOLD CASH never buy 1332ms
+     ✓ B/G/U/Q/S: score → BUY → persisted marginal lots → review/proposal → explicit ledger → reconstruction/reversal; history survives 14474ms
+     ✓ ambiguous, mismatched, missing and tampered marginal authority never falls back to an allocation 10617ms
+     × later calculations use issuance cutoff; retry preserves time and revised proposal supersedes history 20050ms
+     ✓ legacy catalog cannot hide a corrupt marginal body by changing its scope before selection 6274ms
+     ✓ frozen legacy composition resolves persisted marginal authority without browser input 15608ms
+     ✓ production composition blocks normalized manual source without accepted market-boundary evidence 5448ms
+     ✓ security: all injected authority and lineage fields fail before a review write 1089ms
+     ✓ fresh/populated M6.7 database: repeated deploy/status preserves all rows and historical replay 12913ms
+     ✓ adapter failures and future source times block formal action without fallback 3651ms
+     ✓ concurrent/repeated monthly initiation is idempotent and never changes accounting 18333ms
+     ✓ V: corrected dataset B creates a new score and current context without rewriting decision A 5459ms
+     ✓ performance sanity: current reads at 30 holdings preserve exact NAV and record local latency 4636ms
+(node:76802) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/forward-intake.test.ts (24 tests) 79465ms
+   ✓ Phase2.2 isolated forward intake (24)
+     ✓ BUY + separate settlement reuse engine in one atomic multi-time batch 2817ms
+     ✓ SELL + settlement realizes P&L once 2756ms
+     ✓ deposit, withdrawal, fees and taxes preserve separate capital/expense semantics 2522ms
+     ✓ cash dividend records income but no external flow 2507ms
+     ✓ net claim settlement retains Phase2.1 receipt protection and zero duplicate income 2641ms
+     ✓ supported split preserves total MWAC basis 2404ms
+     ✓ repeat/cross-file/cross-format receipts return DUPLICATE with no revision change 2534ms
+     ✓ duplicates in one batch are explicit and retained, not silently discarded 2598ms
+     ✓ conflicting content under same stable event/revision NEEDS_REVIEW 2419ms
+     ✓ legacy direct ledger transaction is detected by verified economic identity 2439ms
+     ✓ unresolved legacy provenance blocks rather than assuming no duplicate 2468ms
+     ✓ pre-opening event and date-only cannot be imported 2440ms
+     ✓ missing source/identity and unsupported categories preserve every original record 2514ms
+     ✓ no real acceptance adapter defaults BLOCKED_SOURCE 2598ms
+     ✓ hash mismatch, wrong accepted security/account, self-review and future knowledge fail closed 2487ms
+     ✓ invalid financial event in second record rolls back the entire batch 2505ms
+     ✓ audit failure and revoked acceptance at atomic commit roll back business legs 2671ms
+     ✓ explicit immutable reversal is supported and opening reversal is blocked 2526ms
+     ✓ corrected broker revision requires paired reversal/replacement; duplicate revision cannot repost 2521ms
+     ✓ enrolled portfolio cannot bypass intake/audit via the old posting facade 2197ms
+     ✓ concurrent imports use CAS; retry identical event is idempotent 12005ms
+     ✓ different concurrent imports cannot both claim the same revision 12052ms
+     ✓ oversell and unfunded margin fail existing accounting rules 2342ms
+     ✓ audit is immutable and tampered retained audit fails read integrity 2499ms
+ ✓ tests/integration/decision.test.ts (14 tests) 45615ms
+   ✓ M6.5 immutable persisted decisions (4)
+     ✓ append/read, duplicate rejection, prior/snapshot/score/method/evidence lineage, later artifacts cannot rewrite history 8023ms
+     ✓ application resolves stored artifacts and rechecks portfolio instead of accepting client decision authority 2707ms
+     ✓ rejects missing prior record, invented result and mismatched prior security 3538ms
+     ✓ populated M6.4 SQLite upgrade preserves exact upstream rows and supports repeated migrations 12307ms
+   ✓ pending candidate cannot claim approval; retirement never rewrites historical synthetic decisions 791ms
+   ✓ M6.5.2 approved methodology persistence (4)
+     ✓ append-only migration over populated M6.4/M6.5; decision history false 2488ms
+     ✓ append-only migration over populated M6.4/M6.5; decision history true 2509ms
+     ✓ fresh database pins immutable approval, rejects forged metadata and leaves historical candidates non-production 734ms
+     ✓ approved identity creates a new formal artifact through server resolution, without upgrading synthetic history 844ms
+   ✓ M6.5.3 immutable sector remediation (5)
+     ✓ populated M6.4 upgrade/repeat preserves every historical row 3161ms
+     ✓ populated M6.5.1 upgrade/repeat preserves every historical row 3293ms
+     ✓ populated M6.5.2 upgrade/repeat preserves every historical row 3721ms
+     ✓ fresh registry pins the corrected record and cannot rewrite either approved version 756ms
+     ✓ server blocks old-version selection and arbitrary approval/plan/state strings; new formal truth leaves historical BUY intact 739ms
+ ✓ tests/integration/marginal.test.ts (5 tests) 23039ms
+   ✓ M6.6.1 persisted marginal boundary (5)
+     ✓ persists/replays two authoritative lots and stop, creates a new review, never posts trades 4949ms
+     ✓ rejects forged authority, corrupted artifacts, stale snapshots and formal/synthetic crossing 2948ms
+     ✓ substitution history is persisted, required on later reviews, and cannot be omitted or forged 4927ms
+     ✓ links actual fills to individual marginal lots and rejects duplicate or missing lot references 5863ms
+     ✓ M6.6 populated upgrade preserves reviews, proposals, embedded journals, audits, decision and execution links byte-for-byte 4352ms
+ ✓ tests/integration/workflow.test.ts (11 tests) 19144ms
+   ✓ M6.6 immutable application and persistence (11)
+     ✓ persists proposal/journal atomically, deduplicates runs, never posts transactions 1604ms
+     ✓ same weekly invocation is idempotent; elapsed week creates no trades 1331ms
+     ✓ missing, stale, corrupt and client-injected authority all fail closed 1653ms
+     ✓ production boundary rejects synthetic history 1333ms
+     ✓ event supersedes pending schedule, blocks new monthly runs and preserves historical proposal 1787ms
+     ✓ decision audit preserves contemporaneous evidence and separates profit from quality 1513ms
+     ✓ historical R1/A1 survive new cash, snapshot, score/rank/decision and scoring identity 2224ms
+     ✓ execution readiness expires on new evidence, changed portfolio or an event 1470ms
+     ✓ execution links require a posted matching M6.3 transaction 1334ms
+     ✓ links an explicit posted trade without changing the original proposal or ledger 1455ms
+     ✓ fresh and populated M6.5 migration repeatability preserves every upstream row 3440ms
+ ✓ tests/integration/portfolio-review-remediation.test.ts (22 tests) 16540ms
+   ✓ R2-C01 future oversell rejects before commit; 100 current shares and watermark remain unchanged 721ms
+   ✓ R2-C01 future BUY then SELL and both settlements are accepted at valid economic transitions 656ms
+   ✓ R2-C01 future corporate-action duplicate EFFECTIVE stage is rejected before commit 636ms
+   ✓ R2-C01 future unfunded payable cannot hide beyond now 1247ms
+   ✓ R2-C01 new earlier SELL cannot consume shares promised to an existing later future SELL 906ms
+   ✓ R2-C01 validates intermediate boundaries even when final future quantity would recover 908ms
+   ✓ R2-C01 future excessive settlement is rejected atomically 770ms
+   ✓ R2-C01 future settlement before originating obligation is rejected 725ms
+   ✓ R2-C01 future reversal cannot invalidate an already committed later sale 747ms
+   ✓ R2-C01 future settled-trade correction preserves atomicity and reversal lineage 814ms
+   ✓ R2-C01 future speculative event is still rejected, separate from confirmed future effect 727ms
+   ✓ R2-M01 projection infrastructure failure preserves ledger without claiming accounting corruption 727ms
+   ✓ R2-M01 concurrent watermark produces STALE even if rebuild throws ConflictError=false 715ms
+   ✓ R2-M01 concurrent watermark produces STALE even if rebuild throws ConflictError=true 683ms
+   ✓ R2-M01 unexpected post-commit reconstruction failure explicitly blocks trust without compensation 684ms
+   ✓ R2-M01 typed integrity error from projection is not an ordinary rebuild failure 681ms
+   ✓ R2-M01 post-commit integrity read failure is explicit and contains only safe diagnostics 695ms
+   ✓ R2-m03 persisted malformed-json rejects with safe DataIntegrityError 695ms
+   ✓ R2-m03 persisted column-mismatch rejects with safe DataIntegrityError 698ms
+   ✓ R2-m03 persisted leg-mismatch rejects with safe DataIntegrityError 706ms
+   ✓ R2-m03 persisted unknown-method rejects with safe DataIntegrityError 701ms
+   ✓ R2-m03 persisted action-terms rejects with safe DataIntegrityError 698ms
+ ✓ tests/unit/workflow.test.ts (36 tests) 12950ms
+   ✓ M5 review workflows (35)
+     ✓ ordinary week has NO ACTION, no score/rank/decision refresh, no trade 315ms
+     ✓ event severity T4 routes without a trade 306ms
+     ✓ all documented bias tags require contemporaneous evidence 4006ms
+ ✓ tests/integration/portfolio-regressions.test.ts (20 tests) 28803ms
+   ✓ AUDIT-C01 must reject a second active split backdated before the first reversal 729ms
+   ✓ AUDIT-M01 snapshot must resolve January 3 reference at January 2 18:00 UTC (January 3 01:00 Vietnam) 642ms
+   ✓ AUDIT-M02 a snapshot before supported inception must not claim VALID zero-state history 617ms
+   ✓ C01 replacement after reversal preserves original historical state and accepts one active stage 691ms
+   ✓ C01 replay rejects a duplicate backdated before the original even if latest active state appears free 755ms
+   ✓ C01 atomic replacement at reversal effective time follows deterministic economic ordering 807ms
+   ✓ M03 imported NAV baseline is priced, reproducible, versioned and separate from cost and contributions 9944ms
+   ✓ M03 absent inception inputs block actionable imported snapshot while preserving current NAV 3079ms
+   ✓ M03 missing inception evidence cannot be replaced with cost basis or current inputs 1928ms
+   ✓ M03 stale inception evidence cannot be replaced with cost basis or current inputs 1211ms
+   ✓ M03 future inception evidence cannot be replaced with cost basis or current inputs 1025ms
+   ✓ M03 conflicting inception evidence cannot be replaced with cost basis or current inputs 1002ms
+   ✓ M03 missing-sector inception evidence cannot be replaced with cost basis or current inputs 1056ms
+   ✓ M03 missing-membership inception evidence cannot be replaced with cost basis or current inputs 1270ms
+   ✓ M03 revised inception evidence recomputes gain without changing ledger 732ms
+   ✓ M02 inception itself is supported and empty zero-start history is distinct from pre-inception 728ms
+   ✓ M01 reference day boundary 2026-01-02T16:59:59.999Z resolves sector and identifier to OLD 669ms
+   ✓ M01 reference day boundary 2026-01-02T17:00:00.000Z resolves sector and identifier to NEW 624ms
+   ✓ M01 reference day boundary 2026-01-02T23:59:59.999Z resolves sector and identifier to NEW 614ms
+   ✓ M01 reference day boundary 2026-01-03T00:00:00.000Z resolves sector and identifier to NEW 680ms
+ ✓ tests/integration/portfolio.test.ts (18 tests) 12710ms
+   ✓ M6.3 real SQLite ledger / commands / migrations (18)
+     ✓ VC-L01 Command -> validation -> repository -> SQLite -> reload -> replay 712ms
+     ✓ VC-L05 / VC-SEC02 duplicate key/source and stale double submit cannot post twice 634ms
+     ✓ same values with distinct economic identities are not silently merged 617ms
+     ✓ VC-L03 oversell rejects before authoritative commit and revision advance 650ms
+     ✓ VC-SEC03 stale draft is rejected; never posts against stale quantity 635ms
+     ✓ raw late-leg insert/update/delete/replace/header destructive mutation fail 627ms
+     ✓ failed required leg insert rolls back header, revision and all legs 612ms
+     ✓ VC-L07 projection failure retains authoritative event and stale old projection 624ms
+     ✓ VC-L08 new event invalidates historical snapshot watermark 628ms
+     ✓ VC-L06 settled trade correction is atomic, queryable, survives reload 643ms
+     ✓ independent connections racing at one watermark permit at most one economic command 629ms
+     ✓ decimal TEXT round-trip beyond safe integer and fractional charge 687ms
+     ✓ migration repeat/reopen retains methodology and reconstructs the golden fixture 1787ms
+     ✓ historical watermark reproduces the input set before a later backdated contribution 660ms
+     ✓ an old rebuild cannot overwrite a projection from a newer ledger revision 638ms
+     ✓ snapshot includes valuation/reconciliation versions and blocks missing evidence or changed inputs 648ms
+     ✓ corporate reference and staged accounting effects persist separately and are immutable 628ms
+     ✓ FK and value exclusivity constraints enabled 652ms
+(node:78031) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/dependency-head.test.ts (15 tests) 11945ms
+   ✓ production resolves internally; caller-selected IDs/mode rejected; every head hash and required slot is checked 951ms
+   ✓ CAS A→B succeeds; concurrent A→C fails; retry after B checks compatibility; no partial release leaks 932ms
+   ✓ analysis fundamental change mid-flight blocks sealing; historical release remains replayable and cache stale 935ms
+   ✓ PARTITION authority change mid-analysis fails closed; market alone cannot promote MBB 856ms
+   ✓ TCX_EXCEPTION authority change mid-analysis fails closed; market alone cannot promote MBB 875ms
+   ✓ stale/missing market blocks refresh; expiry during analysis and at SQL publication rolls back 1020ms
+   ✓ policy/release and live ledger changes invalidate decisions; persistence never trusts stale portfolio watermark 980ms
+   ✓ dependency change between final validation and SQL transaction rejects atomically 884ms
+   ✓ market activation cannot promote MBB; expiry at final transaction check leaves no partial snapshot 824ms
+   ✓ same immutable object ID with changed content is an integrity error; projection remains unchanged 826ms
+   ✓ missing market requests refresh, and incompatible/unknown dependencies cannot activate 849ms
+   ✓ policy supersession blocks new decision from old analysis while historical binding stays immutable 938ms
+   ✓ staged lifecycle receives original snapshot binding time while freshness revalidation uses the trusted current clock 864ms
+ ✓ tests/unit/marginal.test.ts (22 tests) 11271ms
+   ✓ M6.6.1 M6.5-owned marginal authorization (22)
+     ✓ A/B: two lots authorized; third blocked; post-lot exposures and residual are preserved 376ms
+     ✓ C: projected sector capacity stops the next lot 313ms
+     ✓ D: cash stops after one lot without exhausting the residual 329ms
+     ✓ G: only refreshed authoritative comparisons permit A then B 474ms
+     ✓ H: a new tie requires review, never alphabetical selection 410ms
+     ✓ I: 15 candidates use comparison evidence, with deterministic replay 4257ms
+     ✓ J: affordable alternative that fails required return receives no substitution 365ms
+     ✓ K: approved §12 conjunction permits B, then cash stops; preserves A's merit 415ms
+     ✓ L: lower share price alone grants no substitution authority 366ms
+     ✓ missing mosNotMateriallyWeaker evidence retains cash 369ms
+     ✓ missing concentrationNotWorse evidence retains cash 371ms
+     ✓ missing diversionDoesNotStarvePreferred evidence retains cash 373ms
+     ✓ recurring diversion requires fresh competitive evidence 374ms
+     ✓ rejects stale evidence, mismatched base and future cutoff 302ms
+ ✓ tests/integration/scoring-readiness.test.ts (11 tests) 10808ms
+   ✓ FORMAL writes score plus immutable exact dataset binding, computes all-ticker readiness and reopens 1423ms
+   ✓ direct/default FORMAL engine and artifact repository cannot bypass DI; synthetic scope remains intact 758ms
+   ✓ a stored caller-authored DI PASS or a different run cannot manufacture independent review authority 816ms
+   ✓ reviewed financial/model/human inputs and clocks cannot be changed behind a valid acceptance 973ms
+   ✓ immutable guards, restrictive links and rollback retain both datasets and legacy score artifacts 1058ms
+   ✓ transport hashes cannot hide tampered DI review, readiness bindings or forged domain scores 997ms
+   ✓ historical FORMAL artifacts without dataset links remain readable but cannot claim readiness at the ranking boundary 776ms
+   ✓ configured review hashes still require an exact approved production methodology and requirements binding 817ms
+   ✓ governed DATE_ONLY persists, reopens and cannot be forged through reviewed input or external evidence 1237ms
+   ✓ stored v1 score, acceptance and dataset binding replay unchanged; v1 cannot authorize a new FORMAL write 1023ms
+   ✓ even an externally pinned reviewed package cannot authorize caller-created DATE_ONLY lineage outside the canonical bridge 928ms
+ ✓ tests/unit/dca.test.ts (32 tests) 10112ms
+   ✓ M6.6 DCA baseline (32)
+     ✓ DCA-09 M6.5 robust comparator evidence determines priority 319ms
+     ✓ 2 equal candidates preserve economic tie regardless of affordability 332ms
+     ✓ 5 equal candidates preserve economic tie regardless of affordability 528ms
+     ✓ 15 equal candidates preserve economic tie regardless of affordability 1119ms
+     ✓ economically preferred but unaffordable does not substitute next affordable 318ms
+     ✓ old proposal remains immutable when all current artifacts change 548ms
+(node:78222) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/dividend-settlement.test.ts (16 tests) 9115ms
+   ✓ Phase2.1 isolated real SQLite / CAS / immutable audit (16)
+     ✓ persists exact legs, one receipt owner, audit and idempotent retry even stale revision 657ms
+     ✓ missing operational adapter fails closed and rolls back business/revision 601ms
+     ✓ acceptance rejection is atomic, including corrections 563ms
+     ✓ audit persistence failure rolls back event, legs, revision and receipt 554ms
+     ✓ rejects duplicate receipt via DIVIDEND_CASH after settlement even with alternate source 556ms
+     ✓ rejects duplicate receipt via CASH_DEPOSIT after settlement even with alternate source 558ms
+     ✓ detects a receipt already posted through legacy cash before settlement enrollment 559ms
+     ✓ no adapter cannot bypass receipt registry by posting legacy credit after settlement 555ms
+     ✓ multiple partial receipts persist; duplicate receipt / overclaim rolls back 593ms
+     ✓ immutable reversal and explicit correction are audited; receipt stays reserved 553ms
+     ✓ CAS rejects stale different event; two independent connections cannot over-settle 557ms
+     ✓ concurrent identical requests never double-post; in-flight CAS conflict retries to original result 554ms
+     ✓ reversal and correction cannot bypass current source acceptance 547ms
+     ✓ missing canonical receipt identity rejects, and SQL replace cannot alter immutable audit 550ms
+     ✓ accepted evidence digest is bound to exact allocation and receipt, not a client accepted flag 557ms
+     ✓ audit tampering is rejected on read even if SQL immutability was administratively disabled 601ms
+ ✓ tests/integration/current-remediation.test.ts (12 tests) 8097ms
+   ✓ A: authoritative NAV includes payable; price changes never alter accounting or transactions 719ms
+   ✓ B/C: missing, stale, unknown and conflicted latest price fail closed 648ms
+   ✓ D: effective-dated sector changes do not mutate old captured evidence 627ms
+   ✓ E: reconciliation discrepancy and stale ledger block actionability despite valid prices 623ms
+   ✓ F/H: preview does not write; concurrent weekly submissions persist one formal review without refresh/trade 649ms
+   ✓ I/security: browser authority fields are rejected before any formal write 621ms
+   ✓ J/K/L: missing analyst evidence, synthetic sources and arbitrary events cannot create reviews 634ms
+   ✓ G: posted monthly contribution with formal excluded universe preserves HOLD CASH and cash 1085ms
+   ✓ annual evidence remains separate from policy; missing quarterly evidence fails closed 629ms
+   ✓ normalized local adapter rejects forged outputs and preserves source as-of separately from retrieval 611ms
+   ✓ missing one of two held prices suppresses total NAV instead of a partial total 620ms
+   ✓ latest invalid or ambiguous quote cannot fall back to an older valid quote 630ms
+ ✓ tests/integration/registry.test.ts (10 tests) 7315ms
+   ✓ actual SQLite methodology registry (10)
+     ✓ migrates an empty DB with expected foundation/ledger tables and private permissions 1207ms
+     ✓ round-trips full metadata and date/instant semantics and freezes the mapped record 633ms
+     ✓ maps duplicates to ConflictError without replacing the original 613ms
+     ✓ preserves find missing/null and maps required missing to NotFoundError 618ms
+     ✓ rejects malformed metadata before writing 613ms
+     ✓ rolls back the entire transaction on a duplicate append 611ms
+     ✓ blocks update, delete and REPLACE through supported connections 616ms
+     ✓ preserves records on reconnect and repeated migration deploy 1157ms
+     ✓ detects invalid persisted metadata instead of returning trusted domain state 624ms
+     ✓ supports canonical effective-date filtering without implicit timezone shifts 623ms
+ ✓ tests/integration/fundamentals-snapshot.test.ts (9 tests) 5898ms
+   ✓ atomically seals/reopens content, selected/excluded members, provenance and independent build runs 811ms
+   ✓ authoritative enumeration rejects hidden conflicts, incomplete pins and forged availability with no partial content 672ms
+   ✓ new imports after frozen cutoff reproduce original content and eligible lineage while retained raw evidence stays immutable 630ms
+   ✓ all artifact/member writes reject update/delete/replace and restrictive FK violations 626ms
+   ✓ detects run/manifest/member tampering even if the attacker recomputes transport body hashes 631ms
+   ✓ raw capture tampering is detected during replay and future builds, despite apparently valid content identity 623ms
+   ✓ proposed registry/policy and request self-approval cannot produce a FORMAL run 618ms
+   ✓ persists derived membership with restrictive FKs and rejects output tampering through derivation replay 645ms
+   ✓ FORMAL availability requires an exact external policy hash binding and production methodology record 640ms
+(node:78496) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/data-freshness.test.ts (9 tests) 5759ms
+   ✓ empty data never invents universe or readiness counters and the data read bypasses portfolio/broker services 666ms
+   ✓ exact 30-member coverage and governed DATE_ONLY clocks are shown independently of DI readiness, with no writes 990ms
+   ✓ stored DI PASS cannot establish readiness without trusted review capabilities; mismatched acceptance/run stays blocked 936ms
+   ✓ unknown publication and excluded/missing requirements stay visible; public DTO withholds raw payloads, private references and credential URLs 620ms
+   ✓ a verified DATE_ONLY snapshot is readable by default composition without creating approvals or fabricated issuer times 624ms
+   ✓ tampered snapshot and malformed/absent run references fail closed without exposing diagnostics 619ms
+   ✓ revision provenance resolves the pinned predecessor without including operator or raw capture bodies 656ms
+   ✓ governed derived lineage displays actual ordered operands and selected canonical constituent IDs 646ms
+ ✓ tests/integration/fundamentals-normalization.test.ts (7 tests) 4693ms
+   ✓ qualification-bound normalization and immutable validation storage (7)
+     ✓ persists validated observations, exact lineage and unknown publication/availability; reopens and rejects duplicate writes 741ms
+     ✓ retains cross-receipt conflicts and unknown mappings as BLOCKED artifacts without overwriting prior facts 668ms
+     ✓ missing data stays null; corrected/revoked qualification and FORMAL unapproved maps block normalization 637ms
+     ✓ atomic persistence rejects forged output/context and rollback leaves no partial artifact 649ms
+     ✓ SQL mutation/replacement guards, restrictive foreign keys and read tamper detection hold 625ms
+     ✓ retains issuer, provider and mapping revision chains with exact replay and no availability inference 721ms
+     ✓ legacy assessments replay without relabeling history; new legacy append is rejected 650ms
+(node:78583) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/dashboard-research-isolation.test.ts (1 test) 729ms
+   ✓ withholds unverifiable optional research while preserving independently sealed data 728ms
+(node:78589) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/dashboard-ui.test.ts (6 tests) 4295ms
+   ✓ M6.7 local read / confirmed command integration (6)
+     ✓ preview does not write; confirmation posts; repeat confirmation cannot duplicate 893ms
+     ✓ rejects tampering, browser business outputs, expired confirmation and stale watermark 630ms
+     ✓ reversal appends a new fact instead of mutating original 777ms
+     ✓ BUY preview resolves amount on server and rejects oversell without posting 621ms
+     ✓ read validates immutable ledger rather than trusting projection payload 767ms
+     ✓ rejects missing/cross-origin and remote host writes 605ms
+ ✓ tests/unit/runtime-dataset-acceptance.test.ts (5 tests) 4086ms
+   ✓ complete synthetic packet binds 667 explicit reviews, owner gates, dossiers and independent acceptance; creates no score 1635ms
+   ✓ acceptance requires exact independent evidence reference and fresh packet hash 1606ms
+(node:78626) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/authority-invalidation.test.ts (4 tests) 4029ms
+   ✓ POLICY supersession invalidates current publication/cache and preserves historical replay 1090ms
+   ✓ SCORING_MODEL supersession invalidates current publication/cache and preserves historical replay 983ms
+   ✓ RISK_POLICY supersession invalidates current publication/cache and preserves historical replay 976ms
+   ✓ DECISION_ENGINE supersession invalidates current publication/cache and preserves historical replay 979ms
+ ✓ tests/integration/current-nav.test.ts (7 tests) 3966ms
+   ✓ Phase3.2 readonly service on isolated actual SQLite (7)
+     ✓ assembles pinned ledger-derived plan, returns1220 immutable manifest and makes no writes 637ms
+     ✓ defaults to nonoperational retained mode and no authority, never trusts test/JSONflags 559ms
+     ✓ missing real input source returnsNAV_BLOCKED without reconstructing fake prices 549ms
+     ✓ rechecks ledger revision after reading source and blocks racing results 545ms
+     ✓ evidence-head race, source failure and clock rollback fail closed 561ms
+     ✓ does not claim AS_KNOWN or ignore late-known ledger facts 558ms
+     ✓ post-close known events are not mixed into earlier EOD cash 556ms
+ ✓ tests/integration/fundamentals-repository.test.ts (6 tests) 3796ms
+   ✓ immutable fundamental SQLite repository (6)
+     ✓ exact source/capture/import/observation round-trip, reopen and no ledger mutation 702ms
+     ✓ retains conflicts and every correction kind without latest-wins or overwrites 637ms
+     ✓ raw invalid payload remains available and failed/partial imports cannot imply completeness 611ms
+     ✓ rejects unknown Security/capture/lineage and forged registry/formal production writes 613ms
+     ✓ guards UPDATE DELETE REPLACE and ON CONFLICT mutation at the database boundary 619ms
+     ✓ detects body, scalar metadata and raw payload tampering on read 613ms
+ ✓ tests/integration/scoring-artifacts.test.ts (4 tests) 3539ms
+   ✓ immutable scoring artifacts, actual SQLite (4)
+     ✓ fresh migration, immutable roundtrip, correction and registered methodology only 724ms
+     ✓ populated M6.3 upgrade and repeat deploy preserve existing data 1701ms
+     ✓ ranking persists only from formal scorecards and replays after method/evidence revisions 1098ms
+ ✓ tests/integration/fundamentals-availability-evidence.test.ts (5 tests) 3271ms
+   ✓ persists trusted boundaries and independently verifies authority on reopen; missing composition fails closed 739ms
+   ✓ adding a trusted binding does not reinterpret pinned fallback or legacy artifacts; new assessment has a separate identity 660ms
+   ✓ source/provider/hash/receipt mismatches reject governed input without persisting any assessment 614ms
+   ✓ a forged stored trusted assessment cannot create authority even with a recomputed body hash 610ms
+   ✓ FORMAL v2 requires independent exact registry, policy and publicly receivable provider methodology bindings 648ms
+ ✓ tests/integration/fundamentals-derivation.test.ts (5 tests) 3243ms
+   ✓ persists exact formula/input/adjustment lineage atomically, reopens and retains canonical facts 721ms
+   ✓ rejects forged output, missing inputs and formal proposed release without partial writes 627ms
+   ✓ keeps N/R evidence, guards artifact/input mutation and replacement, restrictive FKs and tamper replay 628ms
+   ✓ persists/reopens/replays complete monetary review dimensions and N/R mismatches without mutating facts 637ms
+   ✓ legacy adjusted bodies stay immutable and replay fails closed rather than guessing missing dimensions 628ms
+(node:78793) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/production-authority.test.ts (16 tests) 3135ms
+   ✓ real Owner-approved bundle resolves exact reviewed m64 executable and all11 static heads; no scoring 407ms
+   ✓ approved method registration + release/CAS bootstrap atomic; rollback leaks no method or partial heads 1814ms
+(node:78799) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/fundamentals-migration.test.ts (1 test) 3029ms
+   ✓ populated latest baseline upgrade, repeat deployment and all previous rows/triggers/portfolio replay are preserved 3029ms
+(node:78824) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/scoring-readiness-migration.test.ts (1 test) 2812ms
+   ✓ populated Slice05 upgrade preserves every old table, trigger, snapshot and historical score without retroactive bindings 2811ms
+ ✓ tests/unit/scoring.test.ts (59 tests) 2496ms
+(node:78845) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/fundamentals-normalization-migration.test.ts (1 test) 2320ms
+   ✓ upgrades populated Slice 2 baseline additively, preserves every old table/trigger/row and repeats deployment 2320ms
+(node:78865) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/fundamentals-derivation-migration.test.ts (1 test) 2316ms
+   ✓ upgrades populated Slice 3 baseline additively, preserves every old table/trigger/row and repeats deployment 2315ms
+(node:78885) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/fundamentals-snapshot-migration.test.ts (1 test) 2319ms
+   ✓ upgrades populated Slice4 baseline additively and preserves every prior table, trigger and row 2318ms
+ ✓ tests/integration/portfolio-migration.test.ts (1 test) 2303ms
+   ✓ populated M6.2 -> M6.3 additive migration preserves config records and replays fixture 2302ms
+ ✓ tests/unit/dashboard-ui.test.tsx (29 tests) 2272ms
+   ✓ renders marginal authorization, stop reasons and substitution policy with supporting evidence 453ms
+ ✓ tests/integration/di15-policy-b.test.ts (2 tests) 1895ms
+   ✓ trusted versioned acceptance persists all30 states and rejects deferred formal inputs before any score write 1102ms
+   ✓ PolicyB cannot manufacture independent approval, bypass pinned release or relabel issues 792ms
+ ✓ tests/integration/market-boundary.test.ts (4 tests) 1881ms
+   ✓ additive migration preserves legacy rows; immutable vNext reader fails unknown/hash/index; decision append cannot bypass seal 1237ms
+   ✓ atomic decision insert+seal rolls back on missing dependencies, changed head or seal failure 639ms
+ ✓ tests/unit/m68-policy.test.ts (5 tests) 1739ms
+   ✓ D/W: gain above 20 percent and biased rationales do not overwrite formal HOLD 1418ms
+ ✓ tests/unit/di15-policy-b.test.ts (88 tests) 1442ms
+ ✓ tests/unit/data-freshness-ui.test.tsx (6 tests) 1432ms
+   ✓ shows exact coverage denominator, historical readiness and current diagnostic staleness without trade controls 574ms
+ ✓ tests/unit/fpt-collector.test.ts (7 tests) 1351ms
+   ✓ FPT raw documents, no live network (7)
+     ✓ preserves binary bytes and hashes, captures landing page and stays PARTIAL 1339ms
+ ✓ tests/integration/isolation.test.ts (1 test) 1288ms
+   ✓ independent database fixtures never share records and remove only their owned directories 1288ms
+(node:78971) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/integration/tcbs-pipeline.test.ts (7 tests | 7 skipped) 17ms
+   ↓ REAL retained full30 corpus replays canonical/market evidence with29/1 and activeTCX; no investment output
+   ↓ REAL raw corpus passes existing retained authority rehash/normalization with test-only approval bindings; real acceptance stays denied
+   ↓ market expiry never invalidates historical capability/init replay; runtime status separates technical candidate from acceptance
+   ↓ raw hash mismatch and unknown candidate version fail closed without changing retained evidence
+   ↓ additive immutable snapshot storage replays real candidate contracts on isolated DB; no production writes
+   ↓ protected production database bytes retain starting fingerprint
+   ↓ preopen board without matchPrice never replaces a completed-session candidate or becomes zero
+ ✓ tests/unit/scoring-golden.test.ts (32 tests) 960ms
+ ✓ tests/unit/vn30-final-closure-review.test.ts (3 tests) 839ms
+   ✓ reconstructs every material denominator and admission without scoring or losing blocked members 754ms
+(node:78989) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/direct-api-prices.test.ts (1 test) 695ms
+   ✓ API writes become display P/L immediately through the real SQLite reader with exact lineage 695ms
+ ✓ tests/unit/retained-financial-research.test.tsx (25 tests) 119ms
+ ✓ tests/unit/decision-sector.test.ts (36 tests) 765ms
+ ✓ tests/integration/level1-disposition.test.ts (1 test) 709ms
+   ✓ persists governance independently, refuses mutation/untrusted approval and propagates TCX exception 708ms
+ ✓ tests/integration/fundamentals-ingest.test.ts (1 test) 736ms
+   ✓ persists immutable raw page/error/PDF manifests and retains independent refreshes 735ms
+ ✓ tests/unit/decision.test.ts (139 tests) 687ms
+ ✓ tests/integration/issuer-documents.test.ts (1 test) 689ms
+   ✓ generic issuer collection persists only raw events and document lineage with no canonical/DI promotion 688ms
+ ✓ tests/integration/fundamental-admission.test.ts (1 test) 674ms
+   ✓ retains admission append-only, rejects identity reuse and never accepts scoring approval 673ms
+ ✓ tests/integration/nav-read-adapters.test.ts (2 tests) 662ms
+ ✓ tests/integration/numeric.test.ts (11 tests) 672ms
+ ✓ tests/architecture/boundaries.test.mjs (33 tests) 558ms
+   ✓ dependency boundaries (33)
+     ✓ accepts the real nonempty source graph 490ms
+ ✓ tests/unit/gvr-ticker-closure.test.ts (45 tests | 2 skipped) 129ms
+ ✓ tests/unit/scoring-readiness.test.ts (10 tests) 517ms
+ ✓ tests/unit/policy-b-reporting.test.tsx (1 test) 499ms
+   ✓ PolicyB report preserves full denominator, deferred visibility, real Major severity and reopen conditions 499ms
+ ✓ tests/unit/runtime-readiness.test.ts (13 tests) 372ms
+ ✓ tests/unit/d2-availability.test.ts (31 tests) 377ms
+(node:79044) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/di14-di15-final-closure.test.ts (6 tests) 337ms
+ ✓ tests/unit/hpg-debt-final-closure.test.ts (9 tests) 333ms
+ ✓ tests/unit/bank-group-ticker-closure.test.ts (44 tests) 251ms
+ ✓ tests/unit/scoring-portfolio.test.ts (9 tests) 245ms
+ ✓ tests/unit/runtime-human-review.test.ts (11 tests) 236ms
+ ✓ tests/unit/source-publication.test.ts (13 tests) 226ms
+ ✓ tests/unit/nav-preparation.test.ts (52 tests) 39ms
+ ✓ tests/integration/d2-source-evidence.test.ts (11 tests) 217ms
+ ✓ tests/unit/market-boundary.test.ts (36 tests) 207ms
+ ✓ tests/unit/document-qualification.test.ts (11 tests) 176ms
+ ✓ tests/unit/sector-requirements.test.ts (10 tests) 186ms
+ ✓ tests/unit/ssi-ticker-closure.test.ts (16 tests) 208ms
+ ✓ tests/unit/current-remediation-ui.test.tsx (3 tests) 152ms
+ ✓ tests/unit/hpg-decision-grade.test.ts (17 tests) 142ms
+ ✓ tests/unit/policy-b-ports.test.ts (7 tests) 132ms
+ ✓ tests/unit/vic-ticker-closure.test.ts (38 tests) 123ms
+ ✓ tests/unit/vcb-ticker-closure.test.ts (12 tests) 113ms
+ ✓ tests/unit/broker-snapshot.test.tsx (3 tests) 117ms
+ ✓ tests/unit/debt-contract-activation.test.ts (32 tests) 114ms
+ ✓ tests/unit/manual-fundamentals-ui.test.tsx (2 tests) 99ms
+ ✓ tests/unit/app-shell.test.tsx (2 tests) 97ms
+ ✓ tests/unit/scoring-evidence-time.test.ts (4 tests) 90ms
+ ✓ tests/unit/opening-receivable-compatibility.test.ts (28 tests) 13ms
+ ✓ tests/integration/runtime-evidence.test.ts (3 tests) 87ms
+ ✓ tests/unit/nav-read-adapters.test.ts (44 tests) 77ms
+ ✓ tests/unit/vic-accounting-qualification.test.ts (28 tests) 80ms
+ ✓ tests/architecture/initialization-preflight.test.mjs (4 tests) 96ms
+ ✓ tests/unit/cafef-poc.test.ts (42 tests) 60ms
+ ✓ tests/unit/debt-metric-contract-proposal.test.ts (20 tests) 74ms
+ ✓ tests/unit/fundamentals-snapshot.test.ts (18 tests) 70ms
+ ✓ tests/integration/authority-binding.test.ts (18 tests) 71ms
+ ✓ tests/unit/current-nav.test.ts (44 tests) 64ms
+ ✓ tests/unit/level1-promotion.test.ts (12 tests) 56ms
+ ✓ tests/unit/structured-certification.test.ts (45 tests) 53ms
+ ✓ tests/unit/issuer-documents.test.ts (12 tests) 42ms
+ ✓ tests/unit/fundamentals-availability-evidence.test.ts (10 tests) 45ms
+ ✓ tests/architecture/ui-authority.test.mjs (1 test) 37ms
+ ✓ tests/unit/fundamentals-revisions.test.ts (7 tests) 32ms
+ ✓ tests/unit/hpg-ticker-closure.test.ts (8 tests) 34ms
+ ✓ tests/integration/manual-first.test.ts (6 tests) 30ms
+ ✓ tests/unit/fundamentals-normalization.test.ts (12 tests) 28ms
+ ✓ tests/unit/fundamentals-live-public-disclosure.test.ts (4 tests) 28ms
+ ✓ tests/unit/scoring-bridge-derived.test.ts (5 tests) 29ms
+ ✓ tests/unit/portfolio-accounting.test.ts (54 tests) 27ms
+ ✓ tests/unit/bank-accounting-qualification.test.ts (32 tests) 27ms
+ ✓ tests/unit/fundamentals-derivation.test.ts (10 tests) 23ms
+ ✓ tests/unit/fundamentals-snapshot-derived.test.ts (4 tests) 24ms
+ ✓ tests/architecture/08b-review.test.mjs (20 tests) 23ms
+ ✓ tests/unit/personal-account.test.tsx (12 tests) 22ms
+ ✓ tests/unit/fundamentals-review-candidate.test.ts (4 tests) 22ms
+ ✓ tests/unit/fundamentals-fact-equivalence.test.ts (5 tests) 21ms
+ ✓ tests/unit/manual-first.test.ts (41 tests) 20ms
+ ✓ tests/unit/fundamentals-equivalence-pit-selection.test.ts (2 tests) 17ms
+ ✓ tests/unit/fundamentals-financial-disclosure.test.ts (3 tests) 16ms
+ ✓ tests/unit/fundamentals-adjustment.test.ts (7 tests) 17ms
+ ✓ tests/unit/portfolio-read-models.test.ts (20 tests) 16ms
+ ✓ tests/unit/current-portion-presentation.test.ts (26 tests) 17ms
+ ✓ tests/unit/fundamentals-comparative-period.test.ts (1 test) 14ms
+ ✓ tests/unit/fundamentals-source-period-withdrawal.test.ts (3 tests) 15ms
+ ✓ tests/unit/fundamentals-source-fact-rejection.test.ts (2 tests) 13ms
+ ✓ tests/unit/dividend-settlement.test.ts (25 tests) 12ms
+ ✓ tests/integration/broker-snapshot.test.ts (2 tests) 15ms
+ ✓ tests/unit/vietstock-collection-policy.test.ts (3 tests) 10ms
+ ✓ tests/architecture/di123-candidates.test.mjs (27 tests) 10ms
+ ✓ tests/unit/cafef-display.test.ts (5 tests) 9ms
+ ✓ tests/unit/hybrid-targets.test.ts (2 tests) 13ms
+ ✓ tests/unit/fundamentals-contracts.test.ts (10 tests) 9ms
+ ✓ tests/integration/file-safety.test.ts (14 tests) 8ms
+(node:79181) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/broker-observations.test.ts (2 tests) 7ms
+ ✓ tests/integration/retained-corpus-current.test.ts (34 tests) 12950ms
+   ✓ current retained manifest data/combine/manifest.json preserves every ticker JSON hash 1083ms
+   ✓ current retained manifest data/manual-extracted-pdf/display-manifest.json preserves every ticker JSON hash 1614ms
+   ✓ current original PDF and API raw inventories retain their exact bytes, failed captures remain explicit 2074ms
+   ✓ current reader validates retained lineage for ACB without archival paths 302ms
+   ✓ current reader validates retained lineage for CTG without archival paths 363ms
+   ✓ current reader validates retained lineage for MBB without archival paths 481ms
+   ✓ current reader validates retained lineage for MSN without archival paths 314ms
+   ✓ current reader validates retained lineage for VCB without archival paths 898ms
+   ✓ current reader validates retained lineage for VHM without archival paths 571ms
+   ✓ current reader validates retained lineage for VIB without archival paths 553ms
+ ✓ tests/unit/cafef-refresh.test.ts (5 tests) 8ms
+ ✓ tests/unit/supported-derivation-routes.test.ts (3 tests) 8ms
+ ✓ tests/unit/validation.test.ts (25 tests) 7ms
+ ✓ tests/unit/tcbs-pipeline.test.ts (19 tests) 6ms
+ ✓ tests/unit/config-errors.test.ts (21 tests) 7ms
+ ✓ tests/unit/decision-portfolio.test.ts (2 tests) 6ms
+ ✓ tests/unit/methodology-validation.test.ts (13 tests) 7ms
+ ✓ tests/unit/fundamentals-availability-legacy.test.ts (1 test) 6ms
+ ✓ tests/unit/fundamentals-manual-document.test.ts (9 tests) 5ms
+ ✓ tests/unit/portfolio-command.test.ts (1 test) 5ms
+ ✓ tests/unit/foundation.test.ts (15 tests) 6ms
+ ✓ tests/unit/forward-intake.test.ts (10 tests) 5ms
+ ✓ tests/architecture/m68-authority.test.mjs (2 tests) 11ms
+ ✓ tests/unit/broker-api-data.test.ts (2 tests) 4ms
+ ✓ tests/unit/fundamentals-public-resource.test.ts (4 tests) 3ms
+ ✓ tests/unit/fundamentals-operational-freshness.test.ts (4 tests) 3ms
+ ✓ tests/architecture/fundamentals-governance-boundary.test.mjs (8 tests) 3ms
+ ✓ tests/unit/logging.test.ts (6 tests) 3ms
+ ✓ tests/architecture/fundamentals-mapping-closure.test.mjs (4 tests) 3ms
+ ✓ tests/unit/completed-session.test.ts (7 tests) 3ms
+ ✓ tests/unit/dashboard-screens.test.ts (4 tests) 2ms
+ ✓ tests/architecture/market-boundary.test.mjs (2 tests) 3ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/tcbs-pipeline.test.ts [ tests/integration/tcbs-pipeline.test.ts ]
+AssertionError: expected 'b9a910bd1935bfc3f96b9efce19b84230c8b2…' to be '45fa5e849a38367ceef78d6fb0d38c98853ee…' // Object.is equality
+
+Expected: "45fa5e849a38367ceef78d6fb0d38c98853ee0ebd03ad7eb35eed33fc8228210"
+Received: "b9a910bd1935bfc3f96b9efce19b84230c8b2c2ba3b030dce40d7145a7cfc61e"
+
+ ❯ tests/integration/tcbs-pipeline.test.ts:31:33
+     29|  expect(audit.accountingRowsChanged).toBe(0);expect(audit.portfolioRow…
+     30|  expect(audit.scoringOutputRowsChanged).toBe(0);expect(audit.rankingRo…
+     31|  expect(productionStartingHash).toBe(audit.afterSHA256);
+       |                                 ^
+     32| });
+     33| afterAll(()=>{expect(hashBytes(readFileSync('data/vn30.sqlite'))).toBe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/m68.test.ts > M6.8 downstream formal authority chain with historical upstream scores (disposable test evidence) > later calculations use issuance cutoff; retry preserves time and revised proposal supersedes history
+Error: Test timed out in 20000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/integration/m68.test.ts:59:2
+     57|   }finally{await x.db.close();}
+     58|  });
+     59|  describe("issuance cutoff and immutable revision lifecycle",()=>{
+       |  ^
+     60|   let x:Awaited<ReturnType<typeof m68System>>,service:ReturnType<typeo…
+     61|   let first:Awaited<ReturnType<typeof service.create>>,revised:Awaited…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 163 passed (165)
+      Tests  1 failed | 2496 passed | 25 skipped (2522)
+   Start at  05:10:10
+   Duration  637.30s (tests 90%, environment 5%, setup 2%, import 1%, transform 1%)
+
+    Isolate  165 workers spawned · ~245ms startup each (spawn + environment, per file)
+             at least ~40.17s faster with isolate: false — reuses workers across files instead of one per file
+
+JSON report written to /Users/nglehoangan/Documents/Working/VN_30_Investment/docs/fundamental-data-engine/evidence/2026-10-29-b6-final-remediation/full-suite.json

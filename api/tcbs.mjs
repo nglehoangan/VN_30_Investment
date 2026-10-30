@@ -1,9 +1,10 @@
 /** Single TCBS entry point: one private OTP/session, bounded REST + 5.2 WSS capture. Node 22.23.2. */
-import {mkdirSync,readFileSync,writeFileSync,statSync,openSync,closeSync,unlinkSync,renameSync} from 'node:fs';
+import {mkdirSync,readFileSync,writeFileSync,statSync,openSync,closeSync,unlinkSync,renameSync,existsSync} from 'node:fs';
 import {createHash,createHmac} from 'node:crypto';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import path from 'node:path';
+import {openDirectData,directDatabasePath} from './direct-data.mjs';
 const root=fileURLToPath(new URL('..',import.meta.url));
 export const digest=bytes=>createHash('sha256').update(bytes).digest('hex');
 export const WS_URL='wss://openapi.tcbs.com.vn/ws/thesis/v1/stream/normal';
@@ -157,15 +158,16 @@ export function marketRequests(members,to,{extended=false,historyBars=252}={}){
  return {core,extra};
 }
 
+// Live contract verified 2026-10-29: 4.16 acctno and 4.17 todate differ from published docs.
 export function accountRequests(today,from=today,to=today){
  return [
   ['4.14','NORMAL',a=>`/aion/v1/accounts/${encodeURIComponent(a)}/se`,()=>({})],
   ['4.15','NORMAL',a=>`/aion/v1/accounts/${encodeURIComponent(a)}/cashInvestments`,()=>({})],
-  ['4.16','NORMAL',()=>'/erebos/v2/digital/trans-hist-cashStatements',a=>({accountno:a,fromDate:from,toDate:to,pageSize:'25',pageIndex:'1'})],
+  ['4.16','NORMAL',()=>'/erebos/v2/digital/trans-hist-cashStatements',a=>({acctno:a,fromDate:from,toDate:to,pageSize:'25',pageIndex:'1'})],
   ['4.6','NORMAL',a=>`/aion/v1/accounts/${encodeURIComponent(a)}/matching-details`,()=>({})],
   ['4.4','NORMAL',a=>`/aion/v1/accounts/${encodeURIComponent(a)}/orders`,()=>({})],
   ['4.7','NORMAL',a=>`/aion/v1/accounts/${encodeURIComponent(a)}/ppse`,()=>({})],
-  ['4.17','MARGIN',()=>'/erebos/v2/digital/margin-info',a=>({acctno:a,custodycd:null,fromdate:from,toDate:to,page:'1',size:'25'})],
+  ['4.17','MARGIN',()=>'/erebos/v2/digital/margin-info',a=>({acctno:a,custodycd:null,fromdate:from,todate:to,page:'1',size:'25'})],
  ];
 }
 
@@ -181,7 +183,7 @@ export async function main(args=process.argv.slice(2),dependencies={}){
  const projectRoot=dependencies.root??root,fetchImpl=dependencies.fetch??globalThis.fetch;
  const getInterval=dependencies.getIntervalMs??1000;
  if(args.includes('--help')){
-  console.log('node api/tcbs.mjs [--cached-token-only] [--symbols=FPT,VNM,HPG] [--seconds=30] [--market-only] [--extended-market] [--history-bars=252] [--from=YYYY-MM-DD] [--to=YYYY-MM-DD]\nDefault: accounts + essential VN30 market/history + 5.2 in ONE session. --accounts is a legacy alias for the default. Cash statements paginate up to 25 pages; raw capture only, no DB/scoring writes.');return;
+  console.log('node api/tcbs.mjs [--cached-token-only] [--symbols=FPT,VNM,HPG] [--seconds=30] [--market-only] [--extended-market] [--history-bars=252] [--from=YYYY-MM-DD] [--to=YYYY-MM-DD]\nDefault: accounts + essential VN30 market/history + 5.2 in ONE session. --accounts is a legacy alias for the default. Cash statements paginate up to 25 pages; direct API data and display-price writes to SQLite; no ledger/scoring writes.');return;
  }
  if(args.some(a=>!['--cached-token-only','--accounts','--market-only','--extended-market'].includes(a)&&!['--symbols=','--seconds=','--history-bars=','--from=','--to='].some(prefix=>a.startsWith(prefix))))throw Error('UNKNOWN_ARGUMENT');
  if(args.includes('--accounts')&&args.includes('--market-only'))throw Error('CONFLICTING_ACCOUNT_OPTIONS');
@@ -200,10 +202,11 @@ export async function main(args=process.argv.slice(2),dependencies={}){
  const selection=args.find(a=>a.startsWith('--symbols='))?.slice(10).split(',');
  if(selection&&(!selection.length||new Set(selection).size!==selection.length||selection.some(s=>!all.some(m=>m.ticker===s))))throw Error('INVALID_UNIVERSE_SYMBOLS');
  const members=all.filter(m=>!selection||selection.includes(m.ticker)).map(({ticker,securityId})=>({ticker,securityId}));
+ if(existsSync(path.join(projectRoot,'.env.local')))process.loadEnvFile(path.join(projectRoot,'.env.local'));
  const config=path.join(projectRoot,'api/.env.local');if(statSync(config).mode&0o077)throw Error('PRIVATE_CONFIGURATION_REQUIRED');process.loadEnvFile(config);
  const key=process.env.TCBS_API_KEY,custody=process.env.TCBS_CUSTODY_CODE;if(!key||!custody)throw Error('LOCAL_CONFIGURATION_MISSING');
- const folder=path.join(projectRoot,'data/market-source/tcbs',new Date().toISOString().replaceAll(':','-')+'-unified');
- mkdirSync(folder,{recursive:true,mode:0o700});
+ const databaseFile=directDatabasePath(projectRoot,dependencies.databaseFile?'file:'+dependencies.databaseFile:process.env.DATABASE_URL);
+ const storage=openDirectData(databaseFile);
  const sessionFolder=path.join(projectRoot,'data/tcbs-session');let token,stopped=false,boardResult,lastGetAt=0;
  const report={version:'tcbs-unified-capture-v2',createdAt:new Date().toISOString(),scope:{accounts:!args.includes('--market-only'),extendedMarket:args.includes('--extended-market'),historyBars,from,to},universe:{path:releasePath,sha256:digest(releaseBytes)},symbols:members.map(m=>m.ticker),state:'STARTED',requests:[],issues:[]};
  const core={version:members.length===30?'tcbs-vn30-source-capture-v2':'tcbs-subset-source-capture-v1',createdAt:report.createdAt,universe:report.universe,state:'STARTED',requests:[]};
@@ -239,10 +242,9 @@ export async function main(args=process.argv.slice(2),dependencies={}){
   try{
    const result=await request('GET',pathname,parameters);
    Object.assign(row,{httpStatus:result.status,retrievedAt:new Date().toISOString(),providerAt:result.response.headers.get('date')});
+   Object.assign(row,storage.response(row,result.bytes));
    if(!result.ok){row.state='HTTP_'+result.status;throw Error(row.state);}
-   const name=apiId+(ticker?'-'+ticker:'')+(variant?'-'+variant:'')+'.raw.json';
-   writeFileSync(path.join(folder,name),result.bytes,{mode:0o600,flag:'wx'});
-   Object.assign(row,{rawPath:name,sha256:digest(result.bytes),state:'CAPTURED_NOT_QUALIFIED'});
+   row.state='CAPTURED_NOT_QUALIFIED';
    return result;
   }catch(error){row.state??='NETWORK_TIMEOUT_OR_PAYLOAD_ERROR';row.retrievedAt??=new Date().toISOString();throw error;}
  }
@@ -255,18 +257,20 @@ export async function main(args=process.argv.slice(2),dependencies={}){
    const prompt=spawnSync('python3',['-c','import getpass; print(getpass.getpass("TCInvest Smart OTP (hidden): "))'],{stdio:['inherit','pipe','inherit'],encoding:'utf8'});
    if(prompt.status!==0)throw Error('OTP_INPUT_UNAVAILABLE');return prompt.stdout.trim();
   }});token=session.token;
-  console.log(JSON.stringify({authentication:session.reused?'REUSED_VALID_TOKEN':'AUTHENTICATED',symbols:members.length}));
+  console.log(JSON.stringify({authentication:session.reused?'REUSED_VALID_TOKEN':'AUTHENTICATED',symbols:members.length,accounts:report.scope.accounts}));
   // Attach rejection immediately; REST and bounded streaming use the same authenticated session.
   board=captureBoard(token,report.symbols,{durationMs:seconds*1000,WebSocketImpl:dependencies.WebSocket??globalThis.WebSocket}).then(r=>{boardResult=r;},e=>{boardResult=e.capture??{state:'PARTIAL_CAPTURE',completion:'WEBSOCKET_FAILURE',frames:[]};if(e.message==='WEBSOCKET_AUTH_REJECTED'){stopped=true;invalidateTokenSession(sessionFolder);}});
   if(report.scope.accounts){
    try{
    const profile=await capture({apiId:'2.1',pathname:'/eros/v2/get-profile/by-username/'+encodeURIComponent(custody),parameters:{fields:'basicInfo,bankSubAccounts'}});
+   console.log(JSON.stringify({scope:'ACCOUNT',apiId:'2.1',httpStatus:profile.status,state:'CAPTURED_NOT_QUALIFIED'}));
    const cachedProfile=async()=>profile;
    for(const [apiId,type,route,params]of accountRequests(today,from,to)){
     try{
      const a=await resolveSubAccount(cachedProfile,custody,type),parameters=params(a);
      if(apiId==='4.17')parameters.custodycd=custody;
      const result=await capture({apiId,pathname:route(a),parameters,...(apiId==='4.16'?{variant:'page-1'}:{})});
+     console.log(JSON.stringify({scope:'ACCOUNT',apiId,accountType:type,httpStatus:result.status,state:'CAPTURED_NOT_QUALIFIED'}));
      if(apiId==='4.16'){
       const first=cashStatementPage(result.bytes,1);let received=first.rows;
       const pages=Math.ceil(first.totalCount/25);
@@ -280,9 +284,9 @@ export async function main(args=process.argv.slice(2),dependencies={}){
       if(received!==first.totalCount)throw Error('CASH_STATEMENT_INCOMPLETE_OR_PAGE_LIMIT');
      }
     }
-    catch(error){if(stopped||deadline.aborted)throw error;report.issues.push({apiId,reason:/^(CASH_|PROFILE_|ACTIVE_|AMBIGUOUS_)/.test(error.message)?error.message:'ACCOUNT_CAPTURE_INCOMPLETE'});if(!report.requests.some(r=>r.apiId===apiId))report.requests.push({apiId,state:'SUB_ACCOUNT_NOT_RESOLVED'});}
+    catch(error){if(stopped||deadline.aborted)throw error;const reason=/^(HTTP_\d{3}$|CASH_|PROFILE_|ACTIVE_|AMBIGUOUS_)/.test(error.message)?error.message:'ACCOUNT_CAPTURE_INCOMPLETE';report.issues.push({scope:'ACCOUNT',apiId,accountType:type,reason});if(!report.requests.some(r=>r.apiId===apiId))report.requests.push({apiId,state:'SUB_ACCOUNT_NOT_RESOLVED'});console.log(JSON.stringify({scope:'ACCOUNT',apiId,accountType:type,state:reason}));}
    }
-   }catch(error){if(stopped||deadline.aborted)throw error;report.issues.push({apiId:'2.1',reason:'PROFILE_CAPTURE_INCOMPLETE'});}
+   }catch(error){if(stopped||deadline.aborted)throw error;report.issues.push({scope:'ACCOUNT',apiId:'2.1',reason:/^HTTP_\d{3}$/.test(error.message)?error.message:'PROFILE_CAPTURE_INCOMPLETE'});console.log(JSON.stringify({scope:'ACCOUNT',apiId:'2.1',state:report.issues.at(-1).reason}));}
   }
   const specs=marketRequests(members,String(Math.floor(Date.now()/1000)),{extended:report.scope.extendedMarket,historyBars});
   for(const spec of specs.core){await capture(spec,core);console.log(JSON.stringify({apiId:spec.apiId,ticker:spec.ticker,state:'CAPTURED_NOT_QUALIFIED'}));}
@@ -299,12 +303,21 @@ export async function main(args=process.argv.slice(2),dependencies={}){
   report.finishedAt=new Date().toISOString();core.finishedAt=report.finishedAt;
   if(core.state==='STARTED')core.state='PARTIAL_CAPTURE';
   if(boardResult)report.websocket={apiId:'5.2',url:WS_URL,subscription:'d|s|tk|bp+bi+tm+mp+op+fe|'+report.symbols.join(','),...boardResult};
-  // Single convenient result, with exact raw REST text inline; source files stay replayable.
-  const combined={...report,requests:report.requests.map(r=>({...r,...(r.rawPath?{raw:readFileSync(path.join(folder,r.rawPath),'utf8')}:{})}))};
-  writeFileSync(path.join(folder,'capture.json'),JSON.stringify(combined,null,2)+'\n',{mode:0o600,flag:'wx'});
-  writeFileSync(path.join(folder,'manifest.json'),JSON.stringify(core,null,2)+'\n',{mode:0o600,flag:'wx'});
-  console.log(JSON.stringify({state:report.state,result:path.relative(projectRoot,path.join(folder,'capture.json')),requests:report.requests.length,websocketFrames:boardResult?.frames.length??0}));
+  // Final observations are in SQLite; no raw/manifest/capture data files are written.
+  try {
+   report.displayPrices=storage.publishPrices(report.requests,members,report.finishedAt);
+   if(report.displayPrices.state!=='UPDATED'){report.issues.push({apiId:'DISPLAY_PRICES',reason:'PRICE_COVERAGE_INCOMPLETE'});report.state='PARTIAL_CAPTURE';}
+   report.marketCore=core;
+   const accountRows=report.requests.filter(r=>r.apiId==='2.1'||r.apiId.startsWith('4.'));
+   const marketRows=report.requests.filter(r=>r.apiId.startsWith('5.'));
+   report.accountCapture={state:!report.scope.accounts?'NOT_REQUESTED':!accountRows.length||accountRows.some(r=>r.state!=='CAPTURED_NOT_QUALIFIED')||report.issues.some(i=>i.scope==='ACCOUNT')?'PARTIAL_CAPTURE':'CAPTURED_NOT_QUALIFIED',requests:accountRows.map(({apiId,httpStatus,state})=>({apiId,httpStatus,state})),issues:report.issues.filter(i=>i.scope==='ACCOUNT')};
+   const marketRestState=marketRows.length&&core.state==='CAPTURED_NOT_QUALIFIED'&&marketRows.every(r=>r.state==='CAPTURED_NOT_QUALIFIED')?'CAPTURED_NOT_QUALIFIED':'PARTIAL_CAPTURE';
+   report.marketCapture={state:marketRestState==='CAPTURED_NOT_QUALIFIED'&&boardResult?.state==='CAPTURED_NOT_QUALIFIED'?'CAPTURED_NOT_QUALIFIED':'PARTIAL_CAPTURE',restState:marketRestState,websocketState:boardResult?.state??'NOT_CAPTURED',displayPrices:report.displayPrices};
+   const saved=storage.saveRun(report);
+   console.log(JSON.stringify({state:report.state,storage:'SQLITE',runId:saved.id,requests:report.requests.length,accountCapture:report.accountCapture,marketCapture:report.marketCapture,displayPrices:report.displayPrices,websocketFrames:boardResult?.frames.length??0}));
+  } finally {storage.close();}
   if(report.state!=='CAPTURED_NOT_QUALIFIED')process.exitCode=1;
+  return report;
  }
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href)await main();

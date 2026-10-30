@@ -1,4 +1,6 @@
 import "server-only";
+import { latestDirectMarketPrices } from "@/infrastructure/repositories/direct-market-prices";
+import { readPersonalAccount } from "@/infrastructure/personal-account";
 import {readRetainedResearch} from "@/infrastructure/fundamentals/retained-research";
 import {readDataFreshness,type DataFreshnessServices} from "@/infrastructure/repositories/data-freshness";
 import {emptyDataFreshness} from "@/domain/fundamentals/freshness";
@@ -92,7 +94,16 @@ export async function loadDashboard(screen = "dashboard", reference?: string,acc
     const brokerSnapshot = await latestBrokerSnapshot(client) ?? await loadBrokerSnapshot(process.env.VN30_BROKER_SNAPSHOT_FILE);
     const brokerApiData = await latestBrokerApiData(client);
     const dashboard = await readDashboard(client, screen, reference);
-    return { ...dashboard,retainedResearch,manualFundamentals,manualFundamentalsIssue, brokerApiData, status: dashboard.status === "EMPTY" && brokerSnapshot ? "SUCCESS" : dashboard.status, brokerSnapshot: brokerSnapshot ?? undefined };
+    let personalAccount: DashboardModel["personalAccount"];
+    let personalAccountIssue: string | undefined;
+    if (dashboard.state) {
+      try {
+        const prices = await latestDirectMarketPrices(client, dashboard.state.positions.map(p => p.securityId), runtime.clock.now());
+        personalAccount = await readPersonalAccount(process.cwd(), dashboard.state, brokerSnapshot ?? undefined, prices);
+      }
+      catch { personalAccountIssue = "Dữ liệu danh mục cá nhân chưa khớp ngày, phiên bản hoặc vị thế trong sổ. Không sử dụng số liệu này; cần đối chiếu lại nguồn."; }
+    }
+    return { ...dashboard,personalAccount,personalAccountIssue,retainedResearch,manualFundamentals,manualFundamentalsIssue, brokerApiData, status: dashboard.status === "EMPTY" && brokerSnapshot ? "SUCCESS" : dashboard.status, brokerSnapshot: brokerSnapshot ?? undefined };
   } catch (error) { return { ...emptyDashboard(), status: "BLOCKED", message: toPublicError(error).message, ...(screen==="data"?{dataFreshness:emptyDataFreshness(runtime.clock.now(),"BLOCKED",["BLOCKED_DATA_READ"])}:{}) }; }
   finally { await client?.$disconnect(); }
 }

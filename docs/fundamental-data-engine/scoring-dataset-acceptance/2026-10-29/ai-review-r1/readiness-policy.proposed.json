@@ -1,0 +1,1125 @@
+{
+  "contract": "personal-ai-readiness-policy-proposal-v1",
+  "version": "1.0.0",
+  "status": "PROPOSED_NOT_RUNTIME_AUTHORITY",
+  "recordedAt": "2026-10-29T08:47:24.347Z",
+  "sourcePolicy": {
+    "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+    "sha256": "11cd53d5f52913f0365f8749538d5023cc5fdf5a27a7f212ab03bcb64ad4749e",
+    "version": "manual-fundamental-evidence-requirements-debt-v2"
+  },
+  "sourceMethodologyReferences": [
+    "docs/03 SCORING/SCORING_ENGINE.md#5",
+    "docs/03 SCORING/SCORING_ENGINE.md#9",
+    "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+    "docs/08_CONTINUOUS_IMPROVEMENT/MANUAL_FUNDAMENTALS_ARCHITECTURE.md",
+    "src/domain/fundamentals/debt-contract-v2.json"
+  ],
+  "categoryWeights": {
+    "BUSINESS_QUALITY": 25,
+    "FINANCIAL_HEALTH": 15,
+    "GROWTH_QUALITY": 15,
+    "INDUSTRY": 10,
+    "VALUATION": 20,
+    "RISK_GOVERNANCE": 10,
+    "CAPITAL_ALLOCATION": 5
+  },
+  "freshness": {
+    "version": "reporting-cycle-v1",
+    "quarterlyGraceDays": 60,
+    "annualGraceDays": 120,
+    "agingMissedCycles": 1,
+    "basis": "Operational analysis policy, not an assertion of statutory issuer filing deadlines; quarterly issuers expect latest completed fiscal quarter after 60-day grace; annual-only reports after 120-day grace. No retrieval-age input."
+  },
+  "sourcePriority": "PDF_FIRST_NUMERIC; CafeF reference only when PDF unavailable and explicitly labelled; no automatic accounting admission",
+  "scopeRule": "CONSOLIDATED preferred for group economics; standalone kept separate; fallback must be justified, never silently mixed",
+  "periodRule": "FY2022-FY2025 plus 2026 YTD at 2026-06-30; retain earlier facts for averages/history; actual required windows depend on sector/model and reporting-cycle freshness",
+  "publicationRule": "Explicit published date or timestamp requires source review. Signed/audit/report dates, PDF metadata and retrieval alone are not original publication. DATE_ONLY conservatively available after end of that local date and no earlier than retrieval/ingestion/review.",
+  "reviewMode": "OWNER_AUTHORIZED_AI_SELF_REVIEW",
+  "humanIndependentReviewerRequired": false,
+  "aiAssessmentAttribution": "AI, never HUMAN; current scorer HUMAN-only constraint requires an additive versioned implementation before AI assessments enter FORMAL scoring",
+  "routes": [
+    {
+      "sector": "BANK",
+      "requiredGroups": [
+        {
+          "id": "assets",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "equity",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "earnings",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "loan_population",
+          "anyOf": [
+            "BANK_GROSS_CUSTOMER_LOANS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "SECTOR_CORE"
+        },
+        {
+          "id": "funding_population",
+          "anyOf": [
+            "BANK_CUSTOMER_DEPOSITS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "SECTOR_CORE"
+        },
+        {
+          "id": "asset_quality",
+          "anyOf": [
+            "BANK_LOAN_LOSS_RESERVES"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "SECTOR_CORE"
+        },
+        {
+          "id": "capital_strength",
+          "anyOf": [
+            "BANK_REPORTED_CAR",
+            "BANK_REPORTED_CET1"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "SECTOR_CORE"
+        }
+      ],
+      "supporting": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "BANK_NET_INTEREST_INCOME",
+        "BANK_REPORTED_NIM",
+        "BANK_REPORTED_NPL",
+        "BANK_REPORTED_CREDIT_GROWTH"
+      ],
+      "optional": [
+        "BANK_CURRENT_AND_SAVINGS_DEPOSITS",
+        "CASA"
+      ],
+      "rationale": "M3 §5: capital adequacy, funding, provisioning and sustainable returns; reserves alone do not prove NPL recognition. NPL judgment stays N/R without defined population.",
+      "accountingRequiredDerivations": [],
+      "scoringMetricSelection": "EXPLICIT_MODEL_AND_OPERAND_REVIEW_REQUIRED_NOT_INFERRED_FROM_EMPTY_ACCOUNTING_LIST",
+      "requiredMarketObservations": [
+        "price"
+      ],
+      "valuationModelRequirements": [
+        "sustainable_ROE",
+        "common_BVPS",
+        "cost_of_equity",
+        "conservative_value",
+        "expected_return_scenarios"
+      ],
+      "additionalMarketRequirements": "shares/market_cap for capitalization models; EV only for enterprise valuation; share class and adjustment must match model"
+    },
+    {
+      "sector": "REAL_ESTATE",
+      "requiredGroups": [
+        {
+          "id": "assets",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "equity",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "earnings",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "sales",
+          "anyOf": [
+            "REVENUE"
+          ],
+          "component": "GROWTH_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "cash_generation",
+          "anyOf": [
+            "CFO"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "debt",
+          "anyOf": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "preference": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "group": "CORE"
+        },
+        {
+          "id": "cash",
+          "anyOf": [
+            "CASH_AND_EQUIVALENTS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "project_capital",
+          "anyOf": [
+            "INVENTORY"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "SECTOR_CORE"
+        }
+      ],
+      "supporting": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optional": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "rationale": "M3 §8: project assets, leverage and cash conversion.",
+      "accountingRequiredDerivations": [],
+      "scoringMetricSelection": "EXPLICIT_MODEL_AND_OPERAND_REVIEW_REQUIRED_NOT_INFERRED_FROM_EMPTY_ACCOUNTING_LIST",
+      "requiredMarketObservations": [
+        "price"
+      ],
+      "valuationModelRequirements": [
+        "project_asset_quality",
+        "economic_debt",
+        "cash_realisation_timing",
+        "conservative_value",
+        "expected_return_scenarios"
+      ],
+      "additionalMarketRequirements": "shares/market_cap for capitalization models; EV only for enterprise valuation; share class and adjustment must match model"
+    },
+    {
+      "sector": "RETAIL",
+      "requiredGroups": [
+        {
+          "id": "assets",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "equity",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "earnings",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "sales",
+          "anyOf": [
+            "REVENUE"
+          ],
+          "component": "GROWTH_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "cash_generation",
+          "anyOf": [
+            "CFO"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "debt",
+          "anyOf": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "preference": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "group": "CORE"
+        },
+        {
+          "id": "cash",
+          "anyOf": [
+            "CASH_AND_EQUIVALENTS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "working_capital",
+          "anyOf": [
+            "INVENTORY"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "SECTOR_CORE"
+        }
+      ],
+      "supporting": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optional": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "rationale": "M3 §9: working capital and cash conversion.",
+      "accountingRequiredDerivations": [],
+      "scoringMetricSelection": "EXPLICIT_MODEL_AND_OPERAND_REVIEW_REQUIRED_NOT_INFERRED_FROM_EMPTY_ACCOUNTING_LIST",
+      "requiredMarketObservations": [
+        "price"
+      ],
+      "valuationModelRequirements": [
+        "normalized_cash_earnings",
+        "reinvestment_and_returns",
+        "economic_debt",
+        "conservative_value",
+        "expected_return_scenarios"
+      ],
+      "additionalMarketRequirements": "shares/market_cap for capitalization models; EV only for enterprise valuation; share class and adjustment must match model"
+    },
+    {
+      "sector": "TECHNOLOGY",
+      "requiredGroups": [
+        {
+          "id": "assets",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "equity",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "earnings",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "sales",
+          "anyOf": [
+            "REVENUE"
+          ],
+          "component": "GROWTH_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "cash_generation",
+          "anyOf": [
+            "CFO"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "debt",
+          "anyOf": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "preference": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "group": "CORE"
+        },
+        {
+          "id": "cash",
+          "anyOf": [
+            "CASH_AND_EQUIVALENTS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "cash_reinvestment",
+          "anyOf": [
+            "CASH_CAPEX_REPORTED"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "SECTOR_CORE"
+        }
+      ],
+      "supporting": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optional": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "rationale": "M3 §10: cash economics and reinvestment.",
+      "accountingRequiredDerivations": [],
+      "scoringMetricSelection": "EXPLICIT_MODEL_AND_OPERAND_REVIEW_REQUIRED_NOT_INFERRED_FROM_EMPTY_ACCOUNTING_LIST",
+      "requiredMarketObservations": [
+        "price"
+      ],
+      "valuationModelRequirements": [
+        "normalized_cash_earnings",
+        "reinvestment_and_returns",
+        "economic_debt",
+        "conservative_value",
+        "expected_return_scenarios"
+      ],
+      "additionalMarketRequirements": "shares/market_cap for capitalization models; EV only for enterprise valuation; share class and adjustment must match model"
+    },
+    {
+      "sector": "INDUSTRIAL",
+      "requiredGroups": [
+        {
+          "id": "assets",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "equity",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "earnings",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "sales",
+          "anyOf": [
+            "REVENUE"
+          ],
+          "component": "GROWTH_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "cash_generation",
+          "anyOf": [
+            "CFO"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "debt",
+          "anyOf": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "preference": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "group": "CORE"
+        },
+        {
+          "id": "cash",
+          "anyOf": [
+            "CASH_AND_EQUIVALENTS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "cash_reinvestment",
+          "anyOf": [
+            "CASH_CAPEX_REPORTED"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "SECTOR_CORE"
+        }
+      ],
+      "supporting": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optional": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "rationale": "M3 sector economic anchors: cash economics and reinvestment.",
+      "accountingRequiredDerivations": [],
+      "scoringMetricSelection": "EXPLICIT_MODEL_AND_OPERAND_REVIEW_REQUIRED_NOT_INFERRED_FROM_EMPTY_ACCOUNTING_LIST",
+      "requiredMarketObservations": [
+        "price"
+      ],
+      "valuationModelRequirements": [
+        "normalized_cash_earnings",
+        "reinvestment_and_returns",
+        "economic_debt",
+        "conservative_value",
+        "expected_return_scenarios"
+      ],
+      "additionalMarketRequirements": "shares/market_cap for capitalization models; EV only for enterprise valuation; share class and adjustment must match model"
+    },
+    {
+      "sector": "MATERIALS",
+      "requiredGroups": [
+        {
+          "id": "assets",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "equity",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "earnings",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "sales",
+          "anyOf": [
+            "REVENUE"
+          ],
+          "component": "GROWTH_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "cash_generation",
+          "anyOf": [
+            "CFO"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "debt",
+          "anyOf": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "preference": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "group": "CORE"
+        },
+        {
+          "id": "cash",
+          "anyOf": [
+            "CASH_AND_EQUIVALENTS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "cycle_margin",
+          "anyOf": [
+            "GROSS_PROFIT",
+            "OPERATING_PROFIT"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "SECTOR_CORE"
+        }
+      ],
+      "supporting": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optional": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "rationale": "M3 §11: cycle-sensitive margins.",
+      "accountingRequiredDerivations": [],
+      "scoringMetricSelection": "EXPLICIT_MODEL_AND_OPERAND_REVIEW_REQUIRED_NOT_INFERRED_FROM_EMPTY_ACCOUNTING_LIST",
+      "requiredMarketObservations": [
+        "price"
+      ],
+      "valuationModelRequirements": [
+        "normalized_cash_earnings",
+        "reinvestment_and_returns",
+        "economic_debt",
+        "conservative_value",
+        "expected_return_scenarios"
+      ],
+      "additionalMarketRequirements": "shares/market_cap for capitalization models; EV only for enterprise valuation; share class and adjustment must match model"
+    },
+    {
+      "sector": "UTILITIES",
+      "requiredGroups": [
+        {
+          "id": "assets",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "equity",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "earnings",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "sales",
+          "anyOf": [
+            "REVENUE"
+          ],
+          "component": "GROWTH_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "cash_generation",
+          "anyOf": [
+            "CFO"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "debt",
+          "anyOf": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "preference": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "group": "CORE"
+        },
+        {
+          "id": "cash",
+          "anyOf": [
+            "CASH_AND_EQUIVALENTS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "cash_reinvestment",
+          "anyOf": [
+            "CASH_CAPEX_REPORTED"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "SECTOR_CORE"
+        }
+      ],
+      "supporting": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optional": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "rationale": "M3 cash economics and capital resilience.",
+      "accountingRequiredDerivations": [],
+      "scoringMetricSelection": "EXPLICIT_MODEL_AND_OPERAND_REVIEW_REQUIRED_NOT_INFERRED_FROM_EMPTY_ACCOUNTING_LIST",
+      "requiredMarketObservations": [
+        "price"
+      ],
+      "valuationModelRequirements": [
+        "normalized_cash_earnings",
+        "reinvestment_and_returns",
+        "economic_debt",
+        "conservative_value",
+        "expected_return_scenarios"
+      ],
+      "additionalMarketRequirements": "shares/market_cap for capitalization models; EV only for enterprise valuation; share class and adjustment must match model"
+    },
+    {
+      "sector": "ENERGY",
+      "requiredGroups": [
+        {
+          "id": "assets",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "equity",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "earnings",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "sales",
+          "anyOf": [
+            "REVENUE"
+          ],
+          "component": "GROWTH_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "cash_generation",
+          "anyOf": [
+            "CFO"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "debt",
+          "anyOf": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "preference": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "group": "CORE"
+        },
+        {
+          "id": "cash",
+          "anyOf": [
+            "CASH_AND_EQUIVALENTS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "cycle_margin",
+          "anyOf": [
+            "GROSS_PROFIT",
+            "OPERATING_PROFIT"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "SECTOR_CORE"
+        }
+      ],
+      "supporting": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optional": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "rationale": "M3 cycle-sensitive margins and capital resilience.",
+      "accountingRequiredDerivations": [],
+      "scoringMetricSelection": "EXPLICIT_MODEL_AND_OPERAND_REVIEW_REQUIRED_NOT_INFERRED_FROM_EMPTY_ACCOUNTING_LIST",
+      "requiredMarketObservations": [
+        "price"
+      ],
+      "valuationModelRequirements": [
+        "normalized_cash_earnings",
+        "reinvestment_and_returns",
+        "economic_debt",
+        "conservative_value",
+        "expected_return_scenarios"
+      ],
+      "additionalMarketRequirements": "shares/market_cap for capitalization models; EV only for enterprise valuation; share class and adjustment must match model"
+    },
+    {
+      "sector": "SECURITIES",
+      "requiredGroups": [
+        {
+          "id": "assets",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "equity",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "earnings",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "liquidity",
+          "anyOf": [
+            "CASH_AND_EQUIVALENTS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "SECTOR_CORE"
+        },
+        {
+          "id": "leverage",
+          "anyOf": [
+            "FINANCIAL_DEBT"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "SECTOR_CORE"
+        },
+        {
+          "id": "margin_risk",
+          "anyOf": [
+            "SECURITIES_MARGIN_LOANS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "SECTOR_CORE"
+        }
+      ],
+      "supporting": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optional": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "rationale": "M3 §6: capital, leverage, liquidity and margin-lending risk.",
+      "accountingRequiredDerivations": [],
+      "scoringMetricSelection": "EXPLICIT_MODEL_AND_OPERAND_REVIEW_REQUIRED_NOT_INFERRED_FROM_EMPTY_ACCOUNTING_LIST",
+      "requiredMarketObservations": [
+        "price"
+      ],
+      "valuationModelRequirements": [
+        "normalized_earnings",
+        "capital_and_margin_risk",
+        "conservative_value",
+        "expected_return_scenarios"
+      ],
+      "additionalMarketRequirements": "shares/market_cap for capitalization models; EV only for enterprise valuation; share class and adjustment must match model"
+    },
+    {
+      "sector": "INSURANCE",
+      "requiredGroups": [
+        {
+          "id": "assets",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "equity",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "earnings",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "underwriting",
+          "anyOf": [
+            "INSURANCE_UNDERWRITING_RESULT"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "SECTOR_CORE"
+        },
+        {
+          "id": "reserves",
+          "anyOf": [
+            "INSURANCE_TECHNICAL_RESERVES"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "SECTOR_CORE"
+        },
+        {
+          "id": "solvency",
+          "anyOf": [
+            "INSURANCE_SOLVENCY_RATIO"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "SECTOR_CORE"
+        }
+      ],
+      "supporting": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optional": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "rationale": "M3 §7: underwriting, reserve adequacy and solvency.",
+      "accountingRequiredDerivations": [],
+      "scoringMetricSelection": "EXPLICIT_MODEL_AND_OPERAND_REVIEW_REQUIRED_NOT_INFERRED_FROM_EMPTY_ACCOUNTING_LIST",
+      "requiredMarketObservations": [
+        "price"
+      ],
+      "valuationModelRequirements": [
+        "normalized_cash_earnings",
+        "reinvestment_and_returns",
+        "economic_debt",
+        "conservative_value",
+        "expected_return_scenarios"
+      ],
+      "additionalMarketRequirements": "shares/market_cap for capitalization models; EV only for enterprise valuation; share class and adjustment must match model"
+    },
+    {
+      "sector": "CONGLOMERATE",
+      "requiredGroups": [
+        {
+          "id": "assets",
+          "anyOf": [
+            "TOTAL_ASSETS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "equity",
+          "anyOf": [
+            "TOTAL_EQUITY"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "earnings",
+          "anyOf": [
+            "NET_INCOME"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "sales",
+          "anyOf": [
+            "REVENUE"
+          ],
+          "component": "GROWTH_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "cash_generation",
+          "anyOf": [
+            "CFO"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "CORE"
+        },
+        {
+          "id": "debt",
+          "anyOf": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "preference": [
+            "COMPREHENSIVE_FINANCIAL_DEBT",
+            "REPORTED_BORROWINGS"
+          ],
+          "group": "CORE"
+        },
+        {
+          "id": "cash",
+          "anyOf": [
+            "CASH_AND_EQUIVALENTS"
+          ],
+          "component": "FINANCIAL_HEALTH",
+          "group": "CORE"
+        },
+        {
+          "id": "segment_economics",
+          "anyOf": [
+            "SEGMENT_OPERATING_PROFIT"
+          ],
+          "component": "BUSINESS_QUALITY",
+          "group": "SECTOR_CORE"
+        }
+      ],
+      "supporting": [
+        "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "BASIC_EPS",
+        "OPERATING_PROFIT",
+        "CASH_CAPEX_REPORTED",
+        "CURRENT_ASSETS",
+        "CURRENT_LIABILITIES",
+        "RECEIVABLES"
+      ],
+      "optional": [
+        "ROIC",
+        "ROA",
+        "MARGIN_STABILITY"
+      ],
+      "rationale": "M3 segment economics; group aggregates do not establish segment economics.",
+      "accountingRequiredDerivations": [],
+      "scoringMetricSelection": "EXPLICIT_MODEL_AND_OPERAND_REVIEW_REQUIRED_NOT_INFERRED_FROM_EMPTY_ACCOUNTING_LIST",
+      "requiredMarketObservations": [
+        "price"
+      ],
+      "valuationModelRequirements": [
+        "normalized_cash_earnings",
+        "reinvestment_and_returns",
+        "economic_debt",
+        "conservative_value",
+        "expected_return_scenarios"
+      ],
+      "additionalMarketRequirements": "shares/market_cap for capitalization models; EV only for enterprise valuation; share class and adjustment must match model"
+    }
+  ],
+  "representation": "Preserve anyOf/preference. Current flat native readiness contract needs explicit sector-requirement-group binding; do not coerce this proposal into ScoringReadinessRequirements.",
+  "productionAdmissible": false
+}

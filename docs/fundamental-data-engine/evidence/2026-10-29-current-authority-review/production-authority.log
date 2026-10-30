@@ -1,0 +1,48 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+(node:73088) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/integration/production-authority.test.ts (12 tests | 2 failed) 1006ms
+   × real Owner-approved bundle resolves unchanged exact m64 executable and all11 static heads; no scoring 17ms
+   × approved method registration + release/CAS bootstrap atomic; rollback leaks no method or partial heads 725ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/production-authority.test.ts > real Owner-approved bundle resolves unchanged exact m64 executable and all11 static heads; no scoring
+Error: MARKET_BOUNDARY:SCORING_EXECUTABLE_HASH_MISMATCH:src/domain/portfolio/transaction.ts
+ ❯ requireBoundary src/domain/market-boundary/validation.ts:5:91
+      3| import { instant, dateOnly } from '@/shared/time';
+      4| import { AMENDMENT, VERSIONS, type Digest, type Evidence, type Kind, t…
+      5| export function requireBoundary(ok: unknown, reason: string): asserts …
+       |                                                                                           ^
+      6| export const nonempty = (s: unknown): s is string => typeof s === 'str…
+      7| export function pin(p: Pin) { requireBoundary(p && nonempty(p.id) && /…
+ ❯ authorityBytes src/infrastructure/dependencies/production-authority.ts:36:33
+ ❯ verifyProductionAuthorityBundle src/infrastructure/dependencies/production-authority.ts:57:107
+ ❯ tests/integration/production-authority.test.ts:16:126
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/integration/production-authority.test.ts > approved method registration + release/CAS bootstrap atomic; rollback leaks no method or partial heads
+Error: MARKET_BOUNDARY:SCORING_EXECUTABLE_HASH_MISMATCH:src/domain/portfolio/transaction.ts
+ ❯ requireBoundary src/domain/market-boundary/validation.ts:5:91
+      3| import { instant, dateOnly } from '@/shared/time';
+      4| import { AMENDMENT, VERSIONS, type Digest, type Evidence, type Kind, t…
+      5| export function requireBoundary(ok: unknown, reason: string): asserts …
+       |                                                                                           ^
+      6| export const nonempty = (s: unknown): s is string => typeof s === 'str…
+      7| export function pin(p: Pin) { requireBoundary(p && nonempty(p.id) && /…
+ ❯ authorityBytes src/infrastructure/dependencies/production-authority.ts:36:33
+ ❯ verifyProductionAuthorityBundle src/infrastructure/dependencies/production-authority.ts:57:107
+ ❯ LocalAcceptedDependencyCatalog.readAccepted src/infrastructure/dependencies/catalog.ts:24:42
+ ❯ tests/integration/production-authority.test.ts:34:185
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 10 passed (12)
+   Start at  04:32:01
+   Duration  1.58s (tests 67%, transform 19%, import 8%, setup 6%)
+

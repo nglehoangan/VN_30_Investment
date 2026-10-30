@@ -1,0 +1,191 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+ ❯ tests/integration/registry.test.ts (10 tests | 1 failed) 7149ms
+   ❯ actual SQLite methodology registry (10)
+     × migrates an empty DB with expected foundation/ledger tables and private permissions 725ms
+ ❯ tests/integration/scoring-readiness-migration.test.ts (1 test | 1 failed) 1955ms
+   × populated Slice05 upgrade preserves every old table, trigger, snapshot and historical score without retroactive bindings 1955ms
+ ❯ tests/integration/fundamentals-derivation-migration.test.ts (1 test | 1 failed) 1771ms
+   × upgrades populated Slice 3 baseline additively, preserves every old table/trigger/row and repeats deployment 1771ms
+ ❯ tests/integration/fundamentals-normalization-migration.test.ts (1 test | 1 failed) 1718ms
+   × upgrades populated Slice 2 baseline additively, preserves every old table/trigger/row and repeats deployment 1717ms
+ ❯ tests/integration/fundamentals-migration.test.ts (1 test | 1 failed) 1734ms
+   × populated latest baseline upgrade, repeat deployment and all previous rows/triggers/portfolio replay are preserved 1734ms
+ ❯ tests/integration/fundamentals-snapshot-migration.test.ts (1 test | 1 failed) 1723ms
+   × upgrades populated Slice4 baseline additively and preserves every prior table, trigger and row 1722ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/fundamentals-derivation-migration.test.ts > upgrades populated Slice 3 baseline additively, preserves every old table/trigger/row and repeats deployment
+AssertionError: expected { name: 'ledger_transaction', …(2) } to deeply equal { name: 'ledger_transaction', …(2) }
+
+- Expected
++ Received
+
+@@ -1,13 +1,13 @@
+  {
+    "name": "ledger_transaction",
+-   "sql": "CREATE TABLE ledger_transaction (
++   "sql": "CREATE TABLE \"ledger_transaction\" (
+   corporate_action_id TEXT REFERENCES corporate_action_reference(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+   id TEXT PRIMARY KEY NOT NULL,
+   portfolio_id TEXT NOT NULL REFERENCES portfolio(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+   security_id TEXT REFERENCES security(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+-  type TEXT NOT NULL CHECK(type IN ('BUY','SELL','TRADE_SETTLEMENT','DIVIDEND_CASH','CASH_DEPOSIT','CASH_WITHDRAWAL','FEE','TAX','CORPORATE_ACTION','CASH_ADJUSTMENT','OPENING_BALANCE','REVERSAL')),
++  type TEXT NOT NULL CHECK(type IN ('BUY','SELL','TRADE_SETTLEMENT','DIVIDEND_CASH','CASH_DEPOSIT','CASH_WITHDRAWAL','FEE','TAX','CORPORATE_ACTION','CASH_ADJUSTMENT','DIVIDEND_RECEIVABLE_SETTLEMENT','OPENING_BALANCE','REVERSAL')),
+   status TEXT NOT NULL CHECK(status IN ('PENDING','POSTED')),
+   event_at TEXT NOT NULL, created_at TEXT NOT NULL, source TEXT NOT NULL, source_reference TEXT NOT NULL,
+   idempotency_key TEXT NOT NULL, methodology_id TEXT NOT NULL REFERENCES methodology_record(methodology_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+   revision TEXT NOT NULL, facts TEXT NOT NULL CHECK(json_valid(facts)), leg_count INTEGER NOT NULL CHECK(leg_count > 0),
+   reverses_id TEXT REFERENCES ledger_transaction(id) ON DELETE RESTRICT ON UPDATE RESTRICT,
+
+ ❯ tests/integration/fundamentals-derivation-migration.test.ts:18:70
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/integration/fundamentals-migration.test.ts > populated latest baseline upgrade, repeat deployment and all previous rows/triggers/portfolio replay are preserved
+AssertionError: expected { name: 'ledger_transaction', …(2) } to deeply equal { name: 'ledger_transaction', …(2) }
+
+- Expected
++ Received
+
+@@ -1,13 +1,13 @@
+  {
+    "name": "ledger_transaction",
+-   "sql": "CREATE TABLE ledger_transaction (
++   "sql": "CREATE TABLE \"ledger_transaction\" (
+   corporate_action_id TEXT REFERENCES corporate_action_reference(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+   id TEXT PRIMARY KEY NOT NULL,
+   portfolio_id TEXT NOT NULL REFERENCES portfolio(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+   security_id TEXT REFERENCES security(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+-  type TEXT NOT NULL CHECK(type IN ('BUY','SELL','TRADE_SETTLEMENT','DIVIDEND_CASH','CASH_DEPOSIT','CASH_WITHDRAWAL','FEE','TAX','CORPORATE_ACTION','CASH_ADJUSTMENT','OPENING_BALANCE','REVERSAL')),
++  type TEXT NOT NULL CHECK(type IN ('BUY','SELL','TRADE_SETTLEMENT','DIVIDEND_CASH','CASH_DEPOSIT','CASH_WITHDRAWAL','FEE','TAX','CORPORATE_ACTION','CASH_ADJUSTMENT','DIVIDEND_RECEIVABLE_SETTLEMENT','OPENING_BALANCE','REVERSAL')),
+   status TEXT NOT NULL CHECK(status IN ('PENDING','POSTED')),
+   event_at TEXT NOT NULL, created_at TEXT NOT NULL, source TEXT NOT NULL, source_reference TEXT NOT NULL,
+   idempotency_key TEXT NOT NULL, methodology_id TEXT NOT NULL REFERENCES methodology_record(methodology_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+   revision TEXT NOT NULL, facts TEXT NOT NULL CHECK(json_valid(facts)), leg_count INTEGER NOT NULL CHECK(leg_count > 0),
+   reverses_id TEXT REFERENCES ledger_transaction(id) ON DELETE RESTRICT ON UPDATE RESTRICT,
+
+ ❯ tests/integration/fundamentals-migration.test.ts:29:70
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/integration/fundamentals-normalization-migration.test.ts > upgrades populated Slice 2 baseline additively, preserves every old table/trigger/row and repeats deployment
+AssertionError: expected { name: 'ledger_transaction', …(2) } to deeply equal { name: 'ledger_transaction', …(2) }
+
+- Expected
++ Received
+
+@@ -1,13 +1,13 @@
+  {
+    "name": "ledger_transaction",
+-   "sql": "CREATE TABLE ledger_transaction (
++   "sql": "CREATE TABLE \"ledger_transaction\" (
+   corporate_action_id TEXT REFERENCES corporate_action_reference(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+   id TEXT PRIMARY KEY NOT NULL,
+   portfolio_id TEXT NOT NULL REFERENCES portfolio(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+   security_id TEXT REFERENCES security(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+-  type TEXT NOT NULL CHECK(type IN ('BUY','SELL','TRADE_SETTLEMENT','DIVIDEND_CASH','CASH_DEPOSIT','CASH_WITHDRAWAL','FEE','TAX','CORPORATE_ACTION','CASH_ADJUSTMENT','OPENING_BALANCE','REVERSAL')),
++  type TEXT NOT NULL CHECK(type IN ('BUY','SELL','TRADE_SETTLEMENT','DIVIDEND_CASH','CASH_DEPOSIT','CASH_WITHDRAWAL','FEE','TAX','CORPORATE_ACTION','CASH_ADJUSTMENT','DIVIDEND_RECEIVABLE_SETTLEMENT','OPENING_BALANCE','REVERSAL')),
+   status TEXT NOT NULL CHECK(status IN ('PENDING','POSTED')),
+   event_at TEXT NOT NULL, created_at TEXT NOT NULL, source TEXT NOT NULL, source_reference TEXT NOT NULL,
+   idempotency_key TEXT NOT NULL, methodology_id TEXT NOT NULL REFERENCES methodology_record(methodology_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+   revision TEXT NOT NULL, facts TEXT NOT NULL CHECK(json_valid(facts)), leg_count INTEGER NOT NULL CHECK(leg_count > 0),
+   reverses_id TEXT REFERENCES ledger_transaction(id) ON DELETE RESTRICT ON UPDATE RESTRICT,
+
+ ❯ tests/integration/fundamentals-normalization-migration.test.ts:17:70
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/integration/fundamentals-snapshot-migration.test.ts > upgrades populated Slice4 baseline additively and preserves every prior table, trigger and row
+AssertionError: expected { name: 'ledger_transaction', …(2) } to deeply equal { name: 'ledger_transaction', …(2) }
+
+- Expected
++ Received
+
+@@ -1,13 +1,13 @@
+  {
+    "name": "ledger_transaction",
+-   "sql": "CREATE TABLE ledger_transaction (
++   "sql": "CREATE TABLE \"ledger_transaction\" (
+   corporate_action_id TEXT REFERENCES corporate_action_reference(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+   id TEXT PRIMARY KEY NOT NULL,
+   portfolio_id TEXT NOT NULL REFERENCES portfolio(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+   security_id TEXT REFERENCES security(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+-  type TEXT NOT NULL CHECK(type IN ('BUY','SELL','TRADE_SETTLEMENT','DIVIDEND_CASH','CASH_DEPOSIT','CASH_WITHDRAWAL','FEE','TAX','CORPORATE_ACTION','CASH_ADJUSTMENT','OPENING_BALANCE','REVERSAL')),
++  type TEXT NOT NULL CHECK(type IN ('BUY','SELL','TRADE_SETTLEMENT','DIVIDEND_CASH','CASH_DEPOSIT','CASH_WITHDRAWAL','FEE','TAX','CORPORATE_ACTION','CASH_ADJUSTMENT','DIVIDEND_RECEIVABLE_SETTLEMENT','OPENING_BALANCE','REVERSAL')),
+   status TEXT NOT NULL CHECK(status IN ('PENDING','POSTED')),
+   event_at TEXT NOT NULL, created_at TEXT NOT NULL, source TEXT NOT NULL, source_reference TEXT NOT NULL,
+   idempotency_key TEXT NOT NULL, methodology_id TEXT NOT NULL REFERENCES methodology_record(methodology_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+   revision TEXT NOT NULL, facts TEXT NOT NULL CHECK(json_valid(facts)), leg_count INTEGER NOT NULL CHECK(leg_count > 0),
+   reverses_id TEXT REFERENCES ledger_transaction(id) ON DELETE RESTRICT ON UPDATE RESTRICT,
+
+ ❯ tests/integration/fundamentals-snapshot-migration.test.ts:13:132
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/integration/registry.test.ts > actual SQLite methodology registry > migrates an empty DB with expected foundation/ledger tables and private permissions
+AssertionError: expected [ '_prisma_migrations', …(41) ] to deeply equal [ '_prisma_migrations', …(38) ]
+
+- Expected
++ Received
+
+@@ -5,10 +5,13 @@
+    "corporate_action_reference",
+    "data_initialization_acceptance",
+    "decision_artifact",
+    "dependency_object_identity",
+    "dependency_release",
++   "dividend_receipt_owner",
++   "dividend_settlement_audit",
++   "forward_intake_event",
+    "fundamental_admission_run",
+    "fundamental_availability_assessment",
+    "fundamental_derivation",
+    "fundamental_derivation_input",
+    "fundamental_disposition_release",
+
+ ❯ tests/integration/registry.test.ts:17:37
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  tests/integration/scoring-readiness-migration.test.ts > populated Slice05 upgrade preserves every old table, trigger, snapshot and historical score without retroactive bindings
+AssertionError: expected { name: 'ledger_transaction', …(2) } to deeply equal { name: 'ledger_transaction', …(2) }
+
+- Expected
++ Received
+
+@@ -1,13 +1,13 @@
+  {
+    "name": "ledger_transaction",
+-   "sql": "CREATE TABLE ledger_transaction (
++   "sql": "CREATE TABLE \"ledger_transaction\" (
+   corporate_action_id TEXT REFERENCES corporate_action_reference(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+   id TEXT PRIMARY KEY NOT NULL,
+   portfolio_id TEXT NOT NULL REFERENCES portfolio(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+   security_id TEXT REFERENCES security(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+-  type TEXT NOT NULL CHECK(type IN ('BUY','SELL','TRADE_SETTLEMENT','DIVIDEND_CASH','CASH_DEPOSIT','CASH_WITHDRAWAL','FEE','TAX','CORPORATE_ACTION','CASH_ADJUSTMENT','OPENING_BALANCE','REVERSAL')),
++  type TEXT NOT NULL CHECK(type IN ('BUY','SELL','TRADE_SETTLEMENT','DIVIDEND_CASH','CASH_DEPOSIT','CASH_WITHDRAWAL','FEE','TAX','CORPORATE_ACTION','CASH_ADJUSTMENT','DIVIDEND_RECEIVABLE_SETTLEMENT','OPENING_BALANCE','REVERSAL')),
+   status TEXT NOT NULL CHECK(status IN ('PENDING','POSTED')),
+   event_at TEXT NOT NULL, created_at TEXT NOT NULL, source TEXT NOT NULL, source_reference TEXT NOT NULL,
+   idempotency_key TEXT NOT NULL, methodology_id TEXT NOT NULL REFERENCES methodology_record(methodology_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+   revision TEXT NOT NULL, facts TEXT NOT NULL CHECK(json_valid(facts)), leg_count INTEGER NOT NULL CHECK(leg_count > 0),
+   reverses_id TEXT REFERENCES ledger_transaction(id) ON DELETE RESTRICT ON UPDATE RESTRICT,
+
+ ❯ tests/integration/scoring-readiness-migration.test.ts:13:130
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  6 failed (6)
+      Tests  6 failed | 9 passed (15)
+   Start at  04:42:28
+   Duration  17.67s (tests 93%, setup 3%, import 2%, transform 2%)
+

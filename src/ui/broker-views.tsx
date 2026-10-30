@@ -24,11 +24,11 @@ export function BrokerSnapshotView({ snapshot: s, id }: { snapshot: BrokerSnapsh
 
 export function BrokerMarketView({ data, compact = false }: { data: NonNullable<DashboardModel["brokerApiData"]>; compact?: boolean }) {
   return <Panel title="Bảng giá VN30 từ TCBS">
-    <p>Ngày giao dịch: {data.tradingDate ?? "Chưa xác định"} · Nhận dữ liệu: {data.sources.find(s => s.apiId === "5.1")?.receivedAt ?? "Chưa có"}</p>
-    <Table headers={["Mã", "Giá khớp (VND)", "Tham chiếu (VND)", "Thay đổi (%)", "Khối lượng"]}
-      rows={data.quotes.slice(0, compact ? 5 : 100).map(q => [<Link key={q.symbol} href={`/holdings/${q.symbol}`}>{q.symbol}</Link>, brokerAmount(String(q.price)), brokerAmount(String(q.reference)), q.changePercent?.toFixed(2) ?? "Chưa có", brokerAmount(String(q.volume))])}
+    <p>Ngày giao dịch: {data.tradingDate ?? "Chưa xác định"} · Nhận dữ liệu: {data.quoteReceivedAt ?? data.sources.find(s => s.apiId === "5.1")?.receivedAt ?? "Chưa có"}</p>
+    <Table headers={["Mã", "Giá nguồn (VND)", "Ngày giá", "Tham chiếu (VND)", "Thay đổi (%)", "Khối lượng"]}
+      rows={data.quotes.slice(0, compact ? 5 : 100).map(q => [<Link key={q.symbol} href={`/holdings/${q.symbol}`}>{q.symbol}</Link>, brokerAmount(String(q.price)), q.asOfDate ?? data.tradingDate ?? "Chưa xác định", q.reference === null ? "Chưa có" : brokerAmount(String(q.reference)), q.changePercent?.toFixed(2) ?? "Chưa có", q.volume === null ? "Chưa có" : brokerAmount(String(q.volume))])}
       empty="Chưa có dữ liệu bảng giá TCBS." />
-    <p>Giá tại lần lấy dữ liệu đã lưu; bảng giá chưa tự cập nhật theo thời gian thực.</p>
+    <p>Giá nguồn mới nhất sau lần lấy API; ngày giá được ghi trên từng dòng. Tải lại trang sau khi lấy API để xem dữ liệu mới.</p>
     {compact && <Link href="/vn30">Xem toàn bộ {data.quotes.length} mã</Link>}
   </Panel>;
 }

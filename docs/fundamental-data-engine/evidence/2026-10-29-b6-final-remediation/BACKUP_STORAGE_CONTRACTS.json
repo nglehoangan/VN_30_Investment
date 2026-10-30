@@ -1,0 +1,14 @@
+{
+  "broker_observation": "Exact body bytes hash; storage ID external to payload.",
+  "fundamental_admission_run": "Exact body bytes hash; snapshotId equals storage ID; contentHash equals indexed content_hash.",
+  "sealedTables": [
+    "market_boundary_record",
+    "dependency_release",
+    "production_dependency_publication",
+    "market_boundary_ranking_publication"
+  ],
+  "sealedHash": "Code-point canonical JSON excluding contentHash; root contentHash equals body_hash; envelope ID equals storage ID.",
+  "legacyDiagnosisInterpretation": "badHash in BACKUP_STORAGE_DIAGNOSIS means mismatch under the old generic byte-hash assumption, not corruption under the repository sealed-envelope contract.",
+  "allOtherBodyTables": "Exact body bytes hash plus existing artifact/command identity and review binding checks.",
+  "migrationPolicy": "Strict applied migration inventory retained. Actual DB19/21 remains blocked; only the isolated upgraded copy was backed up and restored."
+}

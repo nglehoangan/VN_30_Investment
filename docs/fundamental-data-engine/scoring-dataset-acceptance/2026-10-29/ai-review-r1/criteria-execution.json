@@ -1,0 +1,162 @@
+{
+  "contract": "personal-ai-criteria-execution-v1",
+  "reviewMode": "OWNER_AUTHORIZED_AI_SELF_REVIEW",
+  "producerAndReviewerSameAssistant": true,
+  "humanIndependentReviewerRequired": false,
+  "modelIdentity": "NOT_EXPOSED_BY_RUNTIME",
+  "reviewedAt": "2026-10-29T08:55:20.643950+00:00",
+  "result": "BLOCKED_FOR_FORMAL_SCORING",
+  "criteria": [
+    {
+      "id": "AI01",
+      "status": "PASS",
+      "expected": "All retained PDF/API/JSON hashes and exact provenance resolve; failed requests remain visible.",
+      "actual": "337 retained PDF hashes verified; 7 failed inventory entries preserved; 34 retained corpus/API/reader tests PASS.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/ai-review-r1/verification.json",
+        "sha256": "ad5989b042aa2f96dde3fb29da4b10b2be4b6ebefc68ac47276add1ebfb50e3a"
+      }
+    },
+    {
+      "id": "AI02",
+      "status": "BLOCKED",
+      "expected": "Exactly 30 unique security IDs; effective universe/sector bindings checked; deferred members retained.",
+      "actual": "30 unique IDs accounted; current effective universe/sector binding still requires qualification.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/ai-review-r1/input-bridge-index.json",
+        "sha256": "504b42158e1ca68256402414c0017060909c98a6b5c85ba17a915a8b4c811c1c"
+      }
+    },
+    {
+      "id": "AI03",
+      "status": "BLOCKED",
+      "expected": "Confirm issuer, statement, consolidated/separate scope and revision directly in relevant PDF pages; mixed cover letters cannot decide statement scope.",
+      "actual": "28 statement headers show explicit scope; LPB/TCX unresolved on inspected headers. No full-corpus scope admission.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/ai-review-r1/visual-review.json",
+        "sha256": "dddd9e48fca1658be4872d2d1e1cadc66299be9708b947d9b17e8f1ced9b47ea"
+      }
+    },
+    {
+      "id": "AI04",
+      "status": "BLOCKED",
+      "expected": "Confirm declared unit/currency/scale; preserve decimal strings, zero/null/dash and per-share exceptions; no guessed conversions.",
+      "actual": "30 page monetary units visually checked; per-share and other-page dimensions are not automatically inherited.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/ai-review-r1/visual-review.json",
+        "sha256": "dddd9e48fca1658be4872d2d1e1cadc66299be9708b947d9b17e8f1ced9b47ea"
+      }
+    },
+    {
+      "id": "AI05",
+      "status": "BLOCKED",
+      "expected": "Separate instant/annual/quarter/YTD and current/prior columns; do not mix standalone/consolidated or annualize YTD without explicit model.",
+      "actual": "Current/comparative columns preserved; all accounting windows/comparability not yet admitted.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/ai-review-r1/INPUT_BRIDGE_TABLE.md",
+        "sha256": "abad39714a1ebc31120eb8429265070c7b5967789c1979fdc97a6dd6550dccaa"
+      }
+    },
+    {
+      "id": "AI06",
+      "status": "BLOCKED",
+      "expected": "Evaluate every sector anyOf group per period with definition-qualified alternatives; do not flatten alternatives or match by amount.",
+      "actual": "1115 groups reconciled:1046 consolidated canonical,65 standalone,3 VNM debt qualification,1 MBB June capital unresolved.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/ai-review-r1/input-gap-reconciliation.json",
+        "sha256": "47147db949228e90f82c9a119b073db81d11e2396c6615f3fddf2d6b622f1c3d"
+      }
+    },
+    {
+      "id": "AI07",
+      "status": "BLOCKED",
+      "expected": "Verify publication evidence precision; availableAt is no earlier than public boundary, retrieval, ingestion and review. Date-only uses governed conservative boundary; no backdating.",
+      "actual": "93 documents contain publication candidates;2 issuer declarations visually checked, original publication not externally verified for all facts.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/ai-review-r1/point-in-time-review.json",
+        "sha256": "765671ccc50dc4edc1ea1d54baad73d843abef253ee726902f063467c3c40fe8"
+      }
+    },
+    {
+      "id": "AI08",
+      "status": "BLOCKED",
+      "expected": "Purpose-qualified dated prices, shares/market-cap/EV where the valuation model needs them, action adjustment and calendar/session/freshness checks.",
+      "actual": "Retained prices exist but purpose-qualified market capability/action/freshness authority remains incomplete.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/ai-review-r1/input-bridge-index.json",
+        "sha256": "504b42158e1ca68256402414c0017060909c98a6b5c85ba17a915a8b4c811c1c"
+      }
+    },
+    {
+      "id": "AI09",
+      "status": "BLOCKED",
+      "expected": "Replay exact formulas with compatible scope/period/unit, operand IDs and normalized/debt qualification; denominator and cycle failures remain N/R.",
+      "actual": "Existing metrics/operands retained; native derivation and exact scope/period/normalization qualifications pending.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/ai-review-r1/input-bridge-index.json",
+        "sha256": "504b42158e1ca68256402414c0017060909c98a6b5c85ba17a915a8b4c811c1c"
+      }
+    },
+    {
+      "id": "AI10",
+      "status": "BLOCKED",
+      "expected": "Explicit sector valuation model, conservative/base/downside assumptions and sensitivity; estimates are labelled and traced.",
+      "actual": "Sector model requirements proposed; valuation assumptions/scenarios not completed.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/ai-review-r1/readiness-policy.proposed.json",
+        "sha256": "d184ad3121afb8624f0fbdf9299228ec77dada177310c0b4656e55de4b019c5b"
+      }
+    },
+    {
+      "id": "AI11",
+      "status": "BLOCKED",
+      "expected": "All 23 rubric assessments and required topics have reasoned evidence and counter-evidence, with no fabricated neutral points or HUMAN attribution for AI.",
+      "actual": "23 rubric/topic plans per ticker; points and assessments remain null, never labelled HUMAN.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/ai-review-r1/input-bridge-index.json",
+        "sha256": "504b42158e1ca68256402414c0017060909c98a6b5c85ba17a915a8b4c811c1c"
+      }
+    },
+    {
+      "id": "AI12",
+      "status": "BLOCKED",
+      "expected": "Exact snapshot, methodology, source/assessment/derivation IDs; runtime-validated ScoreInput and bridge reproduce identical evidence and metrics.",
+      "actual": "Native observation/assessment/snapshot bindings absent; no valid runtime ScoreInput/bridge asserted.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/ai-review-r1/input-bridge-index.json",
+        "sha256": "504b42158e1ca68256402414c0017060909c98a6b5c85ba17a915a8b4c811c1c"
+      }
+    },
+    {
+      "id": "AI13",
+      "status": "BLOCKED",
+      "expected": "Second checking pass reopens sources and attempts to refute producer conclusions; uses separate expected/actual records plus mutation/negative tests. This is AI self-review, not human independence.",
+      "actual": "Second source-check pass and10 negative/boundary tests performed; full accounting/valuation adversarial review still incomplete.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/ai-review-r1/verification.json",
+        "sha256": "ad5989b042aa2f96dde3fb29da4b10b2be4b6ebefc68ac47276add1ebfb50e3a"
+      }
+    },
+    {
+      "id": "AI14",
+      "status": "BLOCKED",
+      "expected": "Repeatable hashes and tests; no unresolved Critical/Major issue affecting requested use. One blocked ticker does not get a fabricated score.",
+      "actual": "Reproducible candidate dossier checks pass; material accounting/source/runtime issues remain open.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/ai-review-r1/verification.json",
+        "sha256": "ad5989b042aa2f96dde3fb29da4b10b2be4b6ebefc68ac47276add1ebfb50e3a"
+      }
+    },
+    {
+      "id": "AI15",
+      "status": "BLOCKED",
+      "expected": "Exact dataset hash, review tool/model/session identity where available, date and owner-authorized review mode recorded; no synthetic legacy independent reviewer.",
+      "actual": "Owner-authorized AI criteria and exact preparation manifest exist; final accepted scoring dataset/release has not been produced.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/ai-review-r1/review-manifest.json",
+        "sha256": "527d77d47410686dccb8594da12836ed01679bb27143cfcd49c1b54649681144"
+      }
+    }
+  ],
+  "ownerSupplementRequests": []
+}

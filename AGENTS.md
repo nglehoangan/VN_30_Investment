@@ -8,6 +8,56 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
+## Direct TCBS API data persistence (owner instruction 2026-10-29)
+
+- `node api/tcbs.mjs` now writes API observations and display prices directly into the application SQLite database (`DATABASE_URL` or default `data/vn30.sqlite`). Do not add per-run capture folders, raw/manifest/capture JSON files, staging imports or extra data copies to this live workflow. Existing historical captures stay unchanged. Private authentication/session state remains separate from API result data.
+- Raw REST text, parameters/variants, receipt time and SHA-256 are preserved in immutable `broker_observation` rows; display prices use `TCBS_MARKET_PRICE`. Market display updates are independent of account capture HTTP failures and never admit accounting facts or scoring authority.
+- Dashboard/holdings and VN30 board read validated DB prices through `src/infrastructure/repositories/direct-market-prices.ts`; preserve ticker/unit/date/raw lineage and imported basis. Use valid exact match prices when supplied, otherwise explicitly dated eligible daily bars. Never invent a current quote from pre-open reference metadata or roll prices back to an older session. Mixed-day positions retain their own dates and do not produce a misleading aggregate valuation.
+- Implementation: `api/direct-data.mjs`; verification: `docs/fundamental-data-engine/evidence/2026-10-29-direct-api-dashboard/`. Existing29Oct API bytes were verified and loaded directly for30market prices; original ledger/portfolio/projection fingerprints unchanged. This closes the display-price integration issue, not remaining B6 release gates.
+
+## Active B1–B5 personal account runtime (2026-10-28)
+
+- Owner explicitly authorized runtime integration after the original B6 campaign. `data/account-current/personal-account.json` is the active dated personal-account observation; earlier per-topic JSON remains evidence/diagnostics, not additional additive balances. Runtime: `src/infrastructure/personal-account.ts`, `src/domain/portfolio/personal-account.ts`, `src/ui/personal-account.tsx`, wired through `app/server/dashboard.ts`.
+- Match portfolio, ledger revision, all quantities and imported costs before showing it. Refuse invalid/stale revisions; do not silently fall back to old broker snapshots on invalid owner data. Display dated personal data separately from immutable accounting history; do not post duplicate purchases/dividends or rewrite opening balances.
+- Corrected buying-power arithmetic: 327420 + 12152752 - accrued custody fee420 = 12479752. Fee is not already paid; broker NAV already subtracts it. Pending475000 remains outside cash; FPT220 includes200tradable+20pending. P/L uses imported basis and explicitly dated source prices, not claimed live prices.
+- Integration verification and latest readiness: `docs/fundamental-data-engine/evidence/2026-10-28-b1-b5-runtime-integration/`. Personal data integration passes; whole-production gates still require resolution of prior tests/lint and independent acceptance. Earlier statements below saying runtime unchanged describe their original review stage, superseded for the owner read model by this authorization.
+
+## B1 personal portfolio source policy (owner instruction 2026-10-28)
+
+- Use owner-supplied broker Excel stock statements and trade history as the preferred personal portfolio source. PDF is optional; never require a PDF snapshot or continuous historical PDF chain to identify current holdings.
+- Owner removed historical snapshot/continuity requirements from current B1 personal-portfolio identity scope. The 11-stock public identity comparison is complete; B1 identity in this bounded owner workflow is resolved. Do not reintroduce historical PDF requests from old planning packages.
+- FPT total ownership is 220: 200 tradable plus 20 bonus shares under FPT_WFT, not tradable. Record the pending shares as owned; change availability only on confirmed conversion and never add another 20. Unknown conversion dates stay unknown.
+- Current decision and read-only Excel inspection: `docs/fundamental-data-engine/evidence/2026-10-28-b1-excel-source-policy/`. This supersedes earlier B1 history/PDF workflow requirements, not independent production acceptance, accounting admission or B2–B7.
+- Preserve source files, ledger transactions and sealed evidence. Removal of the B1 history requirement does not authorize deleting accounting history or claiming historical NAV validation. No runtime activation is implied.
+
+## B2 cash sources (owner instruction 2026-10-28)
+
+- Use owner-supplied cash statement Excel for cash movement history and the owner-provided account image for its displayed cash/dividend/buying-power categories; no PDF requirement. Review: `docs/fundamental-data-engine/evidence/2026-10-28-b2-cash-excel-screen-review/`.
+- 93 supplied cash rows reconcile to 327420 VND at the 2026 export end; 2026 row 71 explicitly identifies MWG net dividend 95000 on 16 October, record date 8 October.
+- Owner confirmed image date 2026-10-28: cash 327420, pending dividends 475000, total money 802420; buying power 12479752 includes linked-bank availability 12152752. Do not double count buying power, linked bank, pending dividends or cash.
+- Owner confirmed debt420 is accrued custody fee increasing daily and deducted at month end. Keep it payable until actual payment evidence; no invented daily rate. Broker NAV already subtracts it, so never subtract again from broker NAV. B2 is resolved for owner current cash/obligations scope at 2026-10-28; this is not independent production acceptance. Do not infer historical105/390 transitions or historical500000 classification. Image does not identify issuer/action for pending475000; B4 remains separate. DB and runtime unchanged.
+
+## B4 pending dividends (owner instruction 2026-10-28)
+
+- Store 475000 VND separately as `Cổ tức chờ về` in `data/account-current/pending-dividends.json`, as of 2026-10-28. It is not received cash or spendable cash. Issuer/action/payment date remain unknown; no GAS inference.
+- Recognize as received only on confirmed account credit; reduce pending by the matched receipt and increase cash once. Preserve partial pending balances and do not duplicate entries already in cash statements. Do not subtract the already-received October16 MWG95000 again from current pending475000.
+- B4 is resolved for owner pending-display/current-cash scope. Historical claim matching and production acceptance are not implied. Record and limitations: `docs/fundamental-data-engine/evidence/2026-10-28-b4-pending-dividend-policy/`. Data is saved separately, not yet integrated into runtime; ledger unchanged. Preserve broker NAV as reported and never add pending to it again.
+
+## B5 Excel acquisition cost (2026-10-28)
+
+- Read-only replay of supplied Excel covers 17 trades, 29 stock events and 14 purchase-date cash/fee reconciliations. Acquisition cost for all 11 current holdings is stored separately in `data/account-current/acquisition-cost-basis.json`; evidence and remaining differences: `docs/fundamental-data-engine/evidence/2026-10-28-b5-excel-cost-basis/`.
+- Acquisition cost is matched BUY gross + BUY fees + BUY taxes; use execution price, never order price or broker trade cost column. Stock dividends conserve total cost; no automatic cash-dividend reduction or custody-fee capitalization. FPT20pending owner-confirmed shares affect ownership denominator without adding purchase cost. No held-security sales appear in supplied Excel; disposed TPB remains outside the11holding result.
+- Owner subsequently selected imported cost basis for P/L on 2026-10-28. B5 is resolved for personal portfolio P/L on that basis; no further broker rounding/adjustment proof is required for this chosen scope. `data/account-current/selected-pnl-basis.json` pins all11 imported bases verified against ledger. P/L = dated market value minus imported openCost; Excel acquisition cost remains reconciliation-only. Existing valuation already uses ledger openCost. Do not deduct cash dividends again from selected basis or count pending dividends as received; do not label this as independently reconstructed lifetime total return. Preserve both figures, source dates and limitations; no ledger rewrite, runtime activation or production acceptance.
+
+## B6 validation campaign (2026-10-28)
+
+- Latest recheck after owner ran data: `docs/fundamental-data-engine/evidence/2026-10-29-b6-recheck/REPORT.md` and `ISSUE_REGISTER.json`. Full2474tests:2445pass/29fail, including28baseline failures and one backup20s timeout; isolated backup rerun3/3passes. B1–B5all12tests and actual-copy runtime pass; build/typecheck/boundaries pass; lint16errors/4warnings persists. B6 remainsNO_GO. No source fixes/data mutations/deployment performed by that review.
+- Fresh29Octmarket capture has28Octdaily bars for all11holdings and61hash-valid HTTP200market requests, but dashboard still consumes11Octsnapshot/09Octquote date. Unified capture partial due account APIs4.16/4.17 HTTP400. Fix market/read-model integration separately from owner-resolved B1–B5 and optional account capture; never turn HTTP400 into zero or edit historical seals to fix tests.
+
+- Original campaign: `docs/fundamental-data-engine/evidence/2026-10-28-b6-validation/REPORT.md`. Latest integration/recheck: `docs/fundamental-data-engine/evidence/2026-10-28-b1-b5-runtime-integration/REPORT.md` and `FINAL_STATUS.json`. Personal B1–B5 runtime passes12newtests,113personal/architecture checks,actual-copy composition root,actual browser1440/390/FPTdetail,13synthetic browser checks,build/typecheck/changed-code lint. Whole release remains NO_GO:28baseline test failures and16lint errors/4warnings remain. Full integration run2445/2474passes/29fails included one new timezone test that subsequently passed with all12newtests on final code; no final full-suite PASS claim.
+- Owner personal-scope B1/B2/B4/B5 resolutions stand, but their saved data is not runtime integration. Actual ledger still cash232420/receivable570000/payable0 vs owner28Oct327420/475000/420. No ledger rewrite, migration or release was performed; source/database hashes unchanged.
+- Remediate runtime integration, current migration/adapter/research failures and exact authority hash mismatch, and classify cleanup-dependent historical replay tests without restoring deleted source folders or altering seals. Do not ask owner to resend existing Excel/PDF to cure engineering gaps. Independent M7 acceptance and B7 deployment remain separate.
+
 ## Report API data storage convention
 
 User-confirmed convention (2026-10-18): use the CafeF display mapping as the default pattern when storing financial report API data for future website rendering.

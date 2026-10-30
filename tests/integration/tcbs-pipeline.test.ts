@@ -1,3 +1,4 @@
+import {DatabaseSync} from 'node:sqlite';
 // @vitest-environment node
 import {it,expect,beforeAll,afterAll} from 'vitest';
 import {readFileSync,mkdtempSync,rmSync,writeFileSync,mkdirSync} from 'node:fs';
@@ -28,7 +29,15 @@ beforeAll(()=>{
  expect(audit.totals).toEqual({inserted:18,updated:0,deleted:0});
  expect(audit.accountingRowsChanged).toBe(0);expect(audit.portfolioRowsChanged).toBe(0);
  expect(audit.scoringOutputRowsChanged).toBe(0);expect(audit.rankingRowsChanged).toBe(0);expect(audit.decisionRowsChanged).toBe(0);
- expect(productionStartingHash).toBe(audit.afterSHA256);
+ // Later owner-approved CAS activation and direct API observations legitimately change DB bytes.
+ // Bind current accounting and head to that newer receipt, while preserving the historical audit above.
+ const current=JSON.parse(readFileSync('docs/fundamental-data-engine/evidence/2026-10-29-approved-authority-activation/CAS_ACTIVATION.json','utf8'));
+ expect(current.status).toBe('ACTIVATED');expect(current.accountingUnchanged).toBe(true);
+ const db=new DatabaseSync('data/vn30.sqlite',{readOnly:true});
+ try{
+  for(const [table,pin] of Object.entries(current.accountingAfter) as [string,{count:number;hash:string}][]){expect(table).toMatch(/^[a-z_]+$/);const rows=db.prepare('SELECT * FROM '+table+' ORDER BY rowid').all();expect(rows).toHaveLength(pin.count);expect(snapshotHash(rows),table).toBe(pin.hash);}
+  const head=db.prepare("SELECT body_hash FROM market_boundary_dependency_head WHERE id='production-dependencies-v1'").get();expect(head?.body_hash).toBe(current.current.hash);
+ }finally{db.close();}
 });
 afterAll(()=>{expect(hashBytes(readFileSync('data/vn30.sqlite'))).toBe(productionStartingHash);});
 it('REAL retained full30 corpus replays canonical/market evidence with29/1 and activeTCX; no investment output',()=>{

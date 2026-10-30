@@ -1,0 +1,38 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+(node:74288) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:74308) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:74328) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/integration/fundamentals-migration.test.ts (1 test | 1 failed) 591ms
+   × populated latest baseline upgrade, repeat deployment and all previous rows/triggers/portfolio replay are preserved 590ms
+(node:74333) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:74353) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/fundamentals-migration.test.ts > populated latest baseline upgrade, repeat deployment and all previous rows/triggers/portfolio replay are preserved
+ValidationError: Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập.
+ ❯ requireRule src/domain/portfolio/values.ts:5:25
+      3|
+      4| export function requireRule(condition: unknown, rule: string): asserts…
+      5|   if (!condition) throw new ValidationError([{ field: "transaction", r…
+       |                         ^
+      6| }
+      7| /** M6.3 numeric-v1: exact input, 12 decimal accounting units, half-ev…
+ ❯ PortfolioEngine.post src/application/portfolio/engine.ts:22:28
+ ❯ tests/integration/fundamentals-migration.test.ts:21:103
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  1 failed | 14 passed (15)
+   Start at  04:43:30
+   Duration  18.73s (tests 94%, setup 3%, import 2%, transform 2%)
+

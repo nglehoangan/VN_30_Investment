@@ -1,3 +1,4 @@
+import { latestDirectMarketPrices } from "./direct-market-prices";
 import { createHash } from "node:crypto";
 import type { PrismaClient } from "../db/generated/client";
 import { parseBrokerApiData } from "../config/broker-api-data";
@@ -23,5 +24,15 @@ export async function latestBrokerApiData(client: PrismaClient) {
   for (const row of latest) {
     if (createHash("sha256").update(row.body).digest("hex") !== row.bodyHash) throw new Error("BROKER_EVIDENCE_HASH_MISMATCH");
   }
-  return parseBrokerApiData(latest.map(row => JSON.parse(row.body)));
+  const result = parseBrokerApiData(latest.map(row => JSON.parse(row.body)));
+  const symbols = await client.brokerObservation.findMany({ where: { kind: "TCBS_MARKET_PRICE" }, distinct: ["apiId"], select: { apiId: true } });
+  const prices = await latestDirectMarketPrices(client, symbols.flatMap(s => s.apiId ? [s.apiId] : []), new Date().toISOString());
+  if (prices.length) {
+    const dates = [...new Set(prices.map(p => p.asOfDate))];
+    result.tradingDate = dates.length === 1 ? dates[0] : undefined;
+    result.quoteReceivedAt = prices.map(p => p.receivedAt).sort().at(-1);
+    result.quoteBasis = "DIRECT_API_OBSERVATIONS";
+    result.quotes = prices.map(p => ({ symbol: p.ticker, price: Number(p.price), reference: null, changePercent: null, volume: null, asOfDate: p.asOfDate })).sort((a,b) => a.symbol.localeCompare(b.symbol));
+  }
+  return result;
 }

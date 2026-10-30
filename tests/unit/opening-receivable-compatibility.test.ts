@@ -49,19 +49,25 @@ describe("evidenced opening receivable compatibility", () => {
   });
 });
 // Adapter tests use a synthetic read-only Prisma seam, never the actual SQLite database.
-function adapter(mutate:(row:any)=>void = ()=>{}) {
-  const t=history([opening("2")])[0], f=t.facts;
-  const row:any={id:f.id,portfolioId:P,type:f.type,status:"POSTED",eventAt:f.eventAt,createdAt:t.createdAt,revision:"1",facts:JSON.stringify(t),legCount:t.legs.length,legs:structuredClone(t.legs),corporateAction:null,corporateActionId:null,reversesId:null,settlesId:null,idempotencyKey:f.idempotencyKey,securityId:null,source:f.source.source,sourceReference:f.source.reference,methodologyId:f.methodologyId};
+type AdapterRow = ReturnType<typeof adapterRow>;
+function adapterRow() {
+ const t=history([opening("2")])[0],f=t.facts;
+ return {id:String(f.id),portfolioId:P,type:f.type,status:"POSTED",eventAt:f.eventAt,createdAt:t.createdAt,revision:"1",facts:JSON.stringify(t),legCount:t.legs.length,legs:t.legs.map(l=>({...l})),corporateAction:null,corporateActionId:null,reversesId:null,settlesId:null,idempotencyKey:f.idempotencyKey,securityId:null,source:f.source.source,sourceReference:f.source.reference,methodologyId:f.methodologyId};
+}
+function adapter(mutate:(row:AdapterRow)=>void = ()=>{},intakeRows:{transaction_id:string;body:string;body_hash:string}[] = []) {
+  const row=adapterRow();
   mutate(row);
-  const tx={portfolio:{findUnique:async()=>({inceptionAt:at(1),revision:"1"})},ledgerTransaction:{findMany:async()=>[row]}};
-  return new PrismaPortfolioLedger({$transaction:async(fn:any)=>fn(tx)} as unknown as PrismaClient);
+  const tx={$queryRaw:async(query:TemplateStringsArray)=>{const sql=query.join("?");if(sql.includes("sqlite_master")&&sql.includes("forward_intake_event"))return [{name:"forward_intake_event"}];if(sql.includes("FROM forward_intake_event"))return intakeRows;throw Error("UNEXPECTED_ADAPTER_QUERY");},portfolio:{findUnique:async()=>({inceptionAt:at(1),revision:"1"})},ledgerTransaction:{findMany:async()=>[row]}};
+  return new PrismaPortfolioLedger({$transaction:async(fn:(value:typeof tx)=>unknown)=>fn(tx)} as unknown as PrismaClient);
 }
 it("strict adapter accepts complete canonical opening aggregate",async()=>expect((await adapter().read(P)).transactions).toHaveLength(1));
 it.each([
-  ["relational amount",(r:any)=>{r.legs[1].amount="3";}],
-  ["missing leg",(r:any)=>{r.legs.pop();}],
-  ["fact divergence",(r:any)=>{const t=JSON.parse(r.facts);t.facts.opening.receivable="3";r.facts=JSON.stringify(t);}],
-  ["timestamp divergence",(r:any)=>{r.eventAt=at(2);}],
-  ["identity divergence",(r:any)=>{r.id="other";}],
-  ["invalid JSON",(r:any)=>{r.facts="{";}],
-])("fails closed on genuinely corrupt %s",async(_name,mutate)=>expect(adapter(mutate as (r:any)=>void).read(P)).rejects.toMatchObject({code:"DATA_INTEGRITY_ERROR"}));
+  ["relational amount",(r:AdapterRow)=>{r.legs[1].amount="3";}],
+  ["missing leg",(r:AdapterRow)=>{r.legs.pop();}],
+  ["fact divergence",(r:AdapterRow)=>{const t=JSON.parse(r.facts);t.facts.opening.receivable="3";r.facts=JSON.stringify(t);}],
+  ["timestamp divergence",(r:AdapterRow)=>{r.eventAt=at(2);}],
+  ["identity divergence",(r:AdapterRow)=>{r.id="other";}],
+  ["invalid JSON",(r:AdapterRow)=>{r.facts="{";}],
+])("fails closed on genuinely corrupt %s",async(_name,mutate)=>expect(adapter(mutate as (r:AdapterRow)=>void).read(P)).rejects.toMatchObject({code:"DATA_INTEGRITY_ERROR"}));
+
+it("current adapter seam still rejects tampered forward-intake evidence",async()=>{await expect(adapter(()=>{},[{transaction_id:"opening",body:JSON.stringify({transactionId:"opening",factsHash:"forged"}),body_hash:"0".repeat(64)}]).read(P)).rejects.toMatchObject({code:"DATA_INTEGRITY_ERROR"});});

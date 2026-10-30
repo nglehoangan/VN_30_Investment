@@ -10,12 +10,15 @@ import {renderToStaticMarkup} from 'react-dom/server';
 const roots:string[]=[];
 const digest=(v:string)=>createHash('sha256').update(v).digest('hex');
 const NOW='2026-10-24T00:00:00.000Z';
-async function fixture(change?:(v:any)=>void,quarantine=false){
+interface FixtureRow {id:string;code:string;label:string;value:string|number|null;source:string;productionAdmissible:boolean;pdfEvidence:{path:string;jsonPointer:string;pdfPath:string;page:number}}
+interface FixtureVariant {id:string;year:number;periodType:string;reportingScope:string|null;source:Record<string,string|null>;groups:{id:string;label:string;rows:FixtureRow[]}[]}
+interface FixtureData {schemaVersion:string;ticker:string;policyVersion:string;status:string;productionAdmissible:boolean;reports:{balance:{label:string;periods:{'2025':{variants:FixtureVariant[]}}}}}
+async function fixture(change?:(v:FixtureData)=>void,quarantine=false){
  const root=await mkdtemp(join(tmpdir(),'vn30-research-'));roots.push(root);
  const pdfPath='data/manual-download/VNM/source.pdf',pdf='%PDF-1.7\nfixture-only',sourceHash=digest(pdf),extraction='data/manual-extracted-pdf/VNM.json';
  const s={provider:'MANUAL_PDF',payloadHash:sourceHash,rawPayloadHash:sourceHash,pdfPath,rawPayloadLocation:pdfPath};
  const make=(scope:string)=>({id:scope,year:2025,periodType:'ANNUAL',reportingScope:scope,source:{...s},groups:[{id:'g',label:'Assets',rows:[{id:'row',code:'100',label:'Cash',value:'9007199254740993.125',source:'PDF_REPORTED',productionAdmissible:false,pdfEvidence:{path:extraction,jsonPointer:'/reports/balance/periods/2025/variants/0/groups/0/rows/0',pdfPath,page:1}}]}]});
- const data:any={schemaVersion:'vn30-combine-v1',ticker:'VNM',policyVersion:'report-display-source-priority-v2',status:'UNREVIEWED_PRESENTATION',productionAdmissible:false,reports:{balance:{label:'Balance sheet',periods:{'2025':{variants:[make('CONSOLIDATED'),make('PARENT')]}}}}};
+ const data:FixtureData={schemaVersion:'vn30-combine-v1',ticker:'VNM',policyVersion:'report-display-source-priority-v2',status:'UNREVIEWED_PRESENTATION',productionAdmissible:false,reports:{balance:{label:'Balance sheet',periods:{'2025':{variants:[make('CONSOLIDATED'),make('PARENT')]}}}}};
  data.reports.balance.periods['2025'].variants[1].groups[0].rows[0].pdfEvidence.jsonPointer='/reports/balance/periods/2025/variants/1/groups/0/rows/0';
  const extracted=JSON.stringify(data);change?.(data);const combined=JSON.stringify(data);
  async function put(path:string,value:unknown){await mkdir(dirname(join(root,path)),{recursive:true});await writeFile(join(root,path),typeof value==='string'?value:JSON.stringify(value));}
@@ -29,7 +32,7 @@ async function fixture(change?:(v:any)=>void,quarantine=false){
  await put('data/manual-extracted-api/manifest.json',{schemaVersion:'cafef-display-v1',files:[],failures:quarantine?[{ticker:'VNM',endpoint:'bad',mode:'NAM',rawPayloadLocation:pdfPath,error:'Schema quarantined'}]:[]});
  return {root,put,pdfPath};
 }
-const selected=(v:any)=>v.reports.balance.periods['2025'].variants[0];
+const selected=(v:FixtureData)=>v.reports.balance.periods['2025'].variants[0];
 afterEach(async()=>{await Promise.all(roots.splice(0).map(r=>rm(r,{recursive:true,force:true})));});
 describe('current-layout read-only research contract',()=>{
  it('discovers exact current layout, retains precision, lineage and independent scopes',async()=>{
@@ -41,7 +44,7 @@ describe('current-layout read-only research contract',()=>{
   expect(await readRetainedResearch(root,'VNM','0',undefined,NOW)).toEqual(a);
  });
  it('provides catalog without reading a selected ticker',async()=>{const {root}=await fixture();const r=await readRetainedResearch(root);expect(r.catalog).toHaveLength(1);expect(r.rows).toEqual([]);});
- it.each(['schemaVersion','policyVersion','status'])('rejects unsupported %s',async key=>{const {root}=await fixture(v=>v[key]='unexpected');await expect(readRetainedResearch(root,'VNM')).rejects.toThrow();});
+ it.each(['schemaVersion','policyVersion','status'])('rejects unsupported %s',async key=>{const {root}=await fixture(v=>Object.assign(v,{[key]:'unexpected'}));await expect(readRetainedResearch(root,'VNM')).rejects.toThrow();});
  it('rejects changed combined bytes',async()=>{const {root,put}=await fixture();await put('data/combine/VNM.json','{}');await expect(readRetainedResearch(root,'VNM')).rejects.toThrow('COMBINED_HASH_MISMATCH');});
  it.each(['../VNM','UNKNOWN'])('rejects unsupported ticker %s',async ticker=>{const {root}=await fixture();await expect(readRetainedResearch(root,ticker)).rejects.toThrow();});
  it.each(['-1','1.5','9999','NaN'])('rejects invalid variant %s',async v=>{const {root}=await fixture();await expect(readRetainedResearch(root,'VNM',v)).rejects.toThrow();});

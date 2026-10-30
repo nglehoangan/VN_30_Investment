@@ -1,0 +1,83 @@
+{
+  "status": "TECHNICAL_NORMALIZATION_VALIDATED_FORMAL_ACCEPTANCE_PENDING",
+  "productionAdmissible": false,
+  "scoringAuthorized": false,
+  "counts": {
+    "presentationRows": 748522,
+    "numericRows": 610563,
+    "nullRows": 137959,
+    "variants": 11383,
+    "retainedCanonicalFacts": 1793
+  },
+  "market": {
+    "validated": 30,
+    "currentSelectionCount": 30
+  },
+  "openIssueGroups": 125,
+  "affectedOccurrenceCountsByCode": {
+    "RETAINED_FACT_PIT_UNQUALIFIED": 1793,
+    "PRESENTATION_SCOPE_REQUIRED": 425905,
+    "PRESENTATION_UNIT_REQUIRED": 428069,
+    "PRESENTATION_REVIEW_REQUIRED": 748522,
+    "UNIVERSE_MEMBER_DEFERRED": 1,
+    "MARKET_QUALIFICATION_PENDING": 1,
+    "NATIVE_SNAPSHOT_PIPELINE_EMPTY": 1,
+    "READINESS_POLICY_AND_INPUT_BRIDGE_PENDING": 1,
+    "INDEPENDENT_REVIEW_PENDING": 1
+  },
+  "checks": {
+    "vitest": {
+      "files": 3,
+      "passed": 37,
+      "failed": 0,
+      "command": "pnpm exec vitest run tests/integration/retained-corpus-current.test.ts tests/integration/direct-api-prices.test.ts tests/integration/scoring-readiness-migration.test.ts"
+    },
+    "nodeTests": {
+      "passed": 21,
+      "failed": 0,
+      "command": "node --test api/display-session.test.mjs api/direct-data.test.mjs"
+    },
+    "scriptLint": "PASS",
+    "sourceRoundtrip": {
+      "status": "PASS_EXACT_SOURCE_ROUNDTRIP",
+      "counts": {
+        "presentationRows": 748522,
+        "numericRows": 610563,
+        "nullRows": 137959,
+        "variants": 11383,
+        "retainedCanonicalFacts": 1793
+      },
+      "allArtifactsAndSourcesHashVerified": true,
+      "sealedDatabaseRowsUnchanged": true,
+      "databaseFileStillIdentical": true,
+      "formalAcceptanceGranted": false
+    },
+    "scoringAuthority": {
+      "status": "PASS",
+      "artifacts": 37,
+      "historicalFilesUnchanged": 133
+    }
+  },
+  "artifacts": [
+    {
+      "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/NORMALIZATION_REPORT.md",
+      "sha256": "7614316c27dec883dfcbdae83152147a7f3fb42ba9339fac1502bfe329077314"
+    },
+    {
+      "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/normalized-r1/manifest.json",
+      "sha256": "c11f64f9dba7e393792dfaa59e2ad91aee4b631dc5753f4df29db6e17229ad48"
+    },
+    {
+      "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/normalized-roundtrip-validation.json",
+      "sha256": "c8f0777742aa9778d4c89dbe4d039566dc626b0d2975b76f9b06060eb164847f"
+    },
+    {
+      "path": "scripts/normalize-current-dataset.mjs",
+      "sha256": "bcebd5bc7bacda0273d0d06e5f91fc5d90d9e12ea1403582fa4ac270a3a786c3"
+    },
+    {
+      "path": "scripts/verify-normalized-dataset.py",
+      "sha256": "71c15cd9ee52d093ea120dca97ea588fab8c5041f7f52811b8bce53409cb4b56"
+    }
+  ]
+}

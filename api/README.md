@@ -31,16 +31,53 @@ node api/tcbs.mjs --cached-token-only
 - `--history-bars` từ2đến1000, mặc định252. Stock history/index tách variant khỏi2bar EOD hiện có. Raw benchmark chưa được qualify adjustment/total-return/identity.
 - `--symbols` chỉ giới hạn cổ phiếu trong rổ giữ lại; benchmark VN30 vẫn riêng. `--seconds` từ1đến120.
 
-Mỗi lượt có thư mục private `data/market-source/tcbs/<thời gian>-unified/`. Mở **`capture.json`** để xem tất cả kết quả/account+market, raw text lossless, frame WSS, variants, issue và trạng thái từng request. Giữ rawfiles riêng và `manifest.json` EOD61request để replay. Schema combined v2; account numbers có thể xuất hiện trong raw/inventory private, không nằm trong cấu hình hoặc console. Không commit capture/session.
+Sau mỗi lượt API, dữ liệu được ghi **trực tiếp vào SQLite mà ứng dụng dùng** (`data/vn30.sqlite` mặc định; dùng cùng `DATABASE_URL` nếu cấu hình). Không tạo thư mục theo lượt, `capture.json`, manifest hay raw file trung gian. Database phải tồn tại với schema hiện hành; lệnh không tự migrate hoặc sửa sổ giao dịch.
+
+- Mỗi phản hồi REST được lưu ngay trong `broker_observation`: raw text nguyên vẹn, hash, request/variant và thời gian nhận. Lỗi HTTP cũng được giữ riêng trong DB.
+- Giá hiển thị được kiểm tra và cập nhật vào `TCBS_MARKET_PRICE`; dashboard/holdings đọc trực tiếp từ DB khi tải lại trang, không cần chạy import thủ công.
+- Ưu tiên giá khớp API5.1 khi có giá dương chính xác. Nếu bảng giá trước phiên chưa có matchPrice, dùng bar ngày gần nhất đã qua mốc15:00giờ Việt Nam và ghi đúng ngày nguồn. Đây là giá tham khảo hiển thị, không tự cấp quyền NAV/scoring production.
+- Giữ từng mã và nguồn; không lùi về phiên cũ hơn, không làm tròn giá không được hỗ trợ hoặc trộn giá khác ngày thành tổng định giá mới. Cổ tức, phí và giá vốn owner đã chốt giữ theo nguồn của chúng.
+- `displayPrices` trong kết quả console cho biết UPDATED/PARTIAL và mã thiếu. Lỗi API tài khoản có thể khiến lượt tổng PARTIAL nhưng không bỏ các giá thị trường hợp lệ đã cập nhật.
+- Session xác thực riêng vẫn dùng cache bảo mật trong `data/tcbs-session`; đây không phải nơi lưu dữ liệu API thị trường. Không đưa raw tài khoản/session vào Git hoặc console.
+
+Các capture cũ là lịch sử đã lưu; luồng mới không tạo thêm bản sao dữ liệu API bên ngoài DB.
 
 GET cách nhau ít nhất1giây;401/429 dừng, không retry/xin OTP lại. 429 lưu cooldown ít nhất60giây hoặc Retry-After dài hơn. WSS auth qua base64JWT, chờ success true, subscribe `d|s|tk|bp+bi+tm+mp+op+fe|...`, heartbeat `d|p|||` mỗi2giây. Giữ tối đa3000frame/16MB; thiếu mã được ghi rõ.
 
-Không tự ghi database/ledger/scoring hoặc đặt lệnh/chuyển tiền. Dữ liệu capture chưa được accounting/benchmark/scoring admission. Công cụ import/replay/assess offline vẫn riêng vì không gọi mạng.
+Chỉ ghi dữ liệu API và giá hiển thị vào database; không ghi ledger/scoring, đặt lệnh hoặc chuyển tiền. Raw/giá hiển thị không tự có accounting/benchmark/scoring admission.
 
 Review đầy đủ52API và giới hạn: [TCBS_API_WEB_APP_REVIEW.md](../docs/fundamental-data-engine/TCBS_API_WEB_APP_REVIEW.md). Catalog machine-readable: `api/tcbs-api-catalog.json`.
 
 ```sh
-node --test api/capture-market.test.mjs api/token-session.test.mjs api/sub-account.test.mjs api/tcbs-unified.test.mjs
+node --test api/capture-market.test.mjs api/token-session.test.mjs api/sub-account.test.mjs api/tcbs-unified.test.mjs api/direct-data.test.mjs
 ```
 
-Phiên market-only cũ ngày2026-10-21 đã lấy213REST200 và960frame WSS. Luồng mặc định mới account/history/benchmark đã test mô phỏng một OTP chung; chưa chạy live tài khoản trong lượt review này.
+Phiên market-only cũ ngày2026-10-21 đã lấy213REST200 và960frame WSS. Luồng mặc định account/history/benchmark dùng một phiên token chung; kết quả đối chiếu live mới nhất ở mục 4.16/4.17 phía dưới.
+
+### Đối chiếu 4.16 / 4.17 ngày 29/10/2026
+
+Hai API đã có trong lệnh mặc định `node api/tcbs.mjs`, dùng chung JWT/OTP với market. Không cần chạy file riêng. Terminal nay in kết quả từng API tài khoản (không in số tài khoản/token); cuối phiên tách `accountCapture`, market REST, WebSocket và kết quả cập nhật giá.
+
+URL không đổi so với tài liệu, nhưng backend đang yêu cầu tên tham số khác:
+
+| API | Tài liệu hiện ghi | Backend đã kiểm tra HTTP200 |
+| --- | --- | --- |
+| [4.16](https://developers.tcbs.com.vn/docs/v1.0.0/stock/cash-statement/) | `accountno` | `acctno`; giữ `fromDate`, `toDate`, `pageSize`, `pageIndex` |
+| [4.17](https://developers.tcbs.com.vn/docs/v1.0.0/stock/debt-lookup/) | `toDate` | `todate`; giữ `acctno`, `custodycd`, `fromdate`, `page`, `size` |
+
+Chỉ chọn tiểu khoản ACTIVE đúng NORMAL (4.16) / MARGIN (4.17) từ profile 2.1 đã kiểm tra custody. Không có MARGIN hoặc không xác định duy nhất thì ghi thiếu phạm vi, không đoán tài khoản và không coi nợ bằng 0. HTTP400 được giữ nguyên trong lỗi ACCOUNT và raw SQLite; không hủy giá market hợp lệ. Lỗi xác thực401 / giới hạn429 vẫn dừng phiên như trước.
+
+Đã chạy live hai endpoint sau sửa: đều200; sao kê chọn từ01/10 được kiểm tra pagination qua entry point. Chạy full30 với lỗi tài khoản trước sửa vẫn cập nhật30giá. Phiên WSS3giây không có frame được ghi riêng là chưa đủ dữ liệu, không coi toàn phiên thành công. Chi tiết: `docs/fundamental-data-engine/evidence/2026-10-29-account-api-review/REPORT.md`.
+
+### Quy tắc giá theo phiên — chủ tài khoản xác nhận29/10/2026
+
+Bản ghi mới dùng `tcbs-display-price-v2` trong cùng bảng `broker_observation`, kind `TCBS_MARKET_PRICE`. Lệnh `node api/tcbs.mjs` vẫn lấy API rồi cập nhật thẳng SQLite. Không cần thêm migration SQL vì bảng hiện tại lưu payload JSON có version; dữ liệu giá v1 và raw responses vẫn là lịch sử bất biến.
+
+- Trong các phiên khớp lệnh HOSE (09:00–11:30,13:00–14:45 theo Asia/Ho_Chi_Minh, trừ ngày nghỉ): chọn `matchPrice` của ngày hiện tại, với `open` đã có giá để tránh mang giá cũ trước giao dịch đầu tiên vào phiên mới. Chưa có khớp hợp lệ thì giữ giá đóng cửa đã hoàn tất dưới dạng fallback có trạng thái thiếu giá khớp.
+- Ngoài các phiên đó, bao gồm nghỉ trưa/cuối tuần/ngày nghỉ: chọn `close` từ daily bar5.13 của phiên đã hoàn tất. Sau14:45 kỳ vọng close ngày hiện tại; trước mở cửa/nghỉ trưa kỳ vọng close phiên trước. Chỉ dùng bar đã được nhận sau cutoff của ngày đó. Chưa có bar cần lấy thì ghi `EXPECTED_CLOSE_NOT_AVAILABLE` cùng đúng ngày của giá cũ, không đổi nhãn matchPrice thành close.
+- `openingReference` = close phiên giao dịch liền trước theo quy tắc app do chủ tài khoản xác nhận; không phải `refPrice` và không phải giá mở cửa của Sở. `exchangeOpen` giữ riêng trường `open` do TCBS trả về. Mỗi giá/mốc đều có ngày, thời điểm nhận, raw observation ID, JSON Pointer và SHA256.
+- Ghi thêm `selectedAt`, ngày/trạng thái phiên, phiên bản calendar/policy, kỳ close mong đợi, selection status, timezone và `adjustment: PROVIDER_UNDECLARED`. Không suy đoán dữ liệu đã điều chỉnh hay không.
+- Reader ưu tiên v2 rồi thời điểm chọn; chỉ dùng v1 khi mã đó chưa có v2. Vì thế nghỉ trưa có thể chủ động chuyển từ match ngày hiện tại sang close phiên trước. Chặn replay cũ ghi đè selection mới và chặn giá close quá cũ thay close mới hơn đã biết.
+- Calendar chỉ hỗ trợ2026, dùng danh sách ngày nghỉ đã có của dự án. Ngoài phạm vi này báo rõ không hỗ trợ, không đoán ngày giao dịch. Quy tắc này dành cho display; không tự chấp thuận Production/scoring.
+
+Kiểm tra thêm: `node --test api/display-session.test.mjs api/direct-data.test.mjs`. Nguồn giờ giao dịch: https://staticfile.hsx.vn/Uploads/UploadDocuments/2453338/HTGD_Quy%20dinh%20can%20biet%20khi%20GDCK%20tren%20HOSE_T2.2026.pdf . Calendar/source pins và kết quả live ở `docs/fundamental-data-engine/evidence/2026-10-29-owner-price-selection/REPORT.md`.

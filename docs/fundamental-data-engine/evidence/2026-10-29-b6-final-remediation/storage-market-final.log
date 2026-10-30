@@ -1,0 +1,59 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+(node:79271) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/integration/tcbs-pipeline.test.ts (7 tests) 1388ms
+   ✓ market expiry never invalidates historical capability/init replay; runtime status separates technical candidate from acceptance 311ms
+   ✓ additive immutable snapshot storage replays real candidate contracts on isolated DB; no production writes 833ms
+stdout | tests/integration/m68-backup.test.ts > backup → disposable restore → integrity, complete historical rows, accounting and artifact replay
+{"probe":"backup-subprocess","mode":"backup","durationMs":217,"status":0,"timedOut":false}
+{"probe":"backup-subprocess","mode":"restore","durationMs":305,"status":0,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases
+{"probe":"backup-subprocess","mode":"backup","durationMs":180,"status":0,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > same source path
+{"probe":"backup-subprocess","mode":"backup","durationMs":78,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > existing backup is never overwritten
+{"probe":"backup-subprocess","mode":"backup","durationMs":74,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > public output is refused
+{"probe":"backup-subprocess","mode":"backup","durationMs":75,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > symlink source is refused
+{"probe":"backup-subprocess","mode":"backup","durationMs":75,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > altered backup bytes are refused
+{"probe":"backup-subprocess","mode":"restore","durationMs":81,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > missing manifest is refused
+{"probe":"backup-subprocess","mode":"restore","durationMs":74,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > existing restore is never overwritten
+{"probe":"backup-subprocess","mode":"restore","durationMs":240,"status":0,"timedOut":false}
+{"probe":"backup-subprocess","mode":"restore","durationMs":79,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > forged manifest counts are refused
+{"probe":"backup-subprocess","mode":"restore","durationMs":151,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > corrupt authoritative artifact cannot be published as a validated backup
+{"probe":"backup-subprocess","mode":"backup","durationMs":185,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > backup refuses raw body hashes substituted for canonical sealed-envelope hashes
+{"probe":"backup-subprocess","mode":"backup","durationMs":161,"status":1,"timedOut":false}
+
+ ✓ tests/integration/m68-backup.test.ts (11 tests) 6370ms
+   ✓ backup → disposable restore → integrity, complete historical rows, accounting and artifact replay 2156ms
+   ✓ bounded independent backup/restore safety cases (8)
+     ✓ existing restore is never overwritten 328ms
+   ✓ corrupt authoritative artifact cannot be published as a validated backup 1201ms
+   ✓ backup refuses raw body hashes substituted for canonical sealed-envelope hashes 990ms
+
+ Test Files  2 passed (2)
+      Tests  18 passed (18)
+   Start at  05:24:57
+   Duration  8.61s (tests 92%, transform 4%, import 2%, setup 2%)
+
+JSON report written to /Users/nglehoangan/Documents/Working/VN_30_Investment/docs/fundamental-data-engine/evidence/2026-10-29-b6-final-remediation/storage-market-final.json

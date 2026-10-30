@@ -9,8 +9,10 @@ import {instant} from '@/shared/time';
 export interface FilePin {readonly path:string;readonly sha256:string}
 interface SealedJSON {readonly id:string;readonly contract:string;readonly contentHash:string}
 interface Manifest extends SealedJSON {
- readonly implementationId:string;readonly version:string;readonly reviewedCommit:string;
- readonly artifacts:readonly (FilePin&{size:number;sourceCommit:string})[];
+ readonly implementationId:string;readonly version?:string;readonly reviewedCommit?:string;
+ readonly methodologyVersion?:string;readonly buildRevision?:string;readonly status?:string;
+ readonly reviewedTree?:{gitHead:string;mode:string;cleanCommitClaimed:boolean};
+ readonly artifacts:readonly (FilePin&{size:number;sourceCommit?:string})[];
  readonly categoryMaxima:Readonly<Record<string,number>>;readonly runtimeDependencyPins:readonly FilePin[];
 }
 interface Approval extends SealedJSON {
@@ -47,14 +49,17 @@ export function verifyProductionAuthorityBundle(root:string,pin:FilePin){
  check(e.id===ex.id&&e.contentHash===ex.hash&&e.authorityType==='SCORING_EXECUTABLE'&&e.status==='APPROVED_PRODUCTION','UNAPPROVED_SCORING_EXECUTABLE');
  check(e.implementation==='m64-clarification-1'&&e.semanticVersion==='1.0.0','SCORING_EXECUTABLE_VERSION_MISMATCH');
  const m=sealed<Manifest>(root,e.manifest),a=sealed<Approval>(root,e.ownerApproval);
- check(m.contract==='scoring-executable-manifest-v1'&&m.implementationId===e.implementation&&m.version===e.semanticVersion&&m.reviewedCommit==='d97e9486e28cb5b3164234c7f35a2a43dc092401','SCORING_EXECUTABLE_CHANGED_AFTER_APPROVAL');
- check(a.contract==='owner-scoring-production-approval-v1'&&a.approvalMode==='OWNER_GOVERNANCE_APPROVAL'&&a.approvalScope==='SCORING_EXECUTABLE_PRODUCTION','OWNER_APPROVAL_SCOPE_MISMATCH');
- check(a.implementation===e.implementation&&a.version===e.semanticVersion&&a.ownerApprovalDate==='2026-10-20'&&a.statement==='Approve m64-clarification-1 v1.0.0 for Production','OWNER_APPROVAL_MISSING');
+ const reviewed=m.contract==='scoring-executable-review-manifest-v1';
+ if(reviewed){
+  check(m.id==='scoring-executable-current-review-20261029-r1'&&m.contentHash==='8c0880249dc54e2baea0235cc10094f818220db86331442ece3da05085261cc1'&&m.implementationId===e.implementation&&m.methodologyVersion===e.semanticVersion&&m.buildRevision==='20261029-r1'&&m.status==='TECHNICALLY_REVIEWED_NOT_PRODUCTION_APPROVED'&&m.reviewedTree?.mode==='EXACT_FILE_BYTES_IN_WORKTREE'&&m.reviewedTree.cleanCommitClaimed===false&&/^[a-f0-9]{40}$/.test(m.reviewedTree.gitHead),'SCORING_EXECUTABLE_CHANGED_AFTER_APPROVAL');
+ }else check(m.contract==='scoring-executable-manifest-v1'&&m.implementationId===e.implementation&&m.version===e.semanticVersion&&m.reviewedCommit==='d97e9486e28cb5b3164234c7f35a2a43dc092401','SCORING_EXECUTABLE_CHANGED_AFTER_APPROVAL');
+ check(a.contract===(reviewed?'owner-scoring-production-approval-v2':'owner-scoring-production-approval-v1')&&a.approvalMode==='OWNER_GOVERNANCE_APPROVAL'&&a.approvalScope==='SCORING_EXECUTABLE_PRODUCTION','OWNER_APPROVAL_SCOPE_MISMATCH');
+ check(a.implementation===e.implementation&&a.version===e.semanticVersion&&a.ownerApprovalDate===(reviewed?'2026-10-29':'2026-10-20')&&a.statement===(reviewed?'Apporve cho mainifest mới':'Approve m64-clarification-1 v1.0.0 for Production'),'OWNER_APPROVAL_MISSING');
  check(same(a.manifest,{id:m.id,hash:m.contentHash}),'SCORING_EXECUTABLE_HASH_MISMATCH');instant(a.recordedAt);instant(a.effectiveFrom);check(a.effectiveFrom<=a.recordedAt&&a.recordedAt<=b.recordedAt,'OWNER_APPROVAL_EFFECTIVE_TIME');
  check(authorityBytes(root,a.source).toString('utf8').includes(a.statement),'OWNER_APPROVAL_MISSING');
  check(m.artifacts.length>0&&new Set(m.artifacts.map(p=>p.path)).size===m.artifacts.length,'SCORING_EXECUTABLE_MANIFEST');
  check(m.runtimeDependencyPins.length===2&&m.runtimeDependencyPins.some(p=>p.path==='pnpm-lock.yaml')&&m.runtimeDependencyPins.some(p=>p.path==='package.json'),'SCORING_EXECUTABLE_DEPENDENCY_PINS');m.runtimeDependencyPins.forEach(p=>authorityBytes(root,p));
- for(const p of m.artifacts){check(/^[a-f0-9]{40}$/.test(p.sourceCommit),'AUTHORITY_SOURCE_COMMIT');check(authorityBytes(root,p).length===p.size,'SCORING_EXECUTABLE_HASH_MISMATCH');}
+ for(const p of m.artifacts){if(!reviewed)check(/^[a-f0-9]{40}$/.test(p.sourceCommit??''),'AUTHORITY_SOURCE_COMMIT');check(authorityBytes(root,p).length===p.size,'SCORING_EXECUTABLE_HASH_MISMATCH');}
  check(same(m.categoryMaxima,{BQ:25,FH:15,GQ:15,IC:10,VAL:20,RG:10,CA:5}),'SCORING_MODEL_EXECUTABLE_INCOMPATIBLE');
  const model=b.authorities.find(a=>a.type==='SCORING_MODEL')!;check(same(e.scoringModelAuthority,{id:model.id,hash:model.hash}),'SCORING_MODEL_EXECUTABLE_INCOMPATIBLE');
  const proofs=b.compatibilities.map(p=>sealed<Compatibility>(root,p));

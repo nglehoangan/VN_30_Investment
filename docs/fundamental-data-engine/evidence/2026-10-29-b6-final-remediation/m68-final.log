@@ -1,0 +1,73 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+stdout | tests/integration/m68-backup.test.ts > backup → disposable restore → integrity, complete historical rows, accounting and artifact replay
+{"probe":"backup-subprocess","mode":"backup","durationMs":336,"status":0,"timedOut":false}
+{"probe":"backup-subprocess","mode":"restore","durationMs":372,"status":0,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases
+{"probe":"backup-subprocess","mode":"backup","durationMs":190,"status":0,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > same source path
+{"probe":"backup-subprocess","mode":"backup","durationMs":80,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > existing backup is never overwritten
+{"probe":"backup-subprocess","mode":"backup","durationMs":82,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > public output is refused
+{"probe":"backup-subprocess","mode":"backup","durationMs":86,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > symlink source is refused
+{"probe":"backup-subprocess","mode":"backup","durationMs":82,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > altered backup bytes are refused
+{"probe":"backup-subprocess","mode":"restore","durationMs":89,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > missing manifest is refused
+{"probe":"backup-subprocess","mode":"restore","durationMs":79,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > existing restore is never overwritten
+{"probe":"backup-subprocess","mode":"restore","durationMs":283,"status":0,"timedOut":false}
+{"probe":"backup-subprocess","mode":"restore","durationMs":84,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > bounded independent backup/restore safety cases > forged manifest counts are refused
+{"probe":"backup-subprocess","mode":"restore","durationMs":162,"status":1,"timedOut":false}
+
+stdout | tests/integration/m68-backup.test.ts > corrupt authoritative artifact cannot be published as a validated backup
+{"probe":"backup-subprocess","mode":"backup","durationMs":197,"status":1,"timedOut":false}
+
+ ✓ tests/integration/m68-backup.test.ts (10 tests) 11895ms
+   ✓ backup → disposable restore → integrity, complete historical rows, accounting and artifact replay 8286ms
+   ✓ bounded independent backup/restore safety cases (8)
+     ✓ existing restore is never overwritten 379ms
+   ✓ corrupt authoritative artifact cannot be published as a validated backup 1257ms
+(node:77058) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+stdout | tests/integration/m68.test.ts > M6.8 downstream formal authority chain with historical upstream scores (disposable test evidence) > performance sanity: current reads at 30 holdings preserve exact NAV and record local latency
+{"profile":"VN30 30 holdings / 31 immutable ledger events","currentReadMilliseconds":[14.818041999998968,13.614083000000392,12.328708000000915,13.397417000000132,12.422500000000582],"meanMilliseconds":13.316150000000198,"ledgerReadsPerCaptureFromSourceAudit":5,"limitation":"full-history reconstruction; measurements are local, not an SLA"}
+
+ ✓ tests/integration/m68.test.ts (15 tests) 37480ms
+   ✓ M6.8 downstream formal authority chain with historical upstream scores (disposable test evidence) (15)
+     ✓ A: contribution, cash-only current state, excluded formal universe and HOLD CASH never buy 1211ms
+     ✓ B/G/U/Q/S: score → BUY → persisted marginal lots → review/proposal → explicit ledger → reconstruction/reversal; history survives 5010ms
+     ✓ ambiguous, mismatched, missing and tampered marginal authority never falls back to an allocation 1917ms
+     ✓ issuance cutoff and immutable revision lifecycle (3)
+       ✓ later calculations use issuance cutoff and retry preserves original time 480ms
+       ✓ revised proposal supersedes immutable review and proposal history 2237ms
+       ✓ later retry remains idempotent without changing accounting 1038ms
+     ✓ legacy catalog cannot hide a corrupt marginal body by changing its scope before selection 1751ms
+     ✓ frozen legacy composition resolves persisted marginal authority without browser input 4211ms
+     ✓ production composition blocks normalized manual source without accepted market-boundary evidence 2184ms
+     ✓ security: all injected authority and lineage fields fail before a review write 944ms
+     ✓ fresh/populated M6.7 database: repeated deploy/status preserves all rows and historical replay 7187ms
+     ✓ adapter failures and future source times block formal action without fallback 939ms
+     ✓ concurrent/repeated monthly initiation is idempotent and never changes accounting 4869ms
+     ✓ V: corrected dataset B creates a new score and current context without rewriting decision A 1187ms
+     ✓ performance sanity: current reads at 30 holdings preserve exact NAV and record local latency 1100ms
+
+ Test Files  2 passed (2)
+      Tests  25 passed (25)
+   Start at  05:14:31
+   Duration  52.83s (tests 94%, transform 3%, setup 2%, import 1%)
+
+JSON report written to /Users/nglehoangan/Documents/Working/VN_30_Investment/docs/fundamental-data-engine/evidence/2026-10-29-b6-final-remediation/m68-final.json

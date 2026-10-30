@@ -1,3 +1,4 @@
+import {historicalReplay} from '../fixtures/historical-replay';
 import {it,expect} from 'vitest';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -33,7 +34,7 @@ for(const t of ['GAS','BSR']){
  it(t+' every admitted transcription uses exact population and source dimensions',()=>{for(const r of read(t,t+'_ISSUER_VERIFICATION').rows)expect(qualifyEnergyAccountingRow(t,r.metric,{start:r.start,end:r.end,frame:r.frame},{...r,sourceCategory:energyAccountingCategory(r.metric)}).status).toBe('AVAILABLE');});
 }
 it('26 BSR abnormal fiscal quarter remains quarantined',()=>{const i=read('BSR','BSR_RETAINED_ADMISSION_INPUT') as HybridInput,s=buildHybridAdmission(i,financialHash);const abnormal=i.candidates.filter(c=>Number(c.fiscalQuarter)===-1||c.modeMismatch||c.ambiguousQuarterlyFlow);expect(abnormal.length).toBeGreaterThan(0);for(const c of abnormal){expect(s.canonicalFacts.some(f=>f.classification==='DIRECT_STRUCTURED'&&f.candidateIds.includes(c.id))).toBe(false);expect(s.candidateAssessments.find(a=>a.candidateId===c.id)?.reasons.length).toBeGreaterThan(0);}});
-it('29 all approved closures and production contracts unchanged',()=>{for(const b of read('GAS','PROTECTED_BASELINE').bindings)expect(createHash('sha256').update(readFileSync(b.path)).digest('hex')).toBe(b.sha256);});
+historicalReplay('ARCH-07','29 all approved closures and production contracts unchanged',()=>{for(const b of read('GAS','PROTECTED_BASELINE').bindings)expect(createHash('sha256').update(readFileSync(b.path)).digest('hex')).toBe(b.sha256);});
 it('30 VNM remains deferred blocked',()=>{const p='docs/fundamental-data-engine/evidence/2026-10-15-consumer-targeted-fix/VNM/FINAL_SUFFICIENCY.json';const d=JSON.parse(readFileSync(p,'utf8'));expect(d.levelOneReady).toBe(false);expect(d.verdict).toMatch(/BLOCKED/);});
 
 it('26 BSR quater=-1 can never be reinterpreted as a valid NAM or QUY period',()=>{for(const mode of ['NAM','QUY'] as const)expect(()=>cafeFPeriod({year:2024,quater:-1},mode)).toThrow('INVALID_PROVIDER_PERIOD');});

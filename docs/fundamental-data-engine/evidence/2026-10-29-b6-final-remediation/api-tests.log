@@ -1,0 +1,312 @@
+TAP version 13
+# (node:79448) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: retains only market frame candidates, excludes auth and heartbeat
+ok 1 - retains only market frame candidates, excludes auth and heartbeat
+  ---
+  duration_ms: 1.757667
+  type: 'test'
+  ...
+# Subtest: raw byte hash is deterministic and content-sensitive
+ok 2 - raw byte hash is deterministic and content-sensitive
+  ---
+  duration_ms: 0.7735
+  type: 'test'
+  ...
+# Subtest: 5.2 authenticates before subscribing; keeps exact raw decimals and cleans up at frame limit
+ok 3 - 5.2 authenticates before subscribing; keeps exact raw decimals and cleans up at frame limit
+  ---
+  duration_ms: 16.69425
+  type: 'test'
+  ...
+# Subtest: auth rejection never subscribes and returns no auth/control frame
+ok 4 - auth rejection never subscribes and returns no auth/control frame
+  ---
+  duration_ms: 0.867709
+  type: 'test'
+  ...
+# Subtest: quiet stream is explicitly missing, never a fabricated quote
+ok 5 - quiet stream is explicitly missing, never a fabricated quote
+  ---
+  duration_ms: 5.425833
+  type: 'test'
+  ...
+# Subtest: batch identity coverage and partial disconnect are preserved
+ok 6 - batch identity coverage and partial disconnect are preserved
+  ---
+  duration_ms: 0.467334
+  type: 'test'
+  ...
+# Subtest: auth timeout and data before auth fail closed
+ok 7 - auth timeout and data before auth fail closed
+  ---
+  duration_ms: 6.998792
+  type: 'test'
+  ...
+# Subtest: one plan covers full30 EOD inventory plus all former market REST reads
+ok 8 - one plan covers full30 EOD inventory plus all former market REST reads
+  ---
+  duration_ms: 0.689458
+  type: 'test'
+  ...
+# Subtest: default capture keeps EOD replay distinct from history and index observations
+ok 9 - default capture keeps EOD replay distinct from history and index observations
+  ---
+  duration_ms: 0.265458
+  type: 'test'
+  ...
+# (node:79449) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: direct persistence preserves raw decimals and variants without any capture data directory
+ok 10 - direct persistence preserves raw decimals and variants without any capture data directory
+  ---
+  duration_ms: 5.496667
+  type: 'test'
+  ...
+# Subtest: HTTP400 account failure cannot discard valid market price; rerun is idempotent
+ok 11 - HTTP400 account failure cannot discard valid market price; rerun is idempotent
+  ---
+  duration_ms: 25.867875
+  type: 'test'
+  ...
+# Subtest: late retrieval of an older session cannot roll back dashboard prices
+ok 12 - late retrieval of an older session cannot roll back dashboard prices
+  ---
+  duration_ms: 3.739583
+  type: 'test'
+  ...
+# Subtest: rejects future/unclosed, fractional/non-exact and wrong-ticker bars rather than guessing
+ok 13 - rejects future/unclosed, fractional/non-exact and wrong-ticker bars rather than guessing
+  ---
+  duration_ms: 5.072584
+  type: 'test'
+  ...
+# Subtest: valid quote snapshot supersedes daily fallback with exact source field and day
+ok 14 - valid quote snapshot supersedes daily fallback with exact source field and day
+  ---
+  duration_ms: 4.239666
+  type: 'test'
+  ...
+# Subtest: pre-open metadata without matchPrice uses the dated daily bar, never invents a live quote
+ok 15 - pre-open metadata without matchPrice uses the dated daily bar, never invents a live quote
+  ---
+  duration_ms: 3.480667
+  type: 'test'
+  ...
+# (node:79450) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: refreshes from API 2.1 on every request and picks requested type
+ok 16 - refreshes from API 2.1 on every request and picks requested type
+  ---
+  duration_ms: 0.522958
+  type: 'test'
+  ...
+# Subtest: does not choose first/default, inactive or wrong account type
+ok 17 - does not choose first/default, inactive or wrong account type
+  ---
+  duration_ms: 0.249208
+  type: 'test'
+  ...
+# Subtest: blocks identity mismatch, HTTP failure and malformed profile
+ok 18 - blocks identity mismatch, HTTP failure and malformed profile
+  ---
+  duration_ms: 0.117459
+  type: 'test'
+  ...
+# {"authentication":"AUTHENTICATED","symbols":30,"accounts":true}
+# {"scope":"ACCOUNT","apiId":"2.1","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"}
+# {"scope":"ACCOUNT","apiId":"4.14","accountType":"NORMAL","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"}
+# {"scope":"ACCOUNT","apiId":"4.15","accountType":"NORMAL","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"}
+# {"scope":"ACCOUNT","apiId":"4.16","accountType":"NORMAL","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"}
+# {"scope":"ACCOUNT","apiId":"4.6","accountType":"NORMAL","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"}
+# {"scope":"ACCOUNT","apiId":"4.4","accountType":"NORMAL","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"}
+# {"scope":"ACCOUNT","apiId":"4.7","accountType":"NORMAL","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"}
+# {"scope":"ACCOUNT","apiId":"4.17","accountType":"MARGIN","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.3","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T00","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T00","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T01","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T01","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T02","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T02","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T03","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T03","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T04","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T04","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T05","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T05","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T06","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T06","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T07","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T07","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T08","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T08","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T09","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T09","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T10","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T10","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T11","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T11","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T12","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T12","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T13","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T13","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T14","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T14","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T15","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T15","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T16","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T16","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T17","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T17","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T18","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T18","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T19","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T19","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T20","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T20","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T21","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T21","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T22","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T22","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T23","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T23","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T24","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T24","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T25","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T25","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T26","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T26","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T27","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T27","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T28","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T28","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T29","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T29","state":"CAPTURED_NOT_QUALIFIED"}
+# (node:79452) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# {"state":"CAPTURED_NOT_QUALIFIED","storage":"SQLITE","runId":"TCBS_CAPTURE_RUN:41139fe5b12eab7c8e24f605d00f6e8cd562662bcbe87ed2660ace39f1e724c4","requests":102,"accountCapture":{"state":"CAPTURED_NOT_QUALIFIED","requests":[{"apiId":"2.1","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"},{"apiId":"4.14","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"},{"apiId":"4.15","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"},{"apiId":"4.16","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"},{"apiId":"4.16","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"},{"apiId":"4.6","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"},{"apiId":"4.4","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"},{"apiId":"4.7","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"},{"apiId":"4.17","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"}],"issues":[]},"marketCapture":{"state":"CAPTURED_NOT_QUALIFIED","restState":"CAPTURED_NOT_QUALIFIED","websocketState":"CAPTURED_NOT_QUALIFIED","displayPrices":{"state":"UPDATED","published":30,"requested":30,"missing":[],"rejected":[]}},"displayPrices":{"state":"UPDATED","published":30,"requested":30,"missing":[],"rejected":[]},"websocketFrames":1}
+# {"authentication":"AUTHENTICATED","symbols":30,"accounts":true}
+# {"scope":"ACCOUNT","apiId":"2.1","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"}
+# {"scope":"ACCOUNT","apiId":"4.14","accountType":"NORMAL","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"}
+# {"scope":"ACCOUNT","apiId":"4.15","accountType":"NORMAL","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"}
+# {"scope":"ACCOUNT","apiId":"4.16","accountType":"NORMAL","state":"HTTP_400"}
+# {"scope":"ACCOUNT","apiId":"4.6","accountType":"NORMAL","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"}
+# {"scope":"ACCOUNT","apiId":"4.4","accountType":"NORMAL","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"}
+# {"scope":"ACCOUNT","apiId":"4.7","accountType":"NORMAL","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"}
+# {"scope":"ACCOUNT","apiId":"4.17","accountType":"MARGIN","state":"HTTP_400"}
+# {"apiId":"5.3","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T00","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T00","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T01","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T01","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T02","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T02","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T03","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T03","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T04","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T04","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T05","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T05","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T06","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T06","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T07","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T07","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T08","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T08","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T09","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T09","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T10","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T10","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T11","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T11","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T12","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T12","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T13","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T13","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T14","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T14","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T15","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T15","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T16","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T16","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T17","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T17","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T18","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T18","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T19","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T19","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T20","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T20","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T21","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T21","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T22","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T22","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T23","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T23","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T24","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T24","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T25","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T25","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T26","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T26","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T27","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T27","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T28","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T28","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.11","ticker":"T29","state":"CAPTURED_NOT_QUALIFIED"}
+# {"apiId":"5.13","ticker":"T29","state":"CAPTURED_NOT_QUALIFIED"}
+# Subtest: one OTP/token fetches accounts, two cash pages, full30 EOD, history, index and WSS together
+ok 19 - one OTP/token fetches accounts, two cash pages, full30 EOD, history, index and WSS together
+  ---
+  duration_ms: 1042.74075
+  type: 'test'
+  ...
+# {"state":"PARTIAL_CAPTURE","storage":"SQLITE","runId":"TCBS_CAPTURE_RUN:03619cd6f7c1ff76aef7c7d9a1b4e1c52f16b48607711d7d5334525c1eec5830","requests":101,"accountCapture":{"state":"PARTIAL_CAPTURE","requests":[{"apiId":"2.1","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"},{"apiId":"4.14","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"},{"apiId":"4.15","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"},{"apiId":"4.16","httpStatus":400,"state":"HTTP_400"},{"apiId":"4.6","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"},{"apiId":"4.4","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"},{"apiId":"4.7","httpStatus":200,"state":"CAPTURED_NOT_QUALIFIED"},{"apiId":"4.17","httpStatus":400,"state":"HTTP_400"}],"issues":[{"scope":"ACCOUNT","apiId":"4.16","accountType":"NORMAL","reason":"HTTP_400"},{"scope":"ACCOUNT","apiId":"4.17","accountType":"MARGIN","reason":"HTTP_400"}]},"marketCapture":{"state":"CAPTURED_NOT_QUALIFIED","restState":"CAPTURED_NOT_QUALIFIED","websocketState":"CAPTURED_NOT_QUALIFIED","displayPrices":{"state":"UPDATED","published":30,"requested":30,"missing":[],"rejected":[]}},"displayPrices":{"state":"UPDATED","published":30,"requested":30,"missing":[],"rejected":[]},"websocketFrames":1}
+# Subtest: account 4.16/4.17 HTTP400 stays separate while all30 market prices update
+ok 20 - account 4.16/4.17 HTTP400 stays separate while all30 market prices update
+  ---
+  duration_ms: 1012.168125
+  type: 'test'
+  ...
+# Subtest: cash pagination refuses unknown totals, wrong pages and unconfirmed schema
+ok 21 - cash pagination refuses unknown totals, wrong pages and unconfirmed schema
+  ---
+  duration_ms: 0.505959
+  type: 'test'
+  ...
+# (node:79453) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: one OTP exchange; subsequent run reuses token without OTP or auth call
+ok 22 - one OTP exchange; subsequent run reuses token without OTP or auth call
+  ---
+  duration_ms: 2.976666
+  type: 'test'
+  ...
+# Subtest: 429 blocks immediate repeat without rereading OTP or network
+ok 23 - 429 blocks immediate repeat without rereading OTP or network
+  ---
+  duration_ms: 1.428542
+  type: 'test'
+  ...
+# Subtest: invalid custody claim is not cached and same OTP cannot be retried
+ok 24 - invalid custody claim is not cached and same OTP cannot be retried
+  ---
+  duration_ms: 0.901959
+  type: 'test'
+  ...
+# Subtest: REST cooldown blocks a valid cached token too, then allows reuse without another OTP
+ok 25 - REST cooldown blocks a valid cached token too, then allows reuse without another OTP
+  ---
+  duration_ms: 4.203625
+  type: 'test'
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 25
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2135.908625

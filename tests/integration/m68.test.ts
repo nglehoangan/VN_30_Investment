@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { describe,it,expect,vi } from "vitest";
+import { describe,it,expect,vi,beforeAll,afterAll } from "vitest";
 vi.mock("server-only",()=>({}));
 const runtimeClock=vi.hoisted(()=>({value:"2026-10-04T09:00:00.000Z"}));
 vi.mock("../../app/server/runtime",()=>({runtime:{clock:{now:()=>runtimeClock.value}}}));
@@ -56,21 +56,30 @@ describe("M6.8 downstream formal authority chain with historical upstream scores
    await expect(x.initiation.create(P,intent)).rejects.toThrow();expect(await x.db.client.workflowReview.count()).toBe(0);expect(await x.db.client.ledgerTransaction.count()).toBe(1);
   }finally{await x.db.close();}
  });
- it("later calculations use issuance cutoff; retry preserves time and revised proposal supersedes history",async()=>{
-  const x=await m68System(true,60000);try{
+ describe("issuance cutoff and immutable revision lifecycle",()=>{
+  let x:Awaited<ReturnType<typeof m68System>>,service:ReturnType<typeof historicalCurrentServices>["reviews"];
+  let first:Awaited<ReturnType<typeof service.create>>,revised:Awaited<ReturnType<typeof service.create>>,original:Awaited<ReturnType<typeof x.reviews.find>>;
+  beforeAll(async()=>{
+   x=await m68System(true,60000);
    const file=path.join(x.db.directory,"delayed-current.json");writeFileSync(file,JSON.stringify(x.source));vi.stubEnv("VN30_CURRENT_SOURCE_FILE",file);
-   runtimeClock.value="2026-10-04T09:01:00.000Z";x.setNow(runtimeClock.value);
-   const service=historicalCurrentServices(x.db.client).reviews;
-   const first=await service.create(P,intent);expect(first.status).toBe("READY");const original=await x.reviews.find(first.artifactId!);expect(original?.command.evidenceCutoff).toBe(runtimeClock.value);
+   runtimeClock.value="2026-10-04T09:01:00.000Z";x.setNow(runtimeClock.value);service=historicalCurrentServices(x.db.client).reviews;
+  });
+  afterAll(async()=>{runtimeClock.value=NOW;vi.unstubAllEnvs();await x?.db.close();});
+  it("later calculations use issuance cutoff and retry preserves original time",async()=>{
+   first=await service.create(P,intent);expect(first.status).toBe("READY");original=await x.reviews.find(first.artifactId!);expect(original?.command.evidenceCutoff).toBe(runtimeClock.value);
    runtimeClock.value="2026-10-04T09:02:00.000Z";x.setNow(runtimeClock.value);
    expect((await service.create(P,intent)).artifactId).toBe(first.artifactId);
+  });
+  it("revised proposal supersedes immutable review and proposal history",async()=>{
    const m=await x.marginalEngine.create({...plan(x),evidenceCutoff:runtimeClock.value});
-   const revised=await service.create(P,intent);expect(revised.status).toBe("READY");const r=await x.reviews.find(revised.artifactId!);
+   revised=await service.create(P,intent);expect(revised.status).toBe("READY");const r=await x.reviews.find(revised.artifactId!);
    expect(r?.proposal?.items).toHaveLength(2);expect(r?.command.supersedesReviewId).toBe(first.artifactId);expect(r?.proposal?.supersedesProposalId).toBe(original?.proposal?.id);expect(r?.command.marginalAllocationId).toBe(m.id);
    expect(await x.reviews.isSuperseded(first.artifactId!)).toBe(true);expect(await x.reviews.find(first.artifactId!)).toEqual(original);
+  });
+  it("later retry remains idempotent without changing accounting",async()=>{
    runtimeClock.value="2026-10-04T09:03:00.000Z";x.setNow(runtimeClock.value);expect((await service.create(P,intent)).artifactId).toBe(revised.artifactId);
    expect(await x.db.client.workflowReview.count()).toBe(2);expect(await x.db.client.ledgerTransaction.count()).toBe(1);
-  }finally{runtimeClock.value=NOW;vi.unstubAllEnvs();await x.db.close();}
+  });
  });
  it("legacy catalog cannot hide a corrupt marginal body by changing its scope before selection",async()=>{
   const x=await m68System();try{

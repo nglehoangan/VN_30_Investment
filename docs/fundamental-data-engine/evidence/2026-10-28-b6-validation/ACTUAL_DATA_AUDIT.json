@@ -1,0 +1,60 @@
+{
+  "classification": "ACTUAL_READ_ONLY_DATABASE_AND_OWNER_INPUT_AUDIT",
+  "reviewDate": "2026-10-28",
+  "databaseIntegrity": [
+    "ok"
+  ],
+  "foreignKeyViolations": 0,
+  "postedTransactions": 12,
+  "postedLegs": 24,
+  "transactionTypes": [
+    "OPENING_BALANCE"
+  ],
+  "ledgerLegSums": {
+    "CASH": "232420",
+    "RECEIVABLE": "570000",
+    "PAYABLE": "0"
+  },
+  "ownerComparison": [
+    {
+      "field": "CASH",
+      "ledgerValue": "232420",
+      "ownerOct28Value": "327420",
+      "matches": false
+    },
+    {
+      "field": "RECEIVABLE",
+      "ledgerValue": "570000",
+      "ownerOct28Value": "475000",
+      "matches": false
+    },
+    {
+      "field": "PAYABLE",
+      "ledgerValue": "0",
+      "ownerOct28Value": "420",
+      "matches": false
+    }
+  ],
+  "projectionAsOf": [
+    "2026-10-08T11:38:01.705Z"
+  ],
+  "runtimeImportOfOwnerData": "NOT_IMPLEMENTED: no data/account-current reader found under src or scripts",
+  "sourceCodeEvidence": [
+    "src/application/current-nav/input-provider-skeleton.ts returns BLOCKED/load null",
+    "src/domain/portfolio/valuation.ts subtracts ledger openCost",
+    "src/infrastructure/config/broker-snapshot.ts source schema currently permits pdf/png/json but not xlsx"
+  ],
+  "findings": [
+    {
+      "id": "B6-REAL-DATA-INTEGRATION",
+      "severity": "MAJOR",
+      "description": "Owner current cash/pending/fee observations differ from active ledger and are saved separately, not imported or reconciled in runtime."
+    },
+    {
+      "id": "B6-IDENTITY-POLICY-INTEGRATION",
+      "severity": "MAJOR",
+      "description": "Personal-scope owner resolutions do not configure actual source/identity/market authority; NAV provider remains blocked."
+    }
+  ],
+  "databaseChanged": false
+}

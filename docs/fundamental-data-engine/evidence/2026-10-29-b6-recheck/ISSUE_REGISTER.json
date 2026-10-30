@@ -1,0 +1,136 @@
+{
+  "reviewDate": "2026-10-29",
+  "assessment": "ISSUES_TO_FIX_NOT_IMPLEMENTED_IN_THIS_REVIEW",
+  "issues": [
+    {
+      "id": "B6-01",
+      "priority": "P1",
+      "title": "Dữ liệu giá mới chưa vào read model",
+      "evidence": [
+        "RUNTIME_RESULT.json",
+        "LATEST_MARKET_CAPTURE.json"
+      ],
+      "files": [
+        "src/infrastructure/repositories/broker-observations.ts",
+        "src/infrastructure/personal-account.ts",
+        "app/server/dashboard.ts"
+      ],
+      "finding": "Capture29Oct contains daily bars28Oct for all11holdings, but runtime valuationAsOf remains11Oct and quote tradingDate09Oct. current.actionability=BLOCKED; SOURCE_UNAVAILABLE.",
+      "fix": "Connect validated capture/price selection to personal read model with exact ticker/unit/trading-date/provenance checks, preserve owner imported basis and distinguish display from release authority.",
+      "acceptance": "All11positions use intended dated session/source; UI date/P&L and lineage tests agree; no silent old snapshot fallback."
+    },
+    {
+      "id": "B6-02",
+      "priority": "P2",
+      "title": "Capture tài khoản bị HTTP400",
+      "evidence": [
+        "LATEST_MARKET_CAPTURE.json"
+      ],
+      "files": [
+        "api/tcbs.mjs"
+      ],
+      "finding": "4.16 cash statements and4.17 margin-info returnedHTTP400; overallPARTIAL_CAPTURE. Market manifest61responses200/hash-valid is distinct. Captured API account failures do not reopen owner-resolved B1-B5 personal source decisions.",
+      "fix": "Check exact documented request contract and scope for each endpoint. Classify truly inapplicable endpoints explicitly; never turn HTTP400 into zero obligations or let optional account failure silently disqualify otherwise complete market observations.",
+      "acceptance": "Successful correctly scoped account response, or explicit not-applicable contract; source failures remain visible; B1-B5 Excel/owner observations remain valid."
+    },
+    {
+      "id": "B6-03",
+      "priority": "P1",
+      "title": "Authority và hash code đã lệch phiên bản",
+      "files": [
+        "src/infrastructure/dependencies/active-authorities.json",
+        "src/infrastructure/dependencies/production-authority.ts",
+        "src/domain/portfolio/transaction.ts",
+        "src/domain/fundamentals/debt-contract.ts"
+      ],
+      "finding": "Prior tests reject source authority bundle on transaction.ts and pinned TCX debt-contract.ts drift. Recheck suite will confirm counts.",
+      "fix": "Review compatibility and create new versioned reviewed manifest/authority for current executable. Preserve old seals; do not edit approved hashes to mask drift.",
+      "acceptance": "Exact current implementation is covered by valid scoped approval; positive and negative authority tests pass."
+    },
+    {
+      "id": "B6-04",
+      "priority": "P1",
+      "title": "Kiểm tra migration/schema chưa theo kịp thay đổi",
+      "files": [
+        "tests/integration/fundamentals-migration.test.ts",
+        "tests/integration/fundamentals-derivation-migration.test.ts",
+        "tests/integration/fundamentals-normalization-migration.test.ts",
+        "tests/integration/fundamentals-snapshot-migration.test.ts",
+        "tests/integration/scoring-readiness-migration.test.ts",
+        "tests/integration/registry.test.ts"
+      ],
+      "finding": "Historical complete-DDL comparisons fail on ledger_transaction; table inventory omits newer settlement/intake tables.",
+      "fix": "Review permitted migration changes against actual SQL, then assert data/replay/trigger invariants and intentional schema evolution rather than blind whole-schema equality. Do not relax until preservation is demonstrated.",
+      "acceptance": "Fresh and populated upgrades, repeat apply, ledger replay, FKs and immutability tested on isolated databases."
+    },
+    {
+      "id": "B6-05",
+      "priority": "P2",
+      "title": "Mock adapter và research isolation chưa đúng luồng hiện tại",
+      "files": [
+        "tests/unit/opening-receivable-compatibility.test.ts",
+        "src/infrastructure/repositories/forward-intake-storage.ts",
+        "tests/integration/dashboard-research-isolation.test.ts",
+        "app/server/dashboard.ts"
+      ],
+      "finding": "Synthetic Prisma seam lacks raw-query capabilities now required by verifyIntakeRead; research isolation test mocks retired manual-current path while dashboard uses retained-research.",
+      "fix": "Bring test seams to current contracts without bypassing integrity checks; mock the active research reader and verify optional failure cannot hide independently valid ledger/data.",
+      "acceptance": "Positive fixtures pass and corrupt fixtures fail for intended reasons, not missing mock methods; isolation assertions pass."
+    },
+    {
+      "id": "B6-06",
+      "priority": "P2",
+      "title": "Replay lịch sử còn trỏ dữ liệu đã xóa",
+      "files": [
+        "tests/unit/*ticker-closure.test.ts",
+        "tests/unit/consumer-targeted-fix.test.ts",
+        "tests/unit/di-governance-closure.test.ts",
+        "tests/unit/tcx-ket-vang-targeted.test.ts"
+      ],
+      "finding": "Prior16failures reference old manual-fundamentals/providers/cafef/currentOCR paths or missing.gitattributes2; one GVR assertion also needs targeted root-cause review.",
+      "fix": "Separate archival replay prerequisites from current retained-data validation. Map valid current integrity checks to retained/rebuilt paths with explicit versions; mark unavailable replay honestly. Do not restore deleted old data or count unexecuted replay as PASS. Investigate GVR assertion explicitly.",
+      "acceptance": "Current pipeline suite is runnable; archival requirements and unavailable evidence are explicit, no silent omissions."
+    },
+    {
+      "id": "B6-07",
+      "priority": "P2",
+      "title": "Lint còn16errors/4warnings",
+      "files": [
+        "tests/fixtures/nav-preparation/offline.ts",
+        "tests/unit/nav-preparation.test.ts",
+        "tests/unit/opening-receivable-compatibility.test.ts",
+        "tests/unit/retained-financial-research.test.tsx",
+        "src/infrastructure/fundamentals/retained-research.ts",
+        "docs/fundamental-data-engine/evidence/2026-10-21-escalated-blocker-resolution/verify-engineering.mjs"
+      ],
+      "finding": "Explicit any in tests/fixtures and unused imports/variables.",
+      "fix": "Use precise fixture types/unknown+validation and remove unused active imports. Treat sealed historical verifier under scoped documented tooling policy without modifying its sealed bytes or blanket suppression.",
+      "acceptance": "pnpm lint exits0 with zero warnings."
+    },
+    {
+      "id": "B6-08",
+      "priority": "RELEASE_GATE",
+      "title": "Chưa có nghiệm thu production độc lập",
+      "files": [
+        "docs/07_VALIDATION/FINAL_VALIDATION_REPORT.md",
+        "docs/08_CONTINUOUS_IMPROVEMENT/PRODUCTION_ACCEPTANCE.md"
+      ],
+      "finding": "Technical passes and new raw data are not independently accepted M7E3evidence or scopedGO.",
+      "fix": "After technical remediation, execute independent expected-vs-actual gates against exact build/config/schema and obtain scoped release decision; B7deployment remains separate.",
+      "acceptance": "All mandatory gate evidence accepted; no unresolved critical/major requirements for approved scope."
+    },
+    {
+      "id": "B6-09",
+      "priority": "P2",
+      "title": "Timeout trong test backup/restore20giây",
+      "file": "tests/integration/m68-backup.test.ts",
+      "finding": "Full suite safety-rejection test timed out after20s; isolated full backup file rerun passed all3tests. Intermittent failure remains a test reliability issue, not a proven restore defect.",
+      "fix": "Measure actual process durations and timeout cause; retain overwrite/path/symlink/checksum safety assertions. Do not simply increase timeout to hide blocked or slow subprocess.",
+      "acceptance": "Isolated rerun and relevant backup/recovery safety checks complete reliably; any environmental slowness explicitly evidenced.",
+      "isolatedRerun": {
+        "passed": 3,
+        "failed": 0
+      }
+    }
+  ]
+}

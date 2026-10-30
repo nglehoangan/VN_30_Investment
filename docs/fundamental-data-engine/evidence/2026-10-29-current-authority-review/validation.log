@@ -1,0 +1,32 @@
+
+ RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment
+
+ ❯ tests/unit/opening-receivable-compatibility.test.ts (27 tests | 1 failed) 14ms
+   × strict adapter accepts complete canonical opening aggregate 2ms
+(node:73079) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/opening-receivable-compatibility.test.ts > strict adapter accepts complete canonical opening aggregate
+DataIntegrityError: Không thể xác nhận tính toàn vẹn của dữ liệu.
+ ❯ PrismaPortfolioLedger.read src/infrastructure/repositories/portfolio-ledger.ts:39:64
+     37|   async read(id: PortfolioId, through?: LedgerWatermark) {
+     38|     try { return await this.client.$transaction(tx => read(tx, id, thr…
+     39|     catch (e) { if (e instanceof NotFoundError) throw e; throw new Dat…
+       |                                                                ^
+     40|   }
+     41|   async settlementRetry(input: TransactionInput) {
+ ❯ tests/unit/opening-receivable-compatibility.test.ts:59:83
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 8 passed (9)
+      Tests  1 failed | 238 passed (239)
+   Start at  04:32:00
+   Duration  20.77s (tests 82%, environment 10%, setup 4%, transform 2%, import 1%)
+
+    Isolate  9 workers spawned · ~287ms startup each (spawn + environment, per file)
+             at least ~2.29s faster with isolate: false — reuses workers across files instead of one per file
+

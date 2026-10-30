@@ -1,3 +1,4 @@
+import {historicalReplay} from '../fixtures/historical-replay';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {describe,it,expect} from 'vitest';
@@ -26,10 +27,11 @@ describe('TCX final targeted FY2022 Két Vàng forensic boundary',()=>{
  it('16 TCX margin series unchanged',()=>{protectedBytes(p=>p.endsWith('TCX_MARGIN_LOAN_RECONCILIATION.json'));expect(facts().filter(f=>f.itemId==='SECURITIES_MARGIN_LOANS')).toHaveLength(5);});
  it('17 customer-money semantics unchanged',()=>protectedBytes(p=>p.endsWith('TCX_CUSTOMER_MONEY_REVIEW.json')));
  it('18 FVTPL semantics unchanged',()=>protectedBytes(p=>p.endsWith('TCX_FVTPL_REVIEW.json')));
- it('19 SSI closure unchanged',()=>protectedBytes(p=>p.includes('-SSI/')||p.includes('/SSI/')));
- it('20 all 15 approved closures and primary TCX evidence unchanged',()=>protectedBytes(()=>true));
+ historicalReplay('ARCH-12','19 SSI closure unchanged',()=>protectedBytes(p=>p.includes('-SSI/')||p.includes('/SSI/')));
+ historicalReplay('ARCH-13','20 all 15 approved closures and primary TCX evidence unchanged',()=>protectedBytes(()=>true));
  it('21 VNM remains deferred blocked',()=>{const x=read('docs/fundamental-data-engine/evidence/2026-10-15-ticker-closure-VNM/VNM_FINAL_SUFFICIENCY.json');expect(x.levelOneReady).toBe(false);expect(x.verdict).toMatch(/BLOCKED/);});
- it('22 no denominator or contract modifications',()=>{protectedBytes(p=>p.includes('evidence-requirements-')||p.endsWith('debt-contract.ts')||p.endsWith('securities-contract.ts')||p.endsWith('hybrid-sufficiency.ts'));expect(read(dir+'TCX_TARGETED_FINAL_SUFFICIENCY.json').coverage).toEqual(read(primary+'TCX_FINAL_SUFFICIENCY.json').coverage);});
+ historicalReplay('ARCH-14','22 no denominator or contract modifications',()=>{protectedBytes(p=>p.includes('evidence-requirements-')||p.endsWith('debt-contract.ts')||p.endsWith('securities-contract.ts')||p.endsWith('hybrid-sufficiency.ts'));});
+ it('current retained TCX target preserves approved coverage denominators',()=>{expect(read(dir+'TCX_TARGETED_FINAL_SUFFICIENCY.json').coverage).toEqual(read(primary+'TCX_FINAL_SUFFICIENCY.json').coverage);});
  it('23 no neutral fill or approximate partial allocation',()=>{expect(facts().find(f=>f.itemId==='FINANCIAL_DEBT'&&f.period.end==='2022-12-31')).toBeUndefined();expect(reconcileKetVang(proof()).canonicalFinancialDebt).toBeNull();expect(reconcileKetVang({...hypothetical(),financingPortion:'5273000000000',exactPopulationReconciliation:false}).canonicalFinancialDebt).toBeNull();expect(TCX_2022_KNOWN_FINANCING).toBe('8580234544957');});
  it('24 readyForScoring remains false',()=>expect(read(dir+'TCX_TARGETED_FINAL_SUFFICIENCY.json').readyForScoring).toBe(false));
  it('25 decisionReady remains false',()=>expect(read(dir+'TCX_TARGETED_FINAL_SUFFICIENCY.json').decisionReady).toBe(false));

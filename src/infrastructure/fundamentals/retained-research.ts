@@ -2,7 +2,7 @@ import {readFile,realpath,stat} from 'node:fs/promises';
 import {resolve,relative,isAbsolute} from 'node:path';
 import {createHash} from 'node:crypto';
 import {combinedResearchSchema,manifestSchema,parseApiManifest,parsePdfManifest,parseDownloadManifest,parseApiRequests,parseExtractionManifest,type ResearchVariantPayload} from '@/infrastructure/config/retained-research';
-import type {RetainedResearch,ResearchVariant,ResearchRow} from '@/domain/fundamentals/retained-research';
+import type {RetainedResearch} from '@/domain/fundamentals/retained-research';
 const sha=(b:Buffer)=>createHash('sha256').update(b).digest('hex');
 const check=(ok:unknown,why:string)=>{if(!ok)throw Error(why);};
 const escape=(s:string)=>s.replace(/~/g,'~0').replace(/\//g,'~1');

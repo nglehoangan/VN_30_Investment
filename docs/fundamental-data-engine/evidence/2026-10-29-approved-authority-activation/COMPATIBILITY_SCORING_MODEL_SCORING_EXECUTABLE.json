@@ -1,0 +1,139 @@
+{
+  "contract": "production-authority-compatibility-v1",
+  "id": "compatibility-scoring_model-scoring_executable-20261029-r1",
+  "pair": "SCORING_MODEL:SCORING_EXECUTABLE",
+  "result": "COMPATIBLE",
+  "scope": "STATIC_AUTHORITY_ONLY; independent runtime data/market/portfolio/action gates remain mandatory",
+  "authorities": [
+    {
+      "type": "SCORING_MODEL",
+      "id": "authority-scoring_model-1.0-20261020",
+      "hash": "052413fe31c429e42debcc81701137d3ab725f1a76eb1fdeca5874b8509c9c81"
+    },
+    {
+      "type": "SCORING_EXECUTABLE",
+      "id": "scoring-executable-production-m64-clarification-1-v1.0.0-20261029-r1",
+      "hash": "69997453d9fbd63845d543f5f9cf13dff360ba9e16fcc7b8b604d235a2bf8122"
+    }
+  ],
+  "rules": [
+    {
+      "id": "100 points and unchanged category maxima 25/15/15/10/20/10/5",
+      "result": "PASS",
+      "governing": {
+        "path": "docs/01 SYSTEM/SCORING_MODEL_v1.0.md",
+        "sha256": "2afc75a20e13d08b88459f57b39a6ebb13f91452fc8b3313a0e817ea0dd44aff"
+      },
+      "implementation": {
+        "path": "src/domain/scoring/methodology/identity.ts",
+        "sha256": "d3ebed4882d4f04d53623d5c462280873b3f514beaa97345324f3eab6a1bbf7e"
+      },
+      "testReferences": [
+        "tests/unit/scoring.test.ts",
+        "tests/unit/scoring-golden.test.ts"
+      ]
+    },
+    {
+      "id": "Missing evidence is explicit; no neutral-fill, renormalization or isolated-ratio automatic award",
+      "result": "PASS",
+      "governing": {
+        "path": "docs/01 SYSTEM/SCORING_MODEL_v1.0.md",
+        "sha256": "2afc75a20e13d08b88459f57b39a6ebb13f91452fc8b3313a0e817ea0dd44aff"
+      },
+      "implementation": {
+        "path": "src/domain/scoring/scorecard.ts",
+        "sha256": "2a778e3291cac295fab9f3f18358ed43415d3fea893bd912e6608302a8b18d18"
+      },
+      "testReferences": [
+        "tests/unit/scoring.test.ts"
+      ]
+    },
+    {
+      "id": "Sector normalization and metric definitions retained",
+      "result": "PASS",
+      "governing": {
+        "path": "docs/01 SYSTEM/SCORING_MODEL_v1.0.md",
+        "sha256": "2afc75a20e13d08b88459f57b39a6ebb13f91452fc8b3313a0e817ea0dd44aff"
+      },
+      "implementation": {
+        "path": "src/domain/scoring/metrics.ts",
+        "sha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244"
+      },
+      "testReferences": [
+        "tests/unit/scoring-golden.test.ts"
+      ]
+    },
+    {
+      "id": "Stage0/investability and risk veto precede scored actionability; required return does not change arithmetic",
+      "result": "PASS",
+      "governing": {
+        "path": "docs/01 SYSTEM/RISK_POLICY_v1.0.md",
+        "sha256": "3785c1bb39b80435655a1621b2afbda992c38beaff82edebc0c67b0bc54ee744"
+      },
+      "implementation": {
+        "path": "src/domain/scoring/eligibility.ts",
+        "sha256": "cf113959ae2084c56b57b4a77e7d567d60b24948787eedc24b7e6da4809dba71"
+      },
+      "testReferences": [
+        "tests/unit/scoring.test.ts",
+        "tests/unit/scoring-portfolio.test.ts"
+      ]
+    },
+    {
+      "id": "Scoring does not directly issue Buy/Sell",
+      "result": "PASS",
+      "governing": {
+        "path": "docs/01 SYSTEM/DECISION_FRAMEWORK_v1.0.md",
+        "sha256": "e1929fd8d8fe337c3d80fe2c76dfbd48e1f41d2d4b4a0618b42269b2635f8b1d"
+      },
+      "implementation": {
+        "path": "src/domain/decision/engine.ts",
+        "sha256": "5e0d80b1227c961c3d5b767e30bdbfe0421294e43c1dcac83403c9f1f715570a"
+      },
+      "testReferences": [
+        "tests/unit/decision.test.ts"
+      ]
+    },
+    {
+      "id": "PolicyB partition and MBB null-score/no-ranking/no-capital quarantine retained",
+      "result": "PASS",
+      "governing": {
+        "path": "docs/01 SYSTEM/INVESTMENT_POLICY.md",
+        "sha256": "7160610b4c415a08f4a88b5d20ca6cc079119d5da552791f0c26781da7bd8e4c"
+      },
+      "implementation": {
+        "path": "src/domain/fundamentals/partial-universe.ts",
+        "sha256": "dd68b8a2dbfcbea09e89347883ec60fd42fba16e5b851cd302c31c505d984503"
+      },
+      "testReferences": [
+        "tests/unit/fundamentals-policy-b.test.ts",
+        "tests/integration/dependency-head.test.ts"
+      ]
+    },
+    {
+      "id": "Reviewed opening receivable and dividend settlement delta preserves scoring semantics and separates receivables from cash",
+      "result": "PASS",
+      "governing": {
+        "path": "docs/fundamental-data-engine/evidence/2026-10-29-current-authority-review/REPORT.md",
+        "sha256": "a982d8cbf46b14c759d519014e174b81a769497ca36be4d9c2660b8c5fb71296"
+      },
+      "implementation": {
+        "path": "src/domain/portfolio/transaction.ts",
+        "sha256": "0041a731fba6a025c6599130600397cd9cafeafc1b92410a76d2eecee1bb71d5"
+      },
+      "testReferences": [
+        "tests/unit/dividend-settlement.test.ts",
+        "tests/integration/dividend-settlement.test.ts",
+        "tests/unit/portfolio-accounting.test.ts",
+        "tests/unit/scoring-golden.test.ts"
+      ]
+    }
+  ],
+  "approvalBasis": "Revalidated all existing governing/implementation bytes; exact 37-file review and explicit owner approval of 20261029-r1. No inherited approval for changed bytes.",
+  "recordedAt": "2026-10-29T04:38:03.359Z",
+  "supersedes": {
+    "id": "compatibility-scoring_model-scoring_executable-20261020",
+    "hash": "482a3bced279bfbbd02ee4aa4b13bbedba53b90573cea6a243c78a22923dba75"
+  },
+  "contentHash": "ca3af3e278d0262bb7dcb52c658d3fafdba9a18ecf0396a49c30ba670ea1e8ff"
+}

@@ -1,0 +1,1435 @@
+{
+  "manifest": {
+    "registryVersion": "b6-native-review-v1",
+    "methodologyIdentity": "b6-native-review-definitions-v1",
+    "crosswalkVersion": "review-only-v1",
+    "governanceStatus": "PROPOSED",
+    "approvalReference": null,
+    "recordedAt": "2026-10-29T13:26:48.094Z",
+    "effectiveDate": "2026-10-29",
+    "authorityReferences": [
+      "src/infrastructure/fundamentals/canonical-items-v1.json",
+      "src/infrastructure/fundamentals/debt-canonical-items-v2.json",
+      "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+    ],
+    "items": [
+      {
+        "itemId": "REVENUE",
+        "name": "Reported revenue",
+        "meaning": "Issuer-reported non-financial revenue for the stated window and scope; not bank net interest income or normalized growth.",
+        "statementType": "INCOME",
+        "measurementSemantic": "FLOW",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [
+          {
+            "documentMetricId": "GQ-HIST-01",
+            "rubricId": "GQ-HIST",
+            "topic": "trend",
+            "requirement": "Comparable consolidated windows, eligible original vintage; endpoint operands require later reviewed construction."
+          }
+        ],
+        "operandMappings": [],
+        "itemDefinitionVersion": "1.0.0",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "REVIEW_ONLY: original definition retained; no base/debt approval imported"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "EBIT",
+        "name": "Reported EBIT",
+        "meaning": "Explicitly reconciled issuer EBIT; not any operating-profit label and not automatically normalized EBIT.",
+        "statementType": "INCOME",
+        "measurementSemantic": "FLOW",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [
+          {
+            "documentMetricId": "BQ-EQ-03",
+            "rubricId": "BQ-EQ",
+            "topic": "margins",
+            "requirement": "Comparable definition and documented cycle/one-off normalization before scoring."
+          }
+        ],
+        "operandMappings": [],
+        "itemDefinitionVersion": "1.0.0",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "REVIEW_ONLY: original definition retained; no base/debt approval imported"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "NET_INCOME",
+        "name": "Reported net income",
+        "meaning": "Reported total net profit after tax in the stated consolidation scope, including minority interests when present; not common-attributable profit.",
+        "statementType": "INCOME",
+        "measurementSemantic": "FLOW",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [
+          {
+            "documentMetricId": "BQ-CASH-03",
+            "rubricId": "BQ-CASH",
+            "topic": "one_offs",
+            "requirement": "Only reported evidence; normalization and attribution need separate lineage."
+          }
+        ],
+        "operandMappings": [],
+        "itemDefinitionVersion": "1.0.0",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "REVIEW_ONLY: original definition retained; no base/debt approval imported"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "NET_INCOME_ATTRIBUTABLE_COMMON",
+        "name": "Reported common-attributable net income",
+        "meaning": "Reported net profit attributable to common shareholders; attribution must be evidenced, not inferred from total net income.",
+        "statementType": "INCOME",
+        "measurementSemantic": "FLOW",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [
+          {
+            "documentMetricId": "BQ-EQ-02",
+            "rubricId": "BQ-EQ",
+            "topic": "returns",
+            "requirement": "Reported fact supports review; ROE requires normalized profit and average common equity, neither inferred here."
+          }
+        ],
+        "operandMappings": [],
+        "itemDefinitionVersion": "1.0.0",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "REVIEW_ONLY: original definition retained; no base/debt approval imported"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "TOTAL_ASSETS",
+        "name": "Total assets",
+        "meaning": "Reported total assets at the balance-sheet date and stated scope.",
+        "statementType": "BALANCE",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "NONNEGATIVE",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "1.0.0",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "REVIEW_ONLY: original definition retained; no base/debt approval imported"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "COMMON_EQUITY",
+        "name": "Common equity",
+        "meaning": "Equity attributable to common shareholders excluding minority/preferred interests as applicable, not automatically total equity.",
+        "statementType": "BALANCE",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [
+          {
+            "documentMetricId": "BQ-EQ-02",
+            "rubricId": "BQ-EQ",
+            "topic": "returns",
+            "requirement": "Average common equity is a later governed derivation from comparable dated balances."
+          }
+        ],
+        "operandMappings": [],
+        "itemDefinitionVersion": "1.0.0",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "REVIEW_ONLY: original definition retained; no base/debt approval imported"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "CFO",
+        "name": "Operating cash flow",
+        "meaning": "Issuer net cash from operating activities over the stated window; unrelated to investor portfolio cash.",
+        "statementType": "CASH_FLOW",
+        "measurementSemantic": "FLOW",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [
+          {
+            "documentMetricId": "BQ-CASH-01",
+            "rubricId": "BQ-CASH",
+            "topic": "realization",
+            "requirement": "Comparable multi-year cumulative CFO/normalized NPAT; bank CFO substitution prohibited."
+          }
+        ],
+        "operandMappings": [
+          {
+            "metricId": "FCF",
+            "position": 0,
+            "operand": "CFO",
+            "requirement": "Compatible non-financial reporting window; capex definition and sign reconciled; no automatic scoring."
+          }
+        ],
+        "itemDefinitionVersion": "1.0.0",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "REVIEW_ONLY: original definition retained; no base/debt approval imported"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "CAPEX",
+        "name": "Issuer capital expenditure",
+        "meaning": "Positive issuer expenditure required to sustain/grow operations, explicitly identified/reconciled from disclosed capex items; not investing cash flow.",
+        "statementType": "CASH_FLOW",
+        "measurementSemantic": "FLOW",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "NONNEGATIVE",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [
+          {
+            "documentMetricId": "BQ-CASH-02",
+            "rubricId": "BQ-CASH",
+            "topic": "realization",
+            "requirement": "Disclose total vs maintenance capex; no inference from total investing outflow."
+          }
+        ],
+        "operandMappings": [
+          {
+            "metricId": "FCF",
+            "position": 1,
+            "operand": "issuer_capex",
+            "requirement": "Positive issuer expenditure for compatible CFO window; maintenance vs total scope documented."
+          }
+        ],
+        "itemDefinitionVersion": "1.0.0",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "REVIEW_ONLY: original definition retained; no base/debt approval imported"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "REPORTED_BORROWINGS",
+        "name": "Reported Borrowings",
+        "meaning": "Issuer-reported carrying borrowing population plus all identified qualifying financing, current portions once; unknown miscellaneous liabilities retained as uncertainty.",
+        "statementType": "SUPPLEMENTARY",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "NONNEGATIVE",
+        "allowedReportingScopes": [
+          "CONSOLIDATED"
+        ],
+        "sectorApplicability": [
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "nonfinancial-debt-contract-v2",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/debt-contract-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "REVIEW_ONLY: original definition retained; no base/debt approval imported"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null,
+        "metadataRequirements": [
+          "ticker",
+          "period",
+          "scope",
+          "currency",
+          "measurementBasis",
+          "leasePolicyVersion",
+          "sourceEvidence",
+          "populationStatus",
+          "uncertaintyStatus"
+        ]
+      },
+      {
+        "itemId": "COMPREHENSIVE_FINANCIAL_DEBT",
+        "name": "Comprehensive Financial Debt",
+        "meaning": "Exhaustively verified consolidated interest-bearing financing population on approved compatible carrying basis; not an alias of reported borrowings.",
+        "statementType": "SUPPLEMENTARY",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "NONNEGATIVE",
+        "allowedReportingScopes": [
+          "CONSOLIDATED"
+        ],
+        "sectorApplicability": [
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "nonfinancial-debt-contract-v2",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/debt-contract-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "REVIEW_ONLY: original definition retained; no base/debt approval imported"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null,
+        "metadataRequirements": [
+          "ticker",
+          "period",
+          "scope",
+          "currency",
+          "measurementBasis",
+          "leasePolicyVersion",
+          "sourceEvidence",
+          "populationStatus",
+          "uncertaintyStatus"
+        ]
+      },
+      {
+        "itemId": "UNRESTRICTED_ECONOMICALLY_AVAILABLE_CASH",
+        "name": "Unrestricted Economically Available Cash",
+        "meaning": "Explicitly issuer-qualified unrestricted economically available stock; reported CASH_AND_EQUIVALENTS is not automatically eligible.",
+        "statementType": "SUPPLEMENTARY",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "NONNEGATIVE",
+        "allowedReportingScopes": [
+          "CONSOLIDATED"
+        ],
+        "sectorApplicability": [
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "nonfinancial-debt-contract-v2",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/debt-contract-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "REVIEW_ONLY: original definition retained; no base/debt approval imported"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null,
+        "metadataRequirements": [
+          "ticker",
+          "period",
+          "scope",
+          "currency",
+          "measurementBasis",
+          "leasePolicyVersion",
+          "sourceEvidence",
+          "populationStatus",
+          "uncertaintyStatus"
+        ]
+      },
+      {
+        "itemId": "NORMALIZED_EBITDA",
+        "name": "Normalized Ebitda",
+        "meaning": "Independently qualified normalized/downside EBITDA with explicit compatible sector lease policy; never automatic annualization.",
+        "statementType": "SUPPLEMENTARY",
+        "measurementSemantic": "FLOW",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED"
+        ],
+        "sectorApplicability": [
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "nonfinancial-debt-contract-v2",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/debt-contract-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "REVIEW_ONLY: original definition retained; no base/debt approval imported"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null,
+        "metadataRequirements": [
+          "ticker",
+          "period",
+          "scope",
+          "currency",
+          "measurementBasis",
+          "leasePolicyVersion",
+          "sourceEvidence",
+          "populationStatus",
+          "uncertaintyStatus"
+        ]
+      },
+      {
+        "itemId": "BANK_CUSTOMER_DEPOSITS",
+        "name": "BANK CUSTOMER DEPOSITS",
+        "meaning": "Reported customer deposits; not interbank funding or all liabilities.",
+        "statementType": "BALANCE",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "BANK_GROSS_CUSTOMER_LOANS",
+        "name": "BANK GROSS CUSTOMER LOANS",
+        "meaning": "Reported gross customer-loan population before loss allowances; not total credit risk assets.",
+        "statementType": "BALANCE",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "BANK_NET_INTEREST_INCOME",
+        "name": "BANK NET INTEREST INCOME",
+        "meaning": "Reported net interest income; not total operating income.",
+        "statementType": "INCOME",
+        "measurementSemantic": "FLOW",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "BANK_REPORTED_CAR",
+        "name": "BANK REPORTED CAR",
+        "meaning": "Issuer-reported capital adequacy ratio under the stated framework and regulatory consolidation scope; preserve CCB basis.",
+        "statementType": "SUPPLEMENTARY",
+        "measurementSemantic": "RATIO",
+        "allowedUnits": [
+          "RATIO"
+        ],
+        "currencyApplicability": "NONE",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "BANK_REPORTED_CET1",
+        "name": "BANK REPORTED CET1",
+        "meaning": "Reported common equity tier1 ratio; never substitute total tier1 or CAR.",
+        "statementType": "SUPPLEMENTARY",
+        "measurementSemantic": "RATIO",
+        "allowedUnits": [
+          "RATIO"
+        ],
+        "currencyApplicability": "NONE",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "TOTAL_EQUITY",
+        "name": "TOTAL EQUITY",
+        "meaning": "Reported total equity including NCI where present; not common equity or tangible book value.",
+        "statementType": "BALANCE",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "BANK_LOAN_LOSS_RESERVES",
+        "name": "BANK LOAN LOSS RESERVES",
+        "meaning": "Reported loan-loss allowance for the explicitly qualified loan population.",
+        "statementType": "BALANCE",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "CURRENT_ASSETS",
+        "name": "CURRENT ASSETS",
+        "meaning": "Reported current assets; not all assets or bank liquidity.",
+        "statementType": "BALANCE",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "INVENTORY",
+        "name": "INVENTORY",
+        "meaning": "Reported inventory at stated carrying amount; not project realizable NAV.",
+        "statementType": "BALANCE",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "SHORT_TERM_FINANCIAL_BORROWINGS",
+        "name": "SHORT TERM FINANCIAL BORROWINGS",
+        "meaning": "Reported current financial borrowings including source-qualified current portions once.",
+        "statementType": "BALANCE",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "LONG_TERM_FINANCIAL_BORROWINGS",
+        "name": "LONG TERM FINANCIAL BORROWINGS",
+        "meaning": "Reported noncurrent financial borrowings; avoid double-counting current portions.",
+        "statementType": "BALANCE",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "CURRENT_LIABILITIES",
+        "name": "CURRENT LIABILITIES",
+        "meaning": "Reported current liabilities; not financial debt.",
+        "statementType": "BALANCE",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "RECEIVABLES",
+        "name": "RECEIVABLES",
+        "meaning": "Reported receivables for the source caption population; not automatically collectible cash.",
+        "statementType": "BALANCE",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "CASH_AND_EQUIVALENTS",
+        "name": "CASH AND EQUIVALENTS",
+        "meaning": "Reported cash and cash equivalents; not automatically unrestricted economically available cash.",
+        "statementType": "BALANCE",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "CASH_CAPEX_REPORTED",
+        "name": "CASH CAPEX REPORTED",
+        "meaning": "Reported cash payments for source-qualified investing/reinvestment captions; not normalized maintenance capex.",
+        "statementType": "CASH_FLOW",
+        "measurementSemantic": "FLOW",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "BASIC_EPS",
+        "name": "BASIC EPS",
+        "meaning": "Reported basic EPS for the stated period and share basis; not normalized or action-adjusted EPS.",
+        "statementType": "INCOME",
+        "measurementSemantic": "PER_SHARE",
+        "allowedUnits": [
+          "CURRENCY_PER_SHARE"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "GROSS_PROFIT",
+        "name": "GROSS PROFIT",
+        "meaning": "Reported gross profit; not EBIT.",
+        "statementType": "INCOME",
+        "measurementSemantic": "FLOW",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "name": "NET INCOME ATTRIBUTABLE PARENT",
+        "meaning": "Reported after-tax profit attributable to parent owners; not automatically common-share earnings.",
+        "statementType": "INCOME",
+        "measurementSemantic": "FLOW",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "OPERATING_PROFIT",
+        "name": "OPERATING PROFIT",
+        "meaning": "Issuer-caption operating profit; not automatically normalized EBIT.",
+        "statementType": "INCOME",
+        "measurementSemantic": "FLOW",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "FINANCIAL_DEBT",
+        "name": "FINANCIAL DEBT",
+        "meaning": "Securities issuer financing population from reviewed borrowing/bond/other qualifying financing evidence; never total liabilities.",
+        "statementType": "SUPPLEMENTARY",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "SECURITIES"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "SECURITIES_MARGIN_LOANS",
+        "name": "SECURITIES MARGIN LOANS",
+        "meaning": "Gross margin-loan principal at carrying/original amount; exclude settlement advances and fair-value column unless specifically justified.",
+        "statementType": "BALANCE",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "SECURITIES"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "BANK_REPORTED_NPL",
+        "name": "BANK REPORTED NPL",
+        "meaning": "Reported NPL ratio with explicit numerator/denominator population; not silently loan-only or total-credit substituted.",
+        "statementType": "SUPPLEMENTARY",
+        "measurementSemantic": "RATIO",
+        "allowedUnits": [
+          "RATIO"
+        ],
+        "currencyApplicability": "NONE",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      },
+      {
+        "itemId": "CONVERTIBLE_AND_EXCHANGEABLE_BOND_LIABILITIES",
+        "name": "CONVERTIBLE AND EXCHANGEABLE BOND LIABILITIES",
+        "meaning": "Issuer-recognized convertible/exchangeable financing liability carrying amount; equity/options remain separate.",
+        "statementType": "BALANCE",
+        "measurementSemantic": "STOCK",
+        "allowedUnits": [
+          "CURRENCY"
+        ],
+        "currencyApplicability": "REQUIRED",
+        "signConvention": "SIGNED",
+        "allowedReportingScopes": [
+          "CONSOLIDATED",
+          "SEPARATE_STANDALONE"
+        ],
+        "sectorApplicability": [
+          "BANK",
+          "REAL_ESTATE",
+          "RETAIL",
+          "TECHNOLOGY",
+          "INDUSTRIAL",
+          "MATERIALS",
+          "UTILITIES",
+          "ENERGY",
+          "SECURITIES",
+          "INSURANCE",
+          "CONGLOMERATE"
+        ],
+        "evidenceTopicMappings": [],
+        "operandMappings": [],
+        "itemDefinitionVersion": "review-definition-1",
+        "methodologyIdentity": "b6-native-review-definitions-v1",
+        "authorityReferences": [
+          "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+          "docs/03 SCORING/METRIC_DEFINITIONS.md",
+          "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1/checked-source-ledger.json"
+        ],
+        "status": "ACTIVE",
+        "deprecatedFrom": null,
+        "supersededBy": null
+      }
+    ]
+  },
+  "registryHash": "6a5f67a059ed30b51cc0b6b7a430adfd5aaa2f458e6b50b090b74336d03445b0"
+}

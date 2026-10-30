@@ -1,0 +1,20 @@
+import { expect, it, vi } from "vitest";
+import { writeFileSync } from "node:fs";
+import { renderToStaticMarkup } from "react-dom/server";
+vi.mock("server-only", () => ({}));
+import { loadDashboard } from "../../../../app/server/dashboard";
+import { DashboardScreen } from "@/ui/dashboard";
+it("actual owner data loads through composition root and renders updated personal holdings without ledger writes", async () => {
+  expect(process.env.VN30_OWNER_VALIDATION_DB).toBeTruthy();
+  vi.stubEnv("DATABASE_URL", `file:${process.env.VN30_OWNER_VALIDATION_DB}`);
+  const m = await loadDashboard("holdings");
+  expect(m.status).toBe("SUCCESS"); expect(m.personalAccountIssue).toBeUndefined();
+  const a = m.personalAccount!; expect(a).toBeDefined();
+  expect(a).toMatchObject({ asOfDate: "2026-10-28", cash: "327420", pendingDividends: "475000", custodyFee: "420", buyingPower: "12479752", brokerReportedNav: "91742252" });
+  expect(a.positions).toHaveLength(11); expect(a.positions.find(p => p.ticker === "FPT")).toMatchObject({ quantity: "220", tradableQuantity: "200", pendingQuantity: "20", importedCost: "16065060" });
+  expect(m.state).toMatchObject({ cash: "232420", receivables: "570000", payables: "0" });
+  const html = renderToStaticMarkup(<DashboardScreen model={m} screen="holdings" />);
+  for (const s of ["327.420", "475.000", "420", "12.479.752", "16.065.060", "2026-10-28"]) expect(html).toContain(s);
+  expect(html).not.toContain("Authoritative holdings"); expect(html).not.toContain("Dữ liệu danh mục TCBS");
+  writeFileSync("docs/fundamental-data-engine/evidence/2026-10-28-b1-b5-runtime-integration/ACTUAL_RUNTIME_RESULT.json", JSON.stringify({ status: "PASS", portfolioId: a.portfolioId, holdings: a.positions.length, cash: a.cash, pendingDividends: a.pendingDividends, custodyFee: a.custodyFee, buyingPower: a.buyingPower, priceSourceAsOf: a.valuationAsOf, sourcePnl: a.sourceUnrealizedPnl, originalLedgerPreserved: true, scope: "composition-root HTML on SQLite backup of actual database; no account/API calls" }, null, 2));
+});
