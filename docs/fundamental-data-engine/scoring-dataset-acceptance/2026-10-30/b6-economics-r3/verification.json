@@ -1,0 +1,32 @@
+{
+  "contract": "b6-economics-validation-summary-v1",
+  "checkedAt": "2026-10-30T10:56:49.459632+00:00",
+  "scope": "FOCUSED_CURRENT_REVIEW_NOT_FULL_REPOSITORY_RELEASE",
+  "scoringTests": {
+    "passed": 164,
+    "failed": 0,
+    "command": "pnpm exec vitest run tests/unit/scoring.test.ts tests/unit/scoring-golden.test.ts tests/unit/scoring-portfolio.test.ts tests/unit/methodology-validation.test.ts tests/unit/scoring-ai-review.test.ts tests/integration/b6-economics.test.mjs"
+  },
+  "apiTests": {
+    "passed": 43,
+    "failed": 0,
+    "command": "node --test api/capture-market.test.mjs api/token-session.test.mjs api/sub-account.test.mjs api/tcbs-unified.test.mjs api/direct-data.test.mjs api/display-session.test.mjs api/tcbs-failure-state.test.mjs api/tcbs-runtime.test.mjs"
+  },
+  "targetedEslint": "PASS",
+  "typecheck": "PASS_TSC_NO_EMIT",
+  "marketReview": "PASS_COMPLETED_CLOSE_REFERENCE",
+  "applicationPriceReader": {
+    "state": "PASS",
+    "prices": 30,
+    "transport": "READ_ONLY_SQL_PORT",
+    "browserUiChecked": false
+  },
+  "databasePreservation": "PASS_APPEND_ONLY_BROKER_OBSERVATIONS",
+  "approvedAuthority": {
+    "state": "PASS",
+    "artifacts": 37,
+    "historicalFilesUnchanged": 133,
+    "contentHash": "8c0880249dc54e2baea0235cc10094f818220db86331442ece3da05085261cc1"
+  },
+  "historicalDatabaseHashInterpretation": "The prior review pinned the capture-time DB bytes. Authorized API writes changed the file; current preservation is checked against the verified backup row-by-row. No old manifest or test builder was rewritten to change its historical hash."
+}

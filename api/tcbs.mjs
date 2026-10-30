@@ -4,8 +4,11 @@ import {createHash,createHmac} from 'node:crypto';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import path from 'node:path';
-import {openDirectData,directDatabasePath} from './direct-data.mjs';
 const root=fileURLToPath(new URL('..',import.meta.url));
+export function requireSupportedNode(version=process.versions.node){
+ const [major,minor,patch]=version.split('.').map(Number);
+ if(major!==22||minor<23||(minor===23&&patch<2))throw Error(`UNSUPPORTED_NODE_VERSION: Node ${version}; can Node >=22.23.2 <23 (xem .nvmrc). Chuyen phien ban Node truoc khi chay lai; chua goi API hoac ghi DB.`);
+}
 export const digest=bytes=>createHash('sha256').update(bytes).digest('hex');
 export const WS_URL='wss://openapi.tcbs.com.vn/ws/thesis/v1/stream/normal';
 /** Private session cache. Token is never returned in log/report; no automatic re-authentication. */
@@ -185,6 +188,9 @@ export async function main(args=process.argv.slice(2),dependencies={}){
  if(args.includes('--help')){
   console.log('node api/tcbs.mjs [--cached-token-only] [--symbols=FPT,VNM,HPG] [--seconds=30] [--market-only] [--extended-market] [--history-bars=252] [--from=YYYY-MM-DD] [--to=YYYY-MM-DD]\nDefault: accounts + essential VN30 market/history + 5.2 in ONE session. --accounts is a legacy alias for the default. Cash statements paginate up to 25 pages; direct API data and display-price writes to SQLite; no ledger/scoring writes.');return;
  }
+ requireSupportedNode();
+ // Check the runtime before loading node:sqlite, unavailable by default on older Node.
+ const {openDirectData,directDatabasePath}=await import('./direct-data.mjs');
  if(args.some(a=>!['--cached-token-only','--accounts','--market-only','--extended-market'].includes(a)&&!['--symbols=','--seconds=','--history-bars=','--from=','--to='].some(prefix=>a.startsWith(prefix))))throw Error('UNKNOWN_ARGUMENT');
  if(args.includes('--accounts')&&args.includes('--market-only'))throw Error('CONFLICTING_ACCOUNT_OPTIONS');
  const value=name=>args.find(a=>a.startsWith('--'+name+'='))?.slice(name.length+3);
@@ -298,6 +304,7 @@ export async function main(args=process.argv.slice(2),dependencies={}){
   report.state=!report.issues.length&&report.requests.every(r=>r.state==='CAPTURED_NOT_QUALIFIED')&&boardResult.state==='CAPTURED_NOT_QUALIFIED'?'CAPTURED_NOT_QUALIFIED':'PARTIAL_CAPTURE';
  }catch(error){
   report.state=/^(TOKEN_|AUTH_|OTP_|SIX_DIGIT_|PRIVATE_SESSION_|HTTP_|SESSION_)/.test(error.message)?error.message:'NETWORK_OR_CAPTURE_FAILURE';
+  report.failureReason=report.state;
  }finally{
   await board;token=undefined;
   report.finishedAt=new Date().toISOString();core.finishedAt=report.finishedAt;
@@ -306,7 +313,7 @@ export async function main(args=process.argv.slice(2),dependencies={}){
   // Final observations are in SQLite; no raw/manifest/capture data files are written.
   try {
    report.displayPrices=storage.publishPrices(report.requests,members,report.finishedAt);
-   if(report.displayPrices.state!=='UPDATED'){report.issues.push({apiId:'DISPLAY_PRICES',reason:'PRICE_COVERAGE_INCOMPLETE'});report.state='PARTIAL_CAPTURE';}
+   if(report.displayPrices.state!=='UPDATED'){report.issues.push({apiId:'DISPLAY_PRICES',reason:'PRICE_COVERAGE_INCOMPLETE'});if(!report.failureReason)report.state='PARTIAL_CAPTURE';}
    report.marketCore=core;
    const accountRows=report.requests.filter(r=>r.apiId==='2.1'||r.apiId.startsWith('4.'));
    const marketRows=report.requests.filter(r=>r.apiId.startsWith('5.'));
@@ -320,4 +327,9 @@ export async function main(args=process.argv.slice(2),dependencies={}){
   return report;
  }
 }
-if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href)await main();
+if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href){
+ try{await main();}catch(error){
+  if(!error.message?.startsWith('UNSUPPORTED_NODE_VERSION:'))throw error;
+  console.error(error.message);process.exitCode=1;
+ }
+}

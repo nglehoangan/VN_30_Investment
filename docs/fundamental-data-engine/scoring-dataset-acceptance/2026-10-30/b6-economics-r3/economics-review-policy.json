@@ -1,0 +1,47 @@
+{
+  "contract": "owner-authorized-ai-economics-review-policy-v1",
+  "actor": "CHATGPT",
+  "scope": "REVIEW_CANDIDATE",
+  "ownerAuthorizationReference": "OWNER_REQUEST_PERSONAL_AI_ACCEPTANCE_AND_20261030_NORMALIZATION_VALUATION_SCORE_REVIEW",
+  "sourcePriority": "PDF_FIRST",
+  "normalizationRules": [
+    "Reported common earnings are not total NPAT or normalized earnings",
+    "No unknown fund or dash becomes zero",
+    "No weighted/listed shares substitute for current common shares",
+    "No H1 doubling or unverifiable TTM splice",
+    "Keep source standalone/consolidated scopes separate",
+    "Preserve reported source conflict and recomputed amount separately"
+  ],
+  "valuationRules": {
+    "primaryBySector": {
+      "BANK": "RESIDUAL_INCOME",
+      "SECURITIES": "NORMALIZED_EARNINGS_AND_BOOK",
+      "REAL_ESTATE": "PROJECT_RNAV_OR_LOOK_THROUGH_SOTP",
+      "OTHER": "NORMALIZED_OWNER_EARNINGS_DCF"
+    },
+    "discountRates": [
+      {
+        "value": "0.18",
+        "role": "HIGHER_HURDLE_SENSITIVITY_ASSUMPTION"
+      },
+      {
+        "value": "0.15",
+        "role": "NORMAL_BUY_RETURN_HURDLE_REFERENCE_NOT_ESTIMATED_WACC"
+      },
+      {
+        "value": "0.12",
+        "role": "EXCEPTIONAL_POLICY_FLOOR_SENSITIVITY_NOT_NORMAL_BUY_HURDLE"
+      }
+    ],
+    "sensitivityIsPrimaryValuation": false,
+    "sensitivityForecast": "No growth and100%distribution assumption for diagnostic capitalization only; not a sustainable payout forecast",
+    "reference": "docs/01 SYSTEM/RISK_POLICY_v1.0.md#12"
+  },
+  "scoreRules": [
+    "Reuse unchanged23 rubrics/maxima and100point weights",
+    "AI provenance is not HUMAN or independent review",
+    "Unsupported points remainN/R; never redistribute missing weights",
+    "No production acceptance or investment actions from this review"
+  ],
+  "productionScoringAuthorized": false
+}

@@ -6,6 +6,8 @@ Dùng Node22.23.2, chạy từ project root:
 node api/tcbs.mjs
 ```
 
+Kiểm tra `node -v` trước khi chạy. Dự án hỗ trợ `>=22.23.2 <23` (phiên bản ghim trong `.nvmrc`). Nếu dùng nvm, chạy `nvm install && nvm use` tại project root. Node22.12.0 có thể báo `ERR_UNKNOWN_BUILTIN_MODULE: node:sqlite`; entry point nay kiểm tra phiên bản trước khi nạp SQLite, gọi API hoặc ghi DB và báo `UNSUPPORTED_NODE_VERSION`. Không cần đổi database để sửa lỗi runtime này.
+
 Lệnh mặc định lấy **cả tài khoản và dữ liệu thị trường VN30**, dùng chung JWT. Token còn hạn thì dùng lại; hết hạn thì hỏi Smart OTP ẩn một lần ở terminal, rồi chạy tiếp mọi API. Không cần chạy file account riêng. API key/custody nằm trong `api/.env.local` quyền0600; không đưa OTP/token vào mã nguồn/chat.
 
 | Phần | API mặc định |

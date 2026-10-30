@@ -4,11 +4,13 @@ import hashlib
 import json
 from pathlib import Path
 import shutil
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1'
-BASE = ROOT / 'data/manual-extracted-pdf/supplements/2026-10-29-b6-r1'
-BACKUP = ROOT / 'backups/2026-10-29-b6-data-integration/presentation-before'
+RECOVERY = '--source-recovery' in sys.argv
+OUT = ROOT / ('docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-30/b6-close-inputs-r1' if RECOVERY else 'docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1')
+BASE = ROOT / ('data/manual-extracted-pdf/supplements/2026-10-30-b6-r1' if RECOVERY else 'data/manual-extracted-pdf/supplements/2026-10-29-b6-r1')
+BACKUP = ROOT / ('backups/2026-10-30-b6-close-inputs/presentation-before' if RECOVERY else 'backups/2026-10-29-b6-data-integration/presentation-before')
 
 
 def load(p):
@@ -71,16 +73,26 @@ def main():
     stats['documents'] = len(display['documents'])
     stats['pages'] = sum(d['pageCount'] for d in display['documents'])
     rows = columns = missing_labels = unresolved = 0
+    pages_with_tables = set()
+    primary_variants = {k: 0 for k in ['can-doi-ke-toan', 'ket-qua-kinh-doanh', 'luu-chuyen-tien-te']}
     for file in display['files']:
         pdf = load(ROOT / ('data/manual-extracted-pdf/' + file['file'] if 'file' in file else file['path']))
-        for r in pdf['reports'].values():
+        for rk, r in pdf['reports'].items():
             for pk, p in r['periods'].items():
                 columns += len(p['variants'])
+                if rk in primary_variants:
+                    primary_variants[rk] += len(p['variants'])
                 unresolved += len(p['variants']) if pk.startswith('UNRESOLVED') else 0
                 for v in p['variants']:
                     for g in v['groups']:
                         rows += len(g['rows']);missing_labels += sum(row['label'] is None for row in g['rows'])
+                        page = g.get('sourcePage') or next((row.get('pdfEvidence', {}).get('page') for row in g['rows'] if row.get('pdfEvidence', {}).get('page')), None)
+                        if page is not None:
+                            pages_with_tables.add((v['source'].get('payloadHash'), page))
     stats.update({'rows': rows, 'tableColumns': columns, 'missingLabels': missing_labels, 'unresolvedPeriodColumns': unresolved})
+    if RECOVERY:
+        stats.update(pagesWithTables=len(pages_with_tables), primaryReports=primary_variants,
+                     primaryReportCountSemantics='PRESENTATION_VARIANTS_NOT_UNIQUE_DOCUMENTS')
     write(ROOT / 'data/manual-extracted-pdf/display-manifest.json', display)
     write(notes_path, nmanifest)
     write(ROOT / 'data/combine/manifest.json', combined_manifest)

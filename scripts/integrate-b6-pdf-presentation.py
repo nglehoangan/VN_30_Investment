@@ -4,11 +4,13 @@ import hashlib
 import json
 from pathlib import Path
 import shutil
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = ROOT / 'data/manual-extracted-pdf/supplements/2026-10-29-b6-r1'
-OUT = ROOT / 'docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1'
-BACKUP = ROOT / 'backups/2026-10-29-b6-data-integration/presentation-before'
+RECOVERY = '--source-recovery' in sys.argv
+BASE = ROOT / ('data/manual-extracted-pdf/supplements/2026-10-30-b6-r1' if RECOVERY else 'data/manual-extracted-pdf/supplements/2026-10-29-b6-r1')
+OUT = ROOT / ('docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-30/b6-close-inputs-r1' if RECOVERY else 'docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/b6-integration-r1')
+BACKUP = ROOT / ('backups/2026-10-30-b6-close-inputs/presentation-before' if RECOVERY else 'backups/2026-10-29-b6-data-integration/presentation-before')
 
 
 def load(path):
@@ -27,9 +29,19 @@ def main():
     assert not BACKUP.exists(), 'ALREADY_INTEGRATED'
     processing = load(BASE / 'manifest.json')
     assert processing['complete'] and not any(d['errors'] for d in processing['documents'])
-    annual = load(OUT.parent / 'annual-download-r1/download-manifest.json')
-    retry = load(OUT.parent / 'document-retry-r1/download-manifest.json')
+    annual = {'records': []} if RECOVERY else load(OUT.parent / 'annual-download-r1/download-manifest.json')
+    retry = {'records': []} if RECOVERY else load(OUT.parent / 'document-retry-r1/download-manifest.json')
     captures = {}
+    if RECOVERY:
+        for name in ['archive-recovery-network.json', 'archive-recovery-candidates.json', 'archive-recovery-additional.json', 'archive-recovery-last.json']:
+            for r in load(OUT / name)['records']:
+                for member in r['members']:
+                    capture = {'ticker': r['ticker'], 'path': member['path'], 'sha256': member['sha256'], 'status': 'DOWNLOADED',
+                               'retrievedAt': r['retrievedAt'], 'httpStatus': 200, 'url': r['url'], 'filename': Path(member['path']).name,
+                               'acquisitionReceipt': str((OUT / name).relative_to(ROOT))}
+                    if member['archiveEntry'] is not None:
+                        capture.update(archiveEntry=member['archiveEntry'], archiveSha256=r['sha256'], archivePath=r['path'])
+                    captures[member['path']] = capture
     for r in annual['records']:
         for p in r['pdfs']:
             captures[p['path']] = {'ticker': r['ticker'], 'path': p['path'], 'sha256': p['sha256'],

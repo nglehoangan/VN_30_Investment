@@ -19,7 +19,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts/lib'))
 from manual_display import REPORTS, classify_page, extract_table, fold
 
-OUT = ROOT / 'data/manual-extracted-pdf/supplements/2026-10-29-b6-r1'
+RECOVERY = '--source-recovery' in sys.argv
+OUT = ROOT / ('data/manual-extracted-pdf/supplements/2026-10-30-b6-r1' if RECOVERY else 'data/manual-extracted-pdf/supplements/2026-10-29-b6-r1')
 VISION = '/private/tmp/vn30-b6-vision-ocr'
 
 
@@ -40,7 +41,7 @@ def extract(item):
               'notes': [], 'errors': []}
     recognizer = None
     identity = {'reportingPeriod': {'start': str(item['year']) + '-01-01', 'end': item['periodEnd']},
-                'fiscalQuarter': None if item['year'] == 2025 else 2}
+                'fiscalQuarter': None if item['periodEnd'].endswith('12-31') else 2}
     try:
         with pymupdf.open(ROOT / item['path']) as pdf:
             for pi, page in enumerate(pdf):
@@ -109,7 +110,10 @@ def extract(item):
                 'errors': result['errors']}
     finally:
         if recognizer:
-            recognizer.stdin.close()
+            try:
+                recognizer.stdin.close()
+            except BrokenPipeError:
+                pass
             try:
                 recognizer.wait(timeout=5)
             except subprocess.TimeoutExpired:
@@ -117,7 +121,10 @@ def extract(item):
 
 
 def main():
-    OUT.mkdir(parents=True, exist_ok=False)
+    OUT.mkdir(parents=True, exist_ok=RECOVERY and '--retry-reader' in sys.argv)
+    if RECOVERY:
+        recovery_main()
+        return
     annual_path = ROOT / 'docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/annual-download-r1/download-manifest.json'
     retry_path = ROOT / 'docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/document-retry-r1/download-manifest.json'
     annual, retry = json.loads(annual_path.read_text()), json.loads(retry_path.read_text())
@@ -145,6 +152,40 @@ def main():
                                          'sourcePins': [{'path': str(p.relative_to(ROOT)), 'sha256': sha(p)} for p in [annual_path, retry_path]],
                                          'reader': {'path': 'scripts/lib/vision-ocr-stream.m', 'sha256': sha(ROOT / 'scripts/lib/vision-ocr-stream.m')},
                                          'builder': {'path': 'scripts/process-b6-supplemental-pdfs.py', 'sha256': sha(Path(__file__))}})
+            print(json.dumps({k: result[k] for k in ['ticker', 'pages', 'rows', 'errors']}), flush=True)
+    print(json.dumps({'documents': len(results), 'aliases': len(aliases), 'pages': sum(r['pages'] for r in results)}))
+
+
+def recovery_main():
+    base = ROOT / 'docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-30/b6-close-inputs-r1'
+    paths = [base / name for name in ['archive-recovery-network.json', 'archive-recovery-candidates.json', 'archive-recovery-additional.json', 'archive-recovery-last.json']]
+    old = json.loads((ROOT / 'data/manual-download/manifest.json').read_text())
+    hashes = {r['sha256'] for r in old['requests'] if r['status'] == 'DOWNLOADED'}
+    jobs, aliases = [], []
+    for path in paths:
+        for r in json.loads(path.read_text())['records']:
+            for member in r['members']:
+                if member['sha256'] in hashes:
+                    aliases.append(member)
+                    continue
+                hashes.add(member['sha256'])
+                year = int(re.search(r'/data/[^/]+/(\d{4})/', r['url']).group(1))
+                end = f'{year}-06-30' if '/QUY%202/' in r['url'] else f'{year}-12-31'
+                jobs.append({**member, 'ticker': r['ticker'], 'year': year, 'periodEnd': end,
+                             'retrievedAt': r['retrievedAt'], 'sourceUrl': r['url'], 'archiveSha256': r['sha256'],
+                             'archivePath': r['path'], 'sourceReceipt': str(path.relative_to(ROOT))})
+    previous = json.loads((OUT / 'manifest.json').read_text()) if (OUT / 'manifest.json').exists() else {}
+    results = [d for d in previous.get('documents', []) if not d['errors']]
+    completed = {d['sourceSha256'] for d in results}
+    jobs = [j for j in jobs if j['sha256'] not in completed]
+    total = len(results) + len(jobs)
+    with concurrent.futures.ProcessPoolExecutor(max_workers=4) as pool:
+        for result in pool.map(extract, jobs):
+            results.append(result)
+            write(OUT / 'manifest.json', {'contract': 'supplemental-pdf-processing-v1', 'complete': len(results) == total,
+                  'evidenceMode': 'DIRECT_PDF', 'productionAdmissible': False, 'documents': results, 'aliases': aliases,
+                  'sourcePins': [{'path': str(p.relative_to(ROOT)), 'sha256': sha(p)} for p in paths],
+                  'builder': {'path': 'scripts/process-b6-supplemental-pdfs.py', 'sha256': sha(Path(__file__))}})
             print(json.dumps({k: result[k] for k in ['ticker', 'pages', 'rows', 'errors']}), flush=True)
     print(json.dumps({'documents': len(results), 'aliases': len(aliases), 'pages': sum(r['pages'] for r in results)}))
 
