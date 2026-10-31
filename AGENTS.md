@@ -8,6 +8,15 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
+## Owner-confirmed portfolio reconciliation — do not ask again (2026-10-31)
+
+- Before reopening Phase A1 findings or asking about these facts, read `docs/fundamental-data-engine/governance/PORTFOLIO_OWNER_CONFIRMATIONS_2026-10-31.md` and its adjacent JSON. The owner explicitly requested preserving prior confirmations and not asking again. This is a successor clarification; preserve the historical A1 assessment.
+- TCB: retained TCBS 4.14 received 2026-10-29 explicitly records 150 total = 100 available + 50 `stockDividend` pending. The owner acknowledges the retained findings in the 2026-10-31 request. Do not describe the 50 as missing owner evidence, 150 tradable shares, or an extra purchase. Do not backdate this finding into the 2026-10-28 observation.
+- Cash/dividend: the 95,000 VND difference is the received MWG net dividend on 2026-10-16, record date 2026-10-08, verified in 2026 cash Excel row71 (A71–E71). The economic bridge is cash232420+95000=327420 and receivables570000−95000=475000. It is already included in confirmed cash; do not add it or deduct it from remaining pending again. Source issuer/date/description and original account claim support the bridge, not just amount equality.
+- Custody fee420 VND is owner-confirmed accrued payable at 2026-10-28, increasing daily and deducted at month end. Do not ask its nature again, infer a daily rate or actual payment date, or subtract it twice from broker-reported NAV.
+- FPT: 220 owned = 200 available + 20 pending `FPT_WFT`; the owner already authorized pending ownership and conversion of availability only when evidenced. Do not ask whether the20exist, invent conversion dates, or add another20.
+- These owner facts and lifecycle instructions are resolved for dated personal reconciliation. Ledger application, exact production acceptance bindings and pending-right valuation are separate implementation/acceptance work, not requests to reconfirm known facts. Unknown metadata remains null; inspect retained sources first and ask only for genuinely new, contradictory or out-of-scope evidence. This receipt does not authorize production activation, source promotion, ledger postings or rewriting opening history.
+
 ## Direct TCBS API data persistence (owner instruction 2026-10-29)
 
 - `node api/tcbs.mjs` now writes API observations and display prices directly into the application SQLite database (`DATABASE_URL` or default `data/vn30.sqlite`). Do not add per-run capture folders, raw/manifest/capture JSON files, staging imports or extra data copies to this live workflow. Existing historical captures stay unchanged. Private authentication/session state remains separate from API result data.

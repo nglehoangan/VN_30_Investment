@@ -1,0 +1,226 @@
+{
+  "contract": "portfolio-owner-confirmed-reconciliation-v1",
+  "recordId": "PORTFOLIO-OWNER-CONFIRMATIONS-2026-10-31-R1",
+  "recordDate": "2026-10-31",
+  "repositoryHeadAtReview": "df250907d0fc4e3a6276c533e50a0df3582bcc34",
+  "authority": {
+    "kind": "OWNER_EXPLICIT_CONVERSATION_REQUEST",
+    "statement": "Các vấn đề đã dc tôi xác nhận từ các file và yêu cầu trước đó, hãy kiểm tra lại và lưu và để không hỏi nữa",
+    "scope": "Persist prior owner confirmations and retained evidence forTCB,cash,dividend,custodyfee,FPT; avoid duplicatequestions",
+    "exactMessageTimestamp": null,
+    "cryptographicSignature": false
+  },
+  "scope": "OWNER_PERSONAL_RECONCILIATION_FACTS_NOT_PRODUCTION_ACCEPTANCE",
+  "facts": [
+    {
+      "id": "TCB_PENDING_50",
+      "state": "OWNER_FACT_RESOLVED_LEDGER_APPLICATION_PENDING",
+      "ticker": "TCB",
+      "ordinaryTradable": "100",
+      "pendingBonus": "50",
+      "totalOwned": "150",
+      "sourceRef": "latest",
+      "sourcePointer": "/data/stock/6",
+      "sourceObservedAt": "2026-10-29T04:56:24.764Z",
+      "treatment": "Recognize the sourced pending ownership separately; not150tradable. Preserve imported totalcost; no new cashpurchase or duplicate50. Existing28Octowner snapshot remains dated historical evidence, not overwritten.",
+      "creationEffectiveDate": null,
+      "conversionDate": null,
+      "doNotRequestOwnerReconfirmation": true
+    },
+    {
+      "id": "CASH_95000",
+      "state": "OWNER_FACT_RESOLVED_LEDGER_APPLICATION_PENDING",
+      "openingCash": "232420",
+      "receivedNetDividend": "95000",
+      "confirmedCash": "327420",
+      "currency": "VND",
+      "receiptId": "MWG_2026-10-16_EXCEL_A71_E71",
+      "sourcePath": "docs/fundamental-data-engine/evidence/2026-10-28-b2-cash-excel-screen-review/CASH_HISTORY.json",
+      "sourcePointer": "/reports/1/rows/57",
+      "treatment": "Difference explained by receivedMWGdividend; no missing cash and no arbitrary cashadjustment. Already included in327420, never add95000again.",
+      "doNotRequestOwnerReconfirmation": true
+    },
+    {
+      "id": "DIVIDEND_RECEIVABLE_TO_CASH",
+      "state": "OWNER_FACT_RESOLVED_LEDGER_APPLICATION_PENDING",
+      "issuer": "MWG",
+      "recordDate": "2026-10-08",
+      "receiptDate": "2026-10-16",
+      "receivedNet": "95000",
+      "openingReceivables": "570000",
+      "remainingPending": "475000",
+      "sourcePath": "docs/fundamental-data-engine/evidence/2026-10-28-b2-cash-excel-screen-review/CASH_HISTORY.json",
+      "sourcePointer": "/reports/1/rows/57",
+      "openingSource": "opening",
+      "openingClaimPointer": "/data/stock/4/cashDividend",
+      "laterProviderPointer": "/data/stock/4/cashDividend",
+      "treatment": "Owner-confirmed economic bridge: decrease pendingclaim95000 and increasecash95000once. Receipt is not newly earned income or a newdeposit. Keep475000pending; do not subtractMWG95000a secondtime. Unknown exact brokeractionID does not reopen the confirmed receipt or block aggregate pending display. Formal posting/authority binding is a separate implementation matter.",
+      "brokerActionId": null,
+      "doNotRequestOwnerReconfirmation": true
+    },
+    {
+      "id": "CUSTODY_FEE_420",
+      "state": "OWNER_FACT_RESOLVED_LEDGER_APPLICATION_PENDING",
+      "amount": "420",
+      "currency": "VND",
+      "economicAsOfDate": "2026-10-28",
+      "classification": "ACCRUED_CUSTODY_FEE_PAYABLE",
+      "ownerConfirmation": "Owner confirmed fee accrues daily and is deducted at monthend",
+      "paid": false,
+      "dailyRate": null,
+      "actualPaymentDate": null,
+      "sourcePath": "docs/fundamental-data-engine/evidence/2026-10-28-b2-cash-excel-screen-review/REVIEW.md",
+      "treatment": "Keep payable until actual debit is observed. Do not ask again what420means; do not fabricate daily accrual/monthendpayment or deduct again from brokerNAValready netofthisfee.",
+      "doNotRequestOwnerReconfirmation": true
+    },
+    {
+      "id": "FPT_PENDING_20",
+      "state": "OWNER_FACT_RESOLVED_LIFECYCLE_POLICY_SAVED",
+      "ticker": "FPT",
+      "ordinaryTradable": "200",
+      "pendingBonus": "20",
+      "totalOwned": "220",
+      "alias": "FPT_WFT",
+      "sourceRef": "latest",
+      "sourcePointer": "/data/stock/0",
+      "sourceObservedAt": "2026-10-29T04:56:24.764Z",
+      "conversionDate": null,
+      "treatment": "Pendingbonus shares owned, not yettradable. Convert availability only when sourced conversion is observed; do not add another20 or treat an ordinaryprice as formal pendingvaluationapproval. Originalownerinstruction already authorizes this lifecycle rule.",
+      "doNotRequestOwnerReconfirmation": true
+    }
+  ],
+  "sourceEvidence": {
+    "opening": {
+      "storage": "data/vn30.sqlite/broker_observation",
+      "id": "TCBS_API_RESPONSE:eb2aa9ffb0894ac080aa8cfbce2eca7d86628ba5a346b8ef78e2d8d450786c62",
+      "bodySha256": "eb2aa9ffb0894ac080aa8cfbce2eca7d86628ba5a346b8ef78e2d8d450786c62",
+      "receivedAt": "2026-10-08T11:38:01.650Z",
+      "stock": {
+        "FPT": {
+          "jsonPointer": "/data/stock/0",
+          "total": "220",
+          "available": "200",
+          "pendingStockDividend": "20",
+          "pendingCashDividend": "0"
+        },
+        "GAS": {
+          "jsonPointer": "/data/stock/1",
+          "total": "200",
+          "available": "200",
+          "pendingStockDividend": "0",
+          "pendingCashDividend": "475000"
+        },
+        "MWG": {
+          "jsonPointer": "/data/stock/4",
+          "total": "100",
+          "available": "100",
+          "pendingStockDividend": "0",
+          "pendingCashDividend": "95000"
+        },
+        "TCB": {
+          "jsonPointer": "/data/stock/6",
+          "total": "100",
+          "available": "100",
+          "pendingStockDividend": "0",
+          "pendingCashDividend": "0"
+        }
+      }
+    },
+    "latest": {
+      "storage": "data/vn30.sqlite/broker_observation",
+      "id": "TCBS_API_RESPONSE:99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a",
+      "bodySha256": "99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a",
+      "receivedAt": "2026-10-29T04:56:24.764Z",
+      "stock": {
+        "FPT": {
+          "jsonPointer": "/data/stock/0",
+          "total": "220",
+          "available": "200",
+          "pendingStockDividend": "20",
+          "pendingCashDividend": "0"
+        },
+        "GAS": {
+          "jsonPointer": "/data/stock/1",
+          "total": "200",
+          "available": "200",
+          "pendingStockDividend": "0",
+          "pendingCashDividend": "475000"
+        },
+        "MWG": {
+          "jsonPointer": "/data/stock/4",
+          "total": "100",
+          "available": "100",
+          "pendingStockDividend": "0",
+          "pendingCashDividend": "0"
+        },
+        "TCB": {
+          "jsonPointer": "/data/stock/6",
+          "total": "150",
+          "available": "100",
+          "pendingStockDividend": "50",
+          "pendingCashDividend": "0"
+        }
+      }
+    }
+  },
+  "filePins": [
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-28-b2-cash-excel-screen-review/CASH_HISTORY.json",
+      "sha256": "685dcc245ab3ce1ca69add62fae05432dfd07eaea98105337366cee1e84a82d4"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-28-b2-cash-excel-screen-review/REVIEW.md",
+      "sha256": "9c5784d2cac4ee3a004bf6c147867571f75b70f289e053f0bf208bc4baf3caea"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-28-b2-cash-excel-screen-review/STATUS.json",
+      "sha256": "522876b379b3c88968af7da607e5565f6c107ac8aec7d1dee79636557d4d075a"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-28-b1-excel-source-policy/CURRENT_POLICY.json",
+      "sha256": "c3b1bc1797a95f8d715d59b58e2a21be85c502f98494a4dc93a632049ff8ef27"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-10-28-b4-pending-dividend-policy/README.md",
+      "sha256": "da47660a620d81e98601caaf43032d837286bdf7396a18879fb21ac653aa7901"
+    },
+    {
+      "path": "data/account-current/personal-account.json",
+      "sha256": "f683477cea82b42b15621e45aa3d9225eadb1adb531616c8ccc0811ac689ca70"
+    },
+    {
+      "path": "data/account-current/pending-dividends.json",
+      "sha256": "b6deebe8085ece5931b3bc264d307503f29ea0c1f1873502237f3572683ed7fe"
+    }
+  ],
+  "cashAndClaimBridge": {
+    "openingCashPlusReceivables": "802420",
+    "confirmedCashPlusPending": "802420",
+    "confirmedCashPlusPendingLessFee": "802000",
+    "sameEconomicInstantCertified": false
+  },
+  "ownerEvidenceRequests": [],
+  "noRepeatPolicy": {
+    "consultThisRecordBeforeAsking": true,
+    "neverAskAgainFor": [
+      "Meaningof420custodyfee",
+      "WhetherMWG95000wasreceived",
+      "Cash327420andpending475000classification",
+      "FPT20pendingownershipandavailabilitypolicy",
+      "TCB50pendingclassificationalreadyshowninretained29OctAPI"
+    ],
+    "unknownMetadata": "Keep unknownevent/conversion timestamps null. Research retainedsources first. Only genuinelynew contradictoryevents or actualmissing facts outside this confirmedscope justify a new narrowquestion.",
+    "implementationGapIsNotOwnerEvidenceGap": true
+  },
+  "phaseA1Disposition": {
+    "PA1-C01": "FACTS_AND_PENDING_CLASSIFICATION_RESOLVED_FROM_RETAINED_API_AND_OWNER_ACKNOWLEDGEMENT;ledger/readmodelapplicationpending",
+    "PA1-M02": "OWNER_CASH_RECEIPT_AND_FEE_FACTS_RESOLVED;accountingapplicationandadmissionstillseparate",
+    "PA1-M05": "OWNER_PENDING_OWNERSHIP_AND_TRANSITION_RULE_RESOLVED;actualfutureconversionnotassumed",
+    "historicalAssessmentPreserved": true
+  },
+  "ledgerPostingsCreated": 0,
+  "productionDatabaseChanged": false,
+  "runtimeChanged": false,
+  "productionNavAuthorized": false,
+  "productionScoringAuthorized": false
+}
