@@ -1,0 +1,1560 @@
+{
+  "contract": "personal-ai-scoring-implementation-validation-v1",
+  "date": "2026-11-01",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "baselineHead": "6dbdf2c4c53af1bd4aa3fba505fec6d12009fd33",
+  "status": "IMPLEMENTED_TESTED_NOT_ACTIVATED",
+  "commands": [
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH pnpm exec vitest run tests/unit/personal-ai-scoring.test.ts tests/integration/personal-ai-scoring.test.ts tests/unit/scoring.test.ts tests/unit/scoring-golden.test.ts tests/unit/scoring-portfolio.test.ts tests/unit/scoring-readiness.test.ts tests/unit/scoring-bridge-derived.test.ts tests/unit/scoring-evidence-time.test.ts tests/unit/runtime-human-review.test.ts tests/unit/runtime-readiness.test.ts tests/unit/scoring-ai-review.test.ts tests/unit/economic-normalization.test.ts tests/unit/di15-policy-b.test.ts tests/unit/policy-b-ports.test.ts tests/integration/scoring-artifacts.test.ts tests/integration/scoring-readiness.test.ts tests/integration/di15-policy-b.test.ts --reporter=json --outputFile=/private/tmp/personal-ai-final-tests.json",
+      "exitCode": 0,
+      "passed": 309,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH pnpm exec vitest run tests/unit/personal-ai-provenance.test.ts --reporter=json --outputFile=/private/tmp/personal-ai-provenance-tests.json",
+      "exitCode": 0,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH pnpm exec tsc --noEmit",
+      "exitCode": 0
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH pnpm exec eslint src/domain/personal-ai src/application/personal-ai src/infrastructure/personal-ai src/ports/personal-ai-scoring.ts scripts/generate-personal-ai-compatibility.mjs tests/fixtures/personal-ai-scoring.ts tests/unit/personal-ai-scoring.test.ts tests/unit/personal-ai-provenance.test.ts tests/integration/personal-ai-scoring.test.ts --max-warnings=0",
+      "exitCode": 0
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH node scripts/generate-personal-ai-compatibility.mjs --check",
+      "exitCode": 0,
+      "result": "PARITY_CHECK_PASS; three generated financial modules match explicit anchored adapters"
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH node scripts/check-boundaries.mjs",
+      "exitCode": 0,
+      "result": "PASS boundaries: 286 source modules"
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH node scripts/verify-approved-scoring-authority.mjs",
+      "exitCode": 0,
+      "result": "37 artifacts, 9 compatibility proofs, 133 historical files unchanged; approved content hash 8c0880249dc54e2baea0235cc10094f818220db86331442ece3da05085261cc1"
+    }
+  ],
+  "passed": 313,
+  "failed": 0,
+  "skipped": 0,
+  "testFiles": [
+    {
+      "path": "tests/integration/di15-policy-b.test.ts",
+      "assertions": [
+        {
+          "name": "trusted versioned acceptance persists all30 states and rejects deferred formal inputs before any score write",
+          "status": "passed"
+        },
+        {
+          "name": "PolicyB cannot manufacture independent approval, bypass pinned release or relabel issues",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/integration/personal-ai-scoring.test.ts",
+      "assertions": [
+        {
+          "name": "personal AI acceptance -> native financial bridge -> scoring -> immutable isolated artifact accepts a complete synthetic case, replays on reopen, and leaves legacy DB artifacts unchanged",
+          "status": "passed"
+        },
+        {
+          "name": "personal AI acceptance -> native financial bridge -> scoring -> immutable isolated artifact rejects an unconfigured or revoked AI review despite well-formed caller provenance",
+          "status": "passed"
+        },
+        {
+          "name": "personal AI acceptance -> native financial bridge -> scoring -> immutable isolated artifact rejects mutated session artifacts, mismatched input, forged binding and changed persisted output",
+          "status": "passed"
+        },
+        {
+          "name": "personal AI acceptance -> native financial bridge -> scoring -> immutable isolated artifact does not let trusted AI provenance or DI PASS flags replace missing valuation evidence",
+          "status": "passed"
+        },
+        {
+          "name": "personal AI acceptance -> native financial bridge -> scoring -> immutable isolated artifact rejects policy/snapshot substitution and does not write when score methodology is unregistered",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/integration/scoring-artifacts.test.ts",
+      "assertions": [
+        {
+          "name": "immutable scoring artifacts, actual SQLite separates synthetic methodology from externally approved formal activation",
+          "status": "passed"
+        },
+        {
+          "name": "immutable scoring artifacts, actual SQLite fresh migration, immutable roundtrip, correction and registered methodology only",
+          "status": "passed"
+        },
+        {
+          "name": "immutable scoring artifacts, actual SQLite populated M6.3 upgrade and repeat deploy preserve existing data",
+          "status": "passed"
+        },
+        {
+          "name": "immutable scoring artifacts, actual SQLite ranking persists only from formal scorecards and replays after method/evidence revisions",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/integration/scoring-readiness.test.ts",
+      "assertions": [
+        {
+          "name": "FORMAL writes score plus immutable exact dataset binding, computes all-ticker readiness and reopens",
+          "status": "passed"
+        },
+        {
+          "name": "direct/default FORMAL engine and artifact repository cannot bypass DI; synthetic scope remains intact",
+          "status": "passed"
+        },
+        {
+          "name": "a stored caller-authored DI PASS or a different run cannot manufacture independent review authority",
+          "status": "passed"
+        },
+        {
+          "name": "reviewed financial/model/human inputs and clocks cannot be changed behind a valid acceptance",
+          "status": "passed"
+        },
+        {
+          "name": "immutable guards, restrictive links and rollback retain both datasets and legacy score artifacts",
+          "status": "passed"
+        },
+        {
+          "name": "transport hashes cannot hide tampered DI review, readiness bindings or forged domain scores",
+          "status": "passed"
+        },
+        {
+          "name": "historical FORMAL artifacts without dataset links remain readable but cannot claim readiness at the ranking boundary",
+          "status": "passed"
+        },
+        {
+          "name": "configured review hashes still require an exact approved production methodology and requirements binding",
+          "status": "passed"
+        },
+        {
+          "name": "governed DATE_ONLY persists, reopens and cannot be forged through reviewed input or external evidence",
+          "status": "passed"
+        },
+        {
+          "name": "stored v1 score, acceptance and dataset binding replay unchanged; v1 cannot authorize a new FORMAL write",
+          "status": "passed"
+        },
+        {
+          "name": "even an externally pinned reviewed package cannot authorize caller-created DATE_ONLY lineage outside the canonical bridge",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/di15-policy-b.test.ts",
+      "assertions": [
+        {
+          "name": "30 is exactly25 scorable plus5 deferred, with no intersection",
+          "status": "passed"
+        },
+        {
+          "name": "duplicate admission state fails",
+          "status": "passed"
+        },
+        {
+          "name": "missing admission state fails",
+          "status": "passed"
+        },
+        {
+          "name": "non-universe security fails",
+          "status": "passed"
+        },
+        {
+          "name": "non-universe ticker cannot borrow a certified stable ID",
+          "status": "passed"
+        },
+        {
+          "name": "universe hash mismatch fails",
+          "status": "passed"
+        },
+        {
+          "name": "uncertified universe fails",
+          "status": "passed"
+        },
+        {
+          "name": "certified identity map cannot change silently",
+          "status": "passed"
+        },
+        {
+          "name": "deferred score remains null and unavailable",
+          "status": "passed"
+        },
+        {
+          "name": "placeholder score 0 fails",
+          "status": "passed"
+        },
+        {
+          "name": "placeholder score 50 fails",
+          "status": "passed"
+        },
+        {
+          "name": "placeholder score MEDIAN fails",
+          "status": "passed"
+        },
+        {
+          "name": "placeholder score SECTOR_AVERAGE fails",
+          "status": "passed"
+        },
+        {
+          "name": "placeholder score ESTIMATED fails",
+          "status": "passed"
+        },
+        {
+          "name": "deferred cannot enter SCORING",
+          "status": "passed"
+        },
+        {
+          "name": "deferred cannot enter RANKING",
+          "status": "passed"
+        },
+        {
+          "name": "deferred cannot enter TOP10",
+          "status": "passed"
+        },
+        {
+          "name": "deferred cannot enter STRONG BUY",
+          "status": "passed"
+        },
+        {
+          "name": "deferred cannot enter BUY",
+          "status": "passed"
+        },
+        {
+          "name": "deferred cannot enter ACCUMULATE",
+          "status": "passed"
+        },
+        {
+          "name": "deferred cannot enter NEW_CAPITAL",
+          "status": "passed"
+        },
+        {
+          "name": "deferred cannot enter DCA",
+          "status": "passed"
+        },
+        {
+          "name": "deferred cannot enter SCORE_WEIGHT_REDISTRIBUTION",
+          "status": "passed"
+        },
+        {
+          "name": "deferred cannot enter CAPITAL_REDISTRIBUTION",
+          "status": "passed"
+        },
+        {
+          "name": "Major remains Major after quarantine and issue stays OPEN",
+          "status": "passed"
+        },
+        {
+          "name": "severity downgrade fails against the complete source ledger",
+          "status": "passed"
+        },
+        {
+          "name": "dropping an original blocker fails",
+          "status": "passed"
+        },
+        {
+          "name": "quarantine is not issue resolution",
+          "status": "passed"
+        },
+        {
+          "name": "missing source provenance fails",
+          "status": "passed"
+        },
+        {
+          "name": "missing blocker on deferred member fails",
+          "status": "passed"
+        },
+        {
+          "name": "missing reopen trigger fails",
+          "status": "passed"
+        },
+        {
+          "name": "PRICE_MOVEMENT cannot reopen a deferred ticker",
+          "status": "passed"
+        },
+        {
+          "name": "MARKET_SENTIMENT cannot reopen a deferred ticker",
+          "status": "passed"
+        },
+        {
+          "name": "RANKING_NEEDS cannot reopen a deferred ticker",
+          "status": "passed"
+        },
+        {
+          "name": "SCORABLE_COUNT cannot reopen a deferred ticker",
+          "status": "passed"
+        },
+        {
+          "name": "Major in a SCORABLE member fails",
+          "status": "passed"
+        },
+        {
+          "name": "technical exclusion is mandatory",
+          "status": "passed"
+        },
+        {
+          "name": "enabled quarantine capability scoring fails",
+          "status": "passed"
+        },
+        {
+          "name": "enabled quarantine capability ranking fails",
+          "status": "passed"
+        },
+        {
+          "name": "enabled quarantine capability top10 fails",
+          "status": "passed"
+        },
+        {
+          "name": "enabled quarantine capability positiveCapital fails",
+          "status": "passed"
+        },
+        {
+          "name": "enabled quarantine capability dca fails",
+          "status": "passed"
+        },
+        {
+          "name": "enabled quarantine capability weightRedistribution fails",
+          "status": "passed"
+        },
+        {
+          "name": "enabled quarantine capability capitalRedistribution fails",
+          "status": "passed"
+        },
+        {
+          "name": "UNIVERSE_IDENTITY remains a global blocker",
+          "status": "passed"
+        },
+        {
+          "name": "CROSS_TICKER_CONTAMINATION remains a global blocker",
+          "status": "passed"
+        },
+        {
+          "name": "SHARED_REGISTRY remains a global blocker",
+          "status": "passed"
+        },
+        {
+          "name": "SCORING_CONTRACT remains a global blocker",
+          "status": "passed"
+        },
+        {
+          "name": "UNIT_CORRUPTION remains a global blocker",
+          "status": "passed"
+        },
+        {
+          "name": "PROVIDER_SCHEMA_DRIFT remains a global blocker",
+          "status": "passed"
+        },
+        {
+          "name": "SHARED_MAPPING remains a global blocker",
+          "status": "passed"
+        },
+        {
+          "name": "CANONICAL_REPLAY_DIVERGENCE remains a global blocker",
+          "status": "passed"
+        },
+        {
+          "name": "DATABASE_CORRUPTION remains a global blocker",
+          "status": "passed"
+        },
+        {
+          "name": "SHARED_SOURCE_CONTRACT remains a global blocker",
+          "status": "passed"
+        },
+        {
+          "name": "SHARED_ENGINE remains a global blocker",
+          "status": "passed"
+        },
+        {
+          "name": "PRODUCTION_INFRASTRUCTURE remains a global blocker",
+          "status": "passed"
+        },
+        {
+          "name": "UNIVERSE_IDENTITY cannot masquerade as isolated",
+          "status": "passed"
+        },
+        {
+          "name": "CROSS_TICKER_CONTAMINATION cannot masquerade as isolated",
+          "status": "passed"
+        },
+        {
+          "name": "SHARED_REGISTRY cannot masquerade as isolated",
+          "status": "passed"
+        },
+        {
+          "name": "SCORING_CONTRACT cannot masquerade as isolated",
+          "status": "passed"
+        },
+        {
+          "name": "UNIT_CORRUPTION cannot masquerade as isolated",
+          "status": "passed"
+        },
+        {
+          "name": "PROVIDER_SCHEMA_DRIFT cannot masquerade as isolated",
+          "status": "passed"
+        },
+        {
+          "name": "SHARED_MAPPING cannot masquerade as isolated",
+          "status": "passed"
+        },
+        {
+          "name": "CANONICAL_REPLAY_DIVERGENCE cannot masquerade as isolated",
+          "status": "passed"
+        },
+        {
+          "name": "DATABASE_CORRUPTION cannot masquerade as isolated",
+          "status": "passed"
+        },
+        {
+          "name": "SHARED_SOURCE_CONTRACT cannot masquerade as isolated",
+          "status": "passed"
+        },
+        {
+          "name": "SHARED_ENGINE cannot masquerade as isolated",
+          "status": "passed"
+        },
+        {
+          "name": "PRODUCTION_INFRASTRUCTURE cannot masquerade as isolated",
+          "status": "passed"
+        },
+        {
+          "name": "isolated Critical still blocks globally under the stricter legacy rule",
+          "status": "passed"
+        },
+        {
+          "name": "pending independent DI14 prevents release DI15 and any action",
+          "status": "passed"
+        },
+        {
+          "name": "DI3 is not waived",
+          "status": "passed"
+        },
+        {
+          "name": "DI4 is not waived",
+          "status": "passed"
+        },
+        {
+          "name": "DI5 is not waived",
+          "status": "passed"
+        },
+        {
+          "name": "DI6 is not waived",
+          "status": "passed"
+        },
+        {
+          "name": "DI7 is not waived",
+          "status": "passed"
+        },
+        {
+          "name": "DI8 is not waived",
+          "status": "passed"
+        },
+        {
+          "name": "DI9 is not waived",
+          "status": "passed"
+        },
+        {
+          "name": "DI10 is not waived",
+          "status": "passed"
+        },
+        {
+          "name": "DI11 is not waived",
+          "status": "passed"
+        },
+        {
+          "name": "DI12 is not waived",
+          "status": "passed"
+        },
+        {
+          "name": "v1 remains strict even when an unresolved Major is notionally deferred",
+          "status": "passed"
+        },
+        {
+          "name": "v2 acceptance binds partition/issue ledger and leaves deferred readiness blocked",
+          "status": "passed"
+        },
+        {
+          "name": "v2 cannot accept a deferred score input or bridge even if independent strings exist",
+          "status": "passed"
+        },
+        {
+          "name": "v2 rejects issue summaries that omit or downgrade the original Major",
+          "status": "passed"
+        },
+        {
+          "name": "v2 rejects self-approval and an unbound partition",
+          "status": "passed"
+        },
+        {
+          "name": "current release reconstructs30/25/5 and preserves all six source Major issues",
+          "status": "passed"
+        },
+        {
+          "name": "even a SCORABLE member cannot receive SCORE_WEIGHT_REDISTRIBUTION",
+          "status": "passed"
+        },
+        {
+          "name": "even a SCORABLE member cannot receive CAPITAL_REDISTRIBUTION",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/economic-normalization.test.ts",
+      "assertions": [
+        {
+          "name": "economic normalization arithmetic and accounting boundaries keeps fixed allocations distinct from a modeled percentage on normalized income",
+          "status": "passed"
+        },
+        {
+          "name": "economic normalization arithmetic and accounting boundaries adds back an identified loss symmetrically and refuses a broken reported fund bridge",
+          "status": "passed"
+        },
+        {
+          "name": "economic normalization arithmetic and accounting boundaries replays SSB disposal under an explicit tax/fund assumption without deducting the fund twice",
+          "status": "passed"
+        },
+        {
+          "name": "economic normalization arithmetic and accounting boundaries preserves a negative reported cash residual and refuses negative spending magnitudes",
+          "status": "passed"
+        },
+        {
+          "name": "matched customer-loan provision normalization normalizes the matched loan component while preserving the signed non-loan residual",
+          "status": "passed"
+        },
+        {
+          "name": "matched customer-loan provision normalization blocks aggregate-risk expenses divided blindly by customer loans",
+          "status": "passed"
+        },
+        {
+          "name": "matched customer-loan provision normalization requires a contiguous comparable period sequence and at least3years",
+          "status": "passed"
+        },
+        {
+          "name": "internally funded owner cash projections and returns funds growth and includes standing reinvestment once, with no fresh debt/equity windfall",
+          "status": "passed"
+        },
+        {
+          "name": "internally funded owner cash projections and returns makes maintenance capex affect cash even when depreciation is unchanged",
+          "status": "passed"
+        },
+        {
+          "name": "internally funded owner cash projections and returns does not fund growth for free or mismatch terminal investment requirements",
+          "status": "passed"
+        },
+        {
+          "name": "internally funded owner cash projections and returns preserves negative forecast cash, leaving valuation qualification to the primary model",
+          "status": "passed"
+        },
+        {
+          "name": "internally funded owner cash projections and returns solves ordinary positive and negative annual IRRs without using inversePE as expected return",
+          "status": "passed"
+        },
+        {
+          "name": "internally funded owner cash projections and returns refuses non-standard sign-changing cashflows or returns outside its declared bracket",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/personal-ai-scoring.test.ts",
+      "assertions": [
+        {
+          "name": "versioned personal AI financial compatibility locks every financial branch to the legacy algorithm with explicit origin-only transformations",
+          "status": "passed"
+        },
+        {
+          "name": "versioned personal AI financial compatibility preserves points, weights, financial gates and missing data in BANK",
+          "status": "passed"
+        },
+        {
+          "name": "versioned personal AI financial compatibility preserves points, weights, financial gates and missing data in REAL_ESTATE",
+          "status": "passed"
+        },
+        {
+          "name": "versioned personal AI financial compatibility preserves points, weights, financial gates and missing data in RETAIL",
+          "status": "passed"
+        },
+        {
+          "name": "versioned personal AI financial compatibility preserves points, weights, financial gates and missing data in TECHNOLOGY",
+          "status": "passed"
+        },
+        {
+          "name": "versioned personal AI financial compatibility preserves points, weights, financial gates and missing data in INDUSTRIAL",
+          "status": "passed"
+        },
+        {
+          "name": "versioned personal AI financial compatibility preserves points, weights, financial gates and missing data in MATERIALS",
+          "status": "passed"
+        },
+        {
+          "name": "versioned personal AI financial compatibility preserves points, weights, financial gates and missing data in UTILITIES",
+          "status": "passed"
+        },
+        {
+          "name": "versioned personal AI financial compatibility preserves points, weights, financial gates and missing data in ENERGY",
+          "status": "passed"
+        },
+        {
+          "name": "versioned personal AI financial compatibility preserves points, weights, financial gates and missing data in SECURITIES",
+          "status": "passed"
+        },
+        {
+          "name": "versioned personal AI financial compatibility preserves points, weights, financial gates and missing data in INSURANCE",
+          "status": "passed"
+        },
+        {
+          "name": "versioned personal AI financial compatibility preserves points, weights, financial gates and missing data in CONGLOMERATE",
+          "status": "passed"
+        },
+        {
+          "name": "versioned personal AI financial compatibility preserves return bands and maximum prerequisites",
+          "status": "passed"
+        },
+        {
+          "name": "versioned personal AI financial compatibility keeps missing evidence, low confidence, risk veto and double-counting gates",
+          "status": "passed"
+        },
+        {
+          "name": "versioned personal AI financial compatibility does not permit HUMAN/AI relabeling through either legacy entry point",
+          "status": "passed"
+        },
+        {
+          "name": "AI provenance and dataset contract v1 binds both recorded passes to input, evidence, methodology, rules and each rubric",
+          "status": "passed"
+        },
+        {
+          "name": "AI provenance and dataset contract v1 rejects invented independence, unknown/future timestamps and missing second pass",
+          "status": "passed"
+        },
+        {
+          "name": "AI provenance and dataset contract v1 rejects changed session/tool results and failed expected-versus-actual checks",
+          "status": "passed"
+        },
+        {
+          "name": "AI provenance and dataset contract v1 accepts a fully bound synthetic AI case without claiming human independence",
+          "status": "passed"
+        },
+        {
+          "name": "AI provenance and dataset contract v1 retains all 15 gates, full universe, unresolved major issue and strict-v2 requirements",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/policy-b-ports.test.ts",
+      "assertions": [
+        {
+          "name": "stored STRONG BUY cannot re-enter a quarantined release",
+          "status": "passed"
+        },
+        {
+          "name": "stored BUY cannot re-enter a quarantined release",
+          "status": "passed"
+        },
+        {
+          "name": "stored ACCUMULATE cannot re-enter a quarantined release",
+          "status": "passed"
+        },
+        {
+          "name": "bound historical card cannot enter ranking/current decision reads",
+          "status": "passed"
+        },
+        {
+          "name": "cached marginal plans do not bypass current quarantine",
+          "status": "passed"
+        },
+        {
+          "name": "cached DCA proposals cannot bypass current quarantine",
+          "status": "passed"
+        },
+        {
+          "name": "deferred new capital cannot reach an execution append",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/runtime-human-review.test.ts",
+      "assertions": [
+        {
+          "name": "authenticated selection transitions draft → reviewed → approved, append-only with CAS",
+          "status": "passed"
+        },
+        {
+          "name": "AI draft cannot become HUMAN approval or submit request-controlled analyst identity",
+          "status": "passed"
+        },
+        {
+          "name": "reviewer capability is required and owner invalidation is terminal",
+          "status": "passed"
+        },
+        {
+          "name": "evidenceHashes change invalidates reuse eligibility",
+          "status": "passed"
+        },
+        {
+          "name": "methodologyHash change invalidates reuse eligibility",
+          "status": "passed"
+        },
+        {
+          "name": "executableHash change invalidates reuse eligibility",
+          "status": "passed"
+        },
+        {
+          "name": "marketHash change invalidates reuse eligibility",
+          "status": "passed"
+        },
+        {
+          "name": "sectorContextHash change invalidates reuse eligibility",
+          "status": "passed"
+        },
+        {
+          "name": "derivationHashes change invalidates reuse eligibility",
+          "status": "passed"
+        },
+        {
+          "name": "asOf change invalidates reuse eligibility",
+          "status": "passed"
+        },
+        {
+          "name": "unapproved/expired and forged review records never qualify for reuse",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/runtime-readiness.test.ts",
+      "assertions": [
+        {
+          "name": "formal preparation preserves canonical/raw/import lineage and distinct clocks",
+          "status": "passed"
+        },
+        {
+          "name": "MISSING cannot establish publication evidence",
+          "status": "passed"
+        },
+        {
+          "name": "REPORT_DATE cannot establish publication evidence",
+          "status": "passed"
+        },
+        {
+          "name": "RETRIEVAL_DATE cannot establish publication evidence",
+          "status": "passed"
+        },
+        {
+          "name": "unknown publication produces a blocked AS_KNOWN snapshot, never zero",
+          "status": "passed"
+        },
+        {
+          "name": "future publication/retrieval/correction knowledge cannot be admitted",
+          "status": "passed"
+        },
+        {
+          "name": "corrected observations preserve predecessor and correction knowledge without backdating",
+          "status": "passed"
+        },
+        {
+          "name": "lineage changes and unregistered receipts block preparation",
+          "status": "passed"
+        },
+        {
+          "name": "proposed, mismatched, expired and future authority cannot be active",
+          "status": "passed"
+        },
+        {
+          "name": "snapshot content hash is immutable and changes with financial content",
+          "status": "passed"
+        },
+        {
+          "name": "missing required input blocks readiness and dossier never supplies HUMAN outcomes",
+          "status": "passed"
+        },
+        {
+          "name": "governed derivation propagates max operand availability and rejects future inputs",
+          "status": "passed"
+        },
+        {
+          "name": "runtime snapshot builds exactly29 evidence dossiers, quarantines the deferred issuer and requires trusted lineage",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/scoring-ai-review.test.ts",
+      "assertions": [
+        {
+          "name": "valuation arithmetic and sector qualification discounts a known two-year cashflow without floating point",
+          "status": "passed"
+        },
+        {
+          "name": "valuation arithmetic and sector qualification gives1000 for sustainable100FCFE at10percent no growth",
+          "status": "passed"
+        },
+        {
+          "name": "valuation arithmetic and sector qualification rejects unqualified cashflow, bank DCF and unstable terminal growth",
+          "status": "passed"
+        },
+        {
+          "name": "valuation arithmetic and sector qualification residual income equals book value whenROE equals cost of equity",
+          "status": "passed"
+        },
+        {
+          "name": "valuation arithmetic and sector qualification does not treat total book or rawROE as qualified common-capital return",
+          "status": "passed"
+        },
+        {
+          "name": "valuation arithmetic and sector qualification RNAV applies ownership/realizability once and net corporate debt once",
+          "status": "passed"
+        },
+        {
+          "name": "valuation arithmetic and sector qualification keeps reported earnings sensitivity distinct from fair value",
+          "status": "passed"
+        },
+        {
+          "name": "valuation arithmetic and sector qualification refuses weighted/listed/stale/unbridged shares as current denominator",
+          "status": "passed"
+        },
+        {
+          "name": "actual common-earnings normalization deducts the source fund amount instead of using total NPAT forVNM",
+          "status": "passed"
+        },
+        {
+          "name": "actual common-earnings normalization preserves and blocks the literalBSR source discrepancy, not corrected to make tests green",
+          "status": "passed"
+        },
+        {
+          "name": "actual common-earnings normalization keeps unestimated funds unknown and retains standalone issuer scope",
+          "status": "passed"
+        },
+        {
+          "name": "actual common-earnings normalization detects changed unit/multiplier and rejects treating weighted shares as outstanding",
+          "status": "passed"
+        },
+        {
+          "name": "owner-authorized AI review without legacy impersonation calculates a complete synthetic negative-economics case as0 while never authorizing production",
+          "status": "passed"
+        },
+        {
+          "name": "owner-authorized AI review without legacy impersonation returnsN/R total, not zero or reweighted100, when a rubric is missing",
+          "status": "passed"
+        },
+        {
+          "name": "owner-authorized AI review without legacy impersonation requires all23 rubrics, exactAI actor, actual bands and topic-specific checked evidence",
+          "status": "passed"
+        },
+        {
+          "name": "owner-authorized AI review without legacy impersonation does not pass future knowledge or stale valuation qualification into points",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/scoring-bridge-derived.test.ts",
+      "assertions": [
+        {
+          "name": "strict bridge preserves ordered governed CFO/capex values, window and FCF request without accepting a vendor ratio",
+          "status": "passed"
+        },
+        {
+          "name": "a forged derived result, unavailable constituent or unselected derived artifact fails closed",
+          "status": "passed"
+        },
+        {
+          "name": "DATE_ONLY constituents and later review knowledge cannot manufacture exact publication or historical metric eligibility",
+          "status": "passed"
+        },
+        {
+          "name": "mixed DATE_ONLY/TIMESTAMP derived operands replay FCF unchanged without a fake composite clock and use the latest knowledge boundary",
+          "status": "passed"
+        },
+        {
+          "name": "a quarter-from-YTD composite keeps both publication constituents and null publishedAt when either is DATE_ONLY",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/scoring-evidence-time.test.ts",
+      "assertions": [
+        {
+          "name": "governed receipt bridges DATE_ONLY at and after availability, retaining date, precision, exact proof and null publication clock",
+          "status": "passed"
+        },
+        {
+          "name": "each cutoff independently blocks late DATE_ONLY; ungoverned, unknown and missing selected membership fail closed",
+          "status": "passed"
+        },
+        {
+          "name": "TIMESTAMP stays exact, legacy exact Evidence remains unchanged and neither contract permits a fake publication clock",
+          "status": "passed"
+        },
+        {
+          "name": "precision, date, disclosure and governed receipt proof change full reviewed semantics and cannot replace the canonical bridge",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/scoring-golden.test.ts",
+      "assertions": [
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-001 raw evidence → normalized metric → explicit assessment → 82/100",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-002 timing overlays cannot enter the fundamental input",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-003 timing overlays cannot enter the fundamental input",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-005/006 weak business or valuation category excluded despite compensating points",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-030/031 bank ROE22% never overrides provisioning assessment",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-032 developer low price does not repair weak realization or legal/funding risks",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-033 technology low tangible book is not a penalty",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-034 retailer adverse store economics uses weaker bounded growth assessment",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-035 peak and trough require symmetric normalization",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-036 peak and trough require symmetric normalization",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-040 same family cannot create duplicate economic-channel awards",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-041 same family cannot create duplicate economic-channel awards",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-042 same family cannot create duplicate economic-channel awards",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-043 same family cannot create duplicate economic-channel awards",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-044/103 sector constraint changes portfolio ranking once, never fundamental total",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-045 confidence excludes once and never multiplies total",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-050 investor balances cannot enter issuer valuation",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-051 investor balances cannot enter issuer valuation",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-064 investor balances cannot enter issuer valuation",
+          "status": "passed"
+        },
+        {
+          "name": "M3 golden sector and anti-shortcut cases VC-106 equal fundamental criteria do not use investor gain/loss to break tie",
+          "status": "passed"
+        },
+        {
+          "name": "M3 issuer action and accounting-source golden cases VC-070 split preserves basis and does not automatically change dilution score",
+          "status": "passed"
+        },
+        {
+          "name": "M3 issuer action and accounting-source golden cases VC-071 bonus share count is not issuer dilution; unspecified accounting remains rejected by M6.3",
+          "status": "passed"
+        },
+        {
+          "name": "M3 issuer action and accounting-source golden cases VC-072/073 rights per-share economic assessment, not share-count bonus",
+          "status": "passed"
+        },
+        {
+          "name": "M3 issuer action and accounting-source golden cases VC-074 missing merger terms produce N/R",
+          "status": "passed"
+        },
+        {
+          "name": "M3 issuer action and accounting-source golden cases VC-075/076 staged rights settlement does not recreate issuer growth or quantity",
+          "status": "passed"
+        },
+        {
+          "name": "M3 issuer action and accounting-source golden cases VC-061 planning never deposits cash",
+          "status": "passed"
+        },
+        {
+          "name": "M3 issuer action and accounting-source golden cases VC-062/080/081/082/083 settlement keeps obligations and quantity/P&L separate",
+          "status": "passed"
+        },
+        {
+          "name": "M3 issuer action and accounting-source golden cases VC-084 full exit and re-entry starts new basis",
+          "status": "passed"
+        },
+        {
+          "name": "M3 issuer action and accounting-source golden cases VC-085 opening migration is explicit source evidence",
+          "status": "passed"
+        },
+        {
+          "name": "M3 issuer action and accounting-source golden cases VC-090/091/092/093 correction applies at its effective time, old score remains pinned",
+          "status": "passed"
+        },
+        {
+          "name": "M3 issuer action and accounting-source golden cases VC-110 exact future membership exclusion",
+          "status": "passed"
+        },
+        {
+          "name": "M3 issuer action and accounting-source golden cases VC-113 later price outcome cannot change method identity or old artifact",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/scoring-portfolio.test.ts",
+      "assertions": [
+        {
+          "name": "M3 field-scoped M6.3 application integration VC-063/105: 100-share cash accumulation is a display overlay only",
+          "status": "passed"
+        },
+        {
+          "name": "M3 field-scoped M6.3 application integration VC-052/053/086/121: cost-only missing evidence permits exposure and omits cost context",
+          "status": "passed"
+        },
+        {
+          "name": "M3 field-scoped M6.3 application integration VC-060/120/122/123/125: cash corruption blocks scoped ranking",
+          "status": "passed"
+        },
+        {
+          "name": "M3 field-scoped M6.3 application integration VC-060/120/122/123/125: quantity corruption blocks scoped ranking",
+          "status": "passed"
+        },
+        {
+          "name": "M3 field-scoped M6.3 application integration VC-060/120/122/123/125: obligations corruption blocks scoped ranking",
+          "status": "passed"
+        },
+        {
+          "name": "M3 field-scoped M6.3 application integration VC-060/120/122/123/125: unknown corruption blocks scoped ranking",
+          "status": "passed"
+        },
+        {
+          "name": "M3 field-scoped M6.3 application integration VC-060/120/122/123/125: absent corruption blocks scoped ranking",
+          "status": "passed"
+        },
+        {
+          "name": "M3 field-scoped M6.3 application integration VC-124: same existing snapshot gives same context; stale watermark blocks",
+          "status": "passed"
+        },
+        {
+          "name": "M3 field-scoped M6.3 application integration blocked accounting removes portfolio-aware entries without changing issuer score",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/scoring-readiness.test.ts",
+      "assertions": [
+        {
+          "name": "accounts for all 30 tickers; data readiness, human score readiness and actionability remain distinct",
+          "status": "passed"
+        },
+        {
+          "name": "missing/failed DI, self-review and unresolved Critical/Major issues fail closed",
+          "status": "passed"
+        },
+        {
+          "name": "same content with another run, modified policy/model/universe/cutoff or AS_REVISED cannot inherit acceptance",
+          "status": "passed"
+        },
+        {
+          "name": "human, valuation, confidence, gates and critical inputs produce explicit blockers without auto assessments",
+          "status": "passed"
+        },
+        {
+          "name": "strict bridge preserves null/zero/currency/period and rejects unbound DATE_ONLY/UNKNOWN publication changes",
+          "status": "passed"
+        },
+        {
+          "name": "forged Evidence, metric references and unclassified numeric fundamentals cannot bypass the bridge",
+          "status": "passed"
+        },
+        {
+          "name": "later local knowledge and stale bridges cannot be hidden by later calculation clocks",
+          "status": "passed"
+        },
+        {
+          "name": "global DI4/valuation declarations cannot hide absent per-ticker required evidence",
+          "status": "passed"
+        },
+        {
+          "name": "fundamentals readiness uses selected eligible facts, never unselected, stale, wrong-scope or late repository rows",
+          "status": "passed"
+        },
+        {
+          "name": "coverage checks do not reject valid maximum-length canonical observation IDs",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/scoring.test.ts",
+      "assertions": [
+        {
+          "name": "M3 bounded analyst scoring VC-001: deterministic complete /100 composition; high score is not BUY",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring sector BANK preserves identical weights and explicit equivalent assessment",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring sector REAL_ESTATE preserves identical weights and explicit equivalent assessment",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring sector RETAIL preserves identical weights and explicit equivalent assessment",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring sector TECHNOLOGY preserves identical weights and explicit equivalent assessment",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring sector INDUSTRIAL preserves identical weights and explicit equivalent assessment",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring sector MATERIALS preserves identical weights and explicit equivalent assessment",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring sector UTILITIES preserves identical weights and explicit equivalent assessment",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring sector ENERGY preserves identical weights and explicit equivalent assessment",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring sector SECURITIES preserves identical weights and explicit equivalent assessment",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring sector INSURANCE preserves identical weights and explicit equivalent assessment",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring sector CONGLOMERATE preserves identical weights and explicit equivalent assessment",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring BQ-EQ rejects points above 8 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring BQ-MOAT rejects points above 6 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring BQ-CASH rejects points above 6 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring BQ-RES rejects points above 5 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring FH-BS rejects points above 6 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring FH-LIQ rejects points above 4 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring FH-STRESS rejects points above 5 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring GQ-HIST rejects points above 5 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring GQ-FWD rejects points above 5 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring GQ-INC rejects points above 5 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring IC-IND rejects points above 4 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring IC-POS rejects points above 4 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring IC-CYCLE rejects points above 2 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring VAL-PRIMARY rejects points above 8 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring VAL-RET rejects points above 8 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring VAL-MOS rejects points above 4 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring RG-GOV rejects points above 4 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring RG-RISK rejects points above 4 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring RG-UNC rejects points above 2 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring CA-REINV rejects points above 2 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring CA-DIST rejects points above 1 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring CA-DIL rejects points above 1 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring CA-PSV rejects points above 1 maximum",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring every clarified band accepts explicit bounded selection when economic qualifiers permit",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring VC-020/021/022: missing is neither zero nor midpoint, no redistribution",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring strong CFO alone does not automatically award maximum earnings quality",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring rejects AI, silent range selection, absent maximum review and raw formula injection",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring VC-023: stale and conflicting data remain explicit and lower confidence",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring VC-040–045: double count review cannot be bypassed",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring VC-070–076: missing action comparability never fabricates continuous per-share history",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring VC-110/111: half-open historical sector assignment; never backfill current sector",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring VC-112/114: future evidence and reference cannot leak into historical cutoff",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring later evidence and methodology do not mutate prior artifact",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring low PE / price decline / cost basis / technical momentum cannot inject points",
+          "status": "passed"
+        },
+        {
+          "name": "M3 bounded analyst scoring exact metric lineage: raw normalized NOPAT20/capital100 gives ROIC0.2, no points",
+          "status": "passed"
+        },
+        {
+          "name": "official ranking, gates and economic ties scores [84,82,80] have clusters [2,1]",
+          "status": "passed"
+        },
+        {
+          "name": "official ranking, gates and economic ties scores [83,82,81] have clusters [3]",
+          "status": "passed"
+        },
+        {
+          "name": "official ranking, gates and economic ties scores [82,81] have clusters [2]",
+          "status": "passed"
+        },
+        {
+          "name": "official ranking, gates and economic ties scores [82,80] have clusters [2]",
+          "status": "passed"
+        },
+        {
+          "name": "official ranking, gates and economic ties scores [82,79] have clusters [1,1]",
+          "status": "passed"
+        },
+        {
+          "name": "official ranking, gates and economic ties scores [82,82,82] have clusters [3]",
+          "status": "passed"
+        },
+        {
+          "name": "official ranking, gates and economic ties VC-004–008/104: LOW-confidence high score, hard veto and category failures are excluded",
+          "status": "passed"
+        },
+        {
+          "name": "official ranking, gates and economic ties positions9–12 preserve full boundary tie and only ten display entries",
+          "status": "passed"
+        },
+        {
+          "name": "official ranking, gates and economic ties VC-101/102: incomparable model confidence cannot win on higher return alone",
+          "status": "passed"
+        },
+        {
+          "name": "official ranking, gates and economic ties requires complete dated universe and rejects mixed scoring method versions",
+          "status": "passed"
+        },
+        {
+          "name": "official ranking, gates and economic ties consumes M4 hurdle results without recalculating M4 thresholds",
+          "status": "passed"
+        },
+        {
+          "name": "official ranking, gates and economic ties keeps M3 arithmetic stable when only an external M4 result changes",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/personal-ai-provenance.test.ts",
+      "assertions": [
+        {
+          "name": "pinned AI session and tool provenance boundary requires separately pinned tool/check evidence even with matching review/pass hashes",
+          "status": "passed"
+        },
+        {
+          "name": "pinned AI session and tool provenance boundary rejects mutated tool evidence bytes and a different owner authorization scope",
+          "status": "passed"
+        },
+        {
+          "name": "pinned AI session and tool provenance boundary rejects a session/model mismatch even if the altered artifact checksum is pinned",
+          "status": "passed"
+        },
+        {
+          "name": "pinned AI session and tool provenance boundary rejects path traversal and symbolic-link evidence",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "artifactPins": [
+    {
+      "path": "src/domain/personal-ai/provenance.ts",
+      "sha256": "5036dbcacec79f37b980e78c1b0f60a5eaea3ddbe1c18da643a0b3be8032565b"
+    },
+    {
+      "path": "src/domain/personal-ai/scorecard.ts",
+      "sha256": "37736bb4a85f9c655457d449f8ed3d983c1c219d1008b2f692c77a0c6edb5199"
+    },
+    {
+      "path": "src/domain/personal-ai/scoring-bridge.ts",
+      "sha256": "6a4475dc51d65bf5fb392bc56c829bc78a283e5cc90c0dbecdd2f9ccbb54da5a"
+    },
+    {
+      "path": "src/domain/personal-ai/scoring-readiness.ts",
+      "sha256": "ba9e8af70fb1d6f5148142b20170a9773ca40ce9f7317c6752caa6c37c7c097a"
+    },
+    {
+      "path": "src/application/personal-ai/scoring-engine.ts",
+      "sha256": "46b634ff1629bd232085ede3f512f505ea13c4a1ace2b2b642adb230efec0694"
+    },
+    {
+      "path": "src/infrastructure/personal-ai/artifact-store.ts",
+      "sha256": "c81063a94854362f0dd847f5289fb3ba77491cfc335b8008ade39aeb1ecd8d94"
+    },
+    {
+      "path": "src/infrastructure/personal-ai/pinned-review.ts",
+      "sha256": "5fa9eeebc2d782079832dbd27db5367b50b8e47c23cf43744404aedb0e977f88"
+    },
+    {
+      "path": "src/infrastructure/personal-ai/scoring-datasets.ts",
+      "sha256": "f9d9d5a67842633b7433bedc52f320ef5423990ac8f6cc339e5bd8070c62e853"
+    },
+    {
+      "path": "src/ports/personal-ai-scoring.ts",
+      "sha256": "4949bd026932d06b7e91b2d5bbb2cadef494c63a1c067a0e7ca162f5b1356f36"
+    },
+    {
+      "path": "scripts/generate-personal-ai-compatibility.mjs",
+      "sha256": "ca4adaf202172b7639d4e4a000858dd276a5524e8f5cbc816162d9e16ed0ea44"
+    },
+    {
+      "path": "tests/fixtures/personal-ai-scoring.ts",
+      "sha256": "f08a261709f04a54eb21d64a5329ee60a01d65f03daad952642fb8f4fd1f09a4"
+    },
+    {
+      "path": "tests/unit/personal-ai-scoring.test.ts",
+      "sha256": "b49180531f52d1133d940fbeca5551bc9467dada959bc86e12b83535adad08aa"
+    },
+    {
+      "path": "tests/unit/personal-ai-provenance.test.ts",
+      "sha256": "55ecf3964deb91d88e90474b397be80850440f92e8bd12892e8ce0a37a2361cd"
+    },
+    {
+      "path": "tests/integration/personal-ai-scoring.test.ts",
+      "sha256": "c806806051208e86cbd9d1e7df444323e2308260012c4bb3bd0ea503b456c5e5"
+    },
+    {
+      "path": "docs/fundamental-data-engine/PERSONAL_AI_SCORING_CONTRACT_V1.md",
+      "sha256": "25fdf21bd747df853780621ab676185541ab260fcea9fdd83ae6a91e00a381d0"
+    }
+  ],
+  "preservedBaselinePins": [
+    {
+      "path": "src/domain/scoring/scorecard.ts",
+      "sha256": "2a778e3291cac295fab9f3f18358ed43415d3fea893bd912e6608302a8b18d18"
+    },
+    {
+      "path": "src/domain/scoring/methodology.ts",
+      "sha256": "e7031bf6b00e38670016888928ceb941e5c3a524016a1f8ce84123aca6c7da41"
+    },
+    {
+      "path": "src/domain/scoring/methodology/identity.ts",
+      "sha256": "d3ebed4882d4f04d53623d5c462280873b3f514beaa97345324f3eab6a1bbf7e"
+    },
+    {
+      "path": "src/domain/fundamentals/runtime-review.ts",
+      "sha256": "5fec3d43e81b3058d0287f83718a0c2ab9576f3d6cee48bf76e7e24d0a7de4f4"
+    },
+    {
+      "path": "src/domain/fundamentals/scoring-readiness.ts",
+      "sha256": "08632dfb279de43c9896b639daa384da4e22c35fcb9b6b08754b50b022517be5"
+    },
+    {
+      "path": "src/domain/fundamentals/scoring-readiness-policy-b.ts",
+      "sha256": "863f0c30cc43839c458271d22a9cf697ee53d8b52f5faadb70e565d7f7f995b4"
+    },
+    {
+      "path": "src/domain/fundamentals/scoring-bridge.ts",
+      "sha256": "e79aede87b75ba00f52cb81edf965481e8e7308cccf09cb3716fd3faa20d39b5"
+    },
+    {
+      "path": "src/infrastructure/repositories/scoring-datasets.ts",
+      "sha256": "9181afa27d76408537b257352fc56ba067cce98d73ac85598d8efa4b08df9ef2"
+    },
+    {
+      "path": "src/infrastructure/repositories/scoring-datasets-policy-b.ts",
+      "sha256": "576a5525b12a9f121dd45014374e9a2a062e64272ac0baac6c4b5646885d849c"
+    },
+    {
+      "path": "src/infrastructure/dependencies/active-authorities.json",
+      "sha256": "11097faedd354bce613fcb11ae290b1d395d5db04225d4be7add1c9d7dd9414c"
+    },
+    {
+      "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-29/PERSONAL_AI_ACCEPTANCE.md",
+      "sha256": "a598d95557218ec2e5a6342c49218538c6b6fdaa24fccb023c73d8ad1b5552be"
+    },
+    {
+      "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/current-review.json",
+      "sha256": "3938a612f2c047e92a2890160d9c40d61215759433e6223d56111a88e495253f"
+    }
+  ],
+  "protectedFileHashes": {
+    "data/vn30.sqlite": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65",
+    "data/account-current/acquisition-cost-basis.json": "ae938c4ffb0da3c292b17cecd175018606d3c25d76e8f7432c7078f5343e34ff",
+    "data/account-current/pending-dividends.json": "b6deebe8085ece5931b3bc264d307503f29ea0c1f1873502237f3572683ed7fe",
+    "data/account-current/personal-account.json": "f683477cea82b42b15621e45aa3d9225eadb1adb531616c8ccc0811ac689ca70",
+    "data/account-current/selected-pnl-basis.json": "33c97f3cebf7bef54fa3135565e75a4c83e681499470f5a7e243f572093bdc58"
+  },
+  "productionDatabaseChanged": false,
+  "accountingFactsChanged": false,
+  "financialCriteriaChanged": false,
+  "weightsChanged": false,
+  "legacyContractsChanged": false,
+  "sourceAuthoritiesPromoted": 0,
+  "realDatasetsAccepted": 0,
+  "trustedProductionAiBindingsInstalled": 0,
+  "productionCompositionChanged": false,
+  "navActivated": false,
+  "officialRankingsPublished": false,
+  "tradesExecuted": 0,
+  "interimResults": [
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH pnpm exec vitest run tests/unit/personal-ai-scoring.test.ts tests/integration/personal-ai-scoring.test.ts --reporter=json --outputFile=/private/tmp/personal-ai-focused.json",
+      "exitCode": 1,
+      "passed": 22,
+      "failed": 3,
+      "reason": "macOS /var versus /private/var directory alias rejected by overly lexical directory guard; canonicalized trusted directory and reapplied public/build exclusion, retaining symlink rejection"
+    },
+    {
+      "command": "Same focused command after correction",
+      "exitCode": 0,
+      "passed": 25,
+      "failed": 0
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH pnpm exec tsc --noEmit",
+      "initialExitCode": 2,
+      "finalExitCode": 0,
+      "reason": "Synthetic fixture incomplete review construction; typed semantic hash helper accepts input before review envelope is attached"
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH pnpm exec eslint src/domain/personal-ai src/application/personal-ai src/infrastructure/personal-ai src/ports/personal-ai-scoring.ts scripts/generate-personal-ai-compatibility.mjs tests/fixtures/personal-ai-scoring.ts tests/unit/personal-ai-scoring.test.ts tests/unit/personal-ai-provenance.test.ts tests/integration/personal-ai-scoring.test.ts --max-warnings=0",
+      "initialExitCode": 1,
+      "finalExitCode": 0,
+      "reason": "Generator used Next-reserved loop variable module; renamed without changing generated output"
+    }
+  ],
+  "limitations": [
+    "Generated compatibility is build-time only, and parity guard rejects changed baseline or modified financial branches",
+    "All successful acceptance/session/tool/approval identities in tests are synthetic and disposable; no real review receipt is generated",
+    "Pinned local logs establish configured retained bytes, not external OpenAI signatures or independent human review",
+    "New AI artifacts use a separate private file namespace; no legacy table/schema migration or decoder widening",
+    "No production configuration, actual source admission, formal current dataset acceptance, ranking/decision integration or deployment",
+    "Full repository suite/build/full lint not rerun; financial/readiness/HUMAN/Policy-B regressions and new path were exercised",
+    "Artifact pins omit this validation file to avoid self-reference"
+  ]
+}
