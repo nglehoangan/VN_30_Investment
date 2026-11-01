@@ -1,0 +1,1593 @@
+{
+  "contract": "m8-wp1-final-remediation-validation-v1",
+  "date": "2026-11-01",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "baselineHead": "6c49b6d5a78489d03260eca15d42f78be0de096d",
+  "finalState": "WP1_BLOCKED_REMEDIATION",
+  "node": "22.23.2",
+  "checks": [
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH WP1_PRIVATE_DB=1 WP1_EVIDENCE_OUTPUT=/private/tmp/wp1-finalcase.json pnpm exec vitest run tests/unit/accounting-event-preview.test.ts tests/integration/wp1-accounting-preview.test.ts tests/unit/ownership-reconciliation.test.ts tests/integration/wp1-retained-accounting.test.ts tests/unit/portfolio-accounting.test.ts tests/unit/dividend-settlement.test.ts tests/unit/personal-account.test.tsx tests/unit/current-nav.test.ts tests/unit/nav-read-adapters.test.ts tests/integration/portfolio.test.ts tests/integration/portfolio-regressions.test.ts tests/integration/dividend-settlement.test.ts tests/integration/current-nav.test.ts tests/unit/portfolio-read-models.test.ts tests/unit/forward-intake.test.ts tests/integration/forward-intake.test.ts --reporter=json --outputFile=/private/tmp/wp1-final-remediation-tests.json",
+      "exitCode": 0,
+      "passed": 339,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH pnpm exec tsc --noEmit",
+      "exitCode": 0
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH pnpm exec eslint src/domain/portfolio/accounting-event-preview.ts src/application/portfolio/accounting-validation.ts src/ports/accounting-preview.ts src/infrastructure/portfolio/wp1-evidence-reader.ts tests/fixtures/portfolio/accounting-preview.ts tests/unit/accounting-event-preview.test.ts tests/integration/wp1-accounting-preview.test.ts --max-warnings=0",
+      "exitCode": 0
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH node scripts/check-boundaries.mjs",
+      "exitCode": 0,
+      "result": "PASS boundaries: 277 source modules"
+    },
+    {
+      "command": "python3 scripts/audit-wp1-accounting.py > /private/tmp/wp1-final-remediation-audit.json",
+      "exitCode": 0
+    },
+    {
+      "command": "cmp /private/tmp/wp1-final-remediation-audit.json docs/fundamental-data-engine/evidence/2026-11-01-m8-wp1/retained-accounting-audit.json",
+      "exitCode": 0
+    }
+  ],
+  "passed": 339,
+  "failed": 0,
+  "skipped": 0,
+  "testFiles": [
+    {
+      "path": "tests/integration/current-nav.test.ts",
+      "assertions": [
+        {
+          "name": "Phase3.2 readonly service on isolated actual SQLite assembles pinned ledger-derived plan, returns1220 immutable manifest and makes no writes",
+          "status": "passed"
+        },
+        {
+          "name": "Phase3.2 readonly service on isolated actual SQLite defaults to nonoperational retained mode and no authority, never trusts test/JSONflags",
+          "status": "passed"
+        },
+        {
+          "name": "Phase3.2 readonly service on isolated actual SQLite missing real input source returnsNAV_BLOCKED without reconstructing fake prices",
+          "status": "passed"
+        },
+        {
+          "name": "Phase3.2 readonly service on isolated actual SQLite rechecks ledger revision after reading source and blocks racing results",
+          "status": "passed"
+        },
+        {
+          "name": "Phase3.2 readonly service on isolated actual SQLite evidence-head race, source failure and clock rollback fail closed",
+          "status": "passed"
+        },
+        {
+          "name": "Phase3.2 readonly service on isolated actual SQLite does not claim AS_KNOWN or ignore late-known ledger facts",
+          "status": "passed"
+        },
+        {
+          "name": "Phase3.2 readonly service on isolated actual SQLite post-close known events are not mixed into earlier EOD cash",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/integration/dividend-settlement.test.ts",
+      "assertions": [
+        {
+          "name": "Phase2.1 isolated real SQLite / CAS / immutable audit persists exact legs, one receipt owner, audit and idempotent retry even stale revision",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 isolated real SQLite / CAS / immutable audit missing operational adapter fails closed and rolls back business/revision",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 isolated real SQLite / CAS / immutable audit acceptance rejection is atomic, including corrections",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 isolated real SQLite / CAS / immutable audit audit persistence failure rolls back event, legs, revision and receipt",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 isolated real SQLite / CAS / immutable audit rejects duplicate receipt via DIVIDEND_CASH after settlement even with alternate source",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 isolated real SQLite / CAS / immutable audit rejects duplicate receipt via CASH_DEPOSIT after settlement even with alternate source",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 isolated real SQLite / CAS / immutable audit detects a receipt already posted through legacy cash before settlement enrollment",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 isolated real SQLite / CAS / immutable audit no adapter cannot bypass receipt registry by posting legacy credit after settlement",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 isolated real SQLite / CAS / immutable audit multiple partial receipts persist; duplicate receipt / overclaim rolls back",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 isolated real SQLite / CAS / immutable audit immutable reversal and explicit correction are audited; receipt stays reserved",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 isolated real SQLite / CAS / immutable audit CAS rejects stale different event; two independent connections cannot over-settle",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 isolated real SQLite / CAS / immutable audit concurrent identical requests never double-post; in-flight CAS conflict retries to original result",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 isolated real SQLite / CAS / immutable audit reversal and correction cannot bypass current source acceptance",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 isolated real SQLite / CAS / immutable audit missing canonical receipt identity rejects, and SQL replace cannot alter immutable audit",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 isolated real SQLite / CAS / immutable audit accepted evidence digest is bound to exact allocation and receipt, not a client accepted flag",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 isolated real SQLite / CAS / immutable audit audit tampering is rejected on read even if SQL immutability was administratively disabled",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/integration/forward-intake.test.ts",
+      "assertions": [
+        {
+          "name": "Phase2.2 isolated forward intake BUY + separate settlement reuse engine in one atomic multi-time batch",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake SELL + settlement realizes P&L once",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake deposit, withdrawal, fees and taxes preserve separate capital/expense semantics",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake cash dividend records income but no external flow",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake net claim settlement retains Phase2.1 receipt protection and zero duplicate income",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake supported split preserves total MWAC basis",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake repeat/cross-file/cross-format receipts return DUPLICATE with no revision change",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake duplicates in one batch are explicit and retained, not silently discarded",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake conflicting content under same stable event/revision NEEDS_REVIEW",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake legacy direct ledger transaction is detected by verified economic identity",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake unresolved legacy provenance blocks rather than assuming no duplicate",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake pre-opening event and date-only cannot be imported",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake missing source/identity and unsupported categories preserve every original record",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake no real acceptance adapter defaults BLOCKED_SOURCE",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake hash mismatch, wrong accepted security/account, self-review and future knowledge fail closed",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake invalid financial event in second record rolls back the entire batch",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake audit failure and revoked acceptance at atomic commit roll back business legs",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake explicit immutable reversal is supported and opening reversal is blocked",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake corrected broker revision requires paired reversal/replacement; duplicate revision cannot repost",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake enrolled portfolio cannot bypass intake/audit via the old posting facade",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake concurrent imports use CAS; retry identical event is idempotent",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake different concurrent imports cannot both claim the same revision",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake oversell and unfunded margin fail existing accounting rules",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 isolated forward intake audit is immutable and tampered retained audit fails read integrity",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/integration/portfolio-regressions.test.ts",
+      "assertions": [
+        {
+          "name": "AUDIT-C01 must reject a second active split backdated before the first reversal",
+          "status": "passed"
+        },
+        {
+          "name": "AUDIT-M01 snapshot must resolve January 3 reference at January 2 18:00 UTC (January 3 01:00 Vietnam)",
+          "status": "passed"
+        },
+        {
+          "name": "AUDIT-M02 a snapshot before supported inception must not claim VALID zero-state history",
+          "status": "passed"
+        },
+        {
+          "name": "C01 replacement after reversal preserves original historical state and accepts one active stage",
+          "status": "passed"
+        },
+        {
+          "name": "C01 replay rejects a duplicate backdated before the original even if latest active state appears free",
+          "status": "passed"
+        },
+        {
+          "name": "C01 atomic replacement at reversal effective time follows deterministic economic ordering",
+          "status": "passed"
+        },
+        {
+          "name": "M03 imported NAV baseline is priced, reproducible, versioned and separate from cost and contributions",
+          "status": "passed"
+        },
+        {
+          "name": "M03 absent inception inputs block actionable imported snapshot while preserving current NAV",
+          "status": "passed"
+        },
+        {
+          "name": "M03 missing inception evidence cannot be replaced with cost basis or current inputs",
+          "status": "passed"
+        },
+        {
+          "name": "M03 stale inception evidence cannot be replaced with cost basis or current inputs",
+          "status": "passed"
+        },
+        {
+          "name": "M03 future inception evidence cannot be replaced with cost basis or current inputs",
+          "status": "passed"
+        },
+        {
+          "name": "M03 conflicting inception evidence cannot be replaced with cost basis or current inputs",
+          "status": "passed"
+        },
+        {
+          "name": "M03 missing-sector inception evidence cannot be replaced with cost basis or current inputs",
+          "status": "passed"
+        },
+        {
+          "name": "M03 missing-membership inception evidence cannot be replaced with cost basis or current inputs",
+          "status": "passed"
+        },
+        {
+          "name": "M03 revised inception evidence recomputes gain without changing ledger",
+          "status": "passed"
+        },
+        {
+          "name": "M02 inception itself is supported and empty zero-start history is distinct from pre-inception",
+          "status": "passed"
+        },
+        {
+          "name": "M01 reference day boundary 2026-01-02T16:59:59.999Z resolves sector and identifier to OLD",
+          "status": "passed"
+        },
+        {
+          "name": "M01 reference day boundary 2026-01-02T17:00:00.000Z resolves sector and identifier to NEW",
+          "status": "passed"
+        },
+        {
+          "name": "M01 reference day boundary 2026-01-02T23:59:59.999Z resolves sector and identifier to NEW",
+          "status": "passed"
+        },
+        {
+          "name": "M01 reference day boundary 2026-01-03T00:00:00.000Z resolves sector and identifier to NEW",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/integration/portfolio.test.ts",
+      "assertions": [
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations VC-L01 Command -> validation -> repository -> SQLite -> reload -> replay",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations VC-L05 / VC-SEC02 duplicate key/source and stale double submit cannot post twice",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations same values with distinct economic identities are not silently merged",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations VC-L03 oversell rejects before authoritative commit and revision advance",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations VC-SEC03 stale draft is rejected; never posts against stale quantity",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations raw late-leg insert/update/delete/replace/header destructive mutation fail",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations failed required leg insert rolls back header, revision and all legs",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations VC-L07 projection failure retains authoritative event and stale old projection",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations VC-L08 new event invalidates historical snapshot watermark",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations VC-L06 settled trade correction is atomic, queryable, survives reload",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations independent connections racing at one watermark permit at most one economic command",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations decimal TEXT round-trip beyond safe integer and fractional charge",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations migration repeat/reopen retains methodology and reconstructs the golden fixture",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations historical watermark reproduces the input set before a later backdated contribution",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations an old rebuild cannot overwrite a projection from a newer ledger revision",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations snapshot includes valuation/reconciliation versions and blocks missing evidence or changed inputs",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations corporate reference and staged accounting effects persist separately and are immutable",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 real SQLite ledger / commands / migrations FK and value exclusivity constraints enabled",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/integration/wp1-accounting-preview.test.ts",
+      "assertions": [
+        {
+          "name": "WP1 actual retained case in disposable SQLite copy verifies source lineage, records/reloads immutable previews, and reproduces the economic bridge without production posting",
+          "status": "passed"
+        },
+        {
+          "name": "WP1 actual retained case in disposable SQLite copy blocks source/date/effect overrides against the actual event plan",
+          "status": "passed"
+        },
+        {
+          "name": "WP1 actual retained case in disposable SQLite copy keeps actual stale, quantity, corporate-action and unknown cutoff failures visible in the connected workflow",
+          "status": "passed"
+        },
+        {
+          "name": "WP1 actual retained case in disposable SQLite copy rejects corrupted observation bytes and a changed owner source record in isolated negative copies",
+          "status": "passed"
+        },
+        {
+          "name": "WP1 actual retained case in disposable SQLite copy does not accept a different source/account identity at the application boundary",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/integration/wp1-retained-accounting.test.ts",
+      "assertions": [
+        {
+          "name": "WP1 actual retained SQLite -> canonical replay -> diagnostics rebuilds every actual transaction and stored leg without posting",
+          "status": "passed"
+        },
+        {
+          "name": "WP1 actual retained SQLite -> canonical replay -> diagnostics detects actual TCB mismatch while refusing to invent an economic cutoff or CA reference",
+          "status": "passed"
+        },
+        {
+          "name": "WP1 actual retained SQLite -> canonical replay -> diagnostics reuses the sourced MWG receipt and leaves fee payable",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/accounting-event-preview.test.ts",
+      "assertions": [
+        {
+          "name": "evidence-bound WP1 event proposals preserves date precision, null action IDs and unknown original knowledge timestamps",
+          "status": "passed"
+        },
+        {
+          "name": "evidence-bound WP1 event proposals projects the separate economic components without creating income, cash adjustments or purchase basis",
+          "status": "passed"
+        },
+        {
+          "name": "evidence-bound WP1 event proposals rejects duplicate event 0",
+          "status": "passed"
+        },
+        {
+          "name": "evidence-bound WP1 event proposals rejects duplicate event 1",
+          "status": "passed"
+        },
+        {
+          "name": "evidence-bound WP1 event proposals rejects duplicate event 2",
+          "status": "passed"
+        },
+        {
+          "name": "evidence-bound WP1 event proposals rejects duplicate event 3",
+          "status": "passed"
+        },
+        {
+          "name": "evidence-bound WP1 event proposals rejects the same receipt under another transport identity",
+          "status": "passed"
+        },
+        {
+          "name": "evidence-bound WP1 event proposals rejects unsupported timestamp overrides",
+          "status": "passed"
+        },
+        {
+          "name": "evidence-bound WP1 event proposals rejects unsupported date overrides",
+          "status": "passed"
+        },
+        {
+          "name": "evidence-bound WP1 event proposals rejects unsupported source overrides",
+          "status": "passed"
+        },
+        {
+          "name": "evidence-bound WP1 event proposals rejects unsupported amount overrides",
+          "status": "passed"
+        },
+        {
+          "name": "evidence-bound WP1 event proposals rejects unsupported action overrides",
+          "status": "passed"
+        },
+        {
+          "name": "evidence-bound WP1 event proposals rejects a changed opening baseline and source identity",
+          "status": "passed"
+        },
+        {
+          "name": "evidence-bound WP1 event proposals cannot turn a preview into posting authorization",
+          "status": "passed"
+        },
+        {
+          "name": "pending-to-available lifecycle preview only conserves ownership and cost through evidenced conversion and rejects duplicates",
+          "status": "passed"
+        },
+        {
+          "name": "pending-to-available lifecycle preview only rejects unevidenced, excessive or foreign-source conversion",
+          "status": "passed"
+        },
+        {
+          "name": "application accounting validation workflow connects both before/projected ownership guards and never grants NAV or trading authority",
+          "status": "passed"
+        },
+        {
+          "name": "application accounting validation workflow preserves stale observation block",
+          "status": "passed"
+        },
+        {
+          "name": "application accounting validation workflow rejects wrong scope, stale revision, future evidence and evidence changing during the read",
+          "status": "passed"
+        },
+        {
+          "name": "application accounting validation workflow rejects noncanonical saved accounting legs",
+          "status": "passed"
+        },
+        {
+          "name": "application accounting validation workflow rejects ledger drift and incomplete ledger horizons",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/current-nav.test.ts",
+      "assertions": [
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix 01 qualified synthetic1220 uses reconstructed2shares/cash1000/claims30/payable10 and denies all operational uses",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix 02 missing held price blocks total;03 stale price never falls back",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix 04 conflicting source revisions cannot be averaged or latest-selected",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix 05 exact identity evidence required,06 cash unknown never0,07 liability unknown blocks even indicative",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix 08 unaccepted unresolved receivable blocks rather than treating money as settled",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix 09 pending rights partition is never ordinary value or extra economic shares",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix 10 adjustment/CA mismatch blocks, including adjusted quotes with ordinary ledger quantity",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix 11 date-only component evidence cannot become an intraday cutoff",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix 12 weekend/holiday can retain the latest accepted completed session, never calendar-day staleness",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix 13 late-arriving event changes revision and content; prior evidence is immutable",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix 14 corrected immutable inputs produce new evidence,15 revision mismatch blocks",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix 16 decimal exactness and output scale, with no floating financial rounding",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix 17 source authority absent or invalid and18 independent acceptance missing cannot be JSON accepted flags",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix 19 indicative requires opt-in complete observations and never acquires official output permissions",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix 20 NAV_BLOCKED propagates null totals even when ordinary component subtotal is available",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix 21 content reproducible within valid window; separate calculation run hash and ordered inputs",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix 22 no future source/approval knowledge, actual provider time remainsnull when normalization policy allows",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix negative arithmetic is preserved, never clamped or used to bypass M2 no-margin",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix zero NAV cash-only qualified fixture requires explicit empty-market proof",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on duplicate security",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on duplicate pending quantity",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on revoked raw evidence",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on wrong purpose",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on unaccepted basis affects shares",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on price zero",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on bad source hash",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on wrong calendar",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on provider time invented",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on different cash cutoff",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix fails closed on off-ledger liability overlay",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix partial security subtotal lists exclusions; duplicate identical price is harmless but distinct identity cannot be reused",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix legacy reconciliation/P&L gates preserved when basis provenance isPARTIAL but ownership not affected",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix QUALIFIED_ONLY never downgrades; revoked or self-approving authority also blocks indicative",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix synthetic proofs cannot qualify retained research origin",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix unsupported current-account-now and AS_KNOWN modes failclosed",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix result hash independently binds all semantic permissions and nonpositive flag",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix unrecognized proof fields reject and verifier-owned objects remain mutable",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix two held ledger securities require coverage and cannot reuse a market identity",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix corrected transaction reuses reversal and immutable domain replay, no financial rewriting",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix historical200 ordinary plus20 pending partition stays220 and blocks full NAV",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix accepted synthetic aligned split replay conserves basis and values200 RAW shares at50",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix authority expired fails closed including indicative",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix authority wrong-scope fails closed including indicative",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.2 pure NAV / approved22scenario matrix authority wrong-subject fails closed including indicative",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/dividend-settlement.test.ts",
+      "assertions": [
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics full subclaim settlement has exactly cash+70/receivable-70; no income/flow/quantity/MWAC/P&L",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics partial, multiple partials and all subclaims leave exact residuals",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects over settlement",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects cross portfolio",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects wrong issuer",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects wrong action",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects missing allocation",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects missing evidence",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects gross rejected",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects net mismatch",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects allocation total",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects overlapping subclaim",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects future knowledge",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects future evidence",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects wrong original leg",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects unknown schema",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects aggregate over-settlement across distinct receipts",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects duplicate receipt even with different event and source",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects alternative allocation of original leg",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics immutable reversal restores cash and claim; earlier asOf unchanged",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics rejects reversal with spent cash",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics explicit atomic reversal/replacement preserves receipt ownership and income",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics reversal does not free a receipt for unrelated reimport",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics legacy DIVIDEND_CASH still records income and CASH_DEPOSIT external flow",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.1 synthetic dividend receivable semantics allocation metadata never creates assets",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/forward-intake.test.ts",
+      "assertions": [
+        {
+          "name": "Phase2.2 deterministic classification (synthetic only) verified explicit category is supported; hashes alone are not authority",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 deterministic classification (synthetic only) source identity, provenance and raw content hash are mandatory",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 deterministic classification (synthetic only) unknown category and ambiguous description never infer a financial event",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 deterministic classification (synthetic only) opening equality, prior events and date-only evidence are blocked",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 deterministic classification (synthetic only) accepted account, portfolio and exact signed content scopes cannot be expanded",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 deterministic classification (synthetic only) producer cannot independently accept its own event",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 deterministic classification (synthetic only) ticker-only/missing security reference and wrong accepted identity are blocked",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 deterministic classification (synthetic only) future knowledge/retrieval is not backdated",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 deterministic classification (synthetic only) unsupported corporate action fails closed even with source qualification",
+          "status": "passed"
+        },
+        {
+          "name": "Phase2.2 deterministic classification (synthetic only) unknown transport contract cannot fall through to legacy posting",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/nav-read-adapters.test.ts",
+      "assertions": [
+        {
+          "name": "M8Phase3.4 isolated read adapters 01 valid immutable ledger snapshot reuses reconstruction, no completeness claim/write API",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 02 revision mismatch and stale revisions are rejected",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 03 expected ledger state/facts hash must match exact replay",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 04 valid broker read preserves immutable account/time/original fields/decimal provenance",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 05 missing file",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 06 modified bytes cannot match original pin",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 07 incorrect or malformed SHA256",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 08 oversized actual file and declared size are bounded",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 09 reject traversal ../broker.json",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 09 reject traversal /private/tmp/broker.json",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 09 reject traversal x/../broker.json",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 09 reject traversal x\\broker.json",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 10 unsupported schema rejected even with correct bytes/hash",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 11 exact account and document identity required, not filename",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 12 conflicting observations retain source conflict details but reject usable output",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 13-15 missing CASH never0",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 13-15 missing LIABILITY never0",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 13-15 missing RECEIVABLE never0",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 16 pending CA ambiguity and unsupported lifecycle block",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 17 duplicate security identity rejected even with distinct field IDs",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 18 ledger/source knowledge beyondK rejected without backdating",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 19 inconsistent valuation timestamp never substitutes broker current balances",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 20 evidence-head mismatch explicit",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 21-23 absent authority/acceptance and continuity always block both full NAVs",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 24-25 synthetic accepted calculator inputs stay compatible; adapter never creates acceptance",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters 26-28 deterministic replay, exact decimal and unchanged original bytes",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters symlink final and intermediate components rejected",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters TOCTOU replacement after descriptor open rejected even with identical bytes",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters unsupported UTF8/UTF16/BOM encoding rejected with valid byte hashes",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters duplicate evidence identifiers in fields or manifests rejected",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters duplicate JSON keys are not accepted last-wins",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters future observations and unsupported economic dates reject",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters inconsistent account/perimeter never imports or leaks another account",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters cash discrepancy and missing/null liabilities never trigger balancing",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters conflicting cross-document observations remain blocked rather than latest-selected",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters QUALIFIED_ONLY and opted-in indicative remain fully blocked through adapter",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters composition exposes only read; concurrent requests cannot share diagnostics",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters forged provenance pointers and untrusted approval fields are unsupported",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters blocked evidence heads still bind exact invalid pins and request revision",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters same-revision facts replacement is stale, not an unchanged ledger",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters large actual file with understated manifest size fails before parsing",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters nonregular files and symlink root are rejected",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters ambiguous account structure and unsupported precision are not repaired",
+          "status": "passed"
+        },
+        {
+          "name": "M8Phase3.4 isolated read adapters read capability preserves optional existing through-revision semantics",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/ownership-reconciliation.test.ts",
+      "assertions": [
+        {
+          "name": "read-only ownership diagnostics detects TCB +50 and preserves FPT ownership without changing input or granting valuation",
+          "status": "passed"
+        },
+        {
+          "name": "read-only ownership diagnostics blocks pending treated as tradable",
+          "status": "passed"
+        },
+        {
+          "name": "read-only ownership diagnostics blocks incorrect total",
+          "status": "passed"
+        },
+        {
+          "name": "read-only ownership diagnostics rejects adding another 20 FPT",
+          "status": "passed"
+        },
+        {
+          "name": "read-only ownership diagnostics blocks accountReference mismatch",
+          "status": "passed"
+        },
+        {
+          "name": "read-only ownership diagnostics blocks sourceReference mismatch",
+          "status": "passed"
+        },
+        {
+          "name": "read-only ownership diagnostics blocks stale and future receipt",
+          "status": "passed"
+        },
+        {
+          "name": "read-only ownership diagnostics does not invent a common economic time from receipt",
+          "status": "passed"
+        },
+        {
+          "name": "read-only ownership diagnostics a separately evidenced availability conversion conserves FPT aggregate ownership",
+          "status": "passed"
+        },
+        {
+          "name": "read-only ownership diagnostics requires complete position perimeter",
+          "status": "passed"
+        },
+        {
+          "name": "read-only ownership diagnostics rejects duplicates and fractional/negative shares",
+          "status": "passed"
+        },
+        {
+          "name": "read-only ownership diagnostics even a synthetic match never grants accounting or valuation authority",
+          "status": "passed"
+        },
+        {
+          "name": "custody payable versus actual debit retains unpaid 420 without inventing payment",
+          "status": "passed"
+        },
+        {
+          "name": "custody payable versus actual debit blocks unsupported fee settlement",
+          "status": "passed"
+        },
+        {
+          "name": "custody payable versus actual debit an unmatched debit cannot settle the obligation",
+          "status": "passed"
+        },
+        {
+          "name": "custody payable versus actual debit a matching debit still requires admission and grants no posting",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/personal-account.test.tsx",
+      "assertions": [
+        {
+          "name": "uses imported basis and keeps FPT pending within220 without recognizing pending cash",
+          "status": "passed"
+        },
+        {
+          "name": "leaves price/P&L unavailable without a dated price source",
+          "status": "passed"
+        },
+        {
+          "name": "does not treat linked-bank buying power as a second cash asset",
+          "status": "passed"
+        },
+        {
+          "name": "rejects duplicate or misallocated holdings",
+          "status": "passed"
+        },
+        {
+          "name": "reads matching portfolio+revision+imported basis and preserves immutable ledger",
+          "status": "passed"
+        },
+        {
+          "name": "does not attach private owner observations to a different portfolio",
+          "status": "passed"
+        },
+        {
+          "name": "refuses stale or mismatched revision instead of using fallback",
+          "status": "passed"
+        },
+        {
+          "name": "refuses stale or mismatched basis instead of using fallback",
+          "status": "passed"
+        },
+        {
+          "name": "refuses stale or mismatched quantity instead of using fallback",
+          "status": "passed"
+        },
+        {
+          "name": "refuses stale or mismatched future instead of using fallback",
+          "status": "passed"
+        },
+        {
+          "name": "renders separate pending, fee, price date and imported P/L without duplicate fees",
+          "status": "passed"
+        },
+        {
+          "name": "interprets owner date in Vietnam rather than UTC across local midnight",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/portfolio-accounting.test.ts",
+      "assertions": [
+        {
+          "name": "M6.3 numeric precision exact decimal TEXT/JSON 0",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 numeric precision exact decimal TEXT/JSON 9007199254740993",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 numeric precision exact decimal TEXT/JSON 999999999999999999999999999999",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 numeric precision exact decimal TEXT/JSON 0.123456789012",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 numeric precision exact decimal TEXT/JSON -123.25",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 numeric precision rejects invalid decimal 1e3",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 numeric precision rejects invalid decimal 01",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 numeric precision rejects invalid decimal 1.0000000000001",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 numeric precision rejects invalid decimal NaN",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 numeric precision rejects invalid decimal  1",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 numeric precision rejects binary float, wrong currency, fractional ordinary shares, nonpositive prices",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 numeric precision pins half-even at cost release/display division only",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Cash and ledger empty portfolio",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Cash and ledger VC-L01 deposit is capital, not P&L",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Cash and ledger withdrawal and standalone FEE/TAX have separate classifications",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Cash and ledger rejects insufficient withdrawal and unfunded BUY",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Cash and ledger posted aggregate is deeply frozen; constructing a draft has no ledger effect",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Cash and ledger rejects nonpositive deposit -1",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Cash and ledger rejects nonpositive deposit 0",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Cash and ledger rejects future speculative postings and unsupported adjustments",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 BUY / SELL / settlement VC-L02 BUY creates quantity, capitalized fees/tax and payable; cash changes only at settlement",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 BUY / SELL / settlement multiple BUYs / MWAC / VC-L04 partial SELL / hand-audited multi-security golden",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 BUY / SELL / settlement VC-L03 oversell rejection",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 BUY / SELL / settlement full SELL releases all basis then re-entry starts new MWAC without losing realized history",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 BUY / SELL / settlement BUY after partial SELL preserves remaining basis",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 BUY / SELL / settlement partial settlements retain the originating obligation",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 BUY / SELL / settlement rejects excessive, early and wrong-origin settlement",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 BUY / SELL / settlement split settlement charges exactly once",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 BUY / SELL / settlement decimal prices, fees and large VND remain exact",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Dividend NET_SETTLEMENT keeps receipt and withholding separate without quantity effects",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Dividend SPLIT_SETTLEMENT keeps receipt and withholding separate without quantity effects",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Dividend net-only source does not invent gross/tax",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reversal / reconstruction / corporate actions VC-L06 deposit reversal preserves original history and negates owner flow",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reversal / reconstruction / corporate actions BUY reversal inverts original acquisition and SELL reversal restores exact released basis/P&L",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reversal / reconstruction / corporate actions settled trade requires all settlement reversals in one correction group",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reversal / reconstruction / corporate actions double reversal fails",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reversal / reconstruction / corporate actions deterministic shuffled replay and historical cutoff",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reversal / reconstruction / corporate actions backdated removal invalidating a later sale is rejected",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reversal / reconstruction / corporate actions opening state is evidenced and never owner contribution",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reversal / reconstruction / corporate actions SPLIT conserves basis",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reversal / reconstruction / corporate actions REVERSE_SPLIT conserves basis",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reversal / reconstruction / corporate actions underspecified bonus shares are safely unsupported",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reversal / reconstruction / corporate actions lightweight invariant: each partial/full exit has nonnegative quantity and conserved released basis",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reversal / reconstruction / corporate actions unknown accounting version blocks instead of silently recomputing",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reversal / reconstruction / corporate actions watermark is metadata independent from economic ordering",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 corporate-action accounting stages rights subscription recognizes explicit basis once; later corporate settlement clears only cash/payable",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 corporate-action accounting stages documented full merger transfers all basis and its reversal restores both securities",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 corporate-action accounting stages opening reversal inverts the explicit basis posting exactly once",
+          "status": "passed"
+        },
+        {
+          "name": "exceptional cash adjustment requires reason/evidence/note and remains separate from contributions",
+          "status": "passed"
+        },
+        {
+          "name": "SELL NET_SETTLEMENT settlement applies supplied fee/tax exactly once",
+          "status": "passed"
+        },
+        {
+          "name": "SELL SPLIT_SETTLEMENT settlement applies supplied fee/tax exactly once",
+          "status": "passed"
+        },
+        {
+          "name": "documented non-realizing spinoff transfers explicit basis without creating profit, reversal restores it",
+          "status": "passed"
+        },
+        {
+          "name": "a later method cannot reinterpret an original acquisition during reversal",
+          "status": "passed"
+        },
+        {
+          "name": "corporate-stage uniqueness is a replay invariant for every input permutation and historical cutoff",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "tests/unit/portfolio-read-models.test.ts",
+      "assertions": [
+        {
+          "name": "M6.3 Valuation multi-security hand-audited NAV/unrealized/weights include cash and obligations",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Valuation unsettled BUY payable is subtracted from NAV before cash settlement",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Valuation VC-MD03 missing price cannot become zero NAV",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Valuation stale price carries stale provenance and blocks official NAV",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Valuation future observations cannot value historical state",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Valuation conflicting prices block instead of choosing arbitrarily",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Valuation contributions do not create investment profit",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Valuation imported inception does not invent lifetime profit",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reconciliation VC-RC01 exact match",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reconciliation VC-RC02 cash mismatch preserves internal cash and reports external minus internal",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reconciliation VC-RC03 quantity mismatch",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reconciliation VC-RC04 stale reference cannot MATCH",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reconciliation missing reference evidence blocks",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reconciliation unresolved discrepancy blocks even matching balances",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reconciliation cost basis and obligations participate in comparison",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 Reconciliation missing cost evidence cannot assert fully reconciled",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 effective reference data historical ticker and sector never use today's classification retroactively",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 effective reference data no membership interval is false only within complete 30-member coverage",
+          "status": "passed"
+        },
+        {
+          "name": "M6.3 effective reference data overlapping identifier history blocks",
+          "status": "passed"
+        },
+        {
+          "name": "R2-M02 NAV bridge has explicit non-return semantics and a compatible deprecated alias",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "artifactPins": [
+    {
+      "path": "src/domain/portfolio/accounting-event-preview.ts",
+      "sha256": "385c2847ff8b122d3593950eb722ebb0bcad847ca2fc334626e25c44fa70e29b"
+    },
+    {
+      "path": "src/application/portfolio/accounting-validation.ts",
+      "sha256": "67966b14b80a692bdad03e9723e1811b2ff2acc9c8c96eb0da6dd3554a8c3474"
+    },
+    {
+      "path": "src/ports/accounting-preview.ts",
+      "sha256": "fed9bc482e2099a3210e2afee29278ee962f16511eb5f9fad3970fe5d3a6f1a1"
+    },
+    {
+      "path": "src/infrastructure/portfolio/wp1-evidence-reader.ts",
+      "sha256": "d9908e8b97f334af5c793a16e37ba4dc700d848d3a67f32b5f3251af18a32b47"
+    },
+    {
+      "path": "tests/fixtures/portfolio/accounting-preview.ts",
+      "sha256": "77b487d4a69e007dab64e8494f5e74a12ed734b4e7523572921db6740b5f328a"
+    },
+    {
+      "path": "tests/unit/accounting-event-preview.test.ts",
+      "sha256": "8b2fda75954a92c69c103b9b1971654d68af0580cdc953d747925f4d4a5385c8"
+    },
+    {
+      "path": "tests/integration/wp1-accounting-preview.test.ts",
+      "sha256": "122ebc8b4e42f78d830438fe3edf1c84dd25d51c62ce2795d5c46ea7bd569ef3"
+    },
+    {
+      "path": "docs/fundamental-data-engine/governance/M8_WP1_PORTFOLIO_ACCOUNTING_CLOSURE.md",
+      "sha256": "1f571fdeaf99c4c1bf1fb38860c6e66b33e38b20989313a1a3abc27e54e4050b"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-11-01-m8-wp1/final-remediation/actual-case-preview.json",
+      "sha256": "1bb58818631d4b86591bb46c9647179e7295c51935033fff4214078e45a883c2"
+    }
+  ],
+  "preservedBaselinePins": [
+    {
+      "path": "docs/fundamental-data-engine/governance/PORTFOLIO_OWNER_CONFIRMATIONS_2026-10-31.md",
+      "sha256": "2afaf8e50fc1a5891c5722920ad57679a2a76e9fbeffbbf41872be226ee89577"
+    },
+    {
+      "path": "docs/fundamental-data-engine/governance/PORTFOLIO_OWNER_CONFIRMATIONS_2026-10-31.json",
+      "sha256": "a2ff8d7457023a809bddffd9c0855784ffa8a1f3a48e1df22be8e051b6ff5542"
+    },
+    {
+      "path": "docs/fundamental-data-engine/governance/PORTFOLIO_PRODUCTION_ACCEPTANCE_ASSESSMENT.md",
+      "sha256": "f5940b556808cd79ad342d295512166b1670d81bf5cf87f480caebb5f4984676"
+    },
+    {
+      "path": "docs/fundamental-data-engine/governance/DATA_PIPELINE_REAPPROVAL_2026-10-31.md",
+      "sha256": "a5a9a61101e81c1be0fa182f0a01d35eca82cac61a3f04a1d731245e08a96522"
+    },
+    {
+      "path": "docs/08_CONTINUOUS_IMPROVEMENT/PRODUCTION_ACCEPTANCE.md",
+      "sha256": "53cb1aae6809cc945b6c6778ac3b613f34e412d1cef509f409c00f3a646264e4"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-11-01-m8-wp1/validation.json",
+      "sha256": "8dd3fd2ec88e88a87bf49706ee223aeb66b79c0403925e16a278118656921618"
+    },
+    {
+      "path": "docs/fundamental-data-engine/evidence/2026-11-01-m8-wp1/retained-accounting-audit.json",
+      "sha256": "219e4d9ad016592a20c406141fb6510e24bee1e599c0c69cb13740dc72ea616e"
+    }
+  ],
+  "protectedFileHashes": {
+    "data/vn30.sqlite": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65",
+    "data/account-current/acquisition-cost-basis.json": "ae938c4ffb0da3c292b17cecd175018606d3c25d76e8f7432c7078f5343e34ff",
+    "data/account-current/pending-dividends.json": "b6deebe8085ece5931b3bc264d307503f29ea0c1f1873502237f3572683ed7fe",
+    "data/account-current/personal-account.json": "f683477cea82b42b15621e45aa3d9225eadb1adb531616c8ccc0811ac689ca70",
+    "data/account-current/selected-pnl-basis.json": "33c97f3cebf7bef54fa3135565e75a4c83e681499470f5a7e243f572093bdc58"
+  },
+  "protectedBytesUnchanged": true,
+  "sourceDatabaseMutated": false,
+  "actualLedgerPostings": 0,
+  "sourcePromotions": 0,
+  "productionNavActivated": false,
+  "wp2Started": false,
+  "actualCasePlanHash": "c2f5175670ff081abbfb7701d24e367163692846991a0fa08c174ca8e46b6d1e",
+  "intermediateResults": [
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH WP1_PRIVATE_DB=1 WP1_EVIDENCE_OUTPUT=/private/tmp/wp1-finalcase.json pnpm exec vitest run tests/unit/accounting-event-preview.test.ts tests/integration/wp1-accounting-preview.test.ts --reporter=json --outputFile=/private/tmp/wp1-final-remediation-focused.json",
+      "exitCode": 1,
+      "passed": 6,
+      "failed": 18,
+      "reason": "Assertions matched internal rules against localized public messages; changed tests to match structured ValidationError.issues without changing production errors"
+    },
+    {
+      "command": "Same focused command after partial assertion correction",
+      "exitCode": 1,
+      "passed": 23,
+      "failed": 1,
+      "reason": "One duplicate-receipt assertion still matched public text; corrected to structured reason"
+    },
+    {
+      "command": "Same focused command after full assertion correction",
+      "exitCode": 0,
+      "passed": 24,
+      "failed": 0,
+      "reason": "Before adding corrupt-source-copy and noncanonical-leg regressions; superseded by final combined 339 PASS"
+    }
+  ],
+  "limitations": [
+    "Conditional preview targets are not canonical accounting postings or a common-instant snapshot",
+    "Test-only preview journal added solely in disposable copy; its immutable event/economic keys and replay-result hashes were checked",
+    "Fault injection disabled observation triggers only in a second disposable negative-test copy; originals preserved",
+    "No production pending/accrued transaction capability, source authority promotion, schema migration or NAV integration activated",
+    "No full repository suite/build/full lint, independent E3 or release/recovery/security rehearsal run",
+    "Historical validation.json remains byte-preserved and binds the original closure report at baseline commit",
+    "Artifact pins exclude this validation file to avoid self-reference"
+  ]
+}

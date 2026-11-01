@@ -1,0 +1,733 @@
+{
+  "baseline": "6c49b6d5a78489d03260eca15d42f78be0de096d",
+  "sourceDatabaseHashBefore": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65",
+  "sourceDatabaseHashAfter": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65",
+  "actualLedgerTransactions": 12,
+  "actualLedgerLegs": 24,
+  "disposablePreviewRows": 4,
+  "planHash": "c2f5175670ff081abbfb7701d24e367163692846991a0fa08c174ca8e46b6d1e",
+  "plan": {
+    "version": "wp1-accounting-preview-v1",
+    "portfolioId": "tcbs-personal-v1",
+    "ledgerWatermark": "1",
+    "ledgerReplayAsOf": "2026-10-31T00:00:00.000Z",
+    "ledgerHash": "1ec9dc015db0b314dc9de5ae3673e4a82b06da97cb78342310422786d8ffd982",
+    "evidenceHash": "25f7d9dc17728adf9d51f106ee0a281da5058d1e03a849f3602f9095fcaa51e6",
+    "events": [
+      {
+        "economicEffectiveAt": null,
+        "brokerActionId": null,
+        "costBasisDelta": "0",
+        "requiredAuthorization": "SEPARATE_EXACT_EVIDENCE_BOUND_OWNER_POSTING_AUTHORIZATION",
+        "id": "WP1-TCB-PENDING",
+        "economicKey": "TCBS_API_RESPONSE:99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a#/data/stock/6/stockDividend",
+        "effect": {
+          "kind": "PENDING_OWNERSHIP",
+          "securityId": "TCB",
+          "delta": "50",
+          "available": "100",
+          "pending": "50"
+        },
+        "economicEffectiveDate": null,
+        "observedAsOfDate": null,
+        "evidence": [
+          {
+            "id": "TCBS_API_RESPONSE:99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a",
+            "sha256": "99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a",
+            "pointer": "/data/stock/6",
+            "retrievedAt": "2026-10-29T04:56:24.764Z",
+            "knownAt": "2026-10-29T04:56:24.764Z"
+          },
+          {
+            "id": "docs/fundamental-data-engine/governance/PORTFOLIO_OWNER_CONFIRMATIONS_2026-10-31.json",
+            "sha256": "a2ff8d7457023a809bddffd9c0855784ffa8a1f3a48e1df22be8e051b6ff5542",
+            "pointer": "/facts/0",
+            "knownAt": null,
+            "retrievedAt": null
+          }
+        ],
+        "ledgerRelationship": "EXISTING_OWNERSHIP:TCB:100",
+        "blockers": [
+          "ENTITLEMENT_EFFECTIVE_DATE_UNKNOWN",
+          "EXACT_ECONOMIC_INSTANT_REQUIRED",
+          "CORPORATE_ACTION_ADMISSION_REQUIRED",
+          "PENDING_OWNERSHIP_LEDGER_CAPABILITY_NOT_ACTIVATED"
+        ]
+      },
+      {
+        "economicEffectiveAt": null,
+        "brokerActionId": null,
+        "costBasisDelta": "0",
+        "requiredAuthorization": "SEPARATE_EXACT_EVIDENCE_BOUND_OWNER_POSTING_AUTHORIZATION",
+        "id": "WP1-MWG-RECEIPT",
+        "economicKey": "OWNER_EXCEL_RECEIPT:MWG_2026-10-16_EXCEL_A71_E71",
+        "effect": {
+          "kind": "CLAIM_TO_CASH",
+          "securityId": "MWG",
+          "amount": "95000",
+          "receiptId": "MWG_2026-10-16_EXCEL_A71_E71",
+          "originalLegId": "tcbs-personal-v1:opening:cash:leg:2",
+          "recordDate": "2026-10-08",
+          "originalClaimAmount": "570000",
+          "remainingClaimAmount": "475000"
+        },
+        "economicEffectiveDate": "2026-10-16",
+        "observedAsOfDate": "2026-10-16",
+        "evidence": [
+          {
+            "id": "TCBS_API_RESPONSE:eb2aa9ffb0894ac080aa8cfbce2eca7d86628ba5a346b8ef78e2d8d450786c62",
+            "sha256": "eb2aa9ffb0894ac080aa8cfbce2eca7d86628ba5a346b8ef78e2d8d450786c62",
+            "pointer": "/data/stock/4/cashDividend",
+            "retrievedAt": "2026-10-08T11:38:01.650Z",
+            "knownAt": "2026-10-08T11:38:01.650Z"
+          },
+          {
+            "id": "docs/fundamental-data-engine/evidence/2026-10-28-b2-cash-excel-screen-review/CASH_HISTORY.json",
+            "sha256": "685dcc245ab3ce1ca69add62fae05432dfd07eaea98105337366cee1e84a82d4",
+            "pointer": "/reports/1/rows/57",
+            "retrievedAt": null,
+            "knownAt": null
+          },
+          {
+            "id": "docs/fundamental-data-engine/governance/PORTFOLIO_OWNER_CONFIRMATIONS_2026-10-31.json",
+            "sha256": "a2ff8d7457023a809bddffd9c0855784ffa8a1f3a48e1df22be8e051b6ff5542",
+            "pointer": "/facts/2",
+            "knownAt": null,
+            "retrievedAt": null
+          },
+          {
+            "id": "TCBS_API_RESPONSE:99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a",
+            "sha256": "99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a",
+            "pointer": "/data/stock/4/cashDividend",
+            "retrievedAt": "2026-10-29T04:56:24.764Z",
+            "knownAt": "2026-10-29T04:56:24.764Z"
+          }
+        ],
+        "ledgerRelationship": "tcbs-personal-v1:opening:cash:leg:2",
+        "blockers": [
+          "EXACT_ECONOMIC_INSTANT_REQUIRED",
+          "RECEIPT_KNOWLEDGE_INSTANT_UNKNOWN",
+          "CLAIM_ALLOCATION_AND_SOURCE_ADMISSION_REQUIRED"
+        ]
+      },
+      {
+        "economicEffectiveAt": null,
+        "brokerActionId": null,
+        "costBasisDelta": "0",
+        "requiredAuthorization": "SEPARATE_EXACT_EVIDENCE_BOUND_OWNER_POSTING_AUTHORIZATION",
+        "id": "WP1-CUSTODY-ACCRUAL",
+        "economicKey": "CUSTODY_PAYABLE_AS_OF:2026-10-28",
+        "effect": {
+          "kind": "ACCRUED_PAYABLE",
+          "amount": "420"
+        },
+        "economicEffectiveDate": null,
+        "observedAsOfDate": "2026-10-28",
+        "evidence": [
+          {
+            "id": "TCBS_API_RESPONSE:9e37ee7a6e882888e80370237c151efa02184399815df7c879f66405f3836253",
+            "sha256": "9e37ee7a6e882888e80370237c151efa02184399815df7c879f66405f3836253",
+            "pointer": "/data/data/0/depoFee",
+            "retrievedAt": "2026-10-29T04:56:25.703Z",
+            "knownAt": "2026-10-29T04:56:25.703Z"
+          },
+          {
+            "id": "docs/fundamental-data-engine/evidence/2026-10-28-b2-cash-excel-screen-review/STATUS.json",
+            "sha256": "522876b379b3c88968af7da607e5565f6c107ac8aec7d1dee79636557d4d075a",
+            "pointer": "/asOfDate",
+            "retrievedAt": null,
+            "knownAt": null
+          },
+          {
+            "id": "docs/fundamental-data-engine/governance/PORTFOLIO_OWNER_CONFIRMATIONS_2026-10-31.json",
+            "sha256": "a2ff8d7457023a809bddffd9c0855784ffa8a1f3a48e1df22be8e051b6ff5542",
+            "pointer": "/facts/3",
+            "knownAt": null,
+            "retrievedAt": null
+          }
+        ],
+        "ledgerRelationship": "EXISTING_PAYABLES:0",
+        "blockers": [
+          "ACCRUAL_RECOGNITION_TIME_UNKNOWN",
+          "SOURCE_ADMISSION_REQUIRED",
+          "ACCRUED_LIABILITY_LEDGER_CAPABILITY_NOT_ACTIVATED"
+        ]
+      },
+      {
+        "economicEffectiveAt": null,
+        "brokerActionId": null,
+        "costBasisDelta": "0",
+        "requiredAuthorization": "PREVIEW_ONLY_NO_ADDITIONAL_20_SHARE_POSTING;SEPARATE_EVIDENCED_CONVERSION_IF_CLAIMED",
+        "id": "WP1-FPT-PARTITION",
+        "economicKey": "TCBS_API_RESPONSE:eb2aa9ffb0894ac080aa8cfbce2eca7d86628ba5a346b8ef78e2d8d450786c62#/data/stock/0/stockDividend",
+        "effect": {
+          "kind": "OWNERSHIP_PARTITION",
+          "securityId": "FPT",
+          "available": "200",
+          "pending": "20"
+        },
+        "economicEffectiveDate": null,
+        "observedAsOfDate": null,
+        "evidence": [
+          {
+            "id": "TCBS_API_RESPONSE:eb2aa9ffb0894ac080aa8cfbce2eca7d86628ba5a346b8ef78e2d8d450786c62",
+            "sha256": "eb2aa9ffb0894ac080aa8cfbce2eca7d86628ba5a346b8ef78e2d8d450786c62",
+            "pointer": "/data/stock/0",
+            "retrievedAt": "2026-10-08T11:38:01.650Z",
+            "knownAt": "2026-10-08T11:38:01.650Z"
+          },
+          {
+            "id": "TCBS_API_RESPONSE:99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a",
+            "sha256": "99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a",
+            "pointer": "/data/stock/0",
+            "retrievedAt": "2026-10-29T04:56:24.764Z",
+            "knownAt": "2026-10-29T04:56:24.764Z"
+          },
+          {
+            "id": "docs/fundamental-data-engine/governance/PORTFOLIO_OWNER_CONFIRMATIONS_2026-10-31.json",
+            "sha256": "a2ff8d7457023a809bddffd9c0855784ffa8a1f3a48e1df22be8e051b6ff5542",
+            "pointer": "/facts/4",
+            "knownAt": null,
+            "retrievedAt": null
+          }
+        ],
+        "ledgerRelationship": "ALREADY_INCLUDED_OWNERSHIP:FPT:220",
+        "blockers": [
+          "CORPORATE_ACTION_ADMISSION_REQUIRED",
+          "NO_EVIDENCED_CONVERSION_EVENT",
+          "PENDING_RIGHT_VALUATION_NOT_ACCEPTED"
+        ]
+      }
+    ],
+    "productionApplication": "BLOCKED",
+    "postingCommands": []
+  },
+  "before": {
+    "cash": "232420",
+    "receivables": "570000",
+    "payables": "0"
+  },
+  "preview": {
+    "cash": "327420",
+    "receivables": "475000",
+    "payables": "420",
+    "accruedExpensesDelta": "420",
+    "positions": [
+      {
+        "securityId": "FPT",
+        "total": "220",
+        "available": "200",
+        "pending": "20",
+        "openCost": "16065060"
+      },
+      {
+        "securityId": "GAS",
+        "total": "200",
+        "available": null,
+        "pending": null,
+        "openCost": "18535800"
+      },
+      {
+        "securityId": "HPG",
+        "total": "110",
+        "available": null,
+        "pending": null,
+        "openCost": "2585770"
+      },
+      {
+        "securityId": "MBB",
+        "total": "100",
+        "available": null,
+        "pending": null,
+        "openCost": "2010600"
+      },
+      {
+        "securityId": "MWG",
+        "total": "100",
+        "available": null,
+        "pending": null,
+        "openCost": "8332600"
+      },
+      {
+        "securityId": "SSI",
+        "total": "240",
+        "available": null,
+        "pending": null,
+        "openCost": "5742000"
+      },
+      {
+        "securityId": "TCB",
+        "total": "150",
+        "available": "100",
+        "pending": "50",
+        "openCost": "3521100"
+      },
+      {
+        "securityId": "VCB",
+        "total": "100",
+        "available": null,
+        "pending": null,
+        "openCost": "5761800"
+      },
+      {
+        "securityId": "VHM",
+        "total": "200",
+        "available": null,
+        "pending": null,
+        "openCost": "8782800"
+      },
+      {
+        "securityId": "VPL",
+        "total": "100",
+        "available": null,
+        "pending": null,
+        "openCost": "8232500"
+      },
+      {
+        "securityId": "VRE",
+        "total": "100",
+        "available": null,
+        "pending": null,
+        "openCost": "2410800"
+      }
+    ],
+    "consumedKeys": [
+      "TCBS_API_RESPONSE:99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a#/data/stock/6/stockDividend",
+      "OWNER_EXCEL_RECEIPT:MWG_2026-10-16_EXCEL_A71_E71",
+      "CUSTODY_PAYABLE_AS_OF:2026-10-28",
+      "TCBS_API_RESPONSE:eb2aa9ffb0894ac080aa8cfbce2eca7d86628ba5a346b8ef78e2d8d450786c62#/data/stock/0/stockDividend"
+    ],
+    "receiptIds": [
+      "MWG_2026-10-16_EXCEL_A71_E71"
+    ],
+    "lineage": [
+      {
+        "economicEffectiveAt": null,
+        "brokerActionId": null,
+        "costBasisDelta": "0",
+        "requiredAuthorization": "SEPARATE_EXACT_EVIDENCE_BOUND_OWNER_POSTING_AUTHORIZATION",
+        "id": "WP1-TCB-PENDING",
+        "economicKey": "TCBS_API_RESPONSE:99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a#/data/stock/6/stockDividend",
+        "effect": {
+          "kind": "PENDING_OWNERSHIP",
+          "securityId": "TCB",
+          "delta": "50",
+          "available": "100",
+          "pending": "50"
+        },
+        "economicEffectiveDate": null,
+        "observedAsOfDate": null,
+        "evidence": [
+          {
+            "id": "TCBS_API_RESPONSE:99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a",
+            "sha256": "99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a",
+            "pointer": "/data/stock/6",
+            "retrievedAt": "2026-10-29T04:56:24.764Z",
+            "knownAt": "2026-10-29T04:56:24.764Z"
+          },
+          {
+            "id": "docs/fundamental-data-engine/governance/PORTFOLIO_OWNER_CONFIRMATIONS_2026-10-31.json",
+            "sha256": "a2ff8d7457023a809bddffd9c0855784ffa8a1f3a48e1df22be8e051b6ff5542",
+            "pointer": "/facts/0",
+            "knownAt": null,
+            "retrievedAt": null
+          }
+        ],
+        "ledgerRelationship": "EXISTING_OWNERSHIP:TCB:100",
+        "blockers": [
+          "ENTITLEMENT_EFFECTIVE_DATE_UNKNOWN",
+          "EXACT_ECONOMIC_INSTANT_REQUIRED",
+          "CORPORATE_ACTION_ADMISSION_REQUIRED",
+          "PENDING_OWNERSHIP_LEDGER_CAPABILITY_NOT_ACTIVATED"
+        ]
+      },
+      {
+        "economicEffectiveAt": null,
+        "brokerActionId": null,
+        "costBasisDelta": "0",
+        "requiredAuthorization": "SEPARATE_EXACT_EVIDENCE_BOUND_OWNER_POSTING_AUTHORIZATION",
+        "id": "WP1-MWG-RECEIPT",
+        "economicKey": "OWNER_EXCEL_RECEIPT:MWG_2026-10-16_EXCEL_A71_E71",
+        "effect": {
+          "kind": "CLAIM_TO_CASH",
+          "securityId": "MWG",
+          "amount": "95000",
+          "receiptId": "MWG_2026-10-16_EXCEL_A71_E71",
+          "originalLegId": "tcbs-personal-v1:opening:cash:leg:2",
+          "recordDate": "2026-10-08",
+          "originalClaimAmount": "570000",
+          "remainingClaimAmount": "475000"
+        },
+        "economicEffectiveDate": "2026-10-16",
+        "observedAsOfDate": "2026-10-16",
+        "evidence": [
+          {
+            "id": "TCBS_API_RESPONSE:eb2aa9ffb0894ac080aa8cfbce2eca7d86628ba5a346b8ef78e2d8d450786c62",
+            "sha256": "eb2aa9ffb0894ac080aa8cfbce2eca7d86628ba5a346b8ef78e2d8d450786c62",
+            "pointer": "/data/stock/4/cashDividend",
+            "retrievedAt": "2026-10-08T11:38:01.650Z",
+            "knownAt": "2026-10-08T11:38:01.650Z"
+          },
+          {
+            "id": "docs/fundamental-data-engine/evidence/2026-10-28-b2-cash-excel-screen-review/CASH_HISTORY.json",
+            "sha256": "685dcc245ab3ce1ca69add62fae05432dfd07eaea98105337366cee1e84a82d4",
+            "pointer": "/reports/1/rows/57",
+            "retrievedAt": null,
+            "knownAt": null
+          },
+          {
+            "id": "docs/fundamental-data-engine/governance/PORTFOLIO_OWNER_CONFIRMATIONS_2026-10-31.json",
+            "sha256": "a2ff8d7457023a809bddffd9c0855784ffa8a1f3a48e1df22be8e051b6ff5542",
+            "pointer": "/facts/2",
+            "knownAt": null,
+            "retrievedAt": null
+          },
+          {
+            "id": "TCBS_API_RESPONSE:99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a",
+            "sha256": "99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a",
+            "pointer": "/data/stock/4/cashDividend",
+            "retrievedAt": "2026-10-29T04:56:24.764Z",
+            "knownAt": "2026-10-29T04:56:24.764Z"
+          }
+        ],
+        "ledgerRelationship": "tcbs-personal-v1:opening:cash:leg:2",
+        "blockers": [
+          "EXACT_ECONOMIC_INSTANT_REQUIRED",
+          "RECEIPT_KNOWLEDGE_INSTANT_UNKNOWN",
+          "CLAIM_ALLOCATION_AND_SOURCE_ADMISSION_REQUIRED"
+        ]
+      },
+      {
+        "economicEffectiveAt": null,
+        "brokerActionId": null,
+        "costBasisDelta": "0",
+        "requiredAuthorization": "SEPARATE_EXACT_EVIDENCE_BOUND_OWNER_POSTING_AUTHORIZATION",
+        "id": "WP1-CUSTODY-ACCRUAL",
+        "economicKey": "CUSTODY_PAYABLE_AS_OF:2026-10-28",
+        "effect": {
+          "kind": "ACCRUED_PAYABLE",
+          "amount": "420"
+        },
+        "economicEffectiveDate": null,
+        "observedAsOfDate": "2026-10-28",
+        "evidence": [
+          {
+            "id": "TCBS_API_RESPONSE:9e37ee7a6e882888e80370237c151efa02184399815df7c879f66405f3836253",
+            "sha256": "9e37ee7a6e882888e80370237c151efa02184399815df7c879f66405f3836253",
+            "pointer": "/data/data/0/depoFee",
+            "retrievedAt": "2026-10-29T04:56:25.703Z",
+            "knownAt": "2026-10-29T04:56:25.703Z"
+          },
+          {
+            "id": "docs/fundamental-data-engine/evidence/2026-10-28-b2-cash-excel-screen-review/STATUS.json",
+            "sha256": "522876b379b3c88968af7da607e5565f6c107ac8aec7d1dee79636557d4d075a",
+            "pointer": "/asOfDate",
+            "retrievedAt": null,
+            "knownAt": null
+          },
+          {
+            "id": "docs/fundamental-data-engine/governance/PORTFOLIO_OWNER_CONFIRMATIONS_2026-10-31.json",
+            "sha256": "a2ff8d7457023a809bddffd9c0855784ffa8a1f3a48e1df22be8e051b6ff5542",
+            "pointer": "/facts/3",
+            "knownAt": null,
+            "retrievedAt": null
+          }
+        ],
+        "ledgerRelationship": "EXISTING_PAYABLES:0",
+        "blockers": [
+          "ACCRUAL_RECOGNITION_TIME_UNKNOWN",
+          "SOURCE_ADMISSION_REQUIRED",
+          "ACCRUED_LIABILITY_LEDGER_CAPABILITY_NOT_ACTIVATED"
+        ]
+      },
+      {
+        "economicEffectiveAt": null,
+        "brokerActionId": null,
+        "costBasisDelta": "0",
+        "requiredAuthorization": "PREVIEW_ONLY_NO_ADDITIONAL_20_SHARE_POSTING;SEPARATE_EVIDENCED_CONVERSION_IF_CLAIMED",
+        "id": "WP1-FPT-PARTITION",
+        "economicKey": "TCBS_API_RESPONSE:eb2aa9ffb0894ac080aa8cfbce2eca7d86628ba5a346b8ef78e2d8d450786c62#/data/stock/0/stockDividend",
+        "effect": {
+          "kind": "OWNERSHIP_PARTITION",
+          "securityId": "FPT",
+          "available": "200",
+          "pending": "20"
+        },
+        "economicEffectiveDate": null,
+        "observedAsOfDate": null,
+        "evidence": [
+          {
+            "id": "TCBS_API_RESPONSE:eb2aa9ffb0894ac080aa8cfbce2eca7d86628ba5a346b8ef78e2d8d450786c62",
+            "sha256": "eb2aa9ffb0894ac080aa8cfbce2eca7d86628ba5a346b8ef78e2d8d450786c62",
+            "pointer": "/data/stock/0",
+            "retrievedAt": "2026-10-08T11:38:01.650Z",
+            "knownAt": "2026-10-08T11:38:01.650Z"
+          },
+          {
+            "id": "TCBS_API_RESPONSE:99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a",
+            "sha256": "99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a",
+            "pointer": "/data/stock/0",
+            "retrievedAt": "2026-10-29T04:56:24.764Z",
+            "knownAt": "2026-10-29T04:56:24.764Z"
+          },
+          {
+            "id": "docs/fundamental-data-engine/governance/PORTFOLIO_OWNER_CONFIRMATIONS_2026-10-31.json",
+            "sha256": "a2ff8d7457023a809bddffd9c0855784ffa8a1f3a48e1df22be8e051b6ff5542",
+            "pointer": "/facts/4",
+            "knownAt": null,
+            "retrievedAt": null
+          }
+        ],
+        "ledgerRelationship": "ALREADY_INCLUDED_OWNERSHIP:FPT:220",
+        "blockers": [
+          "CORPORATE_ACTION_ADMISSION_REQUIRED",
+          "NO_EVIDENCED_CONVERSION_EVENT",
+          "PENDING_RIGHT_VALUATION_NOT_ACCEPTED"
+        ]
+      }
+    ],
+    "conversions": [],
+    "commonEconomicCutoff": null,
+    "productionAccepted": false
+  },
+  "reconciliation": {
+    "methodology": "read-only-ownership-reconciliation-v1",
+    "sourceReference": "TCBS_API_RESPONSE:99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a",
+    "receivedAt": "2026-10-29T04:56:24.764Z",
+    "economicAsOf": null,
+    "reasons": [
+      "MISSING_ECONOMIC_CUTOFF"
+    ],
+    "positions": [
+      {
+        "securityId": "FPT",
+        "ledgerQuantity": "220",
+        "observedTotal": "220",
+        "available": "200",
+        "pending": "20",
+        "difference": "0",
+        "issues": [
+          "MISSING_CORPORATE_ACTION_EVIDENCE"
+        ]
+      },
+      {
+        "securityId": "GAS",
+        "ledgerQuantity": "200",
+        "observedTotal": "200",
+        "available": "200",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      },
+      {
+        "securityId": "HPG",
+        "ledgerQuantity": "110",
+        "observedTotal": "110",
+        "available": "110",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      },
+      {
+        "securityId": "MBB",
+        "ledgerQuantity": "100",
+        "observedTotal": "100",
+        "available": "100",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      },
+      {
+        "securityId": "MWG",
+        "ledgerQuantity": "100",
+        "observedTotal": "100",
+        "available": "100",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      },
+      {
+        "securityId": "SSI",
+        "ledgerQuantity": "240",
+        "observedTotal": "240",
+        "available": "240",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      },
+      {
+        "securityId": "TCB",
+        "ledgerQuantity": "100",
+        "observedTotal": "150",
+        "available": "100",
+        "pending": "50",
+        "difference": "50",
+        "issues": [
+          "LEDGER_OWNERSHIP_MISMATCH",
+          "MISSING_CORPORATE_ACTION_EVIDENCE"
+        ]
+      },
+      {
+        "securityId": "VCB",
+        "ledgerQuantity": "100",
+        "observedTotal": "100",
+        "available": "100",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      },
+      {
+        "securityId": "VHM",
+        "ledgerQuantity": "200",
+        "observedTotal": "200",
+        "available": "200",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      },
+      {
+        "securityId": "VPL",
+        "ledgerQuantity": "100",
+        "observedTotal": "100",
+        "available": "100",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      },
+      {
+        "securityId": "VRE",
+        "ledgerQuantity": "100",
+        "observedTotal": "100",
+        "available": "100",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      }
+    ],
+    "status": "BLOCKED",
+    "productionAccepted": false,
+    "pendingValuationEligible": false,
+    "ledgerCommands": []
+  },
+  "projectedReconciliation": {
+    "methodology": "read-only-ownership-reconciliation-v1",
+    "sourceReference": "TCBS_API_RESPONSE:99fcccfa342efaa7587aa48ffeafa3646f8230fc119946a57726762e5b2b448a",
+    "receivedAt": "2026-10-29T04:56:24.764Z",
+    "economicAsOf": null,
+    "reasons": [
+      "MISSING_ECONOMIC_CUTOFF"
+    ],
+    "positions": [
+      {
+        "securityId": "FPT",
+        "ledgerQuantity": "220",
+        "observedTotal": "220",
+        "available": "200",
+        "pending": "20",
+        "difference": "0",
+        "issues": [
+          "MISSING_CORPORATE_ACTION_EVIDENCE"
+        ]
+      },
+      {
+        "securityId": "GAS",
+        "ledgerQuantity": "200",
+        "observedTotal": "200",
+        "available": "200",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      },
+      {
+        "securityId": "HPG",
+        "ledgerQuantity": "110",
+        "observedTotal": "110",
+        "available": "110",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      },
+      {
+        "securityId": "MBB",
+        "ledgerQuantity": "100",
+        "observedTotal": "100",
+        "available": "100",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      },
+      {
+        "securityId": "MWG",
+        "ledgerQuantity": "100",
+        "observedTotal": "100",
+        "available": "100",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      },
+      {
+        "securityId": "SSI",
+        "ledgerQuantity": "240",
+        "observedTotal": "240",
+        "available": "240",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      },
+      {
+        "securityId": "TCB",
+        "ledgerQuantity": "150",
+        "observedTotal": "150",
+        "available": "100",
+        "pending": "50",
+        "difference": "0",
+        "issues": [
+          "MISSING_CORPORATE_ACTION_EVIDENCE"
+        ]
+      },
+      {
+        "securityId": "VCB",
+        "ledgerQuantity": "100",
+        "observedTotal": "100",
+        "available": "100",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      },
+      {
+        "securityId": "VHM",
+        "ledgerQuantity": "200",
+        "observedTotal": "200",
+        "available": "200",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      },
+      {
+        "securityId": "VPL",
+        "ledgerQuantity": "100",
+        "observedTotal": "100",
+        "available": "100",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      },
+      {
+        "securityId": "VRE",
+        "ledgerQuantity": "100",
+        "observedTotal": "100",
+        "available": "100",
+        "pending": "0",
+        "difference": "0",
+        "issues": []
+      }
+    ],
+    "status": "BLOCKED",
+    "productionAccepted": false,
+    "pendingValuationEligible": false,
+    "ledgerCommands": []
+  },
+  "productionPostingAuthorized": false,
+  "productionLedgerChanged": false,
+  "commonEconomicCutoffCertified": false
+}
