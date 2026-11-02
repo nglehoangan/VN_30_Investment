@@ -1,0 +1,53 @@
+{
+  "status": "PASS_BOUNDED_RESEARCH_CHECKS_FINANCIAL_ACCEPTANCE_BLOCKED",
+  "checks": [
+    {
+      "command": "python3 scripts/build-vn30-underwriting-v2.py",
+      "result": "PASS",
+      "issuerCount": 30,
+      "checkedShareAnchors": 26,
+      "retainedDocuments": 84
+    },
+    {
+      "command": "python3 scripts/test-underwriting-remediation.py",
+      "result": "PASS",
+      "tests": 28
+    },
+    {
+      "command": "python3 scripts/test-held-normalization.py",
+      "result": "PASS",
+      "tests": 31
+    },
+    {
+      "command": "pnpm exec vitest run tests/unit/economic-normalization.test.ts tests/unit/review-lineage.test.ts tests/integration/review-lineage.test.ts tests/unit/personal-ai-scoring.test.ts tests/unit/personal-ai-provenance.test.ts tests/integration/personal-ai-scoring.test.ts",
+      "result": "PASS",
+      "files": 6,
+      "tests": 102
+    },
+    {
+      "command": "pnpm typecheck",
+      "result": "PASS"
+    },
+    {
+      "command": "node scripts/check-boundaries.mjs",
+      "result": "PASS",
+      "modules": 288
+    },
+    {
+      "command": "node scripts/verify-approved-scoring-authority.mjs",
+      "result": "PASS",
+      "artifacts": 37,
+      "historicalFilesUnchanged": 133,
+      "compatibilities": 9
+    },
+    {
+      "command": "python3 -m py_compile scripts/lib/underwriting_remediation.py scripts/build-vn30-underwriting-v2.py scripts/test-underwriting-remediation.py scripts/acquire-vn30-remediation-pdfs.py scripts/capture-vn30-remediation-documents.py",
+      "result": "PASS"
+    }
+  ],
+  "nodeVersion": "22.23.2",
+  "productionDatabaseSha256": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65",
+  "fullReleaseSuiteRun": false,
+  "productionApplication": "NONE",
+  "financialAcceptance": "BLOCKED"
+}
