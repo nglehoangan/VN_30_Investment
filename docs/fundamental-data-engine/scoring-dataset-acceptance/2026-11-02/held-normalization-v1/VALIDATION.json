@@ -1,0 +1,64 @@
+{
+  "contract": "held-normalization-validation-v1",
+  "validatedAt": "2026-11-02T03:35:19.117561+00:00",
+  "baselineCommit": "2323058169a7d8b53a9e5de0ac35854b0b634aae",
+  "checks": [
+    {
+      "command": "python3 scripts/test-held-normalization.py",
+      "result": "PASS",
+      "tests": 31
+    },
+    {
+      "command": "python3 scripts/build-held-normalization.py --check",
+      "result": "PASS",
+      "outputs": 14,
+      "sourcePins": 99
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH pnpm exec vitest run tests/unit/scoring*.test.ts tests/unit/economic-normalization.test.ts tests/unit/personal-ai*.test.ts tests/integration/personal-ai-scoring.test.ts tests/unit/methodology-validation.test.ts tests/architecture",
+      "result": "PASS",
+      "files": 21,
+      "tests": 291
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH node scripts/check-boundaries.mjs",
+      "result": "PASS",
+      "sourceModules": 286
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH node scripts/verify-approved-scoring-authority.mjs",
+      "result": "PASS",
+      "manifestContentHash": "8c0880249dc54e2baea0235cc10094f818220db86331442ece3da05085261cc1",
+      "historicalFilesUnchanged": 133
+    },
+    {
+      "command": "Resolve every local REPORT.md evidence link",
+      "result": "PASS"
+    }
+  ],
+  "database": {
+    "path": "data/vn30.sqlite",
+    "sha256": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65",
+    "expectedUnchangedSha256": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65",
+    "productionPostingsExecuted": false
+  },
+  "summary": {
+    "conditionalValuationScenarios": 30,
+    "independentInputSensitivityCells": 90,
+    "vhmBookRecoveryCrosschecks": 3,
+    "primaryVhmProjectRnav": null,
+    "formalValuationAcceptance": false,
+    "sourcePromotion": false,
+    "navActivation": false,
+    "buySellActivation": false,
+    "financialCriteriaOrWeightsChanged": false,
+    "fullReleaseValidationClaimed": false,
+    "ownerFactsReconfirmationRequested": false
+  },
+  "limitations": [
+    "Scenario assumptions are explicit, not admitted normalized facts.",
+    "Loan population, regulatory capital, cash availability/maintenance needs and current share/action bridge remain unqualified.",
+    "VHM project-level RNAV inputs remain incomplete.",
+    "This targeted validation does not supersede existing whole-production release gates."
+  ]
+}
