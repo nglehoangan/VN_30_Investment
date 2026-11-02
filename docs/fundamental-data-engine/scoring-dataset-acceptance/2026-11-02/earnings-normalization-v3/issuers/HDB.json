@@ -1,0 +1,279 @@
+{
+  "contract": "issuer-common-earnings-normalization-v3",
+  "ticker": "HDB",
+  "sector": "BANK",
+  "scope": "CONSOLIDATED",
+  "period": "FY2025",
+  "classification": "CONDITIONAL_RESEARCH_NOT_ADMITTED",
+  "originalReportedCommonVnd": "16524388000000",
+  "reportedScopeNetIncomeVnd": "17073622000000",
+  "parentNetIncomeVnd": "16524388000000",
+  "reportedScopePbtVnd": "21346491000000",
+  "pbtBasis": "CHECKED_PNL_PBT",
+  "taxProfile": {
+    "reportedTaxVnd": "4272869000000",
+    "reportedEffectiveRate": "0.20016727807863128417687010010216667460708179156940",
+    "marginalTaxQualified": false,
+    "negativeTaxBenefit": false,
+    "rateOutsideZeroOne": false
+  },
+  "parentToReportedScopeProfitRatio": "0.967831",
+  "commonAttributionProxy": "0.96783143026125329470220202836867303258793008302515",
+  "proxyIsProvenOwnership": false,
+  "nciIncidence": "UNPROVEN_TRANSACTION_ATTRIBUTION",
+  "sourceCommonBridgeVnd": "16499388000000",
+  "sourceCommonBridgePrecision": "DECLARED_SOURCE_UNITS",
+  "nativeNetIncomeVnd": "17073622000000",
+  "checkedVsNativeNetIncomeDifferenceVnd": "0",
+  "additionalSourceDifferences": [],
+  "additionalKnownFundDeductions": [
+    {
+      "id": "FY2025-later-parent-fund-HDB",
+      "period": "FY2025",
+      "classification": "PARENT_NON_SHAREHOLDER_LEAKAGE",
+      "alreadyDeducted": false,
+      "value": "25000000000"
+    }
+  ],
+  "unprovenAdditionalFundLeakageVnd": null,
+  "sourceFundStatus": "ISSUER_UNESTIMATED",
+  "sourcePrintedDeductionsPreservedInEvidence": true,
+  "fullFundCompletenessProven": false,
+  "knownFundAmountsArePostTaxAndNotTaxDiscounted": true,
+  "assumedMarginalTaxRates": [
+    "0",
+    ".2"
+  ],
+  "commonIncidenceScenarios": [
+    "0",
+    "1"
+  ],
+  "incidenceParametersAreConfirmedFacts": false,
+  "basePretaxAdjustments": [
+    {
+      "id": "HDB-total-credit-proxy",
+      "pretaxVnd": "1769485269559.17752",
+      "readingIds": [],
+      "reason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+      "incidenceEnvelope": {
+        "minAfterTaxCommonDelta": "0",
+        "maxAfterTaxCommonDelta": "1769485269559.17752",
+        "taxIncidenceProven": false,
+        "nciIncidenceProven": false
+      }
+    },
+    {
+      "id": "HDB-recoveries-mean",
+      "pretaxVnd": "-130704500000",
+      "readingIds": [
+        "HDB-FY2025-recoveries2024",
+        "HDB-FY2025-recoveries2025"
+      ],
+      "reason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+      "incidenceEnvelope": {
+        "minAfterTaxCommonDelta": "-130704500000",
+        "maxAfterTaxCommonDelta": "0",
+        "taxIncidenceProven": false,
+        "nciIncidenceProven": false
+      }
+    }
+  ],
+  "creditNormalization": {
+    "method": "TOTAL_P_AND_L_CREDIT_EXPENSE_PER_AVERAGE_TOTAL_ASSETS_PROXY",
+    "history": [
+      {
+        "year": 2023,
+        "openingAssets": "416273023000000",
+        "closingAssets": "602314859000000",
+        "totalCreditExpense": "4267751000000"
+      },
+      {
+        "year": 2024,
+        "openingAssets": "602314859000000",
+        "closingAssets": "697366458000000",
+        "totalCreditExpense": "5321434000000"
+      },
+      {
+        "year": 2025,
+        "openingAssets": "697366458000000",
+        "closingAssets": "931103945000000",
+        "totalCreditExpense": "9748394000000"
+      }
+    ],
+    "weightedHistoricalRate": "0.009799",
+    "targetAverageAssetsVnd": "814235201500000",
+    "baseChargeVnd": "7978908730440.82248",
+    "loanOnlyClaimed": false,
+    "fullCycleQualified": false,
+    "populationAndVintage": "Original dated annual observations retained; three years and changing asset mix do not prove a full-cycle/PIT matched loan population."
+  },
+  "cycleReview": {
+    "history": [
+      {
+        "year": 2022,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-286302500a34c556f884c78bb8b6946aa4bc79a3"
+      },
+      {
+        "year": 2023,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-154b88c3762127a178bf3607fbfcd6e46cd604fb"
+      },
+      {
+        "year": 2024,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-ec557d88808fc0a7dd6fee0a667fdf7289e265b8"
+      },
+      {
+        "year": 2025,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-3762f810bb6e8614897a6deefccc51d2b37028c0"
+      }
+    ],
+    "historyPurgedOfAllOneOffs": false,
+    "cycleQualified": false,
+    "automaticScalarApplied": false,
+    "reportedMarginMinimum": null,
+    "reportedMarginMaximum": null,
+    "reason": "Historical reported margins are counterevidence, not an automatic sustainable common-earnings multiplier. Banks use explicit credit/recovery axes; mixed groups need segment cycle review."
+  },
+  "checkedReadingIds": [
+    "HDB-FY2025-recoveries2025",
+    "HDB-FY2025-recoveries2024",
+    "HDB-FY2025-debtTradingIncome2025",
+    "HDB-FY2025-debtTradingIncome2024"
+  ],
+  "accountingConflictDisposition": null,
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "scenarios": [
+    {
+      "name": "BEAR",
+      "assumedCycleAxes": {},
+      "adjustments": [
+        {
+          "id": "HDB-total-credit-proxy",
+          "pretaxVnd": "-225241913051.0281",
+          "readingIds": [],
+          "reason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-225241913051.0281",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "HDB-recoveries-mean",
+          "pretaxVnd": "-232518375000",
+          "readingIds": [
+            "HDB-FY2025-recoveries2024",
+            "HDB-FY2025-recoveries2025"
+          ],
+          "reason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-232518375000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "commonEarningsIncidenceMinimumVnd": "16041627711948.9719",
+      "commonEarningsIncidenceMaximumVnd": "16499388000000",
+      "unreviewedLeakageAndOneOffsBounded": false,
+      "independentIncidenceByAdjustment": true,
+      "diagnosticAt20PercentTaxAndProfitRatioVnd": "16144960164559.016142",
+      "diagnosticIsSelectedEstimate": false,
+      "loanOnlyNormalizationClaimed": false
+    },
+    {
+      "name": "BASE",
+      "assumedCycleAxes": {},
+      "adjustments": [
+        {
+          "id": "HDB-total-credit-proxy",
+          "pretaxVnd": "1769485269559.17752",
+          "readingIds": [],
+          "reason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "0",
+            "maxAfterTaxCommonDelta": "1769485269559.17752",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "HDB-recoveries-mean",
+          "pretaxVnd": "-130704500000",
+          "readingIds": [
+            "HDB-FY2025-recoveries2024",
+            "HDB-FY2025-recoveries2025"
+          ],
+          "reason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-130704500000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "commonEarningsIncidenceMinimumVnd": "16368683500000",
+      "commonEarningsIncidenceMaximumVnd": "18268873269559.17752",
+      "unreviewedLeakageAndOneOffsBounded": false,
+      "independentIncidenceByAdjustment": true,
+      "diagnosticAt20PercentTaxAndProfitRatioVnd": "17768238828869.676899",
+      "diagnosticIsSelectedEstimate": false,
+      "loanOnlyNormalizationClaimed": false
+    },
+    {
+      "name": "BULL",
+      "assumedCycleAxes": {},
+      "adjustments": [
+        {
+          "id": "HDB-total-credit-proxy",
+          "pretaxVnd": "2966321579125.300892",
+          "readingIds": [],
+          "reason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "0",
+            "maxAfterTaxCommonDelta": "2966321579125.300892",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "HDB-recoveries-mean",
+          "pretaxVnd": "-89978950000",
+          "readingIds": [
+            "HDB-FY2025-recoveries2024",
+            "HDB-FY2025-recoveries2025"
+          ],
+          "reason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-89978950000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "commonEarningsIncidenceMinimumVnd": "16409409050000",
+      "commonEarningsIncidenceMaximumVnd": "19465709579125.300892",
+      "unreviewedLeakageAndOneOffsBounded": false,
+      "independentIncidenceByAdjustment": true,
+      "diagnosticAt20PercentTaxAndProfitRatioVnd": "18726439840534.20288",
+      "diagnosticIsSelectedEstimate": false,
+      "loanOnlyNormalizationClaimed": false
+    }
+  ],
+  "economicTreatment": "Source-specific bridge and explicit tax/common-incidence sensitivities; no financial admission."
+}

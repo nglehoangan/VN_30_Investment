@@ -1,0 +1,382 @@
+{
+  "contract": "issuer-common-earnings-normalization-v3",
+  "ticker": "SSI",
+  "sector": "SECURITIES",
+  "scope": "CONSOLIDATED",
+  "period": "FY2025",
+  "classification": "CONDITIONAL_RESEARCH_NOT_ADMITTED",
+  "originalReportedCommonVnd": "4106090416749",
+  "reportedScopeNetIncomeVnd": "4106880733899",
+  "parentNetIncomeVnd": "4106090416749",
+  "reportedScopePbtVnd": "5082973996371",
+  "pbtBasis": "CHECKED_PDF_READING",
+  "taxProfile": {
+    "reportedTaxVnd": "976093262472",
+    "reportedEffectiveRate": "0.19203192130608652383816796918668314262053536464478",
+    "marginalTaxQualified": false,
+    "negativeTaxBenefit": false,
+    "rateOutsideZeroOne": false
+  },
+  "parentToReportedScopeProfitRatio": "0.999808",
+  "commonAttributionProxy": "0.99980756267318002028689815418656779371008716202098",
+  "proxyIsProvenOwnership": false,
+  "nciIncidence": "UNPROVEN_TRANSACTION_ATTRIBUTION",
+  "sourceCommonBridgeVnd": "3861272256382",
+  "sourceCommonBridgePrecision": "DECLARED_SOURCE_UNITS",
+  "nativeNetIncomeVnd": "4106880733899",
+  "checkedVsNativeNetIncomeDifferenceVnd": "0",
+  "additionalSourceDifferences": [],
+  "additionalKnownFundDeductions": [
+    {
+      "id": "FY2025-later-parent-fund-SSI",
+      "period": "FY2025",
+      "classification": "PARENT_NON_SHAREHOLDER_LEAKAGE",
+      "alreadyDeducted": false,
+      "value": "244818160367"
+    }
+  ],
+  "unprovenAdditionalFundLeakageVnd": null,
+  "sourceFundStatus": "ISSUER_UNESTIMATED",
+  "sourcePrintedDeductionsPreservedInEvidence": true,
+  "fullFundCompletenessProven": false,
+  "knownFundAmountsArePostTaxAndNotTaxDiscounted": true,
+  "assumedMarginalTaxRates": [
+    "0",
+    ".2"
+  ],
+  "commonIncidenceScenarios": [
+    "0",
+    "1"
+  ],
+  "incidenceParametersAreConfirmedFacts": false,
+  "basePretaxAdjustments": [],
+  "creditNormalization": null,
+  "cycleReview": {
+    "history": [
+      {
+        "year": 2022,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-6952e8ace1ad4c568467a7951e5a86b6f0ec5e39"
+      },
+      {
+        "year": 2023,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-b586901d04558bcfe14a78389c478037e4364e35"
+      },
+      {
+        "year": 2024,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-ed1333dd7a5e26eb0b7697f43fe99e1ccf56e403"
+      },
+      {
+        "year": 2025,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-cf3bcebe7a62dcff95063bc8306a3c68ceffb297"
+      }
+    ],
+    "historyPurgedOfAllOneOffs": false,
+    "cycleQualified": false,
+    "automaticScalarApplied": false,
+    "reportedMarginMinimum": null,
+    "reportedMarginMaximum": null,
+    "reason": "Historical reported margins are counterevidence, not an automatic sustainable common-earnings multiplier. Banks use explicit credit/recovery axes; mixed groups need segment cycle review."
+  },
+  "checkedReadingIds": [
+    "SSI-FY2025-pbt",
+    "SSI-FY2025-taxExpense",
+    "SSI-FY2025-taxCurrent",
+    "SSI-FY2025-taxDeferred",
+    "SSI-FY2025-groupNetIncome",
+    "SSI-FY2025-parentNetIncome"
+  ],
+  "accountingConflictDisposition": null,
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "modelChallenges": [
+    {
+      "name": "BEAR",
+      "retainedModelAssumptions": {
+        "discount": ".18",
+        "terminalGrowth": "0.01",
+        "growth": ".03",
+        "cycleFactor": "0.65",
+        "taxRate": ".2",
+        "commonAttributionProxy": "0.999808"
+      },
+      "oldNormalization": {
+        "reportedCommonProfit": "4106090416749",
+        "adjustments": [
+          {
+            "reason": "Remove paired asset/warrant revaluation net; no gross-leg addback",
+            "pretaxVnd": "-94667248007",
+            "afterTaxCommonVnd": "-75719224395.884903",
+            "sourceReadingIds": [
+              "SSI-2025-fvtplRevaluationGain",
+              "SSI-2025-fvtplRevaluationLoss",
+              "SSI-2025-warrantRevaluationGain",
+              "SSI-2025-warrantRevaluationLoss"
+            ],
+            "taxTreatment": "ASSUMED_20_PERCENT_NOT_PROVEN_TRANSACTION_TAX",
+            "attribution": "ASSUMED_PARENT_GROUP_PROFIT_RATIO"
+          },
+          {
+            "reason": "Remove net investment-disposal gain",
+            "pretaxVnd": "-4197609145",
+            "afterTaxCommonVnd": "-3357441094.653681",
+            "sourceReadingIds": [
+              "SSI-2025-investmentDisposalGain",
+              "SSI-2025-investmentDisposalLoss"
+            ],
+            "taxTreatment": "ASSUMED_20_PERCENT_NOT_PROVEN_TRANSACTION_TAX",
+            "attribution": "ASSUMED_PARENT_GROUP_PROFIT_RATIO"
+          }
+        ],
+        "afterAdjustments": "4027013751258.461416",
+        "additionalUnestimatedFundAssumption": "201350687562.923071",
+        "cycleFactor": "0.65",
+        "scenarioCommonProfit": "2486680991402.099924",
+        "status": "ASSUMPTION_DEPENDENT_NOT_ADMITTED",
+        "exhaustiveOneOffReviewComplete": false
+      },
+      "oldCycleImpactVnd": "-1338982072293.438421",
+      "cycleScalarIsEmpiricallyQualified": false,
+      "pretaxAdjustmentIncidence": [
+        {
+          "reason": "Remove paired asset/warrant revaluation net; no gross-leg addback",
+          "pretaxVnd": "-94667248007",
+          "sourceReadingIds": [
+            "SSI-2025-fvtplRevaluationGain",
+            "SSI-2025-fvtplRevaluationLoss",
+            "SSI-2025-warrantRevaluationGain",
+            "SSI-2025-warrantRevaluationLoss"
+          ],
+          "sensitivity": {
+            "minAfterTaxCommonDelta": "-94667248007",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "reason": "Remove net investment-disposal gain",
+          "pretaxVnd": "-4197609145",
+          "sourceReadingIds": [
+            "SSI-2025-investmentDisposalGain",
+            "SSI-2025-investmentDisposalLoss"
+          ],
+          "sensitivity": {
+            "minAfterTaxCommonDelta": "-4197609145",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "confirmedAdditionalFundVnd": "244818160367",
+      "fundHaircutCanReplaceKnownAllocation": false,
+      "oldCycleFactor": "0.65",
+      "oldCycleFactorQualified": false,
+      "reportedGroupTaxRateIsMarginal": false,
+      "profitRatioIsOwnership": false,
+      "accepted": false,
+      "beforeCycleAfterKnownFundIncidenceRangeVnd": [
+        "3762407399230",
+        "3861272256382"
+      ],
+      "diagnosticAtReportedScopeEffectiveTaxVnd": "3781407979524.610312"
+    },
+    {
+      "name": "BASE",
+      "retainedModelAssumptions": {
+        "discount": ".15",
+        "terminalGrowth": "0.02",
+        "growth": ".05",
+        "cycleFactor": "0.85",
+        "taxRate": ".2",
+        "commonAttributionProxy": "0.999808"
+      },
+      "oldNormalization": {
+        "reportedCommonProfit": "4106090416749",
+        "adjustments": [
+          {
+            "reason": "Remove paired asset/warrant revaluation net; no gross-leg addback",
+            "pretaxVnd": "-94667248007",
+            "afterTaxCommonVnd": "-75719224395.884903",
+            "sourceReadingIds": [
+              "SSI-2025-fvtplRevaluationGain",
+              "SSI-2025-fvtplRevaluationLoss",
+              "SSI-2025-warrantRevaluationGain",
+              "SSI-2025-warrantRevaluationLoss"
+            ],
+            "taxTreatment": "ASSUMED_20_PERCENT_NOT_PROVEN_TRANSACTION_TAX",
+            "attribution": "ASSUMED_PARENT_GROUP_PROFIT_RATIO"
+          },
+          {
+            "reason": "Remove net investment-disposal gain",
+            "pretaxVnd": "-4197609145",
+            "afterTaxCommonVnd": "-3357441094.653681",
+            "sourceReadingIds": [
+              "SSI-2025-investmentDisposalGain",
+              "SSI-2025-investmentDisposalLoss"
+            ],
+            "taxTreatment": "ASSUMED_20_PERCENT_NOT_PROVEN_TRANSACTION_TAX",
+            "attribution": "ASSUMED_PARENT_GROUP_PROFIT_RATIO"
+          }
+        ],
+        "afterAdjustments": "4027013751258.461416",
+        "additionalUnestimatedFundAssumption": "120810412537.753842",
+        "cycleFactor": "0.85",
+        "scenarioCommonProfit": "3320272837912.601437",
+        "status": "ASSUMPTION_DEPENDENT_NOT_ADMITTED",
+        "exhaustiveOneOffReviewComplete": false
+      },
+      "oldCycleImpactVnd": "-585930500808.106137",
+      "cycleScalarIsEmpiricallyQualified": false,
+      "pretaxAdjustmentIncidence": [
+        {
+          "reason": "Remove paired asset/warrant revaluation net; no gross-leg addback",
+          "pretaxVnd": "-94667248007",
+          "sourceReadingIds": [
+            "SSI-2025-fvtplRevaluationGain",
+            "SSI-2025-fvtplRevaluationLoss",
+            "SSI-2025-warrantRevaluationGain",
+            "SSI-2025-warrantRevaluationLoss"
+          ],
+          "sensitivity": {
+            "minAfterTaxCommonDelta": "-94667248007",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "reason": "Remove net investment-disposal gain",
+          "pretaxVnd": "-4197609145",
+          "sourceReadingIds": [
+            "SSI-2025-investmentDisposalGain",
+            "SSI-2025-investmentDisposalLoss"
+          ],
+          "sensitivity": {
+            "minAfterTaxCommonDelta": "-4197609145",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "confirmedAdditionalFundVnd": "244818160367",
+      "fundHaircutCanReplaceKnownAllocation": false,
+      "oldCycleFactor": "0.85",
+      "oldCycleFactorQualified": false,
+      "reportedGroupTaxRateIsMarginal": false,
+      "profitRatioIsOwnership": false,
+      "accepted": false,
+      "beforeCycleAfterKnownFundIncidenceRangeVnd": [
+        "3762407399230",
+        "3861272256382"
+      ],
+      "diagnosticAtReportedScopeEffectiveTaxVnd": "3781407979524.610312"
+    },
+    {
+      "name": "BULL",
+      "retainedModelAssumptions": {
+        "discount": ".12",
+        "terminalGrowth": "0.025",
+        "growth": ".07",
+        "cycleFactor": "1",
+        "taxRate": ".2",
+        "commonAttributionProxy": "0.999808"
+      },
+      "oldNormalization": {
+        "reportedCommonProfit": "4106090416749",
+        "adjustments": [
+          {
+            "reason": "Remove paired asset/warrant revaluation net; no gross-leg addback",
+            "pretaxVnd": "-94667248007",
+            "afterTaxCommonVnd": "-75719224395.884903",
+            "sourceReadingIds": [
+              "SSI-2025-fvtplRevaluationGain",
+              "SSI-2025-fvtplRevaluationLoss",
+              "SSI-2025-warrantRevaluationGain",
+              "SSI-2025-warrantRevaluationLoss"
+            ],
+            "taxTreatment": "ASSUMED_20_PERCENT_NOT_PROVEN_TRANSACTION_TAX",
+            "attribution": "ASSUMED_PARENT_GROUP_PROFIT_RATIO"
+          },
+          {
+            "reason": "Remove net investment-disposal gain",
+            "pretaxVnd": "-4197609145",
+            "afterTaxCommonVnd": "-3357441094.653681",
+            "sourceReadingIds": [
+              "SSI-2025-investmentDisposalGain",
+              "SSI-2025-investmentDisposalLoss"
+            ],
+            "taxTreatment": "ASSUMED_20_PERCENT_NOT_PROVEN_TRANSACTION_TAX",
+            "attribution": "ASSUMED_PARENT_GROUP_PROFIT_RATIO"
+          }
+        ],
+        "afterAdjustments": "4027013751258.461416",
+        "additionalUnestimatedFundAssumption": "80540275025.169228",
+        "cycleFactor": "1",
+        "scenarioCommonProfit": "3946473476233.292188",
+        "status": "ASSUMPTION_DEPENDENT_NOT_ADMITTED",
+        "exhaustiveOneOffReviewComplete": false
+      },
+      "oldCycleImpactVnd": "0",
+      "cycleScalarIsEmpiricallyQualified": false,
+      "pretaxAdjustmentIncidence": [
+        {
+          "reason": "Remove paired asset/warrant revaluation net; no gross-leg addback",
+          "pretaxVnd": "-94667248007",
+          "sourceReadingIds": [
+            "SSI-2025-fvtplRevaluationGain",
+            "SSI-2025-fvtplRevaluationLoss",
+            "SSI-2025-warrantRevaluationGain",
+            "SSI-2025-warrantRevaluationLoss"
+          ],
+          "sensitivity": {
+            "minAfterTaxCommonDelta": "-94667248007",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "reason": "Remove net investment-disposal gain",
+          "pretaxVnd": "-4197609145",
+          "sourceReadingIds": [
+            "SSI-2025-investmentDisposalGain",
+            "SSI-2025-investmentDisposalLoss"
+          ],
+          "sensitivity": {
+            "minAfterTaxCommonDelta": "-4197609145",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "confirmedAdditionalFundVnd": "244818160367",
+      "fundHaircutCanReplaceKnownAllocation": false,
+      "oldCycleFactor": "1",
+      "oldCycleFactorQualified": false,
+      "reportedGroupTaxRateIsMarginal": false,
+      "profitRatioIsOwnership": false,
+      "accepted": false,
+      "beforeCycleAfterKnownFundIncidenceRangeVnd": [
+        "3762407399230",
+        "3861272256382"
+      ],
+      "diagnosticAtReportedScopeEffectiveTaxVnd": "3781407979524.610312"
+    }
+  ],
+  "priorModelPath": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/held-normalization-v1/issuers/SSI.json",
+  "priorValueRequiresRequalification": true
+}

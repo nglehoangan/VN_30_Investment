@@ -1,0 +1,326 @@
+{
+  "contract": "issuer-common-earnings-normalization-v3",
+  "ticker": "VIB",
+  "sector": "BANK",
+  "scope": "CONSOLIDATED",
+  "period": "FY2025",
+  "classification": "CONDITIONAL_RESEARCH_NOT_ADMITTED",
+  "originalReportedCommonVnd": "7285430000000",
+  "reportedScopeNetIncomeVnd": "7285430000000",
+  "parentNetIncomeVnd": "7285430000000",
+  "reportedScopePbtVnd": "9104616000000",
+  "pbtBasis": "CHECKED_PNL_PBT",
+  "taxProfile": {
+    "reportedTaxVnd": "1819186000000",
+    "reportedEffectiveRate": "0.19980919568711080181745171899616634023884148436354",
+    "marginalTaxQualified": false,
+    "negativeTaxBenefit": false,
+    "rateOutsideZeroOne": false
+  },
+  "parentToReportedScopeProfitRatio": "1",
+  "commonAttributionProxy": "1",
+  "proxyIsProvenOwnership": false,
+  "nciIncidence": "UNPROVEN_TRANSACTION_ATTRIBUTION",
+  "sourceCommonBridgeVnd": "7285430000000",
+  "sourceCommonBridgePrecision": "DECLARED_SOURCE_UNITS",
+  "nativeNetIncomeVnd": "7285430000000",
+  "checkedVsNativeNetIncomeDifferenceVnd": "0",
+  "additionalSourceDifferences": [],
+  "additionalKnownFundDeductions": [],
+  "unprovenAdditionalFundLeakageVnd": null,
+  "sourceFundStatus": "EXPLICIT_COMMON_NO_ZERO_INFERENCE",
+  "sourcePrintedDeductionsPreservedInEvidence": true,
+  "fullFundCompletenessProven": false,
+  "knownFundAmountsArePostTaxAndNotTaxDiscounted": true,
+  "assumedMarginalTaxRates": [
+    "0",
+    ".2"
+  ],
+  "commonIncidenceScenarios": [
+    "0",
+    "1"
+  ],
+  "incidenceParametersAreConfirmedFacts": false,
+  "basePretaxAdjustments": [
+    {
+      "id": "VIB-total-credit-proxy",
+      "pretaxVnd": "-1446214415923.775898",
+      "readingIds": [],
+      "reason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+      "incidenceEnvelope": {
+        "minAfterTaxCommonDelta": "-1446214415923.775898",
+        "maxAfterTaxCommonDelta": "0",
+        "taxIncidenceProven": false,
+        "nciIncidenceProven": false
+      }
+    },
+    {
+      "id": "VIB-recoveries-mean",
+      "pretaxVnd": "-297307500000",
+      "readingIds": [
+        "VIB-FY2025-recoveries2024",
+        "VIB-FY2025-recoveries2025"
+      ],
+      "reason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+      "incidenceEnvelope": {
+        "minAfterTaxCommonDelta": "-297307500000",
+        "maxAfterTaxCommonDelta": "0",
+        "taxIncidenceProven": false,
+        "nciIncidenceProven": false
+      }
+    },
+    {
+      "id": "VIB-investment-reversal",
+      "pretaxVnd": "-1500000000",
+      "readingIds": [
+        "VIB-FY2025-investmentRiskReversal2025"
+      ],
+      "reason": "Separate securities-income line reversal, outside total P&L credit-charge replacement; retain ordinary securities costs.",
+      "incidenceEnvelope": {
+        "minAfterTaxCommonDelta": "-1500000000",
+        "maxAfterTaxCommonDelta": "0",
+        "taxIncidenceProven": false,
+        "nciIncidenceProven": false
+      }
+    }
+  ],
+  "creditNormalization": {
+    "method": "TOTAL_P_AND_L_CREDIT_EXPENSE_PER_AVERAGE_TOTAL_ASSETS_PROXY",
+    "history": [
+      {
+        "year": 2023,
+        "openingAssets": "342798925000000",
+        "closingAssets": "409881373000000",
+        "totalCreditExpense": "4845805000000"
+      },
+      {
+        "year": 2024,
+        "openingAssets": "409881373000000",
+        "closingAssets": "493158370000000",
+        "totalCreditExpense": "4353458000000"
+      },
+      {
+        "year": 2025,
+        "openingAssets": "493158370000000",
+        "closingAssets": "556098441000000",
+        "totalCreditExpense": "3467019000000"
+      }
+    ],
+    "weightedHistoricalRate": "0.009365",
+    "targetAverageAssetsVnd": "524628405500000",
+    "baseChargeVnd": "4913233415923.775898",
+    "loanOnlyClaimed": false,
+    "fullCycleQualified": false,
+    "populationAndVintage": "Original dated annual observations retained; three years and changing asset mix do not prove a full-cycle/PIT matched loan population."
+  },
+  "cycleReview": {
+    "history": [
+      {
+        "year": 2022,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-2249780562c1b8fd9a152df401b11d78d2c3b051"
+      },
+      {
+        "year": 2023,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-18534903554b8208daa288869766ea6fc1995990"
+      },
+      {
+        "year": 2024,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-f0b2f7dfe415ed2f066db82ec347bfc185ca1930"
+      },
+      {
+        "year": 2025,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-c2c11e6b69037d7e9c20fc1ba4590c5eff289996"
+      }
+    ],
+    "historyPurgedOfAllOneOffs": false,
+    "cycleQualified": false,
+    "automaticScalarApplied": false,
+    "reportedMarginMinimum": null,
+    "reportedMarginMaximum": null,
+    "reason": "Historical reported margins are counterevidence, not an automatic sustainable common-earnings multiplier. Banks use explicit credit/recovery axes; mixed groups need segment cycle review."
+  },
+  "checkedReadingIds": [
+    "VIB-FY2025-recoveries2025",
+    "VIB-FY2025-recoveries2024",
+    "VIB-FY2025-investmentRiskReversal2025"
+  ],
+  "accountingConflictDisposition": null,
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "scenarios": [
+    {
+      "name": "BEAR",
+      "assumedCycleAxes": {},
+      "adjustments": [
+        {
+          "id": "VIB-total-credit-proxy",
+          "pretaxVnd": "-2674522769904.719872",
+          "readingIds": [],
+          "reason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-2674522769904.719872",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "VIB-recoveries-mean",
+          "pretaxVnd": "-683447625000",
+          "readingIds": [
+            "VIB-FY2025-recoveries2024",
+            "VIB-FY2025-recoveries2025"
+          ],
+          "reason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-683447625000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "VIB-investment-reversal",
+          "pretaxVnd": "-1500000000",
+          "readingIds": [
+            "VIB-FY2025-investmentRiskReversal2025"
+          ],
+          "reason": "Separate securities-income line reversal, outside total P&L credit-charge replacement; retain ordinary securities costs.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-1500000000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "commonEarningsIncidenceMinimumVnd": "3925959605095.280128",
+      "commonEarningsIncidenceMaximumVnd": "7285430000000",
+      "unreviewedLeakageAndOneOffsBounded": false,
+      "independentIncidenceByAdjustment": true,
+      "diagnosticAt20PercentTaxAndProfitRatioVnd": "4597853684076.224102",
+      "diagnosticIsSelectedEstimate": false,
+      "loanOnlyNormalizationClaimed": false
+    },
+    {
+      "name": "BASE",
+      "assumedCycleAxes": {},
+      "adjustments": [
+        {
+          "id": "VIB-total-credit-proxy",
+          "pretaxVnd": "-1446214415923.775898",
+          "readingIds": [],
+          "reason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-1446214415923.775898",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "VIB-recoveries-mean",
+          "pretaxVnd": "-297307500000",
+          "readingIds": [
+            "VIB-FY2025-recoveries2024",
+            "VIB-FY2025-recoveries2025"
+          ],
+          "reason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-297307500000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "VIB-investment-reversal",
+          "pretaxVnd": "-1500000000",
+          "readingIds": [
+            "VIB-FY2025-investmentRiskReversal2025"
+          ],
+          "reason": "Separate securities-income line reversal, outside total P&L credit-charge replacement; retain ordinary securities costs.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-1500000000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "commonEarningsIncidenceMinimumVnd": "5540408084076.224102",
+      "commonEarningsIncidenceMaximumVnd": "7285430000000",
+      "unreviewedLeakageAndOneOffsBounded": false,
+      "independentIncidenceByAdjustment": true,
+      "diagnosticAt20PercentTaxAndProfitRatioVnd": "5889412467260.979282",
+      "diagnosticIsSelectedEstimate": false,
+      "loanOnlyNormalizationClaimed": false
+    },
+    {
+      "name": "BULL",
+      "assumedCycleAxes": {},
+      "adjustments": [
+        {
+          "id": "VIB-total-credit-proxy",
+          "pretaxVnd": "-709229403535.209513",
+          "readingIds": [],
+          "reason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-709229403535.209513",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "VIB-recoveries-mean",
+          "pretaxVnd": "-142851450000",
+          "readingIds": [
+            "VIB-FY2025-recoveries2024",
+            "VIB-FY2025-recoveries2025"
+          ],
+          "reason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-142851450000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "VIB-investment-reversal",
+          "pretaxVnd": "-1500000000",
+          "readingIds": [
+            "VIB-FY2025-investmentRiskReversal2025"
+          ],
+          "reason": "Separate securities-income line reversal, outside total P&L credit-charge replacement; retain ordinary securities costs.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-1500000000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "commonEarningsIncidenceMinimumVnd": "6431849146464.790487",
+      "commonEarningsIncidenceMaximumVnd": "7285430000000",
+      "unreviewedLeakageAndOneOffsBounded": false,
+      "independentIncidenceByAdjustment": true,
+      "diagnosticAt20PercentTaxAndProfitRatioVnd": "6602565317171.83239",
+      "diagnosticIsSelectedEstimate": false,
+      "loanOnlyNormalizationClaimed": false
+    }
+  ],
+  "economicTreatment": "Source-specific bridge and explicit tax/common-incidence sensitivities; no financial admission."
+}

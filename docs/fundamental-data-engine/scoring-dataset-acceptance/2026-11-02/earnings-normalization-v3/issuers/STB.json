@@ -1,0 +1,273 @@
+{
+  "contract": "issuer-common-earnings-normalization-v3",
+  "ticker": "STB",
+  "sector": "BANK",
+  "scope": "CONSOLIDATED",
+  "period": "FY2025",
+  "classification": "CONDITIONAL_RESEARCH_NOT_ADMITTED",
+  "originalReportedCommonVnd": "5939111000000",
+  "reportedScopeNetIncomeVnd": "5939111000000",
+  "parentNetIncomeVnd": "5939111000000",
+  "reportedScopePbtVnd": "7628025000000",
+  "pbtBasis": "CHECKED_PNL_PBT",
+  "taxProfile": {
+    "reportedTaxVnd": "1688914000000",
+    "reportedEffectiveRate": "0.22140908033206498405550584849944776006895625014339",
+    "marginalTaxQualified": false,
+    "negativeTaxBenefit": false,
+    "rateOutsideZeroOne": false
+  },
+  "parentToReportedScopeProfitRatio": "1",
+  "commonAttributionProxy": "1",
+  "proxyIsProvenOwnership": false,
+  "nciIncidence": "UNPROVEN_TRANSACTION_ATTRIBUTION",
+  "sourceCommonBridgeVnd": "5939111000000",
+  "sourceCommonBridgePrecision": "DECLARED_SOURCE_UNITS",
+  "nativeNetIncomeVnd": "5939111000000",
+  "checkedVsNativeNetIncomeDifferenceVnd": "0",
+  "additionalSourceDifferences": [],
+  "additionalKnownFundDeductions": [],
+  "unprovenAdditionalFundLeakageVnd": null,
+  "sourceFundStatus": "ISSUER_UNESTIMATED",
+  "sourcePrintedDeductionsPreservedInEvidence": true,
+  "fullFundCompletenessProven": false,
+  "knownFundAmountsArePostTaxAndNotTaxDiscounted": true,
+  "assumedMarginalTaxRates": [
+    "0",
+    ".2"
+  ],
+  "commonIncidenceScenarios": [
+    "0",
+    "1"
+  ],
+  "incidenceParametersAreConfirmedFacts": false,
+  "basePretaxAdjustments": [
+    {
+      "id": "STB-total-credit-proxy",
+      "pretaxVnd": "4864326959141.561068",
+      "readingIds": [],
+      "reason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+      "incidenceEnvelope": {
+        "minAfterTaxCommonDelta": "0",
+        "maxAfterTaxCommonDelta": "4864326959141.561068",
+        "taxIncidenceProven": false,
+        "nciIncidenceProven": false
+      }
+    },
+    {
+      "id": "STB-recoveries-mean",
+      "pretaxVnd": "-647396000000",
+      "readingIds": [
+        "STB-FY2025-recoveries2024",
+        "STB-FY2025-recoveries2025"
+      ],
+      "reason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+      "incidenceEnvelope": {
+        "minAfterTaxCommonDelta": "-647396000000",
+        "maxAfterTaxCommonDelta": "0",
+        "taxIncidenceProven": false,
+        "nciIncidenceProven": false
+      }
+    }
+  ],
+  "creditNormalization": {
+    "method": "TOTAL_P_AND_L_CREDIT_EXPENSE_PER_AVERAGE_TOTAL_ASSETS_PROXY",
+    "history": [
+      {
+        "year": 2023,
+        "openingAssets": "591907695000000",
+        "closingAssets": "674389660000000",
+        "totalCreditExpense": "3688105000000"
+      },
+      {
+        "year": 2024,
+        "openingAssets": "674389660000000",
+        "closingAssets": "748094546000000",
+        "totalCreditExpense": "1974364000000"
+      },
+      {
+        "year": 2025,
+        "openingAssets": "748094546000000",
+        "closingAssets": "917119803000000",
+        "totalCreditExpense": "11383775000000"
+      }
+    ],
+    "weightedHistoricalRate": "0.00783",
+    "targetAverageAssetsVnd": "832607174500000",
+    "baseChargeVnd": "6519448040858.438932",
+    "loanOnlyClaimed": false,
+    "fullCycleQualified": false,
+    "populationAndVintage": "Original dated annual observations retained; three years and changing asset mix do not prove a full-cycle/PIT matched loan population."
+  },
+  "cycleReview": {
+    "history": [
+      {
+        "year": 2022,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-5866d2ddab1999a4cb66d918d34580bc13f25b3f"
+      },
+      {
+        "year": 2023,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "b6r3-observation-3929b321b4365494495877efde20e4c9aca2"
+      },
+      {
+        "year": 2024,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-8155124c261da444a28169ba8007278df25f80c9"
+      },
+      {
+        "year": 2025,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-f2ecd687d43b5f142d2224f7f267e5460d1f3ebe"
+      }
+    ],
+    "historyPurgedOfAllOneOffs": false,
+    "cycleQualified": false,
+    "automaticScalarApplied": false,
+    "reportedMarginMinimum": null,
+    "reportedMarginMaximum": null,
+    "reason": "Historical reported margins are counterevidence, not an automatic sustainable common-earnings multiplier. Banks use explicit credit/recovery axes; mixed groups need segment cycle review."
+  },
+  "checkedReadingIds": [
+    "STB-FY2025-taxExpense",
+    "STB-FY2025-taxCurrent",
+    "STB-FY2025-taxDeferred",
+    "STB-FY2025-recoveries2025",
+    "STB-FY2025-recoveries2024",
+    "STB-FY2025-disposalIncome"
+  ],
+  "accountingConflictDisposition": null,
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "scenarios": [
+    {
+      "name": "BEAR",
+      "assumedCycleAxes": {},
+      "adjustments": [
+        {
+          "id": "STB-total-credit-proxy",
+          "pretaxVnd": "3234464948926.951335",
+          "readingIds": [],
+          "reason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "0",
+            "maxAfterTaxCommonDelta": "3234464948926.951335",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "STB-recoveries-mean",
+          "pretaxVnd": "-837144500000",
+          "readingIds": [
+            "STB-FY2025-recoveries2024",
+            "STB-FY2025-recoveries2025"
+          ],
+          "reason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-837144500000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "commonEarningsIncidenceMinimumVnd": "5101966500000",
+      "commonEarningsIncidenceMaximumVnd": "9173575948926.951335",
+      "unreviewedLeakageAndOneOffsBounded": false,
+      "independentIncidenceByAdjustment": true,
+      "diagnosticAt20PercentTaxAndProfitRatioVnd": "7856967359141.561068",
+      "diagnosticIsSelectedEstimate": false,
+      "loanOnlyNormalizationClaimed": false
+    },
+    {
+      "name": "BASE",
+      "assumedCycleAxes": {},
+      "adjustments": [
+        {
+          "id": "STB-total-credit-proxy",
+          "pretaxVnd": "4864326959141.561068",
+          "readingIds": [],
+          "reason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "0",
+            "maxAfterTaxCommonDelta": "4864326959141.561068",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "STB-recoveries-mean",
+          "pretaxVnd": "-647396000000",
+          "readingIds": [
+            "STB-FY2025-recoveries2024",
+            "STB-FY2025-recoveries2025"
+          ],
+          "reason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-647396000000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "commonEarningsIncidenceMinimumVnd": "5291715000000",
+      "commonEarningsIncidenceMaximumVnd": "10803437959141.561068",
+      "unreviewedLeakageAndOneOffsBounded": false,
+      "independentIncidenceByAdjustment": true,
+      "diagnosticAt20PercentTaxAndProfitRatioVnd": "9312655767313.248854",
+      "diagnosticIsSelectedEstimate": false,
+      "loanOnlyNormalizationClaimed": false
+    },
+    {
+      "name": "BULL",
+      "assumedCycleAxes": {},
+      "adjustments": [
+        {
+          "id": "STB-total-credit-proxy",
+          "pretaxVnd": "5842244165270.326908",
+          "readingIds": [],
+          "reason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "0",
+            "maxAfterTaxCommonDelta": "5842244165270.326908",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "STB-recoveries-mean",
+          "pretaxVnd": "-571496600000",
+          "readingIds": [
+            "STB-FY2025-recoveries2024",
+            "STB-FY2025-recoveries2025"
+          ],
+          "reason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-571496600000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "commonEarningsIncidenceMinimumVnd": "5367614400000",
+      "commonEarningsIncidenceMaximumVnd": "11781355165270.326908",
+      "unreviewedLeakageAndOneOffsBounded": false,
+      "independentIncidenceByAdjustment": true,
+      "diagnosticAt20PercentTaxAndProfitRatioVnd": "10155709052216.261526",
+      "diagnosticIsSelectedEstimate": false,
+      "loanOnlyNormalizationClaimed": false
+    }
+  ],
+  "economicTreatment": "Source-specific bridge and explicit tax/common-incidence sensitivities; no financial admission."
+}

@@ -1,0 +1,430 @@
+{
+  "contract": "issuer-common-earnings-normalization-v3",
+  "ticker": "VCB",
+  "sector": "BANK",
+  "scope": "CONSOLIDATED",
+  "period": "FY2025",
+  "classification": "CONDITIONAL_RESEARCH_NOT_ADMITTED",
+  "originalReportedCommonVnd": "32201852000000",
+  "reportedScopeNetIncomeVnd": "35197940000000",
+  "parentNetIncomeVnd": "35177663000000",
+  "reportedScopePbtVnd": "44019637000000",
+  "pbtBasis": "CHECKED_PNL_PBT",
+  "taxProfile": {
+    "reportedTaxVnd": "8821697000000",
+    "reportedEffectiveRate": "0.20040367438741032780438421152814140652727327124483",
+    "marginalTaxQualified": false,
+    "negativeTaxBenefit": false,
+    "rateOutsideZeroOne": false
+  },
+  "parentToReportedScopeProfitRatio": "0.999424",
+  "commonAttributionProxy": "0.99942391514957977654374091211019735814084574267699",
+  "proxyIsProvenOwnership": false,
+  "nciIncidence": "UNPROVEN_TRANSACTION_ATTRIBUTION",
+  "sourceCommonBridgeVnd": "32201852000000",
+  "sourceCommonBridgePrecision": "DECLARED_SOURCE_UNITS",
+  "nativeNetIncomeVnd": "35197940000000",
+  "checkedVsNativeNetIncomeDifferenceVnd": "0",
+  "additionalSourceDifferences": [],
+  "additionalKnownFundDeductions": [],
+  "unprovenAdditionalFundLeakageVnd": null,
+  "sourceFundStatus": "ISSUER_ESTIMATED_DEDUCTION",
+  "sourcePrintedDeductionsPreservedInEvidence": true,
+  "fullFundCompletenessProven": false,
+  "knownFundAmountsArePostTaxAndNotTaxDiscounted": true,
+  "assumedMarginalTaxRates": [
+    "0",
+    ".2"
+  ],
+  "commonIncidenceScenarios": [
+    "0",
+    "1"
+  ],
+  "incidenceParametersAreConfirmedFacts": false,
+  "basePretaxAdjustments": [],
+  "creditNormalization": null,
+  "cycleReview": {
+    "history": [
+      {
+        "year": 2022,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-7f5ada5d98f067e5335e5e897d9fea6115357728"
+      },
+      {
+        "year": 2023,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-ca943a661aa92f95c35566b73491fe2ecfd4233f"
+      },
+      {
+        "year": 2024,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-862fa756917dea8b484283bb03f237bfa8026aee"
+      },
+      {
+        "year": 2025,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-d8c07bcde61a2e424f7761c29ee907a92f6f79f9"
+      }
+    ],
+    "historyPurgedOfAllOneOffs": false,
+    "cycleQualified": false,
+    "automaticScalarApplied": false,
+    "reportedMarginMinimum": null,
+    "reportedMarginMaximum": null,
+    "reason": "Historical reported margins are counterevidence, not an automatic sustainable common-earnings multiplier. Banks use explicit credit/recovery axes; mixed groups need segment cycle review."
+  },
+  "checkedReadingIds": [],
+  "accountingConflictDisposition": null,
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "modelChallenges": [
+    {
+      "name": "BEAR",
+      "retainedModelAssumptions": {
+        "discount": ".18",
+        "terminalGrowth": "0.01",
+        "growth": ".02",
+        "cycleFactor": "0.9",
+        "taxRate": ".2",
+        "commonAttributionProxy": "0.999424"
+      },
+      "oldNormalization": {
+        "reportedCommonProfit": "32201852000000",
+        "adjustments": [
+          {
+            "reason": "Replace loan charge only; preserve non-loan residual",
+            "pretaxVnd": "-7715163380288.119615",
+            "afterTaxCommonVnd": "-6168575033236.974998",
+            "sourceReadingIds": [
+              "VCB-2023-customerLoanCharge",
+              "VCB-2024-customerLoanCharge",
+              "VCB-2025-customerLoanCharge"
+            ],
+            "taxTreatment": "ASSUMED_20_PERCENT_NOT_PROVEN_TRANSACTION_TAX",
+            "attribution": "ASSUMED_PARENT_GROUP_PROFIT_RATIO"
+          },
+          {
+            "reason": "Replace bad-debt recoveries with two-year mean sensitivity; retain collection expenses",
+            "pretaxVnd": "-1040906625000",
+            "afterTaxCommonVnd": "-832245579570.108364",
+            "sourceReadingIds": [
+              "VCB-2024-badDebtRecoveries",
+              "VCB-2025-badDebtRecoveries"
+            ],
+            "taxTreatment": "ASSUMED_20_PERCENT_NOT_PROVEN_TRANSACTION_TAX",
+            "attribution": "ASSUMED_PARENT_GROUP_PROFIT_RATIO"
+          },
+          {
+            "reason": "Remove interbank reversal benefit separately, retain corporate-bond risk expense",
+            "pretaxVnd": "-1000000000000",
+            "afterTaxCommonVnd": "-799539132119.663821",
+            "sourceReadingIds": [
+              "VCB-2025-interbankReversal"
+            ],
+            "taxTreatment": "ASSUMED_20_PERCENT_NOT_PROVEN_TRANSACTION_TAX",
+            "attribution": "ASSUMED_PARENT_GROUP_PROFIT_RATIO"
+          }
+        ],
+        "afterAdjustments": "24401492255073.252817",
+        "additionalUnestimatedFundAssumption": "0",
+        "cycleFactor": "0.9",
+        "scenarioCommonProfit": "21961343029565.927535",
+        "status": "ASSUMPTION_DEPENDENT_NOT_ADMITTED",
+        "exhaustiveOneOffReviewComplete": false
+      },
+      "oldCycleImpactVnd": "-2440149225507.325282",
+      "cycleScalarIsEmpiricallyQualified": false,
+      "pretaxAdjustmentIncidence": [
+        {
+          "reason": "Replace loan charge only; preserve non-loan residual",
+          "pretaxVnd": "-7715163380288.119615",
+          "sourceReadingIds": [
+            "VCB-2023-customerLoanCharge",
+            "VCB-2024-customerLoanCharge",
+            "VCB-2025-customerLoanCharge"
+          ],
+          "sensitivity": {
+            "minAfterTaxCommonDelta": "-7715163380288.119615",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "reason": "Replace bad-debt recoveries with two-year mean sensitivity; retain collection expenses",
+          "pretaxVnd": "-1040906625000",
+          "sourceReadingIds": [
+            "VCB-2024-badDebtRecoveries",
+            "VCB-2025-badDebtRecoveries"
+          ],
+          "sensitivity": {
+            "minAfterTaxCommonDelta": "-1040906625000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "reason": "Remove interbank reversal benefit separately, retain corporate-bond risk expense",
+          "pretaxVnd": "-1000000000000",
+          "sourceReadingIds": [
+            "VCB-2025-interbankReversal"
+          ],
+          "sensitivity": {
+            "minAfterTaxCommonDelta": "-1000000000000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "confirmedAdditionalFundVnd": "0",
+      "fundHaircutCanReplaceKnownAllocation": false,
+      "oldCycleFactor": "0.9",
+      "oldCycleFactorQualified": false,
+      "reportedGroupTaxRateIsMarginal": false,
+      "profitRatioIsOwnership": false,
+      "accepted": false,
+      "beforeCycleAfterKnownFundIncidenceRangeVnd": [
+        "22445781994711.880385",
+        "32201852000000"
+      ],
+      "diagnosticAtReportedScopeEffectiveTaxVnd": "24405428261875.269673"
+    },
+    {
+      "name": "BASE",
+      "retainedModelAssumptions": {
+        "discount": ".15",
+        "terminalGrowth": "0.02",
+        "growth": ".04",
+        "cycleFactor": "1",
+        "taxRate": ".2",
+        "commonAttributionProxy": "0.999424"
+      },
+      "oldNormalization": {
+        "reportedCommonProfit": "32201852000000",
+        "adjustments": [
+          {
+            "reason": "Replace loan charge only; preserve non-loan residual",
+            "pretaxVnd": "-5956798104230.495692",
+            "afterTaxCommonVnd": "-4762693186468.509277",
+            "sourceReadingIds": [
+              "VCB-2023-customerLoanCharge",
+              "VCB-2024-customerLoanCharge",
+              "VCB-2025-customerLoanCharge"
+            ],
+            "taxTreatment": "ASSUMED_20_PERCENT_NOT_PROVEN_TRANSACTION_TAX",
+            "attribution": "ASSUMED_PARENT_GROUP_PROFIT_RATIO"
+          },
+          {
+            "reason": "Replace bad-debt recoveries with two-year mean sensitivity; retain collection expenses",
+            "pretaxVnd": "-82523500000",
+            "afterTaxCommonVnd": "-65980767569.477077",
+            "sourceReadingIds": [
+              "VCB-2024-badDebtRecoveries",
+              "VCB-2025-badDebtRecoveries"
+            ],
+            "taxTreatment": "ASSUMED_20_PERCENT_NOT_PROVEN_TRANSACTION_TAX",
+            "attribution": "ASSUMED_PARENT_GROUP_PROFIT_RATIO"
+          },
+          {
+            "reason": "Remove interbank reversal benefit separately, retain corporate-bond risk expense",
+            "pretaxVnd": "-1000000000000",
+            "afterTaxCommonVnd": "-799539132119.663821",
+            "sourceReadingIds": [
+              "VCB-2025-interbankReversal"
+            ],
+            "taxTreatment": "ASSUMED_20_PERCENT_NOT_PROVEN_TRANSACTION_TAX",
+            "attribution": "ASSUMED_PARENT_GROUP_PROFIT_RATIO"
+          }
+        ],
+        "afterAdjustments": "26573638913842.349825",
+        "additionalUnestimatedFundAssumption": "0",
+        "cycleFactor": "1",
+        "scenarioCommonProfit": "26573638913842.349825",
+        "status": "ASSUMPTION_DEPENDENT_NOT_ADMITTED",
+        "exhaustiveOneOffReviewComplete": false
+      },
+      "oldCycleImpactVnd": "0",
+      "cycleScalarIsEmpiricallyQualified": false,
+      "pretaxAdjustmentIncidence": [
+        {
+          "reason": "Replace loan charge only; preserve non-loan residual",
+          "pretaxVnd": "-5956798104230.495692",
+          "sourceReadingIds": [
+            "VCB-2023-customerLoanCharge",
+            "VCB-2024-customerLoanCharge",
+            "VCB-2025-customerLoanCharge"
+          ],
+          "sensitivity": {
+            "minAfterTaxCommonDelta": "-5956798104230.495692",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "reason": "Replace bad-debt recoveries with two-year mean sensitivity; retain collection expenses",
+          "pretaxVnd": "-82523500000",
+          "sourceReadingIds": [
+            "VCB-2024-badDebtRecoveries",
+            "VCB-2025-badDebtRecoveries"
+          ],
+          "sensitivity": {
+            "minAfterTaxCommonDelta": "-82523500000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "reason": "Remove interbank reversal benefit separately, retain corporate-bond risk expense",
+          "pretaxVnd": "-1000000000000",
+          "sourceReadingIds": [
+            "VCB-2025-interbankReversal"
+          ],
+          "sensitivity": {
+            "minAfterTaxCommonDelta": "-1000000000000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "confirmedAdditionalFundVnd": "0",
+      "fundHaircutCanReplaceKnownAllocation": false,
+      "oldCycleFactor": "1",
+      "oldCycleFactorQualified": false,
+      "reportedGroupTaxRateIsMarginal": false,
+      "profitRatioIsOwnership": false,
+      "accepted": false,
+      "beforeCycleAfterKnownFundIncidenceRangeVnd": [
+        "25162530395769.504308",
+        "32201852000000"
+      ],
+      "diagnosticAtReportedScopeEffectiveTaxVnd": "26576478870679.561674"
+    },
+    {
+      "name": "BULL",
+      "retainedModelAssumptions": {
+        "discount": ".12",
+        "terminalGrowth": "0.025",
+        "growth": ".06",
+        "cycleFactor": "1.05",
+        "taxRate": ".2",
+        "commonAttributionProxy": "0.999424"
+      },
+      "oldNormalization": {
+        "reportedCommonProfit": "32201852000000",
+        "adjustments": [
+          {
+            "reason": "Replace loan charge only; preserve non-loan residual",
+            "pretaxVnd": "-4901778938595.921338",
+            "afterTaxCommonVnd": "-3919164078407.429844",
+            "sourceReadingIds": [
+              "VCB-2023-customerLoanCharge",
+              "VCB-2024-customerLoanCharge",
+              "VCB-2025-customerLoanCharge"
+            ],
+            "taxTreatment": "ASSUMED_20_PERCENT_NOT_PROVEN_TRANSACTION_TAX",
+            "attribution": "ASSUMED_PARENT_GROUP_PROFIT_RATIO"
+          },
+          {
+            "reason": "Replace bad-debt recoveries with two-year mean sensitivity; retain collection expenses",
+            "pretaxVnd": "300829750000",
+            "afterTaxCommonVnd": "240525157230.775437",
+            "sourceReadingIds": [
+              "VCB-2024-badDebtRecoveries",
+              "VCB-2025-badDebtRecoveries"
+            ],
+            "taxTreatment": "ASSUMED_20_PERCENT_NOT_PROVEN_TRANSACTION_TAX",
+            "attribution": "ASSUMED_PARENT_GROUP_PROFIT_RATIO"
+          },
+          {
+            "reason": "Remove interbank reversal benefit separately, retain corporate-bond risk expense",
+            "pretaxVnd": "-1000000000000",
+            "afterTaxCommonVnd": "-799539132119.663821",
+            "sourceReadingIds": [
+              "VCB-2025-interbankReversal"
+            ],
+            "taxTreatment": "ASSUMED_20_PERCENT_NOT_PROVEN_TRANSACTION_TAX",
+            "attribution": "ASSUMED_PARENT_GROUP_PROFIT_RATIO"
+          }
+        ],
+        "afterAdjustments": "27723673946703.681772",
+        "additionalUnestimatedFundAssumption": "0",
+        "cycleFactor": "1.05",
+        "scenarioCommonProfit": "29109857644038.865861",
+        "status": "ASSUMPTION_DEPENDENT_NOT_ADMITTED",
+        "exhaustiveOneOffReviewComplete": false
+      },
+      "oldCycleImpactVnd": "1386183697335.184089",
+      "cycleScalarIsEmpiricallyQualified": false,
+      "pretaxAdjustmentIncidence": [
+        {
+          "reason": "Replace loan charge only; preserve non-loan residual",
+          "pretaxVnd": "-4901778938595.921338",
+          "sourceReadingIds": [
+            "VCB-2023-customerLoanCharge",
+            "VCB-2024-customerLoanCharge",
+            "VCB-2025-customerLoanCharge"
+          ],
+          "sensitivity": {
+            "minAfterTaxCommonDelta": "-4901778938595.921338",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "reason": "Replace bad-debt recoveries with two-year mean sensitivity; retain collection expenses",
+          "pretaxVnd": "300829750000",
+          "sourceReadingIds": [
+            "VCB-2024-badDebtRecoveries",
+            "VCB-2025-badDebtRecoveries"
+          ],
+          "sensitivity": {
+            "minAfterTaxCommonDelta": "0",
+            "maxAfterTaxCommonDelta": "300829750000",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "reason": "Remove interbank reversal benefit separately, retain corporate-bond risk expense",
+          "pretaxVnd": "-1000000000000",
+          "sourceReadingIds": [
+            "VCB-2025-interbankReversal"
+          ],
+          "sensitivity": {
+            "minAfterTaxCommonDelta": "-1000000000000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "confirmedAdditionalFundVnd": "0",
+      "fundHaircutCanReplaceKnownAllocation": false,
+      "oldCycleFactor": "1.05",
+      "oldCycleFactorQualified": false,
+      "reportedGroupTaxRateIsMarginal": false,
+      "profitRatioIsOwnership": false,
+      "accepted": false,
+      "beforeCycleAfterKnownFundIncidenceRangeVnd": [
+        "26300073061404.078662",
+        "32502681750000"
+      ],
+      "diagnosticAtReportedScopeEffectiveTaxVnd": "27725933603931.655229"
+    }
+  ],
+  "priorModelPath": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/held-normalization-v1/issuers/VCB.json",
+  "priorValueRequiresRequalification": true
+}

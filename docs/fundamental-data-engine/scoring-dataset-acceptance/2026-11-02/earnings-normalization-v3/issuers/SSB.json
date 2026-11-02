@@ -1,0 +1,387 @@
+{
+  "contract": "issuer-common-earnings-normalization-v3",
+  "ticker": "SSB",
+  "sector": "BANK",
+  "scope": "CONSOLIDATED",
+  "period": "FY2025",
+  "classification": "CONDITIONAL_RESEARCH_NOT_ADMITTED",
+  "originalReportedCommonVnd": "5344253000000",
+  "reportedScopeNetIncomeVnd": "5509539000000",
+  "parentNetIncomeVnd": "5509539000000",
+  "reportedScopePbtVnd": "6868389000000",
+  "pbtBasis": "CHECKED_PNL_PBT",
+  "taxProfile": {
+    "reportedTaxVnd": "1358850000000",
+    "reportedEffectiveRate": "0.19784115314377214220103142090525158082921628346909",
+    "marginalTaxQualified": false,
+    "negativeTaxBenefit": false,
+    "rateOutsideZeroOne": false
+  },
+  "parentToReportedScopeProfitRatio": "1",
+  "commonAttributionProxy": "1",
+  "proxyIsProvenOwnership": false,
+  "nciIncidence": "UNPROVEN_TRANSACTION_ATTRIBUTION",
+  "sourceCommonBridgeVnd": "5344253000000",
+  "sourceCommonBridgePrecision": "DECLARED_SOURCE_UNITS",
+  "nativeNetIncomeVnd": "5509539000000",
+  "checkedVsNativeNetIncomeDifferenceVnd": "0",
+  "additionalSourceDifferences": [],
+  "additionalKnownFundDeductions": [],
+  "unprovenAdditionalFundLeakageVnd": null,
+  "sourceFundStatus": "ISSUER_ESTIMATED_DEDUCTION",
+  "sourcePrintedDeductionsPreservedInEvidence": true,
+  "fullFundCompletenessProven": false,
+  "knownFundAmountsArePostTaxAndNotTaxDiscounted": true,
+  "assumedMarginalTaxRates": [
+    "0",
+    ".2"
+  ],
+  "commonIncidenceScenarios": [
+    "0",
+    "1"
+  ],
+  "incidenceParametersAreConfirmedFacts": false,
+  "basePretaxAdjustments": [
+    {
+      "id": "SSB-total-credit-proxy",
+      "pretaxVnd": "183828237474.050987",
+      "readingIds": [],
+      "reason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+      "incidenceEnvelope": {
+        "minAfterTaxCommonDelta": "0",
+        "maxAfterTaxCommonDelta": "183828237474.050987",
+        "taxIncidenceProven": false,
+        "nciIncidenceProven": false
+      }
+    },
+    {
+      "id": "SSB-recoveries-mean",
+      "pretaxVnd": "228164000000",
+      "readingIds": [
+        "SSB-FY2025-recoveries2024",
+        "SSB-FY2025-recoveries2025"
+      ],
+      "reason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+      "incidenceEnvelope": {
+        "minAfterTaxCommonDelta": "0",
+        "maxAfterTaxCommonDelta": "228164000000",
+        "taxIncidenceProven": false,
+        "nciIncidenceProven": false
+      }
+    },
+    {
+      "id": "SSB-investment-reversal",
+      "pretaxVnd": "-236871000000",
+      "readingIds": [
+        "SSB-FY2025-investmentRiskReversal2025"
+      ],
+      "reason": "Separate securities-income line reversal, outside total P&L credit-charge replacement; retain ordinary securities costs.",
+      "incidenceEnvelope": {
+        "minAfterTaxCommonDelta": "-236871000000",
+        "maxAfterTaxCommonDelta": "0",
+        "taxIncidenceProven": false,
+        "nciIncidenceProven": false
+      }
+    },
+    {
+      "id": "SSB-ptf-sale",
+      "pretaxVnd": "-2607318000000",
+      "readingIds": [
+        "SSB-FY2025-subsidiaryDisposalGain"
+      ],
+      "reason": "Remove specific PTF disposal gain; contract closure does not imply reversal of the completed sale.",
+      "provenCommonWeight": "1",
+      "incidenceEnvelope": {
+        "minAfterTaxCommonDelta": "-2607318000000",
+        "maxAfterTaxCommonDelta": "-2085854400000",
+        "taxIncidenceProven": false,
+        "nciIncidenceProven": false
+      }
+    }
+  ],
+  "creditNormalization": {
+    "method": "TOTAL_P_AND_L_CREDIT_EXPENSE_PER_AVERAGE_TOTAL_ASSETS_PROXY",
+    "history": [
+      {
+        "year": 2023,
+        "openingAssets": "231423056000000",
+        "closingAssets": "266121915000000",
+        "totalCreditExpense": "1200285000000"
+      },
+      {
+        "year": 2024,
+        "openingAssets": "266121915000000",
+        "closingAssets": "325698848000000",
+        "totalCreditExpense": "2239382000000"
+      },
+      {
+        "year": 2025,
+        "openingAssets": "325698848000000",
+        "closingAssets": "396443131000000",
+        "totalCreditExpense": "2585848000000"
+      }
+    ],
+    "weightedHistoricalRate": "0.006652",
+    "targetAverageAssetsVnd": "361070989500000",
+    "baseChargeVnd": "2402019762525.949013",
+    "loanOnlyClaimed": false,
+    "fullCycleQualified": false,
+    "populationAndVintage": "Original dated annual observations retained; three years and changing asset mix do not prove a full-cycle/PIT matched loan population."
+  },
+  "cycleReview": {
+    "history": [
+      {
+        "year": 2022,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-183e62470761c059ec172ed1498b6d8d02de5cf8"
+      },
+      {
+        "year": 2023,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "b6r3-observation-93382e08ae22b69b97d89042ef5f0a7c144c"
+      },
+      {
+        "year": 2024,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-07aa23e56a6acf53a4cbc93cd1b3fd7e2483c443"
+      },
+      {
+        "year": 2025,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-f6c081d8e027fe20b5171a685e11d033f23736c1"
+      }
+    ],
+    "historyPurgedOfAllOneOffs": false,
+    "cycleQualified": false,
+    "automaticScalarApplied": false,
+    "reportedMarginMinimum": null,
+    "reportedMarginMaximum": null,
+    "reason": "Historical reported margins are counterevidence, not an automatic sustainable common-earnings multiplier. Banks use explicit credit/recovery axes; mixed groups need segment cycle review."
+  },
+  "checkedReadingIds": [
+    "SSB-FY2025-recoveries2025",
+    "SSB-FY2025-recoveries2024",
+    "SSB-FY2025-subsidiaryDisposalGain",
+    "SSB-FY2025-investmentRiskReversal2025"
+  ],
+  "accountingConflictDisposition": null,
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "scenarios": [
+    {
+      "name": "BEAR",
+      "assumedCycleAxes": {},
+      "adjustments": [
+        {
+          "id": "SSB-total-credit-proxy",
+          "pretaxVnd": "-416676703157.436266",
+          "readingIds": [],
+          "reason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-416676703157.436266",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "SSB-recoveries-mean",
+          "pretaxVnd": "0",
+          "readingIds": [
+            "SSB-FY2025-recoveries2024",
+            "SSB-FY2025-recoveries2025"
+          ],
+          "reason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "0",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "SSB-investment-reversal",
+          "pretaxVnd": "-236871000000",
+          "readingIds": [
+            "SSB-FY2025-investmentRiskReversal2025"
+          ],
+          "reason": "Separate securities-income line reversal, outside total P&L credit-charge replacement; retain ordinary securities costs.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-236871000000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "SSB-ptf-sale",
+          "pretaxVnd": "-2607318000000",
+          "readingIds": [
+            "SSB-FY2025-subsidiaryDisposalGain"
+          ],
+          "reason": "Remove specific PTF disposal gain; contract closure does not imply reversal of the completed sale.",
+          "provenCommonWeight": "1",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-2607318000000",
+            "maxAfterTaxCommonDelta": "-2085854400000",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "commonEarningsIncidenceMinimumVnd": "2083387296842.563734",
+      "commonEarningsIncidenceMaximumVnd": "3258398600000",
+      "unreviewedLeakageAndOneOffsBounded": false,
+      "independentIncidenceByAdjustment": true,
+      "diagnosticAt20PercentTaxAndProfitRatioVnd": "2735560437474.050987",
+      "diagnosticIsSelectedEstimate": false,
+      "loanOnlyNormalizationClaimed": false
+    },
+    {
+      "name": "BASE",
+      "assumedCycleAxes": {},
+      "adjustments": [
+        {
+          "id": "SSB-total-credit-proxy",
+          "pretaxVnd": "183828237474.050987",
+          "readingIds": [],
+          "reason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "0",
+            "maxAfterTaxCommonDelta": "183828237474.050987",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "SSB-recoveries-mean",
+          "pretaxVnd": "228164000000",
+          "readingIds": [
+            "SSB-FY2025-recoveries2024",
+            "SSB-FY2025-recoveries2025"
+          ],
+          "reason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "0",
+            "maxAfterTaxCommonDelta": "228164000000",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "SSB-investment-reversal",
+          "pretaxVnd": "-236871000000",
+          "readingIds": [
+            "SSB-FY2025-investmentRiskReversal2025"
+          ],
+          "reason": "Separate securities-income line reversal, outside total P&L credit-charge replacement; retain ordinary securities costs.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-236871000000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "SSB-ptf-sale",
+          "pretaxVnd": "-2607318000000",
+          "readingIds": [
+            "SSB-FY2025-subsidiaryDisposalGain"
+          ],
+          "reason": "Remove specific PTF disposal gain; contract closure does not imply reversal of the completed sale.",
+          "provenCommonWeight": "1",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-2607318000000",
+            "maxAfterTaxCommonDelta": "-2085854400000",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "commonEarningsIncidenceMinimumVnd": "2500064000000",
+      "commonEarningsIncidenceMaximumVnd": "3670390837474.050987",
+      "unreviewedLeakageAndOneOffsBounded": false,
+      "independentIncidenceByAdjustment": true,
+      "diagnosticAt20PercentTaxAndProfitRatioVnd": "3398495589979.24079",
+      "diagnosticIsSelectedEstimate": false,
+      "loanOnlyNormalizationClaimed": false
+    },
+    {
+      "name": "BULL",
+      "assumedCycleAxes": {},
+      "adjustments": [
+        {
+          "id": "SSB-total-credit-proxy",
+          "pretaxVnd": "544131201852.943339",
+          "readingIds": [],
+          "reason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "0",
+            "maxAfterTaxCommonDelta": "544131201852.943339",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "SSB-recoveries-mean",
+          "pretaxVnd": "264589300000",
+          "readingIds": [
+            "SSB-FY2025-recoveries2024",
+            "SSB-FY2025-recoveries2025"
+          ],
+          "reason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "0",
+            "maxAfterTaxCommonDelta": "264589300000",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "SSB-investment-reversal",
+          "pretaxVnd": "-236871000000",
+          "readingIds": [
+            "SSB-FY2025-investmentRiskReversal2025"
+          ],
+          "reason": "Separate securities-income line reversal, outside total P&L credit-charge replacement; retain ordinary securities costs.",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-236871000000",
+            "maxAfterTaxCommonDelta": "0",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        },
+        {
+          "id": "SSB-ptf-sale",
+          "pretaxVnd": "-2607318000000",
+          "readingIds": [
+            "SSB-FY2025-subsidiaryDisposalGain"
+          ],
+          "reason": "Remove specific PTF disposal gain; contract closure does not imply reversal of the completed sale.",
+          "provenCommonWeight": "1",
+          "incidenceEnvelope": {
+            "minAfterTaxCommonDelta": "-2607318000000",
+            "maxAfterTaxCommonDelta": "-2085854400000",
+            "taxIncidenceProven": false,
+            "nciIncidenceProven": false
+          }
+        }
+      ],
+      "commonEarningsIncidenceMinimumVnd": "2500064000000",
+      "commonEarningsIncidenceMaximumVnd": "4067119101852.943339",
+      "unreviewedLeakageAndOneOffsBounded": false,
+      "independentIncidenceByAdjustment": true,
+      "diagnosticAt20PercentTaxAndProfitRatioVnd": "3715878201482.354671",
+      "diagnosticIsSelectedEstimate": false,
+      "loanOnlyNormalizationClaimed": false
+    }
+  ],
+  "economicTreatment": "Source-specific bridge and explicit tax/common-incidence sensitivities; no financial admission."
+}
