@@ -1,3 +1,4 @@
+import { buildWp1CommandPackage } from '@/domain/portfolio/accounting-command-package';
 import type { PortfolioLedger } from "@/ports/portfolio";
 import type { Wp1EvidenceReader } from "@/ports/accounting-preview";
 import { reconstructPortfolio } from "@/domain/portfolio/reconstruct";
@@ -10,6 +11,10 @@ import { instant } from "@/shared/time";
 /** Read-only application workflow. No commit port, projection writer, NAV calculation or authority verifier. */
 export class PortfolioAccountingValidation {
   constructor(private readonly ledger: Pick<PortfolioLedger, "read">, private readonly evidenceReader: Wp1EvidenceReader, private readonly hash: AccountingHash) {}
+  async commandPackage(input: Parameters<PortfolioAccountingValidation["preview"]>[0]) {
+    const result = await this.preview(input);
+    return deepFreeze({ validation: result, commandPackage: buildWp1CommandPackage(result.plan, input.calculatedAt, this.hash) });
+  }
   async preview(input: { portfolioId: PortfolioId; expectedWatermark: LedgerWatermark; ledgerAsOf: string; calculatedAt: string; maxReceiptAgeMs: number }) {
     const calculatedAt = instant(input.calculatedAt), asOf = instant(input.ledgerAsOf);
     requireRule(asOf <= calculatedAt, "WP1_FUTURE_LEDGER_CUTOFF");

@@ -1,0 +1,81 @@
+{
+  "contract": "acceptance-remediation-validation-v1",
+  "status": "PASS_BOUNDED_IMPLEMENTATION_FINANCIAL_ACCEPTANCE_BLOCKED",
+  "nodeVersion": "22.23.2",
+  "checks": [
+    {
+      "command": "python3 scripts/build-acceptance-remediation.py",
+      "result": "PASS: 690 rubrics, 2490 topics, 1780 expired bindings, 13 model challenges"
+    },
+    {
+      "command": "python3 scripts/test-project-underwriting.py",
+      "result": "PASS: 20 tests"
+    },
+    {
+      "command": "python3 scripts/test-underwriting-remediation.py",
+      "result": "PASS: 28 tests"
+    },
+    {
+      "command": "python3 scripts/test-held-normalization.py",
+      "result": "PASS: 31 tests"
+    },
+    {
+      "command": "WP1_PRIVATE_DB=1 pnpm exec vitest run tests/unit/wp1-command-package.test.ts tests/integration/wp1-accounting-preview.test.ts tests/integration/wp1-retained-accounting.test.ts tests/unit/economic-normalization.test.ts tests/unit/review-lineage.test.ts tests/integration/review-lineage.test.ts tests/unit/personal-ai-provenance.test.ts tests/integration/personal-ai-scoring.test.ts",
+      "result": "PASS: 8 files, 100 tests; actual-case disposable database copy enabled"
+    },
+    {
+      "command": "pnpm exec vitest run tests/unit/topic-remediation.test.ts tests/unit/accounting-event-preview.test.ts tests/unit/ownership-reconciliation.test.ts tests/unit/dividend-settlement.test.ts tests/integration/dividend-settlement.test.ts",
+      "result": "PASS: 5 files, 86 tests"
+    },
+    {
+      "command": "pnpm typecheck",
+      "result": "PASS"
+    },
+    {
+      "command": "pnpm exec eslint src/domain/portfolio/accounting-command-package.ts src/application/portfolio/accounting-validation.ts src/domain/personal-ai/topic-remediation.ts tests/unit/wp1-command-package.test.ts tests/unit/topic-remediation.test.ts tests/integration/wp1-accounting-preview.test.ts scripts/build-wp1-command-package.mjs scripts/verify-acceptance-remediation.mjs --max-warnings=0",
+      "result": "PASS"
+    },
+    {
+      "command": "node scripts/check-boundaries.mjs",
+      "result": "PASS: 290 source modules"
+    },
+    {
+      "command": "node scripts/verify-approved-scoring-authority.mjs",
+      "result": "PASS: 37 artifacts, 133 historical files unchanged, 9 compatibilities"
+    },
+    {
+      "command": "node scripts/verify-vn30-lineage.mjs",
+      "result": "PASS: pinned retained lineage replay; financial acceptance BLOCKED"
+    },
+    {
+      "command": "node scripts/build-wp1-command-package.mjs",
+      "result": "PASS: four REVIEW_INSTRUCTION_ONLY records, no posting commands"
+    },
+    {
+      "command": "node scripts/verify-acceptance-remediation.mjs",
+      "result": "PASS: worklist/topic/expired dependency and retained command package verification; DI/NAV/scoring/trading false"
+    },
+    {
+      "command": "python3 -m py_compile scripts/lib/project_underwriting.py scripts/build-acceptance-remediation.py scripts/test-project-underwriting.py",
+      "result": "PASS"
+    },
+    {
+      "command": "git diff --check",
+      "result": "PASS"
+    },
+    {
+      "command": "pnpm exec tsc --noEmit",
+      "result": "PASS"
+    }
+  ],
+  "pythonTests": 79,
+  "vitestTests": 186,
+  "totalSelectedTests": 265,
+  "fullReleaseSuiteRun": false,
+  "productionDatabaseSha256": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65",
+  "approvedAuthorityHash": "8c0880249dc54e2baea0235cc10094f818220db86331442ece3da05085261cc1",
+  "productionPostingAuthorized": false,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false
+}

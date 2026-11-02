@@ -1,0 +1,22 @@
+import './lib/ts-runtime.mjs';
+import { readFileSync } from 'node:fs';
+import {createHash} from 'node:crypto';
+const {pinnedAiBytes}=await import('../src/infrastructure/personal-ai/pinned-review.ts');
+const {verifyLineageAcceptanceSnapshot}=await import('../src/infrastructure/personal-ai/review-lineage.ts');
+const {verifyTopicRemediation}=await import('../src/domain/personal-ai/topic-remediation.ts');
+const {verifyWp1CommandPackage}=await import('../src/domain/portfolio/accounting-command-package.ts');
+const {snapshotHash}=await import('../src/infrastructure/fundamentals/snapshot-hash.ts');
+const base='docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/';
+const digest=path=>createHash('sha256').update(readFileSync(path)).digest('hex');
+const manifestPath=base+'acceptance-remediation-v1/manifest.json';
+const manifest=await pinnedAiBytes(process.cwd(),{reference:'REVIEW_ONLY_MANIFEST',path:manifestPath,sha256:digest(manifestPath)});
+const files=new Map();
+for(const c of manifest.components){const path=base+'acceptance-remediation-v1/'+c.path;files.set(c.path,await pinnedAiBytes(process.cwd(),{reference:'REVIEW_COMPONENT',path,sha256:c.sha256}));}
+const path=base+'vn30-lineage-v1/acceptance-snapshot.json';
+await verifyLineageAcceptanceSnapshot(process.cwd(),{reference:'REVIEW_ONLY_PREDECESSOR',path,sha256:manifest.sourcePins[path]});
+const graphs=[];
+for(const [path,sha256] of Object.entries(manifest.sourcePins))if(path.includes('/vn30-lineage-v1/issuers/'))graphs.push(await pinnedAiBytes(process.cwd(),{reference:'VERIFIED_GRAPH',path,sha256}));
+const wp1=files.get('wp1-command-package.json');
+const retained=await pinnedAiBytes(process.cwd(),{reference:'WP1_RETAINED_PREVIEW',path:wp1.sourcePath,sha256:wp1.sourceSha256});
+const commandVerification=verifyWp1CommandPackage(wp1.commandPackage,retained.plan,snapshotHash);
+console.log(JSON.stringify({...verifyTopicRemediation(graphs,files.get('topic-review-worklist.json'),files.get('binding-dispositions.json'),snapshotHash),commandVerification,ledgerFreshness:'RETAINED_PREVIEW_ONLY_RUNTIME_FRESH_RECHECK_REQUIRED'},null,2));

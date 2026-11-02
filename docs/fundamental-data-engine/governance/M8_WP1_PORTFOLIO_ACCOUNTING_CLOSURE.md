@@ -202,3 +202,29 @@ No new owner evidence is requested for the already established ownership, cash r
 The current plan is **not postable by blanket approval**. To post later, first produce a new exact command package against a freshly checked ledger revision, binding (1) accepted source/account/unit/action evidence and hashes, (2) the original claim leg and unambiguous receipt allocation/identity, (3) supported economic and knowledge instants or an explicitly reviewed date-precision contract, and (4) TCB pending ownership/accrued-liability capabilities preserving imported cost. Then obtain a separate owner instruction authorizing those exact prospective events/command hashes and the intended cutoff. FPT20already exists; authorization must not add another20. An actual payment or availability conversion requires a distinct evidenced event. Any capability/schema/source promotion would require its own scoped review/authorization; none is executed here.
 
 **Latest recommendation and final state: `WP1_BLOCKED_REMEDIATION`.** The supported proposal/application-preview and reconciliation integration work is delivered and validated. Retain the conditional diagnostic implementation pass; do not close the production accounting/source-admission issues, activate NAV or weaken Full Production criteria. WP2 has not started.
+
+
+## 15. Exact command review package — successor 2026-11-02
+
+The authorized follow-up adds a **review instruction package**, not postable TransactionInput payloads. The earlier final-remediation evidence remains unchanged. The read-only application now exposes `PortfolioAccountingValidation.commandPackage`, which calls the existing fresh-ledger/evidence/staleness/reconciliation workflow before binding each proposed effect. It has no commit port. Actual retained-case integration runs on a disposable SQLite copy.
+
+Package: [wp1-command-package.json](../scoring-dataset-acceptance/2026-11-02/acceptance-remediation-v1/wp1-command-package.json). The saved package is based on the historical retained preview; it explicitly requires a fresh runtime ledger/evidence check. Its hashes certify byte/content integrity only. They do not admit a source, establish an action/time, or authenticate owner authorization.
+
+| Proposal | Exact review instruction hash | Source/action/time admission | Production status |
+|---|---|---|---|
+| WP1-TCB-PENDING | `fa2756fd5fc548694b29cf8d40701489f9bcce64081e9be62c1c117505e77972` | NOT_ADMITTED / NOT_ADMITTED / NOT_ADMITTED | BLOCKED; no posting authorization |
+| WP1-MWG-RECEIPT | `b098b9cf49e04ebaae6377945f7e297aceae06178aed859d52137833fb683913` | NOT_ADMITTED / NOT_ADMITTED / NOT_ADMITTED | BLOCKED; no posting authorization |
+| WP1-CUSTODY-ACCRUAL | `4eda426c0aeab347dc495427db20948797791a89288b69134674a4ef6bdbf82b` | NOT_ADMITTED / NOT_ADMITTED / NOT_ADMITTED | BLOCKED; no posting authorization |
+| WP1-FPT-PARTITION | `66acc51af4a4b9864908354f9e2cfc59560a4de6ba39f2ca32617ca690fbd727` | NOT_ADMITTED / NOT_ADMITTED / NOT_ADMITTED | BLOCKED; no posting authorization |
+
+The MWG instruction remains cash +95,000 / original receivable −95,000, leaving475,000. TCB remains +50 pending ownership only with unchanged imported cost. Custody remains accrued payable/expense420 with no cash debit. FPT is a partition of the existing220, not another20-share acquisition. No conversion or payment is asserted.
+
+Production cannot be authorized by approving this preview hash alone. Before a separately authorized posting, source/account/unit/action identities and exact economic/knowledge precision must be admitted; unknown dates cannot be replaced by midnight or transport receipt times. Required pending-ownership and accrued-liability ledger capabilities must be reviewed. A fresh command package must then contain supported canonical commands, current ledger revision, the original MWG claim/receipt allocation, preserved cost, intended cutoff and admission references. The owner would separately authorize those exact canonical command hashes. NAV, source promotion, production scoring and deployment remain separate permissions.
+
+| Issue IDs | Additional remediation | Validation | Application / remaining dependency | Acceptance decision |
+|---|---|---|---|---|
+| PA1-C01, PA1-M02, PA1-M05 | Exact per-event effect/source/ledger/cost review hashes; explicit null time/action metadata; FPT non-additive partition | Actual-case disposable-copy package and duplicate/source/time/receipt/ownership regressions pass | No production commands; supported source/action/time admission and ledger capability still required | Review-package implementation delivered; production OPEN |
+| PA1-M01, PA1-M06 | Package verifier rejects changed revision, evidence, effects, fabricated time/source and injected authority | Unit plus retained-case tests pass | Source authenticity/admission and historical/PIT precision remain unapproved | OPEN; no promotion or time waiver |
+| PA1-M03, PA1-M04, PA1-M07 | Read-only package cannot grant NAV/trading authority; approval injection rejected | False-authority and fresh-read workflow checks pass | No provider/runtime/activation changes | OPEN; no production sign-off |
+
+The exact commands, tests and remaining financial/topic/DI dependencies are indexed in the successor research package's [VALIDATION.json](../scoring-dataset-acceptance/2026-11-02/acceptance-remediation-v1/VALIDATION.json). This follow-up does not close WP1, alter prior matrices or start WP2. **Recommendation remains `WP1_BLOCKED_REMEDIATION`.** No owner reconfirmation of the retained portfolio facts is needed.

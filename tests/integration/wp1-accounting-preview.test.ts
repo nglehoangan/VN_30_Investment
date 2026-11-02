@@ -38,6 +38,13 @@ describe.skipIf(process.env.WP1_PRIVATE_DB !== "1")("WP1 actual retained case in
     try { sql?.close(); await client?.$disconnect(); expect(fileHash(source)).toBe(originalHash); }
     finally { if (directory) rmSync(directory, { recursive: true, force: true }); }
   });
+  it("builds an exact review command package through fresh read-only ledger/evidence checks", async () => {
+    const result = await service.commandPackage(input);
+    expect(result.commandPackage.commands).toHaveLength(4);
+    expect(result.commandPackage.planHash).toBe(hash(result.validation.plan));
+    expect(result.commandPackage).toMatchObject({ productionApplication: "BLOCKED", postingCommands: [], navAuthorized: false, tradingAuthorized: false });
+    expect(result.commandPackage.commands.every(c => c.sourceAdmission === "NOT_ADMITTED" && c.postingAuthorization === null)).toBe(true);
+  });
   it("verifies source lineage, records/reloads immutable previews, and reproduces the economic bridge without production posting", async () => {
     const result = await service.preview(input), sourceBefore = JSON.stringify(await client.ledgerTransaction.findMany({ orderBy: { id: "asc" } }));
     expect(result.state).toMatchObject({ cash: "232420", receivables: "570000", payables: "0" });

@@ -1,0 +1,110 @@
+{
+  "contract": "checked-topic-findings-v1",
+  "findings": [
+    {
+      "id": "VPL-MARGINS-SEGMENT",
+      "ticker": "VPL",
+      "rubricId": "BQ-EQ",
+      "topic": "margins",
+      "evidenceComponent": "VPL-segment-inputs.json",
+      "pointer": "/segments",
+      "supported": "Reported FY2025 segment revenues and segment operating results are separated and reconcile.",
+      "counterArgument": "Hospitality includes tourism/entertainment; reported result is not proven hotel EBITDA or normalized common-owner return.",
+      "sufficiency": "PARTIAL_TOPIC_EVIDENCE_ONLY",
+      "evidenceComponentSha256": "054082bdc8fe5473e65263d6cca4a0873a0a60309631c0939ce131dffefdcd09",
+      "acceptedTopicEvidence": false
+    },
+    {
+      "id": "VPL-CASH-UNALLOCATED",
+      "ticker": "VPL",
+      "rubricId": "BQ-CASH",
+      "topic": "realization",
+      "evidenceComponent": "VPL-segment-inputs.json",
+      "pointer": "/unallocated",
+      "supported": "Unallocated net income -4377507 million VND bridges segment result to consolidated pretax profit.",
+      "counterArgument": "This is profit, not operating cash. Segment working-capital/capex/cash realizations remain missing.",
+      "sufficiency": "PARTIAL_TOPIC_EVIDENCE_ONLY",
+      "evidenceComponentSha256": "054082bdc8fe5473e65263d6cca4a0873a0a60309631c0939ce131dffefdcd09",
+      "acceptedTopicEvidence": false
+    },
+    {
+      "id": "VPL-LEVERAGE-POPULATION",
+      "ticker": "VPL",
+      "rubricId": "FH-BS",
+      "topic": "leverage_context",
+      "evidenceComponent": "VPL-segment-inputs.json",
+      "pointer": "/segments",
+      "supported": "Reported assets and liabilities separated by segment with a distinct unallocated pool.",
+      "counterArgument": "Total liabilities are not interest-bearing debt. Funding, lease and claim allocations cannot follow revenue weights.",
+      "sufficiency": "PARTIAL_TOPIC_EVIDENCE_ONLY",
+      "evidenceComponentSha256": "054082bdc8fe5473e65263d6cca4a0873a0a60309631c0939ce131dffefdcd09",
+      "acceptedTopicEvidence": false
+    },
+    {
+      "id": "VPL-PRIMARY-COUNTER",
+      "ticker": "VPL",
+      "rubricId": "VAL-PRIMARY",
+      "topic": "primary_model",
+      "evidenceComponent": "VPL-segment-inputs.json",
+      "pointer": "/requiredModels",
+      "supported": "Two reported operating segments and material unallocated balances require separate economic models.",
+      "counterArgument": "Pooled group common cash DCF is unsuitable for acceptance until property/finance/corporate and preferred claims are separated.",
+      "sufficiency": "COUNTEREVIDENCE_PRIMARY_MODEL_BLOCKED",
+      "evidenceComponentSha256": "054082bdc8fe5473e65263d6cca4a0873a0a60309631c0939ce131dffefdcd09",
+      "acceptedTopicEvidence": false
+    },
+    {
+      "id": "VPL-CROSSCHECK",
+      "ticker": "VPL",
+      "rubricId": "VAL-PRIMARY",
+      "topic": "cross_check",
+      "evidenceComponent": "VPL-segment-inputs.json",
+      "pointer": "/reconciliation",
+      "supported": "Four exact arithmetic bridges reconcile segment revenue, results, assets and liabilities.",
+      "counterArgument": "Arithmetic reconciliation verifies reported data, not an independent economic valuation.",
+      "sufficiency": "PARTIAL_TOPIC_EVIDENCE_ONLY",
+      "evidenceComponentSha256": "054082bdc8fe5473e65263d6cca4a0873a0a60309631c0939ce131dffefdcd09",
+      "acceptedTopicEvidence": false
+    },
+    {
+      "id": "VHM-PRIMARY-INPUTS",
+      "ticker": "VHM",
+      "rubricId": "VAL-PRIMARY",
+      "topic": "primary_model",
+      "evidenceComponent": "VHM-rnav-inputs.json",
+      "pointer": "/projects",
+      "supported": "Eight named project contexts are identifiable in the inventory note.",
+      "counterArgument": "The source says mainly and other projects. It does not give exhaustive project GDV, ownership, remaining costs or timing.",
+      "sufficiency": "COUNTEREVIDENCE_PRIMARY_MODEL_BLOCKED",
+      "evidenceComponentSha256": "9decb050cf0856c45da50d2544616f714cdab81aaad53fe48d651f4ca5d64338",
+      "acceptedTopicEvidence": false
+    },
+    {
+      "id": "VHM-REINV-COST",
+      "ticker": "VHM",
+      "rubricId": "CA-REINV",
+      "topic": "capex",
+      "evidenceComponent": "VHM-rnav-inputs.json",
+      "pointer": "/pooledInventoryUnderConstructionMillionVnd",
+      "supported": "Construction inventory pool 106955459 million VND is reported historical book cost.",
+      "counterArgument": "Sunk inventory cannot be treated as remaining cash capex, GDV or an equal allocation across projects.",
+      "sufficiency": "PARTIAL_TOPIC_EVIDENCE_ONLY",
+      "evidenceComponentSha256": "9decb050cf0856c45da50d2544616f714cdab81aaad53fe48d651f4ca5d64338",
+      "acceptedTopicEvidence": false
+    },
+    {
+      "id": "VHM-MOS-QUALIFICATION",
+      "ticker": "VHM",
+      "rubricId": "VAL-MOS",
+      "topic": "conservative_value",
+      "evidenceComponent": "VHM-rnav-inputs.json",
+      "pointer": "/enterpriseToCommonBridge",
+      "supported": "The report identifies corporate deposits connected with potential projects.",
+      "counterArgument": "Recoverability, project rights, partner claims and debt allocation are not qualified; book equity cannot supply conservative RNAV.",
+      "sufficiency": "COUNTEREVIDENCE_VALUE_UNAVAILABLE",
+      "evidenceComponentSha256": "9decb050cf0856c45da50d2544616f714cdab81aaad53fe48d651f4ca5d64338",
+      "acceptedTopicEvidence": false
+    }
+  ],
+  "independentHumanReviewClaimed": false
+}
