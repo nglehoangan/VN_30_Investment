@@ -1,0 +1,1181 @@
+{
+  "contract": "vn30-lineage-inputs-v1",
+  "reviewedAt": "2026-11-02T04:29:59.113Z",
+  "ownerAuthorizationReference": "OWNER_REQUEST_20261102_FULL_VN30_SOURCE_NORMALIZATION_METRIC_RUBRIC_ACCEPTANCE_MAPPING",
+  "financialRulesHash": "49d0b713e4a166354ab2baafcb38cdce27095dc89b65e118ebe4b7813fdb910f",
+  "methodology": {
+    "IMPLEMENTATION": "m64-clarification-1",
+    "VERSION": "1.0.0",
+    "CATEGORY_MAXIMA": {
+      "BQ": 25,
+      "FH": 15,
+      "GQ": 15,
+      "IC": 10,
+      "VAL": 20,
+      "RG": 10,
+      "CA": 5
+    },
+    "RUBRICS": [
+      {
+        "id": "BQ-EQ",
+        "category": "BQ",
+        "name": "Economic quality",
+        "max": 8,
+        "owner": "M1 §5.1 / M3 §4.1",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Value destructive"
+          },
+          {
+            "min": 1,
+            "max": 2,
+            "label": "Weak economics"
+          },
+          {
+            "min": 3,
+            "max": 4,
+            "label": "Average economics"
+          },
+          {
+            "min": 5,
+            "max": 6,
+            "label": "Good economics"
+          },
+          {
+            "min": 7,
+            "max": 8,
+            "label": "Consistently superior economics"
+          }
+        ],
+        "topics": [
+          "returns",
+          "persistence",
+          "margins",
+          "cost_of_capital"
+        ],
+        "maximumPrerequisite": "Durable superior returns, not leverage/provisioning artifacts"
+      },
+      {
+        "id": "BQ-MOAT",
+        "category": "BQ",
+        "name": "Competitive advantage",
+        "max": 6,
+        "owner": "M3 §4.2",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Commodity/disadvantaged"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Minimal advantage"
+          },
+          {
+            "min": 2,
+            "max": 2,
+            "label": "Weak/narrow advantage"
+          },
+          {
+            "min": 3,
+            "max": 3,
+            "label": "Some differentiation"
+          },
+          {
+            "min": 4,
+            "max": 4,
+            "label": "Meaningful contestable advantage"
+          },
+          {
+            "min": 5,
+            "max": 5,
+            "label": "Strong durable advantage"
+          },
+          {
+            "min": 6,
+            "max": 6,
+            "label": "Multiple durable advantages"
+          }
+        ],
+        "topics": [
+          "advantage",
+          "economic_behavior",
+          "persistence"
+        ],
+        "maximumPrerequisite": "Multiple advantages proven through persistence and economics"
+      },
+      {
+        "id": "BQ-CASH",
+        "category": "BQ",
+        "name": "Earnings quality",
+        "max": 6,
+        "owner": "M3 §4.3",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Persistent failure of economic realization"
+          },
+          {
+            "min": 1,
+            "max": 2,
+            "label": "Weak realization with recurring adverse adjustments"
+          },
+          {
+            "min": 3,
+            "max": 4,
+            "label": "Adequate realization with material qualifications"
+          },
+          {
+            "min": 5,
+            "max": 6,
+            "label": "Strong recurring realization and adjustment quality"
+          }
+        ],
+        "topics": [
+          "realization",
+          "one_offs",
+          "working_capital",
+          "recognition"
+        ],
+        "maximumPrerequisite": "Recurring realization, transparent adjustments and sound recognition; ratio alone insufficient"
+      },
+      {
+        "id": "BQ-RES",
+        "category": "BQ",
+        "name": "Business resilience",
+        "max": 5,
+        "owner": "M3 §4.4",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Structurally fragile"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Severe unmitigated dependence"
+          },
+          {
+            "min": 2,
+            "max": 2,
+            "label": "Material vulnerabilities"
+          },
+          {
+            "min": 3,
+            "max": 3,
+            "label": "Balanced resilience"
+          },
+          {
+            "min": 4,
+            "max": 4,
+            "label": "Strong diversified resilience"
+          },
+          {
+            "min": 5,
+            "max": 5,
+            "label": "Proven stress-resilient franchise"
+          }
+        ],
+        "topics": [
+          "concentration",
+          "pricing_power",
+          "cyclicality",
+          "stress"
+        ],
+        "maximumPrerequisite": "Protect franchise without distressed capital actions under severe plausible stress"
+      },
+      {
+        "id": "FH-BS",
+        "category": "FH",
+        "name": "Balance-sheet strength",
+        "max": 6,
+        "owner": "M1 §6.1 / M3 §5.1",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Unacceptable"
+          },
+          {
+            "min": 1,
+            "max": 2,
+            "label": "Weak"
+          },
+          {
+            "min": 3,
+            "max": 4,
+            "label": "Adequate"
+          },
+          {
+            "min": 5,
+            "max": 6,
+            "label": "Strong"
+          }
+        ],
+        "topics": [
+          "capital",
+          "asset_quality",
+          "funding",
+          "leverage_context"
+        ],
+        "maximumPrerequisite": "Strong buffers under normalized/downside economics; no bank industrial debt shortcut"
+      },
+      {
+        "id": "FH-LIQ",
+        "category": "FH",
+        "name": "Liquidity and refinancing",
+        "max": 4,
+        "owner": "M3 §5.2",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Uncovered obligations without credible funding"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Severe funding dependence"
+          },
+          {
+            "min": 2,
+            "max": 2,
+            "label": "Adequate with material refinancing dependence"
+          },
+          {
+            "min": 3,
+            "max": 3,
+            "label": "Sound coverage with manageable refinancing"
+          },
+          {
+            "min": 4,
+            "max": 4,
+            "label": "Resilient liquidity and diversified funding"
+          }
+        ],
+        "topics": [
+          "obligations",
+          "liquidity",
+          "maturities",
+          "covenants"
+        ],
+        "maximumPrerequisite": "Coverage, maturity and covenant resilience, not one accounting ratio"
+      },
+      {
+        "id": "FH-STRESS",
+        "category": "FH",
+        "name": "Downside survivability",
+        "max": 5,
+        "owner": "M3 §5.3",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Fails plausible stress"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Likely distressed financing"
+          },
+          {
+            "min": 2,
+            "max": 2,
+            "label": "Severe stress vulnerability"
+          },
+          {
+            "min": 3,
+            "max": 3,
+            "label": "Survives with material constraints"
+          },
+          {
+            "min": 4,
+            "max": 4,
+            "label": "Resilient with manageable constraints"
+          },
+          {
+            "min": 5,
+            "max": 5,
+            "label": "Robust survival without distressed capital actions"
+          }
+        ],
+        "topics": [
+          "scenario",
+          "funding_response",
+          "capital_response"
+        ],
+        "maximumPrerequisite": "Severe sector stress survived without emergency dilution, distressed sales or damaging refinancing"
+      },
+      {
+        "id": "GQ-HIST",
+        "category": "GQ",
+        "name": "Historical growth quality",
+        "max": 5,
+        "owner": "M3 §6.1",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Structural value-destructive contraction"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Weak normalized trend"
+          },
+          {
+            "min": 2,
+            "max": 2,
+            "label": "Limited/low-quality trend"
+          },
+          {
+            "min": 3,
+            "max": 3,
+            "label": "Moderate value-creating trend"
+          },
+          {
+            "min": 4,
+            "max": 4,
+            "label": "Strong comparable growth"
+          },
+          {
+            "min": 5,
+            "max": 5,
+            "label": "Durable high-quality per-share growth"
+          }
+        ],
+        "topics": [
+          "trend",
+          "acquisitions",
+          "base_effects",
+          "per_share"
+        ],
+        "maximumPrerequisite": "Comparable cycle/action-adjusted growth; bank credit/capital and retailer unit economics sound"
+      },
+      {
+        "id": "GQ-FWD",
+        "category": "GQ",
+        "name": "Forward growth durability",
+        "max": 5,
+        "owner": "M3 §6.2",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Structural decline"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Weak visibility/stagnation"
+          },
+          {
+            "min": 2,
+            "max": 2,
+            "label": "Limited/cyclical"
+          },
+          {
+            "min": 3,
+            "max": 3,
+            "label": "Moderate visibility"
+          },
+          {
+            "min": 4,
+            "max": 4,
+            "label": "Good runway"
+          },
+          {
+            "min": 5,
+            "max": 5,
+            "label": "High-confidence attractive multi-year runway"
+          }
+        ],
+        "topics": [
+          "runway",
+          "reinvestment",
+          "funding",
+          "execution"
+        ],
+        "maximumPrerequisite": "Independent runway and funding evidence, not consensus alone"
+      },
+      {
+        "id": "GQ-INC",
+        "category": "GQ",
+        "name": "Incremental returns",
+        "max": 5,
+        "owner": "M3 §6.3",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Value-destructive expansion"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Weak incremental economics"
+          },
+          {
+            "min": 2,
+            "max": 2,
+            "label": "Mediocre incremental economics"
+          },
+          {
+            "min": 3,
+            "max": 3,
+            "label": "Acceptable incremental economics"
+          },
+          {
+            "min": 4,
+            "max": 4,
+            "label": "Strong incremental economics"
+          },
+          {
+            "min": 5,
+            "max": 5,
+            "label": "Exceptional durable incremental economics"
+          }
+        ],
+        "topics": [
+          "incremental_return",
+          "denominator",
+          "unit_economics"
+        ],
+        "maximumPrerequisite": "Robust denominator, attractive returns after credit/funding/capital cost; no deteriorating store economics"
+      },
+      {
+        "id": "IC-IND",
+        "category": "IC",
+        "name": "Industry structure",
+        "max": 4,
+        "owner": "M3 §7.1",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Value-destructive industry"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Structurally difficult"
+          },
+          {
+            "min": 2,
+            "max": 2,
+            "label": "Mixed/cyclical/average"
+          },
+          {
+            "min": 3,
+            "max": 3,
+            "label": "Generally attractive"
+          },
+          {
+            "min": 4,
+            "max": 4,
+            "label": "Structurally attractive/rational/durable"
+          }
+        ],
+        "topics": [
+          "barriers",
+          "competition",
+          "demand",
+          "disruption"
+        ],
+        "maximumPrerequisite": "Industry-level economic strength, not best of a weak group"
+      },
+      {
+        "id": "IC-POS",
+        "category": "IC",
+        "name": "Company position",
+        "max": 4,
+        "owner": "M3 §7.2",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Disadvantaged"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Weak"
+          },
+          {
+            "min": 2,
+            "max": 2,
+            "label": "Competitive"
+          },
+          {
+            "min": 3,
+            "max": 3,
+            "label": "Strong top-tier"
+          },
+          {
+            "min": 4,
+            "max": 4,
+            "label": "Sustainable clear leader"
+          }
+        ],
+        "topics": [
+          "share",
+          "cost_position",
+          "distribution"
+        ],
+        "maximumPrerequisite": "Sustainable leadership distinct from moat evidence"
+      },
+      {
+        "id": "IC-CYCLE",
+        "category": "IC",
+        "name": "Cycle position",
+        "max": 2,
+        "owner": "M3 §7.3",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Adverse normalized forward asymmetry"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Balanced normalized forward asymmetry"
+          },
+          {
+            "min": 2,
+            "max": 2,
+            "label": "Favorable normalized forward asymmetry"
+          }
+        ],
+        "topics": [
+          "cycle",
+          "forward_asymmetry",
+          "survivability"
+        ],
+        "maximumPrerequisite": "Favorable normalized forward asymmetry, not spot momentum or duplicated valuation"
+      },
+      {
+        "id": "VAL-PRIMARY",
+        "category": "VAL",
+        "name": "Primary valuation",
+        "max": 8,
+        "owner": "M3 §8.1",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Clearly overvalued"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Very expensive"
+          },
+          {
+            "min": 2,
+            "max": 2,
+            "label": "Expensive"
+          },
+          {
+            "min": 3,
+            "max": 3,
+            "label": "Slightly expensive"
+          },
+          {
+            "min": 4,
+            "max": 4,
+            "label": "Fair"
+          },
+          {
+            "min": 5,
+            "max": 5,
+            "label": "Moderately attractive"
+          },
+          {
+            "min": 6,
+            "max": 6,
+            "label": "Attractive"
+          },
+          {
+            "min": 7,
+            "max": 7,
+            "label": "Very attractive"
+          },
+          {
+            "min": 8,
+            "max": 8,
+            "label": "Deeply attractive"
+          }
+        ],
+        "topics": [
+          "primary_model",
+          "normalized_denominator",
+          "price",
+          "cross_check"
+        ],
+        "maximumPrerequisite": "Conservative normalized assumptions; low PE alone insufficient"
+      },
+      {
+        "id": "VAL-RET",
+        "category": "VAL",
+        "name": "Expected 5Y return",
+        "max": 8,
+        "owner": "M3 §8.2",
+        "bands": [
+          {
+            "min": 0,
+            "max": 1,
+            "label": "Below 8%"
+          },
+          {
+            "min": 2,
+            "max": 3,
+            "label": "8% to below 12%"
+          },
+          {
+            "min": 4,
+            "max": 5,
+            "label": "12% to below 15%"
+          },
+          {
+            "min": 6,
+            "max": 6,
+            "label": "15% to below 18%"
+          },
+          {
+            "min": 7,
+            "max": 7,
+            "label": "18% to below 22%"
+          },
+          {
+            "min": 8,
+            "max": 8,
+            "label": "At least 22%"
+          }
+        ],
+        "topics": [
+          "starting_value",
+          "growth",
+          "exit_value",
+          "distributions",
+          "dilution",
+          "scenarios"
+        ],
+        "maximumPrerequisite": "Strong downside-supported estimate; aggressive multiple expansion never gets automatic 8"
+      },
+      {
+        "id": "VAL-MOS",
+        "category": "VAL",
+        "name": "Margin of safety",
+        "max": 4,
+        "owner": "M3 §8.3",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Poor asymmetry"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Thin/meaningful downside"
+          },
+          {
+            "min": 2,
+            "max": 2,
+            "label": "Balanced/fair"
+          },
+          {
+            "min": 3,
+            "max": 3,
+            "label": "Attractive asymmetry"
+          },
+          {
+            "min": 4,
+            "max": 4,
+            "label": "Strong discount/contained downside/high evidence"
+          }
+        ],
+        "topics": [
+          "conservative_value",
+          "downside",
+          "balance_sheet"
+        ],
+        "maximumPrerequisite": "Discount plus contained impairment risk and high-quality evidence"
+      },
+      {
+        "id": "RG-GOV",
+        "category": "RG",
+        "name": "Governance",
+        "max": 4,
+        "owner": "M3 §9.1",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Serious weakness short of veto"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Significant concerns"
+          },
+          {
+            "min": 2,
+            "max": 2,
+            "label": "Mixed concerns"
+          },
+          {
+            "min": 3,
+            "max": 3,
+            "label": "Generally sound"
+          },
+          {
+            "min": 4,
+            "max": 4,
+            "label": "Strong disclosure/alignment/minority treatment"
+          }
+        ],
+        "topics": [
+          "disclosure",
+          "related_parties",
+          "minority",
+          "auditor"
+        ],
+        "maximumPrerequisite": "Corroborated disclosure and minority treatment; hard veto outside arithmetic"
+      },
+      {
+        "id": "RG-RISK",
+        "category": "RG",
+        "name": "Residual risk",
+        "max": 4,
+        "owner": "M3 §9.2",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "HIGH"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "ELEVATED_WEAK"
+          },
+          {
+            "min": 2,
+            "max": 2,
+            "label": "ELEVATED_CONTROLLED"
+          },
+          {
+            "min": 3,
+            "max": 3,
+            "label": "MODERATE"
+          },
+          {
+            "min": 4,
+            "max": 4,
+            "label": "LOW"
+          }
+        ],
+        "topics": [
+          "residual_risks",
+          "mitigation",
+          "distinct_channels"
+        ],
+        "maximumPrerequisite": "Only residual risk after category-specific analysis"
+      },
+      {
+        "id": "RG-UNC",
+        "category": "RG",
+        "name": "Thesis uncertainty",
+        "max": 2,
+        "owner": "M3 §9.3",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "High uncertainty"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Material manageable uncertainty"
+          },
+          {
+            "min": 2,
+            "max": 2,
+            "label": "Narrow supported range"
+          }
+        ],
+        "topics": [
+          "forecast_range",
+          "sensitivity",
+          "dependencies"
+        ],
+        "maximumPrerequisite": "Narrow supported range; shared assumptions identified"
+      },
+      {
+        "id": "CA-REINV",
+        "category": "CA",
+        "name": "Reinvestment",
+        "max": 2,
+        "owner": "M3 §10.1",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Repeated value destruction"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Mixed/acceptable"
+          },
+          {
+            "min": 2,
+            "max": 2,
+            "label": "Consistently accretive"
+          }
+        ],
+        "topics": [
+          "capex",
+          "acquisitions",
+          "divestments"
+        ],
+        "maximumPrerequisite": "Distinct management allocation outcomes beyond incremental-return ratio"
+      },
+      {
+        "id": "CA-DIST",
+        "category": "CA",
+        "name": "Distribution",
+        "max": 1,
+        "owner": "M3 §10.2",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Evidence does not demonstrate disciplined distribution"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Disciplined distribution/retention"
+          }
+        ],
+        "topics": [
+          "retention",
+          "distribution",
+          "buyback_valuation",
+          "resilience"
+        ],
+        "maximumPrerequisite": "Retain for high returns, distribute otherwise; sensible buyback prices and resilient balance sheet"
+      },
+      {
+        "id": "CA-DIL",
+        "category": "CA",
+        "name": "Dilution",
+        "max": 1,
+        "owner": "M3 §10.3",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Material value-destructive dilution"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Disciplined neutral/accretive issuance"
+          }
+        ],
+        "topics": [
+          "issue_terms",
+          "proceeds",
+          "per_share"
+        ],
+        "maximumPrerequisite": "Economic per-share impact; mechanical split is not dilution"
+      },
+      {
+        "id": "CA-PSV",
+        "category": "CA",
+        "name": "Per-share value",
+        "max": 1,
+        "owner": "M3 §10.4",
+        "bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "Evidence does not demonstrate real compounding"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Real per-share compounding"
+          }
+        ],
+        "topics": [
+          "per_share",
+          "actions",
+          "cycle_adjustment"
+        ],
+        "maximumPrerequisite": "Real comparable compounding after cycle and corporate-action adjustments"
+      }
+    ]
+  },
+  "universeScope": "RETAINED_PROJECT_VN30_NOT_REASSERTED_LIVE_MEMBERSHIP",
+  "universe": [
+    {
+      "ticker": "ACB",
+      "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838"
+    },
+    {
+      "ticker": "BID",
+      "securityId": "8297c1c6-6dea-4d43-8d19-81b917c07da3"
+    },
+    {
+      "ticker": "BSR",
+      "securityId": "10e09f98-daa0-4979-a1ef-8918a6099fcd"
+    },
+    {
+      "ticker": "CTG",
+      "securityId": "067f7626-9e44-4cb5-8602-3f88ec58a3c9"
+    },
+    {
+      "ticker": "FPT",
+      "securityId": "ec91b3cb-8eab-45ae-95e7-738bb3c7de52"
+    },
+    {
+      "ticker": "GAS",
+      "securityId": "b56425c0-fc3e-4b56-a8de-a9a537d05b58"
+    },
+    {
+      "ticker": "GVR",
+      "securityId": "65245cd0-db0a-4560-834f-82f92997296c"
+    },
+    {
+      "ticker": "HDB",
+      "securityId": "d266a483-4437-40fd-bf91-4d9cc323b4a0"
+    },
+    {
+      "ticker": "HPG",
+      "securityId": "ee1da5cd-aedc-4567-98a6-d525b8c79ebc"
+    },
+    {
+      "ticker": "LPB",
+      "securityId": "b75a9e81-805d-434e-beb6-2be15d8a386d"
+    },
+    {
+      "ticker": "MBB",
+      "securityId": "ff699c86-8eaf-4178-af14-0b38fd5b1255"
+    },
+    {
+      "ticker": "MCH",
+      "securityId": "a619b276-13fa-4c6a-8d4c-bfdd103b0db3"
+    },
+    {
+      "ticker": "MSN",
+      "securityId": "8faac43a-380e-4ac5-9c76-bae3c4a6171c"
+    },
+    {
+      "ticker": "MWG",
+      "securityId": "3376630f-ec27-4d02-9168-b2274d6abdb7"
+    },
+    {
+      "ticker": "SAB",
+      "securityId": "6e2e895f-1e2c-4678-9ea1-04cdad648dcd"
+    },
+    {
+      "ticker": "SHB",
+      "securityId": "b8338222-b813-400e-8e4f-b0fe3209aa52"
+    },
+    {
+      "ticker": "SSB",
+      "securityId": "b8dd9e1d-2811-460d-a58b-948887985c07"
+    },
+    {
+      "ticker": "SSI",
+      "securityId": "483a7e5c-ae5d-456d-840e-54433896ad43"
+    },
+    {
+      "ticker": "STB",
+      "securityId": "a26b4d2c-f041-469e-89a8-2fefbb585a01"
+    },
+    {
+      "ticker": "TCB",
+      "securityId": "2a3c69b1-08aa-473c-bbd5-92d096a0d23a"
+    },
+    {
+      "ticker": "TCX",
+      "securityId": "8754ecd0-5962-4b53-aff3-84b09d29771e"
+    },
+    {
+      "ticker": "VCB",
+      "securityId": "32002fe9-b6cd-4760-91ba-8b7a59d4758e"
+    },
+    {
+      "ticker": "VHM",
+      "securityId": "20847702-0506-43fc-81b3-a6a1a5ef1b32"
+    },
+    {
+      "ticker": "VIB",
+      "securityId": "3bba4509-56e7-415e-b0d4-8057797853f7"
+    },
+    {
+      "ticker": "VIC",
+      "securityId": "140e2228-6cb5-4a6a-973c-c67277ec4f0b"
+    },
+    {
+      "ticker": "VJC",
+      "securityId": "1d2669ea-511a-4a00-9efc-2d78eeb827dd"
+    },
+    {
+      "ticker": "VNM",
+      "securityId": "a243cd90-95b8-44f0-96a5-b6be0defeb87"
+    },
+    {
+      "ticker": "VPB",
+      "securityId": "f384cffa-5206-496e-bf5b-5388b43e234e"
+    },
+    {
+      "ticker": "VPL",
+      "securityId": "bcb6df7e-001b-4368-a913-e9e01bae30fb"
+    },
+    {
+      "ticker": "VRE",
+      "securityId": "e032abe6-6e8a-4241-8546-5a7e3a960ef4"
+    }
+  ],
+  "locatorRepairs": [
+    {
+      "observationId": "b6r3-observation-83cafc08de61d4913795e78a8536636c7885",
+      "ticker": "HPG",
+      "itemId": "LONG_TERM_FINANCIAL_BORROWINGS",
+      "periodEnd": "2022-12-31",
+      "valueVnd": "11151651204402",
+      "pdfPath": "data/manual-download/HPG/HPG_Baocaotaichinh_2022_Kiemtoan_Hopnhat.pdf",
+      "pdfSha256": "e6f44524499a678102597e472f5c570a92c5d2f995fc2a0061f76c31bbb4d390",
+      "physicalPage": 9,
+      "sourceCaption": "Vay dài hạn / Vay và nợ thuê tài chính dài hạn",
+      "columnBinding": "CURRENT_2022-12-31",
+      "fullPageImageInspected": true,
+      "originalLocatorPreserved": "data/manual-download/HPG/HPG_Baocaotaichinh_2022_Kiemtoan_Hopnhat.pdf#page=0"
+    },
+    {
+      "observationId": "b6r3-observation-5cd6a6aefee69359018839f6f3fc5b82c62c",
+      "ticker": "HPG",
+      "itemId": "NET_INCOME_ATTRIBUTABLE_PARENT",
+      "periodEnd": "2025-12-31",
+      "valueVnd": "15453174006223",
+      "pdfPath": "data/manual-download/HPG/HPG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "pdfSha256": "f38c5f75becf7d3f145d27183eec81f119fd4f75e378b983a2763ddc3f7e0c07",
+      "physicalPage": 10,
+      "sourceCaption": "Lợi nhuận sau thuế của Công ty mẹ",
+      "columnBinding": "CURRENT_2025-12-31",
+      "fullPageImageInspected": true,
+      "originalLocatorPreserved": "data/manual-download/HPG/HPG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=0"
+    },
+    {
+      "observationId": "b6r3-observation-d64c5bbbfe72c93661f1167d217d1a158052",
+      "ticker": "HPG",
+      "itemId": "CFO",
+      "periodEnd": "2025-12-31",
+      "valueVnd": "17365859056591",
+      "pdfPath": "data/manual-download/HPG/HPG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "pdfSha256": "f38c5f75becf7d3f145d27183eec81f119fd4f75e378b983a2763ddc3f7e0c07",
+      "physicalPage": 11,
+      "sourceCaption": "Lưu chuyển tiền thuần từ hoạt động kinh doanh",
+      "columnBinding": "CURRENT_2025-12-31",
+      "fullPageImageInspected": true,
+      "originalLocatorPreserved": "data/manual-download/HPG/HPG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=0"
+    },
+    {
+      "observationId": "b6r3-observation-2e31b3f1173122885371ef7e55040a28efd8",
+      "ticker": "HPG",
+      "itemId": "LONG_TERM_FINANCIAL_BORROWINGS",
+      "periodEnd": "2025-12-31",
+      "valueVnd": "27479194057074",
+      "pdfPath": "data/manual-download/HPG/HPG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "pdfSha256": "f38c5f75becf7d3f145d27183eec81f119fd4f75e378b983a2763ddc3f7e0c07",
+      "physicalPage": 9,
+      "sourceCaption": "Vay dài hạn / Vay và nợ thuê tài chính dài hạn",
+      "columnBinding": "CURRENT_2025-12-31",
+      "fullPageImageInspected": true,
+      "originalLocatorPreserved": "data/manual-download/HPG/HPG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=0"
+    },
+    {
+      "observationId": "b6r3-observation-1ac85e097e472ff40394710e6f921aa3f5bd",
+      "ticker": "HPG",
+      "itemId": "LONG_TERM_FINANCIAL_BORROWINGS",
+      "periodEnd": "2023-12-31",
+      "valueVnd": "10399119292481",
+      "pdfPath": "data/manual-download/HPG/HPG_Baocaotaichinh_2023_Kiemtoan_Hopnhat.pdf",
+      "pdfSha256": "e6fea3efb601bedb1258dff6ff70388764749b6221f22b45ac48cddd838bb071",
+      "physicalPage": 9,
+      "sourceCaption": "Vay dài hạn / Vay và nợ thuê tài chính dài hạn",
+      "columnBinding": "CURRENT_2023-12-31",
+      "fullPageImageInspected": true,
+      "originalLocatorPreserved": "data/manual-download/HPG/HPG_Baocaotaichinh_2023_Kiemtoan_Hopnhat.pdf#page=0"
+    },
+    {
+      "observationId": "b6r3-observation-87d8fdcd5904596241d4f01351f6af5cc83b",
+      "ticker": "HPG",
+      "itemId": "NET_INCOME",
+      "periodEnd": "2025-12-31",
+      "valueVnd": "15514931571606",
+      "pdfPath": "data/manual-download/HPG/HPG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "pdfSha256": "f38c5f75becf7d3f145d27183eec81f119fd4f75e378b983a2763ddc3f7e0c07",
+      "physicalPage": 10,
+      "sourceCaption": "Lợi nhuận sau thuế thu nhập doanh nghiệp",
+      "columnBinding": "CURRENT_2025-12-31",
+      "fullPageImageInspected": true,
+      "originalLocatorPreserved": "data/manual-download/HPG/HPG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=0"
+    },
+    {
+      "observationId": "b6r3-observation-82ee2cdf930971d1b5664e99a279083b1a47",
+      "ticker": "HPG",
+      "itemId": "TOTAL_EQUITY",
+      "periodEnd": "2025-12-31",
+      "valueVnd": "131220010876575",
+      "pdfPath": "data/manual-download/HPG/HPG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "pdfSha256": "f38c5f75becf7d3f145d27183eec81f119fd4f75e378b983a2763ddc3f7e0c07",
+      "physicalPage": 9,
+      "sourceCaption": "Vốn chủ sở hữu",
+      "columnBinding": "CURRENT_2025-12-31",
+      "fullPageImageInspected": true,
+      "originalLocatorPreserved": "data/manual-download/HPG/HPG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=0"
+    },
+    {
+      "observationId": "b6r3-observation-cc9206a8bdb9bf2b07e1e868e28941e8c466",
+      "ticker": "HPG",
+      "itemId": "LONG_TERM_FINANCIAL_BORROWINGS",
+      "periodEnd": "2024-12-31",
+      "valueVnd": "27080443256096",
+      "pdfPath": "data/manual-download/HPG/2026-10-30-source-recovery/395c2943_bao-cao-tai-chinh-hop-nhat-nam-2024-da-kiem-toan-1.pdf",
+      "pdfSha256": "304a93a65e1587f625e0045d6ec9bcfba6647d19df4034cfd8fc1ec7b62eeb64",
+      "physicalPage": 9,
+      "sourceCaption": "Vay dài hạn / Vay và nợ thuê tài chính dài hạn",
+      "columnBinding": "CURRENT_2024-12-31",
+      "fullPageImageInspected": true,
+      "originalLocatorPreserved": "data/manual-download/HPG/2026-10-30-source-recovery/395c2943_bao-cao-tai-chinh-hop-nhat-nam-2024-da-kiem-toan-1.pdf#page=0"
+    },
+    {
+      "observationId": "b6r3-observation-290ae04c3ca0a8665b29720d21c8aacb45f3",
+      "ticker": "HPG",
+      "itemId": "REVENUE",
+      "periodEnd": "2025-12-31",
+      "valueVnd": "156116094618482",
+      "pdfPath": "data/manual-download/HPG/HPG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "pdfSha256": "f38c5f75becf7d3f145d27183eec81f119fd4f75e378b983a2763ddc3f7e0c07",
+      "physicalPage": 10,
+      "sourceCaption": "Doanh thu thuần về bán hàng và cung cấp dịch vụ",
+      "columnBinding": "CURRENT_2025-12-31",
+      "fullPageImageInspected": true,
+      "originalLocatorPreserved": "data/manual-download/HPG/HPG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=0"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "contract": "vn30-lineage-validation-receipt-v1",
+  "validatedAt": "2026-11-02T04:37:19.306845+00:00",
+  "baselineCommit": "a29c7e82d87f645ce6d18212163a1503bb398c8a",
+  "nodeRuntime": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+  "nodeVersion": "22.23.2",
+  "commandsUseNodeRuntimePathPrefix": true,
+  "snapshotPath": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/vn30-lineage-v1/acceptance-snapshot.json",
+  "snapshotFileSha256": "dd6dd784a4988ce43c585a45be689a8167425fe793cc9353566c163ce54dd8f9",
+  "snapshotContentHash": "bbb77e64cc4911b0e8809094150db31932b618b7c5c0ae7bfce4cec4f7f9b04c",
+  "technicalMappingAccepted": true,
+  "financialAcceptance": "BLOCKED",
+  "counts": {
+    "source": 2120,
+    "normalized": 2040,
+    "derived": 571,
+    "evidence": 2490,
+    "rubric": 690,
+    "retainedAssessedRubrics": 2,
+    "stalePriorFactBindings": 1780,
+    "invalidLegacyPageLocators": 9,
+    "repairedLegacyPageLocators": 9
+  },
+  "sourcePins": 437,
+  "checks": [
+    {
+      "command": "pnpm exec vitest run tests/unit/review-lineage.test.ts tests/integration/review-lineage.test.ts tests/unit/scoring*.test.ts tests/unit/economic-normalization.test.ts tests/unit/personal-ai*.test.ts tests/integration/personal-ai-scoring.test.ts tests/unit/methodology-validation.test.ts tests/architecture",
+      "result": "PASS",
+      "files": 23,
+      "tests": 351,
+      "newLineageTests": 60
+    },
+    {
+      "command": "python3 scripts/test-held-normalization.py",
+      "result": "PASS",
+      "tests": 31
+    },
+    {
+      "command": "python3 scripts/build-vn30-lineage.py --check",
+      "result": "PASS",
+      "outputs": 32
+    },
+    {
+      "command": "python3 scripts/build-held-normalization.py --check",
+      "result": "PASS",
+      "outputs": 14
+    },
+    {
+      "command": "node scripts/verify-vn30-lineage.mjs",
+      "result": "PASS",
+      "issuers": 30,
+      "rubricMappings": 690,
+      "sourcePins": 437
+    },
+    {
+      "command": "pnpm exec tsc --noEmit",
+      "result": "PASS"
+    },
+    {
+      "command": "pnpm exec eslint src/domain/personal-ai/review-lineage.ts src/infrastructure/personal-ai/review-lineage.ts scripts/verify-vn30-lineage.mjs tests/unit/review-lineage.test.ts tests/integration/review-lineage.test.ts --max-warnings=0",
+      "result": "PASS"
+    },
+    {
+      "command": "node scripts/check-boundaries.mjs",
+      "result": "PASS",
+      "sourceModules": 288
+    },
+    {
+      "command": "node scripts/verify-approved-scoring-authority.mjs",
+      "result": "PASS",
+      "artifacts": 37,
+      "historicalFilesUnchanged": 133,
+      "compatibilities": 9
+    },
+    {
+      "command": "Resolve all local REPORT.md links",
+      "result": "PASS"
+    }
+  ],
+  "unchangedDatabase": {
+    "path": "data/vn30.sqlite",
+    "sha256": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65"
+  },
+  "unchangedApprovedAuthority": "8c0880249dc54e2baea0235cc10094f818220db86331442ece3da05085261cc1",
+  "preserved": {
+    "financialCriteria": true,
+    "weights": true,
+    "priorSourceEvidence": true,
+    "currentReviewPointer": true,
+    "retainedZeroPointAssessments": 2,
+    "unknownNotConvertedToZero": true
+  },
+  "sourceConflictDisposition": {
+    "BSR": "Printed subtotal quarantined; arithmetic alternative and later-known FY2025 parent-fund bridge explicit; not an issuer correction or final attributable fund determination",
+    "GVR": "EPS arithmetic and recorded interim deduction crosschecked against equity; final-distribution footnote uncertainty remains explicit"
+  },
+  "remainingDependencies": [
+    "BSR issuer-confirmed subtotal correction or governed conflict disposition and final FY2025 common-owner fund attribution",
+    "GVR final distribution completeness; no inference that recorded interim deduction is zero or exhaustive",
+    "Issuer-specific normalized economics, qualified valuation, current-share/action bridge, topic-specific rubric evidence and all required DI/trusted AI review bindings"
+  ],
+  "ownerPersonalFactsReconfirmationNeeded": false,
+  "productionPostingsExecuted": false,
+  "sourceAuthorityPromoted": false,
+  "navActivated": false,
+  "tradingActivated": false,
+  "fullReleaseValidationClaimed": false,
+  "pushedOrMerged": false
+}
