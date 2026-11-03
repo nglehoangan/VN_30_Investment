@@ -1,0 +1,50 @@
+{
+  "contract": "vic-reported-analysis-acceptance-validation-v1",
+  "status": "PASS_FOR_SCOPED_REPORTED_ANALYSIS",
+  "testsPassed": 87,
+  "commands": [
+    {
+      "command": "python3 scripts/test-vic-reported-data-acceptance.py",
+      "passed": 15
+    },
+    {
+      "command": "python3 scripts/test-vic-rnav.py",
+      "passed": 23
+    },
+    {
+      "command": "python3 scripts/test-vic-owner-report-closure.py",
+      "passed": 25
+    },
+    {
+      "command": "python3 scripts/test-vic-parent-bridge.py",
+      "passed": 24
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH node scripts/verify-approved-scoring-authority.mjs",
+      "status": "PASS",
+      "artifacts": 37,
+      "historicalFilesUnchanged": 133,
+      "compatibilities": 9
+    },
+    {
+      "command": "python3 -m py_compile scripts/build-vic-reported-data-acceptance.py scripts/test-vic-reported-data-acceptance.py",
+      "status": "PASS"
+    },
+    {
+      "command": "git diff --check",
+      "status": "PASS"
+    }
+  ],
+  "acceptedReportedReadings": 61,
+  "acceptedManagementDisclosureReadings": 5,
+  "pendingCaptionReadings": 1,
+  "productionDatabaseSha256": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65",
+  "fullReleaseSuiteRun": false,
+  "sourceAuthorityPromoted": false,
+  "financialCriteriaOrWeightsChanged": false,
+  "normalizedEarningsAccepted": false,
+  "valuationAccepted": false,
+  "productionScoringActivated": false,
+  "navActivated": false,
+  "ledgerPostingExecuted": false
+}
