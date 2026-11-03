@@ -1,0 +1,290 @@
+{
+  "contract": "issuer-base-assumption-decision-v1",
+  "ticker": "VIC",
+  "period": "FY2025",
+  "scope": "CONSOLIDATED",
+  "analysisMode": "AS_REVISED_CURRENT_RESEARCH_NOT_AS_KNOWN_2025",
+  "actor": "CHATGPT",
+  "reviewMode": "OWNER_AUTHORIZED_AI_SELF_REVIEW_NOT_INDEPENDENT_ACCEPTANCE",
+  "hypothesisChoiceDocumented": true,
+  "baseCaseMeaning": "PRUDENTIAL_WORKING_CASE_NOT_EXPECTED_VALUE_OR_COMPLETE_LOWER_BOUND",
+  "sourceCommonBridgeVnd": "10685191000000",
+  "fundBridgeIsConditionalPlan": false,
+  "selectedAnalystBaseVnd": null,
+  "workingCaseCalculationVnd": "-12368966000000",
+  "basePointEconomicallyIdentified": false,
+  "selectedTaxAssumption": "0",
+  "selectedCommonIncidenceAssumption": "1",
+  "incidenceConvention": "No tax benefit credited to removed income; adverse 100% common attribution, not profit ratio or proven ownership.",
+  "selectedAdjustments": [
+    {
+      "id": "VIC-nonrefundable-sponsor",
+      "pretaxVnd": "-23054157000000",
+      "readingIds": [
+        "VIC-FY2025-nonrefundableSponsorIncome"
+      ],
+      "priorModelReason": "Mainly subsidiary VinFast income; parent/group NPAT ratio exceeds one and cannot allocate this gain.",
+      "selectionReason": "Không cộng lại chi phí xóa sổ đã lặp lại; loại tài trợ trong phép thử bất lợi. Phần thuộc mẹ chưa xác định nên phép thử này không phải estimate cơ sở.",
+      "priorBasePretaxVnd": "-23054157000000",
+      "selectedPretaxChangeVnd": "0",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-23054157000000",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-23054157000000",
+        "maximumVnd": "0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/VIC.json",
+        "sha256": "b34830c65cad5f1323cb37c920267cb880367a7126757f2e95c2854b27857418",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    },
+    {
+      "id": "VIC-recurring-restructuring-cost-stress",
+      "pretaxVnd": "0",
+      "readingIds": [],
+      "priorModelReason": "Reported two-year writeoffs recur; replace with stated expense target, not a full exceptional-loss addback.",
+      "selectionReason": "Không cộng lại chi phí xóa sổ đã lặp lại; loại tài trợ trong phép thử bất lợi. Phần thuộc mẹ chưa xác định nên phép thử này không phải estimate cơ sở.",
+      "priorBasePretaxVnd": "810966500000",
+      "selectedPretaxChangeVnd": "-810966500000",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "0",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "0",
+        "maximumVnd": "0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/VIC.json",
+        "sha256": "b34830c65cad5f1323cb37c920267cb880367a7126757f2e95c2854b27857418",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": [
+        "VIC-FY2025-assetDisposalWriteoffLoss",
+        "VIC-FY2025-assetDisposalWriteoffLoss2024"
+      ]
+    }
+  ],
+  "priorBaseAtSameIncidenceVnd": "-11557999500000",
+  "changeFromPriorBaseAtSameIncidenceVnd": "-810966500000",
+  "defense": {
+    "choice": "Bác việc chọn một mức lợi nhuận cơ sở thuộc mẹ. Chỉ tính phép thử loại toàn bộ tài trợ, giữ chi phí xóa sổ FY2025.",
+    "support": "Tài trợ chủ yếu ở VinFast; tỷ lệ lợi nhuận mẹ/nhóm >1 không dùng được để phân bổ. Không có cơ sở chọn giữa 0% và 100% cho cổ đông mẹ.",
+    "counterevidence": "Chỉ riêng phân bổ tài trợ làm kết quả đổi dấu; thiếu SOTP/giao dịch và quỹ không thể khắc phục bằng chọn trung điểm.",
+    "falsificationAndRemainingWork": "Khép phương án sử dụng lợi nhuận lũy kế với quỹ cuối cùng mẹ/con; phân bổ theo từng mảng/giao dịch, không dùng tỷ lệ lợi nhuận mẹ/nhóm lớn hơn 1; tách thu nhập tái đầu tư bị hạn chế và tài trợ lặp lại."
+  },
+  "taxOnlySensitivity": {
+    "minimumVnd": "-12368966000000",
+    "maximumVnd": "-7758134600000.0",
+    "impactWidthVnd": "4610831400000.0",
+    "selectedTax": "0",
+    "alternativeTax": "0.2",
+    "taxRatesAreAssumptionsNotTransactionFacts": true
+  },
+  "commonAttributionOnlySensitivity": {
+    "minimumVnd": "-12368966000000",
+    "maximumVnd": "10685191000000",
+    "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+    "completeEconomicOrFundBound": false,
+    "impactWidthVnd": "23054157000000"
+  },
+  "selectedOperatingCaseIncidenceEnvelope": {
+    "minimumVnd": "-12368966000000",
+    "maximumVnd": "10685191000000",
+    "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+    "completeEconomicOrFundBound": false
+  },
+  "knownTaxAndAttributionWidthAsFractionOfAbsoluteCase": "1.86387099778591031780667842404935060861190822256282376392659",
+  "disputedOperatingAlternatives": [
+    {
+      "name": "BEAR",
+      "valueAtSelectedIncidenceVnd": "-12368966000000",
+      "changeFromSelectedCaseVnd": "0",
+      "assumedCycleAxes": {
+        "targetReportedWriteoffExpenseVnd": "2994348000000"
+      },
+      "knownAxesEnvelope": {
+        "minimumVnd": "-12368966000000",
+        "maximumVnd": "10685191000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "selectionQualified": false
+    },
+    {
+      "name": "BASE",
+      "valueAtSelectedIncidenceVnd": "-11557999500000",
+      "changeFromSelectedCaseVnd": "810966500000",
+      "assumedCycleAxes": {
+        "targetReportedWriteoffExpenseVnd": "2183381500000"
+      },
+      "knownAxesEnvelope": {
+        "minimumVnd": "-12368966000000",
+        "maximumVnd": "11496157500000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "selectionQualified": false
+    },
+    {
+      "name": "BULL",
+      "valueAtSelectedIncidenceVnd": "-10747033000000",
+      "changeFromSelectedCaseVnd": "1621933000000",
+      "assumedCycleAxes": {
+        "targetReportedWriteoffExpenseVnd": "1372415000000"
+      },
+      "knownAxesEnvelope": {
+        "minimumVnd": "-12368966000000",
+        "maximumVnd": "12307124000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "selectionQualified": false
+    }
+  ],
+  "operatingStressesWithinSelectedPolicy": [
+    {
+      "name": "BEAR",
+      "knownAxesEnvelope": {
+        "minimumVnd": "-12368966000000",
+        "maximumVnd": "10685191000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "VIC-nonrefundable-sponsor",
+          "pretaxVnd": "-23054157000000"
+        },
+        {
+          "id": "VIC-recurring-restructuring-cost-stress",
+          "pretaxVnd": "0"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false
+    },
+    {
+      "name": "BASE",
+      "knownAxesEnvelope": {
+        "minimumVnd": "-12368966000000",
+        "maximumVnd": "10685191000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "VIC-nonrefundable-sponsor",
+          "pretaxVnd": "-23054157000000"
+        },
+        {
+          "id": "VIC-recurring-restructuring-cost-stress",
+          "pretaxVnd": "0"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false
+    },
+    {
+      "name": "BULL",
+      "knownAxesEnvelope": {
+        "minimumVnd": "-12368966000000",
+        "maximumVnd": "10685191000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "VIC-nonrefundable-sponsor",
+          "pretaxVnd": "-23054157000000"
+        },
+        {
+          "id": "VIC-recurring-restructuring-cost-stress",
+          "pretaxVnd": "0"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false
+    }
+  ],
+  "combinedNamedAxesSensitivity": {
+    "minimumVnd": "-12368966000000",
+    "maximumVnd": "10685191000000",
+    "widthVnd": "23054157000000",
+    "signChangesAcrossKnownCases": true,
+    "coversUnknownFundsOrAllFutureCycles": false
+  },
+  "missingFundImpact": {
+    "additionalUnidentifiedFundVnd": null,
+    "unboundedMissingFund": true,
+    "commonEarningsDeltaPerAdditionalUndeductedCommonFundVnd": "-1",
+    "additionalCommonFundToErasePositiveCaseVnd": null,
+    "namedCounterfactuals": [],
+    "notFinancialEventsOrApprovedCorrections": true
+  },
+  "sourceReadingRefs": [
+    {
+      "id": "VIC-FY2025-nonrefundableSponsorIncome",
+      "pdfPath": "data/manual-download/VIC/VIC_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217",
+      "href": "data/manual-download/VIC/VIC_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=86",
+      "physicalPage": 86,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "23054157",
+      "multiplier": "1000000"
+    },
+    {
+      "id": "VIC-FY2025-assetDisposalWriteoffLoss",
+      "pdfPath": "data/manual-download/VIC/VIC_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217",
+      "href": "data/manual-download/VIC/VIC_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=86",
+      "physicalPage": 86,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "2994348",
+      "multiplier": "1000000"
+    },
+    {
+      "id": "VIC-FY2025-assetDisposalWriteoffLoss2024",
+      "pdfPath": "data/manual-download/VIC/VIC_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217",
+      "href": "data/manual-download/VIC/VIC_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=86",
+      "physicalPage": 86,
+      "economicPeriod": "FY2024",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "1372415",
+      "multiplier": "1000000"
+    }
+  ],
+  "sourceProfile": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/VIC.json",
+    "sha256": "b34830c65cad5f1323cb37c920267cb880367a7126757f2e95c2854b27857418"
+  },
+  "fundReviewProfile": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-03/normalization-acceptance-v1/issuers/VIC.json",
+    "sha256": "33bd510d3d3a9b9917d6b502aa60d37aabfe2b78d61037f022eba95495306288"
+  },
+  "financialAcceptanceDecision": "REJECT_UNIDENTIFIED_COMMON_POINT",
+  "blockers": [
+    "FINAL_COMMON_FUND_COMPLETENESS_OPEN",
+    "TRANSACTION_TAX_INCIDENCE_OPEN",
+    "SUSTAINABLE_CYCLE_AND_ONE_OFF_COVERAGE_OPEN",
+    "TRANSACTION_COMMON_NCI_INCIDENCE_OPEN",
+    "SELECTED_PRUDENTIAL_CASE_NOT_YET_QUALIFIED_AS_SUSTAINABLE_ESTIMATE",
+    "MATERIAL_COMMON_ATTRIBUTION_CHANGES_SIGN"
+  ],
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "financialCriteriaOrWeightsChanged": false,
+  "newMaterialityToleranceIntroduced": false,
+  "sourceAdmissionGranted": false,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "requiresNewPersonalOwnerEvidence": false
+}

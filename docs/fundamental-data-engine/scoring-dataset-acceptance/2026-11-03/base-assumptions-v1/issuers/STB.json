@@ -1,0 +1,271 @@
+{
+  "contract": "issuer-base-assumption-decision-v1",
+  "ticker": "STB",
+  "period": "FY2025",
+  "scope": "CONSOLIDATED",
+  "analysisMode": "AS_REVISED_CURRENT_RESEARCH_NOT_AS_KNOWN_2025",
+  "actor": "CHATGPT",
+  "reviewMode": "OWNER_AUTHORIZED_AI_SELF_REVIEW_NOT_INDEPENDENT_ACCEPTANCE",
+  "hypothesisChoiceDocumented": true,
+  "baseCaseMeaning": "PRUDENTIAL_WORKING_CASE_NOT_EXPECTED_VALUE_OR_COMPLETE_LOWER_BOUND",
+  "sourceCommonBridgeVnd": "5939111000000",
+  "fundBridgeIsConditionalPlan": false,
+  "selectedAnalystBaseVnd": "5291715000000",
+  "workingCaseCalculationVnd": "5291715000000",
+  "basePointEconomicallyIdentified": null,
+  "selectedTaxAssumption": "0",
+  "selectedCommonIncidenceAssumption": "1",
+  "incidenceConvention": "No tax benefit credited to removed income; adverse 100% common attribution, not profit ratio or proven ownership.",
+  "selectedAdjustments": [
+    {
+      "id": "STB-total-credit-proxy",
+      "pretaxVnd": "0",
+      "readingIds": [],
+      "priorModelReason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+      "selectionReason": "Không cộng lợi nhuận từ giảm dự phòng/thu hồi giả định; giữ khoản giảm theo proxy như dự phòng thận trọng, chưa coi là dự báo khoản vay đã kiểm chứng.",
+      "priorBasePretaxVnd": "4864326959141.561068",
+      "selectedPretaxChangeVnd": "-4864326959141.561068",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "0",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "0",
+        "maximumVnd": "0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/STB.json",
+        "sha256": "f2723bc11076bf24f66b67d924df81919fe18b93a551ca61838752979fbec7d5",
+        "jsonPointer": "/creditNormalization"
+      },
+      "additionalOperandReadingIds": []
+    },
+    {
+      "id": "STB-recoveries-mean",
+      "pretaxVnd": "-647396000000",
+      "readingIds": [
+        "STB-FY2025-recoveries2024",
+        "STB-FY2025-recoveries2025"
+      ],
+      "priorModelReason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+      "selectionReason": "Không cộng lợi nhuận từ giảm dự phòng/thu hồi giả định; giữ khoản giảm theo proxy như dự phòng thận trọng, chưa coi là dự báo khoản vay đã kiểm chứng.",
+      "priorBasePretaxVnd": "-647396000000",
+      "selectedPretaxChangeVnd": "0",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-647396000000",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-647396000000",
+        "maximumVnd": "0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/STB.json",
+        "sha256": "f2723bc11076bf24f66b67d924df81919fe18b93a551ca61838752979fbec7d5",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    }
+  ],
+  "priorBaseAtSameIncidenceVnd": "10156041959141.561068",
+  "changeFromPriorBaseAtSameIncidenceVnd": "-4864326959141.561068",
+  "defense": {
+    "choice": "Giữ nguyên dự phòng FY2025; không cộng lại 4864 tỷ từ proxy. Giảm thu hồi về bình quân hai năm.",
+    "support": "Q&A ĐHĐCĐ cảnh báo dự phòng có thể tiếp tục cao, là phản chứng trực tiếp với addback dự phòng.",
+    "counterevidence": "Chưa có cơ sở dự báo mức chi phí tín dụng sau tái cơ cấu hay khả năng phân phối vốn; bảng quỹ cuối cùng chưa ghép.",
+    "falsificationAndRemainingWork": "Cần bảng số tờ trình 31/2026/TTr-HĐQT; tránh trừ lại thù lao đã hạch toán. ĐHĐCĐ cảnh báo dự phòng còn cao; bình quân chi phí tín dụng tổng/tài sản chưa phải dự phòng khoản vay bền vững được nghiệm thu."
+  },
+  "taxOnlySensitivity": {
+    "minimumVnd": "5291715000000",
+    "maximumVnd": "5421194200000.0",
+    "impactWidthVnd": "129479200000.0",
+    "selectedTax": "0",
+    "alternativeTax": "0.2",
+    "taxRatesAreAssumptionsNotTransactionFacts": true
+  },
+  "commonAttributionOnlySensitivity": {
+    "minimumVnd": "5291715000000",
+    "maximumVnd": "5939111000000",
+    "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+    "completeEconomicOrFundBound": false,
+    "impactWidthVnd": "647396000000"
+  },
+  "selectedOperatingCaseIncidenceEnvelope": {
+    "minimumVnd": "5291715000000",
+    "maximumVnd": "5939111000000",
+    "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+    "completeEconomicOrFundBound": false
+  },
+  "knownTaxAndAttributionWidthAsFractionOfAbsoluteCase": "0.122341433731786386833002155255904749216463849621531015937177",
+  "disputedOperatingAlternatives": [
+    {
+      "name": "BEAR",
+      "valueAtSelectedIncidenceVnd": "8336431448926.951335",
+      "changeFromSelectedCaseVnd": "3044716448926.951335",
+      "assumedCycleAxes": {},
+      "knownAxesEnvelope": {
+        "minimumVnd": "5101966500000.000000",
+        "maximumVnd": "9173575948926.951335",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "selectionQualified": false
+    },
+    {
+      "name": "BASE",
+      "valueAtSelectedIncidenceVnd": "10156041959141.561068",
+      "changeFromSelectedCaseVnd": "4864326959141.561068",
+      "assumedCycleAxes": {},
+      "knownAxesEnvelope": {
+        "minimumVnd": "5291715000000.000000",
+        "maximumVnd": "10803437959141.561068",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "selectionQualified": false
+    },
+    {
+      "name": "BULL",
+      "valueAtSelectedIncidenceVnd": "11209858565270.326908",
+      "changeFromSelectedCaseVnd": "5918143565270.326908",
+      "assumedCycleAxes": {},
+      "knownAxesEnvelope": {
+        "minimumVnd": "5367614400000.000000",
+        "maximumVnd": "11781355165270.326908",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "selectionQualified": false
+    }
+  ],
+  "operatingStressesWithinSelectedPolicy": [
+    {
+      "name": "BEAR",
+      "knownAxesEnvelope": {
+        "minimumVnd": "5101966500000",
+        "maximumVnd": "5939111000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "STB-total-credit-proxy",
+          "pretaxVnd": "0"
+        },
+        {
+          "id": "STB-recoveries-mean",
+          "pretaxVnd": "-837144500000"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false
+    },
+    {
+      "name": "BASE",
+      "knownAxesEnvelope": {
+        "minimumVnd": "5291715000000",
+        "maximumVnd": "5939111000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "STB-total-credit-proxy",
+          "pretaxVnd": "0"
+        },
+        {
+          "id": "STB-recoveries-mean",
+          "pretaxVnd": "-647396000000"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false
+    },
+    {
+      "name": "BULL",
+      "knownAxesEnvelope": {
+        "minimumVnd": "5367614400000",
+        "maximumVnd": "5939111000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "STB-total-credit-proxy",
+          "pretaxVnd": "0"
+        },
+        {
+          "id": "STB-recoveries-mean",
+          "pretaxVnd": "-571496600000"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false
+    }
+  ],
+  "combinedNamedAxesSensitivity": {
+    "minimumVnd": "5101966500000",
+    "maximumVnd": "5939111000000",
+    "widthVnd": "837144500000",
+    "signChangesAcrossKnownCases": false,
+    "coversUnknownFundsOrAllFutureCycles": false
+  },
+  "missingFundImpact": {
+    "additionalUnidentifiedFundVnd": null,
+    "unboundedMissingFund": true,
+    "commonEarningsDeltaPerAdditionalUndeductedCommonFundVnd": "-1",
+    "additionalCommonFundToErasePositiveCaseVnd": "5291715000000",
+    "namedCounterfactuals": [],
+    "notFinancialEventsOrApprovedCorrections": true
+  },
+  "sourceReadingRefs": [
+    {
+      "id": "STB-FY2025-recoveries2024",
+      "pdfPath": "data/manual-download/STB/STB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "522e518939e87349893073c53af75ddadb073683a21c69e799fe1be3b42241dd",
+      "href": "data/manual-download/STB/STB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=70",
+      "physicalPage": 70,
+      "economicPeriod": "FY2024",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "111598",
+      "multiplier": "1000000"
+    },
+    {
+      "id": "STB-FY2025-recoveries2025",
+      "pdfPath": "data/manual-download/STB/STB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "522e518939e87349893073c53af75ddadb073683a21c69e799fe1be3b42241dd",
+      "href": "data/manual-download/STB/STB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=70",
+      "physicalPage": 70,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "1406390",
+      "multiplier": "1000000"
+    }
+  ],
+  "sourceProfile": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/STB.json",
+    "sha256": "f2723bc11076bf24f66b67d924df81919fe18b93a551ca61838752979fbec7d5"
+  },
+  "fundReviewProfile": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-03/normalization-acceptance-v1/issuers/STB.json",
+    "sha256": "96a476cafc30444fad07f2958c8ea5646c8923f1cc6a354930b23652c6c685db"
+  },
+  "financialAcceptanceDecision": "DEFER_FINAL_FINANCIAL_ACCEPTANCE",
+  "blockers": [
+    "FINAL_COMMON_FUND_COMPLETENESS_OPEN",
+    "TRANSACTION_TAX_INCIDENCE_OPEN",
+    "SUSTAINABLE_CYCLE_AND_ONE_OFF_COVERAGE_OPEN",
+    "TRANSACTION_COMMON_NCI_INCIDENCE_OPEN",
+    "TOTAL_CREDIT_ASSET_PROXY_NOT_MATCHED_LOAN_NORMALIZATION",
+    "SELECTED_PRUDENTIAL_CASE_NOT_YET_QUALIFIED_AS_SUSTAINABLE_ESTIMATE"
+  ],
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "financialCriteriaOrWeightsChanged": false,
+  "newMaterialityToleranceIntroduced": false,
+  "sourceAdmissionGranted": false,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "requiresNewPersonalOwnerEvidence": false
+}

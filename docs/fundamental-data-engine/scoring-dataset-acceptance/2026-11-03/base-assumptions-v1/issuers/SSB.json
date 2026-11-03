@@ -1,0 +1,381 @@
+{
+  "contract": "issuer-base-assumption-decision-v1",
+  "ticker": "SSB",
+  "period": "FY2025",
+  "scope": "CONSOLIDATED",
+  "analysisMode": "AS_REVISED_CURRENT_RESEARCH_NOT_AS_KNOWN_2025",
+  "actor": "CHATGPT",
+  "reviewMode": "OWNER_AUTHORIZED_AI_SELF_REVIEW_NOT_INDEPENDENT_ACCEPTANCE",
+  "hypothesisChoiceDocumented": true,
+  "baseCaseMeaning": "PRUDENTIAL_WORKING_CASE_NOT_EXPECTED_VALUE_OR_COMPLETE_LOWER_BOUND",
+  "sourceCommonBridgeVnd": "5234539000000",
+  "fundBridgeIsConditionalPlan": true,
+  "selectedAnalystBaseVnd": "2390350000000",
+  "workingCaseCalculationVnd": "2390350000000",
+  "basePointEconomicallyIdentified": null,
+  "selectedTaxAssumption": "0",
+  "selectedCommonIncidenceAssumption": "1",
+  "incidenceConvention": "No tax benefit credited to removed income; adverse 100% common attribution, not profit ratio or proven ownership.",
+  "selectedAdjustments": [
+    {
+      "id": "SSB-total-credit-proxy",
+      "pretaxVnd": "0",
+      "readingIds": [],
+      "priorModelReason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+      "selectionReason": "Không cộng lợi nhuận từ giảm dự phòng/thu hồi giả định; giữ khoản giảm theo proxy như dự phòng thận trọng, chưa coi là dự báo khoản vay đã kiểm chứng.",
+      "priorBasePretaxVnd": "183828237474.050987",
+      "selectedPretaxChangeVnd": "-183828237474.050987",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "0",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "0",
+        "maximumVnd": "0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/SSB.json",
+        "sha256": "21dd7d99d9fa9237d5a702db4a68a0c7e8d6e374a2c403fc2e767792eda0e491",
+        "jsonPointer": "/creditNormalization"
+      },
+      "additionalOperandReadingIds": []
+    },
+    {
+      "id": "SSB-recoveries-mean",
+      "pretaxVnd": "0",
+      "readingIds": [
+        "SSB-FY2025-recoveries2024",
+        "SSB-FY2025-recoveries2025"
+      ],
+      "priorModelReason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+      "selectionReason": "Không cộng lợi nhuận từ giảm dự phòng/thu hồi giả định; giữ khoản giảm theo proxy như dự phòng thận trọng, chưa coi là dự báo khoản vay đã kiểm chứng.",
+      "priorBasePretaxVnd": "228164000000",
+      "selectedPretaxChangeVnd": "-228164000000",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "0",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "0",
+        "maximumVnd": "0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/SSB.json",
+        "sha256": "21dd7d99d9fa9237d5a702db4a68a0c7e8d6e374a2c403fc2e767792eda0e491",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    },
+    {
+      "id": "SSB-investment-reversal",
+      "pretaxVnd": "-236871000000",
+      "readingIds": [
+        "SSB-FY2025-investmentRiskReversal2025"
+      ],
+      "priorModelReason": "Separate securities-income line reversal, outside total P&L credit-charge replacement; retain ordinary securities costs.",
+      "selectionReason": "Giữ phép điều chỉnh có toán hạng nguồn; lựa chọn mức hoạt động được bảo vệ riêng ở hồ sơ mã, không dùng tỷ lệ lợi nhuận mẹ/nhóm làm sở hữu.",
+      "priorBasePretaxVnd": "-236871000000",
+      "selectedPretaxChangeVnd": "0",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-236871000000",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-236871000000",
+        "maximumVnd": "0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/SSB.json",
+        "sha256": "21dd7d99d9fa9237d5a702db4a68a0c7e8d6e374a2c403fc2e767792eda0e491",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    },
+    {
+      "id": "SSB-ptf-sale",
+      "pretaxVnd": "-2607318000000",
+      "readingIds": [
+        "SSB-FY2025-subsidiaryDisposalGain"
+      ],
+      "provenCommonWeight": "1",
+      "priorModelReason": "Remove specific PTF disposal gain; contract closure does not imply reversal of the completed sale.",
+      "selectionReason": "Giữ phép điều chỉnh có toán hạng nguồn; lựa chọn mức hoạt động được bảo vệ riêng ở hồ sơ mã, không dùng tỷ lệ lợi nhuận mẹ/nhóm làm sở hữu.",
+      "priorBasePretaxVnd": "-2607318000000",
+      "selectedPretaxChangeVnd": "0",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-2607318000000",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-2607318000000",
+        "maximumVnd": "-2085854400000.0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/SSB.json",
+        "sha256": "21dd7d99d9fa9237d5a702db4a68a0c7e8d6e374a2c403fc2e767792eda0e491",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    }
+  ],
+  "priorBaseAtSameIncidenceVnd": "2802342237474.050987",
+  "changeFromPriorBaseAtSameIncidenceVnd": "-411992237474.050987",
+  "defense": {
+    "choice": "Giữ dự phòng và thu hồi FY2025, không nhận hai addback từ bình quân; loại lãi PTF và hoàn nhập; thay quỹ ước tính bằng phần mẹ 275 tỷ.",
+    "support": "PTF là giao dịch cụ thể cần tách khỏi hoạt động lặp lại; không nhân khoản PTF với tỷ lệ lợi nhuận mẹ/nhóm.",
+    "counterevidence": "Thuế thương vụ PTF có ảnh hưởng lớn; phần quỹ con 66 triệu và bù chi phí 2162 triệu chưa phân loại xong.",
+    "falsificationAndRemainingWork": "Thay quỹ ước tính 165286 triệu bằng phần mẹ 275000 triệu trong preview; còn phần công ty con 66 triệu chưa xác nhận thuộc mẹ/NCI, phân loại bù chi phí 2162 triệu, đối chiếu sổ và thuế thương vụ PTF."
+  },
+  "taxOnlySensitivity": {
+    "minimumVnd": "2390350000000",
+    "maximumVnd": "2959187800000.0",
+    "impactWidthVnd": "568837800000.0",
+    "selectedTax": "0",
+    "alternativeTax": "0.2",
+    "taxRatesAreAssumptionsNotTransactionFacts": true
+  },
+  "commonAttributionOnlySensitivity": {
+    "minimumVnd": "2390350000000",
+    "maximumVnd": "2627221000000",
+    "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+    "completeEconomicOrFundBound": false,
+    "impactWidthVnd": "236871000000"
+  },
+  "selectedOperatingCaseIncidenceEnvelope": {
+    "minimumVnd": "2390350000000",
+    "maximumVnd": "3148684600000.0",
+    "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+    "completeEconomicOrFundBound": false
+  },
+  "knownTaxAndAttributionWidthAsFractionOfAbsoluteCase": "0.317248352751689083188654381157571066998556696718053841487648",
+  "disputedOperatingAlternatives": [
+    {
+      "name": "BEAR",
+      "valueAtSelectedIncidenceVnd": "1973673296842.563734",
+      "changeFromSelectedCaseVnd": "-416676703157.436266",
+      "assumedCycleAxes": {},
+      "knownAxesEnvelope": {
+        "minimumVnd": "1973673296842.563734",
+        "maximumVnd": "3148684600000.000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "selectionQualified": false
+    },
+    {
+      "name": "BASE",
+      "valueAtSelectedIncidenceVnd": "2802342237474.050987",
+      "changeFromSelectedCaseVnd": "411992237474.050987",
+      "assumedCycleAxes": {},
+      "knownAxesEnvelope": {
+        "minimumVnd": "2390350000000.000000",
+        "maximumVnd": "3560676837474.050987",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "selectionQualified": false
+    },
+    {
+      "name": "BULL",
+      "valueAtSelectedIncidenceVnd": "3199070501852.943339",
+      "changeFromSelectedCaseVnd": "808720501852.943339",
+      "assumedCycleAxes": {},
+      "knownAxesEnvelope": {
+        "minimumVnd": "2390350000000.000000",
+        "maximumVnd": "3957405101852.943339",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "selectionQualified": false
+    }
+  ],
+  "operatingStressesWithinSelectedPolicy": [
+    {
+      "name": "BEAR",
+      "knownAxesEnvelope": {
+        "minimumVnd": "1973673296842.563734",
+        "maximumVnd": "3148684600000.000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "SSB-total-credit-proxy",
+          "pretaxVnd": "-416676703157.436266"
+        },
+        {
+          "id": "SSB-recoveries-mean",
+          "pretaxVnd": "0"
+        },
+        {
+          "id": "SSB-investment-reversal",
+          "pretaxVnd": "-236871000000"
+        },
+        {
+          "id": "SSB-ptf-sale",
+          "pretaxVnd": "-2607318000000"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false
+    },
+    {
+      "name": "BASE",
+      "knownAxesEnvelope": {
+        "minimumVnd": "2390350000000",
+        "maximumVnd": "3148684600000.0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "SSB-total-credit-proxy",
+          "pretaxVnd": "0"
+        },
+        {
+          "id": "SSB-recoveries-mean",
+          "pretaxVnd": "0"
+        },
+        {
+          "id": "SSB-investment-reversal",
+          "pretaxVnd": "-236871000000"
+        },
+        {
+          "id": "SSB-ptf-sale",
+          "pretaxVnd": "-2607318000000"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false
+    },
+    {
+      "name": "BULL",
+      "knownAxesEnvelope": {
+        "minimumVnd": "2390350000000",
+        "maximumVnd": "3148684600000.0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "SSB-total-credit-proxy",
+          "pretaxVnd": "0"
+        },
+        {
+          "id": "SSB-recoveries-mean",
+          "pretaxVnd": "0"
+        },
+        {
+          "id": "SSB-investment-reversal",
+          "pretaxVnd": "-236871000000"
+        },
+        {
+          "id": "SSB-ptf-sale",
+          "pretaxVnd": "-2607318000000"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false
+    }
+  ],
+  "combinedNamedAxesSensitivity": {
+    "minimumVnd": "1973673296842.563734",
+    "maximumVnd": "3148684600000.000000",
+    "widthVnd": "1175011303157.436266",
+    "signChangesAcrossKnownCases": false,
+    "coversUnknownFundsOrAllFutureCycles": false
+  },
+  "missingFundImpact": {
+    "additionalUnidentifiedFundVnd": null,
+    "unboundedMissingFund": true,
+    "commonEarningsDeltaPerAdditionalUndeductedCommonFundVnd": "-1",
+    "additionalCommonFundToErasePositiveCaseVnd": "2390350000000",
+    "namedCounterfactuals": [
+      {
+        "name": "KNOWN_SUBSIDIARY_WELFARE_ALL_COMMON",
+        "changeFromSelectedCaseVnd": "-66000000",
+        "resultingCaseVnd": "2390284000000",
+        "caveat": "Giả định tối đa phần 66 triệu đã biết thuộc mẹ; chưa chứng minh sở hữu, không bao toàn bộ quỹ còn thiếu."
+      },
+      {
+        "name": "EXPENSE_OFFSET_IF_NOT_ALREADY_PNL",
+        "changeFromSelectedCaseVnd": "-2162000000",
+        "resultingCaseVnd": "2388188000000",
+        "caveat": "Chỉ nếu khoản bù chi phí là mất mát bổ sung chưa hạch toán; không mặc định trừ lại chi phí."
+      }
+    ],
+    "notFinancialEventsOrApprovedCorrections": true
+  },
+  "sourceReadingRefs": [
+    {
+      "id": "SSB-FY2025-recoveries2024",
+      "pdfPath": "data/manual-download/SSB/SSB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "51f2c0d78aabf6553e04c64a7566643d5211f6405f4a40f3bd8ae03e6aafa7cd",
+      "href": "data/manual-download/SSB/SSB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=55",
+      "physicalPage": 55,
+      "economicPeriod": "FY2024",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "592417",
+      "multiplier": "1000000"
+    },
+    {
+      "id": "SSB-FY2025-recoveries2025",
+      "pdfPath": "data/manual-download/SSB/SSB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "51f2c0d78aabf6553e04c64a7566643d5211f6405f4a40f3bd8ae03e6aafa7cd",
+      "href": "data/manual-download/SSB/SSB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=55",
+      "physicalPage": 55,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "136089",
+      "multiplier": "1000000"
+    },
+    {
+      "id": "SSB-FY2025-investmentRiskReversal2025",
+      "pdfPath": "data/manual-download/SSB/SSB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "51f2c0d78aabf6553e04c64a7566643d5211f6405f4a40f3bd8ae03e6aafa7cd",
+      "href": "data/manual-download/SSB/SSB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=55",
+      "physicalPage": 55,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "236871",
+      "multiplier": "1000000"
+    },
+    {
+      "id": "SSB-FY2025-subsidiaryDisposalGain",
+      "pdfPath": "data/manual-download/SSB/SSB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "51f2c0d78aabf6553e04c64a7566643d5211f6405f4a40f3bd8ae03e6aafa7cd",
+      "href": "data/manual-download/SSB/SSB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=55",
+      "physicalPage": 55,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "2607318",
+      "multiplier": "1000000"
+    }
+  ],
+  "sourceProfile": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/SSB.json",
+    "sha256": "21dd7d99d9fa9237d5a702db4a68a0c7e8d6e374a2c403fc2e767792eda0e491"
+  },
+  "fundReviewProfile": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-03/normalization-acceptance-v1/issuers/SSB.json",
+    "sha256": "59b5d7ba95e382f7cc833c29c168f25012d137859641e95c2c087c71ae547237"
+  },
+  "financialAcceptanceDecision": "DEFER_FINAL_FINANCIAL_ACCEPTANCE",
+  "blockers": [
+    "FINAL_COMMON_FUND_COMPLETENESS_OPEN",
+    "TRANSACTION_TAX_INCIDENCE_OPEN",
+    "SUSTAINABLE_CYCLE_AND_ONE_OFF_COVERAGE_OPEN",
+    "TRANSACTION_COMMON_NCI_INCIDENCE_OPEN",
+    "TOTAL_CREDIT_ASSET_PROXY_NOT_MATCHED_LOAN_NORMALIZATION",
+    "SELECTED_PRUDENTIAL_CASE_NOT_YET_QUALIFIED_AS_SUSTAINABLE_ESTIMATE"
+  ],
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "financialCriteriaOrWeightsChanged": false,
+  "newMaterialityToleranceIntroduced": false,
+  "sourceAdmissionGranted": false,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "requiresNewPersonalOwnerEvidence": false
+}

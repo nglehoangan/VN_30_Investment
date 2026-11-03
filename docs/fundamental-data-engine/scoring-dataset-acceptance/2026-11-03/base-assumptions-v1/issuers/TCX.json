@@ -1,0 +1,327 @@
+{
+  "contract": "issuer-base-assumption-decision-v1",
+  "ticker": "TCX",
+  "period": "FY2025",
+  "scope": "STANDALONE",
+  "analysisMode": "AS_REVISED_CURRENT_RESEARCH_NOT_AS_KNOWN_2025",
+  "actor": "CHATGPT",
+  "reviewMode": "OWNER_AUTHORIZED_AI_SELF_REVIEW_NOT_INDEPENDENT_ACCEPTANCE",
+  "hypothesisChoiceDocumented": true,
+  "baseCaseMeaning": "PRUDENTIAL_WORKING_CASE_NOT_EXPECTED_VALUE_OR_COMPLETE_LOWER_BOUND",
+  "sourceCommonBridgeVnd": "5683331855108",
+  "fundBridgeIsConditionalPlan": false,
+  "selectedAnalystBaseVnd": "5185288351135.5",
+  "workingCaseCalculationVnd": "5185288351135.5",
+  "basePointEconomicallyIdentified": null,
+  "selectedTaxAssumption": "0",
+  "selectedCommonIncidenceAssumption": "1",
+  "incidenceConvention": "No tax benefit credited to removed income; adverse 100% common attribution, not profit ratio or proven ownership.",
+  "selectedAdjustments": [
+    {
+      "id": "TCX-paired-unrealized",
+      "pretaxVnd": "-3231414097",
+      "readingIds": [
+        "TCX-FY2025-assetRevaluationGain",
+        "TCX-FY2025-assetRevaluationLoss",
+        "TCX-FY2025-warrantRevaluationGain",
+        "TCX-FY2025-warrantRevaluationLoss"
+      ],
+      "provenCommonWeight": "1",
+      "priorModelReason": "Remove paired net asset/warrant unrealized result once, not realized sales proceeds.",
+      "selectionReason": "Giữ phép điều chỉnh có toán hạng nguồn; lựa chọn mức hoạt động được bảo vệ riêng ở hồ sơ mã, không dùng tỷ lệ lợi nhuận mẹ/nhóm làm sở hữu.",
+      "priorBasePretaxVnd": "-3231414097",
+      "selectedPretaxChangeVnd": "0",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-3231414097",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-3231414097",
+        "maximumVnd": "-2585131277.6",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/TCX.json",
+        "sha256": "55ceec25470e859af70ebcac5fb80209e965fb2acc8fb0edc3034dc9c5fee26c",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    },
+    {
+      "id": "TCX-realized-trading-cycle",
+      "pretaxVnd": "-494812089875.5",
+      "readingIds": [
+        "TCX-FY2025-realizedTradingNet2024",
+        "TCX-FY2025-realizedTradingNet2025"
+      ],
+      "provenCommonWeight": "1",
+      "priorModelReason": "Two-year realized net trading mean is a cycle proxy, not a full market cycle; retain margin funding/impairment.",
+      "selectionReason": "Giữ phép điều chỉnh có toán hạng nguồn; lựa chọn mức hoạt động được bảo vệ riêng ở hồ sơ mã, không dùng tỷ lệ lợi nhuận mẹ/nhóm làm sở hữu.",
+      "priorBasePretaxVnd": "-494812089875.5",
+      "selectedPretaxChangeVnd": "0.0",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-494812089875.5",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-494812089875.5",
+        "maximumVnd": "-395849671900.40",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/TCX.json",
+        "sha256": "55ceec25470e859af70ebcac5fb80209e965fb2acc8fb0edc3034dc9c5fee26c",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    }
+  ],
+  "priorBaseAtSameIncidenceVnd": "5185288351135.5",
+  "changeFromPriorBaseAtSameIncidenceVnd": "0.0",
+  "defense": {
+    "choice": "Ghép đủ đánh giá lại tài sản và chứng quyền; chọn trung bình hai năm lợi nhuận giao dịch đã thực hiện ròng; giữ chi phí margin và dự phòng.",
+    "support": "Không dùng doanh thu bán chứng khoán thay lãi ròng hoặc loại một chân của chứng quyền.",
+    "counterevidence": "Hai năm thị trường không chứng minh chu kỳ đầy đủ; quỹ/thưởng hiệu quả và chênh 1 VND vẫn cần xử lý theo nguồn.",
+    "falsificationAndRemainingWork": "Cần bảng số tờ trình 020304/26 (phân phối) và 040304/26 (thưởng hiệu quả); giữ chênh 1-VND thu nhập, kiểm chứng chu kỳ giao dịch ròng và thuế điều chỉnh."
+  },
+  "taxOnlySensitivity": {
+    "minimumVnd": "5185288351135.5",
+    "maximumVnd": "5284897051930.00",
+    "impactWidthVnd": "99608700794.50",
+    "selectedTax": "0",
+    "alternativeTax": "0.2",
+    "taxRatesAreAssumptionsNotTransactionFacts": true
+  },
+  "commonAttributionOnlySensitivity": {
+    "minimumVnd": "5185288351135.5",
+    "maximumVnd": "5185288351135.5",
+    "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+    "completeEconomicOrFundBound": false,
+    "impactWidthVnd": "0.0"
+  },
+  "selectedOperatingCaseIncidenceEnvelope": {
+    "minimumVnd": "5185288351135.5",
+    "maximumVnd": "5284897051930.00",
+    "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+    "completeEconomicOrFundBound": false
+  },
+  "knownTaxAndAttributionWidthAsFractionOfAbsoluteCase": "0.0192098672338419127175391332112194520944356570154422196132960",
+  "disputedOperatingAlternatives": [
+    {
+      "name": "BEAR",
+      "valueAtSelectedIncidenceVnd": "4690476261260",
+      "changeFromSelectedCaseVnd": "-494812089875.5",
+      "assumedCycleAxes": {
+        "targetRealizedNetTradingVnd": "2244834887165"
+      },
+      "knownAxesEnvelope": {
+        "minimumVnd": "4690476261260",
+        "maximumVnd": "4889047380029.6",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "selectionQualified": false
+    },
+    {
+      "name": "BASE",
+      "valueAtSelectedIncidenceVnd": "5185288351135.5",
+      "changeFromSelectedCaseVnd": "0.0",
+      "assumedCycleAxes": {
+        "targetRealizedNetTradingVnd": "2739646977040.5"
+      },
+      "knownAxesEnvelope": {
+        "minimumVnd": "5185288351135.5",
+        "maximumVnd": "5284897051930.00",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "selectionQualified": false
+    },
+    {
+      "name": "BULL",
+      "valueAtSelectedIncidenceVnd": "5680100441011",
+      "changeFromSelectedCaseVnd": "494812089875.5",
+      "assumedCycleAxes": {
+        "targetRealizedNetTradingVnd": "3234459066916"
+      },
+      "knownAxesEnvelope": {
+        "minimumVnd": "5680100441011",
+        "maximumVnd": "5680746723830.4",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "selectionQualified": false
+    }
+  ],
+  "operatingStressesWithinSelectedPolicy": [
+    {
+      "name": "BEAR",
+      "knownAxesEnvelope": {
+        "minimumVnd": "4690476261260",
+        "maximumVnd": "4889047380029.6",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "TCX-paired-unrealized",
+          "pretaxVnd": "-3231414097"
+        },
+        {
+          "id": "TCX-realized-trading-cycle",
+          "pretaxVnd": "-989624179751"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false
+    },
+    {
+      "name": "BASE",
+      "knownAxesEnvelope": {
+        "minimumVnd": "5185288351135.5",
+        "maximumVnd": "5284897051930.00",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "TCX-paired-unrealized",
+          "pretaxVnd": "-3231414097"
+        },
+        {
+          "id": "TCX-realized-trading-cycle",
+          "pretaxVnd": "-494812089875.5"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false
+    },
+    {
+      "name": "BULL",
+      "knownAxesEnvelope": {
+        "minimumVnd": "5680100441011",
+        "maximumVnd": "5680746723830.4",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "TCX-paired-unrealized",
+          "pretaxVnd": "-3231414097"
+        },
+        {
+          "id": "TCX-realized-trading-cycle",
+          "pretaxVnd": "0"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false
+    }
+  ],
+  "combinedNamedAxesSensitivity": {
+    "minimumVnd": "4690476261260",
+    "maximumVnd": "5680746723830.4",
+    "widthVnd": "990270462570.4",
+    "signChangesAcrossKnownCases": false,
+    "coversUnknownFundsOrAllFutureCycles": false
+  },
+  "missingFundImpact": {
+    "additionalUnidentifiedFundVnd": null,
+    "unboundedMissingFund": true,
+    "commonEarningsDeltaPerAdditionalUndeductedCommonFundVnd": "-1",
+    "additionalCommonFundToErasePositiveCaseVnd": "5185288351135.5",
+    "namedCounterfactuals": [],
+    "notFinancialEventsOrApprovedCorrections": true
+  },
+  "sourceReadingRefs": [
+    {
+      "id": "TCX-FY2025-assetRevaluationGain",
+      "pdfPath": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf",
+      "sha256": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+      "href": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf#page=12",
+      "physicalPage": 12,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "VND",
+      "nativeValue": "4829351718",
+      "multiplier": "1"
+    },
+    {
+      "id": "TCX-FY2025-assetRevaluationLoss",
+      "pdfPath": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf",
+      "sha256": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+      "href": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf#page=12",
+      "physicalPage": 12,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "VND",
+      "nativeValue": "3532576725",
+      "multiplier": "1"
+    },
+    {
+      "id": "TCX-FY2025-warrantRevaluationGain",
+      "pdfPath": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf",
+      "sha256": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+      "href": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf#page=58",
+      "physicalPage": 58,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "VND",
+      "nativeValue": "2081623537",
+      "multiplier": "1"
+    },
+    {
+      "id": "TCX-FY2025-warrantRevaluationLoss",
+      "pdfPath": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf",
+      "sha256": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+      "href": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf#page=58",
+      "physicalPage": 58,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "VND",
+      "nativeValue": "146984433",
+      "multiplier": "1"
+    },
+    {
+      "id": "TCX-FY2025-realizedTradingNet2024",
+      "pdfPath": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf",
+      "sha256": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+      "href": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf#page=12",
+      "physicalPage": 12,
+      "economicPeriod": "FY2024",
+      "sourceUnit": "VND",
+      "nativeValue": "2244834887165",
+      "multiplier": "1"
+    },
+    {
+      "id": "TCX-FY2025-realizedTradingNet2025",
+      "pdfPath": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf",
+      "sha256": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+      "href": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf#page=12",
+      "physicalPage": 12,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "VND",
+      "nativeValue": "3234459066916",
+      "multiplier": "1"
+    }
+  ],
+  "sourceProfile": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/TCX.json",
+    "sha256": "55ceec25470e859af70ebcac5fb80209e965fb2acc8fb0edc3034dc9c5fee26c"
+  },
+  "fundReviewProfile": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-03/normalization-acceptance-v1/issuers/TCX.json",
+    "sha256": "068bde8eae9fcb2389743482bc30935a1df8667dfc2a98cdae7874d1c200003d"
+  },
+  "financialAcceptanceDecision": "DEFER_FINAL_FINANCIAL_ACCEPTANCE",
+  "blockers": [
+    "FINAL_COMMON_FUND_COMPLETENESS_OPEN",
+    "TRANSACTION_TAX_INCIDENCE_OPEN",
+    "SUSTAINABLE_CYCLE_AND_ONE_OFF_COVERAGE_OPEN",
+    "SOURCE_VARIANT_OR_FINAL_DISTRIBUTION_DISPOSITION_OPEN",
+    "SELECTED_PRUDENTIAL_CASE_NOT_YET_QUALIFIED_AS_SUSTAINABLE_ESTIMATE"
+  ],
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "financialCriteriaOrWeightsChanged": false,
+  "newMaterialityToleranceIntroduced": false,
+  "sourceAdmissionGranted": false,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "requiresNewPersonalOwnerEvidence": false
+}
