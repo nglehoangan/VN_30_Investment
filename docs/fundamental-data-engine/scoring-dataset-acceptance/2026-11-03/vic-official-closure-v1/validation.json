@@ -1,0 +1,42 @@
+{
+  "contract": "vic-official-closure-validation-v1",
+  "tests": [
+    {
+      "command": "python3 scripts/test-vic-official-closure.py",
+      "passed": 15
+    },
+    {
+      "command": "python3 scripts/test-vic-parent-bridge.py",
+      "passed": 24
+    },
+    {
+      "command": "python3 scripts/test-base-assumption-decisions.py",
+      "passed": 21
+    },
+    {
+      "command": "python3 scripts/test-normalization-acceptance-review.py",
+      "passed": 22
+    },
+    {
+      "command": "python3 scripts/test-earnings-normalization-v3.py",
+      "passed": 40
+    }
+  ],
+  "totalTestsPassed": 122,
+  "fullReleaseSuiteExecuted": false,
+  "authorityVerification": {
+    "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH node scripts/verify-approved-scoring-authority.mjs",
+    "status": "PASS",
+    "historicalFilesUnchanged": 133,
+    "artifacts": 37,
+    "compatibilities": 9
+  },
+  "databaseSha256": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65",
+  "productionMutationExecuted": false,
+  "failedCommandLaunches": [
+    {
+      "command": "python3 scripts/test-base-assumptions.py",
+      "reason": "Nonexistent filename; corrected to test-base-assumption-decisions.py which passed 21 tests"
+    }
+  ]
+}
