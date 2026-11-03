@@ -1,0 +1,97 @@
+{
+  "contract": "issuer-normalization-acceptance-decision-v1",
+  "ticker": "HDB",
+  "period": "FY2025",
+  "analysisMode": "AS_REVISED_CURRENT_RESEARCH",
+  "scope": "CONSOLIDATED",
+  "priorProfile": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/HDB.json",
+    "sha256": "f8e8adf7ebcfadcdfcf34b488f73b27b96ea586c7f700dd1c09c271a555b31cf"
+  },
+  "priorCommonBridgeVnd": "16499388000000",
+  "checkedAppropriationEvidenceIds": [
+    "HDB-FY2025-AGM2026-20"
+  ],
+  "fundPlanPreview": {
+    "commonBridgePreviewVnd": "16469388000000",
+    "changeFromInputVnd": "-30000000000",
+    "financialNormalizationAccepted": false,
+    "productionAuthorized": false,
+    "restore": [],
+    "deductions": [
+      {
+        "id": "HDB-identified-plan-fund",
+        "amountVnd": "30000000000",
+        "evidenceId": "HDB-FY2025-AGM2026-20",
+        "componentKey": "/values/parentBoardSupervisoryFund",
+        "economicPeriod": "FY2025",
+        "classification": "COMMON_NON_OWNER_FUND",
+        "attribution": "IDENTIFIED_PARENT_OR_COMMON",
+        "existingTreatment": "NOT_DEDUCTED_IN_INPUT"
+      }
+    ],
+    "stage": "AGM_PLAN_SENSITIVITY_NOT_FINAL_BOOK_OR_SUSTAINABLE_EARNINGS",
+    "conditions": [
+      "No prior P&L or other duplicate deduction",
+      "Same FY2025 common-owner component",
+      "All other unresolved funds remain unknown; this is not a complete range"
+    ],
+    "rebasedScenarios": [
+      {
+        "name": "BEAR",
+        "minimumVnd": "16011627711948.9719",
+        "maximumVnd": "16469388000000",
+        "selectedNormalizedEarningsVnd": null,
+        "unreviewedFundsAndOneOffsBounded": false
+      },
+      {
+        "name": "BASE",
+        "minimumVnd": "16338683500000",
+        "maximumVnd": "18238873269559.17752",
+        "selectedNormalizedEarningsVnd": null,
+        "unreviewedFundsAndOneOffsBounded": false
+      },
+      {
+        "name": "BULL",
+        "minimumVnd": "16379409050000",
+        "maximumVnd": "19435709579125.300892",
+        "selectedNormalizedEarningsVnd": null,
+        "unreviewedFundsAndOneOffsBounded": false
+      }
+    ]
+  },
+  "sourceArithmeticChecks": [
+    {
+      "evidenceId": "HDB-FY2025-AGM2026-20",
+      "componentKeys": [
+        "charterReserve",
+        "financialReserve",
+        "subsidiaryFundsUnclassified",
+        "parentWelfare",
+        "parentBoardSupervisoryFund"
+      ],
+      "componentSumSourceUnits": "3135552",
+      "printedTotalSourceUnits": "3135553",
+      "printedMinusComponentSumVnd": "1000000",
+      "disposition": "PRESENTATION_DIFFERENCE_UNRESOLVED_NO_BALANCING_ADJUSTMENT"
+    }
+  ],
+  "financialAcceptanceDecision": "BLOCKED_MATERIAL_FINANCIAL_EVIDENCE",
+  "blockers": [
+    "FINAL_COMMON_FUND_COMPLETENESS_OPEN",
+    "TRANSACTION_TAX_INCIDENCE_OPEN",
+    "SUSTAINABLE_CYCLE_AND_ONE_OFF_COVERAGE_OPEN",
+    "NO_QUALIFIED_SELECTED_ESTIMATE",
+    "TRANSACTION_COMMON_NCI_INCIDENCE_OPEN",
+    "TOTAL_CREDIT_ASSET_PROXY_NOT_MATCHED_LOAN_NORMALIZATION",
+    "PRINTED_FUND_TOTAL_COMPONENT_SUM_DIFFERENCE"
+  ],
+  "exactRemainingWork": "Đối chiếu thêm quỹ HĐQT/BKS 30 tỷ với P&L/sổ và 25 tỷ đã trừ; phân loại 104354 triệu quỹ công ty con và phần thuộc mẹ/NCI. Tổng dòng con lệch tổng in 1 triệu, giữ nguyên thay vì tạo khoản bù.",
+  "requiresNewPersonalOwnerEvidence": false,
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "sourceAdmissionGranted": false,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false
+}

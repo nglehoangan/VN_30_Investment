@@ -1,0 +1,93 @@
+{
+  "contract": "issuer-normalization-acceptance-decision-v1",
+  "ticker": "SSB",
+  "period": "FY2025",
+  "analysisMode": "AS_REVISED_CURRENT_RESEARCH",
+  "scope": "CONSOLIDATED",
+  "priorProfile": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/SSB.json",
+    "sha256": "21dd7d99d9fa9237d5a702db4a68a0c7e8d6e374a2c403fc2e767792eda0e491"
+  },
+  "priorCommonBridgeVnd": "5344253000000",
+  "checkedAppropriationEvidenceIds": [
+    "SSB-FY2025-AGM2026-24",
+    "common-earnings-FY2025-SSB"
+  ],
+  "fundPlanPreview": {
+    "commonBridgePreviewVnd": "5234539000000",
+    "changeFromInputVnd": "-109714000000",
+    "financialNormalizationAccepted": false,
+    "productionAuthorized": false,
+    "restore": [
+      {
+        "id": "SSB-replace-existing-estimate",
+        "amountVnd": "165286000000",
+        "evidenceId": "common-earnings-FY2025-SSB",
+        "componentKey": "/signedExplicitDeductions/0",
+        "economicPeriod": "FY2025",
+        "classification": "COMMON_NON_OWNER_FUND",
+        "attribution": "IDENTIFIED_PARENT_OR_COMMON",
+        "existingTreatment": "DEDUCTED_ESTIMATE_REPLACED_IN_FULL"
+      }
+    ],
+    "deductions": [
+      {
+        "id": "SSB-identified-plan-fund",
+        "amountVnd": "275000000000",
+        "evidenceId": "SSB-FY2025-AGM2026-24",
+        "componentKey": "/values/standaloneBonus+/values/standaloneWelfare",
+        "economicPeriod": "FY2025",
+        "classification": "COMMON_NON_OWNER_FUND",
+        "attribution": "IDENTIFIED_PARENT_OR_COMMON",
+        "existingTreatment": "NOT_DEDUCTED_IN_INPUT"
+      }
+    ],
+    "stage": "AGM_PLAN_SENSITIVITY_NOT_FINAL_BOOK_OR_SUSTAINABLE_EARNINGS",
+    "conditions": [
+      "No prior P&L or other duplicate deduction",
+      "Same FY2025 common-owner component",
+      "All other unresolved funds remain unknown; this is not a complete range"
+    ],
+    "rebasedScenarios": [
+      {
+        "name": "BEAR",
+        "minimumVnd": "1973673296842.563734",
+        "maximumVnd": "3148684600000",
+        "selectedNormalizedEarningsVnd": null,
+        "unreviewedFundsAndOneOffsBounded": false
+      },
+      {
+        "name": "BASE",
+        "minimumVnd": "2390350000000",
+        "maximumVnd": "3560676837474.050987",
+        "selectedNormalizedEarningsVnd": null,
+        "unreviewedFundsAndOneOffsBounded": false
+      },
+      {
+        "name": "BULL",
+        "minimumVnd": "2390350000000",
+        "maximumVnd": "3957405101852.943339",
+        "selectedNormalizedEarningsVnd": null,
+        "unreviewedFundsAndOneOffsBounded": false
+      }
+    ]
+  },
+  "sourceArithmeticChecks": [],
+  "financialAcceptanceDecision": "BLOCKED_MATERIAL_FINANCIAL_EVIDENCE",
+  "blockers": [
+    "FINAL_COMMON_FUND_COMPLETENESS_OPEN",
+    "TRANSACTION_TAX_INCIDENCE_OPEN",
+    "SUSTAINABLE_CYCLE_AND_ONE_OFF_COVERAGE_OPEN",
+    "NO_QUALIFIED_SELECTED_ESTIMATE",
+    "TRANSACTION_COMMON_NCI_INCIDENCE_OPEN",
+    "TOTAL_CREDIT_ASSET_PROXY_NOT_MATCHED_LOAN_NORMALIZATION"
+  ],
+  "exactRemainingWork": "Thay quỹ ước tính 165286 triệu bằng phần mẹ 275000 triệu trong preview; còn phần công ty con 66 triệu chưa xác nhận thuộc mẹ/NCI, phân loại bù chi phí 2162 triệu, đối chiếu sổ và thuế thương vụ PTF.",
+  "requiresNewPersonalOwnerEvidence": false,
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "sourceAdmissionGranted": false,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false
+}
