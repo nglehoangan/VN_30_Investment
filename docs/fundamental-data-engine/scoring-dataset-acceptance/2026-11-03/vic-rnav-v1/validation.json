@@ -1,0 +1,54 @@
+{
+  "contract": "vic-rnav-validation-v1",
+  "status": "PASS_TECHNICAL_REPLAY_NOT_FINANCIAL_ACCEPTANCE",
+  "pythonTests": 56,
+  "vitestTests": 102,
+  "totalTests": 158,
+  "commands": [
+    {
+      "command": "python3 scripts/test-vic-rnav.py",
+      "status": "PASS",
+      "tests": 23
+    },
+    {
+      "command": "python3 scripts/test-vic-reported-only-v2.py",
+      "status": "PASS",
+      "tests": 8
+    },
+    {
+      "command": "python3 scripts/test-vic-owner-report-closure.py",
+      "status": "PASS",
+      "tests": 25
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH pnpm exec vitest run tests/unit/economic-normalization.test.ts tests/unit/review-lineage.test.ts tests/integration/review-lineage.test.ts tests/unit/personal-ai-scoring.test.ts tests/unit/personal-ai-provenance.test.ts tests/integration/personal-ai-scoring.test.ts",
+      "status": "PASS",
+      "tests": 102,
+      "files": 6
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH node scripts/verify-approved-scoring-authority.mjs",
+      "status": "PASS",
+      "artifacts": 37,
+      "historicalFilesUnchanged": 133,
+      "compatibilities": 9
+    },
+    {
+      "command": "python3 -m py_compile scripts/build-vic-rnav.py scripts/lib/vic_rnav.py scripts/test-vic-rnav.py",
+      "status": "PASS"
+    },
+    {
+      "command": "git diff --check",
+      "status": "PASS"
+    }
+  ],
+  "databaseSha256": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65",
+  "approvedAuthorityHash": "8c0880249dc54e2baea0235cc10094f818220db86331442ece3da05085261cc1",
+  "actualProjectsAdmitted": 0,
+  "actualCommonRnavAdmitted": false,
+  "sourceAuthorityPromoted": false,
+  "productionPostingExecuted": false,
+  "navActivated": false,
+  "productionScoringActivated": false,
+  "fullReleaseSuiteRun": false
+}
