@@ -14,14 +14,23 @@ def validate_event(row, evidence):
         errors.append('UNSUPPORTED_EVENT')
     if any(row.get(k) != v for k, v in TARGET.items()):
         errors.append('FRAMEWORK_PERIOD_PERIMETER_BINDING_REQUIRED')
-    if not row.get('legalEntity') or not row.get('economicDate'):
-        errors.append('EVENT_ENTITY_AND_DATE_REQUIRED')
-    try:
-        day = date.fromisoformat(row.get('economicDate'))
-        if day.year != 2025 or day.isoformat() != row.get('economicDate'):
-            raise ValueError()
-    except (TypeError, ValueError):
-        errors.append('SUPPORTED_FY2025_ISO_DATE_REQUIRED')
+    annual = row.get('timeBindingKind') == 'ANNUAL_COMPONENT_AGGREGATE'
+    if annual:
+        # A directly reported annual tax/common-NCI bridge does not need an invented
+        # day for annual donations or an event ownership ratio.
+        if row.get('economicDate') is not None or row.get('attributionBasis') != 'DIRECT_REPORTED_COMMON_NCI_AMOUNTS':
+            errors.append('DIRECT_ANNUAL_COMPONENT_BINDING_REQUIRED')
+    else:
+        if row.get('timeBindingKind') not in (None, 'EXACT_EVENT_DATE'):
+            errors.append('SUPPORTED_TIME_BINDING_REQUIRED')
+        if not row.get('legalEntity') or not row.get('economicDate'):
+            errors.append('EVENT_ENTITY_AND_DATE_REQUIRED')
+        try:
+            day = date.fromisoformat(row.get('economicDate'))
+            if day.year != 2025 or day.isoformat() != row.get('economicDate'):
+                raise ValueError()
+        except (TypeError, ValueError):
+            errors.append('SUPPORTED_FY2025_ISO_DATE_REQUIRED')
     parsed = {}
     for key in FIELDS:
         try:
@@ -32,11 +41,14 @@ def validate_event(row, evidence):
         pin = row.get('bindings', {}).get(role)
         source = evidence.get(pin) if isinstance(pin, str) else None
         if not source or any(source.get(k) != row.get(k) for k in
-                (*TARGET, 'eventId', 'legalEntity', 'economicDate')):
+                (*TARGET, 'eventId', 'legalEntity', 'economicDate', 'timeBindingKind')):
             errors.append('EXACT_SOURCE_BINDING_REQUIRED_' + role)
             continue
-        if source.get('role') != role or source.get('measurement') != 'EVENT_PNL':
+        measurement = 'ANNUAL_COMPONENT_PNL' if annual else 'EVENT_PNL'
+        if source.get('role') != role or source.get('measurement') != measurement:
             errors.append('EVENT_PNL_EVIDENCE_REQUIRED_' + role)
+        if annual and role == 'parentNci' and source.get('attributionBasis') != 'DIRECT_REPORTED_COMMON_NCI_AMOUNTS':
+            errors.append('DIRECT_ANNUAL_COMMON_NCI_SOURCE_REQUIRED')
         # A web extract or a group tax reconciliation cannot satisfy native VAS admission.
         if source.get('integrity') != 'VERIFIED_ORIGINAL' or not source.get('locator'):
             errors.append('ORIGINAL_AND_LOCATOR_REQUIRED_' + role)

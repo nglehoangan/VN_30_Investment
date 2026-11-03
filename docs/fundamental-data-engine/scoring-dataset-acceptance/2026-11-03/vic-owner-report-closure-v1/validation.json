@@ -1,0 +1,77 @@
+{
+  "contract": "vic-owner-report-validation-v1",
+  "status": "PASS_TECHNICAL_NOT_FINANCIAL_ACCEPTANCE",
+  "pythonTests": 157,
+  "vitestTests": 102,
+  "totalTests": 259,
+  "commands": [
+    {
+      "command": "python3 scripts/test-vic-owner-report-closure.py",
+      "status": "PASS",
+      "tests": 25
+    },
+    {
+      "command": "python3 scripts/test-vic-only-normalization.py",
+      "status": "PASS",
+      "tests": 7
+    },
+    {
+      "command": "python3 scripts/test-vic-official-closure.py",
+      "status": "PASS",
+      "tests": 18
+    },
+    {
+      "command": "python3 scripts/test-vic-parent-bridge.py",
+      "status": "PASS",
+      "tests": 24
+    },
+    {
+      "command": "python3 scripts/test-base-assumption-decisions.py",
+      "status": "PASS",
+      "tests": 21
+    },
+    {
+      "command": "python3 scripts/test-normalization-acceptance-review.py",
+      "status": "PASS",
+      "tests": 22
+    },
+    {
+      "command": "python3 scripts/test-earnings-normalization-v3.py",
+      "status": "PASS",
+      "tests": 40
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH pnpm exec vitest run tests/unit/economic-normalization.test.ts tests/unit/review-lineage.test.ts tests/integration/review-lineage.test.ts tests/unit/personal-ai-scoring.test.ts tests/unit/personal-ai-provenance.test.ts tests/integration/personal-ai-scoring.test.ts",
+      "status": "PASS",
+      "files": 6,
+      "tests": 102
+    },
+    {
+      "command": "PATH=/private/tmp/node-v22.23.2-darwin-arm64/bin:$PATH node scripts/verify-approved-scoring-authority.mjs",
+      "status": "PASS",
+      "artifacts": 37,
+      "historicalFilesUnchanged": 133,
+      "compatibilities": 9
+    },
+    {
+      "command": "python3 -m py_compile scripts/build-vic-owner-report-closure.py scripts/lib/vic_owner_report.py scripts/lib/vic_event_admission.py scripts/test-vic-owner-report-closure.py scripts/test-vic-official-closure.py",
+      "status": "PASS"
+    },
+    {
+      "command": "git diff --check",
+      "status": "PASS"
+    }
+  ],
+  "sourceBytesVerified": true,
+  "reportedEpsReplayed": true,
+  "actualAdmissionCasesBlocked": 2,
+  "productionDatabaseSha256": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65",
+  "approvedAuthorityHash": "8c0880249dc54e2baea0235cc10094f818220db86331442ece3da05085261cc1",
+  "fullReleaseSuiteRun": false,
+  "historicalEvidenceRewritten": false,
+  "sourceAuthorityPromoted": false,
+  "ledgerPostingExecuted": false,
+  "navActivated": false,
+  "productionScoringActivated": false,
+  "criteriaOrWeightsChanged": false
+}

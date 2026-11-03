@@ -70,6 +70,25 @@ class Admission(unittest.TestCase):
         self.assertIsNone(d['selectedAcceptedNormalizedCommonEarningsVnd'])
         self.assertIsNone(d['selectedAcceptedEps'])
 
+    def annual_fixture(self):
+        r,e=self.fixture()
+        r.update(economicDate=None,legalEntity=None,timeBindingKind='ANNUAL_COMPONENT_AGGREGATE',attributionBasis='DIRECT_REPORTED_COMMON_NCI_AMOUNTS')
+        for source in e.values():
+            source.update(economicDate=None,legalEntity=None,timeBindingKind=r['timeBindingKind'],attributionBasis=r['attributionBasis'],measurement='ANNUAL_COMPONENT_PNL')
+        return r,e
+
+    def test_direct_annual_common_bridge_needs_no_invented_event_day(self):
+        r,e=self.annual_fixture();v=validate_event(r,e)
+        self.assertTrue(v['eventEvidenceComplete']);self.assertFalse(v['financialAcceptanceGranted'])
+
+    def test_annual_closing_ratio_cannot_substitute_for_direct_attribution(self):
+        r,e=self.annual_fixture();e['parentNci']['attributionBasis']='CLOSING_OWNERSHIP_RATIO'
+        self.assertFalse(validate_event(r,e)['eventEvidenceComplete'])
+
+    def test_annual_source_time_binding_mismatch_blocks(self):
+        r,e=self.annual_fixture();e['currentTax']['timeBindingKind']='EXACT_EVENT_DATE'
+        self.assertFalse(validate_event(r,e)['eventEvidenceComplete'])
+
     def test_actual_amount_precision_and_tax_identity(self):
         a=json.loads((OUT/'arithmetic-checks.json').read_text())
         self.assertTrue(a['taxIdentityPass']);self.assertEqual(a['feeMinusRoundedDisplayVnd'],'75650')
