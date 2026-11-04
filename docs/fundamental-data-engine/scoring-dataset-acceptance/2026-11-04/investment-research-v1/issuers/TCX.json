@@ -1,0 +1,332 @@
+{
+  "contract": "issuer-investment-research-v1",
+  "ticker": "TCX",
+  "period": "FY2025",
+  "analysisDate": "2026-11-04",
+  "scope": "STANDALONE",
+  "stage": "EARNINGS_AND_CAPITAL_REVIEW_VALUATION_OPEN",
+  "earnings": {
+    "reportedCommonReferenceVnd": "5683331855108",
+    "reportedReferenceScope": "STANDALONE",
+    "workingScope": "STANDALONE",
+    "workingCaseVnd": "5185288351135.5",
+    "adjustments": [
+      {
+        "id": "TCX-paired-unrealized",
+        "pretaxVnd": "-3231414097",
+        "readingIds": [
+          "TCX-FY2025-assetRevaluationGain",
+          "TCX-FY2025-assetRevaluationLoss",
+          "TCX-FY2025-warrantRevaluationGain",
+          "TCX-FY2025-warrantRevaluationLoss"
+        ],
+        "provenCommonWeight": "1",
+        "priorModelReason": "Remove paired net asset/warrant unrealized result once, not realized sales proceeds.",
+        "selectionReason": "Giữ phép điều chỉnh có toán hạng nguồn; lựa chọn mức hoạt động được bảo vệ riêng ở hồ sơ mã, không dùng tỷ lệ lợi nhuận mẹ/nhóm làm sở hữu.",
+        "priorBasePretaxVnd": "-3231414097",
+        "selectedPretaxChangeVnd": "0",
+        "selectionIsAnalystJudgment": true,
+        "selectedAfterTaxCommonDeltaVnd": "-3231414097",
+        "selectedDeltaIncidenceEnvelope": {
+          "minimumVnd": "-3231414097",
+          "maximumVnd": "-2585131277.6",
+          "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+          "completeEconomicOrFundBound": false
+        },
+        "derivationBinding": {
+          "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/TCX.json",
+          "sha256": "55ceec25470e859af70ebcac5fb80209e965fb2acc8fb0edc3034dc9c5fee26c",
+          "jsonPointer": "/scenarios"
+        },
+        "additionalOperandReadingIds": []
+      },
+      {
+        "id": "TCX-realized-trading-cycle",
+        "pretaxVnd": "-494812089875.5",
+        "readingIds": [
+          "TCX-FY2025-realizedTradingNet2024",
+          "TCX-FY2025-realizedTradingNet2025"
+        ],
+        "provenCommonWeight": "1",
+        "priorModelReason": "Two-year realized net trading mean is a cycle proxy, not a full market cycle; retain margin funding/impairment.",
+        "selectionReason": "Giữ phép điều chỉnh có toán hạng nguồn; lựa chọn mức hoạt động được bảo vệ riêng ở hồ sơ mã, không dùng tỷ lệ lợi nhuận mẹ/nhóm làm sở hữu.",
+        "priorBasePretaxVnd": "-494812089875.5",
+        "selectedPretaxChangeVnd": "0.0",
+        "selectionIsAnalystJudgment": true,
+        "selectedAfterTaxCommonDeltaVnd": "-494812089875.5",
+        "selectedDeltaIncidenceEnvelope": {
+          "minimumVnd": "-494812089875.5",
+          "maximumVnd": "-395849671900.40",
+          "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+          "completeEconomicOrFundBound": false
+        },
+        "derivationBinding": {
+          "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/TCX.json",
+          "sha256": "55ceec25470e859af70ebcac5fb80209e965fb2acc8fb0edc3034dc9c5fee26c",
+          "jsonPointer": "/scenarios"
+        },
+        "additionalOperandReadingIds": []
+      }
+    ],
+    "binding": {
+      "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-04/earnings-normalization-v4/issuers/TCX.json",
+      "sha256": "05a295a7047e204a539dcef180a6d27a4c7fe5ed02c6c4d01ad5e47635849b0b"
+    }
+  },
+  "cashOrCapital": {
+    "scope": "CONSOLIDATED_AS_REPORTED",
+    "history": [],
+    "reportedCfoIsFcfe": false
+  },
+  "reportedBalanceReferences": [
+    {
+      "item": "TOTAL_EQUITY",
+      "date": "2025-12-31",
+      "scope": "SEPARATE_STANDALONE",
+      "raw": {
+        "fieldId": "TOTAL_EQUITY",
+        "label": "TOTAL EQUITY",
+        "fieldLocator": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf#page=9;D. Vốn chủ sở hữu; Số cuối năm",
+        "lexicalValue": "44099580183375",
+        "unit": "CURRENCY",
+        "multiplier": "1",
+        "currency": "VND"
+      },
+      "normalized": {
+        "value": "44099580183375",
+        "unit": "CURRENCY",
+        "currency": "VND"
+      },
+      "observationId": "review-observation-adf0c6784bcc988d02b8c09e1326e53f88c6c103",
+      "sourceContext": {
+        "observationId": "review-observation-adf0c6784bcc988d02b8c09e1326e53f88c6c103",
+        "canonicalId": "canonical:4a3e4586dcc07558e5d0c7cda971b61ccd953f014599ff4d4192f8723e0c224d",
+        "sourceHash": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf",
+        "checkedTranscriptionId": "checked-f01010b21f36186140e63bf2fa78238a",
+        "bankCapitalFramework": null,
+        "scopeBasis": "OWNER_ACCEPTED_ENTITY_ANNUAL_AS_PRESENTED",
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-adf0c6784bcc988d02b8c09e1326e53f88c6c103",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "PREVIOUS_RETAINED_SOURCE",
+        "originalAuthority": "AUDITED_PDF"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    },
+    {
+      "item": "TOTAL_EQUITY",
+      "date": "2026-06-30",
+      "scope": "SEPARATE_STANDALONE",
+      "raw": {
+        "fieldId": "TOTAL_EQUITY",
+        "label": "TOTAL EQUITY",
+        "fieldLocator": "sqlite:fundamental_admission_run/reviewed-vn30-20261019-TCX/canonicalFacts/canonical:8adee5d3df16db3db8fbe2c7d79a0b5813c24e2ad134c9499f145ab0d753739b",
+        "lexicalValue": "45782449906020",
+        "unit": "CURRENCY",
+        "multiplier": "1",
+        "currency": "VND"
+      },
+      "normalized": {
+        "value": "45782449906020",
+        "unit": "CURRENCY",
+        "currency": "VND"
+      },
+      "observationId": "b6r3-observation-acf8cb998faab411f0280363d84625fa57c8",
+      "sourceContext": {
+        "observationId": "b6r3-observation-acf8cb998faab411f0280363d84625fa57c8",
+        "canonicalId": "canonical:8adee5d3df16db3db8fbe2c7d79a0b5813c24e2ad134c9499f145ab0d753739b",
+        "sourceHash": "6c781b57b01326ac7dc6c347ef7c5d79b403536c089ddb4956a8aaaa68ba5b37",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/TCX/2026-10-30-source-recovery/TCX_Baocaotaichinh_6T_2026_Soatxet.pdf",
+        "checkedTranscriptionId": null,
+        "bankCapitalFramework": null,
+        "scopeBasis": null,
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-28e9009a76fc721d24c7f3da890fbe51f64eac3b",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "EXACT_SOURCE_BYTES_RECOVERED",
+        "originalAuthority": "REVIEWED_PDF"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    },
+    {
+      "item": "CASH_AND_EQUIVALENTS",
+      "date": "2025-12-31",
+      "scope": "SEPARATE_STANDALONE",
+      "raw": {
+        "fieldId": "CASH_AND_EQUIVALENTS",
+        "label": "CASH AND EQUIVALENTS",
+        "fieldLocator": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf#page=8;Tiền và các khoản tương đương tiền; Số cuối năm",
+        "lexicalValue": "3108078221717",
+        "unit": "CURRENCY",
+        "multiplier": "1",
+        "currency": "VND"
+      },
+      "normalized": {
+        "value": "3108078221717",
+        "unit": "CURRENCY",
+        "currency": "VND"
+      },
+      "observationId": "review-observation-6e1f00d51b7606e89cbf9a3ffab4c95d29479f40",
+      "sourceContext": {
+        "observationId": "review-observation-6e1f00d51b7606e89cbf9a3ffab4c95d29479f40",
+        "canonicalId": "canonical:9021ab59381f7ae01f305b339fd9531943457974756d4c55aee7f47a6d5c81cc",
+        "sourceHash": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf",
+        "checkedTranscriptionId": "checked-781741a1207008541c286b3e96957b0f",
+        "bankCapitalFramework": null,
+        "scopeBasis": "OWNER_ACCEPTED_ENTITY_ANNUAL_AS_PRESENTED",
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-6e1f00d51b7606e89cbf9a3ffab4c95d29479f40",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "PREVIOUS_RETAINED_SOURCE",
+        "originalAuthority": "AUDITED_PDF"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    },
+    {
+      "item": "CASH_AND_EQUIVALENTS",
+      "date": "2026-06-30",
+      "scope": "SEPARATE_STANDALONE",
+      "raw": {
+        "fieldId": "CASH_AND_EQUIVALENTS",
+        "label": "CASH AND EQUIVALENTS",
+        "fieldLocator": "sqlite:fundamental_admission_run/reviewed-vn30-20261019-TCX/canonicalFacts/canonical:f66a6fa5c14cbd697fc584849db891e821c89f6bea9ae38093825e296cc48887",
+        "lexicalValue": "6154505245964",
+        "unit": "CURRENCY",
+        "multiplier": "1",
+        "currency": "VND"
+      },
+      "normalized": {
+        "value": "6154505245964",
+        "unit": "CURRENCY",
+        "currency": "VND"
+      },
+      "observationId": "b6r3-observation-12cd81d0966f0d0d9e809a09f28ed3fd2009",
+      "sourceContext": {
+        "observationId": "b6r3-observation-12cd81d0966f0d0d9e809a09f28ed3fd2009",
+        "canonicalId": "canonical:f66a6fa5c14cbd697fc584849db891e821c89f6bea9ae38093825e296cc48887",
+        "sourceHash": "6c781b57b01326ac7dc6c347ef7c5d79b403536c089ddb4956a8aaaa68ba5b37",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/TCX/2026-10-30-source-recovery/TCX_Baocaotaichinh_6T_2026_Soatxet.pdf",
+        "checkedTranscriptionId": null,
+        "bankCapitalFramework": null,
+        "scopeBasis": null,
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-81209fe55920dd73eee3510033a7db8f37476da0",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "EXACT_SOURCE_BYTES_RECOVERED",
+        "originalAuthority": "REVIEWED_PDF"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    }
+  ],
+  "commonBookReferenceVnd": null,
+  "commonBookDate": null,
+  "cashDebtDiagnostics": null,
+  "modelScenarios": [],
+  "equityScenarioRange": null,
+  "marketReference": {
+    "valueVnd": "27500",
+    "tradingDate": "2026-10-30",
+    "receivedAt": "2026-10-30T10:43:16.955Z",
+    "field": "DAILY_BAR_CLOSE_REFERENCE",
+    "adjustment": "PROVIDER_UNDECLARED",
+    "observationId": "TCBS_MARKET_PRICE:0e7252328fb39eaa2d5f72acbcfab37f787f4417746309e0de2029f67f0c891e",
+    "bodyHash": "0e7252328fb39eaa2d5f72acbcfab37f787f4417746309e0de2029f67f0c891e",
+    "sourceObservationId": "TCBS_API_RESPONSE:6089405f68a1bf2fad4f3c566c64f68a001b9b05d1df42aad9154483ad5e4ff1",
+    "sourcePointer": "/data/data/1/close",
+    "rawSha256": "240dc24d86a96bd80c553418aba7cb8c03eaa074628d55313d9a7d83ed706f1f",
+    "use": "DATED_RESEARCH_REFERENCE_NOT_CURRENT_QUOTE",
+    "productionAdmissible": false
+  },
+  "shareAnchor": null,
+  "shareArithmetic": null,
+  "datedDenominator": {
+    "status": "BLOCKED",
+    "reasons": [
+      "ISSUANCE_TREASURY_RIGHTS_BRIDGE_INCOMPLETE",
+      "PRICE_ADJUSTMENT_BASIS_UNDECLARED",
+      "SOURCE_BINDING_UNVERIFIED"
+    ],
+    "productionAdmissible": false,
+    "navAuthority": false,
+    "tradingAuthority": false
+  },
+  "providerShareReferences": [
+    {
+      "kind": "listed",
+      "shares": "3329339823",
+      "observedAt": "2026-10-30T12:12:16.431784+00:00",
+      "source": "data/manual-extracted-api/vietstock-profile-v1/20261030T121210Z/TCX.html",
+      "includesProviderProvisionalRightsWarning": false,
+      "perShareRangeVnd": null,
+      "basePerShareVnd": null,
+      "denominatorQualified": false,
+      "datedPriceComparison": null
+    },
+    {
+      "kind": "outstanding",
+      "shares": "3329339823",
+      "observedAt": "2026-10-30T12:12:16.431784+00:00",
+      "source": "data/manual-extracted-api/vietstock-profile-v1/20261030T121210Z/TCX.html",
+      "includesProviderProvisionalRightsWarning": true,
+      "perShareRangeVnd": null,
+      "basePerShareVnd": null,
+      "denominatorQualified": false,
+      "datedPriceComparison": null
+    }
+  ],
+  "actionBridgeComplete": false,
+  "financialSnapshotIsCurrentForecast": false,
+  "researchConditions": {
+    "buy": "Chỉ xem xét mua khi giá cùng ngày và mẫu số đã khớp, mô hình/nghĩa vụ đủ căn cứ, đáp ứng biên an toàn và suất sinh lợi theo tiêu chí hiện hành; chưa tự cấp tín hiệu từ bảng này.",
+    "hold": "Chỉ xem xét giữ khi luận điểm kinh doanh còn đúng, quyền cổ đông và khả năng tài trợ không suy giảm; định giá và tỷ trọng vẫn phù hợp. Giữ không phải lựa chọn mặc định khi thiếu dữ liệu.",
+    "sell": "Xem xét bán/giảm khi luận điểm bị bác, nghĩa vụ/quyền pha loãng làm mất giá trị hoặc giá vượt khoảng giá trị có cơ sở sau kiểm tra lại; không bán chỉ vì một mô hình có điều kiện cho kết quả thấp.",
+    "issuerFalsification": "Hai năm thị trường không chứng minh chu kỳ đầy đủ; quỹ/thưởng hiệu quả và chênh 1 VND vẫn cần xử lý theo nguồn.",
+    "issuerChecksBeforeAction": "Lãi giao dịch thực hiện/chưa thực hiện, khoản vay chuyển đổi và vốn khả dụng."
+  },
+  "blockingBeforeDatedTradeConclusion": [
+    "DATED_SHARE_ACTION_TREASURY_RIGHTS_BRIDGE",
+    "PRICE_ADJUSTMENT_BASIS",
+    "CURRENT_QUOTE_REFRESH",
+    "POST_FY2025_CHANGE_REVIEW",
+    "NAMED_ASSUMPTIONS_NOT_CONFIRMED",
+    "QUALIFIED_SECTOR_VALUATION_INPUTS_MISSING",
+    "ASSET_QUALITY_AND_DISTRIBUTABLE_CAPITAL"
+  ],
+  "currentSignal": "UNDETERMINED_NOT_BUY_HOLD_OR_SELL",
+  "acceptedValuePerShare": null,
+  "financialRulesOrWeightsChanged": false,
+  "sourceAdmissionGranted": false,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false
+}

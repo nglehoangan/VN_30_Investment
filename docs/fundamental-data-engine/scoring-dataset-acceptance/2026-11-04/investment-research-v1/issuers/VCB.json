@@ -1,0 +1,736 @@
+{
+  "contract": "issuer-investment-research-v1",
+  "ticker": "VCB",
+  "period": "FY2025",
+  "analysisDate": "2026-11-04",
+  "scope": "CONSOLIDATED",
+  "stage": "ADVANCED_TO_REVALUED_SCENARIOS",
+  "earnings": {
+    "reportedCommonReferenceVnd": "32201852000000",
+    "reportedReferenceScope": "CONSOLIDATED",
+    "workingScope": "CONSOLIDATED",
+    "workingCaseVnd": "25162530395769.504308",
+    "adjustments": [
+      {
+        "id": "VCB-0",
+        "pretaxVnd": "-5956798104230.495692",
+        "reason": "Replace loan charge only; preserve non-loan residual",
+        "readingIds": [
+          "VCB-2023-customerLoanCharge",
+          "VCB-2024-customerLoanCharge",
+          "VCB-2025-customerLoanCharge"
+        ]
+      },
+      {
+        "id": "VCB-1",
+        "pretaxVnd": "-82523500000",
+        "reason": "Replace bad-debt recoveries with two-year mean sensitivity; retain collection expenses",
+        "readingIds": [
+          "VCB-2024-badDebtRecoveries",
+          "VCB-2025-badDebtRecoveries"
+        ]
+      },
+      {
+        "id": "VCB-2",
+        "pretaxVnd": "-1000000000000",
+        "reason": "Remove interbank reversal benefit separately, retain corporate-bond risk expense",
+        "readingIds": [
+          "VCB-2025-interbankReversal"
+        ]
+      }
+    ],
+    "binding": {
+      "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-04/earnings-normalization-v4/issuers/VCB.json",
+      "sha256": "7a9d4832d784a8dff4bacd1fdbc3c48cee9bf9c7a322f297635ec0938eed2d13"
+    }
+  },
+  "cashOrCapital": {
+    "scope": "CONSOLIDATED_AS_REPORTED",
+    "history": [],
+    "reportedCfoIsFcfe": false
+  },
+  "reportedBalanceReferences": [
+    {
+      "item": "BANK_GROSS_CUSTOMER_LOANS",
+      "date": "2025-12-31",
+      "scope": "CONSOLIDATED",
+      "raw": {
+        "fieldId": "BANK_GROSS_CUSTOMER_LOANS",
+        "label": "BANK GROSS CUSTOMER LOANS",
+        "fieldLocator": "sqlite:fundamental_admission_run/reviewed-vn30-20261019-VCB/canonicalFacts/canonical:08853e8461a208c885073da9544b5dd96eb145a123b2cfd713ed1954a32d0aad",
+        "lexicalValue": "1673525675000000",
+        "unit": "CURRENCY",
+        "multiplier": "1",
+        "currency": "VND"
+      },
+      "normalized": {
+        "value": "1673525675000000",
+        "unit": "CURRENCY",
+        "currency": "VND"
+      },
+      "observationId": "review-observation-46ef27654ab1398d306160546671e525d57fc527",
+      "sourceContext": {
+        "observationId": "review-observation-46ef27654ab1398d306160546671e525d57fc527",
+        "canonicalId": "canonical:08853e8461a208c885073da9544b5dd96eb145a123b2cfd713ed1954a32d0aad",
+        "sourceHash": "295f397de287f84c26dafbfa06f668604aa696a013e236253149d8547d032d1f",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/VCB/VCB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+        "checkedTranscriptionId": null,
+        "bankCapitalFramework": null,
+        "scopeBasis": null,
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-46ef27654ab1398d306160546671e525d57fc527",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "PREVIOUS_RETAINED_SOURCE",
+        "originalAuthority": "AUDITED_PDF"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    },
+    {
+      "item": "BANK_REPORTED_CAR",
+      "date": "2026-06-30",
+      "scope": "CONSOLIDATED",
+      "raw": {
+        "fieldId": "BANK_REPORTED_CAR",
+        "label": "BANK REPORTED CAR",
+        "fieldLocator": "sqlite:fundamental_admission_run/reviewed-vn30-20261019-VCB/canonicalFacts/canonical:11db83ab26fb0be3c4ae5655d046b9f674e9403a520a79b79d2a69e6f790e8ab",
+        "lexicalValue": "0.1171",
+        "unit": "RATIO",
+        "multiplier": "1",
+        "currency": null
+      },
+      "normalized": {
+        "value": "0.1171",
+        "unit": "RATIO",
+        "currency": null
+      },
+      "observationId": "b6r3-observation-51db22c00d1db33a604b470243fc700b5f67",
+      "sourceContext": {
+        "observationId": "b6r3-observation-51db22c00d1db33a604b470243fc700b5f67",
+        "canonicalId": "canonical:11db83ab26fb0be3c4ae5655d046b9f674e9403a520a79b79d2a69e6f790e8ab",
+        "sourceHash": "00398b608ac1b0d6d3aafe958e4d041ee8c1972812550a744c7fb2146c9c7481",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/VCB/2026-10-30-source-recovery/VCB_BaocaoTyleAnToanVon_6T_2026.pdf",
+        "checkedTranscriptionId": null,
+        "bankCapitalFramework": null,
+        "scopeBasis": null,
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-6f8b6c79b8c27f49d2d3488d07310f9ef97556f9",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "EXACT_SOURCE_BYTES_RECOVERED",
+        "originalAuthority": "ISSUER_DISCLOSURE"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    },
+    {
+      "item": "BANK_LOAN_LOSS_RESERVES",
+      "date": "2025-12-31",
+      "scope": "CONSOLIDATED",
+      "raw": {
+        "fieldId": "BANK_LOAN_LOSS_RESERVES",
+        "label": "BANK LOAN LOSS RESERVES",
+        "fieldLocator": "sqlite:fundamental_admission_run/reviewed-vn30-20261019-VCB/canonicalFacts/canonical:627164d58939aab7ab753065d146e73fc0a5bc47bb963679b9b289abfae95643",
+        "lexicalValue": "24975679000000",
+        "unit": "CURRENCY",
+        "multiplier": "1",
+        "currency": "VND"
+      },
+      "normalized": {
+        "value": "24975679000000",
+        "unit": "CURRENCY",
+        "currency": "VND"
+      },
+      "observationId": "review-observation-365914ef8128750f7bb16c2ce4142e7bb752fb2f",
+      "sourceContext": {
+        "observationId": "review-observation-365914ef8128750f7bb16c2ce4142e7bb752fb2f",
+        "canonicalId": "canonical:627164d58939aab7ab753065d146e73fc0a5bc47bb963679b9b289abfae95643",
+        "sourceHash": "295f397de287f84c26dafbfa06f668604aa696a013e236253149d8547d032d1f",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/VCB/VCB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+        "checkedTranscriptionId": null,
+        "bankCapitalFramework": null,
+        "scopeBasis": null,
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-365914ef8128750f7bb16c2ce4142e7bb752fb2f",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "PREVIOUS_RETAINED_SOURCE",
+        "originalAuthority": "AUDITED_PDF"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    },
+    {
+      "item": "BANK_REPORTED_CAR",
+      "date": "2025-12-31",
+      "scope": "CONSOLIDATED",
+      "raw": {
+        "fieldId": "BANK_REPORTED_CAR",
+        "label": "BANK REPORTED CAR",
+        "fieldLocator": "sqlite:fundamental_admission_run/reviewed-vn30-20261019-VCB/canonicalFacts/canonical:c6c6db8489efe64035f569b4a2eaf2d86fdd8a34c30b918becb5ca73e009bb73",
+        "lexicalValue": "0.1156",
+        "unit": "RATIO",
+        "multiplier": "1",
+        "currency": null
+      },
+      "normalized": {
+        "value": "0.1156",
+        "unit": "RATIO",
+        "currency": null
+      },
+      "observationId": "b6r3-observation-494690d7f82746d53770fc5b37194b1a5fa1",
+      "sourceContext": {
+        "observationId": "b6r3-observation-494690d7f82746d53770fc5b37194b1a5fa1",
+        "canonicalId": "canonical:c6c6db8489efe64035f569b4a2eaf2d86fdd8a34c30b918becb5ca73e009bb73",
+        "sourceHash": "207f516f60c4d03b76e17051d90a8ee1bb0269408af468673451ca6d84f45566",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/VCB/2026-10-30-source-recovery/VCB_BaocaoTyleAnToanVon_2025.pdf",
+        "checkedTranscriptionId": null,
+        "bankCapitalFramework": null,
+        "scopeBasis": null,
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-53fb9ab0b964edead9022833d2b4266de412d8d9",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "EXACT_SOURCE_BYTES_RECOVERED",
+        "originalAuthority": "ISSUER_DISCLOSURE"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    },
+    {
+      "item": "BANK_GROSS_CUSTOMER_LOANS",
+      "date": "2026-06-30",
+      "scope": "CONSOLIDATED",
+      "raw": {
+        "fieldId": "BANK_GROSS_CUSTOMER_LOANS",
+        "label": "BANK GROSS CUSTOMER LOANS",
+        "fieldLocator": "sqlite:fundamental_admission_run/reviewed-vn30-20261019-VCB/canonicalFacts/canonical:d8f8b43a6045129087f8e3d45cd3cd6bc9ff04aecc47d0b704371d894e202d6c",
+        "lexicalValue": "1758168065000000",
+        "unit": "CURRENCY",
+        "multiplier": "1",
+        "currency": "VND"
+      },
+      "normalized": {
+        "value": "1758168065000000",
+        "unit": "CURRENCY",
+        "currency": "VND"
+      },
+      "observationId": "review-observation-10b8a09c945b08a725fb245ecc1cd88471b52d37",
+      "sourceContext": {
+        "observationId": "review-observation-10b8a09c945b08a725fb245ecc1cd88471b52d37",
+        "canonicalId": "canonical:d8f8b43a6045129087f8e3d45cd3cd6bc9ff04aecc47d0b704371d894e202d6c",
+        "sourceHash": "8069fe2fd507c63b7307d0470cea3cfc1c05a28ea303610083c408a8152ef886",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/VCB/VCB_Baocaotaichinh_6T_2026_Soatxet_Hopnhat.pdf",
+        "checkedTranscriptionId": null,
+        "bankCapitalFramework": null,
+        "scopeBasis": null,
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-10b8a09c945b08a725fb245ecc1cd88471b52d37",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "PREVIOUS_RETAINED_SOURCE",
+        "originalAuthority": "REVIEWED_PDF"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    },
+    {
+      "item": "BANK_LOAN_LOSS_RESERVES",
+      "date": "2026-06-30",
+      "scope": "CONSOLIDATED",
+      "raw": {
+        "fieldId": "BANK_LOAN_LOSS_RESERVES",
+        "label": "BANK LOAN LOSS RESERVES",
+        "fieldLocator": "sqlite:fundamental_admission_run/reviewed-vn30-20261019-VCB/canonicalFacts/canonical:e807372ca03f966dc5d6aa37f869b451f7cdf239f8e23e0a40f69d1b4a4aabf0",
+        "lexicalValue": "29984695000000",
+        "unit": "CURRENCY",
+        "multiplier": "1",
+        "currency": "VND"
+      },
+      "normalized": {
+        "value": "29984695000000",
+        "unit": "CURRENCY",
+        "currency": "VND"
+      },
+      "observationId": "review-observation-0c3cd597debeb45187895a2a188be65b0fcd4ab5",
+      "sourceContext": {
+        "observationId": "review-observation-0c3cd597debeb45187895a2a188be65b0fcd4ab5",
+        "canonicalId": "canonical:e807372ca03f966dc5d6aa37f869b451f7cdf239f8e23e0a40f69d1b4a4aabf0",
+        "sourceHash": "8069fe2fd507c63b7307d0470cea3cfc1c05a28ea303610083c408a8152ef886",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/VCB/VCB_Baocaotaichinh_6T_2026_Soatxet_Hopnhat.pdf",
+        "checkedTranscriptionId": null,
+        "bankCapitalFramework": null,
+        "scopeBasis": null,
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-0c3cd597debeb45187895a2a188be65b0fcd4ab5",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "PREVIOUS_RETAINED_SOURCE",
+        "originalAuthority": "REVIEWED_PDF"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    },
+    {
+      "item": "TOTAL_EQUITY",
+      "date": "2026-06-30",
+      "scope": "CONSOLIDATED",
+      "raw": {
+        "fieldId": "TOTAL_EQUITY",
+        "label": "TOTAL EQUITY",
+        "fieldLocator": "sqlite:fundamental_admission_run/reviewed-vn30-20261019-VCB/canonicalFacts/canonical:e92a36031d26b34c59df77a8b13e9d327cf09860aad90ae84fcb48deb02da5a0",
+        "lexicalValue": "248490506000000",
+        "unit": "CURRENCY",
+        "multiplier": "1",
+        "currency": "VND"
+      },
+      "normalized": {
+        "value": "248490506000000",
+        "unit": "CURRENCY",
+        "currency": "VND"
+      },
+      "observationId": "review-observation-516016a4885966bbc854fe1796e28ba0e68dfe20",
+      "sourceContext": {
+        "observationId": "review-observation-516016a4885966bbc854fe1796e28ba0e68dfe20",
+        "canonicalId": "canonical:e92a36031d26b34c59df77a8b13e9d327cf09860aad90ae84fcb48deb02da5a0",
+        "sourceHash": "8069fe2fd507c63b7307d0470cea3cfc1c05a28ea303610083c408a8152ef886",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/VCB/VCB_Baocaotaichinh_6T_2026_Soatxet_Hopnhat.pdf",
+        "checkedTranscriptionId": null,
+        "bankCapitalFramework": null,
+        "scopeBasis": null,
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-516016a4885966bbc854fe1796e28ba0e68dfe20",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "PREVIOUS_RETAINED_SOURCE",
+        "originalAuthority": "REVIEWED_PDF"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    },
+    {
+      "item": "TOTAL_EQUITY",
+      "date": "2025-12-31",
+      "scope": "CONSOLIDATED",
+      "raw": {
+        "fieldId": "TOTAL_EQUITY",
+        "label": "TOTAL EQUITY",
+        "fieldLocator": "sqlite:fundamental_admission_run/reviewed-vn30-20261019-VCB/canonicalFacts/canonical:ffdd92bb76085d00a2b145ec6dbd91f9016304bdeda8b2ff43ff2f3c06908064",
+        "lexicalValue": "224558726000000",
+        "unit": "CURRENCY",
+        "multiplier": "1",
+        "currency": "VND"
+      },
+      "normalized": {
+        "value": "224558726000000",
+        "unit": "CURRENCY",
+        "currency": "VND"
+      },
+      "observationId": "review-observation-2ab7e9d309f8f9682d611b188f81240c74232043",
+      "sourceContext": {
+        "observationId": "review-observation-2ab7e9d309f8f9682d611b188f81240c74232043",
+        "canonicalId": "canonical:ffdd92bb76085d00a2b145ec6dbd91f9016304bdeda8b2ff43ff2f3c06908064",
+        "sourceHash": "295f397de287f84c26dafbfa06f668604aa696a013e236253149d8547d032d1f",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/VCB/VCB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+        "checkedTranscriptionId": null,
+        "bankCapitalFramework": null,
+        "scopeBasis": null,
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-2ab7e9d309f8f9682d611b188f81240c74232043",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "PREVIOUS_RETAINED_SOURCE",
+        "originalAuthority": "AUDITED_PDF"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    }
+  ],
+  "commonBookReferenceVnd": "224487205000000",
+  "commonBookDate": "2026-06-30",
+  "cashDebtDiagnostics": {
+    "classification": "OPERATING_FINANCIAL_FUNDING",
+    "qualifiedNetDebt": null,
+    "unrestrictedCash": null,
+    "leaseAndCurrentPortionReconciliation": "Not added to reported totals without an exact non-overlap bridge",
+    "principalRefinancingAssumption": "Primary equity scenarios assume existing principal can be rolled; no proven refinancing commitment",
+    "observedSnapshots": [],
+    "repaymentSensitivity": []
+  },
+  "modelScenarios": [
+    {
+      "name": "BEAR",
+      "earningsInputVnd": "25162530395769.504308",
+      "valuationAssumptions": {
+        "growth": ".02",
+        "discount": ".18",
+        "terminalGrowth": "0.01"
+      },
+      "legacyAssumptionsNotReapplied": {
+        "cycleFactor": "0.9",
+        "taxRate": ".2",
+        "commonAttributionProxy": "0.999424"
+      },
+      "oldTaxNciFundCycleSettingsNotReapplied": true,
+      "valuation": {
+        "model": "CONDITIONAL_RESIDUAL_INCOME",
+        "equityValue": "131909832263221.370572",
+        "ddmCrosscheck": "131909832263221.370572",
+        "crosscheckDifference": "0",
+        "normalizedRoe": "0.112089",
+        "years": [
+          {
+            "year": 1,
+            "openingCommonBook": "224487205000000",
+            "earnings": "25162530395769.504308",
+            "retained": "4489744100000",
+            "dividends": "20672786295769.504308",
+            "residual": "-15245166504230.495692"
+          },
+          {
+            "year": 2,
+            "openingCommonBook": "228976949100000",
+            "earnings": "25665781003684.894394",
+            "retained": "4579538982000",
+            "dividends": "21086242021684.894394",
+            "residual": "-15550069834315.105606"
+          },
+          {
+            "year": 3,
+            "openingCommonBook": "233556488082000",
+            "earnings": "26179096623758.592282",
+            "retained": "4671129761640",
+            "dividends": "21507966862118.592282",
+            "residual": "-15861071231001.407718"
+          },
+          {
+            "year": 4,
+            "openingCommonBook": "238227617843640",
+            "earnings": "26702678556233.764128",
+            "retained": "4764552356872.8",
+            "dividends": "21938126199360.964128",
+            "residual": "-16178292655621.435872"
+          },
+          {
+            "year": 5,
+            "openingCommonBook": "242992170200512.8",
+            "earnings": "27236732127358.43941",
+            "retained": "4859843404010.256",
+            "dividends": "22376888723348.18341",
+            "residual": "-16501858508733.86459"
+          }
+        ],
+        "terminalCommonBook": "247852013604523.056",
+        "fundingDebtAdjustment": "0"
+      },
+      "equityValueVnd": "131909832263221.370572",
+      "assumptionBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/held-normalization-v1/issuers/VCB.json",
+        "sha256": "bb98a298cb378cbb033f95d3fd1022cd6dfa1cfc1fecf46ac13d34fe9bbea164"
+      }
+    },
+    {
+      "name": "BASE",
+      "earningsInputVnd": "25162530395769.504308",
+      "valuationAssumptions": {
+        "growth": ".04",
+        "discount": ".15",
+        "terminalGrowth": "0.02"
+      },
+      "legacyAssumptionsNotReapplied": {
+        "cycleFactor": "1",
+        "taxRate": ".2",
+        "commonAttributionProxy": "0.999424"
+      },
+      "oldTaxNciFundCycleSettingsNotReapplied": true,
+      "valuation": {
+        "model": "CONDITIONAL_RESIDUAL_INCOME",
+        "equityValue": "154318509084394.886968",
+        "ddmCrosscheck": "154318509084394.886968",
+        "crosscheckDifference": "0",
+        "normalizedRoe": "0.112089",
+        "years": [
+          {
+            "year": 1,
+            "openingCommonBook": "224487205000000",
+            "earnings": "25162530395769.504308",
+            "retained": "8979488200000",
+            "dividends": "16183042195769.504308",
+            "residual": "-8510550354230.495692"
+          },
+          {
+            "year": 2,
+            "openingCommonBook": "233466693200000",
+            "earnings": "26169031611600.28448",
+            "retained": "9338667728000",
+            "dividends": "16830363883600.28448",
+            "residual": "-8850972368399.71552"
+          },
+          {
+            "year": 3,
+            "openingCommonBook": "242805360928000",
+            "earnings": "27215792876064.29586",
+            "retained": "9712214437120",
+            "dividends": "17503578438944.29586",
+            "residual": "-9205011263135.70414"
+          },
+          {
+            "year": 4,
+            "openingCommonBook": "252517575365120",
+            "earnings": "28304424591106.867694",
+            "retained": "10100703014604.8",
+            "dividends": "18203721576502.067694",
+            "residual": "-9573211713661.132306"
+          },
+          {
+            "year": 5,
+            "openingCommonBook": "262618278379724.8",
+            "earnings": "29436601574751.142402",
+            "retained": "10504731135188.992",
+            "dividends": "18931870439562.150402",
+            "residual": "-9956140182207.577598"
+          }
+        ],
+        "terminalCommonBook": "273123009514913.792",
+        "fundingDebtAdjustment": "0"
+      },
+      "equityValueVnd": "154318509084394.886968",
+      "assumptionBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/held-normalization-v1/issuers/VCB.json",
+        "sha256": "bb98a298cb378cbb033f95d3fd1022cd6dfa1cfc1fecf46ac13d34fe9bbea164"
+      }
+    },
+    {
+      "name": "BULL",
+      "earningsInputVnd": "25162530395769.504308",
+      "valuationAssumptions": {
+        "growth": ".06",
+        "discount": ".12",
+        "terminalGrowth": "0.025"
+      },
+      "legacyAssumptionsNotReapplied": {
+        "cycleFactor": "1.05",
+        "taxRate": ".2",
+        "commonAttributionProxy": "0.999424"
+      },
+      "oldTaxNciFundCycleSettingsNotReapplied": true,
+      "valuation": {
+        "model": "CONDITIONAL_RESIDUAL_INCOME",
+        "equityValue": "203168853303095.283949",
+        "ddmCrosscheck": "203168853303095.283949",
+        "crosscheckDifference": "0",
+        "normalizedRoe": "0.112089",
+        "years": [
+          {
+            "year": 1,
+            "openingCommonBook": "224487205000000",
+            "earnings": "25162530395769.504308",
+            "retained": "13469232300000",
+            "dividends": "11693298095769.504308",
+            "residual": "-1775934204230.495692"
+          },
+          {
+            "year": 2,
+            "openingCommonBook": "237956437300000",
+            "earnings": "26672282219515.674566",
+            "retained": "14277386238000",
+            "dividends": "12394895981515.674566",
+            "residual": "-1882490256484.325434"
+          },
+          {
+            "year": 3,
+            "openingCommonBook": "252233823538000",
+            "earnings": "28272619152686.61504",
+            "retained": "15134029412280",
+            "dividends": "13138589740406.61504",
+            "residual": "-1995439671873.38496"
+          },
+          {
+            "year": 4,
+            "openingCommonBook": "267367852950280",
+            "earnings": "29968976301847.811943",
+            "retained": "16042071177016.8",
+            "dividends": "13926905124831.011943",
+            "residual": "-2115166052185.788057"
+          },
+          {
+            "year": 5,
+            "openingCommonBook": "283409924127296.8",
+            "earnings": "31767114879958.680659",
+            "retained": "17004595447637.808",
+            "dividends": "14762519432320.872659",
+            "residual": "-2242076015316.935341"
+          }
+        ],
+        "terminalCommonBook": "300414519574934.608",
+        "fundingDebtAdjustment": "0"
+      },
+      "equityValueVnd": "203168853303095.283949",
+      "assumptionBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/held-normalization-v1/issuers/VCB.json",
+        "sha256": "bb98a298cb378cbb033f95d3fd1022cd6dfa1cfc1fecf46ac13d34fe9bbea164"
+      }
+    }
+  ],
+  "equityScenarioRange": {
+    "minimumVnd": "131909832263221.370572",
+    "maximumVnd": "203168853303095.283949",
+    "baseVnd": "154318509084394.886968",
+    "classification": "NAMED_SCENARIO_RANGE_NOT_CONFIDENCE_INTERVAL"
+  },
+  "marketReference": {
+    "valueVnd": "56300",
+    "tradingDate": "2026-10-30",
+    "receivedAt": "2026-10-30T10:43:18.956Z",
+    "field": "DAILY_BAR_CLOSE_REFERENCE",
+    "adjustment": "PROVIDER_UNDECLARED",
+    "observationId": "TCBS_MARKET_PRICE:cfe8aacb7bd6afb8fa06d291714ad3a0bb6741e3cdfaff6f51e3694674be1838",
+    "bodyHash": "cfe8aacb7bd6afb8fa06d291714ad3a0bb6741e3cdfaff6f51e3694674be1838",
+    "sourceObservationId": "TCBS_API_RESPONSE:d0f5cd3059eb11085f4c3cad84920b32c5e8648667052a1e55ae23b897ea9b74",
+    "sourcePointer": "/data/data/1/close",
+    "rawSha256": "ecf8b6a98ca53b062012e4fcd185747b8655dfd4a215c8708b2400d96cb80f14",
+    "use": "DATED_RESEARCH_REFERENCE_NOT_CURRENT_QUOTE",
+    "productionAdmissible": false
+  },
+  "shareAnchor": {
+    "ticker": "VCB",
+    "asOf": "2026-09-30",
+    "issuedCommonShares": "8355675094",
+    "outstandingCommonShares": "8355675094",
+    "restrictedCommonShares": null,
+    "potentialDilutionShares": null,
+    "sourceScope": "CONSOLIDATED",
+    "pdfPath": "data/manual-download/VCB/2026-11-02-remediation/565842-Q3_2026.pdf",
+    "pdfSha256": "9c69b62c629e7c4d586535c99277bbc6c4ba785d04ff765371fea07ece5daa08",
+    "physicalPage": 46,
+    "sourceUnit": "SHARES",
+    "fullPageImageInspected": true,
+    "sourceCaption": "Số lượng cổ phiếu phổ thông đã phát hành / đang lưu hành; cột 30/09/2026",
+    "notes": [],
+    "productionAdmissible": false
+  },
+  "shareArithmetic": {
+    "treasuryShares": "0",
+    "restrictedAlreadyIncluded": true,
+    "potentialCommonEquivalentShares": null,
+    "knownInstrumentAsConvertedShares": null,
+    "fullyDilutedShares": null
+  },
+  "datedDenominator": {
+    "status": "BLOCKED",
+    "reasons": [
+      "ISSUANCE_TREASURY_RIGHTS_BRIDGE_INCOMPLETE",
+      "PRICE_ADJUSTMENT_BASIS_UNDECLARED"
+    ],
+    "productionAdmissible": false,
+    "navAuthority": false,
+    "tradingAuthority": false
+  },
+  "providerShareReferences": [
+    {
+      "kind": "listed",
+      "shares": "8355675094",
+      "observedAt": "2026-10-30T12:12:17.097917+00:00",
+      "source": "data/manual-extracted-api/vietstock-profile-v1/20261030T121210Z/VCB.html",
+      "includesProviderProvisionalRightsWarning": false,
+      "perShareRangeVnd": {
+        "minimumVnd": "15786.855135",
+        "maximumVnd": "24315.07341"
+      },
+      "basePerShareVnd": "18468.70628",
+      "denominatorQualified": false,
+      "datedPriceComparison": {
+        "priceDate": "2026-10-30",
+        "priceVnd": "56300",
+        "baseScenarioToPriceRatio": "0.328041",
+        "isMarginOfSafetyAcceptance": false,
+        "isCurrentTradingSignal": false
+      }
+    },
+    {
+      "kind": "outstanding",
+      "shares": "8355675094",
+      "observedAt": "2026-10-30T12:12:17.097917+00:00",
+      "source": "data/manual-extracted-api/vietstock-profile-v1/20261030T121210Z/VCB.html",
+      "includesProviderProvisionalRightsWarning": true,
+      "perShareRangeVnd": {
+        "minimumVnd": "15786.855135",
+        "maximumVnd": "24315.07341"
+      },
+      "basePerShareVnd": "18468.70628",
+      "denominatorQualified": false,
+      "datedPriceComparison": {
+        "priceDate": "2026-10-30",
+        "priceVnd": "56300",
+        "baseScenarioToPriceRatio": "0.328041",
+        "isMarginOfSafetyAcceptance": false,
+        "isCurrentTradingSignal": false
+      }
+    }
+  ],
+  "actionBridgeComplete": false,
+  "financialSnapshotIsCurrentForecast": false,
+  "researchConditions": {
+    "buy": "Chỉ xem xét mua khi giá cùng ngày và mẫu số đã khớp, mô hình/nghĩa vụ đủ căn cứ, đáp ứng biên an toàn và suất sinh lợi theo tiêu chí hiện hành; chưa tự cấp tín hiệu từ bảng này.",
+    "hold": "Chỉ xem xét giữ khi luận điểm kinh doanh còn đúng, quyền cổ đông và khả năng tài trợ không suy giảm; định giá và tỷ trọng vẫn phù hợp. Giữ không phải lựa chọn mặc định khi thiếu dữ liệu.",
+    "sell": "Xem xét bán/giảm khi luận điểm bị bác, nghĩa vụ/quyền pha loãng làm mất giá trị hoặc giá vượt khoảng giá trị có cơ sở sau kiểm tra lại; không bán chỉ vì một mô hình có điều kiện cho kết quả thấp.",
+    "issuerFalsification": "Không bù rủi ro giữa dân số tài sản; floor ba năm chưa phải chu kỳ tín dụng hoàn chỉnh.",
+    "issuerChecksBeforeAction": "Dự phòng khoản vay/liên ngân hàng riêng, thu hồi và vốn giữ lại."
+  },
+  "blockingBeforeDatedTradeConclusion": [
+    "DATED_SHARE_ACTION_TREASURY_RIGHTS_BRIDGE",
+    "PRICE_ADJUSTMENT_BASIS",
+    "CURRENT_QUOTE_REFRESH",
+    "POST_FY2025_CHANGE_REVIEW",
+    "NAMED_ASSUMPTIONS_NOT_CONFIRMED",
+    "ASSET_QUALITY_AND_DISTRIBUTABLE_CAPITAL"
+  ],
+  "currentSignal": "UNDETERMINED_NOT_BUY_HOLD_OR_SELL",
+  "acceptedValuePerShare": null,
+  "financialRulesOrWeightsChanged": false,
+  "sourceAdmissionGranted": false,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false
+}

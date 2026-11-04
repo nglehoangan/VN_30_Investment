@@ -1,0 +1,51 @@
+# LPB — hồ sơ nghiên cứu FY2025
+
+Trạng thái: **EARNINGS_AND_CAPITAL_REVIEW_VALUATION_OPEN**. Phạm vi lợi nhuận làm việc: **STANDALONE**. Đây là nghiên cứu hiện tại trên kỳ FY2025, không tái dựng thông tin biết tại năm2025.
+
+Lợi nhuận làm việc: **9.758 nghìn tỷ VND**. Lựa chọn: Báo cáo riêng: floor tín dụng và bình quân thu hồi nợ; không gán thêm NCI hay trừ quỹ dự trữ vốn/cổ tức.
+
+## Dòng tiền/vốn
+
+Chi tiết số liệu, kỳ, phạm vi và nguồn ở JSON cạnh hồ sơ. CFO nhóm không tự là FCFE; số vốn không tự chứng minh khả năng phân phối. Tiền/nợ không được cộng/trừ lần nữa nếu lợi nhuận đã giữ thu nhập tài chính và lãi vay.
+
+| Chỉ tiêu tham chiếu | Ngày | Phạm vi | Giá trị chuẩn hóa / đơn vị |
+|---|---|---|---:|
+| BANK_LOAN_LOSS_RESERVES | 2025-12-31 | SEPARATE_STANDALONE | 4879449000000 / CURRENCY |
+| TOTAL_EQUITY | 2026-06-30 | SEPARATE_STANDALONE | 43030481000000 / CURRENCY |
+| BANK_REPORTED_CAR | 2026-06-30 | SEPARATE_STANDALONE | 0.1118 / RATIO |
+| BANK_REPORTED_CAR | 2025-12-31 | SEPARATE_STANDALONE | 0.1187 / RATIO |
+| TOTAL_EQUITY | 2025-12-31 | SEPARATE_STANDALONE | 47192474000000 / CURRENCY |
+| BANK_LOAN_LOSS_RESERVES | 2026-06-30 | SEPARATE_STANDALONE | 5316072000000 / CURRENCY |
+| BANK_GROSS_CUSTOMER_LOANS | 2026-06-30 | SEPARATE_STANDALONE | 429464738000000 / CURRENCY |
+| BANK_GROSS_CUSTOMER_LOANS | 2025-12-31 | SEPARATE_STANDALONE | 391746491000000 / CURRENCY |
+
+Tổng vốn chủ không tự là vốn phổ thông; tiền báo cáo không tự là tiền không hạn chế. Đây là đầu vào rà soát giữ nguyên trạng thái, không phải nghiệm thu mới.
+
+## Khoảng định giá có điều kiện
+
+Chưa xuất khoảng định giá: cấu trúc/dòng tiền/quyền vốn chưa đủ cho mô hình phù hợp. Không thay bằng P/E tùy ý hoặc giá trị sổ sách mang tên RNAV.
+
+## Cổ phần và ngày giá
+
+Giá tham chiếu DB: **36100 VND**, phiên **2026-10-30**; không phải giá hiện tại ngày04/11. Điều chỉnh giá: `PROVIDER_UNDECLARED`.
+
+Mốc cổ phần nguồn: 2026-09-30. Cầu nối tới ngày giá: **chưa hoàn tất**.
+
+| Mẫu số tham chiếu nhà cung cấp | Số cổ phần | Giá trị/cổ phần cơ sở có điều kiện (VND) |
+|---|---:|---:|
+| listed | 2987282100 | Chưa tính |
+| outstanding | 2987282100 | Chưa tính |
+
+Các mẫu số tham chiếu không thay thế quyền phổ thông đã đối chiếu. Không tự coi hai mẫu số khác nhau là khoảng pha loãng đầy đủ.
+
+## Điều kiện mua / giữ / bán
+
+- **Mua:** Chỉ xem xét mua khi giá cùng ngày và mẫu số đã khớp, mô hình/nghĩa vụ đủ căn cứ, đáp ứng biên an toàn và suất sinh lợi theo tiêu chí hiện hành; chưa tự cấp tín hiệu từ bảng này.
+- **Giữ:** Chỉ xem xét giữ khi luận điểm kinh doanh còn đúng, quyền cổ đông và khả năng tài trợ không suy giảm; định giá và tỷ trọng vẫn phù hợp. Giữ không phải lựa chọn mặc định khi thiếu dữ liệu.
+- **Bán/giảm:** Xem xét bán/giảm khi luận điểm bị bác, nghĩa vụ/quyền pha loãng làm mất giá trị hoặc giá vượt khoảng giá trị có cơ sở sau kiểm tra lại; không bán chỉ vì một mô hình có điều kiện cho kết quả thấp.
+
+**Điều kiện riêng trước hành động:** Chất lượng tín dụng, vốn cần giữ và phạm vi báo cáo riêng.
+
+**Điểm cần kiểm chứng riêng:** Không có dòng quỹ nhân viên trên một bảng không chứng minh quỹ bằng 0; floor chưa qua kiểm chứng dân số tín dụng.
+
+**Tín hiệu hiện tại: chưa xác định.** Các điều kiện trên là khung nghiên cứu, không phải lệnh hoặc nhãn HOLD mặc định. Không cần đợi đủ cả30 mã; hồ sơ này có thể tiến riêng khi các ràng buộc của chính mã được khép.
