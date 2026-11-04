@@ -1,0 +1,3129 @@
+{
+  "contract": "issuer-investment-research-v2",
+  "ticker": "SHB",
+  "period": "FY2025",
+  "analysisDate": "2026-11-04",
+  "scope": "CONSOLIDATED",
+  "stage": "ADDITIONAL_19_SOURCE_REVIEW_AND_RETURN_SCENARIOS",
+  "earnings": {
+    "reportedCommonReferenceVnd": "11960295000000",
+    "reportedReferenceScope": "CONSOLIDATED",
+    "workingScope": "CONSOLIDATED",
+    "workingCaseVnd": "8993365980209.836587",
+    "adjustments": [
+      {
+        "id": "SHB-total-credit-proxy",
+        "pretaxVnd": "-584505019790.163413",
+        "readingIds": [],
+        "priorModelReason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+        "selectionReason": "Không cộng lợi nhuận từ giảm dự phòng/thu hồi giả định; giữ khoản giảm theo proxy như dự phòng thận trọng, chưa coi là dự báo khoản vay đã kiểm chứng.",
+        "priorBasePretaxVnd": "-584505019790.163413",
+        "selectedPretaxChangeVnd": "0.000000",
+        "selectionIsAnalystJudgment": true,
+        "selectedAfterTaxCommonDeltaVnd": "-584505019790.163413",
+        "selectedDeltaIncidenceEnvelope": {
+          "minimumVnd": "-584505019790.163413",
+          "maximumVnd": "0.000000",
+          "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+          "completeEconomicOrFundBound": false
+        },
+        "derivationBinding": {
+          "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/SHB.json",
+          "sha256": "a84e2441daa073c2404f77dc1fc81088e84e07064b498a88e7a9315de1aa991e",
+          "jsonPointer": "/creditNormalization"
+        },
+        "additionalOperandReadingIds": []
+      },
+      {
+        "id": "SHB-recoveries-mean",
+        "pretaxVnd": "-1983891000000",
+        "readingIds": [
+          "SHB-FY2025-recoveries2024",
+          "SHB-FY2025-recoveries2025"
+        ],
+        "priorModelReason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+        "selectionReason": "Không cộng lợi nhuận từ giảm dự phòng/thu hồi giả định; giữ khoản giảm theo proxy như dự phòng thận trọng, chưa coi là dự báo khoản vay đã kiểm chứng.",
+        "priorBasePretaxVnd": "-1983891000000",
+        "selectedPretaxChangeVnd": "0",
+        "selectionIsAnalystJudgment": true,
+        "selectedAfterTaxCommonDeltaVnd": "-1983891000000",
+        "selectedDeltaIncidenceEnvelope": {
+          "minimumVnd": "-1983891000000",
+          "maximumVnd": "0",
+          "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+          "completeEconomicOrFundBound": false
+        },
+        "derivationBinding": {
+          "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/SHB.json",
+          "sha256": "a84e2441daa073c2404f77dc1fc81088e84e07064b498a88e7a9315de1aa991e",
+          "jsonPointer": "/scenarios"
+        },
+        "additionalOperandReadingIds": []
+      },
+      {
+        "id": "SHB-investment-reversal",
+        "pretaxVnd": "-398533000000",
+        "readingIds": [
+          "SHB-FY2025-investmentRiskReversal2025"
+        ],
+        "priorModelReason": "Separate securities-income line reversal, outside total P&L credit-charge replacement; retain ordinary securities costs.",
+        "selectionReason": "Giữ phép điều chỉnh có toán hạng nguồn; lựa chọn mức hoạt động được bảo vệ riêng ở hồ sơ mã, không dùng tỷ lệ lợi nhuận mẹ/nhóm làm sở hữu.",
+        "priorBasePretaxVnd": "-398533000000",
+        "selectedPretaxChangeVnd": "0",
+        "selectionIsAnalystJudgment": true,
+        "selectedAfterTaxCommonDeltaVnd": "-398533000000",
+        "selectedDeltaIncidenceEnvelope": {
+          "minimumVnd": "-398533000000",
+          "maximumVnd": "0",
+          "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+          "completeEconomicOrFundBound": false
+        },
+        "derivationBinding": {
+          "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/SHB.json",
+          "sha256": "a84e2441daa073c2404f77dc1fc81088e84e07064b498a88e7a9315de1aa991e",
+          "jsonPointer": "/scenarios"
+        },
+        "additionalOperandReadingIds": []
+      }
+    ],
+    "binding": {
+      "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-04/earnings-normalization-v4/issuers/SHB.json",
+      "sha256": "eef98ccd387b39a36bab818e24e8f09ea771d249447c70fc39abe3324c0b496c"
+    }
+  },
+  "cashOrCapital": {
+    "scope": "CONSOLIDATED_AS_REPORTED",
+    "history": [],
+    "reportedCfoIsFcfe": false
+  },
+  "reportedBalanceReferences": [
+    {
+      "item": "BANK_GROSS_CUSTOMER_LOANS",
+      "date": "2025-12-31",
+      "scope": "CONSOLIDATED",
+      "raw": {
+        "fieldId": "BANK_GROSS_CUSTOMER_LOANS",
+        "label": "BANK GROSS CUSTOMER LOANS",
+        "fieldLocator": "sqlite:fundamental_admission_run/reviewed-vn30-20261019-SHB/canonicalFacts/canonical:05d65da92172a2e021d511835851c1ab2702a63001898a5a71b2e14ff883aa73",
+        "lexicalValue": "614861980000000",
+        "unit": "CURRENCY",
+        "multiplier": "1",
+        "currency": "VND"
+      },
+      "normalized": {
+        "value": "614861980000000",
+        "unit": "CURRENCY",
+        "currency": "VND"
+      },
+      "observationId": "review-observation-0c7c8212f825b2c58aca34b963df70a18618926f",
+      "sourceContext": {
+        "observationId": "review-observation-0c7c8212f825b2c58aca34b963df70a18618926f",
+        "canonicalId": "canonical:05d65da92172a2e021d511835851c1ab2702a63001898a5a71b2e14ff883aa73",
+        "sourceHash": "3a89cd8fda598448a84396498d23de913209b8145c2680e2e228b9976513e647",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/SHB/SHB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+        "checkedTranscriptionId": null,
+        "bankCapitalFramework": null,
+        "scopeBasis": null,
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-0c7c8212f825b2c58aca34b963df70a18618926f",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "PREVIOUS_RETAINED_SOURCE",
+        "originalAuthority": "AUDITED_PDF"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    },
+    {
+      "item": "BANK_REPORTED_CAR",
+      "date": "2025-12-31",
+      "scope": "CONSOLIDATED",
+      "raw": {
+        "fieldId": "BANK_REPORTED_CAR",
+        "label": "BANK REPORTED CAR",
+        "fieldLocator": "sqlite:fundamental_admission_run/reviewed-vn30-20261019-SHB/canonicalFacts/canonical:1e883178cabaa222b22f2d6a234ab48d4a8ffc9113de505e3182fca7a51a3abc",
+        "lexicalValue": "0.1262",
+        "unit": "RATIO",
+        "multiplier": "1",
+        "currency": null
+      },
+      "normalized": {
+        "value": "0.1262",
+        "unit": "RATIO",
+        "currency": null
+      },
+      "observationId": "review-observation-7a458ac8ab27b37df02e4763d4a5c6420a3771c7",
+      "sourceContext": {
+        "observationId": "review-observation-7a458ac8ab27b37df02e4763d4a5c6420a3771c7",
+        "canonicalId": "canonical:1e883178cabaa222b22f2d6a234ab48d4a8ffc9113de505e3182fca7a51a3abc",
+        "sourceHash": "96edceb81858ba092684affaf5cdc5dc961b29e89be41a1fbcf020eb23755703",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/SHB/SHB_BaocaoTyleAnToanVon_2025.pdf",
+        "checkedTranscriptionId": null,
+        "bankCapitalFramework": null,
+        "scopeBasis": null,
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-7a458ac8ab27b37df02e4763d4a5c6420a3771c7",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "PREVIOUS_RETAINED_SOURCE",
+        "originalAuthority": "MANUAL_VERIFIED"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    },
+    {
+      "item": "BANK_LOAN_LOSS_RESERVES",
+      "date": "2025-12-31",
+      "scope": "CONSOLIDATED",
+      "raw": {
+        "fieldId": "BANK_LOAN_LOSS_RESERVES",
+        "label": "BANK LOAN LOSS RESERVES",
+        "fieldLocator": "sqlite:fundamental_admission_run/reviewed-vn30-20261019-SHB/canonicalFacts/canonical:24bea697f7eeae7d23c364c5bffd75299a122527ef8f03e37c318ac881eb128c",
+        "lexicalValue": "10498298000000",
+        "unit": "CURRENCY",
+        "multiplier": "1",
+        "currency": "VND"
+      },
+      "normalized": {
+        "value": "10498298000000",
+        "unit": "CURRENCY",
+        "currency": "VND"
+      },
+      "observationId": "review-observation-756a32040a9539dfaa93eb0a32b11a34b0a01d99",
+      "sourceContext": {
+        "observationId": "review-observation-756a32040a9539dfaa93eb0a32b11a34b0a01d99",
+        "canonicalId": "canonical:24bea697f7eeae7d23c364c5bffd75299a122527ef8f03e37c318ac881eb128c",
+        "sourceHash": "3a89cd8fda598448a84396498d23de913209b8145c2680e2e228b9976513e647",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/SHB/SHB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+        "checkedTranscriptionId": null,
+        "bankCapitalFramework": null,
+        "scopeBasis": null,
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-756a32040a9539dfaa93eb0a32b11a34b0a01d99",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "PREVIOUS_RETAINED_SOURCE",
+        "originalAuthority": "AUDITED_PDF"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    },
+    {
+      "item": "TOTAL_EQUITY",
+      "date": "2026-06-30",
+      "scope": "CONSOLIDATED",
+      "raw": {
+        "fieldId": "TOTAL_EQUITY",
+        "label": "TOTAL EQUITY",
+        "fieldLocator": "sqlite:fundamental_admission_run/reviewed-vn30-20261019-SHB/canonicalFacts/canonical:2fb9c356368e0acc1415670b96626950f130f412e75a3bb5839d69c2084529af",
+        "lexicalValue": "75309442000000",
+        "unit": "CURRENCY",
+        "multiplier": "1",
+        "currency": "VND"
+      },
+      "normalized": {
+        "value": "75309442000000",
+        "unit": "CURRENCY",
+        "currency": "VND"
+      },
+      "observationId": "b6r3-observation-57a885e6b90e5f8e64e517a561ff3b395293",
+      "sourceContext": {
+        "observationId": "b6r3-observation-57a885e6b90e5f8e64e517a561ff3b395293",
+        "canonicalId": "canonical:2fb9c356368e0acc1415670b96626950f130f412e75a3bb5839d69c2084529af",
+        "sourceHash": "634c2fa25549a4cc160f4177d77908d6c82a236ee7315ae16241e3d4bba017b2",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/SHB/2026-10-30-source-recovery/SHB_Baocaotaichinh_6T_2026_Soatxet_Hopnhat.pdf",
+        "checkedTranscriptionId": null,
+        "bankCapitalFramework": null,
+        "scopeBasis": null,
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-de96012f987293b0f8995a5902ebfc43e759d860",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "EXACT_SOURCE_BYTES_RECOVERED",
+        "originalAuthority": "REVIEWED_PDF"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    },
+    {
+      "item": "BANK_LOAN_LOSS_RESERVES",
+      "date": "2026-06-30",
+      "scope": "CONSOLIDATED",
+      "raw": {
+        "fieldId": "BANK_LOAN_LOSS_RESERVES",
+        "label": "BANK LOAN LOSS RESERVES",
+        "fieldLocator": "sqlite:fundamental_admission_run/reviewed-vn30-20261019-SHB/canonicalFacts/canonical:39c0c24c41ad0189796cb1583e58691dabe536e35f11219b8dc960446c7f4d8a",
+        "lexicalValue": "11058236000000",
+        "unit": "CURRENCY",
+        "multiplier": "1",
+        "currency": "VND"
+      },
+      "normalized": {
+        "value": "11058236000000",
+        "unit": "CURRENCY",
+        "currency": "VND"
+      },
+      "observationId": "b6r3-observation-0dcc7eb9dc09ee2cb48a87a014f1fcca3e8c",
+      "sourceContext": {
+        "observationId": "b6r3-observation-0dcc7eb9dc09ee2cb48a87a014f1fcca3e8c",
+        "canonicalId": "canonical:39c0c24c41ad0189796cb1583e58691dabe536e35f11219b8dc960446c7f4d8a",
+        "sourceHash": "634c2fa25549a4cc160f4177d77908d6c82a236ee7315ae16241e3d4bba017b2",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/SHB/2026-10-30-source-recovery/SHB_Baocaotaichinh_6T_2026_Soatxet_Hopnhat.pdf",
+        "checkedTranscriptionId": null,
+        "bankCapitalFramework": null,
+        "scopeBasis": null,
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-f8925f4a71ecdd7105d60863630a671b46755287",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "EXACT_SOURCE_BYTES_RECOVERED",
+        "originalAuthority": "REVIEWED_PDF"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    },
+    {
+      "item": "TOTAL_EQUITY",
+      "date": "2025-12-31",
+      "scope": "CONSOLIDATED",
+      "raw": {
+        "fieldId": "TOTAL_EQUITY",
+        "label": "TOTAL EQUITY",
+        "fieldLocator": "sqlite:fundamental_admission_run/reviewed-vn30-20261019-SHB/canonicalFacts/canonical:51391d2cf51f11771a525fbf449a1e06aae791f29aef5ac00e3545346fb48b92",
+        "lexicalValue": "68130938000000",
+        "unit": "CURRENCY",
+        "multiplier": "1",
+        "currency": "VND"
+      },
+      "normalized": {
+        "value": "68130938000000",
+        "unit": "CURRENCY",
+        "currency": "VND"
+      },
+      "observationId": "review-observation-c1ef4eae1c7fc08b0ee560cbe2d668492c19b8f5",
+      "sourceContext": {
+        "observationId": "review-observation-c1ef4eae1c7fc08b0ee560cbe2d668492c19b8f5",
+        "canonicalId": "canonical:51391d2cf51f11771a525fbf449a1e06aae791f29aef5ac00e3545346fb48b92",
+        "sourceHash": "3a89cd8fda598448a84396498d23de913209b8145c2680e2e228b9976513e647",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/SHB/SHB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+        "checkedTranscriptionId": null,
+        "bankCapitalFramework": null,
+        "scopeBasis": null,
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-c1ef4eae1c7fc08b0ee560cbe2d668492c19b8f5",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "PREVIOUS_RETAINED_SOURCE",
+        "originalAuthority": "AUDITED_PDF"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    },
+    {
+      "item": "BANK_GROSS_CUSTOMER_LOANS",
+      "date": "2026-06-30",
+      "scope": "CONSOLIDATED",
+      "raw": {
+        "fieldId": "BANK_GROSS_CUSTOMER_LOANS",
+        "label": "BANK GROSS CUSTOMER LOANS",
+        "fieldLocator": "sqlite:fundamental_admission_run/reviewed-vn30-20261019-SHB/canonicalFacts/canonical:f599b4d47ed1554262e811a57a9e0a0b2df6d34d894c33f1b06a1efd146a6056",
+        "lexicalValue": "659610969000000",
+        "unit": "CURRENCY",
+        "multiplier": "1",
+        "currency": "VND"
+      },
+      "normalized": {
+        "value": "659610969000000",
+        "unit": "CURRENCY",
+        "currency": "VND"
+      },
+      "observationId": "b6r3-observation-314561472ea70d480771671ef1ed425fe0ae",
+      "sourceContext": {
+        "observationId": "b6r3-observation-314561472ea70d480771671ef1ed425fe0ae",
+        "canonicalId": "canonical:f599b4d47ed1554262e811a57a9e0a0b2df6d34d894c33f1b06a1efd146a6056",
+        "sourceHash": "634c2fa25549a4cc160f4177d77908d6c82a236ee7315ae16241e3d4bba017b2",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/SHB/2026-10-30-source-recovery/SHB_Baocaotaichinh_6T_2026_Soatxet_Hopnhat.pdf",
+        "checkedTranscriptionId": null,
+        "bankCapitalFramework": null,
+        "scopeBasis": null,
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-0dec1110b2d9a692082419d837e7d25523675898",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "EXACT_SOURCE_BYTES_RECOVERED",
+        "originalAuthority": "REVIEWED_PDF"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    },
+    {
+      "item": "BANK_REPORTED_CAR",
+      "date": "2026-06-30",
+      "scope": "CONSOLIDATED",
+      "raw": {
+        "fieldId": "BANK_REPORTED_CAR",
+        "label": "BANK REPORTED CAR",
+        "fieldLocator": "data/manual-download/SHB/2026-10-29-owner-retry/SHB_BaocaoTyleAnToanVon_6T_2026.pdf#page=5;Tỷ lệ an toàn vốn A/B; Hợp nhất",
+        "lexicalValue": "11.81",
+        "unit": "PERCENT",
+        "multiplier": "0.01",
+        "currency": null
+      },
+      "normalized": {
+        "value": "0.1181",
+        "unit": "RATIO",
+        "currency": null
+      },
+      "observationId": "review-observation-f42e1ae9b9e795d047b48a4acfb5ba6b9be2b072",
+      "sourceContext": {
+        "observationId": "review-observation-f42e1ae9b9e795d047b48a4acfb5ba6b9be2b072",
+        "canonicalId": "canonical:fcb7049c989ea3c44d24d0fdd357c949ed9efab9deaa39d5b31b08fc217d084b",
+        "sourceHash": "52bf50ebbd7fee50d34168990322365b10bb0e6e33c313338e4f6047c508f05a",
+        "sourceRetained": true,
+        "sourcePath": "data/manual-download/SHB/2026-10-29-owner-retry/SHB_BaocaoTyleAnToanVon_6T_2026.pdf",
+        "checkedTranscriptionId": "checked-4a5150c69eb6577c52b8174462e9fe0a",
+        "bankCapitalFramework": "TT41_2016_STANDARDIZED",
+        "scopeBasis": "EXPLICIT_REPORT_OR_REGULATORY_COLUMN",
+        "historicalPublicationExternallyVerified": false,
+        "eligibility": "INITIAL_CURRENT_REVIEW_ONLY",
+        "productionAdmissible": false,
+        "previousObservationId": "review-observation-f42e1ae9b9e795d047b48a4acfb5ba6b9be2b072",
+        "periodBridgeId": null,
+        "periodBridgeReference": null,
+        "periodBridgeHash": null,
+        "resolution": "PREVIOUS_RETAINED_SOURCE",
+        "originalAuthority": "MANUAL_VERIFIED"
+      },
+      "sourceReplayAvailable": true,
+      "qualification": "RETAINED_REVIEW_INPUT_NOT_NEW_FINANCIAL_ADMISSION",
+      "totalEquityIsQualifiedCommonCapital": false
+    }
+  ],
+  "commonBookReferenceVnd": "68130938000000",
+  "commonBookDate": "2025-12-31",
+  "cashDebtDiagnostics": null,
+  "modelScenarios": [
+    {
+      "id": "SELECTED_FY2025:r0.18:H3:FADE_TO_COST",
+      "incomeCase": "SELECTED_FY2025",
+      "earningsInputVnd": "8993365980209.836587",
+      "earningsSourcePointer": "/prudentialWorkingCaseVnd",
+      "equityValueVnd": "63130391653406.137824",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "63130391653406.137824",
+        "signedDistributionCrosscheckVnd": "63130391653406.137824",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.132001",
+        "costOfEquityAssumption": "0.18",
+        "growthAssumption": "0",
+        "horizonYears": 3,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "-3270202859790.163413",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "10083433600139.891058",
+            "excessReturnVnd": "-2180135239860.108942",
+            "hypotheticalNetDistributionVnd": "10083433600139.891058",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "11173501220069.945529",
+            "excessReturnVnd": "-1090067619930.054471",
+            "hypotheticalNetDistributionVnd": "11173501220069.945529",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "SELECTED_FY2025:r0.18:H5:FADE_TO_COST",
+      "incomeCase": "SELECTED_FY2025",
+      "earningsInputVnd": "8993365980209.836587",
+      "earningsSourcePointer": "/prudentialWorkingCaseVnd",
+      "equityValueVnd": "61325903907540.332618",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "61325903907540.332618",
+        "signedDistributionCrosscheckVnd": "61325903907540.332618",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.132001",
+        "costOfEquityAssumption": "0.18",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "-3270202859790.163413",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "9647406552167.86927",
+            "excessReturnVnd": "-2616162287832.13073",
+            "hypotheticalNetDistributionVnd": "9647406552167.86927",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "10301447124125.901952",
+            "excessReturnVnd": "-1962121715874.098048",
+            "hypotheticalNetDistributionVnd": "10301447124125.901952",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "10955487696083.934635",
+            "excessReturnVnd": "-1308081143916.065365",
+            "hypotheticalNetDistributionVnd": "10955487696083.934635",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "11609528268041.967317",
+            "excessReturnVnd": "-654040571958.032683",
+            "hypotheticalNetDistributionVnd": "11609528268041.967317",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "SELECTED_FY2025:r0.18:H10:FADE_TO_COST",
+      "incomeCase": "SELECTED_FY2025",
+      "earningsInputVnd": "8993365980209.836587",
+      "earningsSourcePointer": "/prudentialWorkingCaseVnd",
+      "equityValueVnd": "58127907586613.310599",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "58127907586613.310599",
+        "signedDistributionCrosscheckVnd": "58127907586613.310599",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.132001",
+        "costOfEquityAssumption": "0.18",
+        "growthAssumption": "0",
+        "horizonYears": 10,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "-3270202859790.163413",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "9320386266188.852928",
+            "excessReturnVnd": "-2943182573811.147072",
+            "hypotheticalNetDistributionVnd": "9320386266188.852928",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "9647406552167.86927",
+            "excessReturnVnd": "-2616162287832.13073",
+            "hypotheticalNetDistributionVnd": "9647406552167.86927",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "9974426838146.885611",
+            "excessReturnVnd": "-2289142001853.114389",
+            "hypotheticalNetDistributionVnd": "9974426838146.885611",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "10301447124125.901952",
+            "excessReturnVnd": "-1962121715874.098048",
+            "hypotheticalNetDistributionVnd": "10301447124125.901952",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 6,
+            "parentEarningsAssumptionVnd": "10628467410104.918294",
+            "excessReturnVnd": "-1635101429895.081706",
+            "hypotheticalNetDistributionVnd": "10628467410104.918294",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 7,
+            "parentEarningsAssumptionVnd": "10955487696083.934635",
+            "excessReturnVnd": "-1308081143916.065365",
+            "hypotheticalNetDistributionVnd": "10955487696083.934635",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 8,
+            "parentEarningsAssumptionVnd": "11282507982062.950976",
+            "excessReturnVnd": "-981060857937.049024",
+            "hypotheticalNetDistributionVnd": "11282507982062.950976",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 9,
+            "parentEarningsAssumptionVnd": "11609528268041.967317",
+            "excessReturnVnd": "-654040571958.032683",
+            "hypotheticalNetDistributionVnd": "11609528268041.967317",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 10,
+            "parentEarningsAssumptionVnd": "11936548554020.983659",
+            "excessReturnVnd": "-327020285979.016341",
+            "hypotheticalNetDistributionVnd": "11936548554020.983659",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "SELECTED_FY2025:r0.18:H5:PERSIST_CURRENT_RETURN",
+      "incomeCase": "SELECTED_FY2025",
+      "earningsInputVnd": "8993365980209.836587",
+      "earningsSourcePointer": "/prudentialWorkingCaseVnd",
+      "equityValueVnd": "49963144334499.09215",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "49963144334499.09215",
+        "signedDistributionCrosscheckVnd": "49963144334499.09215",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.132001",
+        "costOfEquityAssumption": "0.18",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "PERSIST_CURRENT_RETURN",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "-3270202859790.163413",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "-3270202859790.163413",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "-3270202859790.163413",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "-3270202859790.163413",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "-3270202859790.163413",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "49963144334499.09215",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "SELECTED_FY2025:r0.15:H3:FADE_TO_COST",
+      "incomeCase": "SELECTED_FY2025",
+      "earningsInputVnd": "8993365980209.836587",
+      "earningsSourcePointer": "/prudentialWorkingCaseVnd",
+      "equityValueVnd": "66177687069652.88346",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "66177687069652.88346",
+        "signedDistributionCrosscheckVnd": "66177687069652.88346",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.132001",
+        "costOfEquityAssumption": "0.15",
+        "growthAssumption": "0",
+        "horizonYears": 3,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "-1226274719790.163413",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "9402124220139.891058",
+            "excessReturnVnd": "-817516479860.108942",
+            "hypotheticalNetDistributionVnd": "9402124220139.891058",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "9810882460069.945529",
+            "excessReturnVnd": "-408758239930.054471",
+            "hypotheticalNetDistributionVnd": "9810882460069.945529",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "SELECTED_FY2025:r0.15:H5:FADE_TO_COST",
+      "incomeCase": "SELECTED_FY2025",
+      "earningsInputVnd": "8993365980209.836587",
+      "earningsSourcePointer": "/prudentialWorkingCaseVnd",
+      "equityValueVnd": "65436657272741.709959",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "65436657272741.709959",
+        "signedDistributionCrosscheckVnd": "65436657272741.709959",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.132001",
+        "costOfEquityAssumption": "0.15",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "-1226274719790.163413",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "9238620924167.86927",
+            "excessReturnVnd": "-981019775832.13073",
+            "hypotheticalNetDistributionVnd": "9238620924167.86927",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "9483875868125.901952",
+            "excessReturnVnd": "-735764831874.098048",
+            "hypotheticalNetDistributionVnd": "9483875868125.901952",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "9729130812083.934635",
+            "excessReturnVnd": "-490509887916.065365",
+            "hypotheticalNetDistributionVnd": "9729130812083.934635",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "9974385756041.967317",
+            "excessReturnVnd": "-245254943958.032683",
+            "hypotheticalNetDistributionVnd": "9974385756041.967317",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "SELECTED_FY2025:r0.15:H10:FADE_TO_COST",
+      "incomeCase": "SELECTED_FY2025",
+      "earningsInputVnd": "8993365980209.836587",
+      "earningsSourcePointer": "/prudentialWorkingCaseVnd",
+      "equityValueVnd": "64058699261639.616008",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "64058699261639.616008",
+        "signedDistributionCrosscheckVnd": "64058699261639.616008",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.132001",
+        "costOfEquityAssumption": "0.15",
+        "growthAssumption": "0",
+        "horizonYears": 10,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "-1226274719790.163413",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "9115993452188.852928",
+            "excessReturnVnd": "-1103647247811.147072",
+            "hypotheticalNetDistributionVnd": "9115993452188.852928",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "9238620924167.86927",
+            "excessReturnVnd": "-981019775832.13073",
+            "hypotheticalNetDistributionVnd": "9238620924167.86927",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "9361248396146.885611",
+            "excessReturnVnd": "-858392303853.114389",
+            "hypotheticalNetDistributionVnd": "9361248396146.885611",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "9483875868125.901952",
+            "excessReturnVnd": "-735764831874.098048",
+            "hypotheticalNetDistributionVnd": "9483875868125.901952",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 6,
+            "parentEarningsAssumptionVnd": "9606503340104.918294",
+            "excessReturnVnd": "-613137359895.081706",
+            "hypotheticalNetDistributionVnd": "9606503340104.918294",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 7,
+            "parentEarningsAssumptionVnd": "9729130812083.934635",
+            "excessReturnVnd": "-490509887916.065365",
+            "hypotheticalNetDistributionVnd": "9729130812083.934635",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 8,
+            "parentEarningsAssumptionVnd": "9851758284062.950976",
+            "excessReturnVnd": "-367882415937.049024",
+            "hypotheticalNetDistributionVnd": "9851758284062.950976",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 9,
+            "parentEarningsAssumptionVnd": "9974385756041.967317",
+            "excessReturnVnd": "-245254943958.032683",
+            "hypotheticalNetDistributionVnd": "9974385756041.967317",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 10,
+            "parentEarningsAssumptionVnd": "10097013228020.983659",
+            "excessReturnVnd": "-122627471979.016341",
+            "hypotheticalNetDistributionVnd": "10097013228020.983659",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "SELECTED_FY2025:r0.15:H5:PERSIST_CURRENT_RETURN",
+      "incomeCase": "SELECTED_FY2025",
+      "earningsInputVnd": "8993365980209.836587",
+      "earningsSourcePointer": "/prudentialWorkingCaseVnd",
+      "equityValueVnd": "59955773201398.91058",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "59955773201398.91058",
+        "signedDistributionCrosscheckVnd": "59955773201398.91058",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.132001",
+        "costOfEquityAssumption": "0.15",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "PERSIST_CURRENT_RETURN",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "-1226274719790.163413",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "-1226274719790.163413",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "-1226274719790.163413",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "-1226274719790.163413",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "-1226274719790.163413",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "59955773201398.91058",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "SELECTED_FY2025:r0.12:H3:FADE_TO_COST",
+      "incomeCase": "SELECTED_FY2025",
+      "earningsInputVnd": "8993365980209.836587",
+      "earningsSourcePointer": "/prudentialWorkingCaseVnd",
+      "equityValueVnd": "69489534415003.361403",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "69489534415003.361403",
+        "signedDistributionCrosscheckVnd": "69489534415003.361403",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.132001",
+        "costOfEquityAssumption": "0.12",
+        "growthAssumption": "0",
+        "horizonYears": 3,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "817653420209.836587",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "8720814840139.891058",
+            "excessReturnVnd": "545102280139.891058",
+            "hypotheticalNetDistributionVnd": "8720814840139.891058",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "8448263700069.945529",
+            "excessReturnVnd": "272551140069.945529",
+            "hypotheticalNetDistributionVnd": "8448263700069.945529",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "SELECTED_FY2025:r0.12:H5:FADE_TO_COST",
+      "incomeCase": "SELECTED_FY2025",
+      "earningsInputVnd": "8993365980209.836587",
+      "earningsSourcePointer": "/prudentialWorkingCaseVnd",
+      "equityValueVnd": "70032287183517.939324",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "70032287183517.939324",
+        "signedDistributionCrosscheckVnd": "70032287183517.939324",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.132001",
+        "costOfEquityAssumption": "0.12",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "817653420209.836587",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "8829835296167.86927",
+            "excessReturnVnd": "654122736167.86927",
+            "hypotheticalNetDistributionVnd": "8829835296167.86927",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "8666304612125.901952",
+            "excessReturnVnd": "490592052125.901952",
+            "hypotheticalNetDistributionVnd": "8666304612125.901952",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "8502773928083.934635",
+            "excessReturnVnd": "327061368083.934635",
+            "hypotheticalNetDistributionVnd": "8502773928083.934635",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "8339243244041.967317",
+            "excessReturnVnd": "163530684041.967317",
+            "hypotheticalNetDistributionVnd": "8339243244041.967317",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "SELECTED_FY2025:r0.12:H10:FADE_TO_COST",
+      "incomeCase": "SELECTED_FY2025",
+      "earningsInputVnd": "8993365980209.836587",
+      "earningsSourcePointer": "/prudentialWorkingCaseVnd",
+      "equityValueVnd": "71094779681641.534591",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "71094779681641.534591",
+        "signedDistributionCrosscheckVnd": "71094779681641.534591",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.132001",
+        "costOfEquityAssumption": "0.12",
+        "growthAssumption": "0",
+        "horizonYears": 10,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "817653420209.836587",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "8911600638188.852928",
+            "excessReturnVnd": "735888078188.852928",
+            "hypotheticalNetDistributionVnd": "8911600638188.852928",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "8829835296167.86927",
+            "excessReturnVnd": "654122736167.86927",
+            "hypotheticalNetDistributionVnd": "8829835296167.86927",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "8748069954146.885611",
+            "excessReturnVnd": "572357394146.885611",
+            "hypotheticalNetDistributionVnd": "8748069954146.885611",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "8666304612125.901952",
+            "excessReturnVnd": "490592052125.901952",
+            "hypotheticalNetDistributionVnd": "8666304612125.901952",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 6,
+            "parentEarningsAssumptionVnd": "8584539270104.918294",
+            "excessReturnVnd": "408826710104.918294",
+            "hypotheticalNetDistributionVnd": "8584539270104.918294",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 7,
+            "parentEarningsAssumptionVnd": "8502773928083.934635",
+            "excessReturnVnd": "327061368083.934635",
+            "hypotheticalNetDistributionVnd": "8502773928083.934635",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 8,
+            "parentEarningsAssumptionVnd": "8421008586062.950976",
+            "excessReturnVnd": "245296026062.950976",
+            "hypotheticalNetDistributionVnd": "8421008586062.950976",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 9,
+            "parentEarningsAssumptionVnd": "8339243244041.967317",
+            "excessReturnVnd": "163530684041.967317",
+            "hypotheticalNetDistributionVnd": "8339243244041.967317",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 10,
+            "parentEarningsAssumptionVnd": "8257477902020.983659",
+            "excessReturnVnd": "81765342020.983659",
+            "hypotheticalNetDistributionVnd": "8257477902020.983659",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "SELECTED_FY2025:r0.12:H5:PERSIST_CURRENT_RETURN",
+      "incomeCase": "SELECTED_FY2025",
+      "earningsInputVnd": "8993365980209.836587",
+      "earningsSourcePointer": "/prudentialWorkingCaseVnd",
+      "equityValueVnd": "74944716501748.638225",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "74944716501748.638225",
+        "signedDistributionCrosscheckVnd": "74944716501748.638225",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.132001",
+        "costOfEquityAssumption": "0.12",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "PERSIST_CURRENT_RETURN",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "817653420209.836587",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "817653420209.836587",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "817653420209.836587",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "817653420209.836587",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "8993365980209.836587",
+            "excessReturnVnd": "817653420209.836587",
+            "hypotheticalNetDistributionVnd": "8993365980209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "74944716501748.638225",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_DOWNSIDE:r0.18:H3:FADE_TO_COST",
+      "incomeCase": "OPERATING_DOWNSIDE",
+      "earningsInputVnd": "6337895975262.295734",
+      "earningsSourcePointer": "/operatingAlternatives/0/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "59069848194465.471033",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "59069848194465.471033",
+        "signedDistributionCrosscheckVnd": "59069848194465.471033",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.093025",
+        "costOfEquityAssumption": "0.18",
+        "growthAssumption": "0",
+        "horizonYears": 3,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-5925672864737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "8313120263508.197156",
+            "excessReturnVnd": "-3950448576491.802844",
+            "hypotheticalNetDistributionVnd": "8313120263508.197156",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "10288344551754.098578",
+            "excessReturnVnd": "-1975224288245.901422",
+            "hypotheticalNetDistributionVnd": "10288344551754.098578",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_DOWNSIDE:r0.18:H5:FADE_TO_COST",
+      "incomeCase": "OPERATING_DOWNSIDE",
+      "earningsInputVnd": "6337895975262.295734",
+      "earningsSourcePointer": "/operatingAlternatives/0/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "55800080376112.200641",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "55800080376112.200641",
+        "signedDistributionCrosscheckVnd": "55800080376112.200641",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.093025",
+        "costOfEquityAssumption": "0.18",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-5925672864737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "7523030548209.836587",
+            "excessReturnVnd": "-4740538291790.163413",
+            "hypotheticalNetDistributionVnd": "7523030548209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "8708165121157.37744",
+            "excessReturnVnd": "-3555403718842.62256",
+            "hypotheticalNetDistributionVnd": "8708165121157.37744",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "9893299694104.918294",
+            "excessReturnVnd": "-2370269145895.081706",
+            "hypotheticalNetDistributionVnd": "9893299694104.918294",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "11078434267052.459147",
+            "excessReturnVnd": "-1185134572947.540853",
+            "hypotheticalNetDistributionVnd": "11078434267052.459147",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_DOWNSIDE:r0.18:H10:FADE_TO_COST",
+      "incomeCase": "OPERATING_DOWNSIDE",
+      "earningsInputVnd": "6337895975262.295734",
+      "earningsSourcePointer": "/operatingAlternatives/0/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "50005247201247.864169",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "50005247201247.864169",
+        "signedDistributionCrosscheckVnd": "50005247201247.864169",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.093025",
+        "costOfEquityAssumption": "0.18",
+        "growthAssumption": "0",
+        "horizonYears": 10,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-5925672864737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "6930463261736.066161",
+            "excessReturnVnd": "-5333105578263.933839",
+            "hypotheticalNetDistributionVnd": "6930463261736.066161",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "7523030548209.836587",
+            "excessReturnVnd": "-4740538291790.163413",
+            "hypotheticalNetDistributionVnd": "7523030548209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "8115597834683.607014",
+            "excessReturnVnd": "-4147971005316.392986",
+            "hypotheticalNetDistributionVnd": "8115597834683.607014",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "8708165121157.37744",
+            "excessReturnVnd": "-3555403718842.62256",
+            "hypotheticalNetDistributionVnd": "8708165121157.37744",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 6,
+            "parentEarningsAssumptionVnd": "9300732407631.147867",
+            "excessReturnVnd": "-2962836432368.852133",
+            "hypotheticalNetDistributionVnd": "9300732407631.147867",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 7,
+            "parentEarningsAssumptionVnd": "9893299694104.918294",
+            "excessReturnVnd": "-2370269145895.081706",
+            "hypotheticalNetDistributionVnd": "9893299694104.918294",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 8,
+            "parentEarningsAssumptionVnd": "10485866980578.68872",
+            "excessReturnVnd": "-1777701859421.31128",
+            "hypotheticalNetDistributionVnd": "10485866980578.68872",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 9,
+            "parentEarningsAssumptionVnd": "11078434267052.459147",
+            "excessReturnVnd": "-1185134572947.540853",
+            "hypotheticalNetDistributionVnd": "11078434267052.459147",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 10,
+            "parentEarningsAssumptionVnd": "11671001553526.229573",
+            "excessReturnVnd": "-592567286473.770427",
+            "hypotheticalNetDistributionVnd": "11671001553526.229573",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_DOWNSIDE:r0.18:H5:PERSIST_CURRENT_RETURN",
+      "incomeCase": "OPERATING_DOWNSIDE",
+      "earningsInputVnd": "6337895975262.295734",
+      "earningsSourcePointer": "/operatingAlternatives/0/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "35210533195901.642967",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "35210533195901.642967",
+        "signedDistributionCrosscheckVnd": "35210533195901.642967",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.093025",
+        "costOfEquityAssumption": "0.18",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "PERSIST_CURRENT_RETURN",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-5925672864737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-5925672864737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-5925672864737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-5925672864737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-5925672864737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "35210533195901.642967",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_DOWNSIDE:r0.15:H3:FADE_TO_COST",
+      "incomeCase": "OPERATING_DOWNSIDE",
+      "earningsInputVnd": "6337895975262.295734",
+      "earningsSourcePointer": "/operatingAlternatives/0/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "61947966621236.401029",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "61947966621236.401029",
+        "signedDistributionCrosscheckVnd": "61947966621236.401029",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.093025",
+        "costOfEquityAssumption": "0.15",
+        "growthAssumption": "0",
+        "horizonYears": 3,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-3881744724737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "7631810883508.197156",
+            "excessReturnVnd": "-2587829816491.802844",
+            "hypotheticalNetDistributionVnd": "7631810883508.197156",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "8925725791754.098578",
+            "excessReturnVnd": "-1293914908245.901422",
+            "hypotheticalNetDistributionVnd": "8925725791754.098578",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_DOWNSIDE:r0.15:H5:FADE_TO_COST",
+      "incomeCase": "OPERATING_DOWNSIDE",
+      "earningsInputVnd": "6337895975262.295734",
+      "earningsSourcePointer": "/operatingAlternatives/0/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "59602253659359.786237",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "59602253659359.786237",
+        "signedDistributionCrosscheckVnd": "59602253659359.786237",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.093025",
+        "costOfEquityAssumption": "0.15",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-3881744724737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "7114244920209.836587",
+            "excessReturnVnd": "-3105395779790.163413",
+            "hypotheticalNetDistributionVnd": "7114244920209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "7890593865157.37744",
+            "excessReturnVnd": "-2329046834842.62256",
+            "hypotheticalNetDistributionVnd": "7890593865157.37744",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "8666942810104.918294",
+            "excessReturnVnd": "-1552697889895.081706",
+            "hypotheticalNetDistributionVnd": "8666942810104.918294",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "9443291755052.459147",
+            "excessReturnVnd": "-776348944947.540853",
+            "hypotheticalNetDistributionVnd": "9443291755052.459147",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_DOWNSIDE:r0.15:H10:FADE_TO_COST",
+      "incomeCase": "OPERATING_DOWNSIDE",
+      "earningsInputVnd": "6337895975262.295734",
+      "earningsSourcePointer": "/operatingAlternatives/0/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "55240358927141.138506",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "55240358927141.138506",
+        "signedDistributionCrosscheckVnd": "55240358927141.138506",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.093025",
+        "costOfEquityAssumption": "0.15",
+        "growthAssumption": "0",
+        "horizonYears": 10,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-3881744724737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "6726070447736.066161",
+            "excessReturnVnd": "-3493570252263.933839",
+            "hypotheticalNetDistributionVnd": "6726070447736.066161",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "7114244920209.836587",
+            "excessReturnVnd": "-3105395779790.163413",
+            "hypotheticalNetDistributionVnd": "7114244920209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "7502419392683.607014",
+            "excessReturnVnd": "-2717221307316.392986",
+            "hypotheticalNetDistributionVnd": "7502419392683.607014",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "7890593865157.37744",
+            "excessReturnVnd": "-2329046834842.62256",
+            "hypotheticalNetDistributionVnd": "7890593865157.37744",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 6,
+            "parentEarningsAssumptionVnd": "8278768337631.147867",
+            "excessReturnVnd": "-1940872362368.852133",
+            "hypotheticalNetDistributionVnd": "8278768337631.147867",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 7,
+            "parentEarningsAssumptionVnd": "8666942810104.918294",
+            "excessReturnVnd": "-1552697889895.081706",
+            "hypotheticalNetDistributionVnd": "8666942810104.918294",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 8,
+            "parentEarningsAssumptionVnd": "9055117282578.68872",
+            "excessReturnVnd": "-1164523417421.31128",
+            "hypotheticalNetDistributionVnd": "9055117282578.68872",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 9,
+            "parentEarningsAssumptionVnd": "9443291755052.459147",
+            "excessReturnVnd": "-776348944947.540853",
+            "hypotheticalNetDistributionVnd": "9443291755052.459147",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 10,
+            "parentEarningsAssumptionVnd": "9831466227526.229573",
+            "excessReturnVnd": "-388174472473.770427",
+            "hypotheticalNetDistributionVnd": "9831466227526.229573",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_DOWNSIDE:r0.15:H5:PERSIST_CURRENT_RETURN",
+      "incomeCase": "OPERATING_DOWNSIDE",
+      "earningsInputVnd": "6337895975262.295734",
+      "earningsSourcePointer": "/operatingAlternatives/0/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "42252639835081.97156",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "42252639835081.97156",
+        "signedDistributionCrosscheckVnd": "42252639835081.97156",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.093025",
+        "costOfEquityAssumption": "0.15",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "PERSIST_CURRENT_RETURN",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-3881744724737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-3881744724737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-3881744724737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-3881744724737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-3881744724737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "42252639835081.97156",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_DOWNSIDE:r0.12:H3:FADE_TO_COST",
+      "incomeCase": "OPERATING_DOWNSIDE",
+      "earningsInputVnd": "6337895975262.295734",
+      "earningsSourcePointer": "/operatingAlternatives/0/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "65077259067405.805252",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "65077259067405.805252",
+        "signedDistributionCrosscheckVnd": "65077259067405.805252",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.093025",
+        "costOfEquityAssumption": "0.12",
+        "growthAssumption": "0",
+        "horizonYears": 3,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-1837816584737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "6950501503508.197156",
+            "excessReturnVnd": "-1225211056491.802844",
+            "hypotheticalNetDistributionVnd": "6950501503508.197156",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "7563107031754.098578",
+            "excessReturnVnd": "-612605528245.901422",
+            "hypotheticalNetDistributionVnd": "7563107031754.098578",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_DOWNSIDE:r0.12:H5:FADE_TO_COST",
+      "incomeCase": "OPERATING_DOWNSIDE",
+      "earningsInputVnd": "6337895975262.295734",
+      "earningsSourcePointer": "/operatingAlternatives/0/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "63857328942081.545728",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "63857328942081.545728",
+        "signedDistributionCrosscheckVnd": "63857328942081.545728",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.093025",
+        "costOfEquityAssumption": "0.12",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-1837816584737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "6705459292209.836587",
+            "excessReturnVnd": "-1470253267790.163413",
+            "hypotheticalNetDistributionVnd": "6705459292209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "7073022609157.37744",
+            "excessReturnVnd": "-1102689950842.62256",
+            "hypotheticalNetDistributionVnd": "7073022609157.37744",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "7440585926104.918294",
+            "excessReturnVnd": "-735126633895.081706",
+            "hypotheticalNetDistributionVnd": "7440585926104.918294",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "7808149243052.459147",
+            "excessReturnVnd": "-367563316947.540853",
+            "hypotheticalNetDistributionVnd": "7808149243052.459147",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_DOWNSIDE:r0.12:H10:FADE_TO_COST",
+      "incomeCase": "OPERATING_DOWNSIDE",
+      "earningsInputVnd": "6337895975262.295734",
+      "earningsSourcePointer": "/operatingAlternatives/0/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "61469194451419.451366",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "61469194451419.451366",
+        "signedDistributionCrosscheckVnd": "61469194451419.451366",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.093025",
+        "costOfEquityAssumption": "0.12",
+        "growthAssumption": "0",
+        "horizonYears": 10,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-1837816584737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "6521677633736.066161",
+            "excessReturnVnd": "-1654034926263.933839",
+            "hypotheticalNetDistributionVnd": "6521677633736.066161",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "6705459292209.836587",
+            "excessReturnVnd": "-1470253267790.163413",
+            "hypotheticalNetDistributionVnd": "6705459292209.836587",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "6889240950683.607014",
+            "excessReturnVnd": "-1286471609316.392986",
+            "hypotheticalNetDistributionVnd": "6889240950683.607014",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "7073022609157.37744",
+            "excessReturnVnd": "-1102689950842.62256",
+            "hypotheticalNetDistributionVnd": "7073022609157.37744",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 6,
+            "parentEarningsAssumptionVnd": "7256804267631.147867",
+            "excessReturnVnd": "-918908292368.852133",
+            "hypotheticalNetDistributionVnd": "7256804267631.147867",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 7,
+            "parentEarningsAssumptionVnd": "7440585926104.918294",
+            "excessReturnVnd": "-735126633895.081706",
+            "hypotheticalNetDistributionVnd": "7440585926104.918294",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 8,
+            "parentEarningsAssumptionVnd": "7624367584578.68872",
+            "excessReturnVnd": "-551344975421.31128",
+            "hypotheticalNetDistributionVnd": "7624367584578.68872",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 9,
+            "parentEarningsAssumptionVnd": "7808149243052.459147",
+            "excessReturnVnd": "-367563316947.540853",
+            "hypotheticalNetDistributionVnd": "7808149243052.459147",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 10,
+            "parentEarningsAssumptionVnd": "7991930901526.229573",
+            "excessReturnVnd": "-183781658473.770427",
+            "hypotheticalNetDistributionVnd": "7991930901526.229573",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_DOWNSIDE:r0.12:H5:PERSIST_CURRENT_RETURN",
+      "incomeCase": "OPERATING_DOWNSIDE",
+      "earningsInputVnd": "6337895975262.295734",
+      "earningsSourcePointer": "/operatingAlternatives/0/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "52815799793852.46445",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "52815799793852.46445",
+        "signedDistributionCrosscheckVnd": "52815799793852.46445",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.093025",
+        "costOfEquityAssumption": "0.12",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "PERSIST_CURRENT_RETURN",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-1837816584737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-1837816584737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-1837816584737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-1837816584737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "6337895975262.295734",
+            "excessReturnVnd": "-1837816584737.704266",
+            "hypotheticalNetDistributionVnd": "6337895975262.295734",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "52815799793852.46445",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_UPSIDE:r0.18:H3:FADE_TO_COST",
+      "incomeCase": "OPERATING_UPSIDE",
+      "earningsInputVnd": "9824069900000",
+      "earningsSourcePointer": "/operatingAlternatives/2/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "64400641123946.459959",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "64400641123946.459959",
+        "signedDistributionCrosscheckVnd": "64400641123946.459959",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.144194",
+        "costOfEquityAssumption": "0.18",
+        "growthAssumption": "0",
+        "horizonYears": 3,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "-2439498940000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "10637236213333.333333",
+            "excessReturnVnd": "-1626332626666.666667",
+            "hypotheticalNetDistributionVnd": "10637236213333.333333",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "11450402526666.666667",
+            "excessReturnVnd": "-813166313333.333333",
+            "hypotheticalNetDistributionVnd": "11450402526666.666667",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_UPSIDE:r0.18:H5:FADE_TO_COST",
+      "incomeCase": "OPERATING_UPSIDE",
+      "earningsInputVnd": "9824069900000",
+      "earningsSourcePointer": "/operatingAlternatives/2/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "63054533211984.972691",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "63054533211984.972691",
+        "signedDistributionCrosscheckVnd": "63054533211984.972691",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.144194",
+        "costOfEquityAssumption": "0.18",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "-2439498940000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "10311969688000",
+            "excessReturnVnd": "-1951599152000",
+            "hypotheticalNetDistributionVnd": "10311969688000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "10799869476000",
+            "excessReturnVnd": "-1463699364000",
+            "hypotheticalNetDistributionVnd": "10799869476000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "11287769264000",
+            "excessReturnVnd": "-975799576000",
+            "hypotheticalNetDistributionVnd": "11287769264000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "11775669052000",
+            "excessReturnVnd": "-487899788000",
+            "hypotheticalNetDistributionVnd": "11775669052000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_UPSIDE:r0.18:H10:FADE_TO_COST",
+      "incomeCase": "OPERATING_UPSIDE",
+      "earningsInputVnd": "9824069900000",
+      "earningsSourcePointer": "/operatingAlternatives/2/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "60668898751520.350804",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "60668898751520.350804",
+        "signedDistributionCrosscheckVnd": "60668898751520.350804",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.144194",
+        "costOfEquityAssumption": "0.18",
+        "growthAssumption": "0",
+        "horizonYears": 10,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "-2439498940000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "10068019794000",
+            "excessReturnVnd": "-2195549046000",
+            "hypotheticalNetDistributionVnd": "10068019794000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "10311969688000",
+            "excessReturnVnd": "-1951599152000",
+            "hypotheticalNetDistributionVnd": "10311969688000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "10555919582000",
+            "excessReturnVnd": "-1707649258000",
+            "hypotheticalNetDistributionVnd": "10555919582000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "10799869476000",
+            "excessReturnVnd": "-1463699364000",
+            "hypotheticalNetDistributionVnd": "10799869476000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 6,
+            "parentEarningsAssumptionVnd": "11043819370000",
+            "excessReturnVnd": "-1219749470000",
+            "hypotheticalNetDistributionVnd": "11043819370000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 7,
+            "parentEarningsAssumptionVnd": "11287769264000",
+            "excessReturnVnd": "-975799576000",
+            "hypotheticalNetDistributionVnd": "11287769264000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 8,
+            "parentEarningsAssumptionVnd": "11531719158000",
+            "excessReturnVnd": "-731849682000",
+            "hypotheticalNetDistributionVnd": "11531719158000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 9,
+            "parentEarningsAssumptionVnd": "11775669052000",
+            "excessReturnVnd": "-487899788000",
+            "hypotheticalNetDistributionVnd": "11775669052000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 10,
+            "parentEarningsAssumptionVnd": "12019618946000",
+            "excessReturnVnd": "-243949894000",
+            "hypotheticalNetDistributionVnd": "12019618946000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_UPSIDE:r0.18:H5:PERSIST_CURRENT_RETURN",
+      "incomeCase": "OPERATING_UPSIDE",
+      "earningsInputVnd": "9824069900000",
+      "earningsSourcePointer": "/operatingAlternatives/2/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "54578166111111.111111",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "54578166111111.111111",
+        "signedDistributionCrosscheckVnd": "54578166111111.111111",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.144194",
+        "costOfEquityAssumption": "0.18",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "PERSIST_CURRENT_RETURN",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "-2439498940000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "-2439498940000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "-2439498940000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "-2439498940000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "-2439498940000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "54578166111111.111111",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_UPSIDE:r0.15:H3:FADE_TO_COST",
+      "incomeCase": "OPERATING_UPSIDE",
+      "earningsInputVnd": "9824069900000",
+      "earningsSourcePointer": "/operatingAlternatives/2/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "67500859747020.629572",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "67500859747020.629572",
+        "signedDistributionCrosscheckVnd": "67500859747020.629572",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.144194",
+        "costOfEquityAssumption": "0.15",
+        "growthAssumption": "0",
+        "horizonYears": 3,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "-395570800000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "9955926833333.333333",
+            "excessReturnVnd": "-263713866666.666667",
+            "hypotheticalNetDistributionVnd": "9955926833333.333333",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "10087783766666.666667",
+            "excessReturnVnd": "-131856933333.333333",
+            "hypotheticalNetDistributionVnd": "10087783766666.666667",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_UPSIDE:r0.15:H5:FADE_TO_COST",
+      "incomeCase": "OPERATING_UPSIDE",
+      "earningsInputVnd": "9824069900000",
+      "earningsSourcePointer": "/operatingAlternatives/2/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "67261818898459.264834",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "67261818898459.264834",
+        "signedDistributionCrosscheckVnd": "67261818898459.264834",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.144194",
+        "costOfEquityAssumption": "0.15",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "-395570800000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "9903184060000",
+            "excessReturnVnd": "-316456640000",
+            "hypotheticalNetDistributionVnd": "9903184060000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "9982298220000",
+            "excessReturnVnd": "-237342480000",
+            "hypotheticalNetDistributionVnd": "9982298220000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "10061412380000",
+            "excessReturnVnd": "-158228320000",
+            "hypotheticalNetDistributionVnd": "10061412380000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "10140526540000",
+            "excessReturnVnd": "-79114160000",
+            "hypotheticalNetDistributionVnd": "10140526540000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_UPSIDE:r0.15:H10:FADE_TO_COST",
+      "incomeCase": "OPERATING_UPSIDE",
+      "earningsInputVnd": "9824069900000",
+      "earningsSourcePointer": "/operatingAlternatives/2/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "66817318213562.705365",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "66817318213562.705365",
+        "signedDistributionCrosscheckVnd": "66817318213562.705365",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.144194",
+        "costOfEquityAssumption": "0.15",
+        "growthAssumption": "0",
+        "horizonYears": 10,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "-395570800000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "9863626980000",
+            "excessReturnVnd": "-356013720000",
+            "hypotheticalNetDistributionVnd": "9863626980000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "9903184060000",
+            "excessReturnVnd": "-316456640000",
+            "hypotheticalNetDistributionVnd": "9903184060000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "9942741140000",
+            "excessReturnVnd": "-276899560000",
+            "hypotheticalNetDistributionVnd": "9942741140000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "9982298220000",
+            "excessReturnVnd": "-237342480000",
+            "hypotheticalNetDistributionVnd": "9982298220000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 6,
+            "parentEarningsAssumptionVnd": "10021855300000",
+            "excessReturnVnd": "-197785400000",
+            "hypotheticalNetDistributionVnd": "10021855300000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 7,
+            "parentEarningsAssumptionVnd": "10061412380000",
+            "excessReturnVnd": "-158228320000",
+            "hypotheticalNetDistributionVnd": "10061412380000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 8,
+            "parentEarningsAssumptionVnd": "10100969460000",
+            "excessReturnVnd": "-118671240000",
+            "hypotheticalNetDistributionVnd": "10100969460000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 9,
+            "parentEarningsAssumptionVnd": "10140526540000",
+            "excessReturnVnd": "-79114160000",
+            "hypotheticalNetDistributionVnd": "10140526540000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 10,
+            "parentEarningsAssumptionVnd": "10180083620000",
+            "excessReturnVnd": "-39557080000",
+            "hypotheticalNetDistributionVnd": "10180083620000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_UPSIDE:r0.15:H5:PERSIST_CURRENT_RETURN",
+      "incomeCase": "OPERATING_UPSIDE",
+      "earningsInputVnd": "9824069900000",
+      "earningsSourcePointer": "/operatingAlternatives/2/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "65493799333333.333333",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "65493799333333.333333",
+        "signedDistributionCrosscheckVnd": "65493799333333.333333",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.144194",
+        "costOfEquityAssumption": "0.15",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "PERSIST_CURRENT_RETURN",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "-395570800000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "-395570800000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "-395570800000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "-395570800000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "-395570800000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "65493799333333.333333",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_UPSIDE:r0.12:H3:FADE_TO_COST",
+      "incomeCase": "OPERATING_UPSIDE",
+      "earningsInputVnd": "9824069900000",
+      "earningsSourcePointer": "/operatingAlternatives/2/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "70869815276626.27551",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "70869815276626.27551",
+        "signedDistributionCrosscheckVnd": "70869815276626.27551",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.144194",
+        "costOfEquityAssumption": "0.12",
+        "growthAssumption": "0",
+        "horizonYears": 3,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "1648357340000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "9274617453333.333333",
+            "excessReturnVnd": "1098904893333.333333",
+            "hypotheticalNetDistributionVnd": "9274617453333.333333",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "8725165006666.666667",
+            "excessReturnVnd": "549452446666.666667",
+            "hypotheticalNetDistributionVnd": "8725165006666.666667",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_UPSIDE:r0.12:H5:FADE_TO_COST",
+      "incomeCase": "OPERATING_UPSIDE",
+      "earningsInputVnd": "9824069900000",
+      "earningsSourcePointer": "/operatingAlternatives/2/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "71963983646345.476169",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "71963983646345.476169",
+        "signedDistributionCrosscheckVnd": "71963983646345.476169",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.144194",
+        "costOfEquityAssumption": "0.12",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "1648357340000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "9494398432000",
+            "excessReturnVnd": "1318685872000",
+            "hypotheticalNetDistributionVnd": "9494398432000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "9164726964000",
+            "excessReturnVnd": "989014404000",
+            "hypotheticalNetDistributionVnd": "9164726964000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "8835055496000",
+            "excessReturnVnd": "659342936000",
+            "hypotheticalNetDistributionVnd": "8835055496000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "8505384028000",
+            "excessReturnVnd": "329671468000",
+            "hypotheticalNetDistributionVnd": "8505384028000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_UPSIDE:r0.12:H10:FADE_TO_COST",
+      "incomeCase": "OPERATING_UPSIDE",
+      "earningsInputVnd": "9824069900000",
+      "earningsSourcePointer": "/operatingAlternatives/2/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "74105926998734.935264",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "74105926998734.935264",
+        "signedDistributionCrosscheckVnd": "74105926998734.935264",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.144194",
+        "costOfEquityAssumption": "0.12",
+        "growthAssumption": "0",
+        "horizonYears": 10,
+        "returnPolicy": "FADE_TO_COST",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "1648357340000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "9659234166000",
+            "excessReturnVnd": "1483521606000",
+            "hypotheticalNetDistributionVnd": "9659234166000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "9494398432000",
+            "excessReturnVnd": "1318685872000",
+            "hypotheticalNetDistributionVnd": "9494398432000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "9329562698000",
+            "excessReturnVnd": "1153850138000",
+            "hypotheticalNetDistributionVnd": "9329562698000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "9164726964000",
+            "excessReturnVnd": "989014404000",
+            "hypotheticalNetDistributionVnd": "9164726964000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 6,
+            "parentEarningsAssumptionVnd": "8999891230000",
+            "excessReturnVnd": "824178670000",
+            "hypotheticalNetDistributionVnd": "8999891230000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 7,
+            "parentEarningsAssumptionVnd": "8835055496000",
+            "excessReturnVnd": "659342936000",
+            "hypotheticalNetDistributionVnd": "8835055496000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 8,
+            "parentEarningsAssumptionVnd": "8670219762000",
+            "excessReturnVnd": "494507202000",
+            "hypotheticalNetDistributionVnd": "8670219762000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 9,
+            "parentEarningsAssumptionVnd": "8505384028000",
+            "excessReturnVnd": "329671468000",
+            "hypotheticalNetDistributionVnd": "8505384028000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 10,
+            "parentEarningsAssumptionVnd": "8340548294000",
+            "excessReturnVnd": "164835734000",
+            "hypotheticalNetDistributionVnd": "8340548294000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "68130938000000",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    },
+    {
+      "id": "OPERATING_UPSIDE:r0.12:H5:PERSIST_CURRENT_RETURN",
+      "incomeCase": "OPERATING_UPSIDE",
+      "earningsInputVnd": "9824069900000",
+      "earningsSourcePointer": "/operatingAlternatives/2/valueAtAdverseIncidenceVnd",
+      "equityValueVnd": "81867249166666.666667",
+      "model": {
+        "model": "SIGNED_PARENT_EQUITY_RETURN_SENSITIVITY",
+        "equityValueVnd": "81867249166666.666667",
+        "signedDistributionCrosscheckVnd": "81867249166666.666667",
+        "crosscheckIsIndependentValuation": false,
+        "currentReturnOnCapital": "0.144194",
+        "costOfEquityAssumption": "0.12",
+        "growthAssumption": "0",
+        "horizonYears": 5,
+        "returnPolicy": "PERSIST_CURRENT_RETURN",
+        "years": [
+          {
+            "year": 1,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "1648357340000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 2,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "1648357340000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 3,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "1648357340000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 4,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "1648357340000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          },
+          {
+            "year": 5,
+            "parentEarningsAssumptionVnd": "9824069900000",
+            "excessReturnVnd": "1648357340000",
+            "hypotheticalNetDistributionVnd": "9824069900000",
+            "capitalInjectionRequiredIfNegativeVnd": "0"
+          }
+        ],
+        "terminalEquityAssumptionVnd": "81867249166666.666667",
+        "negativeValueIsNotNegativeSharePrice": false,
+        "unmodeledClaimsDeducted": false,
+        "actualDividendOrRegulatoryHeadroomProven": false,
+        "terminalBookRecoveryProven": false,
+        "cashOrDebtAddedAgain": false,
+        "productionScoringAuthorized": false
+      },
+      "horizonAndReturnPolicyAreAnalystAssumptions": true,
+      "costIsExistingResearchSensitivityNotObservedWacc": true,
+      "unknownFundTaxNciOrPreferenceClaimsSetToZero": false
+    }
+  ],
+  "equityScenarioRange": {
+    "minimumVnd": "35210533195901.642967",
+    "maximumVnd": "81867249166666.666667",
+    "baseVnd": "65436657272741.709959",
+    "classification": "NAMED_RETURN_SCENARIO_REFERENCE_BEFORE_UNMODELED_CLAIMS_NOT_INTRINSIC_VALUE_INTERVAL",
+    "completeEconomicBound": false,
+    "selectedBaseIsAnalystChoiceNotIssuerForecast": true
+  },
+  "marketReference": {
+    "valueVnd": "10650",
+    "tradingDate": "2026-10-30",
+    "receivedAt": "2026-10-30T10:43:06.948Z",
+    "field": "DAILY_BAR_CLOSE_REFERENCE",
+    "adjustment": "PROVIDER_UNDECLARED",
+    "observationId": "TCBS_MARKET_PRICE:a63ff1acd0de424c12e80ab8108fd4df4ddc7516aa2c26c0da1c5447a8db1eb8",
+    "bodyHash": "a63ff1acd0de424c12e80ab8108fd4df4ddc7516aa2c26c0da1c5447a8db1eb8",
+    "sourceObservationId": "TCBS_API_RESPONSE:6dd13e48d27b6212f444b07014d0d46a143a1b21eeb85de1d4796cf1e5814dca",
+    "sourcePointer": "/data/data/1/close",
+    "rawSha256": "e037ee4d7abfc60230a619a9737349844c1f1dfb21fe55ac295bb6eb89307566",
+    "use": "DATED_RESEARCH_REFERENCE_NOT_CURRENT_QUOTE",
+    "productionAdmissible": false
+  },
+  "shareAnchor": null,
+  "shareArithmetic": null,
+  "datedDenominator": {
+    "status": "BLOCKED",
+    "reasons": [
+      "ISSUANCE_TREASURY_RIGHTS_BRIDGE_INCOMPLETE",
+      "PRICE_ADJUSTMENT_BASIS_UNDECLARED",
+      "SOURCE_BINDING_UNVERIFIED"
+    ],
+    "productionAdmissible": false,
+    "navAuthority": false,
+    "tradingAuthority": false
+  },
+  "providerShareReferences": [
+    {
+      "kind": "listed",
+      "shares": "4594200024",
+      "observedAt": "2026-10-30T12:12:14.194039+00:00",
+      "source": "data/manual-extracted-api/vietstock-profile-v1/20261030T121210Z/SHB.html",
+      "includesProviderProvisionalRightsWarning": false,
+      "perShareRangeVnd": null,
+      "basePerShareVnd": null,
+      "denominatorQualified": false,
+      "datedPriceComparison": null,
+      "whyNoNewPriceTarget": "New model is before unresolved claims and dated action admission; provider denominator is not qualified."
+    },
+    {
+      "kind": "outstanding",
+      "shares": "5343703838",
+      "observedAt": "2026-10-30T12:12:14.194039+00:00",
+      "source": "data/manual-extracted-api/vietstock-profile-v1/20261030T121210Z/SHB.html",
+      "includesProviderProvisionalRightsWarning": true,
+      "perShareRangeVnd": null,
+      "basePerShareVnd": null,
+      "denominatorQualified": false,
+      "datedPriceComparison": null,
+      "whyNoNewPriceTarget": "New model is before unresolved claims and dated action admission; provider denominator is not qualified."
+    }
+  ],
+  "actionBridgeComplete": false,
+  "financialSnapshotIsCurrentForecast": false,
+  "researchConditions": {
+    "buy": "Chỉ xem xét mua khi giá cùng ngày và mẫu số đã khớp, mô hình/nghĩa vụ đủ căn cứ, đáp ứng biên an toàn và suất sinh lợi theo tiêu chí hiện hành; chưa tự cấp tín hiệu từ bảng này.",
+    "hold": "Chỉ xem xét giữ khi luận điểm kinh doanh còn đúng, quyền cổ đông và khả năng tài trợ không suy giảm; định giá và tỷ trọng vẫn phù hợp. Giữ không phải lựa chọn mặc định khi thiếu dữ liệu.",
+    "sell": "Xem xét bán/giảm khi luận điểm bị bác, nghĩa vụ/quyền pha loãng làm mất giá trị hoặc giá vượt khoảng giá trị có cơ sở sau kiểm tra lại; không bán chỉ vì một mô hình có điều kiện cho kết quả thấp.",
+    "issuerFalsification": "Bình quân hai năm không bao trọn chu kỳ; tờ trình phân phối được duyệt nhưng chưa ghép bảng số đầy đủ.",
+    "issuerChecksBeforeAction": "Dân số tín dụng, thu hồi tăng đột biến và phân phối quỹ."
+  },
+  "blockingBeforeDatedTradeConclusion": [
+    "DATED_SHARE_ACTION_TREASURY_RIGHTS_BRIDGE",
+    "PRICE_ADJUSTMENT_BASIS",
+    "CURRENT_QUOTE_REFRESH",
+    "POST_FY2025_CHANGE_REVIEW",
+    "NAMED_ASSUMPTIONS_NOT_CONFIRMED",
+    "ASSET_QUALITY_AND_DISTRIBUTABLE_CAPITAL",
+    "ACCOUNTING_CAPITAL_RECOVERABILITY_AND_RETURN_PERSISTENCE",
+    "UNMODELED_CLAIM_AND_DISTRIBUTION_REVIEW"
+  ],
+  "currentSignal": "UNDETERMINED_NOT_BUY_HOLD_OR_SELL",
+  "acceptedValuePerShare": null,
+  "financialRulesOrWeightsChanged": false,
+  "sourceAdmissionGranted": false,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "researchModelFamily": "FINANCIAL_COMMON_CAPITAL_EXCESS_RETURN",
+  "capitalReading": {
+    "id": "SHB-FY2025-CAPITAL-CHECKED-v2",
+    "ticker": "SHB",
+    "periodEnd": "2025-12-31",
+    "sourceScope": "CONSOLIDATED",
+    "nativeCurrency": "VND",
+    "nativeUnit": "MILLION_VND",
+    "multiplier": "1000000",
+    "selectedEquitySubtotalNative": "68130938",
+    "nciNative": null,
+    "parentComponentsNative": [
+      "47386343",
+      "9548046",
+      "-446340",
+      "11642889"
+    ],
+    "reviewMode": "FULL_SOURCE_PAGE_IMAGE_INSPECTED_BY_CHATGPT",
+    "reviewDate": "2026-11-04",
+    "exactReviewTime": null,
+    "source": {
+      "pdfPath": "data/manual-download/SHB/SHB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "3a89cd8fda598448a84396498d23de913209b8145c2680e2e228b9976513e647",
+      "physicalPage": 8,
+      "href": "data/manual-download/SHB/SHB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=8"
+    },
+    "sourceColumn": "FY2025_CLOSING",
+    "allShareClassClaimsComplete": false,
+    "productionAdmissible": false
+  },
+  "capitalBridge": {
+    "parentCapitalReferenceVnd": "68130938000000",
+    "basis": "COMPONENT_SUM_PROXY_NCI_NOT_SEPARATELY_PRINTED",
+    "nciReportedVnd": null,
+    "preferredClaimMarketValueVnd": null,
+    "allCommonClaimsQualified": false,
+    "groupFundingExcludedVnd": "0",
+    "capitalIsMarketOrRecoverableValue": false
+  },
+  "incomeCases": [
+    {
+      "name": "SELECTED_FY2025",
+      "valueVnd": "8993365980209.836587",
+      "sourcePointer": "/prudentialWorkingCaseVnd"
+    },
+    {
+      "name": "OPERATING_DOWNSIDE",
+      "valueVnd": "6337895975262.295734",
+      "sourcePointer": "/operatingAlternatives/0/valueAtAdverseIncidenceVnd"
+    },
+    {
+      "name": "OPERATING_UPSIDE",
+      "valueVnd": "9824069900000",
+      "sourcePointer": "/operatingAlternatives/2/valueAtAdverseIncidenceVnd"
+    }
+  ],
+  "sourceComparisonPath": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-04/investment-research-v2/source-comparisons/SHB.json",
+  "modelChoice": "Use reviewed attributable accounting capital and FY2025 earnings to test excess returns; no arbitrary P/E, group CFO-to-parent ratio, project RNAV or unproved capex allocation.",
+  "recoverableCapitalAndDistributionsProven": false,
+  "primaryValuationAccepted": false,
+  "valuationAvailableAsConditionalResearchReference": true,
+  "selectedCommonEarningsPointIdentified": true,
+  "illustrativeFiveYear15PercentReferenceVnd": "65436657272741.709959",
+  "selectedValuationBaseIdentified": true,
+  "capitalIncludesUnallocatedPreferenceClaims": false,
+  "unknownClaimValueVnd": null,
+  "criterionOrWeightChange": false,
+  "previousIssuerBinding": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-04/investment-research-v1/issuers/SHB.json",
+    "sha256": "ea701528c2a504e842b51420aaf0b0360e066945151ad59bd927da01f7480c7d"
+  }
+}
