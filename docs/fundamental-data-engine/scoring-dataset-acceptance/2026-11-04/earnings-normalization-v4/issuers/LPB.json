@@ -1,0 +1,305 @@
+{
+  "contract": "vn30-working-earnings-bridge-v4",
+  "ticker": "LPB",
+  "period": "FY2025",
+  "analysisMode": "AS_REVISED_CURRENT_RESEARCH",
+  "scope": "STANDALONE",
+  "sector": "BANK",
+  "classification": "CONDITIONAL_ADJUSTED_FY2025_NOT_ACCEPTED_SUSTAINABLE_EARNINGS",
+  "reportedCommonReferenceVnd": "11422379000000",
+  "referenceScope": "STANDALONE",
+  "sourceCommonBridgeVnd": "11422379000000",
+  "sourceFundStatus": "ISSUER_UNESTIMATED",
+  "priorAdditionalKnownFundDeductions": [],
+  "fundBridgeApplication": "ALREADY_IN_SOURCE_COMMON_BRIDGE_DO_NOT_SUBTRACT_AGAIN",
+  "changeFromV3SourceCommonBridgeVnd": "0",
+  "fundBridgeIsConditionalPlan": false,
+  "unknownAdditionalFundVnd": null,
+  "fundCompletenessProven": false,
+  "fundSensitivity": {
+    "additionalUnidentifiedFundVnd": null,
+    "unboundedMissingFund": true,
+    "commonEarningsDeltaPerAdditionalUndeductedCommonFundVnd": "-1",
+    "additionalCommonFundToErasePositiveCaseVnd": "9758023957772.674306",
+    "namedCounterfactuals": [],
+    "notFinancialEventsOrApprovedCorrections": true
+  },
+  "selectedPretaxAdjustments": [
+    {
+      "id": "LPB-total-credit-proxy",
+      "pretaxVnd": "-1121672042227.325694",
+      "readingIds": [],
+      "priorModelReason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+      "selectionReason": "Không cộng lợi nhuận từ giảm dự phòng/thu hồi giả định; giữ khoản giảm theo proxy như dự phòng thận trọng, chưa coi là dự báo khoản vay đã kiểm chứng.",
+      "priorBasePretaxVnd": "-1121672042227.325694",
+      "selectedPretaxChangeVnd": "0.000000",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-1121672042227.325694",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-1121672042227.325694",
+        "maximumVnd": "-897337633781.8605552",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/LPB.json",
+        "sha256": "9b79385b82458057866b506e5656ecdba6988c29ace706b09f4336625fc40c09",
+        "jsonPointer": "/creditNormalization"
+      },
+      "additionalOperandReadingIds": []
+    },
+    {
+      "id": "LPB-recoveries-mean",
+      "pretaxVnd": "-542683000000",
+      "readingIds": [
+        "LPB-FY2025-recoveries2024",
+        "LPB-FY2025-recoveries2025"
+      ],
+      "priorModelReason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+      "selectionReason": "Không cộng lợi nhuận từ giảm dự phòng/thu hồi giả định; giữ khoản giảm theo proxy như dự phòng thận trọng, chưa coi là dự báo khoản vay đã kiểm chứng.",
+      "priorBasePretaxVnd": "-542683000000",
+      "selectedPretaxChangeVnd": "0",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-542683000000",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-542683000000",
+        "maximumVnd": "-434146400000.0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/LPB.json",
+        "sha256": "9b79385b82458057866b506e5656ecdba6988c29ace706b09f4336625fc40c09",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    }
+  ],
+  "prudentialWorkingCaseVnd": "9758023957772.674306",
+  "taxAssumption": "0",
+  "commonIncidenceAssumption": "1",
+  "incidenceConvention": "ADVERSE_NAMED_ADJUSTMENTS_ONLY_NOT_PROVEN_TAX_OR_OWNERSHIP",
+  "namedAdjustmentIncidenceEnvelope": {
+    "minimumVnd": "9758023957772.674306",
+    "maximumVnd": "10090894966218.1394448",
+    "completeEconomicBound": false,
+    "taxEndpointsAreAssumptions": true,
+    "unknownFundsIncluded": false,
+    "independentCommonIncidencePerComponent": true
+  },
+  "operatingAlternatives": [
+    {
+      "name": "BEAR",
+      "knownAxesEnvelope": {
+        "minimumVnd": "8749984697215.842882",
+        "maximumVnd": "9284463557772.6743056",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "LPB-total-credit-proxy",
+          "pretaxVnd": "-1757660052784.157118"
+        },
+        {
+          "id": "LPB-recoveries-mean",
+          "pretaxVnd": "-914734250000"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "8749984697215.842882",
+      "incidenceEnvelope": {
+        "minimumVnd": "8749984697215.842882",
+        "maximumVnd": "9284463557772.6743056",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    },
+    {
+      "name": "BASE",
+      "knownAxesEnvelope": {
+        "minimumVnd": "9758023957772.674306",
+        "maximumVnd": "10090894966218.1394448",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "LPB-total-credit-proxy",
+          "pretaxVnd": "-1121672042227.325694"
+        },
+        {
+          "id": "LPB-recoveries-mean",
+          "pretaxVnd": "-542683000000"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "9758023957772.674306",
+      "incidenceEnvelope": {
+        "minimumVnd": "9758023957772.674306",
+        "maximumVnd": "10090894966218.1394448",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    },
+    {
+      "name": "BULL",
+      "knownAxesEnvelope": {
+        "minimumVnd": "10288437264106.77316",
+        "maximumVnd": "10515225611285.418528",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "LPB-total-credit-proxy",
+          "pretaxVnd": "-740079235893.22684"
+        },
+        {
+          "id": "LPB-recoveries-mean",
+          "pretaxVnd": "-393862500000"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "10288437264106.77316",
+      "incidenceEnvelope": {
+        "minimumVnd": "10288437264106.77316",
+        "maximumVnd": "10515225611285.418528",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    }
+  ],
+  "baseChoice": "Báo cáo riêng: floor tín dụng và bình quân thu hồi nợ; không gán thêm NCI hay trừ quỹ dự trữ vốn/cổ tức.",
+  "counterevidenceAndRemainingWork": "Không có dòng quỹ nhân viên trên một bảng không chứng minh quỹ bằng 0; floor chưa qua kiểm chứng dân số tín dụng.",
+  "completeCycleQualified": false,
+  "exhaustiveOneOffCoverageProven": false,
+  "sourceProfile": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/LPB.json",
+    "sha256": "9b79385b82458057866b506e5656ecdba6988c29ace706b09f4336625fc40c09"
+  },
+  "sourceReadings": [
+    {
+      "id": "LPB-FY2025-recoveries2024",
+      "pdfPath": "data/manual-download/LPB/LPB_Baocaotaichinh_2025_Kiemtoan.pdf",
+      "sha256": "ef2899b213a5a9d4f0b8ba1028f1962648d11cfc100e1d400d7399f3220e8752",
+      "href": "data/manual-download/LPB/LPB_Baocaotaichinh_2025_Kiemtoan.pdf#page=51",
+      "physicalPage": 51,
+      "economicPeriod": "FY2024",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "945522",
+      "multiplier": "1000000"
+    },
+    {
+      "id": "LPB-FY2025-recoveries2025",
+      "pdfPath": "data/manual-download/LPB/LPB_Baocaotaichinh_2025_Kiemtoan.pdf",
+      "sha256": "ef2899b213a5a9d4f0b8ba1028f1962648d11cfc100e1d400d7399f3220e8752",
+      "href": "data/manual-download/LPB/LPB_Baocaotaichinh_2025_Kiemtoan.pdf#page=51",
+      "physicalPage": 51,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "2030888",
+      "multiplier": "1000000"
+    }
+  ],
+  "reportedNumeratorEvidence": {
+    "id": "common-earnings-FY2025-LPB",
+    "ticker": "LPB",
+    "sector": "BANK",
+    "period": {
+      "start": "2025-01-01",
+      "end": "2025-12-31"
+    },
+    "sourceScope": "STANDALONE",
+    "currency": "VND",
+    "declaredCurrencyUnit": "MILLION_CURRENCY",
+    "currencyMultiplier": "1000000",
+    "sourcePreDeductionProfit": "11422379",
+    "signedExplicitDeductions": null,
+    "reportedCommonProfit": "11422379",
+    "reportedCommonProfitVnd": "11422379000000",
+    "computedCommonProfitInSourceUnits": null,
+    "reconciliationDifferenceVnd": null,
+    "weightedAverageShares": "2987282300",
+    "weightedSharePrecision": "INTEGER_AS_REPORTED",
+    "weightedSharesAreCurrentOutstanding": false,
+    "reportedBasicEps": "3824",
+    "epsUnit": "VND_PER_SHARE",
+    "fundStatus": "ISSUER_UNESTIMATED",
+    "exhaustiveOneOffReviewComplete": false,
+    "economicallyNormalizedCommonEarnings": null,
+    "source": {
+      "pdfPath": "data/manual-download/LPB/LPB_Baocaotaichinh_2025_Kiemtoan.pdf",
+      "sha256": "ef2899b213a5a9d4f0b8ba1028f1962648d11cfc100e1d400d7399f3220e8752",
+      "page": 53,
+      "href": "data/manual-download/LPB/LPB_Baocaotaichinh_2025_Kiemtoan.pdf#page=53",
+      "caption": "FY2025 current EPS-note common-owner numerator; separate from consolidated total NPAT, EPS denominator is weighted average"
+    },
+    "review": {
+      "actor": "CHATGPT",
+      "mode": "OWNER_AUTHORIZED_AI_SELF_REVIEW",
+      "reviewedAt": "2026-10-30T08:49:29.483427+00:00",
+      "fullPageImageInspected": true
+    },
+    "qualification": "REPORTED_COMMON_EARNINGS_REVIEWED_NOT_ECONOMICALLY_NORMALIZED",
+    "productionAdmissible": false,
+    "scopeWarning": "Source is issuer standalone, do not join automatically to earlier CONSOLIDATED-labelled candidate facts."
+  },
+  "accountingConflictDisposition": null,
+  "cycleReview": {
+    "history": [
+      {
+        "year": 2022,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-88f9f24d44b944beb4e16a9d23267e6068c8fe02"
+      },
+      {
+        "year": 2023,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-b72a14f7b4e59954ae777a75400806812c69f7ee"
+      },
+      {
+        "year": 2024,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-5478664f53cf3fee8dc18acbef3490f087ddee0d"
+      },
+      {
+        "year": 2025,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-fa5a98cea047278587aab0151ba0b852de2dfa43"
+      }
+    ],
+    "historyPurgedOfAllOneOffs": false,
+    "cycleQualified": false,
+    "automaticScalarApplied": false,
+    "reportedMarginMinimum": null,
+    "reportedMarginMaximum": null,
+    "reason": "Historical reported margins are counterevidence, not an automatic sustainable common-earnings multiplier. Banks use explicit credit/recovery axes; mixed groups need segment cycle review."
+  },
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "acceptanceDecision": "DEFER_SUSTAINABLE_EARNINGS_ACCEPTANCE",
+  "valuationOrRnavRequiredForThisBridge": false,
+  "financialCriteriaOrWeightsChanged": false,
+  "sourceAdmissionGranted": false,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "selectedFundReviewBinding": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-03/normalization-acceptance-v1/issuers/LPB.json",
+    "sha256": "01544fad5a8a7421a6681a4904a3457f8a33bf5d121314b31ac8c74ebc3e25f3"
+  }
+}

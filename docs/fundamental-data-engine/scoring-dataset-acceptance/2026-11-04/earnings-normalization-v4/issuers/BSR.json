@@ -1,0 +1,361 @@
+{
+  "contract": "vn30-working-earnings-bridge-v4",
+  "ticker": "BSR",
+  "period": "FY2025",
+  "analysisMode": "AS_REVISED_CURRENT_RESEARCH",
+  "scope": "CONSOLIDATED",
+  "sector": "ENERGY",
+  "classification": "CONDITIONAL_ADJUSTED_FY2025_NOT_ACCEPTED_SUSTAINABLE_EARNINGS",
+  "reportedCommonReferenceVnd": "5230686242758",
+  "referenceScope": "CONSOLIDATED",
+  "sourceCommonBridgeVnd": "4835448024664",
+  "sourceFundStatus": "ISSUER_UNESTIMATED",
+  "priorAdditionalKnownFundDeductions": [],
+  "fundBridgeApplication": "ALREADY_IN_SOURCE_COMMON_BRIDGE_DO_NOT_SUBTRACT_AGAIN",
+  "changeFromV3SourceCommonBridgeVnd": "0",
+  "fundBridgeIsConditionalPlan": false,
+  "unknownAdditionalFundVnd": null,
+  "fundCompletenessProven": false,
+  "fundSensitivity": {
+    "additionalUnidentifiedFundVnd": null,
+    "unboundedMissingFund": true,
+    "commonEarningsDeltaPerAdditionalUndeductedCommonFundVnd": "-1",
+    "additionalCommonFundToErasePositiveCaseVnd": "2046163084859.557664",
+    "namedCounterfactuals": [
+      {
+        "name": "ALTERNATIVE_H1_SPLIT",
+        "changeFromSelectedCaseVnd": "1",
+        "resultingCaseVnd": "2046163084860.557664",
+        "caveat": "Chênh 1 VND được giữ theo hai nhánh nguồn; không là khoản bù."
+      }
+    ],
+    "notFinancialEventsOrApprovedCorrections": true
+  },
+  "selectedPretaxAdjustments": [
+    {
+      "id": "BSR-contract-compensation",
+      "pretaxVnd": "-14892371397",
+      "readingIds": [
+        "BSR-FY2025-contractCompensationIncome"
+      ],
+      "priorModelReason": "Exclude contract compensation sensitivity; retain deposit income and operating FX in base.",
+      "selectionReason": "Giữ phép điều chỉnh có toán hạng nguồn; lựa chọn mức hoạt động được bảo vệ riêng ở hồ sơ mã, không dùng tỷ lệ lợi nhuận mẹ/nhóm làm sở hữu.",
+      "priorBasePretaxVnd": "-14892371397",
+      "selectedPretaxChangeVnd": "0",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-14892371397",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-14892371397",
+        "maximumVnd": "0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/BSR.json",
+        "sha256": "fa0211b2e48084b905628ae29728adcd97a0e6ee1c72ea504235c11f656fe9d2",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    },
+    {
+      "id": "BSR-reported-refining-margin-stress",
+      "pretaxVnd": "-2774392568407.442336",
+      "readingIds": [],
+      "priorModelReason": "Two reported years of refining gross margin, not a purified/full-cycle forecast.",
+      "selectionReason": "Giữ phép điều chỉnh có toán hạng nguồn; lựa chọn mức hoạt động được bảo vệ riêng ở hồ sơ mã, không dùng tỷ lệ lợi nhuận mẹ/nhóm làm sở hữu.",
+      "priorBasePretaxVnd": "-2774392568407.442336",
+      "selectedPretaxChangeVnd": "0.000000",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-2774392568407.442336",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-2774392568407.442336",
+        "maximumVnd": "0.000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/BSR.json",
+        "sha256": "fa0211b2e48084b905628ae29728adcd97a0e6ee1c72ea504235c11f656fe9d2",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": [
+        "BSR-FY2025-grossProfit2025",
+        "BSR-FY2025-grossProfit2024",
+        "BSR-FY2025-revenue2025",
+        "BSR-FY2025-revenue2024"
+      ]
+    }
+  ],
+  "prudentialWorkingCaseVnd": "2046163084859.557664",
+  "taxAssumption": "0",
+  "commonIncidenceAssumption": "1",
+  "incidenceConvention": "ADVERSE_NAMED_ADJUSTMENTS_ONLY_NOT_PROVEN_TAX_OR_OWNERSHIP",
+  "namedAdjustmentIncidenceEnvelope": {
+    "minimumVnd": "2046163084859.557664",
+    "maximumVnd": "4835448024664.000000",
+    "completeEconomicBound": false,
+    "taxEndpointsAreAssumptions": true,
+    "unknownFundsIncluded": false,
+    "independentCommonIncidencePerComponent": true
+  },
+  "operatingAlternatives": [
+    {
+      "name": "BEAR",
+      "knownAxesEnvelope": {
+        "minimumVnd": "-728229483547.884671",
+        "maximumVnd": "4835448024664.000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "BSR-contract-compensation",
+          "pretaxVnd": "-14892371397"
+        },
+        {
+          "id": "BSR-reported-refining-margin-stress",
+          "pretaxVnd": "-5548785136814.884671"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "-728229483547.884671",
+      "incidenceEnvelope": {
+        "minimumVnd": "-728229483547.884671",
+        "maximumVnd": "4835448024664.000000",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    },
+    {
+      "name": "BASE",
+      "knownAxesEnvelope": {
+        "minimumVnd": "2046163084859.557664",
+        "maximumVnd": "4835448024664.000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "BSR-contract-compensation",
+          "pretaxVnd": "-14892371397"
+        },
+        {
+          "id": "BSR-reported-refining-margin-stress",
+          "pretaxVnd": "-2774392568407.442336"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "2046163084859.557664",
+      "incidenceEnvelope": {
+        "minimumVnd": "2046163084859.557664",
+        "maximumVnd": "4835448024664.000000",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    },
+    {
+      "name": "BULL",
+      "knownAxesEnvelope": {
+        "minimumVnd": "4820555653267",
+        "maximumVnd": "4835448024664",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "BSR-contract-compensation",
+          "pretaxVnd": "-14892371397"
+        },
+        {
+          "id": "BSR-reported-refining-margin-stress",
+          "pretaxVnd": "0"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "4820555653267",
+      "incidenceEnvelope": {
+        "minimumVnd": "4820555653267",
+        "maximumVnd": "4835448024664",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    }
+  ],
+  "baseChoice": "Dùng trung bình hai biên gộp FY2024–2025 áp lên doanh thu FY2025; loại bồi thường hợp đồng. Giữ nhánh quỹ Q3 có ghi rõ FY2025.",
+  "counterevidenceAndRemainingWork": "2022–2023 có biên lợi nhuận ròng cao hơn, nhưng không đồng nhất với biên gộp. Tử số dẫn xuất/quỹ cuối cùng vẫn cần đủ điều kiện nghiệm thu.",
+  "completeCycleQualified": false,
+  "exhaustiveOneOffCoverageProven": false,
+  "sourceProfile": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/BSR.json",
+    "sha256": "fa0211b2e48084b905628ae29728adcd97a0e6ee1c72ea504235c11f656fe9d2"
+  },
+  "sourceReadings": [
+    {
+      "id": "BSR-FY2025-contractCompensationIncome",
+      "pdfPath": "data/manual-download/BSR/BSR_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "8fc6fc3995f04d79a5307420690e2e9f95094405884f05ee1ac8b2943b275a72",
+      "href": "data/manual-download/BSR/BSR_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=41",
+      "physicalPage": 41,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "VND",
+      "nativeValue": "14892371397",
+      "multiplier": "1"
+    },
+    {
+      "id": "BSR-FY2025-grossProfit2025",
+      "pdfPath": "data/manual-download/BSR/BSR_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "8fc6fc3995f04d79a5307420690e2e9f95094405884f05ee1ac8b2943b275a72",
+      "href": "data/manual-download/BSR/BSR_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=11",
+      "physicalPage": 11,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "VND",
+      "nativeValue": "6113918575896",
+      "multiplier": "1"
+    },
+    {
+      "id": "BSR-FY2025-grossProfit2024",
+      "pdfPath": "data/manual-download/BSR/BSR_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "8fc6fc3995f04d79a5307420690e2e9f95094405884f05ee1ac8b2943b275a72",
+      "href": "data/manual-download/BSR/BSR_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=11",
+      "physicalPage": 11,
+      "economicPeriod": "FY2024",
+      "sourceUnit": "VND",
+      "nativeValue": "491069729826",
+      "multiplier": "1"
+    },
+    {
+      "id": "BSR-FY2025-revenue2025",
+      "pdfPath": "data/manual-download/BSR/BSR_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "8fc6fc3995f04d79a5307420690e2e9f95094405884f05ee1ac8b2943b275a72",
+      "href": "data/manual-download/BSR/BSR_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=11",
+      "physicalPage": 11,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "VND",
+      "nativeValue": "141582149107302",
+      "multiplier": "1"
+    },
+    {
+      "id": "BSR-FY2025-revenue2024",
+      "pdfPath": "data/manual-download/BSR/BSR_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "8fc6fc3995f04d79a5307420690e2e9f95094405884f05ee1ac8b2943b275a72",
+      "href": "data/manual-download/BSR/BSR_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=11",
+      "physicalPage": 11,
+      "economicPeriod": "FY2024",
+      "sourceUnit": "VND",
+      "nativeValue": "123027063879559",
+      "multiplier": "1"
+    }
+  ],
+  "reportedNumeratorEvidence": {
+    "id": "common-earnings-FY2025-BSR",
+    "ticker": "BSR",
+    "sector": "ENERGY",
+    "period": {
+      "start": "2025-01-01",
+      "end": "2025-12-31"
+    },
+    "sourceScope": "CONSOLIDATED",
+    "currency": "VND",
+    "declaredCurrencyUnit": "CURRENCY",
+    "currencyMultiplier": "1",
+    "sourcePreDeductionProfit": "5213612063223",
+    "signedExplicitDeductions": [
+      "-4061012360"
+    ],
+    "reportedCommonProfit": "5230686242758",
+    "reportedCommonProfitVnd": "5230686242758",
+    "computedCommonProfitInSourceUnits": "5209551050863",
+    "reconciliationDifferenceVnd": "21135191895",
+    "weightedAverageShares": "5007299686",
+    "weightedSharePrecision": "INTEGER_AS_REPORTED",
+    "weightedSharesAreCurrentOutstanding": false,
+    "reportedBasicEps": "1040",
+    "epsUnit": "VND_PER_SHARE",
+    "fundStatus": "ISSUER_UNESTIMATED",
+    "exhaustiveOneOffReviewComplete": false,
+    "economicallyNormalizedCommonEarnings": null,
+    "source": {
+      "pdfPath": "data/manual-download/BSR/BSR_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "8fc6fc3995f04d79a5307420690e2e9f95094405884f05ee1ac8b2943b275a72",
+      "page": 41,
+      "href": "data/manual-download/BSR/BSR_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=41",
+      "caption": "FY2025 current EPS-note common-owner numerator; separate from consolidated total NPAT, EPS denominator is weighted average"
+    },
+    "review": {
+      "actor": "CHATGPT",
+      "mode": "OWNER_AUTHORIZED_AI_SELF_REVIEW",
+      "reviewedAt": "2026-10-30T08:49:29.483427+00:00",
+      "fullPageImageInspected": true
+    },
+    "qualification": "BLOCKED_SOURCE_ARITHMETIC_DISCREPANCY",
+    "productionAdmissible": false
+  },
+  "accountingConflictDisposition": {
+    "selectedCommonNumeratorVnd": "4835448024664",
+    "alternativeH1SplitVnd": "4835448024665",
+    "sourceVariantDifferenceVnd": "1",
+    "selection": "EXPLICIT_Q3_FY2025_CAPTION_OVER_MIXED_H1_MOVEMENT",
+    "issuerSubtotalCorrected": false,
+    "sourceBytesChanged": false,
+    "financialAccepted": false,
+    "analysisDisposition": "ARITHMETIC_AND_SOURCE_BRANCH_SELECTION_CLOSED",
+    "issuerCorrectionEvidence": null,
+    "fullFinalFundAdmission": false
+  },
+  "cycleReview": {
+    "history": [
+      {
+        "year": 2022,
+        "reportedGroupNetMargin": "0.087775",
+        "revenueObservationId": "review-observation-9a3cbc11eb74f7b15609c90b13f92837c7245250",
+        "profitObservationId": "review-observation-3b5eee2481e1871dae656674017b1f3656443ae0"
+      },
+      {
+        "year": 2023,
+        "reportedGroupNetMargin": "0.058285",
+        "revenueObservationId": "b6r3-observation-c07f097972475e69877a97eb94e563170669",
+        "profitObservationId": "b6r3-observation-ae1db8762122cfe9414952a236e760705792"
+      },
+      {
+        "year": 2024,
+        "reportedGroupNetMargin": "0.004805",
+        "revenueObservationId": "review-observation-6967e5575e9dd93543e65a034dcff026fc2d432c",
+        "profitObservationId": "review-observation-b45b14973005d113514786d769df5beab8267128"
+      },
+      {
+        "year": 2025,
+        "reportedGroupNetMargin": "0.036848",
+        "revenueObservationId": "review-observation-137aaa5404570732157dfed63493bd8cf3973b23",
+        "profitObservationId": "review-observation-b85cd035ca942ec7ccd14b14b2a60ed5514252cb"
+      }
+    ],
+    "historyPurgedOfAllOneOffs": false,
+    "cycleQualified": false,
+    "automaticScalarApplied": false,
+    "reportedMarginMinimum": "0.004805",
+    "reportedMarginMaximum": "0.087775",
+    "reason": "Historical reported margins are counterevidence, not an automatic sustainable common-earnings multiplier. Banks use explicit credit/recovery axes; mixed groups need segment cycle review."
+  },
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "acceptanceDecision": "DEFER_SUSTAINABLE_EARNINGS_ACCEPTANCE",
+  "valuationOrRnavRequiredForThisBridge": false,
+  "financialCriteriaOrWeightsChanged": false,
+  "sourceAdmissionGranted": false,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "selectedFundReviewBinding": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-03/normalization-acceptance-v1/issuers/BSR.json",
+    "sha256": "98a3e8feebf91932cb09aed38187ede4a2b239153ede33deca138d624426d536"
+  }
+}

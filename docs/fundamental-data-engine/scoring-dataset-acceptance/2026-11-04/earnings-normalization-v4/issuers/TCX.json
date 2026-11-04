@@ -1,0 +1,356 @@
+{
+  "contract": "vn30-working-earnings-bridge-v4",
+  "ticker": "TCX",
+  "period": "FY2025",
+  "analysisMode": "AS_REVISED_CURRENT_RESEARCH",
+  "scope": "STANDALONE",
+  "sector": "SECURITIES",
+  "classification": "CONDITIONAL_ADJUSTED_FY2025_NOT_ACCEPTED_SUSTAINABLE_EARNINGS",
+  "reportedCommonReferenceVnd": "5683331855108",
+  "referenceScope": "STANDALONE",
+  "sourceCommonBridgeVnd": "5683331855108",
+  "sourceFundStatus": "EXPLICIT_COMMON_NO_ZERO_INFERENCE",
+  "priorAdditionalKnownFundDeductions": [],
+  "fundBridgeApplication": "ALREADY_IN_SOURCE_COMMON_BRIDGE_DO_NOT_SUBTRACT_AGAIN",
+  "changeFromV3SourceCommonBridgeVnd": "0",
+  "fundBridgeIsConditionalPlan": false,
+  "unknownAdditionalFundVnd": null,
+  "fundCompletenessProven": false,
+  "fundSensitivity": {
+    "additionalUnidentifiedFundVnd": null,
+    "unboundedMissingFund": true,
+    "commonEarningsDeltaPerAdditionalUndeductedCommonFundVnd": "-1",
+    "additionalCommonFundToErasePositiveCaseVnd": "5185288351135.5",
+    "namedCounterfactuals": [],
+    "notFinancialEventsOrApprovedCorrections": true
+  },
+  "selectedPretaxAdjustments": [
+    {
+      "id": "TCX-paired-unrealized",
+      "pretaxVnd": "-3231414097",
+      "readingIds": [
+        "TCX-FY2025-assetRevaluationGain",
+        "TCX-FY2025-assetRevaluationLoss",
+        "TCX-FY2025-warrantRevaluationGain",
+        "TCX-FY2025-warrantRevaluationLoss"
+      ],
+      "provenCommonWeight": "1",
+      "priorModelReason": "Remove paired net asset/warrant unrealized result once, not realized sales proceeds.",
+      "selectionReason": "Giữ phép điều chỉnh có toán hạng nguồn; lựa chọn mức hoạt động được bảo vệ riêng ở hồ sơ mã, không dùng tỷ lệ lợi nhuận mẹ/nhóm làm sở hữu.",
+      "priorBasePretaxVnd": "-3231414097",
+      "selectedPretaxChangeVnd": "0",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-3231414097",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-3231414097",
+        "maximumVnd": "-2585131277.6",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/TCX.json",
+        "sha256": "55ceec25470e859af70ebcac5fb80209e965fb2acc8fb0edc3034dc9c5fee26c",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    },
+    {
+      "id": "TCX-realized-trading-cycle",
+      "pretaxVnd": "-494812089875.5",
+      "readingIds": [
+        "TCX-FY2025-realizedTradingNet2024",
+        "TCX-FY2025-realizedTradingNet2025"
+      ],
+      "provenCommonWeight": "1",
+      "priorModelReason": "Two-year realized net trading mean is a cycle proxy, not a full market cycle; retain margin funding/impairment.",
+      "selectionReason": "Giữ phép điều chỉnh có toán hạng nguồn; lựa chọn mức hoạt động được bảo vệ riêng ở hồ sơ mã, không dùng tỷ lệ lợi nhuận mẹ/nhóm làm sở hữu.",
+      "priorBasePretaxVnd": "-494812089875.5",
+      "selectedPretaxChangeVnd": "0.0",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-494812089875.5",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-494812089875.5",
+        "maximumVnd": "-395849671900.40",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/TCX.json",
+        "sha256": "55ceec25470e859af70ebcac5fb80209e965fb2acc8fb0edc3034dc9c5fee26c",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    }
+  ],
+  "prudentialWorkingCaseVnd": "5185288351135.5",
+  "taxAssumption": "0",
+  "commonIncidenceAssumption": "1",
+  "incidenceConvention": "ADVERSE_NAMED_ADJUSTMENTS_ONLY_NOT_PROVEN_TAX_OR_OWNERSHIP",
+  "namedAdjustmentIncidenceEnvelope": {
+    "minimumVnd": "5185288351135.5",
+    "maximumVnd": "5284897051930.00",
+    "completeEconomicBound": false,
+    "taxEndpointsAreAssumptions": true,
+    "unknownFundsIncluded": false,
+    "independentCommonIncidencePerComponent": true
+  },
+  "operatingAlternatives": [
+    {
+      "name": "BEAR",
+      "knownAxesEnvelope": {
+        "minimumVnd": "4690476261260",
+        "maximumVnd": "4889047380029.6",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "TCX-paired-unrealized",
+          "pretaxVnd": "-3231414097"
+        },
+        {
+          "id": "TCX-realized-trading-cycle",
+          "pretaxVnd": "-989624179751"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "4690476261260",
+      "incidenceEnvelope": {
+        "minimumVnd": "4690476261260",
+        "maximumVnd": "4889047380029.6",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    },
+    {
+      "name": "BASE",
+      "knownAxesEnvelope": {
+        "minimumVnd": "5185288351135.5",
+        "maximumVnd": "5284897051930.00",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "TCX-paired-unrealized",
+          "pretaxVnd": "-3231414097"
+        },
+        {
+          "id": "TCX-realized-trading-cycle",
+          "pretaxVnd": "-494812089875.5"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "5185288351135.5",
+      "incidenceEnvelope": {
+        "minimumVnd": "5185288351135.5",
+        "maximumVnd": "5284897051930.00",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    },
+    {
+      "name": "BULL",
+      "knownAxesEnvelope": {
+        "minimumVnd": "5680100441011",
+        "maximumVnd": "5680746723830.4",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "TCX-paired-unrealized",
+          "pretaxVnd": "-3231414097"
+        },
+        {
+          "id": "TCX-realized-trading-cycle",
+          "pretaxVnd": "0"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "5680100441011",
+      "incidenceEnvelope": {
+        "minimumVnd": "5680100441011",
+        "maximumVnd": "5680746723830.4",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    }
+  ],
+  "baseChoice": "Ghép đủ đánh giá lại tài sản và chứng quyền; chọn trung bình hai năm lợi nhuận giao dịch đã thực hiện ròng; giữ chi phí margin và dự phòng.",
+  "counterevidenceAndRemainingWork": "Hai năm thị trường không chứng minh chu kỳ đầy đủ; quỹ/thưởng hiệu quả và chênh 1 VND vẫn cần xử lý theo nguồn.",
+  "completeCycleQualified": false,
+  "exhaustiveOneOffCoverageProven": false,
+  "sourceProfile": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/TCX.json",
+    "sha256": "55ceec25470e859af70ebcac5fb80209e965fb2acc8fb0edc3034dc9c5fee26c"
+  },
+  "sourceReadings": [
+    {
+      "id": "TCX-FY2025-assetRevaluationGain",
+      "pdfPath": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf",
+      "sha256": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+      "href": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf#page=12",
+      "physicalPage": 12,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "VND",
+      "nativeValue": "4829351718",
+      "multiplier": "1"
+    },
+    {
+      "id": "TCX-FY2025-assetRevaluationLoss",
+      "pdfPath": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf",
+      "sha256": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+      "href": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf#page=12",
+      "physicalPage": 12,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "VND",
+      "nativeValue": "3532576725",
+      "multiplier": "1"
+    },
+    {
+      "id": "TCX-FY2025-warrantRevaluationGain",
+      "pdfPath": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf",
+      "sha256": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+      "href": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf#page=58",
+      "physicalPage": 58,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "VND",
+      "nativeValue": "2081623537",
+      "multiplier": "1"
+    },
+    {
+      "id": "TCX-FY2025-warrantRevaluationLoss",
+      "pdfPath": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf",
+      "sha256": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+      "href": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf#page=58",
+      "physicalPage": 58,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "VND",
+      "nativeValue": "146984433",
+      "multiplier": "1"
+    },
+    {
+      "id": "TCX-FY2025-realizedTradingNet2024",
+      "pdfPath": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf",
+      "sha256": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+      "href": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf#page=12",
+      "physicalPage": 12,
+      "economicPeriod": "FY2024",
+      "sourceUnit": "VND",
+      "nativeValue": "2244834887165",
+      "multiplier": "1"
+    },
+    {
+      "id": "TCX-FY2025-realizedTradingNet2025",
+      "pdfPath": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf",
+      "sha256": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+      "href": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf#page=12",
+      "physicalPage": 12,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "VND",
+      "nativeValue": "3234459066916",
+      "multiplier": "1"
+    }
+  ],
+  "reportedNumeratorEvidence": {
+    "id": "common-earnings-FY2025-TCX",
+    "ticker": "TCX",
+    "sector": "SECURITIES",
+    "period": {
+      "start": "2025-01-01",
+      "end": "2025-12-31"
+    },
+    "sourceScope": "STANDALONE",
+    "currency": "VND",
+    "declaredCurrencyUnit": "CURRENCY",
+    "currencyMultiplier": "1",
+    "sourcePreDeductionProfit": "5683331855108",
+    "signedExplicitDeductions": null,
+    "reportedCommonProfit": "5683331855108",
+    "reportedCommonProfitVnd": "5683331855108",
+    "computedCommonProfitInSourceUnits": null,
+    "reconciliationDifferenceVnd": null,
+    "weightedAverageShares": "2094560777",
+    "weightedSharePrecision": "INTEGER_AS_REPORTED",
+    "weightedSharesAreCurrentOutstanding": false,
+    "reportedBasicEps": "2713",
+    "epsUnit": "VND_PER_SHARE",
+    "fundStatus": "EXPLICIT_COMMON_NO_ZERO_INFERENCE",
+    "exhaustiveOneOffReviewComplete": false,
+    "economicallyNormalizedCommonEarnings": null,
+    "source": {
+      "pdfPath": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf",
+      "sha256": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+      "page": 62,
+      "href": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf#page=62",
+      "caption": "FY2025 current EPS-note common-owner numerator; separate from consolidated total NPAT, EPS denominator is weighted average"
+    },
+    "review": {
+      "actor": "CHATGPT",
+      "mode": "OWNER_AUTHORIZED_AI_SELF_REVIEW",
+      "reviewedAt": "2026-10-30T08:49:29.483427+00:00",
+      "fullPageImageInspected": true
+    },
+    "qualification": "REPORTED_COMMON_EARNINGS_REVIEWED_NOT_ECONOMICALLY_NORMALIZED",
+    "productionAdmissible": false,
+    "scopeWarning": "Source is issuer standalone, do not join automatically to earlier CONSOLIDATED-labelled candidate facts."
+  },
+  "accountingConflictDisposition": null,
+  "cycleReview": {
+    "history": [
+      {
+        "year": 2022,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-efa9a2eeebe2ae8395f29e60d48fe5ba4de3e742"
+      },
+      {
+        "year": 2023,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "b6r3-observation-ffa7688c56fc3bbb0ab52ee16b0f54860351"
+      },
+      {
+        "year": 2024,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-c099750536803f6580c2f812222e81888b01929d"
+      },
+      {
+        "year": 2025,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-8f7183d061ecf64cb50c749dc48c8a43eadf086e"
+      }
+    ],
+    "historyPurgedOfAllOneOffs": false,
+    "cycleQualified": false,
+    "automaticScalarApplied": false,
+    "reportedMarginMinimum": null,
+    "reportedMarginMaximum": null,
+    "reason": "Historical reported margins are counterevidence, not an automatic sustainable common-earnings multiplier. Banks use explicit credit/recovery axes; mixed groups need segment cycle review."
+  },
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "acceptanceDecision": "DEFER_SUSTAINABLE_EARNINGS_ACCEPTANCE",
+  "valuationOrRnavRequiredForThisBridge": false,
+  "financialCriteriaOrWeightsChanged": false,
+  "sourceAdmissionGranted": false,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "selectedFundReviewBinding": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-03/normalization-acceptance-v1/issuers/TCX.json",
+    "sha256": "068bde8eae9fcb2389743482bc30935a1df8667dfc2a98cdae7874d1c200003d"
+  }
+}

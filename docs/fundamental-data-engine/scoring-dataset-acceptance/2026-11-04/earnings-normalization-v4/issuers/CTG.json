@@ -1,0 +1,419 @@
+{
+  "contract": "vn30-working-earnings-bridge-v4",
+  "ticker": "CTG",
+  "period": "FY2025",
+  "analysisMode": "AS_REVISED_CURRENT_RESEARCH",
+  "scope": "CONSOLIDATED",
+  "sector": "BANK",
+  "classification": "CONDITIONAL_ADJUSTED_FY2025_NOT_ACCEPTED_SUSTAINABLE_EARNINGS",
+  "reportedCommonReferenceVnd": "34604481000000",
+  "referenceScope": "CONSOLIDATED",
+  "sourceCommonBridgeVnd": "34604481000000",
+  "sourceFundStatus": "ISSUER_UNESTIMATED",
+  "priorAdditionalKnownFundDeductions": [],
+  "fundBridgeApplication": "ALREADY_IN_SOURCE_COMMON_BRIDGE_DO_NOT_SUBTRACT_AGAIN",
+  "changeFromV3SourceCommonBridgeVnd": "0",
+  "fundBridgeIsConditionalPlan": false,
+  "unknownAdditionalFundVnd": null,
+  "fundCompletenessProven": false,
+  "fundSensitivity": {
+    "additionalUnidentifiedFundVnd": null,
+    "unboundedMissingFund": true,
+    "commonEarningsDeltaPerAdditionalUndeductedCommonFundVnd": "-1",
+    "additionalCommonFundToErasePositiveCaseVnd": "24138347212671.496771",
+    "namedCounterfactuals": [
+      {
+        "name": "PARENT_PLAN_IF_ALL_ADDITIONAL_COMMON_FY2025",
+        "changeFromSelectedCaseVnd": "-3050316000000",
+        "resultingCaseVnd": "21088031212671.496771",
+        "caveat": "Giả định cầu nối đúng niên độ và được duyệt; kế hoạch mẹ có điều chỉnh năm trước, không phải số quỹ hợp nhất đầy đủ."
+      }
+    ],
+    "notFinancialEventsOrApprovedCorrections": true
+  },
+  "selectedPretaxAdjustments": [
+    {
+      "id": "CTG-total-credit-proxy",
+      "pretaxVnd": "-9600562287328.503229",
+      "readingIds": [],
+      "priorModelReason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+      "selectionReason": "Không cộng lợi nhuận từ giảm dự phòng/thu hồi giả định; giữ khoản giảm theo proxy như dự phòng thận trọng, chưa coi là dự báo khoản vay đã kiểm chứng.",
+      "priorBasePretaxVnd": "-9600562287328.503229",
+      "selectedPretaxChangeVnd": "0.000000",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-9600562287328.503229",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-9600562287328.503229",
+        "maximumVnd": "0.000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/CTG.json",
+        "sha256": "c0e077553c2786baac438bf50fb67336ac83f4fbc5067c4aed404ee0a23b91a3",
+        "jsonPointer": "/creditNormalization"
+      },
+      "additionalOperandReadingIds": []
+    },
+    {
+      "id": "CTG-recoveries-mean",
+      "pretaxVnd": "-760577500000",
+      "readingIds": [
+        "CTG-FY2025-recoveries2024",
+        "CTG-FY2025-recoveries2025"
+      ],
+      "priorModelReason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+      "selectionReason": "Không cộng lợi nhuận từ giảm dự phòng/thu hồi giả định; giữ khoản giảm theo proxy như dự phòng thận trọng, chưa coi là dự báo khoản vay đã kiểm chứng.",
+      "priorBasePretaxVnd": "-760577500000",
+      "selectedPretaxChangeVnd": "0",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-760577500000",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-760577500000",
+        "maximumVnd": "0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/CTG.json",
+        "sha256": "c0e077553c2786baac438bf50fb67336ac83f4fbc5067c4aed404ee0a23b91a3",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    },
+    {
+      "id": "CTG-investment-reversal",
+      "pretaxVnd": "-86588000000",
+      "readingIds": [
+        "CTG-FY2025-investmentRiskReversal2025"
+      ],
+      "priorModelReason": "Separate securities-income line reversal, outside total P&L credit-charge replacement; retain ordinary securities costs.",
+      "selectionReason": "Giữ phép điều chỉnh có toán hạng nguồn; lựa chọn mức hoạt động được bảo vệ riêng ở hồ sơ mã, không dùng tỷ lệ lợi nhuận mẹ/nhóm làm sở hữu.",
+      "priorBasePretaxVnd": "-86588000000",
+      "selectedPretaxChangeVnd": "0",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-86588000000",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-86588000000",
+        "maximumVnd": "0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/CTG.json",
+        "sha256": "c0e077553c2786baac438bf50fb67336ac83f4fbc5067c4aed404ee0a23b91a3",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    },
+    {
+      "id": "CTG-category-net-disposal",
+      "pretaxVnd": "-18406000000",
+      "readingIds": [
+        "CTG-FY2025-disposalGain",
+        "CTG-FY2025-disposalCost"
+      ],
+      "priorModelReason": "Category-net disposal sensitivity from matching reported income/cost captions, not proof of a single transaction or cash gain.",
+      "selectionReason": "Giữ phép điều chỉnh có toán hạng nguồn; lựa chọn mức hoạt động được bảo vệ riêng ở hồ sơ mã, không dùng tỷ lệ lợi nhuận mẹ/nhóm làm sở hữu.",
+      "priorBasePretaxVnd": "-18406000000",
+      "selectedPretaxChangeVnd": "0",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-18406000000",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-18406000000",
+        "maximumVnd": "0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/CTG.json",
+        "sha256": "c0e077553c2786baac438bf50fb67336ac83f4fbc5067c4aed404ee0a23b91a3",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    }
+  ],
+  "prudentialWorkingCaseVnd": "24138347212671.496771",
+  "taxAssumption": "0",
+  "commonIncidenceAssumption": "1",
+  "incidenceConvention": "ADVERSE_NAMED_ADJUSTMENTS_ONLY_NOT_PROVEN_TAX_OR_OWNERSHIP",
+  "namedAdjustmentIncidenceEnvelope": {
+    "minimumVnd": "24138347212671.496771",
+    "maximumVnd": "34604481000000.000000",
+    "completeEconomicBound": false,
+    "taxEndpointsAreAssumptions": true,
+    "unknownFundsIncluded": false,
+    "independentCommonIncidencePerComponent": true
+  },
+  "operatingAlternatives": [
+    {
+      "name": "BEAR",
+      "knownAxesEnvelope": {
+        "minimumVnd": "15103356765839.370964",
+        "maximumVnd": "34604481000000.000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "CTG-total-credit-proxy",
+          "pretaxVnd": "-16325216859160.629036"
+        },
+        {
+          "id": "CTG-recoveries-mean",
+          "pretaxVnd": "-3070913375000"
+        },
+        {
+          "id": "CTG-investment-reversal",
+          "pretaxVnd": "-86588000000"
+        },
+        {
+          "id": "CTG-category-net-disposal",
+          "pretaxVnd": "-18406000000"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "15103356765839.370964",
+      "incidenceEnvelope": {
+        "minimumVnd": "15103356765839.370964",
+        "maximumVnd": "34604481000000.000000",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    },
+    {
+      "name": "BASE",
+      "knownAxesEnvelope": {
+        "minimumVnd": "24138347212671.496771",
+        "maximumVnd": "34604481000000.000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "CTG-total-credit-proxy",
+          "pretaxVnd": "-9600562287328.503229"
+        },
+        {
+          "id": "CTG-recoveries-mean",
+          "pretaxVnd": "-760577500000"
+        },
+        {
+          "id": "CTG-investment-reversal",
+          "pretaxVnd": "-86588000000"
+        },
+        {
+          "id": "CTG-category-net-disposal",
+          "pretaxVnd": "-18406000000"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "24138347212671.496771",
+      "incidenceEnvelope": {
+        "minimumVnd": "24138347212671.496771",
+        "maximumVnd": "34604481000000.000000",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    },
+    {
+      "name": "BULL",
+      "knownAxesEnvelope": {
+        "minimumVnd": "28933717455770.772255",
+        "maximumVnd": "34604481000000.000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "CTG-total-credit-proxy",
+          "pretaxVnd": "-5565769544229.227745"
+        },
+        {
+          "id": "CTG-recoveries-mean",
+          "pretaxVnd": "0"
+        },
+        {
+          "id": "CTG-investment-reversal",
+          "pretaxVnd": "-86588000000"
+        },
+        {
+          "id": "CTG-category-net-disposal",
+          "pretaxVnd": "-18406000000"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "28933717455770.772255",
+      "incidenceEnvelope": {
+        "minimumVnd": "28933717455770.772255",
+        "maximumVnd": "34604481000000.000000",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    }
+  ],
+  "baseChoice": "Giữ floor tín dụng, bình quân thu hồi hai năm; tách hoàn nhập đầu tư và kết quả thanh lý ròng đã có dòng nguồn.",
+  "counterevidenceAndRemainingWork": "Floor lịch sử tạo điều chỉnh lớn; phương án quỹ mẹ có lợi nhuận năm trước và còn điều kiện phê duyệt, chưa đại diện quỹ cả nhóm.",
+  "completeCycleQualified": false,
+  "exhaustiveOneOffCoverageProven": false,
+  "sourceProfile": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/CTG.json",
+    "sha256": "c0e077553c2786baac438bf50fb67336ac83f4fbc5067c4aed404ee0a23b91a3"
+  },
+  "sourceReadings": [
+    {
+      "id": "CTG-FY2025-recoveries2024",
+      "pdfPath": "data/manual-download/CTG/CTG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "b82eeb879b667e80d0b5322969c808089fd39b83835b75dc47f9a890189fc137",
+      "href": "data/manual-download/CTG/CTG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=59",
+      "physicalPage": 59,
+      "economicPeriod": "FY2024",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "8480766",
+      "multiplier": "1000000"
+    },
+    {
+      "id": "CTG-FY2025-recoveries2025",
+      "pdfPath": "data/manual-download/CTG/CTG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "b82eeb879b667e80d0b5322969c808089fd39b83835b75dc47f9a890189fc137",
+      "href": "data/manual-download/CTG/CTG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=59",
+      "physicalPage": 59,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "10001921",
+      "multiplier": "1000000"
+    },
+    {
+      "id": "CTG-FY2025-investmentRiskReversal2025",
+      "pdfPath": "data/manual-download/CTG/CTG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "b82eeb879b667e80d0b5322969c808089fd39b83835b75dc47f9a890189fc137",
+      "href": "data/manual-download/CTG/CTG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=59",
+      "physicalPage": 59,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "86588",
+      "multiplier": "1000000"
+    },
+    {
+      "id": "CTG-FY2025-disposalGain",
+      "pdfPath": "data/manual-download/CTG/CTG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "b82eeb879b667e80d0b5322969c808089fd39b83835b75dc47f9a890189fc137",
+      "href": "data/manual-download/CTG/CTG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=59",
+      "physicalPage": 59,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "22267",
+      "multiplier": "1000000"
+    },
+    {
+      "id": "CTG-FY2025-disposalCost",
+      "pdfPath": "data/manual-download/CTG/CTG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "b82eeb879b667e80d0b5322969c808089fd39b83835b75dc47f9a890189fc137",
+      "href": "data/manual-download/CTG/CTG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=59",
+      "physicalPage": 59,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "3861",
+      "multiplier": "1000000"
+    }
+  ],
+  "reportedNumeratorEvidence": {
+    "id": "common-earnings-FY2025-CTG",
+    "ticker": "CTG",
+    "sector": "BANK",
+    "period": {
+      "start": "2025-01-01",
+      "end": "2025-12-31"
+    },
+    "sourceScope": "CONSOLIDATED",
+    "currency": "VND",
+    "declaredCurrencyUnit": "MILLION_CURRENCY",
+    "currencyMultiplier": "1000000",
+    "sourcePreDeductionProfit": "34604481",
+    "signedExplicitDeductions": null,
+    "reportedCommonProfit": "34604481",
+    "reportedCommonProfitVnd": "34604481000000",
+    "computedCommonProfitInSourceUnits": null,
+    "reconciliationDifferenceVnd": null,
+    "weightedAverageShares": "7766944637",
+    "weightedSharePrecision": "INTEGER_AS_REPORTED",
+    "weightedSharesAreCurrentOutstanding": false,
+    "reportedBasicEps": "4455",
+    "epsUnit": "VND_PER_SHARE",
+    "fundStatus": "ISSUER_UNESTIMATED",
+    "exhaustiveOneOffReviewComplete": false,
+    "economicallyNormalizedCommonEarnings": null,
+    "source": {
+      "pdfPath": "data/manual-download/CTG/CTG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "b82eeb879b667e80d0b5322969c808089fd39b83835b75dc47f9a890189fc137",
+      "page": 61,
+      "href": "data/manual-download/CTG/CTG_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=61",
+      "caption": "FY2025 current EPS-note common-owner numerator; separate from consolidated total NPAT, EPS denominator is weighted average"
+    },
+    "review": {
+      "actor": "CHATGPT",
+      "mode": "OWNER_AUTHORIZED_AI_SELF_REVIEW",
+      "reviewedAt": "2026-10-30T08:49:29.483427+00:00",
+      "fullPageImageInspected": true
+    },
+    "qualification": "REPORTED_COMMON_EARNINGS_REVIEWED_NOT_ECONOMICALLY_NORMALIZED",
+    "productionAdmissible": false
+  },
+  "accountingConflictDisposition": null,
+  "cycleReview": {
+    "history": [
+      {
+        "year": 2022,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-bf0f43969bd669ed9a6cc29b12d7724ff82823ef"
+      },
+      {
+        "year": 2023,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-fdd636116034331b70ab75f412a0f1fe1a9e38c0"
+      },
+      {
+        "year": 2024,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-7651af3c7d97e379ab78dee2218bd59258bf3ef3"
+      },
+      {
+        "year": 2025,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-b76636cd4ad776ce02cca7b942b60f6b82ba3daa"
+      }
+    ],
+    "historyPurgedOfAllOneOffs": false,
+    "cycleQualified": false,
+    "automaticScalarApplied": false,
+    "reportedMarginMinimum": null,
+    "reportedMarginMaximum": null,
+    "reason": "Historical reported margins are counterevidence, not an automatic sustainable common-earnings multiplier. Banks use explicit credit/recovery axes; mixed groups need segment cycle review."
+  },
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "acceptanceDecision": "DEFER_SUSTAINABLE_EARNINGS_ACCEPTANCE",
+  "valuationOrRnavRequiredForThisBridge": false,
+  "financialCriteriaOrWeightsChanged": false,
+  "sourceAdmissionGranted": false,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "selectedFundReviewBinding": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-03/normalization-acceptance-v1/issuers/CTG.json",
+    "sha256": "b45558e30bb167d101842b7fd12e3dfb2a362857738b006fe9064faac20cf711"
+  }
+}

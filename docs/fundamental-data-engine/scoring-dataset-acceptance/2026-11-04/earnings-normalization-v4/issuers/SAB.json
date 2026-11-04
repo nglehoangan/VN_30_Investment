@@ -1,0 +1,323 @@
+{
+  "contract": "vn30-working-earnings-bridge-v4",
+  "ticker": "SAB",
+  "period": "FY2025",
+  "analysisMode": "AS_REVISED_CURRENT_RESEARCH",
+  "scope": "CONSOLIDATED",
+  "sector": "RETAIL",
+  "classification": "CONDITIONAL_ADJUSTED_FY2025_NOT_ACCEPTED_SUSTAINABLE_EARNINGS",
+  "reportedCommonReferenceVnd": "4292511686978",
+  "referenceScope": "CONSOLIDATED",
+  "sourceCommonBridgeVnd": "4292511686978",
+  "sourceFundStatus": "ISSUER_ESTIMATED_DEDUCTION",
+  "priorAdditionalKnownFundDeductions": [],
+  "fundBridgeApplication": "ALREADY_IN_SOURCE_COMMON_BRIDGE_DO_NOT_SUBTRACT_AGAIN",
+  "changeFromV3SourceCommonBridgeVnd": "0",
+  "fundBridgeIsConditionalPlan": false,
+  "unknownAdditionalFundVnd": null,
+  "fundCompletenessProven": false,
+  "fundSensitivity": {
+    "additionalUnidentifiedFundVnd": null,
+    "unboundedMissingFund": true,
+    "commonEarningsDeltaPerAdditionalUndeductedCommonFundVnd": "-1",
+    "additionalCommonFundToErasePositiveCaseVnd": "4136871679378",
+    "namedCounterfactuals": [
+      {
+        "name": "NOMINAL_PARENT_WELFARE_REPLACES_GROUP_ESTIMATE",
+        "changeFromSelectedCaseVnd": "2028135557",
+        "resultingCaseVnd": "4138899814935",
+        "caveat": "Sai khác phạm vi/độ chính xác chưa khép; số danh nghĩa này không phải correction hoặc biên sai số làm tròn."
+      },
+      {
+        "name": "PLUS_SOCIAL_FUND_IF_ADDITIONAL_COMMON",
+        "changeFromSelectedCaseVnd": "-20971864443",
+        "resultingCaseVnd": "4115899814935",
+        "caveat": "Chỉ nếu quỹ xã hội là mất mát bổ sung chưa nằm trong P&L/quỹ EPS và thuộc mẹ."
+      }
+    ],
+    "notFinancialEventsOrApprovedCorrections": true
+  },
+  "selectedPretaxAdjustments": [
+    {
+      "id": "SAB-bargain-purchase",
+      "pretaxVnd": "-136951010278",
+      "readingIds": [
+        "SAB-FY2025-bargainPurchaseGain"
+      ],
+      "priorModelReason": "Remove acquisition-specific bargain gain; tax exemption and common attribution are not individually proven.",
+      "selectionReason": "Loại hết khoản hoàn nhập chưa chứng minh lặp lại; không chọn 50% chỉ vì ở giữa hai kịch bản.",
+      "priorBasePretaxVnd": "-136951010278",
+      "selectedPretaxChangeVnd": "0",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-136951010278",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-136951010278",
+        "maximumVnd": "0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/SAB.json",
+        "sha256": "301d500aa0023325e41273bd38d79397c37123052fbb0d33baea508939151cb0",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    },
+    {
+      "id": "SAB-investment-reversal",
+      "pretaxVnd": "-18688997322",
+      "readingIds": [
+        "SAB-FY2025-longTermInvestmentProvisionReversal"
+      ],
+      "priorModelReason": "Remove provision reversal; retain investment loss and normal deposit interest.",
+      "selectionReason": "Loại hết khoản hoàn nhập chưa chứng minh lặp lại; không chọn 50% chỉ vì ở giữa hai kịch bản.",
+      "priorBasePretaxVnd": "-9344498661",
+      "selectedPretaxChangeVnd": "-9344498661",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-18688997322",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-18688997322",
+        "maximumVnd": "0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/SAB.json",
+        "sha256": "301d500aa0023325e41273bd38d79397c37123052fbb0d33baea508939151cb0",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    }
+  ],
+  "prudentialWorkingCaseVnd": "4136871679378",
+  "taxAssumption": "0",
+  "commonIncidenceAssumption": "1",
+  "incidenceConvention": "ADVERSE_NAMED_ADJUSTMENTS_ONLY_NOT_PROVEN_TAX_OR_OWNERSHIP",
+  "namedAdjustmentIncidenceEnvelope": {
+    "minimumVnd": "4136871679378",
+    "maximumVnd": "4292511686978",
+    "completeEconomicBound": false,
+    "taxEndpointsAreAssumptions": true,
+    "unknownFundsIncluded": false,
+    "independentCommonIncidencePerComponent": true
+  },
+  "operatingAlternatives": [
+    {
+      "name": "BEAR",
+      "knownAxesEnvelope": {
+        "minimumVnd": "4136871679378",
+        "maximumVnd": "4292511686978",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "SAB-bargain-purchase",
+          "pretaxVnd": "-136951010278"
+        },
+        {
+          "id": "SAB-investment-reversal",
+          "pretaxVnd": "-18688997322"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "4136871679378",
+      "incidenceEnvelope": {
+        "minimumVnd": "4136871679378",
+        "maximumVnd": "4292511686978",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    },
+    {
+      "name": "BASE",
+      "knownAxesEnvelope": {
+        "minimumVnd": "4136871679378",
+        "maximumVnd": "4292511686978",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "SAB-bargain-purchase",
+          "pretaxVnd": "-136951010278"
+        },
+        {
+          "id": "SAB-investment-reversal",
+          "pretaxVnd": "-18688997322"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "4136871679378",
+      "incidenceEnvelope": {
+        "minimumVnd": "4136871679378",
+        "maximumVnd": "4292511686978",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    },
+    {
+      "name": "BULL",
+      "knownAxesEnvelope": {
+        "minimumVnd": "4136871679378",
+        "maximumVnd": "4292511686978",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "SAB-bargain-purchase",
+          "pretaxVnd": "-136951010278"
+        },
+        {
+          "id": "SAB-investment-reversal",
+          "pretaxVnd": "-18688997322"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "4136871679378",
+      "incidenceEnvelope": {
+        "minimumVnd": "4136871679378",
+        "maximumVnd": "4292511686978",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    }
+  ],
+  "baseChoice": "Loại lãi mua rẻ và 100% hoàn nhập dự phòng đầu tư; giữ lãi tiền gửi và chi phí đầu tư.",
+  "counterevidenceAndRemainingWork": "Thuế/NCI thương vụ chưa xác định. Phương án quỹ mẹ làm tròn và quỹ xã hội chưa đối chiếu với EPS hợp nhất chính xác.",
+  "completeCycleQualified": false,
+  "exhaustiveOneOffCoverageProven": false,
+  "sourceProfile": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/SAB.json",
+    "sha256": "301d500aa0023325e41273bd38d79397c37123052fbb0d33baea508939151cb0"
+  },
+  "sourceReadings": [
+    {
+      "id": "SAB-FY2025-bargainPurchaseGain",
+      "pdfPath": "data/manual-download/SAB/SAB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "0b37b3befea0bebb3f43740a56cc5935fb81de2692d4339a18cf354910cc0433",
+      "href": "data/manual-download/SAB/SAB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=68",
+      "physicalPage": 68,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "VND",
+      "nativeValue": "136951010278",
+      "multiplier": "1"
+    },
+    {
+      "id": "SAB-FY2025-longTermInvestmentProvisionReversal",
+      "pdfPath": "data/manual-download/SAB/SAB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "0b37b3befea0bebb3f43740a56cc5935fb81de2692d4339a18cf354910cc0433",
+      "href": "data/manual-download/SAB/SAB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=67",
+      "physicalPage": 67,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "VND",
+      "nativeValue": "18688997322",
+      "multiplier": "1"
+    }
+  ],
+  "reportedNumeratorEvidence": {
+    "id": "common-earnings-FY2025-SAB",
+    "ticker": "SAB",
+    "sector": "RETAIL",
+    "period": {
+      "start": "2025-01-01",
+      "end": "2025-12-31"
+    },
+    "sourceScope": "CONSOLIDATED",
+    "currency": "VND",
+    "declaredCurrencyUnit": "CURRENCY",
+    "currencyMultiplier": "1",
+    "sourcePreDeductionProfit": "4423539822535",
+    "signedExplicitDeductions": [
+      "-131028135557"
+    ],
+    "reportedCommonProfit": "4292511686978",
+    "reportedCommonProfitVnd": "4292511686978",
+    "computedCommonProfitInSourceUnits": "4292511686978",
+    "reconciliationDifferenceVnd": "0",
+    "weightedAverageShares": "1282562372",
+    "weightedSharePrecision": "INTEGER_AS_REPORTED",
+    "weightedSharesAreCurrentOutstanding": false,
+    "reportedBasicEps": "3347",
+    "epsUnit": "VND_PER_SHARE",
+    "fundStatus": "ISSUER_ESTIMATED_DEDUCTION",
+    "exhaustiveOneOffReviewComplete": false,
+    "economicallyNormalizedCommonEarnings": null,
+    "source": {
+      "pdfPath": "data/manual-download/SAB/SAB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "0b37b3befea0bebb3f43740a56cc5935fb81de2692d4339a18cf354910cc0433",
+      "page": 70,
+      "href": "data/manual-download/SAB/SAB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=70",
+      "caption": "FY2025 current EPS-note common-owner numerator; separate from consolidated total NPAT, EPS denominator is weighted average"
+    },
+    "review": {
+      "actor": "CHATGPT",
+      "mode": "OWNER_AUTHORIZED_AI_SELF_REVIEW",
+      "reviewedAt": "2026-10-30T08:49:29.483427+00:00",
+      "fullPageImageInspected": true
+    },
+    "qualification": "REPORTED_COMMON_EARNINGS_REVIEWED_NOT_ECONOMICALLY_NORMALIZED",
+    "productionAdmissible": false,
+    "additionalEvidencePages": [
+      71
+    ]
+  },
+  "accountingConflictDisposition": null,
+  "cycleReview": {
+    "history": [
+      {
+        "year": 2022,
+        "reportedGroupNetMargin": "0.157231",
+        "revenueObservationId": "review-observation-57871e2cb7c4b307d16872557c91dd1312b76c9d",
+        "profitObservationId": "review-observation-64ee337aff11d61c8573ad8beca528fa47b42ac6"
+      },
+      {
+        "year": 2023,
+        "reportedGroupNetMargin": "0.139687",
+        "revenueObservationId": "review-observation-e027644d7d430e0f3e3d7c589a7603d99b596b2b",
+        "profitObservationId": "review-observation-6e9756c7ee1e3fb64fae48fc009210c50cd123da"
+      },
+      {
+        "year": 2024,
+        "reportedGroupNetMargin": "0.141024",
+        "revenueObservationId": "review-observation-95aec38d775d9c22ed95edaaf40ca1cee46fabbd",
+        "profitObservationId": "review-observation-f5352df50639c756dd37a015a6e12170071a76f5"
+      },
+      {
+        "year": 2025,
+        "reportedGroupNetMargin": "0.176649",
+        "revenueObservationId": "review-observation-4b2779e3419f5e8cd27f4f41ebe2a39b854c23e2",
+        "profitObservationId": "review-observation-61dfda004f761f14e8c2c51d9bdbcb6163b5b167"
+      }
+    ],
+    "historyPurgedOfAllOneOffs": false,
+    "cycleQualified": false,
+    "automaticScalarApplied": false,
+    "reportedMarginMinimum": "0.139687",
+    "reportedMarginMaximum": "0.176649",
+    "reason": "Historical reported margins are counterevidence, not an automatic sustainable common-earnings multiplier. Banks use explicit credit/recovery axes; mixed groups need segment cycle review."
+  },
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "acceptanceDecision": "DEFER_SUSTAINABLE_EARNINGS_ACCEPTANCE",
+  "valuationOrRnavRequiredForThisBridge": false,
+  "financialCriteriaOrWeightsChanged": false,
+  "sourceAdmissionGranted": false,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "selectedFundReviewBinding": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-03/normalization-acceptance-v1/issuers/SAB.json",
+    "sha256": "0ab1d92cc81d44ff0af925a53f30fa36958638d9cd25cda9068bea8cd9d076be"
+  }
+}

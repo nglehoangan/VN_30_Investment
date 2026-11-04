@@ -1,0 +1,275 @@
+{
+  "contract": "vn30-working-earnings-bridge-v4",
+  "ticker": "VNM",
+  "period": "FY2025",
+  "analysisMode": "AS_REVISED_CURRENT_RESEARCH",
+  "scope": "STANDALONE",
+  "sector": "RETAIL",
+  "classification": "CONDITIONAL_ADJUSTED_FY2025_NOT_ACCEPTED_SUSTAINABLE_EARNINGS",
+  "reportedCommonReferenceVnd": "8417384067829",
+  "referenceScope": "CONSOLIDATED",
+  "sourceCommonBridgeVnd": "8423414672066",
+  "sourceFundStatus": "REPORTED_DEDUCTED",
+  "priorAdditionalKnownFundDeductions": [],
+  "fundBridgeApplication": "ALREADY_IN_SOURCE_COMMON_BRIDGE_DO_NOT_SUBTRACT_AGAIN",
+  "changeFromV3SourceCommonBridgeVnd": "6030604237",
+  "fundBridgeIsConditionalPlan": false,
+  "unknownAdditionalFundVnd": null,
+  "fundCompletenessProven": false,
+  "fundSensitivity": {
+    "additionalUnidentifiedFundVnd": null,
+    "commonEarningsDeltaPerAdditionalUndeductedCommonFundVnd": "-1"
+  },
+  "selectedPretaxAdjustments": [
+    {
+      "id": "VNM-net-disposal",
+      "pretaxVnd": "-6136383841",
+      "operandBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-30/b6-underwriting-r4/vnm-specific-adjustment-input.json",
+        "sha256": "1674161afafd35b6f2c6437c799baedc5b0b340dc76252295920ff948a8ad834",
+        "jsonPointer": "/disposalIncomeFY2025"
+      },
+      "subtractOperandPointer": "/disposedAssetCarryingFY2025"
+    },
+    {
+      "id": "VNM-other-finance-credit-to-zero",
+      "pretaxVnd": "-47683067251",
+      "operandBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-30/b6-underwriting-r4/vnm-specific-adjustment-input.json",
+        "sha256": "1674161afafd35b6f2c6437c799baedc5b0b340dc76252295920ff948a8ad834",
+        "jsonPointer": "/signedOtherFinanceCostByYear/2025"
+      }
+    }
+  ],
+  "prudentialWorkingCaseVnd": "8369595220974",
+  "taxAssumption": "0",
+  "commonIncidenceAssumption": "1",
+  "incidenceConvention": "ADVERSE_NAMED_ADJUSTMENTS_ONLY_NOT_PROVEN_TAX_OR_OWNERSHIP",
+  "namedAdjustmentIncidenceEnvelope": {
+    "minimumVnd": "8369595220974",
+    "maximumVnd": "8380359111192.4",
+    "completeEconomicBound": false,
+    "taxEndpointsAreAssumptions": true,
+    "unknownFundsIncluded": false,
+    "independentCommonIncidencePerComponent": true
+  },
+  "operatingAlternatives": [
+    {
+      "name": "RETAIN_FINANCE_CREDIT",
+      "adjustments": [
+        {
+          "id": "VNM-net-disposal",
+          "pretaxVnd": "-6136383841",
+          "operandBinding": {
+            "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-30/b6-underwriting-r4/vnm-specific-adjustment-input.json",
+            "sha256": "1674161afafd35b6f2c6437c799baedc5b0b340dc76252295920ff948a8ad834",
+            "jsonPointer": "/disposalIncomeFY2025"
+          },
+          "subtractOperandPointer": "/disposedAssetCarryingFY2025"
+        }
+      ],
+      "valueAtAdverseIncidenceVnd": "8417278288225",
+      "incidenceEnvelope": {
+        "minimumVnd": "8417278288225",
+        "maximumVnd": "8418505564993.2",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    },
+    {
+      "name": "REPEAT_2024_FINANCE_EXPENSE",
+      "adjustments": [
+        {
+          "id": "VNM-net-disposal",
+          "pretaxVnd": "-6136383841",
+          "operandBinding": {
+            "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-30/b6-underwriting-r4/vnm-specific-adjustment-input.json",
+            "sha256": "1674161afafd35b6f2c6437c799baedc5b0b340dc76252295920ff948a8ad834",
+            "jsonPointer": "/disposalIncomeFY2025"
+          },
+          "subtractOperandPointer": "/disposedAssetCarryingFY2025"
+        },
+        {
+          "id": "VNM-other-finance",
+          "pretaxVnd": "-100366317251"
+        }
+      ],
+      "valueAtAdverseIncidenceVnd": "8316911970974",
+      "incidenceEnvelope": {
+        "minimumVnd": "8316911970974",
+        "maximumVnd": "8338212511192.4",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    }
+  ],
+  "baseChoice": "Dùng báo cáo riêng: giữ quỹ đã trích, loại lãi thanh lý ròng và đưa khoản ghi có chi phí tài chính khác về 0. Giữ hỗ trợ nhà cung cấp lặp lại.",
+  "counterevidenceAndRemainingWork": "Không dùng thuế hợp nhất/NCI cho báo cáo riêng; không tái tính quỹ 10% trên lợi nhuận mô hình. Tính bền vững của khoản tài chính khác còn mở.",
+  "completeCycleQualified": false,
+  "exhaustiveOneOffCoverageProven": false,
+  "sourceProfile": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/VNM.json",
+    "sha256": "ade10b32cacfc5440311b0e82e7f220497178c80b1f0285fc8f74eda469685bf"
+  },
+  "sourceReadings": [
+    {
+      "source": {
+        "pdfPath": "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf",
+        "sha256": "4541aaf79e96f343bf277bde2101c304ae8283836f0aad65427fbef1bde5f06d",
+        "pages": [
+          10,
+          11,
+          12,
+          26,
+          41,
+          43,
+          47,
+          49,
+          50
+        ],
+        "hrefs": [
+          "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=10",
+          "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=11",
+          "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=12",
+          "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=26",
+          "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=41",
+          "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=43",
+          "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=47",
+          "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=49",
+          "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=50"
+        ],
+        "review": {
+          "actor": "CHATGPT",
+          "fullPageImagesInspected": true,
+          "reviewedAt": "2026-10-30T13:05:59.536723+00:00"
+        }
+      },
+      "binding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-30/b6-underwriting-r4/vnm-parent-owner-cash-input.json",
+        "sha256": "470feaca93f119e58e686915cbb8350646a1caaccc883d5b9ec8c51ed65e3358"
+      }
+    },
+    {
+      "source": {
+        "pdfPath": "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf",
+        "sha256": "4541aaf79e96f343bf277bde2101c304ae8283836f0aad65427fbef1bde5f06d",
+        "pages": [
+          26,
+          47,
+          49,
+          50
+        ],
+        "hrefs": [
+          "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=26",
+          "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=47",
+          "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=49",
+          "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=50"
+        ],
+        "review": {
+          "actor": "CHATGPT",
+          "fullPageImagesInspected": true,
+          "reviewedAt": "2026-10-30T13:05:59.552659+00:00"
+        }
+      },
+      "binding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-30/b6-underwriting-r4/vnm-specific-adjustment-input.json",
+        "sha256": "1674161afafd35b6f2c6437c799baedc5b0b340dc76252295920ff948a8ad834"
+      }
+    }
+  ],
+  "reportedNumeratorEvidence": {
+    "id": "common-earnings-FY2025-VNM",
+    "ticker": "VNM",
+    "sector": "RETAIL",
+    "period": {
+      "start": "2025-01-01",
+      "end": "2025-12-31"
+    },
+    "sourceScope": "CONSOLIDATED",
+    "currency": "VND",
+    "declaredCurrencyUnit": "CURRENCY",
+    "currencyMultiplier": "1",
+    "sourcePreDeductionProfit": "9410201646692",
+    "signedExplicitDeductions": [
+      "-992817578863"
+    ],
+    "reportedCommonProfit": "8417384067829",
+    "reportedCommonProfitVnd": "8417384067829",
+    "computedCommonProfitInSourceUnits": "8417384067829",
+    "reconciliationDifferenceVnd": "0",
+    "weightedAverageShares": "2089955445",
+    "weightedSharePrecision": "INTEGER_AS_REPORTED",
+    "weightedSharesAreCurrentOutstanding": false,
+    "reportedBasicEps": null,
+    "epsUnit": "VND_PER_SHARE",
+    "fundStatus": "REPORTED_DEDUCTED",
+    "exhaustiveOneOffReviewComplete": false,
+    "economicallyNormalizedCommonEarnings": null,
+    "source": {
+      "pdfPath": "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "ee996ffcb87f0699a59c20b102082666f6716fcf9be8ee314ad2de055f79c940",
+      "page": 60,
+      "href": "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=60",
+      "caption": "FY2025 current EPS-note common-owner numerator; separate from consolidated total NPAT, EPS denominator is weighted average"
+    },
+    "review": {
+      "actor": "CHATGPT",
+      "mode": "OWNER_AUTHORIZED_AI_SELF_REVIEW",
+      "reviewedAt": "2026-10-30T08:49:29.483427+00:00",
+      "fullPageImageInspected": true
+    },
+    "qualification": "REPORTED_COMMON_EARNINGS_REVIEWED_NOT_ECONOMICALLY_NORMALIZED",
+    "productionAdmissible": false,
+    "epsPresence": "NOT_PRINTED_ON_THIS_NOTE_PAGE_NO_INFERENCE"
+  },
+  "accountingConflictDisposition": null,
+  "cycleReview": {
+    "history": [
+      {
+        "year": 2022,
+        "reportedGroupNetMargin": "0.143064",
+        "revenueObservationId": "review-observation-9637138391d1daf9558f2d6533cbb3d828ec67db",
+        "profitObservationId": "review-observation-4fd76641a934bf865c4084e3761584eae3110066"
+      },
+      {
+        "year": 2023,
+        "reportedGroupNetMargin": "0.149404",
+        "revenueObservationId": "review-observation-fab5cbee14a226483fae01eeb33cf3b9665485bc",
+        "profitObservationId": "review-observation-7e0b13d09772811ed8fa4e583f2db83c30d99fbb"
+      },
+      {
+        "year": 2024,
+        "reportedGroupNetMargin": "0.153002",
+        "revenueObservationId": "review-observation-2094e0bcc6eab0ab1d0035fd5e1af094e9f60983",
+        "profitObservationId": "review-observation-988095d88df54ccbff77b6d1dde1719cc8aed303"
+      },
+      {
+        "year": 2025,
+        "reportedGroupNetMargin": "0.147906",
+        "revenueObservationId": "review-observation-e3f2337bbb00b0ac9a289276c1666cbd656dc192",
+        "profitObservationId": "review-observation-aace8479874dc1e39c4f2cf50894a0ca637759cb"
+      }
+    ],
+    "historyPurgedOfAllOneOffs": false,
+    "cycleQualified": false,
+    "automaticScalarApplied": false,
+    "reportedMarginMinimum": "0.143064",
+    "reportedMarginMaximum": "0.153002",
+    "reason": "Historical reported margins are counterevidence, not an automatic sustainable common-earnings multiplier. Banks use explicit credit/recovery axes; mixed groups need segment cycle review."
+  },
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "acceptanceDecision": "DEFER_SUSTAINABLE_EARNINGS_ACCEPTANCE",
+  "valuationOrRnavRequiredForThisBridge": false,
+  "financialCriteriaOrWeightsChanged": false,
+  "sourceAdmissionGranted": false,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "standaloneFundAccruedDeductedOnceVnd": "935934963563",
+  "consolidatedReferenceIsNotModelInput": true
+}

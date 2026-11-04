@@ -1,0 +1,412 @@
+{
+  "contract": "vn30-working-earnings-bridge-v4",
+  "ticker": "VPB",
+  "period": "FY2025",
+  "analysisMode": "AS_REVISED_CURRENT_RESEARCH",
+  "scope": "CONSOLIDATED",
+  "sector": "BANK",
+  "classification": "CONDITIONAL_ADJUSTED_FY2025_NOT_ACCEPTED_SUSTAINABLE_EARNINGS",
+  "reportedCommonReferenceVnd": "23989930000000",
+  "referenceScope": "CONSOLIDATED",
+  "sourceCommonBridgeVnd": "23789930000000",
+  "sourceFundStatus": "EXPLICIT_COMMON",
+  "priorAdditionalKnownFundDeductions": [],
+  "fundBridgeApplication": "ALREADY_IN_SOURCE_COMMON_BRIDGE_DO_NOT_SUBTRACT_AGAIN",
+  "changeFromV3SourceCommonBridgeVnd": "-200000000000",
+  "fundBridgeIsConditionalPlan": true,
+  "unknownAdditionalFundVnd": null,
+  "fundCompletenessProven": false,
+  "fundSensitivity": {
+    "additionalUnidentifiedFundVnd": null,
+    "unboundedMissingFund": true,
+    "commonEarningsDeltaPerAdditionalUndeductedCommonFundVnd": "-1",
+    "additionalCommonFundToErasePositiveCaseVnd": "17254629532510.164139",
+    "namedCounterfactuals": [],
+    "notFinancialEventsOrApprovedCorrections": true
+  },
+  "selectedPretaxAdjustments": [
+    {
+      "id": "VPB-total-credit-proxy",
+      "pretaxVnd": "-6420863967489.835861",
+      "readingIds": [],
+      "priorModelReason": "Replace total P&L credit charge, never label this loan-only provisioning.",
+      "selectionReason": "Không cộng lợi nhuận từ giảm dự phòng/thu hồi giả định; giữ khoản giảm theo proxy như dự phòng thận trọng, chưa coi là dự báo khoản vay đã kiểm chứng.",
+      "priorBasePretaxVnd": "-6420863967489.835861",
+      "selectedPretaxChangeVnd": "0.000000",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-6420863967489.835861",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-6420863967489.835861",
+        "maximumVnd": "0.000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/VPB.json",
+        "sha256": "2885823be1e62de7d4224144e8d2b9a8f23090fca6321dab19e95b6fe058a66c",
+        "jsonPointer": "/creditNormalization"
+      },
+      "additionalOperandReadingIds": []
+    },
+    {
+      "id": "VPB-recoveries-mean",
+      "pretaxVnd": "-68851500000",
+      "readingIds": [
+        "VPB-FY2025-recoveries2024",
+        "VPB-FY2025-recoveries2025"
+      ],
+      "priorModelReason": "Two-year gross recovery mean sensitivity; reported collection expenses remain, not a full recovery cycle.",
+      "selectionReason": "Không cộng lợi nhuận từ giảm dự phòng/thu hồi giả định; giữ khoản giảm theo proxy như dự phòng thận trọng, chưa coi là dự báo khoản vay đã kiểm chứng.",
+      "priorBasePretaxVnd": "-68851500000",
+      "selectedPretaxChangeVnd": "0",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-68851500000",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-68851500000",
+        "maximumVnd": "0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/VPB.json",
+        "sha256": "2885823be1e62de7d4224144e8d2b9a8f23090fca6321dab19e95b6fe058a66c",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    },
+    {
+      "id": "VPB-investment-reversal",
+      "pretaxVnd": "-38437000000",
+      "readingIds": [
+        "VPB-FY2025-investmentRiskReversal2025"
+      ],
+      "priorModelReason": "Separate securities-income line reversal, outside total P&L credit-charge replacement; retain ordinary securities costs.",
+      "selectionReason": "Giữ phép điều chỉnh có toán hạng nguồn; lựa chọn mức hoạt động được bảo vệ riêng ở hồ sơ mã, không dùng tỷ lệ lợi nhuận mẹ/nhóm làm sở hữu.",
+      "priorBasePretaxVnd": "-38437000000",
+      "selectedPretaxChangeVnd": "0",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-38437000000",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-38437000000",
+        "maximumVnd": "0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/VPB.json",
+        "sha256": "2885823be1e62de7d4224144e8d2b9a8f23090fca6321dab19e95b6fe058a66c",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    },
+    {
+      "id": "VPB-category-net-disposal",
+      "pretaxVnd": "-7148000000",
+      "readingIds": [
+        "VPB-FY2025-disposalGain",
+        "VPB-FY2025-disposalCost"
+      ],
+      "priorModelReason": "Category-net disposal sensitivity from matching reported income/cost captions, not proof of a single transaction or cash gain.",
+      "selectionReason": "Giữ phép điều chỉnh có toán hạng nguồn; lựa chọn mức hoạt động được bảo vệ riêng ở hồ sơ mã, không dùng tỷ lệ lợi nhuận mẹ/nhóm làm sở hữu.",
+      "priorBasePretaxVnd": "-7148000000",
+      "selectedPretaxChangeVnd": "0",
+      "selectionIsAnalystJudgment": true,
+      "selectedAfterTaxCommonDeltaVnd": "-7148000000",
+      "selectedDeltaIncidenceEnvelope": {
+        "minimumVnd": "-7148000000",
+        "maximumVnd": "0",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "derivationBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/VPB.json",
+        "sha256": "2885823be1e62de7d4224144e8d2b9a8f23090fca6321dab19e95b6fe058a66c",
+        "jsonPointer": "/scenarios"
+      },
+      "additionalOperandReadingIds": []
+    }
+  ],
+  "prudentialWorkingCaseVnd": "17254629532510.164139",
+  "taxAssumption": "0",
+  "commonIncidenceAssumption": "1",
+  "incidenceConvention": "ADVERSE_NAMED_ADJUSTMENTS_ONLY_NOT_PROVEN_TAX_OR_OWNERSHIP",
+  "namedAdjustmentIncidenceEnvelope": {
+    "minimumVnd": "17254629532510.164139",
+    "maximumVnd": "23789930000000.000000",
+    "completeEconomicBound": false,
+    "taxEndpointsAreAssumptions": true,
+    "unknownFundsIncluded": false,
+    "independentCommonIncidencePerComponent": true
+  },
+  "operatingAlternatives": [
+    {
+      "name": "BEAR",
+      "knownAxesEnvelope": {
+        "minimumVnd": "7888841915637.705174",
+        "maximumVnd": "23789930000000.000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "VPB-total-credit-proxy",
+          "pretaxVnd": "-14375717209362.294826"
+        },
+        {
+          "id": "VPB-recoveries-mean",
+          "pretaxVnd": "-1479785875000"
+        },
+        {
+          "id": "VPB-investment-reversal",
+          "pretaxVnd": "-38437000000"
+        },
+        {
+          "id": "VPB-category-net-disposal",
+          "pretaxVnd": "-7148000000"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "7888841915637.705174",
+      "incidenceEnvelope": {
+        "minimumVnd": "7888841915637.705174",
+        "maximumVnd": "23789930000000.000000",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    },
+    {
+      "name": "BASE",
+      "knownAxesEnvelope": {
+        "minimumVnd": "17254629532510.164139",
+        "maximumVnd": "23789930000000.000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "VPB-total-credit-proxy",
+          "pretaxVnd": "-6420863967489.835861"
+        },
+        {
+          "id": "VPB-recoveries-mean",
+          "pretaxVnd": "-68851500000"
+        },
+        {
+          "id": "VPB-investment-reversal",
+          "pretaxVnd": "-38437000000"
+        },
+        {
+          "id": "VPB-category-net-disposal",
+          "pretaxVnd": "-7148000000"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "17254629532510.164139",
+      "incidenceEnvelope": {
+        "minimumVnd": "17254629532510.164139",
+        "maximumVnd": "23789930000000.000000",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    },
+    {
+      "name": "BULL",
+      "knownAxesEnvelope": {
+        "minimumVnd": "22096392977633.639518",
+        "maximumVnd": "23789930000000.000000",
+        "coversOnlyNamedAdjustmentsAndAssumedIncidences": true,
+        "completeEconomicOrFundBound": false
+      },
+      "adjustments": [
+        {
+          "id": "VPB-total-credit-proxy",
+          "pretaxVnd": "-1647952022366.360482"
+        },
+        {
+          "id": "VPB-recoveries-mean",
+          "pretaxVnd": "0"
+        },
+        {
+          "id": "VPB-investment-reversal",
+          "pretaxVnd": "-38437000000"
+        },
+        {
+          "id": "VPB-category-net-disposal",
+          "pretaxVnd": "-7148000000"
+        }
+      ],
+      "selectedPolicyApplied": true,
+      "fullCycleQualified": false,
+      "valueAtAdverseIncidenceVnd": "22096392977633.639518",
+      "incidenceEnvelope": {
+        "minimumVnd": "22096392977633.639518",
+        "maximumVnd": "23789930000000.000000",
+        "completeEconomicBound": false,
+        "taxEndpointsAreAssumptions": true,
+        "unknownFundsIncluded": false,
+        "independentCommonIncidencePerComponent": true
+      }
+    }
+  ],
+  "baseChoice": "Floor tín dụng toàn nhóm, giảm thu hồi hai năm, loại hoàn nhập và kết quả thanh lý ròng; trừ quỹ thưởng/phúc lợi 200 tỷ.",
+  "counterevidenceAndRemainingWork": "Cơ cấu ngân hàng/tài chính tiêu dùng thay đổi; floor theo tài sản tổng vẫn là giả định trọng yếu chưa được kiểm chứng.",
+  "completeCycleQualified": false,
+  "exhaustiveOneOffCoverageProven": false,
+  "sourceProfile": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/earnings-normalization-v3/issuers/VPB.json",
+    "sha256": "2885823be1e62de7d4224144e8d2b9a8f23090fca6321dab19e95b6fe058a66c"
+  },
+  "sourceReadings": [
+    {
+      "id": "VPB-FY2025-recoveries2024",
+      "pdfPath": "data/manual-download/VPB/VPB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "f3298c72cbe58af1eefd8223d235843138761a45648cd7e60c5153ad21776ea0",
+      "href": "data/manual-download/VPB/VPB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=71",
+      "physicalPage": 71,
+      "economicPeriod": "FY2024",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "5574886",
+      "multiplier": "1000000"
+    },
+    {
+      "id": "VPB-FY2025-recoveries2025",
+      "pdfPath": "data/manual-download/VPB/VPB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "f3298c72cbe58af1eefd8223d235843138761a45648cd7e60c5153ad21776ea0",
+      "href": "data/manual-download/VPB/VPB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=71",
+      "physicalPage": 71,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "5712589",
+      "multiplier": "1000000"
+    },
+    {
+      "id": "VPB-FY2025-investmentRiskReversal2025",
+      "pdfPath": "data/manual-download/VPB/VPB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "f3298c72cbe58af1eefd8223d235843138761a45648cd7e60c5153ad21776ea0",
+      "href": "data/manual-download/VPB/VPB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=70",
+      "physicalPage": 70,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "38437",
+      "multiplier": "1000000"
+    },
+    {
+      "id": "VPB-FY2025-disposalGain",
+      "pdfPath": "data/manual-download/VPB/VPB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "f3298c72cbe58af1eefd8223d235843138761a45648cd7e60c5153ad21776ea0",
+      "href": "data/manual-download/VPB/VPB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=71",
+      "physicalPage": 71,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "9349",
+      "multiplier": "1000000"
+    },
+    {
+      "id": "VPB-FY2025-disposalCost",
+      "pdfPath": "data/manual-download/VPB/VPB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "f3298c72cbe58af1eefd8223d235843138761a45648cd7e60c5153ad21776ea0",
+      "href": "data/manual-download/VPB/VPB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=71",
+      "physicalPage": 71,
+      "economicPeriod": "FY2025",
+      "sourceUnit": "MILLION_VND",
+      "nativeValue": "2201",
+      "multiplier": "1000000"
+    }
+  ],
+  "reportedNumeratorEvidence": {
+    "id": "common-earnings-FY2025-VPB",
+    "ticker": "VPB",
+    "sector": "BANK",
+    "period": {
+      "start": "2025-01-01",
+      "end": "2025-12-31"
+    },
+    "sourceScope": "CONSOLIDATED",
+    "currency": "VND",
+    "declaredCurrencyUnit": "MILLION_CURRENCY",
+    "currencyMultiplier": "1000000",
+    "sourcePreDeductionProfit": null,
+    "signedExplicitDeductions": null,
+    "reportedCommonProfit": "23989930",
+    "reportedCommonProfitVnd": "23989930000000",
+    "computedCommonProfitInSourceUnits": null,
+    "reconciliationDifferenceVnd": null,
+    "weightedAverageShares": "7933923601",
+    "weightedSharePrecision": "INTEGER_AS_REPORTED",
+    "weightedSharesAreCurrentOutstanding": false,
+    "reportedBasicEps": "3024",
+    "epsUnit": "VND_PER_SHARE",
+    "fundStatus": "EXPLICIT_COMMON",
+    "exhaustiveOneOffReviewComplete": false,
+    "economicallyNormalizedCommonEarnings": null,
+    "source": {
+      "pdfPath": "data/manual-download/VPB/VPB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+      "sha256": "f3298c72cbe58af1eefd8223d235843138761a45648cd7e60c5153ad21776ea0",
+      "page": 67,
+      "href": "data/manual-download/VPB/VPB_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf#page=67",
+      "caption": "FY2025 current EPS-note common-owner numerator; separate from consolidated total NPAT, EPS denominator is weighted average"
+    },
+    "review": {
+      "actor": "CHATGPT",
+      "mode": "OWNER_AUTHORIZED_AI_SELF_REVIEW",
+      "reviewedAt": "2026-10-30T08:49:29.483427+00:00",
+      "fullPageImageInspected": true
+    },
+    "qualification": "REPORTED_COMMON_EARNINGS_REVIEWED_NOT_ECONOMICALLY_NORMALIZED",
+    "productionAdmissible": false
+  },
+  "accountingConflictDisposition": null,
+  "cycleReview": {
+    "history": [
+      {
+        "year": 2022,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-e676346508d6956bc8c9b55226cf070c59fefbd8"
+      },
+      {
+        "year": 2023,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "b6r3-observation-596fa31aa50fee8d20969fcffda5a3ab6663"
+      },
+      {
+        "year": 2024,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-a5ae08b480104c9f3d28d6778faa9dd659e4c366"
+      },
+      {
+        "year": 2025,
+        "reportedGroupNetMargin": null,
+        "revenueObservationId": null,
+        "profitObservationId": "review-observation-27962dd4962d6879d6deea0ae0e961e4de6ee154"
+      }
+    ],
+    "historyPurgedOfAllOneOffs": false,
+    "cycleQualified": false,
+    "automaticScalarApplied": false,
+    "reportedMarginMinimum": null,
+    "reportedMarginMaximum": null,
+    "reason": "Historical reported margins are counterevidence, not an automatic sustainable common-earnings multiplier. Banks use explicit credit/recovery axes; mixed groups need segment cycle review."
+  },
+  "acceptedNormalizedCommonEarningsVnd": null,
+  "acceptedEps": null,
+  "acceptanceDecision": "DEFER_SUSTAINABLE_EARNINGS_ACCEPTANCE",
+  "valuationOrRnavRequiredForThisBridge": false,
+  "financialCriteriaOrWeightsChanged": false,
+  "sourceAdmissionGranted": false,
+  "productionScoringAuthorized": false,
+  "navAuthorized": false,
+  "tradingAuthorized": false,
+  "selectedFundReviewBinding": {
+    "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-03/normalization-acceptance-v1/issuers/VPB.json",
+    "sha256": "3b6e81aae105bd8343a4db2c277e2a850743c0f630053a492f03d218102b57c5"
+  }
+}
