@@ -1,0 +1,1090 @@
+{
+  "preparedAt": "2026-11-05T06:46:24.572201+00:00",
+  "inspectionHash": "73d6882918cbc912fc97aea62ffe55650abaadfb2b99c7b467ca6aa8b884553b",
+  "actor": "CHATGPT",
+  "independentHumanReviewClaimed": false,
+  "batchOrder": [
+    "FOUR_ANALYST_PENDING",
+    "ADDITIONAL_TOPIC_READY"
+  ],
+  "assessments": [
+    {
+      "id": "FPT:RG-UNC",
+      "ticker": "FPT",
+      "subcategory": "RG-UNC",
+      "assessment": "High uncertainty",
+      "selectedPoints": 0,
+      "source": "AI",
+      "analyst": "CHATGPT",
+      "methodologyVersion": "1.0.0",
+      "rationale": "High forecast uncertainty is supported by the actual FTEL accounting-scope discontinuity: the same H1 comparative revenue base changes materially under equity accounting, altering revenue/margin interpretation and cash attribution. This is a structural model dependency, not a penalty for an absent file or the numerical width of a hypothetical grid.",
+      "evidence": [
+        {
+          "topic": "forecast_range",
+          "refs": [
+            "NOTE:FPT:SCOPE",
+            "D2:FPT"
+          ],
+          "rationale": "Original full consolidation versus equity-method reporting changes the economic forecast denominator; conditional earnings cases are not comparable annual cash forecasts."
+        },
+        {
+          "topic": "sensitivity",
+          "refs": [
+            "NOTE:FPT:SCOPE",
+            "D2:FPT"
+          ],
+          "rationale": "Profit share and direct subsidiary cash inclusion respond differently to the scope change; do not extrapolate group revenue or CFO mechanically."
+        },
+        {
+          "topic": "dependencies",
+          "refs": [
+            "NOTE:FPT:SCOPE",
+            "D2:FPT"
+          ],
+          "rationale": "Annual cash/scope bridge and recurring common-earnings classification remain decisive dependencies, distinct from Note39 receivable reclassification."
+        }
+      ],
+      "counterevidence": [
+        {
+          "refs": [
+            "NOTE:FPT:SCOPE"
+          ],
+          "rationale": "Same-method H1 parent profit and EPS improve; this contradicts an inference of economic collapse from headline revenue. It does not make annual cash inclusion or forecast sensitivity narrow."
+        }
+      ],
+      "disconfirmingEvidence": [
+        "Same-method H1 parent profit and EPS improve; this contradicts an inference of economic collapse from headline revenue. It does not make annual cash inclusion or forecast sensitivity narrow."
+      ],
+      "assumptions": [
+        "Assessment concerns forecast uncertainty, not a buy/sell view or a forecast of loss.",
+        "H1 is not annualized or spliced into FY22–25."
+      ],
+      "confidence": "MEDIUM",
+      "invalidationConditions": [
+        "A verified full-year recurring earnings/cash scope bridge and bounded forward sensitivities could lower uncertainty."
+      ],
+      "economicChannel": "SCOPE_DEPENDENT_FORECAST_NOT_CASH_QUALITY",
+      "maximumPrerequisitesMet": false,
+      "economicAdversityBasis": true,
+      "bindings": {
+        "NOTE:FPT:SCOPE": {
+          "id": "NOTE:FPT:SCOPE",
+          "ticker": "FPT",
+          "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-30/b6-comparability-r2/native-inputs/FPT.json",
+          "jsonPointer": "/comparability",
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "PRIOR_VERIFIED_COMPARABILITY_REVIEW",
+          "pdfPath": "data/manual-download/FPT/FPT_Baocaotaichinh_6T_2026_Soatxet_Hopnhat.pdf",
+          "pdfHash": "45636554f28c7e6c2f38458b9a22410ed1f67e80627d672b827019a67f299df8",
+          "page": 18,
+          "summary": "FTEL equity-method comparatives materially change the reported revenue base. Same-method H1 profit/EPS improve, but no full-year/cash scope bridge is proved. Receivable reclassification is distinct.",
+          "qualifiedTopics": [
+            "forecast_range",
+            "sensitivity",
+            "dependencies"
+          ],
+          "formalFactAdmission": false,
+          "sha256": "3ce52b231ecf5291a904c583975773cdff2575f4a29ab9066ba028998b1b69e6",
+          "boundObjectHash": "3be54ada75603731f0bf9c0e92036041534bcd2598ddaa7d3f86a96c6d2b2438"
+        },
+        "D2:FPT": {
+          "status": "QUALIFIED_CONTEXT",
+          "path": "docs/fundamental-data-engine/dfr-02/2026-11-04/issuers/FPT.json",
+          "sha256": "6e42b55be9df19877bb44e13be609f1d0c9ee6b07760cae2b36874775c3e9e30",
+          "jsonPointer": "/estimates",
+          "kind": "CONDITIONAL_NOT_FACT"
+        }
+      }
+    },
+    {
+      "id": "TCX:BQ-CASH",
+      "ticker": "TCX",
+      "subcategory": "BQ-CASH",
+      "assessment": "Adequate realization with material qualifications",
+      "selectedPoints": 3,
+      "source": "AI",
+      "analyst": "CHATGPT",
+      "methodologyVersion": "1.0.0",
+      "rationale": "Adequate realization with material qualifications: operating cash absorption is explained substantially by loans and AFS/HTM book growth rather than treating securities funding as industrial working capital. The cash statement explicitly removes noncash valuation gains and accrued interest; recognition policies defer unperformed services. Accrual/credit realization and refinancing remain material qualifications.",
+      "evidence": [
+        {
+          "topic": "realization",
+          "refs": [
+            "NOTE:TCX:14"
+          ],
+          "rationale": "Loan/investment cash deployment is separated from earnings collection; negative aggregate operating cash alone cannot establish failed realization."
+        },
+        {
+          "topic": "one_offs",
+          "refs": [
+            "NOTE:TCX:14"
+          ],
+          "rationale": "Noncash FVTPL gains and impairment adjustments are separately identified, without presuming all trading income recurring or a normalized common denominator."
+        },
+        {
+          "topic": "working_capital",
+          "refs": [
+            "NOTE:TCX:14"
+          ],
+          "rationale": "Loans/AFS/HTM and interest accrual cash movements are sector operating assets, not manufacturing inventory."
+        },
+        {
+          "topic": "recognition",
+          "refs": [
+            "NOTE:TCX:29"
+          ],
+          "rationale": "Deferred agency/underwriting and completion/recoverability conditions identify concrete service timing risks."
+        }
+      ],
+      "counterevidence": [
+        {
+          "refs": [
+            "NOTE:TCX:14"
+          ],
+          "rationale": "Interest accrual is material and operating cash remains deeply negative; lending growth creates collection/funding risk. The cash bridge proves neither future collateral recoverability nor recurring owner FCFE."
+        }
+      ],
+      "disconfirmingEvidence": [
+        "Interest accrual is material and operating cash remains deeply negative; lending growth creates collection/funding risk. The cash bridge proves neither future collateral recoverability nor recurring owner FCFE."
+      ],
+      "assumptions": [
+        "Reported FY2025 issuer cash and recognition basis only; no industrial CFO threshold."
+      ],
+      "confidence": "MEDIUM",
+      "invalidationConditions": [
+        "Loan noncollection, material valuation reversals or service-recognition correction would undermine adequate realization."
+      ],
+      "economicChannel": "SECURITIES_EARNINGS_REALIZATION_NOT_FORMAL_CAPITAL",
+      "maximumPrerequisitesMet": false,
+      "economicAdversityBasis": false,
+      "bindings": {
+        "NOTE:TCX:14": {
+          "id": "NOTE:TCX:14",
+          "ticker": "TCX",
+          "path": "data/manual-extracted-pdf/notes/TCX.json",
+          "jsonPointer": "/documents/3/pages/13",
+          "pdfPath": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf",
+          "pdfHash": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+          "page": 14,
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "BOUNDED_PDF_NOTE_REVIEW",
+          "reviewMethod": "ORIGINAL_FULL_PAGE_IMAGE_AND_RETAINED_TEXT",
+          "fullPageImageInspected": true,
+          "period": "FY2025",
+          "scope": "ISSUER_STATEMENTS",
+          "summary": "Securities cash bridge: lending and investment book expansion consumes cash; noncash FVTPL valuation and interest accrual adjustments are separated. Negative operating cash is not an industrial conversion failure.",
+          "qualifiedTopics": [
+            "realization",
+            "working_capital",
+            "one_offs"
+          ],
+          "reportedObservations": [
+            {
+              "caption": "Operating cash",
+              "originalValue": "(20.564.385.947.691)",
+              "decimalValue": "-20564385947691",
+              "declaredUnit": "VND",
+              "column": "FY2025_CURRENT_YEAR"
+            },
+            {
+              "caption": "Change in loans",
+              "originalValue": "(17.948.486.475.954)",
+              "decimalValue": "-17948486475954",
+              "declaredUnit": "VND",
+              "column": "FY2025_CURRENT_YEAR"
+            },
+            {
+              "caption": "Change in AFS",
+              "originalValue": "(7.531.928.504.136)",
+              "decimalValue": "-7531928504136",
+              "declaredUnit": "VND",
+              "column": "FY2025_CURRENT_YEAR"
+            },
+            {
+              "caption": "FVTPL noncash gain",
+              "originalValue": "(6.910.975.255)",
+              "decimalValue": "-6910975255",
+              "declaredUnit": "VND",
+              "column": "FY2025_CURRENT_YEAR"
+            },
+            {
+              "caption": "Interest accrual adjustment",
+              "originalValue": "(686.651.363.984)",
+              "decimalValue": "-686651363984",
+              "declaredUnit": "VND",
+              "column": "FY2025_CURRENT_YEAR"
+            }
+          ],
+          "formalFactAdmission": false,
+          "limitations": "Bounded research reading. Published policy is not proof of contract compliance, control effectiveness or cash availability. No original publication date inferred.",
+          "sha256": "1c329219ef111040f9d06c2a692b9e603d6a71828236b1b2918d6655ce42605f",
+          "boundObjectHash": "955e5e8e7c776b988e0661dfbe4a9bec3b2d61a4385f97d49db3f0f63430e4fa"
+        },
+        "NOTE:TCX:29": {
+          "id": "NOTE:TCX:29",
+          "ticker": "TCX",
+          "path": "data/manual-extracted-pdf/notes/TCX.json",
+          "jsonPointer": "/documents/3/pages/28",
+          "pdfPath": "data/manual-download/TCX/2026-10-29-fy2025/m88_20260306_tcx___bao_cao_tai_chinh_2025_da_duoc_kiem_toan1772799433553vdjrirjg.pdf",
+          "pdfHash": "c193034fa30d3890f20ccb9393ebc8b6467e2067f8f0f97dff0c3e4339c0bac9",
+          "page": 29,
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "BOUNDED_PDF_NOTE_REVIEW",
+          "reviewMethod": "ORIGINAL_FULL_PAGE_IMAGE_AND_RETAINED_TEXT",
+          "fullPageImageInspected": true,
+          "period": "FY2025",
+          "scope": "ISSUER_STATEMENTS",
+          "summary": "Unperformed underwriting/agency receipts remain deferred; brokerage revenue depends on completion/recoverability; trading income is sale less weighted-average cost.",
+          "qualifiedTopics": [
+            "recognition"
+          ],
+          "reportedObservations": [],
+          "formalFactAdmission": false,
+          "limitations": "Bounded research reading. Published policy is not proof of contract compliance, control effectiveness or cash availability. No original publication date inferred.",
+          "sha256": "1c329219ef111040f9d06c2a692b9e603d6a71828236b1b2918d6655ce42605f",
+          "boundObjectHash": "aa48cd8e7c4fb429ab017806db76dd1b06d3ee0245330195f93c790018f8b12c"
+        }
+      }
+    },
+    {
+      "id": "VIC:BQ-CASH",
+      "ticker": "VIC",
+      "subcategory": "BQ-CASH",
+      "assessment": "Weak realization with recurring adverse adjustments",
+      "selectedPoints": 2,
+      "source": "AI",
+      "analyst": "CHATGPT",
+      "methodologyVersion": "1.0.0",
+      "rationale": "Weak realization with recurring adverse adjustments: positive reported cash coexists with large payable funding and sponsor-dependent reported income. Recurring disposal/writeoff losses and EV/property recognition obligations qualify owner realization; growth investment alone is not the reason for the weak band.",
+      "evidence": [
+        {
+          "topic": "realization",
+          "refs": [
+            "NOTE:VIC:15"
+          ],
+          "rationale": "Positive group operating cash is heavily supported by payable funding; it is not recurring common cash."
+        },
+        {
+          "topic": "working_capital",
+          "refs": [
+            "NOTE:VIC:15"
+          ],
+          "rationale": "Inventory and receivables consume cash while payables supply substantially more; repeated supplier/project funding limits conversion quality."
+        },
+        {
+          "topic": "recognition",
+          "refs": [
+            "NOTE:VIC:37",
+            "NOTE:VIC:38"
+          ],
+          "rationale": "Property transfers, distinct EV obligations and residual-value remeasurement introduce timing and estimation dependencies."
+        },
+        {
+          "topic": "one_offs",
+          "refs": [
+            "NOTE:VIC:86"
+          ],
+          "rationale": "Large non-refundable sponsor income and recurring asset disposal/writeoff losses materially qualify reported profitability."
+        }
+      ],
+      "counterevidence": [
+        {
+          "refs": [
+            "NOTE:VIC:15"
+          ],
+          "rationale": "FY2025 operating cash is positive and improves from the preceding year; property advances can be normal project funding. This prevents calling all cash generation fictitious or treating growth capex as a loss."
+        },
+        {
+          "refs": [
+            "NOTE:VIC:37"
+          ],
+          "rationale": "Recognition policy provides explicit performance/risk-transfer conditions; no evidence here establishes that every contract violated them."
+        }
+      ],
+      "disconfirmingEvidence": [
+        "FY2025 operating cash is positive and improves from the preceding year; property advances can be normal project funding. This prevents calling all cash generation fictitious or treating growth capex as a loss.",
+        "Recognition policy provides explicit performance/risk-transfer conditions; no evidence here establishes that every contract violated them."
+      ],
+      "assumptions": [
+        "No after-tax/NCI allocation or normalized FCFE is invented.",
+        "The selected band is an analytical interpretation of actual cash/adjustment evidence, not an automatic ratio threshold."
+      ],
+      "confidence": "MEDIUM",
+      "invalidationConditions": [
+        "Verified project-cohort collection and recurring common-cash evidence could improve the band; material noncollection or contract revisions could worsen it."
+      ],
+      "economicChannel": "REALIZATION_AND_RECOGNITION_ONLY",
+      "maximumPrerequisitesMet": false,
+      "economicAdversityBasis": false,
+      "bindings": {
+        "NOTE:VIC:15": {
+          "id": "NOTE:VIC:15",
+          "ticker": "VIC",
+          "path": "data/manual-extracted-pdf/notes/VIC.json",
+          "jsonPointer": "/documents/3/pages/14",
+          "pdfPath": "data/manual-download/VIC/VIC_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+          "pdfHash": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217",
+          "page": 15,
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "BOUNDED_PDF_NOTE_REVIEW",
+          "reviewMethod": "ORIGINAL_FULL_PAGE_IMAGE_AND_RETAINED_TEXT",
+          "fullPageImageInspected": true,
+          "period": "FY2025",
+          "scope": "CONSOLIDATED",
+          "summary": "Positive operating cash includes large payable funding against inventory and receivable cash uses. Investing cash absorbs substantially more; neither investing outlay nor borrowing is owner cash.",
+          "qualifiedTopics": [
+            "realization",
+            "working_capital"
+          ],
+          "reportedObservations": [
+            {
+              "caption": "Operating cash",
+              "originalValue": "69.244.889",
+              "decimalValue": "69244889",
+              "declaredUnit": "MILLION_VND",
+              "column": "FY2025_CURRENT_YEAR"
+            },
+            {
+              "caption": "Payable cash adjustment",
+              "originalValue": "140.318.110",
+              "decimalValue": "140318110",
+              "declaredUnit": "MILLION_VND",
+              "column": "FY2025_CURRENT_YEAR"
+            },
+            {
+              "caption": "Inventory cash adjustment",
+              "originalValue": "(67.530.856)",
+              "decimalValue": "-67530856",
+              "declaredUnit": "MILLION_VND",
+              "column": "FY2025_CURRENT_YEAR"
+            },
+            {
+              "caption": "Receivable cash adjustment",
+              "originalValue": "(20.235.943)",
+              "decimalValue": "-20235943",
+              "declaredUnit": "MILLION_VND",
+              "column": "FY2025_CURRENT_YEAR"
+            }
+          ],
+          "formalFactAdmission": false,
+          "limitations": "Bounded research reading. Published policy is not proof of contract compliance, control effectiveness or cash availability. No original publication date inferred.",
+          "sha256": "0cd1c4c0ee72ddc8b65543320ce42f7071af3a9b4e5f284609f559a22f9f96f2",
+          "boundObjectHash": "8c8b2a4e1f20e1ff7066f03ce4fe9fe7a0711fe268f82c75d1415f33da283863"
+        },
+        "NOTE:VIC:37": {
+          "id": "NOTE:VIC:37",
+          "ticker": "VIC",
+          "path": "data/manual-extracted-pdf/notes/VIC.json",
+          "jsonPointer": "/documents/3/pages/36",
+          "pdfPath": "data/manual-download/VIC/VIC_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+          "pdfHash": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217",
+          "page": 37,
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "BOUNDED_PDF_NOTE_REVIEW",
+          "reviewMethod": "ORIGINAL_FULL_PAGE_IMAGE_AND_RETAINED_TEXT",
+          "fullPageImageInspected": true,
+          "period": "FY2025",
+          "scope": "CONSOLIDATED",
+          "summary": "Property/project transfers recognize on risk/reward transfer; operating rent is straight-line; one-time long lease recognition is conditional.",
+          "qualifiedTopics": [
+            "recognition"
+          ],
+          "reportedObservations": [],
+          "formalFactAdmission": false,
+          "limitations": "Bounded research reading. Published policy is not proof of contract compliance, control effectiveness or cash availability. No original publication date inferred.",
+          "sha256": "0cd1c4c0ee72ddc8b65543320ce42f7071af3a9b4e5f284609f559a22f9f96f2",
+          "boundObjectHash": "1493fe215060cd078e276bc2bf5ca3612e5adce4acf25535214e192f292cd2bf"
+        },
+        "NOTE:VIC:38": {
+          "id": "NOTE:VIC:38",
+          "ticker": "VIC",
+          "path": "data/manual-extracted-pdf/notes/VIC.json",
+          "jsonPointer": "/documents/3/pages/37",
+          "pdfPath": "data/manual-download/VIC/VIC_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+          "pdfHash": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217",
+          "page": 38,
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "BOUNDED_PDF_NOTE_REVIEW",
+          "reviewMethod": "ORIGINAL_FULL_PAGE_IMAGE_AND_RETAINED_TEXT",
+          "fullPageImageInspected": true,
+          "period": "FY2025",
+          "scope": "CONSOLIDATED",
+          "summary": "Separate performance obligations defer unperformed customer receipts. EV residual-value commitments are liabilities subject to fair-value remeasurement.",
+          "qualifiedTopics": [
+            "recognition",
+            "distinct_channels",
+            "residual_risks"
+          ],
+          "reportedObservations": [],
+          "formalFactAdmission": false,
+          "limitations": "Bounded research reading. Published policy is not proof of contract compliance, control effectiveness or cash availability. No original publication date inferred.",
+          "sha256": "0cd1c4c0ee72ddc8b65543320ce42f7071af3a9b4e5f284609f559a22f9f96f2",
+          "boundObjectHash": "7dee2f29861d7129fb84f9f758a48da90da6afa8f3b152a7f1af48c9652503f2"
+        },
+        "NOTE:VIC:86": {
+          "id": "NOTE:VIC:86",
+          "ticker": "VIC",
+          "path": "data/manual-extracted-pdf/notes/VIC.json",
+          "jsonPointer": "/documents/3/pages/85",
+          "pdfPath": "data/manual-download/VIC/VIC_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+          "pdfHash": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217",
+          "page": 86,
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "BOUNDED_PDF_NOTE_REVIEW",
+          "reviewMethod": "ORIGINAL_FULL_PAGE_IMAGE_AND_RETAINED_TEXT",
+          "fullPageImageInspected": true,
+          "period": "FY2025",
+          "scope": "CONSOLIDATED",
+          "summary": "Other income contains material non-refundable chairman support chiefly for VinFast; disposal/writeoff losses recur in both columns. No full sponsor amount is assigned to parent cash or after-tax common earnings. Original page resolves OCR ordering.",
+          "qualifiedTopics": [
+            "one_offs"
+          ],
+          "reportedObservations": [
+            {
+              "caption": "Sponsorship income",
+              "originalValue": "23.054.157",
+              "decimalValue": "23054157",
+              "declaredUnit": "MILLION_VND",
+              "column": "FY2025_CURRENT_YEAR"
+            },
+            {
+              "caption": "Disposal/writeoff loss",
+              "originalValue": "2.994.348",
+              "decimalValue": "2994348",
+              "declaredUnit": "MILLION_VND",
+              "column": "FY2025_CURRENT_YEAR"
+            }
+          ],
+          "formalFactAdmission": false,
+          "limitations": "Bounded research reading. Published policy is not proof of contract compliance, control effectiveness or cash availability. No original publication date inferred.",
+          "sha256": "0cd1c4c0ee72ddc8b65543320ce42f7071af3a9b4e5f284609f559a22f9f96f2",
+          "boundObjectHash": "e1e56755a3658d14e6c5b928d093769c47e9bebe0ff72fde5cd856ffed89d2da"
+        }
+      }
+    },
+    {
+      "id": "VHM:BQ-CASH",
+      "ticker": "VHM",
+      "subcategory": "BQ-CASH",
+      "assessment": "Weak realization with recurring adverse adjustments",
+      "selectedPoints": 2,
+      "source": "AI",
+      "analyst": "CHATGPT",
+      "methodologyVersion": "1.0.0",
+      "rationale": "Weak realization with recurring adverse adjustments: multi-year realization remains qualified and FY2025 cash recovery relies on substantial payable funding alongside inventory/receivable absorption. Specific transfer/termination income and project partner obligations prevent a strong recurring-cash reading; project-cycle cash use alone is not misconduct or failure.",
+      "evidence": [
+        {
+          "topic": "realization",
+          "refs": [
+            "NOTE:VHM:20",
+            "NOTE:VHM:65"
+          ],
+          "rationale": "The FY2025 recovery is real reported group cash, but advance/partner funding is not all collected handover earnings."
+        },
+        {
+          "topic": "working_capital",
+          "refs": [
+            "NOTE:VHM:20",
+            "NOTE:VHM:65"
+          ],
+          "rationale": "Project inventory and receivable cash use are funded by payables; maintenance/shared project funds have separate obligations."
+        },
+        {
+          "topic": "recognition",
+          "refs": [
+            "NOTE:VHM:38"
+          ],
+          "rationale": "Risk/reward handover and conditional one-time rental recognition prevent treating advance receipts as earned profit."
+        },
+        {
+          "topic": "one_offs",
+          "refs": [
+            "NOTE:VHM:ONEOFF"
+          ],
+          "rationale": "Retained verified investment-transfer and termination-income readings preclude treating all reported profit as recurring property cash."
+        }
+      ],
+      "counterevidence": [
+        {
+          "refs": [
+            "NOTE:VHM:20"
+          ],
+          "rationale": "FY2025 operating cash is positive and improves from the preceding year; property advances can be normal project funding. This prevents calling all cash generation fictitious or treating growth capex as a loss."
+        },
+        {
+          "refs": [
+            "NOTE:VHM:38"
+          ],
+          "rationale": "Recognition policy provides explicit performance/risk-transfer conditions; no evidence here establishes that every contract violated them."
+        }
+      ],
+      "disconfirmingEvidence": [
+        "FY2025 operating cash is positive and improves from the preceding year; property advances can be normal project funding. This prevents calling all cash generation fictitious or treating growth capex as a loss.",
+        "Recognition policy provides explicit performance/risk-transfer conditions; no evidence here establishes that every contract violated them."
+      ],
+      "assumptions": [
+        "No after-tax/NCI allocation or normalized FCFE is invented.",
+        "The selected band is an analytical interpretation of actual cash/adjustment evidence, not an automatic ratio threshold."
+      ],
+      "confidence": "MEDIUM",
+      "invalidationConditions": [
+        "Verified project-cohort collection and recurring common-cash evidence could improve the band; material noncollection or contract revisions could worsen it."
+      ],
+      "economicChannel": "REALIZATION_AND_RECOGNITION_ONLY",
+      "maximumPrerequisitesMet": false,
+      "economicAdversityBasis": false,
+      "bindings": {
+        "NOTE:VHM:20": {
+          "id": "NOTE:VHM:20",
+          "ticker": "VHM",
+          "path": "data/manual-extracted-pdf/notes/VHM.json",
+          "jsonPointer": "/documents/17/pages/19",
+          "pdfPath": "data/manual-download/VHM/VHM_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+          "pdfHash": "f2068861297d3aa4efb4be9542855b5ba58bf82e9c78a0176e4c52f71639cc62",
+          "page": 20,
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "BOUNDED_PDF_NOTE_REVIEW",
+          "reviewMethod": "ORIGINAL_FULL_PAGE_IMAGE_AND_RETAINED_TEXT",
+          "fullPageImageInspected": true,
+          "period": "FY2025",
+          "scope": "CONSOLIDATED",
+          "summary": "Operating cash turns positive with large payable funding while receivables and project inventory consume cash; this is not proof that handover profit is all collected or freely distributable.",
+          "qualifiedTopics": [
+            "realization",
+            "working_capital"
+          ],
+          "reportedObservations": [
+            {
+              "caption": "Operating cash",
+              "originalValue": "41.189.141",
+              "decimalValue": "41189141",
+              "declaredUnit": "MILLION_VND",
+              "column": "FY2025_CURRENT_YEAR"
+            },
+            {
+              "caption": "Payable cash adjustment",
+              "originalValue": "117.528.128",
+              "decimalValue": "117528128",
+              "declaredUnit": "MILLION_VND",
+              "column": "FY2025_CURRENT_YEAR"
+            },
+            {
+              "caption": "Inventory cash adjustment",
+              "originalValue": "(77.165.997)",
+              "decimalValue": "-77165997",
+              "declaredUnit": "MILLION_VND",
+              "column": "FY2025_CURRENT_YEAR"
+            },
+            {
+              "caption": "Receivable cash adjustment",
+              "originalValue": "(17.468.896)",
+              "decimalValue": "-17468896",
+              "declaredUnit": "MILLION_VND",
+              "column": "FY2025_CURRENT_YEAR"
+            },
+            {
+              "caption": "Investment gain cash adjustment",
+              "originalValue": "(28.111.513)",
+              "decimalValue": "-28111513",
+              "declaredUnit": "MILLION_VND",
+              "column": "FY2025_CURRENT_YEAR"
+            }
+          ],
+          "formalFactAdmission": false,
+          "limitations": "Bounded research reading. Published policy is not proof of contract compliance, control effectiveness or cash availability. No original publication date inferred.",
+          "sha256": "3042569146892f8319e4f2ad9c254ab015903310a76911069583a925c5d7ece4",
+          "boundObjectHash": "4ad1029fc31296c7f018cebbd0991c1d8b4fe9642ccbcb5b9a3b58ddb6599a67"
+        },
+        "NOTE:VHM:65": {
+          "id": "NOTE:VHM:65",
+          "ticker": "VHM",
+          "path": "data/manual-extracted-pdf/notes/VHM.json",
+          "jsonPointer": "/documents/17/pages/64",
+          "pdfPath": "data/manual-download/VHM/VHM_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+          "pdfHash": "f2068861297d3aa4efb4be9542855b5ba58bf82e9c78a0176e4c52f71639cc62",
+          "page": 65,
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "BOUNDED_PDF_NOTE_REVIEW",
+          "reviewMethod": "ORIGINAL_FULL_PAGE_IMAGE_AND_RETAINED_TEXT",
+          "fullPageImageInspected": true,
+          "period": "FY2025",
+          "scope": "CONSOLIDATED",
+          "summary": "Other payables include project cooperation funds, shared-account proceeds, partner profit shares, intra-group reimbursements and maintenance funds held in cash/HTM. These uses restrict interpreting gross cash as owner surplus.",
+          "qualifiedTopics": [
+            "working_capital",
+            "realization"
+          ],
+          "reportedObservations": [],
+          "formalFactAdmission": false,
+          "limitations": "Bounded research reading. Published policy is not proof of contract compliance, control effectiveness or cash availability. No original publication date inferred.",
+          "sha256": "3042569146892f8319e4f2ad9c254ab015903310a76911069583a925c5d7ece4",
+          "boundObjectHash": "295dc0e403d33455e44a79e4e2a140c1455385806e6e15f04f368994036ad572"
+        },
+        "NOTE:VHM:38": {
+          "id": "NOTE:VHM:38",
+          "ticker": "VHM",
+          "path": "data/manual-extracted-pdf/notes/VHM.json",
+          "jsonPointer": "/documents/17/pages/37",
+          "pdfPath": "data/manual-download/VHM/VHM_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+          "pdfHash": "f2068861297d3aa4efb4be9542855b5ba58bf82e9c78a0176e4c52f71639cc62",
+          "page": 38,
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "BOUNDED_PDF_NOTE_REVIEW",
+          "reviewMethod": "ORIGINAL_FULL_PAGE_IMAGE_AND_RETAINED_TEXT",
+          "fullPageImageInspected": true,
+          "period": "FY2025",
+          "scope": "CONSOLIDATED",
+          "summary": "Property transfers require risk/reward transfer; rental income is periodic or one-time only under specified conditions. Revenue recognition and advance cash are different events.",
+          "qualifiedTopics": [
+            "recognition"
+          ],
+          "reportedObservations": [],
+          "formalFactAdmission": false,
+          "limitations": "Bounded research reading. Published policy is not proof of contract compliance, control effectiveness or cash availability. No original publication date inferred.",
+          "sha256": "3042569146892f8319e4f2ad9c254ab015903310a76911069583a925c5d7ece4",
+          "boundObjectHash": "6254bb5b3b6d2f82610522bf5bfb33c37b3ad1af9dcaba366159324cf589b6d8"
+        },
+        "NOTE:VHM:ONEOFF": {
+          "id": "NOTE:VHM:ONEOFF",
+          "ticker": "VHM",
+          "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-04/earnings-normalization-v4/issuers/VHM.json",
+          "jsonPointer": "",
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "PRIOR_VERIFIED_NORMALIZATION_REVIEW",
+          "summary": "Retained v4 separates investment transfers and contract-termination income; neither all financial income nor group cash is recurring parent FCFE.",
+          "qualifiedTopics": [
+            "one_offs"
+          ],
+          "formalFactAdmission": false,
+          "sha256": "1a80131cd2b60ec84c8b77ec75826496a84e43b6f1814d0e1b727e9bb91e4fce",
+          "boundObjectHash": "6e1abd71255ee3d919aa4396ca0cbf5cdc8ea61a74f466dfede3797211930d44"
+        }
+      }
+    },
+    {
+      "id": "VIC:RG-RISK",
+      "ticker": "VIC",
+      "subcategory": "RG-RISK",
+      "assessment": "HIGH",
+      "selectedPoints": 0,
+      "source": "AI",
+      "analyst": "CHATGPT",
+      "methodologyVersion": "1.0.0",
+      "rationale": "HIGH residual financing/execution risk: the group explicitly relies on continued creditors and execution of property cash/capital plans while supporting subsidiaries within its resources. EV residual-value promises create a separate contractual remeasurement/execution channel. Capital timing and refinancing plans mitigate risk but do not remove simultaneous dependence. This is not a second penalty for sponsor-income normalization or model uncertainty.",
+      "evidence": [
+        {
+          "topic": "residual_risks",
+          "refs": [
+            "NOTE:VIC:18",
+            "NOTE:VIC:38"
+          ],
+          "rationale": "Creditor continuation and subsidiary support compete for resources; EV residual-value commitments add a distinct contingent economic exposure."
+        },
+        {
+          "topic": "mitigation",
+          "refs": [
+            "NOTE:VIC:18"
+          ],
+          "rationale": "Property cash, capital/debt restructuring, efficiency and capex deferral are disclosed mitigations, treated as management plans rather than committed liquidity."
+        },
+        {
+          "topic": "distinct_channels",
+          "refs": [
+            "NOTE:VIC:18",
+            "NOTE:VIC:38"
+          ],
+          "rationale": "Residual channel is financing access/contingent obligations. Sponsor earnings affect BQ-CASH; common earnings sensitivity affects RG-UNC. No numerical total or additive risk penalty is computed."
+        }
+      ],
+      "counterevidence": [
+        {
+          "refs": [
+            "NOTE:VIC:18"
+          ],
+          "rationale": "Management expects 12-month continuity and can alter investment timing; no immediate default is asserted. These mitigations do not eliminate dependence on execution and continued creditors."
+        }
+      ],
+      "disconfirmingEvidence": [
+        "Management expects 12-month continuity and can alter investment timing; no immediate default is asserted. These mitigations do not eliminate dependence on execution and continued creditors."
+      ],
+      "assumptions": [
+        "HIGH is supported by explicit financing dependencies and contractual obligations, not missing covenant data."
+      ],
+      "confidence": "MEDIUM",
+      "invalidationConditions": [
+        "Committed unrestricted funding and demonstrated execution could reduce residual risk; failed creditor cooperation would intensify it."
+      ],
+      "economicChannel": "FINANCING_ACCESS_AND_CONTINGENT_EV_OBLIGATIONS",
+      "maximumPrerequisitesMet": false,
+      "economicAdversityBasis": true,
+      "bindings": {
+        "NOTE:VIC:18": {
+          "id": "NOTE:VIC:18",
+          "ticker": "VIC",
+          "path": "data/manual-extracted-pdf/notes/VIC.json",
+          "jsonPointer": "/documents/3/pages/17",
+          "pdfPath": "data/manual-download/VIC/VIC_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+          "pdfHash": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217",
+          "page": 18,
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "BOUNDED_PDF_NOTE_REVIEW",
+          "reviewMethod": "ORIGINAL_FULL_PAGE_IMAGE_AND_RETAINED_TEXT",
+          "fullPageImageInspected": true,
+          "period": "FY2025",
+          "scope": "CONSOLIDATED",
+          "summary": "Management explicitly conditions group continuity on business/financial plans and continued creditor cooperation. Mitigations are property cash, capital raising/debt restructuring, efficiency and capex timing flexibility; these are plans, not guaranteed financing.",
+          "qualifiedTopics": [
+            "residual_risks",
+            "mitigation",
+            "distinct_channels"
+          ],
+          "reportedObservations": [],
+          "formalFactAdmission": false,
+          "limitations": "Bounded research reading. Published policy is not proof of contract compliance, control effectiveness or cash availability. No original publication date inferred.",
+          "sha256": "0cd1c4c0ee72ddc8b65543320ce42f7071af3a9b4e5f284609f559a22f9f96f2",
+          "boundObjectHash": "1be61dc99924e8ba638711898e6f7e611930b2444d82c4b9a2a5fa0924cb4d16"
+        },
+        "NOTE:VIC:38": {
+          "id": "NOTE:VIC:38",
+          "ticker": "VIC",
+          "path": "data/manual-extracted-pdf/notes/VIC.json",
+          "jsonPointer": "/documents/3/pages/37",
+          "pdfPath": "data/manual-download/VIC/VIC_Baocaotaichinh_2025_Kiemtoan_Hopnhat.pdf",
+          "pdfHash": "5ed3c75eb96aa1292f9b15a34419d658de13cc93300fcd878edaeb93bd347217",
+          "page": 38,
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "BOUNDED_PDF_NOTE_REVIEW",
+          "reviewMethod": "ORIGINAL_FULL_PAGE_IMAGE_AND_RETAINED_TEXT",
+          "fullPageImageInspected": true,
+          "period": "FY2025",
+          "scope": "CONSOLIDATED",
+          "summary": "Separate performance obligations defer unperformed customer receipts. EV residual-value commitments are liabilities subject to fair-value remeasurement.",
+          "qualifiedTopics": [
+            "recognition",
+            "distinct_channels",
+            "residual_risks"
+          ],
+          "reportedObservations": [],
+          "formalFactAdmission": false,
+          "limitations": "Bounded research reading. Published policy is not proof of contract compliance, control effectiveness or cash availability. No original publication date inferred.",
+          "sha256": "0cd1c4c0ee72ddc8b65543320ce42f7071af3a9b4e5f284609f559a22f9f96f2",
+          "boundObjectHash": "7dee2f29861d7129fb84f9f758a48da90da6afa8f3b152a7f1af48c9652503f2"
+        }
+      }
+    },
+    {
+      "id": "VNM:IC-IND",
+      "ticker": "VNM",
+      "subcategory": "IC-IND",
+      "assessment": "Mixed/cyclical/average",
+      "selectedPoints": 2,
+      "source": "AI",
+      "analyst": "CHATGPT",
+      "methodologyVersion": "1.0.0",
+      "rationale": "Mixed/cyclical/average dairy industry conditions: essential nutrition and specialized products support demand, while the issuer reports weak FY2025 consumption, fierce local/international rivalry, constrained cost pass-through and rising compliance/innovation costs. Scale, distribution and trust matter but do not prove closed entry or rational competition. This is a bounded sector assessment, not Vinamilk market leadership or a moat rating.",
+      "evidence": [
+        {
+          "topic": "barriers",
+          "refs": [
+            "NOTE:VNM:ANNUAL:26",
+            "NOTE:VNM:ANNUAL:27"
+          ],
+          "rationale": "Distribution/cold logistics, scale/brand trust and food-safety/traceability requirements are relevant entry/operating burdens; none is asserted to prevent competition."
+        },
+        {
+          "topic": "competition",
+          "refs": [
+            "NOTE:VNM:ANNUAL:26",
+            "NOTE:VNM:ANNUAL:27"
+          ],
+          "rationale": "Domestic and international rivalry is explicit; mainstream price/distribution pressure differs from premium specialized nutrition."
+        },
+        {
+          "topic": "demand",
+          "refs": [
+            "NOTE:VNM:ANNUAL:26",
+            "NOTE:VNM:ANNUAL:27"
+          ],
+          "rationale": "The report attributes weak FY25 dairy demand to NielsenIQ and describes selective nutrition demand and longer-run demographic potential; no extrapolated growth forecast."
+        },
+        {
+          "topic": "disruption",
+          "refs": [
+            "NOTE:VNM:ANNUAL:27",
+            "NOTE:VNM:ANNUAL:98"
+          ],
+          "rationale": "Plant-based/specialized/clean-label nutrition and digital/automation change require R&D, data and compliance investment; scale in new niches is uncertain."
+        }
+      ],
+      "counterevidence": [
+        {
+          "refs": [
+            "NOTE:VNM:ANNUAL:26",
+            "NOTE:VNM:ANNUAL:27"
+          ],
+          "rationale": "Nutrition needs, cold-chain reach and product specialization offer structural opportunity. These contradict a uniformly value-destructive industry view, but do not establish structurally attractive/rational competition."
+        },
+        {
+          "refs": [
+            "NOTE:VNM:ANNUAL:27"
+          ],
+          "rationale": "The source expressly identifies the outlook as company interpretation with referenced studies; independent competitor profitability and share economics are not established."
+        }
+      ],
+      "disconfirmingEvidence": [
+        "Nutrition needs, cold-chain reach and product specialization offer structural opportunity. These contradict a uniformly value-destructive industry view, but do not establish structurally attractive/rational competition.",
+        "The source expressly identifies the outlook as company interpretation with referenced studies; independent competitor profitability and share economics are not established."
+      ],
+      "assumptions": [
+        "FY2025 issuer-authored report is qualified narrative; externally attributed studies have not been independently retrieved.",
+        "Company risk icons and market outlook are not automatically converted to M3 points, market share or proof of control effectiveness."
+      ],
+      "confidence": "MEDIUM",
+      "invalidationConditions": [
+        "Comparable industry data showing materially different demand/rivalry or persistent industry returns would change the band."
+      ],
+      "economicChannel": "DAIRY_SECTOR_STRUCTURE_NOT_COMPANY_MOAT",
+      "maximumPrerequisitesMet": false,
+      "economicAdversityBasis": false,
+      "bindings": {
+        "NOTE:VNM:ANNUAL:26": {
+          "id": "NOTE:VNM:ANNUAL:26",
+          "ticker": "VNM",
+          "path": "data/manual-extracted-pdf/notes/VNM.json",
+          "jsonPointer": "/documents/7/pages/25",
+          "pdfPath": "data/manual-download/VNM/VNM_Baocaothuongnien_2025.pdf",
+          "pdfHash": "eed9e92676f7a5e8d67f6e82b6c6c32644a68012fe6cf99cd9d61d6bb783814f",
+          "page": 26,
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "ANNUAL_REPORT_ISSUER_NARRATIVE",
+          "reviewMethod": "ORIGINAL_FULL_PAGE_IMAGE_AND_RETAINED_TEXT",
+          "fullPageImageInspected": true,
+          "period": "FY2025",
+          "scope": "ISSUER_GROUP_OPERATING_NARRATIVE",
+          "summary": "Annual report industry overview cites NielsenIQ FY25 for weak dairy demand, describes strong domestic/international competition, scale/distribution/brand factors and segmentation. These are issuer-attributed industry observations, not independently verified market share or a Vinamilk moat.",
+          "qualifiedTopics": [
+            "barriers",
+            "competition",
+            "demand",
+            "cycle",
+            "forward_asymmetry"
+          ],
+          "reportedObservations": [],
+          "formalFactAdmission": false,
+          "limitations": "Issuer narrative and attributed external-source summary, not independent corroboration. Referenced external reports were not retrieved. No original publication date or market-share denominator inferred.",
+          "sha256": "256c6fd700c563f079b21ec853edf061c237308305caf26e87a11b120505372a",
+          "boundObjectHash": "fcd977875cb6b4beafa2704ada230c088497136bcd1a3c08c7c27612ce3716c4"
+        },
+        "NOTE:VNM:ANNUAL:27": {
+          "id": "NOTE:VNM:ANNUAL:27",
+          "ticker": "VNM",
+          "path": "data/manual-extracted-pdf/notes/VNM.json",
+          "jsonPointer": "/documents/7/pages/26",
+          "pdfPath": "data/manual-download/VNM/VNM_Baocaothuongnien_2025.pdf",
+          "pdfHash": "eed9e92676f7a5e8d67f6e82b6c6c32644a68012fe6cf99cd9d61d6bb783814f",
+          "page": 27,
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "ANNUAL_REPORT_ISSUER_NARRATIVE",
+          "reviewMethod": "ORIGINAL_FULL_PAGE_IMAGE_AND_RETAINED_TEXT",
+          "fullPageImageInspected": true,
+          "period": "FY2025",
+          "scope": "ISSUER_GROUP_OPERATING_NARRATIVE",
+          "summary": "Industry outlook balances nutrition/health specialization and long-run demand against weak purchasing, limited cost pass-through, intense rivalry, labeling/traceability compliance and R&D/niche-scale risk. Footnote expressly says company interpretation using referenced external sources.",
+          "qualifiedTopics": [
+            "barriers",
+            "competition",
+            "demand",
+            "disruption",
+            "cycle",
+            "forward_asymmetry"
+          ],
+          "reportedObservations": [],
+          "formalFactAdmission": false,
+          "limitations": "Issuer narrative and attributed external-source summary, not independent corroboration. Referenced external reports were not retrieved. No original publication date or market-share denominator inferred.",
+          "sha256": "256c6fd700c563f079b21ec853edf061c237308305caf26e87a11b120505372a",
+          "boundObjectHash": "352ba387fba53cb38469b063e578fe239f584173f8e01db369054f24bf78d758"
+        },
+        "NOTE:VNM:ANNUAL:98": {
+          "id": "NOTE:VNM:ANNUAL:98",
+          "ticker": "VNM",
+          "path": "data/manual-extracted-pdf/notes/VNM.json",
+          "jsonPointer": "/documents/7/pages/97",
+          "pdfPath": "data/manual-download/VNM/VNM_Baocaothuongnien_2025.pdf",
+          "pdfHash": "eed9e92676f7a5e8d67f6e82b6c6c32644a68012fe6cf99cd9d61d6bb783814f",
+          "page": 98,
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "ANNUAL_REPORT_ISSUER_NARRATIVE",
+          "reviewMethod": "ORIGINAL_FULL_PAGE_IMAGE_AND_RETAINED_TEXT",
+          "fullPageImageInspected": true,
+          "period": "FY2025",
+          "scope": "ISSUER_GROUP_OPERATING_NARRATIVE",
+          "summary": "Technology and compliance risks are rated medium with increasing trend. Automation, change management, data standards, training and legal monitoring are reported responses; they do not establish a durable technological advantage.",
+          "qualifiedTopics": [
+            "residual_risks",
+            "mitigation",
+            "distinct_channels",
+            "disruption"
+          ],
+          "reportedObservations": [],
+          "formalFactAdmission": false,
+          "limitations": "Issuer narrative and attributed external-source summary, not independent corroboration. Referenced external reports were not retrieved. No original publication date or market-share denominator inferred.",
+          "sha256": "256c6fd700c563f079b21ec853edf061c237308305caf26e87a11b120505372a",
+          "boundObjectHash": "537e72100fd6cfc4d7648953792c63d5aadedd2970987a55dabdf38a9a3b5141"
+        }
+      }
+    },
+    {
+      "id": "VNM:RG-RISK",
+      "ticker": "VNM",
+      "subcategory": "RG-RISK",
+      "assessment": "ELEVATED_WEAK",
+      "selectedPoints": 1,
+      "source": "AI",
+      "analyst": "CHATGPT",
+      "methodologyVersion": "1.0.0",
+      "rationale": "ELEVATED_WEAK residual execution risk: the company identifies high cyber risk, rising technology/compliance pressures and an audit-committee need to move from reactive oversight toward earlier warning and better data/IT/manual controls. Specific security, recovery, change-management and monitoring responses exist, but the disclosed gaps limit confidence in mitigation maturity. Competitive industry structure is assessed in IC-IND and is not counted again as a separate residual penalty.",
+      "evidence": [
+        {
+          "topic": "residual_risks",
+          "refs": [
+            "NOTE:VNM:ANNUAL:36",
+            "NOTE:VNM:ANNUAL:97",
+            "NOTE:VNM:ANNUAL:98"
+          ],
+          "rationale": "Data compromise/business interruption, technology-change execution and compliance costs can impair operations through distinct nonfinancial channels."
+        },
+        {
+          "topic": "mitigation",
+          "refs": [
+            "NOTE:VNM:ANNUAL:36",
+            "NOTE:VNM:ANNUAL:97",
+            "NOTE:VNM:ANNUAL:98"
+          ],
+          "rationale": "Backup/recovery, simulated security/phishing tests, layered controls, change management and audit-committee monitoring are disclosed; implementation effectiveness is not independently established."
+        },
+        {
+          "topic": "distinct_channels",
+          "refs": [
+            "NOTE:VNM:ANNUAL:36",
+            "NOTE:VNM:ANNUAL:97",
+            "NOTE:VNM:ANNUAL:98"
+          ],
+          "rationale": "Restrict this judgment to cyber/operating-data/change/compliance execution. Exclude the already assessed industry rivalry, cash realization and normalization uncertainty."
+        }
+      ],
+      "counterevidence": [
+        {
+          "refs": [
+            "NOTE:VNM:ANNUAL:97",
+            "NOTE:VNM:ANNUAL:98"
+          ],
+          "rationale": "Detailed reported responses and medium technology/compliance starting levels argue against calling risk wholly uncontrolled or copying the high cyber icon into an aggregate HIGH band."
+        },
+        {
+          "refs": [
+            "NOTE:VNM:ANNUAL:36"
+          ],
+          "rationale": "Audit committee reports actual oversight activity as well as improvement needs; recommendations alone do not prove a control breach, loss event or bad governance."
+        }
+      ],
+      "disconfirmingEvidence": [
+        "Detailed reported responses and medium technology/compliance starting levels argue against calling risk wholly uncontrolled or copying the high cyber icon into an aggregate HIGH band.",
+        "Audit committee reports actual oversight activity as well as improvement needs; recommendations alone do not prove a control breach, loss event or bad governance."
+      ],
+      "assumptions": [
+        "FY2025 issuer-authored report is qualified narrative; externally attributed studies have not been independently retrieved.",
+        "Company risk icons and market outlook are not automatically converted to M3 points, market share or proof of control effectiveness."
+      ],
+      "confidence": "MEDIUM",
+      "invalidationConditions": [
+        "Demonstrated tested recovery/control outcomes and closure of specific oversight/data gaps could improve mitigation assessment.",
+        "A material incident or compliance failure could worsen the band."
+      ],
+      "economicChannel": "CYBER_DATA_CHANGE_AND_COMPLIANCE_EXECUTION_ONLY",
+      "maximumPrerequisitesMet": false,
+      "economicAdversityBasis": false,
+      "bindings": {
+        "NOTE:VNM:ANNUAL:36": {
+          "id": "NOTE:VNM:ANNUAL:36",
+          "ticker": "VNM",
+          "path": "data/manual-extracted-pdf/notes/VNM.json",
+          "jsonPointer": "/documents/7/pages/35",
+          "pdfPath": "data/manual-download/VNM/VNM_Baocaothuongnien_2025.pdf",
+          "pdfHash": "eed9e92676f7a5e8d67f6e82b6c6c32644a68012fe6cf99cd9d61d6bb783814f",
+          "page": 36,
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "ANNUAL_REPORT_ISSUER_NARRATIVE",
+          "reviewMethod": "ORIGINAL_FULL_PAGE_IMAGE_AND_RETAINED_TEXT",
+          "fullPageImageInspected": true,
+          "period": "FY2025",
+          "scope": "ISSUER_GROUP_OPERATING_NARRATIVE",
+          "summary": "Audit committee chair describes monitoring revenue estimates and ERP/non-ERP controls, but calls for deeper proactive oversight, early warning, better data/IT and reduced manual error risks. This supports actual disclosed execution gaps, not an unqualified governance endorsement.",
+          "qualifiedTopics": [
+            "residual_risks",
+            "mitigation",
+            "distinct_channels",
+            "disclosure"
+          ],
+          "reportedObservations": [],
+          "formalFactAdmission": false,
+          "limitations": "Issuer narrative and attributed external-source summary, not independent corroboration. Referenced external reports were not retrieved. No original publication date or market-share denominator inferred.",
+          "sha256": "256c6fd700c563f079b21ec853edf061c237308305caf26e87a11b120505372a",
+          "boundObjectHash": "eaf8a3987b104b5e9b81aa5fc22afe70fe386b5eef4bfb2240a65f278fefb845"
+        },
+        "NOTE:VNM:ANNUAL:97": {
+          "id": "NOTE:VNM:ANNUAL:97",
+          "ticker": "VNM",
+          "path": "data/manual-extracted-pdf/notes/VNM.json",
+          "jsonPointer": "/documents/7/pages/96",
+          "pdfPath": "data/manual-download/VNM/VNM_Baocaothuongnien_2025.pdf",
+          "pdfHash": "eed9e92676f7a5e8d67f6e82b6c6c32644a68012fe6cf99cd9d61d6bb783814f",
+          "page": 97,
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "ANNUAL_REPORT_ISSUER_NARRATIVE",
+          "reviewMethod": "ORIGINAL_FULL_PAGE_IMAGE_AND_RETAINED_TEXT",
+          "fullPageImageInspected": true,
+          "period": "FY2025",
+          "scope": "ISSUER_GROUP_OPERATING_NARRATIVE",
+          "summary": "Issuer risk table rates cyber and competition high with stable trend. It lists multilayer security, backup/restore, simulated tests, phishing training and commercial responses. Claims are disclosed mitigations, not independently verified effectiveness or incident-free history.",
+          "qualifiedTopics": [
+            "residual_risks",
+            "mitigation",
+            "distinct_channels"
+          ],
+          "reportedObservations": [],
+          "formalFactAdmission": false,
+          "limitations": "Issuer narrative and attributed external-source summary, not independent corroboration. Referenced external reports were not retrieved. No original publication date or market-share denominator inferred.",
+          "sha256": "256c6fd700c563f079b21ec853edf061c237308305caf26e87a11b120505372a",
+          "boundObjectHash": "7db0911f7db0a03b89eff8e9e985316150e377f64a429269f4564bdbe2c7b58c"
+        },
+        "NOTE:VNM:ANNUAL:98": {
+          "id": "NOTE:VNM:ANNUAL:98",
+          "ticker": "VNM",
+          "path": "data/manual-extracted-pdf/notes/VNM.json",
+          "jsonPointer": "/documents/7/pages/97",
+          "pdfPath": "data/manual-download/VNM/VNM_Baocaothuongnien_2025.pdf",
+          "pdfHash": "eed9e92676f7a5e8d67f6e82b6c6c32644a68012fe6cf99cd9d61d6bb783814f",
+          "page": 98,
+          "status": "QUALIFIED_CONTEXT",
+          "kind": "ANNUAL_REPORT_ISSUER_NARRATIVE",
+          "reviewMethod": "ORIGINAL_FULL_PAGE_IMAGE_AND_RETAINED_TEXT",
+          "fullPageImageInspected": true,
+          "period": "FY2025",
+          "scope": "ISSUER_GROUP_OPERATING_NARRATIVE",
+          "summary": "Technology and compliance risks are rated medium with increasing trend. Automation, change management, data standards, training and legal monitoring are reported responses; they do not establish a durable technological advantage.",
+          "qualifiedTopics": [
+            "residual_risks",
+            "mitigation",
+            "distinct_channels",
+            "disruption"
+          ],
+          "reportedObservations": [],
+          "formalFactAdmission": false,
+          "limitations": "Issuer narrative and attributed external-source summary, not independent corroboration. Referenced external reports were not retrieved. No original publication date or market-share denominator inferred.",
+          "sha256": "256c6fd700c563f079b21ec853edf061c237308305caf26e87a11b120505372a",
+          "boundObjectHash": "537e72100fd6cfc4d7648953792c63d5aadedd2970987a55dabdf38a9a3b5141"
+        }
+      }
+    }
+  ]
+}

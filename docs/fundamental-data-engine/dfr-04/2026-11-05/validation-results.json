@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "sealedAt": "2026-11-05T06:49:26.361976+00:00",
+  "observedCommands": [
+    {
+      "command": "python3 scripts/test-dfr04.py",
+      "tests": 20,
+      "exitCode": 0,
+      "result": "OK",
+      "durationSeconds": "13.583"
+    },
+    {
+      "command": "python3 scripts/test-dfr02.py",
+      "tests": 25,
+      "exitCode": 0,
+      "result": "OK",
+      "durationSeconds": "9.305"
+    },
+    {
+      "command": "python3 scripts/test-dfr03.py",
+      "tests": 17,
+      "exitCode": 0,
+      "result": "OK",
+      "durationSeconds": "8.126",
+      "timing": "Predecessor regression executed before DFR04 export files were written; original closed-set fingerprint assertion passed at that time. Final unchanged existing bytes verified independently by DFR04 protected snapshot."
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-dfr04-boundaries.mjs",
+      "probes": 54,
+      "exitCode": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-approved-scoring-authority.mjs",
+      "exitCode": 0,
+      "result": "PASS",
+      "authorityHash": "8c0880249dc54e2baea0235cc10094f818220db86331442ece3da05085261cc1",
+      "artifacts": 37,
+      "historicalFilesUnchanged": 133,
+      "compatibilities": 9
+    }
+  ],
+  "allRecoveredTopicReadyAssessed": [
+    "FPT:RG-UNC",
+    "VNM:IC-IND",
+    "VNM:RG-RISK",
+    "TCX:BQ-CASH",
+    "VIC:BQ-CASH",
+    "VIC:RG-RISK",
+    "VHM:BQ-CASH"
+  ],
+  "protectedFileCount": 9755,
+  "protectedStatus": "UNCHANGED",
+  "financialParity": "PASS",
+  "newFinancialMetrics": 0,
+  "changedFinancialMetrics": 0,
+  "materialSourceConflicts": 0,
+  "minorSourceConflict": "TCX:PRINTED_COMMON_NUMERATOR:1_VND",
+  "selfChallengeNotIndependentAcceptance": true,
+  "productionReleaseAcceptanceClaimed": false
+}
