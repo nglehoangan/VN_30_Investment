@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "validatedAt": "2026-11-05T07:38:19.207589+00:00",
+  "runs": [
+    {
+      "command": "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 scripts/test-dfr04-closure.py",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "test_72_batch_scope (__main__.Closure.test_72_batch_scope) ... ok\ntest_TCX_bond_small_tranche (__main__.Closure.test_TCX_bond_small_tranche) ... ok\ntest_TCX_one_vnd_retained (__main__.Closure.test_TCX_one_vnd_retained) ... ok\ntest_actions_returns_not_invented (__main__.Closure.test_actions_returns_not_invented) ... ok\ntest_all_ready_assessed (__main__.Closure.test_all_ready_assessed) ... ok\ntest_all_six_sectors (__main__.Closure.test_all_six_sectors) ... ok\ntest_bank_not_industrial_cash (__main__.Closure.test_bank_not_industrial_cash) ... ok\ntest_candidate_unknown_unit_and_conflict_rejected (__main__.Closure.test_candidate_unknown_unit_and_conflict_rejected) ... ok\ntest_conflicted_metric_rejected (__main__.Closure.test_conflicted_metric_rejected) ... ok\ntest_decimal_native_observations (__main__.Closure.test_decimal_native_observations) ... ok\ntest_every_fully_bound_pending_rubric_completed (__main__.Closure.test_every_fully_bound_pending_rubric_completed) ... ok\ntest_every_new_full_band_topics (__main__.Closure.test_every_new_full_band_topics) ... ok\ntest_exact_138 (__main__.Closure.test_exact_138) ... ok\ntest_exact_reconciliation_schedules (__main__.Closure.test_exact_reconciliation_schedules) ... ok\ntest_financial_parity (__main__.Closure.test_financial_parity) ... ok\ntest_invalid_band_rejected (__main__.Closure.test_invalid_band_rejected) ... ok\ntest_invalid_points_rejected (__main__.Closure.test_invalid_points_rejected) ... ok\ntest_issuer_specific_invalidation (__main__.Closure.test_issuer_specific_invalidation) ... ok\ntest_legacy_aggregate_isolated (__main__.Closure.test_legacy_aggregate_isolated) ... ok\ntest_local_conflict_propagation (__main__.Closure.test_local_conflict_propagation) ... ok\ntest_missing_topic_rejected (__main__.Closure.test_missing_topic_rejected) ... ok\ntest_no_missing_zero_or_NA (__main__.Closure.test_no_missing_zero_or_NA) ... ok\ntest_no_public_source_expansion (__main__.Closure.test_no_public_source_expansion) ... ok\ntest_no_synthetic_total (__main__.Closure.test_no_synthetic_total) ... ok\ntest_no_unrestricted_or_covenant_invention (__main__.Closure.test_no_unrestricted_or_covenant_invention) ... ok\ntest_prior_14_unchanged (__main__.Closure.test_prior_14_unchanged) ... ok\ntest_separate_preparation_challenge (__main__.Closure.test_separate_preparation_challenge) ... ok\ntest_source_pointer_and_pdf_hash (__main__.Closure.test_source_pointer_and_pdf_hash) ... ok\ntest_valuation_30_deferred_no_defaults (__main__.Closure.test_valuation_30_deferred_no_defaults) ... ok\ntest_wrong_issuer_rejected (__main__.Closure.test_wrong_issuer_rejected) ... ok\ntest_wrong_topic_rejected (__main__.Closure.test_wrong_topic_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 31 tests in 4.041s\n\nOK\n"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-dfr04-closure-boundaries.mjs",
+      "exitCode": 0,
+      "stdout": "{\"status\":\"PASS\",\"rejectionProbes\":54}\n",
+      "stderr": ""
+    }
+  ],
+  "earlierObservedRegressions": [
+    {
+      "command": "python3 scripts/test-dfr02.py",
+      "tests": 25,
+      "exitCode": 0,
+      "status": "PASS",
+      "observedRunSeconds": "26.380"
+    },
+    {
+      "command": "python3 scripts/test-dfr04.py",
+      "tests": 20,
+      "exitCode": 0,
+      "status": "PASS",
+      "observedRunSeconds": "42.517"
+    },
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node scripts/verify-approved-scoring-authority.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "manifestContentHash": "8c0880249dc54e2baea0235cc10094f818220db86331442ece3da05085261cc1",
+      "artifacts": 37,
+      "historicalFilesUnchanged": 133,
+      "compatibilities": 9
+    }
+  ],
+  "scope": "Bounded research closure only; no full application/release PASS claim.",
+  "protectedFileCount": 10062,
+  "protectedFingerprintsUnchanged": true,
+  "financialParity": true,
+  "sourceLineage": true,
+  "distinctAIChallenge": true,
+  "independentHumanReviewClaimed": false,
+  "productionBoundaryProbes": 54,
+  "productionActivation": false,
+  "ownerApproval": "PENDING"
+}
