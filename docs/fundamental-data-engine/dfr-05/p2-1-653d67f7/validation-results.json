@@ -1,0 +1,83 @@
+{
+  "status": "PASS_WITH_CONDITIONS",
+  "scope": "P2.1 static planning/route qualification only",
+  "planningDate": "2026-11-06",
+  "validatedAtUtc": "2026-11-06T03:14:09.986831+00:00",
+  "baselineCommit": "653d67f78df519ce087c65a6a6cc773c9f615b2e",
+  "planChecks": {
+    "static": {
+      "status": "PASS",
+      "routeCounts": {
+        "READY": 16,
+        "READY_WITH_CONDITIONS": 8,
+        "BLOCKED": 0
+      },
+      "nonPilotIdentities": 24,
+      "subtypes": 12,
+      "batches": 4,
+      "sourceStructuresInspected": 96,
+      "financialMetricsCalculated": 0,
+      "newAssessments": 0,
+      "approvedUniverseHash": "931e8355854bccc45918b38f2c5061bfda0786bf4bb8779fbe213be8e5107d56",
+      "nonPilotIdentityHash": "31198b3746eae01c02f6c07904a06671206f7b431d96378629058e63c330b33a",
+      "matrixHash": "87500db2da74d0b9829e43a332189b048c57ef2990cb7ad97fc8491a42859179",
+      "protectedFilesVerified": 10109,
+      "p1Counts": [
+        789,
+        25,
+        113
+      ],
+      "implementationAuthorized": false
+    },
+    "adversarial": {
+      "status": "PASS",
+      "rejectedInvalidPlans": 17
+    }
+  },
+  "staticCommand": {
+    "argv": [
+      "python3",
+      "scripts/verify-dfr05-p21-plan.py"
+    ],
+    "exitCode": 0,
+    "stdout": "{\n  \"static\": {\n    \"status\": \"PASS\",\n    \"routeCounts\": {\n      \"READY\": 16,\n      \"READY_WITH_CONDITIONS\": 8,\n      \"BLOCKED\": 0\n    },\n    \"nonPilotIdentities\": 24,\n    \"subtypes\": 12,\n    \"batches\": 4,\n    \"sourceStructuresInspected\": 96,\n    \"financialMetricsCalculated\": 0,\n    \"newAssessments\": 0,\n    \"approvedUniverseHash\": \"931e8355854bccc45918b38f2c5061bfda0786bf4bb8779fbe213be8e5107d56\",\n    \"nonPilotIdentityHash\": \"31198b3746eae01c02f6c07904a06671206f7b431d96378629058e63c330b33a\",\n    \"matrixHash\": \"87500db2da74d0b9829e43a332189b048c57ef2990cb7ad97fc8491a42859179\",\n    \"protectedFilesVerified\": 10109,\n    \"p1Counts\": [\n      789,\n      25,\n      113\n    ],\n    \"implementationAuthorized\": false\n  },\n  \"adversarial\": {\n    \"status\": \"PASS\",\n    \"rejectedInvalidPlans\": 17\n  }\n}\n",
+    "stderr": ""
+  },
+  "p1Regression": {
+    "command": "python3 scripts/test-dfr05-p1.py",
+    "exitCode": 0,
+    "tests": 27,
+    "stdout": "",
+    "stderr": "test_adapter_determinism_and_no_unit_inference (__main__.P1.test_adapter_determinism_and_no_unit_inference) ... ok\ntest_all_25_assessments_and_113_deferred_exact (__main__.P1.test_all_25_assessments_and_113_deferred_exact) ... ok\ntest_all_metric_objects_and_provider_crosschecks_equal (__main__.P1.test_all_metric_objects_and_provider_crosschecks_equal) ... ok\ntest_all_source_dimensions_and_pointers_preserved (__main__.P1.test_all_source_dimensions_and_pointers_preserved) ... ok\ntest_approved_methodology_and_database_fingerprints (__main__.P1.test_approved_methodology_and_database_fingerprints) ... ok\ntest_conflict_local_source_to_topic_to_rubric (__main__.P1.test_conflict_local_source_to_topic_to_rubric) ... ok\ntest_decimal_values_not_binary (__main__.P1.test_decimal_values_not_binary) ... ok\ntest_dossier_contract_rejects_zero_missing_and_formal_flags (__main__.P1.test_dossier_contract_rejects_zero_missing_and_formal_flags) ... ok\ntest_every_metric_topic_rubric_has_no_dangling_edges (__main__.P1.test_every_metric_topic_rubric_has_no_dangling_edges) ... ok\ntest_exact_six_and_138 (__main__.P1.test_exact_six_and_138) ... ok\ntest_four_legacy_schemas_are_explicit_not_fabricated (__main__.P1.test_four_legacy_schemas_are_explicit_not_fabricated) ... ok\ntest_graph_cycles_dangling_cross_issuer_rejected (__main__.P1.test_graph_cycles_dangling_cross_issuer_rejected) ... ok\ntest_inventory_is_pinned_without_copying_unrelated_rows (__main__.P1.test_inventory_is_pinned_without_copying_unrelated_rows) ... ok\ntest_legacy_debt_exceptions_not_issuer_wide (__main__.P1.test_legacy_debt_exceptions_not_issuer_wide) ... ok\ntest_metric_conflict_propagates_to_transitive_calcs (__main__.P1.test_metric_conflict_propagates_to_transitive_calcs) ... ok\ntest_new_issuer_rejected_every_entry (__main__.P1.test_new_issuer_rejected_every_entry) ... ok\ntest_no_synthetic_totals_or_production_authority (__main__.P1.test_no_synthetic_totals_or_production_authority) ... ok\ntest_path_escape_and_source_hash_rejected (__main__.P1.test_path_escape_and_source_hash_rejected) ... ok\ntest_raw_decimal_source_replay_and_rejection (__main__.P1.test_raw_decimal_source_replay_and_rejection) ... ok\ntest_sector_differences_and_no_formal_route_promotion (__main__.P1.test_sector_differences_and_no_formal_route_promotion) ... ok\ntest_source_changed_during_replay_rejected (__main__.P1.test_source_changed_during_replay_rejected) ... ok\ntest_tcx_minor_conflict_is_preserved (__main__.P1.test_tcx_minor_conflict_is_preserved) ... ok\ntest_topic_nodes_exact_m3 (__main__.P1.test_topic_nodes_exact_m3) ... ok\ntest_unreviewed_candidate_reference_does_not_revoke_overlay (__main__.P1.test_unreviewed_candidate_reference_does_not_revoke_overlay) ... ok\ntest_unsupported_band_or_missing_topic_rejected (__main__.P1.test_unsupported_band_or_missing_topic_rejected) ... ok\ntest_unsupported_kind_and_schema_rejected (__main__.P1.test_unsupported_kind_and_schema_rejected) ... ok\ntest_zero_null_missing_distinct (__main__.P1.test_zero_null_missing_distinct) ... ok\n\n----------------------------------------------------------------------\nRan 27 tests in 0.227s\n\nOK\n"
+  },
+  "actualProductionBoundaryRejections": 63,
+  "authority": {
+    "status": "PASS",
+    "manifestContentHash": "8c0880249dc54e2baea0235cc10094f818220db86331442ece3da05085261cc1",
+    "artifacts": 37,
+    "historicalFilesUnchanged": 133,
+    "previousConfigurationArchived": 1,
+    "compatibilities": 9
+  },
+  "sourceInventoryFilesRead": 96,
+  "routingContextRecords": 73,
+  "sourceCoverageQualified": false,
+  "financialMetricsCalculatedForNonPilots": 0,
+  "newAssessments": 0,
+  "newScorecards": 0,
+  "valuationOrRankingExecuted": false,
+  "externalSourcesAcquired": 0,
+  "allBaselineAndDatabaseBytesUnchanged": true,
+  "p1AndApprovedP20ArtifactsUnchanged": true,
+  "p1ApprovedCounts": [
+    789,
+    25,
+    113
+  ],
+  "newMethodologyOrWeights": false,
+  "ownerP1AndP20Approvals": "ACCEPTED_FROM_CURRENT_OWNER_REQUEST_NOT_REOPENED",
+  "p21ImplementationAuthorized": false,
+  "nextPackageStarted": false,
+  "productionActivated": false,
+  "independentHumanReviewClaimed": false
+}
