@@ -1,0 +1,597 @@
+{
+  "version": "ssi-bindings-v4",
+  "scope": "CONSOLIDATED",
+  "unqualifiedConcepts": [
+    "RESTRICTED_CASH",
+    "UNRESTRICTED_CORPORATE_LIQUIDITY",
+    "FVTPL_ASSETS",
+    "AFS_ASSETS",
+    "HTM_ASSETS",
+    "SECURITIES_TRADING_RECEIVABLES",
+    "BONDS_AND_OTHER_DEBT",
+    "FINANCIAL_LIABILITIES",
+    "CUSTOMER_CASH_OFF_BALANCE",
+    "CUSTOMER_CUSTODY_ASSETS_OFF_BALANCE",
+    "CUSTOMER_PAYABLES_OFF_BALANCE",
+    "COLLATERALIZED_OBLIGATIONS",
+    "NCI",
+    "OPERATING_REVENUE",
+    "BROKERAGE_REVENUE",
+    "MARGIN_ONLY_INTEREST",
+    "FVTPL_REALIZED_GAINS",
+    "FVTPL_UNREALIZED_GAINS",
+    "FVTPL_REALIZED_LOSSES",
+    "FVTPL_UNREALIZED_LOSSES",
+    "INTEREST_EXPENSE",
+    "OPERATING_EXPENSES",
+    "RECURRING_EARNINGS"
+  ],
+  "definitions": {
+    "FINANCIAL_DEBT_EQUITY": "Reviewed financial borrowings / group equity; no total-liability substitution.",
+    "FINANCIAL_LEVERAGE": "Recognized consolidated assets / consolidated equity; excludes client off-balance custody.",
+    "MARGIN_EQUITY": "Gross reviewed margin loans / group equity; excludes customer advances and other receivables.",
+    "REPORTED_CASH_FINANCIAL_DEBT": "Reported corporate cash equivalents / reviewed financial borrowings; not unrestricted-liquidity coverage."
+  },
+  "rubrics": {
+    "BQ-EQ": {
+      "concepts": [
+        "GROUP_ROE_AVG",
+        "GROUP_ROA_AVG",
+        "NET_INCOME_ATTRIBUTABLE_PARENT"
+      ],
+      "dependency": "Reconcile SSI parent/common capital, funds distributions and recurring trading/interest earnings; qualify sustainable returns and capital charge.",
+      "class": "RESEARCH_MAPPING",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "BQ-MOAT": {
+      "concepts": [],
+      "dependency": "Qualified SSI customer retention, pricing power, service differentiation and durable cost advantage are absent from the selected financial facts.",
+      "class": "TOPIC_EVIDENCE_UNQUALIFIED",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "BQ-CASH": {
+      "concepts": [
+        "NET_INCOME",
+        "CASH_AND_EQUIVALENTS",
+        "SECURITIES_MARGIN_LOANS"
+      ],
+      "dependency": "Reconcile SSI interest cash realization, loan collateral impairments, FVTPL realized/unrealized results and client segregated balances; corporate CFO is not industrial free cash flow.",
+      "class": "RESEARCH_MAPPING",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "BQ-RES": {
+      "concepts": [
+        "SECURITIES_MARGIN_LOANS",
+        "FINANCIAL_DEBT"
+      ],
+      "dependency": "Qualify margin borrower/collateral concentration, market turnover sensitivity, funding renewal and adverse-cycle response.",
+      "class": "TOPIC_EVIDENCE_UNQUALIFIED",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "FH-BS": {
+      "concepts": [
+        "FINANCIAL_DEBT_EQUITY",
+        "MARGIN_EQUITY",
+        "TOTAL_EQUITY"
+      ],
+      "dependency": "Qualify collateral haircuts, impaired margin exposures, securities concentration, commitments and usable regulatory capital.",
+      "class": "RESEARCH_MAPPING",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "FH-LIQ": {
+      "concepts": [
+        "REPORTED_CASH_FINANCIAL_DEBT",
+        "CUSTOMER_CASH_OFF_BALANCE",
+        "RESTRICTED_CASH",
+        "UNRESTRICTED_CORPORATE_LIQUIDITY"
+      ],
+      "dependency": "Map SSI funding maturities, collateral encumbrances, covenants, restricted funds and segregated customer cash; reported corporate cash is not certified unrestricted funds.",
+      "class": "RESEARCH_MAPPING",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "FH-STRESS": {
+      "concepts": [
+        "MARGIN_EQUITY",
+        "FINANCIAL_DEBT_EQUITY"
+      ],
+      "dependency": "Qualify SSI margin liquidation haircuts, trading shocks and funding rollover constraints before stress assessment.",
+      "class": "ANALYST_ASSUMPTIONS_REQUIRED",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "GQ-HIST": {
+      "concepts": [
+        "NET_INCOME_YOY",
+        "NET_INCOME_ATTRIBUTABLE_PARENT_YOY",
+        "SECURITIES_MARGIN_LOANS_YOY"
+      ],
+      "dependency": "Bridge SSI corporate actions, capital raises, restated FY2024 parent profit and dilution; reported group growth is not per-share growth.",
+      "class": "RESEARCH_MAPPING",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "GQ-FWD": {
+      "concepts": [
+        "SECURITIES_MARGIN_LOANS"
+      ],
+      "dependency": "Qualify SSI brokerage/margin demand runway, capital constraints and implementation evidence; historical loan growth cannot establish future growth.",
+      "class": "TOPIC_EVIDENCE_UNQUALIFIED",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "GQ-INC": {
+      "concepts": [
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "TOTAL_EQUITY"
+      ],
+      "dependency": "Identify incremental deployed common capital and recurring earnings with compatible lag and economic definitions.",
+      "class": "RESEARCH_MAPPING",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "IC-IND": {
+      "concepts": [],
+      "dependency": "Qualify dated securities competition, market turnover structure, entry/capital rules and disruption under approved source authority.",
+      "class": "TOPIC_EVIDENCE_UNQUALIFIED",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "IC-POS": {
+      "concepts": [
+        "BROKERAGE_REVENUE"
+      ],
+      "dependency": "Qualified SSI market-share denominators, pricing and customer/channel economics are required; asset size does not prove share.",
+      "class": "TOPIC_EVIDENCE_UNQUALIFIED",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "IC-CYCLE": {
+      "concepts": [
+        "NET_INCOME_YOY",
+        "MARGIN_EQUITY"
+      ],
+      "dependency": "Qualify SSI cycle behavior across turnover, collateral prices, funding spreads and capital constraints.",
+      "class": "TOPIC_EVIDENCE_UNQUALIFIED",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "VAL-PRIMARY": {
+      "concepts": [],
+      "dependency": "Owner-approved cutoff, price/share/action source policy, common-owner sustainable earnings and economic assumptions required.",
+      "class": "VALUATION_DEPENDENCY",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "VAL-RET": {
+      "concepts": [],
+      "dependency": "Compatible starting price, action-adjusted shares, distributions, forward scenarios and terminal value approval required.",
+      "class": "VALUATION_DEPENDENCY",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "VAL-MOS": {
+      "concepts": [],
+      "dependency": "Approved conservative intrinsic-value assumptions, downside scenarios and compatible price/share cutoff required.",
+      "class": "VALUATION_DEPENDENCY",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "RG-GOV": {
+      "concepts": [],
+      "dependency": "Qualify SSI related-party dealings, minority protections, disclosure changes and actual audit findings; audited status alone does not prove governance quality.",
+      "class": "TOPIC_EVIDENCE_UNQUALIFIED",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "RG-RISK": {
+      "concepts": [
+        "MARGIN_EQUITY",
+        "FINANCIAL_DEBT_EQUITY",
+        "CUSTOMER_PAYABLES_OFF_BALANCE"
+      ],
+      "dependency": "Qualify SSI residual market, margin-credit, funding, operational/custody and regulatory risks plus mitigations; avoid duplicate risk deductions.",
+      "class": "RESEARCH_MAPPING",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "RG-UNC": {
+      "concepts": [
+        "NET_INCOME_ATTRIBUTABLE_PARENT",
+        "RECURRING_EARNINGS"
+      ],
+      "dependency": "Qualify SSI recurring/trading earnings ranges, revision sensitivity and funding/regulatory uncertainty.",
+      "class": "ANALYST_ASSUMPTIONS_REQUIRED",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "CA-REINV": {
+      "concepts": [
+        "TOTAL_EQUITY",
+        "SECURITIES_MARGIN_LOANS"
+      ],
+      "dependency": "Qualify SSI investment/capital-raise decisions and subsequent risk-adjusted economic outcomes; capex is not securities reinvestment.",
+      "class": "RESEARCH_MAPPING",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "CA-DIST": {
+      "concepts": [
+        "TOTAL_EQUITY"
+      ],
+      "dependency": "Qualify distributions, retained capital, regulatory resilience and contemporaneous valuation; no assumed buyback benefit.",
+      "class": "VALUATION_DEPENDENCY",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "CA-DIL": {
+      "concepts": [],
+      "dependency": "Qualify SSI issue terms, corporate actions, proceeds deployment and adjusted common per-share outcomes.",
+      "class": "RESEARCH_MAPPING",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    },
+    "CA-PSV": {
+      "concepts": [
+        "NET_INCOME_ATTRIBUTABLE_PARENT"
+      ],
+      "dependency": "Reconstruct SSI action-adjusted common-owner per-share value over a cycle using qualified shares and distributions.",
+      "class": "VALUATION_DEPENDENCY",
+      "assumptions": "No economic assumptions approved; separate analyst qualification and owner authorization required."
+    }
+  },
+  "sourceImageReview": {
+    "date": "2026-11-06",
+    "method": "DIRECT_RETAINED_PDF_PAGE_IMAGE_REVIEW",
+    "pages": [
+      10,
+      14,
+      16,
+      17
+    ],
+    "pdfPath": "data/manual-download/SSI/2026-10-29-fy2025/m88_20260327_20260327_ssi_bao_cao_tai_chinh_hop_nhat_nam_2025_da_kiem_toan_signed1774616639326w2reyyb1.pdf",
+    "sha256": "25ba720e99f3fa1b6531060556e1c097123d839549ab7545fe12821c2a888aa0",
+    "scope": "CONSOLIDATED",
+    "currency": "VND",
+    "unit": "CURRENCY",
+    "scale": "1",
+    "columnQualification": {
+      "balance": "Số cuối năm; 31 December 2025",
+      "income": "Năm nay; FY2025",
+      "comparative": "Năm trước (trình bày lại); NOT SELECTED"
+    },
+    "publicationAt": null
+  },
+  "pageReadings": [
+    {
+      "concept": "CORPORATE_CASH_COMPONENT",
+      "value": "1174260187483",
+      "page": 10,
+      "rowCode": "111.1",
+      "caption": "Tiền",
+      "periodType": "INSTANT",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "CORPORATE_CASH_EQUIVALENTS_COMPONENT",
+      "value": "2472232575635",
+      "page": 10,
+      "rowCode": "111.2",
+      "caption": "Các khoản tương đương tiền",
+      "periodType": "INSTANT",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "FVTPL_ASSETS",
+      "value": "38257656392970",
+      "page": 10,
+      "rowCode": "112",
+      "caption": "Các tài sản tài chính ghi nhận thông qua lãi/lỗ",
+      "periodType": "INSTANT",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "HTM_SHORT_TERM",
+      "value": "5230991865654",
+      "page": 10,
+      "rowCode": "113",
+      "caption": "Các khoản đầu tư nắm giữ đến ngày đáo hạn",
+      "periodType": "INSTANT",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "AFS_ASSETS",
+      "value": "599371822447",
+      "page": 10,
+      "rowCode": "115",
+      "caption": "Tài sản tài chính sẵn sàng để bán",
+      "periodType": "INSTANT",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "SECURITIES_TRADING_RECEIVABLES",
+      "value": "192130223980",
+      "page": 10,
+      "rowCode": "117.1",
+      "caption": "Phải thu bán các tài sản tài chính",
+      "periodType": "INSTANT",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "RECEIVABLES_REPORTED_SUBTOTAL",
+      "value": "573615596319",
+      "page": 10,
+      "rowCode": "117",
+      "caption": "Các khoản phải thu",
+      "periodType": "INSTANT",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "SHORT_PLEDGED_MARGIN_DEPOSITS",
+      "value": "882806510",
+      "page": 10,
+      "rowCode": "134",
+      "caption": "Cầm cố, thế chấp, ký quỹ, ký cược ngắn hạn",
+      "periodType": "INSTANT",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "CUSTOMER_CASH_OFF_BALANCE",
+      "value": "8393795223327",
+      "page": 14,
+      "rowCode": "026",
+      "caption": "Tiền gửi của khách hàng",
+      "periodType": "INSTANT",
+      "economicOwnership": "CLIENT_OFF_BALANCE",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "CUSTOMER_PAYABLES_OFF_BALANCE",
+      "value": "8328556709625",
+      "page": 14,
+      "rowCode": "031",
+      "caption": "Phải trả Nhà đầu tư về tiền gửi giao dịch chứng khoán theo phương thức CTCK quản lý",
+      "periodType": "INSTANT",
+      "economicOwnership": "CLIENT_OFF_BALANCE",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "CUSTOMER_UNTRADED_CUSTODY_COMPONENT",
+      "value": "9177825490000",
+      "page": 14,
+      "rowCode": "022",
+      "caption": "Tài sản tài chính đã lưu ký tại VSDC và chưa giao dịch của Nhà đầu tư",
+      "periodType": "INSTANT",
+      "economicOwnership": "CLIENT_OFF_BALANCE",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "CUSTOMER_VSDC_MARGIN_CASH",
+      "value": "285780880739",
+      "page": 14,
+      "rowCode": "027.1",
+      "caption": "Tiền gửi ký quỹ của Nhà đầu tư tại VSDC",
+      "periodType": "INSTANT",
+      "economicOwnership": "CLIENT_OFF_BALANCE",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "FVTPL_GROSS_GAINS",
+      "value": "6160760603213",
+      "page": 16,
+      "rowCode": "01",
+      "caption": "Lãi từ các tài sản tài chính ghi nhận thông qua lãi/lỗ",
+      "periodType": "ANNUAL",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "FVTPL_REALIZED_GAINS",
+      "value": "3137405004938",
+      "page": 16,
+      "rowCode": "01.1",
+      "caption": "Lãi bán các tài sản tài chính FVTPL",
+      "periodType": "ANNUAL",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "FVTPL_UNREALIZED_GAINS",
+      "value": "454411821045",
+      "page": 16,
+      "rowCode": "01.2",
+      "caption": "Chênh lệch tăng về đánh giá lại các tài sản tài chính FVTPL",
+      "periodType": "ANNUAL",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "FVTPL_DIVIDEND_INTEREST",
+      "value": "2264268828109",
+      "page": 16,
+      "rowCode": "01.3",
+      "caption": "Cổ tức, tiền lãi phát sinh từ tài sản tài chính FVTPL",
+      "periodType": "ANNUAL",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "FVTPL_WARRANT_REVALUATION_GAINS",
+      "value": "304674949121",
+      "page": 16,
+      "rowCode": "01.4",
+      "caption": "Chênh lệch giảm do đánh giá lại phải trả chứng quyền đang lưu hành",
+      "periodType": "ANNUAL",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "FVTPL_GROSS_LOSSES",
+      "value": "3081274818853",
+      "page": 16,
+      "rowCode": "21",
+      "caption": "Lỗ từ các tài sản tài chính FVTPL",
+      "periodType": "ANNUAL",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "FVTPL_REALIZED_LOSSES",
+      "value": "2403092258057",
+      "page": 16,
+      "rowCode": "21.1",
+      "caption": "Lỗ bán các tài sản tài chính FVTPL",
+      "periodType": "ANNUAL",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "FVTPL_UNREALIZED_LOSSES",
+      "value": "381330749849",
+      "page": 16,
+      "rowCode": "21.2",
+      "caption": "Chênh lệch giảm đánh giá lại các tài sản tài chính FVTPL",
+      "periodType": "ANNUAL",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "FVTPL_WARRANT_REVALUATION_LOSSES",
+      "value": "283088772310",
+      "page": 16,
+      "rowCode": "21.4",
+      "caption": "Chênh lệch tăng do đánh giá lại phải trả chứng quyền đang lưu hành",
+      "periodType": "ANNUAL",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "OPERATING_REVENUE",
+      "value": "12930736690184",
+      "page": 16,
+      "rowCode": "20",
+      "caption": "Cộng doanh thu hoạt động",
+      "periodType": "ANNUAL",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "BROKERAGE_REVENUE",
+      "value": "2344721484003",
+      "page": 16,
+      "rowCode": "06",
+      "caption": "Doanh thu nghiệp vụ môi giới chứng khoán",
+      "periodType": "ANNUAL",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "LOAN_RECEIVABLE_INTEREST",
+      "value": "3562009243140",
+      "page": 16,
+      "rowCode": "03",
+      "caption": "Lãi từ các khoản cho vay và phải thu",
+      "periodType": "ANNUAL",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "OPERATING_EXPENSES",
+      "value": "5107169725952",
+      "page": 16,
+      "rowCode": "40",
+      "caption": "Cộng chi phí hoạt động",
+      "periodType": "ANNUAL",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "INTEREST_EXPENSE",
+      "value": "2561801123900",
+      "page": 17,
+      "rowCode": "52",
+      "caption": "Chi phí lãi vay",
+      "periodType": "ANNUAL",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "RESULT_FROM_OPERATIONS",
+      "value": "5077038349275",
+      "page": 17,
+      "rowCode": "70",
+      "caption": "Kết quả hoạt động",
+      "periodType": "ANNUAL",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "OTHER_INCOME",
+      "value": "8176653667",
+      "page": 17,
+      "rowCode": "71",
+      "caption": "Thu nhập khác",
+      "periodType": "ANNUAL",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    },
+    {
+      "concept": "OTHER_EXPENSE",
+      "value": "2241006571",
+      "page": 17,
+      "rowCode": "72",
+      "caption": "Chi phí khác",
+      "periodType": "ANNUAL",
+      "economicOwnership": "GROUP_RECOGNIZED",
+      "year": 2025,
+      "revision": "ORIGINAL_REVIEWED_VINTAGE"
+    }
+  ],
+  "revisionBridges": [
+    {
+      "metric": "NET_INCOME_ATTRIBUTABLE_PARENT_YOY",
+      "year": 2025,
+      "concept": "NET_INCOME_ATTRIBUTABLE_PARENT",
+      "sourceHash": "25ba720e99f3fa1b6531060556e1c097123d839549ab7545fe12821c2a888aa0",
+      "page": 17,
+      "rowCode": "201",
+      "scope": "CONSOLIDATED",
+      "currency": "VND",
+      "unit": "CURRENCY",
+      "scale": "1",
+      "current": {
+        "year": 2025,
+        "value": "4106090416749",
+        "column": "Năm nay",
+        "revisionBasis": "ORIGINAL_REVIEWED_VINTAGE"
+      },
+      "comparative": {
+        "year": 2024,
+        "value": "2704221369052",
+        "column": "Năm trước (trình bày lại)",
+        "revisionBasis": "RESTATED_REVIEWED_VINTAGE"
+      },
+      "qualification": "Direct page-image review of both explicit row201 columns; same common-owner allocation caption and full annual periods. No group-NPAT substitution.",
+      "publicationAt": null
+    }
+  ]
+}

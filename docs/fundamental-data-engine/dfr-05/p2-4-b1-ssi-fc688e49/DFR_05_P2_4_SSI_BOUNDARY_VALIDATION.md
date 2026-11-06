@@ -1,0 +1,6 @@
+# SSI boundary validation
+Baseline `fc688e49fd4a6ad06d0333967ce24c9f7e8adbc8`. Implementation: **uncommitted**. SSI only; RESEARCH_PROVISIONAL, productionAdmissible=false, scoringAuthorized=false. All 23 rubrics have null points/band/assessment; categoryScores/totalScore/ranking/valuation remain null. No external acquisition or production mutation.
+
+PASS: all 9 actual direct/nested probes rejected: scorer, ranking root, ranking nested card, decision, monthly DCA command, NAV request, ledger transaction builder, DI acceptance and AI provenance. See `boundary-results.json` for exact entrypoints and reasons. These checks establish dossier rejection, not immunity to arbitrary transformed authenticated inputs.
+
+Actual commands, Python/Node runtime versions, exit codes, stdout/stderr and unittest totals are in `validation-receipts.json`. Authority verification was executed read-only. The SSI test suite covers authorization, scope/period/unit/revision, raw Decimal replay, segregation, missing/null/zero, graph consistency, conflict locality, predecessor full parity and fresh deterministic replay. Whole-repository test/lint/release acceptance is outside this bounded validation; no such PASS is claimed.

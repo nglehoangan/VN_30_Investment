@@ -1,0 +1,64 @@
+{
+  "python": "3.14.6",
+  "node": "v22.23.2",
+  "records": [
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "scripts/build-dfr05-ssi.py"
+      ],
+      "startedAt": "2026-11-06T10:46:59.327005+00:00",
+      "finishedAt": "2026-11-06T10:48:33.606910+00:00",
+      "exitCode": 0,
+      "stdout": "{\"status\": \"PASS\", \"readOnly\": false, \"canonicalCoreHash\": \"e78b07891d34ddb1e50212b745f904da24f7194c9239cd648d04fd2c11b903ea\", \"metrics\": 174, \"states\": {\"SUPPORTED\": 88, \"MISSING\": 86}, \"supportedKinds\": {\"REPORTED_FACT\": 55, \"DERIVED_METRIC\": 33}, \"rubrics\": 23, \"scored\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "scripts/test-dfr05-ssi.py"
+      ],
+      "startedAt": "2026-11-06T10:50:10.914588+00:00",
+      "finishedAt": "2026-11-06T10:51:26.287925+00:00",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "test_authorized_identity (__main__.SSIContractTests.test_authorized_identity) ... ok\ntest_client_cash_cannot_be_derived_as_corporate_liquidity (__main__.SSIContractTests.test_client_cash_cannot_be_derived_as_corporate_liquidity) ... ok\ntest_client_segregation (__main__.SSIContractTests.test_client_segregation) ... ok\ntest_conflict_injections_exact_locality (__main__.SSIContractTests.test_conflict_injections_exact_locality) ... ok\ntest_cycle_rejected (__main__.SSIContractTests.test_cycle_rejected) ... ok\ntest_dangling_rejected (__main__.SSIContractTests.test_dangling_rejected) ... ok\ntest_every_other_universe_issuer_rejected (__main__.SSIContractTests.test_every_other_universe_issuer_rejected) ... ok\ntest_every_tuple_field_rejected (__main__.SSIContractTests.test_every_tuple_field_rejected) ... ok\ntest_exact_ratio (__main__.SSIContractTests.test_exact_ratio) ... ok\ntest_explicit_cohort_bridge_rejects_wrong_column_operand (__main__.SSIContractTests.test_explicit_cohort_bridge_rejects_wrong_column_operand) ... ok\ntest_financial_graph_foreign_identity_scope_rejected (__main__.SSIContractTests.test_financial_graph_foreign_identity_scope_rejected) ... ok\ntest_fresh_replay (__main__.SSIContractTests.test_fresh_replay) ... ok\ntest_graph_acyclic (__main__.SSIContractTests.test_graph_acyclic) ... ok\ntest_margin_definition (__main__.SSIContractTests.test_margin_definition) ... ok\ntest_missing_never_zero (__main__.SSIContractTests.test_missing_never_zero) ... ok\ntest_no_industrial_fcf (__main__.SSIContractTests.test_no_industrial_fcf) ... ok\ntest_no_tcX_or_bank_data (__main__.SSIContractTests.test_no_tcX_or_bank_data) ... ok\ntest_null_missing_zero_distinct (__main__.SSIContractTests.test_null_missing_zero_distinct) ... ok\ntest_period_mismatch (__main__.SSIContractTests.test_period_mismatch) ... ok\ntest_periods (__main__.SSIContractTests.test_periods) ... ok\ntest_predecessor_full_parity (__main__.SSIContractTests.test_predecessor_full_parity) ... ok\ntest_provider_unknown_units_never_support (__main__.SSIContractTests.test_provider_unknown_units_never_support) ... ok\ntest_raw_native_decimal (__main__.SSIContractTests.test_raw_native_decimal) ... ok\ntest_research_only (__main__.SSIContractTests.test_research_only) ... ok\ntest_restatement_preserved (__main__.SSIContractTests.test_restatement_preserved) ... ok\ntest_rubrics_unchanged_topics_no_scores (__main__.SSIContractTests.test_rubrics_unchanged_topics_no_scores) ... ok\ntest_same_pdf_not_revision_authority (__main__.SSIContractTests.test_same_pdf_not_revision_authority) ... ok\ntest_scope_gate (__main__.SSIContractTests.test_scope_gate) ... ok\ntest_scope_mismatch (__main__.SSIContractTests.test_scope_mismatch) ... ok\ntest_source_bindings (__main__.SSIContractTests.test_source_bindings) ... ok\ntest_wrong_universe_rejected (__main__.SSIContractTests.test_wrong_universe_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 31 tests in 75.293s\n\nOK\n",
+      "reason": "Final client-ownership operand rejection guard; dossier values unchanged."
+    },
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-dfr05-ssi-boundaries.mjs"
+      ],
+      "startedAt": "2026-11-06T10:49:50.111623+00:00",
+      "finishedAt": "2026-11-06T10:49:50.758726+00:00",
+      "exitCode": 0,
+      "stdout": "{\"status\":\"PASS\",\"rejectionProbes\":9}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/verify-approved-scoring-authority.mjs"
+      ],
+      "startedAt": "2026-11-06T10:49:50.774815+00:00",
+      "finishedAt": "2026-11-06T10:49:51.382413+00:00",
+      "exitCode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"manifestContentHash\": \"8c0880249dc54e2baea0235cc10094f818220db86331442ece3da05085261cc1\",\n  \"artifacts\": 37,\n  \"historicalFilesUnchanged\": 133,\n  \"previousConfigurationArchived\": 1,\n  \"compatibilities\": 9\n}\n",
+      "stderr": "(node:10746) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    }
+  ],
+  "supersededTests": [
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "scripts/test-dfr05-ssi.py"
+      ],
+      "startedAt": "2026-11-06T10:48:33.688052+00:00",
+      "finishedAt": "2026-11-06T10:49:50.018102+00:00",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "test_authorized_identity (__main__.SSIContractTests.test_authorized_identity) ... ok\ntest_client_segregation (__main__.SSIContractTests.test_client_segregation) ... ok\ntest_conflict_injections_exact_locality (__main__.SSIContractTests.test_conflict_injections_exact_locality) ... ok\ntest_cycle_rejected (__main__.SSIContractTests.test_cycle_rejected) ... ok\ntest_dangling_rejected (__main__.SSIContractTests.test_dangling_rejected) ... ok\ntest_every_other_universe_issuer_rejected (__main__.SSIContractTests.test_every_other_universe_issuer_rejected) ... ok\ntest_every_tuple_field_rejected (__main__.SSIContractTests.test_every_tuple_field_rejected) ... ok\ntest_exact_ratio (__main__.SSIContractTests.test_exact_ratio) ... ok\ntest_explicit_cohort_bridge_rejects_wrong_column_operand (__main__.SSIContractTests.test_explicit_cohort_bridge_rejects_wrong_column_operand) ... ok\ntest_financial_graph_foreign_identity_scope_rejected (__main__.SSIContractTests.test_financial_graph_foreign_identity_scope_rejected) ... ok\ntest_fresh_replay (__main__.SSIContractTests.test_fresh_replay) ... ok\ntest_graph_acyclic (__main__.SSIContractTests.test_graph_acyclic) ... ok\ntest_margin_definition (__main__.SSIContractTests.test_margin_definition) ... ok\ntest_missing_never_zero (__main__.SSIContractTests.test_missing_never_zero) ... ok\ntest_no_industrial_fcf (__main__.SSIContractTests.test_no_industrial_fcf) ... ok\ntest_no_tcX_or_bank_data (__main__.SSIContractTests.test_no_tcX_or_bank_data) ... ok\ntest_null_missing_zero_distinct (__main__.SSIContractTests.test_null_missing_zero_distinct) ... ok\ntest_period_mismatch (__main__.SSIContractTests.test_period_mismatch) ... ok\ntest_periods (__main__.SSIContractTests.test_periods) ... ok\ntest_predecessor_full_parity (__main__.SSIContractTests.test_predecessor_full_parity) ... ok\ntest_provider_unknown_units_never_support (__main__.SSIContractTests.test_provider_unknown_units_never_support) ... ok\ntest_raw_native_decimal (__main__.SSIContractTests.test_raw_native_decimal) ... ok\ntest_research_only (__main__.SSIContractTests.test_research_only) ... ok\ntest_restatement_preserved (__main__.SSIContractTests.test_restatement_preserved) ... ok\ntest_rubrics_unchanged_topics_no_scores (__main__.SSIContractTests.test_rubrics_unchanged_topics_no_scores) ... ok\ntest_same_pdf_not_revision_authority (__main__.SSIContractTests.test_same_pdf_not_revision_authority) ... ok\ntest_scope_gate (__main__.SSIContractTests.test_scope_gate) ... ok\ntest_scope_mismatch (__main__.SSIContractTests.test_scope_mismatch) ... ok\ntest_source_bindings (__main__.SSIContractTests.test_source_bindings) ... ok\ntest_wrong_universe_rejected (__main__.SSIContractTests.test_wrong_universe_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 30 tests in 76.239s\n\nOK\n"
+    }
+  ]
+}
