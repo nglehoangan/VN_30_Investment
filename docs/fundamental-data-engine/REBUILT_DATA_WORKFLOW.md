@@ -1,5 +1,9 @@
 # Fresh VN30 report corpus — 2026-10-19
 
+## Routine reading: JSON first
+
+Use the repository skill [read-pdf-json-first](../../skills/read-pdf-json-first/SKILL.md) for routine PDF reading and incremental extraction. Reuse matching extracted JSON and notes first. If missing, extract the retained PDF; download only a missing required PDF. Full corpus rebuild commands below are not the default for routine reading. Keep the current direct-PDF evidence format and separate document revisions.
+
 The owner explicitly requested deleting all of `data/` except `vn30.sqlite`, then reacquiring the saved Vietstock PDFs and CafeF API data. This supersedes the previous cleanup/output layout. The control plan and reset receipt are outside `data/` in `rebuild-2026-10-19/`. Previous extracted financial amounts were not reused. Hash-bound document identities are metadata only; no previous canonical facts were supplied to the PDF mapper.
 
 ## Layout

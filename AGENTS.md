@@ -8,6 +8,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
+## PDF reading skill — JSON first
+
+- For PDF reading, lookup or extraction in this project, read and use `skills/read-pdf-json-first/SKILL.md`.
+- Reuse matching extracted JSON first; if missing, extract the retained PDF. Download only when the required PDF is also absent. Preserve document/period/scope/revision identity and the current direct-PDF workflow.
+
 ## Owner-confirmed portfolio reconciliation — do not ask again (2026-10-31)
 
 - Before reopening Phase A1 findings or asking about these facts, read `docs/fundamental-data-engine/governance/PORTFOLIO_OWNER_CONFIRMATIONS_2026-10-31.md` and its adjacent JSON. The owner explicitly requested preserving prior confirmations and not asking again. This is a successor clarification; preserve the historical A1 assessment.
