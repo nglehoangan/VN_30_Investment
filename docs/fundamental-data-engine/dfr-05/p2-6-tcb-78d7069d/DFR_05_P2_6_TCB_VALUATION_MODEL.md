@@ -1,0 +1,39 @@
+# TCB bank valuation — executable-ready specification
+Baseline `78d7069d02f17ac1ec9dc63a2ba0c2b89812a085`. TCB only; round 2/2. RESEARCH_PROVISIONAL, formal points/bands/assessments/totals/ranking=null; no live investment decision. Existing M1–M4, approved source/scope identities and historical dossiers are unchanged. New records are a separate versioned research overlay; no source acquisition or production/DB/master/authority write. Report date2026-11-08, Asia/Ho_Chi_Minh.
+
+**Specification ready; case/model inputs BLOCKED. No intrinsic-value range, margin of safety or expected return is produced.** `valuation_model.py` is an unactivated documentation/research specification; it is not a new production methodology identity or M3 amendment. Current TCB case evaluation returns BLOCKED_INPUTS_OR_APPROVAL with null outputs. Mathematical tests use visibly synthetic fixtures, not TCB economic assumptions.
+
+Primary approved bank principle: sustainable common ROE versus cost of equity, justified P/B/residual income. For a consistent constant-state case with qualified common book B0, g=ROE×(1−payout), ke>g and ROE>g:
+
+`justified P/B=(ROE−g)/(ke−g)`
+
+`V0=B0+Σ residualIncome_t/(1+ke)^t+discounted terminal residual-income value`
+
+`residualIncome_t=(ROE_t−ke)×commonBook_(t−1)`
+
+These are common-equity economics, not regulatory capital multiplied by a book multiple. Finite transition cases need approved year-by-year ROE/payout/capital paths; the delivered executable constant-state kernel validates the limiting case, while the specification records the complete transition dependencies. It refuses an incomplete issuer case and cannot silently select horizon/scenarios. Growth and payout must reconcile; no independent manipulation to boost value. Common regulatory-capital targets/conversion must be qualified before certifying feasible growth/distributions.
+
+Bear/base/bull templates in `valuation-model-specification.json` all have null numerical parameters and NOT_APPROVED statuses. Bear requires evidence-bounded credit/property/funding stress and capital response; base requires normalized common economics; bull requires sustainably funded improvement without automatic multiple expansion or unjustified lower cost of equity. Rationale, evidence, approval and downside/sensitivity implications are recorded for every assumption below.
+
+| ID / parameter | Evidence/rationale | Value / approval |
+|---|---|---|
+| A-CUTOFF — Valuation cutoff/basis | Choose explicitly retrospective FY2025 balance date versus later available evidence; no as-known certification from audit date. Evidence: approved methodology / external case evidence still required | null; owner=NOT_APPROVED; analyst=NOT_APPROVED_OR_NOT_QUALIFIED |
+| A-BOOK — Common and tangible common capital | Parent book170044504million is mapped, but other-equity nature and intangible/NCI/common allocation must be reviewed. Evidence: PARENT_EQUITY, OTHER_EQUITY, INTANGIBLE_ASSETS | null; owner=NOT_APPROVED; analyst=NOT_APPROVED_OR_NOT_QUALIFIED |
+| A-NORMALIZE — Sustainable common earnings/credit and fees | Use explicit EPS common numerator as reported starting fact; normalize credit cycle, fees, acquisition and non-P&L capital events with owner attribution. Evidence: COMMON_EPS_NUMERATOR, CUSTOMER_CREDIT_COST_REPORTED, PARENT_RETAINED_CAPITAL_TRANSACTION | null; owner=NOT_APPROVED; analyst=NOT_APPROVED_OR_NOT_QUALIFIED |
+| A-ROE — Sustainable ROE | Historical group or parent-book proxy cannot be used automatically; coherent normalized numerator and common denominator required. Evidence: EPS_NUMERATOR_PARENT_BOOK_RETURN_PROXY | null; owner=NOT_APPROVED; analyst=NOT_APPROVED_OR_NOT_QUALIFIED |
+| A-KE — Cost of equity | Evidence-supported capital-risk/discount basis and explicit approval;15%/12% portfolio forward-return hurdles are not selected discount rates. Evidence: approved methodology / external case evidence still required | null; owner=NOT_APPROVED; analyst=NOT_APPROVED_OR_NOT_QUALIFIED |
+| A-GROWTH — Sustainable growth | Constrain by normalized return, retention and qualified regulatory capital needs; history is not forecast. Evidence: BANK_CORE_LOANS_GROWTH | null; owner=NOT_APPROVED; analyst=NOT_APPROVED_OR_NOT_QUALIFIED |
+| A-PAYOUT — Payout/retention | Use declared distributions as history only; enforce g=ROE×(1−payout) in constant-state model and capital feasibility. Evidence: PARENT_DIVIDEND_MOVEMENT | null; owner=NOT_APPROVED; analyst=NOT_APPROVED_OR_NOT_QUALIFIED |
+| A-TERMINAL — Terminal economics | Require ke>g and ROE>g, stable distributions and transparent finite-horizon transition; no arbitrary terminal multiple. Evidence: approved methodology / external case evidence still required | null; owner=NOT_APPROVED; analyst=NOT_APPROVED_OR_NOT_QUALIFIED |
+| A-STRESS — Credit/property/funding/repricing stress | Property business exposure and behavioural maturity gaps are starting facts; no arbitrary outflow/loss/haircut chosen. Evidence: REAL_ESTATE_BUSINESS_SHARE, LIQ_GAP_LT1M, LIQ_GAP_1_5Y | null; owner=NOT_APPROVED; analyst=NOT_APPROVED_OR_NOT_QUALIFIED |
+| A-CAPITAL — Capital requirements and response | Regulatory TT41 scope and deductions stay separate from common book; confirm target buffers, credit RWA migration and funding/capital responses. Evidence: REGULATORY_CAPITAL, TOTAL_RWA, TIER1_RATIO | null; owner=NOT_APPROVED; analyst=NOT_APPROVED_OR_NOT_QUALIFIED |
+| A-ACTIONS — Shares/actions/dilution | FY2025closing7,086,240,414 ordinary and weighted7,069,481,069 are explicit. Later2026issuer actions/price adjustment not inferred from personal pending shares. Constant-state kernel requires explicitly approved zero newShares and zero netNewCommonCash; any nonzero action requires a separate post-issuance case and is rejected here. Evidence: CLOSING_SHARES, WEIGHTED_BASIC_SHARES, ISSUED_SHARES | null; owner=NOT_APPROVED; analyst=NOT_APPROVED_OR_NOT_QUALIFIED |
+| A-XCHECK — Economically independent crosscheck | Own-history normalized P/E only with qualified normalized common earnings and dated compatible prices/actions; no other issuer processed. DDM/Gordon and RI sharing ROE/ke/g are consistency checks, not independent evidence. Evidence: COMMON_EPS_NUMERATOR | null; owner=NOT_APPROVED; analyst=NOT_APPROVED_OR_NOT_QUALIFIED |
+| A-SOURCE — Nonfinancial source scope | Industry, peer/franchise and governance-control evidence outside retained approved scope stops at SOURCE_AUTHORITY_REQUIRED; no acquisition executed. Evidence: approved methodology / external case evidence still required | null; owner=NOT_APPROVED; analyst=NOT_APPROVED_OR_NOT_QUALIFIED |
+
+
+Sensitivity specification: d(P/B)/dROE=1/(ke−g); d(P/B)/dke=−(ROE−g)/(ke−g)^2; d(P/B)/dg=(ROE−ke)/(ke−g)^2. Credit-cost effects require average matched-population loans, qualified tax and parent attribution; no tax rate assumed. Payout changes imply growth/capital changes. A dilution case needs exact new shares, net common funds, price/rights and common-capital treatment; recompute equity, normalized return, regulatory feasibility and per-share value. Personal pending shares are not issuer dilution inputs.
+
+Economically independent crosscheck: issuer-only historical normalized P/E/earnings calibration is a candidate only when normalized common earnings, dated price history and action/share compatibility are qualified. No other issuer is processed. Gordon/DDM and constant-state RI using the same ROE/ke/g are arithmetic consistency tests, not independent corroboration. This crosscheck is **MISSING**, not invented from multiple weak correlated models.
+
+MOS requires a qualified conservative per-share range and compatible selected price; expected return requires initial price, action-adjusted distributions and terminal scenario. None is executed. Owner case approval does not admit research into formal scoring/NAV/M4/production.

@@ -1,0 +1,212 @@
+[
+  {
+    "id": "A-CUTOFF",
+    "parameter": "Valuation cutoff/basis",
+    "value": null,
+    "unit": null,
+    "kind": "UNSELECTED_CASE_ASSUMPTION_OR_DEPENDENCY",
+    "rationale": "Choose explicitly retrospective FY2025 balance date versus later available evidence; no as-known certification from audit date.",
+    "evidenceSupport": [],
+    "ownerApprovalStatus": "NOT_APPROVED",
+    "analystApprovalStatus": "NOT_APPROVED_OR_NOT_QUALIFIED",
+    "status": "OWNER_DECISION_REQUIRED",
+    "sensitivity": "Rebind price, shares, book and availableAt to every proposed cutoff; no interpolation.",
+    "downsideImplication": "Later price/actions without later common capital can reverse apparent cheapness."
+  },
+  {
+    "id": "A-BOOK",
+    "parameter": "Common and tangible common capital",
+    "value": null,
+    "unit": null,
+    "kind": "UNSELECTED_CASE_ASSUMPTION_OR_DEPENDENCY",
+    "rationale": "Parent book170044504million is mapped, but other-equity nature and intangible/NCI/common allocation must be reviewed.",
+    "evidenceSupport": [
+      "PARENT_EQUITY",
+      "OTHER_EQUITY",
+      "INTANGIBLE_ASSETS"
+    ],
+    "ownerApprovalStatus": "NOT_APPROVED",
+    "analystApprovalStatus": "NOT_APPROVED_OR_NOT_QUALIFIED",
+    "status": "EVIDENCE_AND_APPROVAL_REQUIRED",
+    "sensitivity": "V scales with qualified B0 at fixed justified P/B; test each separately supported other-equity/intangible allocation.",
+    "downsideImplication": "Overstated common book overstates both capital available for distributions and value."
+  },
+  {
+    "id": "A-NORMALIZE",
+    "parameter": "Sustainable common earnings/credit and fees",
+    "value": null,
+    "unit": null,
+    "kind": "UNSELECTED_CASE_ASSUMPTION_OR_DEPENDENCY",
+    "rationale": "Use explicit EPS common numerator as reported starting fact; normalize credit cycle, fees, acquisition and non-P&L capital events with owner attribution.",
+    "evidenceSupport": [
+      "COMMON_EPS_NUMERATOR",
+      "CUSTOMER_CREDIT_COST_REPORTED",
+      "PARENT_RETAINED_CAPITAL_TRANSACTION"
+    ],
+    "ownerApprovalStatus": "NOT_APPROVED",
+    "analystApprovalStatus": "NOT_APPROVED_OR_NOT_QUALIFIED",
+    "status": "ANALYST_REVIEW_REQUIRED",
+    "sensitivity": "Credit-cost earnings effect uses matched average core loans and qualified tax/common allocation; fee recurrence and acquisition effects separate.",
+    "downsideImplication": "Understated expected losses or temporary fees inflate sustainable owner earnings."
+  },
+  {
+    "id": "A-ROE",
+    "parameter": "Sustainable ROE",
+    "value": null,
+    "unit": null,
+    "kind": "UNSELECTED_CASE_ASSUMPTION_OR_DEPENDENCY",
+    "rationale": "Historical group or parent-book proxy cannot be used automatically; coherent normalized numerator and common denominator required.",
+    "evidenceSupport": [
+      "EPS_NUMERATOR_PARENT_BOOK_RETURN_PROXY"
+    ],
+    "ownerApprovalStatus": "NOT_APPROVED",
+    "analystApprovalStatus": "NOT_APPROVED_OR_NOT_QUALIFIED",
+    "status": "ANALYST_APPROVAL_REQUIRED",
+    "sensitivity": "d(P/B)/dROE=1/(ke-g); reconcile ROE with common capital, earnings and payout.",
+    "downsideImplication": "Lower sustainable return compresses justified book multiple, even when reported EPS grows."
+  },
+  {
+    "id": "A-KE",
+    "parameter": "Cost of equity",
+    "value": null,
+    "unit": null,
+    "kind": "UNSELECTED_CASE_ASSUMPTION_OR_DEPENDENCY",
+    "rationale": "Evidence-supported capital-risk/discount basis and explicit approval;15%/12% portfolio forward-return hurdles are not selected discount rates.",
+    "evidenceSupport": [],
+    "ownerApprovalStatus": "NOT_APPROVED",
+    "analystApprovalStatus": "NOT_APPROVED_OR_NOT_QUALIFIED",
+    "status": "OWNER_ANALYST_APPROVAL_REQUIRED",
+    "sensitivity": "d(P/B)/dke=-(ROE-g)/(ke-g)^2; retain ke>0 and ke>g.",
+    "downsideImplication": "Higher common risk premium reduces value; policy return hurdle is not a substitute."
+  },
+  {
+    "id": "A-GROWTH",
+    "parameter": "Sustainable growth",
+    "value": null,
+    "unit": null,
+    "kind": "UNSELECTED_CASE_ASSUMPTION_OR_DEPENDENCY",
+    "rationale": "Constrain by normalized return, retention and qualified regulatory capital needs; history is not forecast.",
+    "evidenceSupport": [
+      "BANK_CORE_LOANS_GROWTH"
+    ],
+    "ownerApprovalStatus": "NOT_APPROVED",
+    "analystApprovalStatus": "NOT_APPROVED_OR_NOT_QUALIFIED",
+    "status": "ANALYST_APPROVAL_REQUIRED",
+    "sensitivity": "d(P/B)/dg=(ROE-ke)/(ke-g)^2 with payout/capital consistency.",
+    "downsideImplication": "Growth can destroy value if sustainable ROE falls below ke; no automatic growth premium."
+  },
+  {
+    "id": "A-PAYOUT",
+    "parameter": "Payout/retention",
+    "value": null,
+    "unit": null,
+    "kind": "UNSELECTED_CASE_ASSUMPTION_OR_DEPENDENCY",
+    "rationale": "Use declared distributions as history only; enforce g=ROE×(1−payout) in constant-state model and capital feasibility.",
+    "evidenceSupport": [
+      "PARENT_DIVIDEND_MOVEMENT"
+    ],
+    "ownerApprovalStatus": "NOT_APPROVED",
+    "analystApprovalStatus": "NOT_APPROVED_OR_NOT_QUALIFIED",
+    "status": "ANALYST_APPROVAL_REQUIRED",
+    "sensitivity": "Change g consistently through g=ROE*(1-payout); recalculate regulatory funding feasibility.",
+    "downsideImplication": "Distributions unsupported by common/regulatory capital imply issuance or reduced growth."
+  },
+  {
+    "id": "A-TERMINAL",
+    "parameter": "Terminal economics",
+    "value": null,
+    "unit": null,
+    "kind": "UNSELECTED_CASE_ASSUMPTION_OR_DEPENDENCY",
+    "rationale": "Require ke>g and ROE>g, stable distributions and transparent finite-horizon transition; no arbitrary terminal multiple.",
+    "evidenceSupport": [],
+    "ownerApprovalStatus": "NOT_APPROVED",
+    "analystApprovalStatus": "NOT_APPROVED_OR_NOT_QUALIFIED",
+    "status": "ANALYST_APPROVAL_REQUIRED",
+    "sensitivity": "Vary only approved terminal economics/transition paths; test sensitivity near ke-g boundary.",
+    "downsideImplication": "A narrow unsubstantiated ke-g spread can dominate value and invalidate a stable terminal case."
+  },
+  {
+    "id": "A-STRESS",
+    "parameter": "Credit/property/funding/repricing stress",
+    "value": null,
+    "unit": null,
+    "kind": "UNSELECTED_CASE_ASSUMPTION_OR_DEPENDENCY",
+    "rationale": "Property business exposure and behavioural maturity gaps are starting facts; no arbitrary outflow/loss/haircut chosen.",
+    "evidenceSupport": [
+      "REAL_ESTATE_BUSINESS_SHARE",
+      "LIQ_GAP_LT1M",
+      "LIQ_GAP_1_5Y"
+    ],
+    "ownerApprovalStatus": "NOT_APPROVED",
+    "analystApprovalStatus": "NOT_APPROVED_OR_NOT_QUALIFIED",
+    "status": "RISK_APPROVAL_REQUIRED",
+    "sensitivity": "Separate property default/severity, collateral, deposit outflow and repricing shocks; quantify only with approved calibrated bounds.",
+    "downsideImplication": "Correlated credit and funding shocks can exhaust reported buffers; positive gross maturity gap offers no assurance."
+  },
+  {
+    "id": "A-CAPITAL",
+    "parameter": "Capital requirements and response",
+    "value": null,
+    "unit": null,
+    "kind": "UNSELECTED_CASE_ASSUMPTION_OR_DEPENDENCY",
+    "rationale": "Regulatory TT41 scope and deductions stay separate from common book; confirm target buffers, credit RWA migration and funding/capital responses.",
+    "evidenceSupport": [
+      "REGULATORY_CAPITAL",
+      "TOTAL_RWA",
+      "TIER1_RATIO"
+    ],
+    "ownerApprovalStatus": "NOT_APPROVED",
+    "analystApprovalStatus": "NOT_APPROVED_OR_NOT_QUALIFIED",
+    "status": "EVIDENCE_AND_RISK_APPROVAL_REQUIRED",
+    "sensitivity": "Reconcile target capital, RWA mix, retained common earnings and distributions for each approved scenario.",
+    "downsideImplication": "Regulatory constraints can force dilution or reduce growth/payout despite accounting profits."
+  },
+  {
+    "id": "A-ACTIONS",
+    "parameter": "Shares/actions/dilution",
+    "value": null,
+    "unit": null,
+    "kind": "UNSELECTED_CASE_ASSUMPTION_OR_DEPENDENCY",
+    "rationale": "FY2025closing7,086,240,414 ordinary and weighted7,069,481,069 are explicit. Later2026issuer actions/price adjustment not inferred from personal pending shares. Constant-state kernel requires explicitly approved zero newShares and zero netNewCommonCash; any nonzero action requires a separate post-issuance case and is rejected here.",
+    "evidenceSupport": [
+      "CLOSING_SHARES",
+      "WEIGHTED_BASIC_SHARES",
+      "ISSUED_SHARES"
+    ],
+    "ownerApprovalStatus": "NOT_APPROVED",
+    "analystApprovalStatus": "NOT_APPROVED_OR_NOT_QUALIFIED",
+    "status": "CUTOFF_COMPATIBILITY_REQUIRED",
+    "sensitivity": "Kernel requires explicit zero new shares/net cash; any nonzero action is rejected for separately qualified post-issuance B and shares.",
+    "downsideImplication": "Ignoring issuance price, cash proceeds or rights changes can materially overstate per-share value."
+  },
+  {
+    "id": "A-XCHECK",
+    "parameter": "Economically independent crosscheck",
+    "value": null,
+    "unit": null,
+    "kind": "UNSELECTED_CASE_ASSUMPTION_OR_DEPENDENCY",
+    "rationale": "Own-history normalized P/E only with qualified normalized common earnings and dated compatible prices/actions; no other issuer processed. DDM/Gordon and RI sharing ROE/ke/g are consistency checks, not independent evidence.",
+    "evidenceSupport": [
+      "COMMON_EPS_NUMERATOR"
+    ],
+    "ownerApprovalStatus": "NOT_APPROVED",
+    "analystApprovalStatus": "NOT_APPROVED_OR_NOT_QUALIFIED",
+    "status": "INDEPENDENT_CROSSCHECK_MISSING",
+    "sensitivity": "Compare independently calibrated own-history earnings/price economics; do not count algebraic RI/DDM equivalence as confirmation.",
+    "downsideImplication": "Correlated weak methods cannot narrow the uncertainty range."
+  },
+  {
+    "id": "A-SOURCE",
+    "parameter": "Nonfinancial source scope",
+    "value": null,
+    "unit": null,
+    "kind": "UNSELECTED_CASE_ASSUMPTION_OR_DEPENDENCY",
+    "rationale": "Industry, peer/franchise and governance-control evidence outside retained approved scope stops at SOURCE_AUTHORITY_REQUIRED; no acquisition executed.",
+    "evidenceSupport": [],
+    "ownerApprovalStatus": "NOT_APPROVED",
+    "analystApprovalStatus": "NOT_APPROVED_OR_NOT_QUALIFIED",
+    "status": "SOURCE_AUTHORITY_REQUIRED",
+    "sensitivity": "Track which specific topic/assumption fails if authority, revision or document content is unqualified.",
+    "downsideImplication": "Unapproved industry/governance content cannot supply favorable topic evidence."
+  }
+]
