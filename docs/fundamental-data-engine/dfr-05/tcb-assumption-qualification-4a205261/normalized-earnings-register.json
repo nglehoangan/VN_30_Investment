@@ -1,0 +1,91 @@
+{
+  "status": "PARTIAL",
+  "reportedCommonEpsEarnings": "25254851000000",
+  "normalizedCommonEarnings": null,
+  "sustainableCommonRoe": null,
+  "reportedNumeratorBridge": "25290230000000−35379000000; welfare already deducted once",
+  "history2022_2025": {
+    "parentNetIncome": {
+      "2022": "20150377000000",
+      "2023": "18003802000000",
+      "2024": "21486928000000",
+      "2025": "25254851000000"
+    },
+    "warning": "FY2022/2023 entries are parent NPAT; FY2024/2025 are ordinary EPS numerator after welfare. Distinct numerator populations, not a single common earnings growth series."
+  },
+  "historicalCreditCost": {
+    "2023": "0.009217628484",
+    "2024": "0.008357797549",
+    "2025": "0.006732050583"
+  },
+  "pooledCreditCost": "0.007947018458",
+  "adjustmentReview": [
+    {
+      "topic": "Credit expense",
+      "status": "HISTORICAL_AXIS_SUPPORTED_ONLY",
+      "evidenceIds": [
+        "CUSTOMER_CHARGE_2023",
+        "P26:CUSTOMER_PROVISION_FLOW:2024",
+        "P26:CUSTOMER_PROVISION_FLOW:2025"
+      ],
+      "reason": "Exclude securities margin/other credit reversals; no full-cycle loss or guarantee."
+    },
+    {
+      "topic": "Nonrecurring other income",
+      "status": "COLUMN_QUALIFIED_NO_NORMALIZED_TOTAL",
+      "evidenceIds": [
+        "PROPERTY_GAIN_2024",
+        "INSURANCE_TERMINATION_2024",
+        "SUB_REVALUATION_EXPENSE_2025",
+        "RECOVERIES_2024",
+        "RECOVERIES_2025"
+      ],
+      "reason": "Property gain497035million and insurance termination1808413million belong2024, not2025. FY2025revaluation expense3354million is distinct. FY2025property/termination dashes stay null. No automatic addback."
+    },
+    {
+      "topic": "Fee sustainability",
+      "status": "PARTIAL",
+      "evidenceIds": [
+        "P26:FEE_NET:2025",
+        "N:2:72"
+      ],
+      "reason": "Payments, securities and insurance lines have different cyclicality; no qualified recurring run-rate/margin."
+    },
+    {
+      "topic": "Tax/attribution",
+      "status": "PARTIAL",
+      "evidenceIds": [
+        "REPORTED_BANK_TAX_RATE_2025",
+        "GROUP_PRETAX_2025",
+        "GROUP_CURRENT_TAX_2025",
+        "N:2:18"
+      ],
+      "reason": "Reported20%bank tax is a fact, not every adjustment marginal tax. Entity attribution, deductibility, acquisition timing and parent incidence remain unresolved."
+    },
+    {
+      "topic": "Capital transactions",
+      "status": "KEPT_OUTSIDE_EARNINGS",
+      "evidenceIds": [
+        "P26:PARENT_RETAINED_CAPITAL_TRANSACTION:2025"
+      ],
+      "reason": "6244850million retained capital movement is not operating profit."
+    },
+    {
+      "topic": "Existing conditional normalization",
+      "status": "NOT_PROMOTED",
+      "priorBinding": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-04/earnings-normalization-v4/issuers/TCB.json",
+        "sha256": "f18aa31609dc3ffaadba3d33397cbe3c00d4b6746653ee13acb11c864712297a",
+        "jsonPointer": "",
+        "objectHash": "ba841c910a28b7061d2b8f10ff7c397eaef0820bd58e84cbe5ace55c5b0cb6fc"
+      },
+      "reason": "V4uses tax0/commonIncidence1 as adverse incidence conventions, fullCycleQualified=false and acceptedNormalizedCommonEarnings=null. Do not copy its earnings envelope into sustainable ROE."
+    }
+  ],
+  "blockers": [
+    "Exhaustive recurring/nonrecurring and fee run-rate qualification",
+    "Entity-specific marginal tax/common attribution and full-year acquisition effects",
+    "Credit/property/funding cycle and loss-vintage calibration; normalized common ROE not proven"
+  ],
+  "productionAdmissible": false
+}

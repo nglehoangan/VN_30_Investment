@@ -1,0 +1,43 @@
+{
+  "status": "SOURCE_AUTHORITY_REQUIRED",
+  "purpose": "Nominal VND ke calibration for approved retrospective FY2025TCB case only",
+  "automaticAcquisition": false,
+  "requests": [
+    {
+      "id": "KE-S1",
+      "proposedAuthority": "Vietnam public sovereign-bond yield authority such as State Treasury/HNX bond market publication; proposed only, not claimed already approved",
+      "needed": "Dated2025-12-31VND term structure/selected matched-duration yield; coupon/YTM/spot, tenor, observation time and any sovereign-default adjustment explicitly documented",
+      "cap": "One dated yield record and its methodology",
+      "approval": "PENDING"
+    },
+    {
+      "id": "KE-S2",
+      "proposedAuthority": "One named independently documented ERP/country-risk methodology/provider, selected explicitly by owner/source policy",
+      "needed": "Dated ERP basis, country/default components, currency and nominal assumptions, method and uncertainty; historical versus retrospective availableAt explicit",
+      "cap": "One dated input table and one methodology document",
+      "approval": "PENDING"
+    },
+    {
+      "id": "KE-S3",
+      "proposedAuthority": "Already-authorized TCB price/action evidence only for issuer-specific risk estimation; any broader data authority requires separate approval",
+      "needed": "Sufficient compatible total-return/action-adjusted series plus a justified banking exposure/risk adjustment; no other issuer processing here",
+      "cap": "Evidence specification only; no download",
+      "approval": "PENDING"
+    }
+  ],
+  "framework": "ke_nominalVND = coherent risk-free nominal VND basis + systematic equity exposure×qualified equity premium + explicitly non-overlapping country/bank increments if not already embedded. Neither sovereign yield nor ERP is automatically default-free/risk-exclusive. A USD framework would need a qualified currency/inflation bridge, not addition to a VND yield.",
+  "inputs": {
+    "riskFree": null,
+    "equityPremium": null,
+    "systematicExposure": null,
+    "countryIncrement": null,
+    "bankIncrement": null,
+    "ke": null
+  },
+  "doubleCountingControls": [
+    "Do not add country premium twice through VND sovereign/default basis and ERP",
+    "Do not add generic bank premium when beta/exposure already captures it",
+    "Do not replace discount rate with15%policyhurdle/12%floor",
+    "No arbitrary standalone risk add-on to compensate for missing evidence"
+  ]
+}
