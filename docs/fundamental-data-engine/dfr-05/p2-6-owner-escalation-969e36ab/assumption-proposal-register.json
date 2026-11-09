@@ -1,0 +1,377 @@
+{
+  "ticker": "TCB",
+  "purpose": "Option B decision preparation only; no model evaluation",
+  "requiredEconomicsCount": 7,
+  "additionalPrerequisitesCount": 2,
+  "numericalEconomicAssumptionsProposed": 0,
+  "items": [
+    {
+      "id": "A-ROE",
+      "ticker": "TCB",
+      "classification": "ASSUMPTION",
+      "parameter": "Sustainable common ROE",
+      "proposedValue": null,
+      "proposedRange": null,
+      "unit": "RATIO",
+      "status": "NULL_UNSUPPORTED_NUMERICAL_BOUNDS",
+      "ownerApprovalStatus": "PENDING",
+      "analystApprovalStatus": "NOT_NUMERICALLY_QUALIFIED",
+      "qualifiedSupportingEvidence": [
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/EPS_NUMERATOR_PARENT_BOOK_RETURN_PROXY:2025",
+          "objectHash": "a06a72170ef1e53aafff16cec62b7dc731d14c0aaa185995d34fa60fb1ac9011"
+        },
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/COMMON_EPS_NUMERATOR:2025",
+          "objectHash": "359d8dc4c6834b5e5dff9550f47d0310c4e27e88eb4da9941f394c1721cf671e"
+        },
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/PARENT_EQUITY:2025",
+          "objectHash": "87d9a456cd5a5a3cacfcdd3489e13cabebdc3e0bc1890f061afd0c740e2d1c07"
+        },
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/OTHER_EQUITY:2025",
+          "objectHash": "82f4ea8bbb9f1a102ae8200b9c4e7bb962c272b366dc0a33faad385e486818f0"
+        }
+      ],
+      "calculationOrRationale": "Historical proxy 0.160112585266 is REFERENCE_ONLY: no common/TCE allocation, normalized credit cycle/fees/acquisition attribution or through-cycle return interval.",
+      "preciseBlocker": "Historical proxy 0.160112585266 is REFERENCE_ONLY: no common/TCE allocation, normalized credit cycle/fees/acquisition attribution or through-cycle return interval.",
+      "resolution": "Qualify common book and common-normalized earnings, then build a dated through-cycle numerator/denominator bridge and downside/base supported bounds; owner/analyst case approval required.",
+      "sensitivity": "d(P/B)/dROE=1/(ke-g); reconcile ROE with common capital, earnings and payout.",
+      "downsideImplication": "Lower sustainable return compresses justified book multiple, even when reported EPS grows.",
+      "confidence": "INSUFFICIENT_FOR_NUMERICAL_RANGE; retained reported fact confidence remains separate",
+      "priorAssumptionBinding": {
+        "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/assumption-register.json",
+        "sha256": "b4685de59cbaef15bcc41c0e923358a7824ff5003f6687801a4c811fb4d364a4",
+        "jsonPointer": "/3",
+        "objectHash": "071780b226a5f633479fd03604680231dcac829b4440fd0953bd0f407919a72b"
+      }
+    },
+    {
+      "id": "A-KE",
+      "ticker": "TCB",
+      "classification": "ASSUMPTION",
+      "parameter": "Cost of equity",
+      "proposedValue": null,
+      "proposedRange": null,
+      "unit": "RATIO",
+      "status": "NULL_UNSUPPORTED_NUMERICAL_BOUNDS",
+      "ownerApprovalStatus": "PENDING",
+      "analystApprovalStatus": "NOT_NUMERICALLY_QUALIFIED",
+      "qualifiedSupportingEvidence": [],
+      "calculationOrRationale": "No qualified case-date risk-free term/currency basis, equity/country/bank risk premium or alternative approved discount calibration. Policy 15%/12% forward-return hurdles are not ke bounds.",
+      "preciseBlocker": "No qualified case-date risk-free term/currency basis, equity/country/bank risk premium or alternative approved discount calibration. Policy 15%/12% forward-return hurdles are not ke bounds.",
+      "resolution": "Provide an evidence-supported nominal-VND discount framework at the chosen retrospective basis, avoiding double-counted country/bank risks; approve its numerical inputs and sensitivity. New source classes require separate authority.",
+      "sensitivity": "d(P/B)/dke=-(ROE-g)/(ke-g)^2; retain ke>0 and ke>g.",
+      "downsideImplication": "Higher common risk premium reduces value; policy return hurdle is not a substitute.",
+      "confidence": "INSUFFICIENT_FOR_NUMERICAL_RANGE; retained reported fact confidence remains separate",
+      "priorAssumptionBinding": {
+        "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/assumption-register.json",
+        "sha256": "b4685de59cbaef15bcc41c0e923358a7824ff5003f6687801a4c811fb4d364a4",
+        "jsonPointer": "/4",
+        "objectHash": "5494bed11b23378434ce1f2f1ce8e22cadde02236ec383bb1beb939976407bce"
+      }
+    },
+    {
+      "id": "A-GROWTH",
+      "ticker": "TCB",
+      "classification": "ASSUMPTION",
+      "parameter": "Sustainable common-book growth",
+      "proposedValue": null,
+      "proposedRange": null,
+      "unit": "RATIO",
+      "status": "NULL_UNSUPPORTED_NUMERICAL_BOUNDS",
+      "ownerApprovalStatus": "PENDING",
+      "analystApprovalStatus": "NOT_NUMERICALLY_QUALIFIED",
+      "qualifiedSupportingEvidence": [
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/BANK_CORE_LOANS_GROWTH:2025",
+          "objectHash": "aa61e20e9e37d2322037c8f8afdf98599f27f6318518bb8ced70d09666b6d2a4"
+        },
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/COMMON_EPS_NUMERATOR_GROWTH:2025",
+          "objectHash": "e2bcfa6d04897d691ee2f434cc8f6d23f99134f44eb4fcd16a505045ada89fce"
+        }
+      ],
+      "calculationOrRationale": "One-year core loan growth 0.194686378825 and EPS-numerator growth 0.175358850739 are different historical populations, not bounds on sustainable book/terminal growth.",
+      "preciseBlocker": "One-year core loan growth 0.194686378825 and EPS-numerator growth 0.175358850739 are different historical populations, not bounds on sustainable book/terminal growth.",
+      "resolution": "Qualify sustainable ROE, payout/retention, RWA mix and capital funding; derive g consistently as ROE*(1-payout) for the constant-state case.",
+      "sensitivity": "d(P/B)/dg=(ROE-ke)/(ke-g)^2 with payout/capital consistency.",
+      "downsideImplication": "Growth can destroy value if sustainable ROE falls below ke; no automatic growth premium.",
+      "confidence": "INSUFFICIENT_FOR_NUMERICAL_RANGE; retained reported fact confidence remains separate",
+      "priorAssumptionBinding": {
+        "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/assumption-register.json",
+        "sha256": "b4685de59cbaef15bcc41c0e923358a7824ff5003f6687801a4c811fb4d364a4",
+        "jsonPointer": "/5",
+        "objectHash": "812b443a00ba63ee47331ac32ef28bd790266a1e519116af3e40e58e578a51c3"
+      }
+    },
+    {
+      "id": "A-PAYOUT",
+      "ticker": "TCB",
+      "classification": "ASSUMPTION",
+      "parameter": "Sustainable payout",
+      "proposedValue": null,
+      "proposedRange": null,
+      "unit": "RATIO",
+      "status": "NULL_UNSUPPORTED_NUMERICAL_BOUNDS",
+      "ownerApprovalStatus": "PENDING",
+      "analystApprovalStatus": "NOT_NUMERICALLY_QUALIFIED",
+      "qualifiedSupportingEvidence": [
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/PARENT_DIVIDEND_MOVEMENT:2025",
+          "objectHash": "017f53edac3530747f7815527feca08eb2021097acf1620c36238605d595486e"
+        },
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/COMMON_EPS_NUMERATOR:2025",
+          "objectHash": "359d8dc4c6834b5e5dff9550f47d0310c4e27e88eb4da9941f394c1721cf671e"
+        }
+      ],
+      "calculationOrRationale": "Declared parent equity dividend movement−7086240000000VND is not a cash payment, a sustainable payout policy or a future distribution commitment.",
+      "preciseBlocker": "Declared parent equity dividend movement−7086240000000VND is not a cash payment, a sustainable payout policy or a future distribution commitment.",
+      "resolution": "Qualify declaration/rights and future distribution economics against normalized owner earnings and regulatory/common capital. Reconcile payout with growth and capital feasibility.",
+      "sensitivity": "Change g consistently through g=ROE*(1-payout); recalculate regulatory funding feasibility.",
+      "downsideImplication": "Distributions unsupported by common/regulatory capital imply issuance or reduced growth.",
+      "confidence": "INSUFFICIENT_FOR_NUMERICAL_RANGE; retained reported fact confidence remains separate",
+      "priorAssumptionBinding": {
+        "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/assumption-register.json",
+        "sha256": "b4685de59cbaef15bcc41c0e923358a7824ff5003f6687801a4c811fb4d364a4",
+        "jsonPointer": "/6",
+        "objectHash": "5128a2f20cbc6391ae7235e659fc8862f73eb44d6bd0d95ddc1bf1600202c1fd"
+      }
+    },
+    {
+      "id": "A-STRESS",
+      "ticker": "TCB",
+      "classification": "ASSUMPTION",
+      "parameter": "Credit and funding stress",
+      "proposedValue": null,
+      "proposedRange": null,
+      "unit": "STRUCTURED_SCENARIO",
+      "status": "NULL_UNSUPPORTED_NUMERICAL_BOUNDS",
+      "ownerApprovalStatus": "PENDING",
+      "analystApprovalStatus": "NOT_NUMERICALLY_QUALIFIED",
+      "qualifiedSupportingEvidence": [
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/CUSTOMER_CREDIT_COST_REPORTED:2025",
+          "objectHash": "a8672363ea7b632454a8ceb47694f1ddec4f2a57e06fe95ee185a87e497acdd0"
+        },
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/REAL_ESTATE_BUSINESS_SHARE:2025",
+          "objectHash": "1a656fce4283841793a1e84a3dade997fdf7a22c4b887422ac9800387b0c0051"
+        },
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/LIQ_GAP_LT1M:2025",
+          "objectHash": "2eaa0a72a72f333632451b750b6b16fa14b8deb46fa221df3798bd458ff3432f"
+        },
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/LIQ_GAP_1_5Y:2025",
+          "objectHash": "293a49d6b807ad64c2319310170a3cb6882350a27af1e255204ca2c613e929e0"
+        }
+      ],
+      "calculationOrRationale": "Reported customer credit-cost 0.006732050583, narrow property share 0.286044492061 and behavioural liquidity gaps do not bound stressed PD/LGD, outflows, funding spreads or haircuts.",
+      "preciseBlocker": "Reported customer credit-cost 0.006732050583, narrow property share 0.286044492061 and behavioural liquidity gaps do not bound stressed PD/LGD, outflows, funding spreads or haircuts.",
+      "resolution": "Qualify population-specific loss/outflow/repricing calibration, usable liquidity and correlated capital response; qualify tax and common-owner attribution. Do not equate gross maturity surplus with free cash.",
+      "sensitivity": "Separate property default/severity, collateral, deposit outflow and repricing shocks; quantify only with approved calibrated bounds.",
+      "downsideImplication": "Correlated credit and funding shocks can exhaust reported buffers; positive gross maturity gap offers no assurance.",
+      "confidence": "INSUFFICIENT_FOR_NUMERICAL_RANGE; retained reported fact confidence remains separate",
+      "priorAssumptionBinding": {
+        "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/assumption-register.json",
+        "sha256": "b4685de59cbaef15bcc41c0e923358a7824ff5003f6687801a4c811fb4d364a4",
+        "jsonPointer": "/8",
+        "objectHash": "2819e0c1324872a327587031e3da40ecc3e7d2edc213413184896b770833341c"
+      }
+    },
+    {
+      "id": "A-CAPITAL",
+      "ticker": "TCB",
+      "classification": "ASSUMPTION",
+      "parameter": "Required common/regulatory capital and buffer",
+      "proposedValue": null,
+      "proposedRange": null,
+      "unit": "STRUCTURED_CAPITAL_TARGET",
+      "status": "NULL_UNSUPPORTED_NUMERICAL_BOUNDS",
+      "ownerApprovalStatus": "PENDING",
+      "analystApprovalStatus": "NOT_NUMERICALLY_QUALIFIED",
+      "qualifiedSupportingEvidence": [
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/REPORTED_CAR:2025",
+          "objectHash": "7213f7055146fd72edb7b670fa94ca962193aff3901911c02f5037917f3912cc"
+        },
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/REPORTED_MIN_CAR:2025",
+          "objectHash": "e807399e617de4932843eba51a0bcfecb38e87646dd01604a72225abcf03a6c9"
+        },
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/TIER1_RATIO:2025",
+          "objectHash": "7876072c4adb4a6adde6c6758d8d5f01157ca8ff62bda42f5ac37d9732b0e03d"
+        },
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/REGULATORY_CAPITAL:2025",
+          "objectHash": "cffa015f2b5e908a25735f97b5ebc333b413ccd7cb40054e9670cdbceb81bc2f"
+        },
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/TOTAL_RWA:2025",
+          "objectHash": "2f34a3eb2a74e0bd62c1ec078a14ad6c234d6c47db61e43c7d97e3a999da66a5"
+        }
+      ],
+      "calculationOrRationale": "Reported CAR 0.1461 and issuer-stated floor 0.08 are historical facts, not a selected forward requirement or adequate stress target; Tier1 is not CET1 or common book.",
+      "preciseBlocker": "Reported CAR 0.1461 and issuer-stated floor 0.08 are historical facts, not a selected forward requirement or adequate stress target; Tier1 is not CET1 or common book.",
+      "resolution": "Qualify case-applicable requirements, restrictions, target management buffer, RWA migration and common-to-regulatory bridge; approve a stress-consistent growth/distribution/capital path. No new legal conclusion.",
+      "sensitivity": "Reconcile target capital, RWA mix, retained common earnings and distributions for each approved scenario.",
+      "downsideImplication": "Regulatory constraints can force dilution or reduce growth/payout despite accounting profits.",
+      "confidence": "INSUFFICIENT_FOR_NUMERICAL_RANGE; retained reported fact confidence remains separate",
+      "priorAssumptionBinding": {
+        "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/assumption-register.json",
+        "sha256": "b4685de59cbaef15bcc41c0e923358a7824ff5003f6687801a4c811fb4d364a4",
+        "jsonPointer": "/9",
+        "objectHash": "4e94d0d50234c1b0067e8ce1a0d594e0c922c7119b08dd00a91ce2dd9de1aa80"
+      }
+    },
+    {
+      "id": "A-TERMINAL",
+      "ticker": "TCB",
+      "classification": "ASSUMPTION",
+      "parameter": "Terminal economics",
+      "proposedValue": null,
+      "proposedRange": null,
+      "unit": "STRUCTURED_TERMINAL",
+      "status": "NULL_UNSUPPORTED_NUMERICAL_BOUNDS",
+      "ownerApprovalStatus": "PENDING",
+      "analystApprovalStatus": "NOT_NUMERICALLY_QUALIFIED",
+      "qualifiedSupportingEvidence": [],
+      "calculationOrRationale": "No qualified terminal ROE/ke/g/payout or transition horizon; extrapolating FY2025 or using an arbitrary multiple is unsupported.",
+      "preciseBlocker": "No qualified terminal ROE/ke/g/payout or transition horizon; extrapolating FY2025 or using an arbitrary multiple is unsupported.",
+      "resolution": "Approve stable common economics and transition evidence, ke>0, ke>g and ROE>g; growth/payout and capital constraints must reconcile. Horizon must be explicit, never defaulted.",
+      "sensitivity": "Vary only approved terminal economics/transition paths; test sensitivity near ke-g boundary.",
+      "downsideImplication": "A narrow unsubstantiated ke-g spread can dominate value and invalidate a stable terminal case.",
+      "confidence": "INSUFFICIENT_FOR_NUMERICAL_RANGE; retained reported fact confidence remains separate",
+      "priorAssumptionBinding": {
+        "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/assumption-register.json",
+        "sha256": "b4685de59cbaef15bcc41c0e923358a7824ff5003f6687801a4c811fb4d364a4",
+        "jsonPointer": "/7",
+        "objectHash": "195abc7292851a55c48253de3c172b03bb3153a2b11ee78679a2ea67c5983545"
+      }
+    },
+    {
+      "id": "A-BOOK",
+      "ticker": "TCB",
+      "classification": "ASSUMPTION",
+      "parameter": "Initial common book for model",
+      "proposedValue": null,
+      "proposedRange": null,
+      "unit": "VND",
+      "status": "NULL_UNSUPPORTED_NUMERICAL_BOUNDS",
+      "ownerApprovalStatus": "PENDING",
+      "analystApprovalStatus": "NOT_NUMERICALLY_QUALIFIED",
+      "qualifiedSupportingEvidence": [
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/PARENT_EQUITY:2025",
+          "objectHash": "87d9a456cd5a5a3cacfcdd3489e13cabebdc3e0bc1890f061afd0c740e2d1c07"
+        },
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/OTHER_EQUITY:2025",
+          "objectHash": "82f4ea8bbb9f1a102ae8200b9c4e7bb962c272b366dc0a33faad385e486818f0"
+        },
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/INTANGIBLE_ASSETS:2025",
+          "objectHash": "97e431c72dad9f202672b0c5ee34de8fabf173ef2744b9f24bb37d8e104d4234"
+        }
+      ],
+      "calculationOrRationale": "Parent book170044504000000VND is qualified but common/TCE treatment of other equity and group intangibles/NCI is unresolved.",
+      "preciseBlocker": "Parent book170044504000000VND is qualified but common/TCE treatment of other equity and group intangibles/NCI is unresolved.",
+      "resolution": "Qualify the actual common-capital definition used by the selected model; do not automatically deduct group intangibles from parent book.",
+      "sensitivity": "V scales with qualified B0 at fixed justified P/B; test each separately supported other-equity/intangible allocation.",
+      "downsideImplication": "Overstated common book overstates both capital available for distributions and value.",
+      "confidence": "INSUFFICIENT_FOR_NUMERICAL_RANGE; retained reported fact confidence remains separate",
+      "priorAssumptionBinding": {
+        "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/assumption-register.json",
+        "sha256": "b4685de59cbaef15bcc41c0e923358a7824ff5003f6687801a4c811fb4d364a4",
+        "jsonPointer": "/1",
+        "objectHash": "5cd83ca26d67cfa754d789d0e00f6eacbd0957be05b6620baf6f6a3de4827783"
+      }
+    },
+    {
+      "id": "A-ACTIONS",
+      "ticker": "TCB",
+      "classification": "ASSUMPTION",
+      "parameter": "Future capital actions / net common funds",
+      "proposedValue": null,
+      "proposedRange": null,
+      "unit": "SHARES_AND_VND",
+      "status": "NULL_UNSUPPORTED_NUMERICAL_BOUNDS",
+      "ownerApprovalStatus": "PENDING",
+      "analystApprovalStatus": "NOT_NUMERICALLY_QUALIFIED",
+      "qualifiedSupportingEvidence": [
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/CLOSING_SHARES:2025",
+          "objectHash": "398712ec67f14ae93ba325dc1067f2a6085c0ee06cf3c3f30bd91e2c0f56deb7"
+        },
+        {
+          "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+          "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+          "jsonPointer": "/financials/WEIGHTED_BASIC_SHARES:2025",
+          "objectHash": "10892009986eb27ce8457ec5a044b0b843f6f4fa9893935ba8331e7efed95dc8"
+        }
+      ],
+      "calculationOrRationale": "FY2025closing and EPS shares are qualified historical counts; they cannot prove zero future issuance or cash raised.",
+      "preciseBlocker": "FY2025closing and EPS shares are qualified historical counts; they cannot prove zero future issuance or cash raised.",
+      "resolution": "For the existing constant-state kernel explicitly propose and approve zero newShares and zero netNewCommonCash as a bounded scenario restriction, not a forecast fact. Otherwise require separately authorized post-issuance specification; none is executed here.",
+      "sensitivity": "Kernel requires explicit zero new shares/net cash; any nonzero action is rejected for separately qualified post-issuance B and shares.",
+      "downsideImplication": "Ignoring issuance price, cash proceeds or rights changes can materially overstate per-share value.",
+      "confidence": "INSUFFICIENT_FOR_NUMERICAL_RANGE; retained reported fact confidence remains separate",
+      "priorAssumptionBinding": {
+        "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/assumption-register.json",
+        "sha256": "b4685de59cbaef15bcc41c0e923358a7824ff5003f6687801a4c811fb4d364a4",
+        "jsonPointer": "/10",
+        "objectHash": "3f4efa551734e05733185d98ea7fb64ea7b546fe36a7480bae6e375b5a8316e6"
+      }
+    }
+  ],
+  "estimates": [],
+  "draftValuation": null,
+  "approvedValuation": null,
+  "productionAdmissible": false
+}
