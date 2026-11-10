@@ -1,0 +1,8 @@
+# Mapping and derivation audit
+324 primary partial MAPPING_GAP instances each identify exact existing observation/metric IDs, source hashes and JSON pointers in the matrix and FINANCIAL_EVIDENCE_LEDGER.json. These are partial context gaps; remaining mandatory topics are preserved. No generic amount-equality mapping was added.
+
+55 historical ratios were calculated within the audit with Decimal precision 50, original operands and compatible same-period consolidated scope/revision/unit constraints. DERIVED_HISTORICAL_METRICS.json preserves full results and 6-place display values. No binary float; no normalized/common-owner claim. Ratio non-terminating decimals are precision-bounded, not mathematically exact finite expansions. No compatible unique denominator means no value. No standalone/group mixing, EPS share inference, fabricated tax or zero fill.
+
+Primary DERIVATION_GAP count 0: existing historical metric candidates already contain arithmetic. We did not demonstrate an uncomputed metric whose calculation alone completes a rubric. Recomputing diagnostics is useful analysis, not proof of a new scoreable rubric. CAGR's cross-year validator defect is independently recorded under G3; corporate-action-adjusted EPS growth remains blocked until actual actions/shares are qualified.
+
+Reuse path: source observation → compatible research metric → topic-specific evidence and counterevidence → analyst band. Do not feed every optional diagnostic to a formal scorecard; dependency-local quality should be explicit. Legacy VIC/VHM debt correction remains isolated to debt/valuation-dependent topics. CTG/VCB cross-vintage conflicts affect their dependent periods/returns, not every issuer topic.

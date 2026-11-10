@@ -1,0 +1,161 @@
+[
+  {
+    "code": {
+      "lines": [
+        84
+      ],
+      "path": "src/domain/scoring/scorecard.ts"
+    },
+    "finding": "Formal complete score may require all; preliminary per-rubric reporting is unnecessarily coupled to complete array. Proposal: separate read-only partial assessment presentation, no partial total.",
+    "id": "G1",
+    "implemented": false,
+    "name": "All 23 assessments required at input",
+    "policy": {
+      "lines": [
+        144
+      ],
+      "path": "docs/03 SCORING/SCORING_ENGINE.md"
+    }
+  },
+  {
+    "code": {
+      "lines": [
+        118
+      ],
+      "path": "src/domain/scoring/scorecard.ts"
+    },
+    "finding": "Overbreadth: unrelated industry/governance topics become N/R when actionComparable is false. Proposal: gate affected metric/rubric dependencies only; retain required per-share/action controls.",
+    "id": "G2",
+    "implemented": false,
+    "name": "Global corporate-action gate",
+    "policy": {
+      "lines": [
+        275
+      ],
+      "path": "docs/03 SCORING/SCORING_ENGINE.md"
+    }
+  },
+  {
+    "code": {
+      "lines": [
+        61
+      ],
+      "path": "src/domain/scoring/metrics.ts"
+    },
+    "finding": "Defect candidate demonstrated by predicate witness: FY2025 and FY2022 revenue inherently have different period ends, so same-period guard rejects before growth. Proposal: CAGR-specific horizon/annual/scope/unit/revision validation; preserve action-adjusted EPS controls.",
+    "id": "G3",
+    "implemented": false,
+    "name": "CAGR operand periods",
+    "policy": {
+      "lines": [
+        275
+      ],
+      "path": "docs/03 SCORING/SCORING_ENGINE.md"
+    }
+  },
+  {
+    "code": {
+      "lines": [
+        129
+      ],
+      "path": "src/domain/scoring/scorecard.ts"
+    },
+    "finding": "Optional unrelated diagnostic failure is promoted to critical. Proposal: explicit required dependency graph; preserve decision-critical failure block.",
+    "id": "G4",
+    "implemented": false,
+    "name": "Every failed metric blocks total",
+    "policy": {
+      "lines": [
+        666
+      ],
+      "path": "docs/03 SCORING/SCORING_ENGINE.md"
+    }
+  },
+  {
+    "code": {
+      "lines": [
+        57
+      ],
+      "path": "src/domain/scoring/metrics.ts"
+    },
+    "finding": "Potential overbreadth for balance-sheet descriptive diagnostics. Proposal: keep reported diagnostics visible; normalize cycle-sensitive economic scoring metrics. Policy interpretation/owner acceptance required before changing authority.",
+    "id": "G5",
+    "implemented": false,
+    "name": "All as-reported metrics rejected for cyclical",
+    "policy": {
+      "lines": [
+        121,
+        150,
+        159,
+        365,
+        461,
+        597,
+        754,
+        928
+      ],
+      "path": "docs/03 SCORING/SCORING_ENGINE.md"
+    }
+  },
+  {
+    "code": {
+      "lines": [
+        90
+      ],
+      "path": "src/domain/scoring/scorecard.ts"
+    },
+    "finding": "Legitimate current formal-authority guard. AI research can remain useful in a separate provisional layer. Never forge human analyst provenance.",
+    "id": "G6",
+    "implemented": false,
+    "name": "Explicit human assessment",
+    "policy": {
+      "lines": [
+        147
+      ],
+      "path": "docs/03 SCORING/SCORING_ENGINE.md"
+    }
+  },
+  {
+    "code": {
+      "lines": [
+        131
+      ],
+      "path": "src/domain/scoring/scorecard.ts"
+    },
+    "finding": "Evidence included only as unrelated reference can depress confidence. Proposal: required-support versus contextual-reference dependency distinction, not bypass of actual uncertainty.",
+    "id": "G7",
+    "implemented": false,
+    "name": "All unavailable evidence lowers confidence",
+    "policy": {
+      "lines": [
+        759,
+        1251
+      ],
+      "path": "docs/03 SCORING/SCORING_ENGINE.md"
+    }
+  },
+  {
+    "code": {
+      "lines": [
+        134
+      ],
+      "path": "src/domain/scoring/scorecard.ts"
+    },
+    "finding": "Stage0/veto/residual risk/LOW confidence govern interpretation/actionability after total computation. Do not claim portfolio cash or NAV blocks fundamental points; portfolioContext returns null.",
+    "id": "G8",
+    "implemented": false,
+    "name": "Actionability versus score points",
+    "policy": {
+      "lines": [
+        114,
+        115,
+        773,
+        780,
+        784,
+        794,
+        1059,
+        1148
+      ],
+      "path": "docs/03 SCORING/SCORING_ENGINE.md"
+    }
+  }
+]
