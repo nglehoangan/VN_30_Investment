@@ -1,0 +1,75 @@
+{
+  "status": "BLOCKED",
+  "nominalVndKe": null,
+  "riskFree": null,
+  "beta": null,
+  "bankSpecificSpread": null,
+  "countryExposure": null,
+  "providerReference": {
+    "id": "ERP-VIETNAM-PROVIDER-ROW",
+    "classification": "QUALIFIED_EVIDENCE",
+    "qualificationScope": "Exact currently retrieved provider-reported row only; NOT a frozen FY2025case input",
+    "provider": "Aswath Damodaran/NYU Stern",
+    "sourceUrl": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+    "path": "sources/damodaran-jan2026-table.html",
+    "sha256": "ea30d57fc0858072c520930e2e5b8a5e5affdce81f7f2e1f9054efab79959dbc",
+    "retrievedAt": "2026-11-09T14:41:41.208699+00:00",
+    "publishedAt": null,
+    "lastUpdatedLabel": "January 5, 2026",
+    "publicationDateStatus": "VISIBLE_UPDATE_LABEL_NOT_PROVEN_FIRST_PUBLICATION_TIMESTAMP",
+    "observationAt": null,
+    "selectedForFY2025": false,
+    "countryRowRevisionAt": null,
+    "mixedVintagePage": true,
+    "reason": "Live page has a later-country February2026revision under a January2026heading; no proof of Vietnam-row as-of date or immutable January snapshot. D2allows retrospective use, not silent unknown-vintage substitution.",
+    "tableRowIndex": 180,
+    "columnHeaders": [
+      "Country",
+      "Moody's rating",
+      "Adj. Default Spread",
+      "Country Risk Premium",
+      "Equity Risk Premium"
+    ],
+    "rawCells": [
+      "Vietnam",
+      "Ba2",
+      "2.56%",
+      "3.90%",
+      "8.13%"
+    ],
+    "rating": "Ba2",
+    "nativeUnit": "PERCENT_DISPLAY",
+    "unit": "RATIO_REFERENCE",
+    "currencyContext": "US_DOLLAR_IMPLIED_RETURN_FRAMEWORK_IN_HTML_INTRO;not automatically nominalVND",
+    "yieldFrequencyQualification": "ERPintro describes annual expected return; default-spread compounding not separately qualified",
+    "values": {
+      "adjustedDefaultSpread": "0.0256",
+      "countryRiskPremium": "0.0390",
+      "totalEquityRiskPremium": "0.0813"
+    },
+    "selectionStatus": "BLOCKED_CASE_VINTAGE_AND_CURRENCY_RISK_EXPOSURE",
+    "derivedMatureERP": {
+      "value": "0.0423",
+      "formula": "totalEquityRiskPremium−countryRiskPremium",
+      "status": "PROVIDER_ROW_IDENTITY_REFERENCE_ONLY",
+      "notIndependentObservation": true
+    }
+  },
+  "framework": "ke_VND=qualified default-free nominalVND base + justified systematic exposure×mature ERP + separately justified country exposure×CRP. Use the total country ERP only within a consistent alternative formulation, never add its CRP again.",
+  "doubleCountingControls": [
+    "Do not use nominal sovereign yield as default-free without a qualified sovereign-default treatment",
+    "Do not subtract a USD/rating default spread from VND yield without demonstrated comparability",
+    "Do not add provider CRP to provider total ERP: total already includes country component",
+    "No default beta1, no default country exposure1, no generic bank add-on",
+    "No mixing USD implied ERP calibration and nominalVND cash flows without the documented currency/nominal/default framework",
+    "No policy15%/12% hurdle as ke"
+  ],
+  "proposedKeRange": null,
+  "ownerKeApproval": "PENDING_NUMERICAL_APPROVAL",
+  "conditions": [
+    "Exact HNXobservation/methodology unavailable",
+    "Selected complete methodology document unavailable",
+    "Immutable/current Vietnamrow vintage and case-date compatibility unresolved",
+    "Qualified issuer-specific risk exposure/price actions unavailable"
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "cycleCount": 1,
+  "searchClosed": true,
+  "alternativeProvidersUsed": false,
+  "KE_S1": {
+    "status": "BLOCKED",
+    "selectedRiskFree": null,
+    "selectedSovereignYield": null,
+    "sourceAttempt": {
+      "sourceClass": "KE-S1",
+      "id": "hnx-dec2025",
+      "url": "https://portal.hnx.vn/vi-vn/chi-tiet-tin-60022163-0.html",
+      "startedAt": "2026-11-09T14:41:38.303320+00:00",
+      "retrievedAt": "2026-11-09T14:41:39.182014+00:00",
+      "curlExitCode": 60,
+      "httpStatus": "000",
+      "effectiveUrl": "https://portal.hnx.vn/vi-vn/chi-tiet-tin-60022163-0.html",
+      "contentType": null,
+      "path": null,
+      "sha256": null,
+      "headerPath": "sources/hnx-dec2025.headers.txt",
+      "stderr": "curl: (60) SSL: no alternative certificate subject name matches target host name 'portal.hnx.vn'\nMore details here: https://curl.se/docs/sslcerts.html\n\ncurl failed to verify the legitimacy of the server and therefore could not\nestablish a secure connection to it. To learn more about this situation and\nhow to fix it, please visit the web page mentioned above.\n",
+      "outcome": "FAILED_STOP_NO_FALLBACK",
+      "redirectsFollowed": false,
+      "publicationAt": null,
+      "observationAt": null,
+      "nativeUnit": null
+    },
+    "observationDate": null,
+    "tenor": null,
+    "currency": null,
+    "yieldConvention": null,
+    "publishedAt": null,
+    "missing": "TLS-authenticated exact2025-12-31HNXyield record, nominal VND/tenor/yield convention/observation timestamp and methodology. Indexed monthly auction commentary is not that record.",
+    "searchLeadOnly": {
+      "url": "https://portal.hnx.vn/vi-vn/chi-tiet-tin-60022163-0.html",
+      "description": "December2025monthly market article; not qualified exact-date yield evidence",
+      "publishedTimeHint": "09/01/2026 17:27 from search rendering only, not verified source bytes",
+      "notSelected": true
+    }
+  },
+  "KE_S2": {
+    "status": "PARTIAL_PROVIDER_REFERENCE_ONLY",
+    "inputTable": {
+      "id": "ERP-VIETNAM-PROVIDER-ROW",
+      "classification": "QUALIFIED_EVIDENCE",
+      "qualificationScope": "Exact currently retrieved provider-reported row only; NOT a frozen FY2025case input",
+      "provider": "Aswath Damodaran/NYU Stern",
+      "sourceUrl": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+      "path": "sources/damodaran-jan2026-table.html",
+      "sha256": "ea30d57fc0858072c520930e2e5b8a5e5affdce81f7f2e1f9054efab79959dbc",
+      "retrievedAt": "2026-11-09T14:41:41.208699+00:00",
+      "publishedAt": null,
+      "lastUpdatedLabel": "January 5, 2026",
+      "publicationDateStatus": "VISIBLE_UPDATE_LABEL_NOT_PROVEN_FIRST_PUBLICATION_TIMESTAMP",
+      "observationAt": null,
+      "selectedForFY2025": false,
+      "countryRowRevisionAt": null,
+      "mixedVintagePage": true,
+      "reason": "Live page has a later-country February2026revision under a January2026heading; no proof of Vietnam-row as-of date or immutable January snapshot. D2allows retrospective use, not silent unknown-vintage substitution.",
+      "tableRowIndex": 180,
+      "columnHeaders": [
+        "Country",
+        "Moody's rating",
+        "Adj. Default Spread",
+        "Country Risk Premium",
+        "Equity Risk Premium"
+      ],
+      "rawCells": [
+        "Vietnam",
+        "Ba2",
+        "2.56%",
+        "3.90%",
+        "8.13%"
+      ],
+      "rating": "Ba2",
+      "nativeUnit": "PERCENT_DISPLAY",
+      "unit": "RATIO_REFERENCE",
+      "currencyContext": "US_DOLLAR_IMPLIED_RETURN_FRAMEWORK_IN_HTML_INTRO;not automatically nominalVND",
+      "yieldFrequencyQualification": "ERPintro describes annual expected return; default-spread compounding not separately qualified",
+      "values": {
+        "adjustedDefaultSpread": "0.0256",
+        "countryRiskPremium": "0.0390",
+        "totalEquityRiskPremium": "0.0813"
+      },
+      "selectionStatus": "BLOCKED_CASE_VINTAGE_AND_CURRENCY_RISK_EXPOSURE",
+      "derivedMatureERP": {
+        "value": "0.0423",
+        "formula": "totalEquityRiskPremium−countryRiskPremium",
+        "status": "PROVIDER_ROW_IDENTITY_REFERENCE_ONLY",
+        "notIndependentObservation": true
+      }
+    },
+    "methodDocument": {
+      "status": "INCOMPLETE_TRANSFER_NOT_QUALIFIED",
+      "sourceUrl": "https://pages.stern.nyu.edu/~adamodar/pdfiles/blog/CountryRisk2025.pdf",
+      "headerPath": "sources/damodaran-countryrisk-method.headers.txt",
+      "httpStatus": "200",
+      "curlExitCode": 28,
+      "retrievedAt": "2026-11-09T14:42:08.328692+00:00",
+      "partialContentHash": "d78ca7f09214b7b238e8a7da2b9e9b844eb00c7ff6a8ce99689b9589821aca41",
+      "partialBytesNotOriginalPdfHash": true,
+      "publishedAt": null,
+      "methodologyVersionAt": null,
+      "selected": false
+    },
+    "capturedInlineMethodContext": "Complete HTMLintro explains default-spread/CRP/ERP construction; it does not fulfill the missing complete selected methodology-document/currency-case qualification."
+  },
+  "KE_S3": {
+    "status": "BLOCKED",
+    "selectedBeta": null,
+    "selectedBankRiskPremium": null,
+    "newAcquisition": false,
+    "reason": "Retained22789.00price has undeclared units/action adjustment and no qualified compatible total-return exposure/market calibration contract; no beta=1default or extra bank premium."
+  }
+}

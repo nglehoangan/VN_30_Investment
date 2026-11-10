@@ -1,0 +1,109 @@
+{
+  "status": "BLOCKED",
+  "restrictionStatus": "APPROVED_CONDITIONAL_ASSUMPTION",
+  "newShares": "0",
+  "netNewCommonCash": "0",
+  "caseTargetCAR": null,
+  "managementBuffer": null,
+  "sustainableCommonROE": null,
+  "payout": null,
+  "g": null,
+  "gRWA": null,
+  "eligibleRetention": null,
+  "stressLoss": null,
+  "capitalFeasible": null,
+  "reportedRegCapital": {
+    "id": "REGULATORY_CAPITAL:2025",
+    "ticker": "TCB",
+    "classification": "QUALIFIED_EVIDENCE",
+    "kind": "RETAINED_REPORTED_OR_DERIVED_FINANCIAL",
+    "value": "181870000000000",
+    "unit": "VND",
+    "scope": "REGULATORY_CONSOLIDATED",
+    "year": 2025,
+    "status": "SUPPORTED_RESEARCH_FACT",
+    "binding": {
+      "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+      "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+      "jsonPointer": "/financials/REGULATORY_CAPITAL:2025",
+      "objectHash": "cffa015f2b5e908a25735f97b5ebc333b413ccd7cb40054e9670cdbceb81bc2f"
+    },
+    "productionAdmissible": false
+  },
+  "reportedRWA": {
+    "id": "TOTAL_RWA:2025",
+    "ticker": "TCB",
+    "classification": "QUALIFIED_EVIDENCE",
+    "kind": "RETAINED_REPORTED_OR_DERIVED_FINANCIAL",
+    "value": "1244531000000000",
+    "unit": "VND",
+    "scope": "REGULATORY_CONSOLIDATED",
+    "year": 2025,
+    "status": "SUPPORTED_RESEARCH_FACT",
+    "binding": {
+      "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+      "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b",
+      "jsonPointer": "/financials/TOTAL_RWA:2025",
+      "objectHash": "2f34a3eb2a74e0bd62c1ec078a14ad6c234d6c47db61e43c7d97e3a999da66a5"
+    },
+    "productionAdmissible": false
+  },
+  "H2CapitalGrowth": {
+    "id": "REG_CAPITAL_H2_GROWTH",
+    "ticker": "TCB",
+    "classification": "QUALIFIED_EVIDENCE",
+    "kind": "NEW_DERIVED_HISTORICAL_DIAGNOSTIC",
+    "value": "0.098912386707",
+    "unit": "RATIO_SIX_MONTH_CHANGE_NOT_ANNUALIZED",
+    "scope": "REGULATORY_CONSOLIDATED",
+    "periodStart": "2025-06-30",
+    "periodEnd": "2025-12-31",
+    "formula": "(closing−opening)/opening",
+    "operandIds": [
+      "REGULATORY_CAPITAL:2025",
+      "REG_CAPITAL_H1_2025"
+    ],
+    "exactFraction": {
+      "numerator": "16370000000000",
+      "denominator": "165500000000000"
+    },
+    "confidence": "HIGH_ARITHMETIC;not forecast",
+    "productionAdmissible": false
+  },
+  "H2RWAGrowth": {
+    "id": "RWA_H2_GROWTH",
+    "ticker": "TCB",
+    "classification": "QUALIFIED_EVIDENCE",
+    "kind": "NEW_DERIVED_HISTORICAL_DIAGNOSTIC",
+    "value": "0.125358871577",
+    "unit": "RATIO_SIX_MONTH_CHANGE_NOT_ANNUALIZED",
+    "scope": "REGULATORY_CONSOLIDATED",
+    "periodStart": "2025-06-30",
+    "periodEnd": "2025-12-31",
+    "formula": "(closing−opening)/opening",
+    "operandIds": [
+      "TOTAL_RWA:2025",
+      "RWA_H1_2025"
+    ],
+    "exactFraction": {
+      "numerator": "138634000000000",
+      "denominator": "1105897000000000"
+    },
+    "confidence": "HIGH_ARITHMETIC;not forecast",
+    "productionAdmissible": false
+  },
+  "constraints": [
+    "g=ROE*(1-payout)",
+    "Creg1=Creg0+eligible retained common earnings−regulatory losses/deductions+only qualified other eligible capital movements",
+    "Creg1 / RWA1 >= approved case target; RWA1=RWA0*(1+gRWA)",
+    "No-new-parent-issuance restriction is not a promise of subsidiary/NCI/Tier2capital flows or unconstrained liquidity"
+  ],
+  "blockers": [
+    "Eligible common-retention to regulatory-capital conversion and deduction bridge",
+    "Approved economically justified target/buffer and forward RWA risk mix",
+    "Credit/funding loss/outflow and payout/growth/terminal path"
+  ],
+  "historicalFloorNotForwardTarget": true,
+  "Tier1NotCET1": true,
+  "productionAdmissible": false
+}
