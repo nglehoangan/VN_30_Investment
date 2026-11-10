@@ -1,0 +1,11 @@
+# Sandbox validation
+
+**46/46 model tests PASS**, 21 separate technical/boundary checks PASS, 17 financial challenge checks PASS with hypothetical limitations. Engineering acceptance PASS; ready for owner sandbox review. Economic forecast validity NOT_ESTABLISHED. Same-agent distinct preparation/challenge passes; not independent human acceptance.
+
+Two actual runner invocations produced identical canonical output hashes `00df320ac650474d989a92da016760f897334fe02a0692817613bd8ae7d71430`. Tests cover closed-form rational values/RIparity, exact Decimal identities independent of ambient precision, native VND/shares, configuration classification, clean-surplus/terminal/domain errors, near-zero denominator, capital infeasibility/constant-state limit, credit/funding double counting, zero-issuance restrictions, missing/null/negative/float/NaNinputs, no market price and rejection of APPROVED_INTRINSIC_VALUE/FORMAL_BUYlabels. All five sensitivity tables are deterministic: 109 cells, including 5 invalid price-surface combinations and 2 near-zero-denominator warnings. These flags are retained, not graded as software failures.
+
+All10403 protected files, exact2260-file data inventory, SQLite/sidecars, source/PDF/JSONrecords, approved decisions/M1–M4/weights/runtime/portfolio/authorities and old validation hashes/timestamps remain unchanged. Prior bounded-research seal verifies read-only. Stale commit-status text is addressed exclusively by a successor metadata record. Metadata preflight used GitHubconnector once outside sandbox computation; the sandbox sources contain no network or production imports.
+
+Actual command/UTC receipts: `validation-receipts.json`. Exact protected/database hashes: `baseline-integrity.json`. Separate financial challenge: `financial-challenge.json`. Engineering issues remaining0Critical/0Major/0Minor. BEARremains capital-infeasible; BASE/BULLcapital passes are only conditional mathematical hypotheses. No complete formal economic forecast, intrinsic value, target price, MOS, expected return, M3/M4or production acceptance is claimed. Whole-application tests/build/browser/live admission were not run because application code/runtime were not changed.
+
+**STOP — owner review only.**

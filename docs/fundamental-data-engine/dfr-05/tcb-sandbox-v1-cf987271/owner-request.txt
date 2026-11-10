@@ -1,0 +1,364 @@
+# VN30 Value Investing OS
+## DFR-05 — TCB Analyst Scenario Sandbox v1.0
+
+### ROLE
+
+Act as Chief Investment Officer, Banking Equity Research Analyst, Valuation Specialist, Risk Manager, Quantitative Model Reviewer and Independent QA Challenger.
+
+Repository:
+https://github.com/nglehoangan/VN_30_Investment
+
+### APPROVED BASELINES
+
+P2.6 Research Baseline:
+`969e36ab241a61f31d89d4371e83ece977db3458`
+
+Owner Escalation Decision Record:
+`4a2052611cc37002ad0ba7d15a15b8a8c03a3ebf`
+
+TCB Draft Valuation Assumption Qualification:
+`b5c8fe27ce9fb2f8786b603463176f6d5437c6f1`
+
+TCB Bounded Economic Evidence & Assumption Calibration — Approved Research Baseline v1.0:
+`cf9872710d5a1135c856566077c44ad5768f595b`
+
+### OWNER DECISION
+
+The Owner explicitly APPROVES:
+
+**Option B — Analyst Scenario Sandbox.**
+
+This authorization permits bounded hypothetical scenario modelling and sensitivity analysis for TCB only.
+
+It does not approve:
+
+- Formal intrinsic value.
+- Formal M3 scoring.
+- Ranking.
+- M4 Buy/Hold/Sell decisions.
+- Portfolio transactions.
+- Production activation.
+- New market-data authority.
+- Changes to approved investment methodology.
+
+No further generic data-readiness or evidence-qualification cycle is authorized.
+
+### MISSION
+
+Implement one isolated, reproducible TCB hypothetical valuation sandbox.
+
+Use already qualified FY2025 historical accounting inputs as anchors.
+
+Allow explicitly hypothetical, configurable economic assumptions to explore valuation sensitivity.
+
+Every hypothetical input must be labelled as a modelling assumption, not as a qualified economic forecast.
+
+The sandbox must produce useful numerical scenario outputs without presenting them as investment conclusions.
+
+### STEP 1 — BASELINE AND METADATA CORRECTION
+
+Inspect the latest GitHub HEAD and verify it descends from:
+
+`cf9872710d5a1135c856566077c44ad5768f595b`
+
+Correct stale metadata in the previous bounded-research package:
+
+- `TCB_BOUNDED_RESEARCH_FINAL_REVIEW.md`
+- `summary.json`
+- Other fields that incorrectly describe the already pushed package as UNCOMMITTED.
+
+Record separately:
+
+- Execution baseline commit.
+- Historical implementation commit.
+- Current sandbox execution commit.
+- Current working-tree status.
+
+Do not rewrite historical validation receipts, timestamps, protected hashes or approved decision records.
+
+If editing an approved baseline file would violate immutability, create a successor metadata correction record instead and mark the old metadata as superseded for commit-status interpretation only.
+
+### STEP 2 — SANDBOX ISOLATION
+
+Create a dedicated versioned sandbox directory under:
+
+`docs/fundamental-data-engine/dfr-05/`
+
+Sandbox must be:
+
+- TCB only.
+- Research only.
+- Read-only toward approved baselines.
+- Deterministic.
+- Reproducible.
+- No network calls.
+- No portfolio/database writes.
+- No production imports or activation.
+
+Use Python Decimal arithmetic for monetary calculations and valuation formulas.
+
+Do not modify the formal scoring engine, decision engine or approved M1–M4 methodology.
+
+### STEP 3 — HISTORICAL ANCHORS
+
+Use qualified historical FY2025 inputs:
+
+- Parent-attributable ordinary accounting book: 170,044,504,000,000 VND.
+- Closing ordinary shares: 7,086,240,414.
+- Ordinary common EPS earnings numerator: 25,254,851,000,000 VND.
+- Historical credit-cost sensitivity anchors:
+  - BEAR: 0.009217628484.
+  - BASE: 0.007947018458.
+  - BULL: 0.006732050583.
+
+Preserve native units, period, scope, original evidence pointers and source hashes.
+
+These historical anchors are not sustainable forecast assumptions.
+
+Do not treat accounting book as tangible common equity or unrestricted distributable capital.
+
+Do not select the unqualified historical TCBS price.
+
+### STEP 4 — HYPOTHETICAL INPUT DESIGN
+
+Create an editable, machine-readable scenario configuration for:
+
+- Sustainable common ROE.
+- Nominal VND cost of equity.
+- Growth.
+- Payout.
+- Credit-cost stress.
+- Funding stress.
+- Regulatory/common capital target.
+- Terminal ROE.
+- Terminal growth.
+- Terminal cost of equity.
+- Transition horizon.
+- New shares.
+- Net new common cash.
+
+Every input must include:
+
+- Value.
+- Unit.
+- Classification: HYPOTHETICAL_ASSUMPTION.
+- Rationale.
+- Evidence status.
+- Owner approval status.
+- Sensitivity range.
+- Applicable scenario.
+
+Use illustrative values only.
+
+Do not label hypothetical values as empirically qualified, analyst-approved forecasts or owner-approved numerical economics.
+
+Do not silently use the 15% investment return target as cost of equity.
+
+### STEP 5 — SCENARIO CONSTRUCTION
+
+Construct three hypothetical cases:
+
+- BEAR
+- BASE
+- BULL
+
+Use economically coherent combinations of ROE, cost of equity, payout and growth.
+
+For a constant-state model:
+
+g = ROE × (1 − payout)
+
+Enforce:
+
+- ke > 0
+- ke > g
+- ROE > g
+- 0 <= payout <= 1
+
+Use the existing justified P/B or residual-income framework.
+
+For the constant-state case:
+
+Justified P/B = (ROE − g) / (ke − g)
+
+Hypothetical equity value = qualified accounting common book × justified P/B.
+
+Hypothetical per-share model value = hypothetical equity value / qualified closing ordinary shares.
+
+These are hypothetical model outputs only.
+
+Do not call them approved intrinsic value, target price, fair value recommendation or margin of safety.
+
+### STEP 6 — CREDIT AND FUNDING SENSITIVITY
+
+Apply the conditionally approved historical credit-cost anchors.
+
+Separate:
+
+- Historical observed credit cost.
+- Hypothetical forward credit cost.
+- Hypothetical credit-expense delta.
+- Hypothetical tax treatment.
+- Hypothetical common-owner attribution.
+
+Avoid double counting credit stress already reflected in sustainable ROE.
+
+Do not assume that historical maximum credit cost captures extreme tail losses.
+
+Funding stress must be an explicit hypothetical input and must not be hidden inside both ROE and ke without reconciliation.
+
+### STEP 7 — CAPITAL FEASIBILITY
+
+Implement a transparent hypothetical capital constraint.
+
+Track:
+
+- Starting regulatory capital.
+- Starting RWA.
+- Hypothetical RWA growth.
+- Hypothetical retained eligible capital.
+- Hypothetical capital losses/deductions.
+- Hypothetical regulatory target.
+- Hypothetical management buffer.
+
+For the approved constant-state sandbox restriction:
+
+newShares = 0
+netNewCommonCash = 0
+
+Treat these as conditional modelling restrictions, not predictions.
+
+If a scenario cannot fund its capital requirements, flag:
+
+CAPITAL_INFEASIBLE
+
+Do not present an infeasible scenario as economically admissible.
+
+Do not assume Tier 1 equals CET1.
+
+### STEP 8 — SENSITIVITY ANALYSIS
+
+Generate deterministic sensitivity tables for:
+
+- ROE versus cost of equity.
+- Growth versus cost of equity.
+- Payout versus sustainable ROE.
+- Credit cost versus common earnings.
+- Capital target versus RWA growth.
+
+Report the model's dependence on ke − g.
+
+Flag unstable or extreme outcomes when the denominator approaches zero.
+
+Do not produce an official investment recommendation.
+
+### STEP 9 — MODEL VALIDATION
+
+Test:
+
+- Decimal precision.
+- Unit consistency.
+- Reproducibility.
+- Input provenance.
+- ROE/ke/g/payout constraints.
+- Capital feasibility.
+- Credit/funding double counting.
+- Negative or invalid assumptions.
+- Near-zero ke − g.
+- Scenario ordering.
+- Hypothetical versus historical classification.
+- No live price usage.
+- No formal M3/M4 fields populated.
+- No production or portfolio mutation.
+
+Include negative tests that reject misleading labels such as APPROVED_INTRINSIC_VALUE or FORMAL_BUY.
+
+Distinguish mathematical model PASS from economic forecast validity.
+
+### STEP 10 — OUTPUT CONTRACT
+
+Each hypothetical scenario must include:
+
+- Scenario name.
+- Historical anchor references.
+- Hypothetical assumptions.
+- Model formula.
+- Hypothetical P/B.
+- Hypothetical equity value.
+- Hypothetical per-share model value.
+- Sensitivity results.
+- Capital feasibility status.
+- Economic limitations.
+- Validation status.
+
+Mandatory labels:
+
+RESEARCH_ONLY
+
+HYPOTHETICAL
+
+NOT_AN_APPROVED_INTRINSIC_VALUE
+
+NOT_FOR_M3_M4_OR_PRODUCTION
+
+No margin of safety or expected return may be calculated against an unqualified market price.
+
+### DELIVERABLES
+
+Create:
+
+1. `TCB_SANDBOX_AUTHORIZATION.md`
+2. `TCB_HYPOTHETICAL_ASSUMPTIONS.md`
+3. `TCB_SCENARIO_MODEL.md`
+4. `TCB_SCENARIO_RESULTS.md`
+5. `TCB_SENSITIVITY_ANALYSIS.md`
+6. `TCB_CAPITAL_FEASIBILITY.md`
+7. `TCB_SANDBOX_RISK_REVIEW.md`
+8. `TCB_SANDBOX_FINAL_REVIEW.md`
+9. `VALIDATION.md`
+10. Machine-readable scenario inputs, outputs and validation receipts.
+11. Isolated deterministic model and tests.
+
+### ACCEPTANCE CRITERIA
+
+Engineering acceptance requires:
+
+- Reproducible model calculations.
+- Complete scenario output lineage.
+- Correct handling of invalid assumptions.
+- No baseline corruption.
+- No unauthorized production effects.
+
+Research acceptance requires:
+
+- Three coherent illustrative scenarios.
+- Transparent numerical assumptions.
+- Sensitivity analysis.
+- Explicit capital feasibility.
+- No misrepresentation of hypothetical outputs as investment decisions.
+
+Do not weaken the existing investment policy.
+
+### FINAL REPORT
+
+Report:
+
+- Latest commit SHA.
+- Changed files.
+- Metadata correction status.
+- BEAR/BASE/BULL hypothetical assumptions.
+- Hypothetical model values.
+- Capital feasibility for each scenario.
+- Sensitivity results.
+- Critical/Major/Minor issues.
+- Technical validation.
+- Financial challenge.
+- Whether the sandbox is ready for owner review.
+
+Do not promote any scenario to formal valuation.
+
+Do not update M3/M4/production.
+
+STOP after sandbox implementation and validation.
+
+Await Owner review and explicit approval.
