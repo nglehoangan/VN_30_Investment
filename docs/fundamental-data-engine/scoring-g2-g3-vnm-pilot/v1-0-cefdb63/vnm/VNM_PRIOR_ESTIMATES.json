@@ -1,0 +1,293 @@
+{
+  "binding": {
+    "path": "docs/fundamental-data-engine/dfr-02/2026-11-04/issuers/VNM.json",
+    "sha256": "641c01616e8ef4aef57e0dfbe9808237b40de77dc5facbfe52837e946207ffb2",
+    "jsonPointer": "/estimates"
+  },
+  "classification": "CONDITIONAL_ESTIMATE_NOT_APPROVED_VALUATION",
+  "priorEstimates": {
+    "status": "REFERENCE_ONLY",
+    "sourceConflictIds": [],
+    "kind": "ESTIMATE",
+    "normalizationBinding": {
+      "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-04/earnings-normalization-v4/issuers/VNM.json",
+      "sha256": "864e115ea941c992438d9e66145e5a209b80fc5ea46160bf0f12a8cfc334c62f",
+      "jsonPointer": ""
+    },
+    "reportedCommon": "8417384067829",
+    "reportedScope": "CONSOLIDATED",
+    "workingCommon": "8369595220974",
+    "workingScope": "STANDALONE",
+    "operatingAlternatives": [
+      {
+        "name": "RETAIN_FINANCE_CREDIT",
+        "adjustments": [
+          {
+            "id": "VNM-net-disposal",
+            "pretaxVnd": "-6136383841",
+            "operandBinding": {
+              "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-30/b6-underwriting-r4/vnm-specific-adjustment-input.json",
+              "sha256": "1674161afafd35b6f2c6437c799baedc5b0b340dc76252295920ff948a8ad834",
+              "jsonPointer": "/disposalIncomeFY2025"
+            },
+            "subtractOperandPointer": "/disposedAssetCarryingFY2025"
+          }
+        ],
+        "valueAtAdverseIncidenceVnd": "8417278288225",
+        "incidenceEnvelope": {
+          "minimumVnd": "8417278288225",
+          "maximumVnd": "8418505564993.2",
+          "completeEconomicBound": false,
+          "taxEndpointsAreAssumptions": true,
+          "unknownFundsIncluded": false,
+          "independentCommonIncidencePerComponent": true
+        }
+      },
+      {
+        "name": "REPEAT_2024_FINANCE_EXPENSE",
+        "adjustments": [
+          {
+            "id": "VNM-net-disposal",
+            "pretaxVnd": "-6136383841",
+            "operandBinding": {
+              "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-30/b6-underwriting-r4/vnm-specific-adjustment-input.json",
+              "sha256": "1674161afafd35b6f2c6437c799baedc5b0b340dc76252295920ff948a8ad834",
+              "jsonPointer": "/disposalIncomeFY2025"
+            },
+            "subtractOperandPointer": "/disposedAssetCarryingFY2025"
+          },
+          {
+            "id": "VNM-other-finance",
+            "pretaxVnd": "-100366317251"
+          }
+        ],
+        "valueAtAdverseIncidenceVnd": "8316911970974",
+        "incidenceEnvelope": {
+          "minimumVnd": "8316911970974",
+          "maximumVnd": "8338212511192.4",
+          "completeEconomicBound": false,
+          "taxEndpointsAreAssumptions": true,
+          "unknownFundsIncluded": false,
+          "independentCommonIncidencePerComponent": true
+        }
+      }
+    ],
+    "assumptions": {
+      "tax": "0",
+      "commonIncidence": "1"
+    },
+    "limitations": "Không dùng thuế hợp nhất/NCI cho báo cáo riêng; không tái tính quỹ 10% trên lợi nhuận mô hình. Tính bền vững của khoản tài chính khác còn mở.",
+    "scenarioBinding": {
+      "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-04/investment-research-v2/issuers/VNM.json",
+      "sha256": "4bfc2c32dd4d82c244ff1fb8ea8b177e323158a0973fb8b7864602661aee5661",
+      "jsonPointer": ""
+    },
+    "conditionalEquityRange": {
+      "minimumVnd": "41191760777755.555556",
+      "maximumVnd": "78108411617730.892149",
+      "baseVnd": "55905116319903.870861",
+      "classification": "NAMED_SCENARIO_RANGE_NOT_CONFIDENCE_INTERVAL"
+    },
+    "model": "PRIOR_11_CONDITIONAL_MODEL",
+    "valuationLimitations": [
+      "DATED_SHARE_ACTION_TREASURY_RIGHTS_BRIDGE",
+      "PRICE_ADJUSTMENT_BASIS",
+      "CURRENT_QUOTE_REFRESH",
+      "POST_FY2025_CHANGE_REVIEW",
+      "NAMED_ASSUMPTIONS_NOT_CONFIRMED"
+    ],
+    "noNewShareDenominator": true,
+    "conditionalValuationCases": [
+      {
+        "name": "BEAR",
+        "kind": "ESTIMATE",
+        "status": "REFERENCE_ONLY",
+        "equityValueVnd": "41191760777755.555556",
+        "earningsInputVnd": "8369595220974",
+        "assumptions": {
+          "maintenance": "1391673079280",
+          "growth": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "incrementalReturn": "0.12",
+          "discount": "0.18",
+          "terminal": "0"
+        },
+        "binding": {
+          "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-04/investment-research-v2/issuers/VNM.json",
+          "sha256": "4bfc2c32dd4d82c244ff1fb8ea8b177e323158a0973fb8b7864602661aee5661",
+          "jsonPointer": "/modelScenarios/0"
+        },
+        "invalidatedBy": [
+          "Changed source pins or common-earnings bridge",
+          "Unqualified common claims or capital distribution",
+          "Unsupported reinvestment/return persistence",
+          "Incompatible share/action/price cutoff"
+        ],
+        "newValuationAcceptance": false
+      },
+      {
+        "name": "BASE",
+        "kind": "ESTIMATE",
+        "status": "REFERENCE_ONLY",
+        "equityValueVnd": "55905116319903.870861",
+        "earningsInputVnd": "8369595220974",
+        "assumptions": {
+          "maintenance": "1113338463424",
+          "growth": [
+            "0.02",
+            "0.02",
+            "0.015",
+            "0.01",
+            "0.01"
+          ],
+          "incrementalReturn": "0.15",
+          "discount": "0.15",
+          "terminal": "0.01"
+        },
+        "binding": {
+          "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-04/investment-research-v2/issuers/VNM.json",
+          "sha256": "4bfc2c32dd4d82c244ff1fb8ea8b177e323158a0973fb8b7864602661aee5661",
+          "jsonPointer": "/modelScenarios/1"
+        },
+        "invalidatedBy": [
+          "Changed source pins or common-earnings bridge",
+          "Unqualified common claims or capital distribution",
+          "Unsupported reinvestment/return persistence",
+          "Incompatible share/action/price cutoff"
+        ],
+        "newValuationAcceptance": false
+      },
+      {
+        "name": "BULL",
+        "kind": "ESTIMATE",
+        "status": "REFERENCE_ONLY",
+        "equityValueVnd": "78108411617730.892149",
+        "earningsInputVnd": "8369595220974",
+        "assumptions": {
+          "maintenance": "1029529085769",
+          "growth": [
+            "0.04",
+            "0.035",
+            "0.03",
+            "0.02",
+            "0.02"
+          ],
+          "incrementalReturn": "0.18",
+          "discount": "0.12",
+          "terminal": "0.02"
+        },
+        "binding": {
+          "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-04/investment-research-v2/issuers/VNM.json",
+          "sha256": "4bfc2c32dd4d82c244ff1fb8ea8b177e323158a0973fb8b7864602661aee5661",
+          "jsonPointer": "/modelScenarios/2"
+        },
+        "invalidatedBy": [
+          "Changed source pins or common-earnings bridge",
+          "Unqualified common claims or capital distribution",
+          "Unsupported reinvestment/return persistence",
+          "Incompatible share/action/price cutoff"
+        ],
+        "newValuationAcceptance": false
+      }
+    ]
+  },
+  "standaloneCashReview": {
+    "binding": {
+      "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-10-30/b6-underwriting-r4/vnm-parent-owner-cash-input.json",
+      "sha256": "470feaca93f119e58e686915cbb8350646a1caaccc883d5b9ec8c51ed65e3358",
+      "jsonPointer": ""
+    },
+    "values": {
+      "2025": {
+        "npat": "9359349635629",
+        "netOtherIncome": "90004585240",
+        "depreciationAmortization": "1113338463424",
+        "cashAcquisitionSpending": "1029529085769",
+        "cfo": "7690701645261",
+        "currentTaxExpense": "2128415483304",
+        "cashTaxPaid": "1353040369936",
+        "interestExpense": "289972001368",
+        "cashInterestPaid": "274593598630",
+        "cashInterestAndDividendsReceived": "1571241822856",
+        "fundAccrued": "935934963563",
+        "fundUsed": "660758742471",
+        "signedWorkingCapitalFlows": [
+          "-133439350148",
+          "-725457016090",
+          "-286915893560",
+          "-269139765264"
+        ],
+        "subsidiaryAndAssociateCashInvestment": "421094220000",
+        "subsidiaryInvestmentPresence": "NUMERIC_CASH_OUTFLOW",
+        "newBorrowing": "18411000000000",
+        "principalRepayment": "17890000000000",
+        "ordinarySharesOutstanding": "2089955445",
+        "depositInterestIncome": "1063216675831",
+        "dividendProfitShareIncome": "496172279490"
+      },
+      "2024": {
+        "npat": "9262413822949",
+        "netOtherIncome": "88915419235",
+        "depreciationAmortization": "1035105570071",
+        "cashAcquisitionSpending": "671303275149",
+        "cfo": "8845818265750",
+        "currentTaxExpense": "2058534807543",
+        "cashTaxPaid": "1997458922345",
+        "interestExpense": "227618556891",
+        "cashInterestPaid": "287004644127",
+        "cashInterestAndDividendsReceived": "1740624672263",
+        "fundAccrued": "926241382296",
+        "fundUsed": "812661187033",
+        "signedWorkingCapitalFlows": [
+          "44926814930",
+          "456078350449",
+          "326630261710",
+          "76017707729"
+        ],
+        "subsidiaryAndAssociateCashInvestment": null,
+        "subsidiaryInvestmentPresence": "PDF_DASH_NOT_ZERO",
+        "newBorrowing": "15620000000000",
+        "principalRepayment": "14893280000000",
+        "ordinarySharesOutstanding": "2089955445"
+      }
+    },
+    "source": {
+      "pdfPath": "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf",
+      "sha256": "4541aaf79e96f343bf277bde2101c304ae8283836f0aad65427fbef1bde5f06d",
+      "pages": [
+        10,
+        11,
+        12,
+        26,
+        41,
+        43,
+        47,
+        49,
+        50
+      ],
+      "hrefs": [
+        "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=10",
+        "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=11",
+        "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=12",
+        "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=26",
+        "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=41",
+        "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=43",
+        "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=47",
+        "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=49",
+        "data/manual-download/VNM/VNM_Baocaotaichinh_2025_Kiemtoan_Congtyme.pdf#page=50"
+      ],
+      "review": {
+        "actor": "CHATGPT",
+        "fullPageImagesInspected": true,
+        "reviewedAt": "2026-10-30T13:05:59.536723+00:00"
+      }
+    },
+    "mixedWithConsolidated": false
+  },
+  "newAssumptions": []
+}

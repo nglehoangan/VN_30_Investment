@@ -1,0 +1,46 @@
+[
+  {
+    "name": "regression-and-baseline",
+    "command": [
+      "/tmp/node-v22.23.2-darwin-arm64/bin/node",
+      "node_modules/vitest/vitest.mjs",
+      "run",
+      "--config",
+      "docs/fundamental-data-engine/scoring-g2-g3-vnm-pilot/v1-0-cefdb63/engineering/vitest.config.mts",
+      "--reporter=json",
+      "--outputFile=docs/fundamental-data-engine/scoring-g2-g3-vnm-pilot/v1-0-cefdb63/engineering/tests.json"
+    ],
+    "exitCode": 1,
+    "status": "COMPLETED",
+    "seconds": 201.06,
+    "log": "regression-and-baseline.log",
+    "logSha256": "3f41e0f736c9dca7024e28821d60f3742bbbf95876f49b96574838f08c62fe0d"
+  },
+  {
+    "name": "typecheck",
+    "command": [
+      "/tmp/node-v22.23.2-darwin-arm64/bin/node",
+      "node_modules/typescript/bin/tsc",
+      "--noEmit",
+      "--incremental",
+      "false"
+    ],
+    "exitCode": null,
+    "status": "TIMEOUT",
+    "seconds": 900.04,
+    "log": "typecheck.log",
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "architecture-boundaries",
+    "command": [
+      "/tmp/node-v22.23.2-darwin-arm64/bin/node",
+      "scripts/check-boundaries.mjs"
+    ],
+    "exitCode": 0,
+    "status": "COMPLETED",
+    "seconds": 0.59,
+    "log": "architecture-boundaries.log",
+    "logSha256": "d915aab5570b2f84dfa214c4a74c420c2b86b335abf96fb2148358961e3c90f6"
+  }
+]

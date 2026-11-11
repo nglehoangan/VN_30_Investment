@@ -1,4 +1,5 @@
 import {DEBT_CONTRACT,debtContractActive} from '@/domain/fundamentals/debt-contract';
+import {dateOnly} from "@/shared/time";
 import { decimal } from "@/domain/portfolio/values";
 import { check, id, keys, list, text, unique } from "./validation";
 import { available, type Evidence } from "./evidence";
@@ -15,10 +16,33 @@ export const METRICS = {
   INCREMENTAL_ROIC: ["change_normalized_NOPAT", "change_invested_capital"], NET_DEBT_EBITDA: ["net_debt", "normalized_EBITDA"],
 } as const;
 export type MetricId = keyof typeof METRICS;
+export interface GrowthOperandContext {
+  readonly evidenceRef:string; readonly scope:'CONSOLIDATED'|'STANDALONE'; readonly revisionPolicy:string;
+  readonly periodType:'ANNUAL'; readonly periodStart:string; readonly periodEnd:string; readonly sourceReference:string;
+}
 export interface MetricRequest {
   readonly id: string; readonly metric: MetricId; readonly evidenceRefs: readonly string[];
   readonly years: 3 | 5 | null; readonly comparable: boolean;
+  readonly growthOperands?: readonly GrowthOperandContext[];
   readonly normalization: { readonly kind: "AS_REPORTED" | "NORMALIZED" | "ACTION_ADJUSTED"; readonly rationale: string; readonly evidenceRefs: readonly string[] };
+}
+function validateGrowthContext(r:MetricRequest,a:MetricOperand,b:MetricOperand) {
+  check(r.growthOperands?.length===2,'CAGR_DIMENSIONS_REQUIRED');
+  const [end,start]=r.growthOperands;
+  for(const [context,operand]of [[end,a],[start,b]]as const){
+    keys(context,'evidenceRef scope revisionPolicy periodType periodStart periodEnd sourceReference');
+    check(context.evidenceRef===operand.id&&context.periodStart===operand.periodStart&&context.periodEnd===operand.periodEnd,'CAGR_OPERAND_BINDING');
+    check(['CONSOLIDATED','STANDALONE'].includes(context.scope)&&context.periodType==='ANNUAL','CAGR_ANNUAL_SCOPE');
+    text(context.sourceReference);
+    text(operand.source);check(context.sourceReference===operand.source,'CAGR_SOURCE_BINDING');
+    text(context.revisionPolicy);check(!['UNKNOWN','UNSPECIFIED'].includes(context.revisionPolicy),'CAGR_REVISION_POLICY_REQUIRED');
+    dateOnly(context.periodStart);dateOnly(context.periodEnd);
+    const d=new Date(context.periodStart+'T00:00:00.000Z');
+    const expected=new Date(Date.UTC(d.getUTCFullYear()+1,d.getUTCMonth(),d.getUTCDate())-86400000).toISOString().slice(0,10);
+    check(expected===context.periodEnd,'CAGR_ANNUAL_WINDOW_REQUIRED');
+  }
+  check(end.scope===start.scope&&end.revisionPolicy===start.revisionPolicy,'CAGR_SCOPE_REVISION_MISMATCH');
+  check(r.years!==null&&Number(end.periodEnd.slice(0,4))-Number(start.periodEnd.slice(0,4))===r.years&&Number(end.periodStart.slice(0,4))-Number(start.periodStart.slice(0,4))===r.years&&end.periodEnd.slice(4)===start.periodEnd.slice(4)&&end.periodStart.slice(4)===start.periodStart.slice(4),'CAGR_HORIZON_MISMATCH');
 }
 function growth(end: string, start: string, years: number) {
   const scale = 1_000_000_000_000n, a = decimal(end).units, b = decimal(start).units;
@@ -33,16 +57,18 @@ function growth(end: string, start: string, years: number) {
   return decimal(`${negative ? "-" : ""}${abs/scale}.${(abs%scale).toString().padStart(12,"0")}`).toString();
 }
 /** Arithmetic consumes only these fields; publication/PIT validation remains at its owning boundary. */
-export type MetricOperand = Pick<Evidence,'id'|'value'|'unit'|'periodStart'|'periodEnd'|'quality'|'validThrough'|'debtAccounting'>;
+export type MetricOperand = Pick<Evidence,'id'|'value'|'unit'|'periodStart'|'periodEnd'|'quality'|'validThrough'|'debtAccounting'> & Partial<Pick<Evidence,'source'>>;
 export function calculateMetrics<T extends MetricOperand>(requests: readonly MetricRequest[], evidence: readonly T[], sector: Sector, asOf: string, conflicts: readonly string[], cyclical: boolean) {
   list(requests); unique(requests.map(r => r.id));
   return requests.map(r => {
-    keys(r,"id metric evidenceRefs years comparable normalization"); id(r.id);
+    keys(r,"id metric evidenceRefs years comparable normalization"+(r.growthOperands?" growthOperands":"")); id(r.id);
     check(Object.hasOwn(METRICS,r.metric), "UNKNOWN_METRIC"); list(r.evidenceRefs); check(r.evidenceRefs.length === 2, "TWO_ORDERED_OPERANDS_REQUIRED");
     keys(r.normalization,"kind rationale evidenceRefs"); text(r.normalization.rationale); list(r.normalization.evidenceRefs);
     check(["AS_REPORTED","NORMALIZED","ACTION_ADJUSTED"].includes(r.normalization.kind), "INVALID_NORMALIZATION");
     check(typeof r.comparable === "boolean", "COMPARABILITY_REQUIRED");
     check([null,3,5].includes(r.years), "INVALID_YEARS");
+    if(!r.metric.endsWith('CAGR'))check(!r.growthOperands,'UNEXPECTED_GROWTH_CONTEXT');
+    if(r.metric==='EPS_CAGR')check(r.normalization.kind==='ACTION_ADJUSTED'&&r.normalization.evidenceRefs.length>0,'EPS_ACTION_ADJUSTMENT_REQUIRED');
     if (sector === "BANK") check(!["CFO_CONVERSION","FCF","NET_DEBT_EBITDA","INTEREST_COVERAGE","ROIC","INCREMENTAL_ROIC"].includes(r.metric),"BANK_METRIC_NOT_EQUIVALENT");
     const refs = [...r.evidenceRefs,...r.normalization.evidenceRefs];
     const missing = refs.filter(ref => !evidence.some(e => e.id === ref && available(e,asOf,conflicts)));
@@ -58,7 +84,11 @@ export function calculateMetrics<T extends MetricOperand>(requests: readonly Met
     else {
       const [a,b] = operands as T[];
       check(a.unit !== "TEXT" && a.unit === b.unit, "METRIC_UNIT_MISMATCH");
-      if (!["DIVIDEND_YIELD","MOS"].includes(r.metric)) check((debtActive&&r.metric==='NET_DEBT_EBITDA'||a.periodStart===b.periodStart)&&a.periodEnd===b.periodEnd, "METRIC_PERIOD_MISMATCH");
+      if(r.metric.endsWith('CAGR')){
+        validateGrowthContext(r,a,b);
+        if(r.metric==='EPS_CAGR')check(a.unit==='VND_PER_SHARE','EPS_PER_SHARE_UNIT_REQUIRED');
+      }
+      else if (!["DIVIDEND_YIELD","MOS"].includes(r.metric)) check((debtActive&&r.metric==='NET_DEBT_EBITDA'||a.periodStart===b.periodStart)&&a.periodEnd===b.periodEnd, "METRIC_PERIOD_MISMATCH");
       const x=decimal(a.value), y=decimal(b.value);
       if (["FCF","NET_DEBT"].includes(r.metric)) value=x.sub(y).toString();
       else if (!y.positive || ((r.metric.endsWith("CAGR") || r.metric === "EARNINGS_YIELD") && !x.positive)) reason="N/R — NONPOSITIVE_DENOMINATOR_OR_EARNINGS";

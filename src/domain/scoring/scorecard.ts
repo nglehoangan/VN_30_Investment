@@ -1,3 +1,4 @@
+import {ACTION_METRICS,requiresActionComparability} from './action-dependencies';
 import { dateOnly, instant, vietnamBusinessDate } from "@/shared/time";
 import { referenceAt, type ReferenceData } from "@/domain/portfolio/reference";
 import { deepFreeze } from "@/domain/portfolio/transaction";
@@ -62,7 +63,9 @@ export function calculateScorecard(raw: ScoreInput) {
   list(n.actionEvidenceRefs);
   const conflicts=validateEvidence(input.evidence,input.securityId,input.asOf,input.knownAt);
   const usable=(ref: string) => input.evidence.some(e => e.id === ref && available(e,input.asOf,conflicts));
-  const metrics=calculateMetrics(input.metrics,input.evidence,n.sector,input.asOf,conflicts,["CYCLICAL","HIGHLY_CYCLICAL"].includes(n.cycle));
+  const actionUsable=n.actionComparable&&n.actionEvidenceRefs.every(usable);
+  const metricRequests=input.metrics.map(r=>ACTION_METRICS.includes(r.metric)?{...r,comparable:r.comparable&&actionUsable}:r);
+  const metrics=calculateMetrics(metricRequests,input.evidence,n.sector,input.asOf,conflicts,["CYCLICAL","HIGHLY_CYCLICAL"].includes(n.cycle));
   keys(input.stage0,"owner methodologyId asOf evaluatedAt status evidenceRefs"); validateExternalGate(input.stage0,input.asOf,input.knownAt);
   check(input.stage0.owner === "M1_STAGE_0" && ["PASS","PASS WITH CONDITIONS","FAIL","UNKNOWN"].includes(input.stage0.status),"INVALID_STAGE_0");
   keys(input.hardVeto,"owner methodologyId asOf evaluatedAt status evidenceRefs"); validateExternalGate(input.hardVeto,input.asOf,input.knownAt);
@@ -115,7 +118,7 @@ export function calculateScorecard(raw: ScoreInput) {
     const a=input.assessments.find(a => a.subcategory===r.id);
     const absent=a ? r.topics.filter(topic => !a.evidence.some(e => e.topic===topic && e.refs.every(usable))) : r.topics;
     const badCounter=a?.disconfirmingEvidence.some(ref => !usable(ref)) ?? false;
-    const actionProblem=!n.actionComparable || n.actionEvidenceRefs.some(ref => !usable(ref));
+    const actionProblem=requiresActionComparability(r.id,a,input.metrics,input.evidence)&&!actionUsable;
     const badReturn=r.id==="VAL-RET" && !input.expectedReturn;
     const complete=!!a && !absent.length && !badCounter && !actionProblem && !badReturn;
     if (!complete) missing.push(r.id);
