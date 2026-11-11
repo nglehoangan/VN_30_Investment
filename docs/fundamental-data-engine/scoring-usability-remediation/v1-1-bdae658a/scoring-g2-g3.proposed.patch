@@ -1,0 +1,113 @@
+--- a/src/domain/scoring/metrics.ts
++++ b/src/domain/scoring/metrics.ts
+@@ -1,4 +1,5 @@
+ import {DEBT_CONTRACT,debtContractActive} from '@/domain/fundamentals/debt-contract';
++import {dateOnly} from "@/shared/time";
+ import { decimal } from "@/domain/portfolio/values";
+ import { check, id, keys, list, text, unique } from "./validation";
+ import { available, type Evidence } from "./evidence";
+@@ -15,10 +16,31 @@
+   INCREMENTAL_ROIC: ["change_normalized_NOPAT", "change_invested_capital"], NET_DEBT_EBITDA: ["net_debt", "normalized_EBITDA"],
+ } as const;
+ export type MetricId = keyof typeof METRICS;
++export interface GrowthOperandContext {
++  readonly evidenceRef:string; readonly scope:'CONSOLIDATED'|'STANDALONE'; readonly revisionPolicy:string;
++  readonly periodType:'ANNUAL'; readonly periodStart:string; readonly periodEnd:string; readonly sourceReference:string;
++}
+ export interface MetricRequest {
+   readonly id: string; readonly metric: MetricId; readonly evidenceRefs: readonly string[];
+   readonly years: 3 | 5 | null; readonly comparable: boolean;
++  readonly growthOperands?: readonly GrowthOperandContext[];
+   readonly normalization: { readonly kind: "AS_REPORTED" | "NORMALIZED" | "ACTION_ADJUSTED"; readonly rationale: string; readonly evidenceRefs: readonly string[] };
++}
++function validateGrowthContext(r:MetricRequest,a:MetricOperand,b:MetricOperand) {
++  check(r.growthOperands?.length===2,'CAGR_DIMENSIONS_REQUIRED');
++  const [end,start]=r.growthOperands;
++  for(const [context,operand]of [[end,a],[start,b]]as const){
++    keys(context,'evidenceRef scope revisionPolicy periodType periodStart periodEnd sourceReference');
++    check(context.evidenceRef===operand.id&&context.periodStart===operand.periodStart&&context.periodEnd===operand.periodEnd,'CAGR_OPERAND_BINDING');
++    check(['CONSOLIDATED','STANDALONE'].includes(context.scope)&&context.periodType==='ANNUAL','CAGR_ANNUAL_SCOPE');
++    text(context.sourceReference);text(context.revisionPolicy);check(!['UNKNOWN','UNSPECIFIED'].includes(context.revisionPolicy),'CAGR_REVISION_POLICY_REQUIRED');
++    dateOnly(context.periodStart);dateOnly(context.periodEnd);
++    const d=new Date(context.periodStart+'T00:00:00.000Z');
++    const expected=new Date(Date.UTC(d.getUTCFullYear()+1,d.getUTCMonth(),d.getUTCDate())-86400000).toISOString().slice(0,10);
++    check(expected===context.periodEnd,'CAGR_ANNUAL_WINDOW_REQUIRED');
++  }
++  check(end.scope===start.scope&&end.revisionPolicy===start.revisionPolicy,'CAGR_SCOPE_REVISION_MISMATCH');
++  check(r.years!==null&&Number(end.periodEnd.slice(0,4))-Number(start.periodEnd.slice(0,4))===r.years&&Number(end.periodStart.slice(0,4))-Number(start.periodStart.slice(0,4))===r.years&&end.periodEnd.slice(4)===start.periodEnd.slice(4)&&end.periodStart.slice(4)===start.periodStart.slice(4),'CAGR_HORIZON_MISMATCH');
+ }
+ function growth(end: string, start: string, years: number) {
+   const scale = 1_000_000_000_000n, a = decimal(end).units, b = decimal(start).units;
+@@ -37,12 +59,14 @@
+ export function calculateMetrics<T extends MetricOperand>(requests: readonly MetricRequest[], evidence: readonly T[], sector: Sector, asOf: string, conflicts: readonly string[], cyclical: boolean) {
+   list(requests); unique(requests.map(r => r.id));
+   return requests.map(r => {
+-    keys(r,"id metric evidenceRefs years comparable normalization"); id(r.id);
++    keys(r,"id metric evidenceRefs years comparable normalization"+(r.growthOperands?" growthOperands":"")); id(r.id);
+     check(Object.hasOwn(METRICS,r.metric), "UNKNOWN_METRIC"); list(r.evidenceRefs); check(r.evidenceRefs.length === 2, "TWO_ORDERED_OPERANDS_REQUIRED");
+     keys(r.normalization,"kind rationale evidenceRefs"); text(r.normalization.rationale); list(r.normalization.evidenceRefs);
+     check(["AS_REPORTED","NORMALIZED","ACTION_ADJUSTED"].includes(r.normalization.kind), "INVALID_NORMALIZATION");
+     check(typeof r.comparable === "boolean", "COMPARABILITY_REQUIRED");
+     check([null,3,5].includes(r.years), "INVALID_YEARS");
++    if(!r.metric.endsWith('CAGR'))check(!r.growthOperands,'UNEXPECTED_GROWTH_CONTEXT');
++    if(r.metric==='EPS_CAGR')check(r.normalization.kind==='ACTION_ADJUSTED'&&r.normalization.evidenceRefs.length>0,'EPS_ACTION_ADJUSTMENT_REQUIRED');
+     if (sector === "BANK") check(!["CFO_CONVERSION","FCF","NET_DEBT_EBITDA","INTEREST_COVERAGE","ROIC","INCREMENTAL_ROIC"].includes(r.metric),"BANK_METRIC_NOT_EQUIVALENT");
+     const refs = [...r.evidenceRefs,...r.normalization.evidenceRefs];
+     const missing = refs.filter(ref => !evidence.some(e => e.id === ref && available(e,asOf,conflicts)));
+@@ -58,7 +82,8 @@
+     else {
+       const [a,b] = operands as T[];
+       check(a.unit !== "TEXT" && a.unit === b.unit, "METRIC_UNIT_MISMATCH");
+-      if (!["DIVIDEND_YIELD","MOS"].includes(r.metric)) check((debtActive&&r.metric==='NET_DEBT_EBITDA'||a.periodStart===b.periodStart)&&a.periodEnd===b.periodEnd, "METRIC_PERIOD_MISMATCH");
++      if(r.metric.endsWith('CAGR'))validateGrowthContext(r,a,b);
++      else if (!["DIVIDEND_YIELD","MOS"].includes(r.metric)) check((debtActive&&r.metric==='NET_DEBT_EBITDA'||a.periodStart===b.periodStart)&&a.periodEnd===b.periodEnd, "METRIC_PERIOD_MISMATCH");
+       const x=decimal(a.value), y=decimal(b.value);
+       if (["FCF","NET_DEBT"].includes(r.metric)) value=x.sub(y).toString();
+       else if (!y.positive || ((r.metric.endsWith("CAGR") || r.metric === "EARNINGS_YIELD") && !x.positive)) reason="N/R — NONPOSITIVE_DENOMINATOR_OR_EARNINGS";
+--- a/src/domain/scoring/scorecard.ts
++++ b/src/domain/scoring/scorecard.ts
+@@ -1,3 +1,4 @@
++import {ACTION_METRICS,requiresActionComparability} from './action-dependencies';
+ import { dateOnly, instant, vietnamBusinessDate } from "@/shared/time";
+ import { referenceAt, type ReferenceData } from "@/domain/portfolio/reference";
+ import { deepFreeze } from "@/domain/portfolio/transaction";
+@@ -62,7 +63,9 @@
+   list(n.actionEvidenceRefs);
+   const conflicts=validateEvidence(input.evidence,input.securityId,input.asOf,input.knownAt);
+   const usable=(ref: string) => input.evidence.some(e => e.id === ref && available(e,input.asOf,conflicts));
+-  const metrics=calculateMetrics(input.metrics,input.evidence,n.sector,input.asOf,conflicts,["CYCLICAL","HIGHLY_CYCLICAL"].includes(n.cycle));
++  const actionUsable=n.actionComparable&&n.actionEvidenceRefs.every(usable);
++  const metricRequests=input.metrics.map(r=>ACTION_METRICS.includes(r.metric)?{...r,comparable:r.comparable&&actionUsable}:r);
++  const metrics=calculateMetrics(metricRequests,input.evidence,n.sector,input.asOf,conflicts,["CYCLICAL","HIGHLY_CYCLICAL"].includes(n.cycle));
+   keys(input.stage0,"owner methodologyId asOf evaluatedAt status evidenceRefs"); validateExternalGate(input.stage0,input.asOf,input.knownAt);
+   check(input.stage0.owner === "M1_STAGE_0" && ["PASS","PASS WITH CONDITIONS","FAIL","UNKNOWN"].includes(input.stage0.status),"INVALID_STAGE_0");
+   keys(input.hardVeto,"owner methodologyId asOf evaluatedAt status evidenceRefs"); validateExternalGate(input.hardVeto,input.asOf,input.knownAt);
+@@ -115,7 +118,7 @@
+     const a=input.assessments.find(a => a.subcategory===r.id);
+     const absent=a ? r.topics.filter(topic => !a.evidence.some(e => e.topic===topic && e.refs.every(usable))) : r.topics;
+     const badCounter=a?.disconfirmingEvidence.some(ref => !usable(ref)) ?? false;
+-    const actionProblem=!n.actionComparable || n.actionEvidenceRefs.some(ref => !usable(ref));
++    const actionProblem=requiresActionComparability(r.id,a,input.metrics,input.evidence)&&!actionUsable;
+     const badReturn=r.id==="VAL-RET" && !input.expectedReturn;
+     const complete=!!a && !absent.length && !badCounter && !actionProblem && !badReturn;
+     if (!complete) missing.push(r.id);
+--- /dev/null
++++ b/src/domain/scoring/action-dependencies.ts
+@@ -0,0 +1,17 @@
++/** PATCH PROPOSAL ONLY. M3 §3A.6; never an activated executable authority. */
++import type {MetricRequest} from './metrics';
++import type {Evidence} from '@/domain/scoring/evidence';
++export const ACTION_RUBRICS:readonly string[] = Object.freeze(['GQ-HIST','VAL-PRIMARY','VAL-RET','VAL-MOS','CA-REINV','CA-DIST','CA-DIL','CA-PSV']);
++export const ACTION_METRICS:readonly string[] = Object.freeze(['EPS_CAGR','EARNINGS_YIELD','DIVIDEND_YIELD','PB','FCF_YIELD','MOS','EV_EBIT']);
++type TopicAssessment={readonly evidence:readonly {readonly refs:readonly string[]}[];readonly disconfirmingEvidence:readonly string[]};
++export function requiresActionComparability(rubric:string,assessment:TopicAssessment|undefined,metrics:readonly MetricRequest[],evidence:readonly Evidence[]):boolean {
++ if(ACTION_RUBRICS.includes(rubric))return true;
++ if(!assessment)return false;
++ const refs=new Set([...assessment.evidence.flatMap(x=>x.refs),...assessment.disconfirmingEvidence]);
++ const metricDependency=metrics.some(m=>ACTION_METRICS.includes(m.metric)&&m.evidenceRefs.some(ref=>refs.has(ref)));
++ if(metricDependency)return true;
++ // Current ownership/share disclosures are not historical per-share economics.
++ // Independent industry/governance stay independent unless an action-sensitive metric is actually used.
++ if(['IC-IND','RG-GOV'].includes(rubric))return false;
++ return evidence.some(e=>refs.has(e.id)&&['SHARES','VND_PER_SHARE'].includes(e.unit));
++}

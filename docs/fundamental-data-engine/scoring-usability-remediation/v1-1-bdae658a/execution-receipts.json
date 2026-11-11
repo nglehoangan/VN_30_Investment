@@ -1,0 +1,87 @@
+{
+  "nodeVersion": "v22.23.2",
+  "productionActivation": false,
+  "receipts": [
+    {
+      "name": "gate-regression",
+      "command": [
+        "/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "docs/fundamental-data-engine/scoring-usability-remediation/v1-1-bdae658a/vitest.config.mts",
+        "--reporter=json",
+        "--outputFile=docs/fundamental-data-engine/scoring-usability-remediation/v1-1-bdae658a/gate-regression-green.json"
+      ],
+      "exitCode": 0,
+      "status": "COMPLETED",
+      "durationSeconds": 0.635,
+      "log": "gate-regression.log",
+      "logSha256": "52f43ffbabf46132950e8f81a2ad931174830982991fc144f3be78a174be8107"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "node_modules/typescript/bin/tsc",
+        "--project",
+        "docs/fundamental-data-engine/scoring-usability-remediation/v1-1-bdae658a/tsconfig.json",
+        "--noEmit"
+      ],
+      "exitCode": 0,
+      "status": "COMPLETED",
+      "durationSeconds": 15.263,
+      "log": "typecheck.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "patch-application-check",
+      "command": [
+        "git",
+        "apply",
+        "--check",
+        "docs/fundamental-data-engine/scoring-usability-remediation/v1-1-bdae658a/scoring-g2-g3.proposed.patch"
+      ],
+      "exitCode": 0,
+      "status": "COMPLETED",
+      "durationSeconds": 0.019,
+      "log": "patch-application-check.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "architecture-boundaries",
+      "command": [
+        "/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "scripts/check-boundaries.mjs"
+      ],
+      "exitCode": 0,
+      "status": "COMPLETED",
+      "durationSeconds": 345.256,
+      "log": "architecture-boundaries.log",
+      "logSha256": "f122af2dcb04a3bf25f0cdab3ce737fa212c5ec8b8583e12d0ff036cf1ad0418"
+    },
+    {
+      "name": "baseline-regression",
+      "command": [
+        "/tmp/node-v22.23.2-darwin-arm64/bin/node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "docs/fundamental-data-engine/scoring-usability-remediation/v1-1-bdae658a/baseline.vitest.config.mts",
+        "--reporter=json",
+        "--outputFile=docs/fundamental-data-engine/scoring-usability-remediation/v1-1-bdae658a/baseline-regression.json"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 4.819,
+      "log": "baseline-regression.log",
+      "logSha256": "efcf42ca5494c9ded6ae7a83ade5933f831d0d8bc4bf9518e1049c02da58eb85",
+      "executionStatus": "REUSED_PASS_UNCHANGED_ACCEPTED_SOURCE",
+      "sourceIntegrityReceipt": "validation-results.json"
+    }
+  ],
+  "exceptions": [
+    "execution-attempt-timeout.json",
+    "execution-baseline-rerun-timeout.json",
+    "execution-typecheck-rerun-timeout.json"
+  ]
+}
