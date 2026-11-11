@@ -1,0 +1,55 @@
+{
+  "cutoffCandidate": "2026-10-30",
+  "ownerApproved": false,
+  "readOnly": true,
+  "observations": [
+    {
+      "id": "TCBS_MARKET_PRICE:9caac36c4926fa06528d25e157ca104c45c3c6bf0c80b98a0459833a270bf9de",
+      "storedBodySha256": "9caac36c4926fa06528d25e157ca104c45c3c6bf0c80b98a0459833a270bf9de",
+      "actualBodySha256": "9caac36c4926fa06528d25e157ca104c45c3c6bf0c80b98a0459833a270bf9de",
+      "receivedAt": "2026-10-30T10:43:28.963Z",
+      "sourceLocator": "sqlite:broker_observation/TCBS_MARKET_PRICE:9caac36c4926fa06528d25e157ca104c45c3c6bf0c80b98a0459833a270bf9de",
+      "storedBodyHashMatches": true,
+      "selectedFields": {
+        "ticker": "VNM",
+        "value": "56900",
+        "tradingDate": "2026-10-30",
+        "unit": "VND_PER_SHARE",
+        "sourceObservationId": "TCBS_API_RESPONSE:fff0b29bda17b3336f131f0e408fb1d155eb7cf7e95f138bd29520a386c59283",
+        "sourcePointer": "/data/data/1/close",
+        "rawSourceSha256": "c63908d6d9a4dfec2c3db318a72de1c1b62766acdedc8b6df8ea3259e9c09a28",
+        "field": "DAILY_BAR_CLOSE_REFERENCE",
+        "selectionStatus": "COMPLETED_CLOSE_SELECTED",
+        "adjustment": "PROVIDER_UNDECLARED"
+      }
+    },
+    {
+      "id": "TCBS_API_RESPONSE:fff0b29bda17b3336f131f0e408fb1d155eb7cf7e95f138bd29520a386c59283",
+      "storedBodySha256": "fff0b29bda17b3336f131f0e408fb1d155eb7cf7e95f138bd29520a386c59283",
+      "actualBodySha256": "fff0b29bda17b3336f131f0e408fb1d155eb7cf7e95f138bd29520a386c59283",
+      "receivedAt": "2026-10-30T10:43:28.963Z",
+      "sourceLocator": "sqlite:broker_observation/TCBS_API_RESPONSE:fff0b29bda17b3336f131f0e408fb1d155eb7cf7e95f138bd29520a386c59283",
+      "storedBodyHashMatches": true,
+      "request": {
+        "method": "GET",
+        "url": "https://openapi.tcbs.com.vn/nyx/v2/stock/bars-long-term",
+        "parameters": {
+          "ticker": "VNM",
+          "type": "stock",
+          "resolution": "D",
+          "to": "1793356954",
+          "countBack": "2"
+        },
+        "ticker": "VNM",
+        "variant": null
+      },
+      "httpStatus": 200,
+      "declaredRawSha256": "c63908d6d9a4dfec2c3db318a72de1c1b62766acdedc8b6df8ea3259e9c09a28",
+      "rawByteAvailability": "IMMUTABLE_DB_BODY_ONLY_NO_NEW_RAW_COPY",
+      "selectedSourcePointer": "/data/data/1/close",
+      "selectedSourceValue": 56900
+    }
+  ],
+  "referenceActionRowsForVNM": [],
+  "interpretation": "Empty VNM reference action rows do not prove no corporate actions. API raw/body retained in existing immutable DB; this analytical receipt is a read-only reconciliation, not a new capture workflow."
+}
