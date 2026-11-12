@@ -10,6 +10,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## PDF reading skill — JSON first
 
+- Owner explicitly authorized the CaféF standing RAW CLOSE source-governance principle in `docs/fundamental-data-engine/cafef-standing-source/2026-11-12/SOURCE_POLICY_AUTHORIZATION.json`, anchored to the verbatim OWNER_REQUEST.txt. This replaces repetitive per-ticker source permission only after independently accepted code/material and per-observation validation. It does not approve arbitrary observations/code, F2 financial facts, the VNM17-fact proposal or production. Governed ingestion uses the existing Market Boundary SQLite extension; the existing fetch-only skill remains raw-only. See the standing work package and reusable skill reference.
+
 - For reusable ticker/exchange/cutoff S4 evidence review, use `skills/vn30-market-price-corporate-actions/SKILL.md`. Reuse retained sources and existing fetch/normalization/carry-forward contracts. Research approval never closes F1/F2 formal admission or PIT; do not self-promote sources or activate production.
 - VNM17-fact research admission is `PENDING_EXPLICIT_OWNER_APPROVAL`. The earlier conditional-approval receipt is superseded by `docs/fundamental-data-engine/governance/VNM_S4_APPROVAL_PROVENANCE_CORRECTION_2026-11-12.json`; retain it for audit, never use it as authorization. An assistant recommendation or ambiguous approval cannot authorize an exact admission. R1/R4 remain closed under their separately explicit owner policies; F1/F2 remain open.
 
@@ -168,3 +170,8 @@ User-confirmed convention (2026-10-18): use the CafeF display mapping as the def
 - Discover and acquire financial PDFs only through `finance.vietstock.vn` and `static2.vietstock.vn`. No issuer/company or exchange website fallback, including historical `issuerDiscoveryUrl`/`officialDiscoveryUrl` fields or old PE1 acquisition scripts. Validate every redirect before requesting it.
 - Current configuration: `docs/fundamental-data-engine/issuer-sources.json`, `issuer-document-routes.json`; policy: `VIETSTOCK_ONLY_SOURCE_POLICY.md` in the same directory. Historical sealed captures are audit history, not current source authorization. Do not edit old seals to reflect new policy.
 - Recalculate coverage using `scripts/recalculate-vietstock-coverage.py`. Separate exact retained Vietstock PDF coverage from original-publication evidence and formal admission. Exclude prior company/HOSE discovery from current coverage. Vietstock remains a third-party mirror; no automatic D2/source approval or AS_KNOWN relaxation.
+
+## Unified current-use source principles (owner instruction 2026-11-12)
+
+- Standing CaféF RAW CLOSE and standing financial-source/automated-evidence admission for Current Formal Valuation are owner-authorized principles; do not repeat source approval requests for unchanged approved roles. Successor package: `docs/fundamental-data-engine/unified-source-admission/2026-11-12/`. Reuse retained evidence, qualified mappings, source hashes and existing domain validators. Actual integrity/semantic/time/conflict checks still govern each observation.
+- Current operational availability must use actual receipt/review/ingestion knowledge; it is never historical publication/PIT proof. The prior pending VNM17-fact proposal is not silently approved. No production activation is authorized.

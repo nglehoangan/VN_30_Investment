@@ -24,6 +24,16 @@ export interface CanonicalEvidenceTime {
     readonly availabilityProvenance: string;
   }[];
 }
+/** Current-use only: actual later operational knowledge, never public availability/PIT proof. */
+export interface CurrentEvidenceTime {
+ readonly contract:'current-formal-evidence-time-v1';
+ readonly purpose:'CURRENT_FORMAL_VALUATION';
+ readonly policyVersion:'standing-financial-current-v1';
+ readonly policyHash:string;readonly authorizationReference:string;
+ readonly rawHash:string;readonly qualificationReference:string;
+ readonly originalReceivedAt:string;readonly reviewedAt:string;readonly ingestedAt:string;
+ readonly availableAt:string;
+}
 export interface DebtAccountingContext {readonly contractVersion:string;readonly role:'DEBT'|'NET_DEBT'|'UNRESTRICTED_CASH'|'NORMALIZED_EBITDA';readonly ticker:string;readonly periodEnd:string;readonly scope:'CONSOLIDATED';readonly currency:'VND';readonly measurementBasis:DebtMeasurement;readonly leasePolicyVersion:string;readonly qualifiedEvidenceReference:string;readonly sourceHashes:readonly string[];readonly qualificationStatus:'VERIFIED';readonly selectedDebtMetric:DebtMetric|null;readonly cashEconomicAvailabilityVerified:boolean;readonly normalizedOrDownside:boolean}
 interface EvidenceBase {readonly debtAccounting?:DebtAccountingContext;
   readonly id: string; readonly version: string; readonly securityId: string; readonly observation: string;
@@ -39,10 +49,22 @@ export type Evidence = EvidenceBase & (
   { readonly publishedAt: string; readonly time?: never } |
   { readonly time: CanonicalEvidenceTime }
 );
+export type CurrentValuationEvidence = EvidenceBase & {readonly time:CurrentEvidenceTime};
+type ValidatedEvidence = Evidence | CurrentValuationEvidence;
 function exactTimeKeys(value:object,fields:string){keys(value,fields);check(Object.keys(value).sort().join(' ')===fields.split(' ').sort().join(' '),"EVIDENCE_TIME_EXACT_FIELDS");}
-function validateTime(e: Evidence, knownAt: string) {
+function validateTime(e: ValidatedEvidence, knownAt: string, purpose?:'CURRENT_FORMAL_VALUATION') {
   if (!e.time) { instant(e.publishedAt!); check(e.publishedAt !== null && e.publishedAt <= knownAt && e.publishedAt <= e.receivedAt, "FUTURE_OR_INVALID_EVIDENCE"); return; }
   const t=e.time;
+  if(t.contract==='current-formal-evidence-time-v1'){
+    exactTimeKeys(t,'contract purpose policyVersion policyHash authorizationReference rawHash qualificationReference originalReceivedAt reviewedAt ingestedAt availableAt');
+    check(purpose==='CURRENT_FORMAL_VALUATION'&&t.purpose===purpose&&t.policyVersion==='standing-financial-current-v1','CURRENT_ONLY_NOT_PIT');
+    [t.originalReceivedAt,t.reviewedAt,t.ingestedAt,t.availableAt,knownAt].forEach(instant);
+    [t.authorizationReference,t.qualificationReference].forEach(text);
+    check([t.rawHash,t.policyHash].every(h=>/^[a-f0-9]{64}$/.test(h)),'INVALID_CURRENT_PROVENANCE');
+    check(t.availableAt===[t.originalReceivedAt,t.reviewedAt,t.ingestedAt].sort().at(-1)&&e.receivedAt===t.availableAt&&t.availableAt<=knownAt,'INVALID_CURRENT_KNOWLEDGE');
+    if(e.publishedAt!==null){instant(e.publishedAt);check(e.publishedAt<=t.originalReceivedAt,'INVALID_PUBLICATION_RECEIPT');}
+    return;
+  }
   exactTimeKeys(t,"contract snapshotRunId fundamentalCutoff availableAt reviewKnownAt constituents");
   check(t.contract==="canonical-evidence-time-v2","UNSUPPORTED_EVIDENCE_TIME_CONTRACT"); id(t.snapshotRunId);
   [t.fundamentalCutoff,t.availableAt].forEach(instant); list(t.reviewKnownAt); t.reviewKnownAt.forEach(instant);
@@ -60,7 +82,7 @@ function validateTime(e: Evidence, knownAt: string) {
   check(e.publishedAt===(exact?t.constituents.map(c=>c.publishedAt!).sort().at(-1)!:null),"COMPOSITE_PUBLICATION_PRECISION");
   check(t.availableAt===[...t.constituents.map(c=>c.availableAt),...t.reviewKnownAt].sort().at(-1)&&e.receivedAt===t.availableAt&&t.availableAt<=knownAt&&t.availableAt<=t.fundamentalCutoff,"INVALID_OPERATIONAL_KNOWLEDGE");
 }
-export function validateEvidence(rows: readonly Evidence[], securityId: string, asOf: string, knownAt: string) {
+export function validateEvidence(rows: readonly ValidatedEvidence[], securityId: string, asOf: string, knownAt: string, purpose?:'CURRENT_FORMAL_VALUATION') {
   list(rows); unique(rows.map(e => e.id));
   const conflicts: string[] = [];
   for (const e of rows) {
@@ -72,7 +94,7 @@ export function validateEvidence(rows: readonly Evidence[], securityId: string, 
     check(["VALID","STALE","CONFLICTING_DATA","MISSING_REQUIRED_DATA"].includes(e.quality), "INVALID_QUALITY");
     check(typeof e.critical === "boolean", "CRITICALITY_REQUIRED");
     dateOnly(e.periodStart); dateOnly(e.periodEnd);
-    [e.asOf,e.receivedAt,e.validThrough].forEach(instant); validateTime(e,knownAt);
+    [e.asOf,e.receivedAt,e.validThrough].forEach(instant); validateTime(e,knownAt,purpose);
     check(e.periodStart <= e.periodEnd && (e.classification !== "FACT" || e.periodEnd <= e.asOf.slice(0,10)), "INVALID_PERIOD");
     check(e.asOf <= asOf && e.receivedAt <= knownAt && e.validThrough >= e.asOf, "FUTURE_OR_INVALID_EVIDENCE");
     check(["VND","VND_PER_SHARE","SHARES","RATIO","TEXT"].includes(e.unit), "INVALID_UNIT");

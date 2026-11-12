@@ -7,7 +7,7 @@ description: Review retained daily raw prices, dividend and capital-action evide
 
 Accept **ticker, exchange, cutoff and retained source locations**. Work on one ticker per invocation. Use this workflow for S4 evidence/acceptance review; keep fetching, personal account reconciliation and investment scoring in their existing workflows.
 
-Read [the input/output contract](references/contract.md) when preparing or executing an input. For integration with existing skills, read [migration notes](references/migration.md). Repository paths below are relative to its root.
+Read [the input/output contract](references/contract.md) when preparing or executing an input. For integration with existing skills, read [migration notes](references/migration.md). When governed ingestion/standing source approval is requested, read [the standing-ingest route](references/standing-ingest.md); source-principle authorization is distinct from code, observation and financial-fact admission. For unified F1/F2 current-valuation ingestion, read [the successor unified admission contract](references/unified-admission.md). Repository paths below are relative to its root.
 
 ## Retained evidence first
 

@@ -78,14 +78,15 @@ export function assessShares(anchor,cutoff,review) {
   if (run.status!==0) throw Error('SHARE_RULE_EXECUTION_FAILED:'+run.stderr);
   return JSON.parse(run.stdout);
 }
-export async function loadReview() {
+export async function loadProjectModule(path) {
   // Resolve the already-installed TS loader via Vitest/Vite; no package install or server.
   const vr=createRequire(realpathSync(resolve(root,'node_modules/vitest/package.json')));
   const jr=createRequire(vr.resolve('vite/package.json'));
   const {createJiti}=await import(pathToFileURL(jr.resolve('jiti')).href);
   const jiti=createJiti(import.meta.url,{alias:{'@':resolve(root,'src')},fsCache:false,moduleCache:false});
-  return (await jiti.import(resolve(root,'skills/vn30-market-price-corporate-actions/scripts/review.ts'))).review;
+  return await jiti.import(resolve(root,path));
 }
+export async function loadReview() {return (await loadProjectModule('skills/vn30-market-price-corporate-actions/scripts/review.ts')).review;}
 export async function run(input) { verifyInput(input); return (await loadReview())(input,{assessShares}); }
 function resolvedFuture(path) {
   let current=resolve(path);const suffix=[];

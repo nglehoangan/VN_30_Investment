@@ -1,0 +1,81 @@
+{
+  "policyAuthorizations": {
+    "F1": "AUTHORIZED_OWNER_PRINCIPLE",
+    "F2": "AUTHORIZED_OWNER_PRINCIPLE_CURRENT_VALUATION",
+    "repeatSourceApprovalRequiredForUnchangedScope": false
+  },
+  "decisions": {
+    "F1": "BLOCKED",
+    "F2": "PARTIALLY_CLOSED",
+    "Current Formal Valuation": "NOT_READY",
+    "Historical PIT": "NOT_QUALIFIED",
+    "Production Activation": "NOT_AUTHORIZED"
+  },
+  "F2ClosedPortion": [
+    "Standing source-role policy and owner authorization recorded",
+    "Explicit current-use actual-knowledge time contract implemented",
+    "Existing financial admission/normalization/Evidence validators reused",
+    "Governed linked raw/canonical persistence, replay, quarantine, idempotence and revocation implemented and synthetically tested"
+  ],
+  "automaticAdmission": {
+    "implementationTests": "PASS",
+    "realAcceptedRecords": 0,
+    "realMaterialAcceptance": "MISSING"
+  },
+  "purposeMatrix": [
+    {
+      "purpose": "CURRENT_FORMAL_VALUATION",
+      "publicationMissing": "PERMITTED_ONLY_WITH_VALID_CURRENT_OPERATIONAL_AVAILABILITY_AND_ALL_OTHER_FACT_CHECKS",
+      "knowledgeCutoff": "SERVER_ACTUAL_NOW_FOR_NEW_INGEST; original boundary retained for retry",
+      "selectedFactReadiness": "NOT_READY"
+    },
+    {
+      "purpose": "HISTORICAL_PIT",
+      "publicationMissing": "REJECTED",
+      "laterReceiptOrReview": "NOT_BACKDATED; current-only contract always rejected",
+      "status": "NOT_QUALIFIED"
+    }
+  ],
+  "blockers": [
+    {
+      "id": "U1",
+      "scope": [
+        "F1",
+        "F2"
+      ],
+      "requirement": "Independently accepted exact implementation/source-semantic material and trusted registry configuration, separate from owner standing source authorization.",
+      "evidence": "MATERIAL_REVIEW_PROPOSAL.json status PROPOSED_NOT_INDEPENDENTLY_ACCEPTED; no real accepted registry entry or controlled CafeF legacy capture handoff.",
+      "resolution": "Verify exact pinned code/material and existing capture/semantic evidence under the existing independent integrity controls. Do not request repeated owner approval of unchanged sources."
+    },
+    {
+      "id": "U2",
+      "scope": [
+        "F1 cutoff 2026-10-30"
+      ],
+      "requirement": "VN30 membership effective on observation date under CafeF standing policy.",
+      "evidence": "Retained certified interval 2026-08-03 through 2026-10-16; no extrapolation to 30 October.",
+      "resolution": "Supply retained or qualified dated membership coverage for intended observation dates; requalify changed material."
+    },
+    {
+      "id": "U3",
+      "scope": [
+        "F2 actual selected current facts"
+      ],
+      "requirement": "Each selected current fact needs exact qualified native raw/extraction identity, dimensions, unit conversion, role and operational-time bindings.",
+      "evidence": "Legacy financial inputs replay, but no new current-use accepted native-cell/source-material bundle was registered. Some old raw paths remain unresolved after exact-hash relocation. These historical bundle gaps are not a requirement to reacquire the entire history.",
+      "resolution": "Bind the actually selected current facts to extant qualified native JSON/PDF cell receipts and original receipt/import times; quarantine unsupported/conflicting facts. Use issuer-only/subset inputs where their existing contracts suffice. Do not silently promote VNM17."
+    }
+  ],
+  "pilotLimitations": [
+    "No eligible CafeF raw-close history for FPT/HPG/VCB in checked inventories. Financial validator replay is a separate real retained-input pilot, not market acceptance.",
+    "Legacy historical source gaps are recorded per exact path/hash; no blanket complete-history prerequisite for independently qualified current facts."
+  ],
+  "preserved": {
+    "R1": "CLOSED_BY_OWNER_APPROVED_CARRY_FORWARD_POLICY",
+    "R4": "CLOSED_BY_SCOPE_EXCLUSION",
+    "R3": "HISTORICAL_COMPLETENESS_ONLY",
+    "VNM17": "PENDING_EXPLICIT_OWNER_APPROVAL",
+    "portfolioChanged": false,
+    "productionActivated": false
+  }
+}

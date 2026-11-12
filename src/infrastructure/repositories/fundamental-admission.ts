@@ -1,11 +1,11 @@
-import type {PrismaClient} from '@/infrastructure/db/generated/client';
+import type {PrismaClient, Prisma} from '@/infrastructure/db/generated/client';
 import type {HybridAdmissionSnapshot} from '@/domain/fundamentals/hybrid-admission';
 import {canonicalJson} from '@/domain/fundamentals/snapshot';
 import {createHash} from 'node:crypto';
 import {requireFundamental} from '@/domain/fundamentals/validation';
 /** Append-only candidate/canonical run; no portfolio, scoring or old-fact mutation. */
 export class PrismaFinancialAdmission {
- constructor(private readonly db:PrismaClient){}
+ constructor(private readonly db:PrismaClient | Prisma.TransactionClient){}
  async append(snapshot:HybridAdmissionSnapshot,previousManualSnapshotId:string,createdAt:string){
   requireFundamental(snapshot.contract==='structured-issuer-verified-current-v1'&&!snapshot.readyForScoring,'ADMISSION_NOT_SCORING_APPROVAL');
   const body=canonicalJson(snapshot),bodyHash=createHash('sha256').update(body).digest('hex');

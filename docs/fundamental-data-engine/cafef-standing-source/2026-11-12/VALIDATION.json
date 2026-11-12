@@ -1,0 +1,152 @@
+{
+  "baseline": "e08ec2d05dbb3dfb3afe55b9857c0d46c75139a2",
+  "materialHash": "ccf6c25079c703b1acbd4a1e46d715766740916b2f156ea8320e164ed8b55412",
+  "decisions": {
+    "Standing Source Policy": "IMPLEMENTED",
+    "Ingest Transformation": "PASS",
+    "Automatic Capability Validation": "FAIL",
+    "Automatic Market Validation": "FAIL",
+    "Deterministic Replay": "PASS",
+    "Migration": "PARTIAL",
+    "Multi-Ticker Pilot": "PARTIAL",
+    "F1": "BLOCKED",
+    "F2": "OPEN",
+    "Formal S4": "NOT_CLOSED"
+  },
+  "decisionInterpretation": "Capability/Market FAIL means real formal admission remains blocked by independent material acceptance, not failed software tests. Actual lifecycle integration passes with explicitly synthetic trusted authority fixtures. No real observation accepted or production activated.",
+  "tests": {
+    "typescript": {
+      "passed": 145,
+      "failed": 0,
+      "newIntegrationCases": 26,
+      "retainedScopedCases": 119,
+      "config": "vitest.config.mjs",
+      "command": "node node_modules/vitest/vitest.mjs run --config docs/fundamental-data-engine/cafef-standing-source/2026-11-12/vitest.config.mjs"
+    },
+    "python": {
+      "passed": 34,
+      "failed": 0,
+      "suites": [
+        "share-count carry-forward (10)",
+        "retained price/dividend fetching and evidence (24)"
+      ]
+    },
+    "typecheck": {
+      "status": "PASS",
+      "scope": "work-package tsconfig.json, including transitive dependencies"
+    },
+    "architecture": {
+      "status": "PASS",
+      "sourceModules": 295
+    },
+    "prismaSchema": {
+      "status": "PASS",
+      "schemaSha256": "73c286fc33aed3e726dec89d5cc48097bc0e94348b6ce01ad229a0855723edf9"
+    },
+    "skillValidation": "PASS",
+    "diffWhitespace": "PASS",
+    "governance": {
+      "status": "PASS",
+      "checks": 117,
+      "historicalCodeDrift": [
+        {
+          "path": "src/infrastructure/market-boundary-authority.ts",
+          "historicalHash": "5be1604823a9c108c06e14cb1b9d0a038b370b9e4217f063229b353b5acd472a",
+          "currentHash": "e4dbad54b03ba24857b97ab6ceb253e9abe08e576aba8d5866b8a734dcedd2d5",
+          "status": "REQUALIFICATION_PENDING_NO_HISTORICAL_RESEAL"
+        }
+      ],
+      "deterministicOutputHashes": {
+        "MATERIAL_REVIEW_PROPOSAL.json": "0a3d1ce48dfcd4a7c55acaf8c35735c64101f911f43adcff8d2af238f822d943",
+        "MARKET_MIGRATION_REPORT.json": "bd478f0f68b58c6a348537145446a3e506cf6914fee1c77a7b97f927ef9110f8",
+        "MULTI_TICKER_PILOT.json": "317c8297df8a9c127f4e3a20e749cc6c2c85cd37553f5f7e8ae5711e34639447"
+      },
+      "productionActivated": false
+    },
+    "fullApplicationSuiteExecuted": false,
+    "fullApplicationLintExecuted": false
+  },
+  "realMigration": {
+    "retained": 1197,
+    "transformedAndReplayed": 52,
+    "outsideVerifiedMembershipInterval": 1145,
+    "acceptedCommitted": 0,
+    "databaseChanged": false
+  },
+  "syntheticCoverage": [
+    "atomic SQLite lifecycle persistence and consumption",
+    "idempotent ingestion and corroborating receipts",
+    "adjusted-only exclusion",
+    "raw field/unit/schema/ticker/date/exchange checks",
+    "conflict quarantine",
+    "atomic partial failure",
+    "append-only rollback and revocation",
+    "DB-only retained raw replay",
+    "four-ticker isolation",
+    "policy/material supersession",
+    "capture provenance",
+    "trusted clock and later knowledge"
+  ],
+  "issues": {
+    "critical": [],
+    "major": [
+      {
+        "id": "M1",
+        "issue": "No independent ACCEPTED record for exact material hash and no trusted legacy capture handoff. Owner principle does not attest code, calendar, unit or identity material.",
+        "closure": "Independent reviewer verifies MATERIAL_REVIEW_PROPOSAL.json pins and original capture provenance, records ACCEPTED material reference/knownAt and trusted handoff; trusted server configuration supplies these references. No new owner approval per ticker is required for unchanged accepted scope."
+      },
+      {
+        "id": "M2",
+        "issue": "Retained certified VN30 membership evidence supports 2026-08-03 through 2026-10-16 only; requested 2026-10-30 cutoff is outside it.",
+        "closure": "Supply retained or independently verified dated membership evidence covering observation dates and requalify changed material. No extrapolation from an open-ended effective row."
+      }
+    ],
+    "minor": [
+      {
+        "id": "L1",
+        "issue": "No eligible retained CafeF PriceHistory for FPT/HPG/VCB in the checked source inventories; no real additional pilot completed.",
+        "closure": "Use eligible retained evidence when supplied. Synthetic fixtures validate reuse only; no bulk acquisition required."
+      }
+    ]
+  },
+  "preservedDecisions": {
+    "R1": "CLOSED_BY_OWNER_APPROVED_CARRY_FORWARD_POLICY",
+    "R4": "CLOSED_BY_SCOPE_EXCLUSION",
+    "R3": "HISTORICAL_COMPLETENESS_ONLY",
+    "17FactResearchAdmission": "PENDING_EXPLICIT_OWNER_APPROVAL",
+    "historicalPITGranted": false,
+    "productionActivation": false
+  },
+  "changedFiles": [
+    "AGENTS.md",
+    "app/server/cafef-standing-services.ts",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/FINAL_CIO_REVIEW.md",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/INGEST_TRANSFORM_CONTRACT.md",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/MARKET_MIGRATION_REPORT.json",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/MATERIAL_REVIEW_PROPOSAL.json",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/MULTI_TICKER_PILOT.json",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/OWNER_REQUEST.txt",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/PRESERVATION.json",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/PROFILE_INPUT.json",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/SOURCE_POLICY_AUTHORIZATION.json",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/STANDING_SOURCE_POLICY.md",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/VALIDATION.json",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/tsconfig.json",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/validate-package.py",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/vitest.config.mjs",
+    "prisma/migrations/202611120001_market_ingest/migration.sql",
+    "prisma/schema.prisma",
+    "scripts/cafef-standing.mjs",
+    "skills/fetch-cafef-price-history/SKILL.md",
+    "skills/vn30-market-price-corporate-actions/SKILL.md",
+    "skills/vn30-market-price-corporate-actions/references/standing-ingest.md",
+    "skills/vn30-market-price-corporate-actions/scripts/runtime.mjs",
+    "src/domain/market-boundary/cafef-standing-policy-v1.json",
+    "src/infrastructure/market-boundary-authority.ts",
+    "src/infrastructure/market-boundary/cafef-standing.ts",
+    "src/infrastructure/repositories/market-boundary.ts",
+    "src/infrastructure/repositories/market-ingest.ts",
+    "tests/fixtures/cafef-standing.ts",
+    "tests/integration/cafef-standing-ingest.test.ts"
+  ]
+}

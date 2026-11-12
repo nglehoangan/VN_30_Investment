@@ -1,0 +1,222 @@
+{
+  "baseline": "e08ec2d05dbb3dfb3afe55b9857c0d46c75139a2",
+  "includesPriorUncommittedF1Work": true,
+  "typescript": {
+    "passed": 219,
+    "failed": 0,
+    "suites": [
+      {
+        "file": "tests/architecture/cafef-raw-close.test.mjs",
+        "passed": 1
+      },
+      {
+        "file": "tests/architecture/market-boundary.test.mjs",
+        "passed": 2
+      },
+      {
+        "file": "tests/integration/cafef-standing-ingest.test.ts",
+        "passed": 26
+      },
+      {
+        "file": "tests/integration/unified-source-admission.test.ts",
+        "passed": 25
+      },
+      {
+        "file": "tests/unit/cafef-raw-close.test.ts",
+        "passed": 34
+      },
+      {
+        "file": "tests/unit/market-boundary.test.ts",
+        "passed": 36
+      },
+      {
+        "file": "tests/unit/scoring-evidence-time.test.ts",
+        "passed": 4
+      },
+      {
+        "file": "tests/unit/structured-certification.test.ts",
+        "passed": 45
+      },
+      {
+        "file": "tests/unit/vn30-market-price-corporate-actions.test.ts",
+        "passed": 46
+      }
+    ],
+    "config": "vitest.config.mjs"
+  },
+  "python": {
+    "passed": 34,
+    "failed": 0,
+    "commands": [
+      "python3 scripts/test-share-count-carry-forward.py",
+      "python3 docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/test_skills.py"
+    ]
+  },
+  "typecheck": {
+    "status": "PASS",
+    "scope": "tsconfig.json including new server/infra/domain code and transitive dependencies"
+  },
+  "architecture": {
+    "status": "PASS",
+    "modules": 301
+  },
+  "prismaSchema": {
+    "status": "PASS",
+    "sha256": "75b7b51aba1022e8b2791ac0630df080707d802643b21d0fc6e0f0d535d7cdae",
+    "activeDbMigrated": false
+  },
+  "governance": {
+    "status": "PASS",
+    "checks": 142,
+    "historicalCodeChanges": [
+      "src/domain/scoring/evidence.ts",
+      "src/infrastructure/market-boundary-authority.ts"
+    ],
+    "historicalRecordsResealed": false
+  },
+  "skill": {
+    "frontmatterAndReferenceChecks": "PASS",
+    "runtimeRegression": "PASS",
+    "optionalQuickValidate": "UNAVAILABLE: Python yaml module missing; no dependency installed"
+  },
+  "diffWhitespace": "PASS",
+  "fullApplicationSuiteExecuted": false,
+  "fullApplicationLintExecuted": false,
+  "realMarket": {
+    "retained": 1197,
+    "transformedReplayed": 52,
+    "outsideMembershipInterval": 1145,
+    "accepted": 0
+  },
+  "realFinancial": [
+    {
+      "ticker": "VNM",
+      "retainedCanonicalFacts": 65,
+      "hashVerifiedSourceCount": 5,
+      "sameHashAliasCount": 5,
+      "missingSourceCount": 8,
+      "replay": "PASS",
+      "acceptedCommitted": 0
+    },
+    {
+      "ticker": "FPT",
+      "retainedCanonicalFacts": 88,
+      "hashVerifiedSourceCount": 4,
+      "sameHashAliasCount": 4,
+      "missingSourceCount": 9,
+      "replay": "PASS",
+      "acceptedCommitted": 0
+    },
+    {
+      "ticker": "HPG",
+      "retainedCanonicalFacts": 84,
+      "hashVerifiedSourceCount": 4,
+      "sameHashAliasCount": 4,
+      "missingSourceCount": 10,
+      "replay": "PASS",
+      "acceptedCommitted": 0
+    },
+    {
+      "ticker": "VCB",
+      "retainedCanonicalFacts": 64,
+      "hashVerifiedSourceCount": 11,
+      "sameHashAliasCount": 11,
+      "missingSourceCount": 9,
+      "replay": "PASS",
+      "acceptedCommitted": 0
+    }
+  ],
+  "syntheticOnly": [
+    "Actual SQLite raw/canonical atomic commits and rollback",
+    "Trusted independent material acceptance fixtures",
+    "Current financial consumption",
+    "New reviewed action ingestion and PDF review witness"
+  ],
+  "deterministicReplay": {
+    "realMarket": "PASS 52 sealed observations rebuilt identically",
+    "retainedFinancial": "PASS original-time hybrid input rebuilt twice per ticker",
+    "newCurrentPlan": "PASS synthetic deterministic replay test",
+    "wholeApplicationReplayClaimed": false
+  },
+  "preservation": {
+    "source": "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/PRESERVATION.json",
+    "verifiedUnchanged": [
+      "active data/vn30.sqlite",
+      "original CafeF 1197 rows",
+      "combined VNM 1200-row index",
+      "original VNM17 selected facts/admission packet"
+    ],
+    "historicalCodeAmendments": [
+      "src/domain/scoring/evidence.ts",
+      "src/infrastructure/market-boundary-authority.ts"
+    ],
+    "historicalRecordsResealed": false
+  },
+  "packageHashes": {
+    "SOURCE_POLICY_AUTHORIZATIONS.json": "6dc353d0cc94034c49448ee76f0a2b480362b4398526ca0966dcfe89cc892ae7",
+    "POLICY.json": "fed46ab0e256cdf8012704d448f92059fd4d5a117fd2a3fe5d00fb0c99d35025",
+    "MATERIAL_REVIEW_PROPOSAL.json": "a642ebdb342e58db6116c624d254948289862c8dbfab9c26b98314667ec231f8",
+    "DATA_MIGRATION_REPORT.json": "c31c34bb1b1e60f9bfeae57e91e4fa9da20996afb3a323350d60f6341927a1cb",
+    "MULTI_TICKER_PILOT.json": "7a9c752a57f34f8741906dd4e036061481937c5a1f35a318f613c65f748e1268",
+    "F1_F2_ACCEPTANCE_MATRIX.json": "250cd1726bcc197c6818eb1d1720f98c0ef41b2719d5d71abfc8b7d149d5d064"
+  },
+  "changedFiles": [
+    "AGENTS.md",
+    "app/server/cafef-standing-services.ts",
+    "app/server/unified-admission-services.ts",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/FINAL_CIO_REVIEW.md",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/INGEST_TRANSFORM_CONTRACT.md",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/MARKET_MIGRATION_REPORT.json",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/MATERIAL_REVIEW_PROPOSAL.json",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/MULTI_TICKER_PILOT.json",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/OWNER_REQUEST.txt",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/PRESERVATION.json",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/PROFILE_INPUT.json",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/SOURCE_POLICY_AUTHORIZATION.json",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/STANDING_SOURCE_POLICY.md",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/VALIDATION.json",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/tsconfig.json",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/validate-package.py",
+    "docs/fundamental-data-engine/cafef-standing-source/2026-11-12/vitest.config.mjs",
+    "docs/fundamental-data-engine/unified-source-admission/2026-11-12/DATA_MIGRATION_REPORT.json",
+    "docs/fundamental-data-engine/unified-source-admission/2026-11-12/F1_F2_ACCEPTANCE_MATRIX.json",
+    "docs/fundamental-data-engine/unified-source-admission/2026-11-12/FINAL_CIO_REVIEW.md",
+    "docs/fundamental-data-engine/unified-source-admission/2026-11-12/INGEST_TRANSFORM_ARCHITECTURE.md",
+    "docs/fundamental-data-engine/unified-source-admission/2026-11-12/MATERIAL_REVIEW_PROPOSAL.json",
+    "docs/fundamental-data-engine/unified-source-admission/2026-11-12/MULTI_TICKER_PILOT.json",
+    "docs/fundamental-data-engine/unified-source-admission/2026-11-12/OWNER_REQUEST.txt",
+    "docs/fundamental-data-engine/unified-source-admission/2026-11-12/POLICY.json",
+    "docs/fundamental-data-engine/unified-source-admission/2026-11-12/SOURCE_POLICY_AUTHORIZATIONS.json",
+    "docs/fundamental-data-engine/unified-source-admission/2026-11-12/UNIFIED_SOURCE_POLICY.md",
+    "docs/fundamental-data-engine/unified-source-admission/2026-11-12/VALIDATION.json",
+    "docs/fundamental-data-engine/unified-source-admission/2026-11-12/tsconfig.json",
+    "docs/fundamental-data-engine/unified-source-admission/2026-11-12/validate-package.py",
+    "docs/fundamental-data-engine/unified-source-admission/2026-11-12/vitest.config.mjs",
+    "prisma/migrations/202611120001_market_ingest/migration.sql",
+    "prisma/migrations/202611120002_unified_admission/migration.sql",
+    "prisma/schema.prisma",
+    "scripts/cafef-standing.mjs",
+    "scripts/unified-standing.mjs",
+    "skills/fetch-cafef-price-history/SKILL.md",
+    "skills/vn30-market-price-corporate-actions/SKILL.md",
+    "skills/vn30-market-price-corporate-actions/references/standing-ingest.md",
+    "skills/vn30-market-price-corporate-actions/references/unified-admission.md",
+    "skills/vn30-market-price-corporate-actions/scripts/runtime.mjs",
+    "src/domain/fundamentals/standing-actions.ts",
+    "src/domain/fundamentals/standing-source-policy.ts",
+    "src/domain/market-boundary/cafef-standing-policy-v1.json",
+    "src/domain/scoring/evidence.ts",
+    "src/infrastructure/market-boundary-authority.ts",
+    "src/infrastructure/market-boundary/cafef-standing.ts",
+    "src/infrastructure/repositories/fundamental-admission.ts",
+    "src/infrastructure/repositories/market-boundary.ts",
+    "src/infrastructure/repositories/market-ingest.ts",
+    "src/infrastructure/repositories/unified-admission.ts",
+    "src/infrastructure/source-admission/financial.ts",
+    "src/infrastructure/source-admission/registry.ts",
+    "tests/fixtures/cafef-standing.ts",
+    "tests/integration/cafef-standing-ingest.test.ts",
+    "tests/integration/unified-source-admission.test.ts"
+  ],
+  "productionActivation": "NOT_AUTHORIZED"
+}

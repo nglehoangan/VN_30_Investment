@@ -31,3 +31,7 @@ python3 skills/fetch-cafef-price-history/scripts/fetch.py --symbol VNM --start 2
 - Lỗi HTTP/schema/phân trang khiến lần chạy dừng và không thay file cũ; không ghi rỗng thay cho dữ liệu lỗi. Ghi file nguyên tử sau khi hoàn tất. Chạy tuần tự cùng một mã để tránh tranh chấp ghi file.
 - Dữ liệu là lịch sử giá do CafeF cung cấp; giữ riêng `GiaDongCua` và `GiaDieuChinh`, chuỗi `ThayDoi`, các trường khối lượng/giá trị và mọi trường bổ sung. JSON không khai báo đơn vị thì để `units: null`, không tự nhân đơn vị hoặc biến giá thiếu thành 0. Không coi dòng ngày hiện tại là phiên đã chốt hay quote trực tiếp.
 - Không ghi vào SQLite, ledger, bảng giá dashboard hoặc scoring. Báo phạm vi ngày, số request, số phiên mới/trùng/xung đột và file kết quả. Chỉ tạo/chỉnh skill không tự chạy tải nhiều năm hoặc toàn VN30.
+
+## Governed ingestion handoff
+
+For explicitly authorized governed normalization/persistence, hand this collector’s exact container/hash and original request receipts to the standing ingestion route in `skills/vn30-market-price-corporate-actions/references/standing-ingest.md`. The collector itself remains raw-only and does not activate SQLite prices/dashboard. Standing source principle approval is not code acceptance; the trusted host must verify independent material and capture provenance before automatic capability/market acceptance. Do not add a second fetcher or normalizer here.

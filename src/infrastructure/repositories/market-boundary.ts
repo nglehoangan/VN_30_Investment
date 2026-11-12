@@ -1,3 +1,4 @@
+import { commitMarketBatch, quarantineMarket, revokeMarketRun, rawFromMarketStore, isMarketRevoked, marketIngestBinding, type MarketIngestItem, type MarketRaw } from './market-ingest';
 import type { PrismaClient } from '@/infrastructure/db/generated/client';
 import type { Clock } from '@/ports/runtime';
 import { systemClock } from '@/infrastructure/runtime';
@@ -9,6 +10,12 @@ import { canonicalJson } from '@/domain/fundamentals/snapshot';
 import { snapshotHash } from '@/infrastructure/fundamentals/snapshot-hash';
 export class PrismaBoundaryStore implements BoundaryStore {
   constructor(private readonly db: PrismaClient, private readonly clock: Clock = systemClock) {}
+  commitMarketIngest(runId:string,raw:MarketRaw,items:readonly MarketIngestItem[],validate:Parameters<typeof commitMarketBatch>[4]) { return commitMarketBatch(this.db,runId,raw,items,validate); }
+  quarantineMarket(raw:MarketRaw,reason:string,context:unknown) { return quarantineMarket(this.db,raw,reason,context); }
+  revokeMarketRun(runId:string,at:string,reason:string) { return revokeMarketRun(this.db,runId,at,reason); }
+  retainedRaw(source:import('@/domain/market-boundary/contracts').RawSource) { return rawFromMarketStore(this.db,source); }
+  marketIngestBinding(identityKey:string) { return marketIngestBinding(this.db,identityKey); }
+  marketRevoked(identityKey:string) { return isMarketRevoked(this.db,identityKey); }
   private data(record: Sealed) { const r=readSealed(record,record.kind,snapshotHash);return {id:r.id,kind:r.kind,contractVersion:r.contractVersion,createdAt:r.createdAt,body:canonicalJson(r),bodyHash:r.contentHash}; }
   async append(record: Sealed) { requireBoundary(record.kind!=='DECISION','DECISION_REQUIRES_ATOMIC_SEAL');await this.db.marketBoundaryRecord.create({data:this.data(record)}); }
   async find<K extends Kind>(pin: Pin, kind: K): Promise<Sealed<K>> {

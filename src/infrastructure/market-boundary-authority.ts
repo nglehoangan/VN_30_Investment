@@ -17,6 +17,8 @@ export interface QualifiedMarketAdapter {
 export interface BoundaryBindings {
   readonly approvals: readonly Evidence[]; readonly policies: readonly SessionPolicy[];
   readonly adapters: readonly QualifiedMarketAdapter[];
+  /** Trusted immutable-market-store reader; source size/hash/origin checks still apply. */
+  readonly retainedRawReader?: (source: RawSource) => Promise<Uint8Array>;
   readonly marketCurrent: (m: Sealed<'MARKET'>, r: Consumption) => Promise<void>;
   readonly initializationCurrent: (i: Sealed<'INITIALIZATION'>, r: Consumption) => Promise<void>;
   readonly portfolioCurrent: (p: Sealed<'PORTFOLIO'>, at: string) => Promise<void>;
@@ -36,9 +38,12 @@ export class RetainedMarketAuthority implements BoundaryAuthority {
   }
   private async raw(source: RawSource) {
     requireBoundary(source.origin==='REAL_SOURCE','MOCK_CANNOT_CERTIFY');
-    const root=await realpath(this.rawRoot),path=await realpath(resolve(root,source.rawPath));
-    requireBoundary(path.startsWith(root+sep),'RAW_PATH_ESCAPE');
-    const bytes=await readFile(path);requireBoundary(bytes.length>0&&bytes.length<=4_000_000,'RAW_SIZE_LIMIT');
+    const root=await realpath(this.rawRoot),logical=resolve(root,source.rawPath);
+    requireBoundary(logical.startsWith(root+sep),'RAW_PATH_ESCAPE');
+    let bytes: Uint8Array;
+    if(this.bindings.retainedRawReader) bytes=await this.bindings.retainedRawReader(source);
+    else {const path=await realpath(logical);requireBoundary(path.startsWith(root+sep),'RAW_PATH_ESCAPE');bytes=await readFile(path);}
+    requireBoundary(bytes.length>0&&bytes.length<=4_000_000,'RAW_SIZE_LIMIT');
     requireBoundary(createHash('sha256').update(bytes).digest('hex')===source.hash,'RAW_HASH_MISMATCH');return bytes;
   }
   async replayCapability(c: Sealed<'CAPABILITY'>) {

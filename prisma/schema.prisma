@@ -434,6 +434,9 @@ model FundamentalDispositionRelease {
 
 // Prospective boundary records. Legacy snapshots remain in their original tables.
 model MarketBoundaryRecord {
+  ingestReceipts MarketBoundaryIngestReceipt[]
+  ingestCapabilities MarketBoundaryIngestLink[] @relation("IngestCapability")
+  ingestMarkets MarketBoundaryIngestLink[] @relation("IngestMarket")
   id String @id
   kind String
   contractVersion String @map("contract_version")
@@ -530,4 +533,70 @@ model ForwardIntakeEvent {
  bodyHash String @map("body_hash")
  @@id([portfolioId,eventNamespace,eventId,component,sourceRevision])
  @@map("forward_intake_event")
+}
+
+// Immutable retained raw and linkage extend the existing Market Boundary database.
+model MarketBoundaryIngestRaw {
+  receipts MarketBoundaryIngestReceipt[]
+  rawHash String @id @map("raw_hash")
+  provider String
+  originalPath String @map("original_path")
+  rawText String @map("raw_text")
+  links MarketBoundaryIngestLink[]
+  quarantines MarketBoundaryIngestQuarantine[]
+  @@map("market_boundary_ingest_raw")
+}
+model MarketBoundaryIngestLink {
+  identityKey String @id @map("identity_key")
+  runId String @map("run_id")
+  semanticHash String @map("semantic_hash")
+  capabilityId String @map("capability_id")
+  marketId String @unique @map("market_id")
+  rawHash String @map("raw_hash")
+  requestHash String @map("request_hash")
+  provenance String
+  capability MarketBoundaryRecord @relation("IngestCapability", fields:[capabilityId], references:[id], onDelete:Restrict, onUpdate:Restrict)
+  market MarketBoundaryRecord @relation("IngestMarket", fields:[marketId], references:[id], onDelete:Restrict, onUpdate:Restrict)
+  raw MarketBoundaryIngestRaw @relation(fields:[rawHash], references:[rawHash], onDelete:Restrict, onUpdate:Restrict)
+  revocation MarketBoundaryIngestRevocation?
+  @@index([runId], map:"market_boundary_ingest_run_idx")
+  @@map("market_boundary_ingest_link")
+}
+model MarketBoundaryIngestQuarantine {
+  id String @id
+  rawHash String @map("raw_hash")
+  reason String
+  body String
+  raw MarketBoundaryIngestRaw @relation(fields:[rawHash], references:[rawHash], onDelete:Restrict, onUpdate:Restrict)
+  @@map("market_boundary_ingest_quarantine")
+}
+model MarketBoundaryIngestRevocation {
+  identityKey String @id @map("identity_key")
+  revokedAt String @map("revoked_at")
+  reason String
+  link MarketBoundaryIngestLink @relation(fields:[identityKey], references:[identityKey], onDelete:Restrict, onUpdate:Restrict)
+  @@map("market_boundary_ingest_revocation")
+}
+
+model MarketBoundaryIngestReceipt {
+  id String @id
+  marketId String @map("market_id")
+  rawHash String @map("raw_hash")
+  requestHash String @map("request_hash")
+  provenance String
+  market MarketBoundaryRecord @relation(fields:[marketId], references:[id], onDelete:Restrict, onUpdate:Restrict)
+  raw MarketBoundaryIngestRaw @relation(fields:[rawHash], references:[rawHash], onDelete:Restrict, onUpdate:Restrict)
+  @@map("market_boundary_ingest_receipt")
+}
+
+// Shared append-only audit events; normalized facts remain in fundamental_admission_run.
+model SourceAdmissionEvent {
+ id String @id
+ kind String
+ targetId String @map("target_id")
+ knownAt String @map("known_at")
+ body String
+ bodyHash String @map("body_hash")
+ @@index([targetId,kind],map:"source_admission_event_target")
+ @@map("source_admission_event")
 }

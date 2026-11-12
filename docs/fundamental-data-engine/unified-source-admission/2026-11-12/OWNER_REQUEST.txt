@@ -1,0 +1,150 @@
+# CODEX — Unified F1/F2 Standing Source Policy & Automated Data Admission
+
+Repository: nglehoangan/VN_30_Investment
+
+## Owner Decisions
+
+The owner has approved:
+
+1. Standing Source Approval for CaféF RAW CLOSE across VN30.
+2. Standing Financial Source Approval and Automated Financial Evidence Admission for Current Valuation.
+3. Automatic ingest, transformation, validation and deterministic replay.
+4. Strict publication/availability requirements remain mandatory for Historical PIT.
+
+These are policy-level approvals, not blanket approval of individual facts or production activation.
+
+## Mission
+
+Implement a unified governed ingestion and admission architecture for F1 and F2.
+
+The system must stop repeatedly requesting approval of already-approved sources and stop reacquiring retained evidence unnecessarily.
+
+Preserve auditability, data correctness, investment logic and historical PIT protections.
+
+## Workstream F1 — Market Data
+
+Implement:
+
+CaféF API → Raw Evidence → Transform → Normalized Market Data → Automatic Capability/Market Validation → Governed Store.
+
+Requirements:
+
+- VN30 universe with effective-date membership.
+- GiaDongCua RAW CLOSE only.
+- VND/share normalization.
+- Versioned source/adapter/schema policy.
+- Immutable source evidence and hashes.
+- Deterministic replay.
+- Idempotent persistence.
+- Automatic acceptance when the standing policy and actual contracts pass.
+- Requalification on material source/schema changes.
+
+Reuse existing Market Boundary contracts. Make the smallest controlled governance amendment if necessary.
+
+## Workstream F2 — Financial Data
+
+Implement:
+
+Approved Financial Sources → Raw Evidence → Extract → Transform → Normalized Financial Facts → Automated Evidence Validation → Governed Store.
+
+Requirements:
+
+- Reuse retained PDFs, APIs, receipts and existing source mappings.
+- Do not reacquire already-retained evidence.
+- Versioned standing policies by source role and document type.
+- Preserve source identity, reporting period, economicAsOf, availability evidence, ingestion time and original hashes.
+- Normalize units, fact types, dividend events and share counts.
+- Validate fact identity, consistency, conflicts and source role.
+- Use actual knowledge cutoff for Current Formal Valuation.
+- Never backdate information.
+- Quarantine unresolved or conflicting facts.
+- Maintain strict historical availability checks for PIT backtests.
+- Reuse existing Evidence::validateTime where applicable; amend contracts only through explicit, tested governance changes.
+
+Do not silently promote the 17 VNM facts previously pending explicit owner approval.
+
+## Shared Architecture
+
+Prefer shared ingestion infrastructure for:
+
+- Source policy registry.
+- Source identity and hashes.
+- Raw evidence retention.
+- Transformation versioning.
+- Validation results.
+- Acceptance state.
+- Idempotent storage.
+- Replay.
+- Quarantine.
+- Audit trail.
+
+Keep separate domain-specific validators for market prices and financial facts.
+
+Do not introduce duplicate sources of truth or competing data stores.
+
+## Migration
+
+1. Inventory retained F1/F2 evidence.
+2. Dry-run transformation.
+3. Preserve existing immutable evidence.
+4. Migrate normalized records through governed boundaries.
+5. Reconcile values and hashes.
+6. Validate idempotency and rollback.
+7. Do not rewrite historical knownAt or availability.
+8. Do not modify portfolio transactions, cost basis or NAV.
+
+## Multi-Ticker Pilot
+
+Run the reusable S4 skill for VNM and additional eligible VN30 tickers, prioritizing FPT, HPG and VCB when retained evidence is available.
+
+Verify VN30 membership at each observation date.
+
+Test market-price ingestion independently from dividend/share-count qualification.
+
+Do not inherit VNM-specific approvals across tickers.
+
+Report real evidence coverage and unresolved gaps without inventing PASS results.
+
+## Acceptance Criteria
+
+- F1 source policy implemented and authorized.
+- F2 financial source policy implemented and authorized.
+- Automatic validation passes under real contracts.
+- Transform occurs during ingestion.
+- Raw and normalized data remain linked.
+- Deterministic replay succeeds.
+- Current Formal Valuation uses a valid actual knowledge cutoff.
+- Historical PIT rejects post-cutoff evidence.
+- VNM regression passes.
+- Multi-ticker pilot demonstrates reusable behavior.
+- No unauthorized approval or production activation.
+- No reopening of R1/R4 or repeated economic reconciliation.
+
+## Deliverables
+
+Produce one combined closure package:
+
+1. UNIFIED_SOURCE_POLICY.md
+2. SOURCE_POLICY_AUTHORIZATIONS.json
+3. INGEST_TRANSFORM_ARCHITECTURE.md
+4. DATA_MIGRATION_REPORT.json
+5. MULTI_TICKER_PILOT.json
+6. F1_F2_ACCEPTANCE_MATRIX.json
+7. VALIDATION.json
+8. FINAL_CIO_REVIEW.md
+
+Report actual validation evidence and exact remaining blockers.
+
+## Final Status
+
+Report separately:
+
+- F1: CLOSED / BLOCKED
+- F2: CLOSED / PARTIALLY_CLOSED / BLOCKED
+- Current Formal Valuation: READY / NOT_READY
+- Historical PIT: QUALIFIED / NOT_QUALIFIED
+- Production Activation: NOT_AUTHORIZED
+
+STOP for CIO review.
+
+Do not self-approve production readiness or create another generic evidence-discovery cycle.

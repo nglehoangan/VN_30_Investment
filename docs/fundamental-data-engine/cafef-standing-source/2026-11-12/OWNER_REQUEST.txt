@@ -1,0 +1,231 @@
+# CODEX — VN30 CaféF Standing Source Approval, Ingest Transformation & Multi-Ticker Pilot
+
+Repository: nglehoangan/VN_30_Investment
+
+Starting commit: e08ec2d05dbb3dfb3afe55b9857c0d46c75139a2
+
+## Owner Decision
+
+The project owner explicitly approves the following principle:
+
+"Standing Source Approval for CaféF Raw Close across the VN30 universe, with automated Capability/Market Validation, deterministic replay, and transformation during ingestion."
+
+This is approval of the source-governance principle, not blanket approval of arbitrary market observations.
+
+## Mission
+
+Implement a reusable, governed CaféF raw-close ingestion pipeline for VN30.
+
+Replace repetitive per-ticker manual source approval with a versioned standing source policy and automated per-observation validation.
+
+Extend the existing reusable S4 skill to pilot additional VN30 tickers.
+
+Keep F2 as a separately tracked formal financial-evidence blocker; do not claim F2 is closed by the market-data pipeline.
+
+## Phase A — Governance & Architecture
+
+1. Inspect existing Market Boundary contracts, RetainedMarketAuthority, BoundaryLifecycle, source registries and ingestion architecture.
+2. Record the exact owner decision as a versioned standing-source-policy proposal and authorization record.
+3. Define the permitted scope:
+   - Provider: CaféF
+   - Field: GiaDongCua
+   - Semantic: RAW CLOSE
+   - Currency: VND
+   - Purpose: VALUATION
+   - Universe: VN30 membership effective on observation date
+4. Bind API identity, schema version, adapter version, normalizer version and policy version.
+5. Identify the smallest governance contract amendment required to support standing approval.
+6. Preserve independent verification of adapter/code integrity and source evidence. Do not turn owner policy approval into automatic self-approval of arbitrary code or records.
+7. Define policy invalidation and requalification triggers for API/schema/semantic/normalizer changes.
+8. Record a migration and rollback plan.
+
+Do not bypass existing governance by setting PASS flags or weakening unrelated checks.
+
+## Phase B — Ingest, Transform & Persist
+
+Implement:
+
+CaféF API / retained raw response
+→ Immutable Raw Evidence
+→ Identity & Hash Verification
+→ RAW Close Extraction
+→ Unit Conversion
+→ Normalized Market Observation
+→ Capability/Market Validation
+→ Deterministic Replay
+→ Governed Persistence
+→ Valuation Consumption
+
+Requirements:
+
+- Reuse the existing CaféF normalizer and market-boundary domain contracts.
+- Do not introduce a competing price calculation.
+- Never use GiaDieuChinh as fallback.
+- Preserve the original response, request identity, original units and hashes.
+- Normalize thousand VND/share to VND/share using deterministic decimal arithmetic.
+- Record ticker, exchange, trading date, session, provider, source version, policy version, normalization version and knownAt.
+- Separate observed trading date from ingestion/availability time.
+- Validate before marking a record as accepted.
+- Use idempotent writes and atomic raw-to-normalized linkage.
+- Prevent duplicate observations, partial acceptance and cross-ticker contamination.
+- Do not overwrite existing immutable evidence.
+- Keep unqualified records quarantined with exact failure reasons.
+- Support deterministic reprocessing from retained raw bytes without refetching.
+- Preserve current storage, accounting and portfolio boundaries.
+- Do not invent source timestamps or silently treat later receipts as historically available.
+
+If the existing system lacks a suitable governed normalized-market store, extend the smallest existing persistence boundary rather than creating a parallel database.
+
+## Phase C — Automated Admission
+
+Implement policy-driven qualification:
+
+- Standing source policy must be explicitly authorized and version-bound.
+- Adapter and schema must match the approved scope.
+- Each observation must pass ticker, exchange, trading-date, raw-close, units, source-identity and hash checks.
+- Trading-session and observation-time conventions must satisfy existing Market Boundary contracts.
+- Replay must reproduce the normalized result from original evidence.
+- Capability and Market acceptance must use actual existing lifecycle/authority contracts.
+- Valuation consumption must reject records outside approved policy scope.
+
+Automate routine acceptance only after all mandatory controls pass.
+
+A failed or changed schema must suspend automatic admission for the affected scope.
+
+No automatic approval of new provider versions or changed financial semantics.
+
+## Phase D — Data Migration
+
+1. Inventory existing retained CaféF raw-close evidence.
+2. Reuse existing hashes and receipts.
+3. Perform a dry-run migration.
+4. Transform historical retained raw observations into the normalized model.
+5. Preserve original economic dates and actual later availability.
+6. Validate source identity, duplicate handling, normalized values and replay hashes.
+7. Produce a migration reconciliation report.
+8. Commit only accepted records through the governed persistence boundary.
+9. Keep rollback/rebuild capability without deleting original evidence.
+
+Do not mark migrated historical data as point-in-time qualified merely because migration succeeded.
+
+Do not bulk-fetch missing history during migration.
+
+## Phase E — Multi-Ticker S4 Skill Pilot
+
+Use:
+
+skills/vn30-market-price-corporate-actions/
+
+Pilot candidates:
+
+- VNM — regression reference.
+- FPT — independent ticker.
+- HPG — corporate-action edge cases.
+- VCB — sector diversity.
+
+Verify effective VN30 membership and retained evidence availability first.
+
+For each eligible ticker:
+
+1. Locate retained evidence.
+2. Validate source hashes and ticker identity.
+3. Run the reusable S4 skill.
+4. Normalize available raw-close observations.
+5. Validate Capability and Market contracts.
+6. Replay from retained evidence.
+7. Compare accepted outputs with source observations.
+8. Report dividend/share-count qualification separately.
+9. Do not inherit VNM fact-specific approvals.
+10. Report any missing evidence precisely.
+
+Do not download new financial statements or corporate-action history simply to force pilot PASS.
+
+Use synthetic fixtures where real evidence is unavailable.
+
+## Phase F — Validation
+
+Test:
+
+- Normal valid CaféF raw close.
+- Missing GiaDongCua.
+- Adjusted-only response rejection.
+- Incorrect unit.
+- Wrong ticker or exchange.
+- Non-trading date.
+- Schema/version mismatch.
+- Tampered raw evidence.
+- Duplicate ingestion.
+- Replay mismatch.
+- Cross-ticker isolation.
+- Policy approval missing or superseded.
+- Standing approval valid for unchanged schema.
+- Policy requalification after material change.
+- Later knowledge versus historical cutoff.
+- Partial migration failure and rollback.
+- VNM regression.
+- Multi-ticker pilot results.
+
+Run relevant TypeScript/Python suites, typecheck, architecture checks, persistence/integration tests and governance checks.
+
+Do not claim full-suite PASS unless actually executed.
+
+## Deliverables
+
+Produce one dated work-package report with:
+
+1. STANDING_SOURCE_POLICY.md
+2. SOURCE_POLICY_AUTHORIZATION.json
+3. INGEST_TRANSFORM_CONTRACT.md
+4. MARKET_MIGRATION_REPORT.json
+5. MULTI_TICKER_PILOT.json
+6. VALIDATION.json
+7. FINAL_CIO_REVIEW.md
+
+Include code changes, exact hashes, source identities, affected storage paths, test results and rollback instructions.
+
+## Acceptance
+
+The work package is successful when:
+
+- The owner-approved standing source policy is recorded accurately.
+- CaféF RAW CLOSE is transformed on ingestion.
+- Capability/Market Validation is automated under approved policy.
+- Deterministic Replay passes.
+- Accepted observations are stored with complete source provenance.
+- VNM regression passes.
+- At least one additional VN30 ticker passes a real retained-evidence pilot, if eligible evidence exists.
+- Missing evidence is reported without fabricated success.
+- No cross-ticker source or fact approval leakage occurs.
+- No portfolio/accounting mutations occur.
+
+If real pilot evidence is unavailable, report the exact limitation; synthetic tests do not substitute for real pilot acceptance.
+
+## Constraints
+
+Do not reopen R1/R4.
+Do not re-reconcile VNM dividends.
+Do not change M3/M4 investment rules.
+Do not weaken existing time or source contracts.
+Do not claim F2 closure.
+Do not activate production.
+Do not grant historical PIT status.
+Do not perform unrestricted VN30 downloads.
+
+STOP for CIO review before production activation.
+
+## Final Decision Report
+
+Report:
+
+- Standing Source Policy: IMPLEMENTED / BLOCKED
+- Ingest Transformation: PASS / FAIL
+- Automatic Capability Validation: PASS / FAIL
+- Automatic Market Validation: PASS / FAIL
+- Deterministic Replay: PASS / FAIL
+- Migration: PASS / PARTIAL / BLOCKED
+- Multi-Ticker Pilot: PASS / PARTIAL / BLOCKED
+- F1: READY_FOR_FORMAL_ACCEPTANCE / BLOCKED
+- F2: OPEN
+- Formal S4: NOT_CLOSED until all required contracts pass
+
+Provide exact Critical, Major and Minor issues, without opening another generic discovery cycle.
