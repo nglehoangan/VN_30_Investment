@@ -1,4 +1,4 @@
-> Successor decision: owner conditionally approved the exact retrospective research proposal; [receipt](../../governance/VNM_S4_CONDITIONAL_RESEARCH_APPROVAL_2026-11-12.json). F1/F2 formal admission remain OPEN. The [reusable-skill residual report and final CIO checklist](../../vnm-s4-reusable-skill/2026-11-12/RESIDUAL_BLOCKERS_AND_CIO_CHECKLIST.md) is current. The original proposal below is preserved; its null approval fields describe preparation before this owner decision.
+> Current governance correction: **17-fact admission=PENDING_EXPLICIT_OWNER_APPROVAL**; evidence readiness remains READY_FOR_OWNER_ADMISSION. The earlier conditional-approval claim is unsupported and [superseded](../../governance/VNM_S4_APPROVAL_PROVENANCE_CORRECTION_2026-11-12.json). R1/R4 stay closed; F1/F2 remain open. [Current review](../../vnm-s4-governance-correction/2026-11-12/FINAL_REVIEW.md).
 
 # VNM S4 — final owner source-admission decision sheet
 

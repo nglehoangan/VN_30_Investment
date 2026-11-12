@@ -1,13 +1,15 @@
+> Governance supersession: [current review and validation](../../vnm-s4-governance-correction/2026-11-12/FINAL_REVIEW.md). The earlier validation counts below remain historical; approval provenance is corrected here.
+
 # VNM S4 — reusable skill and final residual assessment
 
-Baseline: `d6299899a2145899197b0bc2507e58e0d1277ff8`. The owner's **conditional approval is recorded for the exact17-fact retrospective VNM research proposal only** in [the receipt](../../governance/VNM_S4_CONDITIONAL_RESEARCH_APPROVAL_2026-11-12.json). This is not approval of formal execution, future skill outputs or other ticker facts. The receipt preserves the conditions and exact proposal hash; original source-admission proposal/receipts remain unchanged.
+Baseline: `23dfc97284cf3602496a545564aa1835ece9486b`. **The17-fact retrospective research admission is PENDING_EXPLICIT_OWNER_APPROVAL.** The previous conditional-approval interpretation lacked an exact owner authorization reference; [the supersession](../../governance/VNM_S4_APPROVAL_PROVENANCE_CORRECTION_2026-11-12.json) preserves the original record for audit and removes its authority. Selected facts, original proposal and source hashes are unchanged.
 
 | Use / item | Current decision |
 | --- | --- |
 | R1 / shares | **CLOSED_BY_OWNER_APPROVED_CARRY_FORWARD_POLICY** —2,089,955,445; original limited documentary coverage retained. No new certificate required. |
 | R4 / adjusted prices | **CLOSED_BY_SCOPE_EXCLUSION** — unchanged. CaféF `GiaDongCua` only; adjusted evidence audit-only. |
 | R3 / missing sessions | **RESTRICTED_TO_HISTORICAL_COMPLETENESS** — provider gaps remain separate from the3 owner XLS observations. No new cutoff-price or denominator veto; no new history retrieval. |
-| Retrospective research | **CONDITIONALLY_APPROVED_RETROSPECTIVE_RESEARCH_ONLY** —56,900VND raw close,15 historical gross cash terms and carried-forward shares, actual later knowledge. Skill validation is complete; final package remains for CIO review. |
+| Retrospective research | **PENDING_EXPLICIT_OWNER_APPROVAL** —56,900VND raw close,15 historical gross cash terms and carried-forward shares remain evidence-ready, with actual later knowledge; this does not authorize admission. |
 | F1 formal market admission | **OPEN — executable acceptance/binding absent**. |
 | F2 formal financial-fact time/run admission | **OPEN — exact assessments/run bindings absent; specific publication unknowns retained below**. |
 | Historical PIT / total return | **NOT_QUALIFIED** by this package; no historical operational chain or complete return-input certification. |
@@ -39,12 +41,13 @@ Exact rules: [`Evidence::validateTime`](../../../../src/domain/scoring/evidence.
 - [SKILL.md](../../../../skills/vn30-market-price-corporate-actions/SKILL.md) routes retained evidence, current fetch skills and domain contracts.
 - [Input/output contract](../../../../skills/vn30-market-price-corporate-actions/references/contract.md) defines scope, dates, source pins, null/conflict behavior and deterministic output.
 - [Migration notes](../../../../skills/vn30-market-price-corporate-actions/references/migration.md) preserve existing fetch/storage/share algorithms and authority boundaries.
-- [VNM input](VNM_INPUT.json) uses original1197-row price corpus, the existing15-component review, share decision and eight VSDC clues. The [replay](replay/VNM/2026-10-30/EVIDENCE.json) reproduces selected facts; it grants no approval itself. No new live ticker research was initiated.
+- [VNM input](VNM_INPUT.json) uses original1197-row price corpus, the existing15-component review, share decision and eight VSDC clues. The [replay](../../vnm-s4-governance-correction/2026-11-12/replay/VNM/2026-10-30/EVIDENCE.json) reproduces selected facts; it grants no approval itself. No new live ticker research was initiated.
 - [Validation results](VALIDATION.json) cover the requested14 scenarios, VNM and two synthetic tickers, actual time contract behavior, source/receipt replay and cross-ticker/output isolation. Source/database preservation is checked against the existing45-file receipt, not another broad inventory. See [test command configuration](vitest.config.mjs).
 
 ## Final CIO approval checklist
 
-- [x] Conditional owner research approval recorded against the exact baseline17-fact proposal, with formal/PIT/production exclusions.
+- [x] Unsupported conditional-approval record preserved and superseded; current admission status corrected to PENDING_EXPLICIT_OWNER_APPROVAL.
+- [ ] Obtain an actual owner-authored authorization reference bound to the exact17-fact proposal and permitted research purpose; do not infer approval from assistant recommendations.
 - [x] R1/R4 remain closed; R3 limited to historical completeness; no repeated source discovery/economic reconciliation.
 - [x] Review the reusable skill, I/O contract, migration notes, scoped tests and retained-byte validation.
 - [ ] CIO accepts the final reusable-skill/research package. This checklist item remains unapproved by the agent.

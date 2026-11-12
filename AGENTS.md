@@ -11,7 +11,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## PDF reading skill — JSON first
 
 - For reusable ticker/exchange/cutoff S4 evidence review, use `skills/vn30-market-price-corporate-actions/SKILL.md`. Reuse retained sources and existing fetch/normalization/carry-forward contracts. Research approval never closes F1/F2 formal admission or PIT; do not self-promote sources or activate production.
-- Owner conditional VNM research admission is recorded in `docs/fundamental-data-engine/governance/VNM_S4_CONDITIONAL_RESEARCH_APPROVAL_2026-11-12.json` against the exact17-fact baseline proposal. Reuse this approval for its bounded retrospective scope; do not ask again or infer formal source/PIT/production approval. F1/F2 remain open; final reusable-skill package still stops for CIO review.
+- VNM17-fact research admission is `PENDING_EXPLICIT_OWNER_APPROVAL`. The earlier conditional-approval receipt is superseded by `docs/fundamental-data-engine/governance/VNM_S4_APPROVAL_PROVENANCE_CORRECTION_2026-11-12.json`; retain it for audit, never use it as authorization. An assistant recommendation or ambiguous approval cannot authorize an exact admission. R1/R4 remain closed under their separately explicit owner policies; F1/F2 remain open.
 
 - Khi cần lịch sử giá CafeF theo mã và số năm lùi từ hiện tại, dùng `skills/fetch-cafef-price-history/SKILL.md`. Mỗi request tối đa một năm, quét mọi trang, gộp vào `data/market-history/cafef/<TICKER>.json`, bỏ qua phiên trùng và giữ riêng giá đóng cửa/giá điều chỉnh; không tự ghi vào SQLite hoặc dashboard.
 

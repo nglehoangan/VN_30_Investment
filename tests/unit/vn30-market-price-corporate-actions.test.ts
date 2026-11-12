@@ -3,6 +3,7 @@ import { readFileSync, mkdtempSync, rmSync, writeFileSync, symlinkSync } from 'n
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
+import { assessOwnerDecision, type OwnerAuthorization, type ProposedOwnerDecision, type DecisionScope, type AuthorizationRef } from '../../skills/vn30-market-price-corporate-actions/scripts/owner-decision';
 import { review, type ReviewInput } from '../../skills/vn30-market-price-corporate-actions/scripts/review';
 import { assessShares, canonical, run, cli } from '../../skills/vn30-market-price-corporate-actions/scripts/runtime.mjs';
 import { ValidationError } from '@/shared/errors';
@@ -142,5 +143,75 @@ describe('reuse the actual existing executable time contract',()=>{
  it('later availability fails an October historical cutoff rather than being backdated',()=>{
   const e=canonicalDateOnlyEvidence();Object.assign(e.time!,{fundamentalCutoff:'2026-10-30T08:00:00.000Z'});
   try {validateEvidence([e],'SYN',e.asOf,e.receivedAt);throw Error('Expected contract rejection');} catch(error) {expect(error).toBeInstanceOf(ValidationError);expect((error as ValidationError).issues[0].reason).toBe('INVALID_OPERATIONAL_KNOWLEDGE');}
+ });
+});
+
+describe('owner authorization provenance, never assistant recommendation',()=>{
+ const proposalPath='tests/fixtures/vn30-s4/owner-proposal.json';
+ const authPath='tests/fixtures/vn30-s4/owner-authorization.json';
+ const ref=(path:string,pointer?:string)=>({path,sha256:sha(readFileSync(path,'utf8')),pointer});
+ const scope=():DecisionScope=>({ticker:'SYN',cutoff:'2026-10-30',proposal:ref(proposalPath)});
+ const claimed=():ProposedOwnerDecision=>({...scope(),decision:'EXPLICITLY_APPROVED',authorization:ref(authPath,'/message')});
+ const trustedFixtureVerifier=(reference: AuthorizationRef):OwnerAuthorization|null=>{
+  // Fixture-only trusted allowlist; no input can change the trusted path/hash.
+  const known=ref(authPath,'/message');
+  if(canonical(reference)!==canonical(known))return null;
+  const document=JSON.parse(readFileSync(known.path,'utf8'));
+  return {...document.message,authorization:known};
+ };
+ it('a proposed decision stays pending even beside a legitimate reference and verifier',()=>{
+  const d=claimed();d.decision='PROPOSED';
+  expect(assessOwnerDecision(scope(),d,trustedFixtureVerifier).status).toBe('PENDING_EXPLICIT_OWNER_APPROVAL');
+ });
+ it('an explicitly approved claim without an actual authorization reference stays pending',()=>{
+  const d=claimed();d.authorization=null;
+  expect(assessOwnerDecision(scope(),d,trustedFixtureVerifier)).toMatchObject({status:'PENDING_EXPLICIT_OWNER_APPROVAL',authorization:null});
+ });
+ it('a source hash/reference alone is not authorization without independent verification',()=>{
+  expect(assessOwnerDecision(scope(),claimed()).status).toBe('PENDING_EXPLICIT_OWNER_APPROVAL');
+ });
+ it('an exact explicit synthetic owner decision is recognized only through the trusted verifier',()=>{
+  expect(assessOwnerDecision(scope(),claimed(),trustedFixtureVerifier)).toMatchObject({status:'EXPLICIT_OWNER_APPROVAL_VERIFIED',authorization:ref(authPath,'/message')});
+ });
+ it.each(['ASSISTANT','SUPERSEDED','WRONG_PROPOSAL','WRONG_TICKER','WRONG_PURPOSE'])('%s cannot authorize the proposed facts',variant=>{
+  const verify=(r: AuthorizationRef)=>{
+   const proof=trustedFixtureVerifier(r)!;
+   if(variant==='ASSISTANT')proof.sourceAuthor='ASSISTANT';
+   if(variant==='SUPERSEDED')proof.superseded=true;
+   if(variant==='WRONG_PROPOSAL')proof.proposalSha256='0'.repeat(64);
+   if(variant==='WRONG_TICKER')proof.ticker='VNM';
+   if(variant==='WRONG_PURPOSE')Object.assign(proof,{purpose:'PRODUCTION'});
+   return proof;
+  };
+  expect(assessOwnerDecision(scope(),claimed(),verify).status).toBe('PENDING_EXPLICIT_OWNER_APPROVAL');
+ });
+ it('scope mismatch cannot be authorized by a verifier for another proposal',()=>{
+  const d=claimed();d.proposal={...d.proposal,sha256:'0'.repeat(64)};
+  expect(assessOwnerDecision(scope(),d,trustedFixtureVerifier).status).toBe('PENDING_EXPLICIT_OWNER_APPROVAL');
+ });
+ it('the offline review never promotes submitted approved records or PASS booleans',async()=>{
+  const i=Object.assign(synthetic(),{ownerDecision:claimed(),ownerApproved:true});
+  const r=await run(i);
+  expect(r.acceptance.ownerAdmission).toBe('PENDING_EXPLICIT_OWNER_APPROVAL');
+  expect(r.acceptance.ownerApproval).toBeNull();expect(r.acceptance.formalAdmissionGranted).toBe(false);
+ });
+ it('the preserved unsupported VNM conditional receipt cannot authorize admission',async()=>{
+  const i=vnm();i.ownerDecision={ticker:'VNM',cutoff:i.cutoff,decision:'EXPLICITLY_APPROVED',
+   proposal:ref('docs/fundamental-data-engine/vnm-s4-source-admission/2026-11-12/ADMISSION_DECISIONS.json'),
+   authorization:ref('docs/fundamental-data-engine/governance/VNM_S4_CONDITIONAL_RESEARCH_APPROVAL_2026-11-12.json')};
+  const r=await run(i);expect(r.acceptance.ownerAdmission).toBe('PENDING_EXPLICIT_OWNER_APPROVAL');
+  expect(r.acceptance.ownerApproval).toBeNull();
+ });
+ it('a different proposal JSON pointer cannot inherit approval from the same file hash',()=>{
+  const d=claimed();d.proposal={...d.proposal,pointer:'/facts/0'};
+  expect(assessOwnerDecision(scope(),d,trustedFixtureVerifier).status).toBe('PENDING_EXPLICIT_OWNER_APPROVAL');
+ });
+ it('VNM retains research readiness but has no explicit owner admission',async()=>{
+  const r=await run(vnm());
+  expect(r.acceptance.research).toBe('READY_FOR_OWNER_ADMISSION');
+  expect(r.acceptance.ownerAdmission).toBe('PENDING_EXPLICIT_OWNER_APPROVAL');
+  expect(r.acceptance.ownerApproval).toBeNull();
+  expect(r.acceptance.R1).toBe('CLOSED_BY_OWNER_APPROVED_CARRY_FORWARD_POLICY');
+  expect(r.acceptance.R4).toBe('CLOSED_BY_SCOPE_EXCLUSION');
  });
 });

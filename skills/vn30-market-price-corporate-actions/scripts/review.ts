@@ -1,3 +1,4 @@
+import { assessOwnerDecision, type ProposedOwnerDecision } from './owner-decision';
 import { selectCafefRawCloseValue } from '@/domain/market-boundary/cafef-raw-close';
 import { decimal } from '@/domain/portfolio/values';
 import { dateOnly, instant } from '@/shared/time';
@@ -28,6 +29,7 @@ export interface ReviewInput {
   shares: {anchor: Record<string, unknown>; review: Record<string, unknown>; anchorSource: Ref; reviewSource: Ref};
   historicalCoverage: {complete: boolean; limitations: string[]};
   sourceLocations: Ref[];
+  ownerDecision?: ProposedOwnerDecision;
 }
 export interface Dependencies {
   assessShares(anchor: Record<string, unknown>, cutoff: string, review: Record<string, unknown>): Record<string, unknown>;
@@ -103,6 +105,9 @@ export function review(input: ReviewInput, deps: Dependencies) {
     events: [...(input.shares.review.events as unknown[]), ...projected]});
   const ready = price.status === 'RESEARCH_QUALIFIED' && actions.every(a => a.status === 'RESEARCH_RECONCILED') &&
     shares.status === 'CARRIED_FORWARD_NO_CHANGE_FOUND_IN_REVIEWED_DOCUMENTS';
+  const decision = input.ownerDecision;
+  const owner = assessOwnerDecision(decision ? {ticker: input.ticker, cutoff: input.cutoff, proposal: decision.proposal} : null,
+    decision);
   return {schemaVersion: 'vn30-s4-research-output-v1', ticker: input.ticker, exchange: input.exchange, sourceMode: input.sourceMode,
     economicDate: input.cutoff, reviewedAt: input.reviewedAt, price: {...price, field: 'GiaDongCua',
       unit: 'VND_PER_SHARE', sourceUnit: p.sourceUnit, originalReceipt: p.receivedAt, sourceUrl: p.sourceUrl,
@@ -114,6 +119,7 @@ export function review(input: ReviewInput, deps: Dependencies) {
       adjustedPriceSeries: 'EXCLUDED_BY_OWNER_POLICY', formal: 'NOT_ASSESSED_BY_OFFLINE_REVIEW',
       F1: 'EXISTING_MARKET_AUTHORITY_ACCEPTANCE_REQUIRED', F2: 'PER_FACT_GOVERNED_TIME_RUN_BINDING_REQUIRED',
       PIT: 'NOT_QUALIFIED_BY_THIS_REVIEW', historicalTotalReturn: 'NOT_QUALIFIED_BY_THIS_REVIEW',
-      productionActivated: false, formalAdmissionGranted: false, ownerApproval: null},
+      productionActivated: false, formalAdmissionGranted: false,
+      ownerAdmission: owner.status, ownerApproval: owner.authorization, ownerApprovalReason: owner.reason},
     sourceLocations: input.sourceLocations};
 }
