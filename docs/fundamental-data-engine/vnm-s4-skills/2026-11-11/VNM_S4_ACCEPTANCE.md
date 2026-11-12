@@ -1,4 +1,8 @@
+> Successor share-count decision12Nov2026: **S4-R1=CLOSED_BY_OWNER_APPROVED_CARRY_FORWARD_POLICY**;2089955445 carried from Q3 under the bounded reviewed-document rule. [Current share review](../../vnm-s4-share-carry-forward/2026-11-12/FINAL_REVIEW.md). The historical share checklist below is preserved, not the current owner-policy decision.
+
 # VNM S4 acceptance — BLOCKED
+
+> Historical assessment below is superseded for price selection by the owner decision12Nov2026: **`RAW_CLOSE_CUTOFF=RESEARCH_QUALIFIED`; `ADJUSTED_PRICE_SERIES=EXCLUDED_BY_OWNER_POLICY`; `S4-R4=CLOSED_BY_SCOPE_EXCLUSION`**. See [current raw-close policy](../../CAFEF_RAW_CLOSE_ONLY_POLICY.md). Do not reopen the adjusted-methodology requirement or treat the historical checklist/next action below as current. Raw source evidence remains unchanged; share-count and source-admission limitations remain separate.
 
 Scope: VNM/HOSE, 2022-01-01 through 2026-10-30. Reviewed baseline `c7cac5031d67b5e72064876f8d25313aa3112601`. This closes the bounded skill execution/reconciliation task for CIO review; it does not close S4 or reopen other milestones.
 

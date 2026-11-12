@@ -1,6 +1,7 @@
 import { canonicalJson } from '@/domain/fundamentals/snapshot';
 import { deepFreeze } from '@/domain/portfolio/transaction';
 import { instant, dateOnly } from '@/shared/time';
+import { assertCafefCalculationObservation, CAFE_F_RAW_CLOSE_POLICY, isCafefMarketSource } from './cafef-raw-close';
 import { AMENDMENT, VERSIONS, type Digest, type Evidence, type Kind, type Pin, type Sealed, type Bodies, type Initialization } from './contracts';
 export function requireBoundary(ok: unknown, reason: string): asserts ok { if (!ok) throw new Error('MARKET_BOUNDARY:' + reason); }
 export const nonempty = (s: unknown): s is string => typeof s === 'string' && s.trim().length > 0;
@@ -53,6 +54,7 @@ function validateBody(r: Sealed) {
       const b = r.body;
       [b.sourceContract,b.corporateActionPolicy,b.freshnessPolicy,b.calendar,b.negativeValidation].forEach(p => evidence(p,r.knownAt));
       requireBoundary([b.sourceId,b.sourceSchema,b.normalizerVersion,b.identityVersion,b.semanticsVersion].every(nonempty), 'CAPABILITY_SEMANTICS_REQUIRED');
+      if (isCafefMarketSource(b.sourceId)) requireBoundary(b.semanticsVersion === CAFE_F_RAW_CLOSE_POLICY.version, 'CAFEF_RAW_CLOSE_SEMANTICS_REQUIRED');
       requireBoundary(b.rawSamples.length > 0 && b.rawSamples.every(s => s.origin === 'REAL_SOURCE'), 'REAL_SOURCE_REQUIRED');
       requireBoundary(b.missingBehavior === 'BLOCK' && b.duplicateBehavior === 'BLOCK_CONFLICT' && /^[a-f0-9]{64}$/.test(b.normalizedSampleHash), 'NEGATIVE_CASE_CONTRACT');
       for (const s of b.rawSamples) { pin(s); evidence(s.request,r.knownAt); instant(s.retrievedAt); requireBoundary(s.sourceId === b.sourceId && s.schemaVersion === b.sourceSchema && nonempty(s.rawPath) && s.retrievedAt <= r.knownAt, 'RAW_SOURCE_LINEAGE'); if(s.providerAt) { instant(s.providerAt); requireBoundary(s.providerAt <= s.retrievedAt,'FUTURE_PROVIDER'); } }
@@ -73,6 +75,7 @@ function validateBody(r: Sealed) {
         requireBoundary(o.tradingDate===b.acceptedTradingDate&&o.session===b.session&&o.observedAt<=b.requestedAsOf&&o.availableAt<=r.knownAt&&o.observedAt<=o.availableAt,'OBSERVATION_TIME');
         requireBoundary(b.sources.some(s=>same(referenceSource(s),o.source))&&o.pointer.startsWith('/'),'OBSERVATION_LINEAGE');
         const source=b.sources.find(s=>same(referenceSource(s),o.source))!;requireBoundary(o.availableAt<=source.retrievedAt,'SOURCE_TIME_LINEAGE');
+        assertCafefCalculationObservation(o,source.sourceId);
         const key=[o.securityId,o.field,o.adjustment].join('|'); requireBoundary(!identities.has(key),'DUPLICATE_CONFLICT'); identities.add(key);
       } break;
     }

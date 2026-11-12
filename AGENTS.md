@@ -12,10 +12,18 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - Khi cần lịch sử giá CafeF theo mã và số năm lùi từ hiện tại, dùng `skills/fetch-cafef-price-history/SKILL.md`. Mỗi request tối đa một năm, quét mọi trang, gộp vào `data/market-history/cafef/<TICKER>.json`, bỏ qua phiên trùng và giữ riêng giá đóng cửa/giá điều chỉnh; không tự ghi vào SQLite hoặc dashboard.
 
+- Owner policy 2026-11-12: mọi phép tính dùng giá CafeF chỉ được chọn `GiaDongCua`, quy đổi nghìn VND sang VND khi có chứng cứ đơn vị. `GiaDieuChinh` chỉ giữ trong raw để audit, không fallback khi thiếu raw close. Historical return/backtest dùng raw close + cổ tức/corporate actions đã kiểm chứng riêng; thiếu bằng chứng thì `NOT_QUALIFIED`. `ADJUSTED_PRICE_SERIES=EXCLUDED_BY_OWNER_POLICY`, `RAW_CLOSE_CUTOFF=RESEARCH_QUALIFIED`, `S4-R4=CLOSED_BY_SCOPE_EXCLUSION`; không mở lại yêu cầu phương pháp điều chỉnh CafeF. Xem `docs/fundamental-data-engine/CAFEF_RAW_CLOSE_ONLY_POLICY.md`. Không cấp source admission hoặc production activation.
+
 - Khi cần PDF cổ tức tiền mặt, cổ tức cổ phiếu, cổ phiếu thưởng hoặc phát hành thêm theo từng mã, dùng `skills/fetch-vietstock-dividend-pdfs/SKILL.md`. Skill lưu link lịch sự kiện Vietstock, hướng dẫn quét tất cả các trang và tải tệp theo phạm vi được yêu cầu; không tự chạy toàn bộ VN30 hay ghi nhận tài khoản.
 
 - For PDF reading, lookup or extraction in this project, read and use `skills/read-pdf-json-first/SKILL.md`.
 - Reuse matching extracted JSON first; if missing, extract the retained PDF. Download only when the required PDF is also absent. Preserve document/period/scope/revision identity and the current direct-PDF workflow.
+
+## Owner share-count carry-forward rule (2026-11-12)
+
+- For valuation denominators, carry the latest owner-eligible financial-statement ending outstanding count forward when no effective change is found in reviewed downloaded Vietstock documents. Review issuance, cancellation, stock dividends/bonuses, splits/consolidation and treasury transactions by effective date, not announcement date. Confirmed changes/conflicts/unresolved relevant effective dates block automatic carry-forward.
+- Preserve source/page/hash, interval, inventory coverage and review timestamp. Incomplete external disclosure coverage must stay explicit; never claim an exhaustive negative search or verified zero treasury activity. An identified relevant unread document blocks adoption until reviewed.
+- VNM30Oct2026: Q3 Note22 ending outstanding2089955445, review01–30Oct; `CARRIED_FORWARD_NO_CHANGE_FOUND_IN_REVIEWED_DOCUMENTS`; `S4-R1=CLOSED_BY_OWNER_APPROVED_CARRY_FORWARD_POLICY`. See `docs/fundamental-data-engine/vnm-s4-share-carry-forward/2026-11-12/REVIEW.json`. Q3 listing is31Oct/retrieved2Nov; this owner-selected retrospective denominator does not prove30Oct PIT availability or grant source admission, scoring or production authority. STOP for CIO review.
 
 ## Owner-confirmed portfolio reconciliation — do not ask again (2026-10-31)
 

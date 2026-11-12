@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import re
 import sqlite3
+import sys
 
 ROOT=Path(__file__).resolve().parents[4]
 OUT=Path(__file__).parent
@@ -28,6 +29,8 @@ def sha(path):
 
 
 def main():
+    if '--historical-pre-owner-policy-review' not in sys.argv:
+        raise SystemExit('Archived pre-owner-policy review only. Current policy: docs/fundamental-data-engine/CAFEF_RAW_CLOSE_ONLY_POLICY.md; S4-R4 is CLOSED_BY_SCOPE_EXCLUSION. Use --historical-pre-owner-policy-review only to replay historical audit output, never current acceptance.')
     price_path='data/market-history/cafef/VNM.json'
     prices=read(price_path)
     after=read(str(OUT.relative_to(ROOT)/'ACTIONS_AFTER.json'))

@@ -135,7 +135,7 @@
     "skillChanges": false
   },
   "R1": {
-    "decision": "NOT_QUALIFIED_FOR_ADJUSTED_USE",
+    "decision": "EXCLUDED_BY_OWNER_POLICY",
     "existingChecks": [
       {
         "binding": {
@@ -178,7 +178,9 @@
       "revisionPolicy": null
     },
     "blocksRawCloseResearch": false,
-    "rawClosePermittedScope": "Dated retrospective raw-close research, separately from admitted scoring/PIT."
+    "rawClosePermittedScope": "Dated retrospective raw-close research, separately from admitted scoring/PIT.",
+    "methodologyDocumentationRequired": false,
+    "ownerScopeClosure": "CLOSED_BY_SCOPE_EXCLUSION"
   },
   "R2": {
     "bridge": [
@@ -386,8 +388,21 @@
       "conclusion": "Current official registration chronology corroborates issued-base stability; not alone a cutoff treasury bridge or PIT vintage."
     },
     "cutoffShareCandidate": "2089955445",
-    "cutoffQualification": "HISTORICAL_SENSITIVITY_ONLY_PENDING_DATED_OCTOBER_BRIDGE",
-    "exactMissing": "Issuer/HOSE/VSDC terms or dated attestation binding issued, treasury and trading-outstanding shares through2026-10-30, including effective dates/changes; nulls must not become zero."
+    "cutoffQualification": "CARRIED_FORWARD_NO_CHANGE_FOUND_IN_REVIEWED_DOCUMENTS",
+    "exactMissing": "No further cutoff attestation required for owner-policy carry-forward. Incomplete disclosure coverage and unverified legal/treasury flows remain limitations; formal source/time/PIT admission remains separate.",
+    "ownerCarryForwardAmendment": {
+      "reviewPath": "docs/fundamental-data-engine/vnm-s4-share-carry-forward/2026-11-12/REVIEW.json",
+      "shares": "2089955445",
+      "status": "CARRIED_FORWARD_NO_CHANGE_FOUND_IN_REVIEWED_DOCUMENTS",
+      "acceptance": "CLOSED_BY_OWNER_APPROVED_CARRY_FORWARD_POLICY",
+      "independentOctoberIssuedTreasuryFlowsRemainUnknown": true
+    },
+    "conclusion": "Owner-approved carry-forward now selects2089955445 for retrospective cutoff denominator; see S4-R1 and reviewed document limitations. Independent October legal flows remain unknown, formal/PIT source admission separate.",
+    "preOwnerCarryForwardAssessment": {
+      "cutoffQualification": "HISTORICAL_SENSITIVITY_ONLY_PENDING_DATED_OCTOBER_BRIDGE",
+      "exactMissing": "Issuer/HOSE/VSDC terms or dated attestation binding issued, treasury and trading-outstanding shares through2026-10-30, including effective dates/changes; nulls must not become zero.",
+      "supersededForBoundedDenominatorSelection": true
+    }
   },
   "R3": {
     "dates": [
@@ -496,7 +511,7 @@
         "P4",
         "P7"
       ],
-      "approvedPolicyRequirement": "P2 does not require historical adjusted-price methodology. P3/P4 exact dated RAW/latest-EOD semantics and source binding remain required for their technical/formal path; implemented contract is not automatic approval.",
+      "approvedPolicyRequirement": "P2 does not require historical adjusted-price methodology. P3/P4 exact dated RAW/latest-EOD semantics and source binding remain required for their technical/formal path; implemented contract is not automatic approval. Explicit owner decision now binds GiaDongCua only, no adjusted fallback; research qualification remains distinct from source admission.",
       "blocksCurrentVnmValuation": "NO_FOR_LABELLED_CUTOFF_RESEARCH; YES_FOR_FORMAL_USE_UNTIL_ADMITTED"
     },
     {
@@ -518,40 +533,42 @@
     },
     {
       "decision": "SHARE_COUNT_CUTOFF",
-      "result": "RESTRICTED_TO_HISTORICAL_SENSITIVITY",
-      "evidence": "AcceptedFY22–25 chronology; issuer1Jan/30Jun/30Sep2,089,955,445; Oct30 profile same; official VSDC registry corroborates registered base.",
-      "mandatoryEvidence": "Cutoff issued/treasury/outstanding identity and dated movement/effective-date bridge; denominator comparability where per-share history is used.",
-      "remainingIssue": "Issuer/HOSE/VSDC terms or dated attestation binding issued, treasury and trading-outstanding shares through2026-10-30, including effective dates/changes; nulls must not become zero.",
-      "materiality": "Material denominator uncertainty for unqualified cutoff per-share valuation. Bounded research assumption can be proposed to owner, not relabelled verified unchanged.",
+      "result": "CARRIED_FORWARD_NO_CHANGE_FOUND_IN_REVIEWED_DOCUMENTS",
+      "evidence": "Q3 consolidated Note22 physical p59 outstanding2089955445 at30Sep. Reviewed downloaded Vietstock inventory and cash notice; no effective October share change found within reviewed documents.",
+      "mandatoryEvidence": "Owner-selected latest statement ending outstanding count plus documented effective-date review of downloaded Vietstock documents and explicit coverage limitations.",
+      "remainingIssue": "No remaining S4-R1 blocker under the owner-approved bounded carry-forward rule. External disclosure coverage is incomplete; no verified zero-flow or independent treasury certificate claimed. Formal source/time-purpose admission and PIT remain separate.",
+      "materiality": "Permitted owner-policy denominator for retrospective30Oct valuation; not an independently verified daily legal register or PIT input.",
       "policy": [
         "P1",
         "P2",
         "P6"
       ],
-      "approvedPolicyRequirement": "P1 forbids deriving adjusted historical denominators from current shares alone. Equal registered/listed/issuer endpoint counts do not prove October treasury activity absent.",
-      "blocksCurrentVnmValuation": "YES_FOR_UNQUALIFIED_CUTOFF_DENOMINATOR; NO_ONLY_IF_OWNER_ADOPTS_EXPLICIT_SENSITIVITY_ASSUMPTION"
+      "approvedPolicyRequirement": "Owner12Nov carry-forward rule: adopt latest statement shares when no effective change is found in reviewed downloaded documents; preserve references, review time and incomplete coverage.",
+      "blocksCurrentVnmValuation": "NO_FOR_OWNER_POLICY_CARRY_FORWARD_DENOMINATOR; FORMAL_SOURCE_ADMISSION_SEPARATE",
+      "acceptance": "CLOSED_BY_OWNER_APPROVED_CARRY_FORWARD_POLICY",
+      "reviewPath": "docs/fundamental-data-engine/vnm-s4-share-carry-forward/2026-11-12/REVIEW.json"
     },
     {
       "decision": "ADJUSTED_PRICE_SERIES",
-      "result": "NOT_QUALIFIED",
+      "result": "EXCLUDED_BY_OWNER_POLICY",
       "evidence": "Preserved1197 raw/adjusted rows distinguish fields; no algorithm/factors/anchor/revision specification established.",
-      "mandatoryEvidence": "Endpoint-specific adjustment semantics/factor lineage/anchor/revision plus applicable action terms.",
-      "remainingIssue": "Those fields remain null. No factors inferred or invented.",
-      "materiality": "Material if adjusted series is used; excluded from current raw-cutoff valuation proposal.",
+      "mandatoryEvidence": "No adjustment methodology is required because this calculation use is excluded by explicit owner policy.",
+      "remainingIssue": "None in excluded adjusted-price scope; retain raw fields for audit only.",
+      "materiality": "Not a blocker for permitted RAW close use.",
       "policy": [
         "P1",
         "P3",
         "P4"
       ],
-      "approvedPolicyRequirement": "P3 explicitly excludes historical adjusted series. P4 requires actual semantics/corporate-action policy for selected use; no approved mapping created.",
-      "blocksCurrentVnmValuation": "NO_IF_ADJUSTED_SERIES_NOT_USED"
+      "approvedPolicyRequirement": "cafef-raw-close-only-v1: only GiaDongCua; GiaDieuChinh audit-only, no fallback or adjusted calculation.",
+      "blocksCurrentVnmValuation": "NO; EXCLUDED_BY_OWNER_POLICY"
     },
     {
       "decision": "HISTORICAL_TOTAL_RETURN",
       "result": "NOT_QUALIFIED",
       "evidence": "15 cash components available; gap rows remain absent; no accepted complete action/denominator path or reinvestment/tax/return convention.",
-      "mandatoryEvidence": "Comparable raw-price/action/share chain or qualified adjusted series, complete relevant sessions/events, dated cash treatment/reinvestment/tax convention, no double adjustment.",
-      "remainingIssue": "Historical chain/three coverage gaps and action continuity not certified; method is not adopted.",
+      "mandatoryEvidence": "Raw GiaDongCua plus independently verified dividends/corporate actions, comparable shares, session coverage and return conventions; no adjusted series may be used.",
+      "remainingIssue": "Corporate-action completeness and historical-use qualification remain insufficient; never use adjusted close as a substitute.",
       "materiality": "Material for claimed realized historical total returns; not required as input for prospective5Y return model under P2.",
       "policy": [
         "P1",
@@ -565,9 +582,9 @@
     {
       "decision": "S4_OVERALL",
       "result": "PARTIALLY_CLOSED_RESEARCH_ONLY_CIO_REVIEW",
-      "evidence": "Raw cutoff close and15 reviewed cash terms now separated from restricted share denominator and unqualified historical adjusted/return paths.",
+      "evidence": "Raw close and reviewed cash terms remain research-qualified; cutoff shares now carried forward under owner-approved documentary rule; adjusted series excluded and TR/PIT qualification separate.",
       "mandatoryEvidence": "Fit evidence to declared use; retain formal source/time qualification and denominator requirements for requested valuation use.",
-      "remainingIssue": "Cutoff share bridge and scope-specific source/time admission/owner decision for formal use. D/E explicitly excluded unless new evidence qualifies them.",
+      "remainingIssue": "Scope-specific formal source/time-purpose admission remains. S4-R1 closed by owner-approved carry-forward; S4-R4 closed by scope exclusion. Incomplete disclosure coverage remains explicit.",
       "materiality": "Material for unrestricted/formal valuation; does not negate research-qualified raw close/cash terms.",
       "policy": [
         "P1",
@@ -619,10 +636,10 @@
     },
     {
       "source": "ISSUER_Q3_VIETSTOCK30OCT_VSDC_CURRENT_SHARE_BRIDGE",
-      "classification": "RESTRICTED_TO_HISTORICAL_SENSITIVITY",
+      "classification": "OWNER_APPROVED_CARRY_FORWARD_DENOMINATOR_NOT_FORMALLY_ADMITTED",
       "formalNow": false,
       "policyRoute": "P1/P6 cutoff share/treasury and qualifying disclosure chain.",
-      "permittedProposal": "Explicit2,089,955,445 share assumption with October continuity gap, subject owner choice.",
+      "permittedProposal": "Use2089955445 under explicit reviewed-document carry-forward rule with limitations; no verified zero October treasury flow/PIT claim.",
       "notPermitted": "Verified unchanged October, independently certified zero treasury movement or historical PIT."
     },
     {
@@ -634,35 +651,56 @@
       "notPermitted": "Treat official domain or owner approval of scoring code as admission of each fact."
     },
     {
-      "source": "ADJUSTED_PRICE_HISTORICAL_RETURN_PIT",
-      "classification": "NOT_QUALIFIED",
+      "source": "CAFEF_ADJUSTED_PRICE_SERIES",
+      "classification": "EXCLUDED_BY_OWNER_POLICY",
       "formalNow": false,
-      "policyRoute": "P1/P3/P4/P5/P6",
-      "permittedProposal": "Retain raw fields/provenance only; exclude derived adjusted-return/PIT conclusions.",
-      "notPermitted": "Use as accepted total-return/backtesting input."
+      "policyRoute": "Owner cafef-raw-close-only-v1 selection policy; no source-admission grant.",
+      "permittedProposal": "Raw evidence retention only. No adjustment-methodology requirement.",
+      "notPermitted": "Any adjusted-price investment calculation, valuation, scoring, portfolio analytics, historical returns or backtesting."
+    },
+    {
+      "source": "RAW_CLOSE_PLUS_SEPARATELY_VERIFIED_ACTIONS_HISTORICAL_USES",
+      "classification": "NOT_QUALIFIED_WHEN_ACTION_EVIDENCE_INCOMPLETE",
+      "formalNow": false,
+      "policyRoute": "Owner raw-close-only policy plus existing source/time/corporate-action/PIT qualification.",
+      "permittedProposal": "Only raw-close plus separate verified actions; no adjusted-price fallback.",
+      "notPermitted": "Numeric return/backtest from incomplete action evidence; source authority self-approval."
     }
   ],
   "unresolvedMaterialBlockers": [
     {
-      "id": "B1",
-      "use": "UNQUALIFIED_CUTOFF_PER_SHARE_VALUATION",
-      "issue": "Issuer/HOSE/VSDC terms or dated attestation binding issued, treasury and trading-outstanding shares through2026-10-30, including effective dates/changes; nulls must not become zero.",
-      "resolution": "Dated issuer/HOSE/VSDC cutoff bridge or owner-selected explicit sensitivity restriction, never invent verified movement0."
-    },
-    {
       "id": "B2",
       "use": "FORMAL_SCORING_OR_PRODUCTION_SOURCE_USE",
       "issue": "Per-source/per-fact purpose, semantic and publication/availability binding plus authorized owner acceptance under existing policy.",
-      "resolution": "Owner review of matrix; approval does not cure missing documentary B1 or time proofs."
+      "resolution": "Owner review of exact source/fact/purpose/time qualification; carry-forward closes bounded denominator selection but does not establish publication/availability or source authority."
     }
   ],
   "excludedUseLimitations": [
-    "Adjusted methodology unavailable: adjusted-price use NOT_QUALIFIED, not a raw-close blocker.",
+    "ADJUSTED_PRICE_SERIES=EXCLUDED_BY_OWNER_POLICY; S4-R4=CLOSED_BY_SCOPE_EXCLUSION. Do not require adjustment methodology. Retain raw adjusted fields for audit only.",
     "Three missing sessions: source coverage limitation for complete-series/TR/backtesting, not cutoff spot-price blocker.",
     "PIT/backtesting not qualified: no historical availability backdating.",
     "Volume disagreements preserved in prior review; no volume input used in current valuation, not a material valuation blocker."
   ],
   "noPercentage": true,
   "productionPromotion": false,
-  "ownerApproval": null
+  "ownerApproval": null,
+  "ownerPolicyAmendment": {
+    "path": "docs/fundamental-data-engine/governance/CAFEF_RAW_CLOSE_ONLY_OWNER_DECISION_2026-11-12.json",
+    "sha256": "d612af1927169c23998aff8fd3402ca20fcf79777ecce33b1e8248ea81ac7fec",
+    "date": "2026-11-12",
+    "scope": "PRICE_SELECTION_ONLY_NOT_GENERAL_SOURCE_ADMISSION"
+  },
+  "S4-R4": {
+    "status": "CLOSED_BY_SCOPE_EXCLUSION",
+    "reason": "Owner prohibits adjusted-price calculations; no methodology documentation required. Source admission is separate and remains pending."
+  },
+  "S4-R1": {
+    "status": "CLOSED_BY_OWNER_APPROVED_CARRY_FORWARD_POLICY",
+    "shareCountStatus": "CARRIED_FORWARD_NO_CHANGE_FOUND_IN_REVIEWED_DOCUMENTS",
+    "shares": "2089955445",
+    "review": "docs/fundamental-data-engine/vnm-s4-share-carry-forward/2026-11-12/REVIEW.json",
+    "ownerPolicy": "docs/fundamental-data-engine/governance/SHARE_COUNT_CARRY_FORWARD_OWNER_DECISION_2026-11-12.json",
+    "completeNegativeSearch": false,
+    "scope": "OWNER_APPROVED_RETROSPECTIVE_VALUATION_DENOMINATOR; NO_SOURCE_ADMISSION_OR_PIT_GRANT"
+  }
 }

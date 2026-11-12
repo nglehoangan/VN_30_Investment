@@ -1,0 +1,26 @@
+{
+  "contract": "owner-market-history-selection-policy-v1",
+  "id": "owner-cafef-raw-close-only-20261112",
+  "ownerAuthority": "PROJECT_OWNER",
+  "decisionMode": "EXPLICIT_OWNER_REQUEST",
+  "effectiveDate": "2026-11-12",
+  "recordedAt": "2026-11-12T07:25:01.101780+00:00",
+  "ownerMessageTimestamp": null,
+  "recordedAtMeaning": "Receipt creation time, not an invented owner-message/publication timestamp.",
+  "source": "Current owner message: CODEX — Adopt RAW CLOSE ONLY Policy for CaféF Market History",
+  "statement": "Use only daily unadjusted closing prices (GiaDongCua) from CaféF. Do not use CaféF adjusted prices (GiaDieuChinh) in investment calculations, valuation, scoring, portfolio analytics, historical returns or backtesting. Preserve raw source responses including adjusted fields for audit. Missing raw close must not fall back to adjusted close. Historical returns/backtests require raw close plus separately verified dividends and corporate actions; incomplete action evidence returns NOT_QUALIFIED.",
+  "policy": {
+    "path": "src/domain/market-boundary/cafef-raw-close-policy.json",
+    "sha256": "233f7f5ec06bc8f94ef1aa3849b9d1fdd44547cfb946504c66aff1f3e5b25106"
+  },
+  "decisions": {
+    "ADJUSTED_PRICE_SERIES": "EXCLUDED_BY_OWNER_POLICY",
+    "RAW_CLOSE_CUTOFF": "RESEARCH_QUALIFIED",
+    "S4-R4": "CLOSED_BY_SCOPE_EXCLUSION"
+  },
+  "S4R4Scope": "Adjusted-price/adjustment-methodology requirement as named in this owner request; not prior report section R4 source-admission proposal.",
+  "noReopenAdjustmentMethodology": true,
+  "sourceAdmissionGranted": false,
+  "productionActivationGranted": false,
+  "portfolioTransactionAuthorityGranted": false
+}
