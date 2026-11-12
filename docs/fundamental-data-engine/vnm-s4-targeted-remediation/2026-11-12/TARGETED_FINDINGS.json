@@ -1,0 +1,668 @@
+{
+  "newSources": [
+    {
+      "url": "https://vsdc.vn/vi/s-detail/943",
+      "purpose": "TARGETED_VNM_S4_R2_R3",
+      "receivedAt": "2026-11-12T06:30:59.624350+00:00",
+      "httpStatus": 200,
+      "finalUrl": "https://vsdc.vn/vi/s-detail/943",
+      "status": "RETRIEVED",
+      "path": "docs/fundamental-data-engine/vnm-s4-targeted-remediation/2026-11-12/sources/vsdc-vnm-register.html",
+      "sha256": "39f321e09aaf9df6adc0a428b228e893217abb843e64582401f1c84e73b1cc9c",
+      "bytes": 78943
+    },
+    {
+      "url": "https://staticfile.hsx.vn/Uploads/UploadDocuments/1737138/20241226_20242612_Thong%20bao%20ve%20lich%20nghi%202025.pdf",
+      "purpose": "TARGETED_VNM_S4_R2_R3",
+      "receivedAt": "2026-11-12T06:31:00.244048+00:00",
+      "httpStatus": 200,
+      "finalUrl": "https://staticfile.hsx.vn/Uploads/UploadDocuments/1737138/20241226_20242612_Thong%20bao%20ve%20lich%20nghi%202025.pdf",
+      "status": "RETRIEVED",
+      "path": "docs/fundamental-data-engine/vnm-s4-targeted-remediation/2026-11-12/sources/hose-calendar-2025.pdf",
+      "sha256": "0399221e82ef182e23e3adf49ffc0b0fc89c0b9991615c9ed4e6785ac41cc911",
+      "bytes": 806037
+    },
+    {
+      "url": "https://staticfile.hsx.vn/Uploads/UploadDocuments/2453338/HTGD_Quy%20dinh%20can%20biet%20khi%20GDCK%20tren%20HOSE_T2.2026.pdf",
+      "purpose": "TARGETED_VNM_S4_R2_R3",
+      "receivedAt": "2026-11-12T06:31:00.646694+00:00",
+      "httpStatus": 200,
+      "finalUrl": "https://staticfile.hsx.vn/Uploads/UploadDocuments/2453338/HTGD_Quy%20dinh%20can%20biet%20khi%20GDCK%20tren%20HOSE_T2.2026.pdf",
+      "status": "RETRIEVED",
+      "path": "docs/fundamental-data-engine/vnm-s4-targeted-remediation/2026-11-12/sources/hose-handbook-feb2026.pdf",
+      "sha256": "7d08d232c9fa7b40a08c7fdfc32764fd55dba817ff7f6d1b7ffb730522db0015",
+      "bytes": 341956
+    }
+  ],
+  "reviewedCommit": "f8857c4aef7701f40933207f175a29f0de351483",
+  "reviewDate": "2026-11-12",
+  "cutoff": "2026-10-30",
+  "policies": [
+    {
+      "id": "P1",
+      "reference": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+      "section": "§§3.2,3A.6",
+      "requirement": "Corporate-action-comparable share denominators from issuer restatement or authoritative terms; affected metric N/R when not established.",
+      "binding": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "sha256": "c624180510ecbaf652c7120ebdcc331bfa80f72b2d772380d1caeec35c0b697c"
+      }
+    },
+    {
+      "id": "P2",
+      "reference": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+      "section": "§§8.1–8.3",
+      "requirement": "Dated market price, normalized starting value/earnings, dividends/dilution/forecast/source dates and conservative value. Historical adjusted-price methodology is NOT an explicit requirement for a raw spot close or prospective expected-return model.",
+      "binding": {
+        "path": "docs/03 SCORING/METRIC_DEFINITIONS.md",
+        "sha256": "c624180510ecbaf652c7120ebdcc331bfa80f72b2d772380d1caeec35c0b697c"
+      }
+    },
+    {
+      "id": "P3",
+      "reference": "src/domain/market-boundary/tcbs-eod.ts",
+      "section": "normalizeTcbsEod / TCBS_SCOPE_ADJUSTMENT / EOD_BOARD_PRICE_CONFLICT",
+      "requirement": "Technical latest-EOD contract accepts RAW_LATEST_CLOSE_MATCHED_TO_BOARD only; matching dated completed bar/board, identity, VND unit and source/corporate-action evidence. Historical adjusted/return series explicitly out of scope. This implementation is not itself evidence of owner activation.",
+      "binding": {
+        "path": "src/domain/market-boundary/tcbs-eod.ts",
+        "sha256": "1bc7991ad843ed527c1607b5e6fc1e941b399daf14560bff9519dae07b984000"
+      }
+    },
+    {
+      "id": "P4",
+      "reference": "src/domain/market-boundary/validation.ts",
+      "section": "MARKET: PRICE_SEMANTICS, PRICE_UNIT_CURRENCY, RAW_SOURCE_REQUIRED, OBSERVATION_TIME, OBSERVATION_LINEAGE; CAPABILITY: CAPABILITY_SEMANTICS_REQUIRED",
+      "requirement": "Pin actual capability/source, choose RAW or ADJUSTED, bind dated unit/identity/receipt/pointer/session/corporate-action evidence and MATCH conflict. Does not require adjustment formula for RAW. No accepted CafeF market capability is created by this proposal.",
+      "binding": {
+        "path": "src/domain/market-boundary/validation.ts",
+        "sha256": "abab4e0b2d8b02b915cba483f76861ae2be546c87ddb5be8df482511fa85ce87"
+      }
+    },
+    {
+      "id": "P5",
+      "reference": "src/domain/scoring/evidence.ts",
+      "section": "validateTime: VERIFIED_PUBLICATION_REQUIRED, INVALID_OPERATIONAL_KNOWLEDGE; legacy FUTURE_OR_INVALID_EVIDENCE",
+      "requirement": "Canonical path binds verified publication, availability and reviews no later than cutoff/knownAt; legacy exact-timestamp path also enforces its publication/receipt ordering. Retrieval now cannot be backdated to historical operational knowledge.",
+      "binding": {
+        "path": "src/domain/scoring/evidence.ts",
+        "sha256": "4664905e9580fac625df6c20cf88bae541bc70182acb5691779a9a64a7800331"
+      }
+    },
+    {
+      "id": "P6",
+      "reference": "src/domain/fundamentals/source-authority.ts",
+      "section": "FINANCIAL_SOURCE_POLICY",
+      "requirement": "Ingestion role is distinct from per-fact authority; qualified issuer/disclosure or selective verified PDF resolves same-definition conflicts, no average/latest-wins. Historical replay requires exact publication/revision proof. Financial-report ingestion approval is not blanket approval of market-price API.",
+      "binding": {
+        "path": "src/domain/fundamentals/source-authority.ts",
+        "sha256": "d5733a930660c74f313cd531a09e48d4ed3f242afd0928f32b5a77645693bc79"
+      }
+    },
+    {
+      "id": "P7",
+      "reference": "docs/fundamental-data-engine/evidence/2026-10-29-approved-authority-activation/OWNER_APPROVAL_RECEIPT.json",
+      "section": "approvalScope / excluded",
+      "requirement": "Owner approval is SCORING_EXECUTABLE_PRODUCTION and explicitly excludes market/data admission; it cannot admit these S4 sources.",
+      "binding": {
+        "path": "docs/fundamental-data-engine/evidence/2026-10-29-approved-authority-activation/OWNER_APPROVAL_RECEIPT.json",
+        "sha256": "1e25261c0e867613c2abfbc3c99c5ef03d299fb7f5702ef18883a93ded07c890"
+      }
+    }
+  ],
+  "governanceStatus": "OWNER_REVIEW_PROPOSAL_NOT_AUTHORITY",
+  "scope": "VNM_S4_TARGETED_R1_R4_ONLY",
+  "preservedEvidence": {
+    "priceRows": 1197,
+    "cashComponents": 15,
+    "scopedTests": 24,
+    "priceBinding": {
+      "path": "data/market-history/cafef/VNM.json",
+      "sha256": "d8a40adcbec57691eeeef89164f842a89b077de1a96edbea98cc9fa96f353887"
+    },
+    "dividendBinding": {
+      "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/CORPORATE_ACTION_REVIEW.json",
+      "sha256": "5e10134c3e8fbeac9de6b781a50ae1f47c6982f80aaeffb59ed81a71e5f85630"
+    },
+    "officialReceiptsBinding": {
+      "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/OFFICIAL_SOURCE_RECEIPTS.json",
+      "sha256": "e9e86b34a188f9b4d4803f80cbbb5043922d5491ce7f93df400d9e71eaa96017"
+    },
+    "testBinding": {
+      "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/TEST_RESULTS.json",
+      "sha256": "f1348a364c67022c1e658d570cfccb5f12ebcb6c3ffeab0e018dcc834b2d758d"
+    },
+    "fullRetrievalRepeated": false,
+    "skillChanges": false
+  },
+  "R1": {
+    "decision": "NOT_QUALIFIED_FOR_ADJUSTED_USE",
+    "existingChecks": [
+      {
+        "binding": {
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/cafef-history-page.html",
+          "sha256": "9b2a00f0ddf40eb1f6804c4bfb385c54bac7641555de09f3d981c29eb8a577d9"
+        },
+        "result": "Provider HTML distinguishes close/adjusted fields and units; does not specify algorithm/factors/anchor/revision."
+      },
+      {
+        "binding": {
+          "path": "skills/fetch-cafef-price-history/scripts/fetch.py",
+          "sha256": "daac4ab588bca068692599c5af64bb4cb32624fa60304611252d8b7553f2576a"
+        },
+        "result": "Retains adjusted and original fields; computes no factors."
+      },
+      {
+        "binding": {
+          "path": "src/domain/market-boundary/tcbs-eod.ts",
+          "sha256": "1bc7991ad843ed527c1607b5e6fc1e941b399daf14560bff9519dae07b984000"
+        },
+        "result": "Latest dated RAW close only; historical adjustment/total return outside contract."
+      }
+    ],
+    "providerDocumentationSearch": [
+      {
+        "query": "site:cafef.vn \"giá điều chỉnh\" \"phương pháp\" / \"PriceHistory\" \"adjustment\"",
+        "reviewDate": "2026-11-12",
+        "result": "No endpoint-specific specification found in bounded search; no global nonexistence claim."
+      },
+      {
+        "url": "https://cafef.vn/gia-co-phieu-thay-doi-nhu-the-nao-sau-ngay-giao-dich-khong-huong-quyen-188250818230424584.chn",
+        "access": "WEB_SEARCH_PROVIDER_PUBLISHED_ARTICLE",
+        "result": "Generic ex-rights/reference-price explainer, syndicated from MarketTimes; not a PriceHistory adjustment implementation contract. Not used to derive factors."
+      }
+    ],
+    "fields": {
+      "algorithm": null,
+      "factors": null,
+      "anchorDate": null,
+      "revisionPolicy": null
+    },
+    "blocksRawCloseResearch": false,
+    "rawClosePermittedScope": "Dated retrospective raw-close research, separately from admitted scoring/PIT."
+  },
+  "R2": {
+    "bridge": [
+      {
+        "from": "2022-01-01",
+        "to": "2022-12-31",
+        "openingIssued": "2089955445",
+        "closingIssued": "2089955445",
+        "openingOutstanding": "2089955445",
+        "closingOutstanding": "2089955445",
+        "reportedParentShareMovement": "NO_MOVEMENT_IDENTIFIED_IN_REVIEWED_EQUITY_AND_FINANCING_ROLLFORWARDS",
+        "periodVerification": "REUSE_ACCEPTED_BOUNDED_ANNUAL_RESEARCH_CONCLUSION",
+        "treasuryOpeningImplied": "0",
+        "treasuryClosingImplied": "0",
+        "treasuryMethod": "Issued minus outstanding; arithmetic residual, not independent custody register. No gross round-trip proof inferred.",
+        "binding": {
+          "path": "docs/fundamental-data-engine/vnm-final-scoring-closure/2026-11-11/six-rubrics.json",
+          "sha256": "8e5c4b019b755ce31b0f18178b9d3f266b977a95755d8f50a2654dd7d2629d6c",
+          "jsonPointer": "/shareActionChronology/0"
+        },
+        "pdfReferences": [
+          {
+            "path": "data/manual-extracted-pdf/notes/VNM.json",
+            "sha256": "256c6fd700c563f079b21ec853edf061c237308305caf26e87a11b120505372a",
+            "jsonPointer": "/documents/2/pages/53",
+            "documentSha256": "744b30d29cfaa3cad98c28c40c9dcb335606fe754baffd241738caead822ece6",
+            "pdfPath": "data/manual-download/VNM/VNM_Baocaotaichinh_2022_Kiemtoan_Hopnhat.pdf",
+            "physicalPage": 54,
+            "href": "data/manual-download/VNM/VNM_Baocaotaichinh_2022_Kiemtoan_Hopnhat.pdf#page=54",
+            "scope": "CONSOLIDATED",
+            "classification": "RETAINED_JSON_RESEARCH_READING_NOT_NEW_FACT_ADMISSION"
+          }
+        ]
+      },
+      {
+        "from": "2023-01-01",
+        "to": "2023-12-31",
+        "openingIssued": "2089955445",
+        "closingIssued": "2089955445",
+        "openingOutstanding": "2089955445",
+        "closingOutstanding": "2089955445",
+        "reportedParentShareMovement": "NO_MOVEMENT_IDENTIFIED_IN_REVIEWED_EQUITY_AND_FINANCING_ROLLFORWARDS",
+        "periodVerification": "REUSE_ACCEPTED_BOUNDED_ANNUAL_RESEARCH_CONCLUSION",
+        "treasuryOpeningImplied": "0",
+        "treasuryClosingImplied": "0",
+        "treasuryMethod": "Issued minus outstanding; arithmetic residual, not independent custody register. No gross round-trip proof inferred.",
+        "binding": {
+          "path": "docs/fundamental-data-engine/vnm-final-scoring-closure/2026-11-11/six-rubrics.json",
+          "sha256": "8e5c4b019b755ce31b0f18178b9d3f266b977a95755d8f50a2654dd7d2629d6c",
+          "jsonPointer": "/shareActionChronology/1"
+        },
+        "pdfReferences": [
+          {
+            "path": "data/manual-extracted-pdf/notes/VNM.json",
+            "sha256": "256c6fd700c563f079b21ec853edf061c237308305caf26e87a11b120505372a",
+            "jsonPointer": "/documents/3/pages/52",
+            "documentSha256": "7cdcebe4a0be8875288460d094b7c708b1d92a1de04e19d3949c0e4ab6c60cb1",
+            "pdfPath": "data/manual-download/VNM/VNM_Baocaotaichinh_2023_Kiemtoan_Hopnhat.pdf",
+            "physicalPage": 53,
+            "href": "data/manual-download/VNM/VNM_Baocaotaichinh_2023_Kiemtoan_Hopnhat.pdf#page=53",
+            "scope": "CONSOLIDATED",
+            "classification": "RETAINED_JSON_RESEARCH_READING_NOT_NEW_FACT_ADMISSION"
+          }
+        ]
+      },
+      {
+        "from": "2024-01-01",
+        "to": "2024-12-31",
+        "openingIssued": "2089955445",
+        "closingIssued": "2089955445",
+        "openingOutstanding": "2089955445",
+        "closingOutstanding": "2089955445",
+        "reportedParentShareMovement": "NO_MOVEMENT_IDENTIFIED_IN_REVIEWED_EQUITY_AND_FINANCING_ROLLFORWARDS",
+        "periodVerification": "REUSE_ACCEPTED_BOUNDED_ANNUAL_RESEARCH_CONCLUSION",
+        "treasuryOpeningImplied": "0",
+        "treasuryClosingImplied": "0",
+        "treasuryMethod": "Issued minus outstanding; arithmetic residual, not independent custody register. No gross round-trip proof inferred.",
+        "binding": {
+          "path": "docs/fundamental-data-engine/vnm-final-scoring-closure/2026-11-11/six-rubrics.json",
+          "sha256": "8e5c4b019b755ce31b0f18178b9d3f266b977a95755d8f50a2654dd7d2629d6c",
+          "jsonPointer": "/shareActionChronology/2"
+        },
+        "pdfReferences": [
+          {
+            "path": "data/manual-extracted-pdf/notes/VNM.json",
+            "sha256": "256c6fd700c563f079b21ec853edf061c237308305caf26e87a11b120505372a",
+            "jsonPointer": "/documents/5/pages/52",
+            "documentSha256": "a70f448abc8aa61f0b6d25a281a1af4bf0d46d7309083d18556129cc53620450",
+            "pdfPath": "data/manual-download/VNM/20250228_20250228___vnm___bctc_kiem_toan_2024___hop_nhat_vn.pdf",
+            "physicalPage": 53,
+            "href": "data/manual-download/VNM/20250228_20250228___vnm___bctc_kiem_toan_2024___hop_nhat_vn.pdf#page=53",
+            "scope": "CONSOLIDATED",
+            "classification": "RETAINED_JSON_RESEARCH_READING_NOT_NEW_FACT_ADMISSION"
+          }
+        ]
+      },
+      {
+        "from": "2025-01-01",
+        "to": "2025-12-31",
+        "openingIssued": "2089955445",
+        "closingIssued": "2089955445",
+        "openingOutstanding": "2089955445",
+        "closingOutstanding": "2089955445",
+        "reportedParentShareMovement": "NO_MOVEMENT_IDENTIFIED_IN_REVIEWED_EQUITY_AND_FINANCING_ROLLFORWARDS",
+        "periodVerification": "REUSE_ACCEPTED_BOUNDED_ANNUAL_RESEARCH_CONCLUSION",
+        "treasuryOpeningImplied": "0",
+        "treasuryClosingImplied": "0",
+        "treasuryMethod": "Issued minus outstanding; arithmetic residual, not independent custody register. No gross round-trip proof inferred.",
+        "binding": {
+          "path": "docs/fundamental-data-engine/vnm-final-scoring-closure/2026-11-11/six-rubrics.json",
+          "sha256": "8e5c4b019b755ce31b0f18178b9d3f266b977a95755d8f50a2654dd7d2629d6c",
+          "jsonPointer": "/shareActionChronology/3"
+        },
+        "pdfReferences": [
+          {
+            "path": "data/manual-extracted-pdf/notes/VNM.json",
+            "sha256": "256c6fd700c563f079b21ec853edf061c237308305caf26e87a11b120505372a",
+            "jsonPointer": "/documents/6/pages/52",
+            "documentSha256": "ee996ffcb87f0699a59c20b102082666f6716fcf9be8ee314ad2de055f79c940",
+            "pdfPath": "data/manual-download/VNM/20260227___vnm___bctc_hop_nhat_2025___da_kiem_toan.pdf",
+            "physicalPage": 53,
+            "href": "data/manual-download/VNM/20260227___vnm___bctc_hop_nhat_2025___da_kiem_toan.pdf#page=53",
+            "scope": "CONSOLIDATED",
+            "classification": "RETAINED_JSON_RESEARCH_READING_NOT_NEW_FACT_ADMISSION"
+          }
+        ]
+      },
+      {
+        "from": "2026-01-01",
+        "to": "2026-06-30",
+        "openingIssued": "2089955445",
+        "closingIssued": "2089955445",
+        "openingOutstanding": "2089955445",
+        "closingOutstanding": "2089955445",
+        "treasuryOpeningImplied": "0",
+        "treasuryClosingImplied": "0",
+        "periodVerification": "ISSUER_ENDPOINTS_VERIFIED_IN_RETAINED_NOTE_NOT_EXHAUSTIVE_DAILY_REGISTER",
+        "binding": {
+          "path": "data/manual-extracted-pdf/notes/VNM.json",
+          "sha256": "256c6fd700c563f079b21ec853edf061c237308305caf26e87a11b120505372a",
+          "jsonPointer": "/documents/4/pages/58"
+        },
+        "pdf": "data/manual-download/VNM/VNM_Baocaotaichinh_Q2_2026_Soatxet_Hopnhat.pdf#page=59"
+      },
+      {
+        "from": "2026-06-30",
+        "to": "2026-09-30",
+        "openingIssued": "2089955445",
+        "closingIssued": "2089955445",
+        "openingOutstanding": "2089955445",
+        "closingOutstanding": "2089955445",
+        "treasuryOpeningImplied": "0",
+        "treasuryClosingImplied": "0",
+        "periodVerification": "EQUAL_ISSUER_ENDPOINTS_NOT_CONTINUOUS_NO_ACTION_CERTIFICATE",
+        "binding": {
+          "path": "docs/fundamental-data-engine/vnm-final-scoring-closure/2026-11-11/valuation-decision.json",
+          "sha256": "71d2ad3d6ddd4ed4051bbc2a508526ec661faf0539a06d902b44d9bfb1f3274d",
+          "jsonPointer": "/shareAnchor"
+        },
+        "pdf": "data/manual-download/VNM/2026-11-02-remediation/565717-Q3_2026.pdf#page=59",
+        "pdfSha256": "fd144a9acb3bacbc745cde32d6375471b11b4b005e1919996631b6735d7c8378"
+      },
+      {
+        "from": "2026-10-01",
+        "to": "2026-10-30",
+        "openingIssuedReference": "2089955445",
+        "cutoffIssuedVerified": null,
+        "cutoffTreasuryVerified": null,
+        "cutoffOutstandingIssuerVerified": null,
+        "cutoffListedProvider": "2089955445",
+        "cutoffOutstandingProvider": "2089955445",
+        "treasuryMovement": null,
+        "issuedMovement": null,
+        "periodVerification": "LACKS_DATED_ISSUED_TREASURY_OUTSTANDING_MOVEMENT_EVIDENCE",
+        "binding": {
+          "path": "data/manual-extracted-api/vietstock-profile-v1/20261030T121210Z/manifest.json",
+          "sha256": "f39d3e257f070b932ce96e45b96e2b3cfd520200cfba4ff9f1bee8f9cc42c3cc",
+          "jsonPointer": "/rows/26"
+        },
+        "profileSha256": "25066a299767860ac6a6de474c55bf3224a5960303b89951b23bb80caeb1b154",
+        "receivedAt": "2026-10-30T12:12:18.309007+00:00",
+        "profileCaveat": "Provider states outstanding includes provisional shares from corporate actions; not equivalent to legally issued/outstanding without reconciliation."
+      }
+    ],
+    "arithmetic": "issued - treasury = outstanding; zero residual at equal issuer endpoints is labelled implied, not independently verified treasury activity.",
+    "vsdcCrosscheck": {
+      "binding": {
+        "url": "https://vsdc.vn/vi/s-detail/943",
+        "purpose": "TARGETED_VNM_S4_R2_R3",
+        "receivedAt": "2026-11-12T06:30:59.624350+00:00",
+        "httpStatus": 200,
+        "finalUrl": "https://vsdc.vn/vi/s-detail/943",
+        "status": "RETRIEVED",
+        "path": "docs/fundamental-data-engine/vnm-s4-targeted-remediation/2026-11-12/sources/vsdc-vnm-register.html",
+        "sha256": "39f321e09aaf9df6adc0a428b228e893217abb843e64582401f1c84e73b1cc9c",
+        "bytes": 78943
+      },
+      "registeredShares": "2089955445",
+      "lastListedCertificateChangeDate": "2020-10-27",
+      "lastChangeQuantity": "348267652",
+      "certificate": "10/2006/GCNCP-VSD-15",
+      "registryEntriesVisible": 16,
+      "measures": "REGISTERED_SECURITIES_NOT_TREASURY_OR_TRADING_OUTSTANDING",
+      "historicalSnapshotAtCutoff": false,
+      "conclusion": "Current official registration chronology corroborates issued-base stability; not alone a cutoff treasury bridge or PIT vintage."
+    },
+    "cutoffShareCandidate": "2089955445",
+    "cutoffQualification": "HISTORICAL_SENSITIVITY_ONLY_PENDING_DATED_OCTOBER_BRIDGE",
+    "exactMissing": "Issuer/HOSE/VSDC terms or dated attestation binding issued, treasury and trading-outstanding shares through2026-10-30, including effective dates/changes; nulls must not become zero."
+  },
+  "R3": {
+    "dates": [
+      {
+        "date": "2025-08-14",
+        "weekday": "Thursday",
+        "providerRowPresent": false,
+        "existingTargetedRequery": {
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/PRICE_GAP_PROBE_2025.json",
+          "sha256": "b8c2fcfb9aa2216bc5375c2d602544ae4d6e79d2a2b7ddc1913d39028f820b93"
+        },
+        "newPriceRequest": false,
+        "officialDailyObservation": null,
+        "calendarEvidence": {
+          "reference": {
+            "url": "https://staticfile.hsx.vn/Uploads/UploadDocuments/1737138/20241226_20242612_Thong%20bao%20ve%20lich%20nghi%202025.pdf",
+            "purpose": "TARGETED_VNM_S4_R2_R3",
+            "receivedAt": "2026-11-12T06:31:00.244048+00:00",
+            "httpStatus": 200,
+            "finalUrl": "https://staticfile.hsx.vn/Uploads/UploadDocuments/1737138/20241226_20242612_Thong%20bao%20ve%20lich%20nghi%202025.pdf",
+            "status": "RETRIEVED",
+            "path": "docs/fundamental-data-engine/vnm-s4-targeted-remediation/2026-11-12/sources/hose-calendar-2025.pdf",
+            "sha256": "0399221e82ef182e23e3adf49ffc0b0fc89c0b9991615c9ed4e6785ac41cc911",
+            "bytes": 806037
+          },
+          "conclusion": "Not a scheduled holiday in visually checked HOSE2079/2024 annual schedule; exceptional closure/VNM halt/day-level official observation not established."
+        },
+        "result": "UNRESOLVED_PROVIDER_COVERAGE_LIMITATION",
+        "blocksCutoffRawClose": false,
+        "blocksClaimOfCompleteDailySeries": true,
+        "imputation": null
+      },
+      {
+        "date": "2026-01-29",
+        "weekday": "Thursday",
+        "providerRowPresent": false,
+        "existingTargetedRequery": {
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/PRICE_GAP_PROBE_2026.json",
+          "sha256": "6b394f1fbb52228a37e2193d329176d58e9a31fa9da30b51b8c2abb9d1d76016"
+        },
+        "newPriceRequest": false,
+        "officialDailyObservation": null,
+        "calendarEvidence": {
+          "reference": {
+            "path": "src/shared/hose-display-calendar-2026.json",
+            "sha256": "6e146c65bd0a10bf1eb1cdb8746a3967e943462b4c8be046b1d838e4d9163f32"
+          },
+          "conclusion": "Absent from holiday list in retained 2026 display calendar; that calendar was not independently admitted and is not newly promoted."
+        },
+        "result": "UNRESOLVED_PROVIDER_COVERAGE_LIMITATION",
+        "blocksCutoffRawClose": false,
+        "blocksClaimOfCompleteDailySeries": true,
+        "imputation": null
+      },
+      {
+        "date": "2026-01-30",
+        "weekday": "Friday",
+        "providerRowPresent": false,
+        "existingTargetedRequery": {
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/PRICE_GAP_PROBE_2026.json",
+          "sha256": "6b394f1fbb52228a37e2193d329176d58e9a31fa9da30b51b8c2abb9d1d76016"
+        },
+        "newPriceRequest": false,
+        "officialDailyObservation": null,
+        "calendarEvidence": {
+          "reference": {
+            "path": "src/shared/hose-display-calendar-2026.json",
+            "sha256": "6e146c65bd0a10bf1eb1cdb8746a3967e943462b4c8be046b1d838e4d9163f32"
+          },
+          "conclusion": "Absent from holiday list in retained 2026 display calendar; that calendar was not independently admitted and is not newly promoted."
+        },
+        "result": "UNRESOLVED_PROVIDER_COVERAGE_LIMITATION",
+        "blocksCutoffRawClose": false,
+        "blocksClaimOfCompleteDailySeries": true,
+        "imputation": null
+      }
+    ],
+    "officialSearchScope": [
+      "HOSE dated daily observations for these3 dates and2026 schedule2294; no matching daily observations retained from bounded search.",
+      "HOSE2025 annual calendar2079 found/read page1; no14Aug holiday listed.",
+      "HOSE Feb2026 handbook page2 confirms normal ATC14:30–14:45/negotiated trades to15:00, not a day-level holiday/exception certificate."
+    ],
+    "supplementaryContextNotUsedToFillRows": [
+      {
+        "url": "https://web.stockbiz.vn/Stocks/VNM/LookupQuote.aspx?Date=20%2F08%2F2025",
+        "observation": "Indexed vendor14Aug row; another vendor has conflicting adjusted values/volume. Secondary only, no official bar accepted."
+      },
+      {
+        "url": "https://www.abs.vn/wp-content/uploads/2026/01/Daily_260130.pdf",
+        "observation": "Broker-origin report describes29Jan session/VNM increase; market context, not official daily data. No source PDF acquired or normalized."
+      }
+    ],
+    "scopeBoundary": "No other missing dates investigated; no backfill/new API retrieval, no full calendar/price campaign. Three rows remain missing and1197 accepted rows unchanged."
+  },
+  "decisions": [
+    {
+      "decision": "RAW_CLOSE_CUTOFF",
+      "result": "RESEARCH_QUALIFIED",
+      "evidence": "CafeF /prices date2026-10-30 GiaDongCua56.9, UI thousand-VND declaration and separate adjusted column; corroborating contemporaneous TCBS/Vietstock56,900.",
+      "mandatoryEvidence": "Ticker/exchange, exact completed trading date, raw close semantics/unit, source receipt/hash/pointer and permitted dated use.",
+      "remainingIssue": "Formal capability/receipt/time-purpose admission has not been approved; not a current quote or30Oct-as-known certificate.",
+      "materiality": "No remaining numerical issue for labelled retrospective cutoff close; formal authority is material for production.",
+      "policy": [
+        "P2",
+        "P3",
+        "P4",
+        "P7"
+      ],
+      "approvedPolicyRequirement": "P2 does not require historical adjusted-price methodology. P3/P4 exact dated RAW/latest-EOD semantics and source binding remain required for their technical/formal path; implemented contract is not automatic approval.",
+      "blocksCurrentVnmValuation": "NO_FOR_LABELLED_CUTOFF_RESEARCH; YES_FOR_FORMAL_USE_UNTIL_ADMITTED"
+    },
+    {
+      "decision": "CASH_DIVIDENDS",
+      "result": "RESEARCH_QUALIFIED_FOR_15_COMPONENTS",
+      "evidence": "Accepted15 components/11 PDF page checks;1850 selected from PDF/VSDC rather than1800 API; one announced future2500 kept separate.",
+      "mandatoryEvidence": "Issuer/event identity, actual cash-vs-stock type, amount/unit, record/ex/payment/fiscal label and document; null announcement date remains null.",
+      "remainingIssue": "No new amount dispute. Source qualification/time/adoption remains separate; scope is listed15 components, not all corporate actions or net investor receipts.",
+      "materiality": "No unresolved economic terms in those15 components. Formal publication/admission material only for formal/PIT use.",
+      "policy": [
+        "P1",
+        "P2",
+        "P5",
+        "P6",
+        "P7"
+      ],
+      "approvedPolicyRequirement": "Qualified same-definition issuer terms resolve provider conflict without overwriting raw; future dividends are not received cash and must not be double-counted.",
+      "blocksCurrentVnmValuation": "NO_FOR_REVIEWED_HISTORICAL_CASH_TERMS; FORWARD_DIVIDEND_ASSUMPTIONS_ARE_SEPARATE_OUT_OF_SCOPE"
+    },
+    {
+      "decision": "SHARE_COUNT_CUTOFF",
+      "result": "RESTRICTED_TO_HISTORICAL_SENSITIVITY",
+      "evidence": "AcceptedFY22–25 chronology; issuer1Jan/30Jun/30Sep2,089,955,445; Oct30 profile same; official VSDC registry corroborates registered base.",
+      "mandatoryEvidence": "Cutoff issued/treasury/outstanding identity and dated movement/effective-date bridge; denominator comparability where per-share history is used.",
+      "remainingIssue": "Issuer/HOSE/VSDC terms or dated attestation binding issued, treasury and trading-outstanding shares through2026-10-30, including effective dates/changes; nulls must not become zero.",
+      "materiality": "Material denominator uncertainty for unqualified cutoff per-share valuation. Bounded research assumption can be proposed to owner, not relabelled verified unchanged.",
+      "policy": [
+        "P1",
+        "P2",
+        "P6"
+      ],
+      "approvedPolicyRequirement": "P1 forbids deriving adjusted historical denominators from current shares alone. Equal registered/listed/issuer endpoint counts do not prove October treasury activity absent.",
+      "blocksCurrentVnmValuation": "YES_FOR_UNQUALIFIED_CUTOFF_DENOMINATOR; NO_ONLY_IF_OWNER_ADOPTS_EXPLICIT_SENSITIVITY_ASSUMPTION"
+    },
+    {
+      "decision": "ADJUSTED_PRICE_SERIES",
+      "result": "NOT_QUALIFIED",
+      "evidence": "Preserved1197 raw/adjusted rows distinguish fields; no algorithm/factors/anchor/revision specification established.",
+      "mandatoryEvidence": "Endpoint-specific adjustment semantics/factor lineage/anchor/revision plus applicable action terms.",
+      "remainingIssue": "Those fields remain null. No factors inferred or invented.",
+      "materiality": "Material if adjusted series is used; excluded from current raw-cutoff valuation proposal.",
+      "policy": [
+        "P1",
+        "P3",
+        "P4"
+      ],
+      "approvedPolicyRequirement": "P3 explicitly excludes historical adjusted series. P4 requires actual semantics/corporate-action policy for selected use; no approved mapping created.",
+      "blocksCurrentVnmValuation": "NO_IF_ADJUSTED_SERIES_NOT_USED"
+    },
+    {
+      "decision": "HISTORICAL_TOTAL_RETURN",
+      "result": "NOT_QUALIFIED",
+      "evidence": "15 cash components available; gap rows remain absent; no accepted complete action/denominator path or reinvestment/tax/return convention.",
+      "mandatoryEvidence": "Comparable raw-price/action/share chain or qualified adjusted series, complete relevant sessions/events, dated cash treatment/reinvestment/tax convention, no double adjustment.",
+      "remainingIssue": "Historical chain/three coverage gaps and action continuity not certified; method is not adopted.",
+      "materiality": "Material for claimed realized historical total returns; not required as input for prospective5Y return model under P2.",
+      "policy": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "approvedPolicyRequirement": "P2 VAL-RET is prospective value growth/distributions/terminal/dilution, not a mandatory historical adjusted-price backtest. Do not conflate the two.",
+      "blocksCurrentVnmValuation": "NO_IF_HISTORICAL_TOTAL_RETURN_NOT_USED"
+    },
+    {
+      "decision": "S4_OVERALL",
+      "result": "PARTIALLY_CLOSED_RESEARCH_ONLY_CIO_REVIEW",
+      "evidence": "Raw cutoff close and15 reviewed cash terms now separated from restricted share denominator and unqualified historical adjusted/return paths.",
+      "mandatoryEvidence": "Fit evidence to declared use; retain formal source/time qualification and denominator requirements for requested valuation use.",
+      "remainingIssue": "Cutoff share bridge and scope-specific source/time admission/owner decision for formal use. D/E explicitly excluded unless new evidence qualifies them.",
+      "materiality": "Material for unrestricted/formal valuation; does not negate research-qualified raw close/cash terms.",
+      "policy": [
+        "P1",
+        "P2",
+        "P4",
+        "P5",
+        "P6",
+        "P7"
+      ],
+      "approvedPolicyRequirement": "No cross-use-case veto: missing adjustment methodology/gap sessions do not automatically invalidate the supported raw spot close. No source authority is self-approved.",
+      "blocksCurrentVnmValuation": "FORMAL_UNCONDITIONAL_USE_PENDING; LIMITED_RESEARCH_INPUTS_AVAILABLE"
+    }
+  ],
+  "pointInTime": {
+    "useCase": "E_HISTORICAL_BACKTESTING_PIT",
+    "result": "NOT_QUALIFIED",
+    "evidence": "CafeF history received11Nov; Q3 source/availability chain not fully bound at30Oct; retained TCBS/profile receipts are30Oct but no whole operationally eligible analysis chain.",
+    "remainingIssue": "Exact publication/revision/availability and review-knownAt proof at each historical decision point. New VSDC12Nov page cannot be backdated.",
+    "policy": [
+      "P5",
+      "P6"
+    ],
+    "blocksCurrentVnmValuation": "NO_FOR_RETROSPECTIVE_RESEARCH; YES_FOR_PIT_OR_BACKTEST_CLAIM"
+  },
+  "sourceAdmissionProposal": [
+    {
+      "source": "CAFEF_GIA_DONG_CUA_2026_10_30",
+      "classification": "RESEARCH_QUALIFIED",
+      "formalNow": false,
+      "policyRoute": "P2/P4 source-class/purpose/semantics/receipt qualification; financial-report CafeF policy not blanket market approval.",
+      "permittedProposal": "56,900 VND dated retrospective raw close only.",
+      "notPermitted": "ADJUSTED/PIT/current live ranking without qualification."
+    },
+    {
+      "source": "ISSUER_HOSE_VSDC_CASH_TERMS_15",
+      "classification": "RESEARCH_QUALIFIED",
+      "formalNow": false,
+      "policyRoute": "P6 qualified verified-issuer/PDF route is available under existing policy; P5 publication/time and per-fact binding/adoption must be completed. Eligible route is not present admission.",
+      "permittedProposal": "Reviewed gross historical event terms; amount1850 with explicit provider conflict ledger.",
+      "notPermitted": "Net cash receipt, portfolio credit, exhaustive rights register or automatic temporal admission."
+    },
+    {
+      "source": "TCBS_30OCT_DAILY_BAR",
+      "classification": "RESTRICTED_TO_HISTORICAL_SENSITIVITY",
+      "formalNow": false,
+      "policyRoute": "P3 board/profile/corporate-action/source bindings; existing field still PROVIDER_UNDECLARED.",
+      "permittedProposal": "Corroboration of56,900 observation, retained SQLite reference only.",
+      "notPermitted": "Invent RAW authority/assume every historical daily bar adjustment method."
+    },
+    {
+      "source": "ISSUER_Q3_VIETSTOCK30OCT_VSDC_CURRENT_SHARE_BRIDGE",
+      "classification": "RESTRICTED_TO_HISTORICAL_SENSITIVITY",
+      "formalNow": false,
+      "policyRoute": "P1/P6 cutoff share/treasury and qualifying disclosure chain.",
+      "permittedProposal": "Explicit2,089,955,445 share assumption with October continuity gap, subject owner choice.",
+      "notPermitted": "Verified unchanged October, independently certified zero treasury movement or historical PIT."
+    },
+    {
+      "source": "FORMAL_QUALIFIED_ISSUER_ROUTE",
+      "classification": "FORMALLY_ADMISSIBLE_UNDER_EXISTING_POLICY_IF_CONDITIONS_MET",
+      "formalNow": false,
+      "policyRoute": "P6 permits qualified issuer/disclosure/verified-PDF accounting verification; P5 availability/publication assessment plus owner/source-purpose bindings remain mandatory.",
+      "permittedProposal": "Submit exact cash/share facts for qualification using existing route; no policy weakening.",
+      "notPermitted": "Treat official domain or owner approval of scoring code as admission of each fact."
+    },
+    {
+      "source": "ADJUSTED_PRICE_HISTORICAL_RETURN_PIT",
+      "classification": "NOT_QUALIFIED",
+      "formalNow": false,
+      "policyRoute": "P1/P3/P4/P5/P6",
+      "permittedProposal": "Retain raw fields/provenance only; exclude derived adjusted-return/PIT conclusions.",
+      "notPermitted": "Use as accepted total-return/backtesting input."
+    }
+  ],
+  "unresolvedMaterialBlockers": [
+    {
+      "id": "B1",
+      "use": "UNQUALIFIED_CUTOFF_PER_SHARE_VALUATION",
+      "issue": "Issuer/HOSE/VSDC terms or dated attestation binding issued, treasury and trading-outstanding shares through2026-10-30, including effective dates/changes; nulls must not become zero.",
+      "resolution": "Dated issuer/HOSE/VSDC cutoff bridge or owner-selected explicit sensitivity restriction, never invent verified movement0."
+    },
+    {
+      "id": "B2",
+      "use": "FORMAL_SCORING_OR_PRODUCTION_SOURCE_USE",
+      "issue": "Per-source/per-fact purpose, semantic and publication/availability binding plus authorized owner acceptance under existing policy.",
+      "resolution": "Owner review of matrix; approval does not cure missing documentary B1 or time proofs."
+    }
+  ],
+  "excludedUseLimitations": [
+    "Adjusted methodology unavailable: adjusted-price use NOT_QUALIFIED, not a raw-close blocker.",
+    "Three missing sessions: source coverage limitation for complete-series/TR/backtesting, not cutoff spot-price blocker.",
+    "PIT/backtesting not qualified: no historical availability backdating.",
+    "Volume disagreements preserved in prior review; no volume input used in current valuation, not a material valuation blocker."
+  ],
+  "noPercentage": true,
+  "productionPromotion": false,
+  "ownerApproval": null
+}
