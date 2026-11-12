@@ -1,3 +1,5 @@
+> S4-R2 successor: [single final owner source-admission decision sheet](../../vnm-s4-source-admission/2026-11-12/OWNER_DECISION_SHEET.md) now supplies exact17-fact purpose/time decisions and only F1/F2 formal-contract gaps. Research is READY_FOR_OWNER_ADMISSION; owner approval remains null. S4-R1/S4-R4 stay closed. Earlier proposals below are preserved history.
+
 # VNM S4 — owner / CIO decision sheet
 
 Source admission remains a proposal, **approval: null**. Owner has now decided the raw-close selection/exclusion scope in [the12Nov receipt](../../governance/CAFEF_RAW_CLOSE_ONLY_OWNER_DECISION_2026-11-12.json); O1's raw-close research eligibility and O4's adjusted exclusion are resolved in that scope. O3 is now resolved by the explicit share-count carry-forward decision and inventory review; other fact/source/PIT/production approvals are not implied. Reviewed commit `f8857c4aef7701f40933207f175a29f0de351483`; cutoff30Oct2026. Exact source/semantic/policy bindings: [TARGETED_FINDINGS.json](TARGETED_FINDINGS.json). No percentage, score or investment decision.

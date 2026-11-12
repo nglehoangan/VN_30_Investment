@@ -581,10 +581,10 @@
     },
     {
       "decision": "S4_OVERALL",
-      "result": "PARTIALLY_CLOSED_RESEARCH_ONLY_CIO_REVIEW",
+      "result": "READY_FOR_OWNER_RESEARCH_ADMISSION_FORMAL_CONSUMPTION_NOT_CLOSED_CIO_REVIEW_PENDING",
       "evidence": "Raw close and reviewed cash terms remain research-qualified; cutoff shares now carried forward under owner-approved documentary rule; adjusted series excluded and TR/PIT qualification separate.",
       "mandatoryEvidence": "Fit evidence to declared use; retain formal source/time qualification and denominator requirements for requested valuation use.",
-      "remainingIssue": "Scope-specific formal source/time-purpose admission remains. S4-R1 closed by owner-approved carry-forward; S4-R4 closed by scope exclusion. Incomplete disclosure coverage remains explicit.",
+      "remainingIssue": "Owner admission of exact17 facts for retrospective research remains unrecorded. Only F1 CafeF executable capability/session-purpose/replay binding and F2 cash/share publication-availability/formal-run time bindings prevent governed consumption; see final S4-R2 proposal. S4-R1/S4-R4 remain closed.",
       "materiality": "Material for unrestricted/formal valuation; does not negate research-qualified raw close/cash terms.",
       "policy": [
         "P1",
@@ -595,7 +595,7 @@
         "P7"
       ],
       "approvedPolicyRequirement": "No cross-use-case veto: missing adjustment methodology/gap sessions do not automatically invalidate the supported raw spot close. No source authority is self-approved.",
-      "blocksCurrentVnmValuation": "FORMAL_UNCONDITIONAL_USE_PENDING; LIMITED_RESEARCH_INPUTS_AVAILABLE"
+      "blocksCurrentVnmValuation": "NO_MISSING_ECONOMIC_EVIDENCE_FOR_BOUNDED_RETROSPECTIVE_RESEARCH; OWNER_ADMISSION_PENDING; FORMAL_CONSUMPTION_F1_F2_ONLY"
     }
   ],
   "pointInTime": {
@@ -669,10 +669,28 @@
   ],
   "unresolvedMaterialBlockers": [
     {
-      "id": "B2",
-      "use": "FORMAL_SCORING_OR_PRODUCTION_SOURCE_USE",
-      "issue": "Per-source/per-fact purpose, semantic and publication/availability binding plus authorized owner acceptance under existing policy.",
-      "resolution": "Owner review of exact source/fact/purpose/time qualification; carry-forward closes bounded denominator selection but does not establish publication/availability or source authority."
+      "id": "F1",
+      "use": "FORMAL_VALUATION_CONSUMPTION_EXISTING_MARKET_BOUNDARY",
+      "issue": "No independently accepted CafeF raw-close capability/market record is bound at trusted composition for this request and VALUATION purpose. The existing field normalizer is not a QualifiedMarketAdapter registration. Exact source-request approval, 30Oct dated HOSE session/observation-time policy and replay acceptance pins are absent.",
+      "mandatoryRules": [
+        "MARKET_AUTHORITY:approve INDEPENDENT_APPROVAL_REQUIRED",
+        "MARKET_AUTHORITY:adapter NO_QUALIFIED_REAL_SOURCE_ADAPTER",
+        "MARKET_AUTHORITY:replayCapability NORMALIZATION_REPLAY_MISMATCH",
+        "MARKET_LIFECYCLE:acceptMarket",
+        "MARKET_VALIDATION:OBSERVATION_TIME"
+      ],
+      "decisionReference": "docs/fundamental-data-engine/vnm-s4-source-admission/2026-11-12/ADMISSION_DECISIONS.json#/remainingRequirements/0"
+    },
+    {
+      "id": "F2",
+      "use": "FORMAL_VALUATION_CONSUMPTION_EXISTING_EVIDENCE_CONTRACT",
+      "issue": "No qualified Evidence time/run binding exists for the15 cash components and carried-forward shares. Eight components already have explicit retained VSDC cross-check update dates (listed below), so those dates are not missing and need not be rediscovered: their source-role/publication/availability assessment and formal binding remain absent. For the other seven cash components and Q3 selected PDF, original publication date/time is not established by the reviewed bindings; document dates and Q3 mirror update31Oct are distinct. A verified DATE_ONLY assessment is permitted instead of an exact timestamp.",
+      "mandatoryRules": [
+        "TIME:validateTime FUTURE_OR_INVALID_EVIDENCE (legacy path)",
+        "TIME:validateTime VERIFIED_PUBLICATION_REQUIRED, INVALID_DATE_ONLY_PUBLICATION, INVALID_OPERATIONAL_KNOWLEDGE (canonical alternative)",
+        "PUBLICATION_POLICY:mirror listing dates are not automatically issuer publication dates"
+      ],
+      "decisionReference": "docs/fundamental-data-engine/vnm-s4-source-admission/2026-11-12/ADMISSION_DECISIONS.json#/remainingRequirements/1"
     }
   ],
   "excludedUseLimitations": [
@@ -702,5 +720,15 @@
     "ownerPolicy": "docs/fundamental-data-engine/governance/SHARE_COUNT_CARRY_FORWARD_OWNER_DECISION_2026-11-12.json",
     "completeNegativeSearch": false,
     "scope": "OWNER_APPROVED_RETROSPECTIVE_VALUATION_DENOMINATOR; NO_SOURCE_ADMISSION_OR_PIT_GRANT"
+  },
+  "S4-R2": {
+    "researchAdmission": "READY_FOR_OWNER_ADMISSION",
+    "formalConsumption": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+    "historicalPIT": "NOT_QUALIFIED",
+    "closure": "OWNER_REVIEW_PENDING_NOT_SELF_APPROVED",
+    "finalOwnerDecisionSheet": "docs/fundamental-data-engine/vnm-s4-source-admission/2026-11-12/OWNER_DECISION_SHEET.md",
+    "exactFactDecisions": "docs/fundamental-data-engine/vnm-s4-source-admission/2026-11-12/ADMISSION_DECISIONS.json",
+    "supersedesGenericSourceAdmissionBlocker": true,
+    "ownerApproval": null
   }
 }

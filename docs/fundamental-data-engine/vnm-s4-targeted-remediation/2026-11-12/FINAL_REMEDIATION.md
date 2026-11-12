@@ -1,3 +1,5 @@
+> S4-R2 successor: [single final owner source-admission decision sheet](../../vnm-s4-source-admission/2026-11-12/OWNER_DECISION_SHEET.md) now supplies exact17-fact purpose/time decisions and only F1/F2 formal-contract gaps. Research is READY_FOR_OWNER_ADMISSION; owner approval remains null. S4-R1/S4-R4 stay closed. Earlier proposals below are preserved history.
+
 # VNM S4 — final targeted remediation
 
 Owner share-count amendment12Nov2026: **S4-R1=CLOSED_BY_OWNER_APPROVED_CARRY_FORWARD_POLICY**; outstanding **2,089,955,445** carried from Q3 at30Sep through30Oct. [Reviewed-document decision and limitations](../../vnm-s4-share-carry-forward/2026-11-12/FINAL_REVIEW.md). Incomplete coverage is not a complete negative search. This S4-R1 identifier is the owner’s share-count item, separate from the historical section R1 adjustment investigation.

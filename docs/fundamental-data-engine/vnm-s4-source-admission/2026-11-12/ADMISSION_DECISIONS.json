@@ -1,0 +1,1369 @@
+{
+  "schemaVersion": "vnm-s4-final-source-admission-proposal-v1",
+  "baseline": "a693aed5aecb0753b2dea842e26a28f041e2140c",
+  "preparedAt": "2026-11-12T07:55:35.137834+00:00",
+  "economicAsOf": "2026-10-30",
+  "knowledgeScope": "RETROSPECTIVE_REVIEW_AT_ACTUAL_RECORDED_TIMES; NOT_AS_KNOWN_30OCT",
+  "ownerApproval": null,
+  "ownerApprovedAt": null,
+  "productionActivation": false,
+  "sourceAuthorityGranted": false,
+  "S4R1": "CLOSED_BY_OWNER_APPROVED_CARRY_FORWARD_POLICY",
+  "S4R4": "CLOSED_BY_SCOPE_EXCLUSION",
+  "S4R2": {
+    "researchAdmission": "READY_FOR_OWNER_ADMISSION",
+    "formalConsumption": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+    "historicalPIT": "NOT_QUALIFIED",
+    "closure": "OWNER_REVIEW_PENDING_NOT_SELF_APPROVED"
+  },
+  "proposalScope": {
+    "ticker": "VNM",
+    "facts": 17,
+    "cashComponents": 15,
+    "researchPrice": "56900",
+    "researchShares": "2089955445",
+    "cashSelectedTotalPerShare": "18750",
+    "excludes": [
+      "future2500 dividend as received cash",
+      "forecast dividend adoption",
+      "portfolio receipts",
+      "current/live quote",
+      "formal scoring or production activation",
+      "adjusted price calculation"
+    ]
+  },
+  "facts": [
+    {
+      "id": "VNM-RAW-CLOSE-20261030",
+      "kind": "DAILY_UNADJUSTED_CLOSE",
+      "ticker": "VNM",
+      "exchange": "HOSE",
+      "date": "2026-10-30",
+      "value": "56900",
+      "unit": "VND_PER_SHARE",
+      "field": "GiaDongCua",
+      "adjustment": "RAW",
+      "source": {
+        "path": "data/market-history/cafef/VNM.json",
+        "sha256": "d8a40adcbec57691eeeef89164f842a89b077de1a96edbea98cc9fa96f353887",
+        "jsonPointer": "/prices/1196"
+      },
+      "rawRequest": {
+        "path": "data/market-history/cafef/VNM.json",
+        "sha256": "d8a40adcbec57691eeeef89164f842a89b077de1a96edbea98cc9fa96f353887",
+        "jsonPointer": "/requests/0"
+      },
+      "sourceUrl": "https://cafef.vn/du-lieu/Ajax/PageNew/DataHistory/PriceHistory.ashx?ExchangeType=HOSE&Symbol=VNM&StartDate=10%2F30%2F2025&EndDate=10%2F30%2F2026&PageIndex=1&PageSize=30",
+      "receivedAt": "2026-11-11T14:51:03.482649+00:00",
+      "rawResponseSha256": "5dda0fa727222a92bf307de3036ef2e8f58c4f864f5b89a50c5783c050e4a947",
+      "decodedRawPointer": "/Data/Data/0/GiaDongCua",
+      "rawResponsePointer": "/requests/0/rawResponse",
+      "nativeValue": "56.9",
+      "nativeUnit": "THOUSAND_VND_PER_SHARE",
+      "multiplier": "1000",
+      "unitEvidence": {
+        "binding": {
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/CAFEF_UNIT_SOURCE.json",
+          "sha256": "a572d072b208a4bd27d9b73d29147b38acf61aa918772968ad1f1366974e3962"
+        },
+        "url": "https://cafef.vn/du-lieu/lich-su-giao-dich-vnm-1.chn",
+        "receivedAt": "2026-11-11T14:56:02.331337+00:00",
+        "retainedHtml": {
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/cafef-history-page.html",
+          "sha256": "9b2a00f0ddf40eb1f6804c4bfb385c54bac7641555de09f3d981c29eb8a577d9"
+        }
+      },
+      "verifiedPublicationInstant": null,
+      "observedAtInstant": null,
+      "formalCapabilityAcceptance": null,
+      "decisions": {
+        "retrospectiveValuationResearch": {
+          "status": "READY_FOR_OWNER_ADMISSION",
+          "missingEvidence": []
+        },
+        "formalValuationConsumption": {
+          "status": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+          "blockerIds": [
+            "F1"
+          ]
+        },
+        "historicalPointInTimeBacktesting": {
+          "status": "NOT_QUALIFIED",
+          "blockerIds": [
+            "T1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "VNM-CASH-222269",
+      "kind": "GROSS_CASH_DIVIDEND_TERM",
+      "ticker": "VNM",
+      "eventId": 222269,
+      "fiscalYear": 2025,
+      "fiscalPeriodLabel": "Trả cổ tức  đợt 2/2025 bằng tiền, 1,800 đồng/CP",
+      "value": "1850",
+      "unit": "VND_PER_SHARE",
+      "exRightsDate": "2026-06-26",
+      "recordDate": "2026-06-29",
+      "paymentDate": "2026-07-17",
+      "source": {
+        "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/CORPORATE_ACTION_REVIEW.json",
+        "sha256": "5e10134c3e8fbeac9de6b781a50ae1f47c6982f80aaeffb59ed81a71e5f85630",
+        "jsonPointer": "/events/0"
+      },
+      "sourceUrl": "https://static2.vietstock.vn/vietstock/2026/6/19/20260619___vnm____tb_1382_ngay_dang_ky_cuoi_cung_tra_co_tuc_bang_tien.pdf",
+      "pdfEvidence": {
+        "pdfPath": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20260619___vnm____tb_1382_ngay_dang_ky_cuoi_cung_tra_co_tuc_bang_tien.pdf",
+        "page": 1,
+        "href": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20260619___vnm____tb_1382_ngay_dang_ky_cuoi_cung_tra_co_tuc_bang_tien.pdf#page=1",
+        "sha256": "89b217031b46d13e43425d1369e4a07e18a9fa2d43ace035ae795aa8efafd10d"
+      },
+      "downloadReceipt": {
+        "path": "data/manual-download/VNM/events-2016-02-01_2026-12-11/manifest.json",
+        "sha256": "a6aa5505e7fc6f38dbf814e85c502e44229607cac226a594241f93805045a8ef",
+        "jsonPointer": "/files/26"
+      },
+      "receivedAt": "2026-11-11T14:31:52.692561+00:00",
+      "documentDate": "2026-06-18",
+      "verifiedPublicationInstant": null,
+      "verifiedPublicationDate": null,
+      "canonicalEvidenceTime": null,
+      "providerCandidate": "1800",
+      "providerConflict": true,
+      "conflictResolution": "REVIEWED_ISSUER_PDF_TERMS",
+      "officialCrosschecks": [
+        {
+          "url": "https://vsdc.vn/vi/ad1/197038",
+          "receivedAt": "2026-11-11T14:54:19.562500+00:00",
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/official/197038.html",
+          "sha256": "f531302a4a96cacdbb53596f44fb21f5949e33b7ce4a5af6612e2c5f9bbdf46f"
+        }
+      ],
+      "decisions": {
+        "retrospectiveValuationResearch": {
+          "status": "READY_FOR_OWNER_ADMISSION",
+          "missingEvidence": []
+        },
+        "formalValuationConsumption": {
+          "status": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+          "blockerIds": [
+            "F2"
+          ]
+        },
+        "historicalPointInTimeBacktesting": {
+          "status": "NOT_QUALIFIED",
+          "blockerIds": [
+            "T1"
+          ]
+        }
+      },
+      "retainedCrosscheckUpdateClue": {
+        "sourceUrl": "https://vsdc.vn/vi/ad1/197038",
+        "label": "Cập nhật ngày",
+        "date": "2026-06-17",
+        "displayedLocalTime": "16:09:03",
+        "timestampTimezoneQualified": false,
+        "sourceRole": "RETAINED_OFFICIAL_CROSSCHECK_NOT_REDOWNLOAD",
+        "binding": {
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/OFFICIAL_HTML_TEXT.json",
+          "sha256": "de1214b33ac3bd5db0eef606659eda904072f92624d77273a869e1ebea4649b0",
+          "jsonPointer": "/0/text"
+        },
+        "meaning": "An explicit retained VSDC update date exists; do not ask for it again. Publication/availability assessment is not bound to a formal Evidence/run record; this is not proof of the PDF original publication or original historical version."
+      }
+    },
+    {
+      "id": "VNM-CASH-209559",
+      "kind": "GROSS_CASH_DIVIDEND_TERM",
+      "ticker": "VNM",
+      "eventId": 209559,
+      "fiscalYear": 2024,
+      "fiscalPeriodLabel": "Trả cổ tức  đợt 4/2024 bằng tiền, 350 đồng/CP",
+      "value": "350",
+      "unit": "VND_PER_SHARE",
+      "exRightsDate": "2025-10-16",
+      "recordDate": "2025-10-17",
+      "paymentDate": "2025-10-24",
+      "source": {
+        "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/CORPORATE_ACTION_REVIEW.json",
+        "sha256": "5e10134c3e8fbeac9de6b781a50ae1f47c6982f80aaeffb59ed81a71e5f85630",
+        "jsonPointer": "/events/1"
+      },
+      "sourceUrl": "https://static2.vietstock.vn/vietstock/2025/10/7/20251006___vnm___thong_bao_so_1841_ngay_dkcc_tra_co_tuc_bang_tien.pdf",
+      "pdfEvidence": {
+        "pdfPath": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20251006___vnm___thong_bao_so_1841_ngay_dkcc_tra_co_tuc_bang_tien.pdf",
+        "page": 1,
+        "href": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20251006___vnm___thong_bao_so_1841_ngay_dkcc_tra_co_tuc_bang_tien.pdf#page=1",
+        "sha256": "355cb811ea6143b1a923af841e7cacf76ff569575cbe202238a8f7d9a933b6db"
+      },
+      "downloadReceipt": {
+        "path": "data/manual-download/VNM/events-2016-02-01_2026-12-11/manifest.json",
+        "sha256": "a6aa5505e7fc6f38dbf814e85c502e44229607cac226a594241f93805045a8ef",
+        "jsonPointer": "/files/23"
+      },
+      "receivedAt": "2026-11-11T14:31:52.689963+00:00",
+      "documentDate": "2025-10-06",
+      "verifiedPublicationInstant": null,
+      "verifiedPublicationDate": null,
+      "canonicalEvidenceTime": null,
+      "providerCandidate": "350",
+      "providerConflict": false,
+      "conflictResolution": "REVIEWED_PDF_SAME_TERMS",
+      "officialCrosschecks": [
+        {
+          "url": "https://vsdc.vn/vi/ad1/187729",
+          "receivedAt": "2026-11-11T14:54:20.567033+00:00",
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/official/187729.html",
+          "sha256": "442665b18b83334639262e46dc0f5d27f1b0d3a0ab0366f0d418e271cce2eeb0"
+        }
+      ],
+      "decisions": {
+        "retrospectiveValuationResearch": {
+          "status": "READY_FOR_OWNER_ADMISSION",
+          "missingEvidence": []
+        },
+        "formalValuationConsumption": {
+          "status": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+          "blockerIds": [
+            "F2"
+          ]
+        },
+        "historicalPointInTimeBacktesting": {
+          "status": "NOT_QUALIFIED",
+          "blockerIds": [
+            "T1"
+          ]
+        }
+      },
+      "retainedCrosscheckUpdateClue": {
+        "sourceUrl": "https://vsdc.vn/vi/ad1/187729",
+        "label": "Cập nhật ngày",
+        "date": "2025-10-02",
+        "displayedLocalTime": "16:15:38",
+        "timestampTimezoneQualified": false,
+        "sourceRole": "RETAINED_OFFICIAL_CROSSCHECK_NOT_REDOWNLOAD",
+        "binding": {
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/OFFICIAL_HTML_TEXT.json",
+          "sha256": "de1214b33ac3bd5db0eef606659eda904072f92624d77273a869e1ebea4649b0",
+          "jsonPointer": "/3/text"
+        },
+        "meaning": "An explicit retained VSDC update date exists; do not ask for it again. Publication/availability assessment is not bound to a formal Evidence/run record; this is not proof of the PDF original publication or original historical version."
+      }
+    },
+    {
+      "id": "VNM-CASH-209560",
+      "kind": "GROSS_CASH_DIVIDEND_TERM",
+      "ticker": "VNM",
+      "eventId": 209560,
+      "fiscalYear": 2025,
+      "fiscalPeriodLabel": "Trả cổ tức  đợt 1/2025 bằng tiền, 2,500 đồng/CP",
+      "value": "2500",
+      "unit": "VND_PER_SHARE",
+      "exRightsDate": "2025-10-16",
+      "recordDate": "2025-10-17",
+      "paymentDate": "2025-10-24",
+      "source": {
+        "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/CORPORATE_ACTION_REVIEW.json",
+        "sha256": "5e10134c3e8fbeac9de6b781a50ae1f47c6982f80aaeffb59ed81a71e5f85630",
+        "jsonPointer": "/events/2"
+      },
+      "sourceUrl": "https://static2.vietstock.vn/vietstock/2025/10/7/20251006___vnm___thong_bao_so_1841_ngay_dkcc_tra_co_tuc_bang_tien.pdf",
+      "pdfEvidence": {
+        "pdfPath": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20251006___vnm___thong_bao_so_1841_ngay_dkcc_tra_co_tuc_bang_tien.pdf",
+        "page": 1,
+        "href": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20251006___vnm___thong_bao_so_1841_ngay_dkcc_tra_co_tuc_bang_tien.pdf#page=1",
+        "sha256": "355cb811ea6143b1a923af841e7cacf76ff569575cbe202238a8f7d9a933b6db"
+      },
+      "downloadReceipt": {
+        "path": "data/manual-download/VNM/events-2016-02-01_2026-12-11/manifest.json",
+        "sha256": "a6aa5505e7fc6f38dbf814e85c502e44229607cac226a594241f93805045a8ef",
+        "jsonPointer": "/files/23"
+      },
+      "receivedAt": "2026-11-11T14:31:52.689963+00:00",
+      "documentDate": "2025-10-06",
+      "verifiedPublicationInstant": null,
+      "verifiedPublicationDate": null,
+      "canonicalEvidenceTime": null,
+      "providerCandidate": "2500",
+      "providerConflict": false,
+      "conflictResolution": "REVIEWED_PDF_SAME_TERMS",
+      "officialCrosschecks": [
+        {
+          "url": "https://vsdc.vn/vi/ad1/187729",
+          "receivedAt": "2026-11-11T14:54:20.567033+00:00",
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/official/187729.html",
+          "sha256": "442665b18b83334639262e46dc0f5d27f1b0d3a0ab0366f0d418e271cce2eeb0"
+        }
+      ],
+      "decisions": {
+        "retrospectiveValuationResearch": {
+          "status": "READY_FOR_OWNER_ADMISSION",
+          "missingEvidence": []
+        },
+        "formalValuationConsumption": {
+          "status": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+          "blockerIds": [
+            "F2"
+          ]
+        },
+        "historicalPointInTimeBacktesting": {
+          "status": "NOT_QUALIFIED",
+          "blockerIds": [
+            "T1"
+          ]
+        }
+      },
+      "retainedCrosscheckUpdateClue": {
+        "sourceUrl": "https://vsdc.vn/vi/ad1/187729",
+        "label": "Cập nhật ngày",
+        "date": "2025-10-02",
+        "displayedLocalTime": "16:15:38",
+        "timestampTimezoneQualified": false,
+        "sourceRole": "RETAINED_OFFICIAL_CROSSCHECK_NOT_REDOWNLOAD",
+        "binding": {
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/OFFICIAL_HTML_TEXT.json",
+          "sha256": "de1214b33ac3bd5db0eef606659eda904072f92624d77273a869e1ebea4649b0",
+          "jsonPointer": "/3/text"
+        },
+        "meaning": "An explicit retained VSDC update date exists; do not ask for it again. Publication/availability assessment is not bound to a formal Evidence/run record; this is not proof of the PDF original publication or original historical version."
+      }
+    },
+    {
+      "id": "VNM-CASH-201036",
+      "kind": "GROSS_CASH_DIVIDEND_TERM",
+      "ticker": "VNM",
+      "eventId": 201036,
+      "fiscalYear": 2024,
+      "fiscalPeriodLabel": "Trả cổ tức  đợt 3/2024 bằng tiền, 2,000 đồng/CP",
+      "value": "2000",
+      "unit": "VND_PER_SHARE",
+      "exRightsDate": "2025-05-14",
+      "recordDate": "2025-05-15",
+      "paymentDate": "2025-05-23",
+      "source": {
+        "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/CORPORATE_ACTION_REVIEW.json",
+        "sha256": "5e10134c3e8fbeac9de6b781a50ae1f47c6982f80aaeffb59ed81a71e5f85630",
+        "jsonPointer": "/events/3"
+      },
+      "sourceUrl": "https://static2.vietstock.vn/vietstock/2025/5/8/20250508___vnm___thong_bao_so_826_ve_ngay_dang_ky_cuoi_cung_tra_co_tuc.pdf",
+      "pdfEvidence": {
+        "pdfPath": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20250508___vnm___thong_bao_so_826_ve_ngay_dang_ky_cuoi_cung_tra_co_tuc.pdf",
+        "page": 1,
+        "href": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20250508___vnm___thong_bao_so_826_ve_ngay_dang_ky_cuoi_cung_tra_co_tuc.pdf#page=1",
+        "sha256": "ab5e607be73c34540389d9003d2013ce3d336250817fc0131fa4d3bb47c313d9"
+      },
+      "downloadReceipt": {
+        "path": "data/manual-download/VNM/events-2016-02-01_2026-12-11/manifest.json",
+        "sha256": "a6aa5505e7fc6f38dbf814e85c502e44229607cac226a594241f93805045a8ef",
+        "jsonPointer": "/files/24"
+      },
+      "receivedAt": "2026-11-11T14:31:52.691213+00:00",
+      "documentDate": "2025-05-07",
+      "verifiedPublicationInstant": null,
+      "verifiedPublicationDate": null,
+      "canonicalEvidenceTime": null,
+      "providerCandidate": "2000",
+      "providerConflict": false,
+      "conflictResolution": "REVIEWED_PDF_SAME_TERMS",
+      "officialCrosschecks": [
+        {
+          "url": "https://vsdc.vn/vi/ad1/182377",
+          "receivedAt": "2026-11-11T14:54:21.067700+00:00",
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/official/182377.html",
+          "sha256": "4d4af65b19a95120e5fc6ea268f7401520213a8f01fcb65ad79dd630491f7a29"
+        }
+      ],
+      "decisions": {
+        "retrospectiveValuationResearch": {
+          "status": "READY_FOR_OWNER_ADMISSION",
+          "missingEvidence": []
+        },
+        "formalValuationConsumption": {
+          "status": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+          "blockerIds": [
+            "F2"
+          ]
+        },
+        "historicalPointInTimeBacktesting": {
+          "status": "NOT_QUALIFIED",
+          "blockerIds": [
+            "T1"
+          ]
+        }
+      },
+      "retainedCrosscheckUpdateClue": {
+        "sourceUrl": "https://vsdc.vn/vi/ad1/182377",
+        "label": "Cập nhật ngày",
+        "date": "2025-04-29",
+        "displayedLocalTime": "15:27:50",
+        "timestampTimezoneQualified": false,
+        "sourceRole": "RETAINED_OFFICIAL_CROSSCHECK_NOT_REDOWNLOAD",
+        "binding": {
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/OFFICIAL_HTML_TEXT.json",
+          "sha256": "de1214b33ac3bd5db0eef606659eda904072f92624d77273a869e1ebea4649b0",
+          "jsonPointer": "/5/text"
+        },
+        "meaning": "An explicit retained VSDC update date exists; do not ask for it again. Publication/availability assessment is not bound to a formal Evidence/run record; this is not proof of the PDF original publication or original historical version."
+      }
+    },
+    {
+      "id": "VNM-CASH-194066",
+      "kind": "GROSS_CASH_DIVIDEND_TERM",
+      "ticker": "VNM",
+      "eventId": 194066,
+      "fiscalYear": 2024,
+      "fiscalPeriodLabel": "Trả cổ tức  đợt 2/2024 bằng tiền, 500 đồng/CP",
+      "value": "500",
+      "unit": "VND_PER_SHARE",
+      "exRightsDate": "2024-12-26",
+      "recordDate": "2024-12-27",
+      "paymentDate": "2025-02-28",
+      "source": {
+        "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/CORPORATE_ACTION_REVIEW.json",
+        "sha256": "5e10134c3e8fbeac9de6b781a50ae1f47c6982f80aaeffb59ed81a71e5f85630",
+        "jsonPointer": "/events/4"
+      },
+      "sourceUrl": "https://static2.vietstock.vn/vietstock/2024/12/12/20241212_20241212___vnm___thong_bao_ngay_dang_ky_cuoi_cung_chot_ds_tra_ct_dot_2_2024.pdf",
+      "pdfEvidence": {
+        "pdfPath": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20241212_20241212___vnm___thong_bao_ngay_dang_ky_cuoi_cung_chot_ds_tra_ct_dot_2_2024.pdf",
+        "page": 1,
+        "href": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20241212_20241212___vnm___thong_bao_ngay_dang_ky_cuoi_cung_chot_ds_tra_ct_dot_2_2024.pdf#page=1",
+        "sha256": "0e3e665d63f60b4c5e8be419346f01b77fe453a74a69fdfe77c7478def9a94ae"
+      },
+      "downloadReceipt": {
+        "path": "data/manual-download/VNM/events-2016-02-01_2026-12-11/manifest.json",
+        "sha256": "a6aa5505e7fc6f38dbf814e85c502e44229607cac226a594241f93805045a8ef",
+        "jsonPointer": "/files/20"
+      },
+      "receivedAt": "2026-11-11T14:31:52.686898+00:00",
+      "documentDate": "2024-12-11",
+      "verifiedPublicationInstant": null,
+      "verifiedPublicationDate": null,
+      "canonicalEvidenceTime": null,
+      "providerCandidate": "500",
+      "providerConflict": false,
+      "conflictResolution": "REVIEWED_PDF_SAME_TERMS",
+      "officialCrosschecks": [
+        {
+          "url": "https://vsdc.vn/vi/ad1/177392",
+          "receivedAt": "2026-11-11T14:54:21.321507+00:00",
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/official/177392.html",
+          "sha256": "2930491a9e6b7d16527b0733a5f6879d0cb415998022dea84b52d8a9dfa06c7c"
+        }
+      ],
+      "decisions": {
+        "retrospectiveValuationResearch": {
+          "status": "READY_FOR_OWNER_ADMISSION",
+          "missingEvidence": []
+        },
+        "formalValuationConsumption": {
+          "status": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+          "blockerIds": [
+            "F2"
+          ]
+        },
+        "historicalPointInTimeBacktesting": {
+          "status": "NOT_QUALIFIED",
+          "blockerIds": [
+            "T1"
+          ]
+        }
+      },
+      "retainedCrosscheckUpdateClue": {
+        "sourceUrl": "https://vsdc.vn/vi/ad1/177392",
+        "label": "Cập nhật ngày",
+        "date": "2024-12-10",
+        "displayedLocalTime": "08:51:05",
+        "timestampTimezoneQualified": false,
+        "sourceRole": "RETAINED_OFFICIAL_CROSSCHECK_NOT_REDOWNLOAD",
+        "binding": {
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/OFFICIAL_HTML_TEXT.json",
+          "sha256": "de1214b33ac3bd5db0eef606659eda904072f92624d77273a869e1ebea4649b0",
+          "jsonPointer": "/6/text"
+        },
+        "meaning": "An explicit retained VSDC update date exists; do not ask for it again. Publication/availability assessment is not bound to a formal Evidence/run record; this is not proof of the PDF original publication or original historical version."
+      }
+    },
+    {
+      "id": "VNM-CASH-190659",
+      "kind": "GROSS_CASH_DIVIDEND_TERM",
+      "ticker": "VNM",
+      "eventId": 190659,
+      "fiscalYear": 2023,
+      "fiscalPeriodLabel": "Trả cổ tức  đợt 4/2023 bằng tiền, 950 đồng/CP",
+      "value": "950",
+      "unit": "VND_PER_SHARE",
+      "exRightsDate": "2024-09-24",
+      "recordDate": "2024-09-25",
+      "paymentDate": "2024-10-24",
+      "source": {
+        "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/CORPORATE_ACTION_REVIEW.json",
+        "sha256": "5e10134c3e8fbeac9de6b781a50ae1f47c6982f80aaeffb59ed81a71e5f85630",
+        "jsonPointer": "/events/5"
+      },
+      "sourceUrl": "https://static2.vietstock.vn/vietstock/2024/8/30/20240830_20240830___vnm___tb_so_1560_ve_ndkcc_thanh_toan_co_tuc_dot_cuoi_nam_2023_va_tam_ung_co_tuc_dot_1_nam_2024_bang_tien_mat_1.pdf",
+      "pdfEvidence": {
+        "pdfPath": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20240830_20240830___vnm___tb_so_1560_ve_ndkcc_thanh_toan_co_tuc_dot_cuoi_nam_2023_va_tam_ung_co_tuc_dot_1_nam_2024_bang_tien_mat_1.pdf",
+        "page": 1,
+        "href": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20240830_20240830___vnm___tb_so_1560_ve_ndkcc_thanh_toan_co_tuc_dot_cuoi_nam_2023_va_tam_ung_co_tuc_dot_1_nam_2024_bang_tien_mat_1.pdf#page=1",
+        "sha256": "64202d0d976fd8e997806cbea7c9b5a2efa70c3fcd161386f5f74ec6fc41c68d"
+      },
+      "downloadReceipt": {
+        "path": "data/manual-download/VNM/events-2016-02-01_2026-12-11/manifest.json",
+        "sha256": "a6aa5505e7fc6f38dbf814e85c502e44229607cac226a594241f93805045a8ef",
+        "jsonPointer": "/files/22"
+      },
+      "receivedAt": "2026-11-11T14:31:52.688978+00:00",
+      "documentDate": "2024-08-30",
+      "verifiedPublicationInstant": null,
+      "verifiedPublicationDate": null,
+      "canonicalEvidenceTime": null,
+      "providerCandidate": "950",
+      "providerConflict": false,
+      "conflictResolution": "REVIEWED_PDF_SAME_TERMS",
+      "officialCrosschecks": [
+        {
+          "url": "https://vsdc.vn/vi/ad1/174349",
+          "receivedAt": "2026-11-11T14:54:21.570950+00:00",
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/official/174349.html",
+          "sha256": "6227bd48dda61ac0344608ccba898f969aed1685bb1c7d6391fbff776938a038"
+        }
+      ],
+      "decisions": {
+        "retrospectiveValuationResearch": {
+          "status": "READY_FOR_OWNER_ADMISSION",
+          "missingEvidence": []
+        },
+        "formalValuationConsumption": {
+          "status": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+          "blockerIds": [
+            "F2"
+          ]
+        },
+        "historicalPointInTimeBacktesting": {
+          "status": "NOT_QUALIFIED",
+          "blockerIds": [
+            "T1"
+          ]
+        }
+      },
+      "retainedCrosscheckUpdateClue": {
+        "sourceUrl": "https://vsdc.vn/vi/ad1/174349",
+        "label": "Cập nhật ngày",
+        "date": "2024-08-30",
+        "displayedLocalTime": "14:40:30",
+        "timestampTimezoneQualified": false,
+        "sourceRole": "RETAINED_OFFICIAL_CROSSCHECK_NOT_REDOWNLOAD",
+        "binding": {
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/OFFICIAL_HTML_TEXT.json",
+          "sha256": "de1214b33ac3bd5db0eef606659eda904072f92624d77273a869e1ebea4649b0",
+          "jsonPointer": "/7/text"
+        },
+        "meaning": "An explicit retained VSDC update date exists; do not ask for it again. Publication/availability assessment is not bound to a formal Evidence/run record; this is not proof of the PDF original publication or original historical version."
+      }
+    },
+    {
+      "id": "VNM-CASH-190660",
+      "kind": "GROSS_CASH_DIVIDEND_TERM",
+      "ticker": "VNM",
+      "eventId": 190660,
+      "fiscalYear": 2024,
+      "fiscalPeriodLabel": "Trả cổ tức  đợt 1/2024 bằng tiền, 1,500 đồng/CP",
+      "value": "1500",
+      "unit": "VND_PER_SHARE",
+      "exRightsDate": "2024-09-24",
+      "recordDate": "2024-09-25",
+      "paymentDate": "2024-10-24",
+      "source": {
+        "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/CORPORATE_ACTION_REVIEW.json",
+        "sha256": "5e10134c3e8fbeac9de6b781a50ae1f47c6982f80aaeffb59ed81a71e5f85630",
+        "jsonPointer": "/events/6"
+      },
+      "sourceUrl": "https://static2.vietstock.vn/vietstock/2024/8/30/20240830_20240830___vnm___tb_so_1560_ve_ndkcc_thanh_toan_co_tuc_dot_cuoi_nam_2023_va_tam_ung_co_tuc_dot_1_nam_2024_bang_tien_mat_1.pdf",
+      "pdfEvidence": {
+        "pdfPath": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20240830_20240830___vnm___tb_so_1560_ve_ndkcc_thanh_toan_co_tuc_dot_cuoi_nam_2023_va_tam_ung_co_tuc_dot_1_nam_2024_bang_tien_mat_1.pdf",
+        "page": 1,
+        "href": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20240830_20240830___vnm___tb_so_1560_ve_ndkcc_thanh_toan_co_tuc_dot_cuoi_nam_2023_va_tam_ung_co_tuc_dot_1_nam_2024_bang_tien_mat_1.pdf#page=1",
+        "sha256": "64202d0d976fd8e997806cbea7c9b5a2efa70c3fcd161386f5f74ec6fc41c68d"
+      },
+      "downloadReceipt": {
+        "path": "data/manual-download/VNM/events-2016-02-01_2026-12-11/manifest.json",
+        "sha256": "a6aa5505e7fc6f38dbf814e85c502e44229607cac226a594241f93805045a8ef",
+        "jsonPointer": "/files/22"
+      },
+      "receivedAt": "2026-11-11T14:31:52.688978+00:00",
+      "documentDate": "2024-08-30",
+      "verifiedPublicationInstant": null,
+      "verifiedPublicationDate": null,
+      "canonicalEvidenceTime": null,
+      "providerCandidate": "1500",
+      "providerConflict": false,
+      "conflictResolution": "REVIEWED_PDF_SAME_TERMS",
+      "officialCrosschecks": [
+        {
+          "url": "https://vsdc.vn/vi/ad1/174349",
+          "receivedAt": "2026-11-11T14:54:21.570950+00:00",
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/official/174349.html",
+          "sha256": "6227bd48dda61ac0344608ccba898f969aed1685bb1c7d6391fbff776938a038"
+        }
+      ],
+      "decisions": {
+        "retrospectiveValuationResearch": {
+          "status": "READY_FOR_OWNER_ADMISSION",
+          "missingEvidence": []
+        },
+        "formalValuationConsumption": {
+          "status": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+          "blockerIds": [
+            "F2"
+          ]
+        },
+        "historicalPointInTimeBacktesting": {
+          "status": "NOT_QUALIFIED",
+          "blockerIds": [
+            "T1"
+          ]
+        }
+      },
+      "retainedCrosscheckUpdateClue": {
+        "sourceUrl": "https://vsdc.vn/vi/ad1/174349",
+        "label": "Cập nhật ngày",
+        "date": "2024-08-30",
+        "displayedLocalTime": "14:40:30",
+        "timestampTimezoneQualified": false,
+        "sourceRole": "RETAINED_OFFICIAL_CROSSCHECK_NOT_REDOWNLOAD",
+        "binding": {
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/OFFICIAL_HTML_TEXT.json",
+          "sha256": "de1214b33ac3bd5db0eef606659eda904072f92624d77273a869e1ebea4649b0",
+          "jsonPointer": "/7/text"
+        },
+        "meaning": "An explicit retained VSDC update date exists; do not ask for it again. Publication/availability assessment is not bound to a formal Evidence/run record; this is not proof of the PDF original publication or original historical version."
+      }
+    },
+    {
+      "id": "VNM-CASH-181931",
+      "kind": "GROSS_CASH_DIVIDEND_TERM",
+      "ticker": "VNM",
+      "eventId": 181931,
+      "fiscalYear": 2023,
+      "fiscalPeriodLabel": "Trả cổ tức  đợt 3/2023 bằng tiền, 900 đồng/CP",
+      "value": "900",
+      "unit": "VND_PER_SHARE",
+      "exRightsDate": "2024-03-15",
+      "recordDate": "2024-03-18",
+      "paymentDate": "2024-04-26",
+      "source": {
+        "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/CORPORATE_ACTION_REVIEW.json",
+        "sha256": "5e10134c3e8fbeac9de6b781a50ae1f47c6982f80aaeffb59ed81a71e5f85630",
+        "jsonPointer": "/events/7"
+      },
+      "sourceUrl": "https://static2.vietstock.vn/vietstock/2024/3/8/20240308_20240308___vnm___thong_bao_ndkcc_chot_danh_sach_dai_hoi_va_tra_co_tuc_dot_3.pdf",
+      "pdfEvidence": {
+        "pdfPath": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20240308_20240308___vnm___thong_bao_ndkcc_chot_danh_sach_dai_hoi_va_tra_co_tuc_dot_3.pdf",
+        "page": 2,
+        "href": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20240308_20240308___vnm___thong_bao_ndkcc_chot_danh_sach_dai_hoi_va_tra_co_tuc_dot_3.pdf#page=2",
+        "sha256": "f983b90729c40d54324aa8b896c7ed088c5541369e0cd97cdec4eadd7ae94381"
+      },
+      "downloadReceipt": {
+        "path": "data/manual-download/VNM/events-2016-02-01_2026-12-11/manifest.json",
+        "sha256": "a6aa5505e7fc6f38dbf814e85c502e44229607cac226a594241f93805045a8ef",
+        "jsonPointer": "/files/21"
+      },
+      "receivedAt": "2026-11-11T14:31:52.688020+00:00",
+      "documentDate": "2024-03-07",
+      "verifiedPublicationInstant": null,
+      "verifiedPublicationDate": null,
+      "canonicalEvidenceTime": null,
+      "providerCandidate": "900",
+      "providerConflict": false,
+      "conflictResolution": "REVIEWED_PDF_SAME_TERMS",
+      "officialCrosschecks": [
+        {
+          "url": "https://vsdc.vn/vi/ad1/168521",
+          "receivedAt": "2026-11-11T14:54:21.817475+00:00",
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/official/168521.html",
+          "sha256": "6d58e194732cf8d76f9e9f543a18150f62212b584f1508e7717e2b578a6b57af"
+        }
+      ],
+      "decisions": {
+        "retrospectiveValuationResearch": {
+          "status": "READY_FOR_OWNER_ADMISSION",
+          "missingEvidence": []
+        },
+        "formalValuationConsumption": {
+          "status": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+          "blockerIds": [
+            "F2"
+          ]
+        },
+        "historicalPointInTimeBacktesting": {
+          "status": "NOT_QUALIFIED",
+          "blockerIds": [
+            "T1"
+          ]
+        }
+      },
+      "retainedCrosscheckUpdateClue": {
+        "sourceUrl": "https://vsdc.vn/vi/ad1/168521",
+        "label": "Cập nhật ngày",
+        "date": "2024-03-07",
+        "displayedLocalTime": "09:09:02",
+        "timestampTimezoneQualified": false,
+        "sourceRole": "RETAINED_OFFICIAL_CROSSCHECK_NOT_REDOWNLOAD",
+        "binding": {
+          "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/OFFICIAL_HTML_TEXT.json",
+          "sha256": "de1214b33ac3bd5db0eef606659eda904072f92624d77273a869e1ebea4649b0",
+          "jsonPointer": "/8/text"
+        },
+        "meaning": "An explicit retained VSDC update date exists; do not ask for it again. Publication/availability assessment is not bound to a formal Evidence/run record; this is not proof of the PDF original publication or original historical version."
+      }
+    },
+    {
+      "id": "VNM-CASH-178865",
+      "kind": "GROSS_CASH_DIVIDEND_TERM",
+      "ticker": "VNM",
+      "eventId": 178865,
+      "fiscalYear": 2023,
+      "fiscalPeriodLabel": "Trả cổ tức  đợt 2/2023 bằng tiền, 500 đồng/CP",
+      "value": "500",
+      "unit": "VND_PER_SHARE",
+      "exRightsDate": "2023-12-27",
+      "recordDate": "2023-12-28",
+      "paymentDate": "2024-02-28",
+      "source": {
+        "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/CORPORATE_ACTION_REVIEW.json",
+        "sha256": "5e10134c3e8fbeac9de6b781a50ae1f47c6982f80aaeffb59ed81a71e5f85630",
+        "jsonPointer": "/events/8"
+      },
+      "sourceUrl": "https://static2.vietstock.vn/vietstock/2023/12/14/20231214_20231214___vnm___tb_so_1984_ve_ngay_dkcc_tam_ung_co_tuc_dot_2_2023_bang_tien.pdf",
+      "pdfEvidence": {
+        "pdfPath": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20231214_20231214___vnm___tb_so_1984_ve_ngay_dkcc_tam_ung_co_tuc_dot_2_2023_bang_tien.pdf",
+        "page": 1,
+        "href": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20231214_20231214___vnm___tb_so_1984_ve_ngay_dkcc_tam_ung_co_tuc_dot_2_2023_bang_tien.pdf#page=1",
+        "sha256": "3dcba9e2b5655ca3247589111180f36885776e3d6da732a144fc140e8a15ac8b"
+      },
+      "downloadReceipt": {
+        "path": "data/manual-download/VNM/events-2016-02-01_2026-12-11/manifest.json",
+        "sha256": "a6aa5505e7fc6f38dbf814e85c502e44229607cac226a594241f93805045a8ef",
+        "jsonPointer": "/files/18"
+      },
+      "receivedAt": "2026-11-11T14:31:52.684153+00:00",
+      "documentDate": "2023-12-14",
+      "verifiedPublicationInstant": null,
+      "verifiedPublicationDate": null,
+      "canonicalEvidenceTime": null,
+      "providerCandidate": "500",
+      "providerConflict": false,
+      "conflictResolution": "REVIEWED_PDF_SAME_TERMS",
+      "officialCrosschecks": [],
+      "decisions": {
+        "retrospectiveValuationResearch": {
+          "status": "READY_FOR_OWNER_ADMISSION",
+          "missingEvidence": []
+        },
+        "formalValuationConsumption": {
+          "status": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+          "blockerIds": [
+            "F2"
+          ]
+        },
+        "historicalPointInTimeBacktesting": {
+          "status": "NOT_QUALIFIED",
+          "blockerIds": [
+            "T1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "VNM-CASH-173284",
+      "kind": "GROSS_CASH_DIVIDEND_TERM",
+      "ticker": "VNM",
+      "eventId": 173284,
+      "fiscalYear": 2022,
+      "fiscalPeriodLabel": "Trả cổ tức  đợt 3/2022 bằng tiền, 950 đồng/CP",
+      "value": "950",
+      "unit": "VND_PER_SHARE",
+      "exRightsDate": "2023-08-03",
+      "recordDate": "2023-08-04",
+      "paymentDate": "2023-10-05",
+      "source": {
+        "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/CORPORATE_ACTION_REVIEW.json",
+        "sha256": "5e10134c3e8fbeac9de6b781a50ae1f47c6982f80aaeffb59ed81a71e5f85630",
+        "jsonPointer": "/events/9"
+      },
+      "sourceUrl": "https://static2.vietstock.vn/vietstock/2023/7/26/20230726_20230725___vnm___tb_so_1257_ve_ndkcc_tra_co_tuc_con_lai_2022_va_dot_1_2023_bang_tien.pdf",
+      "pdfEvidence": {
+        "pdfPath": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20230726_20230725___vnm___tb_so_1257_ve_ndkcc_tra_co_tuc_con_lai_2022_va_dot_1_2023_bang_tien.pdf",
+        "page": 1,
+        "href": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20230726_20230725___vnm___tb_so_1257_ve_ndkcc_tra_co_tuc_con_lai_2022_va_dot_1_2023_bang_tien.pdf#page=1",
+        "sha256": "d3607f6a0af48feef5d78c2717e4f7d95f30d8f14cac2bd9feadf69ffb859926"
+      },
+      "downloadReceipt": {
+        "path": "data/manual-download/VNM/events-2016-02-01_2026-12-11/manifest.json",
+        "sha256": "a6aa5505e7fc6f38dbf814e85c502e44229607cac226a594241f93805045a8ef",
+        "jsonPointer": "/files/19"
+      },
+      "receivedAt": "2026-11-11T14:31:52.685730+00:00",
+      "documentDate": "2023-07-25",
+      "verifiedPublicationInstant": null,
+      "verifiedPublicationDate": null,
+      "canonicalEvidenceTime": null,
+      "providerCandidate": "950",
+      "providerConflict": false,
+      "conflictResolution": "REVIEWED_PDF_SAME_TERMS",
+      "officialCrosschecks": [],
+      "decisions": {
+        "retrospectiveValuationResearch": {
+          "status": "READY_FOR_OWNER_ADMISSION",
+          "missingEvidence": []
+        },
+        "formalValuationConsumption": {
+          "status": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+          "blockerIds": [
+            "F2"
+          ]
+        },
+        "historicalPointInTimeBacktesting": {
+          "status": "NOT_QUALIFIED",
+          "blockerIds": [
+            "T1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "VNM-CASH-173285",
+      "kind": "GROSS_CASH_DIVIDEND_TERM",
+      "ticker": "VNM",
+      "eventId": 173285,
+      "fiscalYear": 2023,
+      "fiscalPeriodLabel": "Trả cổ tức  đợt 1/2023 bằng tiền, 1,500 đồng/CP",
+      "value": "1500",
+      "unit": "VND_PER_SHARE",
+      "exRightsDate": "2023-08-03",
+      "recordDate": "2023-08-04",
+      "paymentDate": "2023-10-05",
+      "source": {
+        "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/CORPORATE_ACTION_REVIEW.json",
+        "sha256": "5e10134c3e8fbeac9de6b781a50ae1f47c6982f80aaeffb59ed81a71e5f85630",
+        "jsonPointer": "/events/10"
+      },
+      "sourceUrl": "https://static2.vietstock.vn/vietstock/2023/7/26/20230726_20230725___vnm___tb_so_1257_ve_ndkcc_tra_co_tuc_con_lai_2022_va_dot_1_2023_bang_tien.pdf",
+      "pdfEvidence": {
+        "pdfPath": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20230726_20230725___vnm___tb_so_1257_ve_ndkcc_tra_co_tuc_con_lai_2022_va_dot_1_2023_bang_tien.pdf",
+        "page": 1,
+        "href": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20230726_20230725___vnm___tb_so_1257_ve_ndkcc_tra_co_tuc_con_lai_2022_va_dot_1_2023_bang_tien.pdf#page=1",
+        "sha256": "d3607f6a0af48feef5d78c2717e4f7d95f30d8f14cac2bd9feadf69ffb859926"
+      },
+      "downloadReceipt": {
+        "path": "data/manual-download/VNM/events-2016-02-01_2026-12-11/manifest.json",
+        "sha256": "a6aa5505e7fc6f38dbf814e85c502e44229607cac226a594241f93805045a8ef",
+        "jsonPointer": "/files/19"
+      },
+      "receivedAt": "2026-11-11T14:31:52.685730+00:00",
+      "documentDate": "2023-07-25",
+      "verifiedPublicationInstant": null,
+      "verifiedPublicationDate": null,
+      "canonicalEvidenceTime": null,
+      "providerCandidate": "1500",
+      "providerConflict": false,
+      "conflictResolution": "REVIEWED_PDF_SAME_TERMS",
+      "officialCrosschecks": [],
+      "decisions": {
+        "retrospectiveValuationResearch": {
+          "status": "READY_FOR_OWNER_ADMISSION",
+          "missingEvidence": []
+        },
+        "formalValuationConsumption": {
+          "status": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+          "blockerIds": [
+            "F2"
+          ]
+        },
+        "historicalPointInTimeBacktesting": {
+          "status": "NOT_QUALIFIED",
+          "blockerIds": [
+            "T1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "VNM-CASH-163678",
+      "kind": "GROSS_CASH_DIVIDEND_TERM",
+      "ticker": "VNM",
+      "eventId": 163678,
+      "fiscalYear": 2022,
+      "fiscalPeriodLabel": "Trả cổ tức  đợt 2/2022 bằng tiền, 1,400 đồng/CP",
+      "value": "1400",
+      "unit": "VND_PER_SHARE",
+      "exRightsDate": "2022-12-22",
+      "recordDate": "2022-12-23",
+      "paymentDate": "2023-02-28",
+      "source": {
+        "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/CORPORATE_ACTION_REVIEW.json",
+        "sha256": "5e10134c3e8fbeac9de6b781a50ae1f47c6982f80aaeffb59ed81a71e5f85630",
+        "jsonPointer": "/events/11"
+      },
+      "sourceUrl": "https://static2.vietstock.vn/vietstock/2022/12/12/20221212_20221212___vnm___tb_ngay_dang_ky_cc_tra_co_tuc.pdf",
+      "pdfEvidence": {
+        "pdfPath": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20221212_20221212___vnm___tb_ngay_dang_ky_cc_tra_co_tuc.pdf",
+        "page": 1,
+        "href": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20221212_20221212___vnm___tb_ngay_dang_ky_cc_tra_co_tuc.pdf#page=1",
+        "sha256": "74a9ae5861240615fe8dc59c6f2be27aa73f44e4d7728cf1fc9701c0b39a2a92"
+      },
+      "downloadReceipt": {
+        "path": "data/manual-download/VNM/events-2016-02-01_2026-12-11/manifest.json",
+        "sha256": "a6aa5505e7fc6f38dbf814e85c502e44229607cac226a594241f93805045a8ef",
+        "jsonPointer": "/files/16"
+      },
+      "receivedAt": "2026-11-11T14:31:52.679188+00:00",
+      "documentDate": "2022-12-12",
+      "verifiedPublicationInstant": null,
+      "verifiedPublicationDate": null,
+      "canonicalEvidenceTime": null,
+      "providerCandidate": "1400",
+      "providerConflict": false,
+      "conflictResolution": "REVIEWED_PDF_SAME_TERMS",
+      "officialCrosschecks": [],
+      "decisions": {
+        "retrospectiveValuationResearch": {
+          "status": "READY_FOR_OWNER_ADMISSION",
+          "missingEvidence": []
+        },
+        "formalValuationConsumption": {
+          "status": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+          "blockerIds": [
+            "F2"
+          ]
+        },
+        "historicalPointInTimeBacktesting": {
+          "status": "NOT_QUALIFIED",
+          "blockerIds": [
+            "T1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "VNM-CASH-157497",
+      "kind": "GROSS_CASH_DIVIDEND_TERM",
+      "ticker": "VNM",
+      "eventId": 157497,
+      "fiscalYear": 2021,
+      "fiscalPeriodLabel": "Trả cổ tức  đợt 3/2021 bằng tiền, 950 đồng/CP",
+      "value": "950",
+      "unit": "VND_PER_SHARE",
+      "exRightsDate": "2022-07-06",
+      "recordDate": "2022-07-07",
+      "paymentDate": "2022-08-19",
+      "source": {
+        "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/CORPORATE_ACTION_REVIEW.json",
+        "sha256": "5e10134c3e8fbeac9de6b781a50ae1f47c6982f80aaeffb59ed81a71e5f85630",
+        "jsonPointer": "/events/12"
+      },
+      "sourceUrl": "https://static2.vietstock.vn/vietstock/2022/6/24/20220624_20220624___vnm___thong_bao_ndkcc_tra_co_tuc.pdf",
+      "pdfEvidence": {
+        "pdfPath": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20220624_20220624___vnm___thong_bao_ndkcc_tra_co_tuc.pdf",
+        "page": 1,
+        "href": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20220624_20220624___vnm___thong_bao_ndkcc_tra_co_tuc.pdf#page=1",
+        "sha256": "3b03b8b32db7071963c20e3585cea300cdc6a1e741a2b16e8bfdaf1ff7cd2b0b"
+      },
+      "downloadReceipt": {
+        "path": "data/manual-download/VNM/events-2016-02-01_2026-12-11/manifest.json",
+        "sha256": "a6aa5505e7fc6f38dbf814e85c502e44229607cac226a594241f93805045a8ef",
+        "jsonPointer": "/files/17"
+      },
+      "receivedAt": "2026-11-11T14:31:52.681412+00:00",
+      "documentDate": "2022-06-24",
+      "verifiedPublicationInstant": null,
+      "verifiedPublicationDate": null,
+      "canonicalEvidenceTime": null,
+      "providerCandidate": "950",
+      "providerConflict": false,
+      "conflictResolution": "REVIEWED_PDF_SAME_TERMS",
+      "officialCrosschecks": [],
+      "decisions": {
+        "retrospectiveValuationResearch": {
+          "status": "READY_FOR_OWNER_ADMISSION",
+          "missingEvidence": []
+        },
+        "formalValuationConsumption": {
+          "status": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+          "blockerIds": [
+            "F2"
+          ]
+        },
+        "historicalPointInTimeBacktesting": {
+          "status": "NOT_QUALIFIED",
+          "blockerIds": [
+            "T1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "VNM-CASH-157500",
+      "kind": "GROSS_CASH_DIVIDEND_TERM",
+      "ticker": "VNM",
+      "eventId": 157500,
+      "fiscalYear": 2022,
+      "fiscalPeriodLabel": "Trả cổ tức  đợt 1/2022 bằng tiền, 1,500 đồng/CP",
+      "value": "1500",
+      "unit": "VND_PER_SHARE",
+      "exRightsDate": "2022-07-06",
+      "recordDate": "2022-07-07",
+      "paymentDate": "2022-08-19",
+      "source": {
+        "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/CORPORATE_ACTION_REVIEW.json",
+        "sha256": "5e10134c3e8fbeac9de6b781a50ae1f47c6982f80aaeffb59ed81a71e5f85630",
+        "jsonPointer": "/events/13"
+      },
+      "sourceUrl": "https://static2.vietstock.vn/vietstock/2022/6/24/20220624_20220624___vnm___thong_bao_ndkcc_tra_co_tuc.pdf",
+      "pdfEvidence": {
+        "pdfPath": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20220624_20220624___vnm___thong_bao_ndkcc_tra_co_tuc.pdf",
+        "page": 1,
+        "href": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20220624_20220624___vnm___thong_bao_ndkcc_tra_co_tuc.pdf#page=1",
+        "sha256": "3b03b8b32db7071963c20e3585cea300cdc6a1e741a2b16e8bfdaf1ff7cd2b0b"
+      },
+      "downloadReceipt": {
+        "path": "data/manual-download/VNM/events-2016-02-01_2026-12-11/manifest.json",
+        "sha256": "a6aa5505e7fc6f38dbf814e85c502e44229607cac226a594241f93805045a8ef",
+        "jsonPointer": "/files/17"
+      },
+      "receivedAt": "2026-11-11T14:31:52.681412+00:00",
+      "documentDate": "2022-06-24",
+      "verifiedPublicationInstant": null,
+      "verifiedPublicationDate": null,
+      "canonicalEvidenceTime": null,
+      "providerCandidate": "1500",
+      "providerConflict": false,
+      "conflictResolution": "REVIEWED_PDF_SAME_TERMS",
+      "officialCrosschecks": [],
+      "decisions": {
+        "retrospectiveValuationResearch": {
+          "status": "READY_FOR_OWNER_ADMISSION",
+          "missingEvidence": []
+        },
+        "formalValuationConsumption": {
+          "status": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+          "blockerIds": [
+            "F2"
+          ]
+        },
+        "historicalPointInTimeBacktesting": {
+          "status": "NOT_QUALIFIED",
+          "blockerIds": [
+            "T1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "VNM-CASH-147849",
+      "kind": "GROSS_CASH_DIVIDEND_TERM",
+      "ticker": "VNM",
+      "eventId": 147849,
+      "fiscalYear": 2021,
+      "fiscalPeriodLabel": "Trả cổ tức  đợt 2/2021 bằng tiền, 1,400 đồng/CP",
+      "value": "1400",
+      "unit": "VND_PER_SHARE",
+      "exRightsDate": "2022-01-10",
+      "recordDate": "2022-01-11",
+      "paymentDate": "2022-02-25",
+      "source": {
+        "path": "docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/CORPORATE_ACTION_REVIEW.json",
+        "sha256": "5e10134c3e8fbeac9de6b781a50ae1f47c6982f80aaeffb59ed81a71e5f85630",
+        "jsonPointer": "/events/14"
+      },
+      "sourceUrl": "http://static2.vietstock.vn/vietstock/2021/12/27/20211227_20211227 - VNM - TB NDKCC tra co tuc.pdf",
+      "pdfEvidence": {
+        "pdfPath": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20211227_20211227 - VNM - TB NDKCC tra co tuc.pdf",
+        "page": 1,
+        "href": "data/manual-download/VNM/events-2016-02-01_2026-12-11/20211227_20211227 - VNM - TB NDKCC tra co tuc.pdf#page=1",
+        "sha256": "110ef45e9a6a87cba2201dbcdc1d98f8ddd33eb17facba7cd04e89e1a96eedb3"
+      },
+      "downloadReceipt": {
+        "path": "data/manual-download/VNM/events-2016-02-01_2026-12-11/manifest.json",
+        "sha256": "a6aa5505e7fc6f38dbf814e85c502e44229607cac226a594241f93805045a8ef",
+        "jsonPointer": "/files/13"
+      },
+      "receivedAt": "2026-11-11T14:31:51.307612+00:00",
+      "documentDate": "2021-12-24",
+      "verifiedPublicationInstant": null,
+      "verifiedPublicationDate": null,
+      "canonicalEvidenceTime": null,
+      "providerCandidate": "1400",
+      "providerConflict": false,
+      "conflictResolution": "REVIEWED_PDF_SAME_TERMS",
+      "officialCrosschecks": [],
+      "decisions": {
+        "retrospectiveValuationResearch": {
+          "status": "READY_FOR_OWNER_ADMISSION",
+          "missingEvidence": []
+        },
+        "formalValuationConsumption": {
+          "status": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+          "blockerIds": [
+            "F2"
+          ]
+        },
+        "historicalPointInTimeBacktesting": {
+          "status": "NOT_QUALIFIED",
+          "blockerIds": [
+            "T1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "VNM-SHARES-CARRY-20261030",
+      "kind": "OWNER_POLICY_CARRIED_FORWARD_OUTSTANDING_SHARES",
+      "ticker": "VNM",
+      "value": "2089955445",
+      "unit": "SHARES",
+      "date": "2026-10-30",
+      "anchorDate": "2026-09-30",
+      "scope": "CONSOLIDATED",
+      "source": {
+        "path": "docs/fundamental-data-engine/vnm-s4-share-carry-forward/2026-11-12/REVIEW.json",
+        "sha256": "ce006911546934be9a8deb822ffc1e569afad6a5996ffbc401192d358ba34420",
+        "jsonPointer": "/anchor"
+      },
+      "carryForwardDecision": {
+        "path": "docs/fundamental-data-engine/vnm-s4-share-carry-forward/2026-11-12/REVIEW.json",
+        "sha256": "ce006911546934be9a8deb822ffc1e569afad6a5996ffbc401192d358ba34420",
+        "jsonPointer": "/decision"
+      },
+      "reviewedAt": "2026-11-12T07:41:30.977488+00:00",
+      "sourceUrl": "https://static2.vietstock.vn/data/HOSE/2026/BCTC/VN/QUY%203/VNM_Baocaotaichinh_Q3_2026_Soatxet_Hopnhat.pdf?ver=fd0a5cd4",
+      "receivedAt": "2026-11-02T06:32:47.739019+00:00",
+      "pdfEvidence": {
+        "pdfPath": "data/manual-download/VNM/2026-11-02-remediation/565717-Q3_2026.pdf",
+        "sha256": "fd144a9acb3bacbc745cde32d6375471b11b4b005e1919996631b6735d7c8378",
+        "page": 59
+      },
+      "downloadReceipt": {
+        "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-02/vn30-underwriting-v2/acquisition-manifest.json",
+        "sha256": "27b9b7897ec7c11596cbbef12b8f36ba0817aea1398564f1d4c9ba3604b3a4e6",
+        "jsonPointer": "/rows/76"
+      },
+      "mirrorListingUpdatedAt": "2026-10-31T01:29:53.860000+00:00",
+      "statementSignedDate": "2026-10-30",
+      "verifiedPublicationInstant": null,
+      "verifiedPublicationDate": null,
+      "canonicalEvidenceTime": null,
+      "selectionStatus": "CARRIED_FORWARD_NO_CHANGE_FOUND_IN_REVIEWED_DOCUMENTS",
+      "S4R1": "CLOSED_BY_OWNER_APPROVED_CARRY_FORWARD_POLICY",
+      "completeNegativeSearch": false,
+      "coverageLimitationsReference": {
+        "path": "docs/fundamental-data-engine/vnm-s4-share-carry-forward/2026-11-12/REVIEW.json",
+        "sha256": "ce006911546934be9a8deb822ffc1e569afad6a5996ffbc401192d358ba34420",
+        "jsonPointer": "/review/limitations"
+      },
+      "decisions": {
+        "retrospectiveValuationResearch": {
+          "status": "READY_FOR_OWNER_ADMISSION",
+          "missingEvidence": []
+        },
+        "formalValuationConsumption": {
+          "status": "NOT_READY_FOR_GOVERNED_CONSUMPTION",
+          "blockerIds": [
+            "F2"
+          ]
+        },
+        "historicalPointInTimeBacktesting": {
+          "status": "NOT_QUALIFIED",
+          "blockerIds": [
+            "T1"
+          ]
+        }
+      }
+    }
+  ],
+  "policyBindings": [
+    {
+      "id": "RAW_CLOSE",
+      "binding": {
+        "path": "src/domain/market-boundary/cafef-raw-close-policy.json",
+        "sha256": "233f7f5ec06bc8f94ef1aa3849b9d1fdd44547cfb946504c66aff1f3e5b25106"
+      },
+      "exactRule": "eligibleCloseField=GiaDongCua; adjustedPriceSeries=EXCLUDED_BY_OWNER_POLICY; missingRawClose=NOT_QUALIFIED_NO_ADJUSTED_FALLBACK"
+    },
+    {
+      "id": "CARRY_FORWARD",
+      "binding": {
+        "path": "docs/fundamental-data-engine/governance/SHARE_COUNT_CARRY_FORWARD_OWNER_DECISION_2026-11-12.json",
+        "sha256": "2c14207f0269b38226b360820062ef83f1587a9aac4e42e27bd611250a368df9"
+      },
+      "exactRule": "policy and vnmScope; no additional share certificate required"
+    },
+    {
+      "id": "SOURCE_ROLE",
+      "binding": {
+        "path": "src/domain/fundamentals/source-authority.ts",
+        "sha256": "d5733a930660c74f313cd531a09e48d4ed3f242afd0928f32b5a77645693bc79"
+      },
+      "exactRule": "FINANCIAL_SOURCE_POLICY: currentAnalysis, accountingVerificationAuthority, conflictResolution and historicalReplay"
+    },
+    {
+      "id": "TIME",
+      "binding": {
+        "path": "src/domain/scoring/evidence.ts",
+        "sha256": "4664905e9580fac625df6c20cf88bae541bc70182acb5691779a9a64a7800331"
+      },
+      "exactRule": "validateTime lines43–61: legacy FUTURE_OR_INVALID_EVIDENCE or canonical VERIFIED_PUBLICATION_REQUIRED / INVALID_OPERATIONAL_KNOWLEDGE; DATE_ONLY permitted"
+    },
+    {
+      "id": "MARKET_AUTHORITY",
+      "binding": {
+        "path": "src/infrastructure/market-boundary-authority.ts",
+        "sha256": "5be1604823a9c108c06e14cb1b9d0a038b370b9e4217f063229b353b5acd472a"
+      },
+      "exactRule": "approve lines30–31, adapter lines33–35, replayCapability lines44–51, replayMarket lines53–56"
+    },
+    {
+      "id": "MARKET_LIFECYCLE",
+      "binding": {
+        "path": "src/application/market-boundary/lifecycle.ts",
+        "sha256": "b2f94591f391dd3a7eceabd7842e483077911320f318ca14856e3a8caf4fa13d"
+      },
+      "exactRule": "qualifyCapability, acceptMarket and validateAnalysisForConsumption"
+    },
+    {
+      "id": "MARKET_VALIDATION",
+      "binding": {
+        "path": "src/domain/market-boundary/validation.ts",
+        "sha256": "420cf4eeace8a4416654ad86f103692165c4cea6e8f1309eb3fb7e1652bc1d9b"
+      },
+      "exactRule": "CAPABILITY and MARKET: source/semantics/purpose/session/time/lineage checks"
+    },
+    {
+      "id": "PUBLICATION_POLICY",
+      "binding": {
+        "path": "docs/fundamental-data-engine/VIETSTOCK_ONLY_SOURCE_POLICY.md",
+        "sha256": "4d775364aba076596b3c16564a3664f3c41088db3c01da61a1f63f005b58472b"
+      },
+      "exactRule": "Coverage distinguishes retained-document coverage, original-publication evidence and formal admission; mirror listing dates are not automatically issuer publication dates"
+    },
+    {
+      "id": "PRIOR_OWNER_SCOPE",
+      "binding": {
+        "path": "docs/fundamental-data-engine/evidence/2026-10-29-approved-authority-activation/OWNER_APPROVAL_RECEIPT.json",
+        "sha256": "1e25261c0e867613c2abfbc3c99c5ef03d299fb7f5702ef18883a93ded07c890"
+      },
+      "exactRule": "approvalScope=SCORING_EXECUTABLE_PRODUCTION; excluded includes market/data admission"
+    }
+  ],
+  "remainingRequirements": [
+    {
+      "id": "F1",
+      "use": "FORMAL_VALUATION_CONSUMPTION_EXISTING_MARKET_BOUNDARY",
+      "factIds": [
+        "VNM-RAW-CLOSE-20261030"
+      ],
+      "missing": "No independently accepted CafeF raw-close capability/market record is bound at trusted composition for this request and VALUATION purpose. The existing field normalizer is not a QualifiedMarketAdapter registration. Exact source-request approval, 30Oct dated HOSE session/observation-time policy and replay acceptance pins are absent.",
+      "evidence": "app/server/tcbs-boundary-services.ts supplies only createTcbsEodAdapter. src/domain/market-boundary/cafef-raw-close.ts provides a pure field normalizer, not an accepted capability or source authority. The17-row proposal is not a sealed MARKET record.",
+      "mandatoryRules": [
+        "MARKET_AUTHORITY:approve INDEPENDENT_APPROVAL_REQUIRED",
+        "MARKET_AUTHORITY:adapter NO_QUALIFIED_REAL_SOURCE_ADAPTER",
+        "MARKET_AUTHORITY:replayCapability NORMALIZATION_REPLAY_MISMATCH",
+        "MARKET_LIFECYCLE:acceptMarket",
+        "MARKET_VALIDATION:OBSERVATION_TIME"
+      ],
+      "existingEvidenceSufficientFor": "Retrospective raw daily-close research; value, date, identity, exact request/body hash, unit declaration and owner field selection already present.",
+      "closureNeeded": "A qualified acceptance/binding under existing boundary contracts using retained raw request; no historical retrieval, adjusted methodology, complete series or new source discovery required by this assessment.",
+      "newEconomicFactRequested": false
+    },
+    {
+      "id": "F2",
+      "use": "FORMAL_VALUATION_CONSUMPTION_EXISTING_EVIDENCE_CONTRACT",
+      "factIds": [
+        "VNM-CASH-222269",
+        "VNM-CASH-209559",
+        "VNM-CASH-209560",
+        "VNM-CASH-201036",
+        "VNM-CASH-194066",
+        "VNM-CASH-190659",
+        "VNM-CASH-190660",
+        "VNM-CASH-181931",
+        "VNM-CASH-178865",
+        "VNM-CASH-173284",
+        "VNM-CASH-173285",
+        "VNM-CASH-163678",
+        "VNM-CASH-157497",
+        "VNM-CASH-157500",
+        "VNM-CASH-147849",
+        "VNM-SHARES-CARRY-20261030"
+      ],
+      "missing": "No qualified Evidence time/run binding exists for the15 cash components and carried-forward shares. Eight components already have explicit retained VSDC cross-check update dates (listed below), so those dates are not missing and need not be rediscovered: their source-role/publication/availability assessment and formal binding remain absent. For the other seven cash components and Q3 selected PDF, original publication date/time is not established by the reviewed bindings; document dates and Q3 mirror update31Oct are distinct. A verified DATE_ONLY assessment is permitted instead of an exact timestamp.",
+      "mandatoryRules": [
+        "TIME:validateTime FUTURE_OR_INVALID_EVIDENCE (legacy path)",
+        "TIME:validateTime VERIFIED_PUBLICATION_REQUIRED, INVALID_DATE_ONLY_PUBLICATION, INVALID_OPERATIONAL_KNOWLEDGE (canonical alternative)",
+        "PUBLICATION_POLICY:mirror listing dates are not automatically issuer publication dates"
+      ],
+      "existingEvidenceSufficientFor": "The specific reviewed economic terms and owner-policy denominator are ready for research admission; no new share certificate or further dividend amount/date reconciliation is requested.",
+      "closureNeeded": "Bind qualified source-role/publication/availability assessments to the16 facts and the actual formal run. Reuse the eight retained official update-date clues; do not request those dates again. If the selected PDF original publication date remains unprovable for the seven listed components/Q3, retain that precise unknown or qualify a permitted corroborating-source route under existing policy. No new price history/share certification or blanket source chain is required.",
+      "temporalScope": "For retrospective formal consumption, original economicAsOf30Oct and actual later review/availability remain distinct. Do not require November evidence to have been received in October. If a run enforces fundamentalCutoff30Oct, these post-cutoff reviewed inputs cannot satisfy it; choose a legitimately governed later-knowledge run, never relabel availability.",
+      "newShareCertificationRequested": false,
+      "existingRetainedUpdateDatesAvailable": [
+        "VNM-CASH-222269",
+        "VNM-CASH-209559",
+        "VNM-CASH-209560",
+        "VNM-CASH-201036",
+        "VNM-CASH-194066",
+        "VNM-CASH-190659",
+        "VNM-CASH-190660",
+        "VNM-CASH-181931"
+      ],
+      "publicationDateNotEstablishedForSelectedPdfVersion": [
+        "VNM-CASH-178865",
+        "VNM-CASH-173284",
+        "VNM-CASH-173285",
+        "VNM-CASH-163678",
+        "VNM-CASH-157497",
+        "VNM-CASH-157500",
+        "VNM-CASH-147849",
+        "VNM-SHARES-CARRY-20261030"
+      ]
+    },
+    {
+      "id": "T1",
+      "use": "HISTORICAL_POINT_IN_TIME_BACKTESTING",
+      "factIds": [
+        "VNM-RAW-CLOSE-20261030",
+        "VNM-CASH-222269",
+        "VNM-CASH-209559",
+        "VNM-CASH-209560",
+        "VNM-CASH-201036",
+        "VNM-CASH-194066",
+        "VNM-CASH-190659",
+        "VNM-CASH-190660",
+        "VNM-CASH-181931",
+        "VNM-CASH-178865",
+        "VNM-CASH-173284",
+        "VNM-CASH-173285",
+        "VNM-CASH-163678",
+        "VNM-CASH-157497",
+        "VNM-CASH-157500",
+        "VNM-CASH-147849",
+        "VNM-SHARES-CARRY-20261030"
+      ],
+      "missing": "No accepted exact historical publication/revision/availability chain for these selected source versions at each backtest decision time. CafeF response received11Nov; PDFs received11Nov; Q3 listing31Oct and receipt2Nov. These retained versions do not establish30Oct operational availability. The12Nov selection/carry-forward decisions cannot be backdated.",
+      "mandatoryRules": [
+        "SOURCE_ROLE:historicalReplay=EXACT_PUBLICATION_AND_REVISION_PROOF_REQUIRED",
+        "TIME:validateTime INVALID_OPERATIONAL_KNOWLEDGE",
+        "src/domain/market-boundary/freshness.ts:PIT_MARKET_UNAVAILABLE / FUTURE_OBSERVATION"
+      ],
+      "closureNeeded": "Keep PIT use NOT_QUALIFIED. No backtest is requested, no historical acquisition or complete price series is required to admit retrospective valuation research.",
+      "blocksRetrospectiveResearch": false
+    }
+  ],
+  "ownerDecisionOptions": [
+    "ADMIT_RETROSPECTIVE_RESEARCH_ONLY",
+    "DEFER"
+  ],
+  "ownerDecisionMeaning": "If owner chooses admission: only the17 pinned facts for retrospective VNM30Oct valuation research, with actual later knowledge and existing limitations. It does not waive F1/F2 or admit PIT/production. No approval is recorded by this proposal."
+}
