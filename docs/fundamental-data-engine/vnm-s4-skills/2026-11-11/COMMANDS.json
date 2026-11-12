@@ -1,0 +1,13 @@
+{
+  "priceBefore": {
+    "command": "python3 /tmp/vnm-s4-price-before.py",
+    "notes": "Temporary wrapper called original update() with clipped year windows; failed TLS before any write; original skill hashes in BASELINE.json."
+  },
+  "priceExact": "python3 skills/fetch-cafef-price-history/scripts/fetch.py --symbol VNM --exchange HOSE --start 2022-01-01 --end 2026-10-30 --retain-request-evidence",
+  "actionsOnePage": "python3 skills/fetch-vietstock-dividend-pdfs/scripts/fetch.py --symbol VNM --start 2022-01-01 --end 2026-10-30",
+  "actionsMultiPage": "python3 skills/fetch-vietstock-dividend-pdfs/scripts/fetch.py --symbol VNM --start 2022-01-01 --end 2026-10-30 --page-size 10",
+  "tests": "python3 docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/test_skills.py",
+  "offlineReview": "python3 docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/build_analysis.py",
+  "emptyRange": "Both skills: --symbol VNM --start 2026-10-24 --end 2026-10-25; price adds --retain-request-evidence",
+  "skillValidators": "PYTHONPATH=/tmp/vnm-s4-deps python3 /Users/nglehoangan/.codex/skills/.system/skill-creator/scripts/quick_validate.py <skill-folder>"
+}

@@ -10,6 +10,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## PDF reading skill — JSON first
 
+- Khi cần lịch sử giá CafeF theo mã và số năm lùi từ hiện tại, dùng `skills/fetch-cafef-price-history/SKILL.md`. Mỗi request tối đa một năm, quét mọi trang, gộp vào `data/market-history/cafef/<TICKER>.json`, bỏ qua phiên trùng và giữ riêng giá đóng cửa/giá điều chỉnh; không tự ghi vào SQLite hoặc dashboard.
+
+- Khi cần PDF cổ tức tiền mặt, cổ tức cổ phiếu, cổ phiếu thưởng hoặc phát hành thêm theo từng mã, dùng `skills/fetch-vietstock-dividend-pdfs/SKILL.md`. Skill lưu link lịch sự kiện Vietstock, hướng dẫn quét tất cả các trang và tải tệp theo phạm vi được yêu cầu; không tự chạy toàn bộ VN30 hay ghi nhận tài khoản.
+
 - For PDF reading, lookup or extraction in this project, read and use `skills/read-pdf-json-first/SKILL.md`.
 - Reuse matching extracted JSON first; if missing, extract the retained PDF. Download only when the required PDF is also absent. Preserve document/period/scope/revision identity and the current direct-PDF workflow.
 
