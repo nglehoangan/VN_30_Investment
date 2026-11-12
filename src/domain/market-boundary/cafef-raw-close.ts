@@ -27,6 +27,24 @@ export interface CafefRawCloseProfile {
   readonly rowPointer: string;
 }
 
+/** Shared research/observation selector. No timestamp is invented for a daily-only row. */
+export function selectCafefRawCloseValue(raw: unknown, profile: Pick<CafefRawCloseProfile,
+  'ticker' | 'tradingDate' | 'sourceUnit' | 'unitEvidence'>): string {
+  requireCafef(raw !== null && typeof raw === 'object' && !Array.isArray(raw), 'ROW_REQUIRED');
+  requireCafef(profile.sourceUnit === policy.sourceUnit && proof(profile.unitEvidence), 'EXPLICIT_UNIT_EVIDENCE_REQUIRED');
+  const row = raw as Record<string, unknown>;
+  requireCafef(row.Symbol === profile.ticker, 'TICKER_MISMATCH');
+  const date = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(String(row.Ngay));
+  requireCafef(date && dateOnly(`${date[3]}-${date[2]}-${date[1]}`) === profile.tradingDate, 'TRADING_DATE_MISMATCH');
+  // No adjusted-field lookup, inferred dividend or fallback is permitted here.
+  const close = row.GiaDongCua;
+  requireCafef((typeof close === 'string' && /^(0|[1-9]\d*)(\.\d+)?$/.test(close)) ||
+    (typeof close === 'number' && Number.isFinite(close)), 'RAW_CLOSE_REQUIRED_NO_FALLBACK');
+  const value = decimal(String(close));
+  requireCafef(value.positive, 'POSITIVE_RAW_CLOSE_REQUIRED');
+  return value.mul(decimal(policy.multiplier)).toString();
+}
+
 /** Calculation boundary only: does not fetch, mutate source data, admit a source or activate runtime. */
 export function normalizeCafefRawClose(raw: unknown, source: RawSource, profile: CafefRawCloseProfile): Observation {
   requireCafef(raw !== null && typeof raw === 'object' && !Array.isArray(raw), 'ROW_REQUIRED');
@@ -38,19 +56,10 @@ export function normalizeCafefRawClose(raw: unknown, source: RawSource, profile:
   requireCafef(/^\/(?:[^/~]|~[01])+(?:\/(?:[^/~]|~[01])+)*$/.test(profile.rowPointer), 'ROW_POINTER_REQUIRED');
   dateOnly(profile.tradingDate); instant(profile.observedAt); instant(source.retrievedAt);
   requireCafef(profile.observedAt <= source.retrievedAt && profile.observedAt.slice(0,10) === profile.tradingDate, 'PRICE_TIME_MISMATCH');
-  const row = raw as Record<string, unknown>;
-  requireCafef(row.Symbol === profile.ticker, 'TICKER_MISMATCH');
-  const date = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(String(row.Ngay));
-  requireCafef(date && dateOnly(`${date[3]}-${date[2]}-${date[1]}`) === profile.tradingDate, 'TRADING_DATE_MISMATCH');
-  // No adjusted-field lookup, inferred dividend or fallback is permitted here.
-  const close = row.GiaDongCua;
-  requireCafef((typeof close === 'string' && /^(0|[1-9]\d*)(\.\d+)?$/.test(close)) ||
-    (typeof close === 'number' && Number.isFinite(close)), 'RAW_CLOSE_REQUIRED_NO_FALLBACK');
-  const value = decimal(String(close));
-  requireCafef(value.positive, 'POSITIVE_RAW_CLOSE_REQUIRED');
+  const value = selectCafefRawCloseValue(raw, profile);
   return Object.freeze({
     securityId: profile.securityId, ticker: profile.ticker, exchange: profile.exchange,
-    value: value.mul(decimal(policy.multiplier)).toString(), currency: 'VND', unit: 'VND_PER_SHARE',
+    value, currency: 'VND', unit: 'VND_PER_SHARE',
     field: 'CLOSE', adjustment: 'RAW', corporateActions: profile.corporateActionPolicy,
     tradingDate: profile.tradingDate, session: profile.session, observedAt: profile.observedAt,
     availableAt: source.retrievedAt, source: {id: source.id, hash: source.hash},

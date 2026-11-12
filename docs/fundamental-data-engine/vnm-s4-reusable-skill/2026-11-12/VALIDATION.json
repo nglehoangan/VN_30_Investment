@@ -1,0 +1,118 @@
+{
+  "status": "PASS_WITH_CONFIGURED_LINT_UNAVAILABLE",
+  "baseline": "d6299899a2145899197b0bc2507e58e0d1277ff8",
+  "typescriptTests": {
+    "passed": 105,
+    "total": 105,
+    "newReusableSkillCases": 32,
+    "existingBoundaryCases": 73,
+    "suites": [
+      {
+        "file": "tests/architecture/cafef-raw-close.test.mjs",
+        "status": "passed",
+        "tests": 1
+      },
+      {
+        "file": "tests/architecture/market-boundary.test.mjs",
+        "status": "passed",
+        "tests": 2
+      },
+      {
+        "file": "tests/unit/cafef-raw-close.test.ts",
+        "status": "passed",
+        "tests": 34
+      },
+      {
+        "file": "tests/unit/market-boundary.test.ts",
+        "status": "passed",
+        "tests": 36
+      },
+      {
+        "file": "tests/unit/vn30-market-price-corporate-actions.test.ts",
+        "status": "passed",
+        "tests": 32
+      }
+    ]
+  },
+  "pythonCarryForward": {
+    "passed": 10,
+    "total": 10
+  },
+  "pythonAcquisition": {
+    "passed": 24,
+    "total": 24
+  },
+  "narrowStrictTypecheck": "PASS; checked-in tsconfig.json",
+  "architectureBoundaries": "PASS:292 modules",
+  "skillSchema": "PASS",
+  "retainedSourceAndDatabaseFilesUnchanged": 45,
+  "deterministicVnmReplay": "PASS:identical EVIDENCE.json and ACCEPTANCE.json hashes",
+  "replayHashes": {
+    "EVIDENCE.json": "f621b617ec2028ee6c985e79d9783c52b0725755baaea2646208df8512cbc451",
+    "ACCEPTANCE.json": "eef418dc9a384f4dc49b4d35752d917c69c083dc35e7e63bd0613b2f062cf7de"
+  },
+  "configuredLint": "NOT_COMPLETED: process blocked reading existing node_modules/.pnpm/globalthis@1.0.4/node_modules/globalthis/implementation.js; stopped after >4minutes. No lint PASS claim.",
+  "fullApplicationSuiteRun": false,
+  "newDownloads": 0,
+  "formalS4Closed": false,
+  "productionActivated": false,
+  "requiredScenarioCoverage": [
+    {
+      "scenario": "Normal raw close",
+      "status": "PASS"
+    },
+    {
+      "scenario": "Missing raw close",
+      "status": "PASS"
+    },
+    {
+      "scenario": "Adjusted exclusion",
+      "status": "PASS"
+    },
+    {
+      "scenario": "Price-unit conversion",
+      "status": "PASS"
+    },
+    {
+      "scenario": "Cash-dividend reconciliation",
+      "status": "PASS"
+    },
+    {
+      "scenario": "Conflicting corporate-action values",
+      "status": "PASS"
+    },
+    {
+      "scenario": "Share-count carry-forward",
+      "status": "PASS"
+    },
+    {
+      "scenario": "Confirmed share-count change including action-to-share consistency",
+      "status": "PASS"
+    },
+    {
+      "scenario": "Incomplete document coverage",
+      "status": "PASS"
+    },
+    {
+      "scenario": "Publication-date-only candidate and actual Evidence contract",
+      "status": "PASS"
+    },
+    {
+      "scenario": "Missing publication evidence",
+      "status": "PASS"
+    },
+    {
+      "scenario": "Retrospective versus PIT availability restrictions",
+      "status": "PASS"
+    },
+    {
+      "scenario": "Deterministic replay with original receipts and hashes",
+      "status": "PASS"
+    },
+    {
+      "scenario": "Cross-ticker isolation using SYN and XYZ",
+      "status": "PASS"
+    }
+  ],
+  "localDocumentLinksVerified": 22
+}

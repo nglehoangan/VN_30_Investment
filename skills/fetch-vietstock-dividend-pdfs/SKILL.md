@@ -5,6 +5,8 @@ description: Tìm và tải PDF sự kiện cổ tức tiền mặt, cổ tức 
 
 # PDF cổ tức và phát hành thêm theo mã
 
+For ticker-scoped S4 price/action/share acceptance using retained sources, use `skills/vn30-market-price-corporate-actions/SKILL.md`. This fetching skill keeps its existing acquisition/storage scope and grants no admission authority.
+
 CLI có thể chạy lại từ gốc dự án:
 
 ```sh

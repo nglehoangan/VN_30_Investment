@@ -1,3 +1,5 @@
+> Successor decision: owner conditionally approved the exact retrospective research proposal; [receipt](../../governance/VNM_S4_CONDITIONAL_RESEARCH_APPROVAL_2026-11-12.json). F1/F2 formal admission remain OPEN. The [reusable-skill residual report and final CIO checklist](../../vnm-s4-reusable-skill/2026-11-12/RESIDUAL_BLOCKERS_AND_CIO_CHECKLIST.md) is current. The original proposal below is preserved; its null approval fields describe preparation before this owner decision.
+
 # VNM S4 — final owner source-admission decision sheet
 
 Baseline: `a693aed5aecb0753b2dea842e26a28f041e2140c`. Economic valuation date: **30Oct2026**. This proposal uses actual later receipt/review times; it does not describe information known at that historical cutoff.

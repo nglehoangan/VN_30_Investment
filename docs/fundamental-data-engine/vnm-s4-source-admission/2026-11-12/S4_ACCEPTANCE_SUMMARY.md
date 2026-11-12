@@ -1,3 +1,5 @@
+> Successor decision: owner conditionally approved the exact retrospective research proposal; [receipt](../../governance/VNM_S4_CONDITIONAL_RESEARCH_APPROVAL_2026-11-12.json). F1/F2 formal admission remain OPEN. The [reusable-skill residual report and final CIO checklist](../../vnm-s4-reusable-skill/2026-11-12/RESIDUAL_BLOCKERS_AND_CIO_CHECKLIST.md) is current. The original proposal below is preserved; its null approval fields describe preparation before this owner decision.
+
 # VNM S4 — final acceptance summary
 
 **Retrospective valuation research: READY_FOR_OWNER_ADMISSION** for CaféF raw close **56,900VND/share at30Oct2026**, the **15 exact reviewed cash-dividend components**, and **2,089,955,445 carried-forward outstanding shares**. Values, dates, units, receipts, hashes and approved selection rules are sufficient for this bounded proposal. No missing economic fact blocks that use; owner admission remains unrecorded.

@@ -5,6 +5,8 @@ description: Lấy lịch sử giá CafeF theo mã và số năm lùi từ hiệ
 
 # Lịch sử giá CafeF theo mã
 
+For ticker-scoped S4 price/action/share acceptance using retained sources, use `skills/vn30-market-price-corporate-actions/SKILL.md`. This fetching skill keeps its existing acquisition/storage scope and grants no admission authority.
+
 **Owner policy 2026-11-12 — RAW CLOSE ONLY:** chỉ `GiaDongCua` được dùng cho investment/valuation/scoring/portfolio/return/backtest. `GiaDieuChinh` giữ nguyên trong raw để audit; không chọn nó hoặc fallback sang nó khi raw close thiếu/không hợp lệ. Không yêu cầu tài liệu phương pháp điều chỉnh CafeF: `ADJUSTED_PRICE_SERIES=EXCLUDED_BY_OWNER_POLICY`, `S4-R4=CLOSED_BY_SCOPE_EXCLUSION`.
 
 Chuẩn hóa cho phép tính dùng `src/domain/market-boundary/cafef-raw-close.ts` và policy JSON cùng thư mục: giá nghìn VND ×1000 khi có evidence đơn vị; thiếu raw close hoặc bằng chứng đơn vị thì không đủ điều kiện. Đọc `docs/fundamental-data-engine/CAFEF_RAW_CLOSE_ONLY_POLICY.md`. Thu thập raw không tự cấp quyền nguồn/production. Historical return/backtest cần raw close cùng register cổ tức/corporate-action đã kiểm chứng riêng; thiếu register/coverage/PIT phù hợp thì trả `NOT_QUALIFIED`, không suy cổ tức từ giá điều chỉnh.

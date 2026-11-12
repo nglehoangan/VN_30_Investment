@@ -10,6 +10,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## PDF reading skill — JSON first
 
+- For reusable ticker/exchange/cutoff S4 evidence review, use `skills/vn30-market-price-corporate-actions/SKILL.md`. Reuse retained sources and existing fetch/normalization/carry-forward contracts. Research approval never closes F1/F2 formal admission or PIT; do not self-promote sources or activate production.
+- Owner conditional VNM research admission is recorded in `docs/fundamental-data-engine/governance/VNM_S4_CONDITIONAL_RESEARCH_APPROVAL_2026-11-12.json` against the exact17-fact baseline proposal. Reuse this approval for its bounded retrospective scope; do not ask again or infer formal source/PIT/production approval. F1/F2 remain open; final reusable-skill package still stops for CIO review.
+
 - Khi cần lịch sử giá CafeF theo mã và số năm lùi từ hiện tại, dùng `skills/fetch-cafef-price-history/SKILL.md`. Mỗi request tối đa một năm, quét mọi trang, gộp vào `data/market-history/cafef/<TICKER>.json`, bỏ qua phiên trùng và giữ riêng giá đóng cửa/giá điều chỉnh; không tự ghi vào SQLite hoặc dashboard.
 
 - Owner policy 2026-11-12: mọi phép tính dùng giá CafeF chỉ được chọn `GiaDongCua`, quy đổi nghìn VND sang VND khi có chứng cứ đơn vị. `GiaDieuChinh` chỉ giữ trong raw để audit, không fallback khi thiếu raw close. Historical return/backtest dùng raw close + cổ tức/corporate actions đã kiểm chứng riêng; thiếu bằng chứng thì `NOT_QUALIFIED`. `ADJUSTED_PRICE_SERIES=EXCLUDED_BY_OWNER_POLICY`, `RAW_CLOSE_CUTOFF=RESEARCH_QUALIFIED`, `S4-R4=CLOSED_BY_SCOPE_EXCLUSION`; không mở lại yêu cầu phương pháp điều chỉnh CafeF. Xem `docs/fundamental-data-engine/CAFEF_RAW_CLOSE_ONLY_POLICY.md`. Không cấp source admission hoặc production activation.
