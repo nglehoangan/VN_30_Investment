@@ -50,6 +50,7 @@ export function availability(original:string):string {
  return new Date(parsed+(fraction.slice(3).split('').some(c=>c!=='0')?1:0)).toISOString();
 }
 const REQUIRED_CODE=[
+ 'src/infrastructure/source-admission/registry.ts','src/domain/fundamentals/standing-source-policy.ts','src/domain/fundamentals/source-authority.ts','src/domain/portfolio/transaction.ts',
  'src/domain/market-boundary/cafef-standing-policy-v1.json','src/domain/market-boundary/cafef-raw-close-policy.json',
  'src/domain/market-boundary/cafef-raw-close.ts','src/domain/market-boundary/contracts.ts','src/domain/market-boundary/validation.ts',
  'src/domain/market-boundary/hose-calendar.ts','src/domain/market-boundary/freshness.ts','src/domain/portfolio/values.ts',

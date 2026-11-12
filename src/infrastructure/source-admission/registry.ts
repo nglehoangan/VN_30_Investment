@@ -22,3 +22,46 @@ export function assertSourceMaterial(root:string,m:SourceMaterial,trust:SourceAd
  if(r.materialHash!==hash||r.decision!=='ACCEPTED'||r.superseded!==false||typeof r.reviewer!=='string'||!r.reviewer.trim()||r.knownAt>knownAt)throw Error('INVALID_INDEPENDENT_ACCEPTANCE');
  return {materialHash:hash,acceptance:pin};
 }
+
+export interface TrustedMaterialRegistration {
+ readonly domain:'F1'|'F2';readonly materialHash:string;readonly reference:SourcePin;
+ /** Identity established by trusted deployment composition, never read from a submitted witness. */
+ readonly reviewer:string;readonly policyVersion:string;
+}
+export interface TrustedCaptureRegistration {readonly rawHash:string;readonly requestHash:string;readonly collectorHash:string;readonly reference:SourcePin}
+export interface StandingRegistryBindings {
+ readonly authorizations:{readonly F1:SourcePin|null;readonly F2:SourcePin|null};
+ readonly materials:readonly TrustedMaterialRegistration[];
+ readonly captures:readonly TrustedCaptureRegistration[];
+}
+/** Small trusted-host binding. An on-disk ACCEPTED/PASS JSON is insufficient unless its exact
+ * receipt hash, reviewer, domain and policy were independently registered by the host. */
+export class PinnedStandingRegistry implements SourceAdmissionTrust {
+ private readonly bindings:StandingRegistryBindings;
+ constructor(private readonly root:string,bindings:StandingRegistryBindings){this.bindings=structuredClone(bindings);}
+ activeAuthorization(){const p=this.bindings.authorizations.F2;return p?{...p}:null;}
+ private accepted(domain:'F1'|'F2',materialHash:string){
+  const registrations=this.bindings.materials.filter(r=>r.domain===domain&&r.materialHash===materialHash);
+  if(registrations.length!==1)return null;
+  const registration=registrations[0],authorization=this.bindings.authorizations[domain];if(!authorization)return null;
+  const expectedPolicy=domain==='F1'?UNIFIED_SOURCE_POLICY.market.policyVersion:UNIFIED_SOURCE_POLICY.financial.version;if(registration.policyVersion!==expectedPolicy)return null;
+  try{
+   const r=JSON.parse(sourceBytes(this.root,registration.reference).toString());instant(r.knownAt);
+   sourceBytes(this.root,authorization);
+   if(!registration.reviewer.trim()||r.contract!=='registered-independent-material-acceptance-v1'||r.domain!==domain||r.decision!=='ACCEPTED'||r.superseded!==false||r.materialHash!==materialHash||r.reviewer!==registration.reviewer||r.policyVersion!==registration.policyVersion||snapshotHash(r.authorization)!==snapshotHash(authorization))return null;
+   return {knownAt:r.knownAt,reference:{...registration.reference}};
+  }catch{return null;}
+ }
+ independentAcceptance(materialHash:string){return this.accepted('F2',materialHash)?.reference??null;}
+ marketTrust(){return {
+  currentAuthorization:()=>{const p=this.bindings.authorizations.F1;return p?{...p}:null;},
+  independentMaterialAcceptance:(materialHash:string)=>{const r=this.accepted('F1',materialHash);return r?{materialHash,...r}:null;},
+  capturedSource:(raw:SourcePin,requestHash:string)=>{
+   const rows=this.bindings.captures.filter(r=>r.rawHash===raw.sha256&&r.requestHash===requestHash);if(rows.length!==1)return null;
+   try{const c=rows[0],r=JSON.parse(sourceBytes(this.root,c.reference).toString());sourceBytes(this.root,raw);
+    if(r.contract!=='registered-retained-capture-handoff-v1'||r.decision!=='ACCEPTED'||r.rawHash!==c.rawHash||r.requestHash!==c.requestHash||r.collectorHash!==c.collectorHash)return null;
+    return {rawHash:c.rawHash,requestHash:c.requestHash,collectorHash:c.collectorHash,origin:'TRUSTED_CAPTURE_HANDOFF' as const};
+   }catch{return null;}
+  },
+ };}
+}

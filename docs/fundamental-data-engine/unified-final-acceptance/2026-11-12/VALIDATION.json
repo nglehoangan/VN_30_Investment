@@ -1,0 +1,172 @@
+{
+  "baseline": "f8224bb28f19ea058d5b72f9f9872e565deaf66b",
+  "typescript": {
+    "status": "PASS",
+    "passed": 232,
+    "failed": 0,
+    "suites": [
+      {
+        "file": "tests/architecture/cafef-raw-close.test.mjs",
+        "passed": 1
+      },
+      {
+        "file": "tests/architecture/market-boundary.test.mjs",
+        "passed": 2
+      },
+      {
+        "file": "tests/integration/cafef-standing-ingest.test.ts",
+        "passed": 26
+      },
+      {
+        "file": "tests/integration/unified-final-acceptance.test.ts",
+        "passed": 12
+      },
+      {
+        "file": "tests/integration/unified-source-admission.test.ts",
+        "passed": 26
+      },
+      {
+        "file": "tests/unit/cafef-raw-close.test.ts",
+        "passed": 34
+      },
+      {
+        "file": "tests/unit/market-boundary.test.ts",
+        "passed": 36
+      },
+      {
+        "file": "tests/unit/scoring-evidence-time.test.ts",
+        "passed": 4
+      },
+      {
+        "file": "tests/unit/structured-certification.test.ts",
+        "passed": 45
+      },
+      {
+        "file": "tests/unit/vn30-market-price-corporate-actions.test.ts",
+        "passed": 46
+      }
+    ],
+    "command": "node node_modules/vitest/vitest.mjs run --config docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/vitest.config.mjs"
+  },
+  "python": {
+    "status": "PASS",
+    "passed": 34,
+    "commands": [
+      "python3 scripts/test-share-count-carry-forward.py",
+      "python3 docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/test_skills.py"
+    ]
+  },
+  "typecheck": {
+    "status": "PASS",
+    "scope": "Scoped tsconfig.json including server/infra/domain transitive imports and integration fixtures"
+  },
+  "prisma": {
+    "status": "PASS",
+    "schemaSha256": "75b7b51aba1022e8b2791ac0630df080707d802643b21d0fc6e0f0d535d7cdae",
+    "command": "DATABASE_URL=file:/tmp/final-acceptance-schema.sqlite node node_modules/prisma/build/index.js validate"
+  },
+  "architecture": {
+    "status": "PASS",
+    "modules": 301
+  },
+  "migrationDryRun": {
+    "status": "PASS",
+    "mode": "SCHEMA_MIGRATION_ON_TEMPORARY_BYTE_COPY_OF_ACTIVE_SQLITE_AND_PRESENT_SIDECARS",
+    "applied": [
+      {
+        "path": "prisma/migrations/202611120001_market_ingest/migration.sql",
+        "sha256": "f5e51c5677a521828a8a47667b951b20485c35c059ac9a9125e527b6cacc68ad"
+      },
+      {
+        "path": "prisma/migrations/202611120002_unified_admission/migration.sql",
+        "sha256": "9998903cd343e2a9b95d87cc0e989b25a2104087b80f9deeff49f4c737f47db3"
+      }
+    ],
+    "alreadyPresent": [
+      "202610190002_market_boundary"
+    ],
+    "integrityCheck": "ok",
+    "foreignKeyViolations": 0,
+    "sourceFingerprints": {
+      "data/vn30.sqlite": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65"
+    },
+    "activeFilesChanged": false,
+    "portfolioTransactionsApplied": false
+  },
+  "governance": {
+    "status": "PASS",
+    "checks": 203,
+    "activeDatabaseChanged": false,
+    "originalEvidenceChanged": false,
+    "selfApprovalGranted": false
+  },
+  "deterministicRealReplay": {
+    "status": "PASS",
+    "outputs": {
+      "U1_MATERIAL_ACCEPTANCE.json": "359946840dbb26e28bf670577b41fa20484d5be99fc8648c32d56c52cb0cd279",
+      "U2_MEMBERSHIP_COVERAGE.json": "24a66637ed1d87dac0bcad5e2dd1ca92fbca2f682b567e13478b406820289585",
+      "U3_SELECTED_FINANCIAL_FACTS.json": "fe26e2acc5f6f7725ed42ace0f0d42f1c8fb9be2e4dd788c9d5be53cdfbc376b",
+      "REAL_ADMISSION_VALIDATION.json": "a149e36191705e22c4f083c5a01e16e847d6c10170eac26a54f1dfa2926acf49",
+      "FINANCIAL_REQUEST.json": "dba6baa2cf036dfdb6dec679c39defd0f4fd3286d560b00e31386f0279238ee2",
+      "NATIVE_CELLS.json": "0958adff594b42e297ed96ee026b558156ec1f52b71dcefc1e46e442bf5182e1",
+      "NATIVE_CELL_REVIEW.json": "bfe343e7d15c65cf405efcc88c20dfe0a7bfa87082f69da86f76230d703c5dcf",
+      "MARKET_PROFILE.json": "7a332aaf0e163be36082f28bd4c816655fb7ffb55708b5400f06370ba2264bdf"
+    }
+  },
+  "negativeControls": {
+    "fakeAuthorization": "PASS registered-receipt fake-authorization case and actual consume rejection in untrusted-PDF integration test",
+    "supersededMaterial": "PASS both registered receipt validation and existing standing ingestion tests",
+    "changedSourceHash": "PASS existing F1/F2 tamper integration tests",
+    "untrustedPdfWitness": "PASS provisional native validation cannot enroll independently or reach storage/consumption; future witness review quarantines",
+    "membershipOutsideCertifiedInterval": "PASS real 30Oct candidate rejected and existing synthetic session/membership tests",
+    "postCutoffEvidence": "PASS actual selected fact current-context validation succeeds; PIT/default and pre-knowledge cutoff reject",
+    "duplicateIngestion": "PASS existing temporary SQLite F1/F2 idempotence tests",
+    "crossTickerLeakage": "PASS F1/F2 domain separation and per-ticker/security integration tests",
+    "revokedConsumption": "PASS existing temporary SQLite record revocation/consumption/reingest tests"
+  },
+  "validationLimitations": [
+    "No actual independent acceptance was supplied; actual real-data formal admissions remain blocked, not passed.",
+    "Accepted persistence/consumption/rollback paths use explicitly synthetic authority fixtures; real sources were run only through validation and the actual unapproved ingest gate.",
+    "Full application suite, full application typecheck, build and lint were not executed."
+  ],
+  "changedImplementationFiles": [
+    "src/infrastructure/source-admission/registry.ts",
+    "src/infrastructure/source-admission/financial.ts",
+    "src/infrastructure/market-boundary/cafef-standing.ts",
+    "tests/integration/unified-source-admission.test.ts",
+    "tests/integration/unified-final-acceptance.test.ts",
+    "scripts/final-f1-f2-acceptance.mjs"
+  ],
+  "supportingPackageFiles": [
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/FINAL_F1_F2_DECISION.md",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/FINANCIAL_REQUEST.json",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/MARKET_PROFILE.json",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/NATIVE_CELLS.json",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/NATIVE_CELL_REVIEW.json",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/PRESERVATION.json",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/REAL_ADMISSION_VALIDATION.json",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/REVIEW_CONTEXT.json",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/RUN_CONTEXT.json",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/SELECTED_INPUT.json",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/TRUSTED_REGISTRY_PENDING.json",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/U1_MATERIAL_ACCEPTANCE.json",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/U2_MEMBERSHIP_COVERAGE.json",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/U3_SELECTED_FINANCIAL_FACTS.json",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/VALIDATION.json",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/tsconfig.json",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/validate-migration.py",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/validate-package.py",
+    "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/vitest.config.mjs"
+  ],
+  "decision": {
+    "F1": "BLOCKED",
+    "F2": "PARTIALLY_CLOSED",
+    "Current Formal Valuation": "NOT_READY",
+    "Historical PIT": "NOT_QUALIFIED",
+    "Production Activation": "NOT_AUTHORIZED"
+  },
+  "productionActivation": false,
+  "sourceReacquired": false,
+  "portfolioOrAccountingMutation": false,
+  "decisionReportSha256": "ac5a8924fae43dda8771716ab20ba1719a212b423626b28c4136610a9080c915"
+}

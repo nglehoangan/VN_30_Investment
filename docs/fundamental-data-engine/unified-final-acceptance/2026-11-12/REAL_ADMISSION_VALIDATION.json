@@ -1,0 +1,40 @@
+{
+  "mode": "REAL_RETAINED_SOURCES_DISPOSABLE_SQLITE_NO_INDEPENDENT_AUTHORITY",
+  "migrationDryRun": "PASS all five reviewed DDL migrations applied in temporary database only",
+  "F1": {
+    "date": "2026-10-16",
+    "value": "57800",
+    "source": {
+      "path": "data/market-history/cafef/VNM.json",
+      "sha256": "d8a40adcbec57691eeeef89164f842a89b077de1a96edbea98cc9fa96f353887"
+    },
+    "replay": "PASS",
+    "actualIngestResult": {
+      "status": "QUARANTINED",
+      "accepted": [],
+      "duplicates": [],
+      "reason": "MARKET_BOUNDARY:CAFEF_INDEPENDENT_MATERIAL_ACCEPTANCE_REQUIRED",
+      "quarantineId": "c4fd585bad5894888c6e293eb0fa6810e7b868e6b6b9898abafcc56f7602be59"
+    },
+    "acceptedRecords": 0,
+    "requestedCutoff": "2026-10-30",
+    "requestedCutoffMembershipReason": "Error: MARKET_BOUNDARY:VN30_MEMBERSHIP_OUTSIDE_VERIFIED_INTERVAL"
+  },
+  "F2": {
+    "selectedFact": "targeted:VNM:TOTAL_ASSETS:2026-06-30",
+    "value": "57451803693875",
+    "raw": {
+      "path": "data/manual-download/VNM/20260730___vnm___bctc_da_soat_xet_q2_2026___hop_nhat.pdf",
+      "sha256": "a6155aa757b320b893a78093b0454473f4a581aead225af4eb4ef1fbd6628561"
+    },
+    "replay": "PASS",
+    "nativePlanValidation": "PASS",
+    "actualEvidenceValidation": "PASS_CURRENT_ONLY",
+    "actualIngestRejection": "Error: INDEPENDENT_SOURCE_MATERIAL_ACCEPTANCE_REQUIRED",
+    "acceptedRecords": 0,
+    "PITRejected": true,
+    "preKnowledgeCutoffRejected": true
+  },
+  "activeDatabaseChanged": false,
+  "independentAcceptanceManufactured": false
+}

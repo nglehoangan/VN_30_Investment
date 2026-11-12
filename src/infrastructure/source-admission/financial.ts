@@ -59,7 +59,7 @@ export function planFinancialIngest(root:string,request:FinancialIngestRequest){
   const doc=input.statements.find(s=>s.documentId===f.sourceDocumentId);
   const sourceRole=f.authority,documentType=doc?.documentType??'STRUCTURED_FINANCIAL_STATEMENT';
   const received=candidate?.retrievedAt??doc?.importedAt;requireValue(received,'ORIGINAL_RECEIPT_REQUIRED');instant(received);
-  const reviewed=verification?.reviewedAt??original.systemKnownAt;instant(reviewed);
+  let reviewed=verification?.reviewedAt??original.systemKnownAt;instant(reviewed);
   // Identity matches exact dimensions, never amounts. Native scaling is rerun with the existing normalizer.
   const matches=cells.filter(c=>c.ticker===f.ticker&&c.itemId===f.itemId&&c.periodStart===f.period.start&&c.periodEnd===f.period.end&&c.scope===f.scope&&c.raw.sha256===f.sourceHash);
   requireValue(matches.length===1,'UNIQUE_RETAINED_NATIVE_EXTRACTION_REQUIRED');const cell=matches[0];
@@ -70,6 +70,7 @@ export function planFinancialIngest(root:string,request:FinancialIngestRequest){
    const l=cell.locator;requireValue(nativeBytes.subarray(0,5).toString()==='%PDF-'&&Number.isInteger(l.page)&&l.page>0&&l.box.length===4&&l.box.every(x=>Number.isFinite(x)&&x>=0&&x<=1)&&l.box[0]<l.box[2]&&l.box[1]<l.box[3],'DIRECT_PDF_CELL_GEOMETRY_REQUIRED');
    requireValue(q.material.sourceBindings.some(p=>p.path===l.review.path&&p.sha256===l.review.sha256),'PDF_REVIEW_NOT_BOUND');
    const review=pointer(JSON.parse(sourceBytes(root,l.review).toString()),l.pointer) as Record<string,unknown>;
+   instant(review.reviewedAt as string);requireValue((review.reviewedAt as string)<=q.knownAt,'FUTURE_PDF_WITNESS_REVIEW');reviewed=[reviewed,review.reviewedAt as string].sort().at(-1)!;
    requireValue(review.status==='REVIEWED'&&review.sourceHash===f.sourceHash&&review.ticker===f.ticker&&review.itemId===f.itemId&&review.nativeValue===cell.nativeValue&&review.nativeUnit===cell.nativeUnit&&review.normalizedValue===f.value&&review.periodStart===f.period.start&&review.periodEnd===f.period.end&&review.scope===f.scope&&review.page===l.page&&hash(review.box)===hash(l.box),'QUALIFIED_PDF_NATIVE_CELL_REQUIRED');
   }
   requireValue(DECLARED_UNITS[cell.nativeUnit]?.[0]===f.unit,'FINANCIAL_UNIT_DIMENSION_MISMATCH');
@@ -100,6 +101,7 @@ export function planFinancialIngest(root:string,request:FinancialIngestRequest){
     const l=cell.locator;requireValue(bytes.subarray(0,5).toString()==='%PDF-'&&Number.isInteger(l.page)&&l.page>0&&l.box.length===4&&l.box.every(x=>Number.isFinite(x)&&x>=0&&x<=1)&&l.box[0]<l.box[2]&&l.box[1]<l.box[3],'ACTION_PDF_GEOMETRY');
     requireValue(q.material.sourceBindings.some(p=>p.path===l.review.path&&p.sha256===l.review.sha256),'ACTION_PDF_REVIEW_NOT_BOUND');
     const review=pointer(JSON.parse(sourceBytes(root,l.review).toString()),l.pointer) as Record<string,unknown>;
+    instant(review.reviewedAt as string);requireValue((review.reviewedAt as string)<=q.knownAt,'FUTURE_ACTION_PDF_WITNESS_REVIEW');
     requireValue(review.status==='REVIEWED'&&review.sourceHash===action.sourceHash&&review.ticker===action.ticker&&review.itemId===action.id&&review.eventId===action.eventId&&review.kind===action.kind&&review.economicDate===action.economicDate&&review.nativeValue===action.nativeValue&&review.nativeUnit===action.nativeUnit&&review.normalizedValue===normalized.value&&review.page===l.page&&hash(review.box)===hash(l.box)&&action.sourcePointer.endsWith('#page='+l.page),'QUALIFIED_ACTION_PDF_NATIVE_CELL_REQUIRED');
    }
    const availableAt=[action.originalReceivedAt,action.reviewedAt,q.ingestedAt].sort().at(-1)!;
