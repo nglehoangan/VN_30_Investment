@@ -17,7 +17,7 @@ export async function ingestCafef(root:string,repo:PrismaBoundaryStore,runId:str
  requireBoundary(candidates.length>0,'EMPTY_INGEST_BATCH');const raw=candidates[0];
  for(const c of candidates){requireBoundary(c.spec.raw.sha256===raw.spec.raw.sha256&&c.spec.raw.path===raw.spec.raw.path,'ATOMIC_BATCH_REQUIRES_SAME_RAW');assertStandingTrust(root,c,trust);}
  const map=new Map(candidates.map(c=>[c.market.id,c]));
- return repo.commitMarketIngest(runId,{hash:raw.spec.raw.sha256,provider:'CAFEF_PRICE_HISTORY',path:raw.spec.raw.path,text:raw.rawText},candidates.map(c=>({...ingestItem(c),provenance:{...c.provenance,captureAdmission:trust.capturedSource(c.spec.raw,c.market.body.sources[0].request.hash)}})),async(store,reader,item)=>{
+ return repo.commitMarketIngest(runId,{hash:raw.spec.raw.sha256,provider:'CAFEF_PRICE_HISTORY',path:raw.spec.raw.path,text:raw.rawText},candidates.map(c=>({...ingestItem(c),provenance:{...c.provenance,captureAdmission:trust.capturedSource(c.spec.raw,c.market.body.sources[0].request.hash),standingAuthority:trust.standingAuthority?.()??null}})),async(store,reader,item)=>{
   const c=map.get(item.market.id)!;await validateCafefLifecycle(root,c,trust,store,reader);
  });
 }

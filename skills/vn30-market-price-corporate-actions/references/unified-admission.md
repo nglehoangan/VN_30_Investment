@@ -1,5 +1,8 @@
 # Unified standing F1/F2 admission
 
+**Successor governance:** [Standing authority per version](standing-authority-version.md) replaces the mandatory independent material-receipt gate for normal ingestion under an approved version. The material-specific instructions below describe the prior contract; source integrity, domain validators and PIT boundaries remain mandatory.
+
+
 Use `docs/fundamental-data-engine/unified-source-admission/2026-11-12/` for the successor current-use policy and combined acceptance report. Owner source-principle approval is recorded for CaféF raw close and standing financial sources. Do not ask again for unchanged source-role approval. Integrity, semantic qualification, individual conflicts, dated membership and original receipts still require actual validation; arbitrary input flags do not supply authority.
 
 `app/server/unified-admission-services.ts` composes the existing market ingest route and the financial admission route. Financial ingestion uses existing `buildHybridAdmission`, `normalizeLexical`, `validateEvidence`, `PrismaFundamentals` and `PrismaFinancialAdmission`; no alternate price calculation or financial store. A trusted host supplies current policy authorization and independent material review references. Raw, extracted-cell and reviewed-action pins are part of the exact qualified bundle. Unchanged source approval is reusable; a new/changed material bundle requires integrity/semantic verification, not another owner source approval.

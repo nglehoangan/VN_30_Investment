@@ -1,0 +1,13 @@
+# Standing authority per version — current U1 route
+
+The owner explicitly replaced mandatory per-material independent acceptance. Current package: `docs/fundamental-data-engine/standing-authority-version/2026-11-12/`. Use `VersionStandingAuthority` for normal F1/F2 ingestion; legacy `PinnedStandingRegistry` and independent-material receipts remain historical compatibility contracts. Never ask for another material receipt for an observation passing an active approved version.
+
+Trusted host composition supplies the immutable version-registry pointer and trusted collector/extractor catalog pins. URLs, uploads, PASS/REVIEWED flags and source labels from a request cannot supply that pointer or enroll capture catalogs. Verify each observation against actual raw hashes, source URL/receipt, issuer/security, schema, period/scope/unit, qualified semantic and native extraction lineage, conflicts, clocks and replay. Catalog updates are controlled collector/extractor data, not new per-material authority approvals. Unknown user input remains evidence to verify.
+
+Source states: APPROVED_STANDING_SOURCE, VERIFIED_NEW_SOURCE_PENDING_AUTHORITY, UNVERIFIED_SOURCE, REJECTED_SOURCE. Only the first can proceed, and it still must pass all domain validators. A new source/adapter/policy version needs the proper authority; never silently update code manifests to make a changed schema pass.
+
+The current F2 adapter validates retained qualified financial-statement/direct-PDF TOTAL_ASSETS mappings. Source-role eligibility does not imply support for every financial concept, API response or corporate action. Unsupported mappings quarantine; do not fabricate success or admit the pending VNM17 proposal. Existing source/native review artifacts can be reused without independent per-document approval. A user-authored PDF witness alone cannot override trusted acquisition/extraction/semantic evidence.
+
+Use existing server ingest/consume functions with the version authority. Raw PDFs larger than a single capture payload are retained in bounded parts in the same existing raw table, with exact full-hash reconstruction. No alternate database or financial calculation. Current Formal Valuation uses actual operational knowledge; current-only evidence rejects PIT. R1/R4 remain closed. Membership evidence remains separately bounded; U2 is not bypassed.
+
+`node scripts/validate-standing-authority.mjs` replays the real-data demonstration into disposable SQLite. Do not use `--initialize-authority` for ordinary ingestion: it is a one-time implementation bootstrap under this owner amendment and refuses to overwrite an existing registry. Keep previous authority versions and original evidence. No production activation. STOP for CIO review.

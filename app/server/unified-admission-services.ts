@@ -2,7 +2,7 @@ import 'server-only';
 import type {PrismaClient} from '@/infrastructure/db/generated/client';
 import type {Clock} from '@/ports/runtime';
 import {systemClock} from '@/infrastructure/runtime';
-import {qualifyFinancialPlan,planFinancialIngest,type FinancialIngestRequest,type FinancialIngestPlan} from '@/infrastructure/source-admission/financial';
+import {qualifyFinancialPlan,type FinancialIngestRequest,type FinancialIngestPlan} from '@/infrastructure/source-admission/financial';
 import {assertSourceMaterial,type SourceAdmissionTrust} from '@/infrastructure/source-admission/registry';
 import {commitFinancialPlan,admissionEvent,assertNotRevoked,verifyStoredFinancialRaw} from '@/infrastructure/repositories/unified-admission';
 import {PrismaFinancialAdmission} from '@/infrastructure/repositories/fundamental-admission';
@@ -29,7 +29,7 @@ export async function consumeStandingFinancial(db:PrismaClient,root:string,id:st
  if(q.ticker!==context.ticker||q.securityId!==context.securityId||q.economicAsOf!==context.economicAsOf||q.knownAt>context.knownAt)throw Error('FINANCIAL_CONSUMPTION_SCOPE');
  await verifyStoredFinancialRaw(db,p);
  assertSourceMaterial(root,q.material,trust,context.knownAt);
- if(hash(planFinancialIngest(root,q))!==hash(p))throw Error('FINANCIAL_STORED_REPLAY_MISMATCH');
+ if(hash(qualifyFinancialPlan(root,q,trust))!==hash(p))throw Error('FINANCIAL_STORED_REPLAY_MISMATCH');
  const conflicts=validateEvidence(p.evidence,q.securityId,q.economicAsOf+'T23:59:59.999Z',context.knownAt,'CURRENT_FORMAL_VALUATION');
  if(conflicts.length||!p.evidence.length||p.quarantine.length)throw Error('UNQUALIFIED_FINANCIAL_CONSUMPTION');
  return {evidence:p.evidence,knownAt:context.knownAt,historicalPitGranted:false,readyForScoring:false};

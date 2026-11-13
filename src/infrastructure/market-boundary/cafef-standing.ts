@@ -26,6 +26,8 @@ export interface StandingProfile {
 }
 export interface IngestSpec {raw:FilePin;ticker:string;exchange:string;date:string;knownAt:string}
 export interface StandingTrust {
+ verifyStandingCandidate?(candidate:Candidate):void;
+ standingAuthority?():{id:string;version:string;registry:FilePin};
  /** Server/host-configured registry, not request parameters or submitted PASS flags. */
  currentAuthorization(): FilePin | null;
  capturedSource(raw:FilePin,requestHash:string): {rawHash:string;requestHash:string;collectorHash:string;origin:'TRUSTED_CAPTURE_HANDOFF'} | null;
@@ -50,6 +52,8 @@ export function availability(original:string):string {
  return new Date(parsed+(fraction.slice(3).split('').some(c=>c!=='0')?1:0)).toISOString();
 }
 const REQUIRED_CODE=[
+ 'src/domain/fundamentals/normalization.ts','src/domain/fundamentals/validation.ts',
+ 'src/infrastructure/source-admission/versioned-authority.ts',
  'src/infrastructure/source-admission/registry.ts','src/domain/fundamentals/standing-source-policy.ts','src/domain/fundamentals/source-authority.ts','src/domain/portfolio/transaction.ts',
  'src/domain/market-boundary/cafef-standing-policy-v1.json','src/domain/market-boundary/cafef-raw-close-policy.json',
  'src/domain/market-boundary/cafef-raw-close.ts','src/domain/market-boundary/contracts.ts','src/domain/market-boundary/validation.ts',
@@ -150,6 +154,7 @@ export function buildCafefCandidate(root:string,profile:StandingProfile,spec:Ing
 export function assertStandingTrust(root:string,c:Candidate,trust:StandingTrust,rawBytes?:Uint8Array) {
  const material=checkProfile(root,c.profile);requireBoundary(material===c.materialHash,'MATERIAL_CHANGED_REQUALIFICATION_REQUIRED');
  requireBoundary(same(trust.currentAuthorization(),c.profile.authorization),'STANDING_AUTHORIZATION_MISSING_OR_SUPERSEDED');
+ if(trust.verifyStandingCandidate){trust.verifyStandingCandidate(c);const replay=rawBytes?buildCafefCandidateFromBytes(root,c.profile,c.spec,rawBytes):buildCafefCandidate(root,c.profile,c.spec);requireBoundary(same(replay,c),'CANDIDATE_REPLAY_MISMATCH');return;}
  const acceptance=trust.independentMaterialAcceptance(material);
  requireBoundary(acceptance&&acceptance.materialHash===material,'CAFEF_INDEPENDENT_MATERIAL_ACCEPTANCE_REQUIRED');
  instant(acceptance.knownAt);requireBoundary(acceptance.knownAt<=c.spec.knownAt,'INDEPENDENT_ACCEPTANCE_NOT_YET_KNOWN');

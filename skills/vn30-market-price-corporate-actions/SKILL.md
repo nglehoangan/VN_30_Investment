@@ -5,6 +5,8 @@ description: Review retained daily raw prices, dividend and capital-action evide
 
 # VN30 market price and corporate actions
 
+For current governed F1/F2 ingestion, use [standing authority per version](references/standing-authority-version.md). The owner-approved amendment supersedes the mandatory per-material independent acceptance gate in older references; do not reopen U1 or request repeated source/material approval under an unchanged approved version.
+
 Accept **ticker, exchange, cutoff and retained source locations**. Work on one ticker per invocation. Use this workflow for S4 evidence/acceptance review; keep fetching, personal account reconciliation and investment scoring in their existing workflows.
 
 Read [the input/output contract](references/contract.md) when preparing or executing an input. For integration with existing skills, read [migration notes](references/migration.md). When governed ingestion/standing source approval is requested, read [the standing-ingest route](references/standing-ingest.md); source-principle authorization is distinct from code, observation and financial-fact admission. For unified F1/F2 current-valuation ingestion, read [the successor unified admission contract](references/unified-admission.md). Repository paths below are relative to its root.

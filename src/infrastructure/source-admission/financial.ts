@@ -9,13 +9,13 @@ import {sourceBytes,assertSourceMaterial,sha,type SourceMaterial,type SourcePin,
 import {exactJson} from '@/infrastructure/market-boundary/exact-json';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
-export interface FinancialIngestRequest {input:SourcePin;extractions:SourcePin;reviewedActions?:SourcePin;material:SourceMaterial;ticker:string;securityId:string;economicAsOf:string;knownAt:string;ingestedAt:string;previousManualSnapshotId:string}
+export interface FinancialIngestRequest {input:SourcePin;extractions:SourcePin;reviewedActions?:SourcePin;material:SourceMaterial;ticker:string;securityId:string;economicAsOf:string;knownAt:string;ingestedAt:string;previousManualSnapshotId:string;sourceInputs?:readonly {rawHash:string;url?:string}[]}
 export function financialIdentity(q:FinancialIngestRequest){const {knownAt:unusedKnown,ingestedAt:unusedIngest,...scope}=q;return hash(scope);}
 export interface FinancialTransform {factId:string;rawHash:string;retainedRawPath:string;nativeValue:string;nativeUnit:string;sourcePointer:string;normalizedValue:string;originalReceivedAt:string;reviewedAt:string;sourceRole:string;documentType:string}
 export const FINANCIAL_CODE_PATHS=[
  'src/domain/fundamentals/standing-actions.ts','src/domain/fundamentals/standing-source-policy.ts','src/domain/fundamentals/hybrid-admission.ts','src/domain/fundamentals/source-authority.ts',
  'src/domain/fundamentals/debt-contract.ts','src/domain/fundamentals/current-qualification.ts','src/domain/fundamentals/securities-contract.ts','src/domain/fundamentals/bank-contract.ts','src/domain/fundamentals/document-qualification.ts','src/domain/fundamentals/validation.ts','src/domain/fundamentals/snapshot.ts','src/domain/scoring/validation.ts','src/domain/portfolio/transaction.ts','src/infrastructure/fundamentals/snapshot-hash.ts','src/domain/fundamentals/normalization.ts','src/domain/fundamentals/structured-certification.ts','src/domain/fundamentals/manual-first.ts','src/domain/scoring/evidence.ts',
- 'src/shared/time.ts','src/domain/portfolio/values.ts','src/infrastructure/source-admission/registry.ts','src/infrastructure/source-admission/financial.ts',
+ 'src/shared/time.ts','src/domain/portfolio/values.ts','src/infrastructure/source-admission/versioned-authority.ts','src/infrastructure/source-admission/registry.ts','src/infrastructure/source-admission/financial.ts',
  'src/infrastructure/repositories/unified-admission.ts','app/server/unified-admission-services.ts',
  'src/infrastructure/repositories/fundamental-admission.ts','src/infrastructure/repositories/fundamentals.ts',
  'prisma/schema.prisma','prisma/migrations/202611120002_unified_admission/migration.sql',
@@ -117,5 +117,5 @@ export function planFinancialIngest(root:string,request:FinancialIngestRequest){
 export type FinancialIngestPlan=ReturnType<typeof planFinancialIngest>;
 export function qualifyFinancialPlan(root:string,q:FinancialIngestRequest,trust:SourceAdmissionTrust){
  assertSourceMaterial(root,q.material,trust,q.knownAt);const first=planFinancialIngest(root,q),second=planFinancialIngest(root,q);
- requireValue(hash(first)===hash(second),'FINANCIAL_REPLAY_MISMATCH');return first;
+ requireValue(hash(first)===hash(second),'FINANCIAL_REPLAY_MISMATCH');if(trust.verifyStandingMaterial){const verified=trust.verifyFinancialPlan!(first);if(verified)return {...first,standingVerification:verified};}return first;
 }

@@ -175,3 +175,8 @@ User-confirmed convention (2026-10-18): use the CafeF display mapping as the def
 
 - Standing CaféF RAW CLOSE and standing financial-source/automated-evidence admission for Current Formal Valuation are owner-authorized principles; do not repeat source approval requests for unchanged approved roles. Successor package: `docs/fundamental-data-engine/unified-source-admission/2026-11-12/`. Reuse retained evidence, qualified mappings, source hashes and existing domain validators. Actual integrity/semantic/time/conflict checks still govern each observation.
 - Current operational availability must use actual receipt/review/ingestion knowledge; it is never historical publication/PIT proof. The prior pending VNM17-fact proposal is not silently approved. No production activation is authorized.
+
+## Owner-approved standing authority per version amendment (2026-11-12)
+
+- Current normal F1/F2 ingestion uses `VersionStandingAuthority` and `docs/fundamental-data-engine/standing-authority-version/2026-11-12/VERSIONED_SOURCE_REGISTRY.json`. The explicit owner amendment replaces mandatory independent per-material receipts; do not request repeated source/material approval inside an unchanged approved version. Legacy material packets remain audit history, not current routine blockers.
+- Trusted acquisition/extraction catalogs and per-observation source/issuer/schema/unit/time/conflict/replay controls remain mandatory. User files/URLs are evidence inputs, never authorization. New authorities or material adapter/policy changes need version requalification. Keep U2 dated membership separate; VNM17 stays pending; R1/R4 remain closed. No production or portfolio activation is authorized.

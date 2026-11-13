@@ -1,5 +1,8 @@
 # Standing CaféF source principle and governed price ingestion
 
+**Successor governance:** [Standing authority per version](standing-authority-version.md) replaces the mandatory independent material-receipt gate for normal ingestion under an approved version. The material-specific instructions below describe the prior contract; source integrity, domain validators and PIT boundaries remain mandatory.
+
+
 Owner authorization and source contract: `docs/fundamental-data-engine/cafef-standing-source/2026-11-12/{STANDING_SOURCE_POLICY.md,SOURCE_POLICY_AUTHORIZATION.json,INGEST_TRANSFORM_CONTRACT.md}`. The exact owner request authorizes a **versioned source-governance principle**. It does not approve arbitrary observations, arbitrary code, F2 financial facts, the prior VNM17-fact proposal or production.
 
 Use `app/server/cafef-standing-services.ts::ingestRetainedCafef` when the task authorizes governed raw-price ingestion. It transforms the existing fetching skill's raw container during ingestion, using existing domain normalizer/lifecycle contracts and the existing SQLite Market Boundary store. The fetching skill itself remains raw-only. Never create a competing price calculation or silently write financial/accounting data.

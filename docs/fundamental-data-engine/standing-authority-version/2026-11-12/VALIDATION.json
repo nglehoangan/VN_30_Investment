@@ -1,0 +1,178 @@
+{
+  "baseline": "889ae7fe9b06ebde6b9f6b3b4b8e7826d0d20012",
+  "authorityRegistry": {
+    "path": "docs/fundamental-data-engine/standing-authority-version/2026-11-12/VERSIONED_SOURCE_REGISTRY.json",
+    "sha256": "8846af07ce6ffc13bc016ada5da635e8f964d8f7a6d1c9b8097c448f26336fea",
+    "version": "owner-standing-authority-v4"
+  },
+  "typescript": {
+    "status": "PASS",
+    "passed": 253,
+    "failed": 0,
+    "suites": [
+      {
+        "file": "tests/architecture/cafef-raw-close.test.mjs",
+        "passed": 1
+      },
+      {
+        "file": "tests/architecture/market-boundary.test.mjs",
+        "passed": 2
+      },
+      {
+        "file": "tests/integration/cafef-standing-ingest.test.ts",
+        "passed": 26
+      },
+      {
+        "file": "tests/integration/standing-authority-version.test.ts",
+        "passed": 21
+      },
+      {
+        "file": "tests/integration/unified-final-acceptance.test.ts",
+        "passed": 12
+      },
+      {
+        "file": "tests/integration/unified-source-admission.test.ts",
+        "passed": 26
+      },
+      {
+        "file": "tests/unit/cafef-raw-close.test.ts",
+        "passed": 34
+      },
+      {
+        "file": "tests/unit/market-boundary.test.ts",
+        "passed": 36
+      },
+      {
+        "file": "tests/unit/scoring-evidence-time.test.ts",
+        "passed": 4
+      },
+      {
+        "file": "tests/unit/structured-certification.test.ts",
+        "passed": 45
+      },
+      {
+        "file": "tests/unit/vn30-market-price-corporate-actions.test.ts",
+        "passed": 46
+      }
+    ],
+    "config": "vitest.config.mjs"
+  },
+  "python": {
+    "status": "PASS",
+    "passed": 34,
+    "commands": [
+      "python3 scripts/test-share-count-carry-forward.py",
+      "python3 docs/fundamental-data-engine/vnm-s4-skills/2026-11-11/test_skills.py"
+    ]
+  },
+  "typecheck": {
+    "status": "PASS",
+    "scope": "work-package tsconfig.json and all transitive dependencies"
+  },
+  "architecture": {
+    "status": "PASS",
+    "modules": 302
+  },
+  "prismaSchema": {
+    "status": "PASS",
+    "sha256": "75b7b51aba1022e8b2791ac0630df080707d802643b21d0fc6e0f0d535d7cdae",
+    "activeSchemaChanged": false
+  },
+  "migrationDryRun": {
+    "status": "PASS",
+    "mode": "SCHEMA_MIGRATION_ON_TEMPORARY_BYTE_COPY_OF_ACTIVE_SQLITE_AND_PRESENT_SIDECARS",
+    "applied": [
+      {
+        "path": "prisma/migrations/202611120001_market_ingest/migration.sql",
+        "sha256": "f5e51c5677a521828a8a47667b951b20485c35c059ac9a9125e527b6cacc68ad"
+      },
+      {
+        "path": "prisma/migrations/202611120002_unified_admission/migration.sql",
+        "sha256": "9998903cd343e2a9b95d87cc0e989b25a2104087b80f9deeff49f4c737f47db3"
+      }
+    ],
+    "alreadyPresent": [
+      "202610190002_market_boundary"
+    ],
+    "integrityCheck": "ok",
+    "foreignKeyViolations": 0,
+    "sourceFingerprints": {
+      "data/vn30.sqlite": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65"
+    },
+    "activeFilesChanged": false,
+    "portfolioTransactionsApplied": false
+  },
+  "governance": {
+    "status": "PASS",
+    "checks": 144,
+    "activeDatabaseChanged": false,
+    "independentApprovalManufactured": false,
+    "sourceEvidenceChanged": false
+  },
+  "deterministicRealReplay": {
+    "status": "PASS",
+    "outputs": {
+      "VERSIONED_SOURCE_REGISTRY.json": "8846af07ce6ffc13bc016ada5da635e8f964d8f7a6d1c9b8097c448f26336fea",
+      "F1_F2_REAL_ADMISSION_VALIDATION.json": "0ced3a00c4cf6862a0dfeec0e935a49ad29148df2caf147b8a8bba9a932fd619",
+      "REAL_FINANCIAL_REQUEST.json": "7d428804a3a4149fee8729396c790345e126c1d74aea93db5ec50cdd456acad1",
+      "REAL_MARKET_PROFILE.json": "066c400228e0aeb67c142d1d60dc70f89881ce031bd466cb2f5c02bcfeea70ba"
+    }
+  },
+  "skillValidation": "PASS existing quick_validate.py with already available PyYAML tooling",
+  "negativeControls": [
+    "Untrusted URL and credential/domain spoofing",
+    "All four source-trust classifications",
+    "Unknown authority schema and native extraction schema",
+    "Material adapter code drift",
+    "Changed raw source hash",
+    "Conflicting financial values within an input",
+    "Conflicting same-key facts across accepted snapshots",
+    "Duplicate ingestion",
+    "Financial and market authority revocation",
+    "Record revocation",
+    "PIT/current separation",
+    "Membership coverage enforcement",
+    "Issuer/security identity spoofing",
+    "Large immutable raw parts and exact full-file replay",
+    "Accepted F1 replay from DB raw after original file removal",
+    "New material hash/file alias without per-material approval"
+  ],
+  "realData": {
+    "F1": "ADMITTED_AND_CONSUMED 2026-10-16 VNM 57800 VND/share",
+    "F2": "ADMITTED_AND_CONSUMED TOTAL_ASSETS 2026-06-30 57451803693875 VND",
+    "counts": {
+      "marketBoundaryRecords": 2,
+      "financialAdmissionRuns": 1,
+      "financialRawCaptures": 8
+    },
+    "independentMaterialReceiptsRequired": false,
+    "independentMaterialReceiptsCreated": 0,
+    "U2RequestedCutoff": "BLOCKED_2026-10-30"
+  },
+  "newSchemaMigrations": [],
+  "wholeApplicationSuiteRun": false,
+  "wholeApplicationTypecheckBuildLintRun": false,
+  "changedImplementationFiles": [
+    "src/infrastructure/source-admission/versioned-authority.ts",
+    "src/infrastructure/source-admission/registry.ts",
+    "src/infrastructure/source-admission/financial.ts",
+    "src/infrastructure/market-boundary/cafef-standing.ts",
+    "src/infrastructure/repositories/unified-admission.ts",
+    "app/server/cafef-standing-services.ts",
+    "app/server/unified-admission-services.ts",
+    "scripts/validate-standing-authority.mjs",
+    "tests/fixtures/version-standing-authority.ts",
+    "tests/integration/standing-authority-version.test.ts"
+  ],
+  "guidanceChanges": [
+    "AGENTS.md",
+    "skills/vn30-market-price-corporate-actions/SKILL.md",
+    "skills/vn30-market-price-corporate-actions/references/standing-authority-version.md",
+    "skills/vn30-market-price-corporate-actions/references/standing-ingest.md",
+    "skills/vn30-market-price-corporate-actions/references/unified-admission.md"
+  ],
+  "liveDatabaseChanged": false,
+  "sourceEvidenceChanged": false,
+  "portfolioMutation": false,
+  "productionActivation": "NOT_AUTHORIZED"
+}
