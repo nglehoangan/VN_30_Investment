@@ -1,0 +1,112 @@
+{
+  "S1CapitalCostGap": "CLOSED_WITH_SUPPORTED_ESTIMATE_RANGE",
+  "VNM17Promoted": false,
+  "basis": "Existing M3 evidence/missing-data rules and owner S1 resolution policy, applied to retained validated annual plus Q3 assessment",
+  "contract": "vnm-s1-acceptance-v1",
+  "formalSourceAdmissionGranted": false,
+  "fullVNMScoringReady": false,
+  "newUserInformationRequired": false,
+  "optionalUnresolved": [
+    {
+      "metric": "incremental ROIC",
+      "scoringEffect": "GQ-INC remains unscored; do not give zero/midpoint or high-return credit",
+      "status": "N/R"
+    },
+    {
+      "metric": "exact TTM ROIC",
+      "scoringEffect": "Use documented annual ranges and period-matched Q3 update for S1 only; no fabricated TTM denominator",
+      "status": "N/R"
+    }
+  ],
+  "ownerRequest": {
+    "meaning": "Instruction to complete acceptance review; not approval of financial observations, scores, source authority or production",
+    "messageId": null,
+    "text": "v\u1eady \u0111\u1ed1i chi\u1ebfu v\u00e0 ho\u00e0n t\u1ea5t \u0111\u1ec3 S1 close"
+  },
+  "productionActivation": "NOT_AUTHORIZED",
+  "requirements": [
+    {
+      "evidence": "docs/fundamental-data-engine/vnm-s1-economic-returns/2026-11-13/S1_RESOLUTION.md",
+      "finding": "Consolidated operating earnings exclude finance/associate income and charge group personnel fund once; tax and identified cost cases explicit, including adverse credit reversal treatment.",
+      "id": "NORMALIZATION",
+      "result": "PASS",
+      "rule": "METRIC_DEFINITIONS \u00a7\u00a73.3,4.1; SCORING_MODEL \u00a7\u00a713.2\u201313.3"
+    },
+    {
+      "evidence": "docs/fundamental-data-engine/vnm-s1-economic-returns/2026-11-13/S1_ECONOMIC_RETURNS.json",
+      "finding": "Matching group/NCI scope; opening/closing average operating assets less noninterest operating liabilities; financial asset/cash/residual ranges; leases consistently expensed.",
+      "id": "CAPITAL_SCOPE",
+      "result": "PASS",
+      "rule": "METRIC_DEFINITIONS \u00a7\u00a74.1,12.4"
+    },
+    {
+      "evidence": "docs/fundamental-data-engine/vnm-s1-wacc-q3/2026-11-13/WACC_ROIC_Q3_ASSESSMENT.json",
+      "finding": "Four annual observations exceed the three-year trend minimum. Gross margins about39.86\u201341.42%; no extrapolation of durability from ROIC alone; fifth year is preferred, not a new mandatory input.",
+      "id": "RETURNS_PERSISTENCE_MARGINS",
+      "result": "PASS_WITH_LIMITS",
+      "rule": "SCORING_MODEL \u00a75.1; METRIC_DEFINITIONS \u00a7\u00a73.1,4.1"
+    },
+    {
+      "evidence": "docs/fundamental-data-engine/vnm-s1-wacc-q3/2026-11-13/FINAL_REVIEW.md",
+      "finding": "Nominal-VND WACC estimate7.57\u201310.79%; source-vintage, country/beta/debt/NCI proxies disclosed. Minimum historical conservative spread12.70pp; positive spread is conditional on tested assumptions.",
+      "id": "CAPITAL_COST",
+      "result": "PASS_WITH_LIMITS",
+      "rule": "SCORING_MODEL \u00a75.1; methodology.ts BQ-EQ topics cost_of_capital"
+    },
+    {
+      "evidence": "docs/fundamental-data-engine/vnm-s1-wacc-q3/2026-11-13/WACC_Q3_INPUTS.json",
+      "finding": "Q3 incorporated. Current-state TTM operating earnings bridged; exact TTM ROIC N/R for absent same-basis Sep2025 capital. Matching 9M return23.70\u201335.09% versus9M WACC charge5.67\u20138.09% supplies bounded current comparison. No annualized9M substitution or stale H1-only conclusion.",
+      "id": "CURRENT_UPDATE",
+      "result": "PASS_WITH_LIMITS",
+      "rule": "METRIC_DEFINITIONS \u00a7\u00a73.1,4.1,14,13.1"
+    },
+    {
+      "evidence": "docs/fundamental-data-engine/vnm-s1-wacc-q3/2026-11-13/WACC_ROIC_Q3_ASSESSMENT.json",
+      "finding": "Annual/multi-year deltas and reclassification quantified; small/distorted capital changes preclude reliable ratio. No project table mandated. GQ-INC score remains null/N/R; no attractive incremental-return conclusion or automatic points.",
+      "id": "INCREMENTAL_COMPARABILITY",
+      "result": "N_R_PERMITTED",
+      "rule": "METRIC_DEFINITIONS \u00a7\u00a76.3,13.1; methodology.ts GQ-INC"
+    },
+    {
+      "evidence": "docs/fundamental-data-engine/vnm-s1-wacc-q3/2026-11-13/FINAL_REVIEW.md",
+      "finding": "Analytical confidence MEDIUM; future persistence, accounting classification, WACC proxies and incremental/TTM limits explicit. No unresolved material contradiction invalidates the bounded level-of-return/spread conclusion. These limits still constrain downstream rubric judgment.",
+      "id": "CONFIDENCE_CONTRADICTIONS",
+      "result": "PASS_WITH_LIMITS",
+      "rule": "SCORING_MODEL \u00a7\u00a72.5,13.1,13.4; METRIC_DEFINITIONS \u00a7\u00a713.1\u201313.2,15"
+    },
+    {
+      "evidence": "docs/fundamental-data-engine/vnm-s1-wacc-q3/2026-11-13/VALIDATION.json",
+      "finding": "Native source references, hashes, original receipts,65 selected Q3 cells and deterministic annual/current replay preserved. Validation must pass before closure record is used.",
+      "id": "REPRODUCIBILITY",
+      "result": "PASS",
+      "rule": "Owner S1 acceptance; METRIC_DEFINITIONS \u00a717"
+    },
+    {
+      "evidence": "src/domain/scoring/methodology.ts",
+      "finding": "BQ-EQ return-level evidence does not grant GQ-INC or CA-REINV/CA-PSV points; common earnings/valuation and per-share outcomes remain distinct S5/rubric responsibilities.",
+      "id": "DOUBLE_COUNT_BOUNDARY",
+      "result": "PASS",
+      "rule": "METRIC_DEFINITIONS \u00a7\u00a74.1,10.1,16; SCORING_MODEL \u00a711"
+    }
+  ],
+  "reviewDate": "2026-11-13",
+  "rubricScores": {
+    "BQ-EQ": null,
+    "CA-PSV": null,
+    "CA-REINV": null,
+    "GQ-INC": null
+  },
+  "scope": "S1 economic-returns evidence gap under owner resolution policy; not formal financial admission or completion of dependent rubric scores",
+  "status": "CLOSED",
+  "supersedes": [
+    "docs/fundamental-data-engine/vnm-s1-economic-returns/2026-11-13/S1_RESOLUTION.md",
+    "docs/fundamental-data-engine/vnm-s1-economic-returns/2026-11-13/S1_ECONOMIC_RETURNS.json",
+    "docs/fundamental-data-engine/vnm-s1-wacc-q3/2026-11-13/S1_CURRENT_DISPOSITION.json",
+    "docs/fundamental-data-engine/vnm-s1-wacc-q3/2026-11-13/FINAL_REVIEW.md",
+    "docs/fundamental-data-engine/vnm-final-s1-s5-scoring/2026-11-13/S1_S5_FINAL_RECONCILIATION.md",
+    "docs/fundamental-data-engine/vnm-final-s1-s5-scoring/2026-11-13/FINAL_BLOCKER_REGISTER.md"
+  ],
+  "supersessionScope": "Only S1 BLOCKING/uncompleted acceptance findings. Historical calculations, receipts, hashes and other issue statuses remain unchanged.",
+  "ticker": "VNM",
+  "unresolvedMaterialS1Blockers": []
+}
