@@ -1,0 +1,812 @@
+{
+  "contract": "vnm-final-scoring-execution-v1",
+  "baseline": "39a116ed49c76ea32c89479b4fc1619e49053dac",
+  "knownAt": "2026-11-13T04:58:27.000Z",
+  "asOf": {
+    "candidateAsOf": "2026-10-30T16:59:59.000Z",
+    "currentScoringReady": false,
+    "latestDefensibleCompletedScoringAsOf": null,
+    "latestRetainedEconomicCutoff": "2026-10-30",
+    "reason": "Latest retained CaféF raw-close session with owner-approved through-cutoff share selection. No later quote/denominator interval supplied; do not claim current 13Nov market valuation. Earlier real F1 16Oct pass does not make VNM scoreable or bypass other gaps."
+  },
+  "status": "B_DEFINITIVE_BOUNDED_BLOCKERS",
+  "workflow": {
+    "entryPoint": "src/application/scoring/engine.ts::ScoringEngine.score",
+    "realInputEnvelope": "docs/fundamental-data-engine/vnm-final-s1-s5-scoring/2026-11-13/VNM_SCORING_INPUTS.json",
+    "attempt": {
+      "status": "BLOCKED_BEFORE_CALCULATION",
+      "card": null,
+      "reason": "FORMAL_SCORING_DATASET_REQUIRED"
+    },
+    "replay": {
+      "status": "BLOCKED_BEFORE_CALCULATION",
+      "card": null,
+      "reason": "FORMAL_SCORING_DATASET_REQUIRED"
+    },
+    "deterministic": true,
+    "domainCalculation": "NOT_ENTERED; complete authorized ScoreInput/selection unavailable. No malformed/synthetic input sent to calculateScorecard.",
+    "selectionProvided": false,
+    "formalSelectionDatabaseCount": 0,
+    "artifactWrites": 0
+  },
+  "existingSelectedFinancialReplay": {
+    "status": "PASS",
+    "metric": "TOTAL_ASSETS",
+    "value": "57451803693875",
+    "periodEnd": "2026-06-30",
+    "source": "Real retained already-admitted standing-v4 selected fact",
+    "evidence": [
+      {
+        "id": "standing:baa6fbb4badc82b92f537563a527bc5fb8c7046521617cd1da05a11cb3959d79",
+        "version": "standing-financial-current-v1",
+        "securityId": "a243cd90-95b8-44f0-96a5-b6be0defeb87",
+        "observation": "TOTAL_ASSETS",
+        "value": "57451803693875",
+        "unit": "VND",
+        "classification": "FACT",
+        "source": "REVIEWED_PDF",
+        "periodStart": "2026-06-30",
+        "periodEnd": "2026-06-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": null,
+        "receivedAt": "2026-11-12T15:25:38.998Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": true,
+        "quality": "VALID",
+        "family": "FINANCIAL",
+        "time": {
+          "contract": "current-formal-evidence-time-v1",
+          "purpose": "CURRENT_FORMAL_VALUATION",
+          "policyVersion": "standing-financial-current-v1",
+          "policyHash": "c39b7de09ae70b7fefcba6fb178cdcddb87795667b0397bf82de25aab2062f68",
+          "authorizationReference": "docs/fundamental-data-engine/unified-source-admission/2026-11-12/SOURCE_POLICY_AUTHORIZATIONS.json",
+          "rawHash": "a6155aa757b320b893a78093b0454473f4a581aead225af4eb4ef1fbd6628561",
+          "qualificationReference": "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/SELECTED_INPUT.json#/canonical/canonical:eed54694c5a458cb06c581a35af2824877b0280a5750bf8c637b9c05008e7ee5",
+          "originalReceivedAt": "2026-10-15T16:16:14.000Z",
+          "reviewedAt": "2026-11-12T13:48:30.442Z",
+          "ingestedAt": "2026-11-12T15:25:38.998Z",
+          "availableAt": "2026-11-12T15:25:38.998Z"
+        }
+      }
+    ],
+    "planHash": "a0cb8a4d3607d7712e87a2b7d387c133dba0d2d8aac391e6459b43481bb5151b",
+    "newAdmissionExecuted": false
+  },
+  "currentPurposeValidation": {
+    "status": "PASS",
+    "result": [],
+    "reason": null
+  },
+  "implicitScoringEvidenceValidation": {
+    "status": "BLOCKED",
+    "result": null,
+    "reason": "CURRENT_ONLY_NOT_PIT"
+  },
+  "cutoffMarketValidation": {
+    "status": "BLOCKED",
+    "result": null,
+    "reason": "MARKET_BOUNDARY:VN30_MEMBERSHIP_OUTSIDE_VERIFIED_INTERVAL"
+  },
+  "executableAuthorityValidation": {
+    "status": "BLOCKED",
+    "reason": "MARKET_BOUNDARY:SCORING_EXECUTABLE_HASH_MISMATCH:src/domain/market-boundary/validation.ts",
+    "exactChangedArtifacts": [
+      {
+        "approvedSha256": "abab4e0b2d8b02b915cba483f76861ae2be546c87ddb5be8df482511fa85ce87",
+        "currentSha256": "420cf4eeace8a4416654ad86f103692165c4cea6e8f1309eb3fb7e1652bc1d9b",
+        "path": "src/domain/market-boundary/validation.ts"
+      },
+      {
+        "approvedSha256": "4664905e9580fac625df6c20cf88bae541bc70182acb5691779a9a64a7800331",
+        "currentSha256": "583be5936e9a4374e8dad604d7813c3cd07a9684b18914f3ae9e8b15914a4c90",
+        "path": "src/domain/scoring/evidence.ts"
+      },
+      {
+        "approvedSha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244",
+        "currentSha256": "e7ffea73613044fe821aefd7b85311f035dd208d24344db37aeb6f04f41e21fa",
+        "path": "src/domain/scoring/metrics.ts"
+      },
+      {
+        "approvedSha256": "2a778e3291cac295fab9f3f18358ed43415d3fea893bd912e6608302a8b18d18",
+        "currentSha256": "6404b7c2be1dbfedc884ce258b2ba2a992843cf7ba65024dc47ec5399aa5fc10",
+        "path": "src/domain/scoring/scorecard.ts"
+      }
+    ]
+  },
+  "mandatoryGates": {
+    "economicReturnAndCapital": "BLOCKED",
+    "availableStressLiquidity": "BLOCKED",
+    "fundedForecastAndValuation": "BLOCKED",
+    "supportedPositionJudgment": "BLOCKED",
+    "adopted23RubricsAndM1Gates": "BLOCKED",
+    "currentPurposeDataset": "BLOCKED",
+    "exactExecutableBinding": "BLOCKED",
+    "standingSourceAuthority": "VALID",
+    "rawCloseValue": "RESEARCH_QUALIFIED",
+    "shareSelection": "CLOSED_BY_OWNER_APPROVED_CARRY_FORWARD_POLICY",
+    "adjustedPrice": "EXCLUDED_BY_OWNER_POLICY",
+    "historicalPIT": "NOT_QUALIFIED_NOT_A_NEW_CURRENT_SOURCE_REQUIREMENT"
+  },
+  "metricCoverage": [
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "RECIPE_EXISTS; see canonical, dossier and retained analytical evidence",
+      "metric": "CASA",
+      "orderedOperands": [
+        "current_and_savings",
+        "deposits"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [],
+      "state": "NOT_APPLICABLE_BANK_SPECIFIC",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "REPORTED_MECHANICAL_VALUES_RETAINED",
+      "metric": "CFO_CONVERSION",
+      "orderedOperands": [
+        "cumulative_CFO",
+        "cumulative_normalized_NPAT"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:cfo/net-income",
+          "id": "ANNUAL:VNM:CFO_CONVERSION:2021-01-01:2021-12-31:CONSOLIDATED",
+          "metric": "CFO_CONVERSION",
+          "period": {
+            "end": "2021-12-31",
+            "start": "2021-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:cfo/net-income",
+          "id": "ANNUAL:VNM:CFO_CONVERSION:2022-01-01:2022-12-31:CONSOLIDATED",
+          "metric": "CFO_CONVERSION",
+          "period": {
+            "end": "2022-12-31",
+            "start": "2022-01-01"
+          },
+          "reason": null,
+          "scope": "CONSOLIDATED",
+          "status": "AVAILABLE",
+          "value": "1.029110540858"
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:cfo/net-income",
+          "id": "ANNUAL:VNM:CFO_CONVERSION:2023-01-01:2023-12-31:CONSOLIDATED",
+          "metric": "CFO_CONVERSION",
+          "period": {
+            "end": "2023-12-31",
+            "start": "2023-01-01"
+          },
+          "reason": null,
+          "scope": "CONSOLIDATED",
+          "status": "AVAILABLE",
+          "value": "0.874499816509"
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:cfo/net-income",
+          "id": "ANNUAL:VNM:CFO_CONVERSION:2024-01-01:2024-12-31:CONSOLIDATED",
+          "metric": "CFO_CONVERSION",
+          "period": {
+            "end": "2024-12-31",
+            "start": "2024-01-01"
+          },
+          "reason": null,
+          "scope": "CONSOLIDATED",
+          "status": "AVAILABLE",
+          "value": "1.024653251618"
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:cfo/net-income",
+          "id": "ANNUAL:VNM:CFO_CONVERSION:2025-01-01:2025-12-31:CONSOLIDATED",
+          "metric": "CFO_CONVERSION",
+          "period": {
+            "end": "2025-12-31",
+            "start": "2025-01-01"
+          },
+          "reason": null,
+          "scope": "CONSOLIDATED",
+          "status": "AVAILABLE",
+          "value": "0.920811007795"
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:YTD:manual-mechanical-v1:cfo/net-income",
+          "id": "YTD:VNM:CFO_CONVERSION:2026-01-01:2026-06-30:CONSOLIDATED",
+          "metric": "CFO_CONVERSION",
+          "period": {
+            "end": "2026-06-30",
+            "start": "2026-01-01"
+          },
+          "reason": null,
+          "scope": "CONSOLIDATED",
+          "status": "AVAILABLE",
+          "value": "0.615633601841"
+        }
+      ],
+      "state": "OPERANDS_NOT_FORMALLY_BOUND_CURRENT_PURPOSE",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "RECIPE_EXISTS; see canonical, dossier and retained analytical evidence",
+      "metric": "COVERAGE",
+      "orderedOperands": [
+        "loan_loss_reserves",
+        "NPL"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [],
+      "state": "NOT_APPLICABLE_BANK_SPECIFIC",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "RECIPE_EXISTS; see canonical, dossier and retained analytical evidence",
+      "metric": "DIVIDEND_YIELD",
+      "orderedOperands": [
+        "sustainable_DPS",
+        "price"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [],
+      "state": "OPERANDS_NOT_FORMALLY_BOUND_CURRENT_PURPOSE",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "RECIPE_EXISTS; see canonical, dossier and retained analytical evidence",
+      "metric": "EARNINGS_YIELD",
+      "orderedOperands": [
+        "normalized_EPS",
+        "price"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [],
+      "state": "OPERANDS_NOT_FORMALLY_BOUND_CURRENT_PURPOSE",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "RECIPE_EXISTS; see canonical, dossier and retained analytical evidence",
+      "metric": "EPS_CAGR",
+      "orderedOperands": [
+        "adjusted_EPS_end",
+        "adjusted_EPS_start"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [],
+      "state": "OPERANDS_NOT_FORMALLY_BOUND_CURRENT_PURPOSE",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "RECIPE_EXISTS; see canonical, dossier and retained analytical evidence",
+      "metric": "EV_EBIT",
+      "orderedOperands": [
+        "EV",
+        "normalized_EBIT"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [],
+      "state": "OPERANDS_NOT_FORMALLY_BOUND_CURRENT_PURPOSE",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "N_R_OR_QUALIFIED_ANALYTICAL_OPERANDS_NOT_ESTABLISHED",
+      "metric": "FCF",
+      "orderedOperands": [
+        "CFO",
+        "issuer_capex"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:cfo-capex-positive-outflow",
+          "id": "ANNUAL:VNM:FCF:2021-01-01:2021-12-31:CONSOLIDATED",
+          "metric": "FCF",
+          "period": {
+            "end": "2021-12-31",
+            "start": "2021-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:cfo-capex-positive-outflow",
+          "id": "ANNUAL:VNM:FCF:2022-01-01:2022-12-31:CONSOLIDATED",
+          "metric": "FCF",
+          "period": {
+            "end": "2022-12-31",
+            "start": "2022-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:cfo-capex-positive-outflow",
+          "id": "ANNUAL:VNM:FCF:2023-01-01:2023-12-31:CONSOLIDATED",
+          "metric": "FCF",
+          "period": {
+            "end": "2023-12-31",
+            "start": "2023-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:cfo-capex-positive-outflow",
+          "id": "ANNUAL:VNM:FCF:2024-01-01:2024-12-31:CONSOLIDATED",
+          "metric": "FCF",
+          "period": {
+            "end": "2024-12-31",
+            "start": "2024-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:cfo-capex-positive-outflow",
+          "id": "ANNUAL:VNM:FCF:2025-01-01:2025-12-31:CONSOLIDATED",
+          "metric": "FCF",
+          "period": {
+            "end": "2025-12-31",
+            "start": "2025-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:YTD:manual-mechanical-v1:cfo-capex-positive-outflow",
+          "id": "YTD:VNM:FCF:2026-01-01:2026-06-30:CONSOLIDATED",
+          "metric": "FCF",
+          "period": {
+            "end": "2026-06-30",
+            "start": "2026-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        }
+      ],
+      "state": "OPERANDS_NOT_FORMALLY_BOUND_CURRENT_PURPOSE",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "RECIPE_EXISTS; see canonical, dossier and retained analytical evidence",
+      "metric": "FCF_YIELD",
+      "orderedOperands": [
+        "normalized_FCFE",
+        "market_cap"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [],
+      "state": "OPERANDS_NOT_FORMALLY_BOUND_CURRENT_PURPOSE",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "RECIPE_EXISTS; see canonical, dossier and retained analytical evidence",
+      "metric": "INCREMENTAL_ROIC",
+      "orderedOperands": [
+        "change_normalized_NOPAT",
+        "change_invested_capital"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [],
+      "state": "OPERANDS_NOT_FORMALLY_BOUND_CURRENT_PURPOSE",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "RECIPE_EXISTS; see canonical, dossier and retained analytical evidence",
+      "metric": "INTEREST_COVERAGE",
+      "orderedOperands": [
+        "normalized_EBIT",
+        "net_interest"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [],
+      "state": "OPERANDS_NOT_FORMALLY_BOUND_CURRENT_PURPOSE",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "RECIPE_EXISTS; see canonical, dossier and retained analytical evidence",
+      "metric": "MOS",
+      "orderedOperands": [
+        "conservative_value",
+        "price"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [],
+      "state": "OPERANDS_NOT_FORMALLY_BOUND_CURRENT_PURPOSE",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "N_R_OR_QUALIFIED_ANALYTICAL_OPERANDS_NOT_ESTABLISHED",
+      "metric": "NET_DEBT",
+      "orderedOperands": [
+        "interest_bearing_debt",
+        "unrestricted_cash"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:qualified-debt-unrestricted-cash-v2",
+          "id": "ANNUAL:VNM:NET_DEBT:2021-01-01:2021-12-31:CONSOLIDATED",
+          "metric": "NET_DEBT",
+          "period": {
+            "end": "2021-12-31",
+            "start": "2021-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:qualified-debt-unrestricted-cash-v2",
+          "id": "ANNUAL:VNM:NET_DEBT:2022-01-01:2022-12-31:CONSOLIDATED",
+          "metric": "NET_DEBT",
+          "period": {
+            "end": "2022-12-31",
+            "start": "2022-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:qualified-debt-unrestricted-cash-v2",
+          "id": "ANNUAL:VNM:NET_DEBT:2023-01-01:2023-12-31:CONSOLIDATED",
+          "metric": "NET_DEBT",
+          "period": {
+            "end": "2023-12-31",
+            "start": "2023-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:qualified-debt-unrestricted-cash-v2",
+          "id": "ANNUAL:VNM:NET_DEBT:2024-01-01:2024-12-31:CONSOLIDATED",
+          "metric": "NET_DEBT",
+          "period": {
+            "end": "2024-12-31",
+            "start": "2024-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:qualified-debt-unrestricted-cash-v2",
+          "id": "ANNUAL:VNM:NET_DEBT:2025-01-01:2025-12-31:CONSOLIDATED",
+          "metric": "NET_DEBT",
+          "period": {
+            "end": "2025-12-31",
+            "start": "2025-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "qualified-debt-unrestricted-cash-v2:issuer-recognized-financing-leases-v1",
+          "id": "VNM:NET_DEBT:2021-12-31:CONSOLIDATED:v2",
+          "metric": "NET_DEBT",
+          "period": {
+            "end": "2021-12-31",
+            "start": "2021-12-31"
+          },
+          "reason": "COMPATIBLE_APPROVED_DEBT_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "qualified-debt-unrestricted-cash-v2:issuer-recognized-financing-leases-v1",
+          "id": "VNM:NET_DEBT:2022-12-31:CONSOLIDATED:v2",
+          "metric": "NET_DEBT",
+          "period": {
+            "end": "2022-12-31",
+            "start": "2022-12-31"
+          },
+          "reason": "UNRESTRICTED_ECONOMICALLY_AVAILABLE_CASH_NOT_VERIFIED",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "qualified-debt-unrestricted-cash-v2:issuer-recognized-financing-leases-v1",
+          "id": "VNM:NET_DEBT:2023-12-31:CONSOLIDATED:v2",
+          "metric": "NET_DEBT",
+          "period": {
+            "end": "2023-12-31",
+            "start": "2023-12-31"
+          },
+          "reason": "UNRESTRICTED_ECONOMICALLY_AVAILABLE_CASH_NOT_VERIFIED",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "qualified-debt-unrestricted-cash-v2:issuer-recognized-financing-leases-v1",
+          "id": "VNM:NET_DEBT:2024-12-31:CONSOLIDATED:v2",
+          "metric": "NET_DEBT",
+          "period": {
+            "end": "2024-12-31",
+            "start": "2024-12-31"
+          },
+          "reason": "COMPATIBLE_APPROVED_DEBT_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "qualified-debt-unrestricted-cash-v2:issuer-recognized-financing-leases-v1",
+          "id": "VNM:NET_DEBT:2025-12-31:CONSOLIDATED:v2",
+          "metric": "NET_DEBT",
+          "period": {
+            "end": "2025-12-31",
+            "start": "2025-12-31"
+          },
+          "reason": "COMPATIBLE_APPROVED_DEBT_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "qualified-debt-unrestricted-cash-v2:issuer-recognized-financing-leases-v1",
+          "id": "VNM:NET_DEBT:2026-06-30:CONSOLIDATED:v2",
+          "metric": "NET_DEBT",
+          "period": {
+            "end": "2026-06-30",
+            "start": "2026-06-30"
+          },
+          "reason": "COMPATIBLE_APPROVED_DEBT_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:YTD:manual-mechanical-v1:qualified-debt-unrestricted-cash-v2",
+          "id": "YTD:VNM:NET_DEBT:2026-01-01:2026-06-30:CONSOLIDATED",
+          "metric": "NET_DEBT",
+          "period": {
+            "end": "2026-06-30",
+            "start": "2026-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        }
+      ],
+      "state": "OPERANDS_NOT_FORMALLY_BOUND_CURRENT_PURPOSE",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "RECIPE_EXISTS; see canonical, dossier and retained analytical evidence",
+      "metric": "NET_DEBT_EBITDA",
+      "orderedOperands": [
+        "net_debt",
+        "normalized_EBITDA"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [],
+      "state": "OPERANDS_NOT_FORMALLY_BOUND_CURRENT_PURPOSE",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "RECIPE_EXISTS; see canonical, dossier and retained analytical evidence",
+      "metric": "NPL",
+      "orderedOperands": [
+        "NPL",
+        "gross_loans"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [],
+      "state": "NOT_APPLICABLE_BANK_SPECIFIC",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "RECIPE_EXISTS; see canonical, dossier and retained analytical evidence",
+      "metric": "PB",
+      "orderedOperands": [
+        "price",
+        "BVPS"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [],
+      "state": "OPERANDS_NOT_FORMALLY_BOUND_CURRENT_PURPOSE",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "RECIPE_EXISTS; see canonical, dossier and retained analytical evidence",
+      "metric": "REVENUE_CAGR",
+      "orderedOperands": [
+        "revenue_end",
+        "revenue_start"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [],
+      "state": "OPERANDS_NOT_FORMALLY_BOUND_CURRENT_PURPOSE",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "N_R_OR_QUALIFIED_ANALYTICAL_OPERANDS_NOT_ESTABLISHED",
+      "metric": "ROE",
+      "orderedOperands": [
+        "normalized_common_profit",
+        "average_common_equity"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:common-profit/average-common-equity-period-return",
+          "id": "ANNUAL:VNM:ROE:2021-01-01:2021-12-31:CONSOLIDATED",
+          "metric": "ROE",
+          "period": {
+            "end": "2021-12-31",
+            "start": "2021-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:common-profit/average-common-equity-period-return",
+          "id": "ANNUAL:VNM:ROE:2022-01-01:2022-12-31:CONSOLIDATED",
+          "metric": "ROE",
+          "period": {
+            "end": "2022-12-31",
+            "start": "2022-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:common-profit/average-common-equity-period-return",
+          "id": "ANNUAL:VNM:ROE:2023-01-01:2023-12-31:CONSOLIDATED",
+          "metric": "ROE",
+          "period": {
+            "end": "2023-12-31",
+            "start": "2023-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:common-profit/average-common-equity-period-return",
+          "id": "ANNUAL:VNM:ROE:2024-01-01:2024-12-31:CONSOLIDATED",
+          "metric": "ROE",
+          "period": {
+            "end": "2024-12-31",
+            "start": "2024-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:ANNUAL:manual-mechanical-v1:common-profit/average-common-equity-period-return",
+          "id": "ANNUAL:VNM:ROE:2025-01-01:2025-12-31:CONSOLIDATED",
+          "metric": "ROE",
+          "period": {
+            "end": "2025-12-31",
+            "start": "2025-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        },
+        {
+          "formulaVersion": "cafef-structured-issuer-verified-v1:YTD:manual-mechanical-v1:common-profit/average-common-equity-period-return",
+          "id": "YTD:VNM:ROE:2026-01-01:2026-06-30:CONSOLIDATED",
+          "metric": "ROE",
+          "period": {
+            "end": "2026-06-30",
+            "start": "2026-01-01"
+          },
+          "reason": "EXACT_OPERANDS_UNAVAILABLE",
+          "scope": "CONSOLIDATED",
+          "status": "N_R",
+          "value": null
+        }
+      ],
+      "state": "OPERANDS_NOT_FORMALLY_BOUND_CURRENT_PURPOSE",
+      "value": null
+    },
+    {
+      "allRecipesMandatory": false,
+      "dataAvailability": "RECIPE_EXISTS; see canonical, dossier and retained analytical evidence",
+      "metric": "ROIC",
+      "orderedOperands": [
+        "NOPAT",
+        "average_invested_capital"
+      ],
+      "reason": "Existing recipe retained; no raw accounting value is relabeled normalized/sustainable/unrestricted.",
+      "requirementInterpretation": "Use only sector/rubric-required metrics or supported equivalents. BANK-specific recipes are not applicable to VNM.",
+      "retainedDerivedCandidates": [],
+      "state": "OPERANDS_NOT_FORMALLY_BOUND_CURRENT_PURPOSE",
+      "value": null
+    }
+  ],
+  "componentScores": {
+    "BQ": null,
+    "FH": null,
+    "GQ": null,
+    "IC": null,
+    "VAL": null,
+    "RG": null,
+    "CA": null
+  },
+  "totalScore": null,
+  "expectedReturn": null,
+  "acceptedFairValue": null,
+  "validity": "NOT_RELIABLY_SCORABLE",
+  "productionReady": false,
+  "productionActivation": "NOT_AUTHORIZED",
+  "VNM17Promoted": false,
+  "databaseSha256Before": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65",
+  "databaseSha256After": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65",
+  "newUserInformationRequiredToConcludeAssessment": false,
+  "validationMeaning": "Real selected-fact/current-purpose replay and actual application gate execution. Regression fixtures test contracts, never constitute VNM financial/score admission."
+}
