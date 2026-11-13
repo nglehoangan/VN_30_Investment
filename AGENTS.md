@@ -10,6 +10,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## PDF reading skill — JSON first
 
+- Khi đánh giá tổng hợp hoặc xử lý khoảng trống S1–S5 cho một mã, dùng `skills/equity-s1-s5-assessment/SKILL.md`. Chọn phương pháp theo ngành, tái sử dụng acceptance/bằng chứng đã có; nghiên cứu CLOSED không tự cấp formal scoring/admission hoặc production. Skill này gọi skill S4/PDF hiện có, không nhân bản pipeline hoặc dùng giả định VNM cho mã khác.
+
 - Owner explicitly authorized the CaféF standing RAW CLOSE source-governance principle in `docs/fundamental-data-engine/cafef-standing-source/2026-11-12/SOURCE_POLICY_AUTHORIZATION.json`, anchored to the verbatim OWNER_REQUEST.txt. This replaces repetitive per-ticker source permission only after independently accepted code/material and per-observation validation. It does not approve arbitrary observations/code, F2 financial facts, the VNM17-fact proposal or production. Governed ingestion uses the existing Market Boundary SQLite extension; the existing fetch-only skill remains raw-only. See the standing work package and reusable skill reference.
 
 - For reusable ticker/exchange/cutoff S4 evidence review, use `skills/vn30-market-price-corporate-actions/SKILL.md`. Reuse retained sources and existing fetch/normalization/carry-forward contracts. Research approval never closes F1/F2 formal admission or PIT; do not self-promote sources or activate production.
