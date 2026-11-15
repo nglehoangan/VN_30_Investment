@@ -1,0 +1,3 @@
+import { defineConfig } from 'vitest/config';
+import { fileURLToPath } from 'node:url';
+export default defineConfig({resolve:{alias:{'@':fileURLToPath(new URL('../../../../',import.meta.url))+'src','server-only':fileURLToPath(new URL('../../../../node_modules/next/dist/compiled/server-only/empty.js',import.meta.url))}},test:{testTimeout:30000,setupFiles:[fileURLToPath(new URL('./native-migrations.setup.ts',import.meta.url))],include:['tests/integration/standing-authority-version.test.ts','tests/integration/scoring-readiness.test.ts','tests/unit/scoring-readiness.test.ts','tests/unit/scoring-evidence-time.test.ts'],environment:'node'}});

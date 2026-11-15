@@ -1,0 +1,146 @@
+{
+  "authorityManifestRehashed": false,
+  "bindingExists": false,
+  "contract": "vnm-step2-validation-v1",
+  "deterministicReplay": {
+    "realExecutionSha256": "6f8a24a549297d31273e3d5f2d468a45871933f8935219c59b096a821e2ecbdb",
+    "reportHashes": {
+      "CURRENT_BLOCKER_REGISTER.md": "afc00450ff689f6455805e521ec45abef8f2e9909e4246f0fe80d0e30eb1648c",
+      "SOURCE_PINS.json": "27d6237378f63d2d8f224adc9823269cf7c2d66991feb2ff19fd3e42fe47dc78",
+      "VNM_DATASET_BINDING_ACCEPTANCE.json": "476f0e9a39a515f8d3f0f4abe28e92cf927aaf4b2cfb36783d7e1674288ce2c4",
+      "VNM_F1_MARKET_DATA_VALIDATION.json": "ff97f04490254dd73af104074a8eb6b795ee5f4dde7525b98052c9bc91880f50",
+      "VNM_F1_MEMBERSHIP_RESOLUTION.json": "cf70a59722efa67cc43528373f192a8c5ca78a57ad3746aae45b02739bced8be",
+      "VNM_F2_ADMISSION_VALIDATION.json": "25e32688d0d954de14217c81a39c4bc9a7c25da9ae66f5c0469e04d4f18b3856",
+      "VNM_STEP2_DATASET_BINDING.md": "4f10adeac8f9859204c5dc6881a1899454ba88bbefc94f1cad4a3ed422db99cc"
+    },
+    "status": "PASS"
+  },
+  "fixtureBootstrap": "Exact retained SQL via PythonSQLite in Step2-local disposable testDatabase; unchanged regression assertions/repositories. PrismaCLI attempts stalled/interrupted, not claimed PASS.",
+  "formalVNMScoreExecuted": false,
+  "liveDatabaseCountsAndHashes": "UNCHANGED_READ_ONLY_VERIFIED",
+  "productionActivation": "NOT_AUTHORIZED",
+  "realDataMode": "REAL_RETAINED_VNM_DISPOSABLE_SQLITE_NOT_LIVE",
+  "realDataRuntimeChecks": [
+    {
+      "name": "missing dated30Oct membership",
+      "reason": "Error: MARKET_BOUNDARY:VN30_MEMBERSHIP_OUTSIDE_VERIFIED_INTERVAL",
+      "status": "PASS"
+    },
+    {
+      "name": "no adjusted fallback",
+      "reason": "Error: CAFEF_RAW_CLOSE_ONLY:RAW_CLOSE_REQUIRED_NO_FALLBACK",
+      "status": "PASS"
+    },
+    {
+      "name": "real F2 current-purpose persist consume and duplicate idempotence",
+      "status": "PASS"
+    },
+    {
+      "name": "fake historical PIT",
+      "reason": "Error: CURRENT_ONLY_NOT_PIT",
+      "status": "PASS"
+    },
+    {
+      "name": "wrong purpose",
+      "reason": "Error: CURRENT_ONLY_NOT_PIT",
+      "status": "PASS"
+    },
+    {
+      "name": "wrong ticker identity",
+      "reason": "Error: FINANCIAL_CONSUMPTION_SCOPE",
+      "status": "PASS"
+    },
+    {
+      "name": "postdated operational knowledge",
+      "reason": "Error: FUTURE_OPERATIONAL_KNOWLEDGE",
+      "status": "PASS"
+    },
+    {
+      "name": "unsupported user URL",
+      "reason": "Error: FINANCIAL_SOURCE_TRUST:UNVERIFIED_SOURCE:NO_TRUSTED_CAPTURE_RECEIPT",
+      "status": "PASS"
+    },
+    {
+      "name": "current-only cannot pass legacy evidence default",
+      "reason": "ValidationError: D\u1eef li\u1ec7u ch\u01b0a h\u1ee3p l\u1ec7. Vui l\u00f2ng ki\u1ec3m tra l\u1ea1i c\u00e1c tr\u01b0\u1eddng nh\u1eadp. | CURRENT_ONLY_NOT_PIT",
+      "status": "PASS"
+    },
+    {
+      "name": "missing real acceptance rejected by intended consumer",
+      "reason": "ValidationError: D\u1eef li\u1ec7u ch\u01b0a h\u1ee3p l\u1ec7. Vui l\u00f2ng ki\u1ec3m tra l\u1ea1i c\u00e1c tr\u01b0\u1eddng nh\u1eadp. | DI_ACCEPTANCE_REQUIRED",
+      "status": "PASS"
+    },
+    {
+      "name": "invalid caller acceptance rejected before insert",
+      "reason": "ValidationError: D\u1eef li\u1ec7u ch\u01b0a h\u1ee3p l\u1ec7. Vui l\u00f2ng ki\u1ec3m tra l\u1ea1i c\u00e1c tr\u01b0\u1eddng nh\u1eadp. | SCORING_READINESS_EXACT_FIELDS",
+      "status": "PASS"
+    }
+  ],
+  "realIsolatedDatabaseCounts": {
+    "after": {
+      "analyticalArtifacts": 0,
+      "dataInitializationAcceptances": 0,
+      "financialAdmissionRuns": 1,
+      "financialRawCaptures": 8,
+      "fundamentalSnapshotRuns": 0,
+      "marketBoundaryRecords": 2,
+      "scoringDatasetBindings": 0,
+      "sourceAdmissionEvents": 1
+    },
+    "afterAdmission": {
+      "analyticalArtifacts": 0,
+      "dataInitializationAcceptances": 0,
+      "financialAdmissionRuns": 1,
+      "financialRawCaptures": 8,
+      "fundamentalSnapshotRuns": 0,
+      "marketBoundaryRecords": 2,
+      "scoringDatasetBindings": 0,
+      "sourceAdmissionEvents": 0
+    },
+    "afterDuplicate": {
+      "analyticalArtifacts": 0,
+      "dataInitializationAcceptances": 0,
+      "financialAdmissionRuns": 1,
+      "financialRawCaptures": 8,
+      "fundamentalSnapshotRuns": 0,
+      "marketBoundaryRecords": 2,
+      "scoringDatasetBindings": 0,
+      "sourceAdmissionEvents": 0
+    },
+    "before": {
+      "analyticalArtifacts": 0,
+      "dataInitializationAcceptances": 0,
+      "financialAdmissionRuns": 0,
+      "financialRawCaptures": 0,
+      "fundamentalSnapshotRuns": 0,
+      "marketBoundaryRecords": 0,
+      "scoringDatasetBindings": 0,
+      "sourceAdmissionEvents": 0
+    }
+  },
+  "regressionFixtureMeaning": "Positive full dataset-binding tests use synthetic isolated fixtures; not evidence of a real VNM binding. Real VNM path remains blocked.",
+  "result": "PASS_FOR_OBSERVED_PARTIAL_ADMISSION_AND_REJECTION",
+  "step2Status": "BLOCKING",
+  "step3Executed": false,
+  "testCoverage": {
+    "deterministicReplay": "TWO_FRESH_REAL_SQLITE_RUNS_EXACT_OUTPUT_HASH_MATCH",
+    "fakeHistoricalPIT": "REAL_VNM_REJECTED",
+    "incompleteFinancialCoverage": "REAL_CURRENT_CONSUMER_READY_FOR_SCORING_FALSE; regression readiness rejects missing required items",
+    "invalidAcceptance": "REAL_REPOSITORY_REJECTED_BEFORE_INSERT_AND_REGRESSION_TRUST_CHECKS",
+    "missingDatedMembership": "REAL_VNM_30OCT_REJECTED",
+    "staleMismatchedBinding": "EXISTING_SCORING_READINESS_ISOLATED_INTEGRATION_NEGATIVE_TESTS",
+    "unsupportedSource": "REAL_VNM_EVIL_URL_REJECTED_AND_SYNTHETIC_REGRESSIONS",
+    "validCurrentPurposeAdmission": "REAL_VNM_SELECTED_FACT",
+    "wrongPurpose": "REAL_VNM_REJECTED"
+  },
+  "typeScriptRegressionTests": {
+    "failed": 0,
+    "files": [
+      "tests/integration/scoring-readiness.test.ts",
+      "tests/integration/standing-authority-version.test.ts",
+      "tests/unit/scoring-evidence-time.test.ts",
+      "tests/unit/scoring-readiness.test.ts"
+    ],
+    "passed": 46
+  }
+}

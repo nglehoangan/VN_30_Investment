@@ -1,0 +1,134 @@
+{
+  "M3ScoringChanged": false,
+  "VNM17Promoted": false,
+  "acceptancePersisted": false,
+  "actualActiveDatabaseCountsAfter": {
+    "analytical_artifact": 0,
+    "data_initialization_acceptance": 0,
+    "fundamental_admission_run": 30,
+    "fundamental_snapshot_content": 0,
+    "fundamental_snapshot_derived_member": 0,
+    "fundamental_snapshot_member": 0,
+    "fundamental_snapshot_run": 0,
+    "market_boundary_decision_seal": 0,
+    "market_boundary_dependency_head": 1,
+    "market_boundary_ranking_publication": 0,
+    "market_boundary_record": 4,
+    "scoring_dataset_binding": 0
+  },
+  "actualActiveDatabaseCountsBefore": {
+    "analytical_artifact": 0,
+    "data_initialization_acceptance": 0,
+    "fundamental_admission_run": 30,
+    "fundamental_snapshot_content": 0,
+    "fundamental_snapshot_derived_member": 0,
+    "fundamental_snapshot_member": 0,
+    "fundamental_snapshot_run": 0,
+    "market_boundary_decision_seal": 0,
+    "market_boundary_dependency_head": 1,
+    "market_boundary_ranking_publication": 0,
+    "market_boundary_record": 4,
+    "scoring_dataset_binding": 0
+  },
+  "actualIsolatedDatabaseCounts": {
+    "after": {
+      "analyticalArtifacts": 0,
+      "dataInitializationAcceptances": 0,
+      "financialAdmissionRuns": 1,
+      "financialRawCaptures": 8,
+      "fundamentalSnapshotRuns": 0,
+      "marketBoundaryRecords": 2,
+      "scoringDatasetBindings": 0,
+      "sourceAdmissionEvents": 1
+    },
+    "afterAdmission": {
+      "analyticalArtifacts": 0,
+      "dataInitializationAcceptances": 0,
+      "financialAdmissionRuns": 1,
+      "financialRawCaptures": 8,
+      "fundamentalSnapshotRuns": 0,
+      "marketBoundaryRecords": 2,
+      "scoringDatasetBindings": 0,
+      "sourceAdmissionEvents": 0
+    },
+    "afterDuplicate": {
+      "analyticalArtifacts": 0,
+      "dataInitializationAcceptances": 0,
+      "financialAdmissionRuns": 1,
+      "financialRawCaptures": 8,
+      "fundamentalSnapshotRuns": 0,
+      "marketBoundaryRecords": 2,
+      "scoringDatasetBindings": 0,
+      "sourceAdmissionEvents": 0
+    },
+    "before": {
+      "analyticalArtifacts": 0,
+      "dataInitializationAcceptances": 0,
+      "financialAdmissionRuns": 0,
+      "financialRawCaptures": 0,
+      "fundamentalSnapshotRuns": 0,
+      "marketBoundaryRecords": 0,
+      "scoringDatasetBindings": 0,
+      "sourceAdmissionEvents": 0
+    }
+  },
+  "baseline": "1c7b57eb5acac232359c4390901c159925cc5ab2",
+  "bindingIdentity": null,
+  "blockers": [
+    {
+      "dependency": "Qualified VN30 effective constituent/change coverage17–30Oct missing.",
+      "evidence": "VNM_F1_MEMBERSHIP_RESOLUTION.json; REAL_EXECUTION.json#/F1",
+      "exactRule": "cafef-standing.ts assertProfile VN30_MEMBERSHIP_OUTSIDE_VERIFIED_INTERVAL; VN30_MASTER §5.4/§11/§12",
+      "id": "F1_DATED_MEMBERSHIP",
+      "responsibleAuthority": "Reference-data evidence qualification under existing governance, not new provider approval",
+      "smallestAction": "Retain and qualify official constituent/change coverage for17–30Oct or an already qualified dated event timeline proving coverage through30Oct. Do not infer continuity or change cutoff."
+    },
+    {
+      "dependency": "Approved v4 verifies one DIRECT_PDF TOTAL_ASSETS concept; actual selectedH1 fact cannot supply required currentQ3/normalized metrics. Corporate actions not admitted by this adapter.",
+      "evidence": "VNM_F2_ADMISSION_VALIDATION.json; existing F2_ADMISSION_CAPABILITY_GAPS.md",
+      "exactRule": "VERSIONED_SOURCE_REGISTRY authorities[1].validatedAdapterScope; versioned-authority.ts verifyFinancialPlan/native caption allowlist; Financial definitions/normalization contracts",
+      "id": "F2_ADAPTER_AND_CURRENT_COVERAGE",
+      "responsibleAuthority": "Qualified native financial adapter/current-purpose integration under existing standing-source version controls",
+      "smallestAction": "Expand only required source-native concept/period mappings using retained qualified facts and exact semantic/extraction provenance; validate version-compatible adapter changes, not per-fact approvals or re-downloads."
+    },
+    {
+      "dependency": "Current-only standing admission is a separate financial snapshot/receipt; no current-purpose DI/scoring adapter route accepts it as the legacy historical sealed snapshot. Cannot relabel it PIT.",
+      "evidence": "REAL_EXECUTION.json#/checks; src/domain/fundamentals/scoring-readiness.ts:68; src/domain/fundamentals/scoring-bridge.ts:36",
+      "exactRule": "scoring-readiness.ts bindDIAcceptance FORMAL_AS_KNOWN_SNAPSHOT_REQUIRED; scoring-bridge.ts HISTORICAL_SNAPSHOT_MODE_REQUIRED/BRIDGE_SELECTED_PIT_INPUT_REQUIRED; scorecard.ts validateEvidence without CURRENT_FORMAL_VALUATION",
+      "id": "CURRENT_DATASET_CONSUMER_CONTRACT",
+      "responsibleAuthority": "Scoring dataset/current-purpose adapter boundary, preserving strict historical replay and existing financial rules",
+      "smallestAction": "A separately validated current-purpose dataset/consumer path must preserve operational knowledge and not grant PIT; no date backfill or current-only-to-AS_KNOWN cast."
+    },
+    {
+      "dependency": "Existing scoring_dataset_binding is appended atomically with a replay-valid formal scorecard and rechecks reviewed input/readiness. Step1 four N/R bands, LOW confidence and M1/adoption gates cannot be bypassed to persist one.",
+      "evidence": "prisma/schema.prisma:397; src/infrastructure/repositories/scoring-datasets.ts; Step1 VNM_STEP1_ACCEPTANCE.json",
+      "exactRule": "PrismaScoringDatasets.append/findBinding; Prisma schema ScoringDatasetBinding.scorecardId -> AnalyticalArtifact; ScoringEngine.score",
+      "id": "BINDING_REQUIRES_SCORECARD",
+      "responsibleAuthority": "Formal assessment/M1 adoption and existing scorer/dataset governance; not standing F1/F2 provider authority",
+      "smallestAction": "Keep actual binding absent until intended current dataset contract and prerequisites support it; do not insert placeholder analytical artifacts, manufacture approvals or execute Step3 here."
+    }
+  ],
+  "contract": "vnm-step2-dataset-binding-v1",
+  "executableAuthorityRehashed": false,
+  "fourUnresolvedRubricsForced": false,
+  "historicalPIT": "NOT_QUALIFIED",
+  "intendedScorerConsumerResolvedCurrentDataset": false,
+  "liveDatabaseChanged": false,
+  "operationalKnownAt": "2026-11-15T08:35:14.000Z",
+  "productionActivation": "NOT_AUTHORIZED",
+  "productionScoringExecuted": false,
+  "reasonClosedForbidden": "A real F2 financial admission row is not a DI acceptance or scoring dataset binding; tests/docs passing cannot closeStep2.",
+  "requestedCutoff": "2026-10-30",
+  "scoringDatasetBindingPersisted": false,
+  "sourceAuthorityChanged": false,
+  "step2Status": "BLOCKING",
+  "step3Executed": false,
+  "stop": "STOP_AFTER_STEP2",
+  "successfulSubcomponents": [
+    "Real RAW_CLOSE normalization56900VND with retained units/session/lineage",
+    "Approved-source F2 selected H12026 TOTAL_ASSETS persisted and consumed CURRENT_FORMAL_VALUATION in isolatedSQLite",
+    "Duplicate admission idempotent; negative purpose/source/identity/knowledge/legacy-consumer guards exercised",
+    "16Oct F1 control admitted/consumed only; requested cutoff remains30Oct"
+  ],
+  "ticker": "VNM"
+}
