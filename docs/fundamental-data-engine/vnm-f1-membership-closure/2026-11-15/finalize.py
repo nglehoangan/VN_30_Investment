@@ -1,0 +1,37 @@
+from pathlib import Path
+import json,hashlib,sys
+sys.dont_write_bytecode=True
+O=Path(__file__).resolve().parent;R=O.parents[3];D=R/'docs/fundamental-data-engine';read=lambda p:json.loads(p.read_text());sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();rel=lambda p:str(p.relative_to(R))
+def write(n,x):(O/n).write_text(json.dumps(x,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+x=read(O/'REAL_F1_ADMISSION.json');assert x['status']=='ADMITTED_AND_CONSUMED' and x['rawClose']['value']=='56900' and len(x['accepted'])==len(x['duplicate'])==1
+write('F1_MEMBERSHIP_ACCEPTANCE.json',{'status':'CLOSED','scope':'VNM effective VN30 membership at30Oct2026 and existing F1 current-purpose raw-close admission','membershipCoverage':['2026-08-03','2026-11-15'],'cutoff':'2026-10-30','knownAt':x['knownAt'],'evidenceBasis':'Retained original July HOSE main30 table and prior complete certified history to16Oct, joined to complete newly captured17Oct–15Nov official history;13 candidate notices checked, all effective16Nov; no change applied early.','newMetadataRecords':4081,'newMetadataPages':5,'primarySource':'https://api.hsx.vn/n/api/v1/1/news','secondaryCurrentLists':'Corroboration only, not basis for source authority/coverage certification','qualifiedMembershipReference':'OFFICIAL_VN30_UNIVERSE_REVIEW.json','identityReference':'VN30_IDENTITY_RECONCILIATION.json','trustedHostReferenceHandoff':'REFERENCE_HANDOFF.json','realRuntime':'REAL_F1_ADMISSION.json','priceVnd':'56900','priceField':'GiaDongCua','purpose':'VALUATION_CURRENT_OPERATIONAL_KNOWLEDGE','realDatabaseCounts':x['counts'],'productionDefaultHostActivated':False,'sourceAuthorityChanged':False,'adapterCodeChanged':False,'perMaterialReceiptCreated':False,'historicalPIT':'NOT_QUALIFIED','F2':'UNCHANGED_BLOCKERS_REMAIN','fullDatasetBinding':'NOT_GRANTED','productionActivation':'NOT_AUTHORIZED','supersedesOnly':'Prior F1 membership-coverage blocker for17–30Oct; old Step1/Step2/source receipts preserved unchanged.'})
+md='''# VNM Membership F1 — CLOSED
+
+Requested cutoff **30/10/2026**; reference review known operationally15/11/2026. **Membership F1 is resolved, and the existing F1 runtime admitted/consumed the actual30Oct raw close56900VND in isolatedSQLite.** No new source approval, adapter code, authority manifest, live DB, score, portfolio or production activation.
+
+## Exact evidence resolution
+
+The original HOSE July15 main30 constituent table effective03Aug and certified dated history through16Oct were reused unchanged. New official API captures cover17Oct–15Nov: **4081 records,4081 unique IDs,5/5 pages**, advertised totals reconciled and the prior official alias query crosschecked. All13 index-notice candidates were reviewed through official detail JSON. Every one explicitly takes effect16Nov; VNAllshare scale-family updates were treated as potentially relevant, not dismissed by title, and were not applied early. Additional official summary matches are daily trading-statistics reports, not composition directives. No unclassified index candidate remains or change effective by15Nov was found in the captured official channel.
+
+The qualified snapshot therefore keeps the same30 constituents, includingVNM, with coverage03Aug–15Nov. This is actual dated official publication review, not a claim that semiannual scheduling guarantees no exceptional change. CaféF current list/November news only corroborate the result. Capture time/createdDate and notice effective date retain their separate meanings; no historical publication precision or PIT grant is invented. Coverage is bounded to visible retained official publications as of review, not future retroactive corrections or16Nov onward.
+
+## Existing contract and controlled reference handoff
+
+Existing checkProfile requires CERTIFIED/historyComplete, exact asOf/through and original-PDF identity links; VersionStandingAuthority requires exact host-supplied reference pins. New MARKET_PROFILE and TRUSTED_SOURCE_INPUTS_SUCCESSOR supply qualified new membership/identity data. REFERENCE_HANDOFF links old and new hashes under unchanged v4 source authority. This is a reference-data update, not a new provider authority, independent material receipt or caller-controlled PASS override. Default historical host files are preserved; the successor release is executable and tested but production activation is not performed.
+
+## Actual runtime verification
+
+REAL_F1_ADMISSION records one accepted VNM30Oct observation, duplicate idempotence, two immutable boundary records (capability plus market), value56900VND/share, RAW adjustment, pointer endingGiaDongCua and freshnessPASS. The unchanged consumeCafefValuation returns the persisted observation using approved v4 trust. Six negative checks cover old16Oct coverage rejecting30Oct, arbitrary coverage extension, wrong raw hash, missing member, untrusted reference substitution and wrong consumption purpose. Replay uses fresh isolated databases and fixed actual operational knownAt.
+
+Membership evidence is now sufficient for the30Oct dated screen. Formal M1gate adoption, F2 financial metric/period breadth, current-purpose DI/scorer integration, four N/R rubric assessments and executable authority remain separate. **Step2 overall remains BLOCKING for those existing dependencies; this report closes only F1 membership/market admission.** No historical reports or seals are rewritten.
+'''
+(O/'F1_MEMBERSHIP_CLOSURE.md').write_text(md)
+prev=D/'vnm-formal-scoring-step2/2026-11-14/CURRENT_BLOCKER_REGISTER.md';text=prev.read_text();tail=text[text.index('## F2_ADAPTER_AND_CURRENT_COVERAGE'):];tail=tail.replace('Membership and formal gate adoption unresolved','Membership evidence resolved; formal gate adoption unresolved').replace('Existing membership gap is retained as dated-screen limitation, not a Step2 binding attempt.','Membership dated evidence is resolved by this successor; formal M1 gate adoption remains separate.')
+(O/'CURRENT_BLOCKER_REGISTER.md').write_text('# Successor after F1 membership closure\n\nF1_DATED_MEMBERSHIP CLOSED at30Oct2026; actual RAW_CLOSE admitted and consumed in isolated DB. Step2 overall BLOCKING for remaining F2/consumer/scoring prerequisites. S1–S5 preserved; no Step3.\n\n'+tail)
+base=D/'standing-authority-version/2026-11-12';paths=[base/'VERSIONED_SOURCE_REGISTRY.json',base/'TRUSTED_SOURCE_INPUTS.json',base/'REAL_MARKET_PROFILE.json',prev,R/'data/market-history/cafef/VNM.json',R/'docs/02 DATABASE/VN30_MASTER.md']
+registry=read(base/'VERSIONED_SOURCE_REGISTRY.json');paths.extend(R/p['path'] for a in registry['authorities'] for p in a['code'])
+old=D/'evidence/2026-10-16-di-governance-closure';paths.extend([old/'OFFICIAL_VN30_UNIVERSE_REVIEW.json',old/'UNIVERSE_CHANGE_HISTORY.json',R/read(old/'OFFICIAL_VN30_UNIVERSE_REVIEW.json')['originalPDF']['path'],R/read(base/'REAL_MARKET_PROFILE.json')['membership']['identitySource']['path']])
+paths.extend(O/'sources'/p.name for p in (O/'sources').glob('*.json'))
+protected=read(D/'vnm-formal-scoring-step2/2026-11-14/SOURCE_PINS.json')['protected'];assert all(sha(R/p['path'])==p['sha256'] for p in protected)
+write('SOURCE_PINS.json',{'inputs':[{'path':rel(p),'sha256':sha(p)} for p in sorted(set(paths))],'protected':protected,'scripts':[{'path':rel(p),'sha256':sha(p)} for p in sorted(O.iterdir()) if p.suffix in ['.py','.mjs']],'standingAuthorityRegistryUnchanged':True,'oldEvidenceUnchanged':True})
+print('MembershipF1 CLOSED; remainingStep2 blockers preserved')
