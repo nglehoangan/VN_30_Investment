@@ -1,10 +1,18 @@
+import type {CurrentScoringDatasets} from '@/ports/current-scoring-datasets';
+import type {PreScoringContext,PreScoringDatasetReference} from '@/ports/pre-scoring-datasets';
 import { calculateScorecard, type ScoreInput } from "@/domain/scoring/scorecard";
 import { rankScorecards, type RankInput } from "@/domain/ranking/rank";
 import { check } from "@/domain/scoring/validation";
 import type { MethodologyRegistry } from "@/ports/methodology-registry";
 import type { AnalyticalArtifacts, ScoringPortfolioRead, ScoringDatasets, ScoringDatasetSelection } from "@/ports/scoring";
 export class ScoringEngine {
-  constructor(private readonly registry:MethodologyRegistry,private readonly artifacts:AnalyticalArtifacts,private readonly datasets?:ScoringDatasets){}
+  constructor(private readonly registry:MethodologyRegistry,private readonly artifacts:AnalyticalArtifacts,private readonly datasets?:ScoringDatasets,private readonly currentDatasets?:CurrentScoringDatasets){}
+  /** Dataset consumption only: never calls score(), grants authorization or rewrites PIT. */
+  async resolveCurrentDataset(reference:PreScoringDatasetReference,context:PreScoringContext){
+    check(this.currentDatasets,'CURRENT_PURPOSE_CONSUMER_REQUIRED');
+    check(context.purpose==='CURRENT_FORMAL_VALUATION','CURRENT_ONLY_NOT_PIT');
+    return this.currentDatasets.resolve(reference,context);
+  }
   async score(input:ScoreInput,selection?:ScoringDatasetSelection){
     const registered=await this.registry.findById(input.methodology.methodologyId);
     check(registered&&Object.entries(registered).every(([k,v])=>input.methodology[k as keyof typeof registered]===v),"UNREGISTERED_METHODOLOGY");

@@ -1,0 +1,18 @@
+Tiến hành
+
+1. Nối adapter mới vào governed admission
+
+- Chuyển đầu ra mapping thành financial facts đúng contract admission: concept, kỳ, scope, đơn vị và provenance.
+- Bổ sung source role, receipt, vị trí ô từ các catalog đã giữ; không tự điền metadata chưa biết.
+- Chọn đúng fact/kỳ cần dùng, xử lý trùng và xung đột.
+- Hoàn thiện phiên bản adapter/schema/code binding theo Standing Authority hiện có.
+- Sau đó kiểm chứng ghi–đọc DB cô lập, đối chiếu nguồn, idempotence và revocation.
+
+Điều kiện đạt: các fact cần thiết được lưu dưới dạng governed admitted facts, không còn chỉ nằm trong quarantine.
+
+2. Tạo đường dataset dành cho scoring hiện tại
+
+- Xây consumer cho CURRENT_FORMAL_VALUATION, giữ riêng economic cutoff và thời điểm biết dữ liệu.
+- Consumer lấy các fact đã admit, giá và share count; kiểm tra coverage theo đúng đầu vào scoring.
+- Tạo dataset manifest/binding có lineage và kiểm tra tính toàn vẹn.
+- Giữ nguyên các gate DI, assessment, M1, confidence và scoring. Không ép CURRENT_ONLY thành historical PIT.
