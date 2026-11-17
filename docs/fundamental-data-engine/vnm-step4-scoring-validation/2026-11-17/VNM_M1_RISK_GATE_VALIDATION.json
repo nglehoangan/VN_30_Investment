@@ -1,0 +1,138 @@
+{
+  "confidence": [
+    {
+      "dimension": "Freshness",
+      "evidenceRefs": [
+        "docs/fundamental-data-engine/vnm-s1-closure/2026-11-13/S1_ACCEPTANCE.json#",
+        "docs/fundamental-data-engine/vnm-s2-public-disclosure/2026-11-13/S2_CLOSURE_ACCEPTANCE.json#",
+        "docs/fundamental-data-engine/vnm-s3-closure/2026-11-13/S3_IC_POS_ASSESSMENT.json#",
+        "docs/fundamental-data-engine/vnm-s5-closure/2026-11-13/S5_VALUATION_INPUTS.json#"
+      ],
+      "rating": "Adequate",
+      "rationale": "Latest retained Q3 financial update and exact30Oct raw price/share/action review; annual narrative remains lagged, no post-cutoff PIT claim."
+    },
+    {
+      "dimension": "Completeness",
+      "evidenceRefs": [
+        "docs/fundamental-data-engine/vnm-s1-wacc-q3/2026-11-13/WACC_ROIC_Q3_ASSESSMENT.json#",
+        "docs/fundamental-data-engine/vnm-s2-public-disclosure/2026-11-13/S2_CLOSURE_ACCEPTANCE.json#",
+        "docs/fundamental-data-engine/vnm-final-scoring-closure/2026-11-11/six-rubrics.json#"
+      ],
+      "rating": "Weak",
+      "rationale": "All topics dispositioned, but GQ-INC/CA-REINV/CA-DIST/CA-PSV cannot select supported bands; no normalization of partial total."
+    },
+    {
+      "dimension": "Source reliability",
+      "evidenceRefs": [
+        "docs/fundamental-data-engine/vnm-final-scoring-closure/2026-11-11/challenge.json#",
+        "docs/fundamental-data-engine/vnm-s3-closure/2026-11-13/S3_EVIDENCE_MATRIX.json#",
+        "docs/fundamental-data-engine/vnm-s5-closure/2026-11-13/S5_VALUATION_INPUTS.json#"
+      ],
+      "rating": "Adequate",
+      "rationale": "Retained audited financial/source receipts and reviewed extractions, issuer-attributed narratives labeled. Standing source approvals unchanged; formal per-evidence eligibility not asserted."
+    },
+    {
+      "dimension": "Estimate dependence",
+      "evidenceRefs": [
+        "docs/fundamental-data-engine/vnm-s5-closure/2026-11-13/S5_SCENARIOS.json#",
+        "docs/fundamental-data-engine/vnm-s5-closure/2026-11-13/S5_ACCEPTANCE.json#"
+      ],
+      "rating": "Weak",
+      "rationale": "Maintenance/growth/cash asset realization/Ku/terminal/capital-allocation hypotheses materially drive value; no automatic promotion from funded forecasts to observed economics."
+    },
+    {
+      "dimension": "Model / cycle uncertainty",
+      "evidenceRefs": [
+        "docs/fundamental-data-engine/vnm-s5-closure/2026-11-13/S5_SCENARIOS.json#",
+        "docs/fundamental-data-engine/vnm-s5-closure/2026-11-13/S5_ACCEPTANCE.json#"
+      ],
+      "rating": "Weak",
+      "rationale": "Wide28,464–65,063 range and adverse sensitivities despite reproducible model; no pointMOS, precise recovery timing or maximum confidence."
+    }
+  ],
+  "confidenceReviewIsHumanApproval": false,
+  "contract": "vnm-step4-gates-v1",
+  "formalGateRecordsCreated": 0,
+  "gates": [
+    {
+      "contractOrEvidence": "docs/fundamental-data-engine/vnm-f1-membership-closure/2026-11-15/F1_MEMBERSHIP_ACCEPTANCE.json#",
+      "finding": "Dated Step2 F1 membership resolved; old Step1 17–30Oct gap superseded.",
+      "gate": "VN30 eligibility",
+      "status": "DATA_SUPPORTED"
+    },
+    {
+      "contractOrEvidence": "docs/fundamental-data-engine/vnm-f1-membership-closure/2026-11-15/F1_MEMBERSHIP_ACCEPTANCE.json#",
+      "finding": "VNM identity and membership; not an order feasibility decision.",
+      "gate": "Investment universe",
+      "status": "DATA_SUPPORTED"
+    },
+    {
+      "contractOrEvidence": "src/domain/scoring/eligibility.ts#validateExternalGate",
+      "finding": "No new dated adopted external M1_STAGE_0 record for this score input.",
+      "gate": "Stage0",
+      "status": "AUTHORIZATION_PENDING"
+    },
+    {
+      "contractOrEvidence": "src/domain/scoring/eligibility.ts#validateExternalGate",
+      "finding": "S2 survival evidence supports bounded research; absence of a confirmed veto is not authorized CLEAR.",
+      "gate": "Hard veto",
+      "status": "AUTHORIZATION_PENDING"
+    },
+    {
+      "contractOrEvidence": "docs/fundamental-data-engine/vnm-s2-public-disclosure/2026-11-13/S2_CLOSURE_ACCEPTANCE.json#",
+      "finding": "Accepted constrained liquidity survives core public scenarios; no reopening S2.",
+      "gate": "Financial health",
+      "status": "RESEARCH_SUPPORTED"
+    },
+    {
+      "contractOrEvidence": "docs/fundamental-data-engine/vnm-s1-closure/2026-11-13/S1_ACCEPTANCE.json#",
+      "finding": "S1/S3 bounded accepted research; assessment adoption separate.",
+      "gate": "Business quality",
+      "status": "RESEARCH_SUPPORTED"
+    },
+    {
+      "contractOrEvidence": "docs/fundamental-data-engine/vnm-s5-closure/2026-11-13/S5_ACCEPTANCE.json#",
+      "finding": "Reproducible wide scenario range; no point precision or automatic actionability.",
+      "gate": "Valuation reliability",
+      "status": "RESEARCH_SUPPORTED"
+    },
+    {
+      "contractOrEvidence": "src/domain/decision",
+      "finding": "Requires dated proposed order and eligible portfolio/exposure; not an issuer metric.",
+      "gate": "Concentration risk",
+      "status": "NOT_ASSESSED_PORTFOLIO_PURPOSE"
+    },
+    {
+      "contractOrEvidence": "src/domain/decision",
+      "finding": "No portfolio/cash invented or mutated; do not infer a current trade context from old personal receipts.",
+      "gate": "Portfolio exposure",
+      "status": "NOT_ASSESSED_PORTFOLIO_PURPOSE"
+    },
+    {
+      "contractOrEvidence": "src/domain/fundamentals/scoring-readiness.ts",
+      "finding": "Weak completeness/estimate/model dimensions fail formal readiness; no automatic score haircut.",
+      "gate": "Confidence eligibility",
+      "status": "BLOCKED_LOW_CONFIDENCE"
+    },
+    {
+      "contractOrEvidence": "src/domain/scoring/eligibility.ts#validateExternalGate",
+      "finding": "Retain proposed ELEVATED_WEAK; exact dated M1 adoption and RG-RISK consistency required.",
+      "gate": "Residual risk",
+      "status": "AUTHORIZATION_PENDING"
+    },
+    {
+      "contractOrEvidence": "REAL_EXECUTION.json#/checks",
+      "finding": "Actual isolated route validates before revocation and rejects after; no live authority changed.",
+      "gate": "Source revocation",
+      "status": "EXECUTED_NEGATIVE_CONTROL"
+    },
+    {
+      "contractOrEvidence": "src/application/scoring/engine.ts",
+      "finding": "resolveCurrentDataset accepts CURRENT_FORMAL_VALUATION. score() still consumes historical DI authorize/ScoreInput evidence by its existing contract; current receipt is not scoring authorization.",
+      "gate": "Purpose and time",
+      "status": "CURRENT_DATA_ACCEPTED_SCORE_PATH_BLOCKED"
+    }
+  ],
+  "overallCandidateConfidence": "LOW",
+  "portfolioStateInvented": false
+}

@@ -22,6 +22,7 @@ function derive(source, target, transform) {
 const out = [];
 out.push(derive('src/domain/scoring/scorecard.ts', 'src/domain/personal-ai/scorecard.ts', r => {
   r('from "./methodology"', 'from "@/domain/scoring/methodology"');
+  r("from './action-dependencies'", "from '@/domain/scoring/action-dependencies'");
   r('CATEGORY_MAXIMA, IMPLEMENTATION, RUBRICS', 'CATEGORY_MAXIMA, RUBRICS');
   for (const dependencyName of ['validation','evidence','metrics','eligibility']) r(`from "./${dependencyName}"`, `from "@/domain/scoring/${dependencyName}"`);
   r('export interface Assessment {', 'import { AI_SCORING_IMPLEMENTATION as IMPLEMENTATION, validateAiScoringReview, type AiReviewProvenance, type AiHash } from "./provenance";\nexport interface Assessment {');

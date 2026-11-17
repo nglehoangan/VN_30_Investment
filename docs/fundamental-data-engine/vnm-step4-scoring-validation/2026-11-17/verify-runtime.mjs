@@ -1,0 +1,16 @@
+import {readFileSync,writeFileSync,realpathSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {createRequire} from 'node:module';
+import {pathToFileURL} from 'node:url';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+const root=process.cwd(),out=import.meta.dirname,vr=createRequire(realpathSync('node_modules/vitest/package.json')),jr=createRequire(vr.resolve('vite/package.json')),{createJiti}=await import(pathToFileURL(jr.resolve('jiti')).href);
+const hash=b=>createHash('sha256').update(b).digest('hex');
+assert.equal(hash(readFileSync('src/infrastructure/dependencies/production-authority.ts')),'2b936408f3cb7bf712f874bfbcb4cc744f709428f6bb032ae5da8c700886ef69');
+const j=createJiti(import.meta.url,{alias:{'@':resolve(root,'src'),'server-only':resolve(root,'node_modules/next/dist/compiled/server-only/empty.js')},fsCache:false,moduleCache:true});
+const {verifyProductionAuthorityBundle}=await j.import(resolve('src/infrastructure/dependencies/production-authority.ts'));
+const config=JSON.parse(readFileSync('src/infrastructure/dependencies/active-authorities.json','utf8')),v=verifyProductionAuthorityBundle(root,config.authorityBundle);
+const changed=['scripts/generate-personal-ai-compatibility.mjs','src/domain/personal-ai/scorecard.ts'];
+for(const p of changed)assert(!v.manifest.artifacts.some(a=>a.path===p));
+const d={status:'PASS',manifestContentHash:v.manifest.contentHash,approvedRuntimeArtifacts:v.manifest.artifacts.length,verifierSha256:hash(readFileSync('src/infrastructure/dependencies/production-authority.ts')),changedFilesOutsideApprovedRuntime:changed.map(path=>({path,sha256:hash(readFileSync(path))})),activeConfigSha256:hash(readFileSync('src/infrastructure/dependencies/active-authorities.json')),manifestRehashed:false,liveCasActivated:false};
+writeFileSync(resolve(out,'EXECUTABLE_VERIFICATION.json'),JSON.stringify(d,null,2)+'\n');console.log(JSON.stringify(d));
