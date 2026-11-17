@@ -1,0 +1,20 @@
+/** Reuse exact already-accepted static data heads, not legacy raw-pipeline re-ingestion.
+ * LocalAcceptedDependencyCatalog explicitly supports a complete fixed STATIC_CLASSES configuration.
+ * Opens the existing release DB read-only; never activates or modifies a release.
+ */
+import {readFileSync,writeFileSync,realpathSync} from 'node:fs';import {DatabaseSync} from 'node:sqlite';import {resolve,join,relative} from 'node:path';import {createRequire} from 'node:module';import {pathToFileURL} from 'node:url';import {createHash} from 'node:crypto';import assert from 'node:assert/strict';
+const root=process.cwd(),out=import.meta.dirname,rel=relative(root,out),dep=process.argv[2]??root,vr=createRequire(realpathSync(join(dep,'node_modules/vitest/package.json'))),jr=createRequire(vr.resolve('vite/package.json')),{createJiti}=await import(pathToFileURL(jr.resolve('jiti')).href),sha=b=>createHash('sha256').update(b).digest('hex');
+const jiti=createJiti(import.meta.url,{alias:{'@':resolve(root,'src')},fsCache:false,moduleCache:true}),{snapshotHash:hash}=await jiti.import(resolve('src/infrastructure/fundamentals/snapshot-hash.ts')),{readRelease,validateHeads}=await jiti.import(resolve('src/domain/dependencies/validation.ts')),{PROJECTION_ID,STATIC_CLASSES}=await jiti.import(resolve('src/domain/dependencies/contracts.ts'));
+const configPath='src/infrastructure/dependencies/active-authorities.json',config=JSON.parse(readFileSync(configPath,'utf8'));assert.equal(config.status,'ACCEPTED_STATIC_AUTHORITIES_PENDING_CAS');
+const db=new DatabaseSync(resolve('data/vn30.sqlite'),{readOnly:true});let row,pointer;
+try{pointer=db.prepare('SELECT * FROM market_boundary_dependency_head WHERE id=?').get(PROJECTION_ID);assert(pointer);row=db.prepare('SELECT * FROM dependency_release WHERE body_hash=?').get(pointer.body_hash);assert(row);}finally{db.close();}
+const released=readRelease(JSON.parse(row.body),hash);assert.equal(released.contentHash,row.body_hash);assert.equal(released.id,row.id);
+const types=['UNIVERSE','REFERENCE_DATA','INITIALIZATION','FUNDAMENTALS','LEVEL1_RELEASE','MARKET_CAPABILITY','SESSION_POLICY'];
+const retained=[];
+for(const type of types){const matches=released.heads.filter(h=>h.type===type);assert.equal(matches.length,1,'MISSING_PREVIOUSLY_ACCEPTED_STATIC_HEAD:'+type);const h=matches[0];assert.equal(h.status,'ACCEPTED');const path=rel+'/RETAINED_HEAD_'+type+'.json',bytes=JSON.stringify(h,null,2)+'\n';writeFileSync(path,bytes);retained.push({type,path,sha256:sha(bytes),headPin:h.pin,originalSourceReference:h.sourceReference,originalAuthorityReference:h.authorityReference});}
+const priorConfigured=config.bindings.map(p=>JSON.parse(readFileSync(p.path,'utf8')));assert(priorConfigured.every(h=>!types.includes(h.type)),'DUPLICATE_STATIC_HEAD');
+validateHeads([...priorConfigured,...retained.map(p=>JSON.parse(readFileSync(p.path,'utf8')))],hash);assert.equal(new Set([...priorConfigured.map(h=>h.type),...types]).size,STATIC_CLASSES.length);
+const updated={...config,bindings:[...config.bindings,...retained.map(({path,sha256})=>({path,sha256}))],note:config.note+' Complete static head set pins unchanged data heads from the existing accepted immutable release; no legacy source/capture pin was rehashed.'};
+writeFileSync(out+'/FOUR_AUTHORITY_STATIC_CONFIG.json',readFileSync(configPath));writeFileSync(configPath,JSON.stringify(updated,null,2)+'\n');
+writeFileSync(out+'/RETAINED_STATIC_HEAD_BINDING.json',JSON.stringify({status:'BOUND_EXISTING_ACCEPTED_HEADS_UNCHANGED',contract:'Existing LocalAcceptedDependencyCatalog STATIC_CLASSES complete-configuration branch',sourceRelease:{id:released.id,hash:released.contentHash,recordedAt:released.recordedAt},sourceCasPointer:pointer,retained,headContentsChanged:false,originalDatesAndCoveragePreserved:true,newFinancialSourceAdmission:false,legacyPipelineReceiptRehashed:false,activeDatabaseWritten:false,casActivated:false},null,2)+'\n');
+console.log(JSON.stringify({existingStaticHeadsBound:retained.length,totalStaticHeads:STATIC_CLASSES.length,sourceRelease:released.id,casActivated:false}));

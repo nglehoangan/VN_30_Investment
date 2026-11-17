@@ -3,7 +3,7 @@
 import {mkdtempSync,mkdirSync,copyFileSync,writeFileSync,readFileSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join,dirname} from 'node:path';
-import {testDatabase} from '../../docs/fundamental-data-engine/vnm-formal-scoring-step2/2026-11-14/native-test-database';
+import {testDatabase} from './step2-validation-database';
 import {sha} from '@/infrastructure/source-admission/registry';
 import {CurrentFinancialAdmissions,CURRENT_FINANCIAL_CODE,type CurrentFinancialComposition} from '@/infrastructure/source-admission/current-financial';
 import {CurrentFinancialDatasets} from '@/infrastructure/source-admission/current-dataset';

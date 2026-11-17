@@ -1,6 +1,7 @@
 /** Native retained-SQL rehearsal, explicitly not a Prisma CLI/deploy acceptance.
  * Supports the existing populated-portfolio upgrade assertion without changing it. */
-import {mkdtempSync,rmSync} from 'node:fs';
+import {mkdtempSync,rmSync,readFileSync,readdirSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import {join} from 'node:path';
 import {tmpdir} from 'node:os';
 import {spawnSync} from 'node:child_process';
@@ -11,6 +12,14 @@ import {PrismaMethodologyRegistry} from '@/infrastructure/repositories/methodolo
 export async function testDatabase(options:{portfolioOnly?:boolean}={}){
  if(Object.keys(options).some(k=>k!=='portfolioOnly'))throw Error('UNSUPPORTED_STEP2_NATIVE_BASELINE');
  const directory=mkdtempSync(join(tmpdir(),'step2-final-native-')),file=join(directory,'fixture.sqlite');
+ const migrationsRoot=process.env.VN30_TEST_MIGRATIONS_DIR??join(process.cwd(),'prisma/migrations');
+ if(process.env.VN30_TEST_MIGRATIONS_DIR){
+  const ledger=JSON.parse(readFileSync(join(migrationsRoot,'VERIFIED_GIT_BLOBS.json'),'utf8')) as {files:{path:string;gitBlob:string;sha256:string}[]};
+  const tree=spawnSync('git',['ls-tree','-r','HEAD','prisma/migrations'],{encoding:'utf8',timeout:10000});if(tree.status!==0)throw Error('MIGRATION_COMMIT_IDENTITY_UNAVAILABLE');
+  const expected=new Map(tree.stdout.trim().split('\n').filter(s=>s.endsWith('/migration.sql')).map(s=>{const [info,path]=s.split('\t');return [path,info.split(' ')[2]];}));
+  if(expected.size!==ledger.files.length||readdirSync(migrationsRoot,{withFileTypes:true}).filter(e=>e.isDirectory()).length!==expected.size)throw Error('MIGRATION_CACHE_INCOMPLETE_OR_EXTRA');
+  for(const row of ledger.files){const bytes=readFileSync(join(migrationsRoot,row.path.slice('prisma/migrations/'.length))),blob=createHash('sha1').update(Buffer.concat([Buffer.from('blob '+bytes.length+'\0'),bytes])).digest('hex');if(expected.get(row.path)!==blob||blob!==row.gitBlob||createHash('sha256').update(bytes).digest('hex')!==row.sha256)throw Error('MIGRATION_CACHE_HASH_MISMATCH:'+row.path);}
+ }
  const config=loadDatabaseConfig({DATABASE_URL:'file:'+file},process.cwd());
  function migration(command:'migrate'|'status',baseline=false){
   const result=spawnSync('python3',['-c',`import sqlite3,sys,pathlib,hashlib
@@ -27,7 +36,7 @@ for p in files:
  if sys.argv[3]=='status': raise RuntimeError('PENDING_RETAINED_MIGRATION:'+p.parent.name)
  c.executescript(p.read_text()); c.execute('INSERT INTO _step2_retained_sql VALUES(?,?)',(p.parent.name,h)); c.commit()
 c.close()
-`,file,join(process.cwd(),'prisma/migrations'),command,baseline?'baseline':'all'],{encoding:'utf8',timeout:60000});
+`,file,migrationsRoot,command,baseline?'baseline':'all'],{encoding:'utf8',timeout:60000});
   if(result.status!==0)throw Error('STEP2_NATIVE_SQL_REHEARSAL_FAILED:'+String(result.error??result.stderr));
   return 0;
  }
