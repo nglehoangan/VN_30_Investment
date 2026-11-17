@@ -1,0 +1,101 @@
+{
+  "contract": "vnm-current-admission-and-dataset-validation-v1",
+  "scopedTests": {
+    "status": "PASS",
+    "tests": 72,
+    "files": 5,
+    "command": "node node_modules/vitest/vitest.mjs run --config docs/fundamental-data-engine/vnm-current-admission-route/2026-11-16/validation.config.mjs"
+  },
+  "realDataChecks": 6,
+  "realAuthority": {
+    "registry": {
+      "path": "docs/fundamental-data-engine/vnm-current-admission-route/2026-11-16/VERSIONED_SOURCE_REGISTRY_V53.json",
+      "sha256": "a17b2ae15bd269a9eb529cac90b0fa555b79ca1036136c92b0621427b2a8baaa"
+    },
+    "status": "OWNER_AUTHORIZED_VERSION_IMPLEMENTATION_BOUND",
+    "implementationAuthorization": {
+      "path": "docs/fundamental-data-engine/vnm-current-admission-route/2026-11-16/VERSION_IMPLEMENTATION_AUTHORIZATION.json",
+      "sha256": "442d4f7c097ef5db04ad3b35f9e166955716ebf8fddbbb7c2de2998d338562e0"
+    },
+    "governedFactsAdmitted": 68,
+    "oldVersionRejection": "Error: RETAINED_ADAPTER_VERSION_NOT_REGISTERED:approved-financial-source-roles@4:retained-qualified-extraction-v1"
+  },
+  "nativeFactsAdmitted": 68,
+  "currentFinancialInputsBound": 34,
+  "counts": {
+    "before": {
+      "admissions": 0,
+      "facts": 0,
+      "raw": 0,
+      "datasets": 0,
+      "legacyDI": 0,
+      "legacyBinding": 0,
+      "scorecards": 0
+    },
+    "afterAdmission": {
+      "admissions": 1,
+      "facts": 68,
+      "raw": 8,
+      "datasets": 0,
+      "legacyDI": 0,
+      "legacyBinding": 0,
+      "scorecards": 0
+    },
+    "afterBinding": {
+      "admissions": 1,
+      "facts": 68,
+      "raw": 8,
+      "datasets": 1,
+      "legacyDI": 0,
+      "legacyBinding": 0,
+      "scorecards": 0
+    },
+    "after": {
+      "admissions": 2,
+      "facts": 68,
+      "raw": 8,
+      "datasets": 1,
+      "legacyDI": 0,
+      "legacyBinding": 0,
+      "scorecards": 0
+    }
+  },
+  "deterministicReplay": {
+    "pass": true,
+    "hashes": [
+      "01631cd53de11e294cbb0a2e5e2af925f9fab82c305208100acfac04409eed56",
+      "01631cd53de11e294cbb0a2e5e2af925f9fab82c305208100acfac04409eed56"
+    ]
+  },
+  "sqliteSchemaDryRun": {
+    "status": "PASS",
+    "scope": "PROPOSED_SQL_EXPLICITLY_APPLIED_TO_FRESH_PRIVATE_TEST_DB",
+    "foreignKeyCheck": "PASS_IN_INTEGRATION_TEST",
+    "integrityCheck": "ok",
+    "immutableUpdateRejected": true
+  },
+  "typecheck": {
+    "status": "NOT_VERIFIED",
+    "reason": "Scoped TypeScript CLI timed out without diagnostics. Local node_modules/typescript/lib/typescript.js is flagged compressed,dataless; no typecheck PASS is claimed."
+  },
+  "approvedVersionPinsMatch": true,
+  "protectedDatabase": {
+    "before": {
+      "path": "data/vn30.sqlite",
+      "sha256": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65"
+    },
+    "after": {
+      "path": "data/vn30.sqlite",
+      "sha256": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65"
+    }
+  },
+  "protectedSourcePDF": {
+    "path": "data/manual-download/VNM/2026-11-02-remediation/565717-Q3_2026.pdf",
+    "sha256": "fd144a9acb3bacbc745cde32d6375471b11b4b005e1919996631b6735d7c8378"
+  },
+  "productionActivated": false,
+  "formalScoreExecuted": false,
+  "legacyDIOrScorecardBindingCreated": false,
+  "VNM17Promoted": false,
+  "fullF2ClosureClaimed": false
+}

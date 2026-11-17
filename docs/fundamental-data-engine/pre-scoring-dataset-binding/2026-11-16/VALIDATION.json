@@ -1,0 +1,48 @@
+{
+  "status": "PRE_SCORING_BINDING_IMPLEMENTED_AND_VALIDATED",
+  "ownerDecision": {
+    "path": "docs/fundamental-data-engine/pre-scoring-dataset-binding/2026-11-16/OWNER_DECISION.txt",
+    "sha256": "6c1dec5e406e3d2d71715edaaa7abb559f357ca6501d0dabaefad88d5142c7d4",
+    "messageTimestamp": null,
+    "scope": "Prepare/verify binding independently; existing scoring gates remain mandatory"
+  },
+  "tests": {
+    "passed": 81,
+    "failed": 0,
+    "report": "TEST_RESULTS.json"
+  },
+  "deterministicReplay": {
+    "passed": true,
+    "hashes": {
+      "REAL_EXECUTION.json": "9dec7946fcf0918819ddebcf1a9e8fed131d5c967db185457ea978c5e2936c49",
+      "PRE_SCORING_REFERENCE.json": "1811e47a14ada5656cf578900c80477d8ccf60e6f0012a5e6821297e053739aa"
+    }
+  },
+  "implementationHashes": {
+    "src/ports/pre-scoring-datasets.ts": "4f731a6071883cb2f4c1fce9192f739ba8afae188cbb2d0ceba71865e1da4e24",
+    "src/infrastructure/source-admission/pre-scoring-binding.ts": "8ef629a06bf49903841e7c3a756f6fc9671184458fe98f73e90e0aafcd5bfc20",
+    "tests/integration/pre-scoring-binding.test.ts": "21201ee62743dcac9d9ca00d2001ade6bdd66edaa1974ff03bef138062053df0"
+  },
+  "realData": "REAL_EXECUTION.json",
+  "realNegativeChecks": 13,
+  "isolatedBindingRows": 1,
+  "legacyScoringBindingRows": 0,
+  "scorecardRows": 0,
+  "diAcceptanceRows": 0,
+  "activeDatabaseUnchanged": {
+    "before": {
+      "path": "data/vn30.sqlite",
+      "sha256": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65"
+    },
+    "after": {
+      "path": "data/vn30.sqlite",
+      "sha256": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65"
+    }
+  },
+  "fullTypecheck": "NOT_VERIFIED_ENVIRONMENT_STALL",
+  "currentOnlyConvertedToPit": false,
+  "outstandingRubricsResolvedByThisChange": false,
+  "scoringAuthorizationGranted": false,
+  "legacyCurrentPurposeConsumerMismatchResolved": false,
+  "productionActivated": false
+}

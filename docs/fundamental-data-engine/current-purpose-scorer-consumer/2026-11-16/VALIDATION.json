@@ -1,0 +1,61 @@
+{
+  "status": "CURRENT_PURPOSE_DATA_CONSUMER_VALIDATED",
+  "consumerPurposeMismatch": "RESOLVED_FOR_DATASET_CONSUMPTION",
+  "actualEntryPoint": "ScoringEngine.resolveCurrentDataset",
+  "acceptance": "ACCEPTED_CURRENT_DATA",
+  "currentPurposeAcceptanceRows": 1,
+  "legacyHistoricalDIAcceptanceRows": 0,
+  "scorecardsCreated": 0,
+  "tests": {
+    "passed": 146,
+    "failed": 0,
+    "skipped": 1,
+    "report": "TEST_RESULTS.json",
+    "skipReason": "Pre-existing populated-M6.3 partial-schema migration test is unsupported by the scoped full-schema native test fixture.",
+    "earlierEnvironmentFailuresRetained": "EXPANDED_ATTEMPT.json"
+  },
+  "realData": {
+    "execution": "REAL_EXECUTION.json",
+    "receipt": "SCORER_CURRENT_DATA_RECEIPT.json",
+    "facts": 35,
+    "historicalFacts": 65,
+    "negativeChecks": 17,
+    "currentPurposeAcceptanceReadbackVerified": true,
+    "duplicateConsumptionNoNewAcceptance": true
+  },
+  "replay": {
+    "passed": true,
+    "hashes": {
+      "REAL_EXECUTION.json": "7644897113710e657e5f3e022c1bffc544fe12a2779f5fd4a4031515877e197a",
+      "PRE_SCORING_REFERENCE.json": "19fa13a3c834dee575006c42812ee3c28ab617e226a819b07854b5831a160260",
+      "SCORER_CURRENT_DATA_RECEIPT.json": "0a887cd0b4df50204481bd296b3be05701fe54a0054531419515f9f3c69675f1"
+    }
+  },
+  "typecheck": {
+    "status": "NOT_VERIFIED",
+    "reason": "Compiler did not complete within 30 seconds; no PASS claim."
+  },
+  "changedCodeHashes": {
+    "src/application/scoring/engine.ts": "49d549425a1c2f096a92264c1c85111547f060999734301e95ff3634ee906730",
+    "src/ports/current-scoring-datasets.ts": "8e749a805a55656a40976b036a8d66787877dc1eeb23051239a16442fd127ebf",
+    "src/infrastructure/source-admission/current-scoring-consumer.ts": "7138b612682451029bbd6eb3d56131a895466337027ce9e4692b89494d29e3cd",
+    "prisma/proposals/current-scoring-data-acceptance-v1.sql": "d0398b126ebb7a4cbea4b9371bf351de96d2df177d361056c54f838f5f3c3f09",
+    "tests/integration/current-scoring-consumer.test.ts": "b7a95a2cafb49ca94fd56ec4ec527dd5a5bb83ac54dfa5568b2e8fc6379dfada"
+  },
+  "activeDatabaseUnchanged": {
+    "before": {
+      "path": "data/vn30.sqlite",
+      "sha256": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65"
+    },
+    "after": {
+      "path": "data/vn30.sqlite",
+      "sha256": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65"
+    }
+  },
+  "originalEconomicAndOperationalClocksPreserved": true,
+  "currentEvidenceRelabelledAsHistorical": false,
+  "formalScoreIssued": false,
+  "VNM17Promoted": false,
+  "productionActivated": false,
+  "liveMigrationApplied": false
+}

@@ -1,0 +1,33 @@
+{
+  "contract": "vnm-current-dataset-runtime-acceptance-v1",
+  "status": "BLOCKED",
+  "F1": "ADMITTED_AND_CONSUMED",
+  "F2ExpandedAdapterValidated": 294,
+  "F2ExpandedGovernedAdmitted": 0,
+  "actualLegacyGovernedFacts": 1,
+  "acceptancePersisted": false,
+  "bindingPersisted": false,
+  "intendedConsumerResolvedDataset": false,
+  "currentFormalValuation": "NOT_READY",
+  "historicalPIT": "NOT_QUALIFIED",
+  "productionActivation": "NOT_AUTHORIZED",
+  "blockers": [
+    {
+      "id": "EXPANDED_ADMISSION_CONTRACT_AND_VERSION",
+      "evidence": "REAL_EXECUTION.json#/F2/expanded",
+      "exactRequirement": "Active versioned authority adapter/schema/code binding; FinancialIngestPlan qualification and persistence contract.",
+      "responsibleAuthority": "Qualified adapter implementation/version governance under existing standing source authority; no per-fact/source reapproval.",
+      "smallestAction": "Implement and qualify the handoff from the expanded mapping plan to governed admission, bind its exact version, then rerun selected current fact admission."
+    },
+    {
+      "id": "CURRENT_DATASET_CONSUMER_AND_ACCEPTANCE",
+      "evidence": "REAL_EXECUTION.json#/consumer",
+      "exactRequirement": "FORMAL_AS_KNOWN_SNAPSHOT_REQUIRED; EXTERNAL_INDEPENDENT_DI_REVIEW_REQUIRED; binding appended with replay-valid scorecard.",
+      "responsibleAuthority": "Current-purpose dataset contract implementation and existing DI/scoring acceptance authorities.",
+      "smallestAction": "Provide a compatible current-purpose consumer/dataset route preserving PIT separation and mandatory scoring/DI gates; do not insert a fabricated acceptance or scorecard."
+    }
+  ],
+  "newUserFinancialDocumentsRequired": false,
+  "sourceAuthorityChanged": false,
+  "liveDatabaseChanged": false
+}

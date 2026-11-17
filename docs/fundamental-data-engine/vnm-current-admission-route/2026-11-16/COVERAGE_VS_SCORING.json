@@ -1,0 +1,583 @@
+{
+  "contract": "current-native-coverage-versus-existing-scoring-contract-v2",
+  "source": {
+    "path": "docs/fundamental-data-engine/f2-full-coverage-assessment/2026-11-13/F2_REQUIRED_METRIC_MATRIX.json",
+    "sha256": "ad220e3cd9b719113f28d40d4944781e5473399637624e98e78e4dede9d9227f",
+    "pointer": "/sectorTemplates/RETAIL/requirements"
+  },
+  "currentNativeFactsBound": 34,
+  "nativeTargetComplete": true,
+  "fullM3CoverageCertified": false,
+  "rows": [
+    {
+      "level": "CORE",
+      "requirement": {
+        "anyOf": [
+          "TOTAL_ASSETS"
+        ],
+        "component": "FINANCIAL_HEALTH",
+        "id": "assets"
+      },
+      "scope": "CONSOLIDATED",
+      "periodEnd": "2026-09-30",
+      "status": "AVAILABLE_IN_BOUND_DATASET",
+      "availableItems": [
+        "TOTAL_ASSETS"
+      ],
+      "missingSourceDataClaimed": false
+    },
+    {
+      "level": "CORE",
+      "requirement": {
+        "anyOf": [
+          "TOTAL_EQUITY"
+        ],
+        "component": "FINANCIAL_HEALTH",
+        "id": "equity"
+      },
+      "scope": "CONSOLIDATED",
+      "periodEnd": "2026-09-30",
+      "status": "AVAILABLE_IN_BOUND_DATASET",
+      "availableItems": [
+        "TOTAL_EQUITY"
+      ],
+      "missingSourceDataClaimed": false
+    },
+    {
+      "level": "CORE",
+      "requirement": {
+        "anyOf": [
+          "NET_INCOME"
+        ],
+        "component": "BUSINESS_QUALITY",
+        "id": "earnings"
+      },
+      "scope": "CONSOLIDATED",
+      "periodEnd": "2026-09-30",
+      "status": "AVAILABLE_IN_BOUND_DATASET",
+      "availableItems": [
+        "NET_INCOME"
+      ],
+      "missingSourceDataClaimed": false
+    },
+    {
+      "level": "CORE",
+      "requirement": {
+        "anyOf": [
+          "REVENUE"
+        ],
+        "component": "GROWTH_QUALITY",
+        "id": "sales"
+      },
+      "scope": "CONSOLIDATED",
+      "periodEnd": "2026-09-30",
+      "status": "AVAILABLE_IN_BOUND_DATASET",
+      "availableItems": [
+        "REVENUE"
+      ],
+      "missingSourceDataClaimed": false
+    },
+    {
+      "level": "CORE",
+      "requirement": {
+        "anyOf": [
+          "CFO"
+        ],
+        "component": "BUSINESS_QUALITY",
+        "id": "cash_generation"
+      },
+      "scope": "CONSOLIDATED",
+      "periodEnd": "2026-09-30",
+      "status": "AVAILABLE_IN_BOUND_DATASET",
+      "availableItems": [
+        "CFO"
+      ],
+      "missingSourceDataClaimed": false
+    },
+    {
+      "level": "CORE",
+      "requirement": {
+        "anyOf": [
+          "COMPREHENSIVE_FINANCIAL_DEBT",
+          "REPORTED_BORROWINGS"
+        ],
+        "component": "FINANCIAL_HEALTH",
+        "id": "debt",
+        "preference": [
+          "COMPREHENSIVE_FINANCIAL_DEBT",
+          "REPORTED_BORROWINGS"
+        ]
+      },
+      "scope": "CONSOLIDATED",
+      "periodEnd": "2026-09-30",
+      "status": "COMPONENTS_AVAILABLE_AGGREGATE_NOT_QUALIFIED",
+      "availableItems": [],
+      "missingSourceDataClaimed": false
+    },
+    {
+      "level": "CORE",
+      "requirement": {
+        "anyOf": [
+          "CASH_AND_EQUIVALENTS"
+        ],
+        "component": "FINANCIAL_HEALTH",
+        "id": "cash"
+      },
+      "scope": "CONSOLIDATED",
+      "periodEnd": "2026-09-30",
+      "status": "AVAILABLE_IN_BOUND_DATASET",
+      "availableItems": [
+        "CASH_AND_EQUIVALENTS"
+      ],
+      "missingSourceDataClaimed": false
+    },
+    {
+      "level": "SECTOR_CORE",
+      "requirement": {
+        "anyOf": [
+          "INVENTORY"
+        ],
+        "component": "FINANCIAL_HEALTH",
+        "id": "working_capital"
+      },
+      "scope": "CONSOLIDATED",
+      "periodEnd": "2026-09-30",
+      "status": "AVAILABLE_IN_BOUND_DATASET",
+      "availableItems": [
+        "INVENTORY"
+      ],
+      "missingSourceDataClaimed": false
+    }
+  ],
+  "reportedDebtDiagnostic": {
+    "short": "8384686375137",
+    "long": "97387500260",
+    "sum": "8482073875397",
+    "status": "ARITHMETIC_ONLY_NOT_ADMITTED_DEBT_METRIC",
+    "qualified": false,
+    "exactRemainingContract": "src/domain/fundamentals/debt-contract.ts evaluateDebtReceipt: REPORTED_DEBT_SURVEY_AND_SCOPE and current-portion presentation/population metadata must be bound; do not assume exhaustive financing or zero opaque items."
+  },
+  "retainedResearchNotReopened": true,
+  "metrics": [
+    {
+      "applicability": "CONDITIONAL_OR_CROSS_CHECK; select under approved sector rubric",
+      "boundaryInputs": [],
+      "classification": "AVAILABLE_NEEDS_VERIFICATION",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "ROIC",
+      "normalizationOrAnalyticalOperands": [
+        "NOPAT",
+        "average_invested_capital"
+      ],
+      "orderedOperands": [
+        "NOPAT",
+        "average_invested_capital"
+      ],
+      "rawInputRows": [],
+      "reason": "RECIPE_EXISTS; complete exact ordered, comparable and economically qualified operands not demonstrated by scalar availability",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "CONDITIONAL_OR_CROSS_CHECK; select under approved sector rubric",
+      "boundaryInputs": [],
+      "classification": "AVAILABLE_NEEDS_VERIFICATION",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "ROE",
+      "normalizationOrAnalyticalOperands": [
+        "normalized_common_profit",
+        "average_common_equity"
+      ],
+      "orderedOperands": [
+        "normalized_common_profit",
+        "average_common_equity"
+      ],
+      "rawInputRows": [],
+      "reason": "RECIPE_EXISTS; complete exact ordered, comparable and economically qualified operands not demonstrated by scalar availability",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "CONDITIONAL_OR_CROSS_CHECK; select under approved sector rubric",
+      "boundaryInputs": [],
+      "classification": "AVAILABLE_NEEDS_VERIFICATION",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "CFO_CONVERSION",
+      "normalizationOrAnalyticalOperands": [
+        "cumulative_normalized_NPAT"
+      ],
+      "orderedOperands": [
+        "cumulative_CFO",
+        "cumulative_normalized_NPAT"
+      ],
+      "rawInputRows": [
+        "VNM:CFO:FY2022",
+        "VNM:CFO:FY2023",
+        "VNM:CFO:FY2024",
+        "VNM:CFO:FY2025",
+        "VNM:CFO:H1_2026",
+        "VNM:CFO:Q3_YTD_2026"
+      ],
+      "reason": "RECIPE_EXISTS; complete exact ordered, comparable and economically qualified operands not demonstrated by scalar availability",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "CONDITIONAL_OR_CROSS_CHECK; select under approved sector rubric",
+      "boundaryInputs": [],
+      "classification": "AVAILABLE_NEEDS_VERIFICATION",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "FCF",
+      "normalizationOrAnalyticalOperands": [
+        "issuer_capex"
+      ],
+      "orderedOperands": [
+        "CFO",
+        "issuer_capex"
+      ],
+      "rawInputRows": [
+        "VNM:CFO:FY2022",
+        "VNM:CFO:FY2023",
+        "VNM:CFO:FY2024",
+        "VNM:CFO:FY2025",
+        "VNM:CFO:H1_2026",
+        "VNM:CFO:Q3_YTD_2026"
+      ],
+      "reason": "RECIPE_EXISTS; complete exact ordered, comparable and economically qualified operands not demonstrated by scalar availability",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "CONDITIONAL_OR_CROSS_CHECK; select under approved sector rubric",
+      "boundaryInputs": [],
+      "classification": "AVAILABLE_NEEDS_VERIFICATION",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "NET_DEBT",
+      "normalizationOrAnalyticalOperands": [
+        "interest_bearing_debt",
+        "unrestricted_cash"
+      ],
+      "orderedOperands": [
+        "interest_bearing_debt",
+        "unrestricted_cash"
+      ],
+      "rawInputRows": [],
+      "reason": "RECIPE_EXISTS; complete exact ordered, comparable and economically qualified operands not demonstrated by scalar availability",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "CONDITIONAL_OR_CROSS_CHECK; select under approved sector rubric",
+      "boundaryInputs": [],
+      "classification": "AVAILABLE_NEEDS_VERIFICATION",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "INTEREST_COVERAGE",
+      "normalizationOrAnalyticalOperands": [
+        "normalized_EBIT",
+        "net_interest"
+      ],
+      "orderedOperands": [
+        "normalized_EBIT",
+        "net_interest"
+      ],
+      "rawInputRows": [],
+      "reason": "RECIPE_EXISTS; complete exact ordered, comparable and economically qualified operands not demonstrated by scalar availability",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "BANK_SPECIFIC",
+      "boundaryInputs": [],
+      "classification": "NOT_APPLICABLE",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "NPL",
+      "normalizationOrAnalyticalOperands": [
+        "NPL"
+      ],
+      "orderedOperands": [
+        "NPL",
+        "gross_loans"
+      ],
+      "rawInputRows": [],
+      "reason": "SECTOR_INAPPLICABLE",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "BANK_SPECIFIC",
+      "boundaryInputs": [],
+      "classification": "NOT_APPLICABLE",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "COVERAGE",
+      "normalizationOrAnalyticalOperands": [
+        "NPL"
+      ],
+      "orderedOperands": [
+        "loan_loss_reserves",
+        "NPL"
+      ],
+      "rawInputRows": [],
+      "reason": "SECTOR_INAPPLICABLE",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "BANK_SPECIFIC",
+      "boundaryInputs": [],
+      "classification": "NOT_APPLICABLE",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "CASA",
+      "normalizationOrAnalyticalOperands": [],
+      "orderedOperands": [
+        "current_and_savings",
+        "deposits"
+      ],
+      "rawInputRows": [],
+      "reason": "SECTOR_INAPPLICABLE",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "CONDITIONAL_OR_CROSS_CHECK; select under approved sector rubric",
+      "boundaryInputs": [
+        "market_cap"
+      ],
+      "classification": "AVAILABLE_NEEDS_VERIFICATION",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "FCF_YIELD",
+      "normalizationOrAnalyticalOperands": [
+        "normalized_FCFE"
+      ],
+      "orderedOperands": [
+        "normalized_FCFE",
+        "market_cap"
+      ],
+      "rawInputRows": [],
+      "reason": "RECIPE_EXISTS; complete exact ordered, comparable and economically qualified operands not demonstrated by scalar availability",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "CONDITIONAL_OR_CROSS_CHECK; select under approved sector rubric",
+      "boundaryInputs": [
+        "price"
+      ],
+      "classification": "AVAILABLE_NEEDS_VERIFICATION",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "EARNINGS_YIELD",
+      "normalizationOrAnalyticalOperands": [
+        "normalized_EPS"
+      ],
+      "orderedOperands": [
+        "normalized_EPS",
+        "price"
+      ],
+      "rawInputRows": [],
+      "reason": "RECIPE_EXISTS; complete exact ordered, comparable and economically qualified operands not demonstrated by scalar availability",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "CONDITIONAL_OR_CROSS_CHECK; select under approved sector rubric",
+      "boundaryInputs": [
+        "sustainable_DPS",
+        "price"
+      ],
+      "classification": "AVAILABLE_NEEDS_VERIFICATION",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "DIVIDEND_YIELD",
+      "normalizationOrAnalyticalOperands": [
+        "sustainable_DPS"
+      ],
+      "orderedOperands": [
+        "sustainable_DPS",
+        "price"
+      ],
+      "rawInputRows": [],
+      "reason": "RECIPE_EXISTS; complete exact ordered, comparable and economically qualified operands not demonstrated by scalar availability",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "CONDITIONAL_OR_CROSS_CHECK; select under approved sector rubric",
+      "boundaryInputs": [
+        "price"
+      ],
+      "classification": "AVAILABLE_NEEDS_VERIFICATION",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "PB",
+      "normalizationOrAnalyticalOperands": [
+        "BVPS"
+      ],
+      "orderedOperands": [
+        "price",
+        "BVPS"
+      ],
+      "rawInputRows": [],
+      "reason": "RECIPE_EXISTS; complete exact ordered, comparable and economically qualified operands not demonstrated by scalar availability",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "CONDITIONAL_OR_CROSS_CHECK; select under approved sector rubric",
+      "boundaryInputs": [
+        "EV"
+      ],
+      "classification": "AVAILABLE_NEEDS_VERIFICATION",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "EV_EBIT",
+      "normalizationOrAnalyticalOperands": [
+        "EV",
+        "normalized_EBIT"
+      ],
+      "orderedOperands": [
+        "EV",
+        "normalized_EBIT"
+      ],
+      "rawInputRows": [],
+      "reason": "RECIPE_EXISTS; complete exact ordered, comparable and economically qualified operands not demonstrated by scalar availability",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "CONDITIONAL_OR_CROSS_CHECK; select under approved sector rubric",
+      "boundaryInputs": [
+        "conservative_value",
+        "price"
+      ],
+      "classification": "AVAILABLE_NEEDS_VERIFICATION",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "MOS",
+      "normalizationOrAnalyticalOperands": [
+        "conservative_value"
+      ],
+      "orderedOperands": [
+        "conservative_value",
+        "price"
+      ],
+      "rawInputRows": [],
+      "reason": "RECIPE_EXISTS; complete exact ordered, comparable and economically qualified operands not demonstrated by scalar availability",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "CONDITIONAL_OR_CROSS_CHECK; select under approved sector rubric",
+      "boundaryInputs": [],
+      "classification": "AVAILABLE_NEEDS_VERIFICATION",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "REVENUE_CAGR",
+      "normalizationOrAnalyticalOperands": [],
+      "orderedOperands": [
+        "revenue_end",
+        "revenue_start"
+      ],
+      "rawInputRows": [
+        "VNM:REVENUE:FY2022",
+        "VNM:REVENUE:FY2023",
+        "VNM:REVENUE:FY2024",
+        "VNM:REVENUE:FY2025",
+        "VNM:REVENUE:H1_2026",
+        "VNM:REVENUE:Q3_YTD_2026"
+      ],
+      "reason": "RECIPE_EXISTS; complete exact ordered, comparable and economically qualified operands not demonstrated by scalar availability",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "CONDITIONAL_OR_CROSS_CHECK; select under approved sector rubric",
+      "boundaryInputs": [],
+      "classification": "AVAILABLE_NEEDS_VERIFICATION",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "EPS_CAGR",
+      "normalizationOrAnalyticalOperands": [
+        "adjusted_EPS_end",
+        "adjusted_EPS_start"
+      ],
+      "orderedOperands": [
+        "adjusted_EPS_end",
+        "adjusted_EPS_start"
+      ],
+      "rawInputRows": [],
+      "reason": "RECIPE_EXISTS; complete exact ordered, comparable and economically qualified operands not demonstrated by scalar availability",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "CONDITIONAL_OR_CROSS_CHECK; select under approved sector rubric",
+      "boundaryInputs": [],
+      "classification": "AVAILABLE_NEEDS_VERIFICATION",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "INCREMENTAL_ROIC",
+      "normalizationOrAnalyticalOperands": [
+        "change_normalized_NOPAT",
+        "change_invested_capital"
+      ],
+      "orderedOperands": [
+        "change_normalized_NOPAT",
+        "change_invested_capital"
+      ],
+      "rawInputRows": [],
+      "reason": "RECIPE_EXISTS; complete exact ordered, comparable and economically qualified operands not demonstrated by scalar availability",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    },
+    {
+      "applicability": "CONDITIONAL_OR_CROSS_CHECK; select under approved sector rubric",
+      "boundaryInputs": [],
+      "classification": "AVAILABLE_NEEDS_VERIFICATION",
+      "consumerReadiness": "NO_NEW_SCORE_OR_VALUATION_AUTHORITY",
+      "governedAdmission": "DERIVED_OUTPUT_NOT_AUTOMATICALLY_ADMITTED",
+      "metric": "NET_DEBT_EBITDA",
+      "normalizationOrAnalyticalOperands": [
+        "net_debt",
+        "normalized_EBITDA"
+      ],
+      "orderedOperands": [
+        "net_debt",
+        "normalized_EBITDA"
+      ],
+      "rawInputRows": [],
+      "reason": "RECIPE_EXISTS; complete exact ordered, comparable and economically qualified operands not demonstrated by scalar availability",
+      "sector": "RETAIL",
+      "ticker": "VNM",
+      "timeRequirements": "FY2022-FY2025 for 3-year CAGR; 5-year preferred requires earlier endpoint; TTM FY2025 + H1_2026 - H1_2025; averages require opening stocks; no annualization"
+    }
+  ],
+  "interpretation": "Current native statements are available through governed admission. Normalized earnings/capital, historical windows, debt qualification and M3 assessment authorization remain their existing contracts; 9M data is never labelled TTM or historical PIT."
+}

@@ -1,0 +1,1063 @@
+{
+  "contract": "vnm-expanded-current-dataset-execution-v1",
+  "knownAt": "2026-11-16T06:30:00.000Z",
+  "economicCutoff": "2026-10-30",
+  "database": "FRESH_MIGRATED_DISPOSABLE_SQLITE",
+  "counts": {
+    "before": {
+      "admissionRuns": 0,
+      "rawCaptures": 0,
+      "events": 0,
+      "marketRecords": 0,
+      "snapshots": 0,
+      "acceptances": 0,
+      "bindings": 0,
+      "scorecards": 0
+    },
+    "afterAdmission": {
+      "admissionRuns": 1,
+      "rawCaptures": 8,
+      "events": 0,
+      "marketRecords": 2,
+      "snapshots": 0,
+      "acceptances": 0,
+      "bindings": 0,
+      "scorecards": 0
+    },
+    "afterProbe": {
+      "admissionRuns": 1,
+      "rawCaptures": 8,
+      "events": 1,
+      "marketRecords": 2,
+      "snapshots": 0,
+      "acceptances": 0,
+      "bindings": 0,
+      "scorecards": 0
+    },
+    "after": {
+      "admissionRuns": 1,
+      "rawCaptures": 8,
+      "events": 3,
+      "marketRecords": 2,
+      "snapshots": 0,
+      "acceptances": 0,
+      "bindings": 0,
+      "scorecards": 0
+    }
+  },
+  "F1": {
+    "status": "ADMITTED_AND_CONSUMED",
+    "rawClose": "56900"
+  },
+  "F2": {
+    "legacy": {
+      "admissionId": "standing-current:47a7642bc979666119a2121a84188abb73e4c87764f1454f77075ac5f0f426bf",
+      "evidence": [
+        {
+          "asOf": "2026-10-30T23:59:59.999Z",
+          "classification": "FACT",
+          "critical": true,
+          "family": "FINANCIAL",
+          "id": "standing:f396c3aa842e8c527c22c6d8708680d95f5787f84a89b2805c4dff765f1ee2ce",
+          "observation": "TOTAL_ASSETS",
+          "periodEnd": "2026-06-30",
+          "periodStart": "2026-06-30",
+          "publishedAt": null,
+          "quality": "VALID",
+          "receivedAt": "2026-11-16T06:30:00.000Z",
+          "securityId": "a243cd90-95b8-44f0-96a5-b6be0defeb87",
+          "source": "REVIEWED_PDF",
+          "time": {
+            "authorizationReference": "docs/fundamental-data-engine/unified-source-admission/2026-11-12/SOURCE_POLICY_AUTHORIZATIONS.json",
+            "availableAt": "2026-11-16T06:30:00.000Z",
+            "contract": "current-formal-evidence-time-v1",
+            "ingestedAt": "2026-11-16T06:30:00.000Z",
+            "originalReceivedAt": "2026-10-15T16:16:14.000Z",
+            "policyHash": "c39b7de09ae70b7fefcba6fb178cdcddb87795667b0397bf82de25aab2062f68",
+            "policyVersion": "standing-financial-current-v1",
+            "purpose": "CURRENT_FORMAL_VALUATION",
+            "qualificationReference": "docs/fundamental-data-engine/unified-final-acceptance/2026-11-12/SELECTED_INPUT.json#/canonical/canonical:eed54694c5a458cb06c581a35af2824877b0280a5750bf8c637b9c05008e7ee5",
+            "rawHash": "a6155aa757b320b893a78093b0454473f4a581aead225af4eb4ef1fbd6628561",
+            "reviewedAt": "2026-11-12T13:48:30.442Z"
+          },
+          "unit": "VND",
+          "validThrough": "2026-10-30T23:59:59.999Z",
+          "value": "57451803693875",
+          "version": "standing-financial-current-v1"
+        }
+      ],
+      "transforms": [
+        {
+          "factId": "canonical:eed54694c5a458cb06c581a35af2824877b0280a5750bf8c637b9c05008e7ee5",
+          "rawHash": "a6155aa757b320b893a78093b0454473f4a581aead225af4eb4ef1fbd6628561",
+          "retainedRawPath": "data/manual-download/VNM/20260730___vnm___bctc_da_soat_xet_q2_2026___hop_nhat.pdf",
+          "nativeValue": "57.451.803.693.875",
+          "nativeUnit": "CURRENCY",
+          "sourcePointer": "data/manual-download/VNM/20260730___vnm___bctc_da_soat_xet_q2_2026___hop_nhat.pdf#page=9",
+          "normalizedValue": "57451803693875",
+          "originalReceivedAt": "2026-10-15T16:16:14.000Z",
+          "reviewedAt": "2026-11-12T13:48:30.442Z",
+          "sourceRole": "REVIEWED_PDF",
+          "documentType": "FINANCIAL_STATEMENTS"
+        }
+      ],
+      "duplicate": true,
+      "readbackMatches": true,
+      "revokedAtEndForNegativeTest": true
+    },
+    "expanded": {
+      "adapterAccepted": 294,
+      "governedAdmitted": 0,
+      "status": "QUARANTINED_VERSION_GATE",
+      "reason": "Error: RETAINED_ADAPTER_VERSION_NOT_REGISTERED:approved-financial-source-roles@4:retained-qualified-extraction-v1",
+      "quarantineReadbackMatches": true,
+      "probeId": "de475edf8b129d7dfff173c04323c8bcc9e4a65f22321f2f6f65c1fd12e7ca2c",
+      "planHash": "ba79c5aba01a289b9e027cba228780271c2314c5dc312ea76fb065a49d10fbbd"
+    }
+  },
+  "coverage": [
+    {
+      "itemId": "TOTAL_ASSETS",
+      "requirementBasis": "BOUNDED_REQUESTED_FINANCIAL_INPUTS_NOT_COMPLETE_M3_METRIC_CERTIFICATION",
+      "adapterPeriods": [
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2021-12-31",
+          "end": "2021-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-12-31",
+          "end": "2022-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2023-12-31",
+          "end": "2023-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2024-12-31",
+          "end": "2024-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-12-31",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-12-31",
+          "end": "2025-12-31",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2026-09-30",
+          "end": "2026-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-12-31",
+          "end": "2025-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2023-12-31",
+          "end": "2023-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-12-31",
+          "end": "2022-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2024-12-31",
+          "end": "2024-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2026-06-30",
+          "end": "2026-06-30",
+          "vintage": "RETAINED_CANONICAL"
+        }
+      ],
+      "admittedPeriods": [
+        {
+          "start": "2026-06-30",
+          "end": "2026-06-30"
+        }
+      ],
+      "currentQ3Governed": false
+    },
+    {
+      "itemId": "TOTAL_EQUITY",
+      "requirementBasis": "BOUNDED_REQUESTED_FINANCIAL_INPUTS_NOT_COMPLETE_M3_METRIC_CERTIFICATION",
+      "adapterPeriods": [
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2021-12-31",
+          "end": "2021-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-12-31",
+          "end": "2022-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2023-12-31",
+          "end": "2023-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2024-12-31",
+          "end": "2024-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-12-31",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-12-31",
+          "end": "2025-12-31",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2026-09-30",
+          "end": "2026-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2024-12-31",
+          "end": "2024-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2025-12-31",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2023-12-31",
+          "end": "2023-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2024-12-31",
+          "end": "2024-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2026-06-30",
+          "end": "2026-06-30",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-12-31",
+          "end": "2025-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-12-31",
+          "end": "2022-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        }
+      ],
+      "admittedPeriods": [],
+      "currentQ3Governed": false
+    },
+    {
+      "itemId": "CASH_AND_EQUIVALENTS",
+      "requirementBasis": "BOUNDED_REQUESTED_FINANCIAL_INPUTS_NOT_COMPLETE_M3_METRIC_CERTIFICATION",
+      "adapterPeriods": [
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2021-12-31",
+          "end": "2021-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-12-31",
+          "end": "2022-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2023-12-31",
+          "end": "2023-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2024-12-31",
+          "end": "2024-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-12-31",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-12-31",
+          "end": "2025-12-31",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2026-09-30",
+          "end": "2026-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2024-12-31",
+          "end": "2024-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2025-12-31",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-12-31",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2026-09-30",
+          "end": "2026-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2023-12-31",
+          "end": "2023-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-12-31",
+          "end": "2025-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2026-06-30",
+          "end": "2026-06-30",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2024-12-31",
+          "end": "2024-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-12-31",
+          "end": "2022-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        }
+      ],
+      "admittedPeriods": [],
+      "currentQ3Governed": false
+    },
+    {
+      "itemId": "REPORTED_BORROWINGS",
+      "requirementBasis": "BOUNDED_REQUESTED_FINANCIAL_INPUTS_NOT_COMPLETE_M3_METRIC_CERTIFICATION",
+      "adapterPeriods": [
+        {
+          "scope": "STANDALONE",
+          "start": "2024-12-31",
+          "end": "2024-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2025-12-31",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-12-31",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2023-12-31",
+          "end": "2023-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-12-31",
+          "end": "2022-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2026-09-30",
+          "end": "2026-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        }
+      ],
+      "admittedPeriods": [],
+      "currentQ3Governed": false
+    },
+    {
+      "itemId": "REVENUE",
+      "requirementBasis": "BOUNDED_REQUESTED_FINANCIAL_INPUTS_NOT_COMPLETE_M3_METRIC_CERTIFICATION",
+      "adapterPeriods": [
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2026-01-01",
+          "end": "2026-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2026-01-01",
+          "end": "2026-06-30",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2026-01-01",
+          "end": "2026-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        }
+      ],
+      "admittedPeriods": [],
+      "currentQ3Governed": false
+    },
+    {
+      "itemId": "GROSS_PROFIT",
+      "requirementBasis": "BOUNDED_REQUESTED_FINANCIAL_INPUTS_NOT_COMPLETE_M3_METRIC_CERTIFICATION",
+      "adapterPeriods": [
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2026-01-01",
+          "end": "2026-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2026-01-01",
+          "end": "2026-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        }
+      ],
+      "admittedPeriods": [],
+      "currentQ3Governed": false
+    },
+    {
+      "itemId": "SELLING_EXPENSE",
+      "requirementBasis": "BOUNDED_REQUESTED_FINANCIAL_INPUTS_NOT_COMPLETE_M3_METRIC_CERTIFICATION",
+      "adapterPeriods": [
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2026-01-01",
+          "end": "2026-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        }
+      ],
+      "admittedPeriods": [],
+      "currentQ3Governed": false
+    },
+    {
+      "itemId": "ADMIN_EXPENSE",
+      "requirementBasis": "BOUNDED_REQUESTED_FINANCIAL_INPUTS_NOT_COMPLETE_M3_METRIC_CERTIFICATION",
+      "adapterPeriods": [
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2026-01-01",
+          "end": "2026-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        }
+      ],
+      "admittedPeriods": [],
+      "currentQ3Governed": false
+    },
+    {
+      "itemId": "INTEREST_EXPENSE",
+      "requirementBasis": "BOUNDED_REQUESTED_FINANCIAL_INPUTS_NOT_COMPLETE_M3_METRIC_CERTIFICATION",
+      "adapterPeriods": [
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2026-01-01",
+          "end": "2026-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2026-01-01",
+          "end": "2026-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2025-01-01",
+          "end": "2025-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        }
+      ],
+      "admittedPeriods": [],
+      "currentQ3Governed": false
+    },
+    {
+      "itemId": "NET_INCOME",
+      "requirementBasis": "BOUNDED_REQUESTED_FINANCIAL_INPUTS_NOT_COMPLETE_M3_METRIC_CERTIFICATION",
+      "adapterPeriods": [
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2026-01-01",
+          "end": "2026-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2026-01-01",
+          "end": "2026-06-30",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        }
+      ],
+      "admittedPeriods": [],
+      "currentQ3Governed": false
+    },
+    {
+      "itemId": "NET_INCOME_ATTRIBUTABLE_PARENT",
+      "requirementBasis": "BOUNDED_REQUESTED_FINANCIAL_INPUTS_NOT_COMPLETE_M3_METRIC_CERTIFICATION",
+      "adapterPeriods": [
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        }
+      ],
+      "admittedPeriods": [],
+      "currentQ3Governed": false
+    },
+    {
+      "itemId": "CFO",
+      "requirementBasis": "BOUNDED_REQUESTED_FINANCIAL_INPUTS_NOT_COMPLETE_M3_METRIC_CERTIFICATION",
+      "adapterPeriods": [
+        {
+          "scope": "STANDALONE",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2026-01-01",
+          "end": "2026-06-30",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "CONSOLIDATED",
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "vintage": "RETAINED_CANONICAL"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2026-01-01",
+          "end": "2026-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2025-01-01",
+          "end": "2025-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        }
+      ],
+      "admittedPeriods": [],
+      "currentQ3Governed": false
+    },
+    {
+      "itemId": "DEPRECIATION_AMORTIZATION",
+      "requirementBasis": "BOUNDED_REQUESTED_FINANCIAL_INPUTS_NOT_COMPLETE_M3_METRIC_CERTIFICATION",
+      "adapterPeriods": [
+        {
+          "scope": "STANDALONE",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2026-01-01",
+          "end": "2026-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        }
+      ],
+      "admittedPeriods": [],
+      "currentQ3Governed": false
+    },
+    {
+      "itemId": "ASSET_PURCHASE_CASH_OUTFLOW",
+      "requirementBasis": "BOUNDED_REQUESTED_FINANCIAL_INPUTS_NOT_COMPLETE_M3_METRIC_CERTIFICATION",
+      "adapterPeriods": [
+        {
+          "scope": "STANDALONE",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "vintage": "ANNUAL_ORIGINAL"
+        },
+        {
+          "scope": "STANDALONE",
+          "start": "2026-01-01",
+          "end": "2026-09-30",
+          "vintage": "Q3_2026_PRESENTATION"
+        }
+      ],
+      "admittedPeriods": [],
+      "currentQ3Governed": false
+    }
+  ],
+  "consumer": {
+    "class": "PrismaScoringDatasets",
+    "status": "BLOCKED",
+    "reason": "ValidationError: Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập. | DI_ACCEPTANCE_REQUIRED",
+    "acceptancePersisted": false,
+    "bindingPersisted": false,
+    "scoreExecuted": false
+  },
+  "checks": [
+    {
+      "name": "expanded adapter cannot inherit v4 executable approval",
+      "status": "PASS",
+      "reason": "Error: RETAINED_ADAPTER_VERSION_NOT_REGISTERED:approved-financial-source-roles@4:retained-qualified-extraction-v1"
+    },
+    {
+      "name": "CURRENT_ONLY cannot become PIT",
+      "status": "PASS",
+      "reason": "Error: CURRENT_ONLY_NOT_PIT"
+    },
+    {
+      "name": "cross ticker consumer",
+      "status": "PASS",
+      "reason": "Error: FINANCIAL_CONSUMPTION_SCOPE"
+    },
+    {
+      "name": "changed raw hash",
+      "status": "PASS",
+      "reason": "Error: SOURCE_HASH_MISMATCH:data/manual-download/VNM/20260730___vnm___bctc_da_soat_xet_q2_2026___hop_nhat.pdf"
+    },
+    {
+      "name": "actual scoring consumer cannot resolve absent DI acceptance",
+      "status": "PASS",
+      "reason": "ValidationError: Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập. | DI_ACCEPTANCE_REQUIRED"
+    },
+    {
+      "name": "intended scorer dataset authorization requires a real reviewed acceptance",
+      "status": "PASS",
+      "reason": "ValidationError: Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập. | DI_ACCEPTANCE_REQUIRED"
+    },
+    {
+      "name": "financial admission id is not a DI acceptance",
+      "status": "PASS",
+      "reason": "ValidationError: Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập. | DI_ACCEPTANCE_REQUIRED"
+    },
+    {
+      "name": "invalid acceptance cannot be inserted",
+      "status": "PASS",
+      "reason": "ValidationError: Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập. | SCORING_READINESS_EXACT_FIELDS"
+    },
+    {
+      "name": "revoked accepted record cannot be consumed",
+      "status": "PASS",
+      "reason": "Error: FINANCIAL_ADMISSION_REVOKED"
+    }
+  ],
+  "activeDatabase": {
+    "before": {
+      "path": "data/vn30.sqlite",
+      "sha256": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65"
+    },
+    "after": {
+      "path": "data/vn30.sqlite",
+      "sha256": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65"
+    },
+    "unchanged": true
+  },
+  "F2Decision": "PARTIAL_NOT_CLOSED",
+  "historicalPIT": "NOT_QUALIFIED",
+  "productionActivation": "NOT_AUTHORIZED",
+  "temporaryDatabaseDeletedAfterRun": true
+}

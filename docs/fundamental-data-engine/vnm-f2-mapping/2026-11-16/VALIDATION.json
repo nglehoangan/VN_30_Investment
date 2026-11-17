@@ -1,0 +1,56 @@
+{
+  "contract": "retained-financial-adapter-validation-v1",
+  "scope": "ADAPTER_ONLY_NO_DB_ADMISSION",
+  "tests": [
+    {
+      "command": "/private/tmp/node-v22.23.2-darwin-arm64/bin/node node_modules/vitest/vitest.mjs run --config /Users/nglehoangan/Documents/Working/VN_30_Investment/docs/fundamental-data-engine/vnm-f2-mapping/2026-11-16/vitest.config.mjs",
+      "exitCode": 0,
+      "output": "\n RUN  v5.0.0 /Users/nglehoangan/Documents/Working/VN_30_Investment\n\n\n Test Files  2 passed (2)\n      Tests  33 passed (33)\n   Start at  12:16:19\n   Duration  1.28s (tests 75%, transform 21%, import 4%)\n\n"
+    },
+    {
+      "command": "python3 scripts/test-vnm-retained-financial-mapping.py",
+      "exitCode": 0,
+      "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 0.113s\n\nOK\n"
+    }
+  ],
+  "acceptedObservationCount": 294,
+  "quarantineCount": 0,
+  "replaySha256": [
+    "5aa7bf56d154510e9b6cccdb55e544b0bde2c5f93fe1dff719536124e108d3bb",
+    "5aa7bf56d154510e9b6cccdb55e544b0bde2c5f93fe1dff719536124e108d3bb"
+  ],
+  "deterministicReplay": true,
+  "protectedDatabase": {
+    "before": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65",
+    "after": "47d1dd391afb895e70d942f96f148e16d9982646998f9c59b5b36cc59ca2cb65",
+    "unchanged": true
+  },
+  "typecheck": {
+    "status": "NOT_VERIFIED",
+    "reason": "Full and scoped tsc, including NODE_DISABLE_COMPILE_CACHE=1 retry, stalled without diagnostics and were interrupted."
+  },
+  "formalF2Closed": false,
+  "productionActivated": false,
+  "implementationPins": [
+    {
+      "path": "src/infrastructure/source-admission/retained-mapping.ts",
+      "sha256": "f9264525773d2908de3ecf806bb58d7a58aa85f817693832cc61d134168c46e1"
+    },
+    {
+      "path": "scripts/run-vnm-retained-admission.mjs",
+      "sha256": "f7d5db6a64f9663005c40f13d0e7c64de1635e1eb8b747607fe539c7ede07abd"
+    },
+    {
+      "path": "scripts/map-vnm-retained-financials.py",
+      "sha256": "c29c2bdbde8be18299cc7d6bb0a8c8a51811de972937512e7870bb2bb1b904e3"
+    },
+    {
+      "path": "src/infrastructure/source-admission/versioned-authority.ts",
+      "sha256": "9deb114c7504514c2b31c65e5b7585d0836f0acc4ed53a68e3efaa0a16524911"
+    },
+    {
+      "path": "src/infrastructure/source-admission/financial.ts",
+      "sha256": "5d1c4d465cbc8802656b34da4d3cba70e8512b01150de050174a9fc99ca158ec"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+import {readFileSync,writeFileSync,existsSync,realpathSync} from 'node:fs';
+import {createHash} from 'node:crypto';import {createRequire} from 'node:module';import {pathToFileURL} from 'node:url';import {resolve} from 'node:path';
+const out='docs/fundamental-data-engine/vnm-f2-coverage-closure/2026-11-16',read=p=>JSON.parse(readFileSync(p,'utf8')),pin=path=>({path,sha256:createHash('sha256').update(readFileSync(path)).digest('hex')});
+const vr=createRequire(realpathSync('node_modules/vitest/package.json')),jr=createRequire(vr.resolve('vite/package.json')),{createJiti}=await import(pathToFileURL(jr.resolve('jiti')).href);
+const jiti=createJiti(import.meta.url,{alias:{'@':resolve('src')},fsCache:false,moduleCache:true});
+const {COVERAGE_CODE}=await jiti.import(resolve('src/infrastructure/source-admission/current-coverage.ts'));
+const previous='docs/fundamental-data-engine/vnm-current-admission-route/2026-11-16/VERSIONED_SOURCE_REGISTRY_V53.json',target=out+'/VERSIONED_SOURCE_REGISTRY_V6.json';
+if(existsSync(target))throw Error('VERSION_ALREADY_EXISTS_VERIFY_PINS_OR_CREATE_EXPLICIT_SUCCESSOR');
+const r=read(previous);r.version='owner-standing-authority-v6-current-coverage';r.predecessor=pin(previous);r.recordedAt=new Date().toISOString();
+const a=r.authorities.find(a=>a.domain==='F2');a.version='6';a.code=[...new Map([...a.code,...COVERAGE_CODE.map(pin)].map(p=>[p.path,p])).values()];
+a.currentEnrichment={adapterVersion:'current-research-and-reported-debt-v1',catalogs:['DEBT_SOURCE_REVIEW.json','RETAINED_ADMITTED_HISTORY.json','RESEARCH_ADOPTION_CATALOG.json'].map(n=>pin(out+'/'+n)),implementationAuthorization:pin(out+'/IMPLEMENTATION_AUTHORIZATION.json'),reportedBorrowings:true,comprehensiveDebtAutomaticallyCertified:false,researchEstimatesBecomeFacts:false,formalScoringAuthorized:false};
+writeFileSync(target,JSON.stringify(r,null,2)+'\n');console.log(JSON.stringify({registry:pin(target),newProviderApproval:false,formalPointsApproved:false}));

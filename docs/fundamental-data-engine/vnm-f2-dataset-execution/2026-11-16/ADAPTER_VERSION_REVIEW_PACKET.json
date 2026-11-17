@@ -1,0 +1,53 @@
+{
+  "status": "PROPOSAL_NOT_APPROVED",
+  "existingStandingSourceApprovalsPreserved": true,
+  "existingAuthority": {
+    "path": "docs/fundamental-data-engine/standing-authority-version/2026-11-12/VERSIONED_SOURCE_REGISTRY.json",
+    "sha256": "8846af07ce6ffc13bc016ada5da635e8f964d8f7a6d1c9b8097c448f26336fea"
+  },
+  "current": {
+    "id": "approved-financial-source-roles",
+    "version": "4",
+    "adapterVersion": "retained-qualified-extraction-v1",
+    "schemaVersion": "unified-current-financial-plan-v1",
+    "validatedAdapterScope": {
+      "documentTypes": [
+        "FINANCIAL_STATEMENTS",
+        "ANNUAL_REPORT"
+      ],
+      "nativeMode": "DIRECT_PDF",
+      "metrics": [
+        "TOTAL_ASSETS"
+      ],
+      "requiresQualifiedSemanticAndHashLinkedExtraction": true,
+      "corporateActions": "NOT_ADMITTED_BY_THIS_ADAPTER",
+      "structuredFinancialApi": "SOURCE_ELIGIBLE_OBSERVATION_ADAPTER_NOT_QUALIFIED_BY_THIS_VERSION"
+    }
+  },
+  "requestedImplementation": {
+    "adapterVersion": "retained-reviewed-financial-admission-v1",
+    "schemaVersion": "retained-current-financial-admission-plan-v1",
+    "mappingCatalog": {
+      "path": "docs/fundamental-data-engine/vnm-f2-mapping/2026-11-16/MAPPING_CONTRACT.json",
+      "sha256": "fb523afb1f2a046eb96330ca591f414bf177a370e31f41f24dc3d95c9213d1c6"
+    },
+    "code": [
+      {
+        "path": "src/infrastructure/source-admission/retained-mapping.ts",
+        "sha256": "f9264525773d2908de3ecf806bb58d7a58aa85f817693832cc61d134168c46e1"
+      },
+      {
+        "path": "src/infrastructure/source-admission/retained-authority-gate.ts",
+        "sha256": "a91edf85b00db2953ed60e4f57b5b8583ac41d744f61710adce7c7d5b4ed5619"
+      }
+    ],
+    "normalizerVersion": "financial-normalize-lexical-v1",
+    "policyVersion": "standing-financial-current-v1"
+  },
+  "missingFacts": [
+    "The active registry binds F2 adapter retained-qualified-extraction-v1 and unified-current-financial-plan-v1, not the new adapter/schema/code."
+  ],
+  "provenanceFollowup": "Nullable output metadata does not prove missing source data; resolve required clocks/source roles from retained catalogs before downstream Evidence qualification.",
+  "notASourceApprovalRequest": true,
+  "doesNotPromoteVNM17": true
+}
