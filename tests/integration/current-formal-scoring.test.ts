@@ -87,7 +87,7 @@ describe('exact new executable acceptance cannot be manufactured',()=>{
   const {manifestDigest}=await import('@/infrastructure/fundamentals/snapshot-hash');
   const {PinnedCurrentExecutableAuthority}=await import('@/infrastructure/source-admission/current-scoring-authority');
   const x=await setup();try{
-   const body=JSON.stringify({contract:'current-scoring-executable-authority-v1',status:'PROPOSED',purpose:'CURRENT_FORMAL_VALUATION'});await writeFile(join(x.db.directory,'proposal.json'),body);
+   const body=JSON.stringify({contract:'current-scoring-executable-authority-v2',status:'PROPOSED',purpose:'CURRENT_FORMAL_VALUATION'});await writeFile(join(x.db.directory,'proposal.json'),body);
    const a=new PinnedCurrentExecutableAuthority(x.db.directory,{path:'proposal.json',sha256:manifestDigest(body)},{now:()=>NOW});
    await expect(a.verify(x.f.methodology)).rejects.toThrow();await writeFile(join(x.db.directory,'proposal.json'),body+' ');await expect(a.verify(x.f.methodology)).rejects.toThrow();
   }finally{await x.db.close();}
@@ -102,5 +102,29 @@ describe('application purpose routing',()=>{
    expect((await engine.scoreCurrent(x.f,x.reference)).totalScore).toBe('82');expect(legacyCalls).toBe(0);
    await expect(engine.scoreHistorical(x.f as never,{snapshotRunId:'fake',acceptanceId:'fake'})).rejects.toThrow();expect(legacyCalls).toBe(0);
   }finally{await x.db.close();}
+ });
+});
+
+describe('reviewable current authority transition',()=>{
+ it('keeps signed semantic payload stable across genuine governance application, never across changed code or method semantics',async()=>{
+  const {currentAuthorityApprovalPayload}=await import('@/infrastructure/source-admission/current-scoring-authority');
+  const f=input(),proposal={...f.methodology,governanceStatus:'PROPOSED' as const,approvalReference:''};
+  const applied={...f.methodology,governanceStatus:'APPROVED' as const,approvalReference:'SYNTHETIC_RECEIPT_NOT_REAL',recordedAt:instant('2026-11-18T01:00:00.000Z'),effectiveDate:dateOnly('2026-11-18')};
+  const signed=hash(currentAuthorityApprovalPayload(proposal,'a'.repeat(64),'b'.repeat(64)));
+  expect(hash(currentAuthorityApprovalPayload(applied,'a'.repeat(64),'b'.repeat(64)))).toBe(signed);
+  expect(hash(currentAuthorityApprovalPayload(applied,'c'.repeat(64),'b'.repeat(64)))).not.toBe(signed);
+  expect(hash(currentAuthorityApprovalPayload({...applied,semanticVersion:'9.0.0'},'a'.repeat(64),'b'.repeat(64)))).not.toBe(signed);
+ });
+});
+
+describe('receipt application preserves the reviewed target',()=>{
+ it('applies a SYNTHETIC receipt without changing signed code/method semantics or backdating',async()=>{
+  const {currentAuthorityApprovalPayload,applyCurrentAuthorityProposal}=await import('@/infrastructure/source-admission/current-scoring-authority');
+  const draft={...input().methodology,governanceStatus:'PROPOSED' as const,approvalReference:''};
+  const payload={contract:'current-scoring-executable-authority-v2',status:'PROPOSED',purpose:'CURRENT_FORMAL_VALUATION',codeHash:'a'.repeat(64),baselineManifestHash:'b'.repeat(64),approvalPayloadHash:hash(currentAuthorityApprovalPayload(draft,'a'.repeat(64),'b'.repeat(64)))};
+  const p={...payload,contentHash:hash(payload)};
+  const applied=applyCurrentAuthorityProposal(p,draft,{path:'SYNTHETIC_OWNER_RECEIPT',sha256:'c'.repeat(64)},'2026-11-18T01:00:00.000Z');
+  expect(applied.method.effectiveDate).toBe('2026-11-18');expect(applied.method.recordedAt).toBe('2026-11-18T01:00:00.000Z');expect(applied.authority.approvalPayloadHash).toBe(p.approvalPayloadHash);
+  expect(()=>applyCurrentAuthorityProposal(p,draft,{path:'SYNTHETIC',sha256:'c'.repeat(64)},'2020-01-01T00:00:00.000Z')).toThrow();
  });
 });
