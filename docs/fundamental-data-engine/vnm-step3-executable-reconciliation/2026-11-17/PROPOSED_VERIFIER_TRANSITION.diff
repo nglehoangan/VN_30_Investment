@@ -1,0 +1,36 @@
+--- active/production-authority.ts
++++ PROPOSED_NOT_APPLIED/production-authority.ts
+@@ -5,7 +5,7 @@
+ import {requireBoundary as check,same} from '@/domain/market-boundary/validation';
+ import {verifyAuthorityReceipt} from './authority-receipts';
+ import {validateMethodology} from '@/infrastructure/repositories/methodology-schema';
+-import {instant} from '@/shared/time';
++import {instant,dateOnly} from '@/shared/time';
+ export interface FilePin {readonly path:string;readonly sha256:string}
+ interface SealedJSON {readonly id:string;readonly contract:string;readonly contentHash:string}
+ interface Manifest extends SealedJSON {
+@@ -16,6 +16,7 @@
+  readonly categoryMaxima:Readonly<Record<string,number>>;readonly runtimeDependencyPins:readonly FilePin[];
+ }
+ interface Approval extends SealedJSON {
++ readonly ownerAuthority?:string;
+  readonly approvalMode:string;readonly approvalScope:string;readonly implementation:string;readonly version:string;
+  readonly ownerApprovalDate:string;readonly statement:string;readonly source:FilePin;readonly manifest:{id:string;hash:string};readonly recordedAt:string;readonly effectiveFrom:string;
+ }
+@@ -50,11 +51,14 @@
+  check(e.implementation==='m64-clarification-1'&&e.semanticVersion==='1.0.0','SCORING_EXECUTABLE_VERSION_MISMATCH');
+  const m=sealed<Manifest>(root,e.manifest),a=sealed<Approval>(root,e.ownerApproval);
+  const reviewed=m.contract==='scoring-executable-review-manifest-v1';
++ // Proposed additional exact tuple only; old approved tuple and source checks remain unchanged.
++ const currentPurposeReview=reviewed&&m.id==='scoring-executable-review-20261117-step3-proposal'&&m.contentHash==='67a28b1cad9fc3efcd97bed9a1191d4d8fc52c5a0976c7d1e120a596de339c33';
+  if(reviewed){
+-  check(m.id==='scoring-executable-current-review-20261029-r1'&&m.contentHash==='8c0880249dc54e2baea0235cc10094f818220db86331442ece3da05085261cc1'&&m.implementationId===e.implementation&&m.methodologyVersion===e.semanticVersion&&m.buildRevision==='20261029-r1'&&m.status==='TECHNICALLY_REVIEWED_NOT_PRODUCTION_APPROVED'&&m.reviewedTree?.mode==='EXACT_FILE_BYTES_IN_WORKTREE'&&m.reviewedTree.cleanCommitClaimed===false&&/^[a-f0-9]{40}$/.test(m.reviewedTree.gitHead),'SCORING_EXECUTABLE_CHANGED_AFTER_APPROVAL');
++  check(((m.id==='scoring-executable-current-review-20261029-r1'&&m.contentHash==='8c0880249dc54e2baea0235cc10094f818220db86331442ece3da05085261cc1'&&m.buildRevision==='20261029-r1')||(currentPurposeReview&&m.buildRevision==='20261117-step3-proposal'))&&m.implementationId===e.implementation&&m.methodologyVersion===e.semanticVersion&&m.status==='TECHNICALLY_REVIEWED_NOT_PRODUCTION_APPROVED'&&m.reviewedTree?.mode==='EXACT_FILE_BYTES_IN_WORKTREE'&&m.reviewedTree.cleanCommitClaimed===false&&/^[a-f0-9]{40}$/.test(m.reviewedTree.gitHead),'SCORING_EXECUTABLE_CHANGED_AFTER_APPROVAL');
+  }else check(m.contract==='scoring-executable-manifest-v1'&&m.implementationId===e.implementation&&m.version===e.semanticVersion&&m.reviewedCommit==='d97e9486e28cb5b3164234c7f35a2a43dc092401','SCORING_EXECUTABLE_CHANGED_AFTER_APPROVAL');
+  check(a.contract===(reviewed?'owner-scoring-production-approval-v2':'owner-scoring-production-approval-v1')&&a.approvalMode==='OWNER_GOVERNANCE_APPROVAL'&&a.approvalScope==='SCORING_EXECUTABLE_PRODUCTION','OWNER_APPROVAL_SCOPE_MISMATCH');
+- check(a.implementation===e.implementation&&a.version===e.semanticVersion&&a.ownerApprovalDate===(reviewed?'2026-10-29':'2026-10-20')&&a.statement===(reviewed?'Apporve cho mainifest mới':'Approve m64-clarification-1 v1.0.0 for Production'),'OWNER_APPROVAL_MISSING');
++ check(a.implementation===e.implementation&&a.version===e.semanticVersion&&(currentPurposeReview?(a.ownerAuthority==='PROJECT_OWNER'&&a.statement==='Approve exact scoring executable manifest 67a28b1cad9fc3efcd97bed9a1191d4d8fc52c5a0976c7d1e120a596de339c33 for SCORING_EXECUTABLE_PRODUCTION'):(a.ownerApprovalDate===(reviewed?'2026-10-29':'2026-10-20')&&a.statement===(reviewed?'Apporve cho mainifest mới':'Approve m64-clarification-1 v1.0.0 for Production'))),'OWNER_APPROVAL_MISSING');
++ if(currentPurposeReview)dateOnly(a.ownerApprovalDate);
+  check(same(a.manifest,{id:m.id,hash:m.contentHash}),'SCORING_EXECUTABLE_HASH_MISMATCH');instant(a.recordedAt);instant(a.effectiveFrom);check(a.effectiveFrom<=a.recordedAt&&a.recordedAt<=b.recordedAt,'OWNER_APPROVAL_EFFECTIVE_TIME');
+  check(authorityBytes(root,a.source).toString('utf8').includes(a.statement),'OWNER_APPROVAL_MISSING');
+  check(m.artifacts.length>0&&new Set(m.artifacts.map(p=>p.path)).size===m.artifacts.length,'SCORING_EXECUTABLE_MANIFEST');

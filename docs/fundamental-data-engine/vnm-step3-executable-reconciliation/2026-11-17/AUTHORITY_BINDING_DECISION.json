@@ -1,0 +1,58 @@
+{
+  "status": "TECHNICALLY_VALID / AUTHORIZATION_BLOCKED",
+  "step3": "BLOCKING",
+  "approvedBaseline": "c3519b146094333a72ae27740a5450741fa9bef0",
+  "proposalManifest": {
+    "path": "docs/fundamental-data-engine/vnm-step3-executable-reconciliation/2026-11-17/PROPOSED_EXECUTABLE_REVIEW_MANIFEST.json",
+    "sha256": "39bdb0a81ba04be6044cc0d5fecbd9a1887422629839de18dba2be88ad0915c5",
+    "contentHash": "67a28b1cad9fc3efcd97bed9a1191d4d8fc52c5a0976c7d1e120a596de339c33"
+  },
+  "proposedVerifier": {
+    "path": "docs/fundamental-data-engine/vnm-step3-executable-reconciliation/2026-11-17/proposed/production-authority.ts.txt",
+    "sha256": "2b936408f3cb7bf712f874bfbcb4cc744f709428f6bb032ae5da8c700886ef69"
+  },
+  "proposedVerifierSha256": "2b936408f3cb7bf712f874bfbcb4cc744f709428f6bb032ae5da8c700886ef69",
+  "currentVerifierSha256": "e430086efa91250a00321e06171337420ee897315d3d5d0b34083ab9cd21febf",
+  "actualVerifierBefore": {
+    "status": "BLOCKED",
+    "error": "Error: MARKET_BOUNDARY:SCORING_EXECUTABLE_HASH_MISMATCH:src/application/scoring/engine.ts",
+    "issues": null
+  },
+  "actualVerifierAfter": {
+    "status": "BLOCKED",
+    "error": "Error: MARKET_BOUNDARY:SCORING_EXECUTABLE_HASH_MISMATCH:src/application/scoring/engine.ts",
+    "issues": null
+  },
+  "ownerApprovalReference": null,
+  "ownerApprovalReceived": false,
+  "bindingChangeApplied": false,
+  "restorationApplied": false,
+  "existingApprovalMayBeInherited": false,
+  "sourceAuthorityChangesRequired": false,
+  "blockers": [
+    {
+      "id": "S3-AUTH-EXACT-CONTENT",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/evidence/2026-10-29-approved-authority-activation/OWNER_APPROVAL_RECEIPT.json",
+        "sha256": "1e25261c0e867613c2abfbc3c99c5ef03d299fb7f5702ef18883a93ded07c890"
+      },
+      "contract": "owner-scoring-production-approval-v2: manifest.id/hash, approvalScope SCORING_EXECUTABLE_PRODUCTION; excluded[0]=future changed bytes",
+      "responsibleAuthority": "PROJECT_OWNER",
+      "missingFact": "No actual owner authorization reference binds this candidate manifest and proposed verifier bytes.",
+      "smallestAction": "Owner reviews exact hashes and semantic effects in this packet and supplies actual authorization; retain date/source/statement without fabrication."
+    },
+    {
+      "id": "S3-AUTH-VERSION-TRANSITION",
+      "evidence": {
+        "path": "src/infrastructure/dependencies/production-authority.ts",
+        "sha256": "e430086efa91250a00321e06171337420ee897315d3d5d0b34083ab9cd21febf"
+      },
+      "contract": "verifyProductionAuthorityBundle reviewed manifest ID/contentHash/build tuple and owner statement checks",
+      "responsibleAuthority": "PROJECT_OWNER authorizes exact transition; implementation followed by CIO review",
+      "missingFact": "Current verifier allowlist has no supported identity for the candidate version; no approved new executable/compatibility bundle exists.",
+      "smallestAction": "After explicit approval, apply the exact reviewed verifier transition and create versioned executable/compatibility bindings using actual owner provenance; verify acceptance, without CAS/production activation."
+    }
+  ],
+  "productionActivation": "NOT_AUTHORIZED",
+  "nextStep4Authorized": false
+}

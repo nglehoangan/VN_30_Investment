@@ -1,0 +1,43 @@
+{
+  "status": "FUNCTIONAL_REGRESSIONS_PASS_EXECUTABLE_AUTHORITY_BLOCKED",
+  "fullSuite": {
+    "total": 282,
+    "passed": 280,
+    "failed": 2,
+    "skipped": 0,
+    "report": "FINAL_TEST_RESULTS.json"
+  },
+  "functionalSuiteExcludingProductionAuthorityAcceptance": {
+    "passed": 266,
+    "failed": 0
+  },
+  "productionAuthorityTests": {
+    "passed": 14,
+    "blockedExpected": [
+      {
+        "name": "real Owner-approved bundle resolves exact reviewed m64 executable and all11 static heads; no scoring",
+        "reason": "Error: MARKET_BOUNDARY:SCORING_EXECUTABLE_HASH_MISMATCH:src/application/scoring/engine.ts"
+      },
+      {
+        "name": "approved method registration + release/CAS bootstrap atomic; rollback leaks no method or partial heads",
+        "reason": "Error: MARKET_BOUNDARY:SCORING_EXECUTABLE_HASH_MISMATCH:src/application/scoring/engine.ts"
+      }
+    ]
+  },
+  "m3Golden": {
+    "approvedByteControlPassed": 32,
+    "currentPassed": 32,
+    "approvedReport": "APPROVED_GOLDEN_RESULTS.json"
+  },
+  "fullOutputComparisons": "BASELINE_OUTPUT_COMPARISON.json",
+  "actualVerifierIndependentNegativeControls": "VERIFIER_BEFORE_AFTER.json",
+  "proposedVerifierTextOnlyControls": "PROPOSED_VERIFIER_CONTROLS.json",
+  "coldCacheTimeout": {
+    "initialReport": "TEST_RESULTS.json",
+    "resolvedTargetedRerun": "NEGATIVE_RERUN.json",
+    "resolvedInFinalFullRun": true
+  },
+  "allTestsPassClaimed": false,
+  "liveAuthorityApproved": false,
+  "VnmFormalScoreGenerated": false
+}

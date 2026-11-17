@@ -1,0 +1,179 @@
+{
+  "method": "Exact approved-byte snapshots verified to manifest SHA-256; full unified diff reviewed, protected code sections compared independently from tests.",
+  "files": [
+    {
+      "path": "src/application/scoring/engine.ts",
+      "approvedSha256": "6e89773e4f877075a399a901a82f8dc584ac7505fe47f52fc117b6260f210ce0",
+      "currentSha256": "49d549425a1c2f096a92264c1c85111547f060999734301e95ff3634ee906730",
+      "approvedSourceCommit": "9949c62a3d315cca1d2d1b2acd6d74256895ed5c",
+      "approvedSnapshot": "approved/src__application__scoring__engine.ts.txt",
+      "currentSnapshot": "current/src__application__scoring__engine.ts.txt",
+      "diff": "src__application__scoring__engine.ts.diff",
+      "approvedSize": 1990,
+      "currentSize": 2623,
+      "approvedSourceURL": "https://github.com/nglehoangan/VN_30_Investment/blob/9949c62a3d315cca1d2d1b2acd6d74256895ed5c/src/application/scoring/engine.ts",
+      "classification": [
+        "COMPATIBILITY_EXTENSION"
+      ],
+      "exactChange": "Adds separately configured current data-resolution method and optional fourth dependency. Existing score/rank methods are byte-identical.",
+      "economicAndDecisionImpact": "Current intake can now resolve accepted data independently; no scoring authorization, publication or M1/confidence bypass.",
+      "formattingOnly": false,
+      "universalSemanticEquivalenceClaimed": false,
+      "restorationAssessment": {
+        "safeWithoutReopeningAcceptedContracts": false,
+        "reason": "Restoration removes resolveCurrentDataset and breaks approved Step 2 consumer contract."
+      },
+      "executableApprovalInherited": false
+    },
+    {
+      "path": "src/domain/market-boundary/validation.ts",
+      "approvedSha256": "abab4e0b2d8b02b915cba483f76861ae2be546c87ddb5be8df482511fa85ce87",
+      "currentSha256": "420cf4eeace8a4416654ad86f103692165c4cea6e8f1309eb3fb7e1652bc1d9b",
+      "approvedSourceCommit": "9949c62a3d315cca1d2d1b2acd6d74256895ed5c",
+      "approvedSnapshot": "approved/src__domain__market-boundary__validation.ts.txt",
+      "currentSnapshot": "current/src__domain__market-boundary__validation.ts.txt",
+      "diff": "src__domain__market-boundary__validation.ts.diff",
+      "approvedSize": 10363,
+      "currentSize": 10696,
+      "approvedSourceURL": "https://github.com/nglehoangan/VN_30_Investment/blob/9949c62a3d315cca1d2d1b2acd6d74256895ed5c/src/domain/market-boundary/validation.ts",
+      "classification": [
+        "VALIDATION_TIGHTENING",
+        "NEW_RUNTIME_DEPENDENCY"
+      ],
+      "exactChange": "Adds CafeF semantics-version guard and RAW/CLOSE/GiaDongCua observation guard.",
+      "economicAndDecisionImpact": "Rejects adjusted/substitute CafeF observations; source eligibility is intentionally narrower. Numeric price conversion is delegated to the raw-close module, not changed in this file.",
+      "formattingOnly": false,
+      "universalSemanticEquivalenceClaimed": false,
+      "restorationAssessment": {
+        "safeWithoutReopeningAcceptedContracts": false,
+        "reason": "Restoration removes owner-required raw-only enforcement at the shared boundary."
+      },
+      "executableApprovalInherited": false
+    },
+    {
+      "path": "src/domain/scoring/evidence.ts",
+      "approvedSha256": "4664905e9580fac625df6c20cf88bae541bc70182acb5691779a9a64a7800331",
+      "currentSha256": "583be5936e9a4374e8dad604d7813c3cd07a9684b18914f3ae9e8b15914a4c90",
+      "approvedSourceCommit": "9949c62a3d315cca1d2d1b2acd6d74256895ed5c",
+      "approvedSnapshot": "approved/src__domain__scoring__evidence.ts.txt",
+      "currentSnapshot": "current/src__domain__scoring__evidence.ts.txt",
+      "diff": "src__domain__scoring__evidence.ts.diff",
+      "approvedSize": 7987,
+      "currentSize": 9742,
+      "approvedSourceURL": "https://github.com/nglehoangan/VN_30_Investment/blob/9949c62a3d315cca1d2d1b2acd6d74256895ed5c/src/domain/scoring/evidence.ts",
+      "classification": [
+        "PURPOSE_SCOPED_COMPATIBILITY_EXTENSION",
+        "NEW_VALIDATION_BRANCH"
+      ],
+      "exactChange": "Adds CurrentEvidenceTime with explicit purpose/policy/hash/receipt/review/ingestion constraints. Existing historical time branch is retained.",
+      "economicAndDecisionImpact": "Accepts later operational knowledge only when caller explicitly requests CURRENT_FORMAL_VALUATION. Default historical scorecard path still rejects current-only time contract.",
+      "formattingOnly": false,
+      "universalSemanticEquivalenceClaimed": false,
+      "restorationAssessment": {
+        "safeWithoutReopeningAcceptedContracts": false,
+        "reason": "Restoration rejects current evidence and breaks Step 2 qualification/consumer validation."
+      },
+      "executableApprovalInherited": false
+    },
+    {
+      "path": "src/domain/scoring/metrics.ts",
+      "approvedSha256": "0374ba80bea79831ba48e71f47ab3a178b29d1f91db5a47a8733b380c4ce7244",
+      "currentSha256": "e7ffea73613044fe821aefd7b85311f035dd208d24344db37aeb6f04f41e21fa",
+      "approvedSourceCommit": "9949c62a3d315cca1d2d1b2acd6d74256895ed5c",
+      "approvedSnapshot": "approved/src__domain__scoring__metrics.ts.txt",
+      "currentSnapshot": "current/src__domain__scoring__metrics.ts.txt",
+      "diff": "src__domain__scoring__metrics.ts.diff",
+      "approvedSize": 7324,
+      "currentSize": 9826,
+      "approvedSourceURL": "https://github.com/nglehoangan/VN_30_Investment/blob/9949c62a3d315cca1d2d1b2acd6d74256895ed5c/src/domain/scoring/metrics.ts",
+      "classification": [
+        "VALIDATION_TIGHTENING",
+        "COMPATIBILITY_CORRECTION",
+        "OBSERVABLE_INPUT_ELIGIBILITY_CHANGE"
+      ],
+      "exactChange": "Adds scope/source/revision/annual-window/horizon binding for growth operands; EPS requires action-adjusted per-share inputs. Allows correctly separated CAGR endpoint periods instead of blanket equal-period check.",
+      "economicAndDecisionImpact": "Arithmetic growth root algorithm and metric definitions unchanged. Valid cross-year growth can now calculate where approved code rejected; invalid/underspecified endpoints now reject. This is not semantic identity on all inputs.",
+      "formattingOnly": false,
+      "universalSemanticEquivalenceClaimed": false,
+      "restorationAssessment": {
+        "safeWithoutReopeningAcceptedContracts": false,
+        "reason": "Restoration breaks accepted three-year annual revenue-CAGR replay and removes new operand controls."
+      },
+      "executableApprovalInherited": false
+    },
+    {
+      "path": "src/domain/scoring/scorecard.ts",
+      "approvedSha256": "2a778e3291cac295fab9f3f18358ed43415d3fea893bd912e6608302a8b18d18",
+      "currentSha256": "6404b7c2be1dbfedc884ce258b2ba2a992843cf7ba65024dc47ec5399aa5fc10",
+      "approvedSourceCommit": "9949c62a3d315cca1d2d1b2acd6d74256895ed5c",
+      "approvedSnapshot": "approved/src__domain__scoring__scorecard.ts.txt",
+      "currentSnapshot": "current/src__domain__scoring__scorecard.ts.txt",
+      "diff": "src__domain__scoring__scorecard.ts.diff",
+      "approvedSize": 15431,
+      "currentSize": 15728,
+      "approvedSourceURL": "https://github.com/nglehoangan/VN_30_Investment/blob/9949c62a3d315cca1d2d1b2acd6d74256895ed5c/src/domain/scoring/scorecard.ts",
+      "classification": [
+        "SCOPED_VALIDATION_RELAXATION",
+        "VALIDATION_TIGHTENING",
+        "OBSERVABLE_ASSESSMENT_ELIGIBILITY_CHANGE"
+      ],
+      "exactChange": "Replaces global action-comparability block with per-rubric/metric/evidence dependencies. Action-sensitive metric comparability is additionally constrained before arithmetic.",
+      "economicAndDecisionImpact": "Unrelated topics may remain scorable with incomplete action comparability; per-share/action-dependent topics still N/R. Component results can differ even when total remains N/R. Weights, band-selection checks, confidence calculation, M1/hard-veto/residual-risk code are unchanged.",
+      "formattingOnly": false,
+      "universalSemanticEquivalenceClaimed": false,
+      "restorationAssessment": {
+        "safeWithoutReopeningAcceptedContracts": false,
+        "reason": "Restoration reintroduces global N/R behavior and changes accepted research/readiness dependency handling; do not silently restore."
+      },
+      "executableApprovalInherited": false
+    }
+  ],
+  "protectedSegments": [
+    {
+      "path": "src/application/scoring/engine.ts",
+      "segmentStarts": "  async score(",
+      "segmentEndsBefore": null,
+      "approvedSha256": "4e80e8d1d3dab3e6aa3b238c0df6e104c935ca473ce85b26432c7f101db50546",
+      "currentSha256": "4e80e8d1d3dab3e6aa3b238c0df6e104c935ca473ce85b26432c7f101db50546",
+      "unchanged": true
+    },
+    {
+      "path": "src/domain/scoring/metrics.ts",
+      "segmentStarts": "function growth(",
+      "segmentEndsBefore": "/** Arithmetic",
+      "approvedSha256": "86e023832319beca01da279428c5c41f1d9880e39da0ff0e82b0e50f0f4628e7",
+      "currentSha256": "86e023832319beca01da279428c5c41f1d9880e39da0ff0e82b0e50f0f4628e7",
+      "unchanged": true
+    },
+    {
+      "path": "src/domain/scoring/scorecard.ts",
+      "segmentStarts": "  keys(input.stage0",
+      "segmentEndsBefore": "  list(input.criticalMissing)",
+      "approvedSha256": "115d62a4cfd3d22fd164ebe4f1c31d17e2d4d1f2350a0f84ec36fec3f2802320",
+      "currentSha256": "115d62a4cfd3d22fd164ebe4f1c31d17e2d4d1f2350a0f84ec36fec3f2802320",
+      "unchanged": true
+    },
+    {
+      "path": "src/domain/scoring/scorecard.ts",
+      "segmentStarts": "  for (const a of input.assessments)",
+      "segmentEndsBefore": "  // Reusing a family",
+      "approvedSha256": "16fcbe6380121d18c930ef401f532198607edc6d158e8db600f6c84d691ef382",
+      "currentSha256": "16fcbe6380121d18c930ef401f532198607edc6d158e8db600f6c84d691ef382",
+      "unchanged": true
+    },
+    {
+      "path": "src/domain/scoring/scorecard.ts",
+      "segmentStarts": "  const categories=",
+      "segmentEndsBefore": null,
+      "approvedSha256": "ba87dba71fc4e4754470c0de0d7537dd6f5e531bf20fea14882f2f5014c80b9a",
+      "currentSha256": "ba87dba71fc4e4754470c0de0d7537dd6f5e531bf20fea14882f2f5014c80b9a",
+      "unchanged": true
+    }
+  ],
+  "weightsOrThresholdsChanged": false,
+  "m1RiskCodeChanged": false,
+  "sourceEligibilityAndReadinessCanChange": true,
+  "productionExecutionOfChangedBytesAuthorized": false,
+  "newPortfolioMutationObserved": false,
+  "restorationApplied": false
+}

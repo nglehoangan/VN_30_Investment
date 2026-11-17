@@ -1,0 +1,71 @@
+import {DEBT_CONTRACT,debtContractActive} from '@/domain/fundamentals/debt-contract';
+import { decimal } from "@/domain/portfolio/values";
+import { check, id, keys, list, text, unique } from "./validation";
+import { available, type Evidence } from "./evidence";
+import type { Sector } from "./methodology";
+/** Ordered operand definitions are immutable methodology, never supplied formulas. Ratios are fractions, not percent units. */
+export const METRICS = {
+  ROIC: ["NOPAT", "average_invested_capital"], ROE: ["normalized_common_profit", "average_common_equity"],
+  CFO_CONVERSION: ["cumulative_CFO", "cumulative_normalized_NPAT"], FCF: ["CFO", "issuer_capex"],
+  NET_DEBT: ["interest_bearing_debt", "unrestricted_cash"], INTEREST_COVERAGE: ["normalized_EBIT", "net_interest"],
+  NPL: ["NPL", "gross_loans"], COVERAGE: ["loan_loss_reserves", "NPL"], CASA: ["current_and_savings", "deposits"],
+  FCF_YIELD: ["normalized_FCFE", "market_cap"], EARNINGS_YIELD: ["normalized_EPS", "price"],
+  DIVIDEND_YIELD: ["sustainable_DPS", "price"], PB: ["price", "BVPS"], EV_EBIT: ["EV", "normalized_EBIT"],
+  MOS: ["conservative_value", "price"], REVENUE_CAGR: ["revenue_end", "revenue_start"], EPS_CAGR: ["adjusted_EPS_end", "adjusted_EPS_start"],
+  INCREMENTAL_ROIC: ["change_normalized_NOPAT", "change_invested_capital"], NET_DEBT_EBITDA: ["net_debt", "normalized_EBITDA"],
+} as const;
+export type MetricId = keyof typeof METRICS;
+export interface MetricRequest {
+  readonly id: string; readonly metric: MetricId; readonly evidenceRefs: readonly string[];
+  readonly years: 3 | 5 | null; readonly comparable: boolean;
+  readonly normalization: { readonly kind: "AS_REPORTED" | "NORMALIZED" | "ACTION_ADJUSTED"; readonly rationale: string; readonly evidenceRefs: readonly string[] };
+}
+function growth(end: string, start: string, years: number) {
+  const scale = 1_000_000_000_000n, a = decimal(end).units, b = decimal(start).units;
+  check(a > 0n && b > 0n, "CAGR_NOT_MEANINGFUL");
+  const target = a * scale ** BigInt(years), n = BigInt(years);
+  let lo = 0n, hi = scale;
+  while (hi ** n * b <= target) hi *= 2n;
+  while (hi - lo > 1n) { const mid = (lo+hi)/2n; if (mid ** n * b <= target) lo = mid; else hi = mid; }
+  const twiceMid = (2n*lo+1n) ** n * b, twiceTarget = target * 2n ** n;
+  const rounded = lo + (twiceTarget > twiceMid || (twiceTarget === twiceMid && lo % 2n !== 0n) ? 1n : 0n);
+  const units = rounded - scale, negative = units < 0n, abs = negative ? -units : units;
+  return decimal(`${negative ? "-" : ""}${abs/scale}.${(abs%scale).toString().padStart(12,"0")}`).toString();
+}
+/** Arithmetic consumes only these fields; publication/PIT validation remains at its owning boundary. */
+export type MetricOperand = Pick<Evidence,'id'|'value'|'unit'|'periodStart'|'periodEnd'|'quality'|'validThrough'|'debtAccounting'>;
+export function calculateMetrics<T extends MetricOperand>(requests: readonly MetricRequest[], evidence: readonly T[], sector: Sector, asOf: string, conflicts: readonly string[], cyclical: boolean) {
+  list(requests); unique(requests.map(r => r.id));
+  return requests.map(r => {
+    keys(r,"id metric evidenceRefs years comparable normalization"); id(r.id);
+    check(Object.hasOwn(METRICS,r.metric), "UNKNOWN_METRIC"); list(r.evidenceRefs); check(r.evidenceRefs.length === 2, "TWO_ORDERED_OPERANDS_REQUIRED");
+    keys(r.normalization,"kind rationale evidenceRefs"); text(r.normalization.rationale); list(r.normalization.evidenceRefs);
+    check(["AS_REPORTED","NORMALIZED","ACTION_ADJUSTED"].includes(r.normalization.kind), "INVALID_NORMALIZATION");
+    check(typeof r.comparable === "boolean", "COMPARABILITY_REQUIRED");
+    check([null,3,5].includes(r.years), "INVALID_YEARS");
+    if (sector === "BANK") check(!["CFO_CONVERSION","FCF","NET_DEBT_EBITDA","INTEREST_COVERAGE","ROIC","INCREMENTAL_ROIC"].includes(r.metric),"BANK_METRIC_NOT_EQUIVALENT");
+    const refs = [...r.evidenceRefs,...r.normalization.evidenceRefs];
+    const missing = refs.filter(ref => !evidence.some(e => e.id === ref && available(e,asOf,conflicts)));
+    const operands = r.evidenceRefs.map(ref => evidence.find(e => e.id === ref));
+    let value: string | null = null, reason: string | null = null;
+    const debtActive=debtContractActive(asOf)&&DEBT_CONTRACT.applicableSectors.includes(sector)&&['NET_DEBT','NET_DEBT_EBITDA'].includes(r.metric);
+    const [debtOperand,otherOperand]=operands,dc=debtOperand?.debtAccounting,oc=otherOperand?.debtAccounting;
+    const compatible=!!dc&&!!oc&&dc.contractVersion===DEBT_CONTRACT.version&&oc.contractVersion===DEBT_CONTRACT.version&&dc.qualificationStatus==='VERIFIED'&&oc.qualificationStatus==='VERIFIED'&&dc.ticker===oc.ticker&&dc.periodEnd===oc.periodEnd&&dc.periodEnd===debtOperand?.periodEnd&&oc.periodEnd===otherOperand?.periodEnd&&dc.scope===oc.scope&&dc.scope==='CONSOLIDATED'&&dc.currency===oc.currency&&dc.currency==='VND'&&dc.measurementBasis===oc.measurementBasis&&dc.measurementBasis===DEBT_CONTRACT.defaultMeasurementBasis&&dc.leasePolicyVersion===oc.leasePolicyVersion&&dc.leasePolicyVersion===DEBT_CONTRACT.leasePolicyVersion&&dc.qualifiedEvidenceReference.length>0&&oc.qualifiedEvidenceReference.length>0&&dc.sourceHashes.length>0&&oc.sourceHashes.length>0&&dc.sourceHashes.every(h=>/^[a-f0-9]{64}$/.test(h))&&oc.sourceHashes.every(h=>/^[a-f0-9]{64}$/.test(h))&&debtOperand?.unit==='VND'&&otherOperand?.unit==='VND';
+    const qualifiedDebtOperands=compatible&&(r.metric==='NET_DEBT'?dc!.role==='DEBT'&&['REPORTED_BORROWINGS','COMPREHENSIVE_FINANCIAL_DEBT'].includes(dc!.selectedDebtMetric??'')&&oc!.role==='UNRESTRICTED_CASH'&&oc!.cashEconomicAvailabilityVerified:dc!.role==='NET_DEBT'&&dc!.cashEconomicAvailabilityVerified&&oc!.role==='NORMALIZED_EBITDA'&&oc!.normalizedOrDownside);
+    if(debtActive&&(!qualifiedDebtOperands||r.metric==='NET_DEBT'&&(debtOperand?.periodStart!==debtOperand?.periodEnd||otherOperand?.periodStart!==otherOperand?.periodEnd)))reason='N/R — QUALIFIED_DEBT_CASH_EBITDA_BASIS_REQUIRED';
+    else if (missing.length || !r.comparable) reason = "N/R — MISSING_OR_INCOMPARABLE_EVIDENCE";
+    else if (cyclical && r.normalization.kind === "AS_REPORTED") reason = "N/R — CYCLE_NORMALIZATION_REQUIRED";
+    else {
+      const [a,b] = operands as T[];
+      check(a.unit !== "TEXT" && a.unit === b.unit, "METRIC_UNIT_MISMATCH");
+      if (!["DIVIDEND_YIELD","MOS"].includes(r.metric)) check((debtActive&&r.metric==='NET_DEBT_EBITDA'||a.periodStart===b.periodStart)&&a.periodEnd===b.periodEnd, "METRIC_PERIOD_MISMATCH");
+      const x=decimal(a.value), y=decimal(b.value);
+      if (["FCF","NET_DEBT"].includes(r.metric)) value=x.sub(y).toString();
+      else if (!y.positive || ((r.metric.endsWith("CAGR") || r.metric === "EARNINGS_YIELD") && !x.positive)) reason="N/R — NONPOSITIVE_DENOMINATOR_OR_EARNINGS";
+      else if (r.metric.endsWith("CAGR")) { check(r.years !== null,"CAGR_YEARS_REQUIRED"); value=growth(a.value,b.value,r.years); }
+      else if (r.metric === "MOS") { if(x.positive)value=x.sub(y).div(x).toString();else reason="N/R — NONPOSITIVE_INTRINSIC_VALUE"; }
+      else value=x.div(y).toString();
+    }
+    return { ...r, operandDefinitions: METRICS[r.metric], operands, value, unit: ["FCF","NET_DEBT"].includes(r.metric) ? operands[0]?.unit ?? null : "RATIO", missingEvidence: missing, reason };
+  });
+}
