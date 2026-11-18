@@ -1,0 +1,99 @@
+{
+  "status": "CONFIRMED_REPRODUCIBLE_BASELINE_INTEGRATION_DEFECT",
+  "acceptedReview": {
+    "path": "docs/fundamental-data-engine/evidence/2026-10-20-di14-di15-final-acceptance/MARKET_SOURCE_REPLAY.json",
+    "sha256": "ebd387158ab1c883ae36911892e29899c0fa504e656e9305e73369dfc7997fbc"
+  },
+  "candidateBinding": {
+    "version": "tcbs-active-candidate-v1",
+    "path": "data/market-boundary/candidates/d0477bb68f5807282a9aff54a411b1a8f6321f818eb75da71bad0cfd457d9dac/candidate.json",
+    "sha256": "d0477bb68f5807282a9aff54a411b1a8f6321f818eb75da71bad0cfd457d9dac",
+    "independentAcceptance": "PENDING_INDEPENDENT_REVIEW"
+  },
+  "sourcePointer": "/sourcePins/104",
+  "expected": {
+    "path": "src/domain/market-boundary/validation.ts",
+    "sha256": "abab4e0b2d8b02b915cba483f76861ae2be546c87ddb5be8df482511fa85ce87"
+  },
+  "actual": {
+    "path": "src/domain/market-boundary/validation.ts",
+    "sha256": "420cf4eeace8a4416654ad86f103692165c4cea6e8f1309eb3fb7e1652bc1d9b"
+  },
+  "actualBytesMatchReviewedBaseline": true,
+  "failingTests": [
+    {
+      "file": "tests/integration/dependency-head.test.ts",
+      "test": "bootstrap binds accepted exact data without fabricating active model/policy authority",
+      "reason": "Error: MARKET_BOUNDARY:SOURCE_HASH_MISMATCH:src/domain/market-boundary/validation.ts"
+    },
+    {
+      "file": "tests/integration/dependency-head.test.ts",
+      "test": "production resolves internally; caller-selected IDs/mode rejected; every head hash and required slot is checked",
+      "reason": "Error: MARKET_BOUNDARY:SOURCE_HASH_MISMATCH:src/domain/market-boundary/validation.ts"
+    },
+    {
+      "file": "tests/integration/dependency-head.test.ts",
+      "test": "CAS A→B succeeds; concurrent A→C fails; retry after B checks compatibility; no partial release leaks",
+      "reason": "Error: MARKET_BOUNDARY:SOURCE_HASH_MISMATCH:src/domain/market-boundary/validation.ts"
+    },
+    {
+      "file": "tests/integration/dependency-head.test.ts",
+      "test": "analysis fundamental change mid-flight blocks sealing; historical release remains replayable and cache stale",
+      "reason": "Error: MARKET_BOUNDARY:SOURCE_HASH_MISMATCH:src/domain/market-boundary/validation.ts"
+    },
+    {
+      "file": "tests/integration/dependency-head.test.ts",
+      "test": "PARTITION authority change mid-analysis fails closed; market alone cannot promote MBB",
+      "reason": "Error: MARKET_BOUNDARY:SOURCE_HASH_MISMATCH:src/domain/market-boundary/validation.ts"
+    },
+    {
+      "file": "tests/integration/dependency-head.test.ts",
+      "test": "TCX_EXCEPTION authority change mid-analysis fails closed; market alone cannot promote MBB",
+      "reason": "Error: MARKET_BOUNDARY:SOURCE_HASH_MISMATCH:src/domain/market-boundary/validation.ts"
+    },
+    {
+      "file": "tests/integration/dependency-head.test.ts",
+      "test": "stale/missing market blocks refresh; expiry during analysis and at SQL publication rolls back",
+      "reason": "Error: MARKET_BOUNDARY:SOURCE_HASH_MISMATCH:src/domain/market-boundary/validation.ts"
+    },
+    {
+      "file": "tests/integration/dependency-head.test.ts",
+      "test": "policy/release and live ledger changes invalidate decisions; persistence never trusts stale portfolio watermark",
+      "reason": "Error: MARKET_BOUNDARY:SOURCE_HASH_MISMATCH:src/domain/market-boundary/validation.ts"
+    },
+    {
+      "file": "tests/integration/dependency-head.test.ts",
+      "test": "dependency change between final validation and SQL transaction rejects atomically",
+      "reason": "Error: MARKET_BOUNDARY:SOURCE_HASH_MISMATCH:src/domain/market-boundary/validation.ts"
+    },
+    {
+      "file": "tests/integration/dependency-head.test.ts",
+      "test": "market activation cannot promote MBB; expiry at final transaction check leaves no partial snapshot",
+      "reason": "Error: MARKET_BOUNDARY:SOURCE_HASH_MISMATCH:src/domain/market-boundary/validation.ts"
+    },
+    {
+      "file": "tests/integration/dependency-head.test.ts",
+      "test": "same immutable object ID with changed content is an integrity error; projection remains unchanged",
+      "reason": "Error: MARKET_BOUNDARY:SOURCE_HASH_MISMATCH:src/domain/market-boundary/validation.ts"
+    },
+    {
+      "file": "tests/integration/dependency-head.test.ts",
+      "test": "missing market requests refresh, and incompatible/unknown dependencies cannot activate",
+      "reason": "Error: MARKET_BOUNDARY:SOURCE_HASH_MISMATCH:src/domain/market-boundary/validation.ts"
+    },
+    {
+      "file": "tests/integration/dependency-head.test.ts",
+      "test": "policy supersession blocks new decision from old analysis while historical binding stays immutable",
+      "reason": "Error: MARKET_BOUNDARY:SOURCE_HASH_MISMATCH:src/domain/market-boundary/validation.ts"
+    },
+    {
+      "file": "tests/integration/dependency-head.test.ts",
+      "test": "staged lifecycle receives original snapshot binding time while freshness revalidation uses the trusted current clock",
+      "reason": "Error: MARKET_BOUNDARY:SOURCE_HASH_MISMATCH:src/domain/market-boundary/validation.ts"
+    }
+  ],
+  "actualRuntimeEntry": "app/server/production-dependencies.ts productionBootstrapInventory → retainedDependencyBootstrap → replayTcbsPipeline",
+  "approvedCurrentExecutableVerifier": "PASS_SEPARATELY",
+  "interpretation": "Historical predecessor capsule cannot be replayed against changed HEAD bytes. Current approved executable identity remains verified. This review introduced no runtime change.",
+  "smallestAction": "Use a legitimate accepted successor/current-version bootstrap binding for the production route, or exact historical code for historical replay. Preserve old receipt/hash; do not silently rehash its source pin."
+}

@@ -1,0 +1,125 @@
+{
+  "sourcePins": [
+    {
+      "path": "src/infrastructure/source-admission/current-scoring.ts",
+      "sha256": "3240ec14deb2ddfdb350036a1433da68ecc92289b48cbe9a543d5085d1b2a1c2"
+    },
+    {
+      "path": "src/infrastructure/source-admission/current-scoring-authority.ts",
+      "sha256": "f80acffbd541caa5623e6e402f29fdfa1a80a80d900c1ea8a5955a10a7da7fa8"
+    },
+    {
+      "path": "src/infrastructure/source-admission/current-review.ts",
+      "sha256": "6328642afc36f18f3c88c71c214656ab89ff08dcaae278b759f4795b428655e4"
+    },
+    {
+      "path": "src/application/scoring/purpose-aware-engine.ts",
+      "sha256": "179c5797c91a7c71735670feb6806478edda92c09f7add2f4acc8d0518439349"
+    },
+    {
+      "path": "src/application/scoring/engine.ts",
+      "sha256": "49d549425a1c2f096a92264c1c85111547f060999734301e95ff3634ee906730"
+    },
+    {
+      "path": "src/infrastructure/repositories/analytical-artifacts.ts",
+      "sha256": "866502873fff90d5e00fbf64ecad54e58edac818d0df1e3feaa33dc91a7d844b"
+    },
+    {
+      "path": "src/infrastructure/personal-ai/artifact-store.ts",
+      "sha256": "c81063a94854362f0dd847f5289fb3ba77491cfc335b8008ade39aeb1ecd8d94"
+    },
+    {
+      "path": "src/infrastructure/personal-ai/scoring-datasets.ts",
+      "sha256": "f9d9d5a67842633b7433bedc52f320ef5423990ac8f6cc339e5bd8070c62e853"
+    },
+    {
+      "path": "app/server/dashboard.ts",
+      "sha256": "df10204902cf35dd06c2a092aeb6300ead8fb07be459a55e78c283704ee2ad83"
+    },
+    {
+      "path": "src/ui/dashboard.tsx",
+      "sha256": "c219e81df70338ab00186508b6a88d7edcc4da42ff9c80197cc383d6ce839d7a"
+    },
+    {
+      "path": "src/application/dependencies/service.ts",
+      "sha256": "a059cd8a24d62cb948b9a7bb1e67858c88274deac93ee0b2a24d08cf28284575"
+    },
+    {
+      "path": "src/infrastructure/repositories/dependencies.ts",
+      "sha256": "ed601da52b2abbfe13c66e7a41a8d8485cd8f264033978c518898b3718a7aa99"
+    },
+    {
+      "path": "src/infrastructure/dependencies/catalog.ts",
+      "sha256": "d0d9f9ef8870fc6d28a405a92ef85d0f6f1b7dcc1314b4fda547977efd672bc4"
+    },
+    {
+      "path": "app/server/production-dependencies.ts",
+      "sha256": "243044f521fbbf191ac86cdb8d79108f7f37c862e4342cd5fbf9cb4f5adb10f0"
+    },
+    {
+      "path": "src/infrastructure/dependencies/active-authorities.json",
+      "sha256": "36ec3d359cb0700fa21c98f4cea243d6f40012225aeb4c7b9d8d5c6c8619b76c"
+    },
+    {
+      "path": "prisma/proposals/current-scoring-artifact-v1.sql",
+      "sha256": "964297d9f0fcc172eaad377dee471288c558172db8eac0fd3e55661d005f995c"
+    },
+    {
+      "path": "src/domain/ranking/rank.ts",
+      "sha256": "c590687281bcdb014d6c9eb79a9a59292d43a00ade88cbb21d961b9e3120fcdf"
+    },
+    {
+      "path": "src/domain/decision/engine.ts",
+      "sha256": "5e0d80b1227c961c3d5b767e30bdbfe0421294e43c1dcac83403c9f1f715570a"
+    },
+    {
+      "path": "docs/05_PORTFOLIO_WORKFLOW/MONTHLY_DCA_REVIEW_v1.0.md",
+      "sha256": "1fe3577dcc4ea0e5ea4554784b7393ea0bfa1ebc81d0b9f5a0b6bf1196b6c434"
+    }
+  ],
+  "actualReadOnlyEntryPoint": {
+    "path": "app/server/dashboard.ts",
+    "function": "loadDashboard → readDashboard",
+    "route": "/scoring and /scoring/[reference]",
+    "store": "analytical_artifact via PrismaAnalyticalArtifacts.find",
+    "ordering": "asOf DESC, id ASC; not current-purpose latest revision resolution"
+  },
+  "currentPurposeStorage": {
+    "path": "src/infrastructure/source-admission/current-scoring.ts",
+    "functions": [
+      "CurrentPurposeScoring.score",
+      "CurrentPurposeScoring.find"
+    ],
+    "store": "current_score_artifact",
+    "readReauthorization": true,
+    "productionDashboardConnected": false,
+    "migrationStatus": "prisma/proposals/current-scoring-artifact-v1.sql is explicitly isolated-only"
+  },
+  "existingPublicationContract": {
+    "path": "src/application/dependencies/service.ts",
+    "functions": [
+      "ProductionDependencies.resolveProductionAnalysisDependencies",
+      "ProductionDependencies.sealAnalysis"
+    ],
+    "contract": "production-dependency-publication-v1",
+    "snapshotKinds": [
+      "ANALYSIS",
+      "DECISION"
+    ],
+    "requires": [
+      "Active accepted release and matching heads",
+      "Catalog assertion/currentness",
+      "Lifecycle validation and analysis bindings",
+      "Atomic release compare at publish"
+    ],
+    "isScorecardEndpoint": false,
+    "currentScorecardToSealedAnalysisBridgeFound": false
+  },
+  "otherStorage": {
+    "path": "src/infrastructure/personal-ai/artifact-store.ts",
+    "contract": "personal-ai-score-artifact-v1",
+    "namespace": "Legacy AI file artifacts; not personal-ai-current-scorecard-v1; no dashboard connection"
+  },
+  "safeCurrentScorePublicationEntryPointFound": false,
+  "noNewPublicationSystemDesigned": true
+}

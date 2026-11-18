@@ -1,0 +1,81 @@
+{
+  "status": "BLOCKED_AT_EXISTING_CONTRACT_BOUNDARY",
+  "database": "DISPOSABLE_FRESH_PRIVATE_DATABASE",
+  "sourceCardHash": "03c84b1511b51b7d70b89a1aa7ef2f86078ce568541065eae4be67b1f5b77c8f",
+  "reconstructedPayload": "Exact retained Step4 cache body only; explicitly unpublished/unqualified in this empty test DB, not fabricated governed source/admission or publication.",
+  "realPathsExercised": [
+    "PrismaAnalyticalArtifacts.append",
+    "ProductionDependencies.resolveProductionAnalysisDependencies",
+    "readDashboard(scoring,id)",
+    "CurrentPurposeScoring.find"
+  ],
+  "readOnlyConsumerResult": {
+    "status": "EMPTY",
+    "visibleCards": 0,
+    "currentStorageRows": 1
+  },
+  "countsBefore": {
+    "analyticalArtifacts": 0,
+    "publicationRows": 0,
+    "ledgerTransactions": 0,
+    "methodologies": 2,
+    "dependencyReleases": 0
+  },
+  "countsAfter": {
+    "analyticalArtifacts": 0,
+    "publicationRows": 0,
+    "ledgerTransactions": 0,
+    "methodologies": 2,
+    "dependencyReleases": 0
+  },
+  "publicationRowsCreated": 0,
+  "formalCurrentSourceRecordsFabricated": 0,
+  "testAuthorityBindingsActivated": 0,
+  "successfulPublication": false,
+  "publicationReadbackAndIdempotency": "NOT_REACHABLE_NO_CURRENT_SCORE_PUBLICATION_BRIDGE",
+  "replacementControl": "PASS_SAME_ID_IMMUTABLE; latest published revision selection not established",
+  "revocationPublicationControl": "NOT_REACHABLE; current service revocation passed retained Step4, but dashboard does not use that service",
+  "databaseRemovedAfterRun": true,
+  "checks": [
+    {
+      "name": "same isolated packet without configured trust remains rejected",
+      "status": "EXPECTED_REJECTION",
+      "reason": "ValidationError: Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập.[{\"field\":\"scoring\",\"reason\":\"TRUSTED_AI_REVIEW_BINDING_REQUIRED\",\"expected\":\"M3 / M6.4 clarification contract\"}]"
+    },
+    {
+      "name": "changed assessment cannot inherit prior review",
+      "status": "EXPECTED_REJECTION",
+      "reason": "ValidationError: Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập.[{\"field\":\"scoring\",\"reason\":\"CURRENT_EXACT_ASSESSMENT_ADOPTION_REQUIRED\",\"expected\":\"M3 / M6.4 clarification contract\"}]"
+    },
+    {
+      "name": "altered dataset cannot inherit review",
+      "status": "EXPECTED_REJECTION",
+      "reason": "ValidationError: Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập.[{\"field\":\"scoring\",\"reason\":\"CURRENT_ASSESSMENT_DATASET_BINDING_REQUIRED\",\"expected\":\"M3 / M6.4 clarification contract\"}]"
+    },
+    {
+      "name": "actual production bootstrap inventory retains an incompatible historical source pin",
+      "status": "EXPECTED_REJECTION",
+      "reason": "Error: MARKET_BOUNDARY:SOURCE_HASH_MISMATCH:src/domain/market-boundary/validation.ts"
+    },
+    {
+      "name": "real legacy artifact writer refuses formal current scorecard",
+      "status": "EXPECTED_REJECTION",
+      "reason": "ValidationError: Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập.[{\"field\":\"scoring\",\"reason\":\"FORMAL_SCORECARD_REQUIRES_DATASET_REPOSITORY\",\"expected\":\"M3 / M6.4 clarification contract\"}]"
+    },
+    {
+      "name": "real production publication resolver refuses missing accepted head in disposable DB",
+      "status": "EXPECTED_REJECTION",
+      "reason": "Error: MARKET_BOUNDARY:MISSING_HEAD"
+    },
+    {
+      "name": "exact cached body alone cannot pass current-purpose read authorization",
+      "status": "EXPECTED_REJECTION",
+      "reason": "ValidationError: Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập.[{\"field\":\"scoring\",\"reason\":\"UNREGISTERED_CURRENT_METHODOLOGY\",\"expected\":\"M3 / M6.4 clarification contract\"}]"
+    },
+    {
+      "name": "immutable storage refuses replacement of same ID",
+      "status": "EXPECTED_REJECTION",
+      "reason": "Error: immutable current score"
+    }
+  ]
+}

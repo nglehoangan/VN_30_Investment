@@ -1,0 +1,50 @@
+{
+  "decision": "VALIDATION_FAILED",
+  "publicationAllowed": false,
+  "reason": "14 required dependency-head tests and actual production bootstrap inventory fail on an exact predecessor source hash mismatch; current-purpose publication/read linkage and live governed registration/materialization are also absent. Not merely awaiting owner approval.",
+  "baseline": "b9b2ee6e22ffc0015f9f1e29324ac105b02a7ab4",
+  "priorIsolatedScore": "43",
+  "priorIsolatedScoreIntegrity": "PASS",
+  "priorStep4ScopePreserved": true,
+  "blockers": [
+    {
+      "id": "PUB-01",
+      "severity": "MAJOR",
+      "kind": "EXISTING_INTEGRATION_VALIDATION_FAILURE",
+      "evidence": "BOOTSTRAP_HASH_DEFECT.json; TEST_RESULTS.json",
+      "contract": "PinnedFiles.read / retainedDependencyBootstrap: SOURCE_HASH_MISMATCH",
+      "responsibleAuthority": "Production dependency integration maintainer and existing accepted-release governance",
+      "minimalNextAction": "Resolve the stale bootstrap route through a legitimate existing successor/version binding; rerun the14 failed tests. No changes to historical receipts or renewed source approval."
+    },
+    {
+      "id": "PUB-02",
+      "severity": "MAJOR",
+      "kind": "MISSING_CURRENT_PURPOSE_PUBLICATION_CONSUMER_IMPLEMENTATION",
+      "evidence": "PUBLICATION_CONTRACT_MAP.json; ISOLATED_PUBLICATION_REHEARSAL.json",
+      "contract": "ProductionDependencies.sealAnalysis / current_score_artifact versus readDashboard analytical_artifact catalog",
+      "responsibleAuthority": "Publication/read-model maintainer under existing governance",
+      "minimalNextAction": "Connect the qualified current-purpose artifact to the existing publication/read flow with explicit economic/knowledge/evaluation dates, exact current read reauthorization and revision ordering. Rehearse persistence/readback/idempotence/revocation through that real bridge. Do not copy it into legacy FORMAL storage or disguise it as PIT."
+    },
+    {
+      "id": "PUB-03",
+      "severity": "MAJOR",
+      "kind": "PRODUCTION_MATERIALIZATION_AND_LIVE_REGISTRATION_ABSENT",
+      "evidence": "PRODUCTION_DEPENDENCY_CHECK.json; AUTHORITY_AND_TRUST_VALIDATION.json",
+      "contract": "CurrentPurposeScoring.authorize/find; governed current dataset/reference and registered approved method; accepted production dependency heads",
+      "responsibleAuthority": "Owner-authorized deployment/data-release registrar",
+      "minimalNextAction": "Prepare authorized deployment/materialization of the exact retained governed current release and the already approved method/AI-review bindings. Confirm source IDs/hashes/receipts and live revocation/current-version selection. This review must not perform those writes; no new research or per-fact approval."
+    },
+    {
+      "id": "PUB-04",
+      "severity": "AUTHORIZATION_BLOCKER",
+      "kind": "PUBLICATION_PERMISSION_NOT_GRANTED",
+      "evidence": "Owner publication-readiness request; prior isolated binding/receipt scopes in AUTHORITY_AND_TRUST_VALIDATION.json",
+      "contract": "Owner explicitly states production publication NOT AUTHORIZED and prohibits live publication in this review",
+      "responsibleAuthority": "Owner / CIO",
+      "minimalNextAction": "After technical/data prerequisites pass, obtain explicit scoped publication authorization. Isolated self-review permission and executable approval are not that authorization."
+    }
+  ],
+  "noLivePublication": true,
+  "productionActivation": "NOT_AUTHORIZED",
+  "CIOReview": "REQUIRED_STOP"
+}
