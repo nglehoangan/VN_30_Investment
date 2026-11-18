@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "isolatedNegativeChecks": [
+    {
+      "name": "different ticker/subject cannot obtain publication authority",
+      "result": "REJECTED",
+      "reason": "Error: PUB04_EXACT_SUBJECT_OR_PERMISSION_REQUIRED {}"
+    },
+    {
+      "name": "publication grant cannot authorize materialization",
+      "result": "REJECTED",
+      "reason": "Error: PUB04_EXACT_SUBJECT_OR_PERMISSION_REQUIRED {}"
+    },
+    {
+      "name": "publication revoked",
+      "result": "REJECTED",
+      "reason": "Error: FINANCIAL_ADMISSION_REVOKED {}"
+    },
+    {
+      "name": "dataset revoked",
+      "result": "REJECTED",
+      "reason": "Error: FINANCIAL_ADMISSION_REVOKED {}"
+    },
+    {
+      "name": "authority revoked",
+      "result": "REJECTED",
+      "reason": "Error: FINANCIAL_ADMISSION_REVOKED {}"
+    },
+    {
+      "name": "unauthorized newest revision blocks visibility without older fallback",
+      "result": "REJECTED",
+      "reason": "Error: PUB04_EXACT_SUBJECT_OR_PERMISSION_REQUIRED {}"
+    },
+    {
+      "name": "changed or revoked authority bytes fail closed",
+      "result": "REJECTED",
+      "reason": "Error: SOURCE_HASH_MISMATCH:docs/fundamental-data-engine/vnm-pub04/2026-11-18/PUB04_SERVER_REGISTRATION.json {}"
+    }
+  ],
+  "actualNextProductionHttpRevocation": {
+    "status": "PASS",
+    "runtime": "SAME_NEXT_START_PRODUCTION_BUILD_HTTP",
+    "target": "DISPOSABLE_DATABASE_ONLY",
+    "authorityRevocationSeededOnlyInClone": true,
+    "liveProductionAuthorityModified": false,
+    "blocked": true,
+    "scoreNotVisible": true,
+    "metadata": {},
+    "responseHash": "4eeb589907e3b5316f6a8280f18a42ce890393760e4bf214145a8b882b82982f",
+    "serverLogs": "▲ Next.js 16.3.4\n- Local:         http://127.0.0.1:53782\n- Network:       http://127.0.0.1:53782\n✓ Ready in 113ms\n✓ Running next.config.ts took 20ms\n{\"timestamp\":\"2026-11-18T08:15:40.146Z\",\"level\":\"info\",\"event\":\"application.started\"}\n(node:7677) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+  },
+  "liveAuthorityRevokedOrChanged": false,
+  "latestSelection": "PASS_LATEST_AUTHORIZED_SUBJECT; unauthorized newer revision blocks without fallback",
+  "clientSelectedAuthority": "IGNORED_BY_ACTUAL_ROUTE; exact metadata unchanged for forged authority/score/PIT query",
+  "sourceReader": "Only governed find() exposed; missing receipt writes are forbidden",
+  "tradingAuthorized": false,
+  "noFinancialAdmissionOrScoreInvocation": true
+}

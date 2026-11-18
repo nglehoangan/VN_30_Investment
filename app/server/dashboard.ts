@@ -1,4 +1,5 @@
 import "server-only";
+import {registeredCurrentPublications} from "@/infrastructure/source-admission/pub04-registration";
 import { latestDirectMarketPrices } from "@/infrastructure/repositories/direct-market-prices";
 import { readPersonalAccount } from "@/infrastructure/personal-account";
 import {readRetainedResearch} from "@/infrastructure/fundamentals/retained-research";
@@ -99,7 +100,7 @@ export async function loadDashboard(screen = "dashboard", reference?: string,acc
     if(screen==="data")return {...await readDashboard(client,screen,reference,{acceptanceId}),retainedResearch,manualFundamentals,manualFundamentalsIssue};
     const brokerSnapshot = await latestBrokerSnapshot(client) ?? await loadBrokerSnapshot(process.env.VN30_BROKER_SNAPSHOT_FILE);
     const brokerApiData = await latestBrokerApiData(client);
-    const dashboard = await readDashboard(client, screen, reference,{currentPublications:serverServices?.currentPublications});
+    const dashboard = await readDashboard(client, screen, reference,{currentPublications:serverServices?.currentPublications??registeredCurrentPublications(client)});
     let personalAccount: DashboardModel["personalAccount"];
     let personalAccountIssue: string | undefined;
     if (dashboard.state) {
