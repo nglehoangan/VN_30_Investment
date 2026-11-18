@@ -20,7 +20,7 @@ export interface DashboardModel {
   current?: CurrentModel;
   status: "SUCCESS" | "EMPTY" | "BLOCKED"; message: string | null;
   portfolio: { id: string; name: string } | null; state: PortfolioState | null;
-  transactions: readonly Transaction[]; cards: readonly Scorecard[]; rankings: readonly Ranking[];
+  transactions: readonly Transaction[]; cards: readonly (Scorecard | import("@/ports/current-publication").CurrentPublishedCard)[]; rankings: readonly Ranking[];
   decisions: readonly Decision[]; reviews: readonly ReviewArtifact[];
   executions: readonly ExecutionLink[]; followUps: readonly FollowUpArtifact[];
   methods: readonly MethodologyRecord[]; truncated: boolean;

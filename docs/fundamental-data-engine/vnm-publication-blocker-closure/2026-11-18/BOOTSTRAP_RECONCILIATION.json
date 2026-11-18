@@ -1,0 +1,33 @@
+{
+  "status": "CLOSED",
+  "beforeFailures": 14,
+  "afterDependencyTestsPassed": 15,
+  "originalFailuresNowPassing": [
+    "bootstrap binds accepted exact data without fabricating active model/policy authority",
+    "production resolves internally; caller-selected IDs/mode rejected; every head hash and required slot is checked",
+    "CAS A→B succeeds; concurrent A→C fails; retry after B checks compatibility; no partial release leaks",
+    "analysis fundamental change mid-flight blocks sealing; historical release remains replayable and cache stale",
+    "PARTITION authority change mid-analysis fails closed; market alone cannot promote MBB",
+    "TCX_EXCEPTION authority change mid-analysis fails closed; market alone cannot promote MBB",
+    "stale/missing market blocks refresh; expiry during analysis and at SQL publication rolls back",
+    "policy/release and live ledger changes invalidate decisions; persistence never trusts stale portfolio watermark",
+    "dependency change between final validation and SQL transaction rejects atomically",
+    "market activation cannot promote MBB; expiry at final transaction check leaves no partial snapshot",
+    "same immutable object ID with changed content is an integrity error; projection remains unchanged",
+    "missing market requests refresh, and incompatible/unknown dependencies cannot activate",
+    "policy supersession blocks new decision from old analysis while historical binding stays immutable",
+    "staged lifecycle receives original snapshot binding time while freshness revalidation uses the trusted current clock"
+  ],
+  "legitimateSuccessor": {
+    "path": "docs/fundamental-data-engine/vnm-step3-authority-closure/2026-11-17/RETAINED_STATIC_HEAD_BINDING.json",
+    "sha256": "94b211962c2281159706236d02479539dd1b793db604ce97fbb9648a0d38fd05"
+  },
+  "acceptedReleaseHash": "2f34d81611b8dd832b824e26608d23371fe7d9c2700b5d509126fd6f26a38140",
+  "implementation": {
+    "path": "src/infrastructure/dependencies/retained-bootstrap.ts",
+    "sha256": "840d9ebd63b6cb0cdf48a535046b0ac4666b3eb6336d643b5f0bef3fa970f949"
+  },
+  "historicalPinsRewritten": false,
+  "historicalFetchHashCheckStillRejectsMismatch": true,
+  "additionalOwnerDecisionRequired": false
+}

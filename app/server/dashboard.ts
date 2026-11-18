@@ -25,7 +25,7 @@ import { emptyDashboard } from "@/application/dashboard/model";
 import type { DashboardModel } from "@/application/dashboard/model";
 import type { PrismaClient } from "@/infrastructure/db/generated/client";
 /** Bounded catalog queries select IDs only. Existing adapters remain decoding/integrity authority. */
-export async function readDashboard(client: PrismaClient, screen = "audit", reference?: string, data?: {services?:DataFreshnessServices;acceptanceId?:string;viewedAt?:string}): Promise<DashboardModel> {
+export async function readDashboard(client: PrismaClient, screen = "audit", reference?: string, data?: {services?:DataFreshnessServices;acceptanceId?:string;viewedAt?:string;currentPublications?:import("@/ports/current-publication").CurrentPublishedScores}): Promise<DashboardModel> {
   if(screen==="data"){const dataFreshness=await readDataFreshness(client,data?.viewedAt??runtime.clock.now(),reference,data?.services,data?.acceptanceId);return {...emptyDashboard(),dataFreshness,status:dataFreshness.status==="VERIFIED"?"SUCCESS":dataFreshness.status};}
   const result = emptyDashboard();
   const portfolios = await client.portfolio.findMany({ take: 2, orderBy: { id: "asc" }, select: { id: true, name: true } });
@@ -47,7 +47,7 @@ export async function readDashboard(client: PrismaClient, screen = "audit", refe
   const needExecutions = ["audit", "dca", "journal"].includes(screen);
   const analytics = needAnalytics ? await client.analyticalArtifact.findMany({ take: 101,
     where: screen === "scoring" && reference ? { id: reference } : screen === "ranking" && reference ? { id: reference } : undefined,
-    orderBy: [{ asOf: "desc" }, { id: "asc" }], select: { id: true, kind: true } }) : [];
+    orderBy: [{ asOf: "desc" }, { calculatedAt: "desc" }, { id: "asc" }], select: { id: true, kind: true, body:true } }) : [];
   const filteredAnalytics = ["dashboard", "data", "settings", "imports"].includes(screen)
     ? [analytics.find(a => a.kind === "SCORECARD"), analytics.find(a => a.kind === "RANKING")].filter(a => a !== undefined) : analytics;
   const [decisions, reviews, methods, executions, audits] = await Promise.all([
@@ -59,10 +59,16 @@ export async function readDashboard(client: PrismaClient, screen = "audit", refe
   ]);
   const analytical = new PrismaAnalyticalArtifacts(client), decision = new PrismaDecisionArtifacts(client), workflow = new PrismaWorkflowArtifacts(client), registry = new PrismaMethodologyRegistry(client);
   for (const row of filteredAnalytics.slice(0, 100)) {
+    if(row.kind==="SCORECARD"&&JSON.parse(row.body).contract==="current-read-only-publication-v1"){
+      if(!data?.currentPublications)throw new Error("CURRENT_PUBLICATION_CONSUMER_NOT_CONFIGURED");
+      if(!reference)continue;
+      const c=await data.currentPublications.find(row.id);if(c)result.cards=[...result.cards,c];continue;
+    }
     const a = await analytical.find(row.id);
     if (a && "totalScore" in a) result.cards = [...result.cards, a];
     else if (a) result.rankings = [...result.rankings, a];
   }
+  if(data?.currentPublications&&!reference&&needAnalytics){const latest=await data.currentPublications.latest();result.cards=[...latest,...result.cards.filter(c=>!("contract" in c&&c.contract==="personal-ai-current-scorecard-v1"))].sort((a,b)=>b.asOf.localeCompare(a.asOf)||b.calculatedAt.localeCompare(a.calculatedAt)||a.id.localeCompare(b.id));}
   for (const row of decisions.slice(0, 100)) { const a = await decision.find(row.id); if (a && (!result.portfolio || a.input.portfolio.integrity.portfolioId === result.portfolio.id)) result.decisions = [...result.decisions, a]; }
   for (const row of reviews.slice(0, 100)) { const a = await workflow.find(row.id); if (a && (!result.portfolio || a.command.portfolioId === result.portfolio.id)) result.reviews = [...result.reviews, a]; }
   for (const row of methods.slice(0, 100)) { const a = await registry.findById(methodologyId(row.methodologyId)); if (a) result.methods = [...result.methods, a]; }
@@ -72,7 +78,7 @@ export async function readDashboard(client: PrismaClient, screen = "audit", refe
   result.status = result.portfolio || result.cards.length || result.reviews.length || result.decisions.length ? "SUCCESS" : "EMPTY";
   return result;
 }
-export async function loadDashboard(screen = "dashboard", reference?: string,acceptanceId?:string,research?:{variant?:string;page?:string}): Promise<DashboardModel> {
+export async function loadDashboard(screen = "dashboard", reference?: string,acceptanceId?:string,research?:{variant?:string;page?:string},serverServices?:{currentPublications?:import("@/ports/current-publication").CurrentPublishedScores}): Promise<DashboardModel> {
   let client: PrismaClient | undefined;
   try {
     // Optional research must not hide separately verified ledger or sealed snapshot data.
@@ -93,7 +99,7 @@ export async function loadDashboard(screen = "dashboard", reference?: string,acc
     if(screen==="data")return {...await readDashboard(client,screen,reference,{acceptanceId}),retainedResearch,manualFundamentals,manualFundamentalsIssue};
     const brokerSnapshot = await latestBrokerSnapshot(client) ?? await loadBrokerSnapshot(process.env.VN30_BROKER_SNAPSHOT_FILE);
     const brokerApiData = await latestBrokerApiData(client);
-    const dashboard = await readDashboard(client, screen, reference);
+    const dashboard = await readDashboard(client, screen, reference,{currentPublications:serverServices?.currentPublications});
     let personalAccount: DashboardModel["personalAccount"];
     let personalAccountIssue: string | undefined;
     if (dashboard.state) {
