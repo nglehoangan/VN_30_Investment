@@ -10,12 +10,13 @@ from datetime import date
 import fcntl
 import hashlib
 import json
-import os
 from pathlib import Path
 import re
-import tempfile
+import sys
 
 ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT))
+from tools.maintenance.common import canonical_json as canonical, digest_json as digest, require_ticker as ticker, atomic_json as atomic
 REGISTRY = 'skills/vn30-rollout-orchestrator/references/universe-registry.json'
 SKILLS = ('equity-s1-s5-assessment', 'vn30-market-price-corporate-actions',
           'fetch-cafef-price-history', 'fetch-vietstock-dividend-pdfs', 'read-pdf-json-first')
@@ -23,23 +24,6 @@ PURPOSES = ('RETROSPECTIVE_RESEARCH', 'CURRENT_FORMAL_VALUATION', 'HISTORICAL_PI
 PERMISSIONS = dict(assessmentApproved=False, formalAdmissionGranted=False,
                    scoringAuthorized=False, deploymentAuthorized=False,
                    publicationAuthorized=False, tradingAuthorized=False, historicalPitQualified=False)
-
-
-def canonical(value):
-    return json.dumps(value, sort_keys=True, ensure_ascii=False, separators=(',', ':'), allow_nan=False)
-
-
-def digest(value):
-    return hashlib.sha256(canonical(value).encode()).hexdigest()
-
-
-def ticker(value):
-    if not isinstance(value, str):
-        raise ValueError('EXACTLY_ONE_TICKER_REQUIRED')
-    value = value.strip().upper()
-    if value in ('ALL', 'VN30') or not re.fullmatch(r'[A-Z0-9]{3}', value):
-        raise ValueError('BATCH_OR_INVALID_TICKER_REJECTED')
-    return value
 
 
 def day(value):
@@ -159,23 +143,6 @@ def require_input_identity(context, packet):
     if packet.get('cutoff', context['request']['referenceDate']) != context['request']['referenceDate']:
         raise ValueError('INPUT_REFERENCE_DATE_MISMATCH')
     return packet
-
-
-def atomic(path, value, immutable=False):
-    path = Path(path)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    text = canonical(value) + '\n'
-    if path.exists() and immutable:
-        if path.read_text() != text:
-            raise ValueError('IMMUTABLE_EXECUTION_OUTPUT_CONFLICT')
-        return
-    fd, temp = tempfile.mkstemp(dir=path.parent, prefix='.checkpoint-')
-    try:
-        with os.fdopen(fd, 'w') as handle:
-            handle.write(text); handle.flush(); os.fsync(handle.fileno())
-        os.replace(temp, path)
-    finally:
-        if os.path.exists(temp): os.unlink(temp)
 
 
 @dataclass(frozen=True)
