@@ -1,13 +1,26 @@
 ---
 name: fetch-vietstock-dividend-pdfs
-description: Tìm và tải PDF sự kiện cổ tức tiền mặt, cổ tức cổ phiếu, cổ phiếu thưởng và phát hành thêm trên Vietstock theo từng mã và khoảng ngày khi cần trong dự án VN30.
+description: Tìm và tải PDF cổ tức/phát hành trên Vietstock cho đúng một mã VN30 mỗi invocation và khoảng ngày; cần universe version/ngày tham chiếu, không nhận batch.
 ---
 
 # PDF cổ tức và phát hành thêm theo mã
 
+## Single-ticker execution — owner amendment
+
+Bắt buộc đúng **một `ticker`** cho mỗi lần gọi; từ chối ALL, wildcard, danh sách, nhiều mã ghép chuỗi hoặc lặp tham số ticker. Chọn `universeVersion` đã pin và `referenceDate` liên quan; kiểm tra membership/security identity trước xử lý bằng [contract dùng chung](../vn30-rollout-orchestrator/references/single-ticker-contract.md).
+
+```sh
+python3 -B skills/vn30-rollout-orchestrator/scripts/runtime.py prepare \
+  --skill fetch-vietstock-dividend-pdfs --ticker VNM --reference-date 2026-10-30 \
+  --purpose RETROSPECTIVE_RESEARCH --universe-version vn30-20260803-reviewed-20261115
+```
+
+Lệnh này chỉ tạo context, không chạy worker. Dùng ticker/context đã kiểm tra khi thực hiện các bước dưới đây; worker/script cũ không phải lối bỏ qua guard. Output/evidence/checkpoint/blocker phải gắn executionId và đúng ticker. Không tái dùng authority, assessment, deployment hoặc publication permission của mã khác. Chỉ kiểm kê/readiness toàn universe mới được read-only nhiều mã; xử lý nhiều mã phải qua [orchestrator tuần tự](../vn30-rollout-orchestrator/SKILL.md), concurrency=1. Không tự cấp approval hoặc kích hoạt production.
+
+
 For ticker-scoped S4 price/action/share acceptance using retained sources, use `skills/vn30-market-price-corporate-actions/SKILL.md`. This fetching skill keeps its existing acquisition/storage scope and grants no admission authority.
 
-CLI có thể chạy lại từ gốc dự án:
+Sau guard/context hợp lệ, host có thể gọi worker dưới đây từ gốc dự án với đúng ticker; không gọi để bỏ qua guard:
 
 ```sh
 python3 skills/fetch-vietstock-dividend-pdfs/scripts/fetch.py --symbol VNM --start 2022-01-01 --end 2026-10-30

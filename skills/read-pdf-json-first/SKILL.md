@@ -1,9 +1,22 @@
 ---
 name: read-pdf-json-first
-description: Đọc và tra cứu PDF trong dự án VN30 bằng JSON đã trích xuất trước; chỉ tải PDF thiếu và trích xuất nội dung chưa có theo quy trình hiện tại.
+description: Đọc PDF của đúng một mã VN30 mỗi execution bằng retained JSON trước; chỉ trích/tải phần thiếu. Inventory/readiness toàn universe là read-only qua orchestrator.
 ---
 
 # Đọc PDF theo quy trình JSON trước
+
+## Single-ticker execution — owner amendment
+
+Bắt buộc đúng **một `ticker`** cho mỗi lần gọi; từ chối ALL, wildcard, danh sách, nhiều mã ghép chuỗi hoặc lặp tham số ticker. Chọn `universeVersion` đã pin và `referenceDate` liên quan; kiểm tra membership/security identity trước xử lý bằng [contract dùng chung](../vn30-rollout-orchestrator/references/single-ticker-contract.md).
+
+```sh
+python3 -B skills/vn30-rollout-orchestrator/scripts/runtime.py prepare \
+  --skill read-pdf-json-first --ticker VNM --reference-date 2026-10-30 \
+  --purpose RETROSPECTIVE_RESEARCH --universe-version vn30-20260803-reviewed-20261115
+```
+
+Lệnh này chỉ tạo context, không chạy worker. Dùng ticker/context đã kiểm tra khi thực hiện các bước dưới đây; worker/script cũ không phải lối bỏ qua guard. Output/evidence/checkpoint/blocker phải gắn executionId và đúng ticker. Không tái dùng authority, assessment, deployment hoặc publication permission của mã khác. Chỉ kiểm kê/readiness toàn universe mới được read-only nhiều mã; xử lý nhiều mã phải qua [orchestrator tuần tự](../vn30-rollout-orchestrator/SKILL.md), concurrency=1. Không tự cấp approval hoặc kích hoạt production.
+
 
 Đường dẫn dưới đây tính từ gốc repo. Đọc `AGENTS.md` và `docs/fundamental-data-engine/REBUILT_DATA_WORKFLOW.md` khi dùng skill. Đây là skill của dự án, được gọi qua AGENTS.md hoặc trực tiếp bằng đường dẫn này.
 

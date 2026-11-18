@@ -8,6 +8,13 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
+## Owner single-ticker architecture amendment (2026-11-18)
+
+- Every ticker-processing Skill invocation accepts exactly one required ticker. Reject ALL, wildcard, arrays, joined symbols and repeated ticker arguments. Use `skills/vn30-rollout-orchestrator/references/single-ticker-contract.md` and its prepare guard with a pinned VN30 universe version/reference date.
+- Universe-wide inventory/readiness may remain read-only. Multi-ticker work goes through `skills/vn30-rollout-orchestrator/SKILL.md`: separate one-ticker jobs, concurrency=1, isolated execution IDs/checkpoints/evidence/blockers and safe idempotent retry. No parallel workers.
+- The initial retained universe version covers03Aug–15Nov2026; an uncovered reference date is unverified coverage, not constituent expiry. Reuse qualified membership evidence without importing VNM prices, financial authority, assessments or PUB-04 permission for other tickers.
+- This foundation installs no live worker, scoring, deployment or publication adapter. Preserve hash-pinned legacy processors for replay; they are not bypass entrypoints. Research/queue completion never approves assessment, production or publication; retain sector-specific M3/M4 rules and actual ticker-scoped authority checks.
+
 ## PDF reading skill — JSON first
 
 - Owner source confirmation16/11/2026: trước khi kiểm chứng M3/M4 hoặc nêu blocker về xuất xứ, đọc `docs/03 SCORING/M3_M4_OWNER_SOURCE_CONFIRMATION_2026-11-16.md` và JSON cùng tên. Owner đã kiểm tra và xác nhận các file/website/API đang dùng là nguồn thật; không hỏi lại, yêu cầu chứng minh lại, tải lại hoặc xin approval từng fact/PDF. Kiểm thử trên dữ liệu thật đã giữ để xác nhận mapping/kỳ/scope/unit/hash/công thức và admission/consumer đúng; lỗi adapter không phải thiếu nguồn thật. Chỉ nêu lại nguồn khi có defect cụ thể hoặc input mới ngoài phạm vi.

@@ -1,9 +1,22 @@
 ---
 name: fetch-cafef-price-history
-description: Lấy lịch sử giá CafeF theo mã và số năm lùi từ hiện tại, chia mỗi truy vấn tối đa một năm, quét mọi trang và gộp không trùng vào một JSON mỗi mã.
+description: Lấy lịch sử giá CafeF cho đúng một mã VN30 mỗi invocation, kiểm tra phiên bản universe/ngày tham chiếu, chia request tối đa một năm và gộp JSON không trùng.
 ---
 
 # Lịch sử giá CafeF theo mã
+
+## Single-ticker execution — owner amendment
+
+Bắt buộc đúng **một `ticker`** cho mỗi lần gọi; từ chối ALL, wildcard, danh sách, nhiều mã ghép chuỗi hoặc lặp tham số ticker. Chọn `universeVersion` đã pin và `referenceDate` liên quan; kiểm tra membership/security identity trước xử lý bằng [contract dùng chung](../vn30-rollout-orchestrator/references/single-ticker-contract.md).
+
+```sh
+python3 -B skills/vn30-rollout-orchestrator/scripts/runtime.py prepare \
+  --skill fetch-cafef-price-history --ticker VNM --reference-date 2026-10-30 \
+  --purpose RETROSPECTIVE_RESEARCH --universe-version vn30-20260803-reviewed-20261115
+```
+
+Lệnh này chỉ tạo context, không chạy worker. Dùng ticker/context đã kiểm tra khi thực hiện các bước dưới đây; worker/script cũ không phải lối bỏ qua guard. Output/evidence/checkpoint/blocker phải gắn executionId và đúng ticker. Không tái dùng authority, assessment, deployment hoặc publication permission của mã khác. Chỉ kiểm kê/readiness toàn universe mới được read-only nhiều mã; xử lý nhiều mã phải qua [orchestrator tuần tự](../vn30-rollout-orchestrator/SKILL.md), concurrency=1. Không tự cấp approval hoặc kích hoạt production.
+
 
 For ticker-scoped S4 price/action/share acceptance using retained sources, use `skills/vn30-market-price-corporate-actions/SKILL.md`. This fetching skill keeps its existing acquisition/storage scope and grants no admission authority.
 
@@ -14,10 +27,10 @@ Chuẩn hóa cho phép tính dùng `src/domain/market-boundary/cafef-raw-close.t
 Link mẫu chủ sở hữu cung cấp:
 https://cafef.vn/du-lieu/Ajax/PageNew/DataHistory/PriceHistory.ashx?ExchangeType=HOSE&Symbol=VNM&StartDate=11/11/2025&EndDate=11/11/2026&PageIndex=1&PageSize=30
 
-Dùng script từ gốc dự án:
+Sau guard/context hợp lệ, host mới gọi worker đã pin dưới đây với đúng ticker của context; đây không phải entrypoint độc lập để bỏ qua guard:
 
 ```sh
-python3 skills/fetch-cafef-price-history/scripts/fetch.py --symbol VNM --years 5 --exchange HOSE
+python3 skills/fetch-cafef-price-history/scripts/fetch.py --symbol VNM --years 5 --as-of 2026-10-30 --exchange HOSE
 # Phạm vi chính xác và giữ cả receipt trang rỗng/không có ngày mới:
 python3 skills/fetch-cafef-price-history/scripts/fetch.py --symbol VNM --start 2022-01-01 --end 2026-10-30 --retain-request-evidence
 ```

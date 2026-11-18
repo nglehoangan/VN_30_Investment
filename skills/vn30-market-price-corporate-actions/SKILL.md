@@ -5,6 +5,19 @@ description: Review retained daily raw prices, dividend and capital-action evide
 
 # VN30 market price and corporate actions
 
+## Single-ticker execution — owner amendment
+
+Bắt buộc đúng **một `ticker`** cho mỗi lần gọi; từ chối ALL, wildcard, danh sách, nhiều mã ghép chuỗi hoặc lặp tham số ticker. Chọn `universeVersion` đã pin và `referenceDate` liên quan; kiểm tra membership/security identity trước xử lý bằng [contract dùng chung](../vn30-rollout-orchestrator/references/single-ticker-contract.md).
+
+```sh
+python3 -B skills/vn30-rollout-orchestrator/scripts/runtime.py prepare \
+  --skill vn30-market-price-corporate-actions --ticker VNM --reference-date 2026-10-30 \
+  --purpose RETROSPECTIVE_RESEARCH --universe-version vn30-20260803-reviewed-20261115
+```
+
+Lệnh này chỉ tạo context, không chạy worker. Dùng ticker/context đã kiểm tra khi thực hiện các bước dưới đây; worker/script cũ không phải lối bỏ qua guard. Output/evidence/checkpoint/blocker phải gắn executionId và đúng ticker. Không tái dùng authority, assessment, deployment hoặc publication permission của mã khác. Chỉ kiểm kê/readiness toàn universe mới được read-only nhiều mã; xử lý nhiều mã phải qua [orchestrator tuần tự](../vn30-rollout-orchestrator/SKILL.md), concurrency=1. Không tự cấp approval hoặc kích hoạt production.
+
+
 For current governed F1/F2 ingestion, use [standing authority per version](references/standing-authority-version.md). The owner-approved amendment supersedes the mandatory per-material independent acceptance gate in older references; do not reopen U1 or request repeated source/material approval under an unchanged approved version.
 
 Accept **ticker, exchange, cutoff and retained source locations**. Work on one ticker per invocation. Use this workflow for S4 evidence/acceptance review; keep fetching, personal account reconciliation and investment scoring in their existing workflows.
@@ -35,7 +48,7 @@ Produce three distinct conclusions:
 
 ## Deterministic offline replay
 
-Prepare a `vn30-s4-review-input-v1` JSON with exact retained-source pins and reviewed event identities, following the contract. Example retained VNM fixture: `docs/fundamental-data-engine/vnm-s4-reusable-skill/2026-11-12/VNM_INPUT.json`.
+After the single-ticker guard, bind the payload ticker/cutoff with `require_input_identity`; only then prepare a `vn30-s4-review-input-v1` JSON with exact retained-source pins and reviewed event identities, following the contract. Example retained VNM fixture: `docs/fundamental-data-engine/vnm-s4-reusable-skill/2026-11-12/VNM_INPUT.json`.
 
 ```sh
 node skills/vn30-market-price-corporate-actions/scripts/runtime.mjs \
@@ -44,6 +57,6 @@ node skills/vn30-market-price-corporate-actions/scripts/runtime.mjs \
 
 Output is `<root>/<TICKER>/<cutoff>/{EVIDENCE.json,ACCEPTANCE.json}`. Explicit input review times make replay deterministic; unchanged reruns do not overwrite, changed results require a new review directory. Source hashes/JSON pointers and collector raw-response hashes are verified before writing. Missing scalar terms stay null; invalid identity/hash or scope fails before output. Never write into `data/`, SQLite, portfolio or authority registries.
 
-For VNM reference scope: R1 remains `CLOSED_BY_OWNER_APPROVED_CARRY_FORWARD_POLICY`, R4 remains `CLOSED_BY_SCOPE_EXCLUSION`, and R3 is restricted to historical completeness. The17-fact retrospective research admission is **PENDING_EXPLICIT_OWNER_APPROVAL**. The old conditional-approval receipt is superseded and retained for audit only. Never treat a recommendation, proposed decision or assistant summary as authorization; require an exact owner-authored reference verified independently for the actual proposal. The current correction/readiness report and CIO checklist are in `docs/fundamental-data-engine/vnm-s4-governance-correction/2026-11-12/FINAL_REVIEW.md`; F1/F2 remain open. For another ticker, derive its own conclusions from its own sources.
+For VNM reference scope: R1 remains `CLOSED_BY_OWNER_APPROVED_CARRY_FORWARD_POLICY`, R4 remains `CLOSED_BY_SCOPE_EXCLUSION`, and R3 is restricted to historical completeness. The17-fact retrospective research admission is **PENDING_EXPLICIT_OWNER_APPROVAL**. The old conditional-approval receipt is superseded and retained for audit only. Never treat a recommendation, proposed decision or assistant summary as authorization; require an exact owner-authored reference verified independently for the actual proposal. The 12Nov correction/readiness report and CIO checklist are retained in `docs/fundamental-data-engine/vnm-s4-governance-correction/2026-11-12/FINAL_REVIEW.md`; their dated F1/F2 status is historical, not a current global verdict. Reuse the matching ticker/date successor acceptance where present. Later VNM admission/scoring/publication does not authorize another ticker. For another ticker, derive its own conclusions from its own sources.
 
 Report selected facts, exact unresolved requirements and source/policy references. No repeated generic qualification inventory, score, portfolio mutation or source/production self-approval. **STOP for CIO review.**

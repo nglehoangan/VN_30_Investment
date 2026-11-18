@@ -4,6 +4,8 @@ Run from the repository root with installed project dependencies (Node, Python3,
 
 ## Input
 
+Owner amendment: invoke through the [single-ticker envelope](../../vn30-rollout-orchestrator/references/single-ticker-contract.md), selecting a pinned universe version and reference date. Match this payload ticker/cutoff using `require_input_identity` before calling the retained runtime. Existing v1 payload/worker bytes and source hashes are unchanged; they do not bypass this invocation guard.
+
 `schemaVersion=vn30-s4-review-input-v1`; `sourceMode=RETAINED_RESEARCH|SYNTHETIC_TEST` (checked against collector origin); ticker uppercase; exchange `HOSE|HNX|UPCOM`; cutoff ISO date; **explicit** review timestamp. The retained VNM fixture demonstrates every field without requiring source reacquisition. The two checked-in `tests/fixtures/vn30-s4/{SYN,XYZ}.json` sources are synthetic and grant no live research/admission authority.
 
 | Field | Required meaning |

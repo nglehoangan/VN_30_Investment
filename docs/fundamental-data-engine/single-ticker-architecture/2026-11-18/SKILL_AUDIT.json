@@ -1,0 +1,61 @@
+{
+  "status": "FIVE_EXISTING_SKILLS_AUDITED_AND_SPECIFICATIONS_UPDATED",
+  "equivalentOrchestratorFound": false,
+  "existingCapabilitiesReviewed": {
+    "scripts/rebuild-vn30-downloads.py": "Historical reset/corpus acquisition with ThreadPoolExecutor; not a reusable governed Skill queue",
+    "scripts/build-vn30-lineage.py": "Corpus lineage aggregation, not per-Skill checkpoint/resume",
+    "scripts/refine-pdf-review-queue.py": "PDF review selection only, no isolated invocation/retry",
+    "src/domain/workflow/contracts.ts": "Portfolio/DCA orchestration, not issuer processing"
+  },
+  "newSkill": "vn30-rollout-orchestrator",
+  "skills": [
+    {
+      "skill": "equity-s1-s5-assessment",
+      "before": "Prose accepts one or a list; no shared date/universe guard",
+      "after": "Exactly one ticker, prepared context, approved sector enum and sector-specific M3/M4 methods preserved",
+      "worker": "Manual research; no auto scoring"
+    },
+    {
+      "skill": "vn30-market-price-corporate-actions",
+      "before": "One ticker stated; retained runtime verifies source identity but no shared VN30 invocation envelope",
+      "after": "Single-ticker/version/date envelope; bind payload ticker/cutoff before retained runtime",
+      "worker": "Hash-pinned runtime.mjs preserved"
+    },
+    {
+      "skill": "fetch-cafef-price-history",
+      "before": "--symbol rejects punctuation but ALL is a syntactically valid legacy string; no universe guard",
+      "after": "Mandatory prepared context; one canonical symbol passed by trusted host; collector stays raw-only",
+      "worker": "Hash-pinned fetch.py preserved"
+    },
+    {
+      "skill": "fetch-vietstock-dividend-pdfs",
+      "before": "Single symbol syntax; no membership/date envelope",
+      "after": "Mandatory prepared context and issuer-scoped PDF/receipt outputs; no dataset batch",
+      "worker": "Existing fetch.py preserved"
+    },
+    {
+      "skill": "read-pdf-json-first",
+      "before": "Document procedure with inferred ticker, no explicit invocation envelope",
+      "after": "Exactly one required ticker for issuer processing; universe inventory/readiness remains read-only",
+      "worker": "Manual retained-JSON/PDF procedure; no corpus processor bound"
+    }
+  ],
+  "compatibilityProcessors": [
+    {
+      "path": "skills/fetch-cafef-price-history/scripts/fetch.py",
+      "sha256": "daac4ab588bca068692599c5af64bb4cb32624fa60304611252d8b7553f2576a",
+      "bytesUnchanged": true
+    },
+    {
+      "path": "skills/vn30-market-price-corporate-actions/scripts/runtime.mjs",
+      "sha256": "e890f9048f17b738d7d25d2c489649a5d88fd81a905a8ce0c0493ca66765f162",
+      "bytesUnchanged": true
+    },
+    {
+      "path": "skills/fetch-vietstock-dividend-pdfs/scripts/fetch.py",
+      "sha256": "cef136e036b992092032035ab9f989f94d5bdb0a3457d7d92f1405ddf570f5ed",
+      "bytesUnchanged": true
+    }
+  ],
+  "runtimeBindingScope": "CLI foundation only. Guarded live host adapters NOT_INSTALLED; legacy direct scripts are compatibility/replay paths, not supported bypasses."
+}

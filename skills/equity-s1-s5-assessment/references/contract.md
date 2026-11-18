@@ -2,6 +2,8 @@
 
 ## Invocation
 
+Owner amendment: [single-ticker execution contract](../../vn30-rollout-orchestrator/references/single-ticker-contract.md) là invocation envelope bắt buộc; JSON kinh tế bên dưới vẫn là payload theo đúng một mã.
+
 Ví dụ yêu cầu:
 
 > Dùng $equity-s1-s5-assessment đánh giá FPT tại 2026-10-30, sàn HOSE, ngành TECHNOLOGY, mục đích retrospective research; dùng dữ liệu đã giữ, đánh giá S1–S5, không production.
@@ -25,7 +27,7 @@ Input có thể là prose hoặc JSON; không cần tạo file cấu hình nếu
 
 Example paths là vị trí để kiểm tra, không khẳng định nguồn FPT đã đủ điều kiện. `sector` phải resolve về registry hiện hành; nhãn business consumer không tự là một enum mới. `purpose`: RETROSPECTIVE_RESEARCH, CURRENT_FORMAL_VALUATION hoặc HISTORICAL_PIT. Mục đích formal/PIT không cấp authority; kiểm hợp đồng tương ứng trước khi consumer dùng. Ngành/cutoff chưa xác định chỉ hỏi phần thực sự không suy ra được từ nguồn hiện có; không hỏi lại owner decisions đã lưu.
 
-Output root tách ticker/cutoff và run hoặc successor khi đã có output: không overwrite sealed acceptance. Ghi `reviewedAt` thật khi đánh giá; replay giữ timestamp review gốc, runtime timestamp để riêng. Scope nhiều mã là danh sách yêu cầu rõ, không ghép evidence của mã này vào mã khác.
+Output root tách ticker/cutoff và prepared executionId (hoặc successor riêng) khi đã có output: không overwrite sealed acceptance. Ghi `reviewedAt` thật khi đánh giá; replay giữ timestamp review gốc, runtime timestamp để riêng. Mỗi invocation có đúng một ticker; danh sách mã thuộc queue của `vn30-rollout-orchestrator`, không thuộc input Skill. Cần universeVersion/referenceDate và prepared execution context theo shared single-ticker contract; giữ ngành/purpose đúng mã, không chuyển quyền VNM sang mã khác.
 
 ## Artifacts
 

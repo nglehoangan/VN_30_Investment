@@ -1,9 +1,22 @@
 ---
 name: equity-s1-s5-assessment
-description: Đánh giá nghiên cứu cổ phiếu theo S1 lợi nhuận kinh tế, S2 thanh khoản, S3 vị thế cạnh tranh, S4 giá/corporate actions và S5 định giá; tái sử dụng bằng chứng hiện có, áp dụng hợp đồng M3/M4 theo ngành và xác định chính xác điều kiện đóng issue. Dùng cho một mã hoặc danh sách mã được yêu cầu, không tự cấp điểm chính thức hay kích hoạt production.
+description: Đánh giá nghiên cứu cổ phiếu theo S1 lợi nhuận kinh tế, S2 thanh khoản, S3 vị thế cạnh tranh, S4 giá/corporate actions và S5 định giá; tái sử dụng bằng chứng hiện có, áp dụng hợp đồng M3/M4 theo ngành và xác định chính xác điều kiện đóng issue. Dùng cho đúng một mã mỗi lần gọi, không tự cấp điểm chính thức hay kích hoạt production.
 ---
 
 # Đánh giá cổ phiếu S1–S5
+
+## Single-ticker execution — owner amendment
+
+Bắt buộc đúng **một `ticker`** cho mỗi lần gọi; từ chối ALL, wildcard, danh sách, nhiều mã ghép chuỗi hoặc lặp tham số ticker. Chọn `universeVersion` đã pin và `referenceDate` liên quan; kiểm tra membership/security identity trước xử lý bằng [contract dùng chung](../vn30-rollout-orchestrator/references/single-ticker-contract.md).
+
+```sh
+python3 -B skills/vn30-rollout-orchestrator/scripts/runtime.py prepare \
+  --skill equity-s1-s5-assessment --ticker VNM --reference-date 2026-10-30 \
+  --purpose RETROSPECTIVE_RESEARCH --universe-version vn30-20260803-reviewed-20261115 --sector INDUSTRIAL
+```
+
+Lệnh này chỉ tạo context, không chạy worker. Dùng ticker/context đã kiểm tra khi thực hiện các bước dưới đây; worker/script cũ không phải lối bỏ qua guard. Output/evidence/checkpoint/blocker phải gắn executionId và đúng ticker. Không tái dùng authority, assessment, deployment hoặc publication permission của mã khác. Chỉ kiểm kê/readiness toàn universe mới được read-only nhiều mã; xử lý nhiều mã phải qua [orchestrator tuần tự](../vn30-rollout-orchestrator/SKILL.md), concurrency=1. Không tự cấp approval hoặc kích hoạt production.
+
 
 Dùng trong repository VN_30_Investment. Các đường dẫn `docs/`, `src/`, `data/`, `skills/` dưới đây tính từ gốc repo. Skill là quy trình nghiên cứu và đối chiếu acceptance, không phải pipeline tự động bảo đảm đóng S1–S5 hoặc công cụ phát lệnh giao dịch.
 
@@ -32,7 +45,7 @@ Nhận mã, sàn, cutoff, ngành, mục đích, phạm vi S1–S5 và vị trí 
 | S4 | Raw close, cổ tức/capital actions, số cổ phiếu đúng cutoff và giới hạn purpose/time | `skills/vn30-market-price-corporate-actions/SKILL.md`; không nhân bản fetching/admission logic |
 | S5 | Mô hình vốn chủ nhất quán, Bear/Base/Bull, sensitivity, MOS/5Y return hoặc N/R có lý do | Kết luận S1–S4 và hợp đồng M3/M4; chọn mô hình đúng ngành |
 
-S4 là đầu vào cho S5 khi cần giá/cổ phiếu/cổ tức; không buộc phải chạy lại theo số thứ tự. Chạy một mã độc lập; danh sách mã được xử lý với evidence/outputs tách biệt, không mở rộng thành toàn VN30 khi chưa được yêu cầu. Ngoài VN30 vẫn có thể nghiên cứu, nhưng standing authority/membership chỉ có hiệu lực trong phạm vi đã được duyệt; không tự mở rộng quyền admission.
+S4 là đầu vào cho S5 khi cần giá/cổ phiếu/cổ tức; không buộc phải chạy lại theo số thứ tự. Mỗi lần gọi chỉ nhận đúng một ticker đủ điều kiện theo phiên bản VN30/ngày tham chiếu. Yêu cầu nhiều mã phải được chuyển sang queue tuần tự của orchestrator, không truyền danh sách vào Skill. Nghiên cứu ngoài VN30 cần workflow/phạm vi khác được cho phép, không vượt guard của Skill này.
 
 ## Quy tắc đóng issue
 
