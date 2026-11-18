@@ -1,0 +1,23 @@
+{
+  "status": "BLOCKED_PREWRITE",
+  "baselineCommit": "6e4bb7bb81e323feaa805699cbc5e009c95921bc",
+  "preflightRunner": "python3 docs/fundamental-data-engine/vnm-production-materialization/2026-11-18/preflight.py",
+  "passedChecks": 70,
+  "failedChecks": [
+    {
+      "check": "requiredF1MigrationIncludedOrAlreadyApplied",
+      "actual": false,
+      "expected": true,
+      "pass": false
+    }
+  ],
+  "schemaProbe": {
+    "target": ":memory:",
+    "exactApprovedSchemaResult": "no such table: market_boundary_ingest_raw",
+    "withAdditionalMigrationTablesResolvable": true,
+    "productionWrites": 0
+  },
+  "productionFingerprintUnchanged": true,
+  "testScope": "Read-only production integrity/migration/hash checks and actual approved SQL on an in-memory copy. No application code changed. No full integration/regression or deployment PASS claimed.",
+  "prior233Tests": "Historical implementation evidence only, not rerun or production execution proof."
+}
