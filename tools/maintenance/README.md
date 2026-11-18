@@ -41,3 +41,20 @@ node tools/maintenance/tests.mjs --config <existing-validation.config.mjs> --dep
 No maintenance tool authorizes scoring, deployment, publication, trading or historical PIT. Universe membership is checked by the download execution guard at the supplied version/reference date; read-only cataloging does not infer membership.
 
 `tests.mjs --diagnostic-timeout-ms <milliseconds>` records a separate diagnostic run with unchanged assertions and integrity controls. Retain the original timeout result; a diagnostic run does not rewrite it or grant release authority.
+
+## Compacting cold presentation backups
+
+Current financial JSON, original PDFs, API raw responses and SQLite recovery backups retain their existing bytes and paths. Large old `backups/**/presentation-before/**/*.json` snapshots may be stored losslessly after source-pin, current-consumer and live-database lineage checks. The apply plan binds the protected database hash and exact eligible paths.
+
+```sh
+# Inspect candidate sizes only.
+python3 -B tools/maintenance/archive_backups.py --archive backups/cold-presentation-2026-11-18.zip
+# Apply only a reviewed preflight plan; archive and roundtrip hashes precede all removals.
+python3 -B tools/maintenance/archive_backups.py --archive backups/cold-presentation-2026-11-18.zip --plan docs/maintenance/2026-11-18/STORAGE_COMPACTION_PLAN.json --apply
+# Recover original bytes to their original backup paths, refusing different existing files.
+python3 -B tools/maintenance/archive_backups.py --archive backups/cold-presentation-2026-11-18.zip --restore --apply --path backups/<release>/presentation-before/data/combine/<TICKER>.json
+```
+
+Keep the ZIP and its adjacent `.manifest.json` together. Restoration is explicit and confined to the historical backup tree. The manifest preserves full original SHA-256, byte count, path, permissions and observed timestamps. Existing source receipts are not rewritten. Metadata drift during placeholder hydration is recorded; removal requires the current original bytes to match the verified archive, independently of timestamps.
+
+Extracted JSON presence alone does not establish full PDF equivalence. Check document/version/scope and coverage, plus current source pins, before considering source removal. Use the JSON-first reading Skill; retain PDFs where source-image review or exact raw evidence is still required. Routine download work reuses source files and does not create full presentation-corpus backup copies.
