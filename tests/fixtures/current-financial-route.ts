@@ -1,3 +1,4 @@
+import {ensureCurrentSchema} from './current-schema';
 /** Real retained VNM inputs; only the version registration is synthetic in these tests.
  * This fixture cannot establish real owner approval or production activation. */
 import {mkdtempSync,mkdirSync,copyFileSync,writeFileSync,readFileSync,rmSync} from 'node:fs';
@@ -13,9 +14,8 @@ const MAPPING=BASE+'/MAPPING_CONTRACT_V3.json';
 const REGISTRY='docs/fundamental-data-engine/standing-authority-version/2026-11-12/VERSIONED_SOURCE_REGISTRY.json';
 export async function currentFinancialRouteFixture(){
  const dbFixture=await testDatabase();
- // Explicit isolated schema rehearsal; no automatic production migration is registered.
- const sql=readFileSync('prisma/proposals/current-financial-dataset-v1.sql','utf8');
- for(const statement of sql.match(/CREATE TRIGGER[\s\S]*?END;|CREATE TABLE[\s\S]*?;/g)??[])await dbFixture.client.$executeRawUnsafe(statement);
+ // Historical fixtures install the exact proposal; migrated databases verify and reuse its DDL.
+ await ensureCurrentSchema(dbFixture.client,'prisma/proposals/current-financial-dataset-v1.sql');
  const root=mkdtempSync(join(tmpdir(),'current-route-synthetic-authority-'));
  const read=(p:string)=>JSON.parse(readFileSync(p,'utf8'));
  const identityPin=read('docs/fundamental-data-engine/standing-authority-version/2026-11-12/REAL_FINANCIAL_REQUEST.json').material.identities;

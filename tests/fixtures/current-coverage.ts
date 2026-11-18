@@ -1,3 +1,4 @@
+import {ensureCurrentSchema} from './current-schema';
 import {readFileSync,mkdirSync,copyFileSync} from 'node:fs';
 import {join,dirname} from 'node:path';
 import {currentFinancialRouteFixture} from './current-financial-route';
@@ -9,7 +10,7 @@ export async function currentCoverageFixture(){
  const files=new Set<string>([...COVERAGE_CODE,out+'/IMPLEMENTATION_AUTHORIZATION.json',authorization.source.path,out+'/DEBT_SOURCE_REVIEW.json',out+'/RETAINED_ADMITTED_HISTORY.json',out+'/RESEARCH_ADOPTION_CATALOG.json',review.raw.path,review.reviewedPages.path]);
  for(const pin of Object.values(catalog.files) as {path:string}[])files.add(pin.path);
  for(const p of files){mkdirSync(dirname(join(f.root,p)),{recursive:true});copyFileSync(p,join(f.root,p));}
- for(const sql of readFileSync('prisma/proposals/current-financial-enrichment-v1.sql','utf8').match(/CREATE TRIGGER[\s\S]*?END;|CREATE TABLE[\s\S]*?;/g)??[])await f.db.$executeRawUnsafe(sql);
+ await ensureCurrentSchema(f.db,'prisma/proposals/current-financial-enrichment-v1.sql');
  const entry=f.registryBody.authorities[0];entry.code=[...entry.code,...COVERAGE_CODE.filter(p=>!entry.code.some((q:{path:string})=>q.path===p)).map(f.pin)];
  const debtReview=f.pin(out+'/DEBT_SOURCE_REVIEW.json'),history=f.pin(out+'/RETAINED_ADMITTED_HISTORY.json'),research=f.pin(out+'/RESEARCH_ADOPTION_CATALOG.json');
  entry.currentEnrichment={adapterVersion:'current-research-and-reported-debt-v1',catalogs:[debtReview,history,research],implementationAuthorization:f.pin(out+'/IMPLEMENTATION_AUTHORIZATION.json')};f.setRegistry(f.registryBody);

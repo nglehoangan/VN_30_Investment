@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+import {ensureCurrentSchema} from '../fixtures/current-schema';
 import {it,expect,vi} from 'vitest';
 import {currentCoverageFixture} from '../fixtures/current-coverage';
 import {CurrentPreScoringBindings} from '@/infrastructure/source-admission/pre-scoring-binding';
@@ -7,7 +7,7 @@ import {ScoringEngine} from '@/application/scoring/engine';
 import type {ScoreInput} from '@/domain/scoring/scorecard';
 async function setup(){
  const f=await currentCoverageFixture(),a=await f.service.ingest(f.q,f.securityId),d=await f.datasets.bind(a.id,f.context),bindings=new CurrentPreScoringBindings(f.coverage),reference=await bindings.prepare(d.id,f.context);
- for(const sql of readFileSync('prisma/proposals/current-scoring-data-acceptance-v1.sql','utf8').match(/CREATE TRIGGER[\s\S]*?END;|CREATE TABLE[\s\S]*?;/g)??[])await f.db.$executeRawUnsafe(sql);
+ await ensureCurrentSchema(f.db,'prisma/proposals/current-scoring-data-acceptance-v1.sql');
  const consumer=new CurrentPurposeScoringConsumer(f.db,bindings,f.coverage,f.datasets);
  const registry={findById:vi.fn()},artifacts={append:vi.fn(),find:vi.fn()};
  const engine=new ScoringEngine(registry,artifacts,undefined,consumer);

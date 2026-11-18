@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "realProductionExecution": true,
+  "scopedTests": {
+    "passed": 236,
+    "failed": 0,
+    "nativeMigrationSources": "ALL_27_ACTUAL_WORKTREE_MIGRATIONS"
+  },
+  "typecheck": {
+    "status": "PASS",
+    "mode": "scoped",
+    "compilerVersion": "6.0.3",
+    "dependenciesRestoredFromExistingFrozenLockfile": true,
+    "projectSourceSubstitution": false,
+    "strict": true,
+    "noEmit": true,
+    "sourceFilesChecked": 260,
+    "sourceSetHash": "3f0ac72ae6f007ced83e06d806c1d04dbc255a636e39ee596aef0e3138d11724",
+    "diagnostics": []
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "integrityAndForeignKeys": "PASS",
+  "everyApprovedDDLAndMigrationTracking": "PASS",
+  "postCommitGovernedReadbackAndQueryOnlyIdempotency": "PASS",
+  "expectedScoreAndExactSubjectHashes": "PASS",
+  "protectedOldRowsAndUnrelatedTables": "PASS",
+  "negativeControls": [
+    {
+      "name": "unauthorized modified assessment",
+      "result": "REJECTED",
+      "reason": "ValidationError: Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập. [{\"field\":\"scoring\",\"reason\":\"CURRENT_EXACT_ASSESSMENT_ADOPTION_REQUIRED\",\"expected\":\"M3 / M6.4 clarification contract\"}]"
+    },
+    {
+      "name": "unregistered AI authority",
+      "result": "REJECTED",
+      "reason": "ValidationError: Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại các trường nhập. [{\"field\":\"scoring\",\"reason\":\"TRUSTED_AI_REVIEW_BINDING_REQUIRED\",\"expected\":\"M3 / M6.4 clarification contract\"}]"
+    },
+    {
+      "name": "historical PIT promotion",
+      "result": "REJECTED",
+      "reason": "Error: CURRENT_ONLY_NOT_PIT {}"
+    }
+  ],
+  "disposableRevocationAndNativeTamper": "PASS",
+  "fullRepositorySuiteClaimed": false,
+  "historicalFailedAttempts": "REHEARSAL_FAILURE.json and PREWRITE_LOCK_ATTEMPT.json are retained attempt history; final checks passed after correcting runner assertions and descriptor/lock handling."
+}

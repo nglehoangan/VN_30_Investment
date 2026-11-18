@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+import {ensureCurrentSchema} from '../fixtures/current-schema';
 import {execFileSync} from 'node:child_process';
 import {it,expect,describe} from 'vitest';
 import {SECTORS,type Sector} from '@/domain/scoring/methodology';
@@ -21,7 +21,7 @@ function input(sector:Sector="INDUSTRIAL"){
 }
 async function setup(){
  const db=await testDatabase(),f=input();
- for(const sql of readFileSync('prisma/proposals/current-scoring-artifact-v1.sql','utf8').match(/CREATE TRIGGER[\s\S]*?END;|CREATE TABLE[\s\S]*?;/g)??[])await db.client.$executeRawUnsafe(sql);
+ await ensureCurrentSchema(db.client,'prisma/proposals/current-scoring-artifact-v1.sql');
  const reference:PreScoringDatasetReference={contract:'current-purpose-pre-scoring-reference-v1',bindingId:'SYNTHETIC_BINDING',context:{ticker:'S0',securityId:f.securityId,purpose:'CURRENT_FORMAL_VALUATION',economicCutoff:f.asOf.slice(0,10),knownAt:NOW},manifestHash:'a'.repeat(64),permitsScoring:false,historicalPitGranted:false};
  const dataset={contract:'current-purpose-scoring-consumption-v1',status:'ACCEPTED_CURRENT_DATA',purpose:'CURRENT_FORMAL_VALUATION',bindingId:reference.bindingId,manifestHash:reference.manifestHash,parentDatasetId:'SYNTHETIC_PARENT',dataAcceptanceId:'SYNTHETIC_ACCEPTANCE',context:reference.context,originalBindingKnownAt:NOW,facts:[],evidence:[f.evidence[0]],history:[],research:{},price:{},shares:{},financialAssemblyComplete:true,fullM3CoverageCertified:false,gates:{assessment:'NOT_GRANTED',M1:'NOT_GRANTED',confidence:'NOT_GRANTED',scoringAuthorization:'NOT_GRANTED'},readyForScoring:false,historicalPitGranted:false,VNM17Promoted:false} as unknown as CurrentScoringDataset;
  await db.registry.append(f.methodology);let reviewed=hash(f),revoked=false,authorized=true;
