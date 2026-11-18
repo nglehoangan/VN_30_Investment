@@ -1,0 +1,3 @@
+import {defineConfig} from 'vitest/config';
+import {fileURLToPath} from 'node:url';
+export default defineConfig({resolve:{alias:{'@':fileURLToPath(new URL('../../../../src',import.meta.url)),'server-only':fileURLToPath(new URL('../../../../node_modules/next/dist/compiled/server-only/empty.js',import.meta.url))}},test:{testTimeout:60000,fileParallelism:false,maxWorkers:1,setupFiles:[fileURLToPath(new URL('../../vnm-step2-final-closure/2026-11-16/native.setup.ts',import.meta.url))],include:['tests/integration/current-formal-scoring.test.ts','tests/unit/personal-ai-provenance.test.ts','tests/unit/scoring-golden.test.ts','tests/unit/scoring-evidence-time.test.ts','tests/unit/scoring.test.ts','tests/integration/current-scoring-consumer.test.ts'],environment:'node'}});

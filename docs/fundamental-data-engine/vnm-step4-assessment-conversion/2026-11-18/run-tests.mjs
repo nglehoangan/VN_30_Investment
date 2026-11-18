@@ -1,0 +1,16 @@
+import {createRequire} from 'node:module';
+import {readFileSync,writeFileSync,mkdtempSync,rmSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join,resolve} from 'node:path';
+import {pathToFileURL} from 'node:url';
+import {spawn} from 'node:child_process';
+const root=process.cwd(),out=import.meta.dirname,dep='/private/tmp/vn30-step2-dependencies',req=createRequire(join(dep,'package.json'));
+const configPath=join(out,'validation.config.mjs'),temp=mkdtempSync(join(tmpdir(),'vnm-final-tests-'));
+let config=readFileSync(configPath,'utf8').replace("import {defineConfig} from 'vitest/config';",'').replace('export default defineConfig(','export default (').replaceAll('import.meta.url',JSON.stringify(pathToFileURL(configPath).href));
+const aliases=Object.fromEntries(['@prisma/adapter-better-sqlite3','@prisma/client/runtime/client'].map(name=>[name,req.resolve(name)]));
+config=config.replace('alias:{','alias:{'+Object.entries(aliases).map(([k,v])=>JSON.stringify(k)+':'+JSON.stringify(v)).join(',')+',');
+writeFileSync(join(temp,'validation.config.mjs'),config);
+writeFileSync(join(out,'TEST_DEPENDENCY_BINDING.json'),JSON.stringify({sameTestSelectionAndRules:true,projectSourceSubstitution:false,config:configPath,dependencyAliases:aliases,nativeBinary:'Byte-identical existing workspace native binary; see DEPENDENCY_MIRROR.json'},null,2)+'\n');
+const cli=join(dep,'node_modules/vitest/vitest.mjs');
+const child=spawn(process.execPath,[cli,'run','--config',join(temp,'validation.config.mjs'),'--reporter=json','--outputFile='+join(out,'TEST_RESULTS.json')],{cwd:root,env:{...process.env,VN30_TEST_MIGRATIONS_DIR:'/private/tmp/step3-verified-migrations'},stdio:'inherit'});
+const code=await new Promise((res,rej)=>{child.on('error',rej);child.on('exit',res);});rmSync(temp,{recursive:true,force:true});process.exitCode=code??1;
