@@ -5,18 +5,19 @@ from contextlib import closing
 import json
 from pathlib import Path
 import sqlite3
+import stat
 import subprocess
 import sys
 
 sys.dont_write_bytecode = True
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'skills/vn30-rollout-orchestrator/scripts'))
 from control import (PERMISSIONS, Rollout, Universe, Worker, digest, pinned,  # noqa: E402
                      prepare, read, require_input_identity)
 
 STORE = ROOT / 'outputs/vn30-rollout'
 DB = ROOT / 'data/vn30.sqlite'
-REGISTRY = ROOT / 'scripts/vn30-score-routes.json'
+REGISTRY = Path(__file__).with_name('vn30-score-routes.json')
 SECTORS = {
     'path': 'docs/fundamental-data-engine/vnm-step3-authority-closure/2026-11-17/RETAINED_HEAD_REFERENCE_DATA.json',
     'sha256': '52b9394b7b83d378fb88254c658443adb5f8af0ec8dfa51f6a443675e6b2987a',
@@ -61,11 +62,17 @@ def scope(args):
     return universe, request, prepare(request, universe), route
 
 
+def is_placeholder(path):
+    return bool(getattr(path.stat(), 'st_flags', 0) & getattr(stat, 'SF_DATALESS', 0))
+
+
 def database_inventory(job):
     req = job['request']
     scope = (req['ticker'], req['securityId'], req['referenceDate'])
     if not DB.is_file():
-        return {'available': False}
+        return {'available': False, 'reason': 'SCORING_DATABASE_MISSING'}
+    if is_placeholder(DB):
+        return {'available': False, 'reason': 'SCORING_DATABASE_BYTES_NOT_LOCAL'}
     # Immutable mode avoids SQLite sidecar writes. Refuse a database with outstanding journals.
     if any(Path(str(DB) + suffix).exists() for suffix in ('-wal', '-shm', '-journal')):
         raise ValueError('DATABASE_SNAPSHOT_REQUIRES_QUIESCENT_SQLITE')
@@ -89,7 +96,7 @@ def database_inventory(job):
 
 
 def invoke_adapter(job, action, *, lock_fd=None):
-    command = ['node', str(ROOT / 'scripts/vn30_score_worker.mjs'), action]
+    command = ['node', str(Path(__file__).with_name('vn30_score_worker.mjs')), action]
     if lock_fd is not None:
         command.append(str(lock_fd))
     result = subprocess.run(command, input=json.dumps(job), text=True, capture_output=True,
@@ -108,9 +115,12 @@ def check(job, route):
     req = job['request']
     symbol = req['ticker']
     inv = database_inventory(job)
-    level1 = json.loads(pinned(ROOT, LEVEL1))
-    baseline = next((row['candidateStatus'] for row in level1['tickers']
-                     if row['ticker'] == symbol and row['sector'] == req['sector']), None)
+    baseline = None
+    level1_path = ROOT / LEVEL1['path']
+    if level1_path.is_file() and not is_placeholder(level1_path):
+        level1 = json.loads(pinned(ROOT, LEVEL1))
+        baseline = next((row['candidateStatus'] for row in level1['tickers']
+                         if row['ticker'] == symbol and row['sector'] == req['sector']), None)
     paths = [ROOT / 'data' / folder / (symbol + '.json')
              for folder in ('combine', 'manual-extracted-api')]
     retained = [{'path': str(path.relative_to(ROOT)), 'bytes': path.stat().st_size}
@@ -119,7 +129,7 @@ def check(job, route):
     if not retained and not inv.get('current_financial_admission'):
         blockers.append('NO_RETAINED_FINANCIAL_INPUT_FOUND')
     if not inv['available']:
-        blockers.append('SCORING_DATABASE_MISSING')
+        blockers.append(inv['reason'])
     elif not inv['current_financial_dataset']:
         blockers.append('NO_ADMITTED_CURRENT_DATASET_AT_CUTOFF')
     if route is None or not route.get('adapter'):

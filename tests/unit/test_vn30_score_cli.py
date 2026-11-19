@@ -3,13 +3,14 @@ import contextlib
 import io
 import json
 from pathlib import Path
+import sqlite3
 import subprocess
 import tempfile
 import unittest
 from argparse import Namespace
 from unittest.mock import patch
 
-from scripts import vn30_score as cli
+from tools.scoring import vn30_score as cli
 
 VERSION = 'vn30-20260803-reviewed-20261115'
 CUTOFF = '2026-10-30'
@@ -20,6 +21,23 @@ class ScoringCLI(unittest.TestCase):
         directory = tempfile.TemporaryDirectory()
         self.addCleanup(directory.cleanup)
         self.store = Path(directory.name) / 'store'
+        self.database = Path(directory.name) / 'fixture.sqlite'
+        with contextlib.closing(sqlite3.connect(self.database)) as db:
+            db.executescript('''
+                CREATE TABLE portfolio (id TEXT PRIMARY KEY);
+                CREATE TABLE nav (amount INTEGER);
+                INSERT INTO portfolio VALUES ('protected');
+                INSERT INTO nav VALUES (123);
+            ''')
+        fixture = patch.object(cli, 'DB', self.database)
+        fixture.start()
+        self.addCleanup(fixture.stop)
+        self.protected_before = self.database.read_bytes()
+
+    def tearDown(self):
+        self.assertEqual(self.database.read_bytes(), self.protected_before)
+        self.assertEqual(sorted(p.name for p in self.database.parent.glob('fixture.sqlite*')),
+                         ['fixture.sqlite'])
 
     def run_mode(self, mode, ticker='ACB'):
         return cli.execute(Namespace(mode=mode, ticker=ticker, universe_version=VERSION,
@@ -41,6 +59,27 @@ class ScoringCLI(unittest.TestCase):
             self.assertEqual(self.run_mode('resume')['status'], 'BLOCKED')
             self.assertEqual(self.run_mode('status')['attempt'], 2)
             adapter.assert_not_called()
+
+    def test_registered_preflight_uses_read_only_inventory_and_stops_before_worker(self):
+        inv = {'available': True, 'current_financial_admission': [{'id': 'synthetic-admission'}],
+               'current_financial_dataset': [{'id': 'synthetic-dataset'}]}
+        _, _, job, _ = cli.scope(Namespace(ticker='ACB', universe_version=VERSION, cutoff=CUTOFF))
+        with patch.object(cli, 'database_inventory', return_value=inv), patch.object(
+                cli, 'invoke_adapter', return_value={'blockers': ['CURRENT_SCORE_M1_UNRESOLVED']}) as bridge:
+            report = cli.check(job, {'adapter': {}, 'authorization': {}})
+            self.assertIn('NO_EXACT_TICKER_SCORING_AUTHORITY', report['blockers'])
+            bridge.assert_not_called()
+            report = cli.check(job, {'adapter': {'path': 'synthetic'}, 'authorization': {'path': 'synthetic'}})
+            self.assertEqual(report['blockers'], ['CURRENT_SCORE_M1_UNRESOLVED'])
+            bridge.assert_called_once_with(job, 'preflight')
+        self.assertFalse(self.store.exists())
+
+    def test_database_placeholder_stops_without_opening_sqlite(self):
+        with patch.object(cli, 'is_placeholder', return_value=True), patch.object(cli.sqlite3, 'connect') as connect:
+            report = self.run_mode('check')
+            self.assertIn('SCORING_DATABASE_BYTES_NOT_LOCAL', report['blockers'])
+            self.assertNotIn('NO_ADMITTED_CURRENT_DATASET_AT_CUTOFF', report['blockers'])
+            connect.assert_not_called()
 
     def test_duplicate_score_and_completed_resume(self):
         with patch.object(cli, 'check', return_value={'blockers': []}), patch.object(
@@ -93,7 +132,7 @@ class ScoringCLI(unittest.TestCase):
 
     def test_direct_worker_cannot_bypass_registration(self):
         _, _, job, _ = cli.scope(Namespace(ticker='ACB', universe_version=VERSION, cutoff=CUTOFF))
-        process = subprocess.run(['node', str(cli.ROOT / 'scripts/vn30_score_worker.mjs'), 'preflight'],
+        process = subprocess.run(['node', str(Path(cli.__file__).with_name('vn30_score_worker.mjs')), 'preflight'],
                                  input=json.dumps(job), capture_output=True, text=True, check=True)
         self.assertEqual(json.loads(process.stdout), {'blockers': ['NO_EXACT_TICKER_SCORING_AUTHORITY']})
 

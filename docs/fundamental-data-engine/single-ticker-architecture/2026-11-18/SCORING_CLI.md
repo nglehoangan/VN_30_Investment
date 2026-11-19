@@ -3,10 +3,10 @@
 Run from the repository root with Python 3. The cutoff and approved universe version are both required. The examples use a covered economic date. Membership coverage ends on 15 November 2026 in this version.
 
 ```sh
-python3 scripts/vn30_score.py --ticker ACB --mode check  --universe-version vn30-20260803-reviewed-20261115 --cutoff 2026-10-30
-python3 scripts/vn30_score.py --ticker ACB --mode status --universe-version vn30-20260803-reviewed-20261115 --cutoff 2026-10-30
-python3 scripts/vn30_score.py --ticker ACB --mode score  --universe-version vn30-20260803-reviewed-20261115 --cutoff 2026-10-30
-python3 scripts/vn30_score.py --ticker ACB --mode resume --universe-version vn30-20260803-reviewed-20261115 --cutoff 2026-10-30
+python3 tools/scoring/vn30_score.py --ticker ACB --mode check  --universe-version vn30-20260803-reviewed-20261115 --cutoff 2026-10-30
+python3 tools/scoring/vn30_score.py --ticker ACB --mode status --universe-version vn30-20260803-reviewed-20261115 --cutoff 2026-10-30
+python3 tools/scoring/vn30_score.py --ticker ACB --mode score  --universe-version vn30-20260803-reviewed-20261115 --cutoff 2026-10-30
+python3 tools/scoring/vn30_score.py --ticker ACB --mode resume --universe-version vn30-20260803-reviewed-20261115 --cutoff 2026-10-30
 ```
 
 - `check` reports source inventory, admitted data at the exact cutoff, the qualified sector, and mapping and authority blockers. When a route is registered and the inventory gates pass, it calls the governed preflight through a SQLite read-only connection. The evidence file inventory reports presence and size. It does not qualify file contents or period coverage.
@@ -20,7 +20,7 @@ The sequential store is `outputs/vn30-rollout/`. The SQLite target is `data/vn30
 
 ## Registering a governed route after CIO review
 
-`scripts/vn30-score-routes.json` is reviewed repository configuration. It has no enabled entries in this delivery. A registration must include the following:
+`tools/scoring/vn30-score-routes.json` is reviewed repository configuration. It has no enabled entries in this delivery. A registration must include the following:
 
 - `subject` binds ticker, security ID, exchange, qualified sector, universe version and registry hash, cutoff and current-formal purpose.
 - `database` binds the repository's exact SQLite target.

@@ -5,7 +5,7 @@ import {resolve, sep} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {createHash} from 'node:crypto';
 
-const root = resolve(import.meta.dirname, '..');
+const root = resolve(import.meta.dirname, '../..');
 const database = resolve(root, 'data/vn30.sqlite');
 
 function requireCondition(condition, code) {
@@ -44,7 +44,7 @@ async function run(job, action) {
     universeHash: req.universe.registryEntryHash, cutoff: req.referenceDate,
     purpose: 'CURRENT_FORMAL_VALUATION',
   };
-  const catalog = JSON.parse(readFileSync(resolve(root, 'scripts/vn30-score-routes.json')));
+  const catalog = JSON.parse(readFileSync(resolve(import.meta.dirname, 'vn30-score-routes.json')));
   requireCondition(catalog.contract === 'vn30-current-scoring-routes-v1', 'SCORING_ROUTE_REGISTRY_CONTRACT');
   const matches = catalog.routes.filter(row =>
     JSON.stringify(canonical(row.subject)) === JSON.stringify(canonical(subject)));
