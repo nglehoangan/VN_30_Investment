@@ -157,6 +157,7 @@ class Rollout:
         if type(concurrency) is not int or concurrency != 1:
             raise ValueError('SEQUENTIAL_CONCURRENCY_ONE_REQUIRED')
         self.store, self.universe = Path(store).resolve(), universe
+        self.lock_fd = None
         if self.store.is_relative_to(ROOT / 'data') or self.store.is_relative_to(ROOT / '.git'):
             raise ValueError('PROTECTED_OUTPUT_ROOT')
 
@@ -166,8 +167,10 @@ class Rollout:
         with (self.store / '.rollout.lock').open('a') as handle:
             try: fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
             except BlockingIOError: raise ValueError('ROLLOUT_BUSY_NO_PARALLEL_WORKER')
+            self.lock_fd = handle.fileno()
             try: yield
-            finally: fcntl.flock(handle, fcntl.LOCK_UN)
+            finally: self.lock_fd = None
+            # Closing releases the lease only when any inheriting child has also closed it.
 
     def plan(self, requests):
         if not isinstance(requests, list) or not requests:
