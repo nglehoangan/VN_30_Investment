@@ -1,0 +1,377 @@
+{
+  "contract": "standing-bank-financial-admission-version-v1",
+  "status": "PROPOSED",
+  "id": "acb-current-bank-admission-v1",
+  "policyVersion": "standing-financial-current-v1",
+  "recordedAt": "2026-11-19T07:00:00.000Z",
+  "subject": {
+    "ticker": "ACB",
+    "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+    "exchange": "HOSE",
+    "sector": "BANK",
+    "referenceDate": "2026-10-30",
+    "universe": {
+      "version": "vn30-20260803-reviewed-20261115",
+      "registryEntryHash": "03b4681f42c9fb860c7e1d1f4e9d47b8fe18445539884b538eb774b7b6278c88",
+      "profile": {
+        "path": "docs/fundamental-data-engine/vnm-f1-membership-closure/2026-11-15/MARKET_PROFILE.json",
+        "sha256": "b20ee42da399e157e2e4d86e98a176f252a6bd7ce60780243024431656556ec3"
+      }
+    }
+  },
+  "catalog": {
+    "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/ACB_SOURCE_CATALOG.json",
+    "sha256": "ffbe913912b6d5d04afb4cff1c7c3710f06ceeb3bddc09a66282fa92d83801b3"
+  },
+  "standingPolicy": {
+    "path": "docs/fundamental-data-engine/unified-source-admission/2026-11-12/SOURCE_POLICY_AUTHORIZATIONS.json",
+    "sha256": "6dc353d0cc94034c49448ee76f0a2b480362b4398526ca0966dcfe89cc892ae7"
+  },
+  "code": [
+    {
+      "path": "prisma/proposals/current-financial-dataset-v1.sql",
+      "sha256": "4962e375790e01a9340bc03b0fa1bcc685c3890f3f0f98e2a9202035884d55c0"
+    },
+    {
+      "path": "prisma/proposals/current-financial-enrichment-v1.sql",
+      "sha256": "9d82586b63472e9dedf4f0a23c39af9d8766f574957cd918da8839bcd1e92b2d"
+    },
+    {
+      "path": "prisma/proposals/current-scoring-data-acceptance-v1.sql",
+      "sha256": "d0398b126ebb7a4cbea4b9371bf351de96d2df177d361056c54f838f5f3c3f09"
+    },
+    {
+      "path": "src/domain/decision/approved-methodology.ts",
+      "sha256": "74ecf360f4086109bd77bd3be8930d32009334dabd63f418c26378b8d3f80631"
+    },
+    {
+      "path": "src/domain/decision/contracts.ts",
+      "sha256": "17faa581a3e36a82fc5dc44a7fa432104667cfc7bc2b652cc6796eb7c0d41b06"
+    },
+    {
+      "path": "src/domain/fundamentals/availability-evidence.ts",
+      "sha256": "a23b9d2ff7d47e9daa3beeb6b0eed8548aae638ac7acb9193977e3c517288a3a"
+    },
+    {
+      "path": "src/domain/fundamentals/availability.ts",
+      "sha256": "fe9b4156e8bba36823bb9b3add1aaae81117820a013374557119f4c379e9a010"
+    },
+    {
+      "path": "src/domain/fundamentals/bank-contract.ts",
+      "sha256": "094622983f9e29c3d0c6a1338028f7de4a0ab698125a7aa299c32ece58b2735d"
+    },
+    {
+      "path": "src/domain/fundamentals/contracts.ts",
+      "sha256": "5efed0307fddcdf80cf395bb12f22649e48666ab1e253ce7f513d1b8ad78976d"
+    },
+    {
+      "path": "src/domain/fundamentals/current-portion-presentation-v1.json",
+      "sha256": "305633eded046ff726996a8e43ac57e0546d621607b56977d5376ae1aeb8d8a8"
+    },
+    {
+      "path": "src/domain/fundamentals/current-qualification.ts",
+      "sha256": "ee6524c19a8a357b318b17349bc29c8ee6ee0ad02e553de49678bc476c25277c"
+    },
+    {
+      "path": "src/domain/fundamentals/debt-contract-v2.json",
+      "sha256": "37aebee839c1a2e6d18c72fffee4ac664e532b7b144d9f96ada87d8c938cfdd2"
+    },
+    {
+      "path": "src/domain/fundamentals/debt-contract.ts",
+      "sha256": "356431c6a3659f3bb3ba41900d9481c2769604376ee6234bc46eec0d0a5737fc"
+    },
+    {
+      "path": "src/domain/fundamentals/derivation.ts",
+      "sha256": "e129819c0d7253791c24649858304281ab154c0eda71246f83734a7f7b6a8790"
+    },
+    {
+      "path": "src/domain/fundamentals/document-qualification.ts",
+      "sha256": "77302db90272d163329d837680c4cc391f7471d03048d09ebd9fdd00f1af2e16"
+    },
+    {
+      "path": "src/domain/fundamentals/fact-equivalence.ts",
+      "sha256": "2896b3f8eb4062bd52b4f61671d9bff86038f552b9b85264db067c71db8a56ae"
+    },
+    {
+      "path": "src/domain/fundamentals/hybrid-admission.ts",
+      "sha256": "50f949c716e3ec40fda5cc3fe470bd1909bc2549b5d3018d38b5d36ce783bfd7"
+    },
+    {
+      "path": "src/domain/fundamentals/live-public-disclosure.ts",
+      "sha256": "c88302e2083d50f36c5d0539fd811fa2e2f133e293fc60bb1accf429db021c8f"
+    },
+    {
+      "path": "src/domain/fundamentals/manual-first.ts",
+      "sha256": "6d2c4ff61fb46ecd6dad38f716772c25c5d2de9db994ac0b5b5e5d07d7dbbe16"
+    },
+    {
+      "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v1.json",
+      "sha256": "0dd4149a6f5b39e69e96d320621ab9e09ddb52de3153112c0a751fa3894a328a"
+    },
+    {
+      "path": "src/domain/fundamentals/manual-fundamental-evidence-requirements-v2.json",
+      "sha256": "11cd53d5f52913f0365f8749538d5023cc5fdf5a27a7f212ab03bcb64ad4749e"
+    },
+    {
+      "path": "src/domain/fundamentals/normalization.ts",
+      "sha256": "ee388a9c09ffb134504a85808a4fc447f441352e647ce1199abef5ce0c168ba4"
+    },
+    {
+      "path": "src/domain/fundamentals/operational-freshness.ts",
+      "sha256": "b5acf7b3f0027906217273dddd823d3f10ac22f564633ec4388283ee10cca745"
+    },
+    {
+      "path": "src/domain/fundamentals/securities-contract.ts",
+      "sha256": "fb46f746c5d76a8d7bc2ff5fbaa8167f4e3ea4370d70641071a452f5b2300fa5"
+    },
+    {
+      "path": "src/domain/fundamentals/snapshot.ts",
+      "sha256": "70721635205e45f9ae8906e13af3637942c97cf9797670fa88fadc52eb4dab12"
+    },
+    {
+      "path": "src/domain/fundamentals/source-authority.ts",
+      "sha256": "d5733a930660c74f313cd531a09e48d4ed3f242afd0928f32b5a77645693bc79"
+    },
+    {
+      "path": "src/domain/fundamentals/source-fact-rejection.ts",
+      "sha256": "df48f92f891eb42fccae647bb2c27179b2dbf3dc5215578df69e67dca6d4dbe3"
+    },
+    {
+      "path": "src/domain/fundamentals/source-period-withdrawal.ts",
+      "sha256": "11360433d0e8b1339693515bf5e3dc50aebcff52814e74272e567d0a25061ea4"
+    },
+    {
+      "path": "src/domain/fundamentals/standing-actions.ts",
+      "sha256": "000e9952ab26cf7ce9fc740e9e319e14d33e4fe33cb08038c913775799a1d452"
+    },
+    {
+      "path": "src/domain/fundamentals/standing-source-policy.ts",
+      "sha256": "7feab903ddd224f8760576e8bc8ac28434dfa8816400bcc0480e978f8713bb83"
+    },
+    {
+      "path": "src/domain/fundamentals/structured-certification.ts",
+      "sha256": "19a15af0d309bd318a29ebd5702fbcdf830575a662f6c278325f25e5f2bc902e"
+    },
+    {
+      "path": "src/domain/fundamentals/validation.ts",
+      "sha256": "4d8494c2d6498d2fe9777894f6e14cea1fae6df2d10eaa57a21019f7511dcc6c"
+    },
+    {
+      "path": "src/domain/market-boundary/cafef-raw-close-policy.json",
+      "sha256": "233f7f5ec06bc8f94ef1aa3849b9d1fdd44547cfb946504c66aff1f3e5b25106"
+    },
+    {
+      "path": "src/domain/market-boundary/cafef-raw-close.ts",
+      "sha256": "0a077b39a5834bc3c9fed339a85ee79b716bec9ccadaf628f3773bfdeeb03174"
+    },
+    {
+      "path": "src/domain/market-boundary/cafef-standing-policy-v1.json",
+      "sha256": "2554a974ceb4322ec2856dc7ebce1390fd9695f4fbdc316ddcded44ad5557b2d"
+    },
+    {
+      "path": "src/domain/market-boundary/contracts.ts",
+      "sha256": "17fdfa872cb918d668c9cfaccc32742bbcc151ae4aa0f6d2d9f820ef354b63bd"
+    },
+    {
+      "path": "src/domain/market-boundary/freshness.ts",
+      "sha256": "6ce50ddb05c8e05c480bc2ae1a168cf4662d8fc30cbf70d4e4e45c2b3fa9187a"
+    },
+    {
+      "path": "src/domain/market-boundary/hose-calendar.ts",
+      "sha256": "a9b50fff672f84d4dd25d73f85c0c3623ab9b1545955fc9fa383af658f6ce25f"
+    },
+    {
+      "path": "src/domain/market-boundary/validation.ts",
+      "sha256": "420cf4eeace8a4416654ad86f103692165c4cea6e8f1309eb3fb7e1652bc1d9b"
+    },
+    {
+      "path": "src/domain/methodology/record.ts",
+      "sha256": "8416d061e69a86c3eda96e9ed428f31475220954e9b2e394ff674ee4c22b880e"
+    },
+    {
+      "path": "src/domain/portfolio/dividend-settlement.ts",
+      "sha256": "3e1a3fa7c80fccdb8812ccbf015438d4e32ee5ca8ba2605ffe92bff732daef99"
+    },
+    {
+      "path": "src/domain/portfolio/reference.ts",
+      "sha256": "9191adfad0d822ff5864c581d36195e902eddfd7a9a1c22a8f21e792a4475682"
+    },
+    {
+      "path": "src/domain/portfolio/transaction.ts",
+      "sha256": "0041a731fba6a025c6599130600397cd9cafeafc1b92410a76d2eecee1bb71d5"
+    },
+    {
+      "path": "src/domain/portfolio/values.ts",
+      "sha256": "7cc8c44a342f913f380c709707292faa0b23889a0bfedd9fca3bd8bb0a0b92e1"
+    },
+    {
+      "path": "src/domain/ranking/rank.ts",
+      "sha256": "c590687281bcdb014d6c9eb79a9a59292d43a00ade88cbb21d961b9e3120fcdf"
+    },
+    {
+      "path": "src/domain/scoring/action-dependencies.ts",
+      "sha256": "bbbb2a9f5828c3e8a9f223ee3286e7523f793e37f4f6410b9d602b40200f678d"
+    },
+    {
+      "path": "src/domain/scoring/eligibility.ts",
+      "sha256": "cf113959ae2084c56b57b4a77e7d567d60b24948787eedc24b7e6da4809dba71"
+    },
+    {
+      "path": "src/domain/scoring/evidence.ts",
+      "sha256": "583be5936e9a4374e8dad604d7813c3cd07a9684b18914f3ae9e8b15914a4c90"
+    },
+    {
+      "path": "src/domain/scoring/methodology.ts",
+      "sha256": "e7031bf6b00e38670016888928ceb941e5c3a524016a1f8ce84123aca6c7da41"
+    },
+    {
+      "path": "src/domain/scoring/methodology/identity.ts",
+      "sha256": "d3ebed4882d4f04d53623d5c462280873b3f514beaa97345324f3eab6a1bbf7e"
+    },
+    {
+      "path": "src/domain/scoring/methodology/sectors.ts",
+      "sha256": "a3a6ca17aa8f42c9457b8293ac2be69e9f87237879af0d98aa294e4fe82a6840"
+    },
+    {
+      "path": "src/domain/scoring/metrics.ts",
+      "sha256": "e7ffea73613044fe821aefd7b85311f035dd208d24344db37aeb6f04f41e21fa"
+    },
+    {
+      "path": "src/domain/scoring/scorecard.ts",
+      "sha256": "6404b7c2be1dbfedc884ce258b2ba2a992843cf7ba65024dc47ec5399aa5fc10"
+    },
+    {
+      "path": "src/domain/scoring/validation.ts",
+      "sha256": "7ee451acd349917361c2b7cd34151bb746f5e88c847c06c0cd8a09f2b37b61f6"
+    },
+    {
+      "path": "src/infrastructure/fundamentals/canonical-items-v1.json",
+      "sha256": "dfc9be8bc4a46bdb07310d096704274a44447d5e139033251bd996ab3811dc60"
+    },
+    {
+      "path": "src/infrastructure/fundamentals/canonical-registry.ts",
+      "sha256": "bc63ab9de332daab00e184057a305a710793e55212adf8f8c50dbed65591416c"
+    },
+    {
+      "path": "src/infrastructure/fundamentals/debt-canonical-items-v2.json",
+      "sha256": "b9314cd523cfb0dd06f62597d018697c83a0c56e289892387fc6dddd29f0cabb"
+    },
+    {
+      "path": "src/infrastructure/fundamentals/snapshot-hash.ts",
+      "sha256": "5c3b437ef70e4a5cefa9eac7827dd6fdccbdb97299661c793a7e5d348d825e22"
+    },
+    {
+      "path": "src/infrastructure/market-boundary-authority.ts",
+      "sha256": "e4dbad54b03ba24857b97ab6ceb253e9abe08e576aba8d5866b8a734dcedd2d5"
+    },
+    {
+      "path": "src/infrastructure/market-boundary/cafef-standing.ts",
+      "sha256": "32ddd6c1714f267d1f15ae546302e271c7e8d4de252881f463b5eca77d6936bb"
+    },
+    {
+      "path": "src/infrastructure/market-boundary/exact-json.ts",
+      "sha256": "29b0271e988a6c318bbad3393f09f424f3a8fdde9a5f3b162a8adc42a34391e4"
+    },
+    {
+      "path": "src/infrastructure/repositories/fundamental-admission.ts",
+      "sha256": "00f6cb6528917913c7875e72585ee31e468ba3ca7562592bde022af67b0173e1"
+    },
+    {
+      "path": "src/infrastructure/repositories/fundamentals.ts",
+      "sha256": "54aef14c138eed97ed68c1228f7e904f50d42273f36064c8c1cb608e3d8a7340"
+    },
+    {
+      "path": "src/infrastructure/repositories/methodology-registry.ts",
+      "sha256": "f1a82474bc5d75c4014aba3fcfbfdb236b3012bf9eacfc9df86722d6b3ae1057"
+    },
+    {
+      "path": "src/infrastructure/repositories/methodology-schema.ts",
+      "sha256": "6e8c1a385a8b8019ec306bbc954e806808a24fcda45de02430e0aa59511a2511"
+    },
+    {
+      "path": "src/infrastructure/repositories/unified-admission.ts",
+      "sha256": "e8a8eda1baafe92d9fb5052c58597922d837fdb1087e2d5704a272a65a1a81ad"
+    },
+    {
+      "path": "src/infrastructure/runtime.ts",
+      "sha256": "254084cbcb9b4abce10c27fff53ecdd2f39c40e595a4ed6b7292ca8cc7b0237f"
+    },
+    {
+      "path": "src/infrastructure/source-admission/current-bank-admission.ts",
+      "sha256": "21cab89d036e0ebe4148822722c73a72489ed2ce2861f177145c8cf08b3bff02"
+    },
+    {
+      "path": "src/infrastructure/source-admission/current-bank-scoring.ts",
+      "sha256": "00c6cc391c0fc53e070f6c95a8bc845376f5e60c7f45bbc2e758dcc19b0223b8"
+    },
+    {
+      "path": "src/infrastructure/source-admission/current-dataset.ts",
+      "sha256": "7db2e1f2a5df4e2ccd1f841b20ded3795d30713f359517ddb135aa0e623a5b74"
+    },
+    {
+      "path": "src/infrastructure/source-admission/current-financial.ts",
+      "sha256": "00e6cb51940f8f7cebda98e7eaa3deaf6c27dd81d3cd2326e3b46b382f7be1a3"
+    },
+    {
+      "path": "src/infrastructure/source-admission/financial.ts",
+      "sha256": "5d1c4d465cbc8802656b34da4d3cba70e8512b01150de050174a9fc99ca158ec"
+    },
+    {
+      "path": "src/infrastructure/source-admission/registry.ts",
+      "sha256": "0e83a2a0ed787be8efb39cad7be1e8e3c9abfb16bd3de4b1a990ef67a1608f97"
+    },
+    {
+      "path": "src/infrastructure/source-admission/retained-authority-gate.ts",
+      "sha256": "a91edf85b00db2953ed60e4f57b5b8583ac41d744f61710adce7c7d5b4ed5619"
+    },
+    {
+      "path": "src/infrastructure/source-admission/retained-mapping.ts",
+      "sha256": "f9264525773d2908de3ecf806bb58d7a58aa85f817693832cc61d134168c46e1"
+    },
+    {
+      "path": "src/infrastructure/source-admission/versioned-authority.ts",
+      "sha256": "9deb114c7504514c2b31c65e5b7585d0836f0acc4ed53a68e3efaa0a16524911"
+    },
+    {
+      "path": "src/ports/current-scoring-datasets.ts",
+      "sha256": "8e749a805a55656a40976b036a8d66787877dc1eeb23051239a16442fd127ebf"
+    },
+    {
+      "path": "src/ports/fundamentals.ts",
+      "sha256": "7cbad81f1856280e9ba5bf2f01d46efc19f7fbc309c95b4ec41a3a674b78ab75"
+    },
+    {
+      "path": "src/ports/market-boundary.ts",
+      "sha256": "aa9a39e86fd937fdbfcbe41fd36ce4e33314090e8b1e1c4516eec9bdc7f09524"
+    },
+    {
+      "path": "src/ports/methodology-registry.ts",
+      "sha256": "e4482a26ce920c172461b2bea7d5c7c79ecbf0dc857bf366d4908fe658140a66"
+    },
+    {
+      "path": "src/ports/pre-scoring-datasets.ts",
+      "sha256": "4f731a6071883cb2f4c1fce9192f739ba8afae188cbb2d0ceba71865e1da4e24"
+    },
+    {
+      "path": "src/ports/runtime.ts",
+      "sha256": "c0931e9e6dfe4fe2a0bdaa6bae82791f9ea6efb8e0779e1fca24df458bc62791"
+    },
+    {
+      "path": "src/shared/errors/index.ts",
+      "sha256": "69ca66527a3c3a59c391aa5c5d4bf908bdf90c7e4de8cf44a82452b3dc496ca7"
+    },
+    {
+      "path": "src/shared/ids.ts",
+      "sha256": "cd60d9cf94c1e0fccb62101217d105824a4a5599b601d7f3ed85f9df50b34002"
+    },
+    {
+      "path": "src/shared/time.ts",
+      "sha256": "16562e1f442d992325f3f399d1960055b403d48dc949fd3dd8a1e2cabf8b18d2"
+    },
+    {
+      "path": "src/shared/validation/parse.ts",
+      "sha256": "26546d8c1f238983cd8d78b2b737fcc499717faea599d13b6285b760377f4952"
+    }
+  ],
+  "outstandingPermissions": false
+}

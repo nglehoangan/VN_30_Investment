@@ -1,0 +1,112 @@
+{
+  "contract": "acb-bank-rehearsal-and-cio-review-v1",
+  "status": "BLOCKED",
+  "subject": {
+    "ticker": "ACB",
+    "sector": "BANK",
+    "exchange": "HOSE",
+    "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+    "universeVersion": "vn30-20260803-reviewed-20261115",
+    "cutoff": "2026-10-30"
+  },
+  "evidence": {
+    "bankHandoff": {
+      "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/remediation/ACB_BANK_HANDOFF.json",
+      "sha256": "9e394e5c7efea14be5b1c7e29a747a9a4553ea69c8c0c052c9a9d15b7e48cdcc"
+    },
+    "q3Pdf": {
+      "sourceUrl": "https://static2.vietstock.vn/data/HOSE/2026/BCTC/VN/QUY%203/ACB_Baocaotaichinh_Q3_2026_Hopnhat.pdf",
+      "retainedPath": "data/manual-download/ACB/2026-11-02-remediation/564804-Q3_2026.pdf",
+      "sha256": "1c0453b0ee4725946bd18bf5204177f2a705edcbfc29e746c403d340d5498315",
+      "bytes": 8329140,
+      "physicalPagesVisuallyReviewed": [
+        3,
+        4,
+        6,
+        17,
+        19,
+        24
+      ],
+      "documentRole": "INTERIM_CONSOLIDATED_NO_REVIEW_OPINION_ESTABLISHED",
+      "correction": "Physical page 17 is Note V.4; page 19 is Note V.5 (not V.5.2)."
+    }
+  },
+  "rehearsal": {
+    "status": "PASS",
+    "test": {
+      "path": "tests/integration/acb-bank-sqlite-rehearsal.mjs",
+      "sha256": "687a84e2b0e72387e98c02577440e52b42c09fc7c7262505e6d904838859bdc6"
+    },
+    "consumer": {
+      "path": "src/infrastructure/source-admission/current-bank-scoring.ts",
+      "sha256": "00c6cc391c0fc53e070f6c95a8bc845376f5e60c7f45bbc2e758dcc19b0223b8"
+    },
+    "cliWorker": {
+      "path": "tools/scoring/vn30_score_worker.mjs",
+      "sha256": "76d679c4437bb440caf3ddc8b3e18f4af13032ef048d47a63c2ac2a03c05df43"
+    },
+    "environment": "TEMP_SQLITE_WITH_FIXTURE_PRE_ADMISSION_F1_AND_SHARES",
+    "realAdmissionWritten": false,
+    "scoreRows": 0,
+    "legacyCliRolloutTestsPassed": 26
+  },
+  "shareReview": {
+    "window": [
+      "2026-10-01",
+      "2026-10-30"
+    ],
+    "anchorDate": "2026-09-30",
+    "anchorShares": "5804421957",
+    "sourcePage": 24,
+    "status": "NO_CHANGE_IDENTIFIED_IN_REVIEWED_PUBLIC_REFERENCES_COVERAGE_INCOMPLETE",
+    "cutoffShares": null,
+    "evidence": [
+      "https://vsdc.vn/vi/s-detail/9",
+      "https://acb.com.vn/nha-dau-tu",
+      "https://finance.vietstock.vn/ACB-ngan-hang-tmcp-a-chau.htm"
+    ]
+  },
+  "valuation": {
+    "status": "RESEARCH_ONLY",
+    "rawCloseVnd": "21000",
+    "reportedEquityVnd": "104013132000000",
+    "reportedGroupNpat9mVnd": "13311703000000",
+    "acceptedScopedFY2025EarningsVnd": "15524699000000",
+    "costOfEquityScenario": "0.15",
+    "sustainableCommonEarningsVnd": null,
+    "approvedCostOfEquity": null,
+    "regulatoryDistributionCapacityVnd": null,
+    "researchConditionalPBRatio": "1.1719",
+    "conditionalPBUsesReportedConsolidatedEquityAndSeptemberShares": true,
+    "modelResearch": {
+      "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-04/investment-research-v2/issuers/ACB.json",
+      "sha256": "80ea269ca5709c63dacb06a7f7c36c7f24cb1aae3f62a76303932de47cef4f86"
+    }
+  },
+  "successorCandidate": {
+    "status": "DRAFT_REQUIRES_EXECUTABLE_VERSION_APPROVAL",
+    "parityTool": {
+      "path": "tools/scoring/verify-current-parity.mjs",
+      "sha256": "457f7dfc197938f7f8ee49562f51e678d3b1ac743e336bb39f98c8b49b9fc886"
+    },
+    "parityResult": "CURRENT_PARITY_PASS",
+    "legacyRuntimeEnforcementStillActive": true
+  },
+  "check": {
+    "executionId": "exec-267abb04b9e876998ce11992",
+    "blockers": [
+      "SCORING_DATABASE_BYTES_NOT_LOCAL",
+      "NO_REGISTERED_TICKER_MAPPING_ADAPTER",
+      "NO_EXACT_TICKER_SCORING_AUTHORITY"
+    ]
+  },
+  "permissions": {
+    "assessmentApproved": false,
+    "formalAdmissionGranted": false,
+    "scoringAuthorized": false,
+    "deploymentAuthorized": false,
+    "publicationAuthorized": false,
+    "tradingAuthorized": false,
+    "historicalPitQualified": false
+  }
+}

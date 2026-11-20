@@ -88,6 +88,7 @@ async function run(job, action) {
   const {PrismaMethodologyRegistry} = await load('src/infrastructure/repositories/methodology-registry.ts');
   const {CurrentPurposeScoring, PinnedCurrentAssessmentAdoption} = await load('src/infrastructure/source-admission/current-scoring.ts');
   const {CurrentPurposeScoringConsumer} = await load('src/infrastructure/source-admission/current-scoring-consumer.ts');
+  const {CurrentBankScoringConsumer} = await load('src/infrastructure/source-admission/current-bank-scoring.ts');
   const {PinnedCurrentExecutableAuthority} = await load('src/infrastructure/source-admission/current-scoring-authority.ts');
   const {assertNotRevoked} = await load('src/infrastructure/repositories/unified-admission.ts');
   const {snapshotHash} = await load('src/infrastructure/fundamentals/snapshot-hash.ts');
@@ -101,7 +102,8 @@ async function run(job, action) {
   try {
     const factory = await jiti.import(readPin(route.adapter).path);
     const data = await factory.createCurrentDatasetConsumer(reader, root, subject);
-    requireCondition(data instanceof CurrentPurposeScoringConsumer, 'GOVERNED_DATASET_CONSUMER_REQUIRED');
+    const Consumer = subject.sector === 'BANK' ? CurrentBankScoringConsumer : CurrentPurposeScoringConsumer;
+    requireCondition(data instanceof Consumer, 'GOVERNED_DATASET_CONSUMER_REQUIRED');
     const adoption = new PinnedCurrentAssessmentAdoption(root, route.assessment, route.reviewBindings);
     const executable = new PinnedCurrentExecutableAuthority(root, route.executable, {now: () => input.knownAt});
     const verifyAuthority = async db => {
