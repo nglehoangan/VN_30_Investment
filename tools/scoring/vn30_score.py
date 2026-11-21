@@ -13,7 +13,7 @@ sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'skills/vn30-rollout-orchestrator/scripts'))
 from control import (PERMISSIONS, Rollout, Universe, Worker, digest, pinned,  # noqa: E402
-                     prepare, read, require_input_identity)
+                     prepare, read, require_input_identity, ticker, day)
 
 STORE = ROOT / 'outputs/vn30-rollout'
 DB = ROOT / 'data/vn30.sqlite'
@@ -142,7 +142,81 @@ def check(job, route):
             'level1Candidate': baseline, 'sectorReference': SECTORS, 'level1Reference': LEVEL1}
 
 
+def prepare_route(args):
+    symbol, cutoff = ticker(args.ticker), day(args.cutoff)
+    blockers = []
+
+    def inspect_pin(pin, role):
+        try:
+            path = ROOT / pin['path']
+            if path.is_file() and is_placeholder(path):
+                raise ValueError('SOURCE_BYTES_NOT_LOCAL')
+            return pinned(ROOT, pin)
+        except (ValueError, OSError, KeyError, TypeError) as error:
+            blockers.append({'role': role, 'path': pin.get('path') if isinstance(pin, dict) else None,
+                             'reason': str(error)})
+            return None
+
+    versions = read(ROOT / 'skills/vn30-rollout-orchestrator/references/universe-registry.json')['versions']
+    version = next((row for row in versions if row['id'] == args.universe_version), None)
+    if version is None:
+        raise ValueError('UNKNOWN_OR_AMBIGUOUS_UNIVERSE_VERSION')
+    if not version['coverageFrom'] <= cutoff <= version['coverageThrough']:
+        raise ValueError('REFERENCE_DATE_COVERAGE_UNVERIFIED_NOT_MEMBERSHIP_EXIT')
+    profile = inspect_pin(version['profile'], 'universeProfile')
+    inspect_pin(version['sectorRegistry'], 'sectorRegistry')
+    inspect_pin(SECTORS, 'securitySectorReference')
+    if profile is not None:
+        membership = json.loads(profile)['membership']
+        inspect_pin(membership, 'membership')
+        inspect_pin(membership['identitySource'], 'securityIdentity')
+
+    candidate = read(args.candidate) if args.candidate else {}
+    if not isinstance(candidate, dict):
+        raise ValueError('CANDIDATE_ROUTE_OBJECT_REQUIRED')
+    for role in ('adapter', 'assessment', 'reference', 'executable'):
+        value = candidate.get(role)
+        if value is None:
+            blockers.append({'role': role, 'reason': 'CANDIDATE_PIN_REQUIRED'})
+        else:
+            inspect_pin(value, role)
+    if not isinstance(candidate.get('reviewBindings'), list) or not candidate['reviewBindings']:
+        blockers.append({'role': 'reviewBindings', 'reason': 'CANDIDATE_REVIEW_BINDINGS_REQUIRED'})
+
+    inventory = None
+    if not any(row['role'] in ('universeProfile', 'sectorRegistry', 'securitySectorReference',
+                               'membership', 'securityIdentity') for row in blockers):
+        try:
+            _, _, job, _ = scope(args)
+            inventory = database_inventory(job)
+            if not inventory['available'] or not inventory.get('current_financial_dataset'):
+                blockers.append({'role': 'dataset', 'reason': inventory.get('reason',
+                                 'NO_ADMITTED_CURRENT_DATASET_AT_CUTOFF')})
+        except (ValueError, OSError, KeyError, sqlite3.Error) as error:
+            blockers.append({'role': 'scope', 'reason': str(error)})
+
+    report = dict(ticker=symbol, cutoff=cutoff, universeVersion=args.universe_version,
+                  inventory=inventory, scoringAuthorized=False)
+    if blockers:
+        return {**report, 'status': 'BLOCKED', 'blockers': blockers}
+    result = invoke_adapter({'job': job, 'candidate': candidate}, 'prepare')
+    if args.previous_proposal and not result['blockers']:
+        previous = read(args.previous_proposal)
+        old_route = previous['proposedRoute']
+        new_route = result['proposedRoute']
+        result['changedRouteFields'] = [
+            key for key in sorted(old_route.keys() | new_route.keys())
+            if old_route.get(key) != new_route.get(key)
+        ]
+        result['priorApprovalHash'] = previous['approvalHash']
+        result['approvalHashChanged'] = previous['approvalHash'] != result['approvalHash']
+    return {**report, **result, 'status': 'BLOCKED' if result['blockers'] else 'READY_FOR_CIO'}
+
+
+
 def execute(args, store=STORE):
+    if args.mode == 'prepare':
+        return prepare_route(args)
     universe, request, job, route = scope(args)
     rollout = Rollout(store, universe)
     # Same immutable one-job plan identity as Rollout.plan, with no persistence for reads.
@@ -199,17 +273,21 @@ def execute(args, store=STORE):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
     parser.add_argument('--ticker', action=Once, required=True)
-    parser.add_argument('--mode', action=Once, required=True, choices=('check', 'score', 'status', 'resume'))
+    parser.add_argument('--mode', action=Once, required=True, choices=('check', 'score', 'status', 'resume', 'prepare'))
     parser.add_argument('--universe-version', action=Once, required=True)
     parser.add_argument('--cutoff', '--reference-date', action=Once, required=True)
+    parser.add_argument('--candidate', action=Once, type=Path)
+    parser.add_argument('--previous-proposal', action=Once, type=Path)
     args = parser.parse_args(argv)
+    if (args.candidate or args.previous_proposal) and args.mode != 'prepare':
+        parser.error('--candidate and --previous-proposal require --mode prepare')
     try:
         result = execute(args)
     except (ValueError, OSError, KeyError, sqlite3.Error) as error:
         print(json.dumps({'status': 'ERROR', 'reason': str(error)}))
         return 2
     print(json.dumps(result, indent=2))
-    if result['status'] in ('READY', 'COMPLETED') or (
+    if result['status'] in ('READY', 'READY_FOR_CIO', 'COMPLETED') or (
             args.mode == 'status' and result['status'] != 'INTEGRITY_BLOCKED'):
         return 0
     return 1

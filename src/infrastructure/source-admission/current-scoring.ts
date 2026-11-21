@@ -16,6 +16,19 @@ import {assertNotRevoked} from '@/infrastructure/repositories/unified-admission'
 export interface CurrentAssessmentAdoption {verify(input:ScoreInput,dataset:CurrentScoringDataset):Promise<void>}
 /** Trusted configuration, never a caller PASS or source standing approval. */
 export interface CurrentExecutableAuthority {verify(method:MethodologyRecord):Promise<void>}
+
+// The owner accepted a closed evidence review with unresolved liquidity for this exact BANK dataset.
+// The assessed risk gates and the evidence documenting that review still require pinned adoption.
+function allowsAcbPendingLiquidity(input:ScoreInput,dataset:CurrentScoringDataset){
+ const reviewId='ACB_M1_LIQUIDITY_REVIEW_CLOSED_2026_10_30';
+ return input.normalization.sector==='BANK'&&dataset.context.ticker==='ACB'&&
+  dataset.context.securityId==='658fafbe-65b3-4176-999f-d4d32e1bd838'&&
+  dataset.context.economicCutoff==='2026-10-30'&&
+  dataset.parentDatasetId==='current-bank-dataset:012ddaa99a1d0edd6a208e969a9d2811f01b848b44bf76d745e0dc8083056e8b'&&
+  input.stage0.status==='UNKNOWN'&&input.hardVeto.status==='PENDING'&&
+  input.stage0.evidenceRefs.includes(reviewId)&&input.hardVeto.evidenceRefs.includes(reviewId)&&
+  input.evidence.some(e=>e.id===reviewId&&e.quality==='VALID');
+}
 export class PinnedCurrentAssessmentAdoption implements CurrentAssessmentAdoption {
  private readonly reviews:PinnedAiReviewVerifier;
  constructor(private readonly root:string,private readonly inputPin:AiArtifactPin,bindings:readonly AiReviewTrustBinding[]){this.reviews=new PinnedAiReviewVerifier(root,bindings);}
@@ -46,8 +59,11 @@ export class CurrentPurposeScoring {
   check(dataset.context.knownAt<=input.knownAt&&dataset.purpose===p.purpose&&dataset.financialAssemblyComplete&&dataset.bindingId===reference.bindingId&&dataset.manifestHash===reference.manifestHash&&dataset.context.securityId===input.securityId&&dataset.context.economicCutoff===p.economicCutoff&&dataset.originalBindingKnownAt===reference.context.knownAt,'CURRENT_SCORE_DATASET_NOT_READY');
   for(const e of dataset.evidence)check(input.evidence.some(v=>v.id===e.id&&hash(v)===hash(e)),'CURRENT_SCORE_FINANCIAL_LINEAGE_REQUIRED');
   await this.adoption.verify(input,dataset);
-  check(['PASS','PASS WITH CONDITIONS'].includes(input.stage0.status)&&input.hardVeto.status!=='PENDING','CURRENT_SCORE_M1_UNRESOLVED');
-  const card=calculateScorecard(input,hash);
+  const pendingLiquidity=allowsAcbPendingLiquidity(input,dataset);
+  check(pendingLiquidity||(['PASS','PASS WITH CONDITIONS'].includes(input.stage0.status)&&input.hardVeto.status!=='PENDING'),'CURRENT_SCORE_M1_UNRESOLVED');
+  const calculated=calculateScorecard(input,hash);
+  const card=pendingLiquidity?deepFreeze({...calculated,validity:'VALID — NON-ACTIONABLE' as const,
+   flags:[...calculated.flags,'M1_PENDING_LIQUIDITY_SOURCE_NOT_VERIFIED']}):calculated;
   check(card.reference.membership==='MEMBER'&&card.ticker===dataset.context.ticker,'CURRENT_SCORE_MEMBERSHIP_REQUIRED');
   check(card.totalScore!==null&&!card.missingEvidence.length,'CURRENT_SCORE_MANDATORY_ASSESSMENTS_REQUIRED');
   // LOW confidence is retained as NON-ACTIONABLE, never increased or converted into a trade authorization.

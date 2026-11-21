@@ -1,0 +1,255 @@
+{
+  "contract": "acb-research-assessment-draft-v1",
+  "scope": {
+    "ticker": "ACB",
+    "cutoff": "2026-10-30",
+    "bindingId": "current-bank-coverage:bff83724df834f2b29a7a4d0a3a3b573ab466aa2c2d4f72ab23f9b42b2825119",
+    "bindingManifestHash": "bff83724df834f2b29a7a4d0a3a3b573ab466aa2c2d4f72ab23f9b42b2825119",
+    "parentDatasetId": "current-bank-dataset:012ddaa99a1d0edd6a208e969a9d2811f01b848b44bf76d745e0dc8083056e8b",
+    "consumerDatasetHashFromReadback": "b916468f9808b2f7fed904ef5ba14913c7546cb644289bb0b0a28d3aa1152568",
+    "dataAcceptanceId": "current-data-acceptance:2624e22d282b23bd94db0834ecc6f012828350dce9ad2f729d994b30bdac614f"
+  },
+  "status": "DRAFT_RESEARCH",
+  "supersedes": {
+    "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_ASSESSMENT_REVIEW_DRAFT_V3.json",
+    "sha256": "6f4d68c1aeafa8e687d25439051883630a5bb3e4f0692f29d985ad1f96a83b61"
+  },
+  "sources": [
+    {
+      "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_USER_PDF_REVIEW.md",
+      "sha256": "d546a06de44422a2996756f3f0a7e06d4909703bc39052be3444dcb02bc43c0d"
+    },
+    {
+      "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CAPITAL_HEADROOM_AND_EXIT_TEST.md",
+      "sha256": "0ef17f25f68f9a8d79c67bc018b2d8711fb17fdcccaebfad94c2e0153b6191f9"
+    },
+    {
+      "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_HISTORICAL_ROE_SHARE_AND_CAPITAL_REVIEW.md",
+      "sha256": "3699dda9a6e31bbcd9b4ad6961e0a5d11b4df9718f440570adb477b45f9321a5"
+    },
+    {
+      "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CORPORATE_ACTIONS_AND_REMAINING_RUBRICS.md",
+      "sha256": "60201c28bba3b3b2783da582b7e4566018ba06228572ee946a6d1399601aaed4"
+    },
+    {
+      "path": "data/manual-extracted-pdf/notes/ACB.json",
+      "sha256": "f391e37e7764d3657f08758ff5cb856e9cb8423a184edb964036b4e1027b5a62"
+    },
+    {
+      "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_BANK_RUBRIC_EVIDENCE_DISPOSITION.md",
+      "sha256": "8a3a790a35c82c0ff7d21ff8d1bf341a6b8c6bfcbfd1766df7ebeab6d82cb859"
+    },
+    {
+      "path": "src/domain/scoring/methodology.ts",
+      "sha256": "e7031bf6b00e38670016888928ceb941e5c3a524016a1f8ce84123aca6c7da41"
+    },
+    {
+      "path": "data/manual-download/ACB/2026-11-20-scoring-review/SCORING_REVIEW_SOURCE_RECEIPT.json",
+      "sha256": "bcd925e1f315cca595cefd241c034da793b43c93772fc71d7dd69e2e6871ac65"
+    },
+    {
+      "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CA_PSV_NORMALIZED_VALUE_REVIEW.md",
+      "sha256": "70e744de7321acca2ce99d793b1b372f6c8fea05943949bc17d776bf18f94ada"
+    }
+  ],
+  "rubrics": [
+    {
+      "id": "BQ-EQ",
+      "researchBand": "3–4",
+      "formalBand": null,
+      "disposition": "Đề xuất 3–4. ROE cơ sở 14,72% gần Ke giả định 15%, cần kết luận độ bền và chi phí vốn."
+    },
+    {
+      "id": "BQ-MOAT",
+      "researchBand": "3",
+      "formalBand": null,
+      "disposition": "Đề xuất 3. Sản phẩm cá nhân/SME đã có bằng chứng, cần chiều sâu về giữ chân và kinh tế qua chu kỳ."
+    },
+    {
+      "id": "BQ-CASH",
+      "researchBand": "3–4",
+      "formalBand": null,
+      "disposition": "Đề xuất 3–4. Thực thu lãi 95,98% và cầu nối thu hồi nợ hỗ trợ; chưa đủ đối chiếu khoản dồn tích bất thường."
+    },
+    {
+      "id": "BQ-RES",
+      "researchBand": null,
+      "formalBand": null,
+      "disposition": "Cần căn cứ phản ứng huy động và tín dụng qua chu kỳ."
+    },
+    {
+      "id": "FH-BS",
+      "researchBand": null,
+      "formalBand": null,
+      "disposition": "Đã đưa mô hình ba tỷ lệ vào review. CAR là ràng buộc chặt nhất trong 18 kịch bản.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_HISTORICAL_ROE_SHARE_AND_CAPITAL_REVIEW.md",
+        "sha256": "3699dda9a6e31bbcd9b4ad6961e0a5d11b4df9718f440570adb477b45f9321a5"
+      },
+      "counterevidenceAndReopenCondition": "Ở RWA +3%, 50% LNST Q3 được công nhận, sau chi dư 4.496 tỷ tại 9,25% nhưng thiếu 4.014 tỷ khi cộng đệm 1 điểm %. Cần căn cứ sức chịu lỗ, chất lượng tài sản và funding; giữ N/R."
+    },
+    {
+      "id": "FH-LIQ",
+      "researchBand": null,
+      "formalBand": null,
+      "disposition": "Đối chiếu H1: chứng khoán Chính phủ 51.033.158 triệu, trong đó 43.953.584 triệu đã dùng bảo đảm. Phần ngoài danh sách bảo đảm trong thuyết minh 10.1 là 7.079.574 triệu trước haircut.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CORPORATE_ACTIONS_AND_REMAINING_RUBRICS.md",
+        "sha256": "60201c28bba3b3b2783da582b7e4566018ba06228572ee946a6d1399601aaed4"
+      },
+      "counterevidenceAndReopenCondition": "Haircut H1 giả định 10–20% cho 5.664–6.372 tỷ trước khử trùng. Cần ngày Q3 và quyền dùng thực tế. Giữ N/R."
+    },
+    {
+      "id": "FH-STRESS",
+      "researchBand": null,
+      "formalBand": null,
+      "disposition": "Nguồn H1 theo thuyết minh 10.1/34.2 chỉ làm phép đối chiếu độ nhạy và chưa được cộng vào Q3.",
+      "evidence": {
+        "path": "data/manual-extracted-pdf/notes/ACB.json",
+        "sha256": "f391e37e7764d3657f08758ff5cb856e9cb8423a184edb964036b4e1027b5a62"
+      },
+      "counterevidenceAndReopenCondition": "Kết quả phụ thuộc runoff/tái tục và nguồn bù sau haircut ngoài dòng tiền tháng đầu. M1 CLOSED/PENDING giữ riêng; FH-STRESS vẫn N/R."
+    },
+    {
+      "id": "GQ-HIST",
+      "researchBand": "2",
+      "formalBand": null,
+      "disposition": "Đề xuất nghiên cứu 2, Limited/low-quality trend. Lợi nhuận tính EPS tăng 4,67%/năm FY22–25 trên cùng mẫu số; FY25 giảm 5,28% và ROE giảm 26,20% xuống 17,45%.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_HISTORICAL_ROE_SHARE_AND_CAPITAL_REVIEW.md",
+        "sha256": "3699dda9a6e31bbcd9b4ad6961e0a5d11b4df9718f440570adb477b45f9321a5"
+      },
+      "counterevidenceAndReopenCondition": "BVPS tăng nhanh; FY22 và FY25 có nền dự phòng khác nhau. Phân tích tác động mua lại/hợp nhất và chuẩn hoá thêm chi phí tín dụng có thể đổi band."
+    },
+    {
+      "id": "GQ-FWD",
+      "researchBand": null,
+      "formalBand": null,
+      "disposition": "Có nền 15.307 tỷ đồng. Cần nối tăng trưởng với chi phí vốn, giữ lại vốn và khả năng thực hiện."
+    },
+    {
+      "id": "GQ-INC",
+      "researchBand": null,
+      "formalBand": null,
+      "disposition": "Cần căn cứ lợi nhuận tăng thêm trên vốn gia tăng."
+    },
+    {
+      "id": "IC-IND",
+      "researchBand": null,
+      "formalBand": null,
+      "disposition": "Có đối chứng cạnh tranh huy động. Cần evidence về độ bền cầu, rào cản và thay đổi cấu trúc."
+    },
+    {
+      "id": "IC-POS",
+      "researchBand": "2",
+      "formalBand": null,
+      "disposition": "Đề xuất 2. Proxy cùng cơ sở ACB 5,16%, TCB 4,67%, VIB 5,44%. Thị phần SME cùng định nghĩa còn thiếu."
+    },
+    {
+      "id": "IC-CYCLE",
+      "researchBand": null,
+      "formalBand": null,
+      "disposition": "Dự phòng và rủi ro tín dụng tăng. Cần nối khả năng tái định giá và độ nhạy chu kỳ."
+    },
+    {
+      "id": "VAL-PRIMARY",
+      "researchBand": null,
+      "formalBand": null,
+      "disposition": "Giữ P/B hợp lý trên ROE bền vững và Ke làm phương pháp BANK. Giá 21.000 vượt dải thử 14.191–20.205.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CAPITAL_HEADROOM_AND_EXIT_TEST.md",
+        "sha256": "0ef17f25f68f9a8d79c67bc018b2d8711fb17fdcccaebfad94c2e0153b6191f9"
+      },
+      "counterevidenceAndReopenCondition": "Thiếu đối chiếu P/B lịch sử theo giá gốc và căn cứ độc lập cho Ke/ROE; giữ band chính thức mở."
+    },
+    {
+      "id": "VAL-RET",
+      "researchBand": "Below 8%",
+      "formalBand": null,
+      "disposition": "Giữ nghiên cứu dưới 8%. ROE cần 14,10% tại Ke 15%/g 3%, mức từng được vượt trong lịch sử nhưng cao hơn ROE cuối kỳ dự phóng 11,70%.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CORPORATE_ACTIONS_AND_REMAINING_RUBRICS.md",
+        "sha256": "60201c28bba3b3b2783da582b7e4566018ba06228572ee946a6d1399601aaed4"
+      },
+      "counterevidenceAndReopenCondition": "ROE FY2025 sau điều chỉnh riêng dự phòng 15,76% trên vốn cuối kỳ cao hơn hurdle 14,10%; chưa xác lập mức duy trì cuối năm 5 cùng vốn giữ lại. Giữ band dưới 8% ở mức nghiên cứu."
+    },
+    {
+      "id": "VAL-MOS",
+      "researchBand": null,
+      "formalBand": null,
+      "disposition": "Biên an toàn âm trong dải giá trị đã thử, khoảng -48% ở giá trị thận trọng 14.191.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CAPITAL_HEADROOM_AND_EXIT_TEST.md",
+        "sha256": "0ef17f25f68f9a8d79c67bc018b2d8711fb17fdcccaebfad94c2e0153b6191f9"
+      },
+      "counterevidenceAndReopenCondition": "Cần căn cứ cho dải giá và phản ứng bảng cân đối trong stress; giữ band chính thức mở."
+    },
+    {
+      "id": "RG-GOV",
+      "researchBand": null,
+      "formalBand": null,
+      "disposition": "Điều 49/62, báo cáo giám sát H1, Nghị quyết 4490 và kiểm toán FY2025 hỗ trợ cơ chế, công bố và auditor.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CORPORATE_ACTIONS_AND_REMAINING_RUBRICS.md",
+        "sha256": "60201c28bba3b3b2783da582b7e4566018ba06228572ee946a6d1399601aaed4"
+      },
+      "counterevidenceAndReopenCondition": "Công bố đã rà chỉ liệt kê nghị quyết, thiếu bằng chứng thực thi hoặc giám sát cùng giao dịch. Giữ N/R."
+    },
+    {
+      "id": "RG-RISK",
+      "researchBand": null,
+      "formalBand": null,
+      "disposition": "Cần kết luận residual risk có căn cứ và đối chiếu phần đã tính ở financial health."
+    },
+    {
+      "id": "RG-UNC",
+      "researchBand": "0",
+      "formalBand": null,
+      "disposition": "Đề xuất nghiên cứu 0, High uncertainty. Giá thoát đổi band IRR; đệm quản trị có thể đảo kết luận dư địa chi.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CAPITAL_HEADROOM_AND_EXIT_TEST.md",
+        "sha256": "0ef17f25f68f9a8d79c67bc018b2d8711fb17fdcccaebfad94c2e0153b6191f9"
+      },
+      "counterevidenceAndReopenCondition": "Có mô hình định lượng và các mốc tham chiếu, nhưng nếu xác minh được nền vốn Q3 và kịch bản thoát thì mức độ bất định có thể giảm."
+    },
+    {
+      "id": "CA-REINV",
+      "researchBand": null,
+      "formalBand": null,
+      "disposition": "Cần nối phân bổ vốn giữ lại với kết quả sinh lời đầu tư."
+    },
+    {
+      "id": "CA-DIST",
+      "researchBand": null,
+      "formalBand": null,
+      "disposition": "Đã đối chiếu lợi nhuận và dư địa vốn riêng lẻ dưới ba tỷ lệ.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_HISTORICAL_ROE_SHARE_AND_CAPITAL_REVIEW.md",
+        "sha256": "3699dda9a6e31bbcd9b4ad6961e0a5d11b4df9718f440570adb477b45f9321a5"
+      },
+      "counterevidenceAndReopenCondition": "Trần chi nhạy với RWA, phần lợi nhuận được công nhận và đệm vốn. Cần thêm căn cứ cho việc giữ lại vốn và giới hạn phân phối cùng phạm vi; giữ N/R."
+    },
+    {
+      "id": "CA-DIL",
+      "researchBand": "1",
+      "formalBand": null,
+      "disposition": "Band nghiên cứu 1. Bốn đợt tăng cổ phần 2023–2026 khớp cổ tức cổ phiếu 15%/15%/15%/13%, theo tỷ lệ và không thu vốn mới.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CORPORATE_ACTIONS_AND_REMAINING_RUBRICS.md",
+        "sha256": "60201c28bba3b3b2783da582b7e4566018ba06228572ee946a6d1399601aaed4"
+      },
+      "counterevidenceAndReopenCondition": "Giới hạn tác động cổ phiếu lẻ và phạm vi kỳ review. Điều khoản chuyển lợi ích hay phát hành ngoài cầu nối sẽ làm đổi band."
+    },
+    {
+      "id": "CA-PSV",
+      "researchBand": "0",
+      "formalBand": null,
+      "disposition": "Đề xuất band nghiên cứu 0. Lợi nhuận/cp giảm ở tất cả mức chi phí tín dụng kiểm tra trong FY2023–2025. Giá trị mô hình cộng cổ tức đổi dấu trong dải giả định.",
+      "evidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CA_PSV_NORMALIZED_VALUE_REVIEW.md",
+        "sha256": "70e744de7321acca2ce99d793b1b372f6c8fea05943949bc17d776bf18f94ada"
+      },
+      "counterevidenceAndReopenCondition": "BVPS tăng, có cổ tức và so từ FY2022 cho kết quả tích cực. Rà thêm khoản bất thường và kiểm tra compounding trên các cửa sổ chu kỳ có căn cứ trước khi dùng chính thức."
+    }
+  ]
+}

@@ -19,17 +19,17 @@ function input(sector:Sector="INDUSTRIAL"){
  const base=reviewedAiInput(fixture(0,sector)).input;
  return sign({...base,id:'SYNTHETIC-CURRENT-SCORE',artifactScope:'FORMAL',knownAt:NOW,calculatedAt:NOW,currentPurpose:{contract:'current-scoring-time-v1',purpose:'CURRENT_FORMAL_VALUATION',economicCutoff:base.asOf.slice(0,10),evaluatedAt:NOW},methodology:{...base.methodology,family:'SCORING',intendedUse:'PRODUCTION',governanceStatus:'APPROVED',approvalReference:'SYNTHETIC_APPROVAL_NOT_REAL',effectiveDate:dateOnly('2026-11-17'),recordedAt:instant('2026-11-17T01:00:00.000Z')},evidence:base.evidence.map((e,i)=>i?e:{...e,publishedAt:null,receivedAt:NOW,time:{contract:'current-formal-evidence-time-v1',purpose:'CURRENT_FORMAL_VALUATION',policyVersion:'standing-financial-current-v1',policyHash:'a'.repeat(64),authorizationReference:'SYNTHETIC_NOT_REAL',rawHash:'b'.repeat(64),qualificationReference:'SYNTHETIC_REVIEW',originalReceivedAt:NOW,reviewedAt:NOW,ingestedAt:NOW,availableAt:NOW}})});
 }
-async function setup(){
- const db=await testDatabase(),f=input();
+async function setup(f=input(),ticker='S0',parentDatasetId='SYNTHETIC_PARENT'){
+ const db=await testDatabase();
  await ensureCurrentSchema(db.client,'prisma/proposals/current-scoring-artifact-v1.sql');
- const reference:PreScoringDatasetReference={contract:'current-purpose-pre-scoring-reference-v1',bindingId:'SYNTHETIC_BINDING',context:{ticker:'S0',securityId:f.securityId,purpose:'CURRENT_FORMAL_VALUATION',economicCutoff:f.asOf.slice(0,10),knownAt:NOW},manifestHash:'a'.repeat(64),permitsScoring:false,historicalPitGranted:false};
- const dataset={contract:'current-purpose-scoring-consumption-v1',status:'ACCEPTED_CURRENT_DATA',purpose:'CURRENT_FORMAL_VALUATION',bindingId:reference.bindingId,manifestHash:reference.manifestHash,parentDatasetId:'SYNTHETIC_PARENT',dataAcceptanceId:'SYNTHETIC_ACCEPTANCE',context:reference.context,originalBindingKnownAt:NOW,facts:[],evidence:[f.evidence[0]],history:[],research:{},price:{},shares:{},financialAssemblyComplete:true,fullM3CoverageCertified:false,gates:{assessment:'NOT_GRANTED',M1:'NOT_GRANTED',confidence:'NOT_GRANTED',scoringAuthorization:'NOT_GRANTED'},readyForScoring:false,historicalPitGranted:false,VNM17Promoted:false} as unknown as CurrentScoringDataset;
+ const reference:PreScoringDatasetReference={contract:'current-purpose-pre-scoring-reference-v1',bindingId:'SYNTHETIC_BINDING',context:{ticker,securityId:f.securityId,purpose:'CURRENT_FORMAL_VALUATION',economicCutoff:f.asOf.slice(0,10),knownAt:NOW},manifestHash:'a'.repeat(64),permitsScoring:false,historicalPitGranted:false};
+ const dataset={contract:'current-purpose-scoring-consumption-v1',status:'ACCEPTED_CURRENT_DATA',purpose:'CURRENT_FORMAL_VALUATION',bindingId:reference.bindingId,manifestHash:reference.manifestHash,parentDatasetId,dataAcceptanceId:'SYNTHETIC_ACCEPTANCE',context:reference.context,originalBindingKnownAt:NOW,facts:[],evidence:[f.evidence[0]],history:[],research:{},price:{},shares:{},financialAssemblyComplete:true,fullM3CoverageCertified:false,gates:{assessment:'NOT_GRANTED',M1:'NOT_GRANTED',confidence:'NOT_GRANTED',scoringAuthorization:'NOT_GRANTED'},readyForScoring:false,historicalPitGranted:false,VNM17Promoted:false} as unknown as CurrentScoringDataset;
  await db.registry.append(f.methodology);let reviewed=hash(f),revoked=false,authorized=true;
  const service=new CurrentPurposeScoring(db.client,db.registry,{resolve:async(ref,context)=>{if(revoked)throw Error('SYNTHETIC_REVOKED');if(hash(ref)!==hash(reference)||context.knownAt!==NOW)throw Error('SYNTHETIC_CONTEXT_MISMATCH');return dataset;}},{verify:async x=>{if(hash(x)!==reviewed)throw Error('SYNTHETIC_UNTRUSTED_REVIEW');}},{verify:async()=>{if(!authorized)throw Error('SYNTHETIC_EXECUTABLE_NOT_APPROVED');}});
  return {db,f,reference,dataset,service,review:(x:ScoreInput)=>reviewed=hash(x),revoke:()=>revoked=true,revokeAuthority:()=>authorized=false};
 }
 describe('explicit current-purpose scoring, SYNTHETIC AUTHORITY ONLY',()=>{
- it('derives all financial rules with only explicit purpose/time adaptations',()=>expect(execFileSync(process.execPath,['scripts/generate-current-scoring.mjs','--check'],{encoding:'utf8'})).toContain('CURRENT_PARITY_PASS'));
+ it('derives all financial rules with only explicit purpose/time adaptations',()=>expect(execFileSync(process.execPath,['tools/scoring/verify-current-parity.mjs'],{encoding:'utf8'})).toContain('CURRENT_PARITY_PASS'));
  it('accepts later operational knowledge and method date without changing economic cutoff',()=>{const f=input(),c=calculateScorecard(f,hash);expect(c.asOf).toBe(f.asOf);expect(c.totalScore).toBe('82');expect(c.contract).toBe('personal-ai-current-scorecard-v1');expect(c.operationalAuthorizationGranted).toBe(false);});
  it.each(SECTORS)('preserves approved numeric output for %s under explicit current-time adaptation',sector=>{
   const a=calculateScorecard(input(sector),hash),b=originalScorecard(fixture(0,sector));
@@ -53,6 +53,48 @@ describe('explicit current-purpose scoring, SYNTHETIC AUTHORITY ONLY',()=>{
  });
  it('unresolved Stage0 cannot be promoted by content review; LOW remains non-actionable',async()=>{
   const x=await setup();try{const pending=sign({...x.f,stage0:{...x.f.stage0,status:'UNKNOWN'}});x.review(pending);await expect(x.service.score(pending,x.reference)).rejects.toThrow();const low=sign({...x.f,confidence:{...x.f.confidence,level:'LOW',dimensions:['Weak','Adequate','Adequate','Adequate','Weak']}});x.review(low);const c=await x.service.score(low,x.reference);expect(c.totalScore).toBe('82');expect(c.confidence).toBe('LOW');expect(c.validity).toBe('VALID — NON-ACTIONABLE');}finally{await x.db.close();}
+ });
+});
+
+describe('ACB pending liquidity successor with synthetic facts in isolated SQLite',()=>{
+ it('keeps pending risk non-actionable, persists once and rejects changed scope or assessment',async()=>{
+  const base=input('BANK');
+  const asOf='2026-10-30T09:00:00.000Z';
+  const securityId='658fafbe-65b3-4176-999f-d4d32e1bd838';
+  const reviewId='ACB_M1_LIQUIDITY_REVIEW_CLOSED_2026_10_30';
+  const evidence=base.evidence.map(e=>({...e,securityId,asOf,validThrough:asOf}));
+  const f=sign({...base,asOf,securityId,currentPurpose:{...base.currentPurpose,economicCutoff:'2026-10-30'},
+   reference:{...base.reference,data:{...base.reference.data,intervals:base.reference.data.intervals.map(row=>
+    row.securityId===base.securityId?{...row,securityId,value:row.kind==='IDENTIFIER'?'ACB':row.value}:row)}},
+   evidence:[...evidence,{...evidence[1],id:reviewId,observation:reviewId,family:reviewId}],
+   stage0:{...base.stage0,asOf,status:'UNKNOWN',evidenceRefs:[reviewId]},
+   hardVeto:{...base.hardVeto,asOf,status:'PENDING',evidenceRefs:[reviewId]},
+   residualRisk:{...base.residualRisk,asOf}});
+  const parent='current-bank-dataset:012ddaa99a1d0edd6a208e969a9d2811f01b848b44bf76d745e0dc8083056e8b';
+  const x=await setup(f,'ACB',parent);
+  const wrong=await setup(f,'ACB','SYNTHETIC_WRONG_DATASET');
+  try{
+   await expect(wrong.service.preflight(f,wrong.reference)).rejects.toThrow('CURRENT_SCORE_M1_UNRESOLVED');
+   for(const changed of [
+    sign({...f,hardVeto:{...f.hardVeto,status:'ACTIVE'}}),
+    sign({...f,stage0:{...f.stage0,evidenceRefs:['BQ-EQ-returns']}}),
+    sign({...f,assessments:f.assessments.slice(1)}),
+   ]){
+    x.review(changed);
+    await expect(x.service.score(changed,x.reference)).rejects.toThrow();
+   }
+   x.review(f);
+   await x.service.preflight(f,x.reference);
+   expect(await x.service.find(f.id)).toBeNull();
+   const card=await x.service.score(f,x.reference);
+   expect(card.input.hardVeto.status).toBe('PENDING');
+   expect(card.validity).toBe('VALID — NON-ACTIONABLE');
+   expect(card.flags).toContain('M1_PENDING_LIQUIDITY_SOURCE_NOT_VERIFIED');
+   expect(card.operationalAuthorizationGranted).toBe(false);
+   expect(await x.service.score(f,x.reference)).toEqual(card);
+   expect((await x.service.find(f.id))?.card).toEqual(card);
+   expect(Number((await x.db.client.$queryRawUnsafe<{n:number}[]>('SELECT count(*) n FROM current_score_artifact'))[0].n)).toBe(1);
+  }finally{await x.db.close();await wrong.db.close();}
  });
 });
 

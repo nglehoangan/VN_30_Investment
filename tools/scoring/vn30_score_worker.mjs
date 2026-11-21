@@ -36,7 +36,7 @@ function jsonPin(pin) {
   return JSON.parse(readPin(pin).bytes);
 }
 
-async function run(job, action) {
+async function run(job, action, candidate) {
   const req = job.request;
   const subject = {
     ticker: req.ticker, securityId: req.securityId, exchange: req.exchange,
@@ -44,23 +44,32 @@ async function run(job, action) {
     universeHash: req.universe.registryEntryHash, cutoff: req.referenceDate,
     purpose: 'CURRENT_FORMAL_VALUATION',
   };
-  const catalog = JSON.parse(readFileSync(resolve(import.meta.dirname, 'vn30-score-routes.json')));
-  requireCondition(catalog.contract === 'vn30-current-scoring-routes-v1', 'SCORING_ROUTE_REGISTRY_CONTRACT');
-  const matches = catalog.routes.filter(row =>
-    JSON.stringify(canonical(row.subject)) === JSON.stringify(canonical(subject)));
-  requireCondition(matches.length === 1, 'NO_EXACT_TICKER_SCORING_AUTHORITY');
-  const route = matches[0];
-  requireCondition(sha(JSON.stringify(canonical(route))) === req.parameters.routeHash, 'SCORING_ROUTE_CHANGED');
+  let route = candidate;
+  let owner;
+  let approvalHash;
+  if (action === 'prepare') {
+    requireCondition(route && !('authorization' in route) && !('preflightHash' in route) &&
+      JSON.stringify(canonical(route.subject)) === JSON.stringify(canonical(subject)),
+    'CANDIDATE_ROUTE_IDENTITY_MISMATCH');
+  } else {
+    const catalog = JSON.parse(readFileSync(resolve(import.meta.dirname, 'vn30-score-routes.json')));
+    requireCondition(catalog.contract === 'vn30-current-scoring-routes-v1', 'SCORING_ROUTE_REGISTRY_CONTRACT');
+    const matches = catalog.routes.filter(row =>
+      JSON.stringify(canonical(row.subject)) === JSON.stringify(canonical(subject)));
+    requireCondition(matches.length === 1, 'NO_EXACT_TICKER_SCORING_AUTHORITY');
+    route = matches[0];
+    requireCondition(sha(JSON.stringify(canonical(route))) === req.parameters.routeHash, 'SCORING_ROUTE_CHANGED');
 
-  const owner = jsonPin(route.authorization);
-  const {authorization, ...approvedRoute} = route;
-  const approvalHash = sha(JSON.stringify(canonical(approvedRoute)));
-  const statement = `Approve exact single-ticker VN30 score ${approvalHash} for ${subject.ticker} at ${subject.cutoff}`;
-  requireCondition(owner.contract === 'vn30-single-ticker-score-approval-v1' &&
-    owner.ownerAuthority === 'PROJECT_OWNER' && owner.scope === 'CURRENT_SCORE_ARTIFACT_ONLY' &&
-    owner.statement === statement && owner.approvalHash === approvalHash &&
-    readPin(owner.source).bytes.toString().split(/\r?\n/).includes(statement),
-  'NO_EXACT_TICKER_SCORING_AUTHORITY');
+    owner = jsonPin(route.authorization);
+    const {authorization, ...approvedRoute} = route;
+    approvalHash = sha(JSON.stringify(canonical(approvedRoute)));
+    const statement = `Approve exact single-ticker VN30 score ${approvalHash} for ${subject.ticker} at ${subject.cutoff}`;
+    requireCondition(owner.contract === 'vn30-single-ticker-score-approval-v1' &&
+      owner.ownerAuthority === 'PROJECT_OWNER' && owner.scope === 'CURRENT_SCORE_ARTIFACT_ONLY' &&
+      owner.statement === statement && owner.approvalHash === approvalHash &&
+      readPin(owner.source).bytes.toString().split(/\r?\n/).includes(statement),
+    'NO_EXACT_TICKER_SCORING_AUTHORITY');
+  }
   requireCondition(route.database === 'data/vn30.sqlite' && realpathSync(database) === database,
     'UNAPPROVED_SCORE_DATABASE');
 
@@ -83,6 +92,20 @@ async function run(job, action) {
     fsCache: false, moduleCache: true,
   });
   const load = path => jiti.import(resolve(root, path));
+  if (action === 'prepare') {
+    const {RUBRICS} = await load('src/domain/scoring/methodology.ts');
+    const assessments = new Map((input.assessments ?? []).map(row => [row.subcategory, row]));
+    const evidenceIds = new Set((input.evidence ?? []).map(row => row.id));
+    const rubricGaps = RUBRICS.flatMap(rubric => {
+      const row = assessments.get(rubric.id);
+      const band = rubric.bands.find(item => item.label === row?.assessment);
+      const topics = new Set((row?.evidence ?? []).filter(item =>
+        item.refs.length && item.refs.every(ref => evidenceIds.has(ref))).map(item => item.topic));
+      const missingTopics = rubric.topics.filter(topic => !topics.has(topic));
+      return band && !missingTopics.length ? [] : [{rubric: rubric.id, missingBand: !band, missingTopics}];
+    });
+    if (rubricGaps.length) return {blockers: ['CURRENT_SCORE_MANDATORY_ASSESSMENTS_REQUIRED'], rubricGaps};
+  }
   const {PrismaClient} = await load('src/infrastructure/db/generated/client.ts');
   const {PrismaBetterSqlite3} = await import('@prisma/adapter-better-sqlite3');
   const {PrismaMethodologyRegistry} = await load('src/infrastructure/repositories/methodology-registry.ts');
@@ -93,7 +116,7 @@ async function run(job, action) {
   const {assertNotRevoked} = await load('src/infrastructure/repositories/unified-admission.ts');
   const {snapshotHash} = await load('src/infrastructure/fundamentals/snapshot-hash.ts');
   const {instant} = await load('src/shared/time.ts');
-  requireCondition(instant(owner.recordedAt) <= instant(new Date().toISOString()), 'SCORING_APPROVAL_NOT_EFFECTIVE');
+  if (owner) requireCondition(instant(owner.recordedAt) <= instant(new Date().toISOString()), 'SCORING_APPROVAL_NOT_EFFECTIVE');
 
   const reader = new PrismaClient({adapter: new PrismaBetterSqlite3({
     url: database, readonly: true, fileMustExist: true,
@@ -107,13 +130,19 @@ async function run(job, action) {
     const adoption = new PinnedCurrentAssessmentAdoption(root, route.assessment, route.reviewBindings);
     const executable = new PinnedCurrentExecutableAuthority(root, route.executable, {now: () => input.knownAt});
     const verifyAuthority = async db => {
-      await assertNotRevoked(db, `vn30-score-approval:${approvalHash}`);
+      if (owner) await assertNotRevoked(db, `vn30-score-approval:${approvalHash}`);
       await assertNotRevoked(db, route.executable.sha256);
     };
     const registry = new PrismaMethodologyRegistry(reader);
     const scorer = new CurrentPurposeScoring(reader, registry, data, adoption, executable);
     await verifyAuthority(reader);
     const preflight = await scorer.preflight(input, reference);
+    if (action === 'prepare') {
+      const proposedRoute = {...route, preflightHash: snapshotHash(preflight)};
+      return {blockers: [], formalAssessmentHash: preflight.inputHash,
+        datasetHash: preflight.datasetHash, preflightHash: proposedRoute.preflightHash,
+        approvalHash: sha(JSON.stringify(canonical(proposedRoute))), proposedRoute};
+    }
     requireCondition(snapshotHash(preflight) === route.preflightHash, 'EXACT_GOVERNED_PREFLIGHT_MISMATCH');
     if (action === 'preflight') return {blockers: []};
 
@@ -151,8 +180,11 @@ async function run(job, action) {
 
 try {
   const action = process.argv[2];
-  requireCondition(['preflight', 'score'].includes(action), 'INVALID_WORKER_ACTION');
-  console.log(JSON.stringify(await run(JSON.parse(readFileSync(0, 'utf8')), action)));
+  requireCondition(['prepare', 'preflight', 'score'].includes(action), 'INVALID_WORKER_ACTION');
+  const request = JSON.parse(readFileSync(0, 'utf8'));
+  console.log(JSON.stringify(await (action === 'prepare'
+    ? run(request.job, action, request.candidate)
+    : run(request, action))));
 } catch (error) {
   const codes = Array.isArray(error.issues) ? error.issues.map(issue => issue.reason) : [error.message];
   const blockers = codes.filter(code => typeof code === 'string' && /^[A-Z][A-Z0-9_]+$/.test(code));

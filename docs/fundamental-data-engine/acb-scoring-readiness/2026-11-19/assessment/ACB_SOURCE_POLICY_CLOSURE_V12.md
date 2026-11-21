@@ -1,0 +1,17 @@
+# ACB — Quyết định rubric theo nguồn hiện có
+
+Phạm vi ACB/HOSE, ngày chốt 30/10/2026. Dùng BANK binding và dataset của V11. Nguyên tắc của chủ sở hữu là dùng trực tiếp số liệu phù hợp đã cung cấp. Rà thêm đúng các trường còn thiếu. Ngày rà 21/11/2026.
+
+| Rubric | Quyết định và điều kiện mở lại |
+| --- | --- |
+| FH-LIQ | OPEN. Ở mức tái tục 75% cho TCTD và giấy tờ có giá, giữ chân khách hàng 25%, gap còn 19.646,65 tỷ. Ngay cả nếu danh mục H1 ngoài bảo đảm công bố 7.079,574 tỷ được giả định còn nguyên, không trùng và bán/repo với haircut 15%, nguồn bù giả định chỉ 6.017,64 tỷ và còn thiếu 13.629,01 tỷ. Đây là kiểm tra ngưỡng, không ghi nhận nguồn bù Q3. Cần bảng tài sản cầm cố theo lô tại Q3, ngày giá trị và phần khoản hợp vốn còn rút được trong 30 ngày, hoặc tỷ lệ khả năng chi trả tại Q3 đủ phạm vi để làm căn cứ bổ sung. |
+| FH-STRESS | OPEN. Cùng các khoản mục thực tế, độ nhạy neo hệ số Basel với hai nhóm wholesale giả định không tái tục cho gap thiếu 47.765 tỷ hoặc dư 19.906 tỷ khi mức duy trì khách hàng lần lượt 60% và 90%. Cần cơ cấu khách hàng/đối tác để chọn mức sốc đại diện và nguồn bù có điều kiện sử dụng được trong stress. Dùng phép thử vốn H1 và chi phí phản ứng đã lưu để kiểm tra tác động, giữ khoảng thiếu thanh khoản riêng khỏi tổn thất vốn. |
+| RG-GOV | OPEN. Nghị quyết 4490 xác nhận phê duyệt và thông báo Ban Kiểm soát, chấp nhận ngay cho topic tuyến phê duyệt. Báo cáo quản trị H1 và ý kiến kiểm toán FY2025 được giữ theo đúng kỳ. Chưa thấy trong lần rà công bố bằng chứng về biểu quyết/xử lý xung đột hoặc kiểm tra giá của giao dịch tháng 10. Giữ cờ theo dõi. Rà báo cáo quản trị năm và phụ lục giao dịch liên quan, hoặc một tài liệu giám sát tương đương. |
+| RG-RISK | OPEN. Không trừ lại khoảng hụt thanh khoản, tín dụng hoặc vốn đã thuộc FH. Với kênh giao dịch liên quan, chưa định danh được số dư, điều kiện và biện pháp giảm thiểu đủ để đặt mức residual. Rà thuyết minh bên liên quan FY2026 hoặc tài liệu xác định giới hạn và giá trị giao dịch đã thực hiện. Số sau cutoff dùng đúng phạm vi và ngày công bố. |
+| CA-REINV | Giữ **1/2 nghiên cứu**. ACBS có LNST cùng kỳ giảm dù cho vay tăng, đối chiếu với phần tăng LNTT FY2025 sau khi nhận vốn. Đây là bằng chứng kết quả hỗn hợp, không suy toàn bộ thay đổi lợi nhuận từ vốn cấp mới. ACBA 168 tỷ là LNTT kiểm toán và bổ sung bối cảnh. Không cần thêm dữ liệu để giữ band nghiên cứu hiện tại. Để xét chính thức, lấy số LNST cùng kỳ của ACBA, mốc vốn thực góp và vốn thực đi vào hoạt động, cùng BCTC ACBS để xử lý chênh lệch LNTT H1. |
+
+Nguồn đã rà cho phần thiếu gồm [ACB IR](https://acb.com.vn/nha-dau-tu), [công bố khoản hợp vốn](https://acb.com.vn/ve-chung-toi/kqkd-acb-9-thang-2026-tin-dung-tang-115-fitchratings-nang-xep-hang-tin-nhiem-len-bb-trien-vong-on-dinh) và [công bố Nghị quyết 4490](https://web.stockbiz.vn/News/2026/10/8/1912575/acb-nghi-quyet-hdqt-ve-cac-hop-dong-giao-dich-giua-acb-va-acbi.aspx). Thông tư 50/2026/TT-NHNN có hiệu lực 01/12/2026, sau ngày chốt, nên không dùng làm tiêu chí tuân thủ tại cutoff. [Công báo](https://congbao.chinhphu.vn/van-ban/thong-tu-so-50-2026-tt-nhnn-470632/69577.htm)
+
+[Cầu nối 30 ngày](ACB_FH_30_DAY_LIQUIDITY_BRIDGE.md) · [Mô hình vốn H1](ACB_RESILIENCE_AND_CAPITAL_REVERSE_STRESS.md) · [Hồ sơ quản trị](ACB_BANK_FORMAL_ASSESSMENT_REVIEW.md) · [Cập nhật ACBA và ACBS](ACB_CA_REINV_FOLLOWUP_2026-11-21.md)
+
+M1 review CLOSED, riskOutcome PENDING. Các lượt sau tái sử dụng dữ liệu và bảng tính trên, chỉ kiểm tra công bố mới cho trường còn thiếu. Chưa chốt formal assessment.

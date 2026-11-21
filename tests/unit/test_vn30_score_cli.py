@@ -130,6 +130,28 @@ class ScoringCLI(unittest.TestCase):
                     cli.main(['--ticker', 'ACB', '--mode', 'check', *extras])
                 self.assertEqual(failure.exception.code, 2)
 
+    def test_prepare_reports_missing_candidate_without_worker_or_writes(self):
+        args = Namespace(mode='prepare', ticker='ACB', universe_version=VERSION,
+                         cutoff=CUTOFF, candidate=None, previous_proposal=None)
+        with patch.object(cli, 'pinned', side_effect=ValueError('SOURCE_PATH_ESCAPE_OR_MISSING')), \
+                patch.object(cli, 'invoke_adapter') as worker:
+            report = cli.execute(args, self.store)
+        self.assertEqual(report['status'], 'BLOCKED')
+        self.assertFalse(report['scoringAuthorized'])
+        self.assertTrue({'universeProfile', 'securitySectorReference', 'assessment', 'executable'}
+                        <= {blocker['role'] for blocker in report['blockers']})
+        worker.assert_not_called()
+        self.assertFalse(self.store.exists())
+
+    def test_worker_prepare_rejects_cross_ticker_candidate(self):
+        job = {'request': {'ticker': 'ACB', 'universe': {}}}
+        process = subprocess.run(
+            ['node', str(Path(cli.__file__).with_name('vn30_score_worker.mjs')), 'prepare'],
+            input=json.dumps({'job': job, 'candidate': {'subject': {'ticker': 'VNM'}}}),
+            capture_output=True, text=True, check=True,
+        )
+        self.assertEqual(json.loads(process.stdout), {'blockers': ['CANDIDATE_ROUTE_IDENTITY_MISMATCH']})
+
     def test_direct_worker_cannot_bypass_registration(self):
         _, _, job, _ = cli.scope(Namespace(ticker='ACB', universe_version=VERSION, cutoff=CUTOFF))
         process = subprocess.run(['node', str(Path(cli.__file__).with_name('vn30_score_worker.mjs')), 'preflight'],

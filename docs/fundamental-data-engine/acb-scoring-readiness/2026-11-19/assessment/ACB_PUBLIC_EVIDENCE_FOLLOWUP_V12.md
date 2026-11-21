@@ -1,0 +1,12 @@
+# ACB — Tài liệu cần theo dõi cho bốn rubric mở
+
+Ngày chốt 30/10/2026. Rà công bố ngày 21/11/2026. Kế tiếp [hồ sơ quyết định V12](ACB_SOURCE_POLICY_CLOSURE_V12.md).
+
+| Rubric | Tài liệu công khai ưu tiên | Bằng chứng cần tìm và giới hạn |
+| --- | --- | --- |
+| FH-LIQ | BCTC hợp nhất kiểm toán FY2026, thuyết minh tài sản đem cầm cố, chứng khoán đầu tư và kỳ hạn. Dùng vị trí tương ứng 10.1, 15, 34.2 của H1 để tìm. Công bố giải ngân hoặc tài liệu hỏi đáp từ ACB IR/đầu mối khoản hợp vốn. | Cần đối chiếu đúng 30/09 và cửa sổ 30 ngày, tài sản chưa ràng buộc, có thể bán/repo, sau haircut và loại trùng. Với khoản hợp vốn cần ngày giá trị, số thực rút và điều kiện rút trong cửa sổ. Số dư 31/12 chỉ bổ sung kỳ mới nếu thiếu cầu nối Q3. |
+| FH-STRESS | BCTC mục quản lý rủi ro thanh khoản; phần quản trị rủi ro trong báo cáo thường niên; công bố về khả năng chi trả hoặc LCR đúng kỳ nếu có. | Bảng kỳ hạn cho số dư hợp đồng. Tìm phân nhóm tiền gửi, tập trung đối tác, giả định run-off và nguồn bù khả dụng. Nếu chỉ thấy phương pháp tổng quát, giữ độ nhạy đang có. Kết quả stress nội bộ, chi phí huy động theo kịch bản và tỷ lệ rút quan sát theo nhóm có thể không được công bố. |
+| RG-GOV | Báo cáo tình hình quản trị FY2026, mục giao dịch với bên liên quan và phụ lục; báo cáo Ban Kiểm soát trong tài liệu ĐHĐCĐ; biên bản/trích lục hoặc hồ sơ bổ sung Nghị quyết 4490. | Tìm xác nhận riêng về khai báo lợi ích, loại khỏi biểu quyết hoặc kiểm tra giá/phí của giao dịch ACB–ACBI. Báo cáo chỉ mô tả quy chế hoặc báo cáo H1 trước giao dịch được giữ làm bối cảnh. |
+| RG-RISK | BCTC **riêng** kiểm toán FY2026 của ACB, thuyết minh giao dịch và số dư với bên liên quan. BCTC riêng của ACB Insurance và giải trình liên quan nếu công bố. | Tìm đối tác, số dư, giá trị giao dịch trong kỳ, điều khoản và biện pháp kiểm soát. Dùng báo cáo riêng vì giao dịch nội bộ có thể bị loại trừ trong hợp nhất. Tách rủi ro chuyển lợi ích khỏi các khoản đã đánh giá ở FH. |
+
+Lần rà tìm các trường cụ thể trên kho BCTC, trang IR và công bố ACB chưa thấy bằng chứng mới đủ phạm vi để đổi band. Giữ **OPEN/N/R** cho bốn rubric và giữ bảng tính, Nghị quyết 4490 cùng các số đã dùng trong V12. Không dùng thiếu công bố làm số 0 hoặc làm căn cứ tự hạ band. Chỉ tìm lại khi có tài liệu mới hoặc tài liệu được chủ sở hữu cung cấp. [Kho BCTC ACB](https://acb.com.vn/nha-dau-tu/bao-cao-tai-chinh) · [ACB IR](https://acb.com.vn/nha-dau-tu)

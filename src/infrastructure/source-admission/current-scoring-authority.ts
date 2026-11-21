@@ -16,6 +16,24 @@ export const CURRENT_SCORING_RUNTIME=[
  'prisma/proposals/current-scoring-artifact-v1.sql','scripts/generate-current-scoring.mjs',
  'src/domain/current-scoring/provenance.ts','src/infrastructure/source-admission/current-review.ts',
 ] as const;
+export const ACB_BANK_PENDING_REVIEW_RUNTIME=[
+ ...CURRENT_SCORING_RUNTIME.filter(path=>path!=='scripts/generate-current-scoring.mjs'),
+ 'tools/scoring/verify-current-parity.mjs',
+ 'tools/scoring/vn30_score.py',
+ 'tools/scoring/vn30_score_worker.mjs',
+ 'tools/scoring/acb-bank-adapter.ts',
+ 'src/infrastructure/source-admission/current-bank-scoring.ts',
+ 'src/infrastructure/source-admission/current-bank-dataset.ts',
+ 'src/infrastructure/source-admission/current-bank-admission.ts',
+ 'app/server/acb-bank-admission.ts',
+ 'app/server/acb-f1-runtime.ts',
+ 'docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_M1_SUCCESSOR_REVIEW.json',
+] as const;
+export const ACB_BANK_PENDING_REVIEW_RECOVERY_RUNTIME=[
+ ...ACB_BANK_PENDING_REVIEW_RUNTIME.slice(0,-1),
+ 'docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_M1_SUCCESSOR_REVIEW_RECOVERY.json',
+ 'docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/f1-successor/F1_RUNTIME_APPROVED_RECOVERY.json',
+] as const;
 /** Stable exact-content review payload. Governance receipt fields are bound at application,
  * never invented/backdated in a proposal merely to make its hash match future approval. */
 export function currentAuthorityApprovalPayload(method:MethodologyRecord,codeHash:string,baselineManifestHash:string){
@@ -38,7 +56,10 @@ export class PinnedCurrentExecutableAuthority implements CurrentExecutableAuthor
   check(owner.ownerAuthority==='PROJECT_OWNER'&&owner.statement===`Approve exact current-purpose scoring authority ${approvalPayloadHash} for CURRENT_FORMAL_VALUATION`,'CURRENT_EXECUTABLE_OWNER_AUTHORIZATION_REQUIRED');
   check(sourceBytes(this.root,owner.source).toString().includes(owner.statement),'CURRENT_EXECUTABLE_VERBATIM_OWNER_SOURCE_REQUIRED');
   instant(owner.recordedAt);instant(this.clock.now());check(owner.recordedAt<=this.clock.now()&&method.recordedAt===owner.recordedAt&&method.effectiveDate===owner.recordedAt.slice(0,10)&&method.approvalReference===a.ownerApproval.receipt.path,'CURRENT_EXECUTABLE_APPROVAL_TIME');
-  check(Array.isArray(a.code)&&a.code.length===CURRENT_SCORING_RUNTIME.length&&new Set(a.code.map((p:SourcePin)=>p.path)).size===CURRENT_SCORING_RUNTIME.length&&CURRENT_SCORING_RUNTIME.every(path=>a.code.some((p:SourcePin)=>p.path===path))&&a.codeHash===hash(a.code),'CURRENT_EXECUTABLE_COMPLETE_CODE_BINDING');
+  check(a.runtimeProfile===undefined||['ACB_BANK_PENDING_REVIEW_V1','ACB_BANK_PENDING_REVIEW_RECOVERY_V1'].includes(a.runtimeProfile),'CURRENT_EXECUTABLE_RUNTIME_PROFILE');
+  const runtime=a.runtimeProfile==='ACB_BANK_PENDING_REVIEW_RECOVERY_V1'?ACB_BANK_PENDING_REVIEW_RECOVERY_RUNTIME:
+   a.runtimeProfile==='ACB_BANK_PENDING_REVIEW_V1'?ACB_BANK_PENDING_REVIEW_RUNTIME:CURRENT_SCORING_RUNTIME;
+  check(Array.isArray(a.code)&&a.code.length===runtime.length&&new Set(a.code.map((p:SourcePin)=>p.path)).size===runtime.length&&runtime.every(path=>a.code.some((p:SourcePin)=>p.path===path))&&a.codeHash===hash(a.code),'CURRENT_EXECUTABLE_COMPLETE_CODE_BINDING');
   for(const pin of a.code)sourceBytes(this.root,pin);
  }
 }

@@ -1,0 +1,68 @@
+{
+  "contract": "acb-assessment-review-diagnostic-v1",
+  "phase": "CHALLENGE",
+  "status": "BLOCKED",
+  "scope": {
+    "ticker": "ACB",
+    "cutoff": "2026-10-30",
+    "bindingId": "current-bank-coverage:bff83724df834f2b29a7a4d0a3a3b573ab466aa2c2d4f72ab23f9b42b2825119",
+    "bindingManifestHash": "bff83724df834f2b29a7a4d0a3a3b573ab466aa2c2d4f72ab23f9b42b2825119",
+    "parentDatasetId": "current-bank-dataset:012ddaa99a1d0edd6a208e969a9d2811f01b848b44bf76d745e0dc8083056e8b",
+    "consumerDatasetHashFromReadback": "b916468f9808b2f7fed904ef5ba14913c7546cb644289bb0b0a28d3aa1152568",
+    "dataAcceptanceId": "current-data-acceptance:2624e22d282b23bd94db0834ecc6f012828350dce9ad2f729d994b30bdac614f"
+  },
+  "assessmentDraft": {
+    "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_ASSESSMENT_REVIEW_DRAFT_V2.json",
+    "sha256": "8c4114835154ba547fdf0efe9569dcb395c34adb7e2787adc1ce356cc9116d59"
+  },
+  "preparationResult": {
+    "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_REVIEW_PREPARATION_RESULT_V2.json",
+    "sha256": "c6ec3d5deab0f213594b03fef5e51f55f42840a69b09e1e022ae2fa22371b242"
+  },
+  "checks": [
+    {
+      "rubric": "RG-GOV",
+      "result": "LIMITATION",
+      "support": "Điều 49/62, báo cáo giám sát và nghị quyết 4490 hỗ trợ đánh giá quy trình và công bố.",
+      "challenge": "H1 trước nghị quyết tháng 10. Báo cáo quản trị có giao dịch không nêu giá trị do bảo mật. Chưa có bằng chứng cùng giao dịch về biểu quyết, áp dụng kiểm soát hoặc căn cứ tương đương chứng minh cách giám sát và điều kiện kinh tế.",
+      "decision": "Giữ mở band chính thức. Không coi biên bản là cách chứng minh duy nhất."
+    },
+    {
+      "rubric": "VAL-RET",
+      "result": "BAND_SENSITIVE",
+      "cashFlowPerShare": [
+        450,
+        0,
+        686,
+        727,
+        771
+      ],
+      "entryPrice": 21000,
+      "breakEvenExit": "27887.36",
+      "baseIRRPercent": "3.25",
+      "higherExitIRRPercent": "8.37",
+      "decision": "Giữ band nghiên cứu dưới 8%. Đổi riêng giá thoát từ 21.872 lên 28.405 làm đổi band. Chưa đủ căn cứ để dùng tổ hợp tích cực hoặc để chốt dự phóng đại diện chính thức."
+    },
+    {
+      "rubrics": [
+        "VAL-PRIMARY",
+        "VAL-MOS",
+        "CA-DIST",
+        "FH-LIQ",
+        "FH-STRESS"
+      ],
+      "result": "INCOMPLETE_EVIDENCE",
+      "challenge": "Nền vốn pháp định H1 và lợi nhuận kế toán Q3 khác phạm vi. Dư địa sau cổ tức nhạy với mức RWA và vốn được công nhận. M1 CLOSED/PENDING không thay thế bằng chứng nguồn bù trong các rubric FH."
+    }
+  ],
+  "liquidityH1Control": {
+    "unit": "MILLION_VND",
+    "governmentSecurities": 51033158,
+    "governmentSecuritiesPledged": 43953584,
+    "otherCreditInstitutionDebtSecuritiesPledged": 1002780,
+    "totalInvestmentSecuritiesPledged": 44956364,
+    "governmentSecuritiesOutsideDisclosedCollateral": 7079574,
+    "verifiedIncrementalQ3Liquidity": null
+  },
+  "formalReviewBindingEligible": false
+}
