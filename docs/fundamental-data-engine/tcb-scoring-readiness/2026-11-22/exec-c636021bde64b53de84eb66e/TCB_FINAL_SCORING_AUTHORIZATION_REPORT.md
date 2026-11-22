@@ -1,5 +1,34 @@
 # TCB Final Scoring Authorization Report
 
+## Final disposition
+
+**TCB scoring is closed for the owner-approved limited scope at the 2026-10-30 economic cutoff.** The governed run completed in isolated SQLite and the stored scorecard and authorization envelope passed SHA-256 verification. The three original blockers are closed for that exact execution through admitted BANK data, the registered TCB adapter and the approved executable and single-run authority. The original pre-execution findings are retained below as history.
+
+| Item | Result |
+| --- | --- |
+| Execution | `exec-0b19b7fa3d5a2c4db8eb53f6` |
+| Score status | `OFFICIAL_LIMITED` |
+| Confirmed points and coverage | 47 of 93 available points across 20 of 23 rubrics |
+| N/R | `FH-STRESS`, `CA-DIST`, `CA-DIL` |
+| Full score, ranking and allocation | Full score is null. Ranking and allocation are ineligible. |
+| Production | No materialization or publication. Either action requires its own TCB-specific authority under the existing governance rules. |
+
+[Verified score artifact](TCB_FINAL_SCORE_ARTIFACT.json) · [Execution receipt](TCB_SCORE_EXECUTION_RESULT.json) · [Owner approval](TCB_SCORE_EXECUTION_OWNER_APPROVAL.json)
+
+## Website release candidate
+
+The read-only development preview is `/tcb-scoring`. The page verifies the retained scoring envelope before rendering. Production materialization requires an identified target and its governed deployment acceptance. PUB-04 requires TCB-specific read-only release authority bound to this subject.
+
+| Publication subject | Identity |
+| --- | --- |
+| Scorecard ID | `TCB-CONSOLIDATED-20261030-CANDIDATE` |
+| Scorecard SHA-256 | `1c866584914fb8fd6c4b16acbcf7a48b11dca670bf2b1a9973c4d433b0fed475` |
+| Dataset SHA-256 | `9fde2d5ff4df7ce769714ba2f2f2f97c22d9a98f9a4bf37f6f5ed16b90ae2efb` |
+| Methodology SHA-256 | `b1642701ad9aa38df90498249b0509464befbd9dfd6d3a9676c974c4b7f6a8d9` |
+| Review SHA-256 | `c8b730326974407820be2eecaa4522d985edd51c5f783e5a859e80b34c16c7c9` |
+
+## Historical authorization review
+
 **BLOCKED_WITH_SPECIFIC_CAUSE** · TCB / HOSE / BANK · Economic cutoff 2026-10-30 · Baseline `7f292df71403f5b31214b46b25dd36b047ce4c3a`
 
 ## Original blockers
