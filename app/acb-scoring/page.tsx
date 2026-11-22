@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { ScoringFreshness } from "@/ui/scoring-freshness";
+import { readScoringMarketDate } from "../server/scoring-market-data";
 import { readAcbPublishedScore } from "../server/acb-published-score";
 import { ScoringDetailsShell } from "@/ui/scoring-details-shell";
 import { Metrics, Panel, Status, Table } from "@/ui/primitives";
@@ -60,11 +62,15 @@ function AcbEvidenceDetails({ closure, reports, events, candidates }: Evidence) 
 }
 
 export default async function Page() {
-  const published = await readAcbPublishedScore().catch(() => null);
+  const [published, marketDate] = await Promise.all([readAcbPublishedScore().catch(() => null), readScoringMarketDate("ACB")]);
   const limited = published?.limitedCoverage;
   let evidence: Evidence | undefined;
   try { evidence = readAcbEvidence(); } catch { /* Fails closed for absent or invalid local registry. */ }
   return <ScoringDetailsShell route="acb-scoring" title="ACB Scoring Details">
+    <ScoringFreshness marketDate={marketDate}
+      baseline={published ? { label: "ACB V4", cutoff: published.asOf.slice(0, 10), verified: true } : undefined}
+      evidence={evidence?.candidates.filter(c => published && c.cutoff > published.asOf.slice(0, 10))
+        .map(c => ({ label: `Report evidence · reassessment cutoff ${c.cutoff} · ${Object.keys(c.fields).join(", ")}`, rubrics: c.rubrics }))} />
     <Panel title="Latest verified publication">
       {published && limited ? <>
         <Metrics values={{ Version: "V4", Cutoff: published.asOf.slice(0, 10),

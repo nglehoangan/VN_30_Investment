@@ -198,3 +198,4 @@ User-confirmed convention (2026-10-18): use the CafeF display mapping as the def
 
 - Use [vn30-evidence-coverage-closure](skills/vn30-evidence-coverage-closure/SKILL.md) for a single-ticker evidence pass, reproducible rubric dispositions, explicit N/R coverage and future evidence triggers. Preserve the qualified sector methodology and exact approval gates.
 - Use [vn30-scoring-publication-hygiene](skills/vn30-scoring-publication-hygiene/SKILL.md) for publication readback and retention. Keep unique replay inputs and use dry-run before owner-approved cleanup. Successful scoring alone does not open cleanup.
+- Use [vn30-incremental-scoring](skills/vn30-incremental-scoring/SKILL.md) to prepare a single-ticker successor at a later cutoff. Start from the newest verified publication, trace changed inputs to affected rubrics and revalidate carried-forward evidence. Preserve the prior scorecard and obtain exact new approvals.

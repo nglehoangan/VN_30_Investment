@@ -1,3 +1,5 @@
+import { ScoringFreshness } from "@/ui/scoring-freshness";
+import { readScoringMarketDate } from "../server/scoring-market-data";
 import { ScoringDetailsShell } from "@/ui/scoring-details-shell";
 import { Metrics, Panel, Status, Table } from "@/ui/primitives";
 import { readVnmScoringHistory } from "../server/vnm-scoring-history";
@@ -5,10 +7,13 @@ import { readVnmScoringHistory } from "../server/vnm-scoring-history";
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
-export default function Page() {
+export default async function Page() {
+  const marketDate = await readScoringMarketDate("VNM");
   let card: ReturnType<typeof readVnmScoringHistory> | undefined;
   try { card = readVnmScoringHistory(); } catch { /* The archived record is unavailable or failed verification. */ }
   return <ScoringDetailsShell route="vnm-scoring" title="VNM Scoring Details">
+    <ScoringFreshness marketDate={marketDate}
+      baseline={card ? { label: "VNM PUB-04 (archived)", cutoff: card.asOf.slice(0, 10), verified: false } : undefined} />
     {card ? <>
       <p className="notice">Archived PUB-04 publication. Current publication replay is unavailable.</p>
       <Panel title="Scoring overview">
