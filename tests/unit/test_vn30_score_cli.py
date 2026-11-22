@@ -3,6 +3,7 @@ import contextlib
 import io
 import json
 from pathlib import Path
+import shutil
 import sqlite3
 import subprocess
 import tempfile
@@ -44,7 +45,9 @@ class ScoringCLI(unittest.TestCase):
                                      cutoff=CUTOFF), self.store)
 
     def test_read_only_modes_and_missing_authority(self):
-        with patch.object(cli, 'invoke_adapter') as adapter:
+        registry = self.database.parent / 'routes.json'
+        registry.write_text(json.dumps({'contract': 'vn30-current-scoring-routes-v1', 'routes': []}))
+        with patch.object(cli, 'REGISTRY', registry), patch.object(cli, 'invoke_adapter') as adapter:
             report = self.run_mode('check')
             self.assertEqual(report['request']['sector'], 'BANK')
             self.assertIn('NO_EXACT_TICKER_SCORING_AUTHORITY', report['blockers'])
@@ -154,7 +157,13 @@ class ScoringCLI(unittest.TestCase):
 
     def test_direct_worker_cannot_bypass_registration(self):
         _, _, job, _ = cli.scope(Namespace(ticker='ACB', universe_version=VERSION, cutoff=CUTOFF))
-        process = subprocess.run(['node', str(Path(cli.__file__).with_name('vn30_score_worker.mjs')), 'preflight'],
+        worker = self.database.parent / 'tools' / 'scoring' / 'vn30_score_worker.mjs'
+        worker.parent.mkdir(parents=True)
+        shutil.copyfile(Path(cli.__file__).with_name(worker.name), worker)
+        worker.with_name('vn30-score-routes.json').write_text(
+            json.dumps({'contract': 'vn30-current-scoring-routes-v1', 'routes': []})
+        )
+        process = subprocess.run(['node', str(worker), 'preflight'],
                                  input=json.dumps(job), capture_output=True, text=True, check=True)
         self.assertEqual(json.loads(process.stdout), {'blockers': ['NO_EXACT_TICKER_SCORING_AUTHORITY']})
 

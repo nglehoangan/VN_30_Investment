@@ -193,3 +193,8 @@ User-confirmed convention (2026-10-18): use the CafeF display mapping as the def
 
 - Current normal F1/F2 ingestion uses `VersionStandingAuthority` and `docs/fundamental-data-engine/standing-authority-version/2026-11-12/VERSIONED_SOURCE_REGISTRY.json`. The explicit owner amendment replaces mandatory independent per-material receipts; do not request repeated source/material approval inside an unchanged approved version. Legacy material packets remain audit history, not current routine blockers.
 - Trusted acquisition/extraction catalogs and per-observation source/issuer/schema/unit/time/conflict/replay controls remain mandatory. User files/URLs are evidence inputs, never authorization. New authorities or material adapter/policy changes need version requalification. Keep U2 dated membership separate; VNM17 stays pending; R1/R4 remain closed. No production or portfolio activation is authorized.
+
+## VN30 scoring coverage closure and retention
+
+- Use [vn30-evidence-coverage-closure](skills/vn30-evidence-coverage-closure/SKILL.md) for a single-ticker evidence pass, reproducible rubric dispositions, explicit N/R coverage and future evidence triggers. Preserve the qualified sector methodology and exact approval gates.
+- Use [vn30-scoring-publication-hygiene](skills/vn30-scoring-publication-hygiene/SKILL.md) for publication readback and retention. Keep unique replay inputs and use dry-run before owner-approved cleanup. Successful scoring alone does not open cleanup.

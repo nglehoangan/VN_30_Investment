@@ -1,0 +1,7 @@
+# VN30 scoring coverage and publication hygiene validation
+
+- 17 Python unit tests passed for single-ticker CLI and BANK routing, existing authority and retry behavior, ACB one-pass closure and N/R coverage, evidence arrival, and cleanup with isolated SQLite and scratch files. The cleanup tests exercise readback gating, protection of referenced or approval files, database immutability, archive verification, apply and rollback in temporary fixtures.
+- 39 integration tests passed across current formal scoring, dataset consumption and publication.
+- Server-side render passed for ACB and VNM using local SQLite. The ACB page resolves the latest official limited-coverage card through the governed publication reader before showing it, then displays the research and evidence sections independently. VNM still displays archived PUB-04 while live replay is blocked.
+- Full-project TypeScript remains blocked by existing BANK admission time-brand errors and three tests that import retired scripts. No score, publication or deletion was executed on project data in this change.
+- The [historical ACB dry run](SCORING_CLEANUP_DRY_RUN.json) inspected 151 files before the report was written. All 16 allowlisted scratch-name candidates were referenced and no files are eligible for deletion. A real website HTTP readback for ACB remains required before a future cleanup, followed by a new actionable dry-run plan and exact owner approval. Do not reuse an earlier renderer or catalog receipt as HTTP evidence.

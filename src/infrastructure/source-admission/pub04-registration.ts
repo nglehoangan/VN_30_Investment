@@ -1,6 +1,8 @@
 import 'server-only';
+import {resolve} from 'node:path';
 import {sourceBytes} from './registry';
 import {snapshotHash as hash} from '@/infrastructure/fundamentals/snapshot-hash';
+import {ACB_PUBLICATION_ID, acbPublications} from './acb-publication';
 import {CurrentScorePublications} from './current-publication';
 import {registeredCurrentScoreReader} from './registered-current-reader';
 import {assertNotRevoked} from '@/infrastructure/repositories/unified-admission';
@@ -26,6 +28,27 @@ export function pub04Gate(db:PrismaClient,root=process.cwd()):CurrentReleaseGate
 }
 /** Read-only server capability; publish() is deliberately not exposed to the dashboard. */
 export function registeredCurrentPublications(db:PrismaClient,root=process.cwd()):CurrentPublishedScores{
- const service=new CurrentScorePublications(db,registeredCurrentScoreReader(db,root),pub04Gate(db,root));
- return {find:id=>service.find(id),latest:()=>service.latest()};
+ const find = (id:string) => id === ACB_PUBLICATION_ID ? acbPublications(db,root).find(id) :
+  new CurrentScorePublications(db,registeredCurrentScoreReader(db,root),pub04Gate(db,root)).find(id);
+ return {find,async latest(){
+  const rows = await db.analyticalArtifact.findMany({where:{kind:'SCORECARD'},orderBy:[{asOf:'desc'},{calculatedAt:'desc'},{id:'asc'}]});
+  const seen = new Set<string>();
+  const cards = [];
+  for(const row of rows){
+   const publication = JSON.parse(row.body);
+   if(publication.contract !== 'current-read-only-publication-v1' || seen.has(publication.securityId)) continue;
+   seen.add(publication.securityId);
+   try {
+    const card = await find(row.id);
+    if(card) cards.push(card);
+   } catch (error) {
+    // The retired VNM replay path can block its own detail without suppressing another verified security.
+    const missing = error as NodeJS.ErrnoException;
+    if(row.id !== 'VNM-current-remediation-unadopted' || missing.code !== 'ENOENT' ||
+       missing.path !== resolve(root, 'scripts')) throw error;
+   }
+  }
+  return cards;
+ }};
+
 }

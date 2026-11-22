@@ -20,12 +20,16 @@ const screens = [
 
 export type DashboardScreenId = typeof screens[number]["id"];
 
-export const navigation = [...new Set(screens.map(s => s.group))]
+const dashboardNavigation = [...new Set(screens.map(s => s.group))]
   .filter(group => group !== null)
   .map(group => ({
     group,
     items: screens.filter(s => s.group === group).map(s => [s.id, s.title] as const),
   }));
+
+export const navigation = dashboardNavigation.map(group => group.group === "Research & Decisions"
+  ? { ...group, items: [...group.items, ["acb-scoring", "ACB Scoring Details"] as const, ["vnm-scoring", "VNM Scoring Details"] as const] }
+  : group);
 
 export function isDashboardScreen(value: string): value is DashboardScreenId {
   return screens.some(s => s.id === value);

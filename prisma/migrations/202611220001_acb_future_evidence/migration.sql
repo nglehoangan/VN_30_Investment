@@ -1,0 +1,587 @@
+CREATE TABLE acb_research_closure (
+  id TEXT PRIMARY KEY CHECK(id = 'ACB-V4-20261030'),
+  body TEXT NOT NULL CHECK(json_valid(body)), body_hash TEXT NOT NULL CHECK(length(body_hash) = 64)
+);
+CREATE TABLE acb_future_evidence (
+  id TEXT PRIMARY KEY NOT NULL, ticker TEXT NOT NULL CHECK(ticker = 'ACB'),
+  body TEXT NOT NULL CHECK(json_valid(body))
+);
+CREATE TABLE acb_future_evidence_source (
+  source_hash TEXT PRIMARY KEY NOT NULL CHECK(length(source_hash) = 64),
+  bytes BLOB NOT NULL CHECK(length(bytes) > 0)
+);
+CREATE TRIGGER acb_future_evidence_source_no_update BEFORE UPDATE ON acb_future_evidence_source BEGIN SELECT RAISE(ABORT,'IMMUTABLE_ACB_RECORD'); END;
+CREATE TRIGGER acb_future_evidence_source_no_delete BEFORE DELETE ON acb_future_evidence_source BEGIN SELECT RAISE(ABORT,'IMMUTABLE_ACB_RECORD'); END;
+CREATE TABLE acb_future_evidence_event (
+  seq INTEGER PRIMARY KEY AUTOINCREMENT, report_id TEXT NOT NULL REFERENCES acb_future_evidence(id),
+  status TEXT NOT NULL CHECK(status IN ('AVAILABLE','CAPTURED','VALIDATED','ADMITTED','REJECTED','SUPERSEDED')),
+  source_hash TEXT NOT NULL REFERENCES acb_future_evidence_source(source_hash), body TEXT NOT NULL CHECK(json_valid(body)),
+  UNIQUE(report_id, source_hash, status)
+);
+CREATE TABLE acb_reassessment_candidate (
+  id TEXT PRIMARY KEY NOT NULL, report_id TEXT NOT NULL REFERENCES acb_future_evidence(id),
+  body TEXT NOT NULL CHECK(json_valid(body))
+);
+INSERT INTO acb_research_closure VALUES ('ACB-V4-20261030', '{
+  "contract": "acb-one-pass-research-closure-v1",
+  "ticker": "ACB",
+  "version": "V4",
+  "cutoff": "2026-10-30",
+  "researchStatus": "CLOSED",
+  "artifactStatus": "RESEARCH_ONLY",
+  "completedAt": "2026-11-22T06:37:00.025Z",
+  "passCount": 1,
+  "externalSearchConducted": false,
+  "externalSearchDecision": "Retained evidence was sufficient for terminal dispositions. Target documents for the remaining gaps are future or would need multiple new inputs to establish a defensible band.",
+  "baseline": {
+    "version": "V3",
+    "artifactId": "acb-official-limited-v3-20261030-f545916a91a1",
+    "artifactSha256": "18e1e43828f1c975a029fc6fbd1b1cc1762d7b212bfbe15c2e0f0e41681fe648",
+    "storedBundleSha256": "453f882ac832d6dfb877b28f44f8d8ebf58c338f4b9a0cf9cdcc88bb8890c087",
+    "confirmedScore": 18,
+    "ratedMaxPoints": 58,
+    "unratedMaxPoints": 42,
+    "scoreLowerBound": 18,
+    "scoreUpperBound": 60,
+    "ratedRubricCount": 14,
+    "unratedRubricCount": 9,
+    "fullOfficialScore": null
+  },
+  "bindingId": "current-bank-coverage:bff83724df834f2b29a7a4d0a3a3b573ab466aa2c2d4f72ab23f9b42b2825119",
+  "dataAcceptanceId": "current-data-acceptance:2624e22d282b23bd94db0834ecc6f012828350dce9ad2f729d994b30bdac614f",
+  "datasetHash": "b916468f9808b2f7fed904ef5ba14913c7546cb644289bb0b0a28d3aa1152568",
+  "methodologyId": "current-scoring-acb-official-limited-v3",
+  "methodologyHash": "75f46e49dfe3abb2d40a25554b57f0567c04cc099823d865caa08bc902c43d68",
+  "confirmedScore": 18,
+  "ratedMaxPoints": 58,
+  "unratedMaxPoints": 42,
+  "scoreLowerBound": 18,
+  "scoreUpperBound": 60,
+  "ratedRubricCount": 14,
+  "unratedRubricCount": 9,
+  "coverageImprovementPoints": 0,
+  "fullOfficialScore": null,
+  "eligibleForRanking": false,
+  "allocationAuthorized": false,
+  "rubrics": [
+    {
+      "rubric": "BQ-EQ",
+      "maximum": 8,
+      "points": 3,
+      "state": "CONSERVATIVE",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_BAND_SELECTION_2026-11-21.md",
+          "sha256": "08f314e8d27de3db436691336cfcc112022d3ff8613639d1232be60fdff94fab",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "Carry forward the reviewed V3 lower supported point in the Average economics band.",
+      "counterEvidence": "ROE was higher historically and the Ke sensitivity can give a small positive spread.",
+      "missingInformation": null,
+      "reassessmentCondition": "Reassess only when new evidence changes the bound conditions.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "BQ-MOAT",
+      "maximum": 6,
+      "points": null,
+      "state": "NOT_RATED",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_V3_FOUR_TOPIC_EVIDENCE.md",
+          "sha256": "ca32bb3df9e6188db576e091b1d8d332180330e60db95b694d342a1d78579311",
+          "publicationDate": null
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_LIMITED_COVERAGE_SCOPE_DECISION_PROPOSAL.md",
+          "sha256": "6e16249a518a90f60b94a2dc9b084a263a827174d002b73f2a3f8620012645a5",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "Product coverage and digital presence support differentiation, but neither an observed retention series nor comparable servicing economics bounds a durable advantage band.",
+      "counterEvidence": "Kênh số cũng có tại TCB và VPB; sự hiện diện của sản phẩm chưa chứng minh lợi thế bền vững.",
+      "missingInformation": "Retention, churn and unit servicing cost using the same customer segment and period.",
+      "reassessmentCondition": "Compare segment retention and servicing costs over the cycle.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "BQ-CASH",
+      "maximum": 6,
+      "points": 3,
+      "state": "CONSERVATIVE",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_BAND_SELECTION_2026-11-21.md",
+          "sha256": "08f314e8d27de3db436691336cfcc112022d3ff8613639d1232be60fdff94fab",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "Carry forward the reviewed V3 lower supported point in the Adequate realization with material qualifications band.",
+      "counterEvidence": "High observed cash interest realization supports an adequate band despite weaker reserves.",
+      "missingInformation": null,
+      "reassessmentCondition": "Reassess only when new evidence changes the bound conditions.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "BQ-RES",
+      "maximum": 5,
+      "points": 2,
+      "state": "CONSERVATIVE",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_RESILIENCE_AND_CAPITAL_REVERSE_STRESS.md",
+          "sha256": "4386bdb654d9ca83c8b0c2191a608c0ab52b2cd67d928d2f011501fd662afc97",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "Carry forward the reviewed V3 lower supported point in the Material vulnerabilities band.",
+      "counterEvidence": "PPOP and NII increased even as the interest expense burden rose.",
+      "missingInformation": null,
+      "reassessmentCondition": "Reassess only when new evidence changes the bound conditions.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "FH-BS",
+      "maximum": 6,
+      "points": 3,
+      "state": "CONSERVATIVE",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_RESILIENCE_AND_CAPITAL_REVERSE_STRESS.md",
+          "sha256": "4386bdb654d9ca83c8b0c2191a608c0ab52b2cd67d928d2f011501fd662afc97",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "Carry forward the reviewed V3 lower supported point in the Adequate band.",
+      "counterEvidence": "Capital headroom is sensitive to RWA and management buffer; Q3 problem loans increased.",
+      "missingInformation": null,
+      "reassessmentCondition": "Reassess only when new evidence changes the bound conditions.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "FH-LIQ",
+      "maximum": 4,
+      "points": null,
+      "state": "NOT_RATED",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_FH_PUBLIC_EVIDENCE_REGISTER.md",
+          "sha256": "84d8e7f174f27d6e6799ffde6ee74b26860a2fd49c2464a1d407356797f73b69",
+          "publicationDate": null
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_FH_30_DAY_LIQUIDITY_BRIDGE.md",
+          "sha256": "7bdd4eb7454e32e7767a36a6023ebbaf6d6b069b1369cf58776ebdcc73dc08bf",
+          "publicationDate": null
+        },
+        {
+          "path": "data/manual-download/ACB/2026-11-20-liquidity-review/ACB_9M2026_RESULTS_2026-10-27.html",
+          "sha256": "af3b47c6cc516cb01ec45c837d36f9ae8d702dc4094c9251d0551570c73c2ffe",
+          "publicationDate": "2026-10-27"
+        }
+      ],
+      "explanation": "The Q3 contractual gap and H1 collateral disclosures bound selected sensitivities only. Funding date, availability and rollover can change the sign.",
+      "counterEvidence": "Under existing scenarios the gap ranges from a shortfall to a surplus; the USD 500m facility announces a channel without establishing eligible net cash.",
+      "missingInformation": "Value date and amount available on the facility; eligible collateral, haircuts, overlapping flows and behavioral retention.",
+      "reassessmentCondition": "Rebuild a comparable 30-day liquidity ladder from dated, unencumbered incremental sources.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "FH-STRESS",
+      "maximum": 5,
+      "points": null,
+      "state": "NOT_RATED",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OWNER_EVIDENCE_REVIEW_V11.md",
+          "sha256": "9bd89451f55bc273ae7a84f6ed24a020254e5d1c35f04622102e0ab6899c3f62",
+          "publicationDate": null
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_RESILIENCE_AND_CAPITAL_REVERSE_STRESS.md",
+          "sha256": "4386bdb654d9ca83c8b0c2191a608c0ab52b2cd67d928d2f011501fd662afc97",
+          "publicationDate": null
+        },
+        {
+          "path": "data/manual-download/ACB/2026-11-20-liquidity-review/ACB_9M2026_RESULTS_2026-10-27.html",
+          "sha256": "af3b47c6cc516cb01ec45c837d36f9ae8d702dc4094c9251d0551570c73c2ffe",
+          "publicationDate": "2026-10-27"
+        }
+      ],
+      "explanation": "Capital reverse stress and liquidity sensitivities are available. An assumed funding premium does not establish financing availability in a combined stress.",
+      "counterEvidence": "Basel-anchored sensitivities produce both surplus and shortfall; the H1 capital test cannot establish Q3 CAR after refinancing stress.",
+      "missingInformation": "Severe but plausible funding response, stress costs and same-scope post-stress capital.",
+      "reassessmentCondition": "Test funding and capital jointly using verified eligible sources and stress assumptions.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "GQ-HIST",
+      "maximum": 5,
+      "points": 2,
+      "state": "CONSERVATIVE",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_HISTORICAL_ROE_SHARE_AND_CAPITAL_REVIEW.md",
+          "sha256": "3699dda9a6e31bbcd9b4ad6961e0a5d11b4df9718f440570adb477b45f9321a5",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "Carry forward the reviewed V3 lower supported point in the Limited/low-quality trend band.",
+      "counterEvidence": "Book value per share grew; the period choice and provision baselines change the growth picture.",
+      "missingInformation": null,
+      "reassessmentCondition": "Reassess only when new evidence changes the bound conditions.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "GQ-FWD",
+      "maximum": 5,
+      "points": null,
+      "state": "NOT_RATED",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_SOURCE_RULE_REVIEW_2026-11-21.md",
+          "sha256": "cd23233ce165c5b38fa91a1c067c93c757909cae5f810b252db9962b60addd47",
+          "publicationDate": null
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CAPITAL_HEADROOM_AND_EXIT_TEST.md",
+          "sha256": "0ef17f25f68f9a8d79c67bc018b2d8711fb17fdcccaebfad94c2e0153b6191f9",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "Credit growth and improved quarterly NIM inform direction. The modeled 6% profit growth remains an assumption without a consistently bounded credit/NIM/provision/RWA path.",
+      "counterEvidence": "The normalized EPS path since FY2023 is nearly flat and retention depresses terminal ROE in the modeled case.",
+      "missingInformation": "Same-scope growth, margin, credit costs and capital/RWA assumptions sufficient to distinguish bands.",
+      "reassessmentCondition": "Reconcile them in a documented bank forecast and test adjacent bands.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "GQ-INC",
+      "maximum": 5,
+      "points": 1,
+      "state": "CONSERVATIVE",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_AVAILABLE_EVIDENCE_ASSESSMENT.md",
+          "sha256": "c710e24100df5b4d9e27cc5620d68d70721e83cff0f76e4d1b66128f108a584e",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "Carry forward the reviewed V3 lower supported point in the Weak incremental economics band.",
+      "counterEvidence": "FY2022 starting point yields positive incremental proxy; capital deployment lags remain relevant.",
+      "missingInformation": null,
+      "reassessmentCondition": "Reassess only when new evidence changes the bound conditions.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "IC-IND",
+      "maximum": 4,
+      "points": 2,
+      "state": "CONSERVATIVE",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_BAND_SELECTION_2026-11-21.md",
+          "sha256": "08f314e8d27de3db436691336cfcc112022d3ff8613639d1232be60fdff94fab",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "Carry forward the reviewed V3 lower supported point in the Mixed/cyclical/average band.",
+      "counterEvidence": "Licensing and capital create barriers, while the digital channel creates contestability.",
+      "missingInformation": null,
+      "reassessmentCondition": "Reassess only when new evidence changes the bound conditions.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "IC-POS",
+      "maximum": 4,
+      "points": null,
+      "state": "NOT_RATED",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_BAND_SELECTION_2026-11-21.md",
+          "sha256": "08f314e8d27de3db436691336cfcc112022d3ff8613639d1232be60fdff94fab",
+          "publicationDate": null
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_V3_FOUR_TOPIC_EVIDENCE.md",
+          "sha256": "ca32bb3df9e6188db576e091b1d8d332180330e60db95b694d342a1d78579311",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "The same-basis funding-cost proxies place ACB between TCB and VIB. This does not bound segment share or distribution strength.",
+      "counterEvidence": "Cost competitiveness can coexist with weaker access or share; digital distribution is common among peers.",
+      "missingInformation": "Comparable segment market share or defensible distribution-scale proxy with a common denominator.",
+      "reassessmentCondition": "Compare dated peer-normalized market share and distribution with funding costs.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "IC-CYCLE",
+      "maximum": 2,
+      "points": 1,
+      "state": "CONSERVATIVE",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_BAND_SELECTION_2026-11-21.md",
+          "sha256": "08f314e8d27de3db436691336cfcc112022d3ff8613639d1232be60fdff94fab",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "Carry forward the reviewed V3 lower supported point in the Balanced normalized forward asymmetry band.",
+      "counterEvidence": "Quarterly NIM and PPOP improved, but problem loans increased.",
+      "missingInformation": null,
+      "reassessmentCondition": "Reassess only when new evidence changes the bound conditions.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "VAL-PRIMARY",
+      "maximum": 8,
+      "points": null,
+      "state": "NOT_RATED",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_BAND_SELECTION_2026-11-21.md",
+          "sha256": "08f314e8d27de3db436691336cfcc112022d3ff8613639d1232be60fdff94fab",
+          "publicationDate": null
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_HISTORICAL_ROE_SHARE_AND_CAPITAL_REVIEW.md",
+          "sha256": "3699dda9a6e31bbcd9b4ad6961e0a5d11b4df9718f440570adb477b45f9321a5",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "The approved BANK method is justified P/B. The tested price premium is roughly 4–48%, with adjacent bands still plausible because sustainable ROE and Ke vary.",
+      "counterEvidence": "The optimistic case narrows the premium considerably. A low point in one selected scenario would be a different judgement from an evidence-supported bounded band.",
+      "missingInformation": "Defensible normalized ROE and equity-risk premium or a comparable long-run pricing cross-check.",
+      "reassessmentCondition": "Recompute the representative and conservative BANK valuations and verify that a defensible band survives the range.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "VAL-RET",
+      "maximum": 8,
+      "points": 0,
+      "state": "CONSERVATIVE",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CAPITAL_HEADROOM_AND_EXIT_TEST.md",
+          "sha256": "0ef17f25f68f9a8d79c67bc018b2d8711fb17fdcccaebfad94c2e0153b6191f9",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "Carry forward the reviewed V3 lower supported point in the Below 8% band.",
+      "counterEvidence": "Exit price 28.405 gives 8.37% on the same dividends; terminal ROE needed for 8% is historically attainable, but needs a sustainable capital and earnings bridge.",
+      "missingInformation": null,
+      "reassessmentCondition": "Reassess only when new evidence changes the bound conditions.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "VAL-MOS",
+      "maximum": 4,
+      "points": 0,
+      "state": "CONSERVATIVE",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_AVAILABLE_EVIDENCE_ASSESSMENT.md",
+          "sha256": "c710e24100df5b4d9e27cc5620d68d70721e83cff0f76e4d1b66128f108a584e",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "Carry forward the reviewed V3 lower supported point in the Poor asymmetry band.",
+      "counterEvidence": "Value is responsive to sustained profitability and Ke; the upper tested valuation narrows the negative spread.",
+      "missingInformation": null,
+      "reassessmentCondition": "Reassess only when new evidence changes the bound conditions.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "RG-GOV",
+      "maximum": 4,
+      "points": null,
+      "state": "NOT_RATED",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_USER_PDF_REVIEW.md",
+          "sha256": "d546a06de44422a2996756f3f0a7e06d4909703bc39052be3444dcb02bc43c0d",
+          "publicationDate": null
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_BANK_FORMAL_ASSESSMENT_REVIEW.md",
+          "sha256": "4514ef236a380112f956956d89060c022f5fbbe6261611deec288b925b729da6",
+          "publicationDate": null
+        },
+        {
+          "path": "data/manual-download/ACB/2026-11-19-s4-review/ACB__RELATED_PARTY_RESOLUTION__2026-10-07__ISSUER__1118c918fb7f.pdf",
+          "sha256": "1118c918fb7f89d02dc383a96f8ebd4584f1f55fdb0199d89560f29efef8e554",
+          "publicationDate": "2026-10-08"
+        }
+      ],
+      "explanation": "Resolution 4490 establishes the approval channel and general oversight. It does not resolve transaction-specific execution of controls.",
+      "counterEvidence": "The generally sound governance evidence coexists with an unresolved related-party question; missing public minutes do not imply misconduct.",
+      "missingInformation": "ACB Insurance conflict declaration, recusal, actual pricing or equivalent transaction-specific oversight.",
+      "reassessmentCondition": "Review a dated governance report or oversight record tied to the transaction.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "RG-RISK",
+      "maximum": 4,
+      "points": null,
+      "state": "NOT_RATED",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_SOURCE_POLICY_CLOSURE_V12.md",
+          "sha256": "9ca19da08f21e6aed5127c10f17a3429221574dc830e0367f40159a0ca47b2d6",
+          "publicationDate": null
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_USER_PDF_REVIEW.md",
+          "sha256": "d546a06de44422a2996756f3f0a7e06d4909703bc39052be3444dcb02bc43c0d",
+          "publicationDate": null
+        },
+        {
+          "path": "data/manual-download/ACB/2026-11-19-s4-review/ACB__RELATED_PARTY_RESOLUTION__2026-10-07__ISSUER__1118c918fb7f.pdf",
+          "sha256": "1118c918fb7f89d02dc383a96f8ebd4584f1f55fdb0199d89560f29efef8e554",
+          "publicationDate": "2026-10-08"
+        }
+      ],
+      "explanation": "A separate related-party channel was identified. Actual exposure and mitigation effectiveness cannot be classified reliably.",
+      "counterEvidence": "The approval mechanism is a mitigating indicator. Funding, asset quality and capital are already addressed in FH.",
+      "missingInformation": "Actual gross and net exposure, commercial terms and safeguards.",
+      "reassessmentCondition": "Classify the residual channel once same-scope transaction values and controls are available.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "RG-UNC",
+      "maximum": 2,
+      "points": 0,
+      "state": "CONSERVATIVE",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CAPITAL_HEADROOM_AND_EXIT_TEST.md",
+          "sha256": "0ef17f25f68f9a8d79c67bc018b2d8711fb17fdcccaebfad94c2e0153b6191f9",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "Carry forward the reviewed V3 lower supported point in the High uncertainty band.",
+      "counterEvidence": "A quantitative model and retained evidence provide anchors, while capital and terminal assumptions remain sensitive.",
+      "missingInformation": null,
+      "reassessmentCondition": "Reassess only when new evidence changes the bound conditions.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "CA-REINV",
+      "maximum": 2,
+      "points": null,
+      "state": "NOT_RATED",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CA_REINV_FOLLOWUP_2026-11-21.md",
+          "sha256": "475bf3b214d7a91306ef129f117912f60a078a5a533504c7f39d2c0bfab87347",
+          "publicationDate": null
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OPEN_RUBRIC_REVIEW_V10.md",
+          "sha256": "6a0a8a9b66ebe57ca02049c85793a73deb7fa871ad2922eb21fce936c5ea13d9",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "Extent of capital increases and historical LNTT is documented. The ACBS comparison and productive deployment timing, including the AMC component, do not bound the resulting owner return.",
+      "counterEvidence": "Expanded ACBS lending coexists with lower 9M LNST in hindsight commentary. ACBA 168bn is LNTT and cannot stand in for LNST.",
+      "missingInformation": "Same-period consolidated ACBS and ACBA LNST plus capital deployment dates and amounts.",
+      "reassessmentCondition": "Align earnings comparators with weighted capital deployment; separate effects of timing and trading cycle.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "CA-DIST",
+      "maximum": 1,
+      "points": 0,
+      "state": "CONSERVATIVE",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_AVAILABLE_EVIDENCE_ASSESSMENT.md",
+          "sha256": "c710e24100df5b4d9e27cc5620d68d70721e83cff0f76e4d1b66128f108a584e",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "Carry forward the reviewed V3 lower supported point in the Evidence does not demonstrate disciplined distribution band.",
+      "counterEvidence": "Cash dividends were paid and H1 headroom can cover test distributions under some capital assumptions.",
+      "missingInformation": null,
+      "reassessmentCondition": "Reassess only when new evidence changes the bound conditions.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "CA-DIL",
+      "maximum": 1,
+      "points": 1,
+      "state": "VERIFIED",
+      "confidence": "MEDIUM",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CORPORATE_ACTIONS_AND_REMAINING_RUBRICS.md",
+          "sha256": "60201c28bba3b3b2783da582b7e4566018ba06228572ee946a6d1399601aaed4",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "Carry forward the reviewed V3 lower supported point in the Disciplined neutral/accretive issuance band.",
+      "counterEvidence": "Account-level fractional rounding and actions outside the observed bridge can change economic effect.",
+      "missingInformation": null,
+      "reassessmentCondition": "Reassess only when new evidence changes the bound conditions.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    },
+    {
+      "rubric": "CA-PSV",
+      "maximum": 1,
+      "points": 0,
+      "state": "CONSERVATIVE",
+      "confidence": "LOW",
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CA_PSV_NORMALIZED_VALUE_REVIEW.md",
+          "sha256": "70e744de7321acca2ce99d793b1b372f6c8fea05943949bc17d776bf18f94ada",
+          "publicationDate": null
+        }
+      ],
+      "explanation": "Carry forward the reviewed V3 lower supported point in the Evidence does not demonstrate real compounding band.",
+      "counterEvidence": "Book value and dividends increased; a favorable cost-of-credit assumption can yield positive model value plus dividends.",
+      "missingInformation": null,
+      "reassessmentCondition": "Reassess only when new evidence changes the bound conditions.",
+      "lastAssessedAt": "2026-11-22T06:37:00.025Z"
+    }
+  ]
+}
+', '60771d30b8aa5f43a3dc90fc61b808362bdf9e897294275e749a9fb94d391f64');
+INSERT INTO acb_future_evidence VALUES ('q4-financials', 'ACB', '{"documentType": "Q4 financial statements", "reportingPeriod": "2026Q4", "periodEnd": "2026-12-31", "expectedWindow": "After Q4 2026 close", "rubrics": ["FH-LIQ", "FH-STRESS", "GQ-FWD"], "missingFields": ["maturityGap", "eligibleCollateral", "facilityAvailability", "fundingMix", "creditGrowth", "creditCost"], "question": "Do collateral and funding cover the stress gap without double counting?", "owner": "ACB research / CIO", "reviewState": "AWAITING_DISCLOSURE", "nextReviewDate": null, "actualPublicationDate": null, "sourceUrl": null, "lastCheckedAt": null, "sourceHash": null, "retrievalStatus": "EXPECTED", "admissionStatus": "NOT_ADMITTED"}');
+INSERT INTO acb_future_evidence VALUES ('fy-audited', 'ACB', '{"documentType": "Audited financial statements", "reportingPeriod": "FY2026", "periodEnd": "2026-12-31", "expectedWindow": "2027 audit reporting cycle", "rubrics": ["FH-LIQ", "FH-STRESS", "VAL-PRIMARY", "RG-RISK", "CA-REINV"], "missingFields": ["pledgedAssets", "unencumberedAssets", "liquidityStressCosts", "parentCapital", "parentRwa", "relatedPartyAmounts", "subsidiaryNetIncome"], "question": "Do audited liquidity, capital and related-party disclosures narrow the evidence gaps?", "owner": "ACB research / CIO", "reviewState": "AWAITING_DISCLOSURE", "nextReviewDate": null, "actualPublicationDate": null, "sourceUrl": null, "lastCheckedAt": null, "sourceHash": null, "retrievalStatus": "EXPECTED", "admissionStatus": "NOT_ADMITTED"}');
+INSERT INTO acb_future_evidence VALUES ('fy-annual', 'ACB', '{"documentType": "Annual report", "reportingPeriod": "FY2026", "periodEnd": "2026-12-31", "expectedWindow": "2027 annual reporting cycle", "rubrics": ["BQ-MOAT", "GQ-FWD", "IC-POS", "VAL-PRIMARY"], "missingFields": ["peerFundingCosts", "customerRetention", "segmentReturns", "sustainableRoe", "distributionCapacity"], "question": "Do normalized returns and peer evidence support a durable advantage and a valuation band?", "owner": "ACB research / CIO", "reviewState": "AWAITING_DISCLOSURE", "nextReviewDate": null, "actualPublicationDate": null, "sourceUrl": null, "lastCheckedAt": null, "sourceHash": null, "retrievalStatus": "EXPECTED", "admissionStatus": "NOT_ADMITTED"}');
+INSERT INTO acb_future_evidence VALUES ('fy-governance', 'ACB', '{"documentType": "Corporate governance report", "reportingPeriod": "FY2026", "periodEnd": "2026-12-31", "expectedWindow": "2027 year-end governance reporting cycle", "rubrics": ["RG-GOV", "RG-RISK"], "missingFields": ["conflictControlsApplied", "transactionTerms", "transactionAmounts", "independentOversight"], "question": "How were conflicts handled and what exposure remains after controls?", "owner": "ACB research / CIO", "reviewState": "AWAITING_DISCLOSURE", "nextReviewDate": null, "actualPublicationDate": null, "sourceUrl": null, "lastCheckedAt": null, "sourceHash": null, "retrievalStatus": "EXPECTED", "admissionStatus": "NOT_ADMITTED"}');
+INSERT INTO acb_future_evidence VALUES ('regulatory', 'ACB', '{"documentType": "Regulatory capital and liquidity disclosures", "reportingPeriod": "H2/FY2026", "periodEnd": "2026-12-31", "expectedWindow": "After H2/FY2026 close", "rubrics": ["FH-LIQ", "FH-STRESS", "VAL-PRIMARY"], "missingFields": ["unencumberedHqla", "haircuts", "runoffAssumptions", "stressCapital", "parentRwa"], "question": "Can ordinary sources cover stress after haircuts and overlap exclusions?", "owner": "ACB research / CIO", "reviewState": "AWAITING_DISCLOSURE", "nextReviewDate": null, "actualPublicationDate": null, "sourceUrl": null, "lastCheckedAt": null, "sourceHash": null, "retrievalStatus": "EXPECTED", "admissionStatus": "NOT_ADMITTED"}');
+INSERT INTO acb_future_evidence VALUES ('subsidiaries', 'ACB', '{"documentType": "ACBS and ACBA financial disclosures", "reportingPeriod": "FY2026", "periodEnd": "2026-12-31", "expectedWindow": "2027 subsidiary reporting cycle", "rubrics": ["CA-REINV"], "missingFields": ["acbsConsolidatedNetIncome", "acbaNetIncome", "capitalPaidDate", "capitalInServiceDate"], "question": "Does same-period net income improve after the capital deployment lag?", "owner": "ACB research / CIO", "reviewState": "AWAITING_DISCLOSURE", "nextReviewDate": null, "actualPublicationDate": null, "sourceUrl": null, "lastCheckedAt": null, "sourceHash": null, "retrievalStatus": "EXPECTED", "admissionStatus": "NOT_ADMITTED"}');
+INSERT INTO acb_future_evidence VALUES ('q1-financials', 'ACB', '{"documentType": "Q1 financial statements", "reportingPeriod": "2027Q1", "periodEnd": "2027-03-31", "expectedWindow": "After Q1 2027 close", "rubrics": ["FH-LIQ", "FH-STRESS", "GQ-FWD", "CA-REINV"], "missingFields": ["maturityGap", "eligibleCollateral", "depositMix", "creditCost", "subsidiaryNetIncome"], "question": "Does the next quarter resolve the funding and earnings sensitivity?", "owner": "ACB research / CIO", "reviewState": "AWAITING_DISCLOSURE", "nextReviewDate": null, "actualPublicationDate": null, "sourceUrl": null, "lastCheckedAt": null, "sourceHash": null, "retrievalStatus": "EXPECTED", "admissionStatus": "NOT_ADMITTED"}');
+CREATE TRIGGER acb_research_closure_no_update BEFORE UPDATE ON acb_research_closure BEGIN SELECT RAISE(ABORT,'IMMUTABLE_ACB_RECORD'); END;
+CREATE TRIGGER acb_research_closure_no_delete BEFORE DELETE ON acb_research_closure BEGIN SELECT RAISE(ABORT,'IMMUTABLE_ACB_RECORD'); END;
+CREATE TRIGGER acb_future_evidence_no_update BEFORE UPDATE ON acb_future_evidence BEGIN SELECT RAISE(ABORT,'IMMUTABLE_ACB_RECORD'); END;
+CREATE TRIGGER acb_future_evidence_no_delete BEFORE DELETE ON acb_future_evidence BEGIN SELECT RAISE(ABORT,'IMMUTABLE_ACB_RECORD'); END;
+CREATE TRIGGER acb_future_evidence_event_no_update BEFORE UPDATE ON acb_future_evidence_event BEGIN SELECT RAISE(ABORT,'IMMUTABLE_ACB_RECORD'); END;
+CREATE TRIGGER acb_future_evidence_event_no_delete BEFORE DELETE ON acb_future_evidence_event BEGIN SELECT RAISE(ABORT,'IMMUTABLE_ACB_RECORD'); END;
+CREATE TRIGGER acb_reassessment_candidate_no_update BEFORE UPDATE ON acb_reassessment_candidate BEGIN SELECT RAISE(ABORT,'IMMUTABLE_ACB_RECORD'); END;
+CREATE TRIGGER acb_reassessment_candidate_no_delete BEFORE DELETE ON acb_reassessment_candidate BEGIN SELECT RAISE(ABORT,'IMMUTABLE_ACB_RECORD'); END;
+CREATE TRIGGER acb_research_closure_no_replace BEFORE INSERT ON acb_research_closure WHEN EXISTS (SELECT 1 FROM acb_research_closure WHERE id=NEW.id) BEGIN SELECT RAISE(ABORT,'IMMUTABLE_ACB_RECORD'); END;
