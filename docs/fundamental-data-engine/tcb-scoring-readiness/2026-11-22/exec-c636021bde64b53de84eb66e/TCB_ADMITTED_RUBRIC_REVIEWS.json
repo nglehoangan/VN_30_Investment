@@ -1,0 +1,484 @@
+{
+  "contract": "tcb-bank-admitted-data-rubric-review-v1",
+  "subjectTicker": "TCB",
+  "economicCutoff": "2026-10-30",
+  "reviewDate": "2026-11-22",
+  "executionId": "exec-c636021bde64b53de84eb66e",
+  "datasetHash": "9fde2d5ff4df7ce769714ba2f2f2f97c22d9a98f9a4bf37f6f5ed16b90ae2efb",
+  "dataAcceptanceId": "current-data-acceptance:caaeaec5446d89de5dfe900b46d982838fbb4f1e2e493f581a3c016cb35e9634",
+  "inputPins": [
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_RESEARCH_CLOSURE.json",
+      "sha256": "e6162faf1ea87617017bb88df0ea68ce21b956d77cbda720ddb1762e35146b64"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_SCORING_DATA_ACCEPTANCE.json",
+      "sha256": "394ad8b3d41854caa38010d51d6bf9bbf06f0a254c2bf754c6d9085a7bf619bb"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_BANK_DATASET_READBACK.json",
+      "sha256": "31534dd57053ba377df320483769f7775398647b6252bbfd44c55824a3d4b9b7"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_VERIFIED_SHARE_CHANGE.json",
+      "sha256": "7b18350ca78b17f06be909e8b86b2ff942bd8d072c3f0d31a1e854bb4bd2a691"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_BANK_CAPITAL_REQUIREMENTS_V2.json",
+      "sha256": "a99e577f2a829dc24ce966f6dcb56a1a554c715595e7bc0224cae6a0a887a6f2"
+    },
+    {
+      "path": "src/domain/scoring/methodology.ts",
+      "sha256": "e7031bf6b00e38670016888928ceb941e5c3a524016a1f8ce84123aca6c7da41"
+    },
+    {
+      "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+      "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4"
+    }
+  ],
+  "inputs": {
+    "TOTAL_ASSETS": {
+      "id": "bank-current-fact:f0faad1d98c0ddc0b0f57350689f338ca56cc68753e0e84bbd2a5bf3359c3b0a",
+      "value": "1273076923000000",
+      "scope": "CONSOLIDATED",
+      "period": {
+        "end": "2026-06-30",
+        "start": "2026-06-30"
+      },
+      "rawHash": "4669008f5b9f3f3504997fd1f7a08a786d250999a8f8de583fa0f08725aece45"
+    },
+    "TOTAL_EQUITY": {
+      "id": "bank-current-fact:9e34cf0965f9df0e0126f409ccb85ba51205dcd0d82e03ca649cc39d971b3f96",
+      "value": "188997150000000",
+      "scope": "CONSOLIDATED",
+      "period": {
+        "end": "2026-06-30",
+        "start": "2026-06-30"
+      },
+      "rawHash": "4669008f5b9f3f3504997fd1f7a08a786d250999a8f8de583fa0f08725aece45"
+    },
+    "NET_INCOME": {
+      "id": "bank-current-fact:2defb5c68a617d3f93b49fc15a2916b62d8f31e8a26b4db9831536a14cf11ed1",
+      "value": "14676922000000",
+      "scope": "CONSOLIDATED",
+      "period": {
+        "end": "2026-06-30",
+        "start": "2026-01-01"
+      },
+      "rawHash": "4669008f5b9f3f3504997fd1f7a08a786d250999a8f8de583fa0f08725aece45"
+    },
+    "BANK_GROSS_CUSTOMER_LOANS": {
+      "id": "bank-current-fact:473f5aa447c250ae151ee3bd44a354e53baafa5de5145ebcac3a78253e2e55a8",
+      "value": "847335568000000",
+      "scope": "CONSOLIDATED",
+      "period": {
+        "end": "2026-06-30",
+        "start": "2026-06-30"
+      },
+      "rawHash": "4669008f5b9f3f3504997fd1f7a08a786d250999a8f8de583fa0f08725aece45"
+    },
+    "BANK_CUSTOMER_DEPOSITS": {
+      "id": "bank-current-fact:15a6e53617db598c356146ed383a7584ba11cc23b62e95840630ab7fdd24bac9",
+      "value": "662447730000000",
+      "scope": "CONSOLIDATED",
+      "period": {
+        "end": "2026-06-30",
+        "start": "2026-06-30"
+      },
+      "rawHash": "4669008f5b9f3f3504997fd1f7a08a786d250999a8f8de583fa0f08725aece45"
+    },
+    "BANK_RESERVE_GENERAL": {
+      "id": "bank-current-fact:ff2a34c8d47482604ba3ef4f74b72b520c15688dfae5696a223468ffbd6beef0",
+      "value": "5924451000000",
+      "scope": "CONSOLIDATED",
+      "period": {
+        "end": "2026-06-30",
+        "start": "2026-06-30"
+      },
+      "rawHash": "4669008f5b9f3f3504997fd1f7a08a786d250999a8f8de583fa0f08725aece45"
+    },
+    "BANK_RESERVE_SPECIFIC": {
+      "id": "bank-current-fact:fa44be6e074e1c160d3fdb3bdbb94acb7ce641774f56e90e9f92252939d6e35d",
+      "value": "5587580000000",
+      "scope": "CONSOLIDATED",
+      "period": {
+        "end": "2026-06-30",
+        "start": "2026-06-30"
+      },
+      "rawHash": "4669008f5b9f3f3504997fd1f7a08a786d250999a8f8de583fa0f08725aece45"
+    },
+    "BANK_REPORTED_CAR": {
+      "id": "bank-current-fact:286713f0d626834d2010e3308c013e598d28ef8dcf0a102d410b1d2cadfbcb53",
+      "value": "0.1495",
+      "scope": "REGULATORY_CONSOLIDATED",
+      "period": {
+        "end": "2026-06-30",
+        "start": "2026-06-30"
+      },
+      "rawHash": "96eb45c3fb1b16eda3582aed795e7eaacaf53a41090cec85edfafef533fb6b91"
+    },
+    "BANK_LOAN_LOSS_RESERVES": {
+      "id": "bank-current-fact:4a109c938b8cba4ff94c770dd59f00a2f5f595a0fe8375714e41566e61256686",
+      "value": "11512031000000",
+      "scope": "CONSOLIDATED",
+      "period": {
+        "end": "2026-06-30",
+        "start": "2026-06-30"
+      },
+      "rawHash": "4669008f5b9f3f3504997fd1f7a08a786d250999a8f8de583fa0f08725aece45"
+    },
+    "CUTOFF_RAW_CLOSE": {
+      "value": "21600",
+      "date": "2026-10-30",
+      "pointer": "TCB_BANK_DATASET_READBACK.json#/price"
+    },
+    "VERIFIED_SHARE_CHANGE": {
+      "value": "10629355539",
+      "date": "2026-10-30",
+      "pointer": "TCB_VERIFIED_SHARE_CHANGE.json#/outstandingAfter"
+    }
+  },
+  "preparation": {
+    "status": "COMPLETED_AS_RESEARCH_REVIEW",
+    "scope": "Rà soát 23 rubric trên dataset đã tiếp nhận và hồ sơ TCB có sẵn.",
+    "rubrics": [
+      {
+        "rubric": "BQ-EQ",
+        "maximum": 8,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "NET_INCOME",
+          "TOTAL_EQUITY"
+        ],
+        "preparationFinding": "Lợi nhuận và vốn hợp nhất là số báo cáo. Thiếu lợi nhuận/vốn phổ thông đã chuẩn hóa và chi phí vốn.",
+        "priorReviewPointer": "/rubrics/0"
+      },
+      {
+        "rubric": "BQ-MOAT",
+        "maximum": 6,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [],
+        "preparationFinding": "Không có dữ kiện định giá dịch vụ, giữ chân khách hàng hoặc lợi thế bền vững trong dataset.",
+        "priorReviewPointer": "/rubrics/1"
+      },
+      {
+        "rubric": "BQ-CASH",
+        "maximum": 6,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "NET_INCOME",
+          "BANK_GROSS_CUSTOMER_LOANS",
+          "BANK_LOAN_LOSS_RESERVES",
+          "BANK_RESERVE_GENERAL",
+          "BANK_RESERVE_SPECIFIC"
+        ],
+        "preparationFinding": "Đã đối chiếu dự phòng chung và cụ thể. Dư nợ gộp có khoản ký quỹ mà dự phòng được chọn loại trừ. Thiếu chất lượng nợ theo nhóm, thu hồi và tính chu kỳ.",
+        "priorReviewPointer": "/rubrics/2"
+      },
+      {
+        "rubric": "BQ-RES",
+        "maximum": 5,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "NET_INCOME",
+          "BANK_GROSS_CUSTOMER_LOANS"
+        ],
+        "preparationFinding": "Số tổng không định lượng tập trung đối tượng vay và sức chịu đựng lợi nhuận theo phân khúc.",
+        "priorReviewPointer": "/rubrics/3"
+      },
+      {
+        "rubric": "FH-BS",
+        "maximum": 6,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "TOTAL_ASSETS",
+          "TOTAL_EQUITY",
+          "BANK_GROSS_CUSTOMER_LOANS",
+          "BANK_CUSTOMER_DEPOSITS",
+          "BANK_LOAN_LOSS_RESERVES",
+          "BANK_REPORTED_CAR"
+        ],
+        "preparationFinding": "CAR hợp nhất đã đủ cho cổng vốn dữ liệu. Chưa đủ bằng chứng chất lượng tài sản, cơ cấu tài trợ và nghĩa vụ để chọn band.",
+        "priorReviewPointer": "/rubrics/4"
+      },
+      {
+        "rubric": "FH-LIQ",
+        "maximum": 4,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "BANK_GROSS_CUSTOMER_LOANS",
+          "BANK_CUSTOMER_DEPOSITS"
+        ],
+        "preparationFinding": "Số dư cho vay và tiền gửi chưa cho thấy thanh khoản khả dụng, kỳ hạn dòng tiền hoặc huy động sau haircut.",
+        "priorReviewPointer": "/rubrics/5"
+      },
+      {
+        "rubric": "FH-STRESS",
+        "maximum": 5,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "BANK_REPORTED_CAR",
+          "BANK_LOAN_LOSS_RESERVES",
+          "BANK_CUSTOMER_DEPOSITS"
+        ],
+        "preparationFinding": "Dữ kiện hiện có mô tả trạng thái cơ sở. Thiếu kết quả stress kết hợp tín dụng, tài trợ, thanh khoản và RWA.",
+        "priorReviewPointer": "/rubrics/6"
+      },
+      {
+        "rubric": "GQ-HIST",
+        "maximum": 5,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "NET_INCOME",
+          "TOTAL_EQUITY",
+          "VERIFIED_SHARE_CHANGE"
+        ],
+        "preparationFinding": "Đã xác minh một sự kiện cổ phiếu. Dataset bán niên thiếu chuỗi lợi nhuận phổ thông nhiều năm có thể so sánh và điều chỉnh corporate action.",
+        "priorReviewPointer": "/rubrics/7"
+      },
+      {
+        "rubric": "GQ-FWD",
+        "maximum": 5,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "BANK_GROSS_CUSTOMER_LOANS",
+          "NET_INCOME",
+          "BANK_REPORTED_CAR"
+        ],
+        "preparationFinding": "Số đã báo cáo thiếu cầu nối dự phóng NIM, chi phí tín dụng, tăng trưởng, vốn và huy động.",
+        "priorReviewPointer": "/rubrics/8"
+      },
+      {
+        "rubric": "GQ-INC",
+        "maximum": 5,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "TOTAL_EQUITY",
+          "NET_INCOME",
+          "BANK_REPORTED_CAR"
+        ],
+        "preparationFinding": "Thiếu vốn đủ điều kiện và lợi nhuận gia tăng trên cùng phạm vi, kỳ và khoản vốn triển khai.",
+        "priorReviewPointer": "/rubrics/9"
+      },
+      {
+        "rubric": "IC-IND",
+        "maximum": 4,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [],
+        "preparationFinding": "Thiếu bằng chứng ngành độc lập và kinh tế ngành xuyên chu kỳ.",
+        "priorReviewPointer": "/rubrics/10"
+      },
+      {
+        "rubric": "IC-POS",
+        "maximum": 4,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [],
+        "preparationFinding": "Thiếu thị phần theo định nghĩa đồng nhất hoặc chỉ báo phân phối và giữ chân có thể so sánh.",
+        "priorReviewPointer": "/rubrics/11"
+      },
+      {
+        "rubric": "IC-CYCLE",
+        "maximum": 2,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "BANK_GROSS_CUSTOMER_LOANS",
+          "BANK_LOAN_LOSS_RESERVES",
+          "NET_INCOME"
+        ],
+        "preparationFinding": "Một mốc kỳ thiếu chuỗi dịch chuyển nhóm nợ, biên lợi nhuận và độ nhạy nguồn vốn.",
+        "priorReviewPointer": "/rubrics/12"
+      },
+      {
+        "rubric": "VAL-PRIMARY",
+        "maximum": 8,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "TOTAL_EQUITY",
+          "NET_INCOME",
+          "BANK_REPORTED_CAR",
+          "CUTOFF_RAW_CLOSE",
+          "VERIFIED_SHARE_CHANGE"
+        ],
+        "preparationFinding": "Giá và mẫu số đã có. Thiếu lợi nhuận phổ thông chuẩn hóa, ROE bền vững, chi phí vốn, đường vốn và phép kiểm giá trị độc lập.",
+        "priorReviewPointer": "/rubrics/13"
+      },
+      {
+        "rubric": "VAL-RET",
+        "maximum": 8,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "CUTOFF_RAW_CLOSE",
+          "VERIFIED_SHARE_CHANGE"
+        ],
+        "preparationFinding": "Điểm vào đã có. Thiếu giá trị cuối kỳ năm năm, phân phối và pha loãng theo kịch bản đủ điều kiện.",
+        "priorReviewPointer": "/rubrics/14"
+      },
+      {
+        "rubric": "VAL-MOS",
+        "maximum": 4,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "CUTOFF_RAW_CLOSE",
+          "VERIFIED_SHARE_CHANGE"
+        ],
+        "preparationFinding": "Giá vào và cổ phần đồng ngày đã có. Thiếu giá trị nội tại bảo thủ cùng cơ sở.",
+        "priorReviewPointer": "/rubrics/15"
+      },
+      {
+        "rubric": "RG-GOV",
+        "maximum": 4,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [],
+        "preparationFinding": "Dataset thiếu điều khoản giao dịch bên liên quan, kiểm soát giá hoặc giám sát độc lập.",
+        "priorReviewPointer": "/rubrics/16"
+      },
+      {
+        "rubric": "RG-RISK",
+        "maximum": 4,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "BANK_GROSS_CUSTOMER_LOANS",
+          "BANK_REPORTED_CAR"
+        ],
+        "preparationFinding": "Số tổng chưa lượng hóa rủi ro còn lại và biện pháp giảm thiểu. Cổng M1 chưa được xác nhận.",
+        "priorReviewPointer": "/rubrics/17"
+      },
+      {
+        "rubric": "RG-UNC",
+        "maximum": 2,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [],
+        "preparationFinding": "Chưa có khoảng dự báo và độ nhạy được hiệu chỉnh kinh tế. Sandbox chỉ là giả định minh họa.",
+        "priorReviewPointer": "/rubrics/18"
+      },
+      {
+        "rubric": "CA-REINV",
+        "maximum": 2,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "TOTAL_EQUITY",
+          "NET_INCOME"
+        ],
+        "preparationFinding": "Thiếu lợi nhuận do phần vốn đầu tư lại và kỳ triển khai tương ứng.",
+        "priorReviewPointer": "/rubrics/19"
+      },
+      {
+        "rubric": "CA-DIST",
+        "maximum": 1,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "BANK_REPORTED_CAR",
+          "VERIFIED_SHARE_CHANGE"
+        ],
+        "preparationFinding": "Đã xác minh phát hành trả cổ tức. Thiếu bằng chứng về phân phối so với lợi suất tái đầu tư, vốn đủ điều kiện và thanh khoản.",
+        "priorReviewPointer": "/rubrics/20"
+      },
+      {
+        "rubric": "CA-DIL",
+        "maximum": 1,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "VERIFIED_SHARE_CHANGE"
+        ],
+        "preparationFinding": "Đã giải thích biến động mẫu số do cổ tức cổ phiếu theo tỷ lệ và xử lý phần lẻ. Chưa có chuỗi phát hành/quyền tiềm tàng cùng đánh giá tác động kinh tế trên mỗi cổ phần để chấm kỷ luật pha loãng.",
+        "priorReviewPointer": "/rubrics/21"
+      },
+      {
+        "rubric": "CA-PSV",
+        "maximum": 1,
+        "classification": "N/R",
+        "points": null,
+        "inputs": [
+          "TOTAL_EQUITY",
+          "NET_INCOME",
+          "VERIFIED_SHARE_CHANGE"
+        ],
+        "preparationFinding": "Thiếu chuỗi giá trị phổ thông trên mỗi cổ phần đã điều chỉnh corporate action và chu kỳ.",
+        "priorReviewPointer": "/rubrics/22"
+      }
+    ]
+  },
+  "challenge": {
+    "status": "COMPLETED_AS_RESEARCH_REVIEW",
+    "scope": "Kiểm tra lại mọi disposition theo quy tắc BANK, phạm vi, kỳ và điều kiện chọn band.",
+    "findings": [
+      {
+        "rubrics": [
+          "FH-BS",
+          "FH-LIQ",
+          "FH-STRESS"
+        ],
+        "finding": "CAR 14,95% vượt cổng dữ liệu vốn TCB. Điều đó chưa xác lập band an toàn tổng hợp hoặc năng lực chịu stress."
+      },
+      {
+        "rubrics": [
+          "BQ-CASH"
+        ],
+        "finding": "11.512.031 triệu VND là dư dự phòng loại trừ ký quỹ. Không suy chất lượng trích lập từ tỷ lệ với dư nợ gộp bao gồm ký quỹ."
+      },
+      {
+        "rubrics": [
+          "CA-DIL",
+          "CA-DIST",
+          "CA-PSV",
+          "GQ-HIST"
+        ],
+        "finding": "Cổ tức cổ phiếu giải thích thay đổi cơ học. Không đủ căn cứ suy pha loãng phá hủy giá trị, kỷ luật phát hành hoặc tăng trưởng thực trên mỗi cổ phần."
+      },
+      {
+        "rubrics": [
+          "VAL-PRIMARY",
+          "VAL-RET",
+          "VAL-MOS"
+        ],
+        "finding": "Hai đầu vào giá/cổ phần đã khớp ngày kinh tế. Thiếu tử số định giá và mô hình dòng tiền đủ điều kiện. Mốc công bố, thu thập và biết dữ liệu diễn ra sau cutoff."
+      },
+      {
+        "rubrics": [
+          "RG-UNC",
+          "RG-RISK"
+        ],
+        "finding": "Khoảng kịch bản giả định không chứng minh band zero, còn M1 chưa được phê duyệt."
+      }
+    ],
+    "rubricDispositionChanged": false,
+    "independentFormalApprovalGranted": false
+  },
+  "coverage": {
+    "verified": 0,
+    "conservative": 0,
+    "notRated": 23,
+    "ratedWeight": 0,
+    "applicableWeight": 100,
+    "score": null
+  },
+  "formalOutcome": {
+    "status": "BLOCKED_NO_SCORABLE_RUBRICS",
+    "limitedCoverageRequiredForAnyFuturePartialScore": true,
+    "limitedCoverageScopeApproved": false,
+    "approvalHash": null,
+    "scoringAuthorized": false
+  }
+}

@@ -1,0 +1,583 @@
+{
+  "contract": "tcb-fh-bs-normalized-evidence-review-v1",
+  "subjectTicker": "TCB",
+  "rubric": "FH-BS",
+  "economicCutoff": "2026-10-30",
+  "financialObservationDates": [
+    "2026-06-30",
+    "2025-12-31"
+  ],
+  "reviewDate": "2026-11-22",
+  "executionId": "exec-c636021bde64b53de84eb66e",
+  "sources": {
+    "statement": {
+      "path": "data/manual-download/TCB/TCB__FINANCIAL__2026H1__CONSOLIDATED__4669008f5b9f.pdf",
+      "sha256": "4669008f5b9f3f3504997fd1f7a08a786d250999a8f8de583fa0f08725aece45"
+    },
+    "capital": {
+      "path": "data/manual-download/TCB/TCB__REGULATORY_CAPITAL__2026H1__CONSOLIDATED__96eb45c3fb1b.pdf",
+      "sha256": "96eb45c3fb1b16eda3582aed795e7eaacaf53a41090cec85edfafef533fb6b91"
+    },
+    "priorReview": {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_ADMITTED_RUBRIC_REVIEWS.json",
+      "sha256": "1c54c5e95f9bc7f5663482ebb486cb20969330e0d42c53277173c1e5fb844681"
+    },
+    "rule": {
+      "path": "src/domain/scoring/methodology.ts",
+      "sha256": "e7031bf6b00e38670016888928ceb941e5c3a524016a1f8ce84123aca6c7da41"
+    }
+  },
+  "normalization": {
+    "statementScope": "CONSOLIDATED",
+    "regulatoryScope": "REGULATORY_CONSOLIDATED",
+    "nativeUnit": "MILLION_VND",
+    "normalizedUnit": "VND",
+    "multiplier": "1000000",
+    "physicalPages": true
+  },
+  "tables": {
+    "regulatoryCapital": {
+      "physicalPage": 6,
+      "framework": "TT41_2016_BASEL_II",
+      "CARPercent": {
+        "2026-06-30": "14.95",
+        "2025-12-31": "14.61"
+      },
+      "Tier1Percent": {
+        "2026-06-30": "14.06",
+        "2025-12-31": "13.67"
+      },
+      "CET1": null
+    },
+    "assetQuality": [
+      {
+        "item": "Dư nợ phân nhóm, loại trừ ký quỹ và ứng trước",
+        "physicalPage": 50,
+        "nativeMillionVnd": {
+          "2026-06-30": "795813133",
+          "2025-12-31": "723757397"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "795813133000000",
+          "2025-12-31": "723757397000000"
+        }
+      },
+      {
+        "item": "Nợ đủ tiêu chuẩn",
+        "physicalPage": 50,
+        "nativeMillionVnd": {
+          "2026-06-30": "781001783",
+          "2025-12-31": "711706750"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "781001783000000",
+          "2025-12-31": "711706750000000"
+        }
+      },
+      {
+        "item": "Nợ cần chú ý",
+        "physicalPage": 50,
+        "nativeMillionVnd": {
+          "2026-06-30": "5640764",
+          "2025-12-31": "3852272"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "5640764000000",
+          "2025-12-31": "3852272000000"
+        }
+      },
+      {
+        "item": "Nợ dưới tiêu chuẩn",
+        "physicalPage": 50,
+        "nativeMillionVnd": {
+          "2026-06-30": "1397092",
+          "2025-12-31": "918063"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "1397092000000",
+          "2025-12-31": "918063000000"
+        }
+      },
+      {
+        "item": "Nợ nghi ngờ",
+        "physicalPage": 50,
+        "nativeMillionVnd": {
+          "2026-06-30": "1887266",
+          "2025-12-31": "1339119"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "1887266000000",
+          "2025-12-31": "1339119000000"
+        }
+      },
+      {
+        "item": "Nợ có khả năng mất vốn",
+        "physicalPage": 50,
+        "nativeMillionVnd": {
+          "2026-06-30": "5886228",
+          "2025-12-31": "5941193"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "5886228000000",
+          "2025-12-31": "5941193000000"
+        }
+      },
+      {
+        "item": "Cho vay ký quỹ và ứng trước tiền bán",
+        "physicalPage": 50,
+        "nativeMillionVnd": {
+          "2026-06-30": "51522435",
+          "2025-12-31": "43859732"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "51522435000000",
+          "2025-12-31": "43859732000000"
+        }
+      },
+      {
+        "item": "Tổng cho vay khách hàng",
+        "physicalPage": 50,
+        "nativeMillionVnd": {
+          "2026-06-30": "847335568",
+          "2025-12-31": "767617129"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "847335568000000",
+          "2025-12-31": "767617129000000"
+        }
+      },
+      {
+        "item": "Cho vay kinh doanh bất động sản theo ngành",
+        "physicalPage": 51,
+        "nativeMillionVnd": {
+          "2026-06-30": "212311428",
+          "2025-12-31": "207026817"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "212311428000000",
+          "2025-12-31": "207026817000000"
+        }
+      },
+      {
+        "item": "Cho vay cá nhân",
+        "physicalPage": 51,
+        "nativeMillionVnd": {
+          "2026-06-30": "335384632",
+          "2025-12-31": "312327940"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "335384632000000",
+          "2025-12-31": "312327940000000"
+        }
+      },
+      {
+        "item": "Dự phòng chung, loại trừ ký quỹ",
+        "physicalPage": 52,
+        "nativeMillionVnd": {
+          "2026-06-30": "5924451",
+          "2025-12-31": "5383622"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "5924451000000",
+          "2025-12-31": "5383622000000"
+        }
+      },
+      {
+        "item": "Dự phòng cụ thể, loại trừ ký quỹ",
+        "physicalPage": 52,
+        "nativeMillionVnd": {
+          "2026-06-30": "5587580",
+          "2025-12-31": "5101998"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "5587580000000",
+          "2025-12-31": "5101998000000"
+        }
+      },
+      {
+        "item": "Dự phòng ký quỹ và ứng trước",
+        "physicalPage": 52,
+        "nativeMillionVnd": {
+          "2026-06-30": "10254",
+          "2025-12-31": "12758"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "10254000000",
+          "2025-12-31": "12758000000"
+        }
+      }
+    ],
+    "fundingAndLiabilities": [
+      {
+        "item": "Nợ Chính phủ và NHNN",
+        "physicalPage": 9,
+        "nativeMillionVnd": {
+          "2026-06-30": "8245783",
+          "2025-12-31": "4323867"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "8245783000000",
+          "2025-12-31": "4323867000000"
+        }
+      },
+      {
+        "item": "Tiền gửi tại ngân hàng từ các tổ chức tài chính và TCTD khác",
+        "physicalPage": 61,
+        "nativeMillionVnd": {
+          "2026-06-30": "90685022",
+          "2025-12-31": "83014313"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "90685022000000",
+          "2025-12-31": "83014313000000"
+        }
+      },
+      {
+        "item": "Vay các tổ chức tài chính và TCTD khác",
+        "physicalPage": 61,
+        "nativeMillionVnd": {
+          "2026-06-30": "74054437",
+          "2025-12-31": "61968663"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "74054437000000",
+          "2025-12-31": "61968663000000"
+        }
+      },
+      {
+        "item": "Tiền gửi không kỳ hạn khách hàng",
+        "physicalPage": 62,
+        "nativeMillionVnd": {
+          "2026-06-30": "223945387",
+          "2025-12-31": "213415080"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "223945387000000",
+          "2025-12-31": "213415080000000"
+        }
+      },
+      {
+        "item": "Tiền gửi có kỳ hạn khách hàng",
+        "physicalPage": 62,
+        "nativeMillionVnd": {
+          "2026-06-30": "430455311",
+          "2025-12-31": "396881095"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "430455311000000",
+          "2025-12-31": "396881095000000"
+        }
+      },
+      {
+        "item": "Tiền gửi ký quỹ khách hàng",
+        "physicalPage": 62,
+        "nativeMillionVnd": {
+          "2026-06-30": "8047032",
+          "2025-12-31": "8615360"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "8047032000000",
+          "2025-12-31": "8615360000000"
+        }
+      },
+      {
+        "item": "Tổng tiền gửi khách hàng",
+        "physicalPage": 62,
+        "nativeMillionVnd": {
+          "2026-06-30": "662447730",
+          "2025-12-31": "618911535"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "662447730000000",
+          "2025-12-31": "618911535000000"
+        }
+      },
+      {
+        "item": "Công cụ phái sinh và các khoản nợ tài chính khác theo sổ sách",
+        "physicalPage": 9,
+        "nativeMillionVnd": {
+          "2026-06-30": "2214942",
+          "2025-12-31": "2416947"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "2214942000000",
+          "2025-12-31": "2416947000000"
+        }
+      },
+      {
+        "item": "Phát hành giấy tờ có giá",
+        "physicalPage": 63,
+        "nativeMillionVnd": {
+          "2026-06-30": "212079904",
+          "2025-12-31": "215330128"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "212079904000000",
+          "2025-12-31": "215330128000000"
+        }
+      },
+      {
+        "item": "Giấy tờ có giá kỳ hạn dưới 12 tháng",
+        "physicalPage": 63,
+        "nativeMillionVnd": {
+          "2026-06-30": "54970006",
+          "2025-12-31": "48870006"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "54970006000000",
+          "2025-12-31": "48870006000000"
+        }
+      },
+      {
+        "item": "Nợ khác",
+        "physicalPage": 64,
+        "nativeMillionVnd": {
+          "2026-06-30": "34351955",
+          "2025-12-31": "26877242"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "34351955000000",
+          "2025-12-31": "26877242000000"
+        }
+      },
+      {
+        "item": "Tổng nợ phải trả",
+        "physicalPage": 9,
+        "nativeMillionVnd": {
+          "2026-06-30": "1084079773",
+          "2025-12-31": "1012842695"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "1084079773000000",
+          "2025-12-31": "1012842695000000"
+        }
+      },
+      {
+        "item": "Vốn chủ sở hữu hợp nhất",
+        "physicalPage": 9,
+        "nativeMillionVnd": {
+          "2026-06-30": "188997150",
+          "2025-12-31": "179501442"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "188997150000000",
+          "2025-12-31": "179501442000000"
+        }
+      },
+      {
+        "item": "Tổng tài sản hợp nhất",
+        "physicalPage": 9,
+        "nativeMillionVnd": {
+          "2026-06-30": "1273076923",
+          "2025-12-31": "1192344137"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "1273076923000000",
+          "2025-12-31": "1192344137000000"
+        }
+      }
+    ],
+    "selectedOffBalanceSheetCommitments": [
+      {
+        "item": "Bảo lãnh vay vốn",
+        "physicalPage": 10,
+        "nativeMillionVnd": {
+          "2026-06-30": "17918424",
+          "2025-12-31": "14965995"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "17918424000000",
+          "2025-12-31": "14965995000000"
+        }
+      },
+      {
+        "item": "Cam kết giao dịch hối đoái",
+        "physicalPage": 10,
+        "nativeMillionVnd": {
+          "2026-06-30": "516531077",
+          "2025-12-31": "417321503"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "516531077000000",
+          "2025-12-31": "417321503000000"
+        }
+      },
+      {
+        "item": "Cam kết L/C",
+        "physicalPage": 10,
+        "nativeMillionVnd": {
+          "2026-06-30": "67997062",
+          "2025-12-31": "64314200"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "67997062000000",
+          "2025-12-31": "64314200000000"
+        }
+      },
+      {
+        "item": "Bảo lãnh khác",
+        "physicalPage": 10,
+        "nativeMillionVnd": {
+          "2026-06-30": "153555432",
+          "2025-12-31": "122225620"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "153555432000000",
+          "2025-12-31": "122225620000000"
+        }
+      },
+      {
+        "item": "Hạn mức tín dụng chưa sử dụng",
+        "physicalPage": 10,
+        "nativeMillionVnd": {
+          "2026-06-30": "432442632",
+          "2025-12-31": "377201795"
+        },
+        "normalizedVnd": {
+          "2026-06-30": "432442632000000",
+          "2025-12-31": "377201795000000"
+        }
+      }
+    ],
+    "maturityAt20260630": [
+      {
+        "bucket": "Quá hạn trên 3 tháng",
+        "assetsMillionVnd": "2239642",
+        "liabilitiesMillionVnd": null,
+        "gapMillionVnd": "2239642"
+      },
+      {
+        "bucket": "Quá hạn đến 3 tháng",
+        "assetsMillionVnd": "1570364",
+        "liabilitiesMillionVnd": null,
+        "gapMillionVnd": "1570364"
+      },
+      {
+        "bucket": "Trong hạn đến 1 tháng",
+        "assetsMillionVnd": "222319290",
+        "liabilitiesMillionVnd": "234592280",
+        "gapMillionVnd": "-12272990"
+      },
+      {
+        "bucket": "Trên 1 đến 3 tháng",
+        "assetsMillionVnd": "145585816",
+        "liabilitiesMillionVnd": "186557109",
+        "gapMillionVnd": "-40971293"
+      },
+      {
+        "bucket": "Trên 3 đến 12 tháng",
+        "assetsMillionVnd": "310287324",
+        "liabilitiesMillionVnd": "318408402",
+        "gapMillionVnd": "-8121078"
+      },
+      {
+        "bucket": "Trên 1 đến 5 năm",
+        "assetsMillionVnd": "286999489",
+        "liabilitiesMillionVnd": "223743417",
+        "gapMillionVnd": "63256072"
+      },
+      {
+        "bucket": "Trên 5 năm",
+        "assetsMillionVnd": "316551237",
+        "liabilitiesMillionVnd": "120778565",
+        "gapMillionVnd": "195772672"
+      }
+    ],
+    "derivedPercentages": [
+      {
+        "item": "Nợ nhóm 3–5",
+        "formula": "Tổng nhóm 3–5 / dư nợ phân nhóm",
+        "percent": {
+          "2026-06-30": "1.15",
+          "2025-12-31": "1.13"
+        }
+      },
+      {
+        "item": "Nợ nhóm 2",
+        "formula": "Nhóm 2 / dư nợ phân nhóm",
+        "percent": {
+          "2026-06-30": "0.71",
+          "2025-12-31": "0.53"
+        }
+      },
+      {
+        "item": "Bao phủ nợ nhóm 3–5",
+        "formula": "(Dự phòng chung + cụ thể loại trừ ký quỹ) / nợ nhóm 3–5",
+        "percent": {
+          "2026-06-30": "125.53",
+          "2025-12-31": "127.90"
+        }
+      },
+      {
+        "item": "Tỷ trọng cho vay kinh doanh bất động sản",
+        "formula": "Dư nợ theo ngành kinh doanh BĐS / dư nợ phân nhóm",
+        "percent": {
+          "2026-06-30": "26.68",
+          "2025-12-31": "28.60"
+        }
+      },
+      {
+        "item": "Tỷ trọng tiền gửi không kỳ hạn trên tổng tiền gửi khách hàng",
+        "formula": "Tiền gửi không kỳ hạn / tiền gửi khách hàng gồm ký quỹ",
+        "percent": {
+          "2026-06-30": "33.81",
+          "2025-12-31": "34.48"
+        }
+      },
+      {
+        "item": "Tiền gửi khách hàng / nợ phải trả",
+        "formula": "Tiền gửi khách hàng / tổng nợ phải trả",
+        "percent": {
+          "2026-06-30": "61.11",
+          "2025-12-31": "61.11"
+        }
+      },
+      {
+        "item": "Dư nợ phân nhóm / tiền gửi khách hàng",
+        "formula": "Dư nợ loại trừ ký quỹ, ứng trước / tiền gửi khách hàng. Chỉ báo kế toán, không phải LDR theo quy định.",
+        "percent": {
+          "2026-06-30": "120.13",
+          "2025-12-31": "116.94"
+        }
+      },
+      {
+        "item": "Vốn chủ sở hữu / tài sản",
+        "formula": "Tổng vốn chủ sở hữu hợp nhất / tổng tài sản hợp nhất",
+        "percent": {
+          "2026-06-30": "14.85",
+          "2025-12-31": "15.05"
+        }
+      }
+    ]
+  },
+  "checks": [
+    "Cộng các nhóm nợ, dư nợ ký quỹ và ứng trước, cơ cấu tiền gửi, nợ phải trả và tổng tài sản cho cả hai cột.",
+    "Đối chiếu tổng kỳ hạn, chênh lệch từng nhóm và xem trực tiếp ảnh trang vật lý 50 và 95.",
+    "Dấu gạch nợ quá hạn giữ null như bảng gốc. Cột tổng và chênh lệch không cho thấy số nợ phải trả ở các nhóm này."
+  ],
+  "interpretation": {
+    "candidatePoints": 3,
+    "maxPoints": 6,
+    "classification": "CONSERVATIVE",
+    "band": "Adequate",
+    "confidence": "LOW",
+    "formalPoints": null,
+    "preparation": "CAR và vốn cấp 1 có dư địa ở mốc bán niên. Nợ nhóm 3–5 khoảng 1,15%, được bao phủ trên 100% cùng phạm vi. Tiền gửi khách hàng là nguồn tài trợ chính, các khoản nợ và nghĩa vụ được đối chiếu. Các dấu hiệu này hỗ trợ mức Adequate ở mép dưới.",
+    "challenge": "Nợ nhóm 2, nợ nhóm 3–5 và tỷ lệ dư nợ so với tiền gửi đều tăng. Tỷ lệ bao phủ giảm, dư nợ kinh doanh BĐS tập trung và chênh lệch kỳ hạn đến 3 tháng âm 53.244.283 triệu VND, chưa bù bằng nguồn thanh khoản tăng thêm đã kiểm chứng. Những điểm này chặn mức cao hơn. Nghĩa vụ ngoại bảng là mệnh giá/cam kết, không cộng thẳng vào nợ phải trả. Dữ liệu bán niên là ảnh chụp ngày 30/06, không đại diện cho bảng cân đối 30/10.",
+    "formalGate": "Các bảng chi tiết được chuẩn hóa cho hồ sơ nghiên cứu. Chưa có bản tiếp nhận bổ sung cho các bảng này hoặc đánh giá chính thức tại cutoff. Đối chiếu số cập nhật Q3 và duyệt phạm vi trước khi chọn điểm chính thức."
+  },
+  "esop2026": {
+    "status": "RESULT_NOT_FOUND_AS_OF_REVIEW; SUBSCRIPTION_SCHEDULED_AFTER_REVIEW_AND_CUTOFF",
+    "plannedShares": "29977234",
+    "announcedPriceVnd": "10000",
+    "subscriptionStart": "2026-12-01",
+    "subscriptionEnd": "2026-12-04",
+    "actuallyIssuedShares": null,
+    "actualIssuancePriceVnd": null,
+    "effectiveDate": null,
+    "cutoffShareCountAdjustment": null,
+    "source": "https://static2.vietstock.vn/vietstock/2026/11/20/20261120___tcb___thong_bao_phat_hanh_esop_2026.pdf",
+    "reassessment": "Tra báo cáo kết quả phát hành và thông báo thay đổi số cổ phiếu lưu hành sau đợt thu tiền; kiểm riêng ngày hoàn tất, đăng ký bổ sung và giao dịch."
+  },
+  "scoringAuthorized": false
+}

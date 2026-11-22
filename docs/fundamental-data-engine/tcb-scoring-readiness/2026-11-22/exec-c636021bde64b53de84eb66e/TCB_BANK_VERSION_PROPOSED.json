@@ -1,0 +1,119 @@
+{
+  "contract": "standing-bank-financial-admission-version-v1",
+  "status": "PROPOSED",
+  "id": "tcb-current-bank-admission-v1",
+  "policyVersion": "standing-financial-current-v1",
+  "subject": {
+    "ticker": "TCB",
+    "securityId": "2a3c69b1-08aa-473c-bbd5-92d096a0d23a",
+    "exchange": "HOSE",
+    "sector": "BANK",
+    "referenceDate": "2026-10-30",
+    "universe": {
+      "version": "vn30-20260803-reviewed-20261115",
+      "registryEntryHash": "03b4681f42c9fb860c7e1d1f4e9d47b8fe18445539884b538eb774b7b6278c88",
+      "profile": {
+        "path": "docs/fundamental-data-engine/vnm-f1-membership-closure/2026-11-15/MARKET_PROFILE.json",
+        "sha256": "b20ee42da399e157e2e4d86e98a176f252a6bd7ce60780243024431656556ec3"
+      }
+    }
+  },
+  "catalog": {
+    "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_BANK_SOURCE_CATALOG.json",
+    "sha256": "7d66de64ca315f34baf272fb27b0edb1cac8c3cac0f0919f7ef71d5489fb3d12"
+  },
+  "standingPolicy": {
+    "path": "docs/fundamental-data-engine/unified-source-admission/2026-11-12/SOURCE_POLICY_AUTHORIZATIONS.json",
+    "sha256": "6dc353d0cc94034c49448ee76f0a2b480362b4398526ca0966dcfe89cc892ae7"
+  },
+  "code": [
+    {
+      "path": "prisma/proposals/current-financial-dataset-v1.sql",
+      "sha256": "4962e375790e01a9340bc03b0fa1bcc685c3890f3f0f98e2a9202035884d55c0"
+    },
+    {
+      "path": "prisma/proposals/current-financial-enrichment-v1.sql",
+      "sha256": "9d82586b63472e9dedf4f0a23c39af9d8766f574957cd918da8839bcd1e92b2d"
+    },
+    {
+      "path": "prisma/proposals/current-scoring-data-acceptance-v1.sql",
+      "sha256": "d0398b126ebb7a4cbea4b9371bf351de96d2df177d361056c54f838f5f3c3f09"
+    },
+    {
+      "path": "src/domain/fundamentals/bank-contract.ts",
+      "sha256": "094622983f9e29c3d0c6a1338028f7de4a0ab698125a7aa299c32ece58b2735d"
+    },
+    {
+      "path": "src/domain/fundamentals/snapshot.ts",
+      "sha256": "70721635205e45f9ae8906e13af3637942c97cf9797670fa88fadc52eb4dab12"
+    },
+    {
+      "path": "src/domain/fundamentals/standing-source-policy.ts",
+      "sha256": "7feab903ddd224f8760576e8bc8ac28434dfa8816400bcc0480e978f8713bb83"
+    },
+    {
+      "path": "src/domain/portfolio/values.ts",
+      "sha256": "7cc8c44a342f913f380c709707292faa0b23889a0bfedd9fca3bd8bb0a0b92e1"
+    },
+    {
+      "path": "src/domain/scoring/evidence.ts",
+      "sha256": "583be5936e9a4374e8dad604d7813c3cd07a9684b18914f3ae9e8b15914a4c90"
+    },
+    {
+      "path": "src/domain/scoring/validation.ts",
+      "sha256": "7ee451acd349917361c2b7cd34151bb746f5e88c847c06c0cd8a09f2b37b61f6"
+    },
+    {
+      "path": "src/infrastructure/fundamentals/snapshot-hash.ts",
+      "sha256": "5c3b437ef70e4a5cefa9eac7827dd6fdccbdb97299661c793a7e5d348d825e22"
+    },
+    {
+      "path": "src/infrastructure/repositories/unified-admission.ts",
+      "sha256": "e8a8eda1baafe92d9fb5052c58597922d837fdb1087e2d5704a272a65a1a81ad"
+    },
+    {
+      "path": "src/infrastructure/source-admission/current-bank-admission.ts",
+      "sha256": "21cab89d036e0ebe4148822722c73a72489ed2ce2861f177145c8cf08b3bff02"
+    },
+    {
+      "path": "src/infrastructure/source-admission/current-bank-scoring.ts",
+      "sha256": "00c6cc391c0fc53e070f6c95a8bc845376f5e60c7f45bbc2e758dcc19b0223b8"
+    },
+    {
+      "path": "src/infrastructure/source-admission/current-dataset.ts",
+      "sha256": "7db2e1f2a5df4e2ccd1f841b20ded3795d30713f359517ddb135aa0e623a5b74"
+    },
+    {
+      "path": "src/infrastructure/source-admission/current-financial.ts",
+      "sha256": "00e6cb51940f8f7cebda98e7eaa3deaf6c27dd81d3cd2326e3b46b382f7be1a3"
+    },
+    {
+      "path": "src/infrastructure/source-admission/registry.ts",
+      "sha256": "0e83a2a0ed787be8efb39cad7be1e8e3c9abfb16bd3de4b1a990ef67a1608f97"
+    },
+    {
+      "path": "src/infrastructure/source-admission/tcb-bank-binding.ts",
+      "sha256": "e26fe83eb02567f74f9ac4f49c1dbccfb1f222962a55893be0b1df2d2436195c"
+    },
+    {
+      "path": "src/infrastructure/source-admission/tcb-bank-dataset.ts",
+      "sha256": "dd929b0cdb6e8e398003bba29d7272c239154fe98e88a144859eb7050c532ac5"
+    },
+    {
+      "path": "src/shared/time.ts",
+      "sha256": "16562e1f442d992325f3f399d1960055b403d48dc949fd3dd8a1e2cabf8b18d2"
+    }
+  ],
+  "outstandingPermissions": false,
+  "binding": {
+    "requirements": {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_BANK_DATASET_REQUIREMENTS.json",
+      "sha256": "90a2cd77c0c1338949eee27144a85dc5630d7337fbf76097fe6250cb8d65aa45"
+    },
+    "marketCapture": {
+      "path": "data/market-history/cafef/TCB.json",
+      "sha256": "15c403933f971ddc9abcc69a73b961a4a86658b66ba0f3ecd9e0fe534ba9f7a5"
+    },
+    "marketKnownAt": "2026-11-22T07:29:38.697Z"
+  }
+}

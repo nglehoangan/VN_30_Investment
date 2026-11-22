@@ -1,0 +1,150 @@
+{
+  "contract": "tcb-bank-valuation-cutoff-reconciliation-v1",
+  "ticker": "TCB",
+  "economicCutoff": "2026-10-30",
+  "reviewDate": "2026-11-22",
+  "sources": [
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_BANK_DATASET_READBACK.json",
+      "sha256": "31534dd57053ba377df320483769f7775398647b6252bbfd44c55824a3d4b9b7"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_FH_BS_CA_DIL_CUTOFF_REVIEW.json",
+      "sha256": "82750892a4a021f3058c9a04cceaaebb53f785f79335ef93bbe0467fd9537403"
+    },
+    {
+      "path": "docs/fundamental-data-engine/scoring-dataset-acceptance/2026-11-04/investment-research-v2/issuers/TCB.json",
+      "sha256": "84dc948e9f9db3591daf1563ea290f4d8ad8147e73dd8cf64ec9191b5be4ea0d"
+    },
+    {
+      "path": "docs/fundamental-data-engine/dfr-05/tcb-bounded-economic-b5c8fe27/TCB_BOUNDED_RESEARCH_FINAL_REVIEW.md",
+      "sha256": "3b542b9c7efee145cabd3d7c0bb7e6d8c918a5846651d19bdc4948a3233dce6f"
+    },
+    {
+      "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/DFR_05_P2_6_TCB_VALUATION_MODEL.md",
+      "sha256": "324ceb7694aa1f2bbc4813148550fd0cfd80520c236abe2ec9173371fb724256"
+    },
+    {
+      "path": "src/domain/scoring/methodology.ts",
+      "sha256": "e7031bf6b00e38670016888928ceb941e5c3a524016a1f8ce84123aca6c7da41"
+    }
+  ],
+  "acceptedMarketInputs": {
+    "priceVnd": "21600",
+    "outstandingShares": "10629355539",
+    "impliedMarketCapVnd": "229594079642400",
+    "historicalPIT": false
+  },
+  "observations": {
+    "q3ParentBookVnd": "187086971000000",
+    "q3BookDate": "2026-09-30",
+    "proFormaQ3BookVndPerCutoffShare": "17600.97",
+    "marketPriceToProFormaQ3Book": "1.23",
+    "status": "OBSERVED_PRICE_AND_PRO_FORMA_ACCOUNTING_COMPARATOR",
+    "limitation": "Vốn thuộc cổ đông mẹ theo BCTC Q3, giữ nguyên làm số tham chiếu qua phát hành theo tỷ lệ. Không suy vốn phổ thông kinh tế, TCE, vốn có thể phân phối hoặc giá trị nội tại tại cutoff."
+  },
+  "priorScenarioArithmetic": {
+    "classification": "HISTORICAL_CONDITIONAL_NUMERATOR_RESTATED_FOR_SHARE_COUNT_ONLY",
+    "rows": [
+      {
+        "scenario": "BEAR",
+        "historicalConditionalEquityVnd": "130386853345894.992421",
+        "arithmeticVndPerCutoffShare": "12266.68"
+      },
+      {
+        "scenario": "BASE",
+        "historicalConditionalEquityVnd": "159224926760886.732419",
+        "arithmeticVndPerCutoffShare": "14979.73"
+      },
+      {
+        "scenario": "BULL",
+        "historicalConditionalEquityVnd": "220183685765285.01566",
+        "arithmeticVndPerCutoffShare": "20714.68"
+      }
+    ],
+    "limitation": "Giữ nguyên tổng giá trị ước tính có điều kiện của hồ sơ cũ. Chỉ chia lại theo mẫu số đã xác minh. Mô hình dùng lợi nhuận làm việc hợp nhất và các giả định chưa đủ điều kiện. Không dùng các kết quả này làm điểm, IRR, MOS hoặc định giá mới."
+  },
+  "returnThresholdDiagnostics": {
+    "formula": "price * (1 + annualized return)^5",
+    "rows": [
+      {
+        "annualizedReturnPercent": "8",
+        "requiredYear5EquivalentVndPerShare": "31737.49"
+      },
+      {
+        "annualizedReturnPercent": "12",
+        "requiredYear5EquivalentVndPerShare": "38066.58"
+      },
+      {
+        "annualizedReturnPercent": "15",
+        "requiredYear5EquivalentVndPerShare": "43445.32"
+      },
+      {
+        "annualizedReturnPercent": "18",
+        "requiredYear5EquivalentVndPerShare": "49415.57"
+      },
+      {
+        "annualizedReturnPercent": "22",
+        "requiredYear5EquivalentVndPerShare": "58378.50"
+      }
+    ],
+    "limitation": "Tổng giá trị tương đương ở cuối năm 5, giả sử quy đổi dòng tiền về cuối kỳ cùng lãi suất ngưỡng. Không giả định dòng cổ tức thực bằng 0 hoặc dự báo giá bán."
+  },
+  "rubricReviews": [
+    {
+      "rubric": "VAL-PRIMARY",
+      "maximum": 8,
+      "classification": "N/R",
+      "points": null,
+      "resolved": [
+        "raw close",
+        "outstanding share count",
+        "Q3 parent book comparator"
+      ],
+      "remaining": [
+        "normalized recurring common earnings and sustainable ROE",
+        "qualified VND cost of equity",
+        "independent economic cross-check"
+      ],
+      "method": "Justified P/B or residual income. Observed P/B is not justified P/B."
+    },
+    {
+      "rubric": "VAL-RET",
+      "maximum": 8,
+      "classification": "N/R",
+      "points": null,
+      "resolved": [
+        "exact entry price and share basis"
+      ],
+      "remaining": [
+        "qualified yearly common distributions and retained capital",
+        "dated terminal value and dilution scenarios"
+      ],
+      "method": "IRR of entry price, each dated distribution, and terminal sale value per comparable share."
+    },
+    {
+      "rubric": "VAL-MOS",
+      "maximum": 4,
+      "classification": "N/R",
+      "points": null,
+      "resolved": [
+        "exact raw price",
+        "share conversion",
+        "FH-BS research evidence"
+      ],
+      "remaining": [
+        "qualified conservative common intrinsic value on the same share basis",
+        "stress/downside and capital feasibility"
+      ],
+      "method": "1 - entry price / conservative intrinsic value per share when qualified."
+    }
+  ],
+  "valuationOutputs": {
+    "intrinsicValueVndPerShare": null,
+    "expectedFiveYearReturn": null,
+    "marginOfSafety": null
+  },
+  "nextEvidence": "Chốt lợi nhuận phổ thông qua chu kỳ và chi phí vốn VND từ hồ sơ đúng kỳ. Rà sau đó khả năng phân phối vốn, đường vốn/RWA, định giá cuối kỳ và phép kiểm độc lập. ESOP 2026 giữ ngoài cutoff.",
+  "registeredDatasetChanged": false,
+  "scoringAuthorized": false
+}

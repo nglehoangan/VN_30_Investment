@@ -1,0 +1,125 @@
+{
+  "contract": "tcb-valuation-economic-input-review-v1",
+  "ticker": "TCB",
+  "cutoff": "2026-10-30",
+  "reviewDate": "2026-11-22",
+  "sources": [
+    {
+      "path": "docs/fundamental-data-engine/dfr-05/p2-6-tcb-78d7069d/evidence-ledger.json",
+      "sha256": "cf9e41175bc35b11d778a54280873ecef25d75890d32ce3646d0f21d2aa12d0b"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_VALUATION_CUTOFF_RECONCILIATION.json",
+      "sha256": "3f573e0b2088c1737cede3999be75ec32e54cbcf9014687adedc52b52c4ff4d2"
+    },
+    {
+      "path": "docs/fundamental-data-engine/dfr-05/tcb-sandbox-v1-cf987271/scenario-outputs.json",
+      "sha256": "aed7f9ebd18db5a90cac34d0cd9115295a80b51e6382d136d6a5d16b37a08a56"
+    },
+    {
+      "path": "docs/fundamental-data-engine/dfr-05/tcb-bounded-economic-b5c8fe27/credit-sensitivity-estimates.json",
+      "sha256": "6e7c111530345a9eb2db930617252f4ac71e95d0429e55f0a96e561d5ec71d31"
+    },
+    {
+      "path": "docs/fundamental-data-engine/dfr-05/tcb-bounded-economic-b5c8fe27/cost-of-equity-calibration.json",
+      "sha256": "4ea5a5789d10e2412567f0748ea72b26bf6a145127d77ec38af71a47046c1991"
+    },
+    {
+      "path": "docs/fundamental-data-engine/dfr-05/tcb-bounded-economic-b5c8fe27/capital-feasibility-register.json",
+      "sha256": "63044352e492bf810f9477aee1edfd518239c00af60a461cccfe777f66465da2"
+    },
+    {
+      "path": "docs/fundamental-data-engine/dfr-05/tcb-bounded-economic-b5c8fe27/crosscheck-register.json",
+      "sha256": "a9a47e83a961e93b5aa2859da55d486dbe1949c44e3c4a1cb09971fc9fa7c39a"
+    }
+  ],
+  "historical": {
+    "ordinaryEpsNumeratorVnd": "25254851000000",
+    "averageParentBookVnd": "157731829500000",
+    "reportedCommonRoeProxyPercent": "16.01",
+    "reportedEquityDividendMovementVnd": "-7086240000000",
+    "creditExpenseTest": [
+      {
+        "case": "BEAR",
+        "additionalPretaxProvisionVnd": "1652376290563.82",
+        "classification": "PROPOSED_ECONOMIC_ESTIMATE",
+        "afterTaxCommonEarningsEffect": null
+      },
+      {
+        "case": "BASE",
+        "additionalPretaxProvisionVnd": "807693096064.32",
+        "classification": "PROPOSED_ECONOMIC_ESTIMATE",
+        "afterTaxCommonEarningsEffect": null
+      },
+      {
+        "case": "BULL",
+        "additionalPretaxProvisionVnd": null,
+        "classification": "REFERENCE_ONLY_ROUNDING_RESIDUE",
+        "afterTaxCommonEarningsEffect": null
+      }
+    ]
+  },
+  "reverseValuation": {
+    "formula": "g + observed P/B * (ke - g)",
+    "scope": "Illustrative inverse threshold using the existing hypothetical ke/g cases and pro forma Q3 accounting book. No economic assumption is newly selected.",
+    "rows": [
+      {
+        "case": "BEAR",
+        "illustrativeKePercent": "16.00",
+        "illustrativeGrowthPercent": "2.00",
+        "impliedRequiredRoePercent": "19.18",
+        "originalCapitalDisposition": "REJECTED_CAPITAL_INFEASIBLE"
+      },
+      {
+        "case": "BASE",
+        "illustrativeKePercent": "13.00",
+        "illustrativeGrowthPercent": "4.20",
+        "impliedRequiredRoePercent": "15.00",
+        "originalCapitalDisposition": "CONDITIONAL_HYPOTHETICAL_ONLY_NOT_EMPIRICALLY_ADMISSIBLE"
+      },
+      {
+        "case": "BULL",
+        "illustrativeKePercent": "11.00",
+        "illustrativeGrowthPercent": "6.00",
+        "impliedRequiredRoePercent": "12.14",
+        "originalCapitalDisposition": "CONDITIONAL_HYPOTHETICAL_ONLY_NOT_EMPIRICALLY_ADMISSIBLE"
+      }
+    ]
+  },
+  "rubrics": [
+    {
+      "id": "VAL-PRIMARY",
+      "state": "N/R",
+      "missing": [
+        "Normalized common earnings through the cycle and marginal tax/ownership bridge",
+        "Dated compatible VND ke and justified exposure",
+        "Independent own-history pricing benchmark on comparable earnings and share bases"
+      ]
+    },
+    {
+      "id": "VAL-RET",
+      "state": "N/R",
+      "missing": [
+        "Dated cash distributions, capital/RWA feasibility and supported terminal value",
+        "Scenario-specific future share changes. The stock dividend is already in the cutoff opening shares."
+      ]
+    },
+    {
+      "id": "VAL-MOS",
+      "state": "N/R",
+      "missing": [
+        "Conservative common intrinsic value and joint credit/funding/capital downside",
+        "The retained sandbox bear fails capital feasibility. Historical credit spread arithmetic alone is insufficient."
+      ]
+    }
+  ],
+  "outputs": {
+    "normalizedCommonEarnings": null,
+    "sustainableRoe": null,
+    "costOfEquityVnd": null,
+    "intrinsicValue": null,
+    "fiveYearIRR": null,
+    "marginOfSafety": null
+  },
+  "scoringAuthorized": false
+}

@@ -1,0 +1,79 @@
+{
+  "contract": "tcb-m1-dated-analyst-disposition-v1",
+  "ticker": "TCB",
+  "cutoff": "2026-10-30",
+  "evaluatedAt": "2026-11-22T13:44:42.214Z",
+  "datasetHash": "9fde2d5ff4df7ce769714ba2f2f2f97c22d9a98f9a4bf37f6f5ed16b90ae2efb",
+  "status": "ANALYST_REVIEW_COMPLETE_PENDING_FORMAL_ADOPTION",
+  "gates": {
+    "stage0": "PASS WITH CONDITIONS",
+    "hardVeto": "CLEAR",
+    "residualRisk": "ELEVATED_CONTROLLED"
+  },
+  "inputPins": [
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_CONSOLIDATED_RUBRIC_ASSESSMENT.json",
+      "sha256": "78af353df5fffd0be5c38644fa69341af2efc7d97f39b65babcaa7a79635385e"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_CONSOLIDATED_SCORING_SCOPE_OWNER_APPROVAL.json",
+      "sha256": "af4290663f00dfb9f17d601c67fca05c56d55a1f89a8defc546155944e642137"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_FIVE_PUBLIC_SOURCE_RUBRIC_REVIEW.json",
+      "sha256": "4bf0ff3fc44f9fb38d76090f4cc269bdb78e3cdf4d23c6aa0ba2ca91e3fb6d43"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_M1_GATE_RECONCILIATION.json",
+      "sha256": "eb558fdc6f4b77356c90db22b23f5817f0eba0401de00bfcef3f99df7dbef6d5"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_EXPANDED_SCORING_ROUTE_CANDIDATE.json",
+      "sha256": "fbf9f5a2a35a6b956a7599595ac7c7a5065537d8bbdf64170c36a3fd50231c61"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_BEAR_RWA_EARNINGS_SENSITIVITY.md",
+      "sha256": "19089c3c75d201ecd6db37d492fb0aa254a3e79400ac9f9eb96970421b75c22e"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_REMAINING_FIVE_RUBRIC_RESEARCH_REVIEW.json",
+      "sha256": "641e6a8d1de4f11918c035ffa6b51fbb0524a2de0d2b1b9248401b37de45a814"
+    },
+    {
+      "path": "docs/01 SYSTEM/RISK_POLICY_v1.0.md",
+      "sha256": "3785c1bb39b80435655a1621b2afbda992c38beaff82edebc0c67b0bc54ee744"
+    },
+    {
+      "path": "docs/01 SYSTEM/DECISION_FRAMEWORK_v1.0.md",
+      "sha256": "e1929fd8d8fe337c3d80fe2c76dfbd48e1f41d2d4b4a0618b42269b2635f8b1d"
+    }
+  ],
+  "findings": [
+    {
+      "rule": "Decision Framework §4.1 / Risk Policy §11.1",
+      "finding": "TCB đáp ứng tư cách VN30 tại cutoff theo tham chiếu universe đã ghim. Phạm vi cổng là doanh nghiệp, chưa có lệnh mua để xét margin hoặc giới hạn danh mục."
+    },
+    {
+      "rule": "Decision Framework §4.2–4.3 / Risk Policy §11.3",
+      "finding": "Mô hình kinh doanh, lợi nhuận và vốn Q3 đủ căn cứ để tiếp tục thẩm định. CAR khoảng 15%. Bảng kỳ hạn cho chênh 3 tháng dương 25.475 tỷ, 12 tháng âm 56.405 tỷ; haircut 10% làm chênh 3 tháng âm 13.764 tỷ. Đây là độ nhạy với tái tài trợ, hồ sơ chưa có bằng chứng cụ thể về nhu cầu tài trợ khẩn cấp hoặc bán tài sản trong tình trạng khó khăn."
+    },
+    {
+      "rule": "Decision Framework §4.4 / Risk Policy §11.2",
+      "finding": "Có kiểm toán FY2025 không sửa đổi và công bố giao dịch liên quan. Căn cứ giá và cách giám sát một số giao dịch chưa đầy đủ. Tài liệu đã rà chưa đưa ra bằng chứng đáng tin cậy về sai lệch báo cáo trọng yếu, gian lận hoặc rủi ro bên liên quan nghiêm trọng bị che giấu."
+    },
+    {
+      "rule": "Decision Framework §4.5 / Risk Policy §11.4",
+      "finding": "Có định giá cơ sở, Bear và mốc đối chiếu SHS. Phạm vi giả định tạo độ bất định cao nhưng vẫn cho phép xây dựng luận điểm kiểm chứng được."
+    },
+    {
+      "rule": "Residual risk",
+      "finding": "Giữ kết luận ELEVATED_CONTROLLED tương ứng RG-RISK 2/4. Rủi ro tập trung tín dụng, suy giảm bao phủ và tái tài trợ vẫn đáng kể sau khi xét vốn, dự phòng và biện pháp giảm thiểu công bố."
+    }
+  ],
+  "conditions": [
+    "Theo dõi khả năng bù chênh kỳ hạn và khả năng tái tài trợ khi có công bố kỳ sau.",
+    "Mở lại M1 nếu bằng chứng mới chỉ ra thiếu hụt thanh khoản chưa được bù, tài trợ khẩn cấp hoặc vấn đề quản trị trọng yếu."
+  ],
+  "formalM1Admitted": false,
+  "tradeAuthorizationGranted": false
+}
