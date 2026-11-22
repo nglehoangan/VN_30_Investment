@@ -1,0 +1,477 @@
+{
+  "contract": "acb-assessment-review-diagnostic-v1",
+  "status": "BLOCKED",
+  "scope": {
+    "ticker": "ACB",
+    "cutoff": "2026-10-30",
+    "bindingId": "current-bank-coverage:bff83724df834f2b29a7a4d0a3a3b573ab466aa2c2d4f72ab23f9b42b2825119",
+    "bindingManifestHash": "bff83724df834f2b29a7a4d0a3a3b573ab466aa2c2d4f72ab23f9b42b2825119",
+    "parentDatasetId": "current-bank-dataset:012ddaa99a1d0edd6a208e969a9d2811f01b848b44bf76d745e0dc8083056e8b",
+    "consumerDatasetHashFromReadback": "b916468f9808b2f7fed904ef5ba14913c7546cb644289bb0b0a28d3aa1152568",
+    "dataAcceptanceId": "current-data-acceptance:2624e22d282b23bd94db0834ecc6f012828350dce9ad2f729d994b30bdac614f"
+  },
+  "assessmentDraft": {
+    "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_ASSESSMENT_REVIEW_DRAFT_V12.json",
+    "sha256": "c63920b92ed734a770c962ffb40c94f2a6f08a68cc13861dc2a7b7a3be79a5cd"
+  },
+  "evidence": {
+    "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_FORMAL_ASSESSMENT_BLOCKERS_2026-11-22.md",
+    "sha256": "709c39eabeb0e3d18e50d1330ee3268253901e0e5a90e83cad1a4a26bafd176b"
+  },
+  "formalReviewBindingEligible": false,
+  "phase": "PREPARATION",
+  "datasetReadback": {
+    "baselineDatasetHash": "b916468f9808b2f7fed904ef5ba14913c7546cb644289bb0b0a28d3aa1152568",
+    "baselineDataAcceptanceId": "current-data-acceptance:2624e22d282b23bd94db0834ecc6f012828350dce9ad2f729d994b30bdac614f",
+    "bindingId": "current-bank-coverage:bff83724df834f2b29a7a4d0a3a3b573ab466aa2c2d4f72ab23f9b42b2825119",
+    "manifestHash": "bff83724df834f2b29a7a4d0a3a3b573ab466aa2c2d4f72ab23f9b42b2825119",
+    "parentDatasetId": "current-bank-dataset:012ddaa99a1d0edd6a208e969a9d2811f01b848b44bf76d745e0dc8083056e8b",
+    "factCount": 14,
+    "methodologyHash": "674856a49bb1469d73edeeff51853589a6301c2759cd2d8f969715f5f722139e",
+    "executableSha256": "a651447f91111d99c6585bc6a43321615023abde83493377925db7febea96139",
+    "baselineDatasetKnownAt": "2026-11-19T13:22:42.211Z",
+    "methodologyRecordedAt": "2026-11-22T04:36:38.806Z",
+    "executableAtBaselineKnownAt": "CURRENT_EXECUTABLE_APPROVAL_TIME",
+    "datasetAtMethodologyRecordedAt": "BANK_DATA_ACCEPTANCE_REQUIRED"
+  },
+  "evidencePinReferencesVerified": 40,
+  "rubrics": [
+    {
+      "rubric": "BQ-EQ",
+      "maximum": 8,
+      "researchBand": "3",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "returns",
+        "persistence",
+        "margins",
+        "cost_of_capital"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_BAND_SELECTION_2026-11-21.md",
+        "sha256": "08f314e8d27de3db436691336cfcc112022d3ff8613639d1232be60fdff94fab"
+      },
+      "researchFinding": "ROE chuẩn hóa 14,72% gần Ke 15%, lợi nhuận/cp chuẩn hóa gần đi ngang.",
+      "counterevidence": "Cần chứng minh ROE duy trì trên Ke hoặc lợi nhuận kinh tế ổn định hơn.",
+      "proposedAnchor": "Average economics",
+      "researchPoints": 3
+    },
+    {
+      "rubric": "BQ-MOAT",
+      "maximum": 6,
+      "researchBand": "3",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "advantage",
+        "economic_behavior",
+        "persistence"
+      ],
+      "researchEvidence": null,
+      "researchFinding": "Đề xuất 3. Sản phẩm cá nhân/SME đã có bằng chứng, cần chiều sâu về giữ chân và kinh tế qua chu kỳ.",
+      "counterevidence": null,
+      "proposedAnchor": "Some differentiation",
+      "researchPoints": 3
+    },
+    {
+      "rubric": "BQ-CASH",
+      "maximum": 6,
+      "researchBand": "3",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "realization",
+        "one_offs",
+        "working_capital",
+        "recognition"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_BAND_SELECTION_2026-11-21.md",
+        "sha256": "08f314e8d27de3db436691336cfcc112022d3ff8613639d1232be60fdff94fab"
+      },
+      "researchFinding": "Thực thu lãi 95,98%, loại thu hồi một lần và xét dự phòng. Bao phủ giảm còn 90,94%.",
+      "counterevidence": "Cần thêm căn cứ chất lượng lãi dồn tích, phí định kỳ và độ bền dự phòng.",
+      "proposedAnchor": "Adequate realization with material qualifications",
+      "researchPoints": 3
+    },
+    {
+      "rubric": "BQ-RES",
+      "maximum": 5,
+      "researchBand": "2",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "concentration",
+        "pricing_power",
+        "cyclicality",
+        "stress"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_RESILIENCE_AND_CAPITAL_REVERSE_STRESS.md",
+        "sha256": "4386bdb654d9ca83c8b0c2191a608c0ab52b2cd67d928d2f011501fd662afc97"
+      },
+      "researchFinding": "Material vulnerabilities. Lợi nhuận trước dự phòng duy trì, nhưng tỷ lệ giấy tờ có giá và proxy chí phí huy động Q3 tăng, tháng đầu có gap lớn.",
+      "counterevidence": "Độ bền huy động, tập trung theo đối tác và nguồn bù tăng thêm có thể đổi band.",
+      "proposedAnchor": "Material vulnerabilities",
+      "researchPoints": 2
+    },
+    {
+      "rubric": "FH-BS",
+      "maximum": 6,
+      "researchBand": "3",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "capital",
+        "asset_quality",
+        "funding",
+        "leverage_context"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_RESILIENCE_AND_CAPITAL_REVERSE_STRESS.md",
+        "sha256": "4386bdb654d9ca83c8b0c2191a608c0ab52b2cd67d928d2f011501fd662afc97"
+      },
+      "researchFinding": "Adequate. Dùng mức thấp của band. Riêng lẻ H1 còn khoảng 916 tỷ tới ngưỡng CAR với RWA +6% và lỗ giả định 4.846 tỷ. Nợ xấu tăng, bao phủ giảm.",
+      "counterevidence": "Vốn/RWA riêng lẻ Q3, điều kiện funding và tập trung tổn thất có thể đổi band.",
+      "proposedAnchor": "Adequate",
+      "researchPoints": 3
+    },
+    {
+      "rubric": "FH-LIQ",
+      "maximum": 4,
+      "researchBand": null,
+      "formalStatus": "APPROVED_N_R",
+      "requiredTopics": [
+        "obligations",
+        "liquidity",
+        "maturities",
+        "covenants"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_SOURCE_POLICY_CLOSURE_V12.md",
+        "sha256": "9ca19da08f21e6aed5127c10f17a3429221574dc830e0367f40159a0ca47b2d6"
+      },
+      "researchFinding": "Độ nhạy H1 haircut 15% còn thiếu 13.629,01 tỷ trong kịch bản 75/75/25; chưa ghi nhận là bù Q3.",
+      "counterevidence": "Xác minh giả định tái tục đại diện và nguồn bù bổ sung thực sự khả dụng sau haircut, điều kiện rút và khử trùng."
+    },
+    {
+      "rubric": "FH-STRESS",
+      "maximum": 5,
+      "researchBand": null,
+      "formalStatus": "APPROVED_N_R",
+      "requiredTopics": [
+        "scenario",
+        "funding_response",
+        "capital_response"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_SOURCE_POLICY_CLOSURE_V12.md",
+        "sha256": "9ca19da08f21e6aed5127c10f17a3429221574dc830e0367f40159a0ca47b2d6"
+      },
+      "researchFinding": "Kịch bản neo Basel đổi dấu; chưa chọn được mức sốc có căn cứ và khả năng huy động trong stress.",
+      "counterevidence": "Cần xác minh nguồn bù trong stress, giá vốn hoặc lỗ bán tài sản và tác động lên vốn cùng phạm vi. Độ nhạy hiện tại giả định huy động đủ và không phải CAR Q3 sau sốc."
+    },
+    {
+      "rubric": "GQ-HIST",
+      "maximum": 5,
+      "researchBand": "2",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "trend",
+        "acquisitions",
+        "base_effects",
+        "per_share"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_HISTORICAL_ROE_SHARE_AND_CAPITAL_REVIEW.md",
+        "sha256": "3699dda9a6e31bbcd9b4ad6961e0a5d11b4df9718f440570adb477b45f9321a5"
+      },
+      "researchFinding": "Đề xuất nghiên cứu 2, Limited/low-quality trend. Lợi nhuận tính EPS tăng 4,67%/năm FY22–25 trên cùng mẫu số; FY25 giảm 5,28% và ROE giảm 26,20% xuống 17,45%.",
+      "counterevidence": "BVPS tăng nhanh; FY22 và FY25 có nền dự phòng khác nhau. Phân tích tác động mua lại/hợp nhất và chuẩn hoá thêm chi phí tín dụng có thể đổi band.",
+      "proposedAnchor": "Limited/low-quality trend",
+      "researchPoints": 2
+    },
+    {
+      "rubric": "GQ-FWD",
+      "maximum": 5,
+      "researchBand": "2",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "runway",
+        "reinvestment",
+        "funding",
+        "execution"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_SOURCE_RULE_REVIEW_2026-11-21.md",
+        "sha256": "cd23233ce165c5b38fa91a1c067c93c757909cae5f810b252db9962b60addd47"
+      },
+      "researchFinding": "Limited/cyclical. Nền lợi nhuận phổ thông 15.307 tỷ; tăng 6% theo giả định cho khoảng 19.326 tỷ năm 5 và ROE năm 6 11,70%, dưới Ke 15%. Phản chứng là tín dụng 9M tăng 11,5% và NIM Q3 3,08%.",
+      "counterevidence": "Cần cầu nối tín dụng, NIM, dự phòng và vốn/RWA để xác nhận band. Band có thể tăng nếu biên và chi phí tín dụng bền vững với tăng trưởng vốn.",
+      "proposedAnchor": "Limited/cyclical",
+      "researchPoints": 2
+    },
+    {
+      "rubric": "GQ-INC",
+      "maximum": 5,
+      "researchBand": "1",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "incremental_return",
+        "denominator",
+        "unit_economics"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_AVAILABLE_EVIDENCE_ASSESSMENT.md",
+        "sha256": "c710e24100df5b4d9e27cc5620d68d70721e83cff0f76e4d1b66128f108a584e"
+      },
+      "researchFinding": "Chỉ dấu lợi nhuận chuẩn hóa tăng thêm trên vốn tăng thêm là −1,11% FY2023–25 và +8,54% FY2022–25.",
+      "counterevidence": "Mốc xuất phát và độ trễ của vốn có thể đổi kết luận. Chưa tách hiệu quả từng hoạt động.",
+      "proposedAnchor": "Weak incremental economics",
+      "researchPoints": 1
+    },
+    {
+      "rubric": "IC-IND",
+      "maximum": 4,
+      "researchBand": "2",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "barriers",
+        "competition",
+        "demand",
+        "disruption"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_BAND_SELECTION_2026-11-21.md",
+        "sha256": "08f314e8d27de3db436691336cfcc112022d3ff8613639d1232be60fdff94fab"
+      },
+      "researchFinding": "Cầu tín dụng tăng và có rào cản gia nhập. Cạnh tranh chi phí nguồn vốn vẫn hiện diện.",
+      "counterevidence": "Chuỗi nhiều ngân hàng qua chu kỳ có thể đổi band nếu chỉ ra sức định giá bền vững hoặc lợi nhuận thấp có tính cấu trúc.",
+      "proposedAnchor": "Mixed/cyclical/average",
+      "researchPoints": 2
+    },
+    {
+      "rubric": "IC-POS",
+      "maximum": 4,
+      "researchBand": "2",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "share",
+        "cost_position",
+        "distribution"
+      ],
+      "researchEvidence": null,
+      "researchFinding": "Đề xuất 2. Proxy cùng cơ sở ACB 5,16%, TCB 4,67%, VIB 5,44%. Thị phần SME cùng định nghĩa còn thiếu.",
+      "counterevidence": null,
+      "proposedAnchor": "Competitive",
+      "researchPoints": 2
+    },
+    {
+      "rubric": "IC-CYCLE",
+      "maximum": 2,
+      "researchBand": "1",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "cycle",
+        "forward_asymmetry",
+        "survivability"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_BAND_SELECTION_2026-11-21.md",
+        "sha256": "08f314e8d27de3db436691336cfcc112022d3ff8613639d1232be60fdff94fab"
+      },
+      "researchFinding": "NIM và lợi nhuận trước dự phòng phục hồi, đi cùng tăng nợ nhóm 2 và nợ xấu.",
+      "counterevidence": "Biên sau chi phí tín dụng cải thiện bền vững hoặc yếu đi đủ mạnh có thể đổi band.",
+      "proposedAnchor": "Balanced normalized forward asymmetry",
+      "researchPoints": 1
+    },
+    {
+      "rubric": "VAL-PRIMARY",
+      "maximum": 8,
+      "researchBand": "2",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "primary_model",
+        "normalized_denominator",
+        "price",
+        "cross_check"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_BAND_SELECTION_2026-11-21.md",
+        "sha256": "08f314e8d27de3db436691336cfcc112022d3ff8613639d1232be60fdff94fab"
+      },
+      "researchFinding": "P/B hợp lý cơ sở khoảng 17.500 đồng/cp, giá chốt cao hơn khoảng 20%.",
+      "counterevidence": "ROE/Ke và đối chiếu P/B lịch sử, cổ tức có thể đổi mức.",
+      "proposedAnchor": "Expensive",
+      "researchPoints": 2
+    },
+    {
+      "rubric": "VAL-RET",
+      "maximum": 8,
+      "researchBand": "Below 8%",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "starting_value",
+        "growth",
+        "exit_value",
+        "distributions",
+        "dilution",
+        "scenarios"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_AVAILABLE_EVIDENCE_ASSESSMENT.md",
+        "sha256": "c710e24100df5b4d9e27cc5620d68d70721e83cff0f76e4d1b66128f108a584e"
+      },
+      "researchFinding": "Dùng cơ sở thận trọng 3,25% theo §8.2. Kiểm tra tối đa 5,34% khi giữ ROE và cổ tức cơ sở.",
+      "counterevidence": "ROE lịch sử cao hơn hurdle, mức duy trì ở cuối kỳ chưa được xác minh. Không gán xác suất cho kịch bản tích cực.",
+      "proposedAnchor": "Below 8%",
+      "researchPoints": 0
+    },
+    {
+      "rubric": "VAL-MOS",
+      "maximum": 4,
+      "researchBand": "0",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "conservative_value",
+        "downside",
+        "balance_sheet"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_AVAILABLE_EVIDENCE_ASSESSMENT.md",
+        "sha256": "c710e24100df5b4d9e27cc5620d68d70721e83cff0f76e4d1b66128f108a584e"
+      },
+      "researchFinding": "Biên an toàn âm 48,0% tại giá trị thận trọng. Giá chốt cao hơn cả đầu trên của dải thử và mô hình vốn cho thấy dư địa nhạy với RWA/đệm.",
+      "counterevidence": "Giá trị thận trọng và khả năng hấp thụ lỗ có thể đổi kết luận.",
+      "proposedAnchor": "Poor asymmetry",
+      "researchPoints": 0
+    },
+    {
+      "rubric": "RG-GOV",
+      "maximum": 4,
+      "researchBand": null,
+      "formalStatus": "APPROVED_N_R",
+      "requiredTopics": [
+        "disclosure",
+        "related_parties",
+        "minority",
+        "auditor"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_SOURCE_POLICY_CLOSURE_V12.md",
+        "sha256": "9ca19da08f21e6aed5127c10f17a3429221574dc830e0367f40159a0ca47b2d6"
+      },
+      "researchFinding": "Topic tuyến phê duyệt có bằng chứng theo Nghị quyết 4490; kiểm soát thực tế giao dịch vẫn mở.",
+      "counterevidence": "Công bố đã rà chỉ liệt kê nghị quyết, thiếu bằng chứng thực thi hoặc giám sát cùng giao dịch. Giữ N/R."
+    },
+    {
+      "rubric": "RG-RISK",
+      "maximum": 4,
+      "researchBand": null,
+      "formalStatus": "APPROVED_N_R",
+      "requiredTopics": [
+        "residual_risks",
+        "mitigation",
+        "distinct_channels"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_SOURCE_POLICY_CLOSURE_V12.md",
+        "sha256": "9ca19da08f21e6aed5127c10f17a3429221574dc830e0367f40159a0ca47b2d6"
+      },
+      "researchFinding": "Rủi ro khác biệt nằm ở giao dịch liên quan; thiếu số dư định danh và hiệu lực giảm thiểu.",
+      "counterevidence": null
+    },
+    {
+      "rubric": "RG-UNC",
+      "maximum": 2,
+      "researchBand": "0",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "forecast_range",
+        "sensitivity",
+        "dependencies"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CAPITAL_HEADROOM_AND_EXIT_TEST.md",
+        "sha256": "0ef17f25f68f9a8d79c67bc018b2d8711fb17fdcccaebfad94c2e0153b6191f9"
+      },
+      "researchFinding": "Đề xuất nghiên cứu 0, High uncertainty. Giá thoát đổi band IRR; đệm quản trị có thể đảo kết luận dư địa chi.",
+      "counterevidence": "Có mô hình định lượng và các mốc tham chiếu, nhưng nếu xác minh được nền vốn Q3 và kịch bản thoát thì mức độ bất định có thể giảm.",
+      "proposedAnchor": "High uncertainty",
+      "researchPoints": 0
+    },
+    {
+      "rubric": "CA-REINV",
+      "maximum": 2,
+      "researchBand": "1",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "capex",
+        "acquisitions",
+        "divestments"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_SOURCE_POLICY_CLOSURE_V12.md",
+        "sha256": "9ca19da08f21e6aed5127c10f17a3429221574dc830e0367f40159a0ca47b2d6"
+      },
+      "researchFinding": "Giữ band nghiên cứu 1/2 với LNST ACBS cùng kỳ suy giảm; LNTT kiểm toán ACBA 168 tỷ bổ sung bối cảnh.",
+      "counterevidence": "Xét LNST cùng kỳ, ngày vốn thực triển khai và hiệu quả riêng AMC trước khi xác nhận band chính thức.",
+      "proposedAnchor": "Mixed/acceptable",
+      "researchPoints": 1
+    },
+    {
+      "rubric": "CA-DIST",
+      "maximum": 1,
+      "researchBand": "0",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "retention",
+        "distribution",
+        "buyback_valuation",
+        "resilience"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_AVAILABLE_EVIDENCE_ASSESSMENT.md",
+        "sha256": "c710e24100df5b4d9e27cc5620d68d70721e83cff0f76e4d1b66128f108a584e"
+      },
+      "researchFinding": "Có cổ tức tiền mặt. Phép thử vốn và chỉ dấu hiệu quả VCSH tăng thêm chưa chứng minh phân phối và giữ vốn có kỷ luật.",
+      "counterevidence": "Cần dữ liệu vốn cùng phạm vi và hiệu quả tái đầu tư làm căn cứ nếu muốn đổi band.",
+      "proposedAnchor": "Evidence does not demonstrate disciplined distribution",
+      "researchPoints": 0
+    },
+    {
+      "rubric": "CA-DIL",
+      "maximum": 1,
+      "researchBand": "1",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "issue_terms",
+        "proceeds",
+        "per_share"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CORPORATE_ACTIONS_AND_REMAINING_RUBRICS.md",
+        "sha256": "60201c28bba3b3b2783da582b7e4566018ba06228572ee946a6d1399601aaed4"
+      },
+      "researchFinding": "Band nghiên cứu 1. Bốn đợt tăng cổ phần 2023–2026 khớp cổ tức cổ phiếu 15%/15%/15%/13%, theo tỷ lệ và không thu vốn mới.",
+      "counterevidence": "Giới hạn tác động cổ phiếu lẻ và phạm vi kỳ review. Điều khoản chuyển lợi ích hay phát hành ngoài cầu nối sẽ làm đổi band.",
+      "proposedAnchor": "Disciplined neutral/accretive issuance",
+      "researchPoints": 1
+    },
+    {
+      "rubric": "CA-PSV",
+      "maximum": 1,
+      "researchBand": "0",
+      "formalStatus": "REVIEW_CANDIDATE",
+      "requiredTopics": [
+        "per_share",
+        "actions",
+        "cycle_adjustment"
+      ],
+      "researchEvidence": {
+        "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CA_PSV_NORMALIZED_VALUE_REVIEW.md",
+        "sha256": "70e744de7321acca2ce99d793b1b372f6c8fea05943949bc17d776bf18f94ada"
+      },
+      "researchFinding": "Đề xuất band nghiên cứu 0. Lợi nhuận/cp giảm ở tất cả mức chi phí tín dụng kiểm tra trong FY2023–2025. Giá trị mô hình cộng cổ tức đổi dấu trong dải giả định.",
+      "counterevidence": "BVPS tăng, có cổ tức và so từ FY2022 cho kết quả tích cực. Rà thêm khoản bất thường và kiểm tra compounding trên các cửa sổ chu kỳ có căn cứ trước khi dùng chính thức.",
+      "proposedAnchor": "Evidence does not demonstrate real compounding",
+      "researchPoints": 0
+    }
+  ]
+}

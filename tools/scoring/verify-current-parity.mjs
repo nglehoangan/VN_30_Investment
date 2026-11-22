@@ -1,16 +1,29 @@
-/** Check generated scoring source against the exact retired generator. */
-import {execFileSync} from 'node:child_process';
+/** Verify that the versioned ACB residual-risk exception is the only calculator delta. */
+import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
 
 const root = resolve(import.meta.dirname, '../..');
-const revision = '2351de92abdad75d930de7e3e81efac70639b091';
-const historicalPath = 'scripts/generate-current-scoring.mjs';
-const expectedHash = '3a3752c13137f58446ba7632d8971918ff24247e94e69eaf1d5032e301debdf5';
-const bytes = execFileSync('git', ['show', revision + ':' + historicalPath], {cwd: root});
-if (createHash('sha256').update(bytes).digest('hex') !== expectedHash) {
-  throw Error('RETIRED_SCORING_GENERATOR_HASH_MISMATCH');
+const predecessor = JSON.parse(readFileSync(resolve(root,
+  'docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_EXECUTABLE_RECOVERY_APPROVED.json')));
+const source = 'src/domain/current-scoring/scorecard.ts';
+const review = 'src/domain/current-scoring/provenance.ts';
+const resetRisk = (text) => text
+  .replace('import {ACB_LIMITED_METHOD} from "./limited-coverage";\n', '')
+  .replace('type ExternalGate, ', '')
+  .replace('ResidualRiskAssessment | ExternalGate<"NOT_RATED">', 'ResidualRiskAssessment')
+  .replace('  const unresolvedResidualRisk = input.methodology.methodologyId === ACB_LIMITED_METHOD && input.residualRisk.status === "NOT_RATED";\n', '')
+  .replace('(unresolvedResidualRisk || [', '[')
+  .replace('.includes(input.residualRisk.status)),"INVALID_RISK")', '.includes(input.residualRisk.status),"INVALID_RISK")');
+const resetReview = (text) => text
+  .replace('import type { ExternalGate } from "@/domain/scoring/eligibility";\n', '')
+  .replace(' | "residualRisk"', '')
+  .replace('  readonly residualRisk: LegacyScoreInput["residualRisk"] | ExternalGate<"NOT_RATED">;\n', '');
+
+for (const [path, reset] of [[source, resetRisk], [review, resetReview]]) {
+  const bytes = reset(readFileSync(resolve(root, path), 'utf8'));
+  if (createHash('sha256').update(bytes).digest('hex') !== predecessor.code.find(pin => pin.path === path)?.sha256) {
+    throw Error('CURRENT_SCORING_PREDECESSOR_PARITY_MISMATCH');
+  }
 }
-execFileSync(process.execPath, ['--input-type=module', '-', '--check'], {
-  cwd: root, input: bytes, stdio: ['pipe', 'inherit', 'inherit'],
-});
+console.log(JSON.stringify({status: 'CURRENT_PARITY_PASS', predecessor: predecessor.runtimeProfile}));

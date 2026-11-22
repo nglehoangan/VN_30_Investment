@@ -136,9 +136,13 @@ def check(job, route):
         blockers.append('NO_REGISTERED_TICKER_MAPPING_ADAPTER')
     if route is None or not route.get('authorization'):
         blockers.append('NO_EXACT_TICKER_SCORING_AUTHORITY')
+    coverage = {}
     if not blockers:
-        blockers.extend(invoke_adapter(job, 'preflight')['blockers'])
-    return {'blockers': blockers, 'inventory': inv, 'retainedInputs': retained,
+        preflight = invoke_adapter(job, 'preflight')
+        blockers.extend(preflight['blockers'])
+        if 'limitedCoverage' in preflight and not blockers:
+            coverage['limitedCoverage'] = preflight['limitedCoverage']
+    return {**coverage, 'blockers': blockers, 'inventory': inv, 'retainedInputs': retained,
             'level1Candidate': baseline, 'sectorReference': SECTORS, 'level1Reference': LEVEL1}
 
 

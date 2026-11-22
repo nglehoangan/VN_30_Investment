@@ -1,0 +1,2801 @@
+{
+  "contract": "current-assessment-adoption-v1",
+  "input": {
+    "contract": "personal-ai-score-input-v1",
+    "currentPurpose": {
+      "contract": "current-scoring-time-v1",
+      "purpose": "CURRENT_FORMAL_VALUATION",
+      "economicCutoff": "2026-10-30",
+      "evaluatedAt": "2026-11-22T06:22:22.947Z"
+    },
+    "id": "acb-official-limited-v3-20261030-f545916a91a1",
+    "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+    "companyName": "Ngân hàng TMCP Á Châu",
+    "asOf": "2026-10-30T23:59:59.999Z",
+    "knownAt": "2026-11-22T06:22:22.947Z",
+    "calculatedAt": "2026-11-22T06:22:22.947Z",
+    "priorScorecardId": null,
+    "revisionReason": null,
+    "artifactScope": "FORMAL",
+    "methodology": {
+      "methodologyId": "current-scoring-acb-official-limited-v3",
+      "family": "SCORING",
+      "semanticVersion": "1.0.0",
+      "intendedUse": "PRODUCTION",
+      "governanceStatus": "APPROVED",
+      "approvalReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_EXECUTABLE_OWNER_APPROVAL.json",
+      "implementationIdentity": "m64-clarification-1-ai-origin-v1",
+      "configurationReference": "current-scoring-executable-code-sha256:0e0a2747b5bd4c271cff53c93ad0a11946a89f566fd23da0f9b51793d9e71536",
+      "governingDocumentReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_LIMITED_COVERAGE_SCOPE_DECISION_PROPOSAL.md",
+      "effectiveDate": "2026-11-22",
+      "recordedAt": "2026-11-22T06:13:07.902Z"
+    },
+    "reference": {
+      "receivedAt": "2026-11-19T13:22:42.211Z",
+      "taxonomy": "M3_REGISTERED_SECTOR_ROUTE",
+      "data": {
+        "version": "vn30-20260803-reviewed-20261115",
+        "intervals": [
+          {
+            "id": "ACB-V3-IDENTIFIER",
+            "kind": "IDENTIFIER",
+            "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+            "from": "2026-08-03",
+            "to": "2026-11-16",
+            "value": "ACB",
+            "taxonomy": null,
+            "sourceReference": "03b4681f42c9fb860c7e1d1f4e9d47b8fe18445539884b538eb774b7b6278c88"
+          },
+          {
+            "id": "ACB-V3-MEMBERSHIP",
+            "kind": "MEMBERSHIP",
+            "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+            "from": "2026-08-03",
+            "to": "2026-11-16",
+            "value": "VN30",
+            "taxonomy": null,
+            "sourceReference": "03b4681f42c9fb860c7e1d1f4e9d47b8fe18445539884b538eb774b7b6278c88"
+          },
+          {
+            "id": "ACB-V3-SECTOR",
+            "kind": "SECTOR",
+            "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+            "from": "2026-08-03",
+            "to": "2026-11-16",
+            "value": "BANK",
+            "taxonomy": "M3_REGISTERED_SECTOR_ROUTE",
+            "sourceReference": "docs/fundamental-data-engine/vnm-step3-authority-closure/2026-11-17/RETAINED_HEAD_REFERENCE_DATA.json"
+          }
+        ]
+      }
+    },
+    "normalization": {
+      "sector": "BANK",
+      "cycle": "CYCLICAL",
+      "peakCycleRisk": false,
+      "method": "BANK returns and capital, comparable retained history, justified P/B exit",
+      "peerIds": [],
+      "peerBasis": "ABSOLUTE_HISTORY",
+      "rationale": "Retained peer observations illustrate competition; no percentile scoring from limited sample.",
+      "actionComparable": true,
+      "actionEvidenceRefs": [
+        "ACB-V3-CORPORATE-ACTION-COMPARABILITY"
+      ]
+    },
+    "evidence": [
+      {
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "classification": "FACT",
+        "critical": true,
+        "family": "FINANCIAL",
+        "id": "bank-current-fact:464a5902ea5ae13fb731372b0956cd45c27dea487c459dcd2bf63c3f000a88f9",
+        "observation": "TOTAL_ASSETS",
+        "periodEnd": "2026-09-30",
+        "periodStart": "2026-09-30",
+        "publishedAt": null,
+        "quality": "VALID",
+        "receivedAt": "2026-11-19T13:22:42.211Z",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "source": "INTERIM_CONSOLIDATED_STATEMENT",
+        "time": {
+          "authorizationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/BANK_VERSION_APPROVED.json",
+          "availableAt": "2026-11-19T13:22:42.211Z",
+          "contract": "current-formal-evidence-time-v1",
+          "ingestedAt": "2026-11-19T13:22:42.211Z",
+          "originalReceivedAt": "2026-11-02T06:32:35.694Z",
+          "policyHash": "c39b7de09ae70b7fefcba6fb178cdcddb87795667b0397bf82de25aab2062f68",
+          "policyVersion": "standing-financial-current-v1",
+          "purpose": "CURRENT_FORMAL_VALUATION",
+          "qualificationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/ACB_SOURCE_CATALOG.json#/facts/0",
+          "rawHash": "1c0453b0ee4725946bd18bf5204177f2a705edcbfc29e746c403d340d5498315",
+          "reviewedAt": "2026-11-19T13:22:42.211Z"
+        },
+        "unit": "VND",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "value": "1104379502000000",
+        "version": "standing-financial-current-v1"
+      },
+      {
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "classification": "FACT",
+        "critical": true,
+        "family": "FINANCIAL",
+        "id": "bank-current-fact:05e6ba3db049a572921cbb9898183282f1c6ca51c3c6eaed81ba18542dfc23f9",
+        "observation": "TOTAL_EQUITY",
+        "periodEnd": "2026-09-30",
+        "periodStart": "2026-09-30",
+        "publishedAt": null,
+        "quality": "VALID",
+        "receivedAt": "2026-11-19T13:22:42.211Z",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "source": "INTERIM_CONSOLIDATED_STATEMENT",
+        "time": {
+          "authorizationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/BANK_VERSION_APPROVED.json",
+          "availableAt": "2026-11-19T13:22:42.211Z",
+          "contract": "current-formal-evidence-time-v1",
+          "ingestedAt": "2026-11-19T13:22:42.211Z",
+          "originalReceivedAt": "2026-11-02T06:32:35.694Z",
+          "policyHash": "c39b7de09ae70b7fefcba6fb178cdcddb87795667b0397bf82de25aab2062f68",
+          "policyVersion": "standing-financial-current-v1",
+          "purpose": "CURRENT_FORMAL_VALUATION",
+          "qualificationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/ACB_SOURCE_CATALOG.json#/facts/1",
+          "rawHash": "1c0453b0ee4725946bd18bf5204177f2a705edcbfc29e746c403d340d5498315",
+          "reviewedAt": "2026-11-19T13:22:42.211Z"
+        },
+        "unit": "VND",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "value": "104013132000000",
+        "version": "standing-financial-current-v1"
+      },
+      {
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "classification": "FACT",
+        "critical": true,
+        "family": "FINANCIAL",
+        "id": "bank-current-fact:078c5973340df1598dda7245b55e3fda1ae585ef1e4a069dcdd50f5b963d81d3",
+        "observation": "BANK_CUSTOMER_DEPOSITS",
+        "periodEnd": "2026-09-30",
+        "periodStart": "2026-09-30",
+        "publishedAt": null,
+        "quality": "VALID",
+        "receivedAt": "2026-11-19T13:22:42.211Z",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "source": "INTERIM_CONSOLIDATED_STATEMENT",
+        "time": {
+          "authorizationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/BANK_VERSION_APPROVED.json",
+          "availableAt": "2026-11-19T13:22:42.211Z",
+          "contract": "current-formal-evidence-time-v1",
+          "ingestedAt": "2026-11-19T13:22:42.211Z",
+          "originalReceivedAt": "2026-11-02T06:32:35.694Z",
+          "policyHash": "c39b7de09ae70b7fefcba6fb178cdcddb87795667b0397bf82de25aab2062f68",
+          "policyVersion": "standing-financial-current-v1",
+          "purpose": "CURRENT_FORMAL_VALUATION",
+          "qualificationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/ACB_SOURCE_CATALOG.json#/facts/2",
+          "rawHash": "1c0453b0ee4725946bd18bf5204177f2a705edcbfc29e746c403d340d5498315",
+          "reviewedAt": "2026-11-19T13:22:42.211Z"
+        },
+        "unit": "VND",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "value": "596302324000000",
+        "version": "standing-financial-current-v1"
+      },
+      {
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "classification": "FACT",
+        "critical": true,
+        "family": "FINANCIAL",
+        "id": "bank-current-fact:8cfd26762192c229ec73acf0532091e816d6d93e59982d9594ed6e39ce0c152e",
+        "observation": "BANK_GROSS_CUSTOMER_LOANS",
+        "periodEnd": "2026-09-30",
+        "periodStart": "2026-09-30",
+        "publishedAt": null,
+        "quality": "VALID",
+        "receivedAt": "2026-11-19T13:22:42.211Z",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "source": "INTERIM_CONSOLIDATED_STATEMENT",
+        "time": {
+          "authorizationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/BANK_VERSION_APPROVED.json",
+          "availableAt": "2026-11-19T13:22:42.211Z",
+          "contract": "current-formal-evidence-time-v1",
+          "ingestedAt": "2026-11-19T13:22:42.211Z",
+          "originalReceivedAt": "2026-11-02T06:32:35.694Z",
+          "policyHash": "c39b7de09ae70b7fefcba6fb178cdcddb87795667b0397bf82de25aab2062f68",
+          "policyVersion": "standing-financial-current-v1",
+          "purpose": "CURRENT_FORMAL_VALUATION",
+          "qualificationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/ACB_SOURCE_CATALOG.json#/facts/3",
+          "rawHash": "1c0453b0ee4725946bd18bf5204177f2a705edcbfc29e746c403d340d5498315",
+          "reviewedAt": "2026-11-19T13:22:42.211Z"
+        },
+        "unit": "VND",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "value": "765614415000000",
+        "version": "standing-financial-current-v1"
+      },
+      {
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "classification": "FACT",
+        "critical": true,
+        "family": "FINANCIAL",
+        "id": "bank-current-fact:d30434ad617026c3208ac59ded511c7141581885b3246c5b98379437f1064266",
+        "observation": "NET_INCOME",
+        "periodEnd": "2026-09-30",
+        "periodStart": "2026-01-01",
+        "publishedAt": null,
+        "quality": "VALID",
+        "receivedAt": "2026-11-19T13:22:42.211Z",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "source": "INTERIM_CONSOLIDATED_STATEMENT",
+        "time": {
+          "authorizationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/BANK_VERSION_APPROVED.json",
+          "availableAt": "2026-11-19T13:22:42.211Z",
+          "contract": "current-formal-evidence-time-v1",
+          "ingestedAt": "2026-11-19T13:22:42.211Z",
+          "originalReceivedAt": "2026-11-02T06:32:35.694Z",
+          "policyHash": "c39b7de09ae70b7fefcba6fb178cdcddb87795667b0397bf82de25aab2062f68",
+          "policyVersion": "standing-financial-current-v1",
+          "purpose": "CURRENT_FORMAL_VALUATION",
+          "qualificationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/ACB_SOURCE_CATALOG.json#/facts/4",
+          "rawHash": "1c0453b0ee4725946bd18bf5204177f2a705edcbfc29e746c403d340d5498315",
+          "reviewedAt": "2026-11-19T13:22:42.211Z"
+        },
+        "unit": "VND",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "value": "13311703000000",
+        "version": "standing-financial-current-v1"
+      },
+      {
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "classification": "FACT",
+        "critical": true,
+        "family": "FINANCIAL",
+        "id": "bank-current-fact:97b3455a7bd4324cd13fcef5f41955168ebef9f06d4fd9a338ad8386b67c946e",
+        "observation": "NET_INCOME",
+        "periodEnd": "2026-09-30",
+        "periodStart": "2026-07-01",
+        "publishedAt": null,
+        "quality": "VALID",
+        "receivedAt": "2026-11-19T13:22:42.211Z",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "source": "INTERIM_CONSOLIDATED_STATEMENT",
+        "time": {
+          "authorizationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/BANK_VERSION_APPROVED.json",
+          "availableAt": "2026-11-19T13:22:42.211Z",
+          "contract": "current-formal-evidence-time-v1",
+          "ingestedAt": "2026-11-19T13:22:42.211Z",
+          "originalReceivedAt": "2026-11-02T06:32:35.694Z",
+          "policyHash": "c39b7de09ae70b7fefcba6fb178cdcddb87795667b0397bf82de25aab2062f68",
+          "policyVersion": "standing-financial-current-v1",
+          "purpose": "CURRENT_FORMAL_VALUATION",
+          "qualificationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/ACB_SOURCE_CATALOG.json#/facts/5",
+          "rawHash": "1c0453b0ee4725946bd18bf5204177f2a705edcbfc29e746c403d340d5498315",
+          "reviewedAt": "2026-11-19T13:22:42.211Z"
+        },
+        "unit": "VND",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "value": "4698837000000",
+        "version": "standing-financial-current-v1"
+      },
+      {
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "classification": "FACT",
+        "critical": true,
+        "family": "FINANCIAL",
+        "id": "bank-current-fact:7790bb5478a1edb02a4ef5555169a2b03f14d1dacc9c023820f95deb966179c2",
+        "observation": "BANK_NET_INTEREST_INCOME",
+        "periodEnd": "2026-09-30",
+        "periodStart": "2026-01-01",
+        "publishedAt": null,
+        "quality": "VALID",
+        "receivedAt": "2026-11-19T13:22:42.211Z",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "source": "INTERIM_CONSOLIDATED_STATEMENT",
+        "time": {
+          "authorizationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/BANK_VERSION_APPROVED.json",
+          "availableAt": "2026-11-19T13:22:42.211Z",
+          "contract": "current-formal-evidence-time-v1",
+          "ingestedAt": "2026-11-19T13:22:42.211Z",
+          "originalReceivedAt": "2026-11-02T06:32:35.694Z",
+          "policyHash": "c39b7de09ae70b7fefcba6fb178cdcddb87795667b0397bf82de25aab2062f68",
+          "policyVersion": "standing-financial-current-v1",
+          "purpose": "CURRENT_FORMAL_VALUATION",
+          "qualificationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/ACB_SOURCE_CATALOG.json#/facts/6",
+          "rawHash": "1c0453b0ee4725946bd18bf5204177f2a705edcbfc29e746c403d340d5498315",
+          "reviewedAt": "2026-11-19T13:22:42.211Z"
+        },
+        "unit": "VND",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "value": "22969204000000",
+        "version": "standing-financial-current-v1"
+      },
+      {
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "classification": "FACT",
+        "critical": true,
+        "family": "FINANCIAL",
+        "id": "bank-current-fact:2f7cbd7c0b47ad807988f3c9fde0de04b2a870068d99fe5848ac09f74e518787",
+        "observation": "BANK_NET_INTEREST_INCOME",
+        "periodEnd": "2026-09-30",
+        "periodStart": "2026-07-01",
+        "publishedAt": null,
+        "quality": "VALID",
+        "receivedAt": "2026-11-19T13:22:42.211Z",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "source": "INTERIM_CONSOLIDATED_STATEMENT",
+        "time": {
+          "authorizationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/BANK_VERSION_APPROVED.json",
+          "availableAt": "2026-11-19T13:22:42.211Z",
+          "contract": "current-formal-evidence-time-v1",
+          "ingestedAt": "2026-11-19T13:22:42.211Z",
+          "originalReceivedAt": "2026-11-02T06:32:35.694Z",
+          "policyHash": "c39b7de09ae70b7fefcba6fb178cdcddb87795667b0397bf82de25aab2062f68",
+          "policyVersion": "standing-financial-current-v1",
+          "purpose": "CURRENT_FORMAL_VALUATION",
+          "qualificationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/ACB_SOURCE_CATALOG.json#/facts/7",
+          "rawHash": "1c0453b0ee4725946bd18bf5204177f2a705edcbfc29e746c403d340d5498315",
+          "reviewedAt": "2026-11-19T13:22:42.211Z"
+        },
+        "unit": "VND",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "value": "8195351000000",
+        "version": "standing-financial-current-v1"
+      },
+      {
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "classification": "FACT",
+        "critical": true,
+        "family": "FINANCIAL",
+        "id": "bank-current-fact:fbb685cb0b956adcc67949d45833e71ff5b62518c476b255f372af17589826c2",
+        "observation": "BANK_RESERVE_GENERAL",
+        "periodEnd": "2026-09-30",
+        "periodStart": "2026-09-30",
+        "publishedAt": null,
+        "quality": "VALID",
+        "receivedAt": "2026-11-19T13:22:42.211Z",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "source": "INTERIM_CONSOLIDATED_STATEMENT",
+        "time": {
+          "authorizationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/BANK_VERSION_APPROVED.json",
+          "availableAt": "2026-11-19T13:22:42.211Z",
+          "contract": "current-formal-evidence-time-v1",
+          "ingestedAt": "2026-11-19T13:22:42.211Z",
+          "originalReceivedAt": "2026-11-02T06:32:35.694Z",
+          "policyHash": "c39b7de09ae70b7fefcba6fb178cdcddb87795667b0397bf82de25aab2062f68",
+          "policyVersion": "standing-financial-current-v1",
+          "purpose": "CURRENT_FORMAL_VALUATION",
+          "qualificationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/ACB_SOURCE_CATALOG.json#/facts/8",
+          "rawHash": "1c0453b0ee4725946bd18bf5204177f2a705edcbfc29e746c403d340d5498315",
+          "reviewedAt": "2026-11-19T13:22:42.211Z"
+        },
+        "unit": "VND",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "value": "5533407000000",
+        "version": "standing-financial-current-v1"
+      },
+      {
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "classification": "FACT",
+        "critical": true,
+        "family": "FINANCIAL",
+        "id": "bank-current-fact:04a7c37cda45e79af59e3f6dce31a150b86b704a0113f7a4c60bab3d35286167",
+        "observation": "BANK_RESERVE_SPECIFIC",
+        "periodEnd": "2026-09-30",
+        "periodStart": "2026-09-30",
+        "publishedAt": null,
+        "quality": "VALID",
+        "receivedAt": "2026-11-19T13:22:42.211Z",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "source": "INTERIM_CONSOLIDATED_STATEMENT",
+        "time": {
+          "authorizationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/BANK_VERSION_APPROVED.json",
+          "availableAt": "2026-11-19T13:22:42.211Z",
+          "contract": "current-formal-evidence-time-v1",
+          "ingestedAt": "2026-11-19T13:22:42.211Z",
+          "originalReceivedAt": "2026-11-02T06:32:35.694Z",
+          "policyHash": "c39b7de09ae70b7fefcba6fb178cdcddb87795667b0397bf82de25aab2062f68",
+          "policyVersion": "standing-financial-current-v1",
+          "purpose": "CURRENT_FORMAL_VALUATION",
+          "qualificationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/ACB_SOURCE_CATALOG.json#/facts/9",
+          "rawHash": "1c0453b0ee4725946bd18bf5204177f2a705edcbfc29e746c403d340d5498315",
+          "reviewedAt": "2026-11-19T13:22:42.211Z"
+        },
+        "unit": "VND",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "value": "2619669000000",
+        "version": "standing-financial-current-v1"
+      },
+      {
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "classification": "FACT",
+        "critical": true,
+        "family": "FINANCIAL",
+        "id": "bank-current-fact:b1fa0d8f36af7dd72cd8d9e198f4a7f4ff8bd2d7437ac56a4329ba7ef3cf71c7",
+        "observation": "BANK_RESERVE_MARGIN_LENDING",
+        "periodEnd": "2026-09-30",
+        "periodStart": "2026-09-30",
+        "publishedAt": null,
+        "quality": "VALID",
+        "receivedAt": "2026-11-19T13:22:42.211Z",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "source": "INTERIM_CONSOLIDATED_STATEMENT",
+        "time": {
+          "authorizationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/BANK_VERSION_APPROVED.json",
+          "availableAt": "2026-11-19T13:22:42.211Z",
+          "contract": "current-formal-evidence-time-v1",
+          "ingestedAt": "2026-11-19T13:22:42.211Z",
+          "originalReceivedAt": "2026-11-02T06:32:35.694Z",
+          "policyHash": "c39b7de09ae70b7fefcba6fb178cdcddb87795667b0397bf82de25aab2062f68",
+          "policyVersion": "standing-financial-current-v1",
+          "purpose": "CURRENT_FORMAL_VALUATION",
+          "qualificationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/ACB_SOURCE_CATALOG.json#/facts/10",
+          "rawHash": "1c0453b0ee4725946bd18bf5204177f2a705edcbfc29e746c403d340d5498315",
+          "reviewedAt": "2026-11-19T13:22:42.211Z"
+        },
+        "unit": "VND",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "value": "117476000000",
+        "version": "standing-financial-current-v1"
+      },
+      {
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "classification": "FACT",
+        "critical": true,
+        "family": "FINANCIAL",
+        "id": "bank-current-fact:58a92c053ebce62f3fb072ec69128cb50832f5dd11dd3528353c3e53dc16a53a",
+        "observation": "BANK_REPORTED_CAR",
+        "periodEnd": "2026-06-30",
+        "periodStart": "2026-06-30",
+        "publishedAt": null,
+        "quality": "VALID",
+        "receivedAt": "2026-11-19T13:22:42.211Z",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "source": "REGULATORY_CAPITAL_DISCLOSURE",
+        "time": {
+          "authorizationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/BANK_VERSION_APPROVED.json",
+          "availableAt": "2026-11-19T13:22:42.211Z",
+          "contract": "current-formal-evidence-time-v1",
+          "ingestedAt": "2026-11-19T13:22:42.211Z",
+          "originalReceivedAt": "2026-11-02T06:41:53.456Z",
+          "policyHash": "c39b7de09ae70b7fefcba6fb178cdcddb87795667b0397bf82de25aab2062f68",
+          "policyVersion": "standing-financial-current-v1",
+          "purpose": "CURRENT_FORMAL_VALUATION",
+          "qualificationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/ACB_SOURCE_CATALOG.json#/facts/11",
+          "rawHash": "a438d4491ebafde55dac4781f901b38efed802b1113421e5469dc2333b7a1dc0",
+          "reviewedAt": "2026-11-19T13:22:42.211Z"
+        },
+        "unit": "RATIO",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "value": "0.118",
+        "version": "standing-financial-current-v1"
+      },
+      {
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "classification": "FACT",
+        "critical": true,
+        "family": "FINANCIAL",
+        "id": "bank-current-fact:e4c0ebf4a6c19ea29346410caf3e518ada7e024de0de003792c74726ae43907d",
+        "observation": "BANK_REPORTED_CET1",
+        "periodEnd": "2026-06-30",
+        "periodStart": "2026-06-30",
+        "publishedAt": null,
+        "quality": "VALID",
+        "receivedAt": "2026-11-19T13:22:42.211Z",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "source": "REGULATORY_CAPITAL_DISCLOSURE",
+        "time": {
+          "authorizationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/BANK_VERSION_APPROVED.json",
+          "availableAt": "2026-11-19T13:22:42.211Z",
+          "contract": "current-formal-evidence-time-v1",
+          "ingestedAt": "2026-11-19T13:22:42.211Z",
+          "originalReceivedAt": "2026-11-02T06:41:53.456Z",
+          "policyHash": "c39b7de09ae70b7fefcba6fb178cdcddb87795667b0397bf82de25aab2062f68",
+          "policyVersion": "standing-financial-current-v1",
+          "purpose": "CURRENT_FORMAL_VALUATION",
+          "qualificationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/ACB_SOURCE_CATALOG.json#/facts/12",
+          "rawHash": "a438d4491ebafde55dac4781f901b38efed802b1113421e5469dc2333b7a1dc0",
+          "reviewedAt": "2026-11-19T13:22:42.211Z"
+        },
+        "unit": "RATIO",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "value": "0.115",
+        "version": "standing-financial-current-v1"
+      },
+      {
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "classification": "FACT",
+        "critical": true,
+        "family": "FINANCIAL_DERIVED",
+        "id": "bank-current-fact:14f3c53e1e30d64100ce5a398d89f596cf2a02d0fcb03c77b5305778cc3dc49b",
+        "observation": "BANK_LOAN_LOSS_RESERVES",
+        "periodEnd": "2026-09-30",
+        "periodStart": "2026-09-30",
+        "publishedAt": null,
+        "quality": "VALID",
+        "receivedAt": "2026-11-19T13:22:42.211Z",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "source": "INTERIM_CONSOLIDATED_STATEMENT",
+        "time": {
+          "authorizationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/BANK_VERSION_APPROVED.json",
+          "availableAt": "2026-11-19T13:22:42.211Z",
+          "contract": "current-formal-evidence-time-v1",
+          "ingestedAt": "2026-11-19T13:22:42.211Z",
+          "originalReceivedAt": "2026-11-02T06:32:35.694Z",
+          "policyHash": "c39b7de09ae70b7fefcba6fb178cdcddb87795667b0397bf82de25aab2062f68",
+          "policyVersion": "standing-financial-current-v1",
+          "purpose": "CURRENT_FORMAL_VALUATION",
+          "qualificationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/bank-admission/ACB_SOURCE_CATALOG.json#/facts/8",
+          "rawHash": "1c0453b0ee4725946bd18bf5204177f2a705edcbfc29e746c403d340d5498315",
+          "reviewedAt": "2026-11-19T13:22:42.211Z"
+        },
+        "unit": "VND",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "value": "8153076000000",
+        "version": "standing-financial-current-v1"
+      },
+      {
+        "id": "ACB_M1_LIQUIDITY_REVIEW_CLOSED_2026_10_30",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB_M1_LIQUIDITY_REVIEW_CLOSED_2026_10_30",
+        "value": "Owner review CLOSED, liquidity risk outcome PENDING, liquidity confidence 6/10, NON-ACTIONABLE.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_M1_SUCCESSOR_REVIEW_RECOVERY.json",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB_M1_LIQUIDITY_REVIEW_CLOSED_2026_10_30"
+      },
+      {
+        "id": "ACB-V3-CORPORATE-ACTION-COMPARABILITY",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-CORPORATE-ACTION-COMPARABILITY",
+        "value": "Reviewed shares bridge and dividend actions; same-share basis for historical indicators, 5.804.421.957 shares at cutoff for scenarios.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CORPORATE_ACTIONS_AND_REMAINING_RUBRICS.md",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-CORPORATE-ACTION-COMPARABILITY"
+      },
+      {
+        "id": "ACB-V3-BQ-EQ-returns",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-BQ-EQ-returns",
+        "value": "ROE chuẩn hóa 14,72%",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / BQ-EQ/returns",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-BQ-EQ-returns"
+      },
+      {
+        "id": "ACB-V3-BQ-EQ-persistence",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-BQ-EQ-persistence",
+        "value": "EPS chuẩn hóa gần đi ngang từ FY2023 và ROE lịch sử giảm",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / BQ-EQ/persistence",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-BQ-EQ-persistence"
+      },
+      {
+        "id": "ACB-V3-BQ-EQ-margins",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-BQ-EQ-margins",
+        "value": "NIM Q3 phục hồi nhưng chưa chứng minh duy trì qua chu kỳ",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / BQ-EQ/margins",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-BQ-EQ-margins"
+      },
+      {
+        "id": "ACB-V3-BQ-EQ-cost_of_capital",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-BQ-EQ-cost_of_capital",
+        "value": "Ke cơ sở 15%, thử 14–17%, spread chỉ dương nhẹ ở đầu thấp",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / BQ-EQ/cost_of_capital",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-BQ-EQ-cost_of_capital"
+      },
+      {
+        "id": "ACB-V3-BQ-CASH-realization",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-BQ-CASH-realization",
+        "value": "Thực thu lãi 95,98%",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / BQ-CASH/realization",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-BQ-CASH-realization"
+      },
+      {
+        "id": "ACB-V3-BQ-CASH-one_offs",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-BQ-CASH-one_offs",
+        "value": "Hiệu chỉnh thu hồi nợ đã xử lý trong lợi nhuận chuẩn hóa",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / BQ-CASH/one_offs",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-BQ-CASH-one_offs"
+      },
+      {
+        "id": "ACB-V3-BQ-CASH-working_capital",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-BQ-CASH-working_capital",
+        "value": "Thay bằng chỉ dấu BANK về dự phòng và chất lượng thu lãi",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / BQ-CASH/working_capital",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-BQ-CASH-working_capital"
+      },
+      {
+        "id": "ACB-V3-BQ-CASH-recognition",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-BQ-CASH-recognition",
+        "value": "Nợ nhóm 2 tăng và bao phủ giảm từ 114,29% xuống 90,94%",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / BQ-CASH/recognition",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-BQ-CASH-recognition"
+      },
+      {
+        "id": "ACB-V3-BQ-RES-concentration",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-BQ-RES-concentration",
+        "value": "Tỷ trọng giấy tờ có giá 21,63% trên phạm vi nguồn đo",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / BQ-RES/concentration",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-BQ-RES-concentration"
+      },
+      {
+        "id": "ACB-V3-BQ-RES-pricing_power",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-BQ-RES-pricing_power",
+        "value": "Thu nhập lãi tăng 46,46%, chi phí lãi tăng 67,24% và lãi thuần tăng 21,06%. Tỷ trọng lãi thuần trên thu nhập lãi giảm từ 44,98% xuống 37,18%, cho thấy mức bù chi phí thực tế yếu đi. NIM 3,08% và lãi thuần tăng là phản chứng. Chỉ dấu giữ riêng tác động quy mô/cơ cấu và không gán toàn bộ cho tái định giá.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / BQ-RES/pricing_power",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-BQ-RES-pricing_power"
+      },
+      {
+        "id": "ACB-V3-BQ-RES-cyclicality",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-BQ-RES-cyclicality",
+        "value": "Nợ xấu và chi phí huy động không cùng chiều trong mọi kỳ",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / BQ-RES/cyclicality",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-BQ-RES-cyclicality"
+      },
+      {
+        "id": "ACB-V3-BQ-RES-stress",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-BQ-RES-stress",
+        "value": "Trước dự phòng tăng 10,57% nhưng độ bền nguồn tài trợ là điểm yếu",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / BQ-RES/stress",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-BQ-RES-stress"
+      },
+      {
+        "id": "ACB-V3-FH-BS-capital",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-FH-BS-capital",
+        "value": "Vốn/RWA H1 cho dư địa CAR riêng lẻ khoảng 916 tỷ ở kịch bản +6% RWA và lỗ mô phỏng 4.846 tỷ",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / FH-BS/capital",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-FH-BS-capital"
+      },
+      {
+        "id": "ACB-V3-FH-BS-asset_quality",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-FH-BS-asset_quality",
+        "value": "Nợ nhóm 2 và NPL tăng, bao phủ giảm",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / FH-BS/asset_quality",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-FH-BS-asset_quality"
+      },
+      {
+        "id": "ACB-V3-FH-BS-funding",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-FH-BS-funding",
+        "value": "Phụ thuộc tăng vào giấy tờ có giá và nguồn TCTD",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / FH-BS/funding",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-FH-BS-funding"
+      },
+      {
+        "id": "ACB-V3-FH-BS-leverage_context",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-FH-BS-leverage_context",
+        "value": "So sánh H1 riêng lẻ và hợp nhất theo vốn pháp định và RWA, giữ riêng ngưỡng đệm giả định",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / FH-BS/leverage_context",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-FH-BS-leverage_context"
+      },
+      {
+        "id": "ACB-V3-GQ-HIST-trend",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-GQ-HIST-trend",
+        "value": "Tử số EPS cùng mẫu số tăng khoảng 4,67%/năm nhưng FY2025 giảm 5,28%",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / GQ-HIST/trend",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-GQ-HIST-trend"
+      },
+      {
+        "id": "ACB-V3-GQ-HIST-acquisitions",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-GQ-HIST-acquisitions",
+        "value": "Thuyết minh 1(d) kiểm toán FY2022–25 trang 14 cho cùng bốn công ty con ACBS, ACBA, ACBL, ACBC, cùng tỷ lệ 100%. Dùng phạm vi quan sát tại các mốc năm; không suy rộng thành kiểm chứng mọi biến động nội kỳ.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / GQ-HIST/acquisitions",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-GQ-HIST-acquisitions"
+      },
+      {
+        "id": "ACB-V3-GQ-HIST-base_effects",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-GQ-HIST-base_effects",
+        "value": "Giữ mức sinh lời FY2022 và FY2023 làm hai mốc phản chứng",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / GQ-HIST/base_effects",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-GQ-HIST-base_effects"
+      },
+      {
+        "id": "ACB-V3-GQ-HIST-per_share",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-GQ-HIST-per_share",
+        "value": "Chuỗi trên mẫu số 5.804.421.957 cổ phần tách tác động số cổ phần",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / GQ-HIST/per_share",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-GQ-HIST-per_share"
+      },
+      {
+        "id": "ACB-V3-GQ-INC-incremental_return",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-GQ-INC-incremental_return",
+        "value": "Chỉ dấu -1,11% từ FY2023 hoặc +8,54% từ FY2022",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / GQ-INC/incremental_return",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-GQ-INC-incremental_return"
+      },
+      {
+        "id": "ACB-V3-GQ-INC-denominator",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-GQ-INC-denominator",
+        "value": "Vốn chủ hợp nhất tăng, phương pháp BANK giữ cùng phạm vi với lợi nhuận chuẩn hóa",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / GQ-INC/denominator",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-GQ-INC-denominator"
+      },
+      {
+        "id": "ACB-V3-GQ-INC-unit_economics",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-GQ-INC-unit_economics",
+        "value": "Ngay cửa sổ thuận hơn vẫn thấp hơn Ke 14–17%, hiệu quả theo dự án và độ trễ chưa suy được",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / GQ-INC/unit_economics",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-GQ-INC-unit_economics"
+      },
+      {
+        "id": "ACB-V3-IC-IND-barriers",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-IC-IND-barriers",
+        "value": "Điều kiện cấp phép và vốn tạo rào cản",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / IC-IND/barriers",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-IC-IND-barriers"
+      },
+      {
+        "id": "ACB-V3-IC-IND-competition",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-IC-IND-competition",
+        "value": "Proxy huy động so sánh cho thấy cạnh tranh",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / IC-IND/competition",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-IC-IND-competition"
+      },
+      {
+        "id": "ACB-V3-IC-IND-demand",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-IC-IND-demand",
+        "value": "Tín dụng tăng và có động lực doanh nghiệp",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / IC-IND/demand",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-IC-IND-demand"
+      },
+      {
+        "id": "ACB-V3-IC-IND-disruption",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-IC-IND-disruption",
+        "value": "ACB ONE, Techcombank Mobile và VPBank NEO trên các bản lưu công bố cho thấy kênh số được triển khai ở nhiều ngân hàng. Dùng chỉ dấu định tính về cạnh tranh phân phối; không suy ra tiết kiệm chi phí hoặc mức thị phần.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / IC-IND/disruption",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-IC-IND-disruption"
+      },
+      {
+        "id": "ACB-V3-IC-CYCLE-cycle",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-IC-CYCLE-cycle",
+        "value": "NIM Q3 3,08% đi cùng tăng nợ nhóm 2 và NPL",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / IC-CYCLE/cycle",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-IC-CYCLE-cycle"
+      },
+      {
+        "id": "ACB-V3-IC-CYCLE-forward_asymmetry",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-IC-CYCLE-forward_asymmetry",
+        "value": "Lợi nhuận trước dự phòng cải thiện nhưng chi phí tín dụng và huy động gây sức ép",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / IC-CYCLE/forward_asymmetry",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-IC-CYCLE-forward_asymmetry"
+      },
+      {
+        "id": "ACB-V3-IC-CYCLE-survivability",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-IC-CYCLE-survivability",
+        "value": "Đệm lợi nhuận trước dự phòng, tách khỏi kết luận khả năng huy động trong stress",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / IC-CYCLE/survivability",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-IC-CYCLE-survivability"
+      },
+      {
+        "id": "ACB-V3-VAL-RET-starting_value",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-VAL-RET-starting_value",
+        "value": "Giá gốc 21.000 đồng/cp và BVPS gốc từ vốn hợp nhất",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / VAL-RET/starting_value",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-VAL-RET-starting_value"
+      },
+      {
+        "id": "ACB-V3-VAL-RET-growth",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-VAL-RET-growth",
+        "value": "Lợi nhuận năm 1 15.307 tỷ, tăng 6% là giả định",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / VAL-RET/growth",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-VAL-RET-growth"
+      },
+      {
+        "id": "ACB-V3-VAL-RET-exit_value",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-VAL-RET-exit_value",
+        "value": "ROE cuối kỳ 11,70% và P/B 0,725 với Ke 15% g 3%",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / VAL-RET/exit_value",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-VAL-RET-exit_value"
+      },
+      {
+        "id": "ACB-V3-VAL-RET-distributions",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-VAL-RET-distributions",
+        "value": "Dòng cổ tức 450/0/686/727/771 đồng mỗi cổ phần",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / VAL-RET/distributions",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-VAL-RET-distributions"
+      },
+      {
+        "id": "ACB-V3-VAL-RET-dilution",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-VAL-RET-dilution",
+        "value": "Cố định 5.804.421.957 cổ phần là giả định",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / VAL-RET/dilution",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-VAL-RET-dilution"
+      },
+      {
+        "id": "ACB-V3-VAL-RET-scenarios",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-VAL-RET-scenarios",
+        "value": "IRR cơ sở 3,25%, phản chứng 8,37% với giá thoát 28.405 đồng theo ACB_BANK_FORMAL_ASSESSMENT_REVIEW",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / VAL-RET/scenarios",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-VAL-RET-scenarios"
+      },
+      {
+        "id": "ACB-V3-VAL-MOS-conservative_value",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-VAL-MOS-conservative_value",
+        "value": "Giá thận trọng 14.191 đồng so với giá chốt 21.000",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / VAL-MOS/conservative_value",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-VAL-MOS-conservative_value"
+      },
+      {
+        "id": "ACB-V3-VAL-MOS-downside",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-VAL-MOS-downside",
+        "value": "Ngay đầu trên dải thử 20.205 vẫn dưới giá chốt",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / VAL-MOS/downside",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-VAL-MOS-downside"
+      },
+      {
+        "id": "ACB-V3-VAL-MOS-balance_sheet",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-VAL-MOS-balance_sheet",
+        "value": "Dư địa vốn nhạy với RWA và đệm, không tính rủi ro thanh khoản lặp lại",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / VAL-MOS/balance_sheet",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-VAL-MOS-balance_sheet"
+      },
+      {
+        "id": "ACB-V3-RG-UNC-forecast_range",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-RG-UNC-forecast_range",
+        "value": "Giá thoát và IRR thay đổi rõ trong các kịch bản",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / RG-UNC/forecast_range",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-RG-UNC-forecast_range"
+      },
+      {
+        "id": "ACB-V3-RG-UNC-sensitivity",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-RG-UNC-sensitivity",
+        "value": "Độ nhạy vốn và Ke có thể làm đổi band",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / RG-UNC/sensitivity",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-RG-UNC-sensitivity"
+      },
+      {
+        "id": "ACB-V3-RG-UNC-dependencies",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-RG-UNC-dependencies",
+        "value": "Giá thoát phụ thuộc ROE bền vững và khả năng chi cổ tức",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / RG-UNC/dependencies",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-RG-UNC-dependencies"
+      },
+      {
+        "id": "ACB-V3-CA-DIST-retention",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-CA-DIST-retention",
+        "value": "Chỉ dấu vốn tăng thêm chưa chứng minh lợi suất cao",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / CA-DIST/retention",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-CA-DIST-retention"
+      },
+      {
+        "id": "ACB-V3-CA-DIST-distribution",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-CA-DIST-distribution",
+        "value": "Lịch sử trả cổ tức tiền mặt có bằng chứng",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / CA-DIST/distribution",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-CA-DIST-distribution"
+      },
+      {
+        "id": "ACB-V3-CA-DIST-buyback_valuation",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-CA-DIST-buyback_valuation",
+        "value": "Dữ liệu phát hành bằng đang lưu hành ở các mốc FY2022–25 và H1/2026; cầu nối bốn cổ tức cổ phiếu giải thích số tăng trong hồ sơ. Không có giao dịch mua lại trong phạm vi đối chiếu cần định giá; tiền chi cổ tức và dư địa vốn đánh giá riêng.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / CA-DIST/buyback_valuation",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-CA-DIST-buyback_valuation"
+      },
+      {
+        "id": "ACB-V3-CA-DIST-resilience",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-CA-DIST-resilience",
+        "value": "Thêm đệm quản trị làm dư địa sau chi đổi từ dương 4.496 tỷ sang âm 4.014 tỷ",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / CA-DIST/resilience",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-CA-DIST-resilience"
+      },
+      {
+        "id": "ACB-V3-CA-DIL-issue_terms",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-CA-DIL-issue_terms",
+        "value": "Bốn đợt phân phối theo tỷ lệ 15/15/15/13%",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / CA-DIL/issue_terms",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-CA-DIL-issue_terms"
+      },
+      {
+        "id": "ACB-V3-CA-DIL-proceeds",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-CA-DIL-proceeds",
+        "value": "Cổ tức cổ phiếu đã rà không thu vốn mới",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / CA-DIL/proceeds",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-CA-DIL-proceeds"
+      },
+      {
+        "id": "ACB-V3-CA-DIL-per_share",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-CA-DIL-per_share",
+        "value": "Cầu nối cổ phần khớp dưới một cổ phần cấp tổng, giữ điều khoản làm tròn làm phản chứng khi xét điểm tối đa",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / CA-DIL/per_share",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-CA-DIL-per_share"
+      },
+      {
+        "id": "ACB-V3-CA-PSV-per_share",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-CA-PSV-per_share",
+        "value": "EPS chuẩn hóa suy giảm 0,78–3,50% FY2023–25",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / CA-PSV/per_share",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-CA-PSV-per_share"
+      },
+      {
+        "id": "ACB-V3-CA-PSV-actions",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-CA-PSV-actions",
+        "value": "Cổ tức và BVPS tăng là phản chứng",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / CA-PSV/actions",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-CA-PSV-actions"
+      },
+      {
+        "id": "ACB-V3-CA-PSV-cycle_adjustment",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-CA-PSV-cycle_adjustment",
+        "value": "Kiểm ba mức chi phí tín dụng và so sánh hai mốc bắt đầu",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "Internal review witness docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json SHA-256 1a0ba5d262ddb2e480e9aef15fa813f874ad1688f3a87a0712d5cf4aa00a9b57 / CA-PSV/cycle_adjustment",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-CA-PSV-cycle_adjustment"
+      },
+      {
+        "id": "ACB-V3-BQ-EQ-counter",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-BQ-EQ-counter",
+        "value": "ROE was higher historically and the Ke sensitivity can give a small positive spread.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json / challenge counterevidence",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-BQ-EQ-counter"
+      },
+      {
+        "id": "ACB-V3-BQ-CASH-counter",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-BQ-CASH-counter",
+        "value": "High observed cash interest realization supports an adequate band despite weaker reserves.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json / challenge counterevidence",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-BQ-CASH-counter"
+      },
+      {
+        "id": "ACB-V3-BQ-RES-counter",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-BQ-RES-counter",
+        "value": "PPOP and NII increased even as the interest expense burden rose.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json / challenge counterevidence",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-BQ-RES-counter"
+      },
+      {
+        "id": "ACB-V3-FH-BS-counter",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-FH-BS-counter",
+        "value": "Capital headroom is sensitive to RWA and management buffer; Q3 problem loans increased.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json / challenge counterevidence",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-FH-BS-counter"
+      },
+      {
+        "id": "ACB-V3-GQ-HIST-counter",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-GQ-HIST-counter",
+        "value": "Book value per share grew; the period choice and provision baselines change the growth picture.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json / challenge counterevidence",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-GQ-HIST-counter"
+      },
+      {
+        "id": "ACB-V3-GQ-INC-counter",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-GQ-INC-counter",
+        "value": "FY2022 starting point yields positive incremental proxy; capital deployment lags remain relevant.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json / challenge counterevidence",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-GQ-INC-counter"
+      },
+      {
+        "id": "ACB-V3-IC-IND-counter",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-IC-IND-counter",
+        "value": "Licensing and capital create barriers, while the digital channel creates contestability.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json / challenge counterevidence",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-IC-IND-counter"
+      },
+      {
+        "id": "ACB-V3-IC-CYCLE-counter",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-IC-CYCLE-counter",
+        "value": "Quarterly NIM and PPOP improved, but problem loans increased.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json / challenge counterevidence",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-IC-CYCLE-counter"
+      },
+      {
+        "id": "ACB-V3-VAL-RET-counter",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-VAL-RET-counter",
+        "value": "Exit price 28.405 gives 8.37% on the same dividends; terminal ROE needed for 8% is historically attainable, but needs a sustainable capital and earnings bridge.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json / challenge counterevidence",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-VAL-RET-counter"
+      },
+      {
+        "id": "ACB-V3-VAL-MOS-counter",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-VAL-MOS-counter",
+        "value": "Value is responsive to sustained profitability and Ke; the upper tested valuation narrows the negative spread.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json / challenge counterevidence",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-VAL-MOS-counter"
+      },
+      {
+        "id": "ACB-V3-RG-UNC-counter",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-RG-UNC-counter",
+        "value": "A quantitative model and retained evidence provide anchors, while capital and terminal assumptions remain sensitive.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json / challenge counterevidence",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-RG-UNC-counter"
+      },
+      {
+        "id": "ACB-V3-CA-DIST-counter",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-CA-DIST-counter",
+        "value": "Cash dividends were paid and H1 headroom can cover test distributions under some capital assumptions.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json / challenge counterevidence",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-CA-DIST-counter"
+      },
+      {
+        "id": "ACB-V3-CA-DIL-counter",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-CA-DIL-counter",
+        "value": "Account-level fractional rounding and actions outside the observed bridge can change economic effect.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json / challenge counterevidence",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-CA-DIL-counter"
+      },
+      {
+        "id": "ACB-V3-CA-PSV-counter",
+        "version": "acb-v3-assessment-20261030",
+        "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+        "observation": "ACB-V3-CA-PSV-counter",
+        "value": "Book value and dividends increased; a favorable cost-of-credit assumption can yield positive model value plus dividends.",
+        "unit": "TEXT",
+        "classification": "ESTIMATE",
+        "source": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_REVIEW_EVIDENCE.json / challenge counterevidence",
+        "periodStart": "2026-10-30",
+        "periodEnd": "2026-10-30",
+        "asOf": "2026-10-30T23:59:59.999Z",
+        "publishedAt": "2026-11-22T06:22:15.438Z",
+        "receivedAt": "2026-11-22T06:22:15.438Z",
+        "validThrough": "2026-10-30T23:59:59.999Z",
+        "critical": false,
+        "quality": "VALID",
+        "family": "ACB-V3-CA-PSV-counter"
+      }
+    ],
+    "metrics": [],
+    "assessments": [
+      {
+        "subcategory": "BQ-EQ",
+        "assessment": "Average economics",
+        "selectedPoints": 3,
+        "analyst": "CHATGPT",
+        "source": "AI",
+        "assessedAt": "2026-11-22T06:22:15.438Z",
+        "methodologyVersion": "1.0.0",
+        "rationale": "Lower supported point in Average economics; see topic evidence and counterevidence.",
+        "strongerEvidence": false,
+        "maximumPrerequisitesMet": false,
+        "exceptionalJustification": null,
+        "disconfirmingEvidence": [
+          "ACB-V3-BQ-EQ-counter"
+        ],
+        "evidence": [
+          {
+            "topic": "returns",
+            "refs": [
+              "ACB-V3-BQ-EQ-returns"
+            ],
+            "rationale": "ROE chuẩn hóa 14,72%"
+          },
+          {
+            "topic": "persistence",
+            "refs": [
+              "ACB-V3-BQ-EQ-persistence"
+            ],
+            "rationale": "EPS chuẩn hóa gần đi ngang từ FY2023 và ROE lịch sử giảm"
+          },
+          {
+            "topic": "margins",
+            "refs": [
+              "ACB-V3-BQ-EQ-margins"
+            ],
+            "rationale": "NIM Q3 phục hồi nhưng chưa chứng minh duy trì qua chu kỳ"
+          },
+          {
+            "topic": "cost_of_capital",
+            "refs": [
+              "ACB-V3-BQ-EQ-cost_of_capital"
+            ],
+            "rationale": "Ke cơ sở 15%, thử 14–17%, spread chỉ dương nhẹ ở đầu thấp"
+          }
+        ],
+        "sector": "BANK",
+        "sectorRationale": "BANK-sector evidence and same-scope owner economics.",
+        "economicChannel": "BQ-EQ"
+      },
+      {
+        "subcategory": "BQ-CASH",
+        "assessment": "Adequate realization with material qualifications",
+        "selectedPoints": 3,
+        "analyst": "CHATGPT",
+        "source": "AI",
+        "assessedAt": "2026-11-22T06:22:15.438Z",
+        "methodologyVersion": "1.0.0",
+        "rationale": "Lower supported point in Adequate realization with material qualifications; see topic evidence and counterevidence.",
+        "strongerEvidence": false,
+        "maximumPrerequisitesMet": false,
+        "exceptionalJustification": null,
+        "disconfirmingEvidence": [
+          "ACB-V3-BQ-CASH-counter"
+        ],
+        "evidence": [
+          {
+            "topic": "realization",
+            "refs": [
+              "ACB-V3-BQ-CASH-realization"
+            ],
+            "rationale": "Thực thu lãi 95,98%"
+          },
+          {
+            "topic": "one_offs",
+            "refs": [
+              "ACB-V3-BQ-CASH-one_offs"
+            ],
+            "rationale": "Hiệu chỉnh thu hồi nợ đã xử lý trong lợi nhuận chuẩn hóa"
+          },
+          {
+            "topic": "working_capital",
+            "refs": [
+              "ACB-V3-BQ-CASH-working_capital"
+            ],
+            "rationale": "Thay bằng chỉ dấu BANK về dự phòng và chất lượng thu lãi"
+          },
+          {
+            "topic": "recognition",
+            "refs": [
+              "ACB-V3-BQ-CASH-recognition"
+            ],
+            "rationale": "Nợ nhóm 2 tăng và bao phủ giảm từ 114,29% xuống 90,94%"
+          }
+        ],
+        "sector": "BANK",
+        "sectorRationale": "BANK-sector evidence and same-scope owner economics.",
+        "economicChannel": "BQ-CASH"
+      },
+      {
+        "subcategory": "BQ-RES",
+        "assessment": "Material vulnerabilities",
+        "selectedPoints": 2,
+        "analyst": "CHATGPT",
+        "source": "AI",
+        "assessedAt": "2026-11-22T06:22:15.438Z",
+        "methodologyVersion": "1.0.0",
+        "rationale": "Lower supported point in Material vulnerabilities; see topic evidence and counterevidence.",
+        "strongerEvidence": false,
+        "maximumPrerequisitesMet": false,
+        "exceptionalJustification": null,
+        "disconfirmingEvidence": [
+          "ACB-V3-BQ-RES-counter"
+        ],
+        "evidence": [
+          {
+            "topic": "concentration",
+            "refs": [
+              "ACB-V3-BQ-RES-concentration"
+            ],
+            "rationale": "Tỷ trọng giấy tờ có giá 21,63% trên phạm vi nguồn đo"
+          },
+          {
+            "topic": "pricing_power",
+            "refs": [
+              "ACB-V3-BQ-RES-pricing_power"
+            ],
+            "rationale": "Thu nhập lãi tăng 46,46%, chi phí lãi tăng 67,24% và lãi thuần tăng 21,06%. Tỷ trọng lãi thuần trên thu nhập lãi giảm từ 44,98% xuống 37,18%, cho thấy mức bù chi phí thực tế yếu đi. NIM 3,08% và lãi thuần tăng là phản chứng. Chỉ dấu giữ riêng tác động quy mô/cơ cấu và không gán toàn bộ cho tái định giá."
+          },
+          {
+            "topic": "cyclicality",
+            "refs": [
+              "ACB-V3-BQ-RES-cyclicality"
+            ],
+            "rationale": "Nợ xấu và chi phí huy động không cùng chiều trong mọi kỳ"
+          },
+          {
+            "topic": "stress",
+            "refs": [
+              "ACB-V3-BQ-RES-stress"
+            ],
+            "rationale": "Trước dự phòng tăng 10,57% nhưng độ bền nguồn tài trợ là điểm yếu"
+          }
+        ],
+        "sector": "BANK",
+        "sectorRationale": "BANK-sector evidence and same-scope owner economics.",
+        "economicChannel": "BQ-RES"
+      },
+      {
+        "subcategory": "FH-BS",
+        "assessment": "Adequate",
+        "selectedPoints": 3,
+        "analyst": "CHATGPT",
+        "source": "AI",
+        "assessedAt": "2026-11-22T06:22:15.438Z",
+        "methodologyVersion": "1.0.0",
+        "rationale": "Lower supported point in Adequate; see topic evidence and counterevidence.",
+        "strongerEvidence": false,
+        "maximumPrerequisitesMet": false,
+        "exceptionalJustification": null,
+        "disconfirmingEvidence": [
+          "ACB-V3-FH-BS-counter"
+        ],
+        "evidence": [
+          {
+            "topic": "capital",
+            "refs": [
+              "ACB-V3-FH-BS-capital"
+            ],
+            "rationale": "Vốn/RWA H1 cho dư địa CAR riêng lẻ khoảng 916 tỷ ở kịch bản +6% RWA và lỗ mô phỏng 4.846 tỷ"
+          },
+          {
+            "topic": "asset_quality",
+            "refs": [
+              "ACB-V3-FH-BS-asset_quality"
+            ],
+            "rationale": "Nợ nhóm 2 và NPL tăng, bao phủ giảm"
+          },
+          {
+            "topic": "funding",
+            "refs": [
+              "ACB-V3-FH-BS-funding"
+            ],
+            "rationale": "Phụ thuộc tăng vào giấy tờ có giá và nguồn TCTD"
+          },
+          {
+            "topic": "leverage_context",
+            "refs": [
+              "ACB-V3-FH-BS-leverage_context"
+            ],
+            "rationale": "So sánh H1 riêng lẻ và hợp nhất theo vốn pháp định và RWA, giữ riêng ngưỡng đệm giả định"
+          }
+        ],
+        "sector": "BANK",
+        "sectorRationale": "BANK-sector evidence and same-scope owner economics.",
+        "economicChannel": "FH-BS"
+      },
+      {
+        "subcategory": "GQ-HIST",
+        "assessment": "Limited/low-quality trend",
+        "selectedPoints": 2,
+        "analyst": "CHATGPT",
+        "source": "AI",
+        "assessedAt": "2026-11-22T06:22:15.438Z",
+        "methodologyVersion": "1.0.0",
+        "rationale": "Lower supported point in Limited/low-quality trend; see topic evidence and counterevidence.",
+        "strongerEvidence": false,
+        "maximumPrerequisitesMet": false,
+        "exceptionalJustification": null,
+        "disconfirmingEvidence": [
+          "ACB-V3-GQ-HIST-counter"
+        ],
+        "evidence": [
+          {
+            "topic": "trend",
+            "refs": [
+              "ACB-V3-GQ-HIST-trend"
+            ],
+            "rationale": "Tử số EPS cùng mẫu số tăng khoảng 4,67%/năm nhưng FY2025 giảm 5,28%"
+          },
+          {
+            "topic": "acquisitions",
+            "refs": [
+              "ACB-V3-GQ-HIST-acquisitions"
+            ],
+            "rationale": "Thuyết minh 1(d) kiểm toán FY2022–25 trang 14 cho cùng bốn công ty con ACBS, ACBA, ACBL, ACBC, cùng tỷ lệ 100%. Dùng phạm vi quan sát tại các mốc năm; không suy rộng thành kiểm chứng mọi biến động nội kỳ."
+          },
+          {
+            "topic": "base_effects",
+            "refs": [
+              "ACB-V3-GQ-HIST-base_effects"
+            ],
+            "rationale": "Giữ mức sinh lời FY2022 và FY2023 làm hai mốc phản chứng"
+          },
+          {
+            "topic": "per_share",
+            "refs": [
+              "ACB-V3-GQ-HIST-per_share"
+            ],
+            "rationale": "Chuỗi trên mẫu số 5.804.421.957 cổ phần tách tác động số cổ phần"
+          }
+        ],
+        "sector": "BANK",
+        "sectorRationale": "BANK-sector evidence and same-scope owner economics.",
+        "economicChannel": "GQ-HIST"
+      },
+      {
+        "subcategory": "GQ-INC",
+        "assessment": "Weak incremental economics",
+        "selectedPoints": 1,
+        "analyst": "CHATGPT",
+        "source": "AI",
+        "assessedAt": "2026-11-22T06:22:15.438Z",
+        "methodologyVersion": "1.0.0",
+        "rationale": "Lower supported point in Weak incremental economics; see topic evidence and counterevidence.",
+        "strongerEvidence": false,
+        "maximumPrerequisitesMet": false,
+        "exceptionalJustification": null,
+        "disconfirmingEvidence": [
+          "ACB-V3-GQ-INC-counter"
+        ],
+        "evidence": [
+          {
+            "topic": "incremental_return",
+            "refs": [
+              "ACB-V3-GQ-INC-incremental_return"
+            ],
+            "rationale": "Chỉ dấu -1,11% từ FY2023 hoặc +8,54% từ FY2022"
+          },
+          {
+            "topic": "denominator",
+            "refs": [
+              "ACB-V3-GQ-INC-denominator"
+            ],
+            "rationale": "Vốn chủ hợp nhất tăng, phương pháp BANK giữ cùng phạm vi với lợi nhuận chuẩn hóa"
+          },
+          {
+            "topic": "unit_economics",
+            "refs": [
+              "ACB-V3-GQ-INC-unit_economics"
+            ],
+            "rationale": "Ngay cửa sổ thuận hơn vẫn thấp hơn Ke 14–17%, hiệu quả theo dự án và độ trễ chưa suy được"
+          }
+        ],
+        "sector": "BANK",
+        "sectorRationale": "BANK-sector evidence and same-scope owner economics.",
+        "economicChannel": "GQ-INC"
+      },
+      {
+        "subcategory": "IC-IND",
+        "assessment": "Mixed/cyclical/average",
+        "selectedPoints": 2,
+        "analyst": "CHATGPT",
+        "source": "AI",
+        "assessedAt": "2026-11-22T06:22:15.438Z",
+        "methodologyVersion": "1.0.0",
+        "rationale": "Lower supported point in Mixed/cyclical/average; see topic evidence and counterevidence.",
+        "strongerEvidence": false,
+        "maximumPrerequisitesMet": false,
+        "exceptionalJustification": null,
+        "disconfirmingEvidence": [
+          "ACB-V3-IC-IND-counter"
+        ],
+        "evidence": [
+          {
+            "topic": "barriers",
+            "refs": [
+              "ACB-V3-IC-IND-barriers"
+            ],
+            "rationale": "Điều kiện cấp phép và vốn tạo rào cản"
+          },
+          {
+            "topic": "competition",
+            "refs": [
+              "ACB-V3-IC-IND-competition"
+            ],
+            "rationale": "Proxy huy động so sánh cho thấy cạnh tranh"
+          },
+          {
+            "topic": "demand",
+            "refs": [
+              "ACB-V3-IC-IND-demand"
+            ],
+            "rationale": "Tín dụng tăng và có động lực doanh nghiệp"
+          },
+          {
+            "topic": "disruption",
+            "refs": [
+              "ACB-V3-IC-IND-disruption"
+            ],
+            "rationale": "ACB ONE, Techcombank Mobile và VPBank NEO trên các bản lưu công bố cho thấy kênh số được triển khai ở nhiều ngân hàng. Dùng chỉ dấu định tính về cạnh tranh phân phối; không suy ra tiết kiệm chi phí hoặc mức thị phần."
+          }
+        ],
+        "sector": "BANK",
+        "sectorRationale": "BANK-sector evidence and same-scope owner economics.",
+        "economicChannel": "IC-IND"
+      },
+      {
+        "subcategory": "IC-CYCLE",
+        "assessment": "Balanced normalized forward asymmetry",
+        "selectedPoints": 1,
+        "analyst": "CHATGPT",
+        "source": "AI",
+        "assessedAt": "2026-11-22T06:22:15.438Z",
+        "methodologyVersion": "1.0.0",
+        "rationale": "Lower supported point in Balanced normalized forward asymmetry; see topic evidence and counterevidence.",
+        "strongerEvidence": false,
+        "maximumPrerequisitesMet": false,
+        "exceptionalJustification": null,
+        "disconfirmingEvidence": [
+          "ACB-V3-IC-CYCLE-counter"
+        ],
+        "evidence": [
+          {
+            "topic": "cycle",
+            "refs": [
+              "ACB-V3-IC-CYCLE-cycle"
+            ],
+            "rationale": "NIM Q3 3,08% đi cùng tăng nợ nhóm 2 và NPL"
+          },
+          {
+            "topic": "forward_asymmetry",
+            "refs": [
+              "ACB-V3-IC-CYCLE-forward_asymmetry"
+            ],
+            "rationale": "Lợi nhuận trước dự phòng cải thiện nhưng chi phí tín dụng và huy động gây sức ép"
+          },
+          {
+            "topic": "survivability",
+            "refs": [
+              "ACB-V3-IC-CYCLE-survivability"
+            ],
+            "rationale": "Đệm lợi nhuận trước dự phòng, tách khỏi kết luận khả năng huy động trong stress"
+          }
+        ],
+        "sector": "BANK",
+        "sectorRationale": "BANK-sector evidence and same-scope owner economics.",
+        "economicChannel": "IC-CYCLE"
+      },
+      {
+        "subcategory": "VAL-RET",
+        "assessment": "Below 8%",
+        "selectedPoints": 0,
+        "analyst": "CHATGPT",
+        "source": "AI",
+        "assessedAt": "2026-11-22T06:22:15.438Z",
+        "methodologyVersion": "1.0.0",
+        "rationale": "Lower supported point in Below 8%; see topic evidence and counterevidence.",
+        "strongerEvidence": false,
+        "maximumPrerequisitesMet": false,
+        "exceptionalJustification": null,
+        "disconfirmingEvidence": [
+          "ACB-V3-VAL-RET-counter"
+        ],
+        "evidence": [
+          {
+            "topic": "starting_value",
+            "refs": [
+              "ACB-V3-VAL-RET-starting_value"
+            ],
+            "rationale": "Giá gốc 21.000 đồng/cp và BVPS gốc từ vốn hợp nhất"
+          },
+          {
+            "topic": "growth",
+            "refs": [
+              "ACB-V3-VAL-RET-growth"
+            ],
+            "rationale": "Lợi nhuận năm 1 15.307 tỷ, tăng 6% là giả định"
+          },
+          {
+            "topic": "exit_value",
+            "refs": [
+              "ACB-V3-VAL-RET-exit_value"
+            ],
+            "rationale": "ROE cuối kỳ 11,70% và P/B 0,725 với Ke 15% g 3%"
+          },
+          {
+            "topic": "distributions",
+            "refs": [
+              "ACB-V3-VAL-RET-distributions"
+            ],
+            "rationale": "Dòng cổ tức 450/0/686/727/771 đồng mỗi cổ phần"
+          },
+          {
+            "topic": "dilution",
+            "refs": [
+              "ACB-V3-VAL-RET-dilution"
+            ],
+            "rationale": "Cố định 5.804.421.957 cổ phần là giả định"
+          },
+          {
+            "topic": "scenarios",
+            "refs": [
+              "ACB-V3-VAL-RET-scenarios"
+            ],
+            "rationale": "IRR cơ sở 3,25%, phản chứng 8,37% với giá thoát 28.405 đồng theo ACB_BANK_FORMAL_ASSESSMENT_REVIEW"
+          }
+        ],
+        "sector": "BANK",
+        "sectorRationale": "BANK-sector evidence and same-scope owner economics.",
+        "economicChannel": "VAL-RET"
+      },
+      {
+        "subcategory": "VAL-MOS",
+        "assessment": "Poor asymmetry",
+        "selectedPoints": 0,
+        "analyst": "CHATGPT",
+        "source": "AI",
+        "assessedAt": "2026-11-22T06:22:15.438Z",
+        "methodologyVersion": "1.0.0",
+        "rationale": "Lower supported point in Poor asymmetry; see topic evidence and counterevidence.",
+        "strongerEvidence": false,
+        "maximumPrerequisitesMet": false,
+        "exceptionalJustification": null,
+        "disconfirmingEvidence": [
+          "ACB-V3-VAL-MOS-counter"
+        ],
+        "evidence": [
+          {
+            "topic": "conservative_value",
+            "refs": [
+              "ACB-V3-VAL-MOS-conservative_value"
+            ],
+            "rationale": "Giá thận trọng 14.191 đồng so với giá chốt 21.000"
+          },
+          {
+            "topic": "downside",
+            "refs": [
+              "ACB-V3-VAL-MOS-downside"
+            ],
+            "rationale": "Ngay đầu trên dải thử 20.205 vẫn dưới giá chốt"
+          },
+          {
+            "topic": "balance_sheet",
+            "refs": [
+              "ACB-V3-VAL-MOS-balance_sheet"
+            ],
+            "rationale": "Dư địa vốn nhạy với RWA và đệm, không tính rủi ro thanh khoản lặp lại"
+          }
+        ],
+        "sector": "BANK",
+        "sectorRationale": "BANK-sector evidence and same-scope owner economics.",
+        "economicChannel": "VAL-MOS"
+      },
+      {
+        "subcategory": "RG-UNC",
+        "assessment": "High uncertainty",
+        "selectedPoints": 0,
+        "analyst": "CHATGPT",
+        "source": "AI",
+        "assessedAt": "2026-11-22T06:22:15.438Z",
+        "methodologyVersion": "1.0.0",
+        "rationale": "Lower supported point in High uncertainty; see topic evidence and counterevidence.",
+        "strongerEvidence": false,
+        "maximumPrerequisitesMet": false,
+        "exceptionalJustification": null,
+        "disconfirmingEvidence": [
+          "ACB-V3-RG-UNC-counter"
+        ],
+        "evidence": [
+          {
+            "topic": "forecast_range",
+            "refs": [
+              "ACB-V3-RG-UNC-forecast_range"
+            ],
+            "rationale": "Giá thoát và IRR thay đổi rõ trong các kịch bản"
+          },
+          {
+            "topic": "sensitivity",
+            "refs": [
+              "ACB-V3-RG-UNC-sensitivity"
+            ],
+            "rationale": "Độ nhạy vốn và Ke có thể làm đổi band"
+          },
+          {
+            "topic": "dependencies",
+            "refs": [
+              "ACB-V3-RG-UNC-dependencies"
+            ],
+            "rationale": "Giá thoát phụ thuộc ROE bền vững và khả năng chi cổ tức"
+          }
+        ],
+        "sector": "BANK",
+        "sectorRationale": "BANK-sector evidence and same-scope owner economics.",
+        "economicChannel": "RG-UNC"
+      },
+      {
+        "subcategory": "CA-DIST",
+        "assessment": "Evidence does not demonstrate disciplined distribution",
+        "selectedPoints": 0,
+        "analyst": "CHATGPT",
+        "source": "AI",
+        "assessedAt": "2026-11-22T06:22:15.438Z",
+        "methodologyVersion": "1.0.0",
+        "rationale": "Lower supported point in Evidence does not demonstrate disciplined distribution; see topic evidence and counterevidence.",
+        "strongerEvidence": false,
+        "maximumPrerequisitesMet": false,
+        "exceptionalJustification": null,
+        "disconfirmingEvidence": [
+          "ACB-V3-CA-DIST-counter"
+        ],
+        "evidence": [
+          {
+            "topic": "retention",
+            "refs": [
+              "ACB-V3-CA-DIST-retention"
+            ],
+            "rationale": "Chỉ dấu vốn tăng thêm chưa chứng minh lợi suất cao"
+          },
+          {
+            "topic": "distribution",
+            "refs": [
+              "ACB-V3-CA-DIST-distribution"
+            ],
+            "rationale": "Lịch sử trả cổ tức tiền mặt có bằng chứng"
+          },
+          {
+            "topic": "buyback_valuation",
+            "refs": [
+              "ACB-V3-CA-DIST-buyback_valuation"
+            ],
+            "rationale": "Dữ liệu phát hành bằng đang lưu hành ở các mốc FY2022–25 và H1/2026; cầu nối bốn cổ tức cổ phiếu giải thích số tăng trong hồ sơ. Không có giao dịch mua lại trong phạm vi đối chiếu cần định giá; tiền chi cổ tức và dư địa vốn đánh giá riêng."
+          },
+          {
+            "topic": "resilience",
+            "refs": [
+              "ACB-V3-CA-DIST-resilience"
+            ],
+            "rationale": "Thêm đệm quản trị làm dư địa sau chi đổi từ dương 4.496 tỷ sang âm 4.014 tỷ"
+          }
+        ],
+        "sector": "BANK",
+        "sectorRationale": "BANK-sector evidence and same-scope owner economics.",
+        "economicChannel": "CA-DIST"
+      },
+      {
+        "subcategory": "CA-DIL",
+        "assessment": "Disciplined neutral/accretive issuance",
+        "selectedPoints": 1,
+        "analyst": "CHATGPT",
+        "source": "AI",
+        "assessedAt": "2026-11-22T06:22:15.438Z",
+        "methodologyVersion": "1.0.0",
+        "rationale": "Lower supported point in Disciplined neutral/accretive issuance; see topic evidence and counterevidence.",
+        "strongerEvidence": false,
+        "maximumPrerequisitesMet": true,
+        "exceptionalJustification": "All four reviewed changes reconcile to proportionate stock dividends and no new proceeds, with rounding documented.",
+        "disconfirmingEvidence": [
+          "ACB-V3-CA-DIL-counter"
+        ],
+        "evidence": [
+          {
+            "topic": "issue_terms",
+            "refs": [
+              "ACB-V3-CA-DIL-issue_terms"
+            ],
+            "rationale": "Bốn đợt phân phối theo tỷ lệ 15/15/15/13%"
+          },
+          {
+            "topic": "proceeds",
+            "refs": [
+              "ACB-V3-CA-DIL-proceeds"
+            ],
+            "rationale": "Cổ tức cổ phiếu đã rà không thu vốn mới"
+          },
+          {
+            "topic": "per_share",
+            "refs": [
+              "ACB-V3-CA-DIL-per_share"
+            ],
+            "rationale": "Cầu nối cổ phần khớp dưới một cổ phần cấp tổng, giữ điều khoản làm tròn làm phản chứng khi xét điểm tối đa"
+          }
+        ],
+        "sector": "BANK",
+        "sectorRationale": "BANK-sector evidence and same-scope owner economics.",
+        "economicChannel": "CA-DIL"
+      },
+      {
+        "subcategory": "CA-PSV",
+        "assessment": "Evidence does not demonstrate real compounding",
+        "selectedPoints": 0,
+        "analyst": "CHATGPT",
+        "source": "AI",
+        "assessedAt": "2026-11-22T06:22:15.438Z",
+        "methodologyVersion": "1.0.0",
+        "rationale": "Lower supported point in Evidence does not demonstrate real compounding; see topic evidence and counterevidence.",
+        "strongerEvidence": false,
+        "maximumPrerequisitesMet": false,
+        "exceptionalJustification": null,
+        "disconfirmingEvidence": [
+          "ACB-V3-CA-PSV-counter"
+        ],
+        "evidence": [
+          {
+            "topic": "per_share",
+            "refs": [
+              "ACB-V3-CA-PSV-per_share"
+            ],
+            "rationale": "EPS chuẩn hóa suy giảm 0,78–3,50% FY2023–25"
+          },
+          {
+            "topic": "actions",
+            "refs": [
+              "ACB-V3-CA-PSV-actions"
+            ],
+            "rationale": "Cổ tức và BVPS tăng là phản chứng"
+          },
+          {
+            "topic": "cycle_adjustment",
+            "refs": [
+              "ACB-V3-CA-PSV-cycle_adjustment"
+            ],
+            "rationale": "Kiểm ba mức chi phí tín dụng và so sánh hai mốc bắt đầu"
+          }
+        ],
+        "sector": "BANK",
+        "sectorRationale": "BANK-sector evidence and same-scope owner economics.",
+        "economicChannel": "CA-PSV"
+      }
+    ],
+    "stage0": {
+      "owner": "M1_STAGE_0",
+      "methodologyId": "acb-m1-review-recovery-v1",
+      "asOf": "2026-10-30T23:59:59.999Z",
+      "evaluatedAt": "2026-11-22T06:22:22.947Z",
+      "status": "UNKNOWN",
+      "evidenceRefs": [
+        "ACB_M1_LIQUIDITY_REVIEW_CLOSED_2026_10_30"
+      ]
+    },
+    "hardVeto": {
+      "owner": "M1_RISK_POLICY",
+      "methodologyId": "acb-m1-review-recovery-v1",
+      "asOf": "2026-10-30T23:59:59.999Z",
+      "evaluatedAt": "2026-11-22T06:22:22.947Z",
+      "status": "PENDING",
+      "evidenceRefs": [
+        "ACB_M1_LIQUIDITY_REVIEW_CLOSED_2026_10_30"
+      ]
+    },
+    "residualRisk": {
+      "owner": "M1_RISK_POLICY",
+      "methodologyId": "acb-m1-review-recovery-v1",
+      "asOf": "2026-10-30T23:59:59.999Z",
+      "evaluatedAt": "2026-11-22T06:22:22.947Z",
+      "status": "NOT_RATED",
+      "evidenceRefs": [
+        "ACB_M1_LIQUIDITY_REVIEW_CLOSED_2026_10_30"
+      ]
+    },
+    "confidence": {
+      "level": "LOW",
+      "analyst": "CHATGPT",
+      "rationale": "Unverified funding gap, contingent terminal capital and limited rubric coverage.",
+      "dimensions": [
+        "Adequate",
+        "Adequate",
+        "Weak",
+        "Weak",
+        "Weak"
+      ]
+    },
+    "expectedReturn": {
+      "value": "0.0325",
+      "modelConfidence": "LOW",
+      "assumptionBasis": "Conservative retained BANK base cash flows and justified PB exit; alternative 8.37% retained as counterevidence.",
+      "aggressiveExpansion": false,
+      "downsideDominates": true,
+      "nearLowerBoundary": false
+    },
+    "criticalMissing": [],
+    "thesis": {
+      "core": "Recurring banking earnings with visible funding and credit constraints.",
+      "compounding": "Incremental owner returns are weak over checked windows.",
+      "valuation": "Base terminal ROE and distribution support below 8% return band.",
+      "downside": "Unresolved incremental liquidity and contingent capital headroom.",
+      "invalidation": "Recheck funding coverage, normalized sustainable ROE and regulatory capital assumptions."
+    },
+    "doubleCountReview": {
+      "analyst": "CHATGPT",
+      "passed": true,
+      "rationale": "Topic channels separated: operating resilience, balance-sheet capital, industry distribution, modeled return, capital distributions, share terms and realized per-share trend."
+    },
+    "review": {
+      "contract": "personal-ai-review-provenance-v1",
+      "mode": "OWNER_AUTHORIZED_AI_SELF_REVIEW",
+      "independentHumanReviewClaimed": false,
+      "ownerAuthorizationReference": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_NR_SCOPE_APPROVAL.json",
+      "inputHash": "28165ebede032cd603044795ec2ad6df94f8159d0c24b5d6530affd605d4d260",
+      "evidenceHash": "5ef1131552133b98daaa08eadd3fafad2eaca96f21bb63208c901b88064aad50",
+      "methodologyHash": "75f46e49dfe3abb2d40a25554b57f0567c04cc099823d865caa08bc902c43d68",
+      "financialRulesHash": "49d0b713e4a166354ab2baafcb38cdce27095dc89b65e118ebe4b7813fdb910f",
+      "assessmentHashes": [
+        {
+          "rubricId": "BQ-EQ",
+          "sha256": "4bcf41f9f9163e05936bf75df832d1612632e65556e34d1791bac97e96e50f81"
+        },
+        {
+          "rubricId": "BQ-CASH",
+          "sha256": "e7c6a1a2125d22caf7757c5c987d931931d788a3b3b7e8afa416085aa9da869c"
+        },
+        {
+          "rubricId": "BQ-RES",
+          "sha256": "65510ade3bdc9bdabd2da2767be04af13864db34059640e0fa44ea386deeb2f2"
+        },
+        {
+          "rubricId": "FH-BS",
+          "sha256": "70e4dd6ed72c09bbf1ff4b9ecbbd3415af2b58a9f55687b95c4d9e18615a6882"
+        },
+        {
+          "rubricId": "GQ-HIST",
+          "sha256": "e59c23adf7eabb32ee61bcbebff9575b25603aa4bcf44c3da71512cd96cadfdb"
+        },
+        {
+          "rubricId": "GQ-INC",
+          "sha256": "a022906278a8e35cafba82a3cffcf326b8381b1f8e9d4acdd3a61b6a968196b3"
+        },
+        {
+          "rubricId": "IC-IND",
+          "sha256": "65f5442c10410b7bc46afe2e7273fc00d6c395e1cfc77b25bb24c7ad510a04b5"
+        },
+        {
+          "rubricId": "IC-CYCLE",
+          "sha256": "54a3e48723b52e5b809ea39f0b4403b003cd85481ba61d7584d1d6b084db6e3a"
+        },
+        {
+          "rubricId": "VAL-RET",
+          "sha256": "82815dff1890fd538ced032a55a98dba6af1fc8b61bdda106f6f1f04412f6aee"
+        },
+        {
+          "rubricId": "VAL-MOS",
+          "sha256": "d3d34a990815f20e9a9c4b2ea34d8e54a3fad99c14fe3b34b74b77779f9e395d"
+        },
+        {
+          "rubricId": "RG-UNC",
+          "sha256": "0be460d84de06c5b1ec941e5bb8d4e6b52ec4ae3533efeb862eb6ae22f77ad0d"
+        },
+        {
+          "rubricId": "CA-DIST",
+          "sha256": "94f07fb3b4de2a19ffc16a811053551cd2cd034edbed971ee0bd56b874c827e6"
+        },
+        {
+          "rubricId": "CA-DIL",
+          "sha256": "63d0c55c9710bb236fa32c7b20028d76190a969b9a1f8ce3c4c2c0899b6632d0"
+        },
+        {
+          "rubricId": "CA-PSV",
+          "sha256": "8c683b85999f19dc9a8bfad19bf40a2e84f3ec128b8e9c5cd01917b2056e9f51"
+        }
+      ],
+      "passes": [
+        {
+          "kind": "PREPARATION",
+          "at": "2026-11-22T06:22:15.438Z",
+          "actor": "CHATGPT",
+          "model": "GPT-6; exact deployment identifier not exposed",
+          "sessionReference": "01a1f209-cbc2-71b3-9078-7226b2d87576",
+          "toolReferences": [
+            "ACB_V3_REVIEW_EVIDENCE"
+          ],
+          "artifactReference": "ACB_V3_PREPARATION",
+          "artifactHash": "71b33c620b1e002130f6b330155f5eee7d4ce8ebabdf50c37d14387a49c1f8b3"
+        },
+        {
+          "kind": "CHALLENGE",
+          "at": "2026-11-22T06:22:22.947Z",
+          "actor": "CHATGPT",
+          "model": "GPT-6; exact deployment identifier not exposed",
+          "sessionReference": "01a1f209-cbc2-71b3-9078-7226b2d87576",
+          "toolReferences": [
+            "ACB_V3_REVIEW_EVIDENCE"
+          ],
+          "artifactReference": "ACB_V3_CHALLENGE",
+          "artifactHash": "a68177e6b37d644604a96b06c2864053fa20e2e48514ef241978886ddd0ea793"
+        }
+      ]
+    }
+  },
+  "datasetHash": "b916468f9808b2f7fed904ef5ba14913c7546cb644289bb0b0a28d3aa1152568",
+  "metricDecisions": [
+    {
+      "metric": "ROIC",
+      "status": "NOT_APPLICABLE",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Industrial invested-capital calculation is not representative of bank operating economics.",
+      "evidenceRefs": [
+        "ACB-V3-BQ-EQ-returns"
+      ]
+    },
+    {
+      "metric": "ROE",
+      "status": "PRINCIPLE_EQUIVALENT",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Use retained normalized owner ROE and cost-of-equity range.",
+      "evidenceRefs": [
+        "ACB-V3-BQ-EQ-returns"
+      ]
+    },
+    {
+      "metric": "CFO_CONVERSION",
+      "status": "PRINCIPLE_EQUIVALENT",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Use BANK interest realization and credit normalization instead of industrial CFO.",
+      "evidenceRefs": [
+        "ACB-V3-BQ-CASH-realization"
+      ]
+    },
+    {
+      "metric": "FCF",
+      "status": "NOT_APPLICABLE",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Industrial CFO less capex is unsuitable as bank owner cash generation.",
+      "evidenceRefs": [
+        "ACB-V3-BQ-CASH-realization"
+      ]
+    },
+    {
+      "metric": "NET_DEBT",
+      "status": "NOT_APPLICABLE",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Use funding mix and risk-weighted capital for a deposit-taking bank.",
+      "evidenceRefs": [
+        "ACB-V3-FH-BS-capital"
+      ]
+    },
+    {
+      "metric": "INTEREST_COVERAGE",
+      "status": "NOT_APPLICABLE",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Interest is an operating line for BANK; use retained capital and provision coverage.",
+      "evidenceRefs": [
+        "ACB-V3-FH-BS-capital"
+      ]
+    },
+    {
+      "metric": "NPL",
+      "status": "PRINCIPLE_EQUIVALENT",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Use reported Q3 credit-quality bridge without manufacturing an engine operand ratio.",
+      "evidenceRefs": [
+        "ACB-V3-FH-BS-capital"
+      ]
+    },
+    {
+      "metric": "COVERAGE",
+      "status": "PRINCIPLE_EQUIVALENT",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Use matched reported reserve coverage for the scoped loan book.",
+      "evidenceRefs": [
+        "ACB-V3-BQ-CASH-realization"
+      ]
+    },
+    {
+      "metric": "CASA",
+      "status": "N_R",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Do not impute same-basis point CASA. Funding-mix judgment is separately supported.",
+      "evidenceRefs": [
+        "ACB-V3-FH-BS-capital"
+      ]
+    },
+    {
+      "metric": "FCF_YIELD",
+      "status": "NOT_APPLICABLE",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Use owner return model appropriate for BANK.",
+      "evidenceRefs": [
+        "ACB-V3-VAL-RET-starting_value"
+      ]
+    },
+    {
+      "metric": "EARNINGS_YIELD",
+      "status": "N_R",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · No standalone normalized point yield used in score.",
+      "evidenceRefs": [
+        "ACB-V3-VAL-RET-starting_value"
+      ]
+    },
+    {
+      "metric": "DIVIDEND_YIELD",
+      "status": "PRINCIPLE_EQUIVALENT",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Use distribution record and capital headroom, with future payouts conditional.",
+      "evidenceRefs": [
+        "ACB-V3-CA-DIST-retention"
+      ]
+    },
+    {
+      "metric": "PB",
+      "status": "PRINCIPLE_EQUIVALENT",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Use justified exit PB from sustainable ROE, Ke and growth, not a standalone PB score.",
+      "evidenceRefs": [
+        "ACB-V3-VAL-RET-starting_value"
+      ]
+    },
+    {
+      "metric": "EV_EBIT",
+      "status": "NOT_APPLICABLE",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Industrial enterprise value and EBIT unsuitable for BANK.",
+      "evidenceRefs": [
+        "ACB-V3-FH-BS-capital"
+      ]
+    },
+    {
+      "metric": "MOS",
+      "status": "PRINCIPLE_EQUIVALENT",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Use range of conservative values versus admitted raw price.",
+      "evidenceRefs": [
+        "ACB-V3-VAL-MOS-conservative_value"
+      ]
+    },
+    {
+      "metric": "REVENUE_CAGR",
+      "status": "PRINCIPLE_EQUIVALENT",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Use same-share-basis normalized owner earnings history.",
+      "evidenceRefs": [
+        "ACB-V3-GQ-HIST-trend"
+      ]
+    },
+    {
+      "metric": "EPS_CAGR",
+      "status": "PRINCIPLE_EQUIVALENT",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Use same-share-basis controlled earnings trend, preserving observed dilution and periods.",
+      "evidenceRefs": [
+        "ACB-V3-GQ-HIST-trend"
+      ]
+    },
+    {
+      "metric": "INCREMENTAL_ROIC",
+      "status": "PRINCIPLE_EQUIVALENT",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Use bank incremental owner returns on incremental common capital.",
+      "evidenceRefs": [
+        "ACB-V3-GQ-INC-incremental_return"
+      ]
+    },
+    {
+      "metric": "NET_DEBT_EBITDA",
+      "status": "NOT_APPLICABLE",
+      "ruleReference": "METRIC_DEFINITIONS §13.1 · Industrial leverage ratio displaced by BANK capital and asset quality.",
+      "evidenceRefs": [
+        "ACB-V3-FH-BS-capital"
+      ]
+    }
+  ]
+}

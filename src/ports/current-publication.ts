@@ -1,5 +1,6 @@
 import type {calculateScorecard} from '@/domain/current-scoring/scorecard';
-export type CurrentPublishedCard=ReturnType<typeof calculateScorecard>;
+import type {OfficialLimitedCoverage} from '@/domain/current-scoring/limited-coverage';
+export type CurrentPublishedCard=ReturnType<typeof calculateScorecard>&{readonly limitedCoverage?:OfficialLimitedCoverage};
 export interface CurrentPublicationSubject {readonly scorecardId:string;readonly scorecardHash:string;readonly datasetHash:string;readonly methodologyHash:string;readonly reviewHash:string}
 /** Trusted server registration capability, never supplied by URL/form or a caller PASS. */
 export interface CurrentReleaseGate {readonly authorityReference:string;readonly authorityHash:string;verify(operation:'MATERIALIZE'|'PUBLISH'|'READ',subject:CurrentPublicationSubject,deploymentHash?:string):Promise<void>}

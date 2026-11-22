@@ -1,0 +1,15 @@
+# ACB — Đề xuất xử lý năm rubric còn vướng
+
+Phạm vi ACB/HOSE, BANK binding và dataset của candidate V2, ngày chốt 30/10/2026. Giữ 14 mức chuyển tiếp vào formal review và bốn rubric N/R đã được duyệt. Kiểm tra mức đề xuất khớp đầu thấp của band là kiểm tra áp dụng thang điểm. Việc chấp nhận mức đó trong assessment còn qua review bằng chứng và phản chứng. [Rà band bảo thủ](ACB_OFFICIAL_LIMITED_V2_CONSERVATIVE_BAND_REVIEW.md) · [Candidate V2](ACB_OFFICIAL_LIMITED_V2_CANDIDATE_READINESS.json)
+
+| Rubric | Trọng số gốc | Phương pháp thay thế có thể dùng nếu có căn cứ | Giới hạn của hồ sơ hiện tại |
+| --- | ---: | --- | --- |
+| BQ-MOAT | 6 | Đo lợi thế bằng độ ổn định của tệp khách hàng và lợi ích kinh tế trên cùng phân khúc qua nhiều kỳ. Dùng tốc độ duy trì tiền gửi theo phân khúc hoặc chỉ dấu chi phí phục vụ cùng cơ sở nếu nguồn đủ chi tiết. | Sản phẩm và quy mô phân phối chứng minh hiện diện. Chưa chứng minh sự khác biệt bền vững trong hành vi khách hàng và chi phí. |
+| GQ-FWD | 5 | Kiểm tra dải tăng trưởng bằng cầu nối tăng trưởng tín dụng, NIM, chi phí tín dụng và RWA/vốn giữ lại trên cùng phạm vi. Chọn đầu thấp của band khi dải có căn cứ. | Tăng trưởng lợi nhuận 6% là giả định mô hình. Tăng trưởng tín dụng và NIM Q3 riêng lẻ chưa giới hạn được band. |
+| IC-POS | 4 | Dùng thị phần cùng mẫu số hoặc chỉ dấu quy mô và độ phủ phân phối đã định nghĩa, kết hợp proxy chi phí huy động đồng kỳ. | Chi phí huy động nằm giữa hai ngân hàng đối chiếu. Chưa đủ căn cứ cho kết luận về thị phần và phân phối. |
+| VAL-PRIMARY | 8 | Dùng P/B hợp lý của BANK, với ROE chuẩn hóa, Ke và mức giá đại diện có căn cứ. Kiểm tra band trên dải và dùng giá trên lợi nhuận để đối chiếu. | Giá cao hơn dải giá trị 4–48%, nên hướng định giá rõ trong dải đã thử. Mức chênh lệch chưa phân biệt được band Expensive với band liền kề. |
+| CA-REINV | 2 | Dùng LNST hợp nhất cùng kỳ theo công ty con và vốn thực triển khai, giữ LNTT để giải thích và ghi phạm vi phần chưa quy được. | Kết quả ACBS hỗn hợp và hiệu quả AMC chưa lượng hóa. Giữ 1/2 ở mức nghiên cứu theo bằng chứng hiện có. |
+
+Chưa áp dụng các chỉ dấu trên để chốt điểm do giới hạn ghi trong bảng. Phương án trình duyệt nếu cần tiếp tục trước khi có dữ liệu bổ sung là đặt đúng năm rubric trên ở N/R cùng bốn mục đã duyệt FH-LIQ, FH-STRESS, RG-GOV, RG-RISK. Thêm 25 trọng số chưa đánh giá, cộng 17 hiện có thành 42. Nếu 14 rubric còn lại qua formal review, độ phủ là 14/23 rubric và 58/100 trọng số gốc. Giữ totalScore null, ghi điểm đạt trên 58 tối đa của phần được đánh giá và loại khỏi xếp hạng, phân bổ vốn.
+
+Trạng thái đề xuất chờ quyết định cụ thể về phạm vi N/R. V2 chỉ cho phép đúng bốn N/R hiện có. Phiên bản kế nhiệm cho phạm vi chín mục cần có quyết định lưu rõ mã, cutoff, BANK binding, danh sách N/R, trọng số và giới hạn sử dụng. Kiểm tra exact scope, chặn mục thiếu ngoài danh mục đã duyệt, giữ tổng điểm đầy đủ rỗng và chạy thử trên dữ liệu cô lập. Sau đó ghim assessment và hai lượt review để chạy prepare. Quyền score vẫn duyệt riêng theo hash route. Chưa đổi mã, registry hoặc dữ liệu chính thức.

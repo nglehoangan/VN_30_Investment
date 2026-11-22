@@ -5,6 +5,7 @@ import type {CurrentScoringDatasets,CurrentScoringDataset} from '@/ports/current
 import type {PreScoringDatasetReference} from '@/ports/pre-scoring-datasets';
 import type {MethodologyRecord} from '@/domain/methodology/record';
 import {calculateScorecard,type ScoreInput} from '@/domain/current-scoring/scorecard';
+import {ACB_LIMITED_METHOD,ACB_LIMITED_DISPOSITIONS,ACB_UNRATED_RUBRICS,coverageOf,type OfficialLimitedCoverage} from '@/domain/current-scoring/limited-coverage';
 import {METRICS} from '@/domain/scoring/metrics';
 import {aiInputSemantic} from '@/domain/current-scoring/provenance';
 import {PinnedAiReviewVerifier,pinnedAiBytes,type AiArtifactPin,type AiReviewTrustBinding} from './current-review';
@@ -55,19 +56,38 @@ export class CurrentPurposeScoring {
   const method=await this.registry.findById(input.methodology.methodologyId);
   check(method&&hash(method)===hash(input.methodology),'UNREGISTERED_CURRENT_METHODOLOGY');
   await this.executable.verify(method);
-  const dataset=await this.data.resolve(reference,{...reference.context,knownAt:input.knownAt});
+  const limited=input.methodology.methodologyId===ACB_LIMITED_METHOD;
+  // BANK acceptance is sealed at the original binding time. The assessment clock still governs executable and review authority.
+  const datasetContext=limited?reference.context:{...reference.context,knownAt:input.knownAt};
+  const dataset=await this.data.resolve(reference,datasetContext);
+  if(limited)check(dataset.context.knownAt===reference.context.knownAt,'ACB_LIMITED_DATASET_KNOWN_AT_MISMATCH');
   check(dataset.context.knownAt<=input.knownAt&&dataset.purpose===p.purpose&&dataset.financialAssemblyComplete&&dataset.bindingId===reference.bindingId&&dataset.manifestHash===reference.manifestHash&&dataset.context.securityId===input.securityId&&dataset.context.economicCutoff===p.economicCutoff&&dataset.originalBindingKnownAt===reference.context.knownAt,'CURRENT_SCORE_DATASET_NOT_READY');
   for(const e of dataset.evidence)check(input.evidence.some(v=>v.id===e.id&&hash(v)===hash(e)),'CURRENT_SCORE_FINANCIAL_LINEAGE_REQUIRED');
   await this.adoption.verify(input,dataset);
   const pendingLiquidity=allowsAcbPendingLiquidity(input,dataset);
   check(pendingLiquidity||(['PASS','PASS WITH CONDITIONS'].includes(input.stage0.status)&&input.hardVeto.status!=='PENDING'),'CURRENT_SCORE_M1_UNRESOLVED');
   const calculated=calculateScorecard(input,hash);
-  const card=pendingLiquidity?deepFreeze({...calculated,validity:'VALID — NON-ACTIONABLE' as const,
+  const coverage=limited?coverageOf(calculated.subcategories):null;
+  if(limited){
+   check(pendingLiquidity&&input.residualRisk.status==='NOT_RATED'&&
+    dataset.bindingId==='current-bank-coverage:bff83724df834f2b29a7a4d0a3a3b573ab466aa2c2d4f72ab23f9b42b2825119'&&
+    dataset.manifestHash==='bff83724df834f2b29a7a4d0a3a3b573ab466aa2c2d4f72ab23f9b42b2825119'&&
+    dataset.dataAcceptanceId==='current-data-acceptance:2624e22d282b23bd94db0834ecc6f012828350dce9ad2f729d994b30bdac614f','ACB_LIMITED_SCOPE_MISMATCH');
+   check(hash(coverage!.unratedRubrics)===hash(ACB_UNRATED_RUBRICS)&&
+    hash(calculated.missingEvidence)===hash(ACB_UNRATED_RUBRICS)&&!calculated.blockingEvidence.length&&
+    !input.criticalMissing.length&&input.doubleCountReview.passed&&input.assessments.every(a=>!ACB_UNRATED_RUBRICS.some(id=>id===a.subcategory)),
+    'ACB_LIMITED_EXACT_RUBRIC_COVERAGE_REQUIRED');
+  }
+  const limitedCoverage:OfficialLimitedCoverage|null=coverage?{status:'OFFICIAL_LIMITED',fullOfficialScore:null,
+   eligibleForRanking:false,allocationAuthorized:false,...coverage,dispositions:ACB_LIMITED_DISPOSITIONS}:null;
+  const card=limitedCoverage?deepFreeze({...calculated,limitedCoverage,
+   flags:[...calculated.flags,'M1_PENDING_LIQUIDITY_SOURCE_NOT_VERIFIED']}):
+   pendingLiquidity?deepFreeze({...calculated,validity:'VALID — NON-ACTIONABLE' as const,
    flags:[...calculated.flags,'M1_PENDING_LIQUIDITY_SOURCE_NOT_VERIFIED']}):calculated;
   check(card.reference.membership==='MEMBER'&&card.ticker===dataset.context.ticker,'CURRENT_SCORE_MEMBERSHIP_REQUIRED');
-  check(card.totalScore!==null&&!card.missingEvidence.length,'CURRENT_SCORE_MANDATORY_ASSESSMENTS_REQUIRED');
+  check(limited||card.totalScore!==null&&!card.missingEvidence.length,'CURRENT_SCORE_MANDATORY_ASSESSMENTS_REQUIRED');
   // LOW confidence is retained as NON-ACTIONABLE, never increased or converted into a trade authorization.
-  const authorization={contract:'current-purpose-score-authorization-v1',reference,dataAcceptanceId:dataset.dataAcceptanceId,datasetHash:hash(dataset),inputHash:hash(input),reviewHash:hash(input.review),methodologyHash:hash(method),purpose:p.purpose,economicCutoff:p.economicCutoff,knownAt:input.knownAt,evaluatedAt:p.evaluatedAt,productionActivated:false,historicalPitGranted:false};
+  const authorization={...(limitedCoverage?{limitedCoverage}:{}),contract:'current-purpose-score-authorization-v1',reference,dataAcceptanceId:dataset.dataAcceptanceId,datasetHash:hash(dataset),inputHash:hash(input),reviewHash:hash(input.review),methodologyHash:hash(method),purpose:p.purpose,economicCutoff:p.economicCutoff,knownAt:input.knownAt,evaluatedAt:p.evaluatedAt,productionActivated:false,historicalPitGranted:false};
   return {input,card,authorization,dataset};
  }
  async preflight(input:ScoreInput,reference:PreScoringDatasetReference){const a=await this.authorize(input,reference);return a.authorization;}
@@ -83,7 +103,7 @@ export class CurrentPurposeScoring {
  async find(id:string){
   const rows=await this.db.$queryRawUnsafe<{body:string;body_hash:string}[]>('SELECT body,body_hash FROM current_score_artifact WHERE id=?',id);
   if(!rows.length)return null;
-  const saved=JSON.parse(rows[0].body) as {card:ReturnType<typeof calculateScorecard>;authorization:Awaited<ReturnType<CurrentPurposeScoring['preflight']>>};
+  const saved=JSON.parse(rows[0].body) as {card:Awaited<ReturnType<CurrentPurposeScoring['score']>>;authorization:Awaited<ReturnType<CurrentPurposeScoring['preflight']>>};
   check(hash(saved)===rows[0].body_hash&&canonicalJson(saved)===rows[0].body&&saved.card.id===id,'CURRENT_SCORE_ARTIFACT_INTEGRITY');
   const replay=await this.authorize(saved.card.input,saved.authorization.reference);
   check(hash(replay.authorization)===hash(saved.authorization)&&hash(replay.card)===hash(saved.card),'CURRENT_SCORE_REPLAY_REQUIRED');

@@ -93,11 +93,14 @@ async function run(job, action, candidate) {
   });
   const load = path => jiti.import(resolve(root, path));
   if (action === 'prepare') {
+    const {ACB_LIMITED_METHOD, ACB_UNRATED_RUBRICS} = await load('src/domain/current-scoring/limited-coverage.ts');
+    const limited = input.methodology?.methodologyId === ACB_LIMITED_METHOD;
     const {RUBRICS} = await load('src/domain/scoring/methodology.ts');
     const assessments = new Map((input.assessments ?? []).map(row => [row.subcategory, row]));
     const evidenceIds = new Set((input.evidence ?? []).map(row => row.id));
     const rubricGaps = RUBRICS.flatMap(rubric => {
       const row = assessments.get(rubric.id);
+      if (limited && ACB_UNRATED_RUBRICS.includes(rubric.id) && !row) return [];
       const band = rubric.bands.find(item => item.label === row?.assessment);
       const topics = new Set((row?.evidence ?? []).filter(item =>
         item.refs.length && item.refs.every(ref => evidenceIds.has(ref))).map(item => item.topic));
@@ -139,12 +142,13 @@ async function run(job, action, candidate) {
     const preflight = await scorer.preflight(input, reference);
     if (action === 'prepare') {
       const proposedRoute = {...route, preflightHash: snapshotHash(preflight)};
-      return {blockers: [], formalAssessmentHash: preflight.inputHash,
+      return {blockers: [], ...(preflight.limitedCoverage ? {limitedCoverage: preflight.limitedCoverage} : {}),
+        methodologyHash: preflight.methodologyHash, reviewHash: preflight.reviewHash, formalAssessmentHash: preflight.inputHash,
         datasetHash: preflight.datasetHash, preflightHash: proposedRoute.preflightHash,
         approvalHash: sha(JSON.stringify(canonical(proposedRoute))), proposedRoute};
     }
     requireCondition(snapshotHash(preflight) === route.preflightHash, 'EXACT_GOVERNED_PREFLIGHT_MISMATCH');
-    if (action === 'preflight') return {blockers: []};
+    if (action === 'preflight') return {blockers: [], ...(preflight.limitedCoverage ? {limitedCoverage: preflight.limitedCoverage} : {})};
 
     const fd = Number(process.argv[3]);
     requireCondition(Number.isInteger(fd) && fd > 2, 'SCORING_ROLLOUT_LOCK_REQUIRED');
@@ -172,6 +176,7 @@ async function run(job, action, candidate) {
     const card = await new CurrentPurposeScoring(guardedWriter, registry, exactDataset, adoption, executable)
       .score(input, reference);
     return {blockers: [], artifact: {id: card.id, sha256: snapshotHash(card), totalScore: card.totalScore,
+      ...(preflight.limitedCoverage ? {limitedCoverage: preflight.limitedCoverage} : {}),
       authorizationHash: route.preflightHash, ownerApprovalHash: approvalHash}};
   } finally {
     await Promise.all([reader.$disconnect(), writer?.$disconnect()]);

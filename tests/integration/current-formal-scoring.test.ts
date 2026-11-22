@@ -1,3 +1,12 @@
+import {createElement} from 'react';
+import {renderToStaticMarkup} from 'react-dom/server';
+import {LimitedCoverageView} from '@/ui/limited-coverage';
+import {ACB_LIMITED_METHOD, ACB_UNRATED_RUBRICS} from '@/domain/current-scoring/limited-coverage';
+import {mkdtempSync, rmSync, writeFileSync} from "node:fs";
+import {tmpdir} from "node:os";
+import {join} from "node:path";
+import {ValidationError} from "@/shared/errors";
+import {previewEvidenceBasedScore, type ConservativeAssessment} from "@/domain/current-scoring/evidence-based-preview";
 import {ensureCurrentSchema} from '../fixtures/current-schema';
 import {execFileSync} from 'node:child_process';
 import {it,expect,describe} from 'vitest';
@@ -19,13 +28,13 @@ function input(sector:Sector="INDUSTRIAL"){
  const base=reviewedAiInput(fixture(0,sector)).input;
  return sign({...base,id:'SYNTHETIC-CURRENT-SCORE',artifactScope:'FORMAL',knownAt:NOW,calculatedAt:NOW,currentPurpose:{contract:'current-scoring-time-v1',purpose:'CURRENT_FORMAL_VALUATION',economicCutoff:base.asOf.slice(0,10),evaluatedAt:NOW},methodology:{...base.methodology,family:'SCORING',intendedUse:'PRODUCTION',governanceStatus:'APPROVED',approvalReference:'SYNTHETIC_APPROVAL_NOT_REAL',effectiveDate:dateOnly('2026-11-17'),recordedAt:instant('2026-11-17T01:00:00.000Z')},evidence:base.evidence.map((e,i)=>i?e:{...e,publishedAt:null,receivedAt:NOW,time:{contract:'current-formal-evidence-time-v1',purpose:'CURRENT_FORMAL_VALUATION',policyVersion:'standing-financial-current-v1',policyHash:'a'.repeat(64),authorizationReference:'SYNTHETIC_NOT_REAL',rawHash:'b'.repeat(64),qualificationReference:'SYNTHETIC_REVIEW',originalReceivedAt:NOW,reviewedAt:NOW,ingestedAt:NOW,availableAt:NOW}})});
 }
-async function setup(f=input(),ticker='S0',parentDatasetId='SYNTHETIC_PARENT'){
+async function setup(f=input(),ticker='S0',parentDatasetId='SYNTHETIC_PARENT',bindingId='SYNTHETIC_BINDING',manifestHash='a'.repeat(64),dataAcceptanceId='SYNTHETIC_ACCEPTANCE',bindingKnownAt=NOW){
  const db=await testDatabase();
  await ensureCurrentSchema(db.client,'prisma/proposals/current-scoring-artifact-v1.sql');
- const reference:PreScoringDatasetReference={contract:'current-purpose-pre-scoring-reference-v1',bindingId:'SYNTHETIC_BINDING',context:{ticker,securityId:f.securityId,purpose:'CURRENT_FORMAL_VALUATION',economicCutoff:f.asOf.slice(0,10),knownAt:NOW},manifestHash:'a'.repeat(64),permitsScoring:false,historicalPitGranted:false};
- const dataset={contract:'current-purpose-scoring-consumption-v1',status:'ACCEPTED_CURRENT_DATA',purpose:'CURRENT_FORMAL_VALUATION',bindingId:reference.bindingId,manifestHash:reference.manifestHash,parentDatasetId,dataAcceptanceId:'SYNTHETIC_ACCEPTANCE',context:reference.context,originalBindingKnownAt:NOW,facts:[],evidence:[f.evidence[0]],history:[],research:{},price:{},shares:{},financialAssemblyComplete:true,fullM3CoverageCertified:false,gates:{assessment:'NOT_GRANTED',M1:'NOT_GRANTED',confidence:'NOT_GRANTED',scoringAuthorization:'NOT_GRANTED'},readyForScoring:false,historicalPitGranted:false,VNM17Promoted:false} as unknown as CurrentScoringDataset;
+ const reference:PreScoringDatasetReference={contract:'current-purpose-pre-scoring-reference-v1',bindingId,context:{ticker,securityId:f.securityId,purpose:'CURRENT_FORMAL_VALUATION',economicCutoff:f.asOf.slice(0,10),knownAt:bindingKnownAt},manifestHash,permitsScoring:false,historicalPitGranted:false};
+ const dataset={contract:'current-purpose-scoring-consumption-v1',status:'ACCEPTED_CURRENT_DATA',purpose:'CURRENT_FORMAL_VALUATION',bindingId:reference.bindingId,manifestHash:reference.manifestHash,parentDatasetId,dataAcceptanceId,context:reference.context,originalBindingKnownAt:bindingKnownAt,facts:[],evidence:[f.evidence[0]],history:[],research:{},price:{},shares:{},financialAssemblyComplete:true,fullM3CoverageCertified:false,gates:{assessment:'NOT_GRANTED',M1:'NOT_GRANTED',confidence:'NOT_GRANTED',scoringAuthorization:'NOT_GRANTED'},readyForScoring:false,historicalPitGranted:false,VNM17Promoted:false} as unknown as CurrentScoringDataset;
  await db.registry.append(f.methodology);let reviewed=hash(f),revoked=false,authorized=true;
- const service=new CurrentPurposeScoring(db.client,db.registry,{resolve:async(ref,context)=>{if(revoked)throw Error('SYNTHETIC_REVOKED');if(hash(ref)!==hash(reference)||context.knownAt!==NOW)throw Error('SYNTHETIC_CONTEXT_MISMATCH');return dataset;}},{verify:async x=>{if(hash(x)!==reviewed)throw Error('SYNTHETIC_UNTRUSTED_REVIEW');}},{verify:async()=>{if(!authorized)throw Error('SYNTHETIC_EXECUTABLE_NOT_APPROVED');}});
+ const service=new CurrentPurposeScoring(db.client,db.registry,{resolve:async(ref,context)=>{if(revoked)throw Error('SYNTHETIC_REVOKED');if(hash(ref)!==hash(reference)||context.knownAt!==bindingKnownAt)throw Error('SYNTHETIC_CONTEXT_MISMATCH');return dataset;}},{verify:async x=>{if(hash(x)!==reviewed)throw Error('SYNTHETIC_UNTRUSTED_REVIEW');}},{verify:async()=>{if(!authorized)throw Error('SYNTHETIC_EXECUTABLE_NOT_APPROVED');}});
  return {db,f,reference,dataset,service,review:(x:ScoreInput)=>reviewed=hash(x),revoke:()=>revoked=true,revokeAuthority:()=>authorized=false};
 }
 describe('explicit current-purpose scoring, SYNTHETIC AUTHORITY ONLY',()=>{
@@ -74,7 +83,9 @@ describe('ACB pending liquidity successor with synthetic facts in isolated SQLit
   const x=await setup(f,'ACB',parent);
   const wrong=await setup(f,'ACB','SYNTHETIC_WRONG_DATASET');
   try{
-   await expect(wrong.service.preflight(f,wrong.reference)).rejects.toThrow('CURRENT_SCORE_M1_UNRESOLVED');
+   await expect(wrong.service.preflight(f,wrong.reference)).rejects.toMatchObject({
+    issues: [expect.objectContaining({reason: 'CURRENT_SCORE_M1_UNRESOLVED'})],
+   });
    for(const changed of [
     sign({...f,hardVeto:{...f.hardVeto,status:'ACTIVE'}}),
     sign({...f,stage0:{...f.stage0,evidenceRefs:['BQ-EQ-returns']}}),
@@ -169,4 +180,160 @@ describe('receipt application preserves the reviewed target',()=>{
   expect(applied.method.effectiveDate).toBe('2026-11-18');expect(applied.method.recordedAt).toBe('2026-11-18T01:00:00.000Z');expect(applied.authority.approvalPayloadHash).toBe(p.approvalPayloadHash);
   expect(()=>applyCurrentAuthorityProposal(p,draft,{path:'SYNTHETIC',sha256:'c'.repeat(64)},'2020-01-01T00:00:00.000Z')).toThrow();
  });
+});
+
+describe('Evidence-Based Conservative Scoring research preview', () => {
+ function rejectionReason(run: () => unknown) {
+  try {
+   run();
+  } catch (error) {
+   if (error instanceof ValidationError) return error.issues[0]?.reason;
+   throw error;
+  }
+  return null;
+ }
+ const conservative: ConservativeAssessment = {
+  rubricId: 'BQ-EQ', band: 'Good economics',
+  rationale: 'Synthetic evidence supports the lower point in this band.',
+  evidenceRefs: ['BQ-EQ-persistence'], counterEvidenceRefs: ['BQ-EQ-returns'],
+  counterEvidenceReview: 'Synthetic counter-evidence considered.',
+ };
+
+ it('keeps complete BANK arithmetic and excludes the research preview from ranking and allocation', () => {
+  const f = input('BANK');
+  const result = previewEvidenceBasedScore(f, [], hash);
+  expect(result).toMatchObject({
+   status: 'RESEARCH_ONLY', fullOfficialScore: null, eligibleForRanking: false, allocationAuthorized: false,
+   confirmedScore: Number(calculateScorecard(f, hash).totalScore),
+   ratedMaxPoints: 100, unratedMaxPoints: 0, coverageRatio: 1,
+   scoreLowerBound: 82, scoreUpperBound: 82, unratedRubrics: [], conservativeRubrics: [],
+  });
+  expect(result.rubrics.every(rubric => rubric.state === 'VERIFIED')).toBe(true);
+ });
+
+ it('previews a single researched BANK input and rejects a mismatched ticker', () => {
+  const f = input('BANK');
+  const directory = mkdtempSync(join(tmpdir(), 'vn30-ebcs-'));
+  try {
+   const path = join(directory, 'preview.json');
+   const renamed = sign({...f, reference: {...f.reference, data: {...f.reference.data,
+    intervals: f.reference.data.intervals.map(row => row.kind === 'IDENTIFIER' && row.securityId === f.securityId
+     ? {...row, value: 'ACB'} : row)}}});
+   writeFileSync(path, JSON.stringify({
+    contract: 'ebcs-research-preview-input-v1', input: renamed, conservativeAssessments: [],
+   }));
+   const args = ['tools/scoring/vn30_ebcs_preview.mjs', '--cutoff', f.currentPurpose.economicCutoff, '--input', path];
+   const result = execFileSync(process.execPath, [...args, '--ticker', 'ACB'], {encoding: 'utf8'});
+   expect(JSON.parse(result)).toMatchObject({ticker: 'ACB', status: 'RESEARCH_ONLY', fullOfficialScore: null});
+   expect(() => execFileSync(process.execPath, [...args, '--ticker', 'VNM'], {stdio: 'pipe'}))
+    .toThrow('EBCS_PREVIEW_SCOPE_MISMATCH');
+  } finally {
+   rmSync(directory, {recursive: true, force: true});
+  }
+ });
+
+ it('supports the lower point of the reviewed band and rejects the upper point or unsupported rationale', () => {
+  const f = input('BANK');
+  const lower = sign({...f, assessments: f.assessments.map(row =>
+   row.subcategory === 'BQ-EQ' ? {...row, selectedPoints: 5} : row)});
+  expect(previewEvidenceBasedScore(lower, [conservative], hash).rubrics[0]).toMatchObject({
+   state: 'CONSERVATIVE', points: 5,
+  });
+  expect(rejectionReason(() => previewEvidenceBasedScore(f, [conservative], hash))).toBe('EBCS_LOWEST_SUPPORTED_BAND_REQUIRED');
+  expect(rejectionReason(() => previewEvidenceBasedScore(lower, [{...conservative, band: 'Average economics'}], hash)))
+   .toBe('EBCS_LOWEST_SUPPORTED_BAND_REQUIRED');
+  expect(rejectionReason(() => previewEvidenceBasedScore(lower, [{...conservative, counterEvidenceRefs: []}], hash)))
+   .toBe('EBCS_EVIDENCE_MUST_MATCH_REVIEWED_RUBRIC');
+  expect(rejectionReason(() => previewEvidenceBasedScore(lower, [{...conservative, evidenceRefs: ['RG-GOV-disclosure']}], hash)))
+   .toBe('EBCS_EVIDENCE_MUST_MATCH_REVIEWED_RUBRIC');
+ });
+
+ it('separates genuine zero from four unrated rubrics and uses original weights in the interval', () => {
+  const f = input('BANK');
+  const omitted = ['FH-LIQ', 'FH-STRESS', 'RG-GOV', 'RG-RISK'];
+  const partial = sign({...f, criticalMissing: ['Synthetic unresolved critical item'],
+   assessments: f.assessments.filter(row => !omitted.includes(row.subcategory)).map(row =>
+    row.subcategory === 'BQ-EQ' ? {...row, selectedPoints: 0, assessment: 'Value destructive'} : row)});
+  const result = previewEvidenceBasedScore(partial, [], hash);
+  expect(result).toMatchObject({
+   status: 'RESEARCH_ONLY', fullOfficialScore: null, eligibleForRanking: false, allocationAuthorized: false,
+   confirmedScore: 62, scoreLowerBound: 62, scoreUpperBound: 79,
+   ratedMaxPoints: 83, unratedMaxPoints: 17, coverageRatio: .83,
+   unratedRubrics: omitted,
+  });
+  expect(result.missingEvidence).toContain('Synthetic unresolved critical item');
+  expect(result.rubrics[0]).toMatchObject({points: 0, state: 'VERIFIED'});
+  expect(result.rubrics.find(row => row.rubricId === 'FH-LIQ')).toMatchObject({points: null, state: 'NOT_RATED'});
+  expect(calculateScorecard(partial, hash).totalScore).toBeNull();
+ });
+});
+
+it('authorizes and replays only the exact ACB limited coverage in isolated SQLite', async () => {
+ const base = input('BANK');
+ const asOf = '2026-10-30T09:00:00.000Z';
+ const securityId = '658fafbe-65b3-4176-999f-d4d32e1bd838';
+ const reviewId = 'ACB_M1_LIQUIDITY_REVIEW_CLOSED_2026_10_30';
+ const evidence = base.evidence.map(row => ({...row, securityId, asOf, validThrough:asOf}));
+ const f = sign({...base, asOf, securityId,
+  methodology:{...base.methodology,methodologyId:ACB_LIMITED_METHOD},
+  currentPurpose:{...base.currentPurpose,economicCutoff:'2026-10-30'},
+  reference:{...base.reference,data:{...base.reference.data,intervals:base.reference.data.intervals.map(row =>
+   row.securityId===base.securityId?{...row,securityId,value:row.kind==='IDENTIFIER'?'ACB':row.value}:row)}},
+  evidence:[...evidence,{...evidence[1],id:reviewId,observation:reviewId,family:reviewId}],
+  assessments:base.assessments.filter(row=>!ACB_UNRATED_RUBRICS.some(id=>id===row.subcategory)),
+  stage0:{...base.stage0,asOf,status:'UNKNOWN',evidenceRefs:[reviewId]},
+  hardVeto:{...base.hardVeto,asOf,status:'PENDING',evidenceRefs:[reviewId]},
+  residualRisk:{...base.residualRisk,asOf,status:'NOT_RATED'}});
+ const manifest = 'bff83724df834f2b29a7a4d0a3a3b573ab466aa2c2d4f72ab23f9b42b2825119';
+ const acceptedAt = '2026-11-16T12:00:00.000Z';
+ expect(acceptedAt < f.methodology.recordedAt && f.methodology.recordedAt < f.knownAt).toBe(true);
+ const x = await setup(f,'ACB','current-bank-dataset:012ddaa99a1d0edd6a208e969a9d2811f01b848b44bf76d745e0dc8083056e8b',
+  'current-bank-coverage:'+manifest,manifest,'current-data-acceptance:2624e22d282b23bd94db0834ecc6f012828350dce9ad2f729d994b30bdac614f',acceptedAt);
+ const wrong = await setup(f,'ACB',x.dataset.parentDatasetId,'SYNTHETIC_OTHER_BINDING',manifest,x.dataset.dataAcceptanceId,acceptedAt);
+ try {
+  await expect(wrong.service.preflight(f,wrong.reference)).rejects.toMatchObject({
+   issues:[expect.objectContaining({reason:'ACB_LIMITED_SCOPE_MISMATCH'})],
+  });
+  const incomplete = sign({...f,assessments:f.assessments.slice(1)});
+  x.review(incomplete);
+  await expect(x.service.preflight(incomplete,x.reference)).rejects.toMatchObject({
+   issues:[expect.objectContaining({reason:'ACB_LIMITED_EXACT_RUBRIC_COVERAGE_REQUIRED'})],
+  });
+  const overRated = sign({...f, assessments:[...f.assessments, base.assessments.find(row=>row.subcategory==='BQ-MOAT')]});
+  x.review(overRated);
+  await expect(x.service.preflight(overRated,x.reference)).rejects.toMatchObject({
+   issues:[expect.objectContaining({reason:'ACB_LIMITED_EXACT_RUBRIC_COVERAGE_REQUIRED'})],
+  });
+  x.review(f);
+  const preflight = await x.service.preflight(f,x.reference);
+  expect(preflight.reference.context.knownAt).toBe(acceptedAt);
+  expect(preflight.knownAt).toBe(f.knownAt);
+  expect(preflight.limitedCoverage).toMatchObject({
+   status:'OFFICIAL_LIMITED',fullOfficialScore:null,eligibleForRanking:false,allocationAuthorized:false,
+   confirmedScore:48,ratedMaxPoints:58,unratedMaxPoints:42,coverageRatio:.58,
+   scoreLowerBound:48,scoreUpperBound:90,ratedRubricCount:14,totalRubricCount:23,
+  });
+  expect(Number((await x.db.client.$queryRawUnsafe<{n:number}[]>('SELECT count(*) n FROM current_score_artifact'))[0].n)).toBe(0);
+  const card = await x.service.score(f,x.reference);
+  expect(card.totalScore).toBeNull();
+  expect(card.validity).toBe('NOT RELIABLY SCORABLE');
+  expect(card).toMatchObject({limitedCoverage:preflight.limitedCoverage});
+  expect(card.categories.filter(row=>row.points===null).map(row=>row.category)).toEqual(['BQ','FH','GQ','IC','VAL','RG','CA']);
+  expect(card.subcategories.filter(row=>row.points===null).map(row=>row.id)).toEqual(ACB_UNRATED_RUBRICS);
+  expect(preflight.limitedCoverage).toBeDefined();
+  const markup = renderToStaticMarkup(createElement(LimitedCoverageView,{coverage:preflight.limitedCoverage!}));
+  expect(markup).toContain('OFFICIAL_LIMITED · Excluded from investable ranking');
+  expect(markup).toContain('48/58');
+  expect(markup).toContain('58/100');
+  expect(markup).toContain('48–90');
+  expect(markup.match(/>N\/R</g)).toHaveLength(9);
+
+  expect(await x.service.score(f,x.reference)).toEqual(card);
+  expect((await x.service.find(card.id))?.card).toEqual(card);
+  expect(await x.db.client.analyticalArtifact.count()).toBe(0);
+  x.revokeAuthority();
+  await expect(x.service.preflight(f,x.reference)).rejects.toThrow('SYNTHETIC_EXECUTABLE_NOT_APPROVED');
+ } finally {
+  await Promise.all([x.db.close(),wrong.db.close()]);
+ }
 });

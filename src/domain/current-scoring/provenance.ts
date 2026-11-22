@@ -4,6 +4,7 @@ import { RUBRICS, CATEGORY_MAXIMA, IMPLEMENTATION, VERSION, SECTORS } from "@/do
 import { check, snapshot, text, unique } from "@/domain/scoring/validation";
 import { deepFreeze } from "@/domain/portfolio/transaction";
 import { settlementCanonical } from "@/domain/portfolio/dividend-settlement";
+import type { ExternalGate } from "@/domain/scoring/eligibility";
 import type { ScoreInput as LegacyScoreInput, Assessment as LegacyAssessment } from "@/domain/scoring/scorecard";
 export const AI_SCORING_IMPLEMENTATION = "m64-clarification-1-ai-origin-v1";
 export type AiHash = (value: unknown) => string;
@@ -20,7 +21,8 @@ export interface AiReviewProvenance {
   readonly assessmentHashes: readonly { readonly rubricId: string; readonly sha256: string }[];
   readonly passes: readonly [AiReviewPass, AiReviewPass];
 }
-export interface AiReviewInput extends Omit<LegacyScoreInput, "assessments" | "evidence"> {
+export interface AiReviewInput extends Omit<LegacyScoreInput, "assessments" | "evidence" | "residualRisk"> {
+  readonly residualRisk: LegacyScoreInput["residualRisk"] | ExternalGate<"NOT_RATED">;
   readonly evidence: readonly (import("@/domain/scoring/evidence").Evidence | import("@/domain/scoring/evidence").CurrentValuationEvidence)[];
   readonly contract: "personal-ai-score-input-v1";
   readonly assessments: readonly (Omit<LegacyAssessment, "source"> & { readonly source: "AI" })[];
