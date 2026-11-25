@@ -1,0 +1,36 @@
+{
+  "version": "vn30-m3-public-successor-v1-PROPOSED",
+  "authority": "RESEARCH_ONLY",
+  "rubrics": {
+    "FH-STRESS": {
+      "maxPoints": 5,
+      "requiredPublicFields": ["cash","debt","total_debt","equity_at_close","current_assets","current_liabilities","ebit_at_close","interest_expense","cfo","capex","latest_cfo","latest_capex"],
+      "removed": ["exact_survival_date","internal_cash_receipt_timing","undisclosed_refinancing_response"],
+      "selector": "public_operating_buffers"
+    },
+    "GQ-INC": {
+      "maxPoints": 5,
+      "requiredPublicFields": ["public_productivity_low","public_productivity_high","public_capital_cost","scope_bounds_review","persistence_review"],
+      "removed": ["exact_organic_incremental_roic","full_deal_attribution","unique_capital_classification"],
+      "selector": "bounded_productivity"
+    },
+    "VAL-PRIMARY": {
+      "maxPoints": 8,
+      "requiredPublicFields": ["cutoff_price","cutoff_shares","normalized_earning_power","bear_value","base_value","bull_value","conservative_value","independent_value","normalization_scope_review"],
+      "removed": ["precise_fair_value","internal_forecast","unavailable_full_pro_forma"],
+      "selector": "normalized_public_valuation"
+    },
+    "CA-REINV": {
+      "maxPoints": 2,
+      "requiredPublicFields": ["cfo","capex","goodwill_increase","allocation_disclosure"],
+      "removed": ["project_returns","complete_investment_attribution","private_project_irr"],
+      "selector": "company_level_cash_outcomes"
+    },
+    "CA-DIL": {
+      "maxPoints": 1,
+      "requiredPublicFields": ["issued","outstanding_before","issue_price","proceeds","esop_event_economics","material_event_review","shareholder_protection_review"],
+      "removed": ["private_employee_retention_value","unobservable_full_esop_effect"],
+      "selector": "observable_issuance_economics"
+    }
+  }
+}

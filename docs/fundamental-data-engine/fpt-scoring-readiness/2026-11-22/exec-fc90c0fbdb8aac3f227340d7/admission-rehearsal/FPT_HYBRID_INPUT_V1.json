@@ -1,0 +1,97 @@
+{
+  "contract": "vn30-hybrid-scoring-policy-v1.0",
+  "subject": {
+    "ticker": "FPT",
+    "securityId": "ec91b3cb-8eab-45ae-95e7-738bb3c7de52",
+    "sector": "TECHNOLOGY",
+    "referenceDate": "2026-11-13"
+  },
+  "sourceInput": {
+    "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PUBLIC_DISCLOSURE_V2_INPUT.json",
+    "sha256": "822a4320915e7a5c22e7c22970ca41d5640cef1721d7d5f71e60939c03e87f51"
+  },
+  "conservativeControls": {
+    "RG-UNC": {
+      "methodologyVersion": "vn30-hybrid-scoring-policy-v1.0",
+      "factPins": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_H1_REVIEWED_CELLS.json",
+          "sha256": "43058159bde321b5747a36e329f2170e60988547864e3c884ee547c2338fd2d5",
+          "ticker": "FPT",
+          "locator": "/cells/6",
+          "scope": "CONSOLIDATED",
+          "unit": "VND",
+          "periodEnd": "2026-06-30",
+          "publicationDate": "2026-08-21",
+          "knownAt": "2026-11-23T14:06:25.245Z",
+          "eligibility": "CURRENT_ONLY"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_H1_REVIEWED_CELLS.json",
+          "sha256": "43058159bde321b5747a36e329f2170e60988547864e3c884ee547c2338fd2d5",
+          "ticker": "FPT",
+          "locator": "/cells/7",
+          "scope": "CONSOLIDATED",
+          "unit": "VND",
+          "periodEnd": "2026-06-30",
+          "publicationDate": "2026-08-21",
+          "knownAt": "2026-11-23T14:06:25.245Z",
+          "eligibility": "CURRENT_ONLY"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_H1_REVIEWED_CELLS.json",
+          "sha256": "43058159bde321b5747a36e329f2170e60988547864e3c884ee547c2338fd2d5",
+          "ticker": "FPT",
+          "locator": "/cells/8",
+          "scope": "CONSOLIDATED",
+          "unit": "VND",
+          "periodEnd": "2026-06-30",
+          "publicationDate": "2026-08-21",
+          "knownAt": "2026-11-23T14:06:25.245Z",
+          "eligibility": "CURRENT_ONLY"
+        }
+      ],
+      "assumptions": [
+        {
+          "name": "Cash conversion",
+          "low": "0.45",
+          "high": "0.90"
+        },
+        {
+          "name": "Growth held fixed",
+          "low": "0.10",
+          "high": "0.10"
+        },
+        {
+          "name": "Discount held fixed",
+          "low": "0.14",
+          "high": "0.14"
+        },
+        {
+          "name": "Terminal growth held fixed",
+          "low": "0.03",
+          "high": "0.03"
+        }
+      ],
+      "rationale": "Use observed cash generation as context for a one-variable conversion sensitivity; no fair value conclusion.",
+      "sensitivity": "At fixed 10% growth, 14% discount and 3% terminal growth, moving conversion 45% to 90% doubles illustrative value.",
+      "caseBands": [
+        "High uncertainty"
+      ],
+      "counterEvidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_Q3_REVIEWED_CELLS.json",
+          "sha256": "60de7ba724bfd814707b4a9bd4c385616b4b1d3d420776f8c5f8bfbf48d396d1",
+          "publicationDate": "2026-10-28"
+        }
+      ]
+    }
+  },
+  "fiveMethodDirections": {
+    "FH-STRESS": "Financial Resilience Composite",
+    "GQ-INC": "Capital Productivity Score",
+    "VAL-PRIMARY": "Normalized Earnings Valuation",
+    "CA-REINV": "Capital Allocation Discipline",
+    "CA-DIL": "Dilution Discipline"
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "method": {
+    "methodologyId": "current-scoring-fpt-official-limited-v1",
+    "family": "SCORING",
+    "semanticVersion": "1.0.0",
+    "intendedUse": "PRODUCTION",
+    "governanceStatus": "PROPOSED",
+    "approvalReference": "",
+    "implementationIdentity": "m64-clarification-1-ai-origin-v1",
+    "configurationReference": "current-scoring-executable-code-sha256:9921d5a9bbba71ea395cd75e706052e68d1a2108caaaf7eea145c4d265478142",
+    "governingDocumentReference": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_LIMITED_EXACT_SCOPE.md",
+    "effectiveDate": "2026-11-23",
+    "recordedAt": "2026-11-23T14:12:50.049Z"
+  },
+  "proposal": {
+    "contract": "current-scoring-executable-authority-v2",
+    "status": "PROPOSED",
+    "purpose": "CURRENT_FORMAL_VALUATION",
+    "runtimeProfile": "FPT_OFFICIAL_LIMITED_V1",
+    "baseAuthority": {
+      "path": "docs/fundamental-data-engine/vnm-step3-authority-closure/2026-11-17/PRODUCTION_AUTHORITY_BUNDLE.json",
+      "sha256": "ee6c59612856ed2641f8871fd41bea236d2689b74fadc0fb179d280915b1d9ca"
+    },
+    "baselineManifestHash": "67a28b1cad9fc3efcd97bed9a1191d4d8fc52c5a0976c7d1e120a596de339c33",
+    "code": [
+      {
+        "path": "src/domain/fundamentals/scoring-bridge.ts",
+        "sha256": "e79aede87b75ba00f52cb81edf965481e8e7308cccf09cb3716fd3faa20d39b5"
+      },
+      {
+        "path": "src/infrastructure/dependencies/production-authority.ts",
+        "sha256": "2b936408f3cb7bf712f874bfbcb4cc744f709428f6bb032ae5da8c700886ef69"
+      },
+      {
+        "path": "src/infrastructure/market-boundary/tcbs-pipeline.ts",
+        "sha256": "97d637f426f4a0ff4b560d0993c8e56bbc0658e3aee23b7a45a81da188a90363"
+      },
+      {
+        "path": "src/domain/market-boundary/freshness.ts",
+        "sha256": "6ce50ddb05c8e05c480bc2ae1a168cf4662d8fc30cbf70d4e4e45c2b3fa9187a"
+      },
+      {
+        "path": "src/domain/market-boundary/hose-calendar.ts",
+        "sha256": "a9b50fff672f84d4dd25d73f85c0c3623ab9b1545955fc9fa383af658f6ce25f"
+      },
+      {
+        "path": "src/domain/market-boundary/tcbs-eod.ts",
+        "sha256": "1bc7991ad843ed527c1607b5e6fc1e941b399daf14560bff9519dae07b984000"
+      },
+      {
+        "path": "src/domain/fundamentals/level1-disposition.ts",
+        "sha256": "9f055090eedf127c559a2ecde1565fe9d56ffd0222efe53289138676858fcfe0"
+      },
+      {
+        "path": "src/domain/fundamentals/partial-universe.ts",
+        "sha256": "dd68b8a2dbfcbea09e89347883ec60fd42fba16e5b851cd302c31c505d984503"
+      },
+      {
+        "path": "src/infrastructure/dependencies/authority-receipts.ts",
+        "sha256": "f9ab4e97baf20a510f688a5a1f90cf57681a9e6ed940938b818fac0534b4f6b2"
+      },
+      {
+        "path": "src/application/scoring/purpose-aware-engine.ts",
+        "sha256": "179c5797c91a7c71735670feb6806478edda92c09f7add2f4acc8d0518439349"
+      },
+      {
+        "path": "src/ports/current-scoring-execution.ts",
+        "sha256": "bbe3b4da3a8e4b863da497db1845c5a49956809950f1b0bf5cf23ec41b56a311"
+      },
+      {
+        "path": "src/domain/current-scoring/time.ts",
+        "sha256": "b38637e0c9d5bf20b452e69f90605a1546ac03eb2a4aaecdae5aa2ddbd018465"
+      },
+      {
+        "path": "src/domain/current-scoring/scorecard.ts",
+        "sha256": "2bfa9a95660e65c8ab757352284325e720d27ec91c60fdb72af58327138ed16a"
+      },
+      {
+        "path": "src/domain/current-scoring/action-dependencies.ts",
+        "sha256": "abe3d094bbe4483bf39ec7353e4a20ff85adc82243582fb2644cb704e4d75ff9"
+      },
+      {
+        "path": "src/infrastructure/source-admission/current-scoring.ts",
+        "sha256": "7aa1930eb3de6e62360994f9488fb0eba7ff6025a7e5c450e8fe024020658f1e"
+      },
+      {
+        "path": "src/infrastructure/source-admission/current-scoring-authority.ts",
+        "sha256": "3f72f70344395a0dd8cfc7562b04341589dc004fbcb371db208a2c9c87a190ec"
+      },
+      {
+        "path": "src/domain/personal-ai/scorecard.ts",
+        "sha256": "ccd19fda8b331f7934c1bcbc01197b478396a8c21f3cc3539f975d31517f40e5"
+      },
+      {
+        "path": "src/domain/personal-ai/provenance.ts",
+        "sha256": "5036dbcacec79f37b980e78c1b0f60a5eaea3ddbe1c18da643a0b3be8032565b"
+      },
+      {
+        "path": "src/domain/personal-ai/scoring-readiness.ts",
+        "sha256": "ba9e8af70fb1d6f5148142b20170a9773ca40ce9f7317c6752caa6c37c7c097a"
+      },
+      {
+        "path": "src/domain/personal-ai/scoring-bridge.ts",
+        "sha256": "6a4475dc51d65bf5fb392bc56c829bc78a283e5cc90c0dbecdd2f9ccbb54da5a"
+      },
+      {
+        "path": "prisma/proposals/current-scoring-artifact-v1.sql",
+        "sha256": "964297d9f0fcc172eaad377dee471288c558172db8eac0fd3e55661d005f995c"
+      },
+      {
+        "path": "src/domain/current-scoring/provenance.ts",
+        "sha256": "95cf50484c051cad7de35bf6a060f6a9e59d9f3f6b37ce30395dbdc2fd88c68f"
+      },
+      {
+        "path": "src/infrastructure/source-admission/current-review.ts",
+        "sha256": "6328642afc36f18f3c88c71c214656ab89ff08dcaae278b759f4795b428655e4"
+      },
+      {
+        "path": "src/domain/current-scoring/limited-coverage.ts",
+        "sha256": "8f82133d4f64542b56d0e8e395784d3f0f7f2882ad8dbd950bfcc68c371fec22"
+      },
+      {
+        "path": "src/infrastructure/source-admission/current-scoring-consumer.ts",
+        "sha256": "7138b612682451029bbd6eb3d56131a895466337027ce9e4692b89494d29e3cd"
+      },
+      {
+        "path": "tools/scoring/vn30_score.py",
+        "sha256": "46dede310a344ac397efedc1f799605b19d60848d80162db759b94e7fb364bb6"
+      },
+      {
+        "path": "tools/scoring/vn30_score_worker.mjs",
+        "sha256": "573ddbea5b3946238a10817e8858b8c0c7e1dff0483732003e86ef26df3bbf4f"
+      },
+      {
+        "path": "tools/scoring/fpt-technology-adapter.ts",
+        "sha256": "b8d5498373727ab2d86570273cc0e024da6eba9b107ad8b92bad1c64dcadf906"
+      },
+      {
+        "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_LIMITED_POLICY_OWNER_REQUEST.txt",
+        "sha256": "d1869462642d7245a820f706ff72ffd713cd7a107f66f72abbe4af714c76ad43"
+      },
+      {
+        "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_LIMITED_EXACT_SCOPE.md",
+        "sha256": "0cba42d525b782d9ce6e06d780f0cf6bb2ecd56f20cf07c50c7a771e8867454d"
+      }
+    ],
+    "codeHash": "9921d5a9bbba71ea395cd75e706052e68d1a2108caaaf7eea145c4d265478142",
+    "approvalPayloadHash": "fdef5022025e9f9fc7efa72b71d75da0d7be8e209dd164b9e6839dc16841669f",
+    "contentHash": "fa2f60df10da3ea7e64e3858c3161130139056d10a0471626fb76139fa5a0bc4"
+  },
+  "requestedOwnerStatement": "Approve exact current-purpose scoring authority fdef5022025e9f9fc7efa72b71d75da0d7be8e209dd164b9e6839dc16841669f for CURRENT_FORMAL_VALUATION"
+}

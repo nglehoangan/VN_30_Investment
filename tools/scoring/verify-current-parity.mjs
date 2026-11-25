@@ -1,4 +1,4 @@
-/** Verify that the versioned ACB residual-risk exception is the only calculator delta. */
+/** Verify that the versioned limited-scoring residual-risk exception is the only calculator delta. */
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
@@ -9,10 +9,10 @@ const predecessor = JSON.parse(readFileSync(resolve(root,
 const source = 'src/domain/current-scoring/scorecard.ts';
 const review = 'src/domain/current-scoring/provenance.ts';
 const resetRisk = (text) => text
-  .replace('import {ACB_LIMITED_METHOD} from "./limited-coverage";\n', '')
+  .replace('import {ACB_LIMITED_METHOD,FPT_LIMITED_METHOD} from "./limited-coverage";\n', '')
   .replace('type ExternalGate, ', '')
   .replace('ResidualRiskAssessment | ExternalGate<"NOT_RATED">', 'ResidualRiskAssessment')
-  .replace('  const unresolvedResidualRisk = input.methodology.methodologyId === ACB_LIMITED_METHOD && input.residualRisk.status === "NOT_RATED";\n', '')
+  .replace('  const unresolvedResidualRisk = [ACB_LIMITED_METHOD,FPT_LIMITED_METHOD].includes(input.methodology.methodologyId) && input.residualRisk.status === "NOT_RATED";\n', '')
   .replace('(unresolvedResidualRisk || [', '[')
   .replace('.includes(input.residualRisk.status)),"INVALID_RISK")', '.includes(input.residualRisk.status),"INVALID_RISK")');
 const resetReview = (text) => text

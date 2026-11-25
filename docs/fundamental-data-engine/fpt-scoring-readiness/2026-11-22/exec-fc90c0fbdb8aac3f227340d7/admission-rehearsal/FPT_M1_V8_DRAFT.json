@@ -1,0 +1,73 @@
+{
+  "contract": "fpt-m1-dated-analyst-disposition-v1",
+  "datasetHash": "320e52c4687148f61e750aa56936120b07d1d3f6a7439ee69c4819e5e66e3bf3",
+  "manifestHash": "2af0422b0404a89e75e5225791269856b8d8cbe1d5fd089babe71960208cb4ee",
+  "dataAcceptanceId": "current-data-acceptance:320e52c4687148f61e750aa56936120b07d1d3f6a7439ee69c4819e5e66e3bf3",
+  "context": {
+    "economicCutoff": "2026-11-13",
+    "knownAt": "2026-11-23T14:06:25.245Z",
+    "purpose": "CURRENT_FORMAL_VALUATION",
+    "securityId": "ec91b3cb-8eab-45ae-95e7-738bb3c7de52",
+    "ticker": "FPT"
+  },
+  "evaluatedAt": "2026-11-23T07:49:55.069Z",
+  "scope": "ISSUER_ONLY",
+  "formalM1Admitted": false,
+  "gates": {
+    "stage0": "PENDING — RISK POLICY REVIEW",
+    "scoringStage0": "UNKNOWN",
+    "hardVeto": "PENDING",
+    "residualRisk": null
+  },
+  "findings": [
+    {
+      "rule": "Decision Framework §4.1 / Risk Policy §11.1",
+      "result": "PASS_ELIGIBILITY",
+      "basis": "FPT thuộc VN30 tại ngày chốt theo universe đã ghim. Hồ sơ doanh nghiệp không đánh giá giao dịch margin hoặc giới hạn danh mục."
+    },
+    {
+      "rule": "Decision Framework §4.2",
+      "result": "PASS_BUSINESS_VIABILITY_SCREEN",
+      "basis": "Doanh thu IT và lợi nhuận công bố hỗ trợ luận điểm hoạt động có thể kiểm chứng. So sánh dòng tiền cần tách phạm vi FTEL."
+    },
+    {
+      "rule": "Decision Framework §4.3 / Risk Policy §11.3",
+      "result": "PENDING",
+      "basis": "Dư nợ bán niên đã xác minh 18,45 nghìn tỷ VND. FCF bán niên âm 2,48 nghìn tỷ. Phép thử Q3 đổi từ thiếu 2,59 sang dư 2,63 nghìn tỷ khi tỷ lệ tiền gửi khả dụng tăng từ 25% lên 50%. Chưa có căn cứ chọn tỷ lệ hoặc xác nhận nguồn tái tài trợ thay thế, nên chưa thể kết luận survivability CLEAR hoặc ACTIVE."
+    },
+    {
+      "rule": "Decision Framework §4.4 / Risk Policy §11.2",
+      "result": "NO_ACTIVE_TRIGGER_IDENTIFIED_IN_REVIEWED_RECORD",
+      "basis": "Có BCTC bán niên soát xét và giải trình thay đổi FTEL. Hồ sơ đã rà chưa xác lập bằng chứng đủ mạnh về gian lận hoặc sai lệch trọng yếu để kích hoạt veto quản trị."
+    },
+    {
+      "rule": "Decision Framework §4.5 / Risk Policy §11.4",
+      "result": "CONDITIONAL",
+      "basis": "Kinh tế doanh nghiệp có thể phân tích. P/E năm hóa 9,11–9,34× và FCF âm là phép thử; chưa xác lập giá trị trung tâm. Khoảng trống hiện chưa chứng minh bất khả định cấu trúc."
+    }
+  ],
+  "sources": [
+    {
+      "path": "docs/01 SYSTEM/DECISION_FRAMEWORK_v1.0.md",
+      "sha256": "e1929fd8d8fe337c3d80fe2c76dfbd48e1f41d2d4b4a0618b42269b2635f8b1d"
+    },
+    {
+      "path": "docs/01 SYSTEM/RISK_POLICY_v1.0.md",
+      "sha256": "3785c1bb39b80435655a1621b2afbda992c38beaff82edebc0c67b0bc54ee744"
+    },
+    {
+      "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SCORING_CONSUMER_READBACK.json",
+      "sha256": "69d1660057a39739ddd33562ac275bcd4ae276b0feac6fdfd7c52fddca9fea8d"
+    },
+    {
+      "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_FULL_VS_LIMITED_TOPIC_REVIEW.md",
+      "sha256": "656b424ac0d35d868aca2e5c8228e7ed0f440e96495521fc71cd3c6484e5342b"
+    },
+    {
+      "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_CUTOFF_SCORING_CHECK.json",
+      "sha256": "b0d924fdfc2a205003d0563ee9982ff34006bde17b196d1c251d8e33f4f5ee15"
+    }
+  ],
+  "rebindingStatus": "DRAFT_REBOUND_TO_V8",
+  "priorDraft": "FPT_M1_DATED_ANALYST_DISPOSITION.json"
+}

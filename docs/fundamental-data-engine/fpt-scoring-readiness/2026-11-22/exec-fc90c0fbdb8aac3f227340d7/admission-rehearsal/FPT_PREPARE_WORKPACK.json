@@ -1,0 +1,1659 @@
+{
+  "contract": "fpt-current-prepare-workpack-v1",
+  "context": {
+    "ticker": "FPT",
+    "securityId": "ec91b3cb-8eab-45ae-95e7-738bb3c7de52",
+    "economicCutoff": "2026-11-13",
+    "purpose": "CURRENT_FORMAL_VALUATION",
+    "knownAt": "2026-11-23T06:59:26.499Z"
+  },
+  "sector": "TECHNOLOGY",
+  "datasetId": "current-dataset:86582ee034544bb383c6a16663dc5e193a3a97cf7ad2515484b4ece0ef58aede",
+  "handoff": {
+    "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_CUTOFF_RUBRIC_HANDOFF.json",
+    "sha256": "48d069f9e726d43114528795288d89e93916e378ec7046ac84eb56f22ea1e7c4"
+  },
+  "verifiedAdapter": {
+    "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_TECHNOLOGY_ADAPTER_REPLAY.json",
+    "sha256": "81a2977af4c2fea43ec676a21430aeb379b8295371476db5aff78e24b3016d9f"
+  },
+  "dispositions": {
+    "DATASET_CANDIDATE": 1,
+    "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT": 71,
+    "MATERIAL_GAP": 11
+  },
+  "formallyAcceptedTopics": 0,
+  "researchNrFY2025": [
+    "FH-STRESS",
+    "GQ-INC",
+    "VAL-PRIMARY",
+    "CA-REINV",
+    "CA-DIL"
+  ],
+  "researchNr9M2026": [
+    "BQ-EQ",
+    "BQ-CASH",
+    "BQ-RES",
+    "FH-LIQ",
+    "FH-STRESS",
+    "GQ-INC",
+    "IC-CYCLE",
+    "VAL-PRIMARY",
+    "VAL-RET",
+    "VAL-MOS",
+    "RG-RISK",
+    "RG-UNC",
+    "CA-REINV",
+    "CA-DIST",
+    "CA-DIL"
+  ],
+  "formalGates": [
+    {
+      "role": "reference",
+      "status": "OPEN",
+      "requirement": "FPT binding using accepted TECHNOLOGY enrichment, historical admission and qualified reported debt. Formal worker reads data/vn30.sqlite."
+    },
+    {
+      "role": "assessment",
+      "status": "OPEN",
+      "requirement": "Adopt exact AI assessment of every required topic and metric disposition against the consumer dataset hash. Resolve mandatory gaps or obtain an exact FPT limited methodology."
+    },
+    {
+      "role": "M1",
+      "status": "OPEN",
+      "requirement": "Pinned dated Stage 0 and Risk Policy disposition. Common scorer requires Stage 0 PASS/PASS WITH CONDITIONS and hard veto resolved."
+    },
+    {
+      "role": "reviewBindings",
+      "status": "OPEN",
+      "requirement": "Preparation and challenge reviews on the same assessment and M1 hashes."
+    },
+    {
+      "role": "executable",
+      "status": "OPEN",
+      "requirement": "Verified approved executable with exact runtime pins and a registered compatible methodology."
+    },
+    {
+      "role": "scoring",
+      "status": "WAIT_FOR_PREPARE",
+      "requirement": "Exact project owner statement against prepare approval hash."
+    }
+  ],
+  "readyForFormalPrepare": false,
+  "scoringAuthorized": false,
+  "rubrics": [
+    {
+      "rubricId": "BQ-EQ",
+      "researchFY2025": {
+        "status": "CONSERVATIVE",
+        "points": 5
+      },
+      "researchUpdate9M2026": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "topics": [
+        {
+          "topic": "returns",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "ROIC FY2025 15,22% theo quy ước giữ toàn bộ vốn; chưa lập NOPAT và vốn bình quân đồng phạm vi sau FTEL",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| BQ-EQ |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_FH_FY2025_BASELINE_REASSESSMENT.md",
+              "sha256": "2c57c4f0d9a305a0eaf787a21b173a6f6ddd5ec4e308b7664f2cd2249d9b2ec9"
+            }
+          ]
+        },
+        {
+          "topic": "persistence",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Biên EBIT trực tiếp ổn định 2022–2025, cần nối sang phạm vi mới",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| BQ-EQ |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_FH_FY2025_BASELINE_REASSESSMENT.md",
+              "sha256": "2c57c4f0d9a305a0eaf787a21b173a6f6ddd5ec4e308b7664f2cd2249d9b2ec9"
+            }
+          ]
+        },
+        {
+          "topic": "margins",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Biên lịch sử có đủ bốn kỳ; phân tích 9T đã tách lợi nhuận liên kết",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| BQ-EQ |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_FH_FY2025_BASELINE_REASSESSMENT.md",
+              "sha256": "2c57c4f0d9a305a0eaf787a21b173a6f6ddd5ec4e308b7664f2cd2249d9b2ec9"
+            }
+          ]
+        },
+        {
+          "topic": "cost_of_capital",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "WACC tham khảo tới 15%; cần chốt căn cứ vốn và rủi ro cho mô hình",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| BQ-EQ |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_FH_FY2025_BASELINE_REASSESSMENT.md",
+              "sha256": "2c57c4f0d9a305a0eaf787a21b173a6f6ddd5ec4e308b7664f2cd2249d9b2ec9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "BQ-MOAT",
+      "researchFY2025": {
+        "status": "VERIFIED",
+        "points": 3
+      },
+      "researchUpdate9M2026": {
+        "status": "VERIFIED",
+        "points": 3
+      },
+      "topics": [
+        {
+          "topic": "advantage",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Hợp đồng Airbus nhiều năm và hiện diện nhiều thị trường hỗ trợ lợi thế",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| BQ-MOAT |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_FH_FY2025_BASELINE_REASSESSMENT.md",
+              "sha256": "2c57c4f0d9a305a0eaf787a21b173a6f6ddd5ec4e308b7664f2cd2249d9b2ec9"
+            }
+          ]
+        },
+        {
+          "topic": "economic_behavior",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Khách hàng trên 1 triệu USD tăng từ 251 lên 266; chưa định lượng gia hạn hoặc giữ giá",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| BQ-MOAT |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_FH_FY2025_BASELINE_REASSESSMENT.md",
+              "sha256": "2c57c4f0d9a305a0eaf787a21b173a6f6ddd5ec4e308b7664f2cd2249d9b2ec9"
+            }
+          ]
+        },
+        {
+          "topic": "persistence",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Quan hệ Airbus khoảng một thập kỷ; độ bền toàn mảng chưa lượng hóa",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| BQ-MOAT |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_FH_FY2025_BASELINE_REASSESSMENT.md",
+              "sha256": "2c57c4f0d9a305a0eaf787a21b173a6f6ddd5ec4e308b7664f2cd2249d9b2ec9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "BQ-CASH",
+      "researchFY2025": {
+        "status": "CONSERVATIVE",
+        "points": 3
+      },
+      "researchUpdate9M2026": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "topics": [
+        {
+          "topic": "realization",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "CFO và capex bán niên có ID đã tiếp nhận; FCF âm 2,482 nghìn tỷ, chuỗi FY2022–25 dương",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| BQ-CASH |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_FH_ONE_PASS_DISPOSITION.md",
+              "sha256": "b6ac195d393f6db3f772990861b37fb4940ef65410bfd88ef5470787e0fe5123"
+            }
+          ]
+        },
+        {
+          "topic": "one_offs",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Thay đổi hợp nhất FTEL cần tách khỏi biến động hoạt động",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| BQ-CASH |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_FH_ONE_PASS_DISPOSITION.md",
+              "sha256": "b6ac195d393f6db3f772990861b37fb4940ef65410bfd88ef5470787e0fe5123"
+            }
+          ]
+        },
+        {
+          "topic": "working_capital",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "BCTC có biến động phải thu, tồn kho và trả trước; cần nối dòng tiền theo cùng phạm vi",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| BQ-CASH |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_FH_ONE_PASS_DISPOSITION.md",
+              "sha256": "b6ac195d393f6db3f772990861b37fb4940ef65410bfd88ef5470787e0fe5123"
+            }
+          ]
+        },
+        {
+          "topic": "recognition",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Chính sách ghi nhận doanh thu và chi phí vốn hóa có trong thuyết minh; cần đánh giá khoản trọng yếu",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| BQ-CASH |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_FH_ONE_PASS_DISPOSITION.md",
+              "sha256": "b6ac195d393f6db3f772990861b37fb4940ef65410bfd88ef5470787e0fe5123"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "BQ-RES",
+      "researchFY2025": {
+        "status": "CONSERVATIVE",
+        "points": 3
+      },
+      "researchUpdate9M2026": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "topics": [
+        {
+          "topic": "concentration",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có cơ cấu địa lý và phân tầng khách hàng; thiếu mức tập trung doanh thu theo khách hàng lớn",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| BQ-RES |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_RES_FY2025_PUBLIC_EVIDENCE.md",
+              "sha256": "35b72efff2731ea8ec1585c0d5b68a9f78c922b4456f465728f567a637456dad"
+            }
+          ]
+        },
+        {
+          "topic": "pricing_power",
+          "status": "MATERIAL_GAP",
+          "finding": "Chưa lượng hóa giá hợp đồng hoặc phản ứng khi tăng giá",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| BQ-RES |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_RES_FY2025_PUBLIC_EVIDENCE.md",
+              "sha256": "35b72efff2731ea8ec1585c0d5b68a9f78c922b4456f465728f567a637456dad"
+            }
+          ]
+        },
+        {
+          "topic": "cyclicality",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Biên IT quốc tế 15,4–15,6% trong FY2023–25; cần xác định cú sốc đại diện",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| BQ-RES |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_RES_FY2025_PUBLIC_EVIDENCE.md",
+              "sha256": "35b72efff2731ea8ec1585c0d5b68a9f78c922b4456f465728f567a637456dad"
+            }
+          ]
+        },
+        {
+          "topic": "stress",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Biên lịch sử hỗ trợ kịch bản, chưa có kiểm thử biên khi nhu cầu hoặc lương biến động đồng thời",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| BQ-RES |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_RES_FY2025_PUBLIC_EVIDENCE.md",
+              "sha256": "35b72efff2731ea8ec1585c0d5b68a9f78c922b4456f465728f567a637456dad"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "FH-BS",
+      "researchFY2025": {
+        "status": "CONSERVATIVE",
+        "points": 3
+      },
+      "researchUpdate9M2026": {
+        "status": "CONSERVATIVE",
+        "points": 3
+      },
+      "topics": [
+        {
+          "topic": "capital",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Dư nợ báo cáo bán niên đã qua kiểm tra; cần nối với vốn chủ và đệm vốn",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| FH-BS |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_FH_ONE_PASS_DISPOSITION.md",
+              "sha256": "b6ac195d393f6db3f772990861b37fb4940ef65410bfd88ef5470787e0fe5123"
+            }
+          ]
+        },
+        {
+          "topic": "asset_quality",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Phải thu bán niên đã tiếp nhận, cần dự phòng và đánh giá khả năng thu hồi",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| FH-BS |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_FH_ONE_PASS_DISPOSITION.md",
+              "sha256": "b6ac195d393f6db3f772990861b37fb4940ef65410bfd88ef5470787e0fe5123"
+            }
+          ]
+        },
+        {
+          "topic": "funding",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Vay ngắn hạn chiếm phần lớn; khả dụng tiền gửi và nguồn vốn cam kết còn mở",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| FH-BS |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_FH_ONE_PASS_DISPOSITION.md",
+              "sha256": "b6ac195d393f6db3f772990861b37fb4940ef65410bfd88ef5470787e0fe5123"
+            }
+          ]
+        },
+        {
+          "topic": "leverage_context",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Dư nợ báo cáo đã chốt; tiền khả dụng và EBITDA chuẩn hóa chưa được xác nhận",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| FH-BS |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_BQ_FH_ONE_PASS_DISPOSITION.md",
+              "sha256": "b6ac195d393f6db3f772990861b37fb4940ef65410bfd88ef5470787e0fe5123"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "FH-LIQ",
+      "researchFY2025": {
+        "status": "CONSERVATIVE",
+        "points": 2
+      },
+      "researchUpdate9M2026": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "topics": [
+        {
+          "topic": "obligations",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có gốc vay và thuê theo nhóm kỳ hạn; cần đối chiếu lãi và nghĩa vụ khác",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| FH-LIQ |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FH_LIQ_FY2025_CONSERVATIVE_ASSESSMENT.md",
+              "sha256": "af2401830ef272cd03adc818346d43efce34af1fcf5caab6bd5bef036169045e"
+            }
+          ]
+        },
+        {
+          "topic": "liquidity",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Tiền, tiền gửi và độ nhạy đã tính; tiền khả dụng theo kỳ hạn chưa xác nhận",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| FH-LIQ |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FH_LIQ_FY2025_CONSERVATIVE_ASSESSMENT.md",
+              "sha256": "af2401830ef272cd03adc818346d43efce34af1fcf5caab6bd5bef036169045e"
+            }
+          ]
+        },
+        {
+          "topic": "maturities",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có lịch gốc dài hạn và cam kết thuê; độ khớp với tiền gửi chưa đủ",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| FH-LIQ |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FH_LIQ_FY2025_CONSERVATIVE_ASSESSMENT.md",
+              "sha256": "af2401830ef272cd03adc818346d43efce34af1fcf5caab6bd5bef036169045e"
+            }
+          ]
+        },
+        {
+          "topic": "covenants",
+          "status": "MATERIAL_GAP",
+          "finding": "Chưa xác minh covenant, dư địa và hạn mức cam kết phù hợp với ngày chốt",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| FH-LIQ |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FH_LIQ_FY2025_CONSERVATIVE_ASSESSMENT.md",
+              "sha256": "af2401830ef272cd03adc818346d43efce34af1fcf5caab6bd5bef036169045e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "FH-STRESS",
+      "researchFY2025": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "researchUpdate9M2026": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "topics": [
+        {
+          "topic": "scenario",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Phép thử 25% và 50% tiền gửi đổi dấu; cần bổ sung cú sốc đồng thời và dòng tiền đúng kỳ hạn",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| FH-STRESS |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_13_UNRATED_REASSESSMENT.md",
+              "sha256": "f17e4029dc6769cef0f9120e4ac4271b41b1bbb40d16cebf2b0e7ec4210c1eed"
+            }
+          ]
+        },
+        {
+          "topic": "funding_response",
+          "status": "MATERIAL_GAP",
+          "finding": "Chưa xác minh hạn mức cam kết và khả năng tái cấp vốn trong kịch bản xấu",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| FH-STRESS |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_13_UNRATED_REASSESSMENT.md",
+              "sha256": "f17e4029dc6769cef0f9120e4ac4271b41b1bbb40d16cebf2b0e7ec4210c1eed"
+            }
+          ]
+        },
+        {
+          "topic": "capital_response",
+          "status": "MATERIAL_GAP",
+          "finding": "Chưa xác định ngưỡng cần bán tài sản hoặc pha loãng sau các phản ứng tài trợ",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| FH-STRESS |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_13_UNRATED_REASSESSMENT.md",
+              "sha256": "f17e4029dc6769cef0f9120e4ac4271b41b1bbb40d16cebf2b0e7ec4210c1eed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "GQ-HIST",
+      "researchFY2025": {
+        "status": "CONSERVATIVE",
+        "points": 3
+      },
+      "researchUpdate9M2026": {
+        "status": "CONSERVATIVE",
+        "points": 3
+      },
+      "topics": [
+        {
+          "topic": "trend",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Chuỗi doanh thu/lợi nhuận FY2022–25 và 9T so sánh có đối chiếu FTEL",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| GQ-HIST |"
+            }
+          ]
+        },
+        {
+          "topic": "acquisitions",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có công bố thương vụ và goodwill; phần tăng trưởng từ mua lại chưa tách đầy đủ",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| GQ-HIST |"
+            }
+          ]
+        },
+        {
+          "topic": "base_effects",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có nền so sánh theo từng báo cáo; phải giữ khác biệt phạm vi FTEL",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| GQ-HIST |"
+            }
+          ]
+        },
+        {
+          "topic": "per_share",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có các cặp EPS đã điều chỉnh; chưa nối với lợi nhuận chuẩn hóa sau FTEL",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| GQ-HIST |"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "GQ-FWD",
+      "researchFY2025": {
+        "status": "CONSERVATIVE",
+        "points": 3
+      },
+      "researchUpdate9M2026": {
+        "status": "CONSERVATIVE",
+        "points": 3
+      },
+      "topics": [
+        {
+          "topic": "runway",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Công bố giá trị ký mới và số hợp đồng lớn FY2025 và 9T2026",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| GQ-FWD |"
+            }
+          ]
+        },
+        {
+          "topic": "reinvestment",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có capex và kế hoạch triển khai; chuyển đổi hợp đồng và suất sinh lời tái đầu tư chưa định lượng",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| GQ-FWD |"
+            }
+          ]
+        },
+        {
+          "topic": "funding",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "CFO bán niên đã tiếp nhận; cần chứng minh năng lực tài trợ kế hoạch",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| GQ-FWD |"
+            }
+          ]
+        },
+        {
+          "topic": "execution",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có kết quả triển khai và đơn hàng; chưa lượng hóa chuyển đổi qua nhiều kỳ",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| GQ-FWD |"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "GQ-INC",
+      "researchFY2025": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "researchUpdate9M2026": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "topics": [
+        {
+          "topic": "incremental_return",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Biên tăng thêm FY2022–25 và FY2024–25 đã thử, đi qua nhiều band",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| GQ-INC |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_13_UNRATED_REASSESSMENT.md",
+              "sha256": "f17e4029dc6769cef0f9120e4ac4271b41b1bbb40d16cebf2b0e7ec4210c1eed"
+            }
+          ]
+        },
+        {
+          "topic": "denominator",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Mẫu số nhạy với tiền gửi; cần quy ước vốn nhất quán và cầu nối M&A",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| GQ-INC |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_13_UNRATED_REASSESSMENT.md",
+              "sha256": "f17e4029dc6769cef0f9120e4ac4271b41b1bbb40d16cebf2b0e7ec4210c1eed"
+            }
+          ]
+        },
+        {
+          "topic": "unit_economics",
+          "status": "MATERIAL_GAP",
+          "finding": "Chưa có số kinh tế đơn vị hoặc chỉ tiêu thay thế đã được chấp nhận",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| GQ-INC |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_13_UNRATED_REASSESSMENT.md",
+              "sha256": "f17e4029dc6769cef0f9120e4ac4271b41b1bbb40d16cebf2b0e7ec4210c1eed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "IC-IND",
+      "researchFY2025": {
+        "status": "CONSERVATIVE",
+        "points": 2
+      },
+      "researchUpdate9M2026": {
+        "status": "CONSERVATIVE",
+        "points": 2
+      },
+      "topics": [
+        {
+          "topic": "barriers",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Hợp đồng dài và năng lực giao hàng hỗ trợ rào cản, cần đánh giá độ bền",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| IC-IND |"
+            }
+          ]
+        },
+        {
+          "topic": "competition",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Tài liệu mô tả cạnh tranh giá và nhân lực; chưa có đối chiếu đồng cấp đủ sâu",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| IC-IND |"
+            }
+          ]
+        },
+        {
+          "topic": "demand",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có dự báo ngành và hợp đồng thực tế; dự báo thị trường không áp thẳng cho FPT",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| IC-IND |"
+            }
+          ]
+        },
+        {
+          "topic": "disruption",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có rủi ro AI và công nghệ; cần nêu kênh tác động lên biên hoặc nhu cầu",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| IC-IND |"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "IC-POS",
+      "researchFY2025": {
+        "status": "CONSERVATIVE",
+        "points": 2
+      },
+      "researchUpdate9M2026": {
+        "status": "CONSERVATIVE",
+        "points": 2
+      },
+      "topics": [
+        {
+          "topic": "share",
+          "status": "MATERIAL_GAP",
+          "finding": "Có doanh thu và địa lý, chưa có mẫu số thị trường cùng định nghĩa hoặc phép thay thế đã duyệt",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| IC-POS |"
+            }
+          ]
+        },
+        {
+          "topic": "cost_position",
+          "status": "MATERIAL_GAP",
+          "finding": "Chưa có chi phí giao hàng so với đối thủ cùng nhóm",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| IC-POS |"
+            }
+          ]
+        },
+        {
+          "topic": "distribution",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Hợp đồng lớn, hiện diện địa lý và liên doanh Nhật hỗ trợ kênh phân phối",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| IC-POS |"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "IC-CYCLE",
+      "researchFY2025": {
+        "status": "CONSERVATIVE",
+        "points": 1
+      },
+      "researchUpdate9M2026": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "topics": [
+        {
+          "topic": "cycle",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Giảm tốc CNTT quốc tế và biên ổn định đặt được bối cảnh FY2025",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| IC-CYCLE |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_FINAL_TEN_RUBRIC_REVIEW.md",
+              "sha256": "b91073beef9fcb42f511edccb4ca6be442838289fae1970b1ae7a3a3d42b08d5"
+            }
+          ]
+        },
+        {
+          "topic": "forward_asymmetry",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Kịch bản tăng/giảm đã có ở nghiên cứu; cần hiệu chỉnh theo 2026",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| IC-CYCLE |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_FINAL_TEN_RUBRIC_REVIEW.md",
+              "sha256": "b91073beef9fcb42f511edccb4ca6be442838289fae1970b1ae7a3a3d42b08d5"
+            }
+          ]
+        },
+        {
+          "topic": "survivability",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Phụ thuộc kết quả FH-STRESS và khả dụng tài trợ",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| IC-CYCLE |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_FINAL_TEN_RUBRIC_REVIEW.md",
+              "sha256": "b91073beef9fcb42f511edccb4ca6be442838289fae1970b1ae7a3a3d42b08d5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "VAL-PRIMARY",
+      "researchFY2025": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "researchUpdate9M2026": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "topics": [
+        {
+          "topic": "primary_model",
+          "status": "MATERIAL_GAP",
+          "finding": "Chưa có mô hình trung tâm ngành công nghệ tại giá chốt 13/11",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| VAL-PRIMARY |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_HISTORICAL_PE_CASHFLOW_CROSSCHECK.md",
+              "sha256": "7ce181046b40cac2d551d488f3a0ead5945b9366288c3f74c084dcee998708e9"
+            }
+          ]
+        },
+        {
+          "topic": "normalized_denominator",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Lợi nhuận mẹ bán niên đã tiếp nhận; cần chuẩn hóa lợi nhuận chung/nguyên tắc EPS",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| VAL-PRIMARY |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_HISTORICAL_PE_CASHFLOW_CROSSCHECK.md",
+              "sha256": "7ce181046b40cac2d551d488f3a0ead5945b9366288c3f74c084dcee998708e9"
+            }
+          ]
+        },
+        {
+          "topic": "price",
+          "status": "DATASET_CANDIDATE",
+          "finding": "Giá CaféF gốc 50.100 VND/cổ phiếu tại 13/11 đã đọc lại trong bộ dữ liệu",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_TECHNOLOGY_ADAPTER_REPLAY.json",
+              "sha256": "81a2977af4c2fea43ec676a21430aeb379b8295371476db5aff78e24b3016d9f"
+            }
+          ]
+        },
+        {
+          "topic": "cross_check",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có P/E lịch sử FY2022–25 và phép thử dòng tiền; cần đối chiếu trên cùng cơ sở với mô hình hiện tại",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| VAL-PRIMARY |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_HISTORICAL_PE_CASHFLOW_CROSSCHECK.md",
+              "sha256": "7ce181046b40cac2d551d488f3a0ead5945b9366288c3f74c084dcee998708e9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "VAL-RET",
+      "researchFY2025": {
+        "status": "CONSERVATIVE",
+        "points": 2
+      },
+      "researchUpdate9M2026": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "topics": [
+        {
+          "topic": "starting_value",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Giá và cổ phiếu đã xác nhận; cần dòng tiền hoặc EPS ban đầu chuẩn hóa tại ngày chốt",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| VAL-RET |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_VALUATION_RUBRIC_REASSESSMENT.md",
+              "sha256": "6e1040422e5b525ac5f8bcb2f1f6cedb0e37635ce577083f74e8c4eff73bb188"
+            }
+          ]
+        },
+        {
+          "topic": "growth",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có neo tăng trưởng lịch sử; cần giả định cơ sở sau FTEL",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| VAL-RET |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_VALUATION_RUBRIC_REASSESSMENT.md",
+              "sha256": "6e1040422e5b525ac5f8bcb2f1f6cedb0e37635ce577083f74e8c4eff73bb188"
+            }
+          ]
+        },
+        {
+          "topic": "exit_value",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có phép thử bội số cuối kỳ; cần nguyên tắc chọn chính thức",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| VAL-RET |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_VALUATION_RUBRIC_REASSESSMENT.md",
+              "sha256": "6e1040422e5b525ac5f8bcb2f1f6cedb0e37635ce577083f74e8c4eff73bb188"
+            }
+          ]
+        },
+        {
+          "topic": "distributions",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có lịch sử chi trả; cần giả định phân phối phù hợp tiền công ty mẹ",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| VAL-RET |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_VALUATION_RUBRIC_REASSESSMENT.md",
+              "sha256": "6e1040422e5b525ac5f8bcb2f1f6cedb0e37635ce577083f74e8c4eff73bb188"
+            }
+          ]
+        },
+        {
+          "topic": "dilution",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có số cổ phiếu và lịch sử ESOP; cần giả định pha loãng dự phóng",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| VAL-RET |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_VALUATION_RUBRIC_REASSESSMENT.md",
+              "sha256": "6e1040422e5b525ac5f8bcb2f1f6cedb0e37635ce577083f74e8c4eff73bb188"
+            }
+          ]
+        },
+        {
+          "topic": "scenarios",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có kịch bản FY2025; cần dựng lại tại giá và ngày chốt mới",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| VAL-RET |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_VALUATION_RUBRIC_REASSESSMENT.md",
+              "sha256": "6e1040422e5b525ac5f8bcb2f1f6cedb0e37635ce577083f74e8c4eff73bb188"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "VAL-MOS",
+      "researchFY2025": {
+        "status": "CONSERVATIVE",
+        "points": 1
+      },
+      "researchUpdate9M2026": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "topics": [
+        {
+          "topic": "conservative_value",
+          "status": "MATERIAL_GAP",
+          "finding": "Chưa có giá trị bảo thủ nhất quán với mô hình và giá chốt",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| VAL-MOS |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_HISTORICAL_PE_CASHFLOW_CROSSCHECK.md",
+              "sha256": "7ce181046b40cac2d551d488f3a0ead5945b9366288c3f74c084dcee998708e9"
+            }
+          ]
+        },
+        {
+          "topic": "downside",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có độ nhạy dòng tiền, cần kịch bản suy giảm gắn với doanh nghiệp sau FTEL",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| VAL-MOS |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_HISTORICAL_PE_CASHFLOW_CROSSCHECK.md",
+              "sha256": "7ce181046b40cac2d551d488f3a0ead5945b9366288c3f74c084dcee998708e9"
+            }
+          ]
+        },
+        {
+          "topic": "balance_sheet",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Dư nợ báo cáo đã kiểm chứng; chưa đủ tiền khả dụng và nợ điều chỉnh cho cầu nối định giá",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| VAL-MOS |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_HISTORICAL_PE_CASHFLOW_CROSSCHECK.md",
+              "sha256": "7ce181046b40cac2d551d488f3a0ead5945b9366288c3f74c084dcee998708e9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "RG-GOV",
+      "researchFY2025": {
+        "status": "CONSERVATIVE",
+        "points": 3
+      },
+      "researchUpdate9M2026": {
+        "status": "CONSERVATIVE",
+        "points": 3
+      },
+      "topics": [
+        {
+          "topic": "disclosure",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có báo cáo quản trị, BCTC và giải trình FTEL",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| RG-GOV |"
+            }
+          ]
+        },
+        {
+          "topic": "related_parties",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có thuyết minh và giám sát giao dịch liên quan; điều khoản theo giá thị trường chưa rõ",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| RG-GOV |"
+            }
+          ]
+        },
+        {
+          "topic": "minority",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có quy trình công bố; cần đánh giá việc biểu quyết và ảnh hưởng cổ đông thiểu số",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| RG-GOV |"
+            }
+          ]
+        },
+        {
+          "topic": "auditor",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có báo cáo kiểm toán/soát xét; cần kết luận theo đúng kỳ đánh giá",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| RG-GOV |"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "RG-RISK",
+      "researchFY2025": {
+        "status": "CONSERVATIVE",
+        "points": 2
+      },
+      "researchUpdate9M2026": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "topics": [
+        {
+          "topic": "residual_risks",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có rủi ro nhân lực, công nghệ, tập trung và ngoại tệ; chưa định lượng rủi ro còn lại",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| RG-RISK |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_FINAL_TEN_RUBRIC_REVIEW.md",
+              "sha256": "b91073beef9fcb42f511edccb4ca6be442838289fae1970b1ae7a3a3d42b08d5"
+            }
+          ]
+        },
+        {
+          "topic": "mitigation",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có bằng chứng phòng vệ ngoại tệ; mức hiệu quả chưa lượng hóa",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| RG-RISK |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_FINAL_TEN_RUBRIC_REVIEW.md",
+              "sha256": "b91073beef9fcb42f511edccb4ca6be442838289fae1970b1ae7a3a3d42b08d5"
+            }
+          ]
+        },
+        {
+          "topic": "distinct_channels",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Đã nhận diện các kênh; cần xác nhận tránh tính lại ở các rubric khác",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| RG-RISK |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_FINAL_TEN_RUBRIC_REVIEW.md",
+              "sha256": "b91073beef9fcb42f511edccb4ca6be442838289fae1970b1ae7a3a3d42b08d5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "RG-UNC",
+      "researchFY2025": {
+        "status": "CONSERVATIVE",
+        "points": 0
+      },
+      "researchUpdate9M2026": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "topics": [
+        {
+          "topic": "forecast_range",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có khoảng dự phóng minh họa; chưa chốt khoảng hợp lý tại ngày chốt",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| RG-UNC |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_HISTORICAL_ANCHORS_RG_CA.md",
+              "sha256": "cd2224d50c228c511009b92ccf05a34b8dd1c77468ae8c97aa3402ba2375b13c"
+            }
+          ]
+        },
+        {
+          "topic": "sensitivity",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có độ nhạy tăng trưởng, bội số và chuyển đổi tiền",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| RG-UNC |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_HISTORICAL_ANCHORS_RG_CA.md",
+              "sha256": "cd2224d50c228c511009b92ccf05a34b8dd1c77468ae8c97aa3402ba2375b13c"
+            }
+          ]
+        },
+        {
+          "topic": "dependencies",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Cần nối các giả định với FTEL, nhu cầu, vốn lưu động và khả năng tái đầu tư",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| RG-UNC |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_HISTORICAL_ANCHORS_RG_CA.md",
+              "sha256": "cd2224d50c228c511009b92ccf05a34b8dd1c77468ae8c97aa3402ba2375b13c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "CA-REINV",
+      "researchFY2025": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "researchUpdate9M2026": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "topics": [
+        {
+          "topic": "capex",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "CFO/capex nhiều kỳ đã có; kết quả đầu tư theo quyết định trọng yếu chưa xác định",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| CA-REINV |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_HISTORICAL_ANCHORS_RG_CA.md",
+              "sha256": "cd2224d50c228c511009b92ccf05a34b8dd1c77468ae8c97aa3402ba2375b13c"
+            }
+          ]
+        },
+        {
+          "topic": "acquisitions",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có danh sách thương vụ và goodwill; lợi nhuận hoặc dòng tiền sau mua lại chưa đủ",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| CA-REINV |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_HISTORICAL_ANCHORS_RG_CA.md",
+              "sha256": "cd2224d50c228c511009b92ccf05a34b8dd1c77468ae8c97aa3402ba2375b13c"
+            }
+          ]
+        },
+        {
+          "topic": "divestments",
+          "status": "MATERIAL_GAP",
+          "finding": "Chưa có bằng chứng đủ cho kết quả thoái vốn hoặc đánh giá áp dụng",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| CA-REINV |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_HISTORICAL_ANCHORS_RG_CA.md",
+              "sha256": "cd2224d50c228c511009b92ccf05a34b8dd1c77468ae8c97aa3402ba2375b13c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "CA-DIST",
+      "researchFY2025": {
+        "status": "CONSERVATIVE",
+        "points": 1
+      },
+      "researchUpdate9M2026": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "topics": [
+        {
+          "topic": "retention",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có dòng tiền công ty mẹ FY2025 và góp vốn; cần đánh giá sau FTEL",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| CA-DIST |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_13_UNRATED_REASSESSMENT.md",
+              "sha256": "f17e4029dc6769cef0f9120e4ac4271b41b1bbb40d16cebf2b0e7ec4210c1eed"
+            }
+          ]
+        },
+        {
+          "topic": "distribution",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Cổ tức có căn cứ lịch sử; cần cân đối với nhu cầu 2026",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| CA-DIST |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_13_UNRATED_REASSESSMENT.md",
+              "sha256": "f17e4029dc6769cef0f9120e4ac4271b41b1bbb40d16cebf2b0e7ec4210c1eed"
+            }
+          ]
+        },
+        {
+          "topic": "buyback_valuation",
+          "status": "MATERIAL_GAP",
+          "finding": "Chưa có hồ sơ kiểm chứng định giá mua lại hoặc đánh giá áp dụng",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| CA-DIST |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_13_UNRATED_REASSESSMENT.md",
+              "sha256": "f17e4029dc6769cef0f9120e4ac4271b41b1bbb40d16cebf2b0e7ec4210c1eed"
+            }
+          ]
+        },
+        {
+          "topic": "resilience",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Khả năng duy trì phân phối phụ thuộc kết quả thanh khoản và dòng tiền cấp mẹ",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| CA-DIST |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_13_UNRATED_REASSESSMENT.md",
+              "sha256": "f17e4029dc6769cef0f9120e4ac4271b41b1bbb40d16cebf2b0e7ec4210c1eed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "CA-DIL",
+      "researchFY2025": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "researchUpdate9M2026": {
+        "status": "NOT_RATED",
+        "points": null
+      },
+      "topics": [
+        {
+          "topic": "issue_terms",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có số lượng và giá phát hành ESOP, BCTC Q3 và nghị quyết tăng vốn",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| CA-DIL |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_HISTORICAL_ANCHORS_RG_CA.md",
+              "sha256": "cd2224d50c228c511009b92ccf05a34b8dd1c77468ae8c97aa3402ba2375b13c"
+            }
+          ]
+        },
+        {
+          "topic": "proceeds",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có tiền thu theo nghiên cứu lịch sử; cần đối chiếu từng đợt trọng yếu cho kỳ đánh giá",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| CA-DIL |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_HISTORICAL_ANCHORS_RG_CA.md",
+              "sha256": "cd2224d50c228c511009b92ccf05a34b8dd1c77468ae8c97aa3402ba2375b13c"
+            }
+          ]
+        },
+        {
+          "topic": "per_share",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có thử nghiệm pha loãng cơ học, cần giá trị hợp lý và tác động kinh tế tích lũy",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| CA-DIL |"
+            },
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_HISTORICAL_ANCHORS_RG_CA.md",
+              "sha256": "cd2224d50c228c511009b92ccf05a34b8dd1c77468ae8c97aa3402ba2375b13c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rubricId": "CA-PSV",
+      "researchFY2025": {
+        "status": "CONSERVATIVE",
+        "points": 1
+      },
+      "researchUpdate9M2026": {
+        "status": "CONSERVATIVE",
+        "points": 1
+      },
+      "topics": [
+        {
+          "topic": "per_share",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "EPS các cặp năm và số cổ phiếu hiện hành đã đối chiếu",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| CA-PSV |"
+            }
+          ]
+        },
+        {
+          "topic": "actions",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Có corporate actions và số cổ phiếu; cần chứng minh so sánh trên mỗi cổ phiếu đúng phạm vi",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| CA-PSV |"
+            }
+          ]
+        },
+        {
+          "topic": "cycle_adjustment",
+          "status": "RESEARCH_SUPPORT_REQUIRES_ASSESSMENT",
+          "finding": "Chuỗi lịch sử thể hiện tăng trưởng; cần loại ảnh hưởng chu kỳ và chuyển phạm vi FTEL",
+          "sources": [
+            {
+              "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md",
+              "sha256": "beddf669e7354ed1b19ab0fd3474e13eb313b34989096ff29bf31688b4d093ed",
+              "locator": "| CA-PSV |"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "executableCompatibility": {
+    "reference": {
+      "path": "docs/fundamental-data-engine/vnm-step4-final-review/2026-11-17/APPROVED_CURRENT_AUTHORITY.json",
+      "sha256": "d6fdd645e5c1a721d98cafdd6c311ed479ea3f13dfb21789c4e9e901a271b732"
+    },
+    "status": "NOT_REUSABLE_AS_IS",
+    "mismatches": [
+      {
+        "path": "src/domain/current-scoring/scorecard.ts",
+        "state": "HASH_MISMATCH",
+        "expected": "f20a822dd81ccca413004d6f5bf8f511e58f0bb8f23f5b50f3b42d8dd7968e5a",
+        "actual": "07a3199acf268356218d8ea5cd3b9cdb5f8487e4c053e18f657523bb1603e8b3"
+      },
+      {
+        "path": "src/infrastructure/source-admission/current-scoring.ts",
+        "state": "HASH_MISMATCH",
+        "expected": "3240ec14deb2ddfdb350036a1433da68ecc92289b48cbe9a543d5085d1b2a1c2",
+        "actual": "6064bd14456dd6edd954ff3645fe9fddba346ae98f446ede69d7696666801b56"
+      },
+      {
+        "path": "src/infrastructure/source-admission/current-scoring-authority.ts",
+        "state": "HASH_MISMATCH",
+        "expected": "f80acffbd541caa5623e6e402f29fdfa1a80a80d900c1ea8a5955a10a7da7fa8",
+        "actual": "9b472360fbe1db8d18cab577d7c2cd67fb29be9e58a932a2610eeec310214471"
+      },
+      {
+        "path": "scripts/generate-current-scoring.mjs",
+        "state": "MISSING",
+        "expected": "3a3752c13137f58446ba7632d8971918ff24247e94e69eaf1d5032e301debdf5",
+        "actual": null
+      },
+      {
+        "path": "src/domain/current-scoring/provenance.ts",
+        "state": "HASH_MISMATCH",
+        "expected": "3e590582f40c55af4962059a433c4a236e5821e9cdcbfe4d7e1f8f876428024f",
+        "actual": "95cf50484c051cad7de35bf6a060f6a9e59d9f3f6b37ce30395dbdc2fd88c68f"
+      }
+    ]
+  }
+}

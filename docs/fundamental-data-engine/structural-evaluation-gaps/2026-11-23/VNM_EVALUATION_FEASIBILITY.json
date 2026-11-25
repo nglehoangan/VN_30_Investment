@@ -1,0 +1,1010 @@
+{
+  "contract": "structural-evaluation-gaps-v1",
+  "subject": {
+    "ticker": "VNM",
+    "securityId": "a243cd90-95b8-44f0-96a5-b6be0defeb87",
+    "sector": "RETAIL",
+    "cutoff": "2026-10-30",
+    "universeVersion": "vn30-20260803-reviewed-20261115",
+    "purpose": "CURRENT_FORMAL_VALUATION"
+  },
+  "reviewCounts": {
+    "evidenceImprovement": 1,
+    "resolutionValidation": 1
+  },
+  "evidence": {
+    "nr": {
+      "subjectTicker": "VNM",
+      "path": "docs/fundamental-data-engine/structural-nr-remediation/2026-11-23/VNM_DIAGNOSTIC.json",
+      "sha256": "f3ac1587509878938e1b38cbbab86d082f0b8f8fef5326d0bf70dcaaf74686fd",
+      "locator": "/baseline and /rows"
+    },
+    "baseline": {
+      "subjectTicker": "VNM",
+      "path": "docs/fundamental-data-engine/vnm-step4-assessment-conversion/2026-11-18/final-reviewed-run/ISOLATED_SCORECARD.json",
+      "sha256": "e8b15cf20f7c51676e8430f25c1d4270f9f7d3545c5f9905dabd1007e9437e2f",
+      "locator": "Native scorecard and input scope"
+    },
+    "policy": {
+      "subjectTicker": "VNM",
+      "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+      "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4",
+      "locator": "Issuer sector valuation and cross-check requirements"
+    },
+    "decisionContract": {
+      "subjectTicker": "VNM",
+      "path": "src/domain/decision/contracts.ts",
+      "sha256": "17faa581a3e36a82fc5dc44a7fa432104667cfc7bc2b652cc6796eb7c0d41b06",
+      "locator": "DecisionEvidence, DecisionPortfolio, DecisionInput"
+    },
+    "decisionPolicy": {
+      "subjectTicker": "VNM",
+      "path": "docs/06_DASHBOARD/6.5 Decision Engine/CHANGE_REQUESTS.md",
+      "sha256": "86aa630dfcadce2fb7a07d39637ce91f8cdf993a6b16713bee6dd0a022de4e1d",
+      "locator": "M6.5.3 current issue authority and CR-04"
+    },
+    "decisionValidation": {
+      "subjectTicker": "VNM",
+      "path": "src/domain/decision/validation.ts",
+      "sha256": "bd1e1d20ab88c0df979245639b21f72cad63351b8cb50241607944b2d5d69eb8",
+      "locator": "Decision methodology, assessment, scorecard, portfolio and evidence checks"
+    },
+    "actionDependencies": {
+      "subjectTicker": "VNM",
+      "path": "src/domain/scoring/action-dependencies.ts",
+      "sha256": "bbbb2a9f5828c3e8a9f223ee3286e7523f793e37f4f6410b9d602b40200f678d",
+      "locator": "ACTION_RUBRICS and ACTION_METRICS"
+    },
+    "dataset": {
+      "subjectTicker": "VNM",
+      "path": "docs/fundamental-data-engine/vnm-step4-assessment-conversion/2026-11-18/final-reviewed-run/SCORER_CURRENT_DATA_RECEIPT.json",
+      "sha256": "3c4d8900fa4115323ee84630f2d04fd75cac2836cbd15f2c645bb81e2cd4be95",
+      "locator": "Governed current consumption and scope"
+    },
+    "m1": {
+      "subjectTicker": "VNM",
+      "path": "docs/fundamental-data-engine/vnm-step4-assessment-conversion/2026-11-18/final-reviewed-run/PROVENANCE_AND_M1_STRUCTURE_VALIDATION.json",
+      "sha256": "1eb2f3e95f456ad55ba569f99f961200f4fb81e227d880da5b491adc9e81402b",
+      "locator": "Evidence and M1 structure review"
+    },
+    "valuation": {
+      "subjectTicker": "VNM",
+      "path": "docs/fundamental-data-engine/vnm-s5-closure/2026-11-13/S5_ACCEPTANCE.json",
+      "sha256": "ff7fa311b67db9cdd59c5356055990296983f4bd81f33340c3ea52a139589cce",
+      "locator": "/confidence and research scope"
+    },
+    "model": {
+      "subjectTicker": "VNM",
+      "path": "docs/fundamental-data-engine/vnm-s5-closure/2026-11-13/S5_SCENARIOS.json",
+      "sha256": "2136921fe17c9eb6d39e74663448c6c7989fd994f07031f3c39407c311777c68",
+      "locator": "Retained Bear/Base/Bull assumptions and mechanics"
+    },
+    "market": {
+      "subjectTicker": "VNM",
+      "path": "docs/fundamental-data-engine/vnm-s4-share-carry-forward/2026-11-12/REVIEW.json",
+      "sha256": "ce006911546934be9a8deb822ffc1e569afad6a5996ffbc401192d358ba34420",
+      "locator": "Ending outstanding count, interval and carry-forward limits"
+    }
+  },
+  "checks": {
+    "M1_PREPARE": {
+      "HISTORICAL_EVIDENCE": {
+        "status": "PASS",
+        "finding": "The exact issuer retains source reviews and a governed score or isolated score readback.",
+        "evidence": [
+          "dataset",
+          "baseline",
+          "nr"
+        ],
+        "gaps": []
+      },
+      "FINANCIAL_MAPPING": {
+        "status": "PASS",
+        "finding": "The retained evaluated scope has a governed dataset receipt or readback. No reproducible raw-to-consumer discrepancy was established for these rows.",
+        "evidence": [
+          "dataset",
+          "market"
+        ],
+        "gaps": []
+      },
+      "METRIC_COMPUTABILITY": {
+        "status": "PASS",
+        "finding": "The retained governed scorecard carries the evaluated metrics and original dispositions.",
+        "evidence": [
+          "baseline",
+          "dataset"
+        ],
+        "gaps": []
+      },
+      "PIT_ADMISSIBILITY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Current-purpose evidence and later review clocks do not establish historical PIT admission.",
+        "evidence": [
+          "dataset",
+          "market"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:M1_PREPARE:PIT_ADMISSIBILITY:current-vs-pit"
+        ]
+      },
+      "RUBRIC_FEASIBILITY": {
+        "status": "PASS",
+        "finding": "The retained scorecard has 23 rated rubrics for the existing exact current scope.",
+        "evidence": [
+          "baseline",
+          "nr"
+        ],
+        "gaps": []
+      },
+      "VALUATION_READINESS": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Retained valuation evidence is bounded to the scope and confidence of the original case.",
+        "evidence": [
+          "valuation",
+          "model"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:M1_PREPARE:VALUATION_READINESS:decision-grade"
+        ]
+      },
+      "DECISION_DEPENDENCIES": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "The evaluated scoring material does not establish a complete authorized M6.5 candidate.",
+        "evidence": [
+          "m1",
+          "decisionContract"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:M1_PREPARE:DECISION_DEPENDENCIES:formal-packet"
+        ]
+      }
+    },
+    "VALUATION": {
+      "FINANCIAL_METRICS": {
+        "status": "PASS",
+        "finding": "Retained matching-period components support the existing analytical scope. Normalization and forward judgment are reviewed separately.",
+        "evidence": [
+          "valuation",
+          "dataset"
+        ],
+        "gaps": []
+      },
+      "SHARE_DENOMINATOR": {
+        "status": "PASS",
+        "finding": "Reviewed issuer share basis is retained. No incompatible denominator defect was established in the selected scope.",
+        "evidence": [
+          "market",
+          "dataset"
+        ],
+        "gaps": []
+      },
+      "ACTION_COMPARABILITY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "The reviewed current-use share/economics basis does not qualify unrestricted historical total-return or PIT comparisons.",
+        "evidence": [
+          "market",
+          "actionDependencies"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:VALUATION:ACTION_COMPARABILITY:purpose"
+        ]
+      },
+      "CASH_FLOW_NORMALIZATION": {
+        "status": "PASS",
+        "finding": "Retained S5 scenarios use bounded owner-earnings normalization. Its assumptions remain separately qualified.",
+        "evidence": [
+          "valuation",
+          "model"
+        ],
+        "gaps": []
+      },
+      "SECTOR_METHOD": {
+        "status": "PASS",
+        "finding": "Existing INDUSTRIAL owner-earnings / DCF method and cross-checks apply.",
+        "evidence": [
+          "policy",
+          "valuation"
+        ],
+        "gaps": []
+      },
+      "ASSUMPTIONS": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Terminal and reinvestment assumptions are bounded research inputs.",
+        "evidence": [
+          "valuation",
+          "model",
+          "baseline"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:VALUATION:ASSUMPTIONS:forward"
+        ]
+      },
+      "SCENARIOS_SENSITIVITY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Bear/Base/Bull are retained, with uncertainty in terminal value and downside still material.",
+        "evidence": [
+          "valuation",
+          "model",
+          "baseline"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:VALUATION:SCENARIOS_SENSITIVITY:challenge"
+        ]
+      },
+      "DISCOUNT_AND_RETURN": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Retained S5 return is a bounded scenario and the scorecard labels model confidence low.",
+        "evidence": [
+          "valuation",
+          "model",
+          "baseline"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:VALUATION:DISCOUNT_AND_RETURN:return"
+        ]
+      },
+      "CONFIDENCE": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "S5 research confidence is medium for bounded work, with material terminal, reinvestment and capital-allocation uncertainty.",
+        "evidence": [
+          "valuation",
+          "model",
+          "baseline"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:VALUATION:CONFIDENCE:range"
+        ]
+      },
+      "PIT_INTEGRITY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Current scoping is supported by existing receipts. Historical PIT approval is outside the retained current case.",
+        "evidence": [
+          "dataset",
+          "market"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:VALUATION:PIT_INTEGRITY:availability"
+        ]
+      }
+    },
+    "INVESTMENT_DECISION": {
+      "SCORECARD_VALIDITY_CONFIDENCE": {
+        "status": "BLOCKED",
+        "finding": "VNM is labelled low-confidence, non-actionable.",
+        "evidence": [
+          "baseline",
+          "decisionContract"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:INVESTMENT_DECISION:SCORECARD_VALIDITY_CONFIDENCE:scorecard"
+        ]
+      },
+      "STAGE0_VETO": {
+        "status": "BLOCKED",
+        "finding": "Scoring M1 evidence exists. Formal M6.5 Stage 0 and veto evidence matching the decision scope was not verified in this audit.",
+        "evidence": [
+          "m1",
+          "decisionContract"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:INVESTMENT_DECISION:STAGE0_VETO:risk"
+        ]
+      },
+      "THESIS": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Retained scoring and research thesis evidence lacks an adopted M6.5 human thesis review in this packet.",
+        "evidence": [
+          "baseline",
+          "decisionContract"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:INVESTMENT_DECISION:THESIS:human"
+        ]
+      },
+      "VALUATION_FORWARD_RETURN": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "The valuation audit leaves material scope or confidence limitations.",
+        "evidence": [
+          "valuation",
+          "decisionContract"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:INVESTMENT_DECISION:VALUATION_FORWARD_RETURN:return"
+        ]
+      },
+      "RESIDUAL_RISK_HURDLE": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "The retained packet does not bind a decision-specific residual-risk and hurdle calibration.",
+        "evidence": [
+          "decisionPolicy",
+          "decisionContract"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:INVESTMENT_DECISION:RESIDUAL_RISK_HURDLE:hurdle"
+        ]
+      },
+      "OWNERSHIP_CONCENTRATION": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "This audit contains no matched authoritative M6.3 decision snapshot.",
+        "evidence": [
+          "decisionContract",
+          "decisionValidation"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:INVESTMENT_DECISION:OWNERSHIP_CONCENTRATION:portfolio"
+        ]
+      },
+      "OPPORTUNITY_COST": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "No decision-scope comparison set was verified in the retained case.",
+        "evidence": [
+          "decisionContract",
+          "decisionValidation"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:INVESTMENT_DECISION:OPPORTUNITY_COST:comparators"
+        ]
+      },
+      "TECHNICAL_OVERLAY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "No decision-scope overlay was evaluated here. The native decision policy governs applicability.",
+        "evidence": [
+          "decisionContract",
+          "decisionValidation"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:INVESTMENT_DECISION:TECHNICAL_OVERLAY:execution"
+        ]
+      },
+      "CASH_BOARD_LOT": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "No matched execution-capacity packet was verified. Values cannot be inferred from the score.",
+        "evidence": [
+          "decisionPolicy",
+          "decisionContract"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:INVESTMENT_DECISION:CASH_BOARD_LOT:execution"
+        ]
+      },
+      "DECISION_AUTHORIZATION": {
+        "status": "BLOCKED",
+        "finding": "The retained research and scoring permissions do not confer decision or trade authorization.",
+        "evidence": [
+          "decisionValidation",
+          "decisionContract"
+        ],
+        "gaps": [
+          "VNM:2026-10-30:INVESTMENT_DECISION:DECISION_AUTHORIZATION:authority"
+        ]
+      }
+    }
+  },
+  "gaps": [
+    {
+      "id": "VNM:2026-10-30:M1_PREPARE:PIT_ADMISSIBILITY:current-vs-pit",
+      "ticker": "VNM",
+      "component": "M1_PREPARE",
+      "dependency": "PIT_ADMISSIBILITY",
+      "key": "current-vs-pit",
+      "availableEvidence": [
+        "dataset",
+        "market"
+      ],
+      "requiredEvidence": "Observation-level economic date, availability and purpose-specific acceptance.",
+      "missingEvidence": "Current-purpose evidence and later review clocks do not establish historical PIT admission.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "GOVERNANCE",
+      "resolution": "Reuse current-only evidence in its original scoped route. Verify original source and receipt clocks independently for a PIT request.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Later reports cannot retroactively establish the availability of the original observation."
+      },
+      "nextTrigger": "Matching dated PIT observation and governed receipt",
+      "impact": "Current review remains purpose-bounded.",
+      "owner": "Source admission reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "VNM:2026-10-30:M1_PREPARE:VALUATION_READINESS:decision-grade",
+      "ticker": "VNM",
+      "component": "M1_PREPARE",
+      "dependency": "VALUATION_READINESS",
+      "key": "decision-grade",
+      "availableEvidence": [
+        "valuation",
+        "model"
+      ],
+      "requiredEvidence": "Decision-grade range, sensitivity and exact reviewed assumptions.",
+      "missingEvidence": "Retained valuation evidence is bounded to the scope and confidence of the original case.",
+      "primaryCause": "LEGITIMATE_UNCERTAINTY",
+      "supportingCauses": [],
+      "constraint": "ECONOMIC_UNCERTAINTY",
+      "resolution": "Use the valuation audit to target the next model or evidence review.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same statements alone cannot verify prospective estimates or strengthen confidence."
+      },
+      "nextTrigger": "Reviewed valuation bridge or changed qualifying evidence",
+      "impact": "Prepare cannot infer allocation readiness.",
+      "owner": "Valuation reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "VNM:2026-10-30:M1_PREPARE:DECISION_DEPENDENCIES:formal-packet",
+      "ticker": "VNM",
+      "component": "M1_PREPARE",
+      "dependency": "DECISION_DEPENDENCIES",
+      "key": "formal-packet",
+      "availableEvidence": [
+        "m1",
+        "decisionContract"
+      ],
+      "requiredEvidence": "Dated M6.5 evidence and human assessment with matching portfolio and decision method.",
+      "missingEvidence": "The evaluated scoring material does not establish a complete authorized M6.5 candidate.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "GOVERNANCE",
+      "resolution": "Hand off the existing dependencies to the decision reviewer.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Annual statements cannot supply portfolio, approved judgment or operational authority."
+      },
+      "nextTrigger": "Exact governed decision-context packet",
+      "impact": "No decision or order is inferred.",
+      "owner": "Decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "VNM:2026-10-30:VALUATION:ACTION_COMPARABILITY:purpose",
+      "ticker": "VNM",
+      "component": "VALUATION",
+      "dependency": "ACTION_COMPARABILITY",
+      "key": "purpose",
+      "availableEvidence": [
+        "market",
+        "actionDependencies"
+      ],
+      "requiredEvidence": "Effective-date actions, raw prices and comparable per-share basis with original availability.",
+      "missingEvidence": "The reviewed current-use share/economics basis does not qualify unrestricted historical total-return or PIT comparisons.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Use the existing S4 action and raw-close route only for its reviewed scope.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Additional statements cannot establish the original effective/availability lineage or fill missing event receipts."
+      },
+      "nextTrigger": "Reviewed action-specific observation and comparability receipt",
+      "impact": "Do not extend per-share comparability beyond its bound scope.",
+      "owner": "Market evidence reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "Scope remains restricted."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "No exact defective mapping was established."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing S4 action comparability policy applies."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "NO",
+          "rationale": "Identity and effective dates are evidence issues."
+        }
+      }
+    },
+    {
+      "id": "VNM:2026-10-30:VALUATION:ASSUMPTIONS:forward",
+      "ticker": "VNM",
+      "component": "VALUATION",
+      "dependency": "ASSUMPTIONS",
+      "key": "forward",
+      "availableEvidence": [
+        "valuation",
+        "model",
+        "baseline"
+      ],
+      "requiredEvidence": "Reviewed sustainable growth, reinvestment and terminal or exit economics.",
+      "missingEvidence": "Terminal and reinvestment assumptions are bounded research inputs.",
+      "primaryCause": "LEGITIMATE_UNCERTAINTY",
+      "supportingCauses": [],
+      "constraint": "ECONOMIC_UNCERTAINTY",
+      "resolution": "Use the approved sector method and challenged retained ranges. Escalate unresolved inputs.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Another historical year cannot independently establish forward economics."
+      },
+      "nextTrigger": "A coherent, challenged sector scenario supported by newly qualified inputs",
+      "impact": "Decision-grade value, return and MOS remain bounded by source confidence.",
+      "owner": "Valuation reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "Terminal and reinvestment assumptions are bounded research inputs."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "No exact raw-to-consumer defect accounts for this gap."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing sector method applies."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "YES",
+          "rationale": "Prospective inputs retain uncertainty even with clean historical data."
+        }
+      }
+    },
+    {
+      "id": "VNM:2026-10-30:VALUATION:SCENARIOS_SENSITIVITY:challenge",
+      "ticker": "VNM",
+      "component": "VALUATION",
+      "dependency": "SCENARIOS_SENSITIVITY",
+      "key": "challenge",
+      "availableEvidence": [
+        "valuation",
+        "model",
+        "baseline"
+      ],
+      "requiredEvidence": "Comparable base, downside and upside assumptions and a meaningful independent challenge.",
+      "missingEvidence": "Bear/Base/Bull are retained, with uncertainty in terminal value and downside still material.",
+      "primaryCause": "LEGITIMATE_UNCERTAINTY",
+      "supportingCauses": [],
+      "constraint": "ECONOMIC_UNCERTAINTY",
+      "resolution": "Use the approved sector method and challenged retained ranges. Escalate unresolved inputs.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Historical observations help calibration but cannot alone resolve forward stress mechanics or independent cross-checks."
+      },
+      "nextTrigger": "Source-backed scenario or independent cross-check that materially narrows the result",
+      "impact": "Decision-grade value, return and MOS remain bounded by source confidence.",
+      "owner": "Valuation reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "Bear/Base/Bull are retained, with uncertainty in terminal value and downside still material."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "No exact raw-to-consumer defect accounts for this gap."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing sector method applies."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "YES",
+          "rationale": "Prospective inputs retain uncertainty even with clean historical data."
+        }
+      }
+    },
+    {
+      "id": "VNM:2026-10-30:VALUATION:DISCOUNT_AND_RETURN:return",
+      "ticker": "VNM",
+      "component": "VALUATION",
+      "dependency": "DISCOUNT_AND_RETURN",
+      "key": "return",
+      "availableEvidence": [
+        "valuation",
+        "model",
+        "baseline"
+      ],
+      "requiredEvidence": "Defensible VND discount calibration and forward-return bridge consistent with risk.",
+      "missingEvidence": "Retained S5 return is a bounded scenario and the scorecard labels model confidence low.",
+      "primaryCause": "LEGITIMATE_UNCERTAINTY",
+      "supportingCauses": [],
+      "constraint": "ECONOMIC_UNCERTAINTY",
+      "resolution": "Use the approved sector method and challenged retained ranges. Escalate unresolved inputs.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "An annual statement does not provide an eligible dated equity-risk calibration or establish future exit economics."
+      },
+      "nextTrigger": "Reviewed cutoff-matched discount inputs and coherent scenario cash flow",
+      "impact": "Decision-grade value, return and MOS remain bounded by source confidence.",
+      "owner": "Valuation reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "Retained S5 return is a bounded scenario and the scorecard labels model confidence low."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "No exact raw-to-consumer defect accounts for this gap."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing sector method applies."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "YES",
+          "rationale": "Prospective inputs retain uncertainty even with clean historical data."
+        }
+      }
+    },
+    {
+      "id": "VNM:2026-10-30:VALUATION:CONFIDENCE:range",
+      "ticker": "VNM",
+      "component": "VALUATION",
+      "dependency": "CONFIDENCE",
+      "key": "range",
+      "availableEvidence": [
+        "valuation",
+        "model",
+        "baseline"
+      ],
+      "requiredEvidence": "Documented confidence and eligible independent cross-check for intended decision use.",
+      "missingEvidence": "S5 research confidence is medium for bounded work, with material terminal, reinvestment and capital-allocation uncertainty.",
+      "primaryCause": "LEGITIMATE_UNCERTAINTY",
+      "supportingCauses": [],
+      "constraint": "ECONOMIC_UNCERTAINTY",
+      "resolution": "Use the approved sector method and challenged retained ranges. Escalate unresolved inputs.",
+      "futureDataTest": {
+        "result": "UNKNOWN",
+        "rationale": "More history helps only if it materially bounds the disputed model inputs."
+      },
+      "nextTrigger": "Material narrowing of model uncertainty under reviewed evidence",
+      "impact": "Decision-grade value, return and MOS remain bounded by source confidence.",
+      "owner": "Valuation reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "S5 research confidence is medium for bounded work, with material terminal, reinvestment and capital-allocation uncertainty."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "No exact raw-to-consumer defect accounts for this gap."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing sector method applies."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "YES",
+          "rationale": "Prospective inputs retain uncertainty even with clean historical data."
+        }
+      }
+    },
+    {
+      "id": "VNM:2026-10-30:VALUATION:PIT_INTEGRITY:availability",
+      "ticker": "VNM",
+      "component": "VALUATION",
+      "dependency": "PIT_INTEGRITY",
+      "key": "availability",
+      "availableEvidence": [
+        "dataset",
+        "market"
+      ],
+      "requiredEvidence": "Original qualifying receipts for market, fundamentals and actions at the requested purpose and time.",
+      "missingEvidence": "Current scoping is supported by existing receipts. Historical PIT approval is outside the retained current case.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "GOVERNANCE",
+      "resolution": "Use the original clocks and admit only through the governed historical route.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Another annual report cannot certify the previous observation’s availability."
+      },
+      "nextTrigger": "Exact historical receipt chain",
+      "impact": "No cutoff backfill, historical valuation or PIT promotion.",
+      "owner": "Source admission reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "Current receipt is purpose-limited."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "Availability scope is not a mapping defect."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing source timing rules apply."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "NO",
+          "rationale": "Eligibility is a dated provenance question."
+        }
+      }
+    },
+    {
+      "id": "VNM:2026-10-30:INVESTMENT_DECISION:SCORECARD_VALIDITY_CONFIDENCE:scorecard",
+      "ticker": "VNM",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "SCORECARD_VALIDITY_CONFIDENCE",
+      "key": "scorecard",
+      "availableEvidence": [
+        "baseline",
+        "decisionContract"
+      ],
+      "requiredEvidence": "A scorecard valid and eligible for the exact M6.5 decision scope.",
+      "missingEvidence": "VNM is labelled low-confidence, non-actionable.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "GOVERNANCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "An eligible governed successor with decision-grade confidence",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "VNM:2026-10-30:INVESTMENT_DECISION:STAGE0_VETO:risk",
+      "ticker": "VNM",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "STAGE0_VETO",
+      "key": "risk",
+      "availableEvidence": [
+        "m1",
+        "decisionContract"
+      ],
+      "requiredEvidence": "An exact M6.5 Stage 0 finding, risk assessment and mitigation evidence.",
+      "missingEvidence": "Scoring M1 evidence exists. Formal M6.5 Stage 0 and veto evidence matching the decision scope was not verified in this audit.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "HUMAN_JUDGMENT",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Dated exact Stage 0/risk assessment and independent applicable approval",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "VNM:2026-10-30:INVESTMENT_DECISION:THESIS:human",
+      "ticker": "VNM",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "THESIS",
+      "key": "human",
+      "availableEvidence": [
+        "baseline",
+        "decisionContract"
+      ],
+      "requiredEvidence": "A signed current thesis, counterevidence and invalidation conditions.",
+      "missingEvidence": "Retained scoring and research thesis evidence lacks an adopted M6.5 human thesis review in this packet.",
+      "primaryCause": "INTERPRETATION_GAP",
+      "supportingCauses": [],
+      "constraint": "HUMAN_JUDGMENT",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Human review of thesis, counterevidence, and triggers",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "VNM:2026-10-30:INVESTMENT_DECISION:VALUATION_FORWARD_RETURN:return",
+      "ticker": "VNM",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "VALUATION_FORWARD_RETURN",
+      "key": "return",
+      "availableEvidence": [
+        "valuation",
+        "decisionContract"
+      ],
+      "requiredEvidence": "Decision-grade valuation, return boundaries and downside with confidence.",
+      "missingEvidence": "The valuation audit leaves material scope or confidence limitations.",
+      "primaryCause": "LEGITIMATE_UNCERTAINTY",
+      "supportingCauses": [],
+      "constraint": "ECONOMIC_UNCERTAINTY",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Reviewed risk-consistent valuation and return bounds",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "VNM:2026-10-30:INVESTMENT_DECISION:RESIDUAL_RISK_HURDLE:hurdle",
+      "ticker": "VNM",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "RESIDUAL_RISK_HURDLE",
+      "key": "hurdle",
+      "availableEvidence": [
+        "decisionPolicy",
+        "decisionContract"
+      ],
+      "requiredEvidence": "A dated residual risk and required-return assessment, including applicable calibration and exceptions.",
+      "missingEvidence": "The retained packet does not bind a decision-specific residual-risk and hurdle calibration.",
+      "primaryCause": "INTERPRETATION_GAP",
+      "supportingCauses": [],
+      "constraint": "HUMAN_JUDGMENT",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Risk reviewer calibration and applicable separately governed risk evidence",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "VNM:2026-10-30:INVESTMENT_DECISION:OWNERSHIP_CONCENTRATION:portfolio",
+      "ticker": "VNM",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "OWNERSHIP_CONCENTRATION",
+      "key": "portfolio",
+      "availableEvidence": [
+        "decisionContract",
+        "decisionValidation"
+      ],
+      "requiredEvidence": "Authoritative M6.3 positions, NAV, exposure and dated ownership context.",
+      "missingEvidence": "This audit contains no matched authoritative M6.3 decision snapshot.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Matching M6.3 projection and signed ownership assessment",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "VNM:2026-10-30:INVESTMENT_DECISION:OPPORTUNITY_COST:comparators",
+      "ticker": "VNM",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "OPPORTUNITY_COST",
+      "key": "comparators",
+      "availableEvidence": [
+        "decisionContract",
+        "decisionValidation"
+      ],
+      "requiredEvidence": "Comparable eligible alternatives, cash and uncertainty after friction.",
+      "missingEvidence": "No decision-scope comparison set was verified in the retained case.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Qualified comparators and cash alternative for the same decision clock",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "VNM:2026-10-30:INVESTMENT_DECISION:TECHNICAL_OVERLAY:execution",
+      "ticker": "VNM",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "TECHNICAL_OVERLAY",
+      "key": "execution",
+      "availableEvidence": [
+        "decisionContract",
+        "decisionValidation"
+      ],
+      "requiredEvidence": "Applicable dated execution evidence and policy-compliant deferral trigger.",
+      "missingEvidence": "No decision-scope overlay was evaluated here. The native decision policy governs applicability.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Applicable timing review at the execution cutoff",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "VNM:2026-10-30:INVESTMENT_DECISION:CASH_BOARD_LOT:execution",
+      "ticker": "VNM",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "CASH_BOARD_LOT",
+      "key": "execution",
+      "availableEvidence": [
+        "decisionPolicy",
+        "decisionContract"
+      ],
+      "requiredEvidence": "Executable cash, settlement, eligible price, fee and board-lot data.",
+      "missingEvidence": "No matched execution-capacity packet was verified. Values cannot be inferred from the score.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Authoritative executable cash and current lot and fee basis",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "VNM:2026-10-30:INVESTMENT_DECISION:DECISION_AUTHORIZATION:authority",
+      "ticker": "VNM",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "DECISION_AUTHORIZATION",
+      "key": "authority",
+      "availableEvidence": [
+        "decisionValidation",
+        "decisionContract"
+      ],
+      "requiredEvidence": "Exact human decision evidence and applicable risk/operational authority.",
+      "missingEvidence": "The retained research and scoring permissions do not confer decision or trade authorization.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "GOVERNANCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Complete exact formal decision scope with required human and approval receipts",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    }
+  ]
+}

@@ -66,3 +66,7 @@ Standing Authority per Version hiện hành không cần xin lại từng fact/P
 ## Độ tin cậy 0–10 cho scoring nghiên cứu
 
 Khi dữ liệu chưa đầy đủ, đọc [thang độ tin cậy bằng chứng](references/evidence-confidence.md). Tiếp tục đánh giá rubric có căn cứ theo mốc hiện hành, báo riêng điểm, độ tin cậy và độ phủ. Giữ N/R khi chưa đủ căn cứ áp dụng band. Ghi rõ dữ liệu cần rà lại ở kỳ công bố sau. Giữ nguyên các cổng M1 và quyền chấm điểm chính thức.
+
+Khi rà soát readiness S5 hoặc bàn giao sang M6.5, dùng [hợp đồng Structural Evaluation Gaps](../../docs/03%20SCORING/STRUCTURAL_EVALUATION_GAPS_v1.0.md). Ghi riêng tình trạng mapping, đủ điều kiện PIT, assumptions và sensitivity. Dùng lại bằng chứng và review đã giữ, và lấy vị thế, NAV, cash thực thi từ projection M6.3 có thẩm quyền.
+
+Khi FY là nền đánh giá hoặc có báo cáo kỳ mới, dùng phụ lục [SEGM v1.2](../../docs/fundamental-data-engine/structural-evaluation-gaps/2026-11-23/SEGM_V12_ANNUAL_REASSESSMENT.md) của Prepare. Giữ báo cáo FY cuối cùng đủ điều kiện và phân kỳ số liệu interim. Chuyển các nhánh định giá và quyết định bị ảnh hưởng sang bộ tính và người rà soát hiện có.

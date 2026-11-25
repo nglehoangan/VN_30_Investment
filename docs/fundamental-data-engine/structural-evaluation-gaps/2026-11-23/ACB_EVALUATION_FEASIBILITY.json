@@ -1,0 +1,1369 @@
+{
+  "contract": "structural-evaluation-gaps-v1",
+  "subject": {
+    "ticker": "ACB",
+    "securityId": "658fafbe-65b3-4176-999f-d4d32e1bd838",
+    "sector": "BANK",
+    "cutoff": "2026-10-30",
+    "universeVersion": "vn30-20260803-reviewed-20261115",
+    "purpose": "CURRENT_FORMAL_VALUATION"
+  },
+  "reviewCounts": {
+    "evidenceImprovement": 1,
+    "resolutionValidation": 1
+  },
+  "evidence": {
+    "nr": {
+      "subjectTicker": "ACB",
+      "path": "docs/fundamental-data-engine/structural-nr-remediation/2026-11-23/ACB_DIAGNOSTIC.json",
+      "sha256": "29f8785a9cec3e15613f5fb6a91b3d30a856bd015ebd42484250a99c517e51d8",
+      "locator": "/baseline and /rows"
+    },
+    "baseline": {
+      "subjectTicker": "ACB",
+      "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-22-v4/V4_SCORE_READBACK.json",
+      "sha256": "e4d424975f9936142cc19a5fbef0e0042e8184bcdfc8d1955b28e2c903d1f2f3",
+      "locator": "/limitedCoverage"
+    },
+    "policy": {
+      "subjectTicker": "ACB",
+      "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+      "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4",
+      "locator": "Issuer sector valuation and cross-check requirements"
+    },
+    "decisionContract": {
+      "subjectTicker": "ACB",
+      "path": "src/domain/decision/contracts.ts",
+      "sha256": "17faa581a3e36a82fc5dc44a7fa432104667cfc7bc2b652cc6796eb7c0d41b06",
+      "locator": "DecisionEvidence, DecisionPortfolio, DecisionInput"
+    },
+    "decisionPolicy": {
+      "subjectTicker": "ACB",
+      "path": "docs/06_DASHBOARD/6.5 Decision Engine/CHANGE_REQUESTS.md",
+      "sha256": "86aa630dfcadce2fb7a07d39637ce91f8cdf993a6b16713bee6dd0a022de4e1d",
+      "locator": "M6.5.3 current issue authority and CR-04"
+    },
+    "decisionValidation": {
+      "subjectTicker": "ACB",
+      "path": "src/domain/decision/validation.ts",
+      "sha256": "bd1e1d20ab88c0df979245639b21f72cad63351b8cb50241607944b2d5d69eb8",
+      "locator": "Decision methodology, assessment, scorecard, portfolio and evidence checks"
+    },
+    "actionDependencies": {
+      "subjectTicker": "ACB",
+      "path": "src/domain/scoring/action-dependencies.ts",
+      "sha256": "bbbb2a9f5828c3e8a9f223ee3286e7523f793e37f4f6410b9d602b40200f678d",
+      "locator": "ACTION_RUBRICS and ACTION_METRICS"
+    },
+    "dataset": {
+      "subjectTicker": "ACB",
+      "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-22-v4/V4_SCORE_READBACK.json",
+      "sha256": "e4d424975f9936142cc19a5fbef0e0042e8184bcdfc8d1955b28e2c903d1f2f3",
+      "locator": "/bindingId and /datasetHash"
+    },
+    "m1": {
+      "subjectTicker": "ACB",
+      "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-22-v4/V4_ASSESSMENT.json",
+      "sha256": "d766221953c500e44192e6a5fb45dd979a658d199de10927c873d9817730b8b4",
+      "locator": "/input/stage0 and /input/hardVeto"
+    },
+    "valuation": {
+      "subjectTicker": "ACB",
+      "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_BAND_SELECTION_2026-11-21.md",
+      "sha256": "08f314e8d27de3db436691336cfcc112022d3ff8613639d1232be60fdff94fab",
+      "locator": "VAL-PRIMARY sustainable ROE and cost-of-equity sensitivity"
+    },
+    "model": {
+      "subjectTicker": "ACB",
+      "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CAPITAL_HEADROOM_AND_EXIT_TEST.md",
+      "sha256": "0ef17f25f68f9a8d79c67bc018b2d8711fb17fdcccaebfad94c2e0153b6191f9",
+      "locator": "Capital headroom and exit sensitivity"
+    },
+    "market": {
+      "subjectTicker": "ACB",
+      "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_HISTORICAL_ROE_SHARE_AND_CAPITAL_REVIEW.md",
+      "sha256": "3699dda9a6e31bbcd9b4ad6961e0a5d11b4df9718f440570adb477b45f9321a5",
+      "locator": "Common equity, share history and capital review"
+    },
+    "nr-BQ-MOAT": {
+      "subjectTicker": "ACB",
+      "path": "docs/fundamental-data-engine/structural-nr-remediation/2026-11-23/ACB_DIAGNOSTIC.json",
+      "sha256": "29f8785a9cec3e15613f5fb6a91b3d30a856bd015ebd42484250a99c517e51d8",
+      "locator": "/rows/0",
+      "pointer": "/rows/0"
+    },
+    "nr-FH-LIQ": {
+      "subjectTicker": "ACB",
+      "path": "docs/fundamental-data-engine/structural-nr-remediation/2026-11-23/ACB_DIAGNOSTIC.json",
+      "sha256": "29f8785a9cec3e15613f5fb6a91b3d30a856bd015ebd42484250a99c517e51d8",
+      "locator": "/rows/1",
+      "pointer": "/rows/1"
+    },
+    "nr-FH-STRESS": {
+      "subjectTicker": "ACB",
+      "path": "docs/fundamental-data-engine/structural-nr-remediation/2026-11-23/ACB_DIAGNOSTIC.json",
+      "sha256": "29f8785a9cec3e15613f5fb6a91b3d30a856bd015ebd42484250a99c517e51d8",
+      "locator": "/rows/2",
+      "pointer": "/rows/2"
+    },
+    "nr-GQ-FWD": {
+      "subjectTicker": "ACB",
+      "path": "docs/fundamental-data-engine/structural-nr-remediation/2026-11-23/ACB_DIAGNOSTIC.json",
+      "sha256": "29f8785a9cec3e15613f5fb6a91b3d30a856bd015ebd42484250a99c517e51d8",
+      "locator": "/rows/3",
+      "pointer": "/rows/3"
+    },
+    "nr-IC-POS": {
+      "subjectTicker": "ACB",
+      "path": "docs/fundamental-data-engine/structural-nr-remediation/2026-11-23/ACB_DIAGNOSTIC.json",
+      "sha256": "29f8785a9cec3e15613f5fb6a91b3d30a856bd015ebd42484250a99c517e51d8",
+      "locator": "/rows/4",
+      "pointer": "/rows/4"
+    },
+    "nr-VAL-PRIMARY": {
+      "subjectTicker": "ACB",
+      "path": "docs/fundamental-data-engine/structural-nr-remediation/2026-11-23/ACB_DIAGNOSTIC.json",
+      "sha256": "29f8785a9cec3e15613f5fb6a91b3d30a856bd015ebd42484250a99c517e51d8",
+      "locator": "/rows/5",
+      "pointer": "/rows/5"
+    },
+    "nr-RG-GOV": {
+      "subjectTicker": "ACB",
+      "path": "docs/fundamental-data-engine/structural-nr-remediation/2026-11-23/ACB_DIAGNOSTIC.json",
+      "sha256": "29f8785a9cec3e15613f5fb6a91b3d30a856bd015ebd42484250a99c517e51d8",
+      "locator": "/rows/6",
+      "pointer": "/rows/6"
+    },
+    "nr-RG-RISK": {
+      "subjectTicker": "ACB",
+      "path": "docs/fundamental-data-engine/structural-nr-remediation/2026-11-23/ACB_DIAGNOSTIC.json",
+      "sha256": "29f8785a9cec3e15613f5fb6a91b3d30a856bd015ebd42484250a99c517e51d8",
+      "locator": "/rows/7",
+      "pointer": "/rows/7"
+    },
+    "nr-CA-REINV": {
+      "subjectTicker": "ACB",
+      "path": "docs/fundamental-data-engine/structural-nr-remediation/2026-11-23/ACB_DIAGNOSTIC.json",
+      "sha256": "29f8785a9cec3e15613f5fb6a91b3d30a856bd015ebd42484250a99c517e51d8",
+      "locator": "/rows/8",
+      "pointer": "/rows/8"
+    }
+  },
+  "checks": {
+    "M1_PREPARE": {
+      "HISTORICAL_EVIDENCE": {
+        "status": "PASS",
+        "finding": "The exact issuer retains source reviews and a governed score or isolated score readback.",
+        "evidence": [
+          "dataset",
+          "baseline",
+          "nr"
+        ],
+        "gaps": []
+      },
+      "FINANCIAL_MAPPING": {
+        "status": "PASS",
+        "finding": "The retained evaluated scope has a governed dataset receipt or readback. No reproducible raw-to-consumer discrepancy was established for these rows.",
+        "evidence": [
+          "dataset",
+          "market"
+        ],
+        "gaps": []
+      },
+      "METRIC_COMPUTABILITY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "The reviewed limited artifact does not establish computability outside its bound scope.",
+        "evidence": [
+          "dataset",
+          "nr"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:M1_PREPARE:METRIC_COMPUTABILITY:scope"
+        ]
+      },
+      "PIT_ADMISSIBILITY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Current-purpose evidence and later review clocks do not establish historical PIT admission.",
+        "evidence": [
+          "dataset",
+          "market"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:M1_PREPARE:PIT_ADMISSIBILITY:current-vs-pit"
+        ]
+      },
+      "RUBRIC_FEASIBILITY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Existing N/R dispositions remain limited to their retained baseline and scoped approvals.",
+        "evidence": [
+          "nr-BQ-MOAT",
+          "baseline",
+          "nr-FH-LIQ",
+          "nr-FH-STRESS",
+          "nr-GQ-FWD",
+          "nr-IC-POS",
+          "nr-VAL-PRIMARY",
+          "nr-RG-GOV",
+          "nr-RG-RISK",
+          "nr-CA-REINV"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:BQ-MOAT",
+          "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:FH-LIQ",
+          "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:FH-STRESS",
+          "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:GQ-FWD",
+          "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:IC-POS",
+          "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:VAL-PRIMARY",
+          "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:RG-GOV",
+          "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:RG-RISK",
+          "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:CA-REINV"
+        ]
+      },
+      "VALUATION_READINESS": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Retained valuation evidence is bounded to the scope and confidence of the original case.",
+        "evidence": [
+          "valuation",
+          "model"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:M1_PREPARE:VALUATION_READINESS:decision-grade"
+        ]
+      },
+      "DECISION_DEPENDENCIES": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "The evaluated scoring material does not establish a complete authorized M6.5 candidate.",
+        "evidence": [
+          "m1",
+          "decisionContract"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:M1_PREPARE:DECISION_DEPENDENCIES:formal-packet"
+        ]
+      }
+    },
+    "VALUATION": {
+      "FINANCIAL_METRICS": {
+        "status": "PASS",
+        "finding": "Retained matching-period components support the existing analytical scope. Normalization and forward judgment are reviewed separately.",
+        "evidence": [
+          "valuation",
+          "dataset"
+        ],
+        "gaps": []
+      },
+      "SHARE_DENOMINATOR": {
+        "status": "PASS",
+        "finding": "Reviewed issuer share basis is retained. No incompatible denominator defect was established in the selected scope.",
+        "evidence": [
+          "market",
+          "dataset"
+        ],
+        "gaps": []
+      },
+      "ACTION_COMPARABILITY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "The reviewed current-use share/economics basis does not qualify unrestricted historical total-return or PIT comparisons.",
+        "evidence": [
+          "market",
+          "actionDependencies"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:VALUATION:ACTION_COMPARABILITY:purpose"
+        ]
+      },
+      "CASH_FLOW_NORMALIZATION": {
+        "status": "PASS",
+        "finding": "BANK review uses common earnings and capital on a comparable basis. Industrial free cash flow is inapplicable.",
+        "evidence": [
+          "valuation",
+          "model"
+        ],
+        "gaps": []
+      },
+      "SECTOR_METHOD": {
+        "status": "PASS",
+        "finding": "Existing BANK equity methods use sustainable ROE, cost of equity and capital constraints. Do not infer industrial EV from deposit funding.",
+        "evidence": [
+          "policy",
+          "valuation"
+        ],
+        "gaps": []
+      },
+      "ASSUMPTIONS": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Sustainable ROE and consistent forward NIM, provision and capital path remain insufficient to defend a valuation band.",
+        "evidence": [
+          "valuation",
+          "model",
+          "baseline"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:VALUATION:ASSUMPTIONS:forward"
+        ]
+      },
+      "SCENARIOS_SENSITIVITY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "The retained sensitivity crosses valuation bands and depends on forward capital and risk assumptions.",
+        "evidence": [
+          "valuation",
+          "model",
+          "baseline"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:VALUATION:SCENARIOS_SENSITIVITY:challenge"
+        ]
+      },
+      "DISCOUNT_AND_RETURN": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Ke and normalized ROE leave a wide premium range without a robust primary band.",
+        "evidence": [
+          "valuation",
+          "model",
+          "baseline"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:VALUATION:DISCOUNT_AND_RETURN:return"
+        ]
+      },
+      "CONFIDENCE": {
+        "status": "BLOCKED",
+        "finding": "Primary valuation is N/R and the limited artifact is not ranking eligible.",
+        "evidence": [
+          "valuation",
+          "model",
+          "baseline"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:VALUATION:CONFIDENCE:range"
+        ]
+      },
+      "PIT_INTEGRITY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Current scoping is supported by existing receipts. Historical PIT approval is outside the retained current case.",
+        "evidence": [
+          "dataset",
+          "market"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:VALUATION:PIT_INTEGRITY:availability"
+        ]
+      }
+    },
+    "INVESTMENT_DECISION": {
+      "SCORECARD_VALIDITY_CONFIDENCE": {
+        "status": "BLOCKED",
+        "finding": "The limited artifact has a null full score and is ineligible for ranking or allocation.",
+        "evidence": [
+          "baseline",
+          "decisionContract"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:INVESTMENT_DECISION:SCORECARD_VALIDITY_CONFIDENCE:scorecard"
+        ]
+      },
+      "STAGE0_VETO": {
+        "status": "BLOCKED",
+        "finding": "Scoring M1 evidence exists. Formal M6.5 Stage 0 and veto evidence matching the decision scope was not verified in this audit.",
+        "evidence": [
+          "m1",
+          "decisionContract"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:INVESTMENT_DECISION:STAGE0_VETO:risk"
+        ]
+      },
+      "THESIS": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Retained scoring and research thesis evidence lacks an adopted M6.5 human thesis review in this packet.",
+        "evidence": [
+          "baseline",
+          "decisionContract"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:INVESTMENT_DECISION:THESIS:human"
+        ]
+      },
+      "VALUATION_FORWARD_RETURN": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "The valuation audit leaves material scope or confidence limitations.",
+        "evidence": [
+          "valuation",
+          "decisionContract"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:INVESTMENT_DECISION:VALUATION_FORWARD_RETURN:return"
+        ]
+      },
+      "RESIDUAL_RISK_HURDLE": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "The retained packet does not bind a decision-specific residual-risk and hurdle calibration.",
+        "evidence": [
+          "decisionPolicy",
+          "decisionContract"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:INVESTMENT_DECISION:RESIDUAL_RISK_HURDLE:hurdle"
+        ]
+      },
+      "OWNERSHIP_CONCENTRATION": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "This audit contains no matched authoritative M6.3 decision snapshot.",
+        "evidence": [
+          "decisionContract",
+          "decisionValidation"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:INVESTMENT_DECISION:OWNERSHIP_CONCENTRATION:portfolio"
+        ]
+      },
+      "OPPORTUNITY_COST": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "No decision-scope comparison set was verified in the retained case.",
+        "evidence": [
+          "decisionContract",
+          "decisionValidation"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:INVESTMENT_DECISION:OPPORTUNITY_COST:comparators"
+        ]
+      },
+      "TECHNICAL_OVERLAY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "No decision-scope overlay was evaluated here. The native decision policy governs applicability.",
+        "evidence": [
+          "decisionContract",
+          "decisionValidation"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:INVESTMENT_DECISION:TECHNICAL_OVERLAY:execution"
+        ]
+      },
+      "CASH_BOARD_LOT": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "No matched execution-capacity packet was verified. Values cannot be inferred from the score.",
+        "evidence": [
+          "decisionPolicy",
+          "decisionContract"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:INVESTMENT_DECISION:CASH_BOARD_LOT:execution"
+        ]
+      },
+      "DECISION_AUTHORIZATION": {
+        "status": "BLOCKED",
+        "finding": "The retained research and scoring permissions do not confer decision or trade authorization.",
+        "evidence": [
+          "decisionValidation",
+          "decisionContract"
+        ],
+        "gaps": [
+          "ACB:2026-10-30:INVESTMENT_DECISION:DECISION_AUTHORIZATION:authority"
+        ]
+      }
+    }
+  },
+  "gaps": [
+    {
+      "id": "ACB:2026-10-30:M1_PREPARE:METRIC_COMPUTABILITY:scope",
+      "ticker": "ACB",
+      "component": "M1_PREPARE",
+      "dependency": "METRIC_COMPUTABILITY",
+      "key": "scope",
+      "availableEvidence": [
+        "dataset",
+        "nr"
+      ],
+      "requiredEvidence": "Metric-specific reviewed inputs beyond the accepted BANK scope.",
+      "missingEvidence": "The reviewed limited artifact does not establish computability outside its bound scope.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Replay only the affected BANK inputs and exact metric dependency on a qualified change.",
+      "futureDataTest": {
+        "result": "UNKNOWN",
+        "rationale": "An extra period may improve comparators. Evidence gaps outside the reported fields require targeted inputs."
+      },
+      "nextTrigger": "Eligible input for the particular metric",
+      "impact": "Limited coverage remains bounded to its approved scope.",
+      "owner": "BANK assessment reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:M1_PREPARE:PIT_ADMISSIBILITY:current-vs-pit",
+      "ticker": "ACB",
+      "component": "M1_PREPARE",
+      "dependency": "PIT_ADMISSIBILITY",
+      "key": "current-vs-pit",
+      "availableEvidence": [
+        "dataset",
+        "market"
+      ],
+      "requiredEvidence": "Observation-level economic date, availability and purpose-specific acceptance.",
+      "missingEvidence": "Current-purpose evidence and later review clocks do not establish historical PIT admission.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "GOVERNANCE",
+      "resolution": "Reuse current-only evidence in its original scoped route. Verify original source and receipt clocks independently for a PIT request.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Later reports cannot retroactively establish the availability of the original observation."
+      },
+      "nextTrigger": "Matching dated PIT observation and governed receipt",
+      "impact": "Current review remains purpose-bounded.",
+      "owner": "Source admission reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:BQ-MOAT",
+      "ticker": "ACB",
+      "component": "M1_PREPARE",
+      "dependency": "RUBRIC_FEASIBILITY",
+      "key": "BQ-MOAT",
+      "availableEvidence": [
+        "nr-BQ-MOAT",
+        "baseline"
+      ],
+      "requiredEvidence": "Comparable retention, churn and servicing economics for the same customer segment.",
+      "missingEvidence": "Product coverage and digital presence support differentiation, but neither an observed retention series nor comparable servicing economics bounds a durable advantage band.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Escalate to targeted segment-retention and servicing-cost disclosure.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "A longer product and digital footprint series still omits observed segment retention and comparable servicing economics."
+      },
+      "nextTrigger": "Comparable retention, churn and servicing economics for the same customer segment.",
+      "impact": "Retain existing null disposition and exact limited scope.",
+      "owner": "BANK rubric reviewer",
+      "approval": "Existing successor gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:FH-LIQ",
+      "ticker": "ACB",
+      "component": "M1_PREPARE",
+      "dependency": "RUBRIC_FEASIBILITY",
+      "key": "FH-LIQ",
+      "availableEvidence": [
+        "nr-FH-LIQ",
+        "baseline"
+      ],
+      "requiredEvidence": "Incremental facility availability, eligible collateral, overlap and behavioral retention.",
+      "missingEvidence": "The Q3 contractual gap and H1 collateral disclosures bound selected sensitivities only. Funding date, availability and rollover can change the sign.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Escalate to a dated 30-day liquidity bridge with haircuts and overlap controls.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "A later contractual ladder repeats maturity buckets without incremental eligible collateral, draw timing or rollover behavior."
+      },
+      "nextTrigger": "Incremental facility availability, eligible collateral, overlap and behavioral retention.",
+      "impact": "Retain existing null disposition and exact limited scope.",
+      "owner": "BANK rubric reviewer",
+      "approval": "Existing successor gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:FH-STRESS",
+      "ticker": "ACB",
+      "component": "M1_PREPARE",
+      "dependency": "RUBRIC_FEASIBILITY",
+      "key": "FH-STRESS",
+      "availableEvidence": [
+        "nr-FH-STRESS",
+        "baseline"
+      ],
+      "requiredEvidence": "Viable stressed funding response, costs and post-stress eligible capital/RWA.",
+      "missingEvidence": "Capital reverse stress and liquidity sensitivities are available. An assumed funding premium does not establish financing availability in a combined stress.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Escalate to a paired funding and capital stress review using same-scope inputs.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Repeated reported CAR and funding balances cannot demonstrate joint severe-stress funding availability and post-stress capital."
+      },
+      "nextTrigger": "Viable stressed funding response, costs and post-stress eligible capital/RWA.",
+      "impact": "Retain existing null disposition and exact limited scope.",
+      "owner": "BANK rubric reviewer",
+      "approval": "Existing successor gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:GQ-FWD",
+      "ticker": "ACB",
+      "component": "M1_PREPARE",
+      "dependency": "RUBRIC_FEASIBILITY",
+      "key": "GQ-FWD",
+      "availableEvidence": [
+        "nr-GQ-FWD",
+        "baseline"
+      ],
+      "requiredEvidence": "Consistent forward growth, margins, credit costs and capital/RWA.",
+      "missingEvidence": "Credit growth and improved quarterly NIM inform direction. The modeled 6% profit growth remains an assumption without a consistently bounded credit/NIM/provision/RWA path.",
+      "primaryCause": "INTERPRETATION_GAP",
+      "supportingCauses": [
+        "DATA_MISSING"
+      ],
+      "constraint": "HUMAN_JUDGMENT",
+      "resolution": "Propose interpretation review for a jointly reconciled forward BANK scenario and adjacent-band challenge.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "More historical NIM and credit growth do not supply a forward credit-cost and capital path."
+      },
+      "nextTrigger": "Consistent forward growth, margins, credit costs and capital/RWA.",
+      "impact": "Retain existing null disposition and exact limited scope.",
+      "owner": "BANK rubric reviewer",
+      "approval": "Owner approval before adopting exact interpretation in a successor.",
+      "baselineChange": true,
+      "outcome": "ESCALATED",
+      "changeRequest": "BANK-STRUCTURAL-NR-INTERPRETATION-v0.1"
+    },
+    {
+      "id": "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:IC-POS",
+      "ticker": "ACB",
+      "component": "M1_PREPARE",
+      "dependency": "RUBRIC_FEASIBILITY",
+      "key": "IC-POS",
+      "availableEvidence": [
+        "nr-IC-POS",
+        "baseline"
+      ],
+      "requiredEvidence": "Comparable segment share or distribution evidence with a defined denominator.",
+      "missingEvidence": "The same-basis funding-cost proxies place ACB between TCB and VIB. This does not bound segment share or distribution strength.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Escalate to same-denominator segment-position evidence.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Repeated funding-cost comparisons do not reveal segment share or comparable distribution reach."
+      },
+      "nextTrigger": "Comparable segment share or distribution evidence with a defined denominator.",
+      "impact": "Retain existing null disposition and exact limited scope.",
+      "owner": "BANK rubric reviewer",
+      "approval": "Existing successor gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:VAL-PRIMARY",
+      "ticker": "ACB",
+      "component": "M1_PREPARE",
+      "dependency": "RUBRIC_FEASIBILITY",
+      "key": "VAL-PRIMARY",
+      "availableEvidence": [
+        "nr-VAL-PRIMARY",
+        "baseline"
+      ],
+      "requiredEvidence": "Sustainable ROE and sourced Ke or an eligible comparable long-run valuation cross-check.",
+      "missingEvidence": "The approved BANK method is justified P/B. The tested price premium is roughly 4–48%, with adjacent bands still plausible because sustainable ROE and Ke vary.",
+      "primaryCause": "INTERPRETATION_GAP",
+      "supportingCauses": [
+        "DATA_MISSING"
+      ],
+      "constraint": "HUMAN_JUDGMENT",
+      "resolution": "Propose interpretation review of the approved justified P/B method and the ROE/Ke sensitivity required to defend a band.",
+      "futureDataTest": {
+        "result": "UNKNOWN",
+        "rationale": "Additional same-basis earnings may tighten sustainable ROE. They cannot, by themselves, settle cost of equity or guarantee that the valuation range clears a band boundary."
+      },
+      "nextTrigger": "Sustainable ROE and sourced Ke or an eligible comparable long-run valuation cross-check.",
+      "impact": "Retain existing null disposition and exact limited scope.",
+      "owner": "BANK rubric reviewer",
+      "approval": "Owner approval before adopting exact interpretation in a successor.",
+      "baselineChange": true,
+      "outcome": "ESCALATED",
+      "changeRequest": "BANK-STRUCTURAL-NR-INTERPRETATION-v0.1"
+    },
+    {
+      "id": "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:RG-GOV",
+      "ticker": "ACB",
+      "component": "M1_PREPARE",
+      "dependency": "RUBRIC_FEASIBILITY",
+      "key": "RG-GOV",
+      "availableEvidence": [
+        "nr-RG-GOV",
+        "baseline"
+      ],
+      "requiredEvidence": "Evidence of actual conflict handling and oversight for ACB Insurance.",
+      "missingEvidence": "Resolution 4490 establishes the approval channel and general oversight. It does not resolve transaction-specific execution of controls.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Escalate to transaction-specific evidence of recusal, pricing oversight or equivalent controls.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Another general governance disclosure may repeat the approval framework without showing transaction-level execution."
+      },
+      "nextTrigger": "Evidence of actual conflict handling and oversight for ACB Insurance.",
+      "impact": "Retain existing null disposition and exact limited scope.",
+      "owner": "BANK rubric reviewer",
+      "approval": "Existing successor gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:RG-RISK",
+      "ticker": "ACB",
+      "component": "M1_PREPARE",
+      "dependency": "RUBRIC_FEASIBILITY",
+      "key": "RG-RISK",
+      "availableEvidence": [
+        "nr-RG-RISK",
+        "baseline"
+      ],
+      "requiredEvidence": "Actual transaction terms, amounts and mitigation effectiveness.",
+      "missingEvidence": "A separate related-party channel was identified. Actual exposure and mitigation effectiveness cannot be classified reliably.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Escalate to same-scope gross and net exposure and commercial terms.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Another generic related-party disclosure does not establish this transaction’s actual exposure and safeguards."
+      },
+      "nextTrigger": "Actual transaction terms, amounts and mitigation effectiveness.",
+      "impact": "Retain existing null disposition and exact limited scope.",
+      "owner": "BANK rubric reviewer",
+      "approval": "Existing successor gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:CA-REINV",
+      "ticker": "ACB",
+      "component": "M1_PREPARE",
+      "dependency": "RUBRIC_FEASIBILITY",
+      "key": "CA-REINV",
+      "availableEvidence": [
+        "nr-CA-REINV",
+        "baseline"
+      ],
+      "requiredEvidence": "Matched consolidated ACBS and ACBA LNST plus paid-in amounts and deployment dates.",
+      "missingEvidence": "Extent of capital increases and historical LNTT is documented. The ACBS comparison and productive deployment timing, including the AMC component, do not bound the resulting owner return.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Retain N/R and register the specific subsidiary fields and timing as the reopening trigger.",
+      "futureDataTest": {
+        "result": "UNKNOWN",
+        "rationale": "An additional comparator can improve the earnings series. The retained reports do not establish whether future disclosures will expose same-scope after-tax earnings and productive deployment timing for both subsidiaries."
+      },
+      "nextTrigger": "Matched consolidated ACBS and ACBA LNST plus paid-in amounts and deployment dates.",
+      "impact": "Retain existing null disposition and exact limited scope.",
+      "owner": "BANK rubric reviewer",
+      "approval": "Existing successor gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:M1_PREPARE:VALUATION_READINESS:decision-grade",
+      "ticker": "ACB",
+      "component": "M1_PREPARE",
+      "dependency": "VALUATION_READINESS",
+      "key": "decision-grade",
+      "availableEvidence": [
+        "valuation",
+        "model"
+      ],
+      "requiredEvidence": "Decision-grade range, sensitivity and exact reviewed assumptions.",
+      "missingEvidence": "Retained valuation evidence is bounded to the scope and confidence of the original case.",
+      "primaryCause": "INTERPRETATION_GAP",
+      "supportingCauses": [],
+      "constraint": "HUMAN_JUDGMENT",
+      "resolution": "Use the valuation audit to target the next model or evidence review.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same statements alone cannot verify prospective estimates or strengthen confidence."
+      },
+      "nextTrigger": "Reviewed valuation bridge or changed qualifying evidence",
+      "impact": "Prepare cannot infer allocation readiness.",
+      "owner": "Valuation reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:M1_PREPARE:DECISION_DEPENDENCIES:formal-packet",
+      "ticker": "ACB",
+      "component": "M1_PREPARE",
+      "dependency": "DECISION_DEPENDENCIES",
+      "key": "formal-packet",
+      "availableEvidence": [
+        "m1",
+        "decisionContract"
+      ],
+      "requiredEvidence": "Dated M6.5 evidence and human assessment with matching portfolio and decision method.",
+      "missingEvidence": "The evaluated scoring material does not establish a complete authorized M6.5 candidate.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "GOVERNANCE",
+      "resolution": "Hand off the existing dependencies to the decision reviewer.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Annual statements cannot supply portfolio, approved judgment or operational authority."
+      },
+      "nextTrigger": "Exact governed decision-context packet",
+      "impact": "No decision or order is inferred.",
+      "owner": "Decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:VALUATION:ACTION_COMPARABILITY:purpose",
+      "ticker": "ACB",
+      "component": "VALUATION",
+      "dependency": "ACTION_COMPARABILITY",
+      "key": "purpose",
+      "availableEvidence": [
+        "market",
+        "actionDependencies"
+      ],
+      "requiredEvidence": "Effective-date actions, raw prices and comparable per-share basis with original availability.",
+      "missingEvidence": "The reviewed current-use share/economics basis does not qualify unrestricted historical total-return or PIT comparisons.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Use the existing S4 action and raw-close route only for its reviewed scope.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Additional statements cannot establish the original effective/availability lineage or fill missing event receipts."
+      },
+      "nextTrigger": "Reviewed action-specific observation and comparability receipt",
+      "impact": "Do not extend per-share comparability beyond its bound scope.",
+      "owner": "Market evidence reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "Scope remains restricted."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "No exact defective mapping was established."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing S4 action comparability policy applies."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "NO",
+          "rationale": "Identity and effective dates are evidence issues."
+        }
+      }
+    },
+    {
+      "id": "ACB:2026-10-30:VALUATION:ASSUMPTIONS:forward",
+      "ticker": "ACB",
+      "component": "VALUATION",
+      "dependency": "ASSUMPTIONS",
+      "key": "forward",
+      "availableEvidence": [
+        "valuation",
+        "model",
+        "baseline"
+      ],
+      "requiredEvidence": "Reviewed sustainable growth, reinvestment and terminal or exit economics.",
+      "missingEvidence": "Sustainable ROE and consistent forward NIM, provision and capital path remain insufficient to defend a valuation band.",
+      "primaryCause": "INTERPRETATION_GAP",
+      "supportingCauses": [],
+      "constraint": "ECONOMIC_UNCERTAINTY",
+      "resolution": "Use the approved sector method and challenged retained ranges. Escalate unresolved inputs.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Another historical year cannot independently establish forward economics."
+      },
+      "nextTrigger": "A coherent, challenged sector scenario supported by newly qualified inputs",
+      "impact": "Decision-grade value, return and MOS remain bounded by source confidence.",
+      "owner": "Valuation reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "Sustainable ROE and consistent forward NIM, provision and capital path remain insufficient to defend a valuation band."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "No exact raw-to-consumer defect accounts for this gap."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing sector method applies."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "YES",
+          "rationale": "Prospective inputs retain uncertainty even with clean historical data."
+        }
+      }
+    },
+    {
+      "id": "ACB:2026-10-30:VALUATION:SCENARIOS_SENSITIVITY:challenge",
+      "ticker": "ACB",
+      "component": "VALUATION",
+      "dependency": "SCENARIOS_SENSITIVITY",
+      "key": "challenge",
+      "availableEvidence": [
+        "valuation",
+        "model",
+        "baseline"
+      ],
+      "requiredEvidence": "Comparable base, downside and upside assumptions and a meaningful independent challenge.",
+      "missingEvidence": "The retained sensitivity crosses valuation bands and depends on forward capital and risk assumptions.",
+      "primaryCause": "LEGITIMATE_UNCERTAINTY",
+      "supportingCauses": [],
+      "constraint": "ECONOMIC_UNCERTAINTY",
+      "resolution": "Use the approved sector method and challenged retained ranges. Escalate unresolved inputs.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Historical observations help calibration but cannot alone resolve forward stress mechanics or independent cross-checks."
+      },
+      "nextTrigger": "Source-backed scenario or independent cross-check that materially narrows the result",
+      "impact": "Decision-grade value, return and MOS remain bounded by source confidence.",
+      "owner": "Valuation reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "The retained sensitivity crosses valuation bands and depends on forward capital and risk assumptions."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "No exact raw-to-consumer defect accounts for this gap."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing sector method applies."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "YES",
+          "rationale": "Prospective inputs retain uncertainty even with clean historical data."
+        }
+      }
+    },
+    {
+      "id": "ACB:2026-10-30:VALUATION:DISCOUNT_AND_RETURN:return",
+      "ticker": "ACB",
+      "component": "VALUATION",
+      "dependency": "DISCOUNT_AND_RETURN",
+      "key": "return",
+      "availableEvidence": [
+        "valuation",
+        "model",
+        "baseline"
+      ],
+      "requiredEvidence": "Defensible VND discount calibration and forward-return bridge consistent with risk.",
+      "missingEvidence": "Ke and normalized ROE leave a wide premium range without a robust primary band.",
+      "primaryCause": "INTERPRETATION_GAP",
+      "supportingCauses": [],
+      "constraint": "ECONOMIC_UNCERTAINTY",
+      "resolution": "Use the approved sector method and challenged retained ranges. Escalate unresolved inputs.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "An annual statement does not provide an eligible dated equity-risk calibration or establish future exit economics."
+      },
+      "nextTrigger": "Reviewed cutoff-matched discount inputs and coherent scenario cash flow",
+      "impact": "Decision-grade value, return and MOS remain bounded by source confidence.",
+      "owner": "Valuation reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "Ke and normalized ROE leave a wide premium range without a robust primary band."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "No exact raw-to-consumer defect accounts for this gap."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing sector method applies."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "YES",
+          "rationale": "Prospective inputs retain uncertainty even with clean historical data."
+        }
+      }
+    },
+    {
+      "id": "ACB:2026-10-30:VALUATION:CONFIDENCE:range",
+      "ticker": "ACB",
+      "component": "VALUATION",
+      "dependency": "CONFIDENCE",
+      "key": "range",
+      "availableEvidence": [
+        "valuation",
+        "model",
+        "baseline"
+      ],
+      "requiredEvidence": "Documented confidence and eligible independent cross-check for intended decision use.",
+      "missingEvidence": "Primary valuation is N/R and the limited artifact is not ranking eligible.",
+      "primaryCause": "LEGITIMATE_UNCERTAINTY",
+      "supportingCauses": [],
+      "constraint": "ECONOMIC_UNCERTAINTY",
+      "resolution": "Use the approved sector method and challenged retained ranges. Escalate unresolved inputs.",
+      "futureDataTest": {
+        "result": "UNKNOWN",
+        "rationale": "More history helps only if it materially bounds the disputed model inputs."
+      },
+      "nextTrigger": "Material narrowing of model uncertainty under reviewed evidence",
+      "impact": "Decision-grade value, return and MOS remain bounded by source confidence.",
+      "owner": "Valuation reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "Primary valuation is N/R and the limited artifact is not ranking eligible."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "No exact raw-to-consumer defect accounts for this gap."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing sector method applies."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "YES",
+          "rationale": "Prospective inputs retain uncertainty even with clean historical data."
+        }
+      }
+    },
+    {
+      "id": "ACB:2026-10-30:VALUATION:PIT_INTEGRITY:availability",
+      "ticker": "ACB",
+      "component": "VALUATION",
+      "dependency": "PIT_INTEGRITY",
+      "key": "availability",
+      "availableEvidence": [
+        "dataset",
+        "market"
+      ],
+      "requiredEvidence": "Original qualifying receipts for market, fundamentals and actions at the requested purpose and time.",
+      "missingEvidence": "Current scoping is supported by existing receipts. Historical PIT approval is outside the retained current case.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "GOVERNANCE",
+      "resolution": "Use the original clocks and admit only through the governed historical route.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Another annual report cannot certify the previous observation’s availability."
+      },
+      "nextTrigger": "Exact historical receipt chain",
+      "impact": "No cutoff backfill, historical valuation or PIT promotion.",
+      "owner": "Source admission reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "Current receipt is purpose-limited."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "Availability scope is not a mapping defect."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing source timing rules apply."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "NO",
+          "rationale": "Eligibility is a dated provenance question."
+        }
+      }
+    },
+    {
+      "id": "ACB:2026-10-30:INVESTMENT_DECISION:SCORECARD_VALIDITY_CONFIDENCE:scorecard",
+      "ticker": "ACB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "SCORECARD_VALIDITY_CONFIDENCE",
+      "key": "scorecard",
+      "availableEvidence": [
+        "baseline",
+        "decisionContract"
+      ],
+      "requiredEvidence": "A scorecard valid and eligible for the exact M6.5 decision scope.",
+      "missingEvidence": "The limited artifact has a null full score and is ineligible for ranking or allocation.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "GOVERNANCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "An eligible governed successor with decision-grade confidence",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:INVESTMENT_DECISION:STAGE0_VETO:risk",
+      "ticker": "ACB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "STAGE0_VETO",
+      "key": "risk",
+      "availableEvidence": [
+        "m1",
+        "decisionContract"
+      ],
+      "requiredEvidence": "An exact M6.5 Stage 0 finding, risk assessment and mitigation evidence.",
+      "missingEvidence": "Scoring M1 evidence exists. Formal M6.5 Stage 0 and veto evidence matching the decision scope was not verified in this audit.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "HUMAN_JUDGMENT",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Dated exact Stage 0/risk assessment and independent applicable approval",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:INVESTMENT_DECISION:THESIS:human",
+      "ticker": "ACB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "THESIS",
+      "key": "human",
+      "availableEvidence": [
+        "baseline",
+        "decisionContract"
+      ],
+      "requiredEvidence": "A signed current thesis, counterevidence and invalidation conditions.",
+      "missingEvidence": "Retained scoring and research thesis evidence lacks an adopted M6.5 human thesis review in this packet.",
+      "primaryCause": "INTERPRETATION_GAP",
+      "supportingCauses": [],
+      "constraint": "HUMAN_JUDGMENT",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Human review of thesis, counterevidence, and triggers",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:INVESTMENT_DECISION:VALUATION_FORWARD_RETURN:return",
+      "ticker": "ACB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "VALUATION_FORWARD_RETURN",
+      "key": "return",
+      "availableEvidence": [
+        "valuation",
+        "decisionContract"
+      ],
+      "requiredEvidence": "Decision-grade valuation, return boundaries and downside with confidence.",
+      "missingEvidence": "The valuation audit leaves material scope or confidence limitations.",
+      "primaryCause": "LEGITIMATE_UNCERTAINTY",
+      "supportingCauses": [],
+      "constraint": "ECONOMIC_UNCERTAINTY",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Reviewed risk-consistent valuation and return bounds",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:INVESTMENT_DECISION:RESIDUAL_RISK_HURDLE:hurdle",
+      "ticker": "ACB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "RESIDUAL_RISK_HURDLE",
+      "key": "hurdle",
+      "availableEvidence": [
+        "decisionPolicy",
+        "decisionContract"
+      ],
+      "requiredEvidence": "A dated residual risk and required-return assessment, including applicable calibration and exceptions.",
+      "missingEvidence": "The retained packet does not bind a decision-specific residual-risk and hurdle calibration.",
+      "primaryCause": "INTERPRETATION_GAP",
+      "supportingCauses": [],
+      "constraint": "HUMAN_JUDGMENT",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Risk reviewer calibration and applicable separately governed risk evidence",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:INVESTMENT_DECISION:OWNERSHIP_CONCENTRATION:portfolio",
+      "ticker": "ACB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "OWNERSHIP_CONCENTRATION",
+      "key": "portfolio",
+      "availableEvidence": [
+        "decisionContract",
+        "decisionValidation"
+      ],
+      "requiredEvidence": "Authoritative M6.3 positions, NAV, exposure and dated ownership context.",
+      "missingEvidence": "This audit contains no matched authoritative M6.3 decision snapshot.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Matching M6.3 projection and signed ownership assessment",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:INVESTMENT_DECISION:OPPORTUNITY_COST:comparators",
+      "ticker": "ACB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "OPPORTUNITY_COST",
+      "key": "comparators",
+      "availableEvidence": [
+        "decisionContract",
+        "decisionValidation"
+      ],
+      "requiredEvidence": "Comparable eligible alternatives, cash and uncertainty after friction.",
+      "missingEvidence": "No decision-scope comparison set was verified in the retained case.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Qualified comparators and cash alternative for the same decision clock",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:INVESTMENT_DECISION:TECHNICAL_OVERLAY:execution",
+      "ticker": "ACB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "TECHNICAL_OVERLAY",
+      "key": "execution",
+      "availableEvidence": [
+        "decisionContract",
+        "decisionValidation"
+      ],
+      "requiredEvidence": "Applicable dated execution evidence and policy-compliant deferral trigger.",
+      "missingEvidence": "No decision-scope overlay was evaluated here. The native decision policy governs applicability.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Applicable timing review at the execution cutoff",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:INVESTMENT_DECISION:CASH_BOARD_LOT:execution",
+      "ticker": "ACB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "CASH_BOARD_LOT",
+      "key": "execution",
+      "availableEvidence": [
+        "decisionPolicy",
+        "decisionContract"
+      ],
+      "requiredEvidence": "Executable cash, settlement, eligible price, fee and board-lot data.",
+      "missingEvidence": "No matched execution-capacity packet was verified. Values cannot be inferred from the score.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Authoritative executable cash and current lot and fee basis",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "ACB:2026-10-30:INVESTMENT_DECISION:DECISION_AUTHORIZATION:authority",
+      "ticker": "ACB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "DECISION_AUTHORIZATION",
+      "key": "authority",
+      "availableEvidence": [
+        "decisionValidation",
+        "decisionContract"
+      ],
+      "requiredEvidence": "Exact human decision evidence and applicable risk/operational authority.",
+      "missingEvidence": "The retained research and scoring permissions do not confer decision or trade authorization.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "GOVERNANCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Complete exact formal decision scope with required human and approval receipts",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    }
+  ]
+}

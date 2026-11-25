@@ -1,0 +1,369 @@
+{
+  "contract": "structural-nr-remediation-v1",
+  "ticker": "ACB",
+  "sector": "BANK",
+  "cutoff": "2026-10-30",
+  "evidencePurpose": "CURRENT_FORMAL_VALUATION",
+  "knowledgeCutoff": "2026-11-22T06:41:05.538Z",
+  "baseline": {
+    "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-22-v4/V4_SCORE_READBACK.json",
+    "sha256": "e4d424975f9936142cc19a5fbef0e0042e8184bcdfc8d1955b28e2c903d1f2f3"
+  },
+  "rubrics": {
+    "path": "src/domain/scoring/methodology.ts",
+    "sha256": "e7031bf6b00e38670016888928ceb941e5c3a524016a1f8ce84123aca6c7da41"
+  },
+  "reviewCounts": {
+    "evidenceImprovement": 1,
+    "resolutionValidation": 1
+  },
+  "rows": [
+    {
+      "rubricId": "BQ-MOAT",
+      "causes": [
+        "DATA_MISSING"
+      ],
+      "primaryCause": "DATA_MISSING",
+      "diagnosis": "Product coverage and digital presence support differentiation, but neither an observed retention series nor comparable servicing economics bounds a durable advantage band.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "A longer product and digital footprint series still omits observed segment retention and comparable servicing economics."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-22-v4/V4_RESEARCH_CLOSURE.json",
+          "sha256": "60771d30b8aa5f43a3dc90fc61b808362bdf9e897294275e749a9fb94d391f64",
+          "subjectTicker": "ACB",
+          "locator": "/rubrics/1"
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_V3_FOUR_TOPIC_EVIDENCE.md",
+          "sha256": "ca32bb3df9e6188db576e091b1d8d332180330e60db95b694d342a1d78579311",
+          "publicationDate": null,
+          "subjectTicker": "ACB",
+          "locator": "Underlying review cited by BQ-MOAT in V4 closure"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Escalate to targeted segment-retention and servicing-cost disclosure.",
+      "status": "ESCALATED",
+      "blocker": "Comparable retention, churn and servicing economics for the same customer segment.",
+      "approvalRequired": false,
+      "validation": "Compared the retained review and limitation against the null baseline disposition and existing rubric topics. This evidence supports the diagnosis only.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      }
+    },
+    {
+      "rubricId": "FH-LIQ",
+      "causes": [
+        "DATA_MISSING"
+      ],
+      "primaryCause": "DATA_MISSING",
+      "diagnosis": "The Q3 contractual gap and H1 collateral disclosures bound selected sensitivities only. Funding date, availability and rollover can change the sign.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "A later contractual ladder repeats maturity buckets without incremental eligible collateral, draw timing or rollover behavior."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-22-v4/V4_RESEARCH_CLOSURE.json",
+          "sha256": "60771d30b8aa5f43a3dc90fc61b808362bdf9e897294275e749a9fb94d391f64",
+          "subjectTicker": "ACB",
+          "locator": "/rubrics/5"
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_FH_PUBLIC_EVIDENCE_REGISTER.md",
+          "sha256": "84d8e7f174f27d6e6799ffde6ee74b26860a2fd49c2464a1d407356797f73b69",
+          "publicationDate": null,
+          "subjectTicker": "ACB",
+          "locator": "Underlying review cited by FH-LIQ in V4 closure"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Escalate to a dated 30-day liquidity bridge with haircuts and overlap controls.",
+      "status": "ESCALATED",
+      "blocker": "Incremental facility availability, eligible collateral, overlap and behavioral retention.",
+      "approvalRequired": false,
+      "validation": "Compared the retained review and limitation against the null baseline disposition and existing rubric topics. This evidence supports the diagnosis only.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      }
+    },
+    {
+      "rubricId": "FH-STRESS",
+      "causes": [
+        "DATA_MISSING"
+      ],
+      "primaryCause": "DATA_MISSING",
+      "diagnosis": "Capital reverse stress and liquidity sensitivities are available. An assumed funding premium does not establish financing availability in a combined stress.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Repeated reported CAR and funding balances cannot demonstrate joint severe-stress funding availability and post-stress capital."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-22-v4/V4_RESEARCH_CLOSURE.json",
+          "sha256": "60771d30b8aa5f43a3dc90fc61b808362bdf9e897294275e749a9fb94d391f64",
+          "subjectTicker": "ACB",
+          "locator": "/rubrics/6"
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OWNER_EVIDENCE_REVIEW_V11.md",
+          "sha256": "9bd89451f55bc273ae7a84f6ed24a020254e5d1c35f04622102e0ab6899c3f62",
+          "publicationDate": null,
+          "subjectTicker": "ACB",
+          "locator": "Underlying review cited by FH-STRESS in V4 closure"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Escalate to a paired funding and capital stress review using same-scope inputs.",
+      "status": "ESCALATED",
+      "blocker": "Viable stressed funding response, costs and post-stress eligible capital/RWA.",
+      "approvalRequired": false,
+      "validation": "Compared the retained review and limitation against the null baseline disposition and existing rubric topics. This evidence supports the diagnosis only.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      }
+    },
+    {
+      "rubricId": "GQ-FWD",
+      "causes": [
+        "DATA_MISSING",
+        "EVIDENCE_INTERPRETATION_GAP"
+      ],
+      "primaryCause": "EVIDENCE_INTERPRETATION_GAP",
+      "diagnosis": "Credit growth and improved quarterly NIM inform direction. The modeled 6% profit growth remains an assumption without a consistently bounded credit/NIM/provision/RWA path.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "More historical NIM and credit growth do not supply a forward credit-cost and capital path."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-22-v4/V4_RESEARCH_CLOSURE.json",
+          "sha256": "60771d30b8aa5f43a3dc90fc61b808362bdf9e897294275e749a9fb94d391f64",
+          "subjectTicker": "ACB",
+          "locator": "/rubrics/8"
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_SOURCE_RULE_REVIEW_2026-11-21.md",
+          "sha256": "cd23233ce165c5b38fa91a1c067c93c757909cae5f810b252db9962b60addd47",
+          "publicationDate": null,
+          "subjectTicker": "ACB",
+          "locator": "Underlying review cited by GQ-FWD in V4 closure"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Propose interpretation review for a jointly reconciled forward BANK scenario and adjacent-band challenge.",
+      "status": "ESCALATED",
+      "blocker": "Consistent forward growth, margins, credit costs and capital/RWA.",
+      "approvalRequired": true,
+      "proposalVersion": "BANK-STRUCTURAL-NR-INTERPRETATION-v0.1",
+      "validation": "Compared the retained review and limitation against the null baseline disposition and existing rubric topics. This evidence supports the diagnosis only.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      }
+    },
+    {
+      "rubricId": "IC-POS",
+      "causes": [
+        "DATA_MISSING"
+      ],
+      "primaryCause": "DATA_MISSING",
+      "diagnosis": "The same-basis funding-cost proxies place ACB between TCB and VIB. This does not bound segment share or distribution strength.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Repeated funding-cost comparisons do not reveal segment share or comparable distribution reach."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-22-v4/V4_RESEARCH_CLOSURE.json",
+          "sha256": "60771d30b8aa5f43a3dc90fc61b808362bdf9e897294275e749a9fb94d391f64",
+          "subjectTicker": "ACB",
+          "locator": "/rubrics/11"
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_BAND_SELECTION_2026-11-21.md",
+          "sha256": "08f314e8d27de3db436691336cfcc112022d3ff8613639d1232be60fdff94fab",
+          "publicationDate": null,
+          "subjectTicker": "ACB",
+          "locator": "Underlying review cited by IC-POS in V4 closure"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Escalate to same-denominator segment-position evidence.",
+      "status": "ESCALATED",
+      "blocker": "Comparable segment share or distribution evidence with a defined denominator.",
+      "approvalRequired": false,
+      "validation": "Compared the retained review and limitation against the null baseline disposition and existing rubric topics. This evidence supports the diagnosis only.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      }
+    },
+    {
+      "rubricId": "VAL-PRIMARY",
+      "causes": [
+        "DATA_MISSING",
+        "EVIDENCE_INTERPRETATION_GAP"
+      ],
+      "primaryCause": "EVIDENCE_INTERPRETATION_GAP",
+      "diagnosis": "The approved BANK method is justified P/B. The tested price premium is roughly 4–48%, with adjacent bands still plausible because sustainable ROE and Ke vary.",
+      "futureDataTest": {
+        "result": "UNKNOWN",
+        "rationale": "Additional same-basis earnings may tighten sustainable ROE. They cannot, by themselves, settle cost of equity or guarantee that the valuation range clears a band boundary."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-22-v4/V4_RESEARCH_CLOSURE.json",
+          "sha256": "60771d30b8aa5f43a3dc90fc61b808362bdf9e897294275e749a9fb94d391f64",
+          "subjectTicker": "ACB",
+          "locator": "/rubrics/13"
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_BAND_SELECTION_2026-11-21.md",
+          "sha256": "08f314e8d27de3db436691336cfcc112022d3ff8613639d1232be60fdff94fab",
+          "publicationDate": null,
+          "subjectTicker": "ACB",
+          "locator": "Underlying review cited by VAL-PRIMARY in V4 closure"
+        }
+      ],
+      "action": "PROPOSE_INTERPRETATION",
+      "plannedAction": "Propose interpretation review of the approved justified P/B method and the ROE/Ke sensitivity required to defend a band.",
+      "status": "ESCALATED",
+      "blocker": "Sustainable ROE and sourced Ke or an eligible comparable long-run valuation cross-check.",
+      "approvalRequired": true,
+      "proposalVersion": "BANK-STRUCTURAL-NR-INTERPRETATION-v0.1",
+      "validation": "Compared the retained review and limitation against the null baseline disposition and existing rubric topics. This evidence supports the diagnosis only.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      }
+    },
+    {
+      "rubricId": "RG-GOV",
+      "causes": [
+        "DATA_MISSING"
+      ],
+      "primaryCause": "DATA_MISSING",
+      "diagnosis": "Resolution 4490 establishes the approval channel and general oversight. It does not resolve transaction-specific execution of controls.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Another general governance disclosure may repeat the approval framework without showing transaction-level execution."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-22-v4/V4_RESEARCH_CLOSURE.json",
+          "sha256": "60771d30b8aa5f43a3dc90fc61b808362bdf9e897294275e749a9fb94d391f64",
+          "subjectTicker": "ACB",
+          "locator": "/rubrics/16"
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_USER_PDF_REVIEW.md",
+          "sha256": "d546a06de44422a2996756f3f0a7e06d4909703bc39052be3444dcb02bc43c0d",
+          "publicationDate": null,
+          "subjectTicker": "ACB",
+          "locator": "Underlying review cited by RG-GOV in V4 closure"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Escalate to transaction-specific evidence of recusal, pricing oversight or equivalent controls.",
+      "status": "ESCALATED",
+      "blocker": "Evidence of actual conflict handling and oversight for ACB Insurance.",
+      "approvalRequired": false,
+      "validation": "Compared the retained review and limitation against the null baseline disposition and existing rubric topics. This evidence supports the diagnosis only.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      }
+    },
+    {
+      "rubricId": "RG-RISK",
+      "causes": [
+        "DATA_MISSING"
+      ],
+      "primaryCause": "DATA_MISSING",
+      "diagnosis": "A separate related-party channel was identified. Actual exposure and mitigation effectiveness cannot be classified reliably.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Another generic related-party disclosure does not establish this transaction’s actual exposure and safeguards."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-22-v4/V4_RESEARCH_CLOSURE.json",
+          "sha256": "60771d30b8aa5f43a3dc90fc61b808362bdf9e897294275e749a9fb94d391f64",
+          "subjectTicker": "ACB",
+          "locator": "/rubrics/17"
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_SOURCE_POLICY_CLOSURE_V12.md",
+          "sha256": "9ca19da08f21e6aed5127c10f17a3429221574dc830e0367f40159a0ca47b2d6",
+          "publicationDate": null,
+          "subjectTicker": "ACB",
+          "locator": "Underlying review cited by RG-RISK in V4 closure"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Escalate to same-scope gross and net exposure and commercial terms.",
+      "status": "ESCALATED",
+      "blocker": "Actual transaction terms, amounts and mitigation effectiveness.",
+      "approvalRequired": false,
+      "validation": "Compared the retained review and limitation against the null baseline disposition and existing rubric topics. This evidence supports the diagnosis only.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      }
+    },
+    {
+      "rubricId": "CA-REINV",
+      "causes": [
+        "DATA_MISSING"
+      ],
+      "primaryCause": "DATA_MISSING",
+      "diagnosis": "Extent of capital increases and historical LNTT is documented. The ACBS comparison and productive deployment timing, including the AMC component, do not bound the resulting owner return.",
+      "futureDataTest": {
+        "result": "UNKNOWN",
+        "rationale": "An additional comparator can improve the earnings series. The retained reports do not establish whether future disclosures will expose same-scope after-tax earnings and productive deployment timing for both subsidiaries."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-22-v4/V4_RESEARCH_CLOSURE.json",
+          "sha256": "60771d30b8aa5f43a3dc90fc61b808362bdf9e897294275e749a9fb94d391f64",
+          "subjectTicker": "ACB",
+          "locator": "/rubrics/19"
+        },
+        {
+          "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_CA_REINV_FOLLOWUP_2026-11-21.md",
+          "sha256": "475bf3b214d7a91306ef129f117912f60a078a5a533504c7f39d2c0bfab87347",
+          "publicationDate": null,
+          "subjectTicker": "ACB",
+          "locator": "Underlying review cited by CA-REINV in V4 closure"
+        }
+      ],
+      "action": "RETAIN_NR",
+      "plannedAction": "Retain N/R and register the specific subsidiary fields and timing as the reopening trigger.",
+      "status": "ESCALATED",
+      "blocker": "Matched consolidated ACBS and ACBA LNST plus paid-in amounts and deployment dates.",
+      "approvalRequired": false,
+      "validation": "Compared the retained review and limitation against the null baseline disposition and existing rubric topics. This evidence supports the diagnosis only.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      }
+    }
+  ],
+  "baselineReceipts": [
+    {
+      "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-22-v4/V4_SCORE_OWNER_APPROVAL.json",
+      "sha256": "8130b6f8a19771d5b7eeab7961e87c9408ce54cc5335a537e0e85a098df37107"
+    },
+    {
+      "path": "docs/fundamental-data-engine/acb-scoring-readiness/2026-11-22-v4/V4_PUBLICATION_RESULT.json",
+      "sha256": "e83301f05cedbdeb33f9cb7f78a521ffbd268d2e06d7b7fe6bfbc1d51035dca1"
+    }
+  ]
+}

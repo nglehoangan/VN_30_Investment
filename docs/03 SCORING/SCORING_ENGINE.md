@@ -1290,3 +1290,7 @@ Approve `SCORING_ENGINE.md` only if the following are accepted:
 ## Status
 
 > **INTEGRITY-REVIEWED DRAFT FOR USER APPROVAL — 0 CRITICAL / 0 MAJOR UNRESOLVED — DO NOT PROCEED TO THE NEXT M3 FILE**
+
+## Structural N/R diagnostics
+
+Use [Structural N/R Remediation v1.0](STRUCTURAL_NR_REMEDIATION_v1.0.md) for existing N/R dispositions. Close the bounded research review with a supported recommendation or a formal escalation under the existing authority gates.

@@ -1,0 +1,909 @@
+{
+  "contract": "structural-nr-remediation-v1",
+  "ticker": "FPT",
+  "sector": "TECHNOLOGY",
+  "cutoff": "2026-11-13",
+  "knowledgeCutoff": "2026-11-23T14:28:57.501Z",
+  "evidencePurpose": "CURRENT_FORMAL_VALUATION",
+  "baseline": {
+    "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_V8_SCORE_READBACK.json",
+    "sha256": "40e8816606d0044926b55c480e3d8c2ecfc2873dd3b7185593f6df20a4ab7fb5"
+  },
+  "baselineReceipts": [
+    {
+      "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_V8_SCORE_OWNER_APPROVAL.json",
+      "sha256": "6a7afc1cb5d3d3c4e7d96bf16af8c12191f5718cd800fa0c8d89cdb587fe7044"
+    },
+    {
+      "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PRIMARY_BINDING_V8_RESULT.json",
+      "sha256": "974a10302fad6b1d3db45b2e3cadfcbfb8ad800f3729a732574714bfbd8551b2"
+    },
+    {
+      "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_EXECUTABLE_APPROVAL_RESULT.json",
+      "sha256": "ac14eb4d4437fd5bbb5a024db2309d99634083d81ce2f93d00a07e67c631ccfb"
+    }
+  ],
+  "reviewCounts": {
+    "evidenceImprovement": 1,
+    "resolutionValidation": 1
+  },
+  "rubrics": {
+    "path": "src/domain/scoring/methodology.ts",
+    "sha256": "e7031bf6b00e38670016888928ceb941e5c3a524016a1f8ce84123aca6c7da41"
+  },
+  "rows": [
+    {
+      "rubricId": "BQ-EQ",
+      "causes": [
+        "EVIDENCE_INTERPRETATION_GAP",
+        "DATA_MISSING"
+      ],
+      "primaryCause": "EVIDENCE_INTERPRETATION_GAP",
+      "diagnosis": "ROIC 15,22% FY2025 và biên nhiều kỳ là mốc lịch sử. NOPAT, vốn bình quân và chi phí vốn sau FTEL chưa tạo thành phép so sánh nhất quán.",
+      "futureDataTest": {
+        "result": "YES",
+        "rationale": "Kỳ tương lai có thể bổ sung quan sát cùng loại và cùng phạm vi; còn phải xác nhận các điều kiện bổ sung."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/0"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "RETAIN_NR",
+      "plannedAction": "Kỳ tương lai có thêm số dư vốn đầu/cuối kỳ cùng phạm vi; cần đối chiếu với NOPAT chuẩn hóa và chi phí vốn có căn cứ.",
+      "status": "ESCALATED",
+      "blocker": "Kỳ tương lai có thêm số dư vốn đầu/cuối kỳ cùng phạm vi; cần đối chiếu với NOPAT chuẩn hóa và chi phí vốn có căn cứ.",
+      "approvalRequired": false,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "GENUINELY_UNRESOLVED"
+    },
+    {
+      "rubricId": "BQ-CASH",
+      "causes": [
+        "EVIDENCE_INTERPRETATION_GAP",
+        "DATA_MISSING"
+      ],
+      "primaryCause": "EVIDENCE_INTERPRETATION_GAP",
+      "diagnosis": "FCF nền FY2025 dương, bán niên và 9T2026 âm. Giá trị hiện tại có thể đổi band tùy mức phục hồi vốn lưu động và tính lặp lại.",
+      "futureDataTest": {
+        "result": "YES",
+        "rationale": "Kỳ tương lai có thể bổ sung quan sát cùng loại và cùng phạm vi; còn phải xác nhận các điều kiện bổ sung."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/2"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "RETAIN_NR",
+      "plannedAction": "Kỳ tương lai có cả năm CFO và capex cùng phạm vi, cầu nối vốn lưu động và khoản một lần để xác nhận dòng tiền qua chu kỳ.",
+      "status": "ESCALATED",
+      "blocker": "Kỳ tương lai có cả năm CFO và capex cùng phạm vi, cầu nối vốn lưu động và khoản một lần để xác nhận dòng tiền qua chu kỳ.",
+      "approvalRequired": false,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "GENUINELY_UNRESOLVED"
+    },
+    {
+      "rubricId": "BQ-RES",
+      "causes": [
+        "EVIDENCE_INTERPRETATION_GAP",
+        "DATA_MISSING"
+      ],
+      "primaryCause": "EVIDENCE_INTERPRETATION_GAP",
+      "diagnosis": "Biên PBT IT quốc tế ổn định và hợp đồng nhiều năm hỗ trợ chống chịu, nhưng chưa tách tác động giá, lương và cơ cấu dịch vụ.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Thêm cùng cấu trúc không tự cung cấp đầu vào hoặc phương pháp được ghi ở điều kiện mở lại."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/3"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Dữ liệu tập trung doanh thu hoặc kết quả các mảng qua cú sốc, đủ để phân biệt sức giữ giá và sức chống chịu.",
+      "status": "ESCALATED",
+      "blocker": "Dữ liệu tập trung doanh thu hoặc kết quả các mảng qua cú sốc, đủ để phân biệt sức giữ giá và sức chống chịu.",
+      "approvalRequired": false,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "GENUINELY_UNRESOLVED"
+    },
+    {
+      "rubricId": "FH-BS",
+      "causes": [
+        "EVIDENCE_INTERPRETATION_GAP",
+        "DATA_MISSING"
+      ],
+      "primaryCause": "EVIDENCE_INTERPRETATION_GAP",
+      "diagnosis": "Dư nợ báo cáo đã xác minh. Band 3 trong nghiên cứu 9T dựa trên chứng cứ hữu ích, nhưng nguồn đủ điều kiện trong V8 chưa nối được vốn chủ, chất lượng phải thu và bối cảnh tài trợ thành đánh giá đầy đủ.",
+      "futureDataTest": {
+        "result": "YES",
+        "rationale": "Kỳ tương lai có thể bổ sung quan sát cùng loại và cùng phạm vi; còn phải xác nhận các điều kiện bổ sung."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/4"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "RETAIN_NR",
+      "plannedAction": "Đối chiếu bảng cân đối, dự phòng/thu hồi và tài trợ cùng kỳ, tiếp nhận đầu vào vào consumer và xác nhận band.",
+      "status": "ESCALATED",
+      "blocker": "Đối chiếu bảng cân đối, dự phòng/thu hồi và tài trợ cùng kỳ, tiếp nhận đầu vào vào consumer và xác nhận band.",
+      "approvalRequired": false,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "GENUINELY_UNRESOLVED"
+    },
+    {
+      "rubricId": "FH-LIQ",
+      "causes": [
+        "DATA_MISSING"
+      ],
+      "primaryCause": "DATA_MISSING",
+      "diagnosis": "Thông tin công khai có kỳ hạn <=12 tháng nhưng ngưỡng 50,05% về khả dụng vẫn chưa xác minh tại điểm rơi nghĩa vụ.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Thêm cùng cấu trúc không tự cung cấp đầu vào hoặc phương pháp được ghi ở điều kiện mở lại."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/5"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_M1_CONSERVATIVE_CLOSURE_TEST.md",
+          "sha256": "6f95d4d5575231545f662c55aeab4a2aae3f5c0e23b969f2f8ff3dd29da3011d",
+          "subjectTicker": "FPT",
+          "locator": "Kết quả ba phép kiểm tra"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Kỳ hạn tiền khả dụng đủ chi tiết hoặc xác nhận hạn mức cam kết có thể rút đúng mốc, ghép với nghĩa vụ lũy kế.",
+      "status": "ESCALATED",
+      "blocker": "Kỳ hạn tiền khả dụng đủ chi tiết hoặc xác nhận hạn mức cam kết có thể rút đúng mốc, ghép với nghĩa vụ lũy kế.",
+      "approvalRequired": false,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "GENUINELY_UNRESOLVED"
+    },
+    {
+      "rubricId": "FH-STRESS",
+      "causes": [
+        "DATA_MISSING"
+      ],
+      "primaryCause": "DATA_MISSING",
+      "diagnosis": "Có độ nhạy thanh khoản, chưa có phản ứng tài trợ và vốn đủ căn cứ cho cú sốc phối hợp tăng trưởng, biên và tập trung.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Thêm cùng cấu trúc không tự cung cấp đầu vào hoặc phương pháp được ghi ở điều kiện mở lại."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/6"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_M1_CONSERVATIVE_CLOSURE_TEST.md",
+          "sha256": "6f95d4d5575231545f662c55aeab4a2aae3f5c0e23b969f2f8ff3dd29da3011d",
+          "subjectTicker": "FPT",
+          "locator": "Kết quả ba phép kiểm tra"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Nguồn vốn, khoản chi trì hoãn và thời điểm thu chi đã kiểm chứng để lập kịch bản phối hợp.",
+      "status": "ESCALATED",
+      "blocker": "Nguồn vốn, khoản chi trì hoãn và thời điểm thu chi đã kiểm chứng để lập kịch bản phối hợp.",
+      "approvalRequired": false,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "GENUINELY_UNRESOLVED"
+    },
+    {
+      "rubricId": "GQ-HIST",
+      "causes": [
+        "EVIDENCE_INTERPRETATION_GAP",
+        "DATA_MISSING"
+      ],
+      "primaryCause": "EVIDENCE_INTERPRETATION_GAP",
+      "diagnosis": "Lịch sử đã tiếp nhận 88 dữ kiện; chuỗi doanh thu và EPS hỗ trợ tăng trưởng, nhưng tác động mua lại và phạm vi FTEL có thể đổi band.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Thêm cùng cấu trúc không tự cung cấp đầu vào hoặc phương pháp được ghi ở điều kiện mở lại."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/7"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Cầu nối tăng trưởng hữu cơ và M&A, cùng bằng chứng trên mỗi cổ phiếu và xử lý hiệu ứng nền đồng nhất.",
+      "status": "ESCALATED",
+      "blocker": "Cầu nối tăng trưởng hữu cơ và M&A, cùng bằng chứng trên mỗi cổ phiếu và xử lý hiệu ứng nền đồng nhất.",
+      "approvalRequired": false,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "GENUINELY_UNRESOLVED"
+    },
+    {
+      "rubricId": "GQ-FWD",
+      "causes": [
+        "DATA_MISSING"
+      ],
+      "primaryCause": "DATA_MISSING",
+      "diagnosis": "Đơn hàng hỗ trợ runway. Thiếu căn cứ về chuyển đổi hợp đồng, kết quả tái đầu tư và nguồn tài trợ.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Thêm cùng cấu trúc không tự cung cấp đầu vào hoặc phương pháp được ghi ở điều kiện mở lại."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/8"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Đối chiếu đơn hàng sang doanh thu, kết quả sử dụng vốn và kế hoạch tài trợ đủ kiểm chứng.",
+      "status": "ESCALATED",
+      "blocker": "Đối chiếu đơn hàng sang doanh thu, kết quả sử dụng vốn và kế hoạch tài trợ đủ kiểm chứng.",
+      "approvalRequired": false,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "GENUINELY_UNRESOLVED"
+    },
+    {
+      "rubricId": "GQ-INC",
+      "causes": [
+        "EVIDENCE_INTERPRETATION_GAP",
+        "DATA_MISSING"
+      ],
+      "primaryCause": "EVIDENCE_INTERPRETATION_GAP",
+      "diagnosis": "ROIC tăng thêm nhạy với cách loại tiền gửi; vốn và lợi nhuận M&A chưa tách.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Thêm cùng cấu trúc không tự cung cấp đầu vào hoặc phương pháp được ghi ở điều kiện mở lại."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/9"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Cầu nối NOPAT và vốn tăng thêm loại M&A, hoặc chỉ tiêu kinh tế đơn vị tương đương có căn cứ.",
+      "status": "ESCALATED",
+      "blocker": "Cầu nối NOPAT và vốn tăng thêm loại M&A, hoặc chỉ tiêu kinh tế đơn vị tương đương có căn cứ.",
+      "approvalRequired": false,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "GENUINELY_UNRESOLVED"
+    },
+    {
+      "rubricId": "IC-POS",
+      "causes": [
+        "DATA_MISSING"
+      ],
+      "primaryCause": "DATA_MISSING",
+      "diagnosis": "Quy mô và phân phối có căn cứ; mẫu số thị phần và vị thế chi phí cùng phạm vi còn thiếu.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Thêm cùng cấu trúc không tự cung cấp đầu vào hoặc phương pháp được ghi ở điều kiện mở lại."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/11"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Chỉ báo thị phần hoặc chi phí giao hàng đồng cấp, hoặc phép thay thế được phê duyệt và kiểm chứng.",
+      "status": "ESCALATED",
+      "blocker": "Chỉ báo thị phần hoặc chi phí giao hàng đồng cấp, hoặc phép thay thế được phê duyệt và kiểm chứng.",
+      "approvalRequired": true,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "METHODOLOGY_CHANGE_REQUIRED",
+      "remainingClassBasis": "Đường dùng chỉ báo thay thế với hồ sơ hiện hữu cần phê duyệt. Bằng chứng trực tiếp phù hợp vẫn là một đường xử lý."
+    },
+    {
+      "rubricId": "IC-CYCLE",
+      "causes": [
+        "EVIDENCE_INTERPRETATION_GAP",
+        "DATA_MISSING"
+      ],
+      "primaryCause": "EVIDENCE_INTERPRETATION_GAP",
+      "diagnosis": "Biên lịch sử hỗ trợ bối cảnh, chưa định lượng chiều bất đối xứng nhu cầu hoặc khả năng chịu đựng khi căng thẳng.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Thêm cùng cấu trúc không tự cung cấp đầu vào hoặc phương pháp được ghi ở điều kiện mở lại."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/12"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Quan sát đơn hàng hoãn/hủy, công suất nhân sự và kịch bản tài trợ/chịu đựng phù hợp.",
+      "status": "ESCALATED",
+      "blocker": "Quan sát đơn hàng hoãn/hủy, công suất nhân sự và kịch bản tài trợ/chịu đựng phù hợp.",
+      "approvalRequired": false,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "GENUINELY_UNRESOLVED"
+    },
+    {
+      "rubricId": "VAL-PRIMARY",
+      "causes": [
+        "EVIDENCE_INTERPRETATION_GAP",
+        "DATA_MISSING"
+      ],
+      "primaryCause": "EVIDENCE_INTERPRETATION_GAP",
+      "diagnosis": "Giá 50.100 đã xác minh. P/E năm hóa 9,11–9,34× và FCF âm là chỉ báo đối chiếu, chưa xác lập mẫu số chuẩn hóa và giá trị trung tâm.",
+      "futureDataTest": {
+        "result": "UNKNOWN",
+        "rationale": "Chưa biết kỳ sau có đủ chi tiết và mô hình để thu hẹp giả định."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/13"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_FULL_VS_LIMITED_TOPIC_REVIEW.md",
+          "sha256": "656b424ac0d35d868aca2e5c8228e7ed0f440e96495521fc71cd3c6484e5342b",
+          "subjectTicker": "FPT",
+          "locator": "Kiểm tra định giá từ dữ liệu hiện có"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "RETAIN_NR",
+      "plannedAction": "Chuẩn hóa lợi nhuận sau FTEL, dựng mô hình ngành và đối chiếu độc lập trên đúng cơ sở cổ phiếu.",
+      "status": "ESCALATED",
+      "blocker": "Chuẩn hóa lợi nhuận sau FTEL, dựng mô hình ngành và đối chiếu độc lập trên đúng cơ sở cổ phiếu.",
+      "approvalRequired": false,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "RECOVERABLE_NOW",
+      "remainingClassBasis": "Có thể làm ngay phần chuẩn hóa, độ nhạy và kiểm tra ngược; vẫn thiếu bằng chứng để chọn band tại ngày chốt."
+    },
+    {
+      "rubricId": "VAL-RET",
+      "causes": [
+        "EVIDENCE_INTERPRETATION_GAP",
+        "DATA_MISSING"
+      ],
+      "primaryCause": "EVIDENCE_INTERPRETATION_GAP",
+      "diagnosis": "IRR FY2025 dựa trên giá, EPS và kịch bản kỳ khác. Tại ngày chốt có giá và cổ phiếu, còn thiếu các giả định kiểm chứng được.",
+      "futureDataTest": {
+        "result": "UNKNOWN",
+        "rationale": "Chưa biết kỳ sau có đủ chi tiết và mô hình để thu hẹp giả định."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/14"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_FULL_VS_LIMITED_TOPIC_REVIEW.md",
+          "sha256": "656b424ac0d35d868aca2e5c8228e7ed0f440e96495521fc71cd3c6484e5342b",
+          "subjectTicker": "FPT",
+          "locator": "Kiểm tra định giá từ dữ liệu hiện có"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "RETAIN_NR",
+      "plannedAction": "Mô hình gắn giá 13/11, EPS hoặc dòng tiền chuẩn hóa, phân phối, pha loãng và giá trị thoát.",
+      "status": "ESCALATED",
+      "blocker": "Mô hình gắn giá 13/11, EPS hoặc dòng tiền chuẩn hóa, phân phối, pha loãng và giá trị thoát.",
+      "approvalRequired": false,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "RECOVERABLE_NOW",
+      "remainingClassBasis": "Có thể làm ngay phần chuẩn hóa, độ nhạy và kiểm tra ngược; vẫn thiếu bằng chứng để chọn band tại ngày chốt."
+    },
+    {
+      "rubricId": "VAL-MOS",
+      "causes": [
+        "EVIDENCE_INTERPRETATION_GAP",
+        "DATA_MISSING"
+      ],
+      "primaryCause": "EVIDENCE_INTERPRETATION_GAP",
+      "diagnosis": "Có giá chốt nhưng chưa dựng giá trị vốn chủ bảo thủ đồng phạm vi. Phép thử FY2025 chỉ là bối cảnh.",
+      "futureDataTest": {
+        "result": "UNKNOWN",
+        "rationale": "Chưa biết kỳ sau có đủ chi tiết và mô hình để thu hẹp giả định."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/15"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_FULL_VS_LIMITED_TOPIC_REVIEW.md",
+          "sha256": "656b424ac0d35d868aca2e5c8228e7ed0f440e96495521fc71cd3c6484e5342b",
+          "subjectTicker": "FPT",
+          "locator": "Kiểm tra định giá từ dữ liệu hiện có"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "RETAIN_NR",
+      "plannedAction": "Khoảng giá trị bảo thủ đã phản biện, kiểm tra biến động chuyển đổi tiền, đòn bẩy và tài trợ.",
+      "status": "ESCALATED",
+      "blocker": "Khoảng giá trị bảo thủ đã phản biện, kiểm tra biến động chuyển đổi tiền, đòn bẩy và tài trợ.",
+      "approvalRequired": false,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "RECOVERABLE_NOW",
+      "remainingClassBasis": "Có thể làm ngay phần chuẩn hóa, độ nhạy và kiểm tra ngược; vẫn thiếu bằng chứng để chọn band tại ngày chốt."
+    },
+    {
+      "rubricId": "RG-GOV",
+      "causes": [
+        "DATA_MISSING"
+      ],
+      "primaryCause": "DATA_MISSING",
+      "diagnosis": "Kiểm toán và công bố có căn cứ, còn thiếu đánh giá giao dịch liên quan và quyền cổ đông thiểu số theo chủ đề bắt buộc.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Thêm cùng cấu trúc không tự cung cấp đầu vào hoặc phương pháp được ghi ở điều kiện mở lại."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/16"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Hồ sơ điều khoản, giám sát và tác động các giao dịch trọng yếu đủ để chọn band.",
+      "status": "ESCALATED",
+      "blocker": "Hồ sơ điều khoản, giám sát và tác động các giao dịch trọng yếu đủ để chọn band.",
+      "approvalRequired": false,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "GENUINELY_UNRESOLVED"
+    },
+    {
+      "rubricId": "RG-RISK",
+      "causes": [
+        "EVIDENCE_INTERPRETATION_GAP",
+        "DATA_MISSING"
+      ],
+      "primaryCause": "EVIDENCE_INTERPRETATION_GAP",
+      "diagnosis": "Rủi ro vận hành và FX đã nhận diện, hiệu quả giảm thiểu và phần còn lại sau FTEL chưa chốt.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Thêm cùng cấu trúc không tự cung cấp đầu vào hoặc phương pháp được ghi ở điều kiện mở lại."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/17"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Biện pháp giảm thiểu có bằng chứng hiệu lực và kết quả kịch bản hiện hành.",
+      "status": "ESCALATED",
+      "blocker": "Biện pháp giảm thiểu có bằng chứng hiệu lực và kết quả kịch bản hiện hành.",
+      "approvalRequired": false,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "GENUINELY_UNRESOLVED"
+    },
+    {
+      "rubricId": "RG-UNC",
+      "causes": [
+        "EVIDENCE_INTERPRETATION_GAP",
+        "DATA_MISSING"
+      ],
+      "primaryCause": "EVIDENCE_INTERPRETATION_GAP",
+      "diagnosis": "Độ nhạy chuyển đổi tiền và thay đổi sau FTEL cho thấy bất định cao; đã đo được độ nhạy bằng mô hình điều kiện.",
+      "futureDataTest": {
+        "result": "YES",
+        "rationale": "Không cần báo cáo mới để áp band 0. Ở kỳ sau chuỗi chuyển đổi tiền cùng phạm vi có thể giảm bất định và cho phép xem lại band."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/18"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "APPLY_APPROVED_ANCHORS",
+      "plannedAction": "Đưa band High uncertainty vào đánh giá successor nếu được chấp nhận, giữ kịch bản tách biệt với định giá.",
+      "status": "RESOLVED",
+      "blocker": "",
+      "approvalRequired": true,
+      "validation": "Bằng chứng đo được độ nhạy và các phụ thuộc. Không gán điểm do thiếu dữ liệu. Kiểm tra hai band cao hơn và bác vì chưa có dải giả định quản lý được.",
+      "disposition": {
+        "state": "CONSERVATIVE",
+        "points": 0,
+        "supportedBands": [
+          "High uncertainty"
+        ],
+        "review": {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất"
+        },
+        "scoreEvidence": [
+          {
+            "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_H1_REVIEWED_CELLS.json",
+            "sha256": "43058159bde321b5747a36e329f2170e60988547864e3c884ee547c2338fd2d5",
+            "ticker": "FPT",
+            "locator": "/cells/6",
+            "scope": "CONSOLIDATED",
+            "unit": "VND",
+            "periodEnd": "2026-06-30",
+            "publicationDate": "2026-08-21",
+            "knownAt": "2026-11-23T14:06:25.245Z",
+            "eligibility": "CURRENT_ONLY"
+          },
+          {
+            "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_H1_REVIEWED_CELLS.json",
+            "sha256": "43058159bde321b5747a36e329f2170e60988547864e3c884ee547c2338fd2d5",
+            "ticker": "FPT",
+            "locator": "/cells/7",
+            "scope": "CONSOLIDATED",
+            "unit": "VND",
+            "periodEnd": "2026-06-30",
+            "publicationDate": "2026-08-21",
+            "knownAt": "2026-11-23T14:06:25.245Z",
+            "eligibility": "CURRENT_ONLY"
+          },
+          {
+            "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_H1_REVIEWED_CELLS.json",
+            "sha256": "43058159bde321b5747a36e329f2170e60988547864e3c884ee547c2338fd2d5",
+            "ticker": "FPT",
+            "locator": "/cells/8",
+            "scope": "CONSOLIDATED",
+            "unit": "VND",
+            "periodEnd": "2026-06-30",
+            "publicationDate": "2026-08-21",
+            "knownAt": "2026-11-23T14:06:25.245Z",
+            "eligibility": "CURRENT_ONLY"
+          }
+        ],
+        "bandRationale": "Lợi nhuận báo cáo dương, FCF âm. Độ nhạy riêng chuyển đổi tiền 45%–90% làm giá trị minh họa tăng gấp đôi. Chuỗi lịch sử làm neo cho độ nhạy, không dùng thay FCFE hiện hành."
+      }
+    },
+    {
+      "rubricId": "CA-REINV",
+      "causes": [
+        "DATA_MISSING"
+      ],
+      "primaryCause": "DATA_MISSING",
+      "diagnosis": "Có CAPEX, danh sách mua lại và goodwill; chưa biết kết quả sau đầu tư và phạm vi áp dụng cho thoái vốn.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Thêm cùng cấu trúc không tự cung cấp đầu vào hoặc phương pháp được ghi ở điều kiện mở lại."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/19"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Dòng tiền/lợi nhuận sau các quyết định trọng yếu và đối chiếu khoản thoái vốn hoặc xác nhận không áp dụng.",
+      "status": "ESCALATED",
+      "blocker": "Dòng tiền/lợi nhuận sau các quyết định trọng yếu và đối chiếu khoản thoái vốn hoặc xác nhận không áp dụng.",
+      "approvalRequired": true,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "METHODOLOGY_CHANGE_REQUIRED",
+      "remainingClassBasis": "Đường dùng chỉ báo thay thế với hồ sơ hiện hữu cần phê duyệt. Bằng chứng trực tiếp phù hợp vẫn là một đường xử lý."
+    },
+    {
+      "rubricId": "CA-DIST",
+      "causes": [
+        "EVIDENCE_INTERPRETATION_GAP",
+        "DATA_MISSING"
+      ],
+      "primaryCause": "EVIDENCE_INTERPRETATION_GAP",
+      "diagnosis": "Dòng tiền công ty mẹ FY2025 hỗ trợ phân phối lịch sử. Cần đối chiếu nguồn sau FTEL, cổ tức và nhu cầu tái đầu tư.",
+      "futureDataTest": {
+        "result": "YES",
+        "rationale": "Kỳ tương lai có thể bổ sung quan sát cùng loại và cùng phạm vi; còn phải xác nhận các điều kiện bổ sung."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/20"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "RETAIN_NR",
+      "plannedAction": "BCTC riêng kỳ tương lai cùng phạm vi và chứng cứ áp dụng về mua lại, đủ lượng hóa sức bền phân phối.",
+      "status": "ESCALATED",
+      "blocker": "BCTC riêng kỳ tương lai cùng phạm vi và chứng cứ áp dụng về mua lại, đủ lượng hóa sức bền phân phối.",
+      "approvalRequired": true,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "METHODOLOGY_CHANGE_REQUIRED",
+      "remainingClassBasis": "Đường dùng chỉ báo thay thế với hồ sơ hiện hữu cần phê duyệt. Bằng chứng trực tiếp phù hợp vẫn là một đường xử lý."
+    },
+    {
+      "rubricId": "CA-DIL",
+      "causes": [
+        "DATA_MISSING"
+      ],
+      "primaryCause": "DATA_MISSING",
+      "diagnosis": "Số lượng ESOP và giá phát hành hỗ trợ phép thử cơ học. Giá trị chuyển giao và lợi ích bù đắp chưa xác lập.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Thêm cùng cấu trúc không tự cung cấp đầu vào hoặc phương pháp được ghi ở điều kiện mở lại."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/21"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Điều khoản từng đợt trọng yếu, tiền thu và đối chiếu tác động kinh tế tích lũy trên mỗi cổ phiếu.",
+      "status": "ESCALATED",
+      "blocker": "Điều khoản từng đợt trọng yếu, tiền thu và đối chiếu tác động kinh tế tích lũy trên mỗi cổ phiếu.",
+      "approvalRequired": false,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "GENUINELY_UNRESOLVED"
+    },
+    {
+      "rubricId": "CA-PSV",
+      "causes": [
+        "EVIDENCE_INTERPRETATION_GAP",
+        "DATA_MISSING"
+      ],
+      "primaryCause": "EVIDENCE_INTERPRETATION_GAP",
+      "diagnosis": "Đã có EPS ghép từng cặp và cổ phiếu tại cutoff. Chưa có chuỗi sau FTEL cùng cơ sở, đã xử lý chu kỳ và quyền.",
+      "futureDataTest": {
+        "result": "YES",
+        "rationale": "Kỳ tương lai có thể bổ sung quan sát cùng loại và cùng phạm vi; còn phải xác nhận các điều kiện bổ sung."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_PREPARE_WORKPACK.json",
+          "sha256": "0cfbc591d2370dbe15feea8880b9d81474a4e73d285ff034dd73f8f72789ecc2",
+          "subjectTicker": "FPT",
+          "locator": "/rubrics/22"
+        },
+        {
+          "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_SEGM_V11_RECOVERY.md",
+          "sha256": "f3f3b43cd9440c174e5392cff7d5570142d35b5a64c591cc20d9e58da4dac366",
+          "locator": "Phục hồi định giá và lợi suất",
+          "subjectTicker": "FPT"
+        }
+      ],
+      "action": "RETAIN_NR",
+      "plannedAction": "Thêm kỳ đủ so sánh trên mỗi cổ phiếu, kiểm tra quyền và điều chỉnh phạm vi/chu kỳ trước khi chọn band.",
+      "status": "ESCALATED",
+      "blocker": "Thêm kỳ đủ so sánh trên mỗi cổ phiếu, kiểm tra quyền và điều chỉnh phạm vi/chu kỳ trước khi chọn band.",
+      "approvalRequired": false,
+      "validation": "Đối chiếu hồ sơ chủ đề với mốc đánh giá, dữ liệu V8 và phạm vi N/R đã duyệt; khoảng trống còn ảnh hưởng band tại ngày chốt.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      },
+      "remainingClass": "GENUINELY_UNRESOLVED"
+    }
+  ]
+}

@@ -5,7 +5,7 @@ import type {CurrentScoringDatasets,CurrentScoringDataset} from '@/ports/current
 import type {PreScoringDatasetReference} from '@/ports/pre-scoring-datasets';
 import type {MethodologyRecord} from '@/domain/methodology/record';
 import {calculateScorecard,type ScoreInput} from '@/domain/current-scoring/scorecard';
-import {ACB_LIMITED_METHOD,ACB_LIMITED_DISPOSITIONS,ACB_UNRATED_RUBRICS,coverageOf,type OfficialLimitedCoverage} from '@/domain/current-scoring/limited-coverage';
+import {ACB_LIMITED_METHOD,ACB_LIMITED_DISPOSITIONS,ACB_UNRATED_RUBRICS,FPT_LIMITED_METHOD,FPT_UNRATED_RUBRICS,FPT_LIMITED_DISPOSITIONS,coverageOf,type OfficialLimitedCoverage} from '@/domain/current-scoring/limited-coverage';
 import {METRICS} from '@/domain/scoring/metrics';
 import {aiInputSemantic} from '@/domain/current-scoring/provenance';
 import {PinnedAiReviewVerifier,pinnedAiBytes,type AiArtifactPin,type AiReviewTrustBinding} from './current-review';
@@ -56,7 +56,9 @@ export class CurrentPurposeScoring {
   const method=await this.registry.findById(input.methodology.methodologyId);
   check(method&&hash(method)===hash(input.methodology),'UNREGISTERED_CURRENT_METHODOLOGY');
   await this.executable.verify(method);
-  const limited=input.methodology.methodologyId===ACB_LIMITED_METHOD;
+  const acbLimited=input.methodology.methodologyId===ACB_LIMITED_METHOD;
+  const fptLimited=input.methodology.methodologyId===FPT_LIMITED_METHOD;
+  const limited=acbLimited||fptLimited;
   // BANK acceptance is sealed at the original binding time. The assessment clock still governs executable and review authority.
   const datasetContext=limited?reference.context:{...reference.context,knownAt:input.knownAt};
   const dataset=await this.data.resolve(reference,datasetContext);
@@ -64,11 +66,20 @@ export class CurrentPurposeScoring {
   check(dataset.context.knownAt<=input.knownAt&&dataset.purpose===p.purpose&&dataset.financialAssemblyComplete&&dataset.bindingId===reference.bindingId&&dataset.manifestHash===reference.manifestHash&&dataset.context.securityId===input.securityId&&dataset.context.economicCutoff===p.economicCutoff&&dataset.originalBindingKnownAt===reference.context.knownAt,'CURRENT_SCORE_DATASET_NOT_READY');
   for(const e of dataset.evidence)check(input.evidence.some(v=>v.id===e.id&&hash(v)===hash(e)),'CURRENT_SCORE_FINANCIAL_LINEAGE_REQUIRED');
   await this.adoption.verify(input,dataset);
-  const pendingLiquidity=allowsAcbPendingLiquidity(input,dataset);
+  const fptM1='FPT_M1_LIQUIDITY_PENDING_2026_11_13';
+  const fptPending=fptLimited&&input.normalization.sector==='TECHNOLOGY'&&dataset.context.ticker==='FPT'&&
+   dataset.context.securityId==='ec91b3cb-8eab-45ae-95e7-738bb3c7de52'&&dataset.context.economicCutoff==='2026-11-13'&&
+   dataset.bindingId==='current-coverage:2af0422b0404a89e75e5225791269856b8d8cbe1d5fd089babe71960208cb4ee'&&
+   dataset.dataAcceptanceId==='current-data-acceptance:320e52c4687148f61e750aa56936120b07d1d3f6a7439ee69c4819e5e66e3bf3'&&
+   input.stage0.status==='UNKNOWN'&&input.hardVeto.status==='PENDING'&&input.residualRisk.status==='NOT_RATED'&&
+   input.stage0.evidenceRefs.includes(fptM1)&&input.hardVeto.evidenceRefs.includes(fptM1)&&
+   input.evidence.some(e=>e.id===fptM1&&e.quality==='VALID');
+  if(fptLimited)check(fptPending,'FPT_LIMITED_PENDING_SCOPE_MISMATCH');
+  const pendingLiquidity=allowsAcbPendingLiquidity(input,dataset)||fptPending;
   check(pendingLiquidity||(['PASS','PASS WITH CONDITIONS'].includes(input.stage0.status)&&input.hardVeto.status!=='PENDING'),'CURRENT_SCORE_M1_UNRESOLVED');
   const calculated=calculateScorecard(input,hash);
   const coverage=limited?coverageOf(calculated.subcategories):null;
-  if(limited){
+  if(acbLimited){
    check(pendingLiquidity&&input.residualRisk.status==='NOT_RATED'&&
     dataset.bindingId==='current-bank-coverage:bff83724df834f2b29a7a4d0a3a3b573ab466aa2c2d4f72ab23f9b42b2825119'&&
     dataset.manifestHash==='bff83724df834f2b29a7a4d0a3a3b573ab466aa2c2d4f72ab23f9b42b2825119'&&
@@ -78,8 +89,15 @@ export class CurrentPurposeScoring {
     !input.criticalMissing.length&&input.doubleCountReview.passed&&input.assessments.every(a=>!ACB_UNRATED_RUBRICS.some(id=>id===a.subcategory)),
     'ACB_LIMITED_EXACT_RUBRIC_COVERAGE_REQUIRED');
   }
+  if(fptLimited){
+   check(hash(coverage!.unratedRubrics)===hash(FPT_UNRATED_RUBRICS)&&
+    hash(calculated.missingEvidence)===hash(FPT_UNRATED_RUBRICS)&&!calculated.blockingEvidence.length&&
+    !input.criticalMissing.length&&input.doubleCountReview.passed&&
+    input.assessments.every(a=>!FPT_UNRATED_RUBRICS.includes(a.subcategory)),
+    'FPT_LIMITED_EXACT_RUBRIC_COVERAGE_REQUIRED');
+  }
   const limitedCoverage:OfficialLimitedCoverage|null=coverage?{status:'OFFICIAL_LIMITED',fullOfficialScore:null,
-   eligibleForRanking:false,allocationAuthorized:false,...coverage,dispositions:ACB_LIMITED_DISPOSITIONS}:null;
+   eligibleForRanking:false,allocationAuthorized:false,...coverage,dispositions:fptLimited?FPT_LIMITED_DISPOSITIONS:ACB_LIMITED_DISPOSITIONS}:null;
   const card=limitedCoverage?deepFreeze({...calculated,limitedCoverage,
    flags:[...calculated.flags,'M1_PENDING_LIQUIDITY_SOURCE_NOT_VERIFIED']}):
    pendingLiquidity?deepFreeze({...calculated,validity:'VALID — NON-ACTIONABLE' as const,

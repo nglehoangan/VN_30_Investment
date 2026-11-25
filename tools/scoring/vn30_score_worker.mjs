@@ -93,14 +93,15 @@ async function run(job, action, candidate) {
   });
   const load = path => jiti.import(resolve(root, path));
   if (action === 'prepare') {
-    const {ACB_LIMITED_METHOD, ACB_UNRATED_RUBRICS} = await load('src/domain/current-scoring/limited-coverage.ts');
-    const limited = input.methodology?.methodologyId === ACB_LIMITED_METHOD;
+    const {ACB_LIMITED_METHOD, ACB_UNRATED_RUBRICS, FPT_LIMITED_METHOD, FPT_UNRATED_RUBRICS} = await load('src/domain/current-scoring/limited-coverage.ts');
+    const method = input.methodology?.methodologyId;
+    const unrated = method === ACB_LIMITED_METHOD ? ACB_UNRATED_RUBRICS : method === FPT_LIMITED_METHOD ? FPT_UNRATED_RUBRICS : [];
     const {RUBRICS} = await load('src/domain/scoring/methodology.ts');
     const assessments = new Map((input.assessments ?? []).map(row => [row.subcategory, row]));
     const evidenceIds = new Set((input.evidence ?? []).map(row => row.id));
     const rubricGaps = RUBRICS.flatMap(rubric => {
       const row = assessments.get(rubric.id);
-      if (limited && ACB_UNRATED_RUBRICS.includes(rubric.id) && !row) return [];
+      if (unrated.includes(rubric.id) && !row) return [];
       const band = rubric.bands.find(item => item.label === row?.assessment);
       const topics = new Set((row?.evidence ?? []).filter(item =>
         item.refs.length && item.refs.every(ref => evidenceIds.has(ref))).map(item => item.topic));

@@ -1,0 +1,56 @@
+{
+  "contract": "fpt-governed-db-target-preflight-v1",
+  "context": {
+    "ticker": "FPT",
+    "securityId": "ec91b3cb-8eab-45ae-95e7-738bb3c7de52",
+    "economicCutoff": "2026-11-13",
+    "purpose": "CURRENT_FORMAL_VALUATION",
+    "knownAt": "2026-11-23T06:59:26.499Z"
+  },
+  "status": "BLOCKED_BY_ISOLATED_REGISTRY_SCOPE",
+  "registry": {
+    "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/VERSIONED_SOURCE_REGISTRY_V7_FPT_ISOLATED.json",
+    "sha256": "58e55a9db42aea01aec4f87b08fd98ee0e8898ad24588db58efe254b3d5bd10c",
+    "registrationScope": "FPT_ISOLATED_SQLITE_ONLY"
+  },
+  "primaryDatabase": {
+    "path": "data/vn30.sqlite",
+    "sha256": "434926d33a0c990b8d630987b43cbf9bf19c9daef38e3b80e2cf5d3fcb45d4e9",
+    "records": {
+      "current_financial_dataset": {
+        "id": "current-dataset:86582ee034544bb383c6a16663dc5e193a3a97cf7ad2515484b4ece0ef58aede",
+        "exists": false,
+        "bodyHash": null
+      },
+      "current_financial_enrichment": {
+        "id": "current-coverage:3564bee9fa722f080d1d80fc0f9f5d850e907f641aad14771820e5a267cd1d92",
+        "exists": false,
+        "bodyHash": null
+      },
+      "current_scoring_data_acceptance": {
+        "id": "current-data-acceptance:0d9d6490d2fb116b208f939037578ecb43feef975dd2c93cbbd3d37d834c5b49",
+        "exists": false,
+        "bodyHash": null
+      }
+    }
+  },
+  "isolatedReadback": {
+    "current_financial_dataset": {
+      "id": "current-dataset:86582ee034544bb383c6a16663dc5e193a3a97cf7ad2515484b4ece0ef58aede",
+      "exists": true,
+      "bodyHash": "d60ba510230558de3ef3ee487c98368a3bf4756521a5b661aed9c80feae900e6"
+    },
+    "current_financial_enrichment": {
+      "id": "current-coverage:3564bee9fa722f080d1d80fc0f9f5d850e907f641aad14771820e5a267cd1d92",
+      "exists": true,
+      "bodyHash": "af8d4fd38553a39d68088c5be9c3b78820682a3b0d71aecca03bfc1039b85ddc"
+    },
+    "current_scoring_data_acceptance": {
+      "id": "current-data-acceptance:0d9d6490d2fb116b208f939037578ecb43feef975dd2c93cbbd3d37d834c5b49",
+      "exists": true,
+      "bodyHash": "679899198370fa71495f78fa106fef14a9b78d7b88a6ef9e04724e00f09747d4"
+    }
+  },
+  "requiredAction": "Bind a successor FPT registry to data/vn30.sqlite for data admission only, rerun through governed admission and verify replacement dataset and enrichment IDs before updating scorer pins.",
+  "mainDatabaseUnchanged": true
+}

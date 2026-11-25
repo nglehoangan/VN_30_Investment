@@ -1,8 +1,8 @@
 # Single-ticker Skill invocation — v1
 
-Applies to all five repository ticker-processing Skills, including manual PDF processing. Universe-wide inventory/readiness is a separate read-only operation and must not invoke a worker, download/extract reports or write issuer results.
+Applies to repository ticker-processing Skills, including manual PDF processing. Universe-wide inventory/readiness is a separate read-only operation and must not invoke a worker, download/extract reports or write issuer results.
 
-Each execution requires one scalar `ticker`, `skill`, `referenceDate`, `purpose` and selected `universeVersion`. Exchange/security identity comes from the pinned universe. S1–S5 additionally requires an approved sector enum resolved from the issuer's economics; the guard checks the enum, not the correctness of the analyst's sector assignment. Retain existing economic cutoff, knownAt, calculatedAt, review/source clocks and purpose semantics in the worker's own contract.
+Each execution requires one scalar `ticker`, `skill`, `referenceDate`, `purpose` and selected `universeVersion`. Exchange/security identity comes from the pinned universe. S1–S5 and Structural N/R remediation additionally require an approved sector enum resolved from the issuer's economics; the guard checks the enum, not the correctness of the analyst's sector assignment. Retain existing economic cutoff, knownAt, calculatedAt, review/source clocks and purpose semantics in the worker's own contract.
 
 `ticker` is normalized to uppercase and must be one three-character VN30 symbol. Reject missing values, arrays (even one element), ALL/VN30, wildcard characters, comma/slash/space-separated symbols, path syntax, Unicode lookalikes and repeated `--ticker` options. Hidden ticker/symbol/batch overrides in operation parameters are rejected. The orchestrator may accept a queue of requests, but every request has exactly one ticker.
 

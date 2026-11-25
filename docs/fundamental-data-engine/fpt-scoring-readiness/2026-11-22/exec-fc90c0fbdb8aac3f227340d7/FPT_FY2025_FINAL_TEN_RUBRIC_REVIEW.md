@@ -1,0 +1,44 @@
+# FPT — rà 10 rubric còn mở bằng dữ liệu FY2022–FY2025
+
+Phạm vi nghiên cứu hồi cứu FPT/HOSE/TECHNOLOGY, cùng mốc tham chiếu 15/11/2026 cho hồ sơ nghiên cứu. Dùng báo cáo và công bố về niên độ 2022–2025, bao gồm tài liệu FY2025 phát hành sau ngày kết sổ. Giá lịch sử được truy xuất bổ sung 23/11/2026 và chỉ dùng cho kịch bản hồi cứu tại 31/12/2025. Không xác lập khả năng thực hiện chiến lược theo thông tin biết tại ngày đó. Giữ rubric và band hiện hành. [Bảng điểm](FPT_23_RUBRIC_FY2025_RESEARCH_SCORECARD.md) · [Dữ kiện và phép thử trước](FPT_FY2025_13_UNRATED_REASSESSMENT.md)
+
+| Rubric | Điểm | Thay đổi cách đánh giá và kết luận |
+| --- | --- | --- |
+| FH-STRESS | N/R / 5 | Dùng FCF báo cáo thấp nhất FY2022–25, 1,839 nghìn tỷ FY2022, làm mốc vận hành yếu, và thử FCF bằng 0. Tiền cuối 2025 + phần tiền gửi kịp dùng + FCF − gốc vay/thuê ngắn hạn cho thiếu 1,240 hoặc dư 0,599 nghìn tỷ nếu 25% tiền gửi kịp dùng. Nếu 50% kịp dùng thì dư 6,168 hoặc 8,006. CFO/FCF lịch sử đã bao gồm dòng chi phí vận hành và trả lãi, nên không trừ cam kết thuê thêm trong phép thử này. Vẫn chưa biết thời điểm FCF thu được, khả năng kiếm nguồn thay thế hay có phải bán tài sản. Giữ N/R do kịch bản đổi dấu. |
+| GQ-INC | N/R / 5 | ROIC tăng thêm FY2022→FY2025 là 12,39%, 17,85%, 31,96% khi loại tương ứng 0%, 50%, 100% khoản đầu tư ngắn hạn khỏi vốn. Riêng FY2024→FY2025 chỉ 2,72–6,10%; dùng vốn theo nhóm tài sản/nợ vận hành cho khoảng 9,71%. Các phép thử chỉ ra suất sinh lời gần nhất giảm, nhưng theo khoảng dài các cách phân loại qua nhiều band. Phần EBIT/vốn M&A chưa tách được. |
+| IC-CYCLE | **1/2 CONSERVATIVE** | Đo chu kỳ bằng phân kỳ theo khu vực và biên thực tế. CNTT quốc tế tăng 28,4% FY2023, 27,4% FY2024, 14,3% FY2025. FY2023 Mỹ chỉ tăng 8,6% trong khi APAC tăng 37,7%; FY2025 FPT ghi nhận chu kỳ quyết định đầu tư dài hơn. Biên trước thuế IT quốc tế giữ 15,41–15,57% FY2023–25 và CFO năm dương trong cả bốn năm. Tăng trưởng giảm tốc và khả năng duy trì biên cho hai phía của kịch bản. Chọn mức bất đối xứng cân bằng, độ tin cậy vừa. [Bằng chứng BQ-RES](FPT_BQ_RES_FY2025_PUBLIC_EVIDENCE.md) |
+| VAL-PRIMARY | N/R / 8 | Xác nhận được giá đóng cửa gốc 95.800 VND ngày 31/12/2025 và 1.703.507.121 cổ phiếu lưu hành. Lợi nhuận làm việc FY2025 8,866 nghìn tỷ sau quỹ cho EPS quy theo số cổ phiếu cuối kỳ khoảng 5.205 VND và P/E 18,41 lần. Đây là so sánh hồi cứu. Thiếu chuẩn so sánh P/E phù hợp hoặc mô hình dòng tiền chủ sở hữu đủ sức kiểm tra chéo để gán mức hợp lý/đắt/rẻ. |
+| VAL-RET | N/R / 8 | Tính minh họa IRR 5 năm từ giá đã xác minh trong bảng bên dưới. Kịch bản đầu/cuối đi qua nhiều band, chủ yếu do tăng trưởng lợi nhuận chuẩn hóa và P/E thoát. Chưa xác lập cổ tức lặp lại và pha loãng 5 năm. |
+| VAL-MOS | N/R / 4 | Chiết khấu các dòng tiền trên cùng mô hình ở 15%. Kết quả biến động từ khoảng 52,3 đến 115,4 nghìn VND/cổ phiếu so với giá 95,8 nghìn. Mức 15% là mốc thử từ hồ sơ BQ-EQ, chưa xác lập chi phí vốn chủ sở hữu. Chưa có kịch bản bảo thủ đủ điều kiện để gán band. |
+| RG-RISK | **2/4 CONSERVATIVE** | BCTC FY2025 TM22 ghi toàn bộ khoản vay 6,75 triệu USD trong bảng phòng vệ đã được hedge, so với 25/32,9 triệu USD FY2024. Doanh thu cùng ngoại tệ USD và JPY hỗ trợ phòng vệ tự nhiên ở cấp nhóm, chưa xác lập tỷ lệ khớp theo hạn. ESG FY2025 ghi biện pháp riêng cho tỷ giá/JPY và biến động chính sách bán hàng. Đánh giá mức elevated/controlled với độ tin cậy vừa vì phòng vệ được xác nhận cho một phần kênh FX, ngành phụ thuộc kỹ năng và công nghệ đổi nhanh. Không áp thêm phạt cho nợ đáo hạn, tập trung hay dòng tiền đã xét ở FH/BQ. [BCTC kiểm toán FY2025, TM22](https://fpt.com/-/media/project/fpt-corporation/fpt/ir/information-disclosures/year-report/2026/march/20260319---fpt---audited-consolidated-financial-statements-for-2025.pdf) · [ESG FY2025](https://bctn2025.fpt.com/wp-content/uploads/2026/04/ESG-REPORT_EN_02042026.pdf) |
+| RG-UNC | N/R / 2 | Kiểm tra các giả định có ảnh hưởng nhất bằng bảng định giá bên dưới. Tăng trưởng và P/E thoát cùng thay đổi khiến biên kết quả rộng. Mức rộng do thiết lập kịch bản vẫn chưa được tách khỏi bất định đã định lượng có căn cứ. Không dùng N/R như 0. |
+| CA-REINV | N/R / 2 | BCTC FY2025 TM3 và 16 xác định các thương vụ Nam Việt, OKI, David Lamm, Ví FPT và 190,164 tỷ VND goodwill tăng từ hợp nhất kinh doanh. Giá trị goodwill là dấu vết đầu tư, chưa xác lập dòng tiền/lợi nhuận sau mua hay giá trị thoái vốn. Không dùng ROIC nhóm để mặc định chất lượng từng quyết định. |
+| CA-DIL | N/R / 1 | Số phát hành thực tế 10.260.939 cổ phiếu ở 10.000 VND, tách 222.176.999 cổ phiếu từ vốn chủ. Nếu giả định giá trị doanh nghiệp không đổi và không có tiền thu hay lợi ích, giảm quyền kinh tế mỗi cổ phiếu theo số đầu kỳ là 10.260.939/(1.471.069.183+10.260.939), khoảng 0,69% cho riêng đợt đó. Thực tế có tiền thu 102,609 tỷ VND. Cần giá trị hợp lý tại ngày phát hành và tác động tích lũy/lợi ích bù đắp để xác định 0 hoặc 1. |
+
+## Phép thử định giá hồi cứu
+
+CaféF raw `GiaDongCua=95.8` cho FPT/HOSE ngày 31/12/2025. Request HTTP 200, SHA-256 phản hồi `720a10640ef658546734a26613a8b004a7667ae6ad1512bf323182c3f42433a5`. Raw không khai báo đơn vị. Đối chiếu đúng mã, ngày, giá và khối lượng trên nguồn thứ hai ghi 95.800 đồng; chọn hệ số 1.000; giá điều chỉnh được giữ riêng. BCTC hợp nhất FY2025 TM23 ghi 1.703.507.121 cổ phiếu đang lưu hành ngày đó; vốn hóa bằng giá nhân số cổ phiếu, 163.195.982.191.800 VND. Lợi nhuận làm việc sau quỹ 8.865.959.921.832 VND là đầu vào có điều kiện trong hồ sơ cũ. [CaféF raw đã lưu](../../../../../data/market-history/cafef/FPT.json) · [Đối chiếu đơn vị và ngày](https://index.vn/en/stocks/FPT/historical-data) · [Hồ sơ lợi nhuận](../../../scoring-dataset-acceptance/2026-11-04/fy2025-item-acceptance-v1/issuers/FPT.md)
+
+Giữ cổ tức giả định 2.000 VND/cổ phiếu/năm, không đổi số cổ phiếu, 5 năm. Mức cổ tức dùng chính sách FY2025 làm mốc, chưa dự báo phân phối. Giá cuối = (lợi nhuận làm việc / số cổ phiếu) × (1 + g)^5 × P/E thoát. IRR giải từ giá gốc, năm khoản cổ tức và giá cuối. Tăng trưởng 8/12/16% và P/E thoát 12/16/20 lần là điểm kiểm tra độ nhạy, không được diễn giải như mức mục tiêu hoặc các cận đã có căn cứ. Hiện giá dùng 15% để thử.
+
+| Tăng trưởng / P/E thoát | IRR | Hiện giá, VND/cp |
+| --- | ---: | ---: |
+| 8% / 12× | 1,27% | 52.328 |
+| 12% / 16× | 10,68% | 79.667 |
+| 16% / 20× | 19,49% | 115.400 |
+
+**Kết luận:** hai rubric được chấm thêm, 15/23 có điểm nghiên cứu FY2025, tổng 37 trên 65 điểm tối đa đã chấm. Tám mục N/R còn 35 điểm trọng số. Không đặt điều kiện đợi báo cáo năm 2026. Mở lại khi có đầu vào đủ ảnh hưởng đến band hoặc có mô hình thay thế đủ bằng chứng. Cột 9T2026 giữ nguyên. Điểm chính thức chưa cấp.
+
+## So sánh kế nhiệm FH-STRESS và GQ-INC
+
+**FH-STRESS.** Dùng reverse stress theo 12 tháng. Tỷ lệ tiền gửi tối thiểu cần kịp sử dụng = (gốc vay và thuê tài chính ngắn hạn 19,169697497955 − tiền và tương đương theo sổ 10,522105729992 − FCF thực thu trước hạn) / tiền gửi 29,630986737440, đơn vị nghìn tỷ VND. Với FCF trước hạn bằng 0, ngưỡng 29,18%. Nếu toàn bộ FCF thấp nhất lịch sử FY2022 (1,838588555829) về trước hạn, ngưỡng 22,98%. Với FCF âm 0,5 (giả định độ nhạy), ngưỡng 30,87%. Với 25% tiền gửi kịp dùng, cần FCF trước hạn ít nhất 1,239845083603 nghìn tỷ hoặc nguồn tài trợ tương ứng. Chỉ xét gốc và giả định toàn bộ tiền ghi sổ sử dụng được; FCF phải sau chi phí vận hành/thuê và lãi thực trả, nên không cộng các chi phí đó lần nữa. Cách này đánh giá được điều kiện thiếu tiền, chưa chứng minh phản ứng vốn hoặc khả năng sống sót. Giữ N/R. Báo cáo tương lai chỉ đóng khoảng trống khi có lịch thu–chi theo nhóm đủ dùng, hoặc có bằng chứng về nguồn vốn thay thế. Một số FCF năm mới chỉ cập nhật mốc độ nhạy.
+
+**GQ-INC.** Giữ thuế giả định 20% và cùng một cách phân loại vốn trong mỗi cột. So hai cửa sổ dài hai năm để giảm ảnh hưởng của việc chọn một năm đơn lẻ. Các phép tính dùng chênh lệch số cuối kỳ của vốn tài trợ như phép thử ở trên.
+
+| Cửa sổ | Giữ toàn bộ tiền gửi trong vốn | Loại 50% | Loại 100% |
+| --- | ---: | ---: | ---: |
+| FY2022→FY2024 | 22,97% | 34,68% | 70,76% |
+| FY2023→FY2025 | 9,74% | 14,42% | 27,74% |
+| FY2024→FY2025, kiểm tra bổ sung | 2,72% | 3,76% | 6,10% |
+
+Tỷ lệ xuống ở mọi cách xử lý vốn. Kiểm tra FY2024→FY2025 theo các dòng tài sản/nợ vận hành đã chọn: NOPAT tăng 384.156.552.636,8 VND, vốn chọn tăng 3.957.075.425.361 VND, tỷ suất khoảng 9,71%. Không xem kịch bản 70,76% là điểm mạnh mặc định: loại toàn bộ tiền gửi làm mẫu số nhỏ hơn đáng kể và chưa xử lý M&A. Điểm GQ-INC vẫn N/R do mức tuyệt đối trải qua nhiều band và chưa xác định được đóng góp tương ứng của mua lại. Công bố sau có thể bổ sung vốn và EBIT/dòng tiền của thương vụ, hoặc tạo chuỗi ít nhất hai mốc cuối năm cùng phạm vi FTEL để đánh giá giai đoạn mới. Một báo cáo năm sau không tự phân bổ lại M&A của lịch sử FY2025. Không nối FY2025 hợp nhất toàn bộ với FY2026 theo phương pháp vốn chủ sở hữu. Kết luận về chiều suy giảm FY2025 được giữ như tín hiệu nghiên cứu.

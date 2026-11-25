@@ -7,7 +7,7 @@ description: Plan a versioned VN30 rollout and coordinate exactly one ticker Ski
 
 Use for a requested list/universe rollout, not as a batch argument to a ticker-processing Skill. Existing corpus rebuilders, PDF queues and portfolio/DCA workflows are not substitutes for this execution queue.
 
-Read [single-ticker contract](references/single-ticker-contract.md) for invocation and identity rules; read [queue contract](references/queue-contract.md) for dispatch, persistence and recovery. Reuse the five existing execution Skills; do not clone their fetching, sector analysis, valuation or admission logic.
+Read [single-ticker contract](references/single-ticker-contract.md) for invocation and identity rules; read [queue contract](references/queue-contract.md) for dispatch, persistence and recovery. Reuse the existing execution Skills and their fetching, sector analysis, valuation and admission logic. Structural N/R remediation is a read-only research stage with its own prepared identity.
 
 1. Select a retained version in `references/universe-registry.json` and an explicit reference date. The registry pins an existing qualified membership profile, official reconciliation and security identities. Do not infer membership from today's list, the review timestamp or a calendar rule. Coverage limits are not constituent exit dates. The initial retained version covers 03/08–15/11/2026; no new membership retrieval is performed by this foundation.
 2. Read-only inventory may examine every constituent. Membership eligibility is not proof of financial readiness, source admission, analyst approval or PIT availability.

@@ -19,7 +19,8 @@ sys.path.insert(0, str(ROOT))
 from tools.maintenance.common import canonical_json as canonical, digest_json as digest, require_ticker as ticker, atomic_json as atomic
 REGISTRY = 'skills/vn30-rollout-orchestrator/references/universe-registry.json'
 SKILLS = ('equity-s1-s5-assessment', 'vn30-market-price-corporate-actions',
-          'fetch-cafef-price-history', 'fetch-vietstock-dividend-pdfs', 'read-pdf-json-first')
+          'fetch-cafef-price-history', 'fetch-vietstock-dividend-pdfs', 'read-pdf-json-first',
+          'vn30-structural-nr-remediation')
 PURPOSES = ('RETROSPECTIVE_RESEARCH', 'CURRENT_FORMAL_VALUATION', 'HISTORICAL_PIT')
 PERMISSIONS = dict(assessmentApproved=False, formalAdmissionGranted=False,
                    scoringAuthorized=False, deploymentAuthorized=False,
@@ -118,7 +119,8 @@ def prepare(raw, universe):
     if raw.get('skill') not in SKILLS or raw.get('purpose') not in PURPOSES:
         raise ValueError('UNSUPPORTED_SKILL_OR_PURPOSE')
     sector = raw.get('sector')
-    if (raw['skill'] == 'equity-s1-s5-assessment' and sector not in universe.sectors) or (sector is not None and sector not in universe.sectors):
+    sector_required = raw['skill'] in ('equity-s1-s5-assessment', 'vn30-structural-nr-remediation')
+    if (sector_required or sector is not None) and sector not in universe.sectors:
         raise ValueError('APPROVED_SECTOR_REQUIRED_NO_VNM_DEFAULT')
     bindings = raw.get('bindings', [])
     if not isinstance(bindings, list):

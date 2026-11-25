@@ -1,0 +1,143 @@
+{
+  "contract": "structural-nr-remediation-v1",
+  "ticker": "TCB",
+  "sector": "BANK",
+  "cutoff": "2026-10-30",
+  "evidencePurpose": "CURRENT_FORMAL_VALUATION",
+  "knowledgeCutoff": "2026-11-22T14:20:53.054Z",
+  "baseline": {
+    "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_FINAL_SCORE_ARTIFACT.json",
+    "sha256": "5c4bfe87749c8eee163cb7d86e20452dbb2994652bb4313c904a83a3d521d4cc",
+    "pointer": "/card"
+  },
+  "rubrics": {
+    "path": "src/domain/scoring/methodology.ts",
+    "sha256": "e7031bf6b00e38670016888928ceb941e5c3a524016a1f8ce84123aca6c7da41"
+  },
+  "reviewCounts": {
+    "evidenceImprovement": 1,
+    "resolutionValidation": 1
+  },
+  "rows": [
+    {
+      "rubricId": "FH-STRESS",
+      "causes": [
+        "DATA_MISSING"
+      ],
+      "primaryCause": "DATA_MISSING",
+      "diagnosis": "Retained scenario and sensitivity work does not jointly establish stressed financing availability and same-scope capital.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Repeating CAR and funding balance disclosures will not add the funding response under combined stress."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_RESEARCH_CLOSURE.json",
+          "sha256": "e6162faf1ea87617017bb88df0ea68ce21b956d77cbda720ddb1762e35146b64",
+          "subjectTicker": "TCB",
+          "locator": "/rubrics/6"
+        },
+        {
+          "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_BEAR_RWA_EARNINGS_SENSITIVITY.md",
+          "sha256": "19089c3c75d201ecd6db37d492fb0aa254a3e79400ac9f9eb96970421b75c22e",
+          "subjectTicker": "TCB",
+          "locator": "Bear RWA and earnings sensitivity"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Escalate to a TCB-specific funding availability and post-stress capital bridge.",
+      "status": "ESCALATED",
+      "blocker": "Combined provisioning, funding and RWA stress with verified post-stress resources.",
+      "approvalRequired": false,
+      "validation": "Compared the retained review and limitation against the null baseline disposition and existing rubric topics. This evidence supports the diagnosis only.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      }
+    },
+    {
+      "rubricId": "CA-DIST",
+      "causes": [
+        "DATA_MISSING"
+      ],
+      "primaryCause": "DATA_MISSING",
+      "diagnosis": "Reported payout and observed CAR define the starting point. Modeled constraints leave marginal reinvestment returns and distributable liquidity unresolved.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "More payout and CAR history cannot isolate marginal returns or liquidity remaining before distributions."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_RESEARCH_CLOSURE.json",
+          "sha256": "e6162faf1ea87617017bb88df0ea68ce21b956d77cbda720ddb1762e35146b64",
+          "subjectTicker": "TCB",
+          "locator": "/rubrics/20"
+        },
+        {
+          "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_NINE_RUBRIC_RESEARCH_CLOSURE.json",
+          "sha256": "eab9d0c42d8e85726f54578ed2e11ac4ce1816017a362e107550e730c442e1f8",
+          "subjectTicker": "TCB",
+          "locator": "/cashPayoutPercent and CA-DIST review row"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Escalate to an eligible dated retained-capital return and liquidity review.",
+      "status": "ESCALATED",
+      "blocker": "Marginal return on retention plus pre-distribution excess liquidity at stressed capital levels.",
+      "approvalRequired": false,
+      "validation": "Compared the retained review and limitation against the null baseline disposition and existing rubric topics. This evidence supports the diagnosis only.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      }
+    },
+    {
+      "rubricId": "CA-DIL",
+      "causes": [
+        "DATA_MISSING",
+        "EVIDENCE_INTERPRETATION_GAP"
+      ],
+      "primaryCause": "EVIDENCE_INTERPRETATION_GAP",
+      "diagnosis": "Effective issuance data and per-share sensitivity are retained. Workforce totals and bank-wide attrition cannot attribute net benefits to the ESOP or distinguish the approved binary bands.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Repeating issuance terms, total workforce and bank-wide attrition cannot measure ESOP-specific counterfactual benefits."
+      },
+      "evidence": [
+        {
+          "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_RESEARCH_CLOSURE.json",
+          "sha256": "e6162faf1ea87617017bb88df0ea68ce21b956d77cbda720ddb1762e35146b64",
+          "subjectTicker": "TCB",
+          "locator": "/rubrics/21"
+        },
+        {
+          "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_CA_DIL_ESOP_HISTORY_REVIEW.json",
+          "sha256": "0a4ab5af9369d961ed865d85597e2a56003a85fcbfed25430a4ef158080b8499",
+          "subjectTicker": "TCB",
+          "locator": "/conclusion"
+        }
+      ],
+      "action": "STRUCTURAL_ESCALATION",
+      "plannedAction": "Propose interpretation review of how documented issue economics and substantiated benefits are challenged against both approved anchors.",
+      "status": "ESCALATED",
+      "blocker": "Attributable ESOP offsets or evidence bounding net per-share economics without assumed offsets.",
+      "approvalRequired": true,
+      "proposalVersion": "BANK-STRUCTURAL-NR-INTERPRETATION-v0.1",
+      "validation": "Compared the retained review and limitation against the null baseline disposition and existing rubric topics. This evidence supports the diagnosis only.",
+      "disposition": {
+        "state": "N/R",
+        "points": null
+      }
+    }
+  ],
+  "baselineReceipts": [
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_SCORE_EXECUTION_OWNER_APPROVAL.json",
+      "sha256": "844d5d2255e4533a6ad68e49327934d556f7dd075cd8bd6006b990b10dbdc46e"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_SCORE_EXECUTION_RESULT.json",
+      "sha256": "822f6990d7b81d7ed946bd0a4bdb5f05b5253eead85b8f1cc733173d8a66ea55"
+    }
+  ]
+}

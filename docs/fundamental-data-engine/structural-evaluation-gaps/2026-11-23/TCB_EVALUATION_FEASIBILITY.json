@@ -1,0 +1,1151 @@
+{
+  "contract": "structural-evaluation-gaps-v1",
+  "subject": {
+    "ticker": "TCB",
+    "securityId": "2a3c69b1-08aa-473c-bbd5-92d096a0d23a",
+    "sector": "BANK",
+    "cutoff": "2026-10-30",
+    "universeVersion": "vn30-20260803-reviewed-20261115",
+    "purpose": "CURRENT_FORMAL_VALUATION"
+  },
+  "reviewCounts": {
+    "evidenceImprovement": 1,
+    "resolutionValidation": 1
+  },
+  "evidence": {
+    "nr": {
+      "subjectTicker": "TCB",
+      "path": "docs/fundamental-data-engine/structural-nr-remediation/2026-11-23/TCB_DIAGNOSTIC.json",
+      "sha256": "7aae91d0017bb2a11f0e366104abbf74d99d68e4885b0b482eac7e4aed007abe",
+      "locator": "/baseline and /rows"
+    },
+    "baseline": {
+      "subjectTicker": "TCB",
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_FINAL_SCORE_ARTIFACT.json",
+      "sha256": "5c4bfe87749c8eee163cb7d86e20452dbb2994652bb4313c904a83a3d521d4cc",
+      "locator": "Native scorecard and input scope",
+      "pointer": "/card"
+    },
+    "policy": {
+      "subjectTicker": "TCB",
+      "path": "docs/03 SCORING/SECTOR_NORMALIZATION.md",
+      "sha256": "0c32d15fb2ed5fec67f3887231d4116b379edb29d8eb0b25b654a40c48f715e4",
+      "locator": "Issuer sector valuation and cross-check requirements"
+    },
+    "decisionContract": {
+      "subjectTicker": "TCB",
+      "path": "src/domain/decision/contracts.ts",
+      "sha256": "17faa581a3e36a82fc5dc44a7fa432104667cfc7bc2b652cc6796eb7c0d41b06",
+      "locator": "DecisionEvidence, DecisionPortfolio, DecisionInput"
+    },
+    "decisionPolicy": {
+      "subjectTicker": "TCB",
+      "path": "docs/06_DASHBOARD/6.5 Decision Engine/CHANGE_REQUESTS.md",
+      "sha256": "86aa630dfcadce2fb7a07d39637ce91f8cdf993a6b16713bee6dd0a022de4e1d",
+      "locator": "M6.5.3 current issue authority and CR-04"
+    },
+    "decisionValidation": {
+      "subjectTicker": "TCB",
+      "path": "src/domain/decision/validation.ts",
+      "sha256": "bd1e1d20ab88c0df979245639b21f72cad63351b8cb50241607944b2d5d69eb8",
+      "locator": "Decision methodology, assessment, scorecard, portfolio and evidence checks"
+    },
+    "actionDependencies": {
+      "subjectTicker": "TCB",
+      "path": "src/domain/scoring/action-dependencies.ts",
+      "sha256": "bbbb2a9f5828c3e8a9f223ee3286e7523f793e37f4f6410b9d602b40200f678d",
+      "locator": "ACTION_RUBRICS and ACTION_METRICS"
+    },
+    "dataset": {
+      "subjectTicker": "TCB",
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_BANK_DATASET_READBACK.json",
+      "sha256": "31534dd57053ba377df320483769f7775398647b6252bbfd44c55824a3d4b9b7",
+      "locator": "/context and accepted readback"
+    },
+    "m1": {
+      "subjectTicker": "TCB",
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_M1_GATE_RECONCILIATION.json",
+      "sha256": "eb558fdc6f4b77356c90db22b23f5817f0eba0401de00bfcef3f99df7dbef6d5",
+      "locator": "Dated M1 identity and gate limitations"
+    },
+    "valuation": {
+      "subjectTicker": "TCB",
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_VALUATION_CUTOFF_RECONCILIATION.json",
+      "sha256": "3f573e0b2088c1737cede3999be75ec32e54cbcf9014687adedc52b52c4ff4d2",
+      "locator": "/acceptedMarketInputs and /rubricReviews"
+    },
+    "model": {
+      "subjectTicker": "TCB",
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_BEAR_RWA_EARNINGS_SENSITIVITY.md",
+      "sha256": "19089c3c75d201ecd6db37d492fb0aa254a3e79400ac9f9eb96970421b75c22e",
+      "locator": "Bear stress assumptions and capital response limitations"
+    },
+    "market": {
+      "subjectTicker": "TCB",
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_VERIFIED_SHARE_CHANGE.json",
+      "sha256": "7b18350ca78b17f06be909e8b86b2ff942bd8d072c3f0d31a1e854bb4bd2a691",
+      "locator": "Effective and availability dates and verified share basis"
+    },
+    "nr-FH-STRESS": {
+      "subjectTicker": "TCB",
+      "path": "docs/fundamental-data-engine/structural-nr-remediation/2026-11-23/TCB_DIAGNOSTIC.json",
+      "sha256": "7aae91d0017bb2a11f0e366104abbf74d99d68e4885b0b482eac7e4aed007abe",
+      "locator": "/rows/0",
+      "pointer": "/rows/0"
+    },
+    "nr-CA-DIST": {
+      "subjectTicker": "TCB",
+      "path": "docs/fundamental-data-engine/structural-nr-remediation/2026-11-23/TCB_DIAGNOSTIC.json",
+      "sha256": "7aae91d0017bb2a11f0e366104abbf74d99d68e4885b0b482eac7e4aed007abe",
+      "locator": "/rows/1",
+      "pointer": "/rows/1"
+    },
+    "nr-CA-DIL": {
+      "subjectTicker": "TCB",
+      "path": "docs/fundamental-data-engine/structural-nr-remediation/2026-11-23/TCB_DIAGNOSTIC.json",
+      "sha256": "7aae91d0017bb2a11f0e366104abbf74d99d68e4885b0b482eac7e4aed007abe",
+      "locator": "/rows/2",
+      "pointer": "/rows/2"
+    }
+  },
+  "checks": {
+    "M1_PREPARE": {
+      "HISTORICAL_EVIDENCE": {
+        "status": "PASS",
+        "finding": "The exact issuer retains source reviews and a governed score or isolated score readback.",
+        "evidence": [
+          "dataset",
+          "baseline",
+          "nr"
+        ],
+        "gaps": []
+      },
+      "FINANCIAL_MAPPING": {
+        "status": "PASS",
+        "finding": "The retained evaluated scope has a governed dataset receipt or readback. No reproducible raw-to-consumer discrepancy was established for these rows.",
+        "evidence": [
+          "dataset",
+          "market"
+        ],
+        "gaps": []
+      },
+      "METRIC_COMPUTABILITY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "The reviewed limited artifact does not establish computability outside its bound scope.",
+        "evidence": [
+          "dataset",
+          "nr"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:M1_PREPARE:METRIC_COMPUTABILITY:scope"
+        ]
+      },
+      "PIT_ADMISSIBILITY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Current-purpose evidence and later review clocks do not establish historical PIT admission.",
+        "evidence": [
+          "dataset",
+          "market"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:M1_PREPARE:PIT_ADMISSIBILITY:current-vs-pit"
+        ]
+      },
+      "RUBRIC_FEASIBILITY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Existing N/R dispositions remain limited to their retained baseline and scoped approvals.",
+        "evidence": [
+          "nr-FH-STRESS",
+          "baseline",
+          "nr-CA-DIST",
+          "nr-CA-DIL"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:FH-STRESS",
+          "TCB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:CA-DIST",
+          "TCB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:CA-DIL"
+        ]
+      },
+      "VALUATION_READINESS": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Retained valuation evidence is bounded to the scope and confidence of the original case.",
+        "evidence": [
+          "valuation",
+          "model"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:M1_PREPARE:VALUATION_READINESS:decision-grade"
+        ]
+      },
+      "DECISION_DEPENDENCIES": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "The evaluated scoring material does not establish a complete authorized M6.5 candidate.",
+        "evidence": [
+          "m1",
+          "decisionContract"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:M1_PREPARE:DECISION_DEPENDENCIES:formal-packet"
+        ]
+      }
+    },
+    "VALUATION": {
+      "FINANCIAL_METRICS": {
+        "status": "PASS",
+        "finding": "Retained matching-period components support the existing analytical scope. Normalization and forward judgment are reviewed separately.",
+        "evidence": [
+          "valuation",
+          "dataset"
+        ],
+        "gaps": []
+      },
+      "SHARE_DENOMINATOR": {
+        "status": "PASS",
+        "finding": "Reviewed issuer share basis is retained. No incompatible denominator defect was established in the selected scope.",
+        "evidence": [
+          "market",
+          "dataset"
+        ],
+        "gaps": []
+      },
+      "ACTION_COMPARABILITY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "The reviewed current-use share/economics basis does not qualify unrestricted historical total-return or PIT comparisons.",
+        "evidence": [
+          "market",
+          "actionDependencies"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:VALUATION:ACTION_COMPARABILITY:purpose"
+        ]
+      },
+      "CASH_FLOW_NORMALIZATION": {
+        "status": "PASS",
+        "finding": "BANK review uses normalized common earnings and the capital/RWA bridge. Industrial free cash flow is inapplicable.",
+        "evidence": [
+          "valuation",
+          "model"
+        ],
+        "gaps": []
+      },
+      "SECTOR_METHOD": {
+        "status": "PASS",
+        "finding": "Existing BANK equity methods use sustainable ROE, cost of equity and capital constraints. Do not infer industrial EV from deposit funding.",
+        "evidence": [
+          "policy",
+          "valuation"
+        ],
+        "gaps": []
+      },
+      "ASSUMPTIONS": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Governed conservative scoring does not establish decision-grade sustainable ROE, reinvestment or terminal economics.",
+        "evidence": [
+          "valuation",
+          "model",
+          "baseline"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:VALUATION:ASSUMPTIONS:forward"
+        ]
+      },
+      "SCENARIOS_SENSITIVITY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Bear capital/RWA sensitivities leave integrated funding and eligible capital materially uncertain.",
+        "evidence": [
+          "valuation",
+          "model",
+          "baseline"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:VALUATION:SCENARIOS_SENSITIVITY:challenge"
+        ]
+      },
+      "DISCOUNT_AND_RETURN": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "The retained return sensitivity depends on Ke, exit value, payout and capital constraints.",
+        "evidence": [
+          "valuation",
+          "model",
+          "baseline"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:VALUATION:DISCOUNT_AND_RETURN:return"
+        ]
+      },
+      "CONFIDENCE": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Twenty rated conservative rows do not yield a full decision-grade score and valuation conclusion.",
+        "evidence": [
+          "valuation",
+          "model",
+          "baseline"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:VALUATION:CONFIDENCE:range"
+        ]
+      },
+      "PIT_INTEGRITY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Current scoping is supported by existing receipts. Historical PIT approval is outside the retained current case.",
+        "evidence": [
+          "dataset",
+          "market"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:VALUATION:PIT_INTEGRITY:availability"
+        ]
+      }
+    },
+    "INVESTMENT_DECISION": {
+      "SCORECARD_VALIDITY_CONFIDENCE": {
+        "status": "BLOCKED",
+        "finding": "The limited artifact has a null full score and is ineligible for ranking or allocation.",
+        "evidence": [
+          "baseline",
+          "decisionContract"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:INVESTMENT_DECISION:SCORECARD_VALIDITY_CONFIDENCE:scorecard"
+        ]
+      },
+      "STAGE0_VETO": {
+        "status": "BLOCKED",
+        "finding": "Scoring M1 evidence exists. Formal M6.5 Stage 0 and veto evidence matching the decision scope was not verified in this audit.",
+        "evidence": [
+          "m1",
+          "decisionContract"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:INVESTMENT_DECISION:STAGE0_VETO:risk"
+        ]
+      },
+      "THESIS": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "Retained scoring and research thesis evidence lacks an adopted M6.5 human thesis review in this packet.",
+        "evidence": [
+          "baseline",
+          "decisionContract"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:INVESTMENT_DECISION:THESIS:human"
+        ]
+      },
+      "VALUATION_FORWARD_RETURN": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "The valuation audit leaves material scope or confidence limitations.",
+        "evidence": [
+          "valuation",
+          "decisionContract"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:INVESTMENT_DECISION:VALUATION_FORWARD_RETURN:return"
+        ]
+      },
+      "RESIDUAL_RISK_HURDLE": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "The retained packet does not bind a decision-specific residual-risk and hurdle calibration.",
+        "evidence": [
+          "decisionPolicy",
+          "decisionContract"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:INVESTMENT_DECISION:RESIDUAL_RISK_HURDLE:hurdle"
+        ]
+      },
+      "OWNERSHIP_CONCENTRATION": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "This audit contains no matched authoritative M6.3 decision snapshot.",
+        "evidence": [
+          "decisionContract",
+          "decisionValidation"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:INVESTMENT_DECISION:OWNERSHIP_CONCENTRATION:portfolio"
+        ]
+      },
+      "OPPORTUNITY_COST": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "No decision-scope comparison set was verified in the retained case.",
+        "evidence": [
+          "decisionContract",
+          "decisionValidation"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:INVESTMENT_DECISION:OPPORTUNITY_COST:comparators"
+        ]
+      },
+      "TECHNICAL_OVERLAY": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "No decision-scope overlay was evaluated here. The native decision policy governs applicability.",
+        "evidence": [
+          "decisionContract",
+          "decisionValidation"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:INVESTMENT_DECISION:TECHNICAL_OVERLAY:execution"
+        ]
+      },
+      "CASH_BOARD_LOT": {
+        "status": "PASS WITH LIMITATIONS",
+        "finding": "No matched execution-capacity packet was verified. Values cannot be inferred from the score.",
+        "evidence": [
+          "decisionPolicy",
+          "decisionContract"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:INVESTMENT_DECISION:CASH_BOARD_LOT:execution"
+        ]
+      },
+      "DECISION_AUTHORIZATION": {
+        "status": "BLOCKED",
+        "finding": "The retained research and scoring permissions do not confer decision or trade authorization.",
+        "evidence": [
+          "decisionValidation",
+          "decisionContract"
+        ],
+        "gaps": [
+          "TCB:2026-10-30:INVESTMENT_DECISION:DECISION_AUTHORIZATION:authority"
+        ]
+      }
+    }
+  },
+  "gaps": [
+    {
+      "id": "TCB:2026-10-30:M1_PREPARE:METRIC_COMPUTABILITY:scope",
+      "ticker": "TCB",
+      "component": "M1_PREPARE",
+      "dependency": "METRIC_COMPUTABILITY",
+      "key": "scope",
+      "availableEvidence": [
+        "dataset",
+        "nr"
+      ],
+      "requiredEvidence": "Metric-specific reviewed inputs beyond the accepted BANK scope.",
+      "missingEvidence": "The reviewed limited artifact does not establish computability outside its bound scope.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Replay only the affected BANK inputs and exact metric dependency on a qualified change.",
+      "futureDataTest": {
+        "result": "UNKNOWN",
+        "rationale": "An extra period may improve comparators. Evidence gaps outside the reported fields require targeted inputs."
+      },
+      "nextTrigger": "Eligible input for the particular metric",
+      "impact": "Limited coverage remains bounded to its approved scope.",
+      "owner": "BANK assessment reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "TCB:2026-10-30:M1_PREPARE:PIT_ADMISSIBILITY:current-vs-pit",
+      "ticker": "TCB",
+      "component": "M1_PREPARE",
+      "dependency": "PIT_ADMISSIBILITY",
+      "key": "current-vs-pit",
+      "availableEvidence": [
+        "dataset",
+        "market"
+      ],
+      "requiredEvidence": "Observation-level economic date, availability and purpose-specific acceptance.",
+      "missingEvidence": "Current-purpose evidence and later review clocks do not establish historical PIT admission.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "GOVERNANCE",
+      "resolution": "Reuse current-only evidence in its original scoped route. Verify original source and receipt clocks independently for a PIT request.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Later reports cannot retroactively establish the availability of the original observation."
+      },
+      "nextTrigger": "Matching dated PIT observation and governed receipt",
+      "impact": "Current review remains purpose-bounded.",
+      "owner": "Source admission reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "TCB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:FH-STRESS",
+      "ticker": "TCB",
+      "component": "M1_PREPARE",
+      "dependency": "RUBRIC_FEASIBILITY",
+      "key": "FH-STRESS",
+      "availableEvidence": [
+        "nr-FH-STRESS",
+        "baseline"
+      ],
+      "requiredEvidence": "Combined provisioning, funding and RWA stress with verified post-stress resources.",
+      "missingEvidence": "Retained scenario and sensitivity work does not jointly establish stressed financing availability and same-scope capital.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Escalate to a TCB-specific funding availability and post-stress capital bridge.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Repeating CAR and funding balance disclosures will not add the funding response under combined stress."
+      },
+      "nextTrigger": "Combined provisioning, funding and RWA stress with verified post-stress resources.",
+      "impact": "Retain existing null disposition and exact limited scope.",
+      "owner": "BANK rubric reviewer",
+      "approval": "Existing successor gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "TCB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:CA-DIST",
+      "ticker": "TCB",
+      "component": "M1_PREPARE",
+      "dependency": "RUBRIC_FEASIBILITY",
+      "key": "CA-DIST",
+      "availableEvidence": [
+        "nr-CA-DIST",
+        "baseline"
+      ],
+      "requiredEvidence": "Marginal return on retention plus pre-distribution excess liquidity at stressed capital levels.",
+      "missingEvidence": "Reported payout and observed CAR define the starting point. Modeled constraints leave marginal reinvestment returns and distributable liquidity unresolved.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Escalate to an eligible dated retained-capital return and liquidity review.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "More payout and CAR history cannot isolate marginal returns or liquidity remaining before distributions."
+      },
+      "nextTrigger": "Marginal return on retention plus pre-distribution excess liquidity at stressed capital levels.",
+      "impact": "Retain existing null disposition and exact limited scope.",
+      "owner": "BANK rubric reviewer",
+      "approval": "Existing successor gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "TCB:2026-10-30:M1_PREPARE:RUBRIC_FEASIBILITY:CA-DIL",
+      "ticker": "TCB",
+      "component": "M1_PREPARE",
+      "dependency": "RUBRIC_FEASIBILITY",
+      "key": "CA-DIL",
+      "availableEvidence": [
+        "nr-CA-DIL",
+        "baseline"
+      ],
+      "requiredEvidence": "Attributable ESOP offsets or evidence bounding net per-share economics without assumed offsets.",
+      "missingEvidence": "Effective issuance data and per-share sensitivity are retained. Workforce totals and bank-wide attrition cannot attribute net benefits to the ESOP or distinguish the approved binary bands.",
+      "primaryCause": "INTERPRETATION_GAP",
+      "supportingCauses": [
+        "DATA_MISSING"
+      ],
+      "constraint": "HUMAN_JUDGMENT",
+      "resolution": "Propose interpretation review of how documented issue economics and substantiated benefits are challenged against both approved anchors.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Repeating issuance terms, total workforce and bank-wide attrition cannot measure ESOP-specific counterfactual benefits."
+      },
+      "nextTrigger": "Attributable ESOP offsets or evidence bounding net per-share economics without assumed offsets.",
+      "impact": "Retain existing null disposition and exact limited scope.",
+      "owner": "BANK rubric reviewer",
+      "approval": "Owner approval before adopting exact interpretation in a successor.",
+      "baselineChange": true,
+      "outcome": "ESCALATED",
+      "changeRequest": "BANK-STRUCTURAL-NR-INTERPRETATION-v0.1"
+    },
+    {
+      "id": "TCB:2026-10-30:M1_PREPARE:VALUATION_READINESS:decision-grade",
+      "ticker": "TCB",
+      "component": "M1_PREPARE",
+      "dependency": "VALUATION_READINESS",
+      "key": "decision-grade",
+      "availableEvidence": [
+        "valuation",
+        "model"
+      ],
+      "requiredEvidence": "Decision-grade range, sensitivity and exact reviewed assumptions.",
+      "missingEvidence": "Retained valuation evidence is bounded to the scope and confidence of the original case.",
+      "primaryCause": "LEGITIMATE_UNCERTAINTY",
+      "supportingCauses": [],
+      "constraint": "ECONOMIC_UNCERTAINTY",
+      "resolution": "Use the valuation audit to target the next model or evidence review.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same statements alone cannot verify prospective estimates or strengthen confidence."
+      },
+      "nextTrigger": "Reviewed valuation bridge or changed qualifying evidence",
+      "impact": "Prepare cannot infer allocation readiness.",
+      "owner": "Valuation reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "TCB:2026-10-30:M1_PREPARE:DECISION_DEPENDENCIES:formal-packet",
+      "ticker": "TCB",
+      "component": "M1_PREPARE",
+      "dependency": "DECISION_DEPENDENCIES",
+      "key": "formal-packet",
+      "availableEvidence": [
+        "m1",
+        "decisionContract"
+      ],
+      "requiredEvidence": "Dated M6.5 evidence and human assessment with matching portfolio and decision method.",
+      "missingEvidence": "The evaluated scoring material does not establish a complete authorized M6.5 candidate.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "GOVERNANCE",
+      "resolution": "Hand off the existing dependencies to the decision reviewer.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Annual statements cannot supply portfolio, approved judgment or operational authority."
+      },
+      "nextTrigger": "Exact governed decision-context packet",
+      "impact": "No decision or order is inferred.",
+      "owner": "Decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "TCB:2026-10-30:VALUATION:ACTION_COMPARABILITY:purpose",
+      "ticker": "TCB",
+      "component": "VALUATION",
+      "dependency": "ACTION_COMPARABILITY",
+      "key": "purpose",
+      "availableEvidence": [
+        "market",
+        "actionDependencies"
+      ],
+      "requiredEvidence": "Effective-date actions, raw prices and comparable per-share basis with original availability.",
+      "missingEvidence": "The reviewed current-use share/economics basis does not qualify unrestricted historical total-return or PIT comparisons.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Use the existing S4 action and raw-close route only for its reviewed scope.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Additional statements cannot establish the original effective/availability lineage or fill missing event receipts."
+      },
+      "nextTrigger": "Reviewed action-specific observation and comparability receipt",
+      "impact": "Do not extend per-share comparability beyond its bound scope.",
+      "owner": "Market evidence reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "Scope remains restricted."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "No exact defective mapping was established."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing S4 action comparability policy applies."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "NO",
+          "rationale": "Identity and effective dates are evidence issues."
+        }
+      }
+    },
+    {
+      "id": "TCB:2026-10-30:VALUATION:ASSUMPTIONS:forward",
+      "ticker": "TCB",
+      "component": "VALUATION",
+      "dependency": "ASSUMPTIONS",
+      "key": "forward",
+      "availableEvidence": [
+        "valuation",
+        "model",
+        "baseline"
+      ],
+      "requiredEvidence": "Reviewed sustainable growth, reinvestment and terminal or exit economics.",
+      "missingEvidence": "Governed conservative scoring does not establish decision-grade sustainable ROE, reinvestment or terminal economics.",
+      "primaryCause": "LEGITIMATE_UNCERTAINTY",
+      "supportingCauses": [],
+      "constraint": "ECONOMIC_UNCERTAINTY",
+      "resolution": "Use the approved sector method and challenged retained ranges. Escalate unresolved inputs.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Another historical year cannot independently establish forward economics."
+      },
+      "nextTrigger": "A coherent, challenged sector scenario supported by newly qualified inputs",
+      "impact": "Decision-grade value, return and MOS remain bounded by source confidence.",
+      "owner": "Valuation reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "Governed conservative scoring does not establish decision-grade sustainable ROE, reinvestment or terminal economics."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "No exact raw-to-consumer defect accounts for this gap."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing sector method applies."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "YES",
+          "rationale": "Prospective inputs retain uncertainty even with clean historical data."
+        }
+      }
+    },
+    {
+      "id": "TCB:2026-10-30:VALUATION:SCENARIOS_SENSITIVITY:challenge",
+      "ticker": "TCB",
+      "component": "VALUATION",
+      "dependency": "SCENARIOS_SENSITIVITY",
+      "key": "challenge",
+      "availableEvidence": [
+        "valuation",
+        "model",
+        "baseline"
+      ],
+      "requiredEvidence": "Comparable base, downside and upside assumptions and a meaningful independent challenge.",
+      "missingEvidence": "Bear capital/RWA sensitivities leave integrated funding and eligible capital materially uncertain.",
+      "primaryCause": "LEGITIMATE_UNCERTAINTY",
+      "supportingCauses": [],
+      "constraint": "ECONOMIC_UNCERTAINTY",
+      "resolution": "Use the approved sector method and challenged retained ranges. Escalate unresolved inputs.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Historical observations help calibration but cannot alone resolve forward stress mechanics or independent cross-checks."
+      },
+      "nextTrigger": "Source-backed scenario or independent cross-check that materially narrows the result",
+      "impact": "Decision-grade value, return and MOS remain bounded by source confidence.",
+      "owner": "Valuation reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "Bear capital/RWA sensitivities leave integrated funding and eligible capital materially uncertain."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "No exact raw-to-consumer defect accounts for this gap."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing sector method applies."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "YES",
+          "rationale": "Prospective inputs retain uncertainty even with clean historical data."
+        }
+      }
+    },
+    {
+      "id": "TCB:2026-10-30:VALUATION:DISCOUNT_AND_RETURN:return",
+      "ticker": "TCB",
+      "component": "VALUATION",
+      "dependency": "DISCOUNT_AND_RETURN",
+      "key": "return",
+      "availableEvidence": [
+        "valuation",
+        "model",
+        "baseline"
+      ],
+      "requiredEvidence": "Defensible VND discount calibration and forward-return bridge consistent with risk.",
+      "missingEvidence": "The retained return sensitivity depends on Ke, exit value, payout and capital constraints.",
+      "primaryCause": "LEGITIMATE_UNCERTAINTY",
+      "supportingCauses": [],
+      "constraint": "ECONOMIC_UNCERTAINTY",
+      "resolution": "Use the approved sector method and challenged retained ranges. Escalate unresolved inputs.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "An annual statement does not provide an eligible dated equity-risk calibration or establish future exit economics."
+      },
+      "nextTrigger": "Reviewed cutoff-matched discount inputs and coherent scenario cash flow",
+      "impact": "Decision-grade value, return and MOS remain bounded by source confidence.",
+      "owner": "Valuation reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "The retained return sensitivity depends on Ke, exit value, payout and capital constraints."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "No exact raw-to-consumer defect accounts for this gap."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing sector method applies."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "YES",
+          "rationale": "Prospective inputs retain uncertainty even with clean historical data."
+        }
+      }
+    },
+    {
+      "id": "TCB:2026-10-30:VALUATION:CONFIDENCE:range",
+      "ticker": "TCB",
+      "component": "VALUATION",
+      "dependency": "CONFIDENCE",
+      "key": "range",
+      "availableEvidence": [
+        "valuation",
+        "model",
+        "baseline"
+      ],
+      "requiredEvidence": "Documented confidence and eligible independent cross-check for intended decision use.",
+      "missingEvidence": "Twenty rated conservative rows do not yield a full decision-grade score and valuation conclusion.",
+      "primaryCause": "LEGITIMATE_UNCERTAINTY",
+      "supportingCauses": [],
+      "constraint": "ECONOMIC_UNCERTAINTY",
+      "resolution": "Use the approved sector method and challenged retained ranges. Escalate unresolved inputs.",
+      "futureDataTest": {
+        "result": "UNKNOWN",
+        "rationale": "More history helps only if it materially bounds the disputed model inputs."
+      },
+      "nextTrigger": "Material narrowing of model uncertainty under reviewed evidence",
+      "impact": "Decision-grade value, return and MOS remain bounded by source confidence.",
+      "owner": "Valuation reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "Twenty rated conservative rows do not yield a full decision-grade score and valuation conclusion."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "No exact raw-to-consumer defect accounts for this gap."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing sector method applies."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "YES",
+          "rationale": "Prospective inputs retain uncertainty even with clean historical data."
+        }
+      }
+    },
+    {
+      "id": "TCB:2026-10-30:VALUATION:PIT_INTEGRITY:availability",
+      "ticker": "TCB",
+      "component": "VALUATION",
+      "dependency": "PIT_INTEGRITY",
+      "key": "availability",
+      "availableEvidence": [
+        "dataset",
+        "market"
+      ],
+      "requiredEvidence": "Original qualifying receipts for market, fundamentals and actions at the requested purpose and time.",
+      "missingEvidence": "Current scoping is supported by existing receipts. Historical PIT approval is outside the retained current case.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "GOVERNANCE",
+      "resolution": "Use the original clocks and admit only through the governed historical route.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "Another annual report cannot certify the previous observation’s availability."
+      },
+      "nextTrigger": "Exact historical receipt chain",
+      "impact": "No cutoff backfill, historical valuation or PIT promotion.",
+      "owner": "Source admission reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED",
+      "valuationReview": {
+        "existingEvidenceResolves": {
+          "result": "NO",
+          "rationale": "Current receipt is purpose-limited."
+        },
+        "mappingOrTransformMissing": {
+          "result": "NO",
+          "rationale": "Availability scope is not a mapping defect."
+        },
+        "approvedMethodAvailable": {
+          "result": "YES",
+          "rationale": "Existing source timing rules apply."
+        },
+        "assumptionInherentlyUncertain": {
+          "result": "NO",
+          "rationale": "Eligibility is a dated provenance question."
+        }
+      }
+    },
+    {
+      "id": "TCB:2026-10-30:INVESTMENT_DECISION:SCORECARD_VALIDITY_CONFIDENCE:scorecard",
+      "ticker": "TCB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "SCORECARD_VALIDITY_CONFIDENCE",
+      "key": "scorecard",
+      "availableEvidence": [
+        "baseline",
+        "decisionContract"
+      ],
+      "requiredEvidence": "A scorecard valid and eligible for the exact M6.5 decision scope.",
+      "missingEvidence": "The limited artifact has a null full score and is ineligible for ranking or allocation.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "GOVERNANCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "An eligible governed successor with decision-grade confidence",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "TCB:2026-10-30:INVESTMENT_DECISION:STAGE0_VETO:risk",
+      "ticker": "TCB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "STAGE0_VETO",
+      "key": "risk",
+      "availableEvidence": [
+        "m1",
+        "decisionContract"
+      ],
+      "requiredEvidence": "An exact M6.5 Stage 0 finding, risk assessment and mitigation evidence.",
+      "missingEvidence": "Scoring M1 evidence exists. Formal M6.5 Stage 0 and veto evidence matching the decision scope was not verified in this audit.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "HUMAN_JUDGMENT",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Dated exact Stage 0/risk assessment and independent applicable approval",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "TCB:2026-10-30:INVESTMENT_DECISION:THESIS:human",
+      "ticker": "TCB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "THESIS",
+      "key": "human",
+      "availableEvidence": [
+        "baseline",
+        "decisionContract"
+      ],
+      "requiredEvidence": "A signed current thesis, counterevidence and invalidation conditions.",
+      "missingEvidence": "Retained scoring and research thesis evidence lacks an adopted M6.5 human thesis review in this packet.",
+      "primaryCause": "INTERPRETATION_GAP",
+      "supportingCauses": [],
+      "constraint": "HUMAN_JUDGMENT",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Human review of thesis, counterevidence, and triggers",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "TCB:2026-10-30:INVESTMENT_DECISION:VALUATION_FORWARD_RETURN:return",
+      "ticker": "TCB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "VALUATION_FORWARD_RETURN",
+      "key": "return",
+      "availableEvidence": [
+        "valuation",
+        "decisionContract"
+      ],
+      "requiredEvidence": "Decision-grade valuation, return boundaries and downside with confidence.",
+      "missingEvidence": "The valuation audit leaves material scope or confidence limitations.",
+      "primaryCause": "LEGITIMATE_UNCERTAINTY",
+      "supportingCauses": [],
+      "constraint": "ECONOMIC_UNCERTAINTY",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Reviewed risk-consistent valuation and return bounds",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "TCB:2026-10-30:INVESTMENT_DECISION:RESIDUAL_RISK_HURDLE:hurdle",
+      "ticker": "TCB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "RESIDUAL_RISK_HURDLE",
+      "key": "hurdle",
+      "availableEvidence": [
+        "decisionPolicy",
+        "decisionContract"
+      ],
+      "requiredEvidence": "A dated residual risk and required-return assessment, including applicable calibration and exceptions.",
+      "missingEvidence": "The retained packet does not bind a decision-specific residual-risk and hurdle calibration.",
+      "primaryCause": "INTERPRETATION_GAP",
+      "supportingCauses": [],
+      "constraint": "HUMAN_JUDGMENT",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Risk reviewer calibration and applicable separately governed risk evidence",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "TCB:2026-10-30:INVESTMENT_DECISION:OWNERSHIP_CONCENTRATION:portfolio",
+      "ticker": "TCB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "OWNERSHIP_CONCENTRATION",
+      "key": "portfolio",
+      "availableEvidence": [
+        "decisionContract",
+        "decisionValidation"
+      ],
+      "requiredEvidence": "Authoritative M6.3 positions, NAV, exposure and dated ownership context.",
+      "missingEvidence": "This audit contains no matched authoritative M6.3 decision snapshot.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Matching M6.3 projection and signed ownership assessment",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "TCB:2026-10-30:INVESTMENT_DECISION:OPPORTUNITY_COST:comparators",
+      "ticker": "TCB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "OPPORTUNITY_COST",
+      "key": "comparators",
+      "availableEvidence": [
+        "decisionContract",
+        "decisionValidation"
+      ],
+      "requiredEvidence": "Comparable eligible alternatives, cash and uncertainty after friction.",
+      "missingEvidence": "No decision-scope comparison set was verified in the retained case.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Qualified comparators and cash alternative for the same decision clock",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "TCB:2026-10-30:INVESTMENT_DECISION:TECHNICAL_OVERLAY:execution",
+      "ticker": "TCB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "TECHNICAL_OVERLAY",
+      "key": "execution",
+      "availableEvidence": [
+        "decisionContract",
+        "decisionValidation"
+      ],
+      "requiredEvidence": "Applicable dated execution evidence and policy-compliant deferral trigger.",
+      "missingEvidence": "No decision-scope overlay was evaluated here. The native decision policy governs applicability.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Applicable timing review at the execution cutoff",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "TCB:2026-10-30:INVESTMENT_DECISION:CASH_BOARD_LOT:execution",
+      "ticker": "TCB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "CASH_BOARD_LOT",
+      "key": "execution",
+      "availableEvidence": [
+        "decisionPolicy",
+        "decisionContract"
+      ],
+      "requiredEvidence": "Executable cash, settlement, eligible price, fee and board-lot data.",
+      "missingEvidence": "No matched execution-capacity packet was verified. Values cannot be inferred from the score.",
+      "primaryCause": "DATA_MISSING",
+      "supportingCauses": [],
+      "constraint": "EVIDENCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Authoritative executable cash and current lot and fee basis",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    },
+    {
+      "id": "TCB:2026-10-30:INVESTMENT_DECISION:DECISION_AUTHORIZATION:authority",
+      "ticker": "TCB",
+      "component": "INVESTMENT_DECISION",
+      "dependency": "DECISION_AUTHORIZATION",
+      "key": "authority",
+      "availableEvidence": [
+        "decisionValidation",
+        "decisionContract"
+      ],
+      "requiredEvidence": "Exact human decision evidence and applicable risk/operational authority.",
+      "missingEvidence": "The retained research and scoring permissions do not confer decision or trade authorization.",
+      "primaryCause": "EVIDENCE_QUALIFICATION_GAP",
+      "supportingCauses": [],
+      "constraint": "GOVERNANCE",
+      "resolution": "Use the existing M6.5 contract and original authoritative sources under the matching clock.",
+      "futureDataTest": {
+        "result": "NO",
+        "rationale": "The same annual reporting structure does not provide this decision-scope requirement."
+      },
+      "nextTrigger": "Complete exact formal decision scope with required human and approval receipts",
+      "impact": "Dependency remains limited. No Decision State or executable action is issued.",
+      "owner": "M6.5 decision reviewer",
+      "approval": "Existing downstream gates apply.",
+      "baselineChange": false,
+      "outcome": "ESCALATED"
+    }
+  ]
+}

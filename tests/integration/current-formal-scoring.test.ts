@@ -2,7 +2,7 @@ import {createElement} from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {LimitedCoverageView} from '@/ui/limited-coverage';
 import {ACB_LIMITED_METHOD, ACB_UNRATED_RUBRICS} from '@/domain/current-scoring/limited-coverage';
-import {mkdtempSync, rmSync, writeFileSync} from "node:fs";
+import {mkdtempSync, readFileSync, rmSync, writeFileSync} from "node:fs";
 import {tmpdir} from "node:os";
 import {join} from "node:path";
 import {ValidationError} from "@/shared/errors";
@@ -53,6 +53,22 @@ describe('explicit current-purpose scoring, SYNTHETIC AUTHORITY ONLY',()=>{
  });
  it('rejects untrusted assessment changes, missing current financial lineage and revoked authority',async()=>{
   const x=await setup();try{await expect(x.service.score(sign({...x.f,companyName:'SPOOFED'}),x.reference)).rejects.toThrow();const omitted=sign({...x.f,evidence:x.f.evidence.slice(1)});x.review(omitted);await expect(x.service.score(omitted,x.reference)).rejects.toThrow();x.revokeAuthority();await expect(x.service.score(x.f,x.reference)).rejects.toThrow();}finally{await x.db.close();}
+ });
+ it('keeps a predecessor immutable while an exact test-only reviewed successor is materialized',async()=>{
+  const x=await setup();
+  try{
+   const predecessor=await x.service.score(x.f,x.reference);
+   const successor=sign({...x.f,id:'SYNTHETIC-CURRENT-SUCCESSOR',priorScorecardId:predecessor.id,revisionReason:'Test-only candidate succession'});
+   await expect(x.service.score(successor,x.reference)).rejects.toThrow('SYNTHETIC_UNTRUSTED_REVIEW');
+   x.review(successor);
+   await expect(x.service.score(sign({...successor,companyName:'Wrong hash'}),x.reference)).rejects.toThrow('SYNTHETIC_UNTRUSTED_REVIEW');
+   const scored=await x.service.score(successor,x.reference);
+   expect(scored.id).toBe(successor.id);
+   const stored=await x.db.client.$queryRawUnsafe<{id:string;body_hash:string}[]>('SELECT id,body_hash FROM current_score_artifact ORDER BY id');
+   expect(stored.map(row=>row.id)).toEqual([predecessor.id,successor.id]);
+   x.review(x.f);
+   expect((await x.service.find(predecessor.id))!.card).toEqual(predecessor);
+  }finally{await x.db.close();}
  });
  it('rejects cross-ticker/binding substitution and propagates revocation on readback',async()=>{
   const x=await setup();try{await expect(x.service.score(x.f,{...x.reference,context:{...x.reference.context,securityId:'SYNTHETIC_OTHER'}})).rejects.toThrow();await x.service.score(x.f,x.reference);x.revoke();await expect(x.service.find(x.f.id)).rejects.toThrow();}finally{await x.db.close();}
@@ -336,4 +352,31 @@ it('authorizes and replays only the exact ACB limited coverage in isolated SQLit
  } finally {
   await Promise.all([x.db.close(),wrong.db.close()]);
  }
+});
+
+it('sends the exact FPT three-rubric candidate through isolated authorization and enforces the V8 scope', async () => {
+ const {routes}=JSON.parse(readFileSync('tools/scoring/vn30-score-routes.json','utf8'));
+ const route=routes.find((row:{subject:{ticker:string}})=>row.subject.ticker==='FPT');
+ const dir=route.assessment.path.slice(0,route.assessment.path.lastIndexOf('/'));
+ const {input:candidate}=JSON.parse(readFileSync(join(dir,'FPT_WORKSTREAM_A_SUCCESSOR_V1.json'),'utf8')) as {input:ScoreInput};
+ const {input:predecessor}=JSON.parse(readFileSync(route.assessment.path,'utf8')) as {input:ScoreInput};
+ const reference=JSON.parse(readFileSync(route.reference.path,'utf8')) as PreScoringDatasetReference;
+ const baseline=JSON.parse(readFileSync(join(dir,'FPT_V8_SCORE_READBACK.json'),'utf8'));
+ const x=await setup(predecessor,'FPT','TEST-ONLY-FPT-DATASET',reference.bindingId,reference.manifestHash,
+     baseline.dataAcceptanceId,reference.context.knownAt);
+ try{
+  const stored=await x.service.score(predecessor,x.reference);
+  expect(stored.id).toBe(baseline.id);
+  await expect(x.service.score(candidate,x.reference)).rejects.toThrow('SYNTHETIC_UNTRUSTED_REVIEW');
+  expect(candidate.review.passes.map(pass=>pass.kind)).toEqual(['PREPARATION','CHALLENGE']);
+  x.review(candidate); // test-only exact input trust; no owner receipt or route is written
+  await expect(x.service.score(sign({...candidate,companyName:'Mismatched exact input'}),x.reference))
+   .rejects.toThrow('SYNTHETIC_UNTRUSTED_REVIEW');
+  await expect(x.service.score(candidate,x.reference)).rejects.toMatchObject({
+   issues:[expect.objectContaining({reason:'FPT_LIMITED_EXACT_RUBRIC_COVERAGE_REQUIRED'})],
+  });
+  x.review(predecessor);
+  expect((await x.service.find(predecessor.id))?.card).toEqual(stored);
+  expect(await x.service.find(candidate.id)).toBeNull();
+ }finally{await x.db.close();}
 });

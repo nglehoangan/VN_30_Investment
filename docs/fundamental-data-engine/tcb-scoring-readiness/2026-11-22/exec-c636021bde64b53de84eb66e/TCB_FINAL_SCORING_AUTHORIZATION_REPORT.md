@@ -15,17 +15,29 @@
 
 [Verified score artifact](TCB_FINAL_SCORE_ARTIFACT.json) · [Execution receipt](TCB_SCORE_EXECUTION_RESULT.json) · [Owner approval](TCB_SCORE_EXECUTION_OWNER_APPROVAL.json)
 
-## Website release candidate
+## Current production publication acceptance
 
-The read-only development preview is `/tcb-scoring`. The page verifies the retained scoring envelope before rendering. Production materialization requires an identified target and its governed deployment acceptance. PUB-04 requires TCB-specific read-only release authority bound to this subject.
+**BLOCKED_WITH_SPECIFIC_CAUSE.** Baseline `575265a98cf08448911a51971d24c9acd19a5637`. The completed isolated execution `exec-0b19b7fa3d5a2c4db8eb53f6` is the sole score source for this candidate. The target SQLite path is `data/vn30.sqlite`, resolved from the repository and checked against the app's local configuration and the existing VNM materialization target. No production website origin was verified. The target contains neither the TCB score row nor the approved TCB methodology row.
 
-| Publication subject | Identity |
+| Exact publication subject | Value |
 | --- | --- |
-| Scorecard ID | `TCB-CONSOLIDATED-20261030-CANDIDATE` |
-| Scorecard SHA-256 | `1c866584914fb8fd6c4b16acbcf7a48b11dca670bf2b1a9973c4d433b0fed475` |
-| Dataset SHA-256 | `9fde2d5ff4df7ce769714ba2f2f2f97c22d9a98f9a4bf37f6f5ed16b90ae2efb` |
-| Methodology SHA-256 | `b1642701ad9aa38df90498249b0509464befbd9dfd6d3a9676c974c4b7f6a8d9` |
-| Review SHA-256 | `c8b730326974407820be2eecaa4522d985edd51c5f783e5a859e80b34c16c7c9` |
+| scorecardId | `TCB-CONSOLIDATED-20261030-CANDIDATE` |
+| scorecardHash | `1c866584914fb8fd6c4b16acbcf7a48b11dca670bf2b1a9973c4d433b0fed475` |
+| datasetHash | `9fde2d5ff4df7ce769714ba2f2f2f97c22d9a98f9a4bf37f6f5ed16b90ae2efb` |
+| methodologyHash | `b1642701ad9aa38df90498249b0509464befbd9dfd6d3a9676c974c4b7f6a8d9` |
+| reviewHash | `c8b730326974407820be2eecaa4522d985edd51c5f783e5a859e80b34c16c7c9` |
+| Stored envelope SHA-256 | `5c4bfe87749c8eee163cb7d86e20452dbb2994652bb4313c904a83a3d521d4cc` |
+| Preflight authorization SHA-256 | `5a8ecf9fd9d145ffb7e97696d5c9f0796787ddaa56e3688daad308cc269994c6` |
+
+The scoring receipt, approved route, owner statement and source bytes bind the same execution digest. The approved executable and both trusted reviews passed their runtime verifiers in isolation. The M1 and scope receipts, approved AI draft and final assessment pins were checked. The AI draft to final transition changed review metadata, timestamps and executable registration fields. Rubric evidence and economic conclusions were retained. The exact execution signature binds the final assessment and both reviews. The admitted dataset hash matched a read-only adapter replay. The target revocation check found no matching event for the verified score, binding, data acceptance or exact scoring authority references.
+
+The existing VNM deployment recipe invokes scoring to materialize its result. TCB requires a governed materialization path that preserves the retained envelope without executing scoring again. Four source paths in the approved isolated TCB executable differ from this baseline. Substituting those bytes would also invalidate ACB's existing pins for all four. The candidate records the paths. Resolve coexistence without changing ACB authority, then rehearse the exact TCB materialization on a production copy and verify its persisted envelope and the read-only publication consumer. The production registry currently provides VNM and ACB authority only.
+
+The local `/tcb-scoring` component displayed the expected score and N/R rows in an isolated component check and rejected production mode. The three publication, publication view and BANK dataset regression suites passed **13 tests** with a temporary Node config and a `server-only` alias. The default run encountered an unresolved `server-only` import and worker startup timeouts. Target HTTP readback is pending production materialization and exact TCB PUB-04 authorization.
+
+The next mandatory owner gate is the exact materialization plan after the technical blockers are cleared and the website origin is identified. Separate subject-specific PUB-04 approval follows materialization. This candidate carries no executable approval for either action. No production writes, publication, rescoring or artifact pruning occurred in this review.
+
+[Blocked publication candidate and readback checks](TCB_PUBLICATION_ACCEPTANCE_CANDIDATE.json)
 
 ## Historical authorization review
 

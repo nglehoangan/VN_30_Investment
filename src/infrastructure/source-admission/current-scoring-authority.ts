@@ -4,7 +4,7 @@ import {sourceBytes,type SourcePin} from './registry';
 import {snapshotHash as hash} from '@/infrastructure/fundamentals/snapshot-hash';
 import {check} from '@/domain/scoring/validation';
 import {verifyProductionAuthorityBundle} from '@/infrastructure/dependencies/production-authority';
-import {ACB_LIMITED_METHOD} from '@/domain/current-scoring/limited-coverage';
+import {ACB_LIMITED_METHOD,FPT_LIMITED_METHOD} from '@/domain/current-scoring/limited-coverage';
 import {instant,dateOnly} from '@/shared/time';
 export const CURRENT_SCORING_RUNTIME=[
  'src/domain/fundamentals/scoring-bridge.ts','src/infrastructure/dependencies/production-authority.ts',
@@ -16,6 +16,16 @@ export const CURRENT_SCORING_RUNTIME=[
  'src/domain/personal-ai/scorecard.ts','src/domain/personal-ai/provenance.ts','src/domain/personal-ai/scoring-readiness.ts','src/domain/personal-ai/scoring-bridge.ts',
  'prisma/proposals/current-scoring-artifact-v1.sql','scripts/generate-current-scoring.mjs',
  'src/domain/current-scoring/provenance.ts','src/infrastructure/source-admission/current-review.ts',
+] as const;
+export const FPT_OFFICIAL_LIMITED_RUNTIME=[
+ ...CURRENT_SCORING_RUNTIME.filter(path=>path!=='scripts/generate-current-scoring.mjs'),
+ 'src/domain/current-scoring/limited-coverage.ts',
+ 'src/infrastructure/source-admission/current-scoring-consumer.ts',
+ 'tools/scoring/vn30_score.py',
+ 'tools/scoring/vn30_score_worker.mjs',
+ 'tools/scoring/fpt-technology-adapter.ts',
+ 'docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_LIMITED_POLICY_OWNER_REQUEST.txt',
+ 'docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_LIMITED_EXACT_SCOPE.md',
 ] as const;
 export const ACB_BANK_PENDING_REVIEW_RUNTIME=[
  ...CURRENT_SCORING_RUNTIME.filter(path=>path!=='scripts/generate-current-scoring.mjs'),
@@ -69,9 +79,11 @@ export class PinnedCurrentExecutableAuthority implements CurrentExecutableAuthor
   check(owner.ownerAuthority==='PROJECT_OWNER'&&owner.statement===`Approve exact current-purpose scoring authority ${approvalPayloadHash} for CURRENT_FORMAL_VALUATION`,'CURRENT_EXECUTABLE_OWNER_AUTHORIZATION_REQUIRED');
   check(sourceBytes(this.root,owner.source).toString().includes(owner.statement),'CURRENT_EXECUTABLE_VERBATIM_OWNER_SOURCE_REQUIRED');
   instant(owner.recordedAt);instant(this.clock.now());check(owner.recordedAt<=this.clock.now()&&method.recordedAt===owner.recordedAt&&method.effectiveDate===owner.recordedAt.slice(0,10)&&method.approvalReference===a.ownerApproval.receipt.path,'CURRENT_EXECUTABLE_APPROVAL_TIME');
-  check(a.runtimeProfile===undefined||['ACB_BANK_PENDING_REVIEW_V1','ACB_BANK_PENDING_REVIEW_RECOVERY_V1','ACB_OFFICIAL_LIMITED_V1'].includes(a.runtimeProfile),'CURRENT_EXECUTABLE_RUNTIME_PROFILE');
+  check(a.runtimeProfile===undefined||['ACB_BANK_PENDING_REVIEW_V1','ACB_BANK_PENDING_REVIEW_RECOVERY_V1','ACB_OFFICIAL_LIMITED_V1','FPT_OFFICIAL_LIMITED_V1'].includes(a.runtimeProfile),'CURRENT_EXECUTABLE_RUNTIME_PROFILE');
   check((a.runtimeProfile==='ACB_OFFICIAL_LIMITED_V1')===(method.methodologyId===ACB_LIMITED_METHOD),'CURRENT_EXECUTABLE_LIMITED_METHOD_PROFILE_MISMATCH');
-  const runtime=a.runtimeProfile==='ACB_OFFICIAL_LIMITED_V1'?ACB_OFFICIAL_LIMITED_RUNTIME:
+  check((a.runtimeProfile==='FPT_OFFICIAL_LIMITED_V1')===(method.methodologyId===FPT_LIMITED_METHOD),'CURRENT_EXECUTABLE_FPT_PROFILE_MISMATCH');
+  const runtime=a.runtimeProfile==='FPT_OFFICIAL_LIMITED_V1'?FPT_OFFICIAL_LIMITED_RUNTIME:
+   a.runtimeProfile==='ACB_OFFICIAL_LIMITED_V1'?ACB_OFFICIAL_LIMITED_RUNTIME:
    a.runtimeProfile==='ACB_BANK_PENDING_REVIEW_RECOVERY_V1'?ACB_BANK_PENDING_REVIEW_RECOVERY_RUNTIME:
    a.runtimeProfile==='ACB_BANK_PENDING_REVIEW_V1'?ACB_BANK_PENDING_REVIEW_RUNTIME:CURRENT_SCORING_RUNTIME;
   check(Array.isArray(a.code)&&a.code.length===runtime.length&&new Set(a.code.map((p:SourcePin)=>p.path)).size===runtime.length&&runtime.every(path=>a.code.some((p:SourcePin)=>p.path===path))&&a.codeHash===hash(a.code),'CURRENT_EXECUTABLE_COMPLETE_CODE_BINDING');

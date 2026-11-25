@@ -1,0 +1,127 @@
+{
+  "contract": "tcb-publication-acceptance-candidate-v1",
+  "status": "BLOCKED_WITH_SPECIFIC_CAUSE",
+  "baselineCommit": "575265a98cf08448911a51971d24c9acd19a5637",
+  "ticker": "TCB",
+  "economicCutoff": "2026-10-30",
+  "purpose": "CURRENT_FORMAL_VALUATION",
+  "executionId": "exec-0b19b7fa3d5a2c4db8eb53f6",
+  "subject": {
+    "scorecardId": "TCB-CONSOLIDATED-20261030-CANDIDATE",
+    "scorecardHash": "1c866584914fb8fd6c4b16acbcf7a48b11dca670bf2b1a9973c4d433b0fed475",
+    "datasetHash": "9fde2d5ff4df7ce769714ba2f2f2f97c22d9a98f9a4bf37f6f5ed16b90ae2efb",
+    "methodologyHash": "b1642701ad9aa38df90498249b0509464befbd9dfd6d3a9676c974c4b7f6a8d9",
+    "reviewHash": "c8b730326974407820be2eecaa4522d985edd51c5f783e5a859e80b34c16c7c9"
+  },
+  "sourcePins": [
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_FINAL_SCORE_ARTIFACT.json",
+      "sha256": "5c4bfe87749c8eee163cb7d86e20452dbb2994652bb4313c904a83a3d521d4cc"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_SCORE_EXECUTION_RESULT.json",
+      "sha256": "822f6990d7b81d7ed946bd0a4bdb5f05b5253eead85b8f1cc733173d8a66ea55"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_SCORE_EXECUTION_REGISTERED_ROUTE.json",
+      "sha256": "9889f81f321b6cc068ec64aeb12b2188b7d44401cbcd67953b90e3ad0e2fcd39"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_SCORE_EXECUTION_OWNER_APPROVAL.json",
+      "sha256": "844d5d2255e4533a6ad68e49327934d556f7dd075cd8bd6006b990b10dbdc46e"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_CORRECTED_RUNTIME_AUTHORITY_APPROVED.json",
+      "sha256": "01d34a843c110b939ed276bc9231a2ec36ff3a82a3375e2282fa38a8fbc1cecf"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_CORRECTED_AUTHORIZED_SCORING_ASSESSMENT.json",
+      "sha256": "0d4ccb9594cab4b4eb5824f2a9fb86bbd227294f63be0d9410bf10ee2de18097"
+    },
+    {
+      "path": "docs/fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_CORRECTED_PREPARE_STATUS.json",
+      "sha256": "268798d935f2fa3d1445feeb559902c8391dac69c4f86f72d4f44215325d3ddd"
+    }
+  ],
+  "authorizationEnvelopeHash": "5a8ecf9fd9d145ffb7e97696d5c9f0796787ddaa56e3688daad308cc269994c6",
+  "expected": {
+    "status": "OFFICIAL_LIMITED",
+    "confirmedScore": 47,
+    "ratedMaxPoints": 93,
+    "ratedRubricCount": 20,
+    "totalRubricCount": 23,
+    "unratedRubrics": [
+      "FH-STRESS",
+      "CA-DIST",
+      "CA-DIL"
+    ],
+    "fullOfficialScore": null,
+    "eligibleForRanking": false,
+    "allocationAuthorized": false
+  },
+  "target": {
+    "database": "/Users/nglehoangan/Documents/Working/VN_30_Investment/data/vn30.sqlite",
+    "websiteRoute": "/tcb-scoring",
+    "dashboardDetailRoute": "/scoring/TCB-CONSOLIDATED-20261030-CANDIDATE",
+    "productionOrigin": null,
+    "currentScoreRows": 0,
+    "currentMethodologyRows": 0
+  },
+  "checks": {
+    "liveScoreRows": 0,
+    "liveMethodRows": 0,
+    "liveTarget": "/Users/nglehoangan/Documents/Working/VN_30_Investment/data/vn30.sqlite",
+    "tcBSourcePinMismatches": [
+      "src/infrastructure/source-admission/current-scoring.ts",
+      "src/infrastructure/source-admission/current-scoring-authority.ts",
+      "src/domain/current-scoring/limited-coverage.ts",
+      "tools/scoring/vn30_score_worker.mjs"
+    ],
+    "acbPinsInvalidatedByTCBRuntime": [
+      "src/infrastructure/source-admission/current-scoring.ts",
+      "src/infrastructure/source-admission/current-scoring-authority.ts",
+      "tools/scoring/vn30_score_worker.mjs",
+      "src/domain/current-scoring/limited-coverage.ts"
+    ]
+  },
+  "blockers": [
+    "SHARED_RUNTIME_PIN_COLLISION_WITH_ACB",
+    "NO_GOVERNED_NO_RESCORE_MATERIALIZATION_RECIPE",
+    "NO_TCB_PRODUCTION_PUBLICATION_REGISTRATION",
+    "PRODUCTION_WEBSITE_ORIGIN_UNVERIFIED"
+  ],
+  "approval": {
+    "materialize": null,
+    "publishReadOnly": null
+  },
+  "websiteReadback": {
+    "status": "NOT_RUN",
+    "after": [
+      "EXACT_MATERIALIZATION_AUTHORIZED_AND_VERIFIED",
+      "EXACT_TCB_PUB04_AUTHORIZED_AND_REGISTERED"
+    ],
+    "assertions": [
+      "HTTP 200 on intended website",
+      "DB publication envelope and dashboard exact subject hashes match",
+      "Economic cutoff and limited coverage equal expected",
+      "N/R visible and full score null",
+      "Ranking and allocation disabled",
+      "Protected unrelated ticker and portfolio readbacks unchanged"
+    ]
+  },
+  "activatesPublication": false,
+  "historicalPitGranted": false,
+  "validation": {
+    "exactEnvelopeAndReceipt": "PASS",
+    "isolatedAdapterReadOnlyReplay": "PASS",
+    "trustedReviewVerifier": "PASS",
+    "executableAuthorityVerifier": "PASS",
+    "localPreviewComponentAndProductionGuard": "PASS",
+    "isolatedRegression": {
+      "files": 3,
+      "passed": 13,
+      "configuration": "Node threads, explicit server-only alias and experimental SQLite"
+    },
+    "websiteHttp": "NOT_RUN"
+  }
+}
