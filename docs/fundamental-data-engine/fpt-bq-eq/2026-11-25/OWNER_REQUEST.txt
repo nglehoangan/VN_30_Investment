@@ -1,0 +1,560 @@
+# CODEX TASK — BQ-EQ Approved Evidence Sufficiency Amendment & Real FPT Scoring
+
+## 1. Owner Approval
+
+The owner formally approves BQ-EQ Evidence Sufficiency Amendment v1.0.
+
+Approval date: 2026-11-25.
+
+Rubric: BQ-EQ — Economic Quality.
+
+Maximum points: 8.
+
+Approved decisions:
+
+- D1: Preserve the existing economic objective and maximum weight of 8 points.
+- D2: Use FY2022–FY2025 as the fundamental foundation, followed by incremental Q1–Q3/2026 updates.
+- D3: Returns and persistence are CORE. Margins are SUPPORTING or CONDITIONAL depending on materiality.
+- D4: Cost of capital may be established through a documented analyst estimate or conservative range.
+- D5: Permit sector-equivalent and combined economic evidence when direct ROIC cannot be reliably calculated.
+- D6: Preserve existing scoring bands and use conservative within-band selection where appropriate.
+- D7: Assign N/R only when no existing band can be defended after applying authorized alternatives.
+- D8: Implement and execute scoring using actual FPT evidence, not synthetic fixtures alone.
+
+Promote the approved amendment to Approved Baseline v1.0 using the existing methodology governance process.
+
+This approval is explicitly limited to BQ-EQ.
+
+It authorizes implementation and isolated real-issuer scoring validation. It does not authorize production activation, publication or modification of the existing official FPT V8 scorecard.
+
+## 2. Primary Objective
+
+Make BQ-EQ operationally usable for an individual value investor using public financial information.
+
+Complete the full workflow:
+
+Public financial reports → normalized financial metrics → analyst assessment → evidence sufficiency validation → executable rubric scoring → actual scoring result.
+
+Do not stop at:
+
+- Documentation updates.
+- Evidence inventories.
+- Proposed assessment JSON.
+- Preparation-only execution.
+- Synthetic validation.
+- Another generic methodology audit.
+- Another proxy specification.
+
+The primary deliverable is an actual executable BQ-EQ scoring result using real FPT data.
+
+## 3. Scope and baseline inspection
+
+Inspect the latest repository state and existing authority records.
+
+Relevant files include:
+
+- METRIC_DEFINITIONS.md
+- SCORING_ENGINE.md
+- SECTOR_NORMALIZATION.md
+- SCORECARD_TEMPLATE.md
+- METHODOLOGY_CLARIFICATION.md
+- PUBLIC_DATA_PROXY_SPECIFICATION_23_RUBRICS.md
+- src/domain/scoring/methodology.ts
+- src/domain/current-scoring/scorecard.ts
+- src/domain/current-scoring/public-proxy-review.ts
+- src/domain/current-scoring/public-proxy-candidate.ts
+
+Inspect the existing FPT FY2025 assessments, FTEL financial scope bridge and retained scoring evidence.
+
+Resolve actual repository paths.
+
+Preserve historical immutable methodology and executable identities.
+
+Do not modify previously pinned production artifacts.
+
+## 4. Approved BQ-EQ evidence contract
+
+### 4.1 Returns — CORE
+
+Require economically meaningful evidence of returns on capital.
+
+Permitted routes:
+
+- Normalized ROIC.
+- Sustainable ROE or ROTE for applicable sectors.
+- Existing approved sector-equivalent return metrics.
+- Defensible conservative return ranges.
+- Approved combined economic evidence when direct ROIC is unavailable.
+
+The selected return method must remain economically meaningful and suitable for the issuer's sector.
+
+Do not permit raw ROE alone to substitute automatically for industrial or technology ROIC.
+
+### 4.2 Persistence — CORE
+
+Require sufficient historical evidence to evaluate the durability of economic returns.
+
+Use three-year history where five-year history is unavailable, consistent with existing M3 rules.
+
+Prefer FY2022–FY2025 for the FPT pilot.
+
+Evaluate:
+
+- Stability of normalized economic returns.
+- Historical profitability.
+- Material abnormal periods.
+- Structural changes.
+- Sustainability of economic performance.
+
+Do not invalidate a supported historical assessment merely because newer quarterly information exists.
+
+Reassess it when new information materially affects the economic conclusion.
+
+### 4.3 Margins — SUPPORTING / CONDITIONAL
+
+Margin evidence is supporting by default.
+
+Use available gross margin, EBIT margin, sector-equivalent operating profitability and historical margin trends.
+
+Missing standalone margin evidence must not automatically cause N/R if the remaining evidence sufficiently supports the selected band.
+
+Margin evidence becomes a necessary dependency when:
+
+- Material margin deterioration may invalidate the selected return assessment.
+- Reported return metrics conflict with operating performance.
+- Margin normalization is essential to the selected return method.
+- The selected band or existing maximum-score prerequisites require durable superior profitability.
+
+Assess and document materiality explicitly.
+
+Do not ignore contradictory margin evidence.
+
+### 4.4 Cost of capital — CORE, estimate permitted
+
+Permit a reasoned analyst estimate or conservative range.
+
+Use an appropriate economic hurdle:
+
+- WACC for ROIC-based assessment.
+- Cost of equity for ROE/ROTE-based assessment.
+- Compatible sector-equivalent hurdle where applicable.
+
+Record:
+
+- Method.
+- Input assumptions.
+- Supporting public evidence.
+- Estimate range.
+- Sensitivity.
+- Relevant limitations.
+
+Do not require issuer-confirmed WACC or an externally published exact cost-of-capital value.
+
+Do not confuse the portfolio target return with the company's economic cost of capital.
+
+### 4.5 Peer comparison — SUPPORTING
+
+Use peer comparisons when useful and economically comparable.
+
+If a reliable peer group is unavailable, use approved absolute economic anchors and own-history analysis.
+
+Missing peer comparisons alone must not block BQ-EQ.
+
+Preserve existing sector normalization and small-peer-set controls.
+
+### 4.6 Maximum-score requirements
+
+Preserve all existing maximum-score prerequisites.
+
+An 8/8 result requires documented durable superior economics, exceptional justification and valid disconfirming evidence review.
+
+High returns caused by leverage, undercapitalization, weak provisioning, temporary accounting effects or abnormal cycle conditions must not automatically receive maximum credit.
+
+## 5. Approved fallback order
+
+For BQ-EQ, implement the following sequence.
+
+### Route A — Direct return calculation
+
+Calculate normalized ROIC or the applicable primary sector return measure from admitted financial evidence.
+
+### Route B — Sector-equivalent return
+
+Use an approved economically equivalent return measure when the primary metric is unsuitable or unavailable.
+
+Explain the equivalence.
+
+### Route C — Conservative range
+
+Construct defensible return and cost-of-capital ranges using supported public operands and justified assumptions.
+
+Determine which economic assessment remains defensible across the relevant range.
+
+Do not invent missing financial values.
+
+### Route D — Combined economic evidence
+
+When direct ROIC cannot be reliably calculated, assess whether a combination of evidence can establish the same economic conclusion.
+
+Possible components:
+
+- Normalized ROE.
+- Leverage-adjusted profitability.
+- Historical ROIC.
+- Operating margin.
+- Capital efficiency.
+- Asset turnover.
+- Operating cash realization.
+- Comparable segment-level returns where available.
+- Evidence concerning material changes in business scope.
+
+The combined evidence must establish an economically meaningful conclusion about returns relative to the appropriate cost of capital.
+
+Address material conflicting evidence.
+
+This is an authorized BQ-EQ substitution route, not permission to infer a score from arbitrary unrelated ratios.
+
+### Route E — N/R
+
+Assign N/R only after the relevant authorized routes have been attempted and no defensible existing band remains.
+
+State the precise economic uncertainty that prevents assessment.
+
+Do not assign zero or a low score merely because information is missing.
+
+## 6. Preserve existing scoring bands
+
+Keep the exact existing registry bands:
+
+| Assessment | Allowed points |
+|---|---|
+| Value destructive | 0 |
+| Weak economics | 1–2 |
+| Average economics | 3–4 |
+| Good economics | 5–6 |
+| Consistently superior economics | 7–8 |
+
+Apply the following assessment principles:
+
+- 0: Evidence establishes persistent value-destructive economics.
+- 1–2: Weak return economics or material economic limitations.
+- 3–4: Average economics without adequately demonstrated durable superiority.
+- 5–6: Good sustainable economics supported by returns relative to economic cost.
+- 7–8: Consistently superior economics supported by strong historical and normalized evidence.
+
+Preserve existing within-band stronger-evidence requirements.
+
+When only the lower point of a defensible band is supported, explicitly select that lower point.
+
+Do not automatically assign the lowest band because the evidence is incomplete.
+
+No new hard numerical thresholds are authorized beyond existing approved economic anchors.
+
+## 7. Implementation requirements
+
+Implement the amended evidence-sufficiency contract for BQ-EQ only.
+
+The existing universal all-topic completeness predicate must no longer reject an otherwise supported BQ-EQ assessment solely because non-material supporting margin evidence is absent.
+
+Preserve:
+
+- Required returns evidence.
+- Required persistence evidence.
+- Supported cost-of-capital assessment.
+- Material conditional dependencies.
+- Evidence provenance.
+- Applicable source and time eligibility.
+- Counterevidence handling.
+- Existing maximum-score validation.
+- Existing band validation.
+- Double-counting controls.
+- Stage 0 and Risk Policy controls.
+
+Distinguish supporting references from references required to establish the economic conclusion.
+
+Do not globally replace every(usable) with some(usable).
+
+Do not globally relax the requirements of the remaining 22 rubrics.
+
+Do not change the total-score null policy in this task.
+
+If an internal shared abstraction is needed, its behavior must remain unchanged for all other rubrics.
+
+Update the existing reusable scoring guidance only where necessary to apply the approved BQ-EQ routes.
+
+Do not create a new skill unless an existing skill cannot reasonably own the responsibility.
+
+Register a distinct implementation identity and methodology configuration where required.
+
+Do not edit generated scorer files directly if they are owned by an existing generator.
+
+## 8. Real-issuer validation execution path
+
+The current proxy candidate is restricted to SYNTHETIC_TEST.
+
+Provide a properly isolated and authorized non-production execution path for actual issuer evidence.
+
+Use an existing suitable research or validation route where available.
+
+Otherwise implement a minimal isolated real-issuer validation adapter or candidate entry point under this approval.
+
+Requirements:
+
+- Actual FPT evidence must remain identified as real issuer data.
+- Do not relabel it as synthetic.
+- Do not bypass evidence validation.
+- Do not bypass the amended BQ-EQ sufficiency contract.
+- Execute the actual amended scoring logic.
+- Prevent persistence or publication into official production records.
+- Preserve the existing production executable and V8 results.
+- Do not treat a manually written score as proof of executable scoring.
+
+If execution is genuinely blocked by an authority requirement that this approval cannot resolve, report the exact blocker and required owner decision.
+
+A preparation-only result is not sufficient for operational acceptance.
+
+## 9. FPT execution — Stage A: FY2025 baseline
+
+Ticker: FPT.
+
+Financial foundation: FY2022–FY2025.
+
+Use existing retained public evidence first.
+
+Reuse the existing FY2025 analytical products where valid and reproducible.
+
+Calculate or explicitly explain the availability of:
+
+- Revenue.
+- Normalized EBIT.
+- Normalized tax rate.
+- NOPAT.
+- Operating assets.
+- Non-interest-bearing operating liabilities.
+- Invested capital.
+- Average invested capital.
+- ROIC.
+- Common equity.
+- Normalized common-shareholder earnings.
+- ROE.
+- EBIT margin.
+- Leverage context.
+- Cost-of-capital range.
+
+Do not treat every listed output as an independent mandatory scoring operand.
+
+Identify the actual inputs required by the selected assessment route.
+
+Show the calculation and evidence lineage.
+
+Maintain consistent financial periods and consolidation scopes.
+
+Separate the FY2025 financial-period end from the actual availability dates of annual financial reports.
+
+Produce an actual executable BQ-EQ scoring result for the qualified FY2025 research foundation.
+
+Previous FY2025 BQ-EQ research result of 5/8 is a comparison reference, not a target.
+
+Do not force the result to match it.
+
+## 10. FPT execution — Stage B: Incremental 2026 assessment
+
+Current economic cutoff: 2026-11-13.
+
+Process eligible evidence concerning:
+
+- Q1/2026.
+- Q2/2026.
+- Reviewed H1/2026 statements.
+- Q3/2026.
+- Material subsequent events through the cutoff.
+
+Process information in actual publication and economic-event order.
+
+Reuse the existing FTEL financial scope bridge.
+
+Do not initiate another full FTEL reconciliation project.
+
+Determine whether FY2025 economic evidence remains valid, requires qualification or has been materially invalidated.
+
+If direct current ROIC cannot be calculated on a consistent scope:
+
+1. Attempt an approved sector-equivalent route.
+2. Attempt a supported conservative range.
+3. Attempt combined economic evidence.
+4. Review whether unresolved FTEL economics materially prevent a defensible band.
+5. Assign N/R only if no approved route supports a band.
+
+Do not combine incompatible profit and invested-capital scopes.
+
+Do not automatically carry forward the FY2025 score.
+
+Produce the actual executable current-purpose BQ-EQ research validation result.
+
+## 11. Required tests
+
+Run one bounded implementation and validation cycle.
+
+At minimum, cover:
+
+### Positive cases
+
+- Complete direct evidence.
+- Missing non-material supporting margin evidence.
+- Reasoned cost-of-capital estimate.
+- Conservative cost-of-capital range.
+- Sector-equivalent returns.
+- Supported combined economic evidence.
+- Lower-point selection within a defensible band.
+- Valid historical evidence combined with eligible subsequent updates.
+
+### Negative cases
+
+- Missing CORE returns evidence.
+- Missing CORE persistence evidence.
+- Unsupported cost-of-capital assumptions.
+- Material unresolved margin contradiction.
+- Incompatible consolidation scopes.
+- Misleading leverage-driven ROE.
+- Combined evidence that does not establish comparable economic returns.
+- Unsupported maximum score.
+- Future or unusable required evidence.
+- Attempted unauthorized production publication.
+
+### Regression cases
+
+- Existing 22 rubric behavior unchanged.
+- Total maximum remains 100 points.
+- BQ-EQ maximum remains 8 points.
+- Existing scoring bands unchanged.
+- Existing missing-data and risk controls preserved outside the approved amendment.
+- Historical production scorecards remain reproducible.
+- FPT V8 remains unchanged.
+
+Execute actual FPT scoring in addition to the synthetic tests.
+
+Do not declare completion solely on the basis of passing unit tests.
+
+## 12. Evidence improvement limit
+
+Use retained and admitted public data first.
+
+Allow at most one bounded targeted evidence-improvement round if an essential dependency remains unresolved.
+
+Do not repeat searches for unavailable private data.
+
+Do not start another generic data feasibility audit.
+
+Do not require a complete dataset for all 23 rubrics.
+
+Only BQ-EQ is in scope.
+
+## 13. Required output — Actual financial calculations
+
+Provide the following table with actual FPT values, units and source references:
+
+| Metric | FY2022 | FY2023 | FY2024 | FY2025 | Latest eligible 2026 period |
+|---|---|---|---|---|---|
+| Revenue | | | | | |
+| Normalized EBIT | | | | | |
+| NOPAT | | | | | |
+| Invested capital | | | | | |
+| Average invested capital | | | | | |
+| ROIC | | | | | |
+| ROE | | | | | |
+| EBIT margin | | | | | |
+
+For unavailable or non-comparable values, record the exact reason and whether the value is required by the selected assessment route.
+
+Show separate FTEL scope qualifications where necessary.
+
+## 14. Required output — Executable scoring results
+
+| Output | FY2025 foundation | Cutoff 2026-11-13 |
+|---|---|---|
+| Selected assessment route | | |
+| Return metric or economic evidence | | |
+| Cost-of-capital estimate/range | | |
+| Persistence evidence | | |
+| Margin materiality | | |
+| Counterevidence | | |
+| Selected band | | |
+| Analyst-selected points | | |
+| Executable output points | | |
+| Confidence | | |
+| VERIFIED / CONSERVATIVE / N/R | | |
+| Remaining economic limitations | | |
+| Production eligibility | | |
+
+Include the exact executable command, implementation identity, real input artifact reference and resulting output artifact reference.
+
+Analyst-selected points and executable output must be independently distinguishable.
+
+Explain any discrepancy.
+
+## 15. Acceptance criteria
+
+AC01 — Approved BQ-EQ amendment recorded.
+
+AC02 — Only BQ-EQ scoring behavior changed.
+
+AC03 — Returns, persistence and cost-of-capital requirements preserved.
+
+AC04 — Non-material supporting margin evidence no longer automatically blocks scoring.
+
+AC05 — Material conditional evidence remains enforced.
+
+AC06 — Approved alternative return routes are implemented and validated.
+
+AC07 — Existing bands and maximum points preserved.
+
+AC08 — Actual FY2025 FPT assessment executed through amended scoring logic.
+
+AC09 — Actual current-purpose FPT assessment executed through amended scoring logic.
+
+AC10 — Any remaining N/R is supported by a precise economic explanation after approved fallback attempts.
+
+AC11 — Existing 22 rubrics pass behavioral regression checks.
+
+AC12 — Existing production records and FPT V8 remain unchanged.
+
+No minimum numeric score or mandatory positive coverage improvement is imposed.
+
+A defensible N/R may pass analytical validation, but failure to execute actual scoring does not satisfy AC08 or AC09.
+
+## 16. Final deliverable
+
+Create one consolidated report:
+
+BQ_EQ_AMENDMENT_FPT_SCORING_CLOSURE.md
+
+Include:
+
+1. Owner approval.
+2. Approved evidence contract.
+3. Exact implementation changes.
+4. Actual FPT financial calculations.
+5. FY2025 executable scoring result.
+6. Current-purpose executable scoring result.
+7. Alternative routes attempted.
+8. Remaining material uncertainties.
+9. Test and regression results.
+10. Exact executable identity and Git commit.
+11. Production authority requirements.
+12. AC01–AC12 disposition.
+
+Retain required methodology, implementation, test, evidence lineage and final result artifacts.
+
+Avoid redundant temporary audit and preparation reports.
+
+Return:
+
+- Implementation verdict.
+- Operational scoring verdict.
+- FY2025 BQ-EQ score or N/R.
+- Current-purpose BQ-EQ score or N/R.
+- Remaining owner decision, if genuinely required.
+
+Stop after this work package.
+
+Do not proceed to BQ-MOAT or any other rubric automatically.

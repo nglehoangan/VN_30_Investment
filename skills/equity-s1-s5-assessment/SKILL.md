@@ -74,3 +74,5 @@ Khi FY là nền đánh giá hoặc có báo cáo kỳ mới, dùng phụ lục 
 ## Public-data assessment routes
 
 Dùng route đúng ngành cho từng rubric. Tái sử dụng evidence đã admit, dựng đầu ra mô hình từ dữ liệu công khai và dừng truy tìm chỉ số gốc khi proxy hợp lệ đã đủ. Follow the [Approved Baseline v1.0 and stopping rules](../../docs/03%20SCORING/PUBLIC_DATA_PROXY_SPECIFICATION_23_RUBRICS.md#evidence-discovery-workflow-and-stopping-rule).
+
+Với BQ-EQ, áp dụng [Approved Baseline v1.0](../../docs/03%20SCORING/BQ_EQ_EVIDENCE_SUFFICIENCY_v1.0.json) theo thứ tự lợi suất trực tiếp, chỉ tiêu tương đương ngành, khoảng bảo thủ, bằng chứng kinh tế kết hợp rồi N/R. Kiểm lợi suất, độ bền và chi phí vốn phù hợp. Ghi rõ khi biên lợi nhuận trở thành điều kiện và xử lý phản chứng trọng yếu. Cổng validation FPT chỉ thực thi nghiên cứu cô lập.
