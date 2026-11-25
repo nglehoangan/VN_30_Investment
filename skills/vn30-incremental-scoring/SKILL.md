@@ -21,3 +21,7 @@ For handoff, show the latest published cutoff, newest qualified observation date
 Pin the latest admitted final FY separately from interim observations. Use the [SEGM v1.2 annual contract](../../docs/fundamental-data-engine/structural-evaluation-gaps/2026-11-23/SEGM_V12_ANNUAL_REASSESSMENT.md) to compare immutable prior and current evidence indexes through the read-only Prepare companion. Do not roll the FY forward for an interim filing. Preserve original known-at and publication clocks. Carry a review only when its basis, evidence and validity window still match. Pass the affected valuation and decision dependencies to the existing owner-approved model and decision workflows.
 
 Use `--rubric-completion <diagnostic-packet>` on `tools/scoring/vn30_prepare_evaluation.py` to include the reviewed N/R inventory in read-only Prepare. Match ticker, cutoff, qualified sector and pinned universe to the native request. The companion result records research dispositions with no authority effect. The native successor still requires exact candidate pins, reviews and approval.
+
+## Public-data assessment routes
+
+Compare admitted evidence, calculated metrics and retained assessments first. Apply the relevant public route and record the route review during the one allowed evidence-improvement round. Follow the [Approved Baseline v1.0 and stopping rules](../../docs/03%20SCORING/PUBLIC_DATA_PROXY_SPECIFICATION_23_RUBRICS.md#evidence-discovery-workflow-and-stopping-rule).

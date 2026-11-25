@@ -12,3 +12,7 @@ Use this when a single ticker already has a closure or when resuming a blocked `
 The TCB case showed why these checks matter. A 62-character expected dataset digest stopped an already signed executable, draft review pins did not satisfy the final verifier, and successful isolated scoring still required a separate website release. Resolve dates, capital inputs and coverage from each ticker’s approved scope.
 
 When a bounded [evaluation feasibility audit](../../../docs/03%20SCORING/STRUCTURAL_EVALUATION_GAPS_v1.0.md) accompanies Prepare, run the companion entry point with the same ticker, universe, cutoff and candidate. Use the original native Prepare fields for route readiness, approval and preflight hashes. Keep the reviewed audit packet as the feasibility record.
+
+## Public-data route handoff
+
+Bind the reviewed route, source operands and counterevidence to the one-ticker assessment. Reuse reviewed dispositions for optional metrics and record a precise reopening trigger for N/R. For PX04, retain action comparability whenever per-share, action-sensitive or materially scope-affected economics enter the assessment. Consult the [Approved Baseline v1.0](../../../docs/03%20SCORING/PUBLIC_DATA_PROXY_SPECIFICATION_23_RUBRICS.md) before preparing the exact executable and review bindings.

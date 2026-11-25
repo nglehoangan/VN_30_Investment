@@ -30,3 +30,7 @@ python3 -B skills/vn30-rollout-orchestrator/scripts/runtime.py prepare \
 `plan --requests-json <explicit-jobs.json> --store <review-store> --universe-version <version>` persists a queue but invokes zero workers. `status --queue-id <id> --store <same-store> --universe-version <version>` is read-only. There is deliberately no CLI `run`, scoring, deployment or publication command. `control.py::run_next` is the tested host-adapter foundation; live bindings are not installed by this amendment.
 
 Keep sector-specific M3/M4 rules in `equity-s1-s5-assessment`; no VNM assumptions or industrial formula defaults. Research completion does not approve an assessment or authorize production. **STOP for CIO review within the requested scope.**
+
+## Public-data assessment routes
+
+Route each separately prepared ticker through the common 23-rubric public-data workflow before scheduling evidence improvement. Record the selected route and stop reason in the ticker checkpoint. Follow the [Approved Baseline v1.0 and stopping rules](../../docs/03%20SCORING/PUBLIC_DATA_PROXY_SPECIFICATION_23_RUBRICS.md#evidence-discovery-workflow-and-stopping-rule).

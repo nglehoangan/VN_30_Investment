@@ -2,9 +2,9 @@
 
 **Date:** 2026-11-25  
 **Repository baseline:** `eb529bf4f108806aa5142ae360c2b69d2cbd8397`  
-**Status:** Proposed evidence specification for owner review
+**Status:** Approved Baseline v1.0 · methodology authority `m3-public-data-proxy-v1.0.0` · [owner receipt](PUBLIC_DATA_PROXY_OWNER_APPROVAL.json)
 
-This specification implements the design brief arising from the [25 November feasibility audit](PUBLIC_DATA_FEASIBILITY_AUDIT_23_RUBRICS.md). It preserves the [23 canonical rubrics, bands and maximum prerequisites](../../src/domain/scoring/methodology.ts#L4) and all seven category weights, totaling 100. Five rubrics have new proxy proposals. Eighteen have existing methodological routes, comprising five direct, five existing proxy and eight analyst-model routes. Actual issuer-level N/R remains available in every class. No generic rubric was assigned N_R_RETAINED because the retained cases do not establish that every authorized route fails for that rubric. Existing methodology permission and permission to adopt a particular issuer assessment remain separate.
+This specification implements the design brief arising from the [25 November feasibility audit](PUBLIC_DATA_FEASIBILITY_AUDIT_23_RUBRICS.md). It preserves the [23 canonical rubrics, bands and maximum prerequisites](../../src/domain/scoring/methodology.ts#L4) and all seven category weights, totaling 100. Five rubrics have newly approved public-data routes. Eighteen have existing methodological routes, comprising five direct, five existing proxy and eight analyst-model routes. Actual issuer-level N/R remains available in every class. No generic rubric was assigned N_R_RETAINED because the retained cases do not establish that every authorized route fails for that rubric. Existing methodology permission and permission to adopt a particular issuer assessment remain separate.
 
 ## Evidence and score rules
 
@@ -16,7 +16,7 @@ This specification implements the design brief arising from the [25 November fea
 
 ## Canonical input matrix
 
-**Status codes** DC = NO_CHANGE_REQUIRED, EP = EXISTING_PROXY_AVAILABLE, NP = NEW_PROXY_PROPOSED, AM = ANALYST_MODEL_REQUIRED. The five NP rows are pending in their exact proposed form. “Existing” means existing methodological permission with normal evidence review.
+**Status codes** DC = NO_CHANGE_REQUIRED, EP = EXISTING_PROXY_AVAILABLE, NP = NEW_PROXY_PROPOSED, AM = ANALYST_MODEL_REQUIRED. NP identifies the five routes proposed in the original specification and now approved as PX01–PX05 under this baseline. Executable production binding remains a separate gate. “Existing” means existing methodological permission with normal evidence review.
 
 | Rubric | Original input | Availability | Required or optional | Proposed proxy | Public report | Formula | Score conditions | Limitations | Approval required |
 |---|---|---|---|---|---|---|---|---|---|
@@ -83,7 +83,7 @@ For at least three audited FYs plus matching interim/YTD periods, extract consol
 
 **Bands:** 0 persistent failure to turn reported economics into cash/realization; 1–2 weak results with recurring adverse adjustments; 3–4 adequate results with material qualifications; 5–6 strong recurring realization and sound recognition despite adverse-period checks. Upper endpoints require stronger evidence. Six requires transparent adjustments and reconciliation, not a standalone conversion ratio. Test factoring, supplier financing, capex deferral, inventory release and provisioning cycles. N/R if matching scope or recurring realization cannot be judged. Use the same cash series in valuation only as a separately identified valuation operand.
 
-### FH-LIQ · New proposed covenant and availability binding
+### FH-LIQ · PX01 approved covenant and availability binding
 
 Extract obligations by disclosed due bucket, interest, bond/lease maturities, restricted/pledged cash, deposit maturity, documented facilities, disclosed covenant/triggers and breaches, collateral and published funding events. From the latest qualified period through cutoff, bridge every relevant bucket, including 12/24 months when relevant and a short-horizon bank stress bucket where supported. **Available resources minus cumulative obligations** = unrestricted cash + dated realizable inflows after review/haircuts + proven drawable facilities − dated cumulative outflows. Deduct funding needed to release collateral, and count cash, collateral and facility capacity only once. BANK uses behavioral deposit outflow and matched contractual funding, dated high-quality assets and confirmed monetization. Property presales count only when timing, legal condition and availability support the inflow. Use historical funding behavior only as evidence for a bounded assumption. 
 
@@ -103,13 +103,13 @@ Use at least three FYs and matched latest interim results for segment sales/volu
 
 **Bands:** 0 demonstrated structural decline; 1 weak visibility/stagnation supported by the economics; 2 constrained or cyclical runway; 3 credible moderate trajectory; 4 good funded runway with demonstrated execution and manageable range; 5 attractive high-confidence multi-year runway with independent corroboration and funding. Check prior guidance misses, capacity/credit/working-capital demand, expiry/renewal and sensitivity to unsupported conversion. N/R where assumptions span incompatible outcomes or no coherent funding/operating case exists.
 
-### GQ-INC · New proposed issuer-level productivity binding
+### GQ-INC · PX02 approved issuer-level productivity binding
 
 Use at least three comparable FYs, multiple positive capital-deployment windows, beginning/end invested capital, normalized EBIT/tax or bank common earnings/equity, cash deployment, goodwill and acquisition/disposal scope, tangible operating assets and economically material leases. Derive a range of **Δ normalized NOPAT / Δ invested capital** across defensible windows and capital definitions aligned to cash deployment and commissioning. Compare to the separately supported cost-of-capital range. For banks use Δ normalized common earnings / Δ aligned common equity or supported marginal risk capital, adjusting for credit, funding and capital cost. Do not divide by a near-zero or unexplained negative denominator. For property align cash investment and delivery lags; for retail keep store cohorts where footprint mix can change the answer. Proposed `unit_economics` binding is a reviewed, persistent issuer-level productivity bridge where no economically representative unit exists or can be observed, with explicit scope bounds and independently supported operating observations. A one-year ratio cannot bind persistence.
 
 **Bands:** 0 repeated value destruction after adjustments; 1 weak returns below economic cost; 2 mediocre economics with weak spread or adverse durability; 3 acceptable aligned economics; 4 strong surplus supported across windows; 5 exceptional durable spread and robust denominator, including sector-specific prerequisites. Check one-off EBIT, acquisitions, impairment, delay, leverage and denominator sensitivity. N/R if window/definition differences produce inconsistent bands without a defensible conservative conclusion. This rewards return on incremental capital. CA-REINV separately reviews the management decision and outcome.
 
-### IC-POS · New proposed relative position binding
+### IC-POS · PX03 approved relative position binding
 
 Fix the market or peer population, product, geography, period and comparison basis before reviewing rank. Prefer issuer same-scope sales/volume divided by official relevant totals; otherwise propose an explicitly labeled **listed-peer rank** from comparable audited sales/volume or an independently observable public position indicator. Also corroborate **cost_position** with like-for-like unit costs or adjusted operating margin/productivity, and **distribution** with compatible outlet/branch coverage, capacity or documented channels. Repeat over at least three comparable FYs or a justified relevant market window. BANK compare deposits/loans and funding cost on the same segments; technology use vertical or geography where actually disclosed; retail use category/channel and compatible outlet metrics. Market rank and peer rank measure different populations and must be reported accordingly.
 
@@ -121,17 +121,17 @@ Use latest FY/interim risk notes, public material contracts/events, debt/collate
 
 **Bands:** 0 HIGH supported material residual exposure; 1 ELEVATED_WEAK with inadequate controls; 2 ELEVATED_CONTROLLED with evidenced but incomplete control; 3 MODERATE with bounded exposure and tested mitigants; 4 LOW with independently corroborated limited material residual exposure. Must match external risk state. The UNACCEPTABLE veto remains separate. N/R where an unknown term or exposure could move the residual category and no defensible lower band is supported.
 
-### CA-REINV · New proposed consolidated outcome binding
+### CA-REINV · PX04 approved consolidated outcome binding
 
 Extract CFO, paid cash capex, asset/CWIP movements and commissioning, acquisition/disposal cash and consideration, goodwill/impairments, observable segment outcomes and related AGM intentions. Use at least three audited FYs plus each material event from announcement through a meaningful post-deployment outcome period. Compute CFO less cash capex as context, separately bridge M&A/disposals and relate management commitments to observed capacity, margin, cash or write-offs. Eliminate internal transfers and PP&E commissioning duplicates. BANK uses capital deployed into lending/businesses or acquisitions, funding/credit-adjusted contribution and risk capital; industrial CAPEX/FCF is not a bank substitute. Proposed binding requires event-specific evidence or qualified review of event immateriality, and action comparability only if the scope/event/per-share economics depend on it.
 
 **Bands:** 0 repeated evidenced value destruction, such as failed deployment and impairment; 1 mixed/acceptable outcomes backed by cash and operating evidence with bounded attribution; 2 consistently accretive deployment with corroborated outcomes through the cycle, challenge of counterexamples and discipline distinct from GQ-INC. Positive consolidated FCF alone supplies no band. N/R where an immature/material investment, acquisition, disposition or shift in scope makes attribution indeterminate.
 
-### CA-DIL · New proposed event-value and offset bounds
+### CA-DIL · PX05 approved event-value and offset bounds
 
 Cover material issuance events over the existing review window, through cutoff, from resolution to completion and subsequent reconciliation. Extract before/after common shares, new shares, exercise/subscription terms, economic proceeds net of fees, rights/transfer restrictions, compensation disclosures, actual use of funds and shareholder approvals. Use verified event-aligned raw market quotes as a sensitivity anchor or supported independent economic value, correcting the comparison for rights eligibility, other effective actions and material event information. Illustrative modeled post-issue value per share = (pre-issue equity value + net incremental proceeds + separately substantiated incremental net benefits) / post-issue economically equivalent shares. Compare with the pre-event per-share basis and explicitly value transferable rights where relevant. Include disclosed compensation and other costs once. Track sequential events without summing incompatible percentage bases. For BANK test capital-raising purpose and dilution separately; stronger regulatory ratios do not by themselves demonstrate accretion.
 
-**Bands:** 0 evidence supports material value-destructive dilution across defensible counterevidence; 1 evidence supports disciplined neutral/accretive terms and shareholder protections, with assumption and counterevidence review at maximum. Test alternative pre-event values, use of proceeds, shareholder rights and plausible upside from benefits. Unknown ESOP benefits get no positive credit in the conservative case. If plausible offsets change the conclusion and cannot be bounded, retain N/R. Mechanical splits/bonuses are comparability adjustments. A no-event period needs verified material event coverage and a separately approved treatment if the existing binary anchors cannot classify it. No new materiality percentage or intermediate band is introduced.
+**Bands:** 0 evidence supports material value-destructive dilution across defensible counterevidence; 1 evidence supports disciplined neutral/accretive terms and shareholder protections, with assumption and counterevidence review at maximum. Test alternative pre-event values, use of proceeds, shareholder rights and plausible upside from benefits. Unknown ESOP benefits get no positive credit in the conservative case. If plausible offsets change the conclusion and cannot be bounded, retain N/R. Mechanical splits/bonuses are comparability adjustments. Award 1 for verified absence of material economic dilution over the applicable window only when the reviewed event inventory, discipline, shareholder-protection and maximum-score prerequisites are all satisfied. Reconcile opening and closing shares, equity movements, resolutions, completed issues and effective mechanical actions. Silence alone never proves absence. Use N/R for unresolved coverage or economic effect. No new materiality percentage or intermediate band is introduced.
 
 ## Remaining rubric evidence and band usage
 
@@ -156,7 +156,7 @@ The authoritative label/bound for each row remains the [canonical registry](../.
 
 These checks demonstrate construction or identify the missing component using retained evidence only. **Component** means public operands are demonstrated but a complete binding is unproven. **Constructed** means the retained package contains the described analytical product, with its original scope. **Unverified** means the retained review consulted here did not establish construction. Historical research grades, preview and official results are separate evidence.
 
-| Route | VNM, retained RETAIL | ACB, retained BANK | TCB, retained BANK | FPT, retained TECHNOLOGY |
+| Route | VNM, retained research RETAIL scope | ACB, retained BANK | TCB, retained BANK | FPT, retained TECHNOLOGY |
 |---|---|---|---|---|
 | BQ-MOAT | Component: channel, geographic mix and household-frequency evidence; issuer-attributed frequency cannot stand for exact share or retention. | Component: bank franchise evidence; same-segment retention/service economics remain unresolved in the retained diagnosis. | Unverified for exact proxy binding. | Constructed on existing route: V8 accepted exact differentiation evidence. |
 | BQ-RES | Component: geographic sales and dated historical economics; counterparty bound pending. | Unverified for a distinct public concentration and shock bridge. | Unverified for exact pricing/stress binding. | Component: international IT PBT stability and contract evidence; price, wage and mix effects unresolved. |
@@ -170,7 +170,7 @@ These checks demonstrate construction or identify the missing component using re
 | CA-REINV | Component: PP&E additions, cash CAPEX and commissioning known separately; own scope and outcomes must be reconciled. | Component: matched subsidiary paid-in amounts, deployment dates and profit attribution unresolved. | Unverified for new consolidated allocation binding. | Constructed CFO–CAPEX across four FYs, including FY25 CAPEX 5.098 tn VND; conflicting cash trends support only the retained research demonstration, not formal event/outcome acceptance. |
 | CA-DIL | Unverified for the proposed event-value bounds; the retained share anchor alone is insufficient. | Unverified for the proposed event-value and offset bounds. | Component: retained issue economics and ESOP history; independent event-value/benefit bounds can still change the anchor. | Component: issuance quantity and proceeds present; verified event basis, coverage and protections insufficient. |
 
-Sources for the table by issuer and scope.
+The VNM table refers to the retained evidence products and their RETAIL research mapping. Use the qualified sector of the actual scoring subject. The separate retained governed diagnostic records INDUSTRIAL at its cutoff. Sources for the table by issuer and scope follow.
 
 - VNM retained research products, including parent/group capital, cash ladder, capex, distributions and corroboration limits. The exploratory 103.92%–110.42% parent return examples illustrate scope risk and are not eligible consolidated incremental ROIC. [VNM evidence products](../fundamental-data-engine/vnm-shared-evidence-products/2026-11-11/VNM_SHARED_EVIDENCE_PRODUCTS.md)
 - ACB and TCB exact retained blocker, scope and reopening details, including TCB's integrated RWA/earnings and ACB's actual facility and related-party gap. [Retained N/R review](../fundamental-data-engine/structural-nr-remediation/2026-11-23/STRUCTURAL_NR_AUDIT.md#L13) · [ACB source rule review](../fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_SOURCE_RULE_REVIEW_2026-11-21.md) · [TCB research closure](../fundamental-data-engine/tcb-scoring-readiness/2026-11-22/exec-c636021bde64b53de84eb66e/TCB_NINE_RUBRIC_RESEARCH_CLOSURE.json)
@@ -178,7 +178,7 @@ Sources for the table by issuer and scope.
 
 For the five NP routes, the records demonstrate some inputs in each family. Only the consolidated CAPEX/cash component and public liquidity ladder are directly constructible as standalone products in the cited retained scopes. Neither demonstrates complete eligibility under the new proposed assessment contracts. The other three require the indicated comparability, economic-value or scope review before completion. The 12 remaining matrix rows follow existing direct/proxy/model routes; retained historical output by itself is insufficient to validate a fresh issuer assessment.
 
-## Minimal system changes after owner decision
+## Implementation crosswalk from the original specification
 
 | Audit finding / decision | Current permission and minimum clarification | Sector / assessment contract | Executable and skill impact if approved |
 |---|---|---|---|
@@ -190,6 +190,14 @@ For the five NP routes, the records demonstrate some inputs in each family. Only
 | Audit P6, IC-POS | Approve when defined listed-peer rank can bind share and what population supports each claim. | Record population, scope, comparator evidence and distinct cost/distribution challenges. | Existing topic can be used if the approved interpretation admits the evidence. Add S1–S5 guidance following approval. |
 | Audit P8, CA-DIL | Approve event baseline, net-benefit bounds and treatment of gaps/no-event against existing anchors. | Add event bridge and uncertainty dispositions, including BANK prudential/separate equity review. | Keep existing anchors and topic gate. Any proposed change to binary interpretation or gating needs exact approval. Update structural N/R guidance if adopted. |
 
-**Owner decisions:** D1–D5 plus two scoped interpretation decisions for IC-POS and CA-DIL. The CA-DIL decision can be considered under the existing pending TCB interpretation work rather than creating duplicate approval records. The existing pending BANK GQ-FWD and VAL-PRIMARY interpretations are outside this specification's new proxy decisions. Scope adoption and any executable changes remain separate from exact dataset, scoring and publication permissions.
+**Decision disposition.** The owner approved PX01–PX05 and common skill adoption. D1–D3 are covered within those precise approvals. F5 uses existing packet dispositions. F4 documentary status reconciliation and any broad D5 schema redesign are outside this release. Existing pending BANK interpretations and other research-only successor predicates retain their original status.
 
-**Completion:** 23 rubrics, seven categories, 100 points. **Five new proxies** and **18 existing methodological routes**. This document is the specification for review. The retained cases were inspected without new issuer evidence collection or a scoring run.
+## Evidence-discovery workflow and stopping rule
+
+1. Resolve one ticker, effective sector, cutoff and scoring purpose. Inspect admitted evidence, current consumer bindings, metrics and retained assessments first. Distinguish missing mapping from missing source.
+2. Reuse sufficient direct public evidence. When a granular input is inaccessible or non-mandatory, use a sufficient authorized proxy immediately. Stop searching for the original. Construct forecasts, valuations, stress and risk outputs internally from approved models and admitted public operands.
+3. Keep supporting evidence out of native metric requests unless it is needed and qualified. Use existing USE, PRINCIPLE_EQUIVALENT, N_R or NOT_APPLICABLE dispositions. Preserve actual critical-gap and complete-total rules.
+4. If no route supports a band, perform at most one bounded evidence-improvement round within authorized scope. Close as N/R when material uncertainty persists. Record an exact reopening trigger and never infer zero or award conservative points by default.
+5. Record rubric, route, rounds, whether original-input discovery continued, whether it continued after sufficient evidence, economic reason and N/R reopening trigger. The isolated candidate workflow can validate this record using `validatePublicRouteReview`. The review and source attestations must be included in the eventual pinned adoption packet, with admissibility and independent challenge through existing gates.
+
+This document is the common methodology reference for all five scoring skills. The canonical rubric registry continues to own IDs, weights, bands and maximum prerequisites.

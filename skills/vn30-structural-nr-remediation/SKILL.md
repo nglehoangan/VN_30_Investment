@@ -32,3 +32,7 @@ For a combined Prepare readback, supply the same pinned packet through `--rubric
 ## SEGM v1.3 research-to-scoring reconciliation
 
 Pass `--research-bridge` alongside both `--annual-reassessment` and `--rubric-completion` in the single-ticker Prepare companion. The bridge checks the exact limited-score ID and hash against SQLite inventory, then emits all rubric dispositions and their review links. A research candidate with a supported band still needs topic-level assessment, independent reviews and exact successor approval. Use a pinned issuer publication-date proof to repair missing FY metadata for current-purpose diagnostics. Keep the original knowledge clock and historical PIT eligibility. Only reconstruct reported FCF from matched, admitted CFO and cash-capex cells. Reuse it across cash, stress and valuation reviews with the reported label.
+
+## Public-data assessment routes
+
+Apply the approved public route before reopening a structural N/R. Close with an exact reason and reopening trigger when the one bounded improvement cannot establish a band. Follow the [Approved Baseline v1.0 and stopping rules](../../docs/03%20SCORING/PUBLIC_DATA_PROXY_SPECIFICATION_23_RUBRICS.md#evidence-discovery-workflow-and-stopping-rule).
