@@ -81,7 +81,7 @@ For November, A failed on opening-scope comparability, B on leverage and equity-
 node tools/scoring/validate_fpt_bq_eq.mjs --ticker FPT
 ```
 
-Implementation identity is `bq-eq-evidence-sufficiency-research-v1.0.0`. The result records the SHA-256 for the scorer, CLI, methodology configuration, unchanged band registry and real input. Research execution ID is `exec-8e2bd503394673db9396b722`. The base Git commit is `480c647fb344dd3606610cb6d596373453546ff8`. For the delivery commit use `git log -1 --format=%H -- src/domain/current-scoring/bq-eq-research.ts tools/scoring/validate_fpt_bq_eq.mjs`. [Real input](FPT_BQ_EQ_INPUT.json) · [Executable result](FPT_BQ_EQ_RESULT.json)
+Implementation identity is `bq-eq-evidence-sufficiency-research-v1.0.0`. The result records the SHA-256 for the scorer, CLI, methodology configuration, unchanged band registry and real input. Research execution ID is `exec-8e2bd503394673db9396b722`. The base Git commit is `480c647fb344dd3606610cb6d596373453546ff8`. The executable and input were committed in `be6a10f99d312d95ff2b4c74d542576d2f475110`. [Real input](FPT_BQ_EQ_INPUT.json) · [Executable result](FPT_BQ_EQ_RESULT.json)
 
 ## Tests and regression
 
