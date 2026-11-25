@@ -58,6 +58,8 @@ def reconcile_v2(packet, args, rubrics, proposed, version=V2):
             and baseline['subject'] == packet['subject'], 'V2_UNIFIED_BASIS_MISMATCH')
     candidate = baseline['sourceCandidate']
     path = source(candidate)
+    exact_input = json.loads(path.read_bytes())['input']
+    assessment_ids = {r['subcategory'] for r in exact_input['assessments']}
     output = subprocess.run(['node', str(ROOT / 'tools/scoring/vn30_ebcs_preview.mjs'),
                               '--ticker', args.ticker, '--cutoff', args.cutoff, '--input', str(path)],
                              cwd=ROOT, check=True, capture_output=True, text=True)
@@ -76,6 +78,11 @@ def reconcile_v2(packet, args, rubrics, proposed, version=V2):
         attempt = proposed.get(rid)
         for pin in old['sourceIdentifiers'] + old['segmEvidence']:
             source(pin)
+        # An absent assessment fails the first conjunct in calculateScorecard.
+        # Preserve this binding failure separately from the analyst's economic gap.
+        binding_failure = ('NO_ASSESSMENT_BOUND_TO_EXACT_EBCS_INPUT'
+                           if rid not in assessment_ids else
+                           'BOUND_ASSESSMENT_DID_NOT_PASS_EBCS' if validated[rid] is None else None)
         rows.append({
             'rubricId': rid, 'economicPrinciple': rubrics[rid]['principle'], 'methodologyVersion': version if attempt else old['methodologyVersion'],
             'sectorMethod': packet['subject']['sector'], 'pitCutoff': args.cutoff, 'financialScope': old['financialScope'],
@@ -84,6 +91,8 @@ def reconcile_v2(packet, args, rubrics, proposed, version=V2):
             'researchScore': old['researchScore'], 'ebcsState': states[rid], 'ebcsAcceptedScore': validated[rid], 'officialScore': old['officialScore'],
             'proposedResearchScore': attempt['score'] if attempt else old['researchScore'],
             'failedCondition': attempt['reason'] if attempt else old['disposition'].get('reason'),
+            'approvedEbcsBindingFailure': binding_failure,
+            'approvedEbcsInputEvidence': old['assessmentSources'],
             'actualInputs': old['assessmentSources'] if not attempt else attempt.get('evidence', {}),
             'failureOwner': ('EVIDENCE_AND_PROPOSED_CALIBRATION' if attempt and attempt['score'] is None
                              else old['segmFeasibilityState']),

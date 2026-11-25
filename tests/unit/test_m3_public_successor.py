@@ -31,6 +31,17 @@ class M3PublicSuccessorTests(TestCase):
         self.assertNotIn('cutoff_price', ebcs['proposed']['VAL-PRIMARY']['missingFields'])
         self.assertIn('normalized_earning_power', ebcs['proposed']['VAL-PRIMARY']['missingFields'])
 
+    def test_exact_binding_gap_is_distinct_from_economic_disposition(self):
+        args = Namespace(ticker='FPT', cutoff='2026-11-13', universe_version=VERSION,
+                         packet=PACKET, lane='ebcs-replay')
+        report = run(args)
+        gaps = [r for r in report['rows'] if r['researchScore'] is not None and r['ebcsAcceptedScore'] is None]
+        self.assertEqual(len(gaps), 15)
+        self.assertTrue(all(r['approvedEbcsBindingFailure'] == 'NO_ASSESSMENT_BOUND_TO_EXACT_EBCS_INPUT'
+                            and r['proposedCorrection'] for r in gaps))
+        self.assertTrue(all(r['approvedEbcsBindingFailure'] is None for r in report['rows']
+                            if r['ebcsAcceptedScore'] is not None))
+
     def test_removed_fields_are_not_successor_mandatory(self):
         specs = json.loads(Path(m3.PATH).read_text())['rubrics']
         for key, spec in specs.items():
