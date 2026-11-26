@@ -1,0 +1,295 @@
+{
+  "implementation": "bq-eq-latest-valid-research-v1.2.0",
+  "executable": {
+    "path": "src/domain/current-scoring/bq-eq-retention.ts",
+    "sha256": "13f33836ce297476a6a1bc24e38f09482ab1f73643fb07abaf6ab56d5b00df5d"
+  },
+  "adapter": {
+    "path": "tools/scoring/validate_fpt_bq_eq_retention.mjs",
+    "sha256": "246af5e57659538162b583f4dc776d10e7bc064b7621b5488bb5bc304d6aa789"
+  },
+  "methodology": {
+    "path": "docs/03 SCORING/BQ_EQ_INCREMENTAL_ASSESSMENT_v1.2.json",
+    "sha256": "68a39c2aa8ad5fe15296bb0507d01141ec8259abfd0de0034b67e73813d3a105"
+  },
+  "input": {
+    "path": "docs/fundamental-data-engine/fpt-bq-eq/2026-11-26/FPT_BQ_EQ_INCREMENTAL_INPUT.json",
+    "sha256": "e7e6bee478c2da662738228ffd6fd46957003c8d2075bbbc01ccdd02c9d074f4"
+  },
+  "predecessorResult": {
+    "path": "docs/fundamental-data-engine/fpt-bq-eq/2026-11-26/FPT_BQ_EQ_INCREMENTAL_RESULT.json",
+    "sha256": "853efff115fd2b898b7dd5b80d7e8a805a1d1bf5c8e1a94bdc0b8320429950e0"
+  },
+  "ticker": "FPT",
+  "executionId": "exec-8e2bd503394673db9396b722",
+  "scope": "REAL_ISSUER_RESEARCH",
+  "baseline": {
+    "rubricId": "BQ-EQ",
+    "maxPoints": 8,
+    "points": 5,
+    "band": "Good economics",
+    "route": "C",
+    "gaps": [],
+    "totalScore": null,
+    "productionEligible": false,
+    "publicationAuthorized": false,
+    "assessmentId": "FPT-BQ-EQ-FY2025-v1.0",
+    "updateStatus": "BASELINE",
+    "quality": "CONSERVATIVE",
+    "confidence": {
+      "dimensions": [
+        2,
+        1,
+        2,
+        1,
+        1
+      ],
+      "rationale": "FY audited and reproducible; funded capital, tax and hurdle sensitivities constrain the result.",
+      "total": 7
+    }
+  },
+  "latestValidAssessment": {
+    "id": "FPT-BQ-EQ-FY2025-v1.0",
+    "financialPeriod": "2025-12-31",
+    "economicCutoff": "2026-03-19",
+    "assessedAt": "2026-11-25",
+    "methodology": "bq-eq-evidence-sufficiency-v1.0.0",
+    "implementation": "bq-eq-evidence-sufficiency-research-v1.0.0",
+    "method": {
+      "normalization": "direct operating EBIT, 20% tax stress and funded-capital sensitivity",
+      "capitalCostFramework": "nominal VND annual WACC and sensitivity",
+      "scope": "FULL_FTEL_CONSOLIDATION"
+    },
+    "points": 5,
+    "band": "Good economics",
+    "quality": "CONSERVATIVE",
+    "confidence": {
+      "dimensions": [
+        2,
+        1,
+        2,
+        1,
+        1
+      ],
+      "rationale": "FY audited and reproducible; funded capital, tax and hurdle sensitivities constrain the result.",
+      "total": 7
+    }
+  },
+  "updateStatus": "MATERIAL_REVIEW_PENDING",
+  "current": {
+    "rubricId": "BQ-EQ",
+    "maxPoints": 8,
+    "points": null,
+    "band": null,
+    "route": "E",
+    "gaps": [
+      "RETURNS",
+      "PERSISTENCE",
+      "MARGINS"
+    ],
+    "totalScore": null,
+    "productionEligible": false,
+    "publicationAuthorized": false,
+    "updateStatus": "MATERIAL_REVIEW_PENDING",
+    "validity": "NOT_RATED",
+    "quality": "N/R",
+    "inheritedFrom": null,
+    "underlyingFinancialPeriod": null,
+    "confidence": {
+      "dimensions": [
+        2,
+        0,
+        2,
+        1,
+        0
+      ],
+      "rationale": "Eligible review through cutoff with traceable retained evidence. The decisive return and scope comparisons remain unavailable.",
+      "total": 5
+    },
+    "review": {
+      "cutoff": "2026-11-13",
+      "reviewedAt": "2026-11-26",
+      "financialPeriod": "2026-09-30",
+      "reviewedRefs": [
+        "Q1",
+        "Q2",
+        "H1",
+        "Q3",
+        "FTEL",
+        "Subsequent",
+        "NovemberCost"
+      ],
+      "changes": [
+        {
+          "topic": "activities",
+          "status": "MATERIAL_BUT_BOUNDED",
+          "refs": [
+            "Q1",
+            "H1",
+            "Q3",
+            "FTEL"
+          ],
+          "impact": "Technology operations remain profitable. 9M revenue rose 12.42% versus the issuer-restated 9M comparison. Scope change means growth does not itself establish the old return spread."
+        },
+        {
+          "topic": "profitability",
+          "status": "MATERIAL_BUT_BOUNDED",
+          "refs": [
+            "Q1",
+            "Q3",
+            "FTEL"
+          ],
+          "impact": "Direct EBIT VND 5.900tn, margin 14.74%. Positive profitability through 9M supports continuity. The old FY 15.67% margin has a different mix."
+        },
+        {
+          "topic": "returns",
+          "status": "MATERIAL_IMPACT_UNRESOLVED",
+          "refs": [
+            "FTEL",
+            "Q3"
+          ],
+          "impact": "14.74–16.33% is six months on selected operating lines. The annualized or full-scope spread is unbounded. FY25 gross funded sensitivity cleared the 15% hurdle by only 0.22 percentage points."
+        },
+        {
+          "topic": "capitalStructure",
+          "status": "MATERIAL_IMPACT_UNRESOLVED",
+          "refs": [
+            "FTEL",
+            "Q3"
+          ],
+          "impact": "Six identified opening operating capital adjustments total VND −6.652tn. Opening working capital, eliminations and classifications remain unbounded. The residual could change the applicable spread."
+        },
+        {
+          "topic": "leverage",
+          "status": "MATERIAL_BUT_BOUNDED",
+          "refs": [
+            "H1",
+            "Q3",
+            "FTEL"
+          ],
+          "impact": "9M reported debt/equity 37.69% versus 48.17% FY25. VND 7.511tn debt/lease obligations removed at transition account for part of the change. That ratio does not establish comparable deleveraging or negate profitability."
+        },
+        {
+          "topic": "segmentMix",
+          "status": "MATERIAL_IMPACT_UNRESOLVED",
+          "refs": [
+            "FTEL",
+            "H1",
+            "Q3"
+          ],
+          "impact": "FTEL was previously consolidated line by line. FPT retained 45.66% and recognizes its share through the equity method. Restated 9M sales growth and positive EBIT do not bound how recurring FTEL economics affected the old band."
+        },
+        {
+          "topic": "consolidation",
+          "status": "MATERIAL_IMPACT_UNRESOLVED",
+          "refs": [
+            "FTEL",
+            "Q1",
+            "H1",
+            "Q3"
+          ],
+          "impact": "From 1 January 2026 current operating results and balance sheet exclude line consolidation of FTEL. Issuer-restated P&L evidence has no consistent full opening capital bridge. Scope effects matter to the band."
+        },
+        {
+          "topic": "acquisitionsDivestments",
+          "status": "MATERIAL_BUT_BOUNDED",
+          "refs": [
+            "FTEL",
+            "H1",
+            "Subsequent"
+          ],
+          "impact": "Retained FTEL economic interest is affirmative evidence against treating the transition as complete disposal. The unresolved economics of that interest are addressed under segment mix and consolidation."
+        },
+        {
+          "topic": "accounting",
+          "status": "MATERIAL_BUT_BOUNDED",
+          "refs": [
+            "FTEL",
+            "H1",
+            "Q3"
+          ],
+          "impact": "P&L presentation and retained equity-method stake are documented. The accounting change alone does not show a decline in franchise quality. Separate scope and denominator effects remain material."
+        },
+        {
+          "topic": "costOfCapital",
+          "status": "MATERIAL_BUT_BOUNDED",
+          "refs": [
+            "NovemberCost"
+          ],
+          "impact": "Retained analyst range remains 12.8–15.0% annual nominal VND. November 15% is an external anchor; scope-specific weights remain a limitation."
+        },
+        {
+          "topic": "adverseEvents",
+          "status": "MATERIAL_BUT_BOUNDED",
+          "refs": [
+            "Q1",
+            "H1",
+            "Q3",
+            "Subsequent"
+          ],
+          "impact": "FCF improved from −3.437tn Q1 to −1.077tn YTD September but remained negative. July tax decision was 0.244bn; dividend and AI/SBI developments provide no quantified offset to unresolved return economics."
+        }
+      ],
+      "continuedApplicability": {
+        "refs": [
+          "Q1",
+          "H1",
+          "Q3",
+          "FTEL",
+          "NovemberCost"
+        ],
+        "established": false,
+        "rationale": "Affirmative profitability, restated sales growth and retained FTEL equity support business continuity. They do not show that the FY2025 Good economics spread applies to the new consolidated scope under the same hurdle."
+      },
+      "inheritanceRationale": "Retain FY2025 as a valid historical assessment. Do not inherit it at the cutoff because the effect of the material shift in the segment contribution and funded capital on a thin stressed spread is unresolved.",
+      "unresolvedMetrics": [
+        "9M comparable ROIC",
+        "post-FTEL full opening invested capital and eliminations",
+        "normalized NOPAT and recurring retained FTEL contribution on a consistent return basis"
+      ],
+      "limitations": [
+        "FY and 9M have different business scopes. Six-month selected capital cannot establish normalized annual economic returns.",
+        "No expiry date is supplied by the standing methodology for this annual evidence. Review is tied to authoritative annual information and material events."
+      ],
+      "reassessmentTriggers": [
+        "new authoritative FY2026 disclosures",
+        "supported matched-scope operating return or bounded equivalent economic evidence",
+        "material structural event or applicable evidence expiry"
+      ],
+      "confidence": {
+        "dimensions": [
+          2,
+          0,
+          2,
+          1,
+          0
+        ],
+        "rationale": "Eligible review through cutoff with traceable retained evidence. The decisive return and scope comparisons remain unavailable."
+      },
+      "transition": {
+        "refs": [
+          "FTEL",
+          "H1",
+          "Q3"
+        ],
+        "rationale": "FTEL moved from line consolidation to equity method effective 2026-01-01.",
+        "implications": "Retain the FY method as the primary benchmark. Normalize numerator and denominator to the same scope before drawing a new economic conclusion; six-month and combined routes are cross-checks."
+      }
+    },
+    "inheritanceGaps": [
+      "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+      "AFFIRMATIVE_SUPPORT_REQUIRED"
+    ],
+    "reassessmentGaps": [
+      "RETURNS",
+      "PERSISTENCE",
+      "MARGINS"
+    ],
+    "assessmentId": "FPT-BQ-EQ-2026-11-13-v1.1",
+    "analystSelected": null,
+    "comparableRoic": null
+  },
+  "currentRankingEligible": false,
+  "investmentActionable": false,
+  "decisionEligible": false
+}

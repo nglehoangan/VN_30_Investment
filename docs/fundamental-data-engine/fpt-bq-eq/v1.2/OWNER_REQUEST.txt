@@ -1,0 +1,442 @@
+# CODEX TASK — BQ-EQ v1.2 Latest Valid Assessment Retention & Targeted Source Correction
+
+## 1. Owner Approval
+
+The owner approves BQ-EQ Incremental Assessment Amendment v1.2, including D15–D18.
+
+D15 — Always preserve and expose the latest valid historical assessment where one exists.
+
+D16 — Separate the latest valid assessment from the current reassessment result. An unsuccessful current reassessment must not erase a previously valid assessment.
+
+D17 — Use UPDATE_PENDING or MATERIAL_REVIEW_PENDING when insufficient new information prevents an updated conclusion.
+
+D18 — Separate score availability from current score validity, ranking eligibility and investment actionability.
+
+Preserve D1–D14 except where their assessment lifecycle semantics are explicitly superseded by this amendment.
+
+The owner explicitly requests correction of the previous MATERIAL_IMPACT_UNRESOLVED inheritance restriction.
+
+Promote this amendment to Approved Baseline v1.2.
+
+## 2. Source baseline
+
+The externally reviewed repository is:
+
+nglehoangan/VN_30_Investment
+
+Inspected commit:
+
+f26689ef1b7bfef1694e2895b3321abcac98fa6c
+
+Relevant files confirmed through source inspection:
+
+- src/domain/current-scoring/bq-eq-incremental.ts
+- tests/unit/bq-eq-incremental.test.ts
+- tools/scoring/validate_fpt_bq_eq_incremental.mjs
+- docs/fundamental-data-engine/fpt-bq-eq/2026-11-26/FPT_BQ_EQ_INCREMENTAL_INPUT.json
+- docs/fundamental-data-engine/fpt-bq-eq/2026-11-26/FPT_BQ_EQ_INCREMENTAL_RESULT.json
+- docs/fundamental-data-engine/fpt-bq-eq/2026-11-26/BQ_EQ_INCREMENTAL_ASSESSMENT_FPT_SCORING_CLOSURE.md
+
+Verify the actual latest local HEAD before making changes.
+
+Use the inspected commit as a reference, not an instruction to revert newer work.
+
+Do not perform another general scoring audit.
+
+## 3. Confirmed source issue 01 — Materiality conflation
+
+Current source:
+
+```typescript
+const blockingChanges = review.changes.filter(
+  change =>
+    change.status === "MATERIAL_IMPACT_UNRESOLVED" ||
+    change.status === "MATERIAL_INVALIDATING"
+);
+```
+
+Both statuses currently contribute to:
+
+```typescript
+inheritanceGaps.push("MATERIAL_IMPACT_BLOCKS_INHERITANCE");
+```
+
+Required correction:
+
+Distinguish confirmed economic invalidation from unresolved economic impact.
+
+MATERIAL_IMPACT_UNRESOLVED:
+
+- Must not erase the latest valid assessment.
+- Must not automatically classify the historical assessment as invalidated.
+- Must produce a pending materiality disposition when no new assessment can be supported.
+- May continue blocking certification of the historical score as a valid current-purpose score.
+- Must continue to expose the unresolved economic dependency.
+
+MATERIAL_INVALIDATING:
+
+- Prevent current use of the invalidated assessment.
+- Preserve the historical assessment and its original scope.
+- Require a defensible replacement before current scoring becomes valid.
+
+Do not simply remove unresolved materiality from every existing gate.
+
+The blockingChanges collection is also consumed by counterReviewed for replacement assessment validation.
+
+Preserve the requirement to address unresolved material changes and contradictory evidence when establishing a new current assessment.
+
+Separate the concepts rather than globally weakening that predicate.
+
+## 4. Confirmed source issue 02 — AFFIRMATIVE_SUPPORT_REQUIRED
+
+Current source requires:
+
+```typescript
+review.continuedApplicability.established
+```
+
+plus reviewed references, including eligible new evidence, before inheritance is accepted.
+
+Failure produces:
+
+AFFIRMATIVE_SUPPORT_REQUIRED
+
+Required correction:
+
+Retain affirmative support for certifying an inherited assessment as VALID_RESEARCH at the current cutoff.
+
+Do not require affirmative new evidence merely to preserve or display an already valid historical assessment.
+
+Distinguish:
+
+A. Latest valid assessment retention.
+
+B. Current-purpose economic reaffirmation.
+
+C. New current-purpose assessment construction.
+
+Insufficient affirmative support for B or C must not destroy A.
+
+Do not bypass source integrity, historical eligibility or evidence lineage checks.
+
+## 5. Confirmed source issue 03 — Incorrect terminal lifecycle classification
+
+Current source effectively assigns INVALIDATED whenever neither an inherited nor a replacement current assessment is accepted.
+
+This conflates:
+
+- Insufficient information.
+- Pending reassessment.
+- Unresolved material developments.
+- Actual invalidation.
+- Review validation failure.
+
+Implement explicit lifecycle dispositions.
+
+Required semantic states:
+
+- BASELINE
+- UPDATED
+- REAFFIRMED
+- CARRIED_FORWARD
+- UPDATE_PENDING
+- MATERIAL_REVIEW_PENDING
+- INVALIDATED
+
+Use compatible existing representations where possible.
+
+A review failure, missing baseline, or unsupported input must not be falsely described as a proven material economic invalidation.
+
+If an additional existing invalid-input or unavailable status is necessary, reuse it rather than creating a broad new framework.
+
+## 6. Approved decision matrix
+
+| Condition | Latest valid assessment | Current-purpose score | Update disposition |
+|---|---|---|---|
+| Supported new assessment | Replace with new qualified assessment | New score | UPDATED |
+| Current evidence independently confirms same band | Preserve qualified score | Valid score | REAFFIRMED |
+| Existing inheritance criteria satisfied | Preserve qualified score | Valid inherited score | CARRIED_FORWARD |
+| New data insufficient, no material invalidation established | Preserve historical score | Unconfirmed or N/R | UPDATE_PENDING |
+| MATERIAL_IMPACT_UNRESOLVED | Preserve historical score | Unconfirmed or N/R | MATERIAL_REVIEW_PENDING |
+| MATERIAL_INVALIDATING | Preserve historical record only | N/R unless replacement supported | INVALIDATED |
+| Expired evidence | Preserve historical record only | Not eligible | Reassessment required |
+| New authoritative annual data available | Preserve historical record pending reassessment | Apply freshness and replacement rules | Reassessment required |
+| No valid historical or current assessment | No numeric score | N/R | Not rated |
+
+A valid new assessment takes precedence over an obsolete pending state.
+
+A supported material invalidation takes precedence over a pending classification when no valid replacement exists.
+
+Do not fabricate current scoring eligibility from the historical score.
+
+## 7. Separate historical availability and current validity
+
+Extend the existing BQ-EQ research result with the minimum necessary fields to expose:
+
+- Latest valid assessment identity.
+- Latest valid points.
+- Latest valid band.
+- Assessment financial foundation.
+- Original assessment date.
+- Original methodology and implementation.
+- Latest review cutoff.
+- Latest reviewed financial period.
+- Update status.
+- Current reassessment points, where supported.
+- Historical versus current confidence.
+- Current score validity.
+- Current ranking eligibility.
+- Material limitations.
+- Reassessment triggers.
+
+Suggested semantic structure:
+
+```typescript
+{
+  latestValidAssessment: {
+    points: 5,
+    band: "Good economics",
+    financialPeriod: "2025-12-31",
+    quality: "CONSERVATIVE"
+  },
+  currentAssessment: {
+    points: null,
+    comparableRoic: null,
+    validity: "NOT_RATED"
+  },
+  updateStatus: "MATERIAL_REVIEW_PENDING",
+  currentRankingEligible: false
+}
+```
+
+This is an illustrative expected structure, not a requirement to introduce duplicate schemas.
+
+Reuse existing baseline/current fields where suitable.
+
+Never store historical ROIC as current measured ROIC.
+
+Do not add historical pending points into a formally valid current Investment Score unless all existing current eligibility requirements are satisfied.
+
+## 8. Preserve economic methodology
+
+Do not change:
+
+- BQ-EQ economic objective.
+- Maximum points of 8.
+- Existing assessment bands.
+- ROIC formula.
+- ROE/ROTE formulas.
+- WACC and cost-of-equity framework.
+- D1–D8 evidence sufficiency routes.
+- Material counterevidence requirements.
+- FTEL financial scope calculations.
+- Existing source eligibility rules.
+- Remaining 22 rubric scoring behavior.
+- Production total-score validity controls.
+
+This task corrects assessment lifecycle behavior, not financial methodology.
+
+## 9. Real FPT replay
+
+Use the exact retained FPT real-issuer input from the completed v1.1 validation.
+
+Do not collect additional evidence.
+
+Do not rebuild the FTEL scope bridge.
+
+Do not change source observations or financial calculations simply to obtain 5/8.
+
+Previously established results:
+
+- FY2025 baseline: 5/8, CONSERVATIVE.
+- Current reassessment at 2026-11-13: N/R.
+- Current comparable ROIC: unavailable.
+- FTEL economic materiality: unresolved.
+
+Execute the amended v1.2 logic using the existing real-data research adapter.
+
+Expected outcome if the retained evidence remains unchanged:
+
+- Latest valid historical score: 5/8.
+- Assessment foundation: FY2025.
+- Latest reviewed period: Q3/2026.
+- Current reassessment: N/R.
+- Update status: MATERIAL_REVIEW_PENDING.
+- Historical assessment retained.
+- Current comparable ROIC: unavailable.
+- Current ranking eligibility: not confirmed.
+
+Do not force these results if the actual inspected input differs materially.
+
+Explain any difference.
+
+The main acceptance requirement is that unresolved materiality must not cause loss of an otherwise valid historical assessment.
+
+## 10. Targeted test correction
+
+Inspect tests/unit/bq-eq-incremental.test.ts.
+
+The current parameterized test:
+
+```typescript
+it.each([
+  "MATERIAL_INVALIDATING",
+  "MATERIAL_IMPACT_UNRESOLVED"
+] as const)
+```
+
+currently expects both statuses to yield:
+
+```typescript
+{
+  points: null,
+  updateStatus: "INVALIDATED"
+}
+```
+
+Replace this shared expectation with separate tests.
+
+### Case A — Unresolved materiality
+
+Expected:
+
+- Latest valid points retained.
+- Current score unconfirmed or null.
+- MATERIAL_REVIEW_PENDING.
+- No false INVALIDATED classification.
+- No automatic current ranking eligibility.
+
+### Case B — Confirmed invalidation
+
+Expected:
+
+- Historical record preserved.
+- Historical score not eligible for current scoring.
+- Current points null unless valid replacement exists.
+- INVALIDATED.
+
+### Case C — Missing affirmative support
+
+Expected:
+
+- Latest valid assessment retained.
+- Current inheritance certification remains blocked.
+- Appropriate pending status.
+- No false current score.
+
+### Case D — Supported replacement
+
+Expected:
+
+- Updated assessment takes precedence.
+- Relevant material counterevidence reviewed.
+- Latest valid assessment advances to the new qualified assessment.
+
+### Additional regression cases
+
+- Supported CARRIED_FORWARD remains valid.
+- REAFFIRMED remains valid.
+- Expired evidence cannot support new capital allocation.
+- A failed historical assessment cannot become a latest valid score.
+- New annual evidence still triggers reassessment.
+- Future information is not consumed.
+- Historical metrics remain distinct from current measured metrics.
+- Pending states do not enter a formally valid current total.
+- Real FPT replay produces the new lifecycle disposition.
+- Unauthorized publication remains prohibited.
+
+Do not weaken tests unrelated to the approved amendment.
+
+Run the previously passing test suites, including all 33 formal scoring integration cases.
+
+Report the actual test count rather than requiring exactly 207 tests.
+
+Replay official FPT V8 and verify it remains unchanged.
+
+## 11. Implementation boundaries
+
+Use the existing isolated research execution path.
+
+Register an appropriate new versioned implementation identity.
+
+Do not mutate historical v1.1 artifacts.
+
+Do not introduce a new scoring engine.
+
+Do not introduce new public-data proxies.
+
+Do not introduce another evidence admission framework.
+
+Do not change production databases or published scorecards.
+
+Update existing scoring guidance only where necessary to distinguish:
+
+- Latest valid assessment.
+- Current reassessment.
+- Pending update.
+- Material invalidation.
+- Current actionability.
+
+No new standalone skill is required.
+
+## 12. Final deliverable
+
+Produce one concise closure report:
+
+BQ_EQ_V1_2_LATEST_VALID_ASSESSMENT_CLOSURE.md
+
+Include:
+
+- Owner approval D15–D18.
+- Exact inspected local HEAD.
+- Exact changed files and functions.
+- Before/after predicates.
+- Lifecycle decision matrix.
+- Actual FPT executable replay.
+- Test results.
+- Official V8 regression result.
+- Remaining production authority requirements.
+
+Provide the following comparison:
+
+| Output | v1.1 | v1.2 |
+|---|---|---|
+| FY2025 baseline score | 5/8 | |
+| Latest valid historical score | | |
+| Current reassessment | N/R | |
+| Update status | INVALIDATED | |
+| Current comparable ROIC | Unavailable | |
+| Historical score availability | | |
+| Current ranking eligibility | | |
+
+## 13. Final acceptance criteria
+
+AC01 — MATERIAL_IMPACT_UNRESOLVED no longer automatically invalidates the historical assessment.
+
+AC02 — AFFIRMATIVE_SUPPORT_REQUIRED remains relevant to current certification but not historical score retention.
+
+AC03 — UPDATE_PENDING and MATERIAL_REVIEW_PENDING are correctly distinguished from INVALIDATED.
+
+AC04 — Valid latest historical points remain available.
+
+AC05 — Pending historical points are not falsely certified as current points.
+
+AC06 — Actual FPT v1.2 scoring replay completed.
+
+AC07 — Existing financial calculations unchanged.
+
+AC08 — Remaining 22 rubric behavior unchanged.
+
+AC09 — Existing formal scoring integration tests pass.
+
+AC10 — Official FPT V8 remains unchanged.
+
+AC11 — No unauthorized production activation or publication.
+
+Stop after this targeted correction and validation.
+
+Do not perform another financial evidence discovery round.
+
+Do not initiate another BQ-EQ methodology amendment.
+
+Do not proceed to BQ-MOAT automatically.

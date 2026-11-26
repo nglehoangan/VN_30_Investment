@@ -1,0 +1,304 @@
+# CODEX TASK ADDENDUM — BQ-EQ v1.2 Effective Score & Downstream Scoring Integration
+
+## 1. Owner direction
+
+The owner clarifies that preserving and displaying the Latest Valid Assessment is insufficient.
+
+The latest valid score must also be usable by subsequent analytical scoring processes when a new reporting period does not provide sufficient information to establish a replacement assessment.
+
+Extend the approved BQ-EQ v1.2 work package with D19–D23.
+
+- D19: Introduce Effective Score semantics based on the latest qualified assessment when a new assessment cannot be established.
+- D20: Consume Effective Score in category aggregation and provisional Investment Score calculation.
+- D21: Make Effective Score available to comparative analysis, research ranking and Investment Decision inputs.
+- D22: MATERIAL_IMPACT_UNRESOLVED and missing affirmative support must not automatically block provisional Effective Score.
+- D23: Preserve explicit distinctions between confirmed current scores, inherited provisional scores, evidence freshness, coverage, ranking eligibility and actionability.
+
+This addendum supersedes any previous instruction that categorically prohibits the use of pending historical assessments in downstream analytical score aggregation.
+
+It does not authorize bypassing Stage 0, Risk Policy, hard veto, evidence integrity, production authorization or execution controls.
+
+## 2. Inspect the latest source
+
+Inspect the latest local repository HEAD and the current implementation status of BQ-EQ v1.2.
+
+Inspect actual producers and consumers of:
+
+- Baseline assessment.
+- Latest valid assessment.
+- Current reassessment.
+- Category points.
+- Investment Score.
+- Coverage.
+- Ranking.
+- Investment Decision.
+- Score validity.
+- Website scorecard presentation.
+
+Start from:
+
+- src/domain/current-scoring/bq-eq-incremental.ts
+- src/domain/current-scoring/bq-eq-research.ts
+- tests/unit/bq-eq-incremental.test.ts
+- Existing scorecard aggregation and ranking implementations.
+- Existing FPT real-issuer validation adapter.
+
+Resolve actual downstream paths from the repository.
+
+Do not assume that changing the BQ-EQ output alone changes its downstream consumers.
+
+## 3. Effective Score contract
+
+Implement or reuse three separate semantic values:
+
+1. Latest Valid Score.
+2. Current Reassessment Score.
+3. Effective Score.
+
+Effective Score is the numeric assessment used for downstream analytical scoring.
+
+Apply the following precedence:
+
+A. If a valid current reassessment exists, use its points.
+
+B. If a valid current inherited or reaffirmed assessment exists, use its points.
+
+C. If the current reassessment is incomplete, retain the latest qualified assessment as a provisional Effective Score, provided that:
+
+- Its original economic assessment was valid.
+- Its evidence integrity and identity remain established.
+- Its applicable freshness requirements have not expired.
+- No confirmed material invalidation has occurred.
+
+D. If the historical assessment has been materially invalidated or expired, do not use it as Effective Score.
+
+E. If no qualified assessment exists, Effective Score remains null.
+
+Never assign zero or an arbitrary midpoint because information is missing.
+
+Do not require a complete recalculation of current ROIC merely to use a provisional Effective Score.
+
+## 4. Correct materiality semantics
+
+Preserve MATERIAL_IMPACT_UNRESOLVED as a meaningful uncertainty status.
+
+It must:
+
+- Trigger MATERIAL_REVIEW_PENDING.
+- Preserve the latest valid historical assessment.
+- Permit provisional Effective Score where the conditions in Section 3 are satisfied.
+- Record the unresolved economic dependency.
+- Affect confidence and downstream actionability as applicable.
+- Prevent unsupported certification of the historical score as a newly confirmed current assessment.
+
+It must not:
+
+- Automatically invalidate the historical assessment.
+- Automatically remove Effective Score.
+- Automatically remove analytical scoring coverage.
+
+MATERIAL_INVALIDATING must continue to prevent use of the invalidated assessment for current Effective Score.
+
+Do not remove material counterevidence checks from replacement assessment validation.
+
+Retain affirmative support requirements for confirmed current inheritance.
+
+Do not require affirmative new evidence solely to use a qualified provisional Effective Score.
+
+## 5. Expected FPT output
+
+Using the retained FPT evidence:
+
+- FY2025 assessment: 5/8, CONSERVATIVE.
+- Current comparable ROIC: unavailable.
+- Current reassessment at 2026-11-13: N/R.
+- FTEL materiality: unresolved.
+
+Expected amended output, subject to historical assessment validity and freshness:
+
+- Latest Valid Score: 5/8.
+- Current Reassessment Score: null.
+- Effective Score: 5/8.
+- Effective Score basis: latest qualified historical assessment.
+- Foundation: FY2025.
+- Update status: MATERIAL_REVIEW_PENDING.
+- Effective Score validity: PROVISIONAL.
+- Current comparable ROIC: null.
+- Latest reviewed period: Q3/2026.
+
+Reuse existing compatible schemas rather than introducing redundant state models.
+
+Do not change financial evidence or FTEL calculations to manufacture a current confirmed assessment.
+
+## 6. Integrate downstream category aggregation
+
+For BQ-EQ, category aggregation must consume Effective Score instead of requiring Current Reassessment Score to be numeric.
+
+A provisional Effective Score of 5 must contribute exactly 5 points to Business Quality.
+
+Preserve the Business Quality maximum of 25.
+
+Do not normalize or redistribute unavailable rubric weights.
+
+If other required Business Quality rubrics remain N/R, preserve existing incomplete-category controls.
+
+Expose whether the aggregated category includes provisional inherited points.
+
+## 7. Integrate Investment Score
+
+Allow Effective Score to contribute to provisional Investment Score calculation.
+
+Preserve the distinction between:
+
+- Confirmed current Investment Score.
+- Provisional Investment Score.
+- Incomplete assessed points and rated weight.
+
+If all 23 rubrics have usable Effective Scores, calculate the full provisional Investment Score out of 100.
+
+If other rubrics remain genuinely unavailable, preserve the existing incomplete-total policy.
+
+Do not silently convert a partial score into a full 100-point score.
+
+Do not certify a provisional Investment Score as VALID — ACTIONABLE merely because arithmetic aggregation succeeds.
+
+Do not weaken the existing canonical formal-score controls.
+
+Implement the minimum separate analytical aggregation representation if required by the existing formal score contract.
+
+## 8. Integrate coverage and ranking
+
+Report separately:
+
+- Confirmed current coverage.
+- Effective scoring coverage.
+- Inherited or provisional coverage.
+- Genuine N/R coverage.
+
+An available provisional BQ-EQ Effective Score contributes to effective coverage.
+
+Research comparison and provisional ranking must consume Effective Score.
+
+Clearly expose inherited points, unresolved material dependencies and confidence.
+
+Do not present a provisional ranking as an unqualified formal capital-allocation ranking.
+
+Preserve the existing requirements governing formal ranking.
+
+## 9. Integrate Investment Decision inputs
+
+Ensure downstream Investment Decision analysis can consume Effective Score and provisional aggregated scores.
+
+A pending reassessment must not make the entire analytical score unavailable solely because the current recalculation is incomplete.
+
+Expose all relevant uncertainty and risk flags to the Decision Framework.
+
+Separate analytical decision support from actionable investment authorization.
+
+Existing Stage 0, hard veto, financial-health gates, valuation gates, portfolio constraints and Risk Policy remain controlling.
+
+No automatic BUY or ACCUMULATE decision is authorized by this amendment.
+
+## 10. Scorecard presentation
+
+Where the applicable scorecard supports the new research output, display Effective Score as the primary analytical rubric score.
+
+For FPT BQ-EQ, expected presentation:
+
+BQ-EQ: 5/8
+
+Basis: FY2025
+
+Latest review: 2026-11-13
+
+Status: MATERIAL_REVIEW_PENDING
+
+Current reassessment: N/R
+
+Current comparable ROIC: unavailable
+
+Effective Score quality: PROVISIONAL
+
+Make the distinction understandable to an individual investor.
+
+Do not hide the current reassessment limitation.
+
+Do not overwrite the existing official production FPT V8 scorecard.
+
+## 11. Actual downstream validation
+
+Using real retained FPT evidence:
+
+1. Reproduce the original FY2025 5/8 assessment.
+2. Execute current reassessment.
+3. Execute Effective Score resolution.
+4. Demonstrate that BQ-EQ contributes 5 points to Business Quality analytical aggregation.
+5. Demonstrate that BQ-EQ contributes to effective coverage.
+6. Demonstrate that subsequent research ranking and Investment Decision input construction consume the same Effective Score where those consumers are available.
+7. Demonstrate that unresolved FTEL risk remains visible.
+8. Demonstrate that confirmed invalidation prevents Effective Score use.
+
+Do not claim completion merely because the Effective Score field exists.
+
+Test actual downstream consumption.
+
+If some downstream consumers do not yet support real-issuer research execution, identify the exact integration blocker and implement the minimal compatible research path where authorized.
+
+Do not bypass formal production authorization.
+
+## 12. Regression requirements
+
+Verify:
+
+- Supported new assessments take precedence over historical points.
+- Missing current calculations do not automatically erase Effective Score.
+- Unresolved materiality permits provisional Effective Score.
+- Confirmed material invalidation blocks Effective Score.
+- Expired historical evidence blocks Effective Score.
+- No historical assessment means N/R.
+- Historical metrics are not misrepresented as current measurements.
+- Provisional points are included in analytical aggregation.
+- Provisional points are not falsely certified as confirmed formal scores.
+- Existing risk and actionability controls remain effective.
+- Existing 22 rubrics remain unchanged.
+- All formal scoring integration tests remain passing.
+- FPT V8 exact-input replay remains unchanged.
+
+## 13. Final result
+
+Extend the existing BQ-EQ v1.2 closure report.
+
+Do not create another standalone audit.
+
+Report:
+
+| Output | Before addendum | After addendum |
+|---|---|---|
+| Latest Valid Score | 5/8 | |
+| Current Reassessment | N/R | |
+| Effective Score | | |
+| Business Quality contribution | | |
+| Effective coverage contribution | | |
+| Investment Score analytical consumption | | |
+| Research ranking consumption | | |
+| Investment Decision input consumption | | |
+| Current score validity | | |
+| Actionability limitations | | |
+
+Include exact changed files, functions, executable commands, actual output and test results.
+
+## 14. Completion boundary
+
+Limit implementation to BQ-EQ and the minimal necessary downstream consumption mechanism.
+
+Design the Effective Score semantics for reuse in later rubric amendments without automatically changing all 22 remaining rubrics.
+
+Do not collect new FTEL evidence.
+
+Do not change financial calculations, scoring bands or weights.
+
+Do not initiate another generic scoring redesign.
+
+Do not publish or activate unauthorized production scoring.
+
+Stop after actual Effective Score and downstream consumption validation.
