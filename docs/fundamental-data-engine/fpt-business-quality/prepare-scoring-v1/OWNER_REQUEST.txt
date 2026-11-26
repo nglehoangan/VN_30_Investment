@@ -1,0 +1,315 @@
+# CODEX TASK — Business Quality Prepare-to-Scoring Integration & Blocker Prevention
+
+## 1. Objective
+
+Verify and resolve the integration gap between the newly implemented Business Quality scoring architecture and the existing governed Prepare → Scoring workflow.
+
+The owner requires that approved BQ assessments and eligible Effective Scores remain usable when executing the actual scoring workflow, without restarting evidence preparation or becoming blocked by obsolete all-topic requirements.
+
+This task is limited to workflow integration.
+
+Do not reopen Business Quality economic methodology.
+
+## 2. Accepted research result
+
+FPT Business Quality:
+
+- BQ-EQ: 5/8 PROVISIONAL.
+- BQ-MOAT: 3/6 CONFIRMED_CURRENT.
+- BQ-CASH: 3/6 PROVISIONAL.
+- BQ-RES: 3/5 PROVISIONAL.
+
+Business Quality Effective Score: 14/25.
+
+Effective BQ coverage: 4/4 rubrics, 25/25 weight.
+
+Overall Investment Score effective coverage: 4/23 rubrics, 25/100 weight.
+
+Previous validation:
+
+- 245/245 tests passed.
+- All 33 formal scoring integration tests passed.
+- Accepted BQ-EQ and BQ-MOAT replays matched.
+- Official FPT V8 replay matched.
+
+Preserve these accepted research results on their original retained inputs.
+
+## 3. Confirmed source integration risks
+
+Inspect latest local HEAD and verify the following previously observed code paths.
+
+### Prepare worker
+
+tools/scoring/vn30_score_worker.mjs
+
+Previously inspected logic around lines 100–111:
+
+- Loads mandatory assessments.
+- Requires registered bands.
+- Requires all native rubric topics.
+- Returns CURRENT_SCORE_MANDATORY_ASSESSMENTS_REQUIRED when requirements are unmet.
+
+Determine whether this gate can consume the approved BQ Evidence Sufficiency contracts.
+
+### Current scorer
+
+src/domain/current-scoring/scorecard.ts
+
+Previously inspected logic around lines 129–146:
+
+- Requires complete current assessments.
+- Assigns null points to incomplete rubrics.
+- Assigns null category points when any constituent rubric is null.
+
+Determine whether this execution path supports the approved BQ Effective Score semantics.
+
+### Control plane
+
+tools/scoring/vn30_score.py
+
+Inspect:
+
+- prepare_route.
+- check.
+- execute.
+- Candidate pins.
+- Route registration.
+- Assessment adoption.
+- Preflight.
+- Authorization.
+- Score execution.
+
+Identify exact integration points from current local source.
+
+Do not conduct another broad scoring audit.
+
+## 4. Required integration approach
+
+Reuse the existing approved:
+
+- Evidence Sufficiency implementation.
+- Incremental Assessment implementation.
+- Latest Valid Assessment.
+- Effective Score resolution.
+- BQ analytical aggregation.
+- Confidence and freshness controls.
+- Materiality dispositions.
+- Research ranking and Investment Decision input contracts.
+
+Do not build another scoring engine.
+
+Do not recreate the existing FPT analytical products.
+
+Implement a versioned successor candidate or compatible adapter using the existing Prepare → Scoring orchestration.
+
+Preserve the currently authorized production implementation and historical V8 artifacts.
+
+## 5. Prepare integration
+
+The successor Prepare path must recognize valid BQ assessments produced by the approved rubric-specific Evidence Sufficiency contracts.
+
+For BQ-EQ, BQ-MOAT, BQ-CASH and BQ-RES:
+
+- Consume existing qualified assessments.
+- Recognize supporting, conditional and band-dependent evidence.
+- Apply materiality requirements.
+- Preserve evidence integrity and cutoff eligibility.
+- Recognize eligible historical assessment lineage.
+- Recognize confirmed and provisional Effective Scores.
+
+Do not demand obsolete mandatory topic bindings when the approved BQ methodology explicitly permits their absence.
+
+Do not fabricate topic evidence to satisfy old validators.
+
+Do not globally remove mandatory assessment requirements from the remaining 19 rubrics.
+
+Preserve historical and formal validation behavior outside the approved candidate scope.
+
+## 6. Scoring integration
+
+Ensure successor scoring execution consumes the eligible BQ Effective Scores.
+
+For the retained FPT fixture, expected analytical contributions are:
+
+- BQ-EQ: 5 points.
+- BQ-MOAT: 3 points.
+- BQ-CASH: 3 points.
+- BQ-RES: 3 points.
+
+Expected Business Quality analytical result:
+
+14/25 PROVISIONAL.
+
+Preserve:
+
+- Current reassessment results.
+- Original assessment periods.
+- Evidence lineage.
+- Materiality limitations.
+- Confirmed and provisional coverage.
+- Confidence.
+- Freshness.
+- Actionability.
+
+Do not convert provisional points into falsely confirmed current points.
+
+Do not represent the partial Investment Score as a complete 100-point score.
+
+## 7. Partial rollout execution
+
+The successor analytical workflow must support the fact that only Business Quality has completed the new methodology rollout.
+
+Allow actual Prepare → Scoring execution for the approved BQ scope without requiring completion of the remaining 19 rubrics.
+
+Unassessed remaining rubrics must remain explicitly unavailable or outside the completed rollout scope.
+
+Do not:
+
+- Assign zero to unavailable rubrics.
+- Redistribute weights.
+- Invent missing assessments.
+- Claim complete formal scoring readiness.
+- Relax production authorization requirements.
+
+This partial rollout capability must use an isolated research or successor-candidate execution mode.
+
+## 8. Actual end-to-end verification
+
+Use the exact retained FPT evidence and existing BQ assessment products.
+
+Execute the actual orchestrated workflow, not merely direct calls to the BQ research evaluator.
+
+Required sequence:
+
+1. Candidate construction.
+2. Prepare.
+3. Assessment adoption.
+4. Candidate preflight.
+5. Isolated authorized-for-validation scoring execution.
+6. Category aggregation.
+7. Downstream analytical consumption.
+8. Research scorecard output.
+
+Verify that the BQ assessment is not blocked by obsolete all-topic completeness requirements.
+
+Verify that the scorer receives and uses the same eligible Effective Scores.
+
+Demonstrate actual output of 14/25 PROVISIONAL on the unchanged retained input.
+
+If a separate formal owner authorization remains required, report its exact purpose and identity.
+
+Do not bypass a legitimate authority gate.
+
+A preparation-only result does not satisfy end-to-end acceptance.
+
+## 9. Preserve existing controls
+
+Do not change:
+
+- BQ financial calculations.
+- BQ assessment bands.
+- BQ rubric weights.
+- Accepted BQ Effective Scores on identical inputs.
+- Historical methodology artifacts.
+- Official FPT V8.
+- Remaining 19 rubric methodologies.
+- Stage 0.
+- Hard veto.
+- Risk Policy.
+- Formal ranking eligibility.
+- Investment actionability requirements.
+
+No production database writes, publication or activation are authorized by this task.
+
+## 10. Required tests
+
+Verify:
+
+- Prepare accepts a qualified BQ assessment with legitimately absent supporting evidence.
+- Prepare rejects missing essential CORE evidence when no eligible historical assessment exists.
+- Provisional BQ Effective Scores survive Prepare and scoring execution.
+- Unresolved materiality remains visible.
+- Confirmed invalidation prevents historical Effective Score use.
+- Expired evidence prevents historical Effective Score use.
+- Remaining 19 rubrics do not receive fabricated points.
+- Partial rollout scoring completes without requiring all 23 assessments.
+- Full Investment Score remains incomplete.
+- Existing formal validation remains unchanged.
+- Existing formal authority checks remain enforced.
+- Accepted BQ research replay remains unchanged.
+- Official FPT V8 exact-input replay remains unchanged.
+
+Run existing relevant regression and integration suites.
+
+Report actual test outcomes.
+
+## 11. Required workflow comparison
+
+| Stage | Existing official route | Successor BQ-compatible route |
+|---|---|---|
+| Candidate construction | | |
+| Prepare | | |
+| Assessment adoption | | |
+| Evidence sufficiency | | |
+| Preflight | | |
+| Scoring execution | | |
+| BQ-EQ Effective Score | | |
+| BQ-MOAT Effective Score | | |
+| BQ-CASH Effective Score | | |
+| BQ-RES Effective Score | | |
+| Business Quality | | |
+| Downstream consumption | | |
+| Production authority | | |
+
+Provide exact commands, source paths, changed predicates and actual execution results.
+
+Distinguish economic-data blockers, obsolete validation blockers and legitimate authority requirements.
+
+## 12. Acceptance criteria
+
+AC01 — Existing Prepare and Scoring integration gaps identified precisely.
+
+AC02 — Approved BQ Evidence Sufficiency contracts consumed by successor Prepare.
+
+AC03 — Approved BQ Effective Scores consumed by successor Scoring.
+
+AC04 — Actual FPT Prepare → Scoring workflow executed end-to-end.
+
+AC05 — Retained FPT produces 14/25 PROVISIONAL Business Quality.
+
+AC06 — Partial rollout does not require fabricated assessments for remaining rubrics.
+
+AC07 — Investment Score remains incomplete.
+
+AC08 — Existing formal scoring and risk controls remain unchanged.
+
+AC09 — Official FPT V8 remains unchanged.
+
+AC10 — No unauthorized production activation or publication.
+
+## 13. Deliverable
+
+Create one concise report:
+
+BUSINESS_QUALITY_PREPARE_SCORING_INTEGRATION_CLOSURE.md
+
+Include:
+
+- Exact integration root causes.
+- Changed files and functions.
+- Before/after validation behavior.
+- Actual Prepare output.
+- Actual Scoring output.
+- Actual Business Quality result.
+- Downstream consumption.
+- Regression tests.
+- Remaining authority requirements.
+- Reusable integration instructions for subsequent categories.
+
+Do not conduct new FPT evidence collection.
+
+Do not reopen the accepted BQ rubrics.
+
+Do not proceed to Financial Health.
+
+Stop after end-to-end integration validation.
