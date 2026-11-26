@@ -123,7 +123,7 @@ python3 -B tools/scoring/vn30_fh_successor.py --ticker FPT --cutoff 2026-11-13 \
 | Ranking and Decision | Same rows consumed; no one-company ordinal or formal decision | Existing formal gates |
 | Research HTML | Rendered in final queue receipt | No publication authorized |
 
-[Versioned candidate](CANDIDATE.json) · [Prepared and executed queue receipt](FPT_WP2_WORKFLOW_RESULT.json) · [Direct FH assessment receipt](FPT_FH_RESULT.json). Identities are `wp2-financial-health-v1.0.0`, `fh-evidence-sufficiency-research-v1.0.0` and `vn30-bq-fh-prepare-scoring-research-successor-v1`. The implementation commit is resolved by `git log -1 --format=%H -- tools/scoring/vn30_fh_successor.py`.
+[Versioned candidate](CANDIDATE.json) · [Prepared and executed queue receipt](FPT_WP2_WORKFLOW_RESULT.json) · [Direct FH assessment receipt](FPT_FH_RESULT.json). Identities are `wp2-financial-health-v1.0.0`, `fh-evidence-sufficiency-research-v1.0.0` and `vn30-bq-fh-prepare-scoring-research-successor-v1`. The implementation commit is `e02ae321e9e5b53b5a9d1a175d4b1ed7c2c84951`.
 
 **252/252 TypeScript tests passed**, including all 33 formal integrations and seven WP2 tests. **25/25 Python tests passed**, including three WP2 successor tests, five WP1 successor tests, 10 controller tests and seven governance tests. Focused typecheck and `CURRENT_PARITY_PASS` passed. WP1 workflow replay matched the archived receipt, thereby preserving all four accepted BQ scores. Exact official V8 reducer replay matched ID, rated rows, 21 N/R and null full score. No remaining 16 rubric behavior was changed. The CLI rejected publication. All six skill references and category parameter names were checked.
 
