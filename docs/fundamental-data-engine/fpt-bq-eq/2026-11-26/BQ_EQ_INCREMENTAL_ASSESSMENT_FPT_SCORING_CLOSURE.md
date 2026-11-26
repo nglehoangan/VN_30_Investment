@@ -59,7 +59,7 @@ A missing current ROIC by itself permits inheritance when new evidence supports 
 node tools/scoring/validate_fpt_bq_eq_incremental.mjs --ticker FPT
 ```
 
-Identity `bq-eq-incremental-research-v1.1.0`. The receipt includes exact input, predecessor, module, adapter and methodology hashes. The implementation commit is resolved by `git log -1 --format=%H -- src/domain/current-scoring/bq-eq-incremental.ts`.
+Identity `bq-eq-incremental-research-v1.1.0`. The receipt includes exact input, predecessor, module, adapter and methodology hashes. The implementation commit is `8cc71b8bf98030ff5409bd48cc442ff651da581e`.
 
 - **207/207 passed** across nine focused files, including 12 incremental cases, 11 v1.0 BQ-EQ cases and all 33 formal scoring integration cases. The run used Node 22.12 with experimental SQLite enabled and Vitest's Node environment, one worker.
 - **Obsolete-generator disposition** · Git records the removal of the root generator in `91267322`. The retired script's original check replayed successfully from Git. The test now invokes the same three exact derivations and byte comparisons through a read-only verifier under `tools/scoring/`. Generated sources were kept byte-identical. The verifier returned `PARITY_CHECK_PASS`.
