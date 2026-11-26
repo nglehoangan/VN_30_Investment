@@ -1,0 +1,757 @@
+# CODEX TASK — Complete Business Quality (25 Points) & Real FPT Scoring Closure
+
+## 1. Owner direction
+
+The owner approves BQ-MOAT Final Acceptance v1.0, M01–M10, and directs the next work package to complete the entire Business Quality category.
+
+Record BQ-MOAT as ACCEPTED AND CLOSED.
+
+Previously accepted rubrics:
+
+- BQ-EQ v1.2, D1–D23: CLOSED.
+- BQ-MOAT v1.0, M01–M10: CLOSED.
+
+Remaining implementation scope:
+
+- BQ-CASH — Earnings Quality, 6 points.
+- BQ-RES — Business Resilience, 5 points.
+
+Complete both rubrics within one coordinated work package.
+
+Preserve the approved economic objectives, existing bands, maximum weights and risk controls.
+
+Apply the proposed evidence-sufficiency classifications below as bounded BQ-CASH and BQ-RES amendments under the owner's direction to complete Business Quality.
+
+Record the precise amendments and owner-direction provenance.
+
+Do not interpret this request as authority for unrelated methodology changes or production activation.
+
+## 2. Accepted baseline
+
+The accepted FPT results are:
+
+| Rubric | Foundation | Current reassessment | Effective Score |
+|---|---|---|---|
+| BQ-EQ | 5/8 | N/R | 5/8 PROVISIONAL |
+| BQ-MOAT | 3/6 | 3/6 REAFFIRMED | 3/6 CONFIRMED_CURRENT |
+
+Existing Business Quality assessed points: 8.
+
+Existing Business Quality rated weight: 14/25.
+
+Existing effective Investment Score coverage: 2/23 rubrics, 14/100 weight.
+
+Previous validation:
+
+- 234/234 tests passed.
+- All 33 formal scoring integration tests passed.
+- Accepted BQ-EQ replay matched.
+- Official FPT V8 replay matched.
+
+Do not reopen BQ-EQ or BQ-MOAT.
+
+## 3. Primary objective
+
+Complete the Business Quality analytical scoring workflow:
+
+Public financial evidence → normalized analytical products → rubric assessment → executable scoring → incremental assessment → Effective Score → complete Business Quality aggregation → downstream Investment Score, ranking and Investment Decision inputs.
+
+Use actual FPT retained evidence.
+
+Do not stop at methodology documentation, proposed assessment JSON, evidence inventory or synthetic testing.
+
+## 4. Repository inspection
+
+Inspect latest local HEAD.
+
+Locate the current accepted BQ-EQ and BQ-MOAT implementations and shared components for:
+
+- Evidence Sufficiency.
+- Incremental Assessment.
+- Latest Valid Assessment.
+- Effective Score.
+- Materiality Review.
+- Confidence and freshness.
+- Category aggregation.
+- Investment Score aggregation.
+- Research ranking.
+- Investment Decision inputs.
+- Research scorecard presentation.
+
+Review governing sources:
+
+- METRIC_DEFINITIONS.md, sections 4.3 and 4.4.
+- SCORING_ENGINE.md.
+- SECTOR_NORMALIZATION.md.
+- SCORECARD_TEMPLATE.md.
+- METHODOLOGY_CLARIFICATION.md.
+- src/domain/scoring/methodology.ts.
+- Existing BQ-CASH and BQ-RES assessment products.
+- Accepted BQ-EQ and BQ-MOAT executable implementations.
+
+Resolve actual paths from latest HEAD.
+
+Do not repeat a general feasibility audit.
+
+## 5. BQ-CASH methodology
+
+### 5.1 Preserve economic objective
+
+Assess recurring economic realization and earnings recognition quality.
+
+Do not divide the six points into additive sub-metric points.
+
+Use one holistic rubric assessment.
+
+### 5.2 Evidence classification
+
+- Realization: CORE.
+- Recognition: CORE.
+- One-offs: CONDITIONAL according to economic materiality.
+- Working capital: CONDITIONAL according to economic materiality.
+- Maintenance versus growth CAPEX: SUPPORTING or CONDITIONAL.
+- Exceptional recurring realization and adjustment quality: MAXIMUM_ONLY.
+
+A supporting or conditional topic must not automatically block an otherwise defensible band when it is economically immaterial.
+
+Require explicit materiality rationale.
+
+Do not ignore material working-capital deterioration, abnormal gains or recognition problems.
+
+### 5.3 Financial calculations
+
+Use FY2022–FY2025 retained financial reports.
+
+Calculate where applicable:
+
+- Revenue.
+- Reported NPAT.
+- Normalized NPAT.
+- CFO.
+- Total CAPEX.
+- FCF.
+- Cumulative CFO/normalized NPAT.
+- Cumulative FCF/normalized NPAT.
+- Accounts receivable.
+- Inventory.
+- Accounts payable.
+- Relevant working-capital movements.
+- Material accruals and noncash gains.
+- Material one-off adjustments.
+
+Use:
+
+Cumulative CFO conversion = sum of qualified CFO / sum of comparable normalized NPAT.
+
+FCF = CFO minus appropriately defined CAPEX cash outflows.
+
+Maintain consistent cash-flow and earnings scope.
+
+Do not combine consolidated CFO with an incompatible parent-only earnings denominator.
+
+Use meaningful sector-equivalent denominators when authorized.
+
+Do not calculate misleading ratios using negative, near-zero or economically incompatible earnings denominators.
+
+Use the underlying economic observations and approved alternatives instead.
+
+### 5.4 Existing economic anchors
+
+Preserve cumulative 3–5 year CFO/NPAT signals:
+
+- At least 110%: strong.
+- 90–110%: good.
+- 70–90%: watch.
+- 50–70%: weak.
+- Below 50%: poor.
+
+Treat these as economic signals, not automatic point assignments.
+
+Interpret cash realization alongside working capital, recognition quality, business characteristics and material adjustments.
+
+### 5.5 CAPEX limitations
+
+Distinguish maintenance and growth CAPEX where supported.
+
+If the split is unavailable:
+
+- Use total CAPEX.
+- Report total-capex FCF.
+- Record the limitation.
+- Use available investment disclosures where economically relevant.
+- Do not invent maintenance-capex estimates.
+- Do not automatically assign N/R solely because the split is unavailable.
+
+If the distinction is essential to the selected band, apply the approved conditional materiality rule.
+
+### 5.6 Normalization and recognition
+
+Review material:
+
+- Noncash gains.
+- Fair-value movements.
+- Provision reversals.
+- Asset-disposal income.
+- Capitalized costs.
+- Related-party receivables.
+- Repeated abnormal earnings.
+- Other material recognition issues.
+
+Do not assume the absence of material abnormal items without reviewing relevant evidence.
+
+Do not require every possible abnormal item to have a separately populated metric.
+
+### 5.7 Sector equivalents
+
+Preserve existing approved sector-specific methods.
+
+For banks, use economic recognition and realization evidence including asset quality, provisioning, accrued interest, credit cost and recurring income.
+
+Do not apply industrial CFO/NPAT mechanically to banks.
+
+For property developers, use relevant collections, handover conversion, inventory monetization and receivables quality.
+
+The actual pilot remains FPT.
+
+### 5.8 Preserve existing bands
+
+Use the exact canonical labels and points:
+
+- 0: Persistent failure of economic realization.
+- 1–2: Weak realization with recurring adverse adjustments.
+- 3–4: Adequate realization with material qualifications.
+- 5–6: Strong recurring realization and adjustment quality.
+
+Preserve within-band stronger-evidence requirements.
+
+Select conservative points only within an economically defensible band.
+
+Do not use a low band as a missing-data substitute.
+
+Maximum 6/6 requires recurring realization, transparent adjustments and sound recognition.
+
+Preserve existing exceptional justification and counterevidence controls.
+
+A high cash-conversion ratio alone is insufficient.
+
+## 6. BQ-RES methodology
+
+### 6.1 Preserve economic objective
+
+Assess the business model's resilience against adverse economic and operating developments.
+
+Do not confuse business resilience with current balance-sheet strength or competitive advantage.
+
+### 6.2 Evidence classification
+
+- Concentration: CORE.
+- Cyclicality: CORE.
+- Pricing power: SUPPORTING or CONDITIONAL according to materiality.
+- Stress behavior: BAND-DEPENDENT.
+- Proven franchise protection without distressed capital actions during severe plausible stress: MAXIMUM_ONLY.
+
+Require sufficient evidence about material vulnerabilities and resilience mechanisms.
+
+Do not require all possible concentration dimensions to have numeric data.
+
+### 6.3 Concentration review
+
+Evaluate economically relevant concentration across:
+
+- Customers.
+- Products.
+- Suppliers.
+- Geographic markets.
+- Projects.
+- Business segments.
+- Funding dependencies where relevant to business-model resilience.
+
+Use existing disclosed customer concentration anchors:
+
+- No single customer above 10%: generally positive.
+- Above 20%: material risk requiring contextual review.
+- Above 30%: major concentration requiring explicit mitigation.
+
+These are economic signals, not automatic points.
+
+When exact customer shares are unavailable, use qualified alternative evidence:
+
+- Segment mix.
+- Geographic mix.
+- Disclosed major-customer relationships.
+- Material contracts.
+- Project and product dependencies.
+- Relevant industry disclosures.
+
+Do not equate segment diversification with proven customer diversification.
+
+Do not interpret nondisclosure as proof of low concentration.
+
+### 6.4 Pricing power
+
+Review available evidence of:
+
+- Ability to pass input costs to customers.
+- Gross and operating margin stability.
+- Demand response.
+- Pricing behavior.
+- Customer relationships.
+- Non-price differentiation.
+
+Margin stability alone does not establish pricing power.
+
+Missing precise customer churn must not automatically block a defensible band.
+
+### 6.5 Cyclicality and stress behavior
+
+Review multi-year normalized operating performance.
+
+Assess:
+
+- Historical revenue changes.
+- Earnings volatility.
+- Relevant earnings drawdowns.
+- Recovery behavior.
+- Demand sensitivity.
+- Operating leverage.
+- Material cost pressures.
+- Other relevant vulnerabilities.
+
+Use retained evidence for relevant adverse periods.
+
+Permit documented analyst scenarios where necessary and supported.
+
+Do not fabricate an observed historical downturn.
+
+Do not require a full internal corporate stress test.
+
+For lower bands, evidence sufficiency must be proportionate to the actual band.
+
+For maximum score, retain the existing requirement to demonstrate protection of franchise value and avoidance of distressed capital actions under severe plausible stress.
+
+### 6.6 Preserve existing bands
+
+Use exact existing canonical bands:
+
+- 0: Structurally fragile.
+- 1: Severe unmitigated dependence.
+- 2: Material vulnerabilities.
+- 3: Balanced resilience.
+- 4: Strong diversified resilience.
+- 5: Proven stress-resilient franchise.
+
+Do not assign 3/5 as a default.
+
+Do not require maximum-score stress evidence for a lower band.
+
+Do not award maximum points without the approved maximum prerequisites and valid disconfirming evidence review.
+
+## 7. Cross-rubric double-counting
+
+Preserve distinct economic channels:
+
+- BQ-EQ: realized economic returns.
+- BQ-MOAT: competitive mechanism.
+- BQ-CASH: economic realization and earnings recognition.
+- BQ-RES: protection against adverse operating developments.
+
+Additionally preserve separation between:
+
+- BQ-RES and FH-STRESS.
+- BQ-RES and RG-RISK.
+- BQ-CASH and FH-LIQ.
+- BQ-CASH and CA-REINV.
+
+The same financial observation may support different rubrics only when distinct economic implications are documented.
+
+Do not award duplicate points merely because one financial metric is favorable.
+
+## 8. Real FPT annual foundation
+
+Ticker: FPT.
+
+Financial foundation: FY2022–FY2025.
+
+Use retained public evidence first.
+
+### BQ-CASH execution
+
+Produce actual normalized financial calculations and source lineage.
+
+Assess:
+
+- Multi-year CFO conversion.
+- FCF conversion.
+- Capital expenditure.
+- Working-capital behavior.
+- Earnings recognition.
+- Material abnormal items.
+
+Select a defensible existing band.
+
+Execute actual FY2025 BQ-CASH scoring.
+
+### BQ-RES execution
+
+Produce actual economic resilience analysis.
+
+Assess:
+
+- Segment and geographic diversification.
+- Material customer or project dependencies.
+- Revenue and margin stability.
+- Relevant operating stress behavior.
+- Vulnerability to demand, labor cost, competition and technology changes.
+- Material mitigation evidence.
+
+Select a defensible existing band.
+
+Execute actual FY2025 BQ-RES scoring.
+
+Do not use prior research points as mandatory targets.
+
+## 9. Real FPT incremental review
+
+Current economic cutoff: 2026-11-13.
+
+Review qualified Q1, Q2, H1 and Q3/2026 information and material subsequent events available by cutoff.
+
+Reuse the retained FTEL scope bridge.
+
+Evaluate materiality separately for BQ-CASH and BQ-RES.
+
+For BQ-CASH:
+
+- Ensure CFO, NPAT and CAPEX scope consistency.
+- Review changes caused by FTEL accounting and ownership treatment.
+- Assess current working-capital and cash-realization behavior.
+- Do not combine incompatible financial scopes.
+
+For BQ-RES:
+
+- Assess whether changed segment composition materially affects diversification and resilience.
+- Review retained FTEL exposure.
+- Assess current demand, operating risks and business vulnerabilities.
+
+Do not automatically reuse the BQ-EQ materiality conclusion.
+
+Do not initiate another complete FTEL reconciliation project.
+
+## 10. Reuse accepted assessment lifecycle
+
+Reuse the existing shared architecture established by BQ-EQ and BQ-MOAT.
+
+Supported lifecycle:
+
+- BASELINE.
+- UPDATED.
+- REAFFIRMED.
+- CARRIED_FORWARD.
+- UPDATE_PENDING.
+- MATERIAL_REVIEW_PENDING.
+- INVALIDATED.
+
+Use the same approved semantics for materiality, confidence, freshness and historical lineage.
+
+Do not implement separate lifecycle engines for BQ-CASH or BQ-RES.
+
+Missing current information must not automatically invalidate a qualified historical assessment.
+
+## 11. Reuse Effective Score
+
+Apply the accepted D19–D23 framework:
+
+1. Use a valid new current score when available.
+2. Otherwise use a valid reaffirmed or inherited current score.
+3. Otherwise use an eligible historical assessment as PROVISIONAL when current reassessment is incomplete.
+4. Return N/R only when no eligible assessment is available.
+
+MATERIAL_IMPACT_UNRESOLVED and missing affirmative support must not automatically block provisional Effective Score.
+
+Confirmed material invalidation and expired evidence must continue blocking historical Effective Score use.
+
+Preserve the distinction between current measured financial values and historical assessment points.
+
+Do not misrepresent provisional scores as confirmed current scores.
+
+## 12. Execute full Business Quality aggregation
+
+Use actual executable outputs for all four rubrics:
+
+| Rubric | Maximum | Effective Score |
+|---|---:|---|
+| BQ-EQ | 8 | Accepted 5 |
+| BQ-MOAT | 6 | Accepted 3 |
+| BQ-CASH | 6 | Actual executable result |
+| BQ-RES | 5 | Actual executable result |
+
+If all four rubrics have eligible numeric Effective Scores:
+
+Business Quality Effective Score = 5 + 3 + BQ-CASH Effective Score + BQ-RES Effective Score.
+
+Maximum = 25.
+
+Set Business Quality analytical category coverage to 4/4.
+
+Set effective rated weight to 25/25.
+
+If one rubric remains genuinely N/R:
+
+- Preserve incomplete-category rules.
+- Report assessed points and rated weight.
+- Do not impute zero.
+- Do not redistribute weights.
+- Explain the precise economic limitation.
+
+Do not force complete numerical coverage.
+
+## 13. Downstream integration
+
+Demonstrate actual consumption of all eligible BQ Effective Scores by:
+
+- Business Quality aggregation.
+- Investment Score analytical aggregation.
+- Effective coverage.
+- Research ranking input.
+- Investment Decision input.
+- Research scorecard presentation.
+
+If all four BQ rubrics receive eligible numeric scores:
+
+- Effective rubric coverage becomes 4/23.
+- Effective rated weight becomes 25/100.
+- Business Quality analytical score becomes complete.
+
+Because accepted BQ-EQ is PROVISIONAL, the aggregated Business Quality category must preserve its provisional qualification.
+
+Do not falsely certify the complete BQ category as entirely CONFIRMED_CURRENT.
+
+The full Investment Score remains incomplete until all required remaining rubrics are available.
+
+Do not produce an actual cross-company rank from a single FPT observation.
+
+Preserve all formal decision, Risk Policy and production authorization gates.
+
+## 14. Testing
+
+Execute one coordinated validation cycle.
+
+### BQ-CASH tests
+
+Cover:
+
+- Valid cumulative CFO conversion.
+- Negative or near-zero earnings denominator.
+- Non-comparable CFO and NPAT scope.
+- Total CAPEX without maintenance/growth split.
+- Material working-capital deterioration.
+- Noncash gains and abnormal recognition.
+- Missing immaterial supporting evidence.
+- Unsupported maximum score.
+- Bank and property sector equivalents.
+
+### BQ-RES tests
+
+Cover:
+
+- Supported diversified business model.
+- Material concentration.
+- Undisclosed customer percentages with qualified alternative evidence.
+- Undisclosed concentration incorrectly assumed to be zero.
+- Material pricing pressure.
+- Supported lower-band assessment without maximum-level stress evidence.
+- Unsupported maximum score.
+- Material adverse developments.
+
+### Shared lifecycle and Effective Score tests
+
+Cover:
+
+- Valid annual foundations.
+- Supported current updates.
+- Reaffirmed assessments.
+- Pending updates.
+- Unresolved materiality with provisional Effective Score.
+- Confirmed invalidation.
+- Expired evidence.
+- Future-information leakage.
+
+Reuse existing lifecycle tests rather than duplicating them unnecessarily.
+
+### Regression tests
+
+Verify:
+
+- Accepted BQ-EQ replay unchanged.
+- Accepted BQ-MOAT replay unchanged.
+- Existing 19 non-BQ rubric behaviors unchanged.
+- Business Quality maximum remains 25.
+- Total methodology maximum remains 100.
+- All formal scoring integration tests pass.
+- Official FPT V8 exact-input replay unchanged.
+- Risk and actionability gates preserved.
+- Unauthorized publication rejected.
+
+### Real issuer tests
+
+Execute:
+
+- Actual FPT BQ-CASH annual scoring.
+- Actual FPT BQ-CASH incremental scoring.
+- Actual FPT BQ-RES annual scoring.
+- Actual FPT BQ-RES incremental scoring.
+- All four BQ Effective Scores.
+- Actual category aggregation.
+- Actual downstream input consumption.
+
+Report actual test results.
+
+Do not claim completion based solely on synthetic tests.
+
+## 15. Evidence-improvement limit
+
+Use retained public evidence first.
+
+Allow at most one coordinated targeted evidence-improvement round for the entire Business Quality work package.
+
+Do not require unavailable private information.
+
+Do not require 100% raw-metric completeness.
+
+Do not restart generic evidence discovery.
+
+Do not modify evidence to achieve predetermined scores.
+
+## 16. Required financial output
+
+Produce actual FPT values and source references:
+
+| BQ-CASH metric | FY2022 | FY2023 | FY2024 | FY2025 | Latest eligible 2026 period |
+|---|---|---|---|---|---|
+| Revenue | | | | | |
+| Reported NPAT | | | | | |
+| Normalized NPAT | | | | | |
+| CFO | | | | | |
+| CAPEX | | | | | |
+| FCF | | | | | |
+| Receivables | | | | | |
+| Inventory | | | | | |
+| Payables | | | | | |
+
+Provide cumulative multi-year conversion calculations separately.
+
+Identify incompatible or unavailable measurements explicitly.
+
+Provide a BQ-RES economic evidence table:
+
+| Resilience dimension | Evidence | Economic implication | Materiality | Limitations |
+|---|---|---|---|---|
+
+## 17. Required final scoring output
+
+| Rubric | FY2025 score | Current reassessment | Effective Score | Validity | Update status |
+|---|---|---|---|---|---|
+| BQ-EQ | 5/8 | N/R | 5/8 | PROVISIONAL | MATERIAL_REVIEW_PENDING |
+| BQ-MOAT | 3/6 | 3/6 | 3/6 | CONFIRMED_CURRENT | REAFFIRMED |
+| BQ-CASH | | | | | |
+| BQ-RES | | | | | |
+
+Provide:
+
+- Business Quality assessed points.
+- Business Quality assessed weight.
+- Business Quality Effective Score out of 25, if complete.
+- Confirmed current coverage.
+- Provisional coverage.
+- Effective coverage.
+- Genuine N/R coverage.
+- Investment Score analytical contribution.
+- Research ranking input.
+- Investment Decision input.
+- Material limitations.
+
+## 18. Acceptance criteria
+
+AC01 — BQ-MOAT Final Acceptance recorded.
+
+AC02 — BQ-CASH and BQ-RES methodology amendments recorded with exact authority.
+
+AC03 — Existing economic objectives, bands and weights preserved.
+
+AC04 — BQ-CASH Evidence Sufficiency implemented.
+
+AC05 — BQ-RES Evidence Sufficiency implemented.
+
+AC06 — Actual FY2025 scoring executed for both new rubrics.
+
+AC07 — Actual current-purpose scoring executed for both new rubrics.
+
+AC08 — Accepted Incremental Assessment architecture reused.
+
+AC09 — Accepted Effective Score architecture reused.
+
+AC10 — All four BQ rubric outputs included in actual category aggregation.
+
+AC11 — Eligible Effective Scores consumed by downstream analytical processes.
+
+AC12 — Missing rubrics are not treated as zero or redistributed.
+
+AC13 — Provisional category qualifications preserved.
+
+AC14 — Accepted BQ-EQ and BQ-MOAT behavior unchanged.
+
+AC15 — Remaining 19 rubric behaviors unchanged.
+
+AC16 — Official FPT V8 unchanged.
+
+AC17 — Formal scoring and Risk Policy controls preserved.
+
+AC18 — No unauthorized production activation or publication.
+
+No numerical score target is imposed.
+
+Actual execution is mandatory.
+
+## 19. Final deliverable
+
+Create one consolidated closure report:
+
+BUSINESS_QUALITY_FPT_SCORING_CLOSURE.md
+
+Include:
+
+1. Owner direction and approved scope.
+2. BQ-MOAT closure record.
+3. BQ-CASH and BQ-RES methodology changes.
+4. Actual implementation changes.
+5. Actual FPT financial calculations and economic evidence.
+6. Annual and current-purpose executable scoring.
+7. Effective Score resolution.
+8. Complete Business Quality aggregation or precise remaining limitations.
+9. Downstream integration results.
+10. Regression and integration tests.
+11. Exact executable commands.
+12. Implementation identities and Git commit.
+13. AC01–AC18 dispositions.
+
+Retain necessary governance, source lineage, implementation, tests and final result artifacts.
+
+Avoid creating separate redundant preparation and audit reports.
+
+## 20. Stopping rules
+
+Do not reopen accepted BQ-EQ or BQ-MOAT.
+
+Do not redesign shared lifecycle or scoring architecture.
+
+Do not expand scoring changes beyond Business Quality.
+
+Do not initiate repeated evidence collection.
+
+Do not activate production scoring.
+
+Do not overwrite official FPT V8.
+
+Do not proceed automatically to Financial Health.
+
+Stop after completing real FPT Business Quality scoring and downstream validation.
