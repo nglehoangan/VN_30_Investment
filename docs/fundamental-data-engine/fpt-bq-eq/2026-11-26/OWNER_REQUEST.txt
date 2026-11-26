@@ -1,0 +1,505 @@
+# CODEX TASK — BQ-EQ Incremental Assessment Inheritance & Real FPT Scoring Closure
+
+## 1. Owner Approval
+
+The owner formally approves BQ-EQ Incremental Assessment Amendment v1.1.
+
+Approval date: 2026-11-26.
+
+Rubric: BQ-EQ — Economic Quality.
+
+Maximum points: 8.
+
+Preserve all previously approved decisions D1–D8 under BQ-EQ Evidence Sufficiency Amendment v1.0.
+
+Additional approved decisions:
+
+- D9 — Methodology Consistency: Maintain consistent economic assessment methods across reporting periods. Change methods only for documented economic or structural reasons.
+- D10 — Baseline Inheritance: Permit inheritance of the latest valid assessment when new information is insufficient for recalculation but the previous economic assessment remains valid.
+- D11 — Materiality Review: Invalidate an existing assessment only when material developments make its economic conclusion unreliable.
+- D12 — Confidence Adjustment: Record new evidence limitations and reassess confidence rather than automatically assigning N/R.
+- D13 — Assessment Freshness: Track the underlying financial period, original assessment date, latest review date and update status separately. Prohibit indefinite inheritance of expired or invalid evidence.
+- D14 — Scoring Execution: Execute amended BQ-EQ scoring using actual FPT evidence, explicitly testing whether the previous 5/8 assessment remains economically valid.
+
+Promote the approved amendment to Approved Baseline v1.1 using the existing methodology governance mechanism.
+
+This approval is limited to BQ-EQ implementation and isolated real-issuer validation.
+
+It does not authorize production activation, publication, or modification of official FPT V8.
+
+## 2. Objective
+
+Resolve the remaining BQ-EQ incremental assessment limitation demonstrated by FPT.
+
+Previous executable validation:
+
+- FY2025 foundation: 5/8, CONSERVATIVE, Good economics.
+- Current cutoff 2026-11-13: N/R.
+- Tests: 194/195 passed.
+- All 33 formal scoring integration cases passed.
+- FPT V8 exact-input replay matched the stored result.
+
+The remaining economic limitation concerns the FTEL consolidation-scope transition and unavailable comparable current return metrics.
+
+The owner requires a long-term fundamental assessment lifecycle, not mandatory reconstruction of every assessment whenever quarterly information becomes available.
+
+Complete actual scoring through the amended executable.
+
+Do not initiate another general audit, proxy redesign or financial data reconciliation project.
+
+## 3. Implementation scope
+
+Inspect the latest repository state.
+
+Reuse:
+
+- BQ-EQ Evidence Sufficiency Amendment v1.0.
+- Existing isolated real-issuer scoring implementation.
+- Existing FPT FY2025 assessment and financial calculations.
+- Existing FTEL scope bridge.
+- Existing Q1–Q3/2026 evidence.
+- Existing executable validation and test fixtures.
+- Existing scoring and incremental-update skills.
+
+Implement only the incremental assessment changes authorized by D9–D14.
+
+Do not modify the scoring behavior of the remaining 22 rubrics.
+
+If shared lifecycle infrastructure is introduced, keep its amended behavior enabled only for BQ-EQ.
+
+Preserve historical immutable methodology identities and official production artifacts.
+
+## 4. Methodology consistency
+
+Maintain the same:
+
+- Economic objective.
+- Approved return methodology.
+- Normalization principles.
+- Cost-of-capital framework.
+- Assessment bands.
+- Maximum points.
+- Evidence sufficiency requirements.
+
+For each new reporting period, continue using the primary economic assessment route established by the valid annual foundation where appropriate.
+
+Do not switch assessment methodology merely because a quarterly report has fewer disclosures.
+
+A documented structural change may require:
+
+- Scope normalization.
+- Comparable-series reconstruction.
+- An approved equivalent return measure.
+- A supported conservative range.
+- Combined economic evidence.
+
+Distinguish adjustment of financial operands from a change in economic assessment methodology.
+
+Document the reason and implications of every material methodological transition.
+
+## 5. Implement incremental assessment lifecycle
+
+Support the following semantic update states using existing compatible schemas where possible.
+
+### BASELINE
+
+The initial qualified fundamental assessment.
+
+### UPDATED
+
+New evidence supports a newly calculated or reassessed band.
+
+The score may increase, decrease or remain unchanged.
+
+### REAFFIRMED
+
+New evidence has been reviewed and independently supports the existing economic conclusion.
+
+### CARRIED_FORWARD
+
+The latest valid assessment is inherited because current information is insufficient for a complete new calculation, but the previous economic conclusion remains defensible after a materiality and freshness review.
+
+### INVALIDATED
+
+The previous assessment is no longer economically reliable because of material changes, expired evidence, unresolved contradictions or incompatible economic scope.
+
+If an invalidated assessment cannot be replaced through the authorized assessment routes, the current scoring result is N/R.
+
+Update status must remain separate from:
+
+- VERIFIED / CONSERVATIVE / N/R.
+- Confidence.
+- Score validity.
+- Production authorization.
+
+Do not represent an inherited assessment as a newly calculated current-period return metric.
+
+## 6. Incremental decision rules
+
+Apply the following decision sequence:
+
+1. Locate the latest qualified BQ-EQ assessment.
+2. Verify its original evidence, methodology, economic scope and lineage.
+3. Review eligible new financial information and material events.
+4. Determine whether those developments affect the previous economic conclusion.
+5. Attempt a consistent current-period assessment where sufficient information exists.
+6. If a new assessment is supported, use UPDATED or REAFFIRMED.
+7. If a complete new assessment cannot be constructed, explicitly test whether the previous assessment remains economically valid.
+8. If inheritance is defensible, preserve the previous score using CARRIED_FORWARD.
+9. Reassess confidence and disclose current-period limitations.
+10. If inheritance is not defensible, apply the authorized D1–D8 fallback routes.
+11. Assign N/R only when neither a valid inherited assessment nor a defensible new assessment is available.
+
+Do not require a complete recalculation of current ROIC as a prerequisite for inheritance.
+
+Do not interpret the absence of negative evidence alone as proof that the old assessment remains valid.
+
+An unresolved material change that prevents a defensible conclusion about the applicability of the previous assessment must not be concealed through inheritance.
+
+## 7. Materiality review
+
+Evaluate changes in:
+
+- Core business activities.
+- Operating profitability.
+- Economic returns.
+- Capital structure.
+- Financial leverage.
+- Business segment composition.
+- Consolidation scope.
+- Acquisitions and divestments.
+- Accounting treatment.
+- Cost of capital.
+- Material adverse developments.
+
+Classify each relevant change as:
+
+- NO_MATERIAL_IMPACT
+- MATERIAL_BUT_BOUNDED
+- MATERIAL_INVALIDATING
+- MATERIAL_IMPACT_UNRESOLVED
+
+A structural or accounting change must not automatically invalidate the previous economic assessment.
+
+Determine whether the change materially affects the economic conclusion, not merely the availability of a particular accounting ratio.
+
+Inheritance may be permitted for MATERIAL_BUT_BOUNDED when supported evidence establishes that the previous band remains economically defensible.
+
+Do not inherit when MATERIAL_INVALIDATING or MATERIAL_IMPACT_UNRESOLVED prevents a reliable conclusion.
+
+Do not introduce arbitrary numerical materiality thresholds without approved authority.
+
+## 8. Assessment inheritance contract
+
+An inherited assessment must retain or reference:
+
+- Original assessment identity.
+- Original assessment period.
+- Original assessment date.
+- Original selected band and points.
+- Original methodology and implementation identity.
+- Original evidence references.
+- Latest financial period reviewed.
+- Latest review cutoff.
+- Latest review date.
+- Material changes reviewed.
+- Materiality conclusion.
+- Inheritance rationale.
+- Unresolved current-period metrics.
+- Updated confidence.
+- Applicable freshness limitations.
+- Reassessment triggers.
+
+Preserve the distinction between:
+
+- Historical assessed return.
+- Current measured return.
+- Current inherited economic assessment.
+
+Do not copy historical ROIC into a current-period ROIC field.
+
+Do not overwrite or regenerate historical evidence as if it were newly reported.
+
+Validate source availability and prevent hindsight leakage.
+
+## 9. Confidence and freshness
+
+Reassess confidence using the existing approved framework.
+
+Missing current-period calculations may reduce confidence without automatically invalidating a supported inherited assessment.
+
+Do not mechanically reduce the numeric BQ-EQ score as a confidence penalty.
+
+Do not automatically assign LOW confidence solely because an assessment is inherited.
+
+Consider:
+
+- Original evidence strength.
+- Age of the assessment.
+- Completeness of subsequent reporting.
+- Materiality of unresolved information.
+- Dependence on assumptions.
+- Scope comparability.
+- Subsequent counterevidence.
+
+Use existing approved freshness requirements.
+
+Do not invent an arbitrary expiry period.
+
+Require reassessment when new authoritative annual information becomes available, when a material structural event occurs, or when applicable evidence expires.
+
+If an assessment can no longer be reliably supported, invalidate it rather than extending inheritance indefinitely.
+
+## 10. FPT real-data execution
+
+Ticker: FPT.
+
+Annual foundation: FY2022–FY2025.
+
+Current economic cutoff: 2026-11-13.
+
+### Stage A — Reproduce the valid annual foundation
+
+Reuse the existing qualified FY2025 assessment.
+
+Verify:
+
+- Economic objective.
+- Return calculations.
+- Cost-of-capital range.
+- Persistence.
+- Margin evidence.
+- Existing selected band.
+- Existing 5/8 conservative assessment.
+- Evidence lineage.
+
+Reproduce the actual executable baseline result.
+
+The previous 5/8 is a reference result, not a mandatory numerical target.
+
+Explain any legitimate difference.
+
+Do not reconstruct the entire financial dataset unnecessarily.
+
+### Stage B — Process incremental evidence
+
+Review Q1, Q2, H1, Q3/2026 and material subsequent information available by 2026-11-13.
+
+Process actual publication dates and economic-event dates correctly.
+
+Reuse the existing FTEL financial scope bridge.
+
+Assess:
+
+- Whether the FTEL accounting transition changes the underlying economic quality of FPT.
+- Whether normalized core-business profitability remains consistent with the FY2025 assessment.
+- Whether available evidence supports continued applicability of the prior return assessment.
+- Whether unresolved FTEL invested-capital and NOPAT comparability materially invalidate the previous band.
+- Whether cost-of-capital assumptions remain economically appropriate.
+- Whether new leverage, margin or business developments contradict the previous conclusion.
+
+Distinguish inability to calculate current comparable ROIC from inability to defend the underlying economic assessment.
+
+### Stage C — Explicit inheritance test
+
+Answer the following question using actual retained FPT evidence:
+
+Does the FTEL transition invalidate the FY2025 Good economics assessment, or does it merely prevent a complete recalculation of current-period ROIC?
+
+If the previous assessment remains defensible:
+
+- Retain 5/8, subject to verification of the baseline result.
+- Record CARRIED_FORWARD.
+- Preserve CONSERVATIVE where applicable.
+- Update confidence and limitations.
+- Mark current comparable ROIC as unavailable if unresolved.
+
+If new evidence supports a different band:
+
+- Execute UPDATED scoring.
+- Report the new score and rationale.
+
+If inheritance cannot be economically defended:
+
+- Identify the exact material invalidating or unresolved dependency.
+- Apply the approved alternative assessment routes.
+- Execute N/R only if neither inheritance nor reassessment supports a defensible band.
+
+Do not force a 5/8 result merely to improve coverage.
+
+Do not require another complete FTEL financial reconciliation.
+
+## 11. Actual executable validation
+
+Extend or reuse the existing isolated real-issuer scoring path established for BQ-EQ v1.0.
+
+Execute:
+
+1. FY2025 baseline.
+2. Incremental materiality and inheritance review.
+3. Final current-purpose BQ-EQ scoring.
+
+Do not stop at assessment JSON preparation.
+
+Do not substitute a manually reported score for executable output.
+
+Do not label real FPT evidence as synthetic.
+
+Do not write to production SQLite, official scorecards, ranking or publication records.
+
+Record the exact executable command, implementation identity, input artifact and output artifact.
+
+## 12. Required tests
+
+Run one bounded implementation and validation cycle.
+
+### Positive cases
+
+- Valid annual baseline.
+- New information supports a higher band.
+- New information supports a lower band.
+- New information reaffirms the same band.
+- Missing quarterly data with a valid historical assessment.
+- Accounting-scope change with bounded economic impact.
+- Supported inheritance despite unavailable current ROIC.
+- Inherited assessment with updated confidence.
+- Later authoritative evidence replaces an inherited assessment.
+
+### Negative cases
+
+- No valid previous assessment.
+- Expired or unsupported historical evidence.
+- Material deterioration invalidating the old band.
+- Material structural change that cannot be economically bounded.
+- Contradictory current evidence.
+- Incompatible methodology without qualification.
+- Unsupported automatic score copying.
+- Historical ROIC incorrectly presented as current ROIC.
+- Future-information leakage.
+- Indefinite inheritance without review.
+- Unauthorized production publication.
+
+### Regression cases
+
+- All other 22 rubric scoring behavior remains unchanged.
+- BQ-EQ maximum remains 8.
+- Total architecture remains 100 points.
+- Existing scoring bands remain unchanged.
+- D1–D8 remain enforced.
+- Existing formal scoring integration cases pass.
+- Exact FPT V8 replay remains unchanged.
+
+Address the previously reported obsolete-script test failure only if it is reproducibly obsolete and can be resolved through minimal test maintenance.
+
+Do not remove or weaken a meaningful test merely to obtain a passing count.
+
+Report the exact failure disposition.
+
+## 13. Required output
+
+Produce the following actual execution comparison:
+
+| Output | FY2025 baseline | Cutoff before v1.1 | Cutoff after v1.1 |
+|---|---|---|---|
+| Assessment method | | | |
+| Underlying financial period | | | |
+| Latest period reviewed | | | |
+| Current comparable ROIC | | | |
+| Economic band | | | |
+| Analyst-selected points | | | |
+| Executable output points | | | |
+| Assessment quality | | | |
+| Update status | | | |
+| Confidence | | | |
+| FTEL materiality | | | |
+| Remaining limitations | | | |
+| Production eligibility | | | |
+
+Also provide an FTEL-specific materiality table:
+
+| Material change | Evidence | Economic impact | Impact on previous band | Disposition |
+|---|---|---|---|---|
+
+Explain the relationship between unavailable current ROIC and the continued validity or invalidity of the previous economic assessment.
+
+## 14. Acceptance criteria
+
+AC01 — D9–D14 recorded in Approved Baseline v1.1.
+
+AC02 — D1–D8 preserved.
+
+AC03 — Methodology consistency across periods implemented.
+
+AC04 — Valid assessment inheritance implemented.
+
+AC05 — Materiality and invalidation controls enforced.
+
+AC06 — Confidence and freshness tracked separately.
+
+AC07 — Historical metric values are not misrepresented as current values.
+
+AC08 — Actual FPT FY2025 baseline executed.
+
+AC09 — Actual FPT current-purpose inheritance decision executed.
+
+AC10 — Final BQ-EQ score or N/R produced through the amended executable.
+
+AC11 — Any remaining N/R demonstrates why both inheritance and approved reassessment routes are economically insufficient.
+
+AC12 — Remaining 22 rubrics and official production results unchanged.
+
+AC13 — Regression and integration test outcomes recorded.
+
+AC14 — No unauthorized production activation or publication.
+
+A numerical improvement is not an acceptance requirement.
+
+Actual scoring execution and correct treatment of inheritance are mandatory.
+
+## 15. Scope and stopping rules
+
+Use existing retained public evidence.
+
+Allow at most one targeted evidence-improvement round if essential.
+
+Do not:
+
+- Restart public-data feasibility analysis.
+- Create another proxy methodology.
+- Rebuild the complete FTEL dataset.
+- Expand this amendment to other rubrics.
+- Create additional generic governance frameworks.
+- Change existing scoring weights or bands.
+- Activate the candidate in production.
+- Overwrite official FPT V8.
+- Proceed to BQ-MOAT.
+
+Update existing scoring and incremental-assessment skills only where necessary to implement D9–D14.
+
+## 16. Final deliverable
+
+Create one consolidated report:
+
+BQ_EQ_INCREMENTAL_ASSESSMENT_FPT_SCORING_CLOSURE.md
+
+Include:
+
+1. Owner approval D1–D14.
+2. Approved Baseline v1.1.
+3. Exact implementation changes.
+4. Incremental assessment lifecycle.
+5. FPT FY2025 executable result.
+6. FTEL materiality conclusion.
+7. Current-purpose inheritance decision.
+8. Actual current-purpose executable result.
+9. Confidence and freshness treatment.
+10. Test results and obsolete-test disposition.
+11. Implementation identity and Git commit.
+12. AC01–AC14 disposition.
+13. Remaining production authority requirements.
+
+Retain the necessary final artifacts, evidence lineage, implementation and tests.
+
+Return one implementation verdict and one operational scoring verdict.
+
+Stop after completing BQ-EQ incremental scoring validation.

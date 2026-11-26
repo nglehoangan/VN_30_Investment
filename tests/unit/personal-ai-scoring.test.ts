@@ -13,7 +13,7 @@ import { SECTORS } from "@/domain/scoring/methodology";
 const numerical = (c: ReturnType<typeof human> | ReturnType<typeof ai>) => ({ totalScore: c.totalScore, categories: c.categories, rows: c.subcategories.map(s => ({ id:s.id, max:s.max, points:s.points, status:s.status, missingTopics:s.missingTopics })), metrics: c.metrics, validity:c.validity, confidence:c.confidence, dataQuality:c.dataQuality, missingEvidence:c.missingEvidence, blockingEvidence:c.blockingEvidence });
 describe("versioned personal AI financial compatibility", () => {
   it("locks every financial branch to the legacy algorithm with explicit origin-only transformations", () => {
-    expect(execFileSync(process.execPath, ["scripts/generate-personal-ai-compatibility.mjs", "--check"], { encoding: "utf8" })).toContain("PARITY_CHECK_PASS");
+    expect(execFileSync(process.execPath, ["tools/scoring/verify-personal-ai-parity.mjs"], { encoding: "utf8" })).toContain("PARITY_CHECK_PASS");
   });
   it.each(SECTORS)("preserves points, weights, financial gates and missing data in %s", sector => {
     const source = fixture(0, sector), input = reviewedAiInput(source).input, card = ai(input, snapshotHash);
