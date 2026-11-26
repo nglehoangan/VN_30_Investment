@@ -83,7 +83,7 @@ node tools/scoring/validate_fpt_business_quality.mjs --ticker FPT
 node tools/scoring/validate_fpt_business_quality.mjs --ticker FPT --html > /tmp/fpt-business-quality-scorecard.html
 ```
 
-Implementation `bq-cash-res-evidence-sufficiency-research-v1.0.0`. Methodologies `bq-cash-evidence-sufficiency-v1.0.0` and `bq-res-evidence-sufficiency-v1.0.0`. Implementation commit is resolved by `git log -1 --format=%H -- src/domain/current-scoring/bq-cash-res-research.ts`. [Input](FPT_BUSINESS_QUALITY_INPUT.json) · [Executable result](FPT_BUSINESS_QUALITY_RESULT.json) · [Focused tests](../../../../tests/unit/bq-cash-res-research.test.ts)
+Implementation `bq-cash-res-evidence-sufficiency-research-v1.0.0`. Methodologies `bq-cash-evidence-sufficiency-v1.0.0` and `bq-res-evidence-sufficiency-v1.0.0`. Implementation commit is `2eb3cff3dbbe801e8f7cd82f8e2590d9e3a8f6c1`. [Input](FPT_BUSINESS_QUALITY_INPUT.json) · [Executable result](FPT_BUSINESS_QUALITY_RESULT.json) · [Focused tests](../../../../tests/unit/bq-cash-res-research.test.ts)
 
 **245/245 tests passed** across 11 focused files, including 11 added cases and all 33 formal scoring integration cases. Focused TypeScript and `CURRENT_PARITY_PASS` passed. Accepted BQ-EQ and BQ-MOAT replayed byte-for-byte. Exact FPT V8 input reproduced its stored ID, BQ-MOAT 3/6, IC-IND 2/4, 21 N/R and null full score. The CLI rejected publication. HTML validation verified all four scores and the provisional category label.
 
