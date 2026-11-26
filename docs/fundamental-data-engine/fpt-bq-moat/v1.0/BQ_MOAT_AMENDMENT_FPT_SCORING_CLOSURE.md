@@ -79,7 +79,7 @@ node tools/scoring/validate_fpt_bq_moat.mjs --ticker FPT
 node tools/scoring/validate_fpt_bq_moat.mjs --ticker FPT --html > /tmp/fpt-bq-moat-scorecard.html
 ```
 
-Implementation identity `bq-moat-evidence-sufficiency-research-v1.0.0`. The implementation commit is identified by `git log -1 --format=%H -- src/domain/current-scoring/bq-moat-research.ts`. The receipt records runnable code and input SHA-256 identities. [Real research input and retained evidence locators](FPT_BQ_MOAT_INPUT.json) · [Executed result and both downstream inputs](FPT_BQ_MOAT_RESULT.json)
+Implementation identity `bq-moat-evidence-sufficiency-research-v1.0.0`. The implementation commit is `4aabfb26874d36f556a64790e7f57cd81846a818`. The receipt records runnable code and input SHA-256 identities. [Real research input and retained evidence locators](FPT_BQ_MOAT_INPUT.json) · [Executed result and both downstream inputs](FPT_BQ_MOAT_RESULT.json)
 
 **234/234 tests passed** across 10 focused files, including 17 new moat cases and all 33 formal scoring integration cases. Focused TypeScript validation and `CURRENT_PARITY_PASS` passed. The exact FPT V8 input reproduced the stored ID, BQ-MOAT 3/6, IC-IND 2/4, 21 N/R and null full score. The accepted BQ-EQ replay matched byte-for-byte, with 5/8 provisional and MATERIAL_REVIEW_PENDING. The research adapter rejected publication. The local HTML displayed both scores, BQ coverage and the moat limitations.
 
