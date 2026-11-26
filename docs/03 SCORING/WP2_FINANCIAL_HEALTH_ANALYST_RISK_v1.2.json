@@ -1,0 +1,247 @@
+{
+  "status": "APPROVED_BASELINE",
+  "methodology": "wp2-financial-health-analyst-risk-v1.2.0",
+  "implementation": "fh-analyst-risk-research-v1.2.0",
+  "owner": {
+    "path": "docs/fundamental-data-engine/fpt-financial-health/analyst-risk-v1.2/OWNER_REQUEST.txt",
+    "sha256": "c6fca2cf4de6696acecf9c8a467e245789f936c78d802d08e62e38ada23a3ee6"
+  },
+  "predecessor": {
+    "path": "docs/03 SCORING/WP2_FINANCIAL_HEALTH_DUAL_ROUTE_v1.1.json",
+    "sha256": "6943044153e4de8a185bec1b07378c6912c006cec6039d0ca21fda2ce1f31811"
+  },
+  "scopedRubrics": [
+    "FH-LIQ",
+    "FH-STRESS"
+  ],
+  "approvedOrder": [
+    "B_FULL",
+    "A_ANALYST_RISK"
+  ],
+  "ceilings": {
+    "FH-LIQ": {
+      "B_FULL": 4,
+      "A_BASIC": 3
+    },
+    "FH-STRESS": {
+      "B_FULL": 5,
+      "A_BASIC": 4
+    }
+  },
+  "implementationChoices": [
+    "Keep the v1.1 B evaluator and eligibility gate. Validate v1.2 risk findings independently of v1.1 economic conclusions.",
+    "Use existing research confidence dimensions and retain restrictions in each effective route qualification.",
+    "Run the existing shared WP2 Prepare and single-ticker orchestration in isolated research.",
+    "Map the 18 AR controls to owner sections and retain an explicit eligibility decision separate from confidence."
+  ],
+  "input": {
+    "path": "docs/fundamental-data-engine/fpt-financial-health/analyst-risk-v1.2/FPT_FH_ANALYST_RISK_ASSESSMENT.json",
+    "sha256": "695e03e2d8fbdec11fb1ee17cac227f2bc9d63c06674595ba24f769cea919fc9"
+  },
+  "legacyInput": {
+    "path": "docs/fundamental-data-engine/fpt-financial-health/v1.0/FPT_FH_INPUT.json",
+    "sha256": "76ccae2b4fe89ee6c3d19e75bbb1688ee932af8512c1e9f4291c7eb09ca51a76"
+  },
+  "legacyResult": {
+    "path": "docs/fundamental-data-engine/fpt-financial-health/v1.0/FPT_FH_RESULT.json",
+    "sha256": "ac40b9159440b8fb14356330c8eb6883813f64e851b01fd3ccd1206617e70040"
+  },
+  "legacyWorkflow": {
+    "path": "docs/fundamental-data-engine/fpt-financial-health/v1.0/FPT_WP2_WORKFLOW_RESULT.json",
+    "sha256": "ce256841de1f7c5cf95a3639f8ca423aa08524dbb636ba9ea4f68ee952449211"
+  },
+  "productionScoringAuthorized": false,
+  "publicationAuthorized": false,
+  "refinancingSource": {
+    "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/FPT_FY2025_13_UNRATED_REASSESSMENT.md",
+    "sha256": "f17e4029dc6769cef0f9120e4ac4271b41b1bbb40d16cebf2b0e7ec4210c1eed"
+  },
+  "discrepancy": {
+    "path": "docs/fundamental-data-engine/fpt-financial-health/dual-route-v1.1/FH_AB_ANALYST_EXECUTABLE_DISCREPANCY_REVIEW.md",
+    "sha256": "6863739f2c82931a314531a5821fb03c5ea2ced41a8936f047e4c998b214d377"
+  },
+  "predecessorResult": {
+    "path": "docs/fundamental-data-engine/fpt-financial-health/dual-route-v1.1/FPT_FH_DUAL_ROUTE_RESULT.json",
+    "sha256": "d47189b883fdf40a22a25dce086552b0fc7596e363ab029ca34655df5800fa06"
+  },
+  "AR": {
+    "AR01": {
+      "direction": "Owner scope and research-only authority",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 1
+    },
+    "AR02": {
+      "direction": "Preserve weights and canonical B bands",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 4
+    },
+    "AR03": {
+      "direction": "Version A risk bands",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 4
+    },
+    "AR04": {
+      "direction": "Retain B-first and adverse evidence",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 5
+    },
+    "AR05": {
+      "direction": "Reuse source-bound facts, calculations, estimates and assumptions",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 6
+    },
+    "AR06": {
+      "direction": "Use liquidity risk profile findings",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 7
+    },
+    "AR07": {
+      "direction": "Use scenario-based vulnerability findings",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 8
+    },
+    "AR08": {
+      "direction": "Preserve ceilings of 3/4 and 4/5",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 7
+    },
+    "AR09": {
+      "direction": "Record proposal and adjacent-band rationale",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 10
+    },
+    "AR10": {
+      "direction": "Validate band-specific supporting findings",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 9
+    },
+    "AR11": {
+      "direction": "Review counterevidence and invalidation",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 11
+    },
+    "AR12": {
+      "direction": "Reuse five confidence dimensions and keep score independent",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 12
+    },
+    "AR13": {
+      "direction": "Retain freshness, maturity and historical eligibility",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 13
+    },
+    "AR14": {
+      "direction": "Keep research qualification through consumers",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 14
+    },
+    "AR15": {
+      "direction": "Preserve formal gates and mixed-route limitations",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 14
+    },
+    "AR16": {
+      "direction": "Execute both FPT rubrics for both periods",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 16
+    },
+    "AR17": {
+      "direction": "Amend six reusable skills",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 17
+    },
+    "AR18": {
+      "direction": "Verify regressions and preserve v1.1 replay",
+      "authority": "OWNER_REQUEST",
+      "disposition": "IMPLEMENTED_FOR_ISOLATED_RESEARCH",
+      "ownerSection": 18
+    }
+  },
+  "analystBands": {
+    "FH-LIQ": [
+      {
+        "points": 0,
+        "id": "CRITICAL_LIQUIDITY_DISTRESS",
+        "definition": "Evidence establishes critical liquidity distress, uncovered obligations or an inability to meet material financial commitments without credible mitigation.\n\nMissing evidence alone is insufficient."
+      },
+      {
+        "points": 1,
+        "id": "WEAK_LIQUIDITY_RISK_PROFILE",
+        "definition": "Evidence establishes weak liquidity resources, material weakness in cash generation or servicing capacity, and severe dependence on external financing.\n\nDo not assign solely because cash coverage is below a single threshold."
+      },
+      {
+        "points": 2,
+        "id": "MATERIAL_REFINANCING_RISK_WITH_FINANCIAL_CAPACITY",
+        "definition": "Evidence establishes meaningful financial capacity together with material refinancing or liquidity risk.\n\nFinancial capacity may be supported by observed financial resources, sustainable earnings, operating cash generation or demonstrated financing capacity.\n\nRisk may be supported by low cash-only coverage, maturity concentration, funding dependence or deterioration in cash generation.\n\nDo not require certification of full liquidity adequacy under Method B.\n\nUnverified deposit accessibility may remain an explicit limitation if the risk-profile conclusion is independently supported."
+      },
+      {
+        "points": 3,
+        "id": "SOUND_LIQUIDITY_RISK_PROFILE",
+        "definition": "Evidence establishes a sound financial resource profile and manageable refinancing risk.\n\nRequire affirmative evidence of adequate financial buffers, cash generation and manageable funding dependence.\n\nMaterial adverse contradictions must be resolved or reflected in a lower band."
+      }
+    ],
+    "FH-STRESS": [
+      {
+        "points": 0,
+        "id": "CRITICAL_STRESS_FAILURE",
+        "definition": "Evidence establishes an inability to withstand a severe plausible stress scenario.\n\nRequire strong economic evidence.\n\nDo not assign from missing information or an isolated extreme assumption."
+      },
+      {
+        "points": 1,
+        "id": "SEVERE_FINANCIAL_FRAGILITY",
+        "definition": "Evidence establishes very weak stressed financial capacity and serious dependence on potentially adverse financial actions.\n\nDo not equate uncertain funding with confirmed distress."
+      },
+      {
+        "points": 2,
+        "id": "MATERIAL_STRESS_VULNERABILITY",
+        "definition": "Evidence establishes material financial pressure and vulnerability in a severe plausible stress scenario.\n\nRelevant evidence includes:\n\n- Significant deterioration in stressed cash generation.\n- Material negative stressed FCF.\n- Substantial debt maturity pressure.\n- Material sensitivity to accessible financial buffers.\n- Potential need to use reserves, adjust investment or obtain additional funding.\n\nThe analyst need not establish a specific future capital response or prove that the issuer will fail.\n\nThe vulnerability conclusion must be supported by actual stress calculations and economic evidence.\n\nUncertainty alone is insufficient."
+      },
+      {
+        "points": 3,
+        "id": "ADEQUATE_STRESS_BUFFER_WITH_MATERIAL_CONSTRAINTS",
+        "definition": "Evidence supports a meaningful financial buffer under stress, while material constraints remain.\n\nRequire affirmative evidence that the relevant financial pressures are economically manageable."
+      },
+      {
+        "points": 4,
+        "id": "STRONG_STRESS_RESILIENCE",
+        "definition": "Evidence supports strong stressed financial capacity, substantial buffers and manageable funding pressure.\n\nRequire meaningful robustness against plausible sensitivity ranges."
+      }
+    ]
+  },
+  "confidence": {
+    "dimensions": [
+      "Freshness",
+      "Completeness",
+      "Source reliability",
+      "Estimate dependence",
+      "Model / cycle uncertainty"
+    ],
+    "mapping": {
+      "Weak": 0,
+      "Adequate": 1,
+      "Strong": 2
+    },
+    "range": [
+      0,
+      10
+    ],
+    "governance": "M3 confidence thresholds and Risk Policy actionability gates stay in force. Research confidence totals are not score multipliers or assertions of formal confidence."
+  }
+}

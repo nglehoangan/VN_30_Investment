@@ -1,0 +1,143 @@
+{
+  "typescript": {
+    "runtime": "Node v22.12.0, NODE_OPTIONS=--experimental-sqlite, Vitest node environment",
+    "passed": 285,
+    "total": 285,
+    "files": [
+      {
+        "path": "tests/integration/current-formal-scoring.test.ts",
+        "passed": 33,
+        "total": 33
+      },
+      {
+        "path": "tests/integration/current-scoring-consumer.test.ts",
+        "passed": 3,
+        "total": 3
+      },
+      {
+        "path": "tests/unit/bq-cash-res-research.test.ts",
+        "passed": 11,
+        "total": 11
+      },
+      {
+        "path": "tests/unit/bq-eq-incremental.test.ts",
+        "passed": 22,
+        "total": 22
+      },
+      {
+        "path": "tests/unit/bq-eq-research.test.ts",
+        "passed": 11,
+        "total": 11
+      },
+      {
+        "path": "tests/unit/bq-moat-research.test.ts",
+        "passed": 17,
+        "total": 17
+      },
+      {
+        "path": "tests/unit/fh-analyst-risk.test.ts",
+        "passed": 12,
+        "total": 12
+      },
+      {
+        "path": "tests/unit/fh-dual-route.test.ts",
+        "passed": 7,
+        "total": 7
+      },
+      {
+        "path": "tests/unit/fh-research.test.ts",
+        "passed": 9,
+        "total": 9
+      },
+      {
+        "path": "tests/unit/public-proxy-candidate.test.ts",
+        "passed": 23,
+        "total": 23
+      },
+      {
+        "path": "tests/unit/scoring-bridge-derived.test.ts",
+        "passed": 5,
+        "total": 5
+      },
+      {
+        "path": "tests/unit/scoring-evidence-time.test.ts",
+        "passed": 4,
+        "total": 4
+      },
+      {
+        "path": "tests/unit/scoring-g2-g3.test.ts",
+        "passed": 37,
+        "total": 37
+      },
+      {
+        "path": "tests/unit/scoring-golden.test.ts",
+        "passed": 32,
+        "total": 32
+      },
+      {
+        "path": "tests/unit/scoring.test.ts",
+        "passed": 59,
+        "total": 59
+      }
+    ],
+    "officialV8IsolatedReplay": "PASS"
+  },
+  "python": {
+    "command": "python3 -B -m unittest discover -s tests/unit -p 'test_vn30*.py' -v",
+    "passed": 33,
+    "total": 33,
+    "cases": [
+      "test_isolated_existing_queue_runs_all_stages_and_reproduces_retained_receipt (test_vn30_bq_successor.BusinessQualitySuccessor.test_isolated_existing_queue_runs_all_stages_and_reproduces_retained_receipt) ... ok",
+      "test_prepare_accepts_exact_qualified_rows_and_legitimately_missing_supporting_detail (test_vn30_bq_successor.BusinessQualitySuccessor.test_prepare_accepts_exact_qualified_rows_and_legitimately_missing_supporting_detail) ... ok",
+      "test_prepare_blocks_missing_core_expired_or_invalidated_when_resolver_has_no_eligible_score (test_vn30_bq_successor.BusinessQualitySuccessor.test_prepare_blocks_missing_core_expired_or_invalidated_when_resolver_has_no_eligible_score) ... ok",
+      "test_rejects_formal_score_publication_and_ineligible_ticker (test_vn30_bq_successor.BusinessQualitySuccessor.test_rejects_formal_score_publication_and_ineligible_ticker) ... ok",
+      "test_rejects_unauthorized_provisional_projection_and_adoption_drift (test_vn30_bq_successor.BusinessQualitySuccessor.test_rejects_unauthorized_provisional_projection_and_adoption_drift) ... ok",
+      "test_exact_workflow_propagates_research_route_and_preserves_formal_gates (test_vn30_fh_analyst_risk.FhAnalystRiskWorkflow.test_exact_workflow_propagates_research_route_and_preserves_formal_gates) ... ok",
+      "test_publication_flag_is_outside_command_contract (test_vn30_fh_analyst_risk.FhAnalystRiskWorkflow.test_publication_flag_is_outside_command_contract) ... ok",
+      "test_exact_end_to_end_public_projection_and_legacy_receipts (test_vn30_fh_bounded_closure.FinancialHealthBoundedClosure.test_exact_end_to_end_public_projection_and_legacy_receipts) ... ok",
+      "test_no_publication_mode (test_vn30_fh_bounded_closure.FinancialHealthBoundedClosure.test_no_publication_mode) ... ok",
+      "test_scope_mismatch_is_rejected (test_vn30_fh_bounded_closure.FinancialHealthBoundedClosure.test_scope_mismatch_is_rejected) ... ok",
+      "test_exact_queued_execution_and_downstream_bindings (test_vn30_fh_dual_route.FhDualRouteWorkflow.test_exact_queued_execution_and_downstream_bindings) ... ok",
+      "test_six_skill_links (test_vn30_fh_dual_route.FhDualRouteWorkflow.test_six_skill_links) ... ok",
+      "test_unchanged_scope_rejects_bad_bq_and_publication (test_vn30_fh_dual_route.FhDualRouteWorkflow.test_unchanged_scope_rejects_bad_bq_and_publication) ... ok",
+      "test_category_skill_references_and_read_only_scope (test_vn30_fh_successor.FinancialHealthWorkflow.test_category_skill_references_and_read_only_scope) ... ok",
+      "test_complete_queue_and_deterministic_exact_replay (test_vn30_fh_successor.FinancialHealthWorkflow.test_complete_queue_and_deterministic_exact_replay) ... ok",
+      "test_prepare_does_not_certify_expired_provisional_or_modified_bq (test_vn30_fh_successor.FinancialHealthWorkflow.test_prepare_does_not_certify_expired_provisional_or_modified_bq) ... ok",
+      "test_database_placeholder_stops_without_opening_sqlite (test_vn30_score_cli.ScoringCLI.test_database_placeholder_stops_without_opening_sqlite) ... ok",
+      "test_direct_worker_cannot_bypass_registration (test_vn30_score_cli.ScoringCLI.test_direct_worker_cannot_bypass_registration) ... ok",
+      "test_duplicate_score_and_completed_resume (test_vn30_score_cli.ScoringCLI.test_duplicate_score_and_completed_resume) ... ok",
+      "test_interruption_retries_same_operation_key (test_vn30_score_cli.ScoringCLI.test_interruption_retries_same_operation_key) ... ok",
+      "test_invalid_or_uncovered_request (test_vn30_score_cli.ScoringCLI.test_invalid_or_uncovered_request) ... ok",
+      "test_prepare_reports_missing_candidate_without_worker_or_writes (test_vn30_score_cli.ScoringCLI.test_prepare_reports_missing_candidate_without_worker_or_writes) ... ok",
+      "test_read_only_modes_and_missing_authority (test_vn30_score_cli.ScoringCLI.test_read_only_modes_and_missing_authority) ... ok",
+      "test_registered_preflight_uses_read_only_inventory_and_stops_before_worker (test_vn30_score_cli.ScoringCLI.test_registered_preflight_uses_read_only_inventory_and_stops_before_worker) ... ok",
+      "test_repeated_ticker_and_required_scope (test_vn30_score_cli.ScoringCLI.test_repeated_ticker_and_required_scope) ... ok",
+      "test_worker_prepare_rejects_cross_ticker_candidate (test_vn30_score_cli.ScoringCLI.test_worker_prepare_rejects_cross_ticker_candidate) ... ok",
+      "test_actual_retained_inputs_reconcile_and_persist_deterministically (test_vn30_unified.UnifiedTests.test_actual_retained_inputs_reconcile_and_persist_deterministically) ... ok",
+      "test_approved_reopening_requires_supported_candidate (test_vn30_unified.UnifiedTests.test_approved_reopening_requires_supported_candidate) ... ok",
+      "test_changed_fpt_cash_observation_revises_only_dependent_rows (test_vn30_unified.UnifiedTests.test_changed_fpt_cash_observation_revises_only_dependent_rows) ... ok",
+      "test_exact_candidate_authority_precheck (test_vn30_unified.UnifiedTests.test_exact_candidate_authority_precheck) ... ok",
+      "test_hash_store_refuses_overwrite (test_vn30_unified.UnifiedTests.test_hash_store_refuses_overwrite) ... ok",
+      "test_points_cannot_change_without_reconciliation (test_vn30_unified.UnifiedTests.test_points_cannot_change_without_reconciliation) ... ok",
+      "test_v8_controller_matches_approved_executable_pin (test_vn30_unified.UnifiedTests.test_v8_controller_matches_approved_executable_pin) ... ok"
+    ]
+  },
+  "formalParity": "CURRENT_PARITY_PASS",
+  "repositoryTypecheck": {
+    "status": "FAILED_ON_EXISTING_ERRORS",
+    "errors": [
+      "app/server/acb-bank-admission.ts(73,40): error TS2345: Argument of type '{ now(): string; }' is not assignable to parameter of type 'Clock'.",
+      "  The types returned by 'now()' are incompatible between these types.",
+      "    Type 'string' is not assignable to type 'Instant'.",
+      "      Type 'string' is not assignable to type '{ readonly [instantBrand]: true; }'.",
+      "app/server/acb-bank-admission.ts(97,14): error TS2322: Type 'string' is not assignable to type 'Instant'.",
+      "  Type 'string' is not assignable to type '{ readonly [instantBrand]: true; }'.",
+      "tests/unit/debt-metric-contract-proposal.test.ts(4,192): error TS2307: Cannot find module '../../scripts/lib/debt-metric-proposal' or its corresponding type declarations.",
+      "tests/unit/di-governance-closure.test.ts(14,73): error TS2307: Cannot find module '../../scripts/lib/hpg-durable-successor.mjs' or its corresponding type declarations.",
+      "tests/unit/tcx-ket-vang-targeted.test.ts(5,82): error TS2307: Cannot find module '../../scripts/lib/tcx-ket-vang-review.mjs' or its corresponding type declarations."
+    ]
+  },
+  "runnerNotes": [
+    "Initial default environment could not load node:sqlite and one worker timed out. Final Node-mode suite with experimental SQLite enabled passed."
+  ]
+}

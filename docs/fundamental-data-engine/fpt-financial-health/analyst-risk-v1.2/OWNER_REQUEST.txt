@@ -1,0 +1,764 @@
+# CODEX TASK — WP2 Financial Health Amendment v1.2: Analyst-Based Risk Assessment
+
+## 1. Owner direction and objective
+
+The owner approves the transition of Method A to Analyst-Based Risk Assessment for FH-LIQ and FH-STRESS.
+
+Implement a versioned amendment to the existing Financial Health methodology.
+
+Method B remains a direct financial assessment.
+
+Method A becomes an independently defined public-data-based financial risk assessment, with explicit route-specific band semantics.
+
+The purpose is to support evidence-based investment analysis without requiring credit-underwriting-level verification of every financial obligation.
+
+Do not force predetermined scores.
+
+This task authorizes isolated research implementation and real FPT validation only.
+
+## 2. Root cause to resolve
+
+Review FH_AB_ANALYST_EXECUTABLE_DISCREPANCY_REVIEW.md and its exact source identities.
+
+Previous FPT assessments submitted:
+
+- proposed: null
+- conclusion: UNRESOLVED
+- demonstratedIndependentOfUnsupportedAssumptions: false
+
+The Method A rejection was:
+
+BASIC_ECONOMIC_CONCLUSION_NOT_ESTABLISHED
+
+The discrepancy report established:
+
+- Method A was executed.
+- Method A evidence availability checks passed.
+- Method B detailed-evidence requirements were not incorrectly inherited.
+- No valid analyst-proposed band was rejected.
+- Prepare, Adoption, Preflight, Scoring and Effective Score operated consistently.
+
+The remaining issue is methodology semantics.
+
+Method A v1.1 still required establishing the same canonical economic conclusion as Method B.
+
+Amendment v1.2 introduces explicitly authorized Method A risk-profile conclusions.
+
+Do not merely remove a validator guard or set existing economic booleans to true.
+
+## 3. Repository inspection and retained baseline
+
+Inspect latest local HEAD and working tree.
+
+The discrepancy report identified HEAD:
+
+97333b93bc0b057c1163c29488b63d5c71ebe516
+
+It also stated that v1.1 artifacts existed outside that commit.
+
+Preserve all existing owner changes.
+
+Resolve and verify actual latest methodology, executable and retained artifacts.
+
+Inspect:
+
+- fh-research.ts
+- fh-dual-route.ts
+- fh-incremental.ts
+- research-effective-score.ts
+- public-proxy-review.ts
+- methodology.ts
+- Existing WP2 v1.1 methodology
+- FPT_FH_DUAL_ROUTE_ASSESSMENT.json
+- FPT_FH_DUAL_ROUTE_RESULT.json
+- FPT_FH_DUAL_ROUTE_WORKFLOW_RESULT.json
+- validate_fpt_fh_dual_route.mjs
+- vn30_fh_dual_route.py
+- FH_AB_ANALYST_EXECUTABLE_DISCREPANCY_REVIEW.md
+- Existing confidence and Risk Policy contracts
+- Six existing reusable skills
+
+Retained baseline:
+
+- BQ-EQ: 5/8 PROVISIONAL
+- BQ-MOAT: 3/6 CONFIRMED_CURRENT
+- BQ-CASH: 3/6 PROVISIONAL
+- BQ-RES: 3/5 PROVISIONAL
+- Business Quality: 14/25 PROVISIONAL
+- FH-BS: 3/6 CONFIRMED_CURRENT
+- FH-LIQ: N/R
+- FH-STRESS: N/R
+- Combined assessed points: 17/31
+- Effective coverage: 5/23
+- Latest reported TypeScript tests: 261/261
+- Latest reported Python tests: 31/31
+- Formal scoring integration: 33/33
+- FPT V8 replay unchanged
+
+Do not reopen WP1 or FH-BS.
+
+## 4. Record Amendment v1.2
+
+Create Financial Health Analyst-Based Risk Assessment Amendment v1.2 using existing governance mechanisms.
+
+Record AR01–AR18 and distinguish explicit owner direction from detailed implementation decisions.
+
+Preserve:
+
+- FH-BS maximum 6.
+- FH-LIQ maximum 4.
+- FH-STRESS maximum 5.
+- Total Financial Health maximum 15.
+- Total Investment Score maximum 100.
+- Method B canonical bands.
+- Existing formal scoring executable and production authority.
+
+Method A has distinct risk-profile band semantics.
+
+Do not silently redefine the original Method B bands.
+
+Version all affected research assessment and executable contracts.
+
+## 5. Method selection
+
+For each rubric and assessment period:
+
+1. Evaluate Method B.
+2. If Method B supports an economically valid assessment, retain B.
+3. If B is unavailable because of insufficient detailed evidence, evaluate Method A.
+4. Preserve known adverse evidence from both routes.
+5. Select the defensible Method A risk-profile band.
+6. Enforce the route-specific maximum.
+7. Resolve current assessment validity and Effective Score.
+8. Retain N/R if no risk-profile band is defensible.
+
+Do not select a method merely because it produces a higher score.
+
+Do not use Method A to override valid adverse Method B evidence.
+
+## 6. Shared evidence
+
+Reuse the existing shared financial evidence product.
+
+Preserve source provenance, reporting period, scope and cutoff eligibility.
+
+Distinguish:
+
+- Observed facts.
+- Derived calculations.
+- Analyst estimates.
+- Scenario assumptions.
+
+Do not treat unverified deposits or uncommitted credit as certain liquidity.
+
+Do not treat book cash automatically as unrestricted cash.
+
+Use qualified book-value proxies with explicit limitations where economically appropriate.
+
+Reuse FTEL scope qualifications.
+
+No additional external evidence discovery is authorized.
+
+## 7. FH-LIQ Method A
+
+### 7.1 Economic objective
+
+Assess the issuer's liquidity and refinancing risk profile using public financial evidence.
+
+Do not require a direct certification of the ability to meet every financial obligation when due.
+
+### 7.2 Core economic evidence
+
+Assess:
+
+- Cash buffer.
+- Short-term interest-bearing debt.
+- Interest-servicing capacity.
+- Historical operating cash generation.
+- Debt maturity concentration.
+- Funding structure and refinancing history.
+
+Supporting and conditional evidence:
+
+- Book short-term deposits.
+- Asset liquidity.
+- Cash restriction disclosures.
+- Guarantees.
+- Covenants.
+- Confirmed financial distress.
+- Other applicable financial obligations.
+
+Accept sector-equivalent evidence where appropriate.
+
+Do not treat each ratio as an independently mandatory scoring operand.
+
+Preserve existing economic anchors as analytical signals rather than automatic point conversion.
+
+### 7.3 Method A bands
+
+0 — CRITICAL_LIQUIDITY_DISTRESS
+
+Evidence establishes critical liquidity distress, uncovered obligations or an inability to meet material financial commitments without credible mitigation.
+
+Missing evidence alone is insufficient.
+
+1 — WEAK_LIQUIDITY_RISK_PROFILE
+
+Evidence establishes weak liquidity resources, material weakness in cash generation or servicing capacity, and severe dependence on external financing.
+
+Do not assign solely because cash coverage is below a single threshold.
+
+2 — MATERIAL_REFINANCING_RISK_WITH_FINANCIAL_CAPACITY
+
+Evidence establishes meaningful financial capacity together with material refinancing or liquidity risk.
+
+Financial capacity may be supported by observed financial resources, sustainable earnings, operating cash generation or demonstrated financing capacity.
+
+Risk may be supported by low cash-only coverage, maturity concentration, funding dependence or deterioration in cash generation.
+
+Do not require certification of full liquidity adequacy under Method B.
+
+Unverified deposit accessibility may remain an explicit limitation if the risk-profile conclusion is independently supported.
+
+3 — SOUND_LIQUIDITY_RISK_PROFILE
+
+Evidence establishes a sound financial resource profile and manageable refinancing risk.
+
+Require affirmative evidence of adequate financial buffers, cash generation and manageable funding dependence.
+
+Material adverse contradictions must be resolved or reflected in a lower band.
+
+4 — Not permitted for Method A.
+
+Method A maximum: 3/4.
+
+## 8. FH-STRESS Method A
+
+### 8.1 Economic objective
+
+Assess the severity of financial pressure and vulnerability under severe but plausible adverse economic scenarios.
+
+Do not require exact verification of all future funding and capital actions to identify a supported vulnerability profile.
+
+### 8.2 Evidence requirements
+
+Reuse the existing stress model and retained financial data.
+
+Assess:
+
+- Revenue or sector-equivalent shock.
+- Margin or earnings compression.
+- Stressed operating profit.
+- Stressed interest burden.
+- Stressed interest coverage.
+- Stressed operating cash generation.
+- CAPEX and FCF implications.
+- Cash buffer.
+- Debt maturities.
+- Funding sensitivity.
+- Capital response implications.
+
+Capital response detail is proportionate to the selected risk band.
+
+Perform sensitivity analysis on material assumptions.
+
+Do not count unsupported financing as available.
+
+Do not present scenario outputs as observed corporate facts.
+
+### 8.3 Method A bands
+
+0 — CRITICAL_STRESS_FAILURE
+
+Evidence establishes an inability to withstand a severe plausible stress scenario.
+
+Require strong economic evidence.
+
+Do not assign from missing information or an isolated extreme assumption.
+
+1 — SEVERE_FINANCIAL_FRAGILITY
+
+Evidence establishes very weak stressed financial capacity and serious dependence on potentially adverse financial actions.
+
+Do not equate uncertain funding with confirmed distress.
+
+2 — MATERIAL_STRESS_VULNERABILITY
+
+Evidence establishes material financial pressure and vulnerability in a severe plausible stress scenario.
+
+Relevant evidence includes:
+
+- Significant deterioration in stressed cash generation.
+- Material negative stressed FCF.
+- Substantial debt maturity pressure.
+- Material sensitivity to accessible financial buffers.
+- Potential need to use reserves, adjust investment or obtain additional funding.
+
+The analyst need not establish a specific future capital response or prove that the issuer will fail.
+
+The vulnerability conclusion must be supported by actual stress calculations and economic evidence.
+
+Uncertainty alone is insufficient.
+
+3 — ADEQUATE_STRESS_BUFFER_WITH_MATERIAL_CONSTRAINTS
+
+Evidence supports a meaningful financial buffer under stress, while material constraints remain.
+
+Require affirmative evidence that the relevant financial pressures are economically manageable.
+
+4 — STRONG_STRESS_RESILIENCE
+
+Evidence supports strong stressed financial capacity, substantial buffers and manageable funding pressure.
+
+Require meaningful robustness against plausible sensitivity ranges.
+
+5 — Not permitted for Method A.
+
+Method A maximum: 4/5.
+
+## 9. Method A validation contract
+
+Replace or version the existing Method A economic conclusion contract.
+
+Do not reuse Method B direct-adequacy or survival semantics as mandatory Method A band conditions.
+
+Support distinct conclusions matching the Method A bands defined in this amendment.
+
+Retain separate fields or equivalent existing schema:
+
+- assessmentMethod
+- assessmentObjective
+- bandSemantics
+- methodologyVersion
+- selectedBand
+- selectedPoints
+- maximumEligiblePoints
+- economicRationale
+- supportingEvidence
+- counterevidence
+- assumptions
+- limitations
+- confidence
+- freshness
+- assessmentValidity
+- actionabilityRestrictions
+
+Replace the previous all-or-nothing interpretation of demonstratedIndependentOfUnsupportedAssumptions with a risk-profile sufficiency review appropriate to the selected band.
+
+The selected risk-profile conclusion must be supported independently of unsupported assumptions.
+
+However, the analyst does not need to establish Method B payment adequacy or survival conclusions to receive a Method A risk-profile score.
+
+Do not make all unresolved material dependencies automatically non-invalidating.
+
+Evaluate their actual effect on the selected risk-profile band.
+
+Do not accept an empty conclusion merely because metrics are available.
+
+## 10. Analyst and executable separation
+
+The analyst must explicitly:
+
+1. Review positive evidence.
+2. Review negative evidence.
+3. Review uncertainty.
+4. Select a risk-profile band or N/R.
+5. Explain why the selected band is supported.
+6. Explain why the immediately higher band is not supported.
+7. Explain why the immediately lower band is not more representative.
+8. Record confidence and material limitations.
+
+The executable validates:
+
+- Source references.
+- Method eligibility.
+- Evidence contract.
+- Band-to-conclusion consistency.
+- Route ceiling.
+- Counterevidence disposition.
+- Confidence schema.
+- Freshness.
+- Effective Score eligibility.
+
+Do not silently replace analyst judgment with Method B verification requirements.
+
+Do not automatically generate points from a financial ratio.
+
+Do not allow arbitrary analyst scores without a supported band conclusion.
+
+## 11. Counterevidence
+
+Reuse existing status conventions where available.
+
+Support equivalent dispositions:
+
+- RESOLVED
+- BOUNDED_LIMITATION
+- UNRESOLVED_NON_INVALIDATING
+- MATERIAL_CONTRADICTION
+- CONFIRMED_INVALIDATION
+
+A limitation may remain unresolved when it does not contradict the selected risk-profile conclusion.
+
+An adverse observation that materially contradicts the selected band requires another defensible band or N/R.
+
+Confirmed invalidation prohibits continued use of the invalidated assessment.
+
+Preserve known:
+
+- Default.
+- Covenant breach.
+- Material cash restrictions.
+- Financial distress.
+- Capital impairment.
+- Adverse regulatory events.
+- Material funding deterioration.
+
+Do not allow Method A to conceal adverse evidence.
+
+## 12. Confidence
+
+Reuse the existing five-dimension 0–2 confidence architecture.
+
+Total range: 0–10.
+
+Inspect the exact approved dimension definitions before implementing.
+
+Do not create a parallel confidence system.
+
+Map Method A assessment quality to existing dimensions covering:
+
+- Evidence authority.
+- Economic coverage.
+- Consistency.
+- Freshness.
+- Assumption robustness.
+
+Use the existing governing confidence thresholds.
+
+Keep confidence independent of numerical points.
+
+Low confidence is not automatically equivalent to N/R.
+
+High confidence cannot compensate for an unsupported band.
+
+Preserve the original Risk Policy confidence and actionability gates.
+
+## 13. Freshness and Effective Score
+
+Reuse the approved Incremental Assessment and Effective Score lifecycle.
+
+A Method A assessment may be:
+
+- CONSERVATIVE in evidence quality.
+- CONFIRMED_CURRENT when based on a valid current-period assessment.
+- PROVISIONAL when inherited from an eligible historical assessment.
+
+CONFIRMED_CURRENT means the current risk-profile assessment is valid.
+
+It does not mean direct payment adequacy or stress survival has been verified.
+
+Preserve:
+
+- Assessment lineage.
+- Maturity rollover.
+- Evidence freshness.
+- Materiality review.
+- Confirmed invalidation.
+- Current funding applicability.
+- Historical eligibility.
+- Adverse financial-event triggers.
+
+Do not allow historical inheritance when existing financial applicability or freshness requirements fail.
+
+## 14. Downstream risk and comparability
+
+Method A points may enter:
+
+- Research category aggregation.
+- Effective Investment Score analytical aggregation.
+- Research comparison.
+- Qualified research ranking.
+- Investment Decision analytical inputs.
+
+Preserve method identity and route qualification in all consumers.
+
+Method A and Method B bands share ordinal direction but do not have identical economic semantics.
+
+Do not claim full cross-route cardinal equivalence has been validated.
+
+Record mixed-route comparability limitations.
+
+Do not use Method A points as automatic evidence that a formal direct-liquidity or survivability gate has passed.
+
+Preserve:
+
+- Stage 0.
+- Hard Veto.
+- Risk Policy.
+- Financial Health formal thresholds.
+- Confidence requirements.
+- Valuation requirements.
+- Formal ranking authority.
+- Investment actionability.
+- Production publication authority.
+
+## 15. Actual FPT trial assessment
+
+Use exact retained financial inputs.
+
+FY2025 and cutoff 2026-11-13 must both be executed.
+
+### FH-LIQ trial evidence
+
+| Metric | FY2025 | Q3/2026 |
+|---|---:|---:|
+| Cash | 10.522 | 7.377 |
+| Short-term deposits | 29.631 | 20.879 |
+| Short-term debt | 19.170 | 14.316 |
+| Book cash coverage | 0.55x | 0.52x |
+| Book cash plus deposits coverage | 2.09x | 1.97x |
+| Direct EBIT / gross interest | 13.57x | 9.63x |
+| Debt/equity | 48.17% | 37.69% |
+| Short-term debt concentration | 91.0% | 86.3% |
+| CFO | 10.136 | 0.952 |
+
+Monetary amounts are VND trillion.
+
+FY2025 and Q3/2026 CFO represent different reporting durations and consolidation scopes.
+
+FY2025 borrowing and repayments were approximately 43.071 and 36.891 trillion.
+
+These observations support historical financing capacity, not a commitment to future funding.
+
+Trial candidate under v1.2:
+
+- FY2025: 2/4 CONSERVATIVE.
+- Current cutoff: 2/4 CONSERVATIVE.
+
+Trial conclusion:
+
+MATERIAL_REFINANCING_RISK_WITH_FINANCIAL_CAPACITY.
+
+### FH-STRESS trial evidence
+
+| Metric | FY2025 | Q3/2026 |
+|---|---:|---:|
+| Stressed interest coverage | 3.65x | 3.05x |
+| Stressed FCF proxy | -4.674 | -2.556 |
+| Surplus at 25% deposit access | -6.917 | -5.145 |
+| Surplus at 50% deposit access | +0.491 | +0.075 |
+
+Monetary amounts are VND trillion.
+
+Reuse original exact stress inputs.
+
+Review material scenario sensitivity, including deposit access, working-capital outflow and CAPEX flexibility.
+
+Do not treat hypothetical CAPEX reductions as verified management actions.
+
+Trial candidate under v1.2:
+
+- FY2025: 2/5 CONSERVATIVE.
+- Current cutoff: 2/5 CONSERVATIVE.
+
+Trial conclusion:
+
+MATERIAL_STRESS_VULNERABILITY.
+
+The trial candidates are not mandatory acceptance results.
+
+Independently validate the economic profile using the newly approved band semantics.
+
+Do not reuse the previous UNRESOLVED conclusion without reassessing it against the new risk-profile objective.
+
+Do not force 2 points merely because the owner-side trial identified that band.
+
+## 16. Actual execution
+
+Execute all four Method A assessments where Method B remains unavailable:
+
+- FH-LIQ FY2025.
+- FH-LIQ current cutoff.
+- FH-STRESS FY2025.
+- FH-STRESS current cutoff.
+
+Record the analyst proposal before executable validation.
+
+Execute:
+
+Method selection → Analyst assessment → Evidence Sufficiency → Effective Score → Prepare → Adoption → Preflight → Scoring → Aggregation → Downstream Integration.
+
+Reuse the accepted WP2 orchestration.
+
+Do not create a new scoring engine or duplicate financial model.
+
+Preserve:
+
+- BQ 14/25 PROVISIONAL.
+- FH-BS 3/6.
+- All 16 remaining rubric methodologies.
+- Official FPT V8.
+
+If both trial bands receive valid Effective Scores, the illustrative aggregate is:
+
+- Financial Health: 7/15.
+- BQ + FH: 21 points on 40/100 rated weight.
+- Effective coverage: 7/23.
+- Full Investment Score: null.
+
+This aggregate is not a required target.
+
+## 17. Update six existing skills
+
+Update relevant instructions in:
+
+- equity-s1-s5-assessment
+- vn30-evidence-coverage-closure
+- vn30-incremental-scoring
+- vn30-rollout-orchestrator
+- vn30-structural-nr-remediation
+- vn30-scoring-publication-hygiene
+
+Document:
+
+- Difference between direct assessment and analyst-based risk assessment.
+- Route-specific band semantics.
+- Analyst proposal before validation.
+- Appropriate evidence sufficiency.
+- Counterevidence review.
+- Separate confidence and score.
+- Method-specific maximum points.
+- Method-specific downstream qualifications.
+- Genuine N/R treatment.
+- No unsupported score assignment.
+- No repeated evidence discovery.
+
+Use reusable ticker and category parameters.
+
+Do not hardcode FPT conclusions in shared skills.
+
+Preserve bank and property sector normalization.
+
+Do not introduce unapproved Method A semantics for unrelated rubric categories.
+
+## 18. Required tests
+
+Test at minimum:
+
+1. Method B priority remains enforced.
+2. Method A opens only for legitimate detailed-evidence limitations.
+3. Method A can evaluate a liquidity risk profile without direct payment certification.
+4. Method A can evaluate stress vulnerability without exact future capital-response verification.
+5. A supported Method A band receives points.
+6. Missing evidence alone cannot generate points.
+7. Unsupported analyst conclusions are rejected.
+8. Unverified deposits are not counted as certain liquidity.
+9. Counterevidence materially contradicting the selected band prevents acceptance.
+10. Confirmed invalidation blocks inheritance.
+11. FH-LIQ A cannot receive 4/4.
+12. FH-STRESS A cannot receive 5/5.
+13. Method B canonical bands remain unchanged.
+14. A cannot override adverse established B evidence.
+15. Confidence remains independent from points.
+16. Current validity does not imply direct payment certification.
+17. Method A cannot bypass formal financial-health gates.
+18. Method identity survives Prepare-to-Scoring.
+19. Mixed-route qualifications survive downstream consumption.
+20. Genuine N/R remains distinct from outside scope.
+21. Accepted BQ and FH-BS replay matches.
+22. Official FPT V8 remains unchanged.
+23. Previous formal integration tests pass.
+24. Existing TypeScript and Python regressions pass.
+25. Unauthorized production publication remains rejected.
+
+Report actual test counts.
+
+Do not manufacture passing results.
+
+## 19. Required discrepancy-resolution trace
+
+| Rubric | Period | Method B result | Method A analyst band | Executable validation | Executable score | Effective Score |
+|---|---|---|---|---|---|---|
+| FH-LIQ | FY2025 | | | | | |
+| FH-LIQ | Current | | | | | |
+| FH-STRESS | FY2025 | | | | | |
+| FH-STRESS | Current | | | | | |
+
+For each assessment provide:
+
+- Positive evidence.
+- Negative evidence.
+- Unresolved limitations.
+- Counterevidence disposition.
+- Band rationale.
+- Adjacent-band comparison.
+- Confidence.
+- Freshness.
+- Method-specific conclusion.
+- Actionability qualification.
+
+If any result remains N/R, identify whether:
+
+- Analyst could not establish a risk profile.
+- Evidence integrity failed.
+- A genuine material contradiction exists.
+- Validation contract is inconsistent with the amendment.
+- Integration failed.
+
+Do not report only a generic missing-evidence message.
+
+## 20. Final deliverable
+
+Create one consolidated closure report:
+
+WP2_FINANCIAL_HEALTH_ANALYST_RISK_V1_2_FPT_CLOSURE.md
+
+Include:
+
+1. Owner direction and methodology amendment.
+2. AR01–AR18 disposition.
+3. Exact Method A band definitions.
+4. Source changes and version identities.
+5. Analyst-to-executable discrepancy resolution.
+6. Actual four FPT assessments.
+7. Actual confidence and counterevidence reviews.
+8. Effective Scores.
+9. Combined BQ and FH aggregation.
+10. Prepare-to-Scoring execution proof.
+11. Downstream risk and comparability controls.
+12. Skill updates.
+13. Test and regression results.
+14. Remaining limitations.
+15. Exact implementation commit or working-tree artifact identities.
+16. Final acceptance recommendation.
+
+Preserve the v1.1 artifacts for reproducibility.
+
+Retain final methodology, assessment, evidence lineage, workflow and test artifacts.
+
+Avoid redundant intermediate reports.
+
+## 21. Stopping rules
+
+One coordinated implementation and execution cycle.
+
+No external evidence discovery.
+
+No repeated remediation.
+
+No forced numeric scores.
+
+Do not reopen WP1 or FH-BS.
+
+Do not modify the other 16 rubrics.
+
+Do not weaken Risk Policy.
+
+Do not modify official FPT V8.
+
+Do not activate or publish production scoring.
+
+Do not automatically proceed to WP3.
+
+If a valid Method A risk-profile conclusion remains unavailable after this assessment, retain N/R with the exact economic reason and stop.
