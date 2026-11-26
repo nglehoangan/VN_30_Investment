@@ -1,0 +1,144 @@
+{
+  "status": "APPROVED_BASELINE",
+  "methodology": "wp3-growth-quality-v1.0.0",
+  "implementation": "gq-route-research-v1.0.0",
+  "owner": {
+    "path": "docs/fundamental-data-engine/fpt-growth-quality/v1.0/OWNER_REQUEST.txt",
+    "sha256": "4e380f6989780720b0d10cf51aa4ec408d597e9edacb4bf276cfe339532e1879"
+  },
+  "input": {
+    "path": "docs/fundamental-data-engine/fpt-growth-quality/v1.0/FPT_GROWTH_ASSESSMENT.json",
+    "sha256": "872b41fa87e63df50c15f752deeaf68977cbeafb6fc5897cc32ea74cbaaa3fc6"
+  },
+  "weights": {
+    "GQ-HIST": 5,
+    "GQ-FWD": 5,
+    "GQ-INC": 5
+  },
+  "decisions": {
+    "GQ01": "Preserve the three economic objectives and weights: GQ-HIST 5, GQ-FWD 5, GQ-INC 5.",
+    "GQ02": "GQ-HIST Method B uses normalized growth; Method A uses a public growth profile.",
+    "GQ03": "Permit adjusted paired EPS, public growth proxies and materiality review of M&A.",
+    "GQ04": "GQ-HIST Method A maximum 4/5; preserve full-evidence requirements for 5/5.",
+    "GQ05": "GQ-FWD Method B uses a detailed forward model; Method A uses analyst-based growth outlook.",
+    "GQ06": "Permit independently constructed 3–5-year analyst forecasts. Internal corporate forecasts are not required.",
+    "GQ07": "GQ-FWD Method A maximum 4/5. Band 3 does not require verification of every future financing arrangement.",
+    "GQ08": "GQ-INC route priority: Direct → PX02 → Method A Capital Productivity Profile.",
+    "GQ09": "Preserve the existing approved PX02 and all maximum prerequisites.",
+    "GQ10": "GQ-INC Method A assesses incremental capital productivity and its trend without claiming an exact incremental ROIC.",
+    "GQ11": "GQ-INC Method A maximum 3/5. Revenue growth, EPS growth and existing ROIC cannot independently establish incremental economics.",
+    "GQ12": "Adopt the approved route-specific Method A band semantics for all three rubrics.",
+    "GQ13": "Preserve sector normalization and cost-of-capital review. Do not mechanically convert metrics into points.",
+    "GQ14": "Use FY2022–FY2025 as the annual foundation and process Q1–Q3/2026 and material events through 2026-11-13.",
+    "GQ15": "Separate assessment method, evidence quality, confidence, current validity and actionability.",
+    "GQ16": "Reuse counterevidence, freshness, Incremental Assessment and Effective Score.",
+    "GQ17": "Permit qualified historical provisional scores. Do not mechanically combine pre-FTEL and post-FTEL financial data.",
+    "GQ18": "Preserve Risk Policy, Stage 0, Hard Veto, formal ranking and production authority. Disclose cross-route comparability limitations.",
+    "GQ19": "Reuse the six existing skills and execute actual cumulative BQ + FH + GQ Prepare-to-Scoring workflow.",
+    "GQ20": "One coordinated implementation and validation cycle. No predetermined scores, reopening of WP1/WP2 or repeated evidence discovery."
+  },
+  "profiles": {
+    "GQ-HIST": [
+      {
+        "points": 0,
+        "band": "STRUCTURAL_VALUE_DESTRUCTIVE_CONTRACTION",
+        "definition": "Evidence supports persistent economic deterioration or contraction associated with value destruction.\n\nMissing data or one weak reporting period alone is insufficient."
+      },
+      {
+        "points": 1,
+        "band": "WEAK_PUBLIC_GROWTH_PROFILE",
+        "definition": "Evidence supports weak growth, persistent earnings pressure or deteriorating economic quality.\n\nDistinguish temporary cyclicality from structural weakness."
+      },
+      {
+        "points": 2,
+        "band": "LIMITED_OR_LOW_QUALITY_GROWTH_PROFILE",
+        "definition": "Observed growth is limited or its economic quality is weak.\n\nGrowth may be heavily dependent on base effects, acquisitions, dilution, temporary margins or weak cash realization.\n\nRequire actual evidence of low-quality growth rather than missing normalization alone."
+      },
+      {
+        "points": 3,
+        "band": "MODERATE_VALUE_CREATING_GROWTH_PROFILE",
+        "definition": "Evidence supports meaningful positive growth in operating or per-share economic outcomes.\n\nMaterial limitations may remain concerning organic attribution, cash conversion or comparability.\n\nThe observed growth must not be explained solely by mechanical corporate actions, unsupported one-offs or capital issuance.\n\nDo not require complete organic-growth attribution or a fully normalized per-share bridge if the selected public growth profile remains supported."
+      },
+      {
+        "points": 4,
+        "band": "STRONG_PUBLIC_GROWTH_PROFILE",
+        "definition": "Multiple compatible public evidence families support strong and persistent growth.\n\nRequire meaningful corroboration from earnings, per-share outcomes and economic quality.\n\nMaterial adverse counterevidence must be resolved or bounded."
+      }
+    ],
+    "GQ-FWD": [
+      {
+        "points": 0,
+        "band": "STRUCTURAL_DECLINE_OUTLOOK",
+        "definition": "Evidence supports persistent structural decline in addressable demand, competitive relevance or operating economics.\n\nDo not assign solely from a cyclical downturn."
+      },
+      {
+        "points": 1,
+        "band": "WEAK_OR_STAGNANT_GROWTH_OUTLOOK",
+        "definition": "Evidence supports weak demand visibility, likely stagnation or material execution deterioration."
+      },
+      {
+        "points": 2,
+        "band": "LIMITED_OR_CYCLICAL_GROWTH_OUTLOOK",
+        "definition": "Evidence supports limited growth opportunities or growth substantially dependent on temporary cyclical conditions.\n\nRequire actual evidence of limitations."
+      },
+      {
+        "points": 3,
+        "band": "MODERATE_GROWTH_OUTLOOK_WITH_MATERIAL_CONSTRAINTS",
+        "definition": "Multiple public evidence families support positive multi-year growth opportunities.\n\nMaterial uncertainty may remain in:\n\n- Contract conversion.\n- Reinvestment efficiency.\n- Execution.\n- Margin durability.\n- Financing capacity.\n\nDo not require verification of the complete future funding plan.\n\nDo not claim self-funded growth or confirmed liquidity adequacy."
+      },
+      {
+        "points": 4,
+        "band": "GOOD_PUBLIC_GROWTH_RUNWAY",
+        "definition": "Strong public evidence supports attractive growth opportunities, repeated execution and credible economic capacity to expand.\n\nMaterial funding, reinvestment and margin risks must be sufficiently bounded.\n\nDo not award 4 merely because reported growth or new contracts are strong."
+      }
+    ],
+    "GQ-INC": [
+      {
+        "points": 0,
+        "band": "EVIDENCED_VALUE_DESTRUCTIVE_EXPANSION",
+        "definition": "Evidence supports incremental deployment associated with clear economic value destruction.\n\nRequire strong evidence of the economic relationship between deployed capital and adverse outcomes.\n\nA single poor annual ratio is insufficient."
+      },
+      {
+        "points": 1,
+        "band": "PERSISTENTLY_WEAK_CAPITAL_PRODUCTIVITY",
+        "definition": "Evidence supports systematically weak incremental outcomes relative to capital deployed.\n\nReview multiple comparable windows, deployment timing and independent counterevidence.\n\nDo not classify immature productive investment as persistently weak solely because benefits have not yet appeared."
+      },
+      {
+        "points": 2,
+        "band": "MIXED_OR_DETERIORATING_CAPITAL_PRODUCTIVITY",
+        "definition": "Evidence supports a mixed or deteriorating incremental productivity profile.\n\nRelevant evidence may include:\n\n- Lower incremental earnings relative to capital deployment.\n- Deterioration across multiple defensible capital classifications.\n- Recent capital investment increasing faster than operating results.\n- Weak recent incremental cash outcomes.\n- Material uncertainty over deployment maturity or attribution.\n\nThe assessment does not need to establish an exact canonical incremental ROIC band.\n\nHowever, missing data, a single unsupported denominator or the mere existence of M&A cannot independently establish this band.\n\nThe deterioration or mixed productivity conclusion must be supported by actual economic observations."
+      },
+      {
+        "points": 3,
+        "band": "ACCEPTABLE_INCREMENTAL_CAPITAL_PRODUCTIVITY",
+        "definition": "Evidence supports reasonable incremental economic outcomes relative to additional capital deployed.\n\nRequire corroboration across relevant windows and independent operating evidence.\n\nWhere the conclusion asserts value creation, assess the relevant cost-of-capital range.\n\nMaterial unresolved evidence that could reverse the productivity conclusion prevents acceptance."
+      }
+    ]
+  },
+  "predecessorAcceptance": {
+    "path": "docs/fundamental-data-engine/fpt-financial-health/analyst-risk-v1.2/WP2_FINANCIAL_HEALTH_V1_2_FINAL_ACCEPTANCE.md",
+    "sha256": "f9a7008f31f84db171f6027385b08fd424b3799090e35beae655727655772e32"
+  },
+  "predecessorResult": {
+    "path": "docs/fundamental-data-engine/fpt-financial-health/analyst-risk-v1.2/FPT_FH_ANALYST_RISK_RESULT.json",
+    "sha256": "2f89613a4ed9cd0211a1308ace0c0a2dc5eaa484cc125fdab57de358f8d7bfea"
+  },
+  "legacyWorkflow": {
+    "path": "docs/fundamental-data-engine/fpt-financial-health/analyst-risk-v1.2/FPT_FH_ANALYST_RISK_WORKFLOW_RESULT.json",
+    "sha256": "4103adf625a1705f7cef601869c9f1b670ed9da0a2fd1ca5b733364ec227b7f7"
+  },
+  "legacyFacts": {
+    "path": "docs/fundamental-data-engine/fpt-financial-health/v1.0/FPT_FH_INPUT.json",
+    "sha256": "76ccae2b4fe89ee6c3d19e75bbb1688ee932af8512c1e9f4291c7eb09ca51a76"
+  },
+  "legacyFinancials": {
+    "path": "docs/fundamental-data-engine/fpt-financial-health/v1.0/FPT_FH_RESULT.json",
+    "sha256": "ac40b9159440b8fb14356330c8eb6883813f64e851b01fd3ccd1206617e70040"
+  },
+  "annualOperands": {
+    "path": "docs/fundamental-data-engine/fpt-bq-eq/2026-11-25/FPT_BQ_EQ_INPUT.json",
+    "sha256": "32c2378749cccf44f7249795620822db0fafddb50a10a9a7dbe098204dc113b2"
+  },
+  "productionScoringAuthorized": false,
+  "publicationAuthorized": false
+}
