@@ -34,3 +34,11 @@ Keep sector-specific M3/M4 rules in `equity-s1-s5-assessment`; no VNM assumption
 ## Public-data assessment routes
 
 Route each separately prepared ticker through the common 23-rubric public-data workflow before scheduling evidence improvement. Record the selected route and stop reason in the ticker checkpoint. Follow the [Approved Baseline v1.0 and stopping rules](../../docs/03%20SCORING/PUBLIC_DATA_PROXY_SPECIFICATION_23_RUBRICS.md#evidence-discovery-workflow-and-stopping-rule).
+
+## Governed category rollout
+
+Category execution parameters use one ticker with `category`, `cutoff`, `methodologyVersion`, `priorAcceptedCategories` and `executionScope`. Resolve the cutoff and category from the approved candidate. Preserve prior accepted categories on identical inputs.
+
+In the existing single-ticker queue, verify approved methodology and sufficiency, execute annual and incremental assessment and resolve Effective Scores, then construct the candidate and bind Prepare → Adoption → Preflight → Scoring. Aggregate by category and verify downstream consumption, regression and closure. Other unimplemented categories stay outside the rollout scope with no invented topics or points.
+
+[Approved Financial Health baseline](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_AMENDMENT_v1.0.json)

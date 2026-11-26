@@ -88,3 +88,11 @@ Theo [phụ lục Effective Score D19–D23](../../docs/03%20SCORING/BQ_EQ_EFFEC
 Với [BQ-MOAT v1.0](../../docs/03%20SCORING/BQ_MOAT_EVIDENCE_SUFFICIENCY_v1.0.json), liên kết cơ chế cạnh tranh với hành vi khách hàng hoặc kết quả vận hành quan sát được. Chọn band theo độ bền tương ứng và nêu giới hạn của chỉ báo công khai về giữ chân, chi phí chuyển đổi hoặc định giá hợp đồng. Rà FTEL theo tác động lên cơ chế cạnh tranh. Kế thừa và tổng hợp Effective Score theo cùng quy tắc nghiên cứu đã duyệt cho BQ-EQ.
 
 Áp dụng [amendment BQ-CASH và BQ-RES](../../docs/03%20SCORING/BUSINESS_QUALITY_CASH_RES_AMENDMENTS_v1.0.json) khi hoàn tất Business Quality. BQ-CASH kiểm hiện thực hóa và ghi nhận lợi nhuận, mức trọng yếu của vốn lưu động và khoản bất thường, cùng phạm vi CFO/NPAT. Giữ tổng CAPEX nếu chưa đủ căn cứ tách. BQ-RES kiểm mức độ tập trung và tính chu kỳ, dùng bằng chứng giá và stress theo band. Giữ riêng Effective Score tạm tính, điểm hiện hành và quyền sử dụng chính thức.
+
+## Governed category rollout
+
+Category execution parameters use one ticker with `category`, `cutoff`, `methodologyVersion`, `priorAcceptedCategories` and `executionScope`. Resolve the cutoff and category from the approved candidate. Preserve prior accepted categories on identical inputs.
+
+Apply the approved rubric classifications CORE, CONDITIONAL, SUPPORTING, BAND-DEPENDENT and MAXIMUM_ONLY. Select the actual defensible existing band before execution. For Financial Health qualify capital, asset quality, sector-equivalent leverage, timed obligations and accessible resources; use approved public proxies and reproducible analyst stress estimates with explicit funding and capital response. Incomplete supporting topics do not imply missing CORE evidence.
+
+[Approved Financial Health baseline](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_AMENDMENT_v1.0.json)

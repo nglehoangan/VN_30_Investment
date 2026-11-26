@@ -18,3 +18,11 @@ Accept one ticker, its qualified sector, the explicit cutoff and approved univer
 [ACB V3 readback](../../docs/fundamental-data-engine/acb-scoring-readiness/2026-11-19/assessment/ACB_OFFICIAL_LIMITED_V3_EXACT_SCORE_READBACK.json) is a BANK example. At 2026-10-30 it has 23 rubrics, 14 rated, nine N/R, 18 confirmed points, 58% coverage, bounds 18–60 and null full score. [V4 research closure](../../docs/fundamental-data-engine/acb-scoring-readiness/2026-11-22-v4/V4_RESEARCH_CLOSURE.json) and [immutable V4 score readback](../../docs/fundamental-data-engine/acb-scoring-readiness/2026-11-22-v4/V4_SCORE_READBACK.json) document the separate successor. These figures and the approved N/R set are specific to ACB.
 
 For repeated N/R or an existing retained baseline, apply [Structural N/R remediation](../vn30-structural-nr-remediation/SKILL.md) within the same bounded review. A NO future-data test goes to structural escalation after this pass.
+
+## Governed category rollout
+
+Category execution parameters use one ticker with `category`, `cutoff`, `methodologyVersion`, `priorAcceptedCategories` and `executionScope`. Resolve the cutoff and category from the approved candidate. Preserve prior accepted categories on identical inputs.
+
+Use retained evidence first. Stop at a defensible band and allow at most one coordinated evidence improvement round per category work package. Private data is optional; use approved public equivalents. Record genuine N/R by missing material dependency and distinguish missing metrics from assessment availability or eligible historical points.
+
+[Approved Financial Health baseline](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_AMENDMENT_v1.0.json)

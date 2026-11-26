@@ -28,3 +28,11 @@ For Prepare, valuation or decision feasibility audits, retain the final scoped p
 ## Public-data assessment routes
 
 Use the approved public-data baseline in the assessment and formal handoff. Any changed executable requires exact separate authority before formal scoring; existing publication gates apply. Follow the [Approved Baseline v1.0 and stopping rules](../../docs/03%20SCORING/PUBLIC_DATA_PROXY_SPECIFICATION_23_RUBRICS.md#evidence-discovery-workflow-and-stopping-rule).
+
+## Governed category rollout
+
+Category execution parameters use one ticker with `category`, `cutoff`, `methodologyVersion`, `priorAcceptedCategories` and `executionScope`. Resolve the cutoff and category from the approved candidate. Preserve prior accepted categories on identical inputs.
+
+Retain approved methodology, exact owner records, final assessments and results, source lineage, executable identity and replay inputs, tests and acceptance records, and publication authority. Dispose of redundant temporary files only under the existing retention rules. Research closure carries no production publication authority.
+
+[Approved Financial Health baseline](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_AMENDMENT_v1.0.json)

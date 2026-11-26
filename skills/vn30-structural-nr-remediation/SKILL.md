@@ -36,3 +36,11 @@ Pass `--research-bridge` alongside both `--annual-reassessment` and `--rubric-co
 ## Public-data assessment routes
 
 Apply the approved public route before reopening a structural N/R. Close with an exact reason and reopening trigger when the one bounded improvement cannot establish a band. Follow the [Approved Baseline v1.0 and stopping rules](../../docs/03%20SCORING/PUBLIC_DATA_PROXY_SPECIFICATION_23_RUBRICS.md#evidence-discovery-workflow-and-stopping-rule).
+
+## Governed category rollout
+
+Category execution parameters use one ticker with `category`, `cutoff`, `methodologyVersion`, `priorAcceptedCategories` and `executionScope`. Resolve the cutoff and category from the approved candidate. Preserve prior accepted categories on identical inputs.
+
+Distinguish genuine economic N/R, eligible historical Effective Score, pending update, unresolved material impact, confirmed invalidation, expired assessment, obsolete completeness requirement, Prepare-to-Scoring integration defect, legitimate authority blocker and outside-scope rubric. Evidence discovery requires a specific unresolved economic dependency.
+
+[Approved Financial Health baseline](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_AMENDMENT_v1.0.json)

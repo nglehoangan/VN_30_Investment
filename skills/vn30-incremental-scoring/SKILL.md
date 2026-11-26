@@ -25,3 +25,11 @@ Use `--rubric-completion <diagnostic-packet>` on `tools/scoring/vn30_prepare_eva
 ## Public-data assessment routes
 
 Compare admitted evidence, calculated metrics and retained assessments first. Apply the relevant public route and record the route review during the one allowed evidence-improvement round. Follow the [Approved Baseline v1.0 and stopping rules](../../docs/03%20SCORING/PUBLIC_DATA_PROXY_SPECIFICATION_23_RUBRICS.md#evidence-discovery-workflow-and-stopping-rule).
+
+## Governed category rollout
+
+Category execution parameters use one ticker with `category`, `cutoff`, `methodologyVersion`, `priorAcceptedCategories` and `executionScope`. Resolve the cutoff and category from the approved candidate. Preserve prior accepted categories on identical inputs.
+
+Retain the annual baseline and latest valid assessment separately from the incremental review, confirmed/provisional Effective Score and current eligibility. Recalculate affected operands only. Reassess financial positions at authoritative statements, debt-maturity rollover, new borrowing or repayment, cash or asset deterioration, covenant warning, distress, capital impairment and structural change. Block historical use when funding applicability or supported expiry fails. Preserve unresolved materiality separately from confirmed invalidation.
+
+[Approved Financial Health baseline](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_AMENDMENT_v1.0.json)

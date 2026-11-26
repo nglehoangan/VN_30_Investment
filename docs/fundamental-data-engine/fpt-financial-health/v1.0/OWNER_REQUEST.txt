@@ -1,0 +1,1326 @@
+# CODEX TASK — WP2 Financial Health Implementation, Shared Skill Update & End-to-End FPT Scoring Closure
+
+## 1. Owner Approval
+
+The owner formally approves WP2 Financial Health Evidence Sufficiency Amendment v1.0.
+
+Approved decisions:
+
+- FH01 — Preserve all economic objectives, existing assessment bands and weights: FH-BS 6, FH-LIQ 4, FH-STRESS 5.
+- FH02 — FH-BS: Capital, Asset Quality and Leverage Context are CORE. Funding requirements depend on sector and economic materiality.
+- FH03 — FH-BS: Permit public proxies and defensible conservative ranges. Restricted cash must not be treated as freely available cash.
+- FH04 — FH-LIQ: Obligations, Liquidity and Maturities are CORE. Evaluate resource availability against obligation timing.
+- FH05 — FH-LIQ: Covenants are CONDITIONAL. Exact covenant headroom is not mandatory for every band. Preserve strict maximum-score requirements.
+- FH06 — FH-LIQ: Uncommitted funding and unsupported projected cash flows must not be treated as certain liquidity resources.
+- FH07 — FH-STRESS: Permit analyst scenarios constructed from public evidence. Internal corporate stress tests are not mandatory.
+- FH08 — FH-STRESS: Scenario and Funding Response are CORE. Capital Response detail is band-dependent. Preserve maximum prerequisites.
+- FH09 — Preserve Sector Normalization and existing economic anchors. Do not mechanically convert financial ratios into points.
+- FH10 — Use FY2022–FY2025 as the annual foundation and process Q1–Q3/2026 and material financial events incrementally.
+- FH11 — Reuse Incremental Assessment and Effective Score. Missing supporting current-period data must not automatically erase an existing score.
+- FH12 — Enforce financial freshness, debt maturity, covenant, insolvency and confirmed invalidation controls.
+- FH13 — Reuse the accepted WP1 Prepare → Adoption → Preflight → Scoring route and execute actual FPT validation.
+- FH14 — Update the six existing reusable skills for ticker- and category-parameterized execution without introducing another architecture.
+- FH15 — Aggregate Financial Health with accepted Business Quality 14/25, validate downstream consumption and preserve all production authority and risk gates.
+
+Promote the approved methodology to Approved Baseline v1.0 using the existing governance mechanism.
+
+This approval authorizes implementation and isolated real-issuer research validation.
+
+It does not authorize production activation, formal scoring publication or modification of existing official scorecards.
+
+## 2. Accepted WP1 baseline
+
+WP1 Business Quality is ACCEPTED AND CLOSED.
+
+Accepted FPT Effective Scores:
+
+| Rubric | Maximum | Effective Score | Validity |
+|---|---:|---:|---|
+| BQ-EQ | 8 | 5 | PROVISIONAL |
+| BQ-MOAT | 6 | 3 | CONFIRMED_CURRENT |
+| BQ-CASH | 6 | 3 | PROVISIONAL |
+| BQ-RES | 5 | 3 | PROVISIONAL |
+
+Business Quality: 14/25 PROVISIONAL.
+
+Effective BQ coverage: 4/4 rubrics, 25/25 rated weight.
+
+Overall Investment Score effective coverage: 4/23 rubrics, 25/100 rated weight.
+
+Accepted WP1 workflow:
+
+Prepare → Assessment Adoption → Preflight → Scoring → Category Aggregation → Downstream Integration.
+
+Previous validation:
+
+- TypeScript: 245/245 passed.
+- Python: 22/22 passed.
+- Formal scoring integration: 33/33 passed.
+- Official FPT V8 replay matched retained output.
+
+Preserve the accepted BQ results on identical inputs.
+
+Do not reopen Business Quality methodology or financial evidence.
+
+## 3. Primary objective
+
+Complete Financial Health in one coordinated work package.
+
+Required scope:
+
+- FH-BS — Balance-Sheet Strength.
+- FH-LIQ — Liquidity and Refinancing.
+- FH-STRESS — Downside Survivability.
+
+Complete the actual workflow:
+
+Public evidence → financial calculations → rubric-specific Evidence Sufficiency → annual scoring → incremental assessment → Effective Score → Prepare → Adoption → Preflight → Scoring → BQ and FH aggregation → downstream analytical consumption.
+
+Do not stop at methodology updates, evidence inventories, assessment JSON preparation or synthetic tests.
+
+The primary deliverable is actual executable FPT Financial Health scoring integrated with the accepted Business Quality result.
+
+## 4. Inspect latest repository state
+
+Inspect latest local HEAD and existing working-tree changes.
+
+Resolve actual implementation paths for:
+
+- Approved BQ-EQ v1.2.
+- Approved BQ-MOAT v1.0.
+- Accepted BQ-CASH and BQ-RES.
+- Shared Evidence Sufficiency contracts.
+- Incremental Assessment.
+- Effective Score.
+- Assessment freshness and materiality.
+- Accepted WP1 Prepare-to-Scoring successor route.
+- Category aggregation.
+- Research ranking.
+- Investment Decision inputs.
+- Research scorecard presentation.
+
+Review governing sources:
+
+- METRIC_DEFINITIONS.md, sections 5.1–5.3.
+- SCORING_ENGINE.md.
+- SECTOR_NORMALIZATION.md.
+- METHODOLOGY_CLARIFICATION.md.
+- SCORECARD_TEMPLATE.md.
+- Approved Public Data Proxy Specification.
+- Existing FH-LIQ proxy implementation and approval.
+- src/domain/scoring/methodology.ts.
+- tools/scoring/vn30_score.py.
+- tools/scoring/vn30_score_worker.mjs.
+- Existing accepted WP1 successor integration.
+- Existing scoring skills.
+
+Reuse retained FPT analytical products and existing FTEL scope qualifications.
+
+Do not conduct another general scoring audit.
+
+## 5. FH-BS — Balance-Sheet Strength
+
+### 5.1 Economic objective
+
+Assess the company's financial foundation, asset quality, leverage and ability to absorb losses.
+
+Do not divide six points into independently additive metric scores.
+
+Select one existing holistic assessment band.
+
+### 5.2 Evidence Sufficiency contract
+
+- Capital: CORE.
+- Asset Quality: CORE.
+- Leverage Context: CORE.
+- Funding: CONDITIONAL or CORE according to sector and materiality.
+- Strong normalized/downside capital buffers: MAXIMUM_ONLY for 6/6.
+
+A missing immaterial supporting observation must not automatically block a defensible assessment.
+
+Material funding dependencies and asset-quality uncertainties must remain explicitly assessed.
+
+### 5.3 Required analytical calculations
+
+For applicable non-financial issuers, calculate or assess:
+
+- Cash and cash equivalents.
+- Restricted versus unrestricted cash.
+- Eligible financial deposits and liquid investments.
+- Short-term interest-bearing debt.
+- Long-term interest-bearing debt.
+- Relevant lease obligations.
+- Total interest-bearing debt.
+- Net debt.
+- Normalized EBIT.
+- Normalized EBITDA.
+- Net debt / normalized EBITDA.
+- Debt / Equity where economically relevant.
+- Asset composition.
+- Receivables and recoverability.
+- Material impairment and provisioning.
+- Equity capital and loss-absorption capacity.
+- Relevant guarantees and contingent financial obligations.
+
+Use consistent definitions and consolidation scope.
+
+Do not treat every listed metric as an independently mandatory scoring operand.
+
+Select actual operands required by the defensible assessment route.
+
+### 5.4 Existing economic anchors
+
+Preserve existing Net Debt / EBITDA signals:
+
+- Net cash: exceptional signal.
+- 0–1x: strong.
+- 1–2x: good.
+- 2–3x: watch.
+- 3–4x: weak.
+- Above 4x: high risk.
+
+These are economic signals, not automatic point assignments.
+
+Do not infer 6/6 solely from a net-cash position.
+
+Do not calculate misleading ratios using negative, near-zero or incompatible EBITDA.
+
+Use alternative qualified economic evidence when applicable.
+
+### 5.5 Approved public proxies
+
+Permit:
+
+- EBITDA reconstructed from qualified EBIT and depreciation/amortization.
+- Receivable aging and provisioning as asset-quality evidence.
+- Public collateral and secured-debt disclosures.
+- Public funding structure and borrowing notes.
+- Defensible recovery or capital-buffer ranges.
+
+Do not invent asset recoverability, collateral values or unrestricted cash balances.
+
+Exclude restricted cash from freely available resources.
+
+Treat deposits and investments according to maturity, restrictions, currency, counterparty and accessibility.
+
+### 5.6 Existing scoring bands
+
+Preserve exact canonical bands:
+
+| Points | Band |
+|---:|---|
+| 0 | Unacceptable |
+| 1–2 | Weak |
+| 3–4 | Adequate |
+| 5–6 | Strong |
+
+Preserve existing within-band stronger-evidence requirements.
+
+Maximum 6/6 requires strong buffers under normalized and downside economics.
+
+Preserve exceptional justification and disconfirming evidence review.
+
+## 6. FH-LIQ — Liquidity and Refinancing
+
+### 6.1 Economic objective
+
+Assess the ability to meet financial obligations when due without unsupported refinancing assumptions or distressed financial actions.
+
+A strong accounting balance sheet does not independently establish adequate liquidity.
+
+### 6.2 Evidence Sufficiency contract
+
+- Obligations: CORE.
+- Liquidity: CORE.
+- Maturities: CORE.
+- Covenants: CONDITIONAL according to materiality.
+- Funding diversification: BAND-DEPENDENT.
+- Robust maturity and covenant resilience: MAXIMUM_ONLY for 4/4.
+
+Preserve the existing approved FH-LIQ public proxy route.
+
+Reuse its obligation/resource matching, covenant disposition and resource-overlap controls.
+
+Do not create a second proxy specification.
+
+### 6.3 Timed obligations
+
+Identify material applicable obligations:
+
+- Short-term borrowings.
+- Current portion of long-term debt.
+- Scheduled principal repayment.
+- Interest payments.
+- Material lease payments.
+- Declared dividend obligations.
+- Contractually committed CAPEX.
+- Other material financial commitments.
+- Guarantees or contingent obligations where relevant.
+
+Use actual due dates or qualified maturity buckets.
+
+Avoid double-counting an obligation already included in another category.
+
+Do not assume all current liabilities are interest-bearing debt.
+
+### 6.4 Usable liquidity
+
+Identify:
+
+- Unrestricted cash.
+- Eligible short-term deposits.
+- Qualified liquid financial assets.
+- Committed undrawn facilities.
+- Supported cash-generation scenarios.
+- Other economically defensible funding resources.
+
+Distinguish:
+
+- Existing available resources.
+- Contractually committed resources.
+- Projected operating cash generation.
+- Conditional refinancing.
+- Uncommitted potential funding.
+
+Do not count uncommitted credit lines as certain liquidity.
+
+Do not count the same cash or deposit twice.
+
+Do not count assets inaccessible to the relevant obligor as available liquidity.
+
+Do not assume future positive CFO is guaranteed.
+
+### 6.5 Coverage calculations
+
+Preserve existing formula options:
+
+Unrestricted cash / debt due within 12 months.
+
+Or:
+
+Qualified liquidity resources / obligations due within 12 months.
+
+Use consistent numerator and denominator definitions.
+
+Apply maturity timing, not only aggregate twelve-month totals.
+
+Where exact intra-period timing is unavailable, use supported maturity buckets and conservative timing ranges.
+
+Do not falsely certify precise day-by-day liquidity coverage.
+
+Preserve existing anchors:
+
+- At least 1.5x: strong.
+- 1.0–1.5x: adequate.
+- 0.75–1.0x: watch.
+- Below 0.75x: weak unless refinancing visibility is exceptionally strong.
+
+### 6.6 Interest coverage
+
+Use qualified normalized EBIT / net interest expense where economically meaningful.
+
+Preserve existing signals:
+
+- At least 8x: strong.
+- 5–8x: good.
+- 3–5x: watch.
+- 2–3x: weak.
+- Below 2x: high risk.
+
+If net interest expense is zero or negative:
+
+- Do not generate an infinite ratio.
+- Do not automatically assign maximum points.
+- Review gross interest burden, financial resources and actual debt-servicing capacity.
+
+Use approved sector-equivalent methods when necessary.
+
+### 6.7 Covenant disposition
+
+Use the exact existing approved proxy semantics where available.
+
+Distinguish:
+
+- Disclosed applicable covenant terms.
+- Evidenced absence of relevant covenants.
+- Evidenced non-applicability.
+- Qualified nondisclosure.
+- Potential or confirmed breach.
+
+Exact covenant headroom is not mandatory for every assessment band.
+
+Nondisclosure must not be treated as evidence that covenants are absent or satisfied.
+
+Assess whether the unresolved covenant issue can materially change the liquidity conclusion.
+
+Potential or confirmed breach must trigger the applicable materiality and risk review.
+
+Preserve stricter maximum-score requirements.
+
+Qualified nondisclosure alone cannot establish maximum-level covenant resilience.
+
+### 6.8 Existing scoring bands
+
+Preserve exact canonical bands:
+
+| Points | Band |
+|---:|---|
+| 0 | Uncovered obligations without credible funding |
+| 1 | Severe funding dependence |
+| 2 | Adequate with material refinancing dependence |
+| 3 | Sound coverage with manageable refinancing |
+| 4 | Resilient liquidity and diversified funding |
+
+Do not assign a low band because information is missing.
+
+Do not award 4/4 from a single coverage ratio.
+
+## 7. FH-STRESS — Downside Survivability
+
+### 7.1 Economic objective
+
+Assess whether the issuer can withstand a severe but plausible financial downturn without unacceptable capital impairment or distressed financing.
+
+Preserve the existing requirement for an actual downside assessment.
+
+Historical profitability or positive cash balances alone are insufficient.
+
+### 7.2 Evidence Sufficiency contract
+
+- Scenario: CORE.
+- Funding Response: CORE.
+- Capital Response: CORE economic conclusion, with detail proportionate to the selected band.
+- Internal corporate stress-test disclosure: OPTIONAL.
+- Sensitivity ranges: BAND-DEPENDENT.
+- Robust survival without distressed capital actions: MAXIMUM_ONLY for 5/5.
+
+### 7.3 Analyst scenario
+
+Construct a reproducible issuer- and sector-appropriate scenario using public evidence.
+
+For FPT, evaluate applicable drivers:
+
+- Revenue contraction.
+- Margin compression.
+- Labor-cost pressure.
+- Working-capital outflow.
+- Interest-rate or funding-cost increase.
+- Debt maturity requirements.
+- Non-deferrable CAPEX.
+- Accessible liquidity.
+- Committed funding.
+- Material guarantees and financial commitments.
+
+Preserve existing non-financial stress examples, including revenue contraction of 15–25%, when economically appropriate.
+
+Do not treat example shocks as universal fixed requirements.
+
+Explain scenario severity and plausibility.
+
+Use analyst estimates and conservative ranges where supported.
+
+Clearly distinguish observed financial facts from analyst assumptions.
+
+### 7.4 Required stress outputs
+
+Calculate or assess:
+
+- Base revenue.
+- Stressed revenue.
+- Base and stressed margins.
+- Stressed EBIT.
+- Stressed operating cash generation.
+- Working-capital requirements.
+- Interest burden.
+- Mandatory capital expenditure.
+- Debt principal payments.
+- Available opening liquidity.
+- Eligible funding resources.
+- Resulting liquidity surplus or shortfall.
+- Required capital response.
+
+Use time-consistent cash-flow calculations.
+
+Avoid double-counting interest, working capital, debt service or CAPEX.
+
+Do not treat accounting profit as immediately available cash.
+
+### 7.5 Funding and capital response
+
+Determine whether the scenario implies:
+
+- Survival using existing resources.
+- Manageable expenditure adjustments.
+- Ordinary committed financing.
+- Material refinancing dependence.
+- Emergency financing.
+- Distressed asset sales.
+- Emergency dilution.
+- Failure to meet obligations.
+
+Clearly qualify analyst assumptions about possible management responses.
+
+Do not present unsupported management actions as guaranteed.
+
+If scenario results are sensitive to material assumptions, provide bounded sensitivity analysis.
+
+### 7.6 Existing scoring bands
+
+Preserve exact canonical bands:
+
+| Points | Band |
+|---:|---|
+| 0 | Fails plausible stress |
+| 1 | Likely distressed financing |
+| 2 | Severe stress vulnerability |
+| 3 | Survives with material constraints |
+| 4 | Resilient with manageable constraints |
+| 5 | Robust survival without distressed capital actions |
+
+Maximum 5/5 requires robust survival under severe plausible stress without emergency dilution, distressed sales or damaging refinancing.
+
+Preserve existing maximum prerequisites and counterevidence review.
+
+## 8. Sector normalization
+
+Preserve all approved sector-equivalent methods.
+
+### Technology and non-financial businesses
+
+Use meaningful debt, capital, operating cash flow, liquidity and stress metrics.
+
+### Banks
+
+Use relevant:
+
+- CAR and CET1/common equity where available.
+- Asset quality.
+- NPL recognition.
+- Provisioning and loan-loss coverage.
+- Funding concentration.
+- Eligible liquidity evidence.
+- LDR where applicable.
+- Credit-cost stress.
+- NIM compression.
+- Capital consumption.
+
+Do not mechanically apply industrial Debt/Equity, current ratio or industrial interest-coverage formulas.
+
+### Property
+
+Use:
+
+- Net debt and leverage.
+- Inventory and asset quality.
+- Bond maturities.
+- Presale collections.
+- Project-level funding.
+- Handover and legal-delay stress.
+- Refinancing dependence.
+
+### Other sectors
+
+Retain applicable approved sector normalization.
+
+Do not introduce unapproved sector thresholds.
+
+The actual real-issuer execution target in this work package is FPT only.
+
+Do not begin another ticker rollout.
+
+## 9. Annual foundation execution
+
+Ticker: FPT.
+
+Annual financial foundation: FY2022–FY2025.
+
+Reuse qualified financial reports and analytical products.
+
+For FH-BS:
+
+- Establish the FY2025 capital, asset-quality and leverage position.
+- Use multi-year history to establish context.
+- Execute actual FY2025 scoring.
+
+For FH-LIQ:
+
+- Establish the FY2025 timed obligations and available resources.
+- Review maturity, refinancing and covenant conditions.
+- Execute actual FY2025 scoring.
+
+For FH-STRESS:
+
+- Establish an appropriate FY2025 downside scenario.
+- Evaluate funding and capital responses.
+- Execute actual FY2025 scoring.
+
+Separate financial-period end from actual information availability.
+
+Preserve evidence provenance and prevent hindsight leakage.
+
+Do not use prior research points as mandatory targets.
+
+## 10. Incremental 2026 assessment
+
+Economic cutoff: 2026-11-13.
+
+Process eligible:
+
+- Q1/2026.
+- Q2/2026.
+- Reviewed H1/2026 statements.
+- Q3/2026.
+- Material financial events through cutoff.
+
+Use latest eligible financial positions and actual publication dates.
+
+Do not restart the entire annual assessment when only specific material dependencies have changed.
+
+Recalculate only economically affected measurements and scenarios.
+
+### FTEL treatment
+
+Reuse existing retained FTEL scope bridge and qualifications.
+
+Evaluate each FH rubric independently.
+
+For FH-BS:
+
+- Use current-scope financial position where defensible.
+- Qualify any leverage ratio requiring incompatible historical earnings.
+
+For FH-LIQ:
+
+- Evaluate current-scope cash, debt and obligations.
+- Assess material guarantees or commitments related to FTEL.
+- Do not count FTEL cash as freely available to FPT without economic and legal support.
+
+For FH-STRESS:
+
+- Align current financial starting values and stressed operations.
+- Preserve scope consistency.
+- Do not combine pre-transition earnings with post-transition financial capital without qualification.
+
+Do not inherit BQ-EQ or BQ-CASH scope conclusions mechanically.
+
+Do not rebuild the complete FTEL reconciliation.
+
+## 11. Financial Health freshness controls
+
+Reuse the accepted assessment lifecycle.
+
+Supported update states:
+
+- BASELINE.
+- UPDATED.
+- REAFFIRMED.
+- CARRIED_FORWARD.
+- UPDATE_PENDING.
+- MATERIAL_REVIEW_PENDING.
+- INVALIDATED.
+
+Implement minimum Financial Health-specific freshness and invalidation controls within the shared architecture.
+
+Mandatory review triggers include:
+
+- New authoritative financial statements.
+- Material new borrowing.
+- Material debt maturity or repayment.
+- Major deterioration in accessible cash.
+- Material changes in financial commitments.
+- Covenant warning or breach.
+- Financial distress.
+- Material asset-quality deterioration.
+- Capital impairment.
+- Material structural changes.
+- Relevant regulatory capital changes for financial institutions.
+
+Use existing approved expiry and evidence-freshness rules.
+
+Do not invent a universal arbitrary 90-day or similar expiry threshold.
+
+For time-dependent liquidity assessments, roll the maturity horizon forward to the relevant cutoff and account for elapsed obligations.
+
+Do not treat a historical twelve-month maturity schedule as indefinitely valid.
+
+Reassess stress scenarios when material funding, debt or operating assumptions change.
+
+## 12. Effective Score resolution
+
+Reuse the accepted D19–D23 architecture.
+
+Apply precedence:
+
+1. Valid new current assessment.
+2. Valid reaffirmed or inherited current assessment.
+3. Latest qualified historical assessment as PROVISIONAL.
+4. N/R when no eligible assessment exists.
+
+Missing supporting current-period information must not automatically block Effective Score.
+
+MATERIAL_IMPACT_UNRESOLVED and missing affirmative support must not automatically erase an otherwise eligible historical score.
+
+Preserve:
+
+- Original historical assessment validity.
+- Evidence identity and integrity.
+- Applicable freshness requirements.
+- Materiality review.
+- Confirmed invalidation controls.
+- Current risk flags.
+- Original assessment foundation.
+
+### Financial Health-specific restriction
+
+Do not use historical points to conceal current material financial distress.
+
+If a material near-term obligation, covenant breach risk or funding shortfall makes the historical liquidity assessment economically unrepresentative or no longer sufficiently fresh:
+
+- Retain the historical record.
+- Prevent unsupported current safety certification.
+- Determine whether the historical Effective Score remains eligible.
+- Block Effective Score when the required freshness or applicability conditions fail.
+- Apply existing risk and actionability gates.
+
+Distinguish an unresolved supporting disclosure from an unresolved current funding requirement that can materially change solvency.
+
+Do not convert every material uncertainty into automatic invalidation.
+
+Do not bypass risk controls merely because a historical numeric score exists.
+
+## 13. Double-counting controls
+
+Preserve distinct economic channels.
+
+- BQ-EQ: economic returns.
+- BQ-CASH: earnings realization.
+- BQ-RES: operating resilience.
+- FH-BS: capital and balance-sheet strength.
+- FH-LIQ: timed payment capacity.
+- FH-STRESS: financial survivability under adverse conditions.
+- RG-RISK: residual risks not already fully assessed.
+
+A financial observation may support multiple rubrics only when distinct economic implications are documented.
+
+Do not reward the same favorable metric mechanically across all Financial Health rubrics.
+
+Do not use existing BQ points as evidence of FH scoring quality.
+
+## 14. Reuse accepted Prepare-to-Scoring integration
+
+Extend the existing WP1 successor research route.
+
+Do not construct a second orchestrator or independent scoring engine.
+
+The new route must support both categories:
+
+- Business Quality: four accepted rubrics.
+- Financial Health: three newly implemented rubrics.
+
+Prepare must consume the approved FH Evidence Sufficiency contracts.
+
+Recognize:
+
+- CORE evidence.
+- Conditional covenant requirements.
+- Band-dependent capital response.
+- Approved public proxies.
+- Analyst scenario evidence.
+- Qualified historical assessment lineage.
+- Current confirmed and provisional Effective Scores.
+
+Do not require obsolete all-topic bindings where the approved methodology permits alternatives or conditional absence.
+
+Do not fabricate evidence to satisfy legacy validators.
+
+Preserve formal legacy behavior and production authority outside the isolated successor scope.
+
+## 15. Actual end-to-end execution
+
+Run the real orchestrated workflow, not only direct research evaluator calls.
+
+Required sequence:
+
+1. Execute FH annual foundation scoring.
+2. Execute FH incremental assessment.
+3. Resolve FH Effective Scores.
+4. Combine accepted BQ and new FH assessment artifacts.
+5. Construct the successor candidate.
+6. Execute Prepare.
+7. Execute Assessment Adoption.
+8. Execute Preflight.
+9. Execute Scoring.
+10. Aggregate BQ and FH.
+11. Construct downstream analytical outputs.
+12. Render the research scorecard.
+
+Use the retained real FPT evidence.
+
+Verify that all eligible Effective Scores survive the workflow without being rejected by obsolete mandatory-topic rules.
+
+Any failure must be classified as:
+
+- Genuine economic evidence insufficiency.
+- Evidence integrity or freshness failure.
+- Obsolete validation blocker.
+- Workflow integration defect.
+- Legitimate authority requirement.
+
+Do not initiate repeated remediation cycles.
+
+Correct implementation and workflow defects within the approved scope.
+
+Do not bypass genuine economic or authority requirements.
+
+## 16. Combined BQ and FH aggregation
+
+Preserve accepted Business Quality:
+
+14/25 PROVISIONAL.
+
+Calculate Financial Health using actual eligible Effective Scores.
+
+If all three FH rubrics have numeric Effective Scores:
+
+Financial Health = FH-BS + FH-LIQ + FH-STRESS.
+
+Maximum = 15.
+
+Combined assessed points = 14 + Financial Health points.
+
+Combined rated weight = 40/100.
+
+Effective rubric coverage = 7/23.
+
+If any FH rubric remains genuinely N/R:
+
+- Report actual assessed points and rated weight.
+- Preserve incomplete-category rules.
+- Do not assign zero.
+- Do not redistribute weights.
+- Do not manufacture full category coverage.
+
+Do not normalize the partial BQ + FH result into a full Investment Score out of 100.
+
+The remaining 16 rubrics remain outside this completed rollout scope.
+
+## 17. Downstream consumption
+
+Verify actual downstream consumption of all eligible BQ and FH Effective Scores by:
+
+- Category aggregation.
+- Investment Score analytical aggregation.
+- Effective coverage.
+- Research ranking inputs.
+- Investment Decision inputs.
+- Research HTML presentation.
+
+Report separately:
+
+- Confirmed current points and rated weight.
+- Provisional points and rated weight.
+- Effective rated weight.
+- Genuine N/R within completed scope.
+- Rubrics outside completed rollout scope.
+
+Preserve provisional qualifications at category and aggregate level.
+
+Do not generate a company ranking from a single FPT observation.
+
+Preserve all formal:
+
+- Stage 0 requirements.
+- Hard veto.
+- Risk Policy.
+- Financial-health thresholds.
+- Valuation thresholds.
+- Confidence requirements.
+- Ranking authority.
+- Investment actionability controls.
+
+Do not use a provisional analytical FH result to satisfy a formal financial-health gate unless the existing governing authority explicitly permits that use.
+
+No automatic BUY, ACCUMULATE or capital-allocation authorization is permitted.
+
+## 18. Update six existing reusable skills
+
+Update the following skills as part of the same work package.
+
+Resolve their actual repository locations.
+
+### 18.1 equity-s1-s5-assessment
+
+Update guidance for:
+
+- Category-specific evidence contracts.
+- CORE, CONDITIONAL, SUPPORTING, BAND-DEPENDENT and MAXIMUM_ONLY requirements.
+- Public proxies.
+- Analyst estimates.
+- Financial Health calculations.
+- Sector equivalents.
+- Actual analyst band selection.
+- Evidence sufficiency rather than universal topic completeness.
+
+### 18.2 vn30-evidence-coverage-closure
+
+Update guidance for:
+
+- Retained evidence first.
+- Stop evidence discovery when a defensible band is supported.
+- One bounded evidence-improvement round per category work package.
+- No mandatory private data.
+- Explicit genuine N/R reasons.
+- Separate metric availability from assessment availability.
+
+### 18.3 vn30-incremental-scoring
+
+Update guidance for:
+
+- Annual Baseline.
+- Incremental materiality review.
+- Latest Valid Assessment.
+- Effective Score.
+- Confirmed versus provisional points.
+- Financial Health freshness.
+- Debt-maturity rollover.
+- Covenant and distress triggers.
+- Confirmed invalidation.
+- Targeted recalculation rather than full scoring reconstruction.
+
+### 18.4 vn30-rollout-orchestrator
+
+Update guidance for category-level execution.
+
+Support parameters:
+
+- ticker.
+- category.
+- cutoff.
+- methodology version.
+- prior accepted categories.
+- execution scope.
+
+Standard workflow:
+
+1. Approved methodology.
+2. Evidence sufficiency.
+3. Annual assessment.
+4. Incremental assessment.
+5. Effective Score.
+6. Prepare.
+7. Adoption.
+8. Preflight.
+9. Scoring.
+10. Category aggregation.
+11. Downstream validation.
+12. Regression and closure.
+
+Allow an approved partial-category rollout without fabricated assessments for unimplemented rubrics.
+
+### 18.5 vn30-structural-nr-remediation
+
+Distinguish:
+
+- Genuine economic N/R.
+- Eligible historical Effective Score.
+- Pending update.
+- Unresolved material impact.
+- Confirmed invalidation.
+- Expired assessment.
+- Obsolete validation requirement.
+- Prepare-to-Scoring integration defect.
+- Legitimate authority blocker.
+- Rubric outside completed rollout scope.
+
+Do not automatically start another evidence-discovery task for every N/R.
+
+### 18.6 vn30-scoring-publication-hygiene
+
+Preserve:
+
+- Approved methodology and owner records.
+- Final assessments and results.
+- Evidence lineage.
+- Required reproducibility artifacts.
+- Versioned executable identities.
+- Test and acceptance records.
+- Publication authority.
+
+Avoid retaining redundant temporary preparation and audit files where permitted by the existing retention policy.
+
+Do not delete sealed evidence, immutable approval records or artifacts required for reproducibility.
+
+Do not treat this research closure as production publication.
+
+### Skill implementation restrictions
+
+Reuse existing skills.
+
+Do not introduce another orchestration framework.
+
+Do not hardcode FPT-specific values into shared skill behavior.
+
+Prepare the skills for subsequent categories without authorizing or implementing their unapproved methodology changes.
+
+Validate references, parameter handling and consistency across the updated skills.
+
+## 19. Required testing
+
+Execute one coordinated implementation and regression cycle.
+
+### FH-BS tests
+
+Cover:
+
+- Valid net-debt calculations.
+- Restricted cash exclusion.
+- Unsupported cash availability.
+- EBITDA normalization.
+- Negative or near-zero denominator.
+- Asset-quality deterioration.
+- Material funding dependence.
+- Missing immaterial supporting evidence.
+- Unsupported maximum score.
+- Applicable bank and sector-equivalent treatment.
+
+### FH-LIQ tests
+
+Cover:
+
+- Timed obligation/resource matching.
+- Maturity buckets.
+- Restricted deposits.
+- Committed facilities.
+- Uncommitted refinancing exclusion.
+- Resource double-counting.
+- Missing exact covenant headroom with qualified disposition.
+- Potential covenant breach.
+- Near-term funding shortfall.
+- Zero or negative net interest expense.
+- Unsupported maximum score.
+- Maturity schedule freshness.
+
+### FH-STRESS tests
+
+Cover:
+
+- Reproducible severe plausible scenario.
+- Revenue and margin shocks.
+- Working-capital outflow.
+- Funding-cost changes.
+- Mandatory CAPEX and debt service.
+- Liquidity surplus and shortfall.
+- Manageable capital response.
+- Distressed financing response.
+- Emergency dilution.
+- Scenario sensitivity.
+- Unsupported maximum score.
+- Scenario input freshness.
+
+### Shared lifecycle tests
+
+Cover:
+
+- Valid annual foundation.
+- Supported current update.
+- Reaffirmed assessment.
+- Eligible provisional Effective Score.
+- Missing supporting evidence.
+- Unresolved material impact.
+- Confirmed material invalidation.
+- Expired evidence.
+- Elapsed financial obligations.
+- Future-information leakage.
+
+### Workflow integration tests
+
+Cover:
+
+- Prepare accepts qualified FH evidence contracts.
+- Conditional covenant absence does not cause an obsolete blocker.
+- Analyst scenario is accepted when economically supported.
+- CORE evidence requirements remain enforced.
+- Eligible provisional points survive adoption and preflight.
+- Scoring consumes the same Effective Scores.
+- Combined BQ and FH category aggregation.
+- Remaining 16 rubrics are not fabricated.
+- Incomplete Investment Score remains incomplete.
+- Downstream consumer consistency.
+
+### Regression tests
+
+Verify:
+
+- Accepted BQ-EQ unchanged.
+- Accepted BQ-MOAT unchanged.
+- Accepted BQ-CASH unchanged.
+- Accepted BQ-RES unchanged.
+- Accepted Business Quality remains 14/25 on identical input.
+- Remaining 16 rubric methodologies unchanged.
+- Financial Health maximum remains 15.
+- Total methodology maximum remains 100.
+- All existing formal scoring integration tests pass.
+- Previous TypeScript regression suites pass.
+- Previous Python orchestration regression suites pass.
+- Official FPT V8 exact-input replay remains unchanged.
+- Risk and authority gates remain enforced.
+- Unauthorized publication is rejected.
+
+Report actual test counts and failure dispositions.
+
+Do not require a predetermined test count.
+
+Actual FPT execution is mandatory in addition to synthetic tests.
+
+## 20. Evidence improvement boundary
+
+Use existing retained evidence first.
+
+Allow at most one coordinated targeted evidence-improvement round for all three FH rubrics.
+
+Do not repeatedly search for:
+
+- Private debt agreements.
+- Internal corporate stress tests.
+- Unpublished covenant headroom.
+- Exact future refinancing decisions.
+- Internal financial forecasts.
+
+Use approved public evidence, conservative estimates and sector-equivalent routes.
+
+Do not force complete numerical coverage.
+
+Do not manufacture evidence to reach a particular point target.
+
+A defensible N/R is acceptable when no valid current assessment or eligible historical Effective Score exists.
+
+## 21. Required financial outputs
+
+Provide actual values with units, scope, reporting period and source references.
+
+### Financial position table
+
+| Metric | FY2022 | FY2023 | FY2024 | FY2025 | Latest eligible 2026 |
+|---|---|---|---|---|---|
+| Cash and equivalents | | | | | |
+| Restricted cash | | | | | |
+| Eligible liquid deposits | | | | | |
+| Short-term debt | | | | | |
+| Long-term debt | | | | | |
+| Total interest-bearing debt | | | | | |
+| Net debt | | | | | |
+| Normalized EBIT | | | | | |
+| Normalized EBITDA | | | | | |
+| Net debt / EBITDA | | | | | |
+| Interest expense | | | | | |
+| Equity | | | | | |
+
+### Liquidity table
+
+| Obligation or resource | Amount | Availability or maturity | Scope | Qualification |
+|---|---|---|---|---|
+
+Provide actual coverage calculations and limitations.
+
+### Stress table
+
+| Scenario variable | Base case | Severe plausible case | Source or assumption |
+|---|---|---|---|
+| Revenue | | | |
+| EBIT margin | | | |
+| EBIT | | | |
+| Operating cash generation | | | |
+| Working-capital requirement | | | |
+| Interest burden | | | |
+| Mandatory CAPEX | | | |
+| Debt repayment | | | |
+| Available liquidity | | | |
+| Liquidity surplus or deficit | | | |
+| Capital response | | | |
+
+Clearly distinguish FACT, ESTIMATE and ASSUMPTION.
+
+Do not fabricate unavailable figures.
+
+## 22. Required scoring output
+
+| Rubric | FY2025 score | Current reassessment | Effective Score | Validity | Update status |
+|---|---|---|---|---|---|
+| BQ-EQ | 5/8 | N/R | 5/8 | PROVISIONAL | MATERIAL_REVIEW_PENDING |
+| BQ-MOAT | 3/6 | 3/6 | 3/6 | CONFIRMED_CURRENT | REAFFIRMED |
+| BQ-CASH | 3/6 | N/R | 3/6 | PROVISIONAL | Retained accepted status |
+| BQ-RES | 3/5 | N/R | 3/5 | PROVISIONAL | Retained accepted status |
+| FH-BS | | | | | |
+| FH-LIQ | | | | | |
+| FH-STRESS | | | | | |
+
+Provide per-rubric:
+
+- Selected band.
+- Analyst-selected points.
+- Actual executable points.
+- Effective Score basis.
+- Financial foundation.
+- Latest reviewed period.
+- Confidence.
+- Freshness disposition.
+- Materiality disposition.
+- Remaining limitations.
+- Actionability restrictions.
+
+Provide category and combined results:
+
+| Output | Accepted WP1 | After WP2 |
+|---|---|---|
+| Business Quality | 14/25 PROVISIONAL | |
+| Financial Health | Not assessed in WP1 | |
+| Combined assessed points | 14 | |
+| Effective rubric coverage | 4/23 | |
+| Effective rated weight | 25/100 | |
+| Confirmed current coverage | | |
+| Provisional coverage | | |
+| Full Investment Score | Incomplete | |
+| Research ranking input | | |
+| Investment Decision input | | |
+
+## 23. Required workflow execution proof
+
+| Stage | Actual result | Command or artifact | Remaining blocker |
+|---|---|---|---|
+| Annual FH scoring | | | |
+| Incremental FH assessment | | | |
+| Effective Score resolution | | | |
+| Candidate construction | | | |
+| Prepare | | | |
+| Adoption | | | |
+| Preflight | | | |
+| Scoring | | | |
+| Category aggregation | | | |
+| Research ranking input | | | |
+| Investment Decision input | | | |
+| Research HTML | | | |
+
+Record exact executable commands and resulting artifact identities.
+
+Do not claim end-to-end success from direct rubric evaluator calls alone.
+
+## 24. Acceptance criteria
+
+AC01 — FH01–FH15 recorded in Approved Baseline v1.0.
+
+AC02 — Existing Financial Health objectives, bands and weights preserved.
+
+AC03 — FH-BS Evidence Sufficiency implemented.
+
+AC04 — FH-LIQ timed obligations, resources and covenant disposition implemented.
+
+AC05 — FH-STRESS analyst scenario and funding/capital response implemented.
+
+AC06 — Approved public proxies and sector-equivalent routes preserved.
+
+AC07 — Actual FPT FY2025 scoring executed for all three FH rubrics.
+
+AC08 — Actual FPT current-purpose scoring executed for all three FH rubrics.
+
+AC09 — Financial Health freshness and invalidation controls enforced.
+
+AC10 — Shared Incremental Assessment reused.
+
+AC11 — Shared Effective Score reused.
+
+AC12 — Accepted BQ 14/25 preserved.
+
+AC13 — Actual combined BQ + FH Prepare → Adoption → Preflight → Scoring executed.
+
+AC14 — Eligible Effective Scores survive the full workflow.
+
+AC15 — Category and downstream aggregation validated.
+
+AC16 — Confirmed and provisional coverage remain distinguishable.
+
+AC17 — Six existing skills updated and validated for reuse.
+
+AC18 — Remaining 16 rubric behavior unchanged.
+
+AC19 — Existing formal scoring, risk and actionability gates preserved.
+
+AC20 — Regression and integration tests recorded.
+
+AC21 — Official FPT V8 unchanged.
+
+AC22 — No unauthorized production activation or publication.
+
+No predetermined FH score is required.
+
+No mandatory complete numeric coverage is imposed.
+
+Actual execution and accurate economic treatment are mandatory.
+
+## 25. Final deliverable
+
+Create one consolidated closure report:
+
+WP2_FINANCIAL_HEALTH_FPT_SCORING_CLOSURE.md
+
+Include:
+
+1. Owner approval FH01–FH15.
+2. Approved Baseline v1.0.
+3. Exact implementation changes.
+4. Financial Health evidence contracts.
+5. Actual financial calculations.
+6. Actual FH-STRESS scenario and sensitivity.
+7. FY2025 scoring.
+8. Current-purpose scoring.
+9. Effective Score and freshness results.
+10. Combined BQ and FH aggregation.
+11. Actual Prepare-to-Scoring execution.
+12. Downstream consumption.
+13. Six skill updates.
+14. Tests and regression results.
+15. Exact implementation identities and Git commit.
+16. AC01–AC22 dispositions.
+17. Remaining genuine economic limitations.
+18. Deferred production authority requirements.
+
+Retain necessary final methodology, evidence lineage, executable, assessment, governance and test artifacts.
+
+Avoid redundant intermediate preparation reports.
+
+Return a concise execution summary containing:
+
+- Implementation verdict.
+- Operational scoring verdict.
+- FH-BS score.
+- FH-LIQ score.
+- FH-STRESS score.
+- Financial Health Effective Score.
+- Combined BQ + FH assessed points.
+- Effective rubric coverage.
+- Effective rated weight.
+- Prepare-to-Scoring verdict.
+- Skill update verdict.
+- Test results.
+- Remaining genuine blockers.
+
+## 26. Stopping rules
+
+Do not reopen WP1 Business Quality.
+
+Do not redesign the accepted scoring architecture.
+
+Do not create additional duplicate skills.
+
+Do not modify unapproved rubric methodologies.
+
+Do not perform repeated evidence-discovery rounds.
+
+Do not force predetermined scoring results.
+
+Do not modify official FPT V8.
+
+Do not activate or publish production scoring.
+
+Do not proceed automatically to WP3 Growth Quality.
+
+Stop after completing WP2 real-issuer scoring, shared skill updates, end-to-end integration and final closure report.
