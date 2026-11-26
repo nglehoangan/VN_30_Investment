@@ -50,3 +50,10 @@ Record an explicit analyst band or N/R before validation, with evidence for the 
 For one ticker and an eligible cutoff, apply the [WP3 Growth Quality baseline](../../docs/03%20SCORING/WP3_GROWTH_QUALITY_AMENDMENT_v1.0.json). Use B first for History and Forward, and Direct → unchanged PX02 → Capital Productivity Profile for Incremental. Method A uses route-specific bands capped at 4/5, 4/5 and 3/5 respectively. Record proposals before validation and preserve sector normalization, confidence, counterevidence, method identity and research-only authority. Preserve the separate economic channels and mixed-route comparability limits.
 
 Review adjusted historical growth continuity, new forward drivers, material disclosures, deployment and commissioning. Preserve scope and action comparability. An unbridged scope change can block a current productivity profile while allowing a separately eligible historical PROVISIONAL result.
+
+
+### Approved Industry & Competitive Position research routes
+
+Apply the [WP4 baseline](../../docs/03%20SCORING/WP4_INDUSTRY_COMPETITIVE_POSITION_AMENDMENT_v1.0.json) for one ticker, a pinned cutoff and sector. Use Direct before Public Industry Structure or Cycle Exposure. Competitive Position uses Direct → unchanged PX03 → Competitive Capability. Method A ceilings are 3/4, 3/4 and 1/2. Preserve canonical bands, sector normalization, source eligibility, counterevidence and confidence. Qualify evidence ownership against accepted BQ, FH and GQ. Keep shared observations distinct from independent corroboration and research separate from formal gates.
+
+Refresh for changes in demand, competitive entry, customer access, delivery economics, industry regulation and cycle phase. Review economic associate exposure separately from reported consolidation. A stale cycle profile is ineligible for provisional carry.

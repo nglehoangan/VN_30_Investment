@@ -1,0 +1,126 @@
+{
+  "status": "APPROVED_BASELINE",
+  "methodology": "wp4-industry-competitive-position-v1.0.0",
+  "implementation": "ic-route-research-v1.0.0",
+  "owner": {
+    "path": "docs/fundamental-data-engine/fpt-industry-competitive-position/v1.0/OWNER_REQUEST.txt",
+    "sha256": "69d5f17d93826a4b1c8aa6956f02b8dcfb42cfa3ffc6c96ae9c500f9f4ce2835"
+  },
+  "input": {
+    "path": "docs/fundamental-data-engine/fpt-industry-competitive-position/v1.0/FPT_INDUSTRY_ASSESSMENT.json",
+    "sha256": "2b09fbb3f7e1db8f144a162e6d9c5f7af68d6d3f884a72c49a3a0be5edbcd097"
+  },
+  "weights": {
+    "IC-IND": 4,
+    "IC-POS": 4,
+    "IC-CYCLE": 2
+  },
+  "decisions": {
+    "IC01": "Preserve the original economic objectives and weights: IC-IND 4, IC-POS 4, IC-CYCLE 2.",
+    "IC02": "IC-IND prioritizes Direct Industry Assessment, with Public Industry Structure Profile as fallback.",
+    "IC03": "IC-IND Method A requires evidence external to the assessed issuer. Do not infer industry economics solely from one issuer.",
+    "IC04": "IC-IND Method A maximum 3/4. Preserve Method B maximum prerequisites.",
+    "IC05": "IC-POS route priority: Direct → Existing PX03 → Competitive Capability Profile.",
+    "IC06": "Preserve PX03 and its defined population, matched position, independent cost, distribution and representative leadership requirements.",
+    "IC07": "IC-POS Method A assesses demonstrated competitive capability without requiring exact market share or relative unit costs for every band.",
+    "IC08": "IC-POS Method A requires evidence of market participation, commercial wins, delivery capability, customer access and operating economics.",
+    "IC09": "IC-POS Method A maximum 3/4. Do not infer market leadership from revenue scale or incompatible comparators.",
+    "IC10": "IC-CYCLE prioritizes Detailed Cycle Assessment, with Cycle Exposure Profile as fallback.",
+    "IC11": "IC-CYCLE Method A assesses cyclical opportunities and risks without requiring full formal survivability certification.",
+    "IC12": "IC-CYCLE Method A maximum 1/2. Reserve 2/2 for established favorable normalized forward asymmetry.",
+    "IC13": "Adopt the approved route-specific Method A band semantics for all three rubrics.",
+    "IC14": "Do not mechanically convert revenue growth, market share, margin or momentum into points.",
+    "IC15": "Preserve Sector Normalization and define market, industry, segment, reporting period and FTEL scope.",
+    "IC16": "Implement evidence ownership and economic-channel review against BQ-MOAT, BQ-RES, GQ-FWD, Financial Health and Valuation.",
+    "IC17": "Reuse confidence, counterevidence, freshness and Incremental Assessment.",
+    "IC18": "Reuse Effective Score. Historical provisional assessments require continued eligibility, with particular attention to IC-CYCLE freshness.",
+    "IC19": "Preserve Risk Policy, Stage 0, Hard Veto, formal ranking and production authority. Disclose mixed-route comparability limitations.",
+    "IC20": "Use FY2022–FY2025 as the annual foundation and Q1–Q3/2026 plus material events through cutoff 2026-11-13. Preserve point-in-time eligibility.",
+    "IC21": "Reuse six existing skills and execute actual cumulative Prepare → Adoption → Preflight → Scoring for BQ + FH + GQ + IC.",
+    "IC22": "One coordinated implementation and validation cycle. Reuse retained evidence. Do not force trial scores, reopen WP1–WP3 or repeat evidence discovery."
+  },
+  "profiles": {
+    "IC-IND": [
+      {
+        "points": 0,
+        "band": "VALUE_DESTRUCTIVE_INDUSTRY_PROFILE",
+        "definition": "Evidence establishes persistent industry-wide economic deterioration or value destruction.\n\nRequire evidence beyond an isolated issuer loss or a single difficult period.\n\nMissing industry data is insufficient."
+      },
+      {
+        "points": 1,
+        "band": "STRUCTURALLY_DIFFICULT_INDUSTRY_PROFILE",
+        "definition": "Evidence supports sustained competitive pressure, weak bargaining economics, substitution risk or other structural impediments to value creation.\n\nDistinguish structural difficulty from temporary cyclicality."
+      },
+      {
+        "points": 2,
+        "band": "MIXED_INDUSTRY_STRUCTURE_PROFILE",
+        "definition": "Relevant industry evidence supports both meaningful economic opportunities and material competitive, cyclical or disruption pressures.\n\nThe observed profile must support the mixed conclusion.\n\nDo not assign 2 automatically when profitability data is unavailable."
+      },
+      {
+        "points": 3,
+        "band": "ATTRACTIVE_PUBLIC_INDUSTRY_PROFILE",
+        "definition": "Independent public evidence supports durable demand, meaningful barriers and relatively manageable competitive pressure.\n\nRequire stronger industry-economic corroboration than band 2.\n\nKnown material adverse structural evidence must be resolved or bounded."
+      }
+    ],
+    "IC-POS": [
+      {
+        "points": 0,
+        "band": "STRUCTURALLY_DISADVANTAGED_CAPABILITY_PROFILE",
+        "definition": "Evidence establishes a structural competitive disadvantage that materially impairs the issuer's ability to win, serve or retain market participation.\n\nMissing comparator data alone is insufficient.\n\nRequire affirmative adverse economic evidence."
+      },
+      {
+        "points": 1,
+        "band": "WEAK_COMPETITIVE_CAPABILITY_PROFILE",
+        "definition": "Evidence supports weak competitive capability, persistent commercial deterioration, poor execution, loss of customer access or unfavorable operating outcomes.\n\nDistinguish temporary weakness from a more persistent competitive problem."
+      },
+      {
+        "points": 2,
+        "band": "ESTABLISHED_COMPETITIVE_CAPABILITY_PROFILE",
+        "definition": "Evidence establishes actual competitive participation and demonstrated ability to win and serve customers.\n\nRequire corroborated evidence covering:\n\n- Commercial outcomes.\n- Delivery capability.\n- Market access.\n- Operating economics.\n\nExact market share and relative unit cost may remain unresolved.\n\nDo not claim market leadership or top-tier relative positioning.\n\nDo not assign this band merely because the issuer remains operational."
+      },
+      {
+        "points": 3,
+        "band": "STRONG_COMPETITIVE_CAPABILITY_PROFILE",
+        "definition": "Multiple independent evidence families support strong competitive capability.\n\nRequire:\n\n- Repeated commercial wins.\n- Demonstrated execution at relevant scale.\n- Established customer access.\n- Strong operating outcomes.\n- Meaningful independent corroboration of relative capability or competitive strength in the defined segment.\n\nAn exact numerical market rank is not mandatory.\n\nHowever, issuer scale and internal margin alone cannot establish this band."
+      }
+    ],
+    "IC-CYCLE": [
+      {
+        "points": 0,
+        "band": "ADVERSE_CYCLE_EXPOSURE",
+        "definition": "Evidence establishes material adverse economic exposure to the relevant cycle or structural deterioration.\n\nExamples may include:\n\n- Unsustainable peak profitability.\n- Demand contraction.\n- Material excess supply.\n- Deteriorating normalized economics.\n- Meaningful vulnerability to the expected industry downturn.\n\nRequire affirmative cycle-related evidence.\n\nMissing cycle data is insufficient."
+      },
+      {
+        "points": 1,
+        "band": "MIXED_OR_BALANCED_CYCLE_EXPOSURE",
+        "definition": "Evidence supports meaningful positive and negative cycle-related economic signals.\n\nThe selected profile may retain uncertainty about exact cycle phase or normalized forward asymmetry.\n\nThe analyst must explain:\n\n- What economic cycle or demand pattern is relevant.\n- Which observations demonstrate potential upside.\n- Which observations demonstrate downside exposure.\n- Why the conclusion is mixed rather than clearly adverse.\n- Why favorable normalized forward asymmetry has not been established.\n\nDo not assign 1 automatically to non-cyclical businesses.\n\nDo not assign 1 solely because a definitive cycle classification is unavailable."
+      }
+    ]
+  },
+  "predecessorAcceptance": {
+    "path": "docs/fundamental-data-engine/fpt-growth-quality/v1.0/WP3_GROWTH_QUALITY_FPT_SCORING_CLOSURE.md",
+    "sha256": "7dc4c33cc8ce8ee350252f6dacae6e9b445cf749ea2339e688df6861ea1f0938"
+  },
+  "predecessorResult": {
+    "path": "docs/fundamental-data-engine/fpt-growth-quality/v1.0/FPT_GROWTH_RESULT.json",
+    "sha256": "0e8368ca4efffe66279d3665cda32a4f777501196b27230fdd6cfdda59d60248"
+  },
+  "legacyWorkflow": {
+    "path": "docs/fundamental-data-engine/fpt-growth-quality/v1.0/FPT_GROWTH_WORKFLOW.json",
+    "sha256": "3949ea4f4adfda4c71c7b5a6bd7ef30fbb82920f55705617c18d8d8f8a7cc778"
+  },
+  "officialV8": {
+    "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_V8_FORMAL_ASSESSMENT.json",
+    "sha256": "8a276bee33970f17de0c7a2a6982b44a72151d1cb2429e18f12eb1cfaa80e07f"
+  },
+  "officialV8Readback": {
+    "path": "docs/fundamental-data-engine/fpt-scoring-readiness/2026-11-22/exec-fc90c0fbdb8aac3f227340d7/admission-rehearsal/FPT_V8_SCORE_READBACK.json",
+    "sha256": "40e8816606d0044926b55c480e3d8c2ecfc2873dd3b7185593f6df20a4ab7fb5"
+  },
+  "priorStress": {
+    "path": "docs/fundamental-data-engine/fpt-financial-health/analyst-risk-v1.2/FPT_FH_ANALYST_RISK_RESULT.json",
+    "sha256": "2f89613a4ed9cd0211a1308ace0c0a2dc5eaa484cc125fdab57de358f8d7bfea"
+  },
+  "productionScoringAuthorized": false,
+  "publicationAuthorized": false
+}
