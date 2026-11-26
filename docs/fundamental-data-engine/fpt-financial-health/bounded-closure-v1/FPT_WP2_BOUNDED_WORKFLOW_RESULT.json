@@ -1,0 +1,2440 @@
+{
+  "implementation": "wp2-bounded-fh-research-coverage-v1",
+  "sourceWorkflow": {
+    "path": "docs/fundamental-data-engine/fpt-financial-health/v1.0/FPT_WP2_WORKFLOW_RESULT.json",
+    "sha256": "ce256841de1f7c5cf95a3639f8ca423aa08524dbb636ba9ea4f68ee952449211"
+  },
+  "sourceEvaluation": {
+    "path": "docs/fundamental-data-engine/fpt-financial-health/v1.0/FPT_FH_RESULT.json",
+    "sha256": "ac40b9159440b8fb14356330c8eb6883813f64e851b01fd3ccd1206617e70040"
+  },
+  "workflow": {
+    "implementation": "vn30-bq-fh-prepare-scoring-research-successor-v1",
+    "queueId": "queue-ba525c15ae392c7a4b055e8e",
+    "ticker": "FPT",
+    "executionId": "exec-be59ad3a3be63079a86d2c83",
+    "status": "COMPLETED",
+    "evidence": [
+      {
+        "subjectTicker": "FPT",
+        "stage": "CANDIDATE",
+        "result": {
+          "candidateHash": "d314e0edc4cf1ee26de32b71ef6efdbe652578a3e24229c285b3bc3a46efc430",
+          "route": {
+            "implementation": "vn30-bq-fh-prepare-scoring-research-successor-v1",
+            "category": "FH",
+            "acceptedCategories": [
+              "BQ"
+            ],
+            "scope": "ISOLATED_BQ_FH_VALIDATION_ONLY",
+            "subject": {
+              "ticker": "FPT",
+              "securityId": "ec91b3cb-8eab-45ae-95e7-738bb3c7de52",
+              "exchange": "HOSE",
+              "sector": "TECHNOLOGY",
+              "universeVersion": "vn30-20260803-reviewed-20261115",
+              "universeHash": "03b4681f42c9fb860c7e1d1f4e9d47b8fe18445539884b538eb774b7b6278c88",
+              "cutoff": "2026-11-13",
+              "purpose": "RETROSPECTIVE_RESEARCH"
+            },
+            "methodology": {
+              "path": "docs/03 SCORING/WP2_FINANCIAL_HEALTH_AMENDMENT_v1.0.json",
+              "sha256": "d29e72c60270f92ed94520d21c7e1a0f394ea2aedcb7287799ff58ab984b4cea"
+            },
+            "result": {
+              "path": "docs/fundamental-data-engine/fpt-financial-health/v1.0/FPT_FH_RESULT.json",
+              "sha256": "ac40b9159440b8fb14356330c8eb6883813f64e851b01fd3ccd1206617e70040"
+            },
+            "executable": {
+              "path": "tools/scoring/validate_fpt_financial_health.mjs",
+              "sha256": "5bbb9d3b974da58d8fb9a26e3a4ec9d911055bcd66e99d94fa211f1a09add3b4"
+            },
+            "controller": {
+              "path": "tools/scoring/vn30_fh_successor.py",
+              "sha256": "6fd5022eae21f2ad9d025f70c660f305e4c8ad0f40b26f60c0b48009769b21f5"
+            },
+            "wp1Controller": {
+              "path": "tools/scoring/vn30_bq_successor.py",
+              "sha256": "990eae1a7d5b6c34aeb7f395144254cac90e54409160f33f089bfb13caa2f706"
+            }
+          },
+          "validatedAnnualAndIncrementalReplay": {
+            "path": "docs/fundamental-data-engine/fpt-financial-health/v1.0/FPT_FH_RESULT.json",
+            "sha256": "ac40b9159440b8fb14356330c8eb6883813f64e851b01fd3ccd1206617e70040"
+          }
+        }
+      },
+      {
+        "subjectTicker": "FPT",
+        "stage": "PREPARE",
+        "result": {
+          "status": "PREPARED_BQ_FH",
+          "effectiveScores": [
+            {
+              "id": "BQ-EQ",
+              "points": 5,
+              "validity": "PROVISIONAL",
+              "basis": "LATEST_VALID_HISTORICAL_ASSESSMENT",
+              "financialPeriod": "2025-12-31",
+              "latestValidPoints": 5,
+              "currentReassessmentPoints": null,
+              "currentConfirmedPoints": null,
+              "currentComparableRoic": null,
+              "reviewedFinancialPeriod": "2026-09-30",
+              "reviewCutoff": "2026-11-13",
+              "updateStatus": "MATERIAL_REVIEW_PENDING",
+              "confidence": {
+                "dimensions": [
+                  2,
+                  0,
+                  2,
+                  1,
+                  0
+                ],
+                "rationale": "Eligible review through cutoff with traceable retained evidence. The decisive return and scope comparisons remain unavailable.",
+                "total": 5
+              },
+              "materialDependencies": [
+                {
+                  "topic": "returns",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED",
+                  "refs": [
+                    "FTEL",
+                    "Q3"
+                  ],
+                  "impact": "14.74–16.33% is six months on selected operating lines. The annualized or full-scope spread is unbounded. FY25 gross funded sensitivity cleared the 15% hurdle by only 0.22 percentage points."
+                },
+                {
+                  "topic": "capitalStructure",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED",
+                  "refs": [
+                    "FTEL",
+                    "Q3"
+                  ],
+                  "impact": "Six identified opening operating capital adjustments total VND −6.652tn. Opening working capital, eliminations and classifications remain unbounded. The residual could change the applicable spread."
+                },
+                {
+                  "topic": "segmentMix",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED",
+                  "refs": [
+                    "FTEL",
+                    "H1",
+                    "Q3"
+                  ],
+                  "impact": "FTEL was previously consolidated line by line. FPT retained 45.66% and recognizes its share through the equity method. Restated 9M sales growth and positive EBIT do not bound how recurring FTEL economics affected the old band."
+                },
+                {
+                  "topic": "consolidation",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED",
+                  "refs": [
+                    "FTEL",
+                    "Q1",
+                    "H1",
+                    "Q3"
+                  ],
+                  "impact": "From 1 January 2026 current operating results and balance sheet exclude line consolidation of FTEL. Issuer-restated P&L evidence has no consistent full opening capital bridge. Scope effects matter to the band."
+                }
+              ],
+              "reassessmentTriggers": [
+                "new authoritative FY2026 disclosures",
+                "supported matched-scope operating return or bounded equivalent economic evidence",
+                "material structural event or applicable evidence expiry"
+              ],
+              "limitations": [
+                "FY and 9M have different business scopes. Six-month selected capital cannot establish normalized annual economic returns.",
+                "No expiry date is supplied by the standing methodology for this annual evidence. Review is tied to authoritative annual information and material events."
+              ],
+              "certificationGaps": [
+                "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                "AFFIRMATIVE_SUPPORT_REQUIRED"
+              ]
+            },
+            {
+              "id": "BQ-MOAT",
+              "points": 3,
+              "validity": "CONFIRMED_CURRENT",
+              "basis": "REAFFIRMED",
+              "financialPeriod": "2026-09-30",
+              "latestValidPoints": 3,
+              "currentReassessmentPoints": 3,
+              "currentConfirmedPoints": 3,
+              "reviewedFinancialPeriod": "2026-09-30",
+              "reviewCutoff": "2026-11-13",
+              "updateStatus": "REAFFIRMED",
+              "confidence": {
+                "dimensions": [
+                  2,
+                  1,
+                  2,
+                  1,
+                  1
+                ],
+                "rationale": "Contracts and repeat buying support differentiation. Portfolio-wide durability and comparable pricing remain uncertain.",
+                "total": 7
+              },
+              "materialDependencies": [],
+              "reassessmentTriggers": [
+                "new authoritative annual evidence",
+                "material loss or renewal of strategic customers",
+                "comparable pricing, retention or delivery productivity data",
+                "material AI disruption, acquisition, divestment or evidence expiry"
+              ],
+              "limitations": [
+                "A single named long relationship does not establish portfolio-wide durability.",
+                "Award counts are cumulative and are not recognized revenue.",
+                "No verified relative cost leadership, widespread pricing power or telecom moat is claimed."
+              ],
+              "certificationGaps": [],
+              "foundationFinancialPeriod": "2025-12-31"
+            },
+            {
+              "points": 3,
+              "validity": "PROVISIONAL",
+              "basis": "LATEST_VALID_HISTORICAL_ASSESSMENT",
+              "financialPeriod": "2025-12-31",
+              "latestValidPoints": 3,
+              "currentReassessmentPoints": null,
+              "currentConfirmedPoints": null,
+              "reviewedFinancialPeriod": "2026-09-30",
+              "reviewCutoff": "2026-11-13",
+              "updateStatus": "MATERIAL_REVIEW_PENDING",
+              "confidence": {
+                "dimensions": [
+                  2,
+                  0,
+                  2,
+                  1,
+                  0
+                ],
+                "rationale": "Cutoff-qualified evidence; remaining dependencies materially limit current confirmation.",
+                "total": 5
+              },
+              "materialDependencies": [
+                {
+                  "topic": "returns",
+                  "refs": [
+                    "q3",
+                    "bridge",
+                    "cash9m"
+                  ],
+                  "impact": "9M CFO conversion is weak despite post-Q1 cash recovery.",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED"
+                },
+                {
+                  "topic": "segmentMix",
+                  "refs": [
+                    "q3",
+                    "bridge",
+                    "cash9m"
+                  ],
+                  "impact": "FTEL line consolidation ended; recurring cash profile is not separable.",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED"
+                },
+                {
+                  "topic": "consolidation",
+                  "refs": [
+                    "q3",
+                    "bridge",
+                    "cash9m"
+                  ],
+                  "impact": "Opening intra-group working capital and deconsolidation effects are unresolved.",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED"
+                },
+                {
+                  "topic": "adverseEvents",
+                  "refs": [
+                    "q3",
+                    "bridge",
+                    "cash9m"
+                  ],
+                  "impact": "Working-capital drag and post-Q1 recovery point in different directions.",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED"
+                }
+              ],
+              "reassessmentTriggers": [
+                "audited FY2026 and comparable scope bridge",
+                "evidence expiry or confirmed material invalidation"
+              ],
+              "limitations": [
+                "9M CFO weakness and six-month recovery do not establish persistent deterioration; comparable post-FTEL annual realizations and full NPAT normalization remain open."
+              ],
+              "certificationGaps": [
+                "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                "AFFIRMATIVE_SUPPORT_REQUIRED"
+              ],
+              "foundationFinancialPeriod": "2025-12-31",
+              "id": "BQ-CASH"
+            },
+            {
+              "points": 3,
+              "validity": "PROVISIONAL",
+              "basis": "LATEST_VALID_HISTORICAL_ASSESSMENT",
+              "financialPeriod": "2025-12-31",
+              "latestValidPoints": 3,
+              "currentReassessmentPoints": null,
+              "currentConfirmedPoints": null,
+              "reviewedFinancialPeriod": "2026-09-30",
+              "reviewCutoff": "2026-11-13",
+              "updateStatus": "MATERIAL_REVIEW_PENDING",
+              "confidence": {
+                "dimensions": [
+                  2,
+                  0,
+                  2,
+                  1,
+                  0
+                ],
+                "rationale": "Cutoff-qualified evidence; remaining dependencies materially limit current confirmation.",
+                "total": 5
+              },
+              "materialDependencies": [
+                {
+                  "topic": "segmentMix",
+                  "refs": [
+                    "q3",
+                    "bridge",
+                    "res9m",
+                    "events"
+                  ],
+                  "impact": "Reweighted technology exposure may materially affect diversification under stress.",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED"
+                },
+                {
+                  "topic": "consolidation",
+                  "refs": [
+                    "q3",
+                    "bridge",
+                    "res9m",
+                    "events"
+                  ],
+                  "impact": "Retained FTEL equity exposure offers no measurement of post-transition customer or segment stress mitigants.",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED"
+                },
+                {
+                  "topic": "adverseEvents",
+                  "refs": [
+                    "q3",
+                    "bridge",
+                    "res9m",
+                    "events"
+                  ],
+                  "impact": "AI, customer reliance and wage or pricing stress remain material and unbounded.",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED"
+                }
+              ],
+              "reassessmentTriggers": [
+                "authoritative customer/segment concentration, pricing or adverse stress evidence",
+                "evidence expiry or confirmed material invalidation"
+              ],
+              "limitations": [
+                "Geographic and segment context cannot establish customer diversification or the post-transition pricing and simultaneous stress response."
+              ],
+              "certificationGaps": [
+                "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                "AFFIRMATIVE_SUPPORT_REQUIRED"
+              ],
+              "foundationFinancialPeriod": "2025-12-31",
+              "id": "BQ-RES"
+            },
+            {
+              "points": 3,
+              "validity": "CONFIRMED_CURRENT",
+              "basis": "UPDATED",
+              "financialPeriod": "2026-09-30",
+              "latestValidPoints": 3,
+              "currentReassessmentPoints": 3,
+              "currentConfirmedPoints": 3,
+              "reviewedFinancialPeriod": "2026-09-30",
+              "reviewCutoff": "2026-11-13",
+              "updateStatus": "UPDATED",
+              "confidence": {
+                "dimensions": [
+                  2,
+                  1,
+                  2,
+                  1,
+                  1
+                ],
+                "rationale": "Traceable evidence; availability and downside limitations remain.",
+                "total": 7
+              },
+              "materialDependencies": [],
+              "reassessmentTriggers": [
+                "New authoritative statements",
+                "Material debt maturity, repayment, borrowing or funding change",
+                "Restricted cash or capital impairment, deteriorating assets, covenant warning or distress"
+              ],
+              "limitations": [
+                "Book balances do not establish unrestricted resources, funding commitments or covenant clearance."
+              ],
+              "certificationGaps": [
+                "AFFIRMATIVE_SUPPORT_REQUIRED"
+              ],
+              "id": "FH-BS",
+              "foundationFinancialPeriod": "2026-09-30"
+            },
+            {
+              "points": null,
+              "validity": "N/R",
+              "basis": null,
+              "financialPeriod": null,
+              "latestValidPoints": null,
+              "currentReassessmentPoints": null,
+              "currentConfirmedPoints": null,
+              "reviewedFinancialPeriod": "2026-09-30",
+              "reviewCutoff": "2026-11-13",
+              "updateStatus": "NOT_RATED",
+              "confidence": {
+                "dimensions": [
+                  2,
+                  0,
+                  2,
+                  1,
+                  0
+                ],
+                "rationale": "Traceable evidence; availability and downside limitations remain.",
+                "total": 5
+              },
+              "materialDependencies": [
+                {
+                  "topic": "returns",
+                  "refs": [
+                    "q3",
+                    "q3Bs",
+                    "q3Liq",
+                    "bridge"
+                  ],
+                  "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED"
+                },
+                {
+                  "topic": "capitalStructure",
+                  "refs": [
+                    "q3",
+                    "q3Bs",
+                    "q3Liq",
+                    "bridge"
+                  ],
+                  "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED"
+                },
+                {
+                  "topic": "consolidation",
+                  "refs": [
+                    "q3",
+                    "q3Bs",
+                    "q3Liq",
+                    "bridge"
+                  ],
+                  "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED"
+                }
+              ],
+              "reassessmentTriggers": [
+                "New authoritative statements",
+                "Material debt maturity, repayment, borrowing or funding change",
+                "Restricted cash or capital impairment, deteriorating assets, covenant warning or distress"
+              ],
+              "limitations": [
+                "Book balances do not establish unrestricted resources, funding commitments or covenant clearance."
+              ],
+              "certificationGaps": [
+                "VALID_BASELINE_REQUIRED",
+                "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                "AFFIRMATIVE_SUPPORT_REQUIRED"
+              ],
+              "id": "FH-LIQ",
+              "foundationFinancialPeriod": null
+            },
+            {
+              "points": null,
+              "validity": "N/R",
+              "basis": null,
+              "financialPeriod": null,
+              "latestValidPoints": null,
+              "currentReassessmentPoints": null,
+              "currentConfirmedPoints": null,
+              "reviewedFinancialPeriod": "2026-09-30",
+              "reviewCutoff": "2026-11-13",
+              "updateStatus": "NOT_RATED",
+              "confidence": {
+                "dimensions": [
+                  2,
+                  0,
+                  2,
+                  1,
+                  0
+                ],
+                "rationale": "Traceable evidence; availability and downside limitations remain.",
+                "total": 5
+              },
+              "materialDependencies": [
+                {
+                  "topic": "returns",
+                  "refs": [
+                    "q3",
+                    "q3Bs",
+                    "q3Liq",
+                    "bridge"
+                  ],
+                  "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED"
+                },
+                {
+                  "topic": "capitalStructure",
+                  "refs": [
+                    "q3",
+                    "q3Bs",
+                    "q3Liq",
+                    "bridge"
+                  ],
+                  "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED"
+                },
+                {
+                  "topic": "consolidation",
+                  "refs": [
+                    "q3",
+                    "q3Bs",
+                    "q3Liq",
+                    "bridge"
+                  ],
+                  "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED"
+                }
+              ],
+              "reassessmentTriggers": [
+                "New authoritative statements",
+                "Material debt maturity, repayment, borrowing or funding change",
+                "Restricted cash or capital impairment, deteriorating assets, covenant warning or distress"
+              ],
+              "limitations": [
+                "Book balances do not establish unrestricted resources, funding commitments or covenant clearance."
+              ],
+              "certificationGaps": [
+                "VALID_BASELINE_REQUIRED",
+                "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                "AFFIRMATIVE_SUPPORT_REQUIRED"
+              ],
+              "id": "FH-STRESS",
+              "foundationFinancialPeriod": null
+            }
+          ],
+          "financialHealthDispositions": [
+            {
+              "id": "FH-BS",
+              "points": 3,
+              "status": "UPDATED",
+              "gaps": [],
+              "freshness": {
+                "historicalUsableThrough": null,
+                "nearTermFundingUnrepresentative": false,
+                "reason": "Current-scope position verified for balance-sheet context.",
+                "expired": false,
+                "fundingRisk": false
+              }
+            },
+            {
+              "id": "FH-LIQ",
+              "points": null,
+              "status": "NOT_RATED",
+              "gaps": [
+                "MATCHED_TIMING_UNRESOLVED",
+                "COVENANT_DISPOSITION_UNRESOLVED"
+              ],
+              "freshness": {
+                "historicalUsableThrough": null,
+                "nearTermFundingUnrepresentative": true,
+                "reason": "Quarterly maturity and post-FTEL funding changes require a replacement timed assessment; unresolved near-term resource matching.",
+                "expired": false,
+                "fundingRisk": true
+              }
+            },
+            {
+              "id": "FH-STRESS",
+              "points": null,
+              "status": "NOT_RATED",
+              "gaps": [
+                "CAPITAL_CONCLUSION_UNRESOLVED"
+              ],
+              "freshness": {
+                "historicalUsableThrough": null,
+                "nearTermFundingUnrepresentative": true,
+                "reason": "Quarterly maturity and post-FTEL funding changes require a replacement timed assessment; unresolved near-term resource matching.",
+                "expired": false,
+                "fundingRisk": true
+              }
+            }
+          ],
+          "outsideScopeCount": 16,
+          "economicNrInScope": [
+            "FH-LIQ",
+            "FH-STRESS"
+          ],
+          "formalScoringAuthorized": false
+        }
+      },
+      {
+        "subjectTicker": "FPT",
+        "stage": "ASSESSMENT_ADOPTION",
+        "result": {
+          "status": "ADOPTED_FOR_ISOLATED_VALIDATION",
+          "executionId": "exec-be59ad3a3be63079a86d2c83",
+          "candidateHash": "d314e0edc4cf1ee26de32b71ef6efdbe652578a3e24229c285b3bc3a46efc430",
+          "prepareHash": "b087d9bffea8fbbef95eb3ebe9c8e24d4ceffe283e40fdbb3709d8c8a441cd2f",
+          "owner": {
+            "path": "docs/fundamental-data-engine/fpt-financial-health/v1.0/OWNER_REQUEST.txt",
+            "sha256": "5769bbb979a49e74554d904031190ed363544179d40fc89318e954ffa7192e66"
+          },
+          "assessment": {
+            "path": "docs/fundamental-data-engine/fpt-financial-health/v1.0/FPT_FH_INPUT.json",
+            "sha256": "76ccae2b4fe89ee6c3d19e75bbb1688ee932af8512c1e9f4291c7eb09ca51a76"
+          },
+          "formalAssessmentAdoptionGranted": false
+        }
+      },
+      {
+        "subjectTicker": "FPT",
+        "stage": "PREFLIGHT",
+        "result": {
+          "status": "AUTHORIZED_FOR_ISOLATED_VALIDATION",
+          "adoptionHash": "1ecd79cd197f09077fd1017f206e1319d24aa8dcb00192520079cbd9be79d67d",
+          "prepareHash": "b087d9bffea8fbbef95eb3ebe9c8e24d4ceffe283e40fdbb3709d8c8a441cd2f",
+          "replay": {
+            "path": "docs/fundamental-data-engine/fpt-financial-health/v1.0/FPT_FH_RESULT.json",
+            "sha256": "ac40b9159440b8fb14356330c8eb6883813f64e851b01fd3ccd1206617e70040"
+          },
+          "permissions": {
+            "assessmentApproved": false,
+            "formalAdmissionGranted": false,
+            "scoringAuthorized": false,
+            "deploymentAuthorized": false,
+            "publicationAuthorized": false,
+            "tradingAuthorized": false,
+            "historicalPitQualified": false
+          }
+        }
+      },
+      {
+        "subjectTicker": "FPT",
+        "stage": "SCORING",
+        "result": {
+          "status": "SCORED_RESEARCH_ONLY",
+          "preflightHash": "e64ca4ba5fa44d7ae82d68616d09bcc178a54d50822d5149b546751e4054574c",
+          "aggregation": {
+            "rubric": {
+              "id": "BQ-EQ",
+              "points": 5,
+              "validity": "PROVISIONAL",
+              "basis": "LATEST_VALID_HISTORICAL_ASSESSMENT",
+              "financialPeriod": "2025-12-31",
+              "latestValidPoints": 5,
+              "currentReassessmentPoints": null,
+              "currentConfirmedPoints": null,
+              "currentComparableRoic": null,
+              "reviewedFinancialPeriod": "2026-09-30",
+              "reviewCutoff": "2026-11-13",
+              "updateStatus": "MATERIAL_REVIEW_PENDING",
+              "confidence": {
+                "dimensions": [
+                  2,
+                  0,
+                  2,
+                  1,
+                  0
+                ],
+                "rationale": "Eligible review through cutoff with traceable retained evidence. The decisive return and scope comparisons remain unavailable.",
+                "total": 5
+              },
+              "materialDependencies": [
+                {
+                  "topic": "returns",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED",
+                  "refs": [
+                    "FTEL",
+                    "Q3"
+                  ],
+                  "impact": "14.74–16.33% is six months on selected operating lines. The annualized or full-scope spread is unbounded. FY25 gross funded sensitivity cleared the 15% hurdle by only 0.22 percentage points."
+                },
+                {
+                  "topic": "capitalStructure",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED",
+                  "refs": [
+                    "FTEL",
+                    "Q3"
+                  ],
+                  "impact": "Six identified opening operating capital adjustments total VND −6.652tn. Opening working capital, eliminations and classifications remain unbounded. The residual could change the applicable spread."
+                },
+                {
+                  "topic": "segmentMix",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED",
+                  "refs": [
+                    "FTEL",
+                    "H1",
+                    "Q3"
+                  ],
+                  "impact": "FTEL was previously consolidated line by line. FPT retained 45.66% and recognizes its share through the equity method. Restated 9M sales growth and positive EBIT do not bound how recurring FTEL economics affected the old band."
+                },
+                {
+                  "topic": "consolidation",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED",
+                  "refs": [
+                    "FTEL",
+                    "Q1",
+                    "H1",
+                    "Q3"
+                  ],
+                  "impact": "From 1 January 2026 current operating results and balance sheet exclude line consolidation of FTEL. Issuer-restated P&L evidence has no consistent full opening capital bridge. Scope effects matter to the band."
+                }
+              ],
+              "reassessmentTriggers": [
+                "new authoritative FY2026 disclosures",
+                "supported matched-scope operating return or bounded equivalent economic evidence",
+                "material structural event or applicable evidence expiry"
+              ],
+              "limitations": [
+                "FY and 9M have different business scopes. Six-month selected capital cannot establish normalized annual economic returns.",
+                "No expiry date is supplied by the standing methodology for this annual evidence. Review is tied to authoritative annual information and material events."
+              ],
+              "certificationGaps": [
+                "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                "AFFIRMATIVE_SUPPORT_REQUIRED"
+              ]
+            },
+            "categories": [
+              {
+                "id": "BQ",
+                "max": 25,
+                "assessedPoints": 14,
+                "ratedWeight": 25,
+                "points": 14,
+                "includesProvisional": true
+              },
+              {
+                "id": "FH",
+                "max": 15,
+                "assessedPoints": 3,
+                "ratedWeight": 6,
+                "points": null,
+                "includesProvisional": false
+              },
+              {
+                "id": "GQ",
+                "max": 15,
+                "assessedPoints": 0,
+                "ratedWeight": 0,
+                "points": null,
+                "includesProvisional": false
+              },
+              {
+                "id": "IC",
+                "max": 10,
+                "assessedPoints": 0,
+                "ratedWeight": 0,
+                "points": null,
+                "includesProvisional": false
+              },
+              {
+                "id": "VAL",
+                "max": 20,
+                "assessedPoints": 0,
+                "ratedWeight": 0,
+                "points": null,
+                "includesProvisional": false
+              },
+              {
+                "id": "RG",
+                "max": 10,
+                "assessedPoints": 0,
+                "ratedWeight": 0,
+                "points": null,
+                "includesProvisional": false
+              },
+              {
+                "id": "CA",
+                "max": 5,
+                "assessedPoints": 0,
+                "ratedWeight": 0,
+                "points": null,
+                "includesProvisional": false
+              }
+            ],
+            "assessedPoints": 17,
+            "ratedWeight": 31,
+            "theoreticalMaximum": 100,
+            "confirmedCurrentInvestmentScore": null,
+            "provisionalInvestmentScore": null,
+            "coverage": {
+              "confirmedCurrent": {
+                "count": 2,
+                "weight": 12
+              },
+              "effective": {
+                "count": 5,
+                "weight": 31
+              },
+              "provisional": {
+                "count": 3,
+                "weight": 19
+              },
+              "genuineNR": {
+                "count": 2,
+                "weight": 9
+              },
+              "outsideRollout": {
+                "count": 16,
+                "weight": 60
+              },
+              "unratedTotal": {
+                "count": 18,
+                "weight": 69
+              }
+            },
+            "ratedRubrics": [
+              "BQ-EQ",
+              "BQ-MOAT",
+              "BQ-CASH",
+              "BQ-RES",
+              "FH-BS"
+            ],
+            "formalScore": null,
+            "formalRankingEligible": false,
+            "investmentActionable": false,
+            "effectiveScores": [
+              {
+                "id": "BQ-EQ",
+                "points": 5,
+                "validity": "PROVISIONAL",
+                "basis": "LATEST_VALID_HISTORICAL_ASSESSMENT",
+                "financialPeriod": "2025-12-31",
+                "latestValidPoints": 5,
+                "currentReassessmentPoints": null,
+                "currentConfirmedPoints": null,
+                "currentComparableRoic": null,
+                "reviewedFinancialPeriod": "2026-09-30",
+                "reviewCutoff": "2026-11-13",
+                "updateStatus": "MATERIAL_REVIEW_PENDING",
+                "confidence": {
+                  "dimensions": [
+                    2,
+                    0,
+                    2,
+                    1,
+                    0
+                  ],
+                  "rationale": "Eligible review through cutoff with traceable retained evidence. The decisive return and scope comparisons remain unavailable.",
+                  "total": 5
+                },
+                "materialDependencies": [
+                  {
+                    "topic": "returns",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED",
+                    "refs": [
+                      "FTEL",
+                      "Q3"
+                    ],
+                    "impact": "14.74–16.33% is six months on selected operating lines. The annualized or full-scope spread is unbounded. FY25 gross funded sensitivity cleared the 15% hurdle by only 0.22 percentage points."
+                  },
+                  {
+                    "topic": "capitalStructure",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED",
+                    "refs": [
+                      "FTEL",
+                      "Q3"
+                    ],
+                    "impact": "Six identified opening operating capital adjustments total VND −6.652tn. Opening working capital, eliminations and classifications remain unbounded. The residual could change the applicable spread."
+                  },
+                  {
+                    "topic": "segmentMix",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED",
+                    "refs": [
+                      "FTEL",
+                      "H1",
+                      "Q3"
+                    ],
+                    "impact": "FTEL was previously consolidated line by line. FPT retained 45.66% and recognizes its share through the equity method. Restated 9M sales growth and positive EBIT do not bound how recurring FTEL economics affected the old band."
+                  },
+                  {
+                    "topic": "consolidation",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED",
+                    "refs": [
+                      "FTEL",
+                      "Q1",
+                      "H1",
+                      "Q3"
+                    ],
+                    "impact": "From 1 January 2026 current operating results and balance sheet exclude line consolidation of FTEL. Issuer-restated P&L evidence has no consistent full opening capital bridge. Scope effects matter to the band."
+                  }
+                ],
+                "reassessmentTriggers": [
+                  "new authoritative FY2026 disclosures",
+                  "supported matched-scope operating return or bounded equivalent economic evidence",
+                  "material structural event or applicable evidence expiry"
+                ],
+                "limitations": [
+                  "FY and 9M have different business scopes. Six-month selected capital cannot establish normalized annual economic returns.",
+                  "No expiry date is supplied by the standing methodology for this annual evidence. Review is tied to authoritative annual information and material events."
+                ],
+                "certificationGaps": [
+                  "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                  "AFFIRMATIVE_SUPPORT_REQUIRED"
+                ]
+              },
+              {
+                "id": "BQ-MOAT",
+                "points": 3,
+                "validity": "CONFIRMED_CURRENT",
+                "basis": "REAFFIRMED",
+                "financialPeriod": "2026-09-30",
+                "latestValidPoints": 3,
+                "currentReassessmentPoints": 3,
+                "currentConfirmedPoints": 3,
+                "reviewedFinancialPeriod": "2026-09-30",
+                "reviewCutoff": "2026-11-13",
+                "updateStatus": "REAFFIRMED",
+                "confidence": {
+                  "dimensions": [
+                    2,
+                    1,
+                    2,
+                    1,
+                    1
+                  ],
+                  "rationale": "Contracts and repeat buying support differentiation. Portfolio-wide durability and comparable pricing remain uncertain.",
+                  "total": 7
+                },
+                "materialDependencies": [],
+                "reassessmentTriggers": [
+                  "new authoritative annual evidence",
+                  "material loss or renewal of strategic customers",
+                  "comparable pricing, retention or delivery productivity data",
+                  "material AI disruption, acquisition, divestment or evidence expiry"
+                ],
+                "limitations": [
+                  "A single named long relationship does not establish portfolio-wide durability.",
+                  "Award counts are cumulative and are not recognized revenue.",
+                  "No verified relative cost leadership, widespread pricing power or telecom moat is claimed."
+                ],
+                "certificationGaps": [],
+                "foundationFinancialPeriod": "2025-12-31"
+              },
+              {
+                "points": 3,
+                "validity": "PROVISIONAL",
+                "basis": "LATEST_VALID_HISTORICAL_ASSESSMENT",
+                "financialPeriod": "2025-12-31",
+                "latestValidPoints": 3,
+                "currentReassessmentPoints": null,
+                "currentConfirmedPoints": null,
+                "reviewedFinancialPeriod": "2026-09-30",
+                "reviewCutoff": "2026-11-13",
+                "updateStatus": "MATERIAL_REVIEW_PENDING",
+                "confidence": {
+                  "dimensions": [
+                    2,
+                    0,
+                    2,
+                    1,
+                    0
+                  ],
+                  "rationale": "Cutoff-qualified evidence; remaining dependencies materially limit current confirmation.",
+                  "total": 5
+                },
+                "materialDependencies": [
+                  {
+                    "topic": "returns",
+                    "refs": [
+                      "q3",
+                      "bridge",
+                      "cash9m"
+                    ],
+                    "impact": "9M CFO conversion is weak despite post-Q1 cash recovery.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "segmentMix",
+                    "refs": [
+                      "q3",
+                      "bridge",
+                      "cash9m"
+                    ],
+                    "impact": "FTEL line consolidation ended; recurring cash profile is not separable.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "consolidation",
+                    "refs": [
+                      "q3",
+                      "bridge",
+                      "cash9m"
+                    ],
+                    "impact": "Opening intra-group working capital and deconsolidation effects are unresolved.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "adverseEvents",
+                    "refs": [
+                      "q3",
+                      "bridge",
+                      "cash9m"
+                    ],
+                    "impact": "Working-capital drag and post-Q1 recovery point in different directions.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  }
+                ],
+                "reassessmentTriggers": [
+                  "audited FY2026 and comparable scope bridge",
+                  "evidence expiry or confirmed material invalidation"
+                ],
+                "limitations": [
+                  "9M CFO weakness and six-month recovery do not establish persistent deterioration; comparable post-FTEL annual realizations and full NPAT normalization remain open."
+                ],
+                "certificationGaps": [
+                  "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                  "AFFIRMATIVE_SUPPORT_REQUIRED"
+                ],
+                "foundationFinancialPeriod": "2025-12-31",
+                "id": "BQ-CASH"
+              },
+              {
+                "points": 3,
+                "validity": "PROVISIONAL",
+                "basis": "LATEST_VALID_HISTORICAL_ASSESSMENT",
+                "financialPeriod": "2025-12-31",
+                "latestValidPoints": 3,
+                "currentReassessmentPoints": null,
+                "currentConfirmedPoints": null,
+                "reviewedFinancialPeriod": "2026-09-30",
+                "reviewCutoff": "2026-11-13",
+                "updateStatus": "MATERIAL_REVIEW_PENDING",
+                "confidence": {
+                  "dimensions": [
+                    2,
+                    0,
+                    2,
+                    1,
+                    0
+                  ],
+                  "rationale": "Cutoff-qualified evidence; remaining dependencies materially limit current confirmation.",
+                  "total": 5
+                },
+                "materialDependencies": [
+                  {
+                    "topic": "segmentMix",
+                    "refs": [
+                      "q3",
+                      "bridge",
+                      "res9m",
+                      "events"
+                    ],
+                    "impact": "Reweighted technology exposure may materially affect diversification under stress.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "consolidation",
+                    "refs": [
+                      "q3",
+                      "bridge",
+                      "res9m",
+                      "events"
+                    ],
+                    "impact": "Retained FTEL equity exposure offers no measurement of post-transition customer or segment stress mitigants.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "adverseEvents",
+                    "refs": [
+                      "q3",
+                      "bridge",
+                      "res9m",
+                      "events"
+                    ],
+                    "impact": "AI, customer reliance and wage or pricing stress remain material and unbounded.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  }
+                ],
+                "reassessmentTriggers": [
+                  "authoritative customer/segment concentration, pricing or adverse stress evidence",
+                  "evidence expiry or confirmed material invalidation"
+                ],
+                "limitations": [
+                  "Geographic and segment context cannot establish customer diversification or the post-transition pricing and simultaneous stress response."
+                ],
+                "certificationGaps": [
+                  "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                  "AFFIRMATIVE_SUPPORT_REQUIRED"
+                ],
+                "foundationFinancialPeriod": "2025-12-31",
+                "id": "BQ-RES"
+              },
+              {
+                "points": 3,
+                "validity": "CONFIRMED_CURRENT",
+                "basis": "UPDATED",
+                "financialPeriod": "2026-09-30",
+                "latestValidPoints": 3,
+                "currentReassessmentPoints": 3,
+                "currentConfirmedPoints": 3,
+                "reviewedFinancialPeriod": "2026-09-30",
+                "reviewCutoff": "2026-11-13",
+                "updateStatus": "UPDATED",
+                "confidence": {
+                  "dimensions": [
+                    2,
+                    1,
+                    2,
+                    1,
+                    1
+                  ],
+                  "rationale": "Traceable evidence; availability and downside limitations remain.",
+                  "total": 7
+                },
+                "materialDependencies": [],
+                "reassessmentTriggers": [
+                  "New authoritative statements",
+                  "Material debt maturity, repayment, borrowing or funding change",
+                  "Restricted cash or capital impairment, deteriorating assets, covenant warning or distress"
+                ],
+                "limitations": [
+                  "Book balances do not establish unrestricted resources, funding commitments or covenant clearance."
+                ],
+                "certificationGaps": [
+                  "AFFIRMATIVE_SUPPORT_REQUIRED"
+                ],
+                "id": "FH-BS",
+                "foundationFinancialPeriod": "2026-09-30"
+              },
+              {
+                "points": null,
+                "validity": "N/R",
+                "basis": null,
+                "financialPeriod": null,
+                "latestValidPoints": null,
+                "currentReassessmentPoints": null,
+                "currentConfirmedPoints": null,
+                "reviewedFinancialPeriod": "2026-09-30",
+                "reviewCutoff": "2026-11-13",
+                "updateStatus": "NOT_RATED",
+                "confidence": {
+                  "dimensions": [
+                    2,
+                    0,
+                    2,
+                    1,
+                    0
+                  ],
+                  "rationale": "Traceable evidence; availability and downside limitations remain.",
+                  "total": 5
+                },
+                "materialDependencies": [
+                  {
+                    "topic": "returns",
+                    "refs": [
+                      "q3",
+                      "q3Bs",
+                      "q3Liq",
+                      "bridge"
+                    ],
+                    "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "capitalStructure",
+                    "refs": [
+                      "q3",
+                      "q3Bs",
+                      "q3Liq",
+                      "bridge"
+                    ],
+                    "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "consolidation",
+                    "refs": [
+                      "q3",
+                      "q3Bs",
+                      "q3Liq",
+                      "bridge"
+                    ],
+                    "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  }
+                ],
+                "reassessmentTriggers": [
+                  "New authoritative statements",
+                  "Material debt maturity, repayment, borrowing or funding change",
+                  "Restricted cash or capital impairment, deteriorating assets, covenant warning or distress"
+                ],
+                "limitations": [
+                  "Book balances do not establish unrestricted resources, funding commitments or covenant clearance."
+                ],
+                "certificationGaps": [
+                  "VALID_BASELINE_REQUIRED",
+                  "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                  "AFFIRMATIVE_SUPPORT_REQUIRED"
+                ],
+                "id": "FH-LIQ",
+                "foundationFinancialPeriod": null
+              },
+              {
+                "points": null,
+                "validity": "N/R",
+                "basis": null,
+                "financialPeriod": null,
+                "latestValidPoints": null,
+                "currentReassessmentPoints": null,
+                "currentConfirmedPoints": null,
+                "reviewedFinancialPeriod": "2026-09-30",
+                "reviewCutoff": "2026-11-13",
+                "updateStatus": "NOT_RATED",
+                "confidence": {
+                  "dimensions": [
+                    2,
+                    0,
+                    2,
+                    1,
+                    0
+                  ],
+                  "rationale": "Traceable evidence; availability and downside limitations remain.",
+                  "total": 5
+                },
+                "materialDependencies": [
+                  {
+                    "topic": "returns",
+                    "refs": [
+                      "q3",
+                      "q3Bs",
+                      "q3Liq",
+                      "bridge"
+                    ],
+                    "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "capitalStructure",
+                    "refs": [
+                      "q3",
+                      "q3Bs",
+                      "q3Liq",
+                      "bridge"
+                    ],
+                    "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "consolidation",
+                    "refs": [
+                      "q3",
+                      "q3Bs",
+                      "q3Liq",
+                      "bridge"
+                    ],
+                    "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  }
+                ],
+                "reassessmentTriggers": [
+                  "New authoritative statements",
+                  "Material debt maturity, repayment, borrowing or funding change",
+                  "Restricted cash or capital impairment, deteriorating assets, covenant warning or distress"
+                ],
+                "limitations": [
+                  "Book balances do not establish unrestricted resources, funding commitments or covenant clearance."
+                ],
+                "certificationGaps": [
+                  "VALID_BASELINE_REQUIRED",
+                  "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                  "AFFIRMATIVE_SUPPORT_REQUIRED"
+                ],
+                "id": "FH-STRESS",
+                "foundationFinancialPeriod": null
+              }
+            ],
+            "outsideRollout": [
+              "GQ-HIST",
+              "GQ-FWD",
+              "GQ-INC",
+              "IC-IND",
+              "IC-POS",
+              "IC-CYCLE",
+              "VAL-PRIMARY",
+              "VAL-RET",
+              "VAL-MOS",
+              "RG-GOV",
+              "RG-RISK",
+              "RG-UNC",
+              "CA-REINV",
+              "CA-DIST",
+              "CA-DIL",
+              "CA-PSV"
+            ],
+            "genuineNrInScope": [
+              "FH-LIQ",
+              "FH-STRESS"
+            ]
+          },
+          "researchRanking": [
+            {
+              "ticker": "FPT",
+              "scope": "RESEARCH_ONLY",
+              "cutoff": "2026-11-13",
+              "comparableRubrics": [
+                "BQ-EQ",
+                "BQ-MOAT",
+                "BQ-CASH",
+                "BQ-RES",
+                "FH-BS"
+              ],
+              "rank": null,
+              "comparedIssuerCount": 1,
+              "assessedPoints": 17,
+              "ratedWeight": 31,
+              "provisionalInvestmentScore": null,
+              "bqEqPoints": 5,
+              "includesProvisional": true,
+              "confidence": {
+                "dimensions": [
+                  2,
+                  0,
+                  2,
+                  1,
+                  0
+                ],
+                "rationale": "Eligible review through cutoff with traceable retained evidence. The decisive return and scope comparisons remain unavailable.",
+                "total": 5
+              },
+              "materialDependencies": [
+                {
+                  "topic": "returns",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED",
+                  "refs": [
+                    "FTEL",
+                    "Q3"
+                  ],
+                  "impact": "14.74–16.33% is six months on selected operating lines. The annualized or full-scope spread is unbounded. FY25 gross funded sensitivity cleared the 15% hurdle by only 0.22 percentage points."
+                },
+                {
+                  "topic": "capitalStructure",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED",
+                  "refs": [
+                    "FTEL",
+                    "Q3"
+                  ],
+                  "impact": "Six identified opening operating capital adjustments total VND −6.652tn. Opening working capital, eliminations and classifications remain unbounded. The residual could change the applicable spread."
+                },
+                {
+                  "topic": "segmentMix",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED",
+                  "refs": [
+                    "FTEL",
+                    "H1",
+                    "Q3"
+                  ],
+                  "impact": "FTEL was previously consolidated line by line. FPT retained 45.66% and recognizes its share through the equity method. Restated 9M sales growth and positive EBIT do not bound how recurring FTEL economics affected the old band."
+                },
+                {
+                  "topic": "consolidation",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED",
+                  "refs": [
+                    "FTEL",
+                    "Q1",
+                    "H1",
+                    "Q3"
+                  ],
+                  "impact": "From 1 January 2026 current operating results and balance sheet exclude line consolidation of FTEL. Issuer-restated P&L evidence has no consistent full opening capital bridge. Scope effects matter to the band."
+                }
+              ],
+              "formalRankingEligible": false,
+              "effectiveScores": [
+                {
+                  "id": "BQ-EQ",
+                  "points": 5,
+                  "validity": "PROVISIONAL",
+                  "basis": "LATEST_VALID_HISTORICAL_ASSESSMENT",
+                  "financialPeriod": "2025-12-31",
+                  "latestValidPoints": 5,
+                  "currentReassessmentPoints": null,
+                  "currentConfirmedPoints": null,
+                  "currentComparableRoic": null,
+                  "reviewedFinancialPeriod": "2026-09-30",
+                  "reviewCutoff": "2026-11-13",
+                  "updateStatus": "MATERIAL_REVIEW_PENDING",
+                  "confidence": {
+                    "dimensions": [
+                      2,
+                      0,
+                      2,
+                      1,
+                      0
+                    ],
+                    "rationale": "Eligible review through cutoff with traceable retained evidence. The decisive return and scope comparisons remain unavailable.",
+                    "total": 5
+                  },
+                  "materialDependencies": [
+                    {
+                      "topic": "returns",
+                      "status": "MATERIAL_IMPACT_UNRESOLVED",
+                      "refs": [
+                        "FTEL",
+                        "Q3"
+                      ],
+                      "impact": "14.74–16.33% is six months on selected operating lines. The annualized or full-scope spread is unbounded. FY25 gross funded sensitivity cleared the 15% hurdle by only 0.22 percentage points."
+                    },
+                    {
+                      "topic": "capitalStructure",
+                      "status": "MATERIAL_IMPACT_UNRESOLVED",
+                      "refs": [
+                        "FTEL",
+                        "Q3"
+                      ],
+                      "impact": "Six identified opening operating capital adjustments total VND −6.652tn. Opening working capital, eliminations and classifications remain unbounded. The residual could change the applicable spread."
+                    },
+                    {
+                      "topic": "segmentMix",
+                      "status": "MATERIAL_IMPACT_UNRESOLVED",
+                      "refs": [
+                        "FTEL",
+                        "H1",
+                        "Q3"
+                      ],
+                      "impact": "FTEL was previously consolidated line by line. FPT retained 45.66% and recognizes its share through the equity method. Restated 9M sales growth and positive EBIT do not bound how recurring FTEL economics affected the old band."
+                    },
+                    {
+                      "topic": "consolidation",
+                      "status": "MATERIAL_IMPACT_UNRESOLVED",
+                      "refs": [
+                        "FTEL",
+                        "Q1",
+                        "H1",
+                        "Q3"
+                      ],
+                      "impact": "From 1 January 2026 current operating results and balance sheet exclude line consolidation of FTEL. Issuer-restated P&L evidence has no consistent full opening capital bridge. Scope effects matter to the band."
+                    }
+                  ],
+                  "reassessmentTriggers": [
+                    "new authoritative FY2026 disclosures",
+                    "supported matched-scope operating return or bounded equivalent economic evidence",
+                    "material structural event or applicable evidence expiry"
+                  ],
+                  "limitations": [
+                    "FY and 9M have different business scopes. Six-month selected capital cannot establish normalized annual economic returns.",
+                    "No expiry date is supplied by the standing methodology for this annual evidence. Review is tied to authoritative annual information and material events."
+                  ],
+                  "certificationGaps": [
+                    "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                    "AFFIRMATIVE_SUPPORT_REQUIRED"
+                  ]
+                },
+                {
+                  "id": "BQ-MOAT",
+                  "points": 3,
+                  "validity": "CONFIRMED_CURRENT",
+                  "basis": "REAFFIRMED",
+                  "financialPeriod": "2026-09-30",
+                  "latestValidPoints": 3,
+                  "currentReassessmentPoints": 3,
+                  "currentConfirmedPoints": 3,
+                  "reviewedFinancialPeriod": "2026-09-30",
+                  "reviewCutoff": "2026-11-13",
+                  "updateStatus": "REAFFIRMED",
+                  "confidence": {
+                    "dimensions": [
+                      2,
+                      1,
+                      2,
+                      1,
+                      1
+                    ],
+                    "rationale": "Contracts and repeat buying support differentiation. Portfolio-wide durability and comparable pricing remain uncertain.",
+                    "total": 7
+                  },
+                  "materialDependencies": [],
+                  "reassessmentTriggers": [
+                    "new authoritative annual evidence",
+                    "material loss or renewal of strategic customers",
+                    "comparable pricing, retention or delivery productivity data",
+                    "material AI disruption, acquisition, divestment or evidence expiry"
+                  ],
+                  "limitations": [
+                    "A single named long relationship does not establish portfolio-wide durability.",
+                    "Award counts are cumulative and are not recognized revenue.",
+                    "No verified relative cost leadership, widespread pricing power or telecom moat is claimed."
+                  ],
+                  "certificationGaps": [],
+                  "foundationFinancialPeriod": "2025-12-31"
+                },
+                {
+                  "points": 3,
+                  "validity": "PROVISIONAL",
+                  "basis": "LATEST_VALID_HISTORICAL_ASSESSMENT",
+                  "financialPeriod": "2025-12-31",
+                  "latestValidPoints": 3,
+                  "currentReassessmentPoints": null,
+                  "currentConfirmedPoints": null,
+                  "reviewedFinancialPeriod": "2026-09-30",
+                  "reviewCutoff": "2026-11-13",
+                  "updateStatus": "MATERIAL_REVIEW_PENDING",
+                  "confidence": {
+                    "dimensions": [
+                      2,
+                      0,
+                      2,
+                      1,
+                      0
+                    ],
+                    "rationale": "Cutoff-qualified evidence; remaining dependencies materially limit current confirmation.",
+                    "total": 5
+                  },
+                  "materialDependencies": [
+                    {
+                      "topic": "returns",
+                      "refs": [
+                        "q3",
+                        "bridge",
+                        "cash9m"
+                      ],
+                      "impact": "9M CFO conversion is weak despite post-Q1 cash recovery.",
+                      "status": "MATERIAL_IMPACT_UNRESOLVED"
+                    },
+                    {
+                      "topic": "segmentMix",
+                      "refs": [
+                        "q3",
+                        "bridge",
+                        "cash9m"
+                      ],
+                      "impact": "FTEL line consolidation ended; recurring cash profile is not separable.",
+                      "status": "MATERIAL_IMPACT_UNRESOLVED"
+                    },
+                    {
+                      "topic": "consolidation",
+                      "refs": [
+                        "q3",
+                        "bridge",
+                        "cash9m"
+                      ],
+                      "impact": "Opening intra-group working capital and deconsolidation effects are unresolved.",
+                      "status": "MATERIAL_IMPACT_UNRESOLVED"
+                    },
+                    {
+                      "topic": "adverseEvents",
+                      "refs": [
+                        "q3",
+                        "bridge",
+                        "cash9m"
+                      ],
+                      "impact": "Working-capital drag and post-Q1 recovery point in different directions.",
+                      "status": "MATERIAL_IMPACT_UNRESOLVED"
+                    }
+                  ],
+                  "reassessmentTriggers": [
+                    "audited FY2026 and comparable scope bridge",
+                    "evidence expiry or confirmed material invalidation"
+                  ],
+                  "limitations": [
+                    "9M CFO weakness and six-month recovery do not establish persistent deterioration; comparable post-FTEL annual realizations and full NPAT normalization remain open."
+                  ],
+                  "certificationGaps": [
+                    "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                    "AFFIRMATIVE_SUPPORT_REQUIRED"
+                  ],
+                  "foundationFinancialPeriod": "2025-12-31",
+                  "id": "BQ-CASH"
+                },
+                {
+                  "points": 3,
+                  "validity": "PROVISIONAL",
+                  "basis": "LATEST_VALID_HISTORICAL_ASSESSMENT",
+                  "financialPeriod": "2025-12-31",
+                  "latestValidPoints": 3,
+                  "currentReassessmentPoints": null,
+                  "currentConfirmedPoints": null,
+                  "reviewedFinancialPeriod": "2026-09-30",
+                  "reviewCutoff": "2026-11-13",
+                  "updateStatus": "MATERIAL_REVIEW_PENDING",
+                  "confidence": {
+                    "dimensions": [
+                      2,
+                      0,
+                      2,
+                      1,
+                      0
+                    ],
+                    "rationale": "Cutoff-qualified evidence; remaining dependencies materially limit current confirmation.",
+                    "total": 5
+                  },
+                  "materialDependencies": [
+                    {
+                      "topic": "segmentMix",
+                      "refs": [
+                        "q3",
+                        "bridge",
+                        "res9m",
+                        "events"
+                      ],
+                      "impact": "Reweighted technology exposure may materially affect diversification under stress.",
+                      "status": "MATERIAL_IMPACT_UNRESOLVED"
+                    },
+                    {
+                      "topic": "consolidation",
+                      "refs": [
+                        "q3",
+                        "bridge",
+                        "res9m",
+                        "events"
+                      ],
+                      "impact": "Retained FTEL equity exposure offers no measurement of post-transition customer or segment stress mitigants.",
+                      "status": "MATERIAL_IMPACT_UNRESOLVED"
+                    },
+                    {
+                      "topic": "adverseEvents",
+                      "refs": [
+                        "q3",
+                        "bridge",
+                        "res9m",
+                        "events"
+                      ],
+                      "impact": "AI, customer reliance and wage or pricing stress remain material and unbounded.",
+                      "status": "MATERIAL_IMPACT_UNRESOLVED"
+                    }
+                  ],
+                  "reassessmentTriggers": [
+                    "authoritative customer/segment concentration, pricing or adverse stress evidence",
+                    "evidence expiry or confirmed material invalidation"
+                  ],
+                  "limitations": [
+                    "Geographic and segment context cannot establish customer diversification or the post-transition pricing and simultaneous stress response."
+                  ],
+                  "certificationGaps": [
+                    "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                    "AFFIRMATIVE_SUPPORT_REQUIRED"
+                  ],
+                  "foundationFinancialPeriod": "2025-12-31",
+                  "id": "BQ-RES"
+                },
+                {
+                  "points": 3,
+                  "validity": "CONFIRMED_CURRENT",
+                  "basis": "UPDATED",
+                  "financialPeriod": "2026-09-30",
+                  "latestValidPoints": 3,
+                  "currentReassessmentPoints": 3,
+                  "currentConfirmedPoints": 3,
+                  "reviewedFinancialPeriod": "2026-09-30",
+                  "reviewCutoff": "2026-11-13",
+                  "updateStatus": "UPDATED",
+                  "confidence": {
+                    "dimensions": [
+                      2,
+                      1,
+                      2,
+                      1,
+                      1
+                    ],
+                    "rationale": "Traceable evidence; availability and downside limitations remain.",
+                    "total": 7
+                  },
+                  "materialDependencies": [],
+                  "reassessmentTriggers": [
+                    "New authoritative statements",
+                    "Material debt maturity, repayment, borrowing or funding change",
+                    "Restricted cash or capital impairment, deteriorating assets, covenant warning or distress"
+                  ],
+                  "limitations": [
+                    "Book balances do not establish unrestricted resources, funding commitments or covenant clearance."
+                  ],
+                  "certificationGaps": [
+                    "AFFIRMATIVE_SUPPORT_REQUIRED"
+                  ],
+                  "id": "FH-BS",
+                  "foundationFinancialPeriod": "2026-09-30"
+                },
+                {
+                  "points": null,
+                  "validity": "N/R",
+                  "basis": null,
+                  "financialPeriod": null,
+                  "latestValidPoints": null,
+                  "currentReassessmentPoints": null,
+                  "currentConfirmedPoints": null,
+                  "reviewedFinancialPeriod": "2026-09-30",
+                  "reviewCutoff": "2026-11-13",
+                  "updateStatus": "NOT_RATED",
+                  "confidence": {
+                    "dimensions": [
+                      2,
+                      0,
+                      2,
+                      1,
+                      0
+                    ],
+                    "rationale": "Traceable evidence; availability and downside limitations remain.",
+                    "total": 5
+                  },
+                  "materialDependencies": [
+                    {
+                      "topic": "returns",
+                      "refs": [
+                        "q3",
+                        "q3Bs",
+                        "q3Liq",
+                        "bridge"
+                      ],
+                      "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                      "status": "MATERIAL_IMPACT_UNRESOLVED"
+                    },
+                    {
+                      "topic": "capitalStructure",
+                      "refs": [
+                        "q3",
+                        "q3Bs",
+                        "q3Liq",
+                        "bridge"
+                      ],
+                      "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                      "status": "MATERIAL_IMPACT_UNRESOLVED"
+                    },
+                    {
+                      "topic": "consolidation",
+                      "refs": [
+                        "q3",
+                        "q3Bs",
+                        "q3Liq",
+                        "bridge"
+                      ],
+                      "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                      "status": "MATERIAL_IMPACT_UNRESOLVED"
+                    }
+                  ],
+                  "reassessmentTriggers": [
+                    "New authoritative statements",
+                    "Material debt maturity, repayment, borrowing or funding change",
+                    "Restricted cash or capital impairment, deteriorating assets, covenant warning or distress"
+                  ],
+                  "limitations": [
+                    "Book balances do not establish unrestricted resources, funding commitments or covenant clearance."
+                  ],
+                  "certificationGaps": [
+                    "VALID_BASELINE_REQUIRED",
+                    "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                    "AFFIRMATIVE_SUPPORT_REQUIRED"
+                  ],
+                  "id": "FH-LIQ",
+                  "foundationFinancialPeriod": null
+                },
+                {
+                  "points": null,
+                  "validity": "N/R",
+                  "basis": null,
+                  "financialPeriod": null,
+                  "latestValidPoints": null,
+                  "currentReassessmentPoints": null,
+                  "currentConfirmedPoints": null,
+                  "reviewedFinancialPeriod": "2026-09-30",
+                  "reviewCutoff": "2026-11-13",
+                  "updateStatus": "NOT_RATED",
+                  "confidence": {
+                    "dimensions": [
+                      2,
+                      0,
+                      2,
+                      1,
+                      0
+                    ],
+                    "rationale": "Traceable evidence; availability and downside limitations remain.",
+                    "total": 5
+                  },
+                  "materialDependencies": [
+                    {
+                      "topic": "returns",
+                      "refs": [
+                        "q3",
+                        "q3Bs",
+                        "q3Liq",
+                        "bridge"
+                      ],
+                      "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                      "status": "MATERIAL_IMPACT_UNRESOLVED"
+                    },
+                    {
+                      "topic": "capitalStructure",
+                      "refs": [
+                        "q3",
+                        "q3Bs",
+                        "q3Liq",
+                        "bridge"
+                      ],
+                      "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                      "status": "MATERIAL_IMPACT_UNRESOLVED"
+                    },
+                    {
+                      "topic": "consolidation",
+                      "refs": [
+                        "q3",
+                        "q3Bs",
+                        "q3Liq",
+                        "bridge"
+                      ],
+                      "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                      "status": "MATERIAL_IMPACT_UNRESOLVED"
+                    }
+                  ],
+                  "reassessmentTriggers": [
+                    "New authoritative statements",
+                    "Material debt maturity, repayment, borrowing or funding change",
+                    "Restricted cash or capital impairment, deteriorating assets, covenant warning or distress"
+                  ],
+                  "limitations": [
+                    "Book balances do not establish unrestricted resources, funding commitments or covenant clearance."
+                  ],
+                  "certificationGaps": [
+                    "VALID_BASELINE_REQUIRED",
+                    "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                    "AFFIRMATIVE_SUPPORT_REQUIRED"
+                  ],
+                  "id": "FH-STRESS",
+                  "foundationFinancialPeriod": null
+                }
+              ],
+              "coverage": {
+                "confirmedCurrent": {
+                  "count": 2,
+                  "weight": 12
+                },
+                "effective": {
+                  "count": 5,
+                  "weight": 31
+                },
+                "provisional": {
+                  "count": 3,
+                  "weight": 19
+                },
+                "genuineNR": {
+                  "count": 2,
+                  "weight": 9
+                },
+                "outsideRollout": {
+                  "count": 16,
+                  "weight": 60
+                },
+                "unratedTotal": {
+                  "count": 18,
+                  "weight": 69
+                }
+              }
+            }
+          ],
+          "investmentDecisionInput": {
+            "scope": "RESEARCH_DECISION_SUPPORT",
+            "effectiveBusinessQuality": {
+              "id": "BQ",
+              "max": 25,
+              "assessedPoints": 14,
+              "ratedWeight": 25,
+              "points": 14,
+              "includesProvisional": true
+            },
+            "bqEq": {
+              "id": "BQ-EQ",
+              "points": 5,
+              "validity": "PROVISIONAL",
+              "basis": "LATEST_VALID_HISTORICAL_ASSESSMENT",
+              "financialPeriod": "2025-12-31",
+              "latestValidPoints": 5,
+              "currentReassessmentPoints": null,
+              "currentConfirmedPoints": null,
+              "currentComparableRoic": null,
+              "reviewedFinancialPeriod": "2026-09-30",
+              "reviewCutoff": "2026-11-13",
+              "updateStatus": "MATERIAL_REVIEW_PENDING",
+              "confidence": {
+                "dimensions": [
+                  2,
+                  0,
+                  2,
+                  1,
+                  0
+                ],
+                "rationale": "Eligible review through cutoff with traceable retained evidence. The decisive return and scope comparisons remain unavailable.",
+                "total": 5
+              },
+              "materialDependencies": [
+                {
+                  "topic": "returns",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED",
+                  "refs": [
+                    "FTEL",
+                    "Q3"
+                  ],
+                  "impact": "14.74–16.33% is six months on selected operating lines. The annualized or full-scope spread is unbounded. FY25 gross funded sensitivity cleared the 15% hurdle by only 0.22 percentage points."
+                },
+                {
+                  "topic": "capitalStructure",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED",
+                  "refs": [
+                    "FTEL",
+                    "Q3"
+                  ],
+                  "impact": "Six identified opening operating capital adjustments total VND −6.652tn. Opening working capital, eliminations and classifications remain unbounded. The residual could change the applicable spread."
+                },
+                {
+                  "topic": "segmentMix",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED",
+                  "refs": [
+                    "FTEL",
+                    "H1",
+                    "Q3"
+                  ],
+                  "impact": "FTEL was previously consolidated line by line. FPT retained 45.66% and recognizes its share through the equity method. Restated 9M sales growth and positive EBIT do not bound how recurring FTEL economics affected the old band."
+                },
+                {
+                  "topic": "consolidation",
+                  "status": "MATERIAL_IMPACT_UNRESOLVED",
+                  "refs": [
+                    "FTEL",
+                    "Q1",
+                    "H1",
+                    "Q3"
+                  ],
+                  "impact": "From 1 January 2026 current operating results and balance sheet exclude line consolidation of FTEL. Issuer-restated P&L evidence has no consistent full opening capital bridge. Scope effects matter to the band."
+                }
+              ],
+              "reassessmentTriggers": [
+                "new authoritative FY2026 disclosures",
+                "supported matched-scope operating return or bounded equivalent economic evidence",
+                "material structural event or applicable evidence expiry"
+              ],
+              "limitations": [
+                "FY and 9M have different business scopes. Six-month selected capital cannot establish normalized annual economic returns.",
+                "No expiry date is supplied by the standing methodology for this annual evidence. Review is tied to authoritative annual information and material events."
+              ],
+              "certificationGaps": [
+                "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                "AFFIRMATIVE_SUPPORT_REQUIRED"
+              ]
+            },
+            "assessedPoints": 17,
+            "ratedWeight": 31,
+            "provisionalInvestmentScore": null,
+            "confirmedCurrentInvestmentScore": null,
+            "coverage": {
+              "confirmedCurrent": {
+                "count": 2,
+                "weight": 12
+              },
+              "effective": {
+                "count": 5,
+                "weight": 31
+              },
+              "provisional": {
+                "count": 3,
+                "weight": 19
+              },
+              "genuineNR": {
+                "count": 2,
+                "weight": 9
+              },
+              "outsideRollout": {
+                "count": 16,
+                "weight": 60
+              },
+              "unratedTotal": {
+                "count": 18,
+                "weight": 69
+              }
+            },
+            "gates": {
+              "stage0": "UNKNOWN",
+              "hardVeto": "PENDING",
+              "residualRisk": "NOT_RATED",
+              "financialHealth": "NOT_ASSESSED",
+              "valuation": "NOT_ASSESSED",
+              "portfolio": "NOT_ASSESSED"
+            },
+            "investmentActionable": false,
+            "formalDecisionAuthorized": false,
+            "effectiveScores": [
+              {
+                "id": "BQ-EQ",
+                "points": 5,
+                "validity": "PROVISIONAL",
+                "basis": "LATEST_VALID_HISTORICAL_ASSESSMENT",
+                "financialPeriod": "2025-12-31",
+                "latestValidPoints": 5,
+                "currentReassessmentPoints": null,
+                "currentConfirmedPoints": null,
+                "currentComparableRoic": null,
+                "reviewedFinancialPeriod": "2026-09-30",
+                "reviewCutoff": "2026-11-13",
+                "updateStatus": "MATERIAL_REVIEW_PENDING",
+                "confidence": {
+                  "dimensions": [
+                    2,
+                    0,
+                    2,
+                    1,
+                    0
+                  ],
+                  "rationale": "Eligible review through cutoff with traceable retained evidence. The decisive return and scope comparisons remain unavailable.",
+                  "total": 5
+                },
+                "materialDependencies": [
+                  {
+                    "topic": "returns",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED",
+                    "refs": [
+                      "FTEL",
+                      "Q3"
+                    ],
+                    "impact": "14.74–16.33% is six months on selected operating lines. The annualized or full-scope spread is unbounded. FY25 gross funded sensitivity cleared the 15% hurdle by only 0.22 percentage points."
+                  },
+                  {
+                    "topic": "capitalStructure",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED",
+                    "refs": [
+                      "FTEL",
+                      "Q3"
+                    ],
+                    "impact": "Six identified opening operating capital adjustments total VND −6.652tn. Opening working capital, eliminations and classifications remain unbounded. The residual could change the applicable spread."
+                  },
+                  {
+                    "topic": "segmentMix",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED",
+                    "refs": [
+                      "FTEL",
+                      "H1",
+                      "Q3"
+                    ],
+                    "impact": "FTEL was previously consolidated line by line. FPT retained 45.66% and recognizes its share through the equity method. Restated 9M sales growth and positive EBIT do not bound how recurring FTEL economics affected the old band."
+                  },
+                  {
+                    "topic": "consolidation",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED",
+                    "refs": [
+                      "FTEL",
+                      "Q1",
+                      "H1",
+                      "Q3"
+                    ],
+                    "impact": "From 1 January 2026 current operating results and balance sheet exclude line consolidation of FTEL. Issuer-restated P&L evidence has no consistent full opening capital bridge. Scope effects matter to the band."
+                  }
+                ],
+                "reassessmentTriggers": [
+                  "new authoritative FY2026 disclosures",
+                  "supported matched-scope operating return or bounded equivalent economic evidence",
+                  "material structural event or applicable evidence expiry"
+                ],
+                "limitations": [
+                  "FY and 9M have different business scopes. Six-month selected capital cannot establish normalized annual economic returns.",
+                  "No expiry date is supplied by the standing methodology for this annual evidence. Review is tied to authoritative annual information and material events."
+                ],
+                "certificationGaps": [
+                  "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                  "AFFIRMATIVE_SUPPORT_REQUIRED"
+                ]
+              },
+              {
+                "id": "BQ-MOAT",
+                "points": 3,
+                "validity": "CONFIRMED_CURRENT",
+                "basis": "REAFFIRMED",
+                "financialPeriod": "2026-09-30",
+                "latestValidPoints": 3,
+                "currentReassessmentPoints": 3,
+                "currentConfirmedPoints": 3,
+                "reviewedFinancialPeriod": "2026-09-30",
+                "reviewCutoff": "2026-11-13",
+                "updateStatus": "REAFFIRMED",
+                "confidence": {
+                  "dimensions": [
+                    2,
+                    1,
+                    2,
+                    1,
+                    1
+                  ],
+                  "rationale": "Contracts and repeat buying support differentiation. Portfolio-wide durability and comparable pricing remain uncertain.",
+                  "total": 7
+                },
+                "materialDependencies": [],
+                "reassessmentTriggers": [
+                  "new authoritative annual evidence",
+                  "material loss or renewal of strategic customers",
+                  "comparable pricing, retention or delivery productivity data",
+                  "material AI disruption, acquisition, divestment or evidence expiry"
+                ],
+                "limitations": [
+                  "A single named long relationship does not establish portfolio-wide durability.",
+                  "Award counts are cumulative and are not recognized revenue.",
+                  "No verified relative cost leadership, widespread pricing power or telecom moat is claimed."
+                ],
+                "certificationGaps": [],
+                "foundationFinancialPeriod": "2025-12-31"
+              },
+              {
+                "points": 3,
+                "validity": "PROVISIONAL",
+                "basis": "LATEST_VALID_HISTORICAL_ASSESSMENT",
+                "financialPeriod": "2025-12-31",
+                "latestValidPoints": 3,
+                "currentReassessmentPoints": null,
+                "currentConfirmedPoints": null,
+                "reviewedFinancialPeriod": "2026-09-30",
+                "reviewCutoff": "2026-11-13",
+                "updateStatus": "MATERIAL_REVIEW_PENDING",
+                "confidence": {
+                  "dimensions": [
+                    2,
+                    0,
+                    2,
+                    1,
+                    0
+                  ],
+                  "rationale": "Cutoff-qualified evidence; remaining dependencies materially limit current confirmation.",
+                  "total": 5
+                },
+                "materialDependencies": [
+                  {
+                    "topic": "returns",
+                    "refs": [
+                      "q3",
+                      "bridge",
+                      "cash9m"
+                    ],
+                    "impact": "9M CFO conversion is weak despite post-Q1 cash recovery.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "segmentMix",
+                    "refs": [
+                      "q3",
+                      "bridge",
+                      "cash9m"
+                    ],
+                    "impact": "FTEL line consolidation ended; recurring cash profile is not separable.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "consolidation",
+                    "refs": [
+                      "q3",
+                      "bridge",
+                      "cash9m"
+                    ],
+                    "impact": "Opening intra-group working capital and deconsolidation effects are unresolved.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "adverseEvents",
+                    "refs": [
+                      "q3",
+                      "bridge",
+                      "cash9m"
+                    ],
+                    "impact": "Working-capital drag and post-Q1 recovery point in different directions.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  }
+                ],
+                "reassessmentTriggers": [
+                  "audited FY2026 and comparable scope bridge",
+                  "evidence expiry or confirmed material invalidation"
+                ],
+                "limitations": [
+                  "9M CFO weakness and six-month recovery do not establish persistent deterioration; comparable post-FTEL annual realizations and full NPAT normalization remain open."
+                ],
+                "certificationGaps": [
+                  "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                  "AFFIRMATIVE_SUPPORT_REQUIRED"
+                ],
+                "foundationFinancialPeriod": "2025-12-31",
+                "id": "BQ-CASH"
+              },
+              {
+                "points": 3,
+                "validity": "PROVISIONAL",
+                "basis": "LATEST_VALID_HISTORICAL_ASSESSMENT",
+                "financialPeriod": "2025-12-31",
+                "latestValidPoints": 3,
+                "currentReassessmentPoints": null,
+                "currentConfirmedPoints": null,
+                "reviewedFinancialPeriod": "2026-09-30",
+                "reviewCutoff": "2026-11-13",
+                "updateStatus": "MATERIAL_REVIEW_PENDING",
+                "confidence": {
+                  "dimensions": [
+                    2,
+                    0,
+                    2,
+                    1,
+                    0
+                  ],
+                  "rationale": "Cutoff-qualified evidence; remaining dependencies materially limit current confirmation.",
+                  "total": 5
+                },
+                "materialDependencies": [
+                  {
+                    "topic": "segmentMix",
+                    "refs": [
+                      "q3",
+                      "bridge",
+                      "res9m",
+                      "events"
+                    ],
+                    "impact": "Reweighted technology exposure may materially affect diversification under stress.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "consolidation",
+                    "refs": [
+                      "q3",
+                      "bridge",
+                      "res9m",
+                      "events"
+                    ],
+                    "impact": "Retained FTEL equity exposure offers no measurement of post-transition customer or segment stress mitigants.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "adverseEvents",
+                    "refs": [
+                      "q3",
+                      "bridge",
+                      "res9m",
+                      "events"
+                    ],
+                    "impact": "AI, customer reliance and wage or pricing stress remain material and unbounded.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  }
+                ],
+                "reassessmentTriggers": [
+                  "authoritative customer/segment concentration, pricing or adverse stress evidence",
+                  "evidence expiry or confirmed material invalidation"
+                ],
+                "limitations": [
+                  "Geographic and segment context cannot establish customer diversification or the post-transition pricing and simultaneous stress response."
+                ],
+                "certificationGaps": [
+                  "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                  "AFFIRMATIVE_SUPPORT_REQUIRED"
+                ],
+                "foundationFinancialPeriod": "2025-12-31",
+                "id": "BQ-RES"
+              },
+              {
+                "points": 3,
+                "validity": "CONFIRMED_CURRENT",
+                "basis": "UPDATED",
+                "financialPeriod": "2026-09-30",
+                "latestValidPoints": 3,
+                "currentReassessmentPoints": 3,
+                "currentConfirmedPoints": 3,
+                "reviewedFinancialPeriod": "2026-09-30",
+                "reviewCutoff": "2026-11-13",
+                "updateStatus": "UPDATED",
+                "confidence": {
+                  "dimensions": [
+                    2,
+                    1,
+                    2,
+                    1,
+                    1
+                  ],
+                  "rationale": "Traceable evidence; availability and downside limitations remain.",
+                  "total": 7
+                },
+                "materialDependencies": [],
+                "reassessmentTriggers": [
+                  "New authoritative statements",
+                  "Material debt maturity, repayment, borrowing or funding change",
+                  "Restricted cash or capital impairment, deteriorating assets, covenant warning or distress"
+                ],
+                "limitations": [
+                  "Book balances do not establish unrestricted resources, funding commitments or covenant clearance."
+                ],
+                "certificationGaps": [
+                  "AFFIRMATIVE_SUPPORT_REQUIRED"
+                ],
+                "id": "FH-BS",
+                "foundationFinancialPeriod": "2026-09-30"
+              },
+              {
+                "points": null,
+                "validity": "N/R",
+                "basis": null,
+                "financialPeriod": null,
+                "latestValidPoints": null,
+                "currentReassessmentPoints": null,
+                "currentConfirmedPoints": null,
+                "reviewedFinancialPeriod": "2026-09-30",
+                "reviewCutoff": "2026-11-13",
+                "updateStatus": "NOT_RATED",
+                "confidence": {
+                  "dimensions": [
+                    2,
+                    0,
+                    2,
+                    1,
+                    0
+                  ],
+                  "rationale": "Traceable evidence; availability and downside limitations remain.",
+                  "total": 5
+                },
+                "materialDependencies": [
+                  {
+                    "topic": "returns",
+                    "refs": [
+                      "q3",
+                      "q3Bs",
+                      "q3Liq",
+                      "bridge"
+                    ],
+                    "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "capitalStructure",
+                    "refs": [
+                      "q3",
+                      "q3Bs",
+                      "q3Liq",
+                      "bridge"
+                    ],
+                    "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "consolidation",
+                    "refs": [
+                      "q3",
+                      "q3Bs",
+                      "q3Liq",
+                      "bridge"
+                    ],
+                    "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  }
+                ],
+                "reassessmentTriggers": [
+                  "New authoritative statements",
+                  "Material debt maturity, repayment, borrowing or funding change",
+                  "Restricted cash or capital impairment, deteriorating assets, covenant warning or distress"
+                ],
+                "limitations": [
+                  "Book balances do not establish unrestricted resources, funding commitments or covenant clearance."
+                ],
+                "certificationGaps": [
+                  "VALID_BASELINE_REQUIRED",
+                  "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                  "AFFIRMATIVE_SUPPORT_REQUIRED"
+                ],
+                "id": "FH-LIQ",
+                "foundationFinancialPeriod": null
+              },
+              {
+                "points": null,
+                "validity": "N/R",
+                "basis": null,
+                "financialPeriod": null,
+                "latestValidPoints": null,
+                "currentReassessmentPoints": null,
+                "currentConfirmedPoints": null,
+                "reviewedFinancialPeriod": "2026-09-30",
+                "reviewCutoff": "2026-11-13",
+                "updateStatus": "NOT_RATED",
+                "confidence": {
+                  "dimensions": [
+                    2,
+                    0,
+                    2,
+                    1,
+                    0
+                  ],
+                  "rationale": "Traceable evidence; availability and downside limitations remain.",
+                  "total": 5
+                },
+                "materialDependencies": [
+                  {
+                    "topic": "returns",
+                    "refs": [
+                      "q3",
+                      "q3Bs",
+                      "q3Liq",
+                      "bridge"
+                    ],
+                    "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "capitalStructure",
+                    "refs": [
+                      "q3",
+                      "q3Bs",
+                      "q3Liq",
+                      "bridge"
+                    ],
+                    "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  },
+                  {
+                    "topic": "consolidation",
+                    "refs": [
+                      "q3",
+                      "q3Bs",
+                      "q3Liq",
+                      "bridge"
+                    ],
+                    "impact": "Post-FTEL funding, liquidity and operating starting values changed; timing and funded response remain unresolved.",
+                    "status": "MATERIAL_IMPACT_UNRESOLVED"
+                  }
+                ],
+                "reassessmentTriggers": [
+                  "New authoritative statements",
+                  "Material debt maturity, repayment, borrowing or funding change",
+                  "Restricted cash or capital impairment, deteriorating assets, covenant warning or distress"
+                ],
+                "limitations": [
+                  "Book balances do not establish unrestricted resources, funding commitments or covenant clearance."
+                ],
+                "certificationGaps": [
+                  "VALID_BASELINE_REQUIRED",
+                  "MATERIAL_IMPACT_BLOCKS_INHERITANCE",
+                  "AFFIRMATIVE_SUPPORT_REQUIRED"
+                ],
+                "id": "FH-STRESS",
+                "foundationFinancialPeriod": null
+              }
+            ],
+            "effectiveFinancialHealth": {
+              "id": "FH",
+              "max": 15,
+              "assessedPoints": 3,
+              "ratedWeight": 6,
+              "points": null,
+              "includesProvisional": false
+            }
+          }
+        }
+      },
+      {
+        "subjectTicker": "FPT",
+        "stage": "RESEARCH_SCORECARD",
+        "result": {
+          "format": "text/html",
+          "html": "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\"><title>FPT Financial Health research</title><h1>FPT Business Quality 14/25 PROVISIONAL · Financial Health research</h1><p>Current and provisional coverage shown separately. Full Investment Score incomplete.</p><ul><li>BQ-EQ: 5 · PROVISIONAL · MATERIAL_REVIEW_PENDING</li><li>BQ-MOAT: 3 · CONFIRMED_CURRENT · REAFFIRMED</li><li>BQ-CASH: 3 · PROVISIONAL · MATERIAL_REVIEW_PENDING</li><li>BQ-RES: 3 · PROVISIONAL · MATERIAL_REVIEW_PENDING</li><li>FH-BS: 3 · CONFIRMED_CURRENT · UPDATED</li><li>FH-LIQ: N/R · N/R · NOT_RATED</li><li>FH-STRESS: N/R · N/R · NOT_RATED</li></ul><p>Economic N/R within reviewed scope: 2 rubrics, 9/100 weight. Outside completed rollout: 16 rubrics, 60/100 weight.</p></html>\n"
+        }
+      }
+    ],
+    "blockers": [],
+    "operationKey": "be59ad3a3be63079a86d2c83e7cb8c3e1f1e9a05e6f1e30c7f64f1449a6bead1",
+    "permissions": {
+      "assessmentApproved": false,
+      "formalAdmissionGranted": false,
+      "scoringAuthorized": false,
+      "deploymentAuthorized": false,
+      "publicationAuthorized": false,
+      "tradingAuthorized": false,
+      "historicalPitQualified": false
+    }
+  }
+}

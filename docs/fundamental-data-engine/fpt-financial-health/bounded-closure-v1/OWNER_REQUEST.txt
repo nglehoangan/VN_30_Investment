@@ -1,0 +1,310 @@
+# CODEX TASK — WP2 Financial Health Bounded Economic Assessment Closure
+
+## 1. Objective
+
+Perform one final bounded assessment review for FH-LIQ and FH-STRESS.
+
+WP2 technical implementation and Prepare-to-Scoring integration have passed.
+
+The remaining question is whether the current N/R outcomes represent genuine economic evidence insufficiency or evidence requirements that are stricter than the approved FH01–FH15 methodology.
+
+Do not conduct another generic evidence audit.
+
+Do not force numeric coverage.
+
+## 2. Retained implementation baseline
+
+Review commit e02ae32 and latest local HEAD.
+
+Retained outputs:
+
+- Business Quality: 14/25 PROVISIONAL.
+- FH-BS: 3/6 CONFIRMED_CURRENT.
+- FH-LIQ: N/R.
+- FH-STRESS: N/R.
+- Combined assessed points: 17.
+- Rated weight: 31/100.
+- Effective coverage: 5/23.
+- TypeScript tests: 252/252.
+- Python tests: 25/25.
+- Official FPT V8 unchanged.
+
+Preserve accepted WP1 and FH-BS results.
+
+## 3. Required source review
+
+Inspect:
+
+- src/domain/current-scoring/fh-research.ts.
+- src/domain/current-scoring/fh-incremental.ts.
+- Existing approved PX01 public-proxy implementation.
+- FPT_FH_INPUT.json.
+- FPT_FH_RESULT.json.
+- FPT_WP2_WORKFLOW_RESULT.json.
+- WP2_FINANCIAL_HEALTH_FPT_SCORING_CLOSURE.md.
+- Prior FPT_FH_LIQ_FY2025_CONSERVATIVE_ASSESSMENT.md.
+- Approved FH01–FH15.
+- METRIC_DEFINITIONS.md sections 5.2 and 5.3.
+
+Resolve actual paths and identities.
+
+## 4. FH-LIQ assessment review
+
+The prior retained FPT FY2025 research assessment selected:
+
+2/4 CONSERVATIVE — Adequate with material refinancing dependence.
+
+The WP2 implementation returned N/R.
+
+Determine whether the earlier assessment is economically defensible under the newly approved evidence contract.
+
+Do not automatically restore the previous points.
+
+Review the exact predicates:
+
+- MATCHED_TIMING_UNRESOLVED.
+- COVENANT_DISPOSITION_UNRESOLVED.
+- COUNTEREVIDENCE.
+- PX01_NOT_ELIGIBLE.
+
+Determine whether each predicate correctly implements the approved CORE and CONDITIONAL requirements.
+
+### 4.1 Timing sufficiency
+
+Obligations, liquidity and maturities remain CORE.
+
+Do not remove these requirements.
+
+Determine whether supported maturity buckets, funding history, cash-generation observations and conservative resource ranges can establish a qualified lower-band conclusion without exact intra-period matching.
+
+Distinguish:
+
+- Exact timed coverage established.
+- Economically sufficient lower-band coverage evidence.
+- Material timing uncertainty that prevents any defensible band.
+
+Do not certify actual liquidity adequacy from aggregate balance-sheet amounts alone.
+
+### 4.2 Covenant sufficiency
+
+Apply FH05.
+
+Exact covenant headroom is not mandatory for every band.
+
+Review whether covenant nondisclosure is genuinely material to the selected economic conclusion.
+
+Use existing approved PX01 dispositions.
+
+Do not falsely classify nondisclosure as verified absence or compliance.
+
+If unresolved covenant terms can materially reverse the selected band, retain N/R.
+
+### 4.3 Existing FY2025 research assessment
+
+Review the historical evidence supporting 2/4:
+
+- Reported cash: approximately VND 10.522 trillion.
+- Deposits: approximately VND 29.631 trillion.
+- Selected obligations: approximately VND 20.173 trillion.
+- FY2025 CFO: approximately VND 10.136 trillion.
+- Actual historical borrowing and repayment.
+- Approximately 91% short-term debt concentration.
+- Material sensitivity to deposit availability.
+
+Determine whether these facts establish adequate liquidity with material refinancing dependence, rather than merely indicating that such an outcome is possible.
+
+Do not treat past refinancing as committed future financing.
+
+Do not assume all deposits are unrestricted or available when required.
+
+If the existing evidence cannot support band 2, evaluate other existing bands without assigning missing information a negative score.
+
+## 5. FH-STRESS assessment review
+
+Reuse the existing actual FPT stress model.
+
+Do not construct another stress engine.
+
+Review the predicate:
+
+CAPITAL_CONCLUSION_UNRESOLVED.
+
+Determine whether the existing capitalConclusionEstablished requirement is applied consistently with FH08.
+
+Capital response remains an essential economic conclusion, but its detail must be proportionate to the selected band.
+
+Distinguish:
+
+- Proven robust survival.
+- Survival with manageable constraints.
+- Survival with material constraints.
+- Demonstrable severe financial vulnerability.
+- Likely distressed financing.
+- Demonstrable failure.
+- No defensible conclusion.
+
+Do not require proof of successful future financing before an evidence-supported vulnerability band can be considered.
+
+Do not treat uncertainty alone as proof of severe vulnerability or financial failure.
+
+### 5.1 Retained sensitivity
+
+FY2025 severe case:
+
+- 25% deposit access: approximately negative VND 6.917 trillion.
+- 50% deposit access: approximately positive VND 0.491 trillion.
+
+September 2026 severe case:
+
+- 25% deposit access: approximately negative VND 5.145 trillion.
+- 50% deposit access: approximately positive VND 0.075 trillion.
+
+Review the economic meaning of these outcomes and the underlying assumptions.
+
+Determine whether evidence supports band 2/5 — Severe stress vulnerability — or another existing band.
+
+Band 2 is a review candidate, not an approved score.
+
+If the scenario cannot establish a defensible vulnerability conclusion without unsupported liquidity assumptions, retain N/R.
+
+Preserve maximum prerequisites and counterevidence controls.
+
+## 6. Implementation correction boundary
+
+Make changes only when an actual inconsistency with FH01–FH15 is demonstrated.
+
+Permitted:
+
+- Align conditional covenant validation with approved materiality semantics.
+- Align timing sufficiency with the economic requirements of the selected band.
+- Align capital-response detail with band-dependent requirements.
+- Correct overly broad validation predicates.
+- Improve explicit limitation and confidence handling.
+
+Prohibited:
+
+- Removing CORE evidence requirements.
+- Automatically accepting unresolved material dependencies.
+- Inventing available liquidity.
+- Assigning predetermined points.
+- Treating uncommitted financing as guaranteed.
+- Reducing freshness or Risk Policy controls.
+- Bypassing approved PX01 requirements.
+- Creating a second scoring architecture.
+
+If a proposed change requires an amendment beyond the approved FH01–FH15 scope, report it without implementing it.
+
+## 7. Evidence boundary
+
+Use retained evidence only.
+
+The previous WP2 already completed its approved evidence review.
+
+Do not search for additional private agreements, exact bank facilities, internal forecasts or new external evidence.
+
+Do not reopen FTEL reconciliation.
+
+No additional evidence-improvement cycle is authorized.
+
+## 8. Actual execution
+
+Execute both FY2025 and cutoff 2026-11-13 assessments for FH-LIQ and FH-STRESS.
+
+Use the existing Incremental Assessment and Effective Score mechanisms.
+
+Preserve FH-specific freshness rules.
+
+A valid FY2025 assessment does not automatically establish current liquidity eligibility after FTEL and maturity rollover.
+
+Do not force historical Effective Score inheritance when current funding applicability fails.
+
+Execute the existing WP2 Prepare → Adoption → Preflight → Scoring route.
+
+Verify actual combined BQ and FH aggregation.
+
+## 9. Correct coverage classifications
+
+Review the retained workflow output.
+
+The combined aggregation reports genuineNR covering 18 rubrics and 69/100 weight, while the closure narrative distinguishes:
+
+- Genuine N/R within completed scope: 2 rubrics, 9/100.
+- Outside completed rollout scope: 16 rubrics, 60/100.
+
+Ensure downstream analytical consumers and research presentation distinguish these two concepts.
+
+Preserve existing canonical or legacy fields if required for compatibility.
+
+Do not classify unimplemented rubrics as proven economic evidence failures.
+
+## 10. Required output
+
+| Rubric | Previous FY2025 | Revised FY2025 | Current reassessment | Effective Score | Reason |
+|---|---|---|---|---|---|
+| FH-BS | 3/6 | 3/6 | 3/6 | 3/6 | Unchanged |
+| FH-LIQ | N/R | | | | |
+| FH-STRESS | N/R | | | | |
+
+Also provide:
+
+- Exact predicate review.
+- Identified implementation defects, if any.
+- Actual evidence supporting each selected band.
+- Remaining limitations.
+- Freshness disposition.
+- Financial Health assessed points.
+- Financial Health rated weight.
+- Combined BQ + FH result.
+- Genuine N/R within completed scope.
+- Outside-scope coverage.
+- Actual end-to-end workflow result.
+- Regression test results.
+
+## 11. Regression requirements
+
+Verify:
+
+- Accepted BQ 14/25 unchanged.
+- FH-BS 3/6 unchanged.
+- Previous formal scoring behavior unchanged.
+- Official FPT V8 replay unchanged.
+- All existing risk and authority gates preserved.
+- No unsupported historical inheritance.
+- No unsupported liquidity or stress score.
+- No production publication.
+
+## 12. Final acceptance rules
+
+Implementation PASS does not require every rubric to receive a numeric score.
+
+The final outcome for FH-LIQ and FH-STRESS must be one of:
+
+- VERIFIED.
+- CONSERVATIVE.
+- N/R with a specific economic reason.
+
+A valid historical assessment may produce a PROVISIONAL Effective Score only when all existing eligibility and freshness conditions are satisfied.
+
+If genuine N/R remains after this bounded review, accept it as a documented limitation.
+
+Do not propose another evidence-remediation round.
+
+## 13. Final deliverable
+
+Create one consolidated addendum:
+
+WP2_FINANCIAL_HEALTH_BOUNDED_ASSESSMENT_CLOSURE.md
+
+Reference the existing WP2 closure report.
+
+Include actual source review, any justified implementation corrections, real FPT executable results and final acceptance recommendation.
+
+Do not duplicate the original financial report.
+
+Do not reopen WP1.
+
+Do not proceed to WP3.
+
+Do not activate production.
+
+Stop after this single bounded closure cycle.

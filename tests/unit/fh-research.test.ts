@@ -102,3 +102,23 @@ it("replays the exact real FPT result, preserves incomplete FH and declines publ
   expect(result.financials.current).toMatchObject({ restrictedCash: null, qualifiedNetDebt: null });
   expect(spawnSync(process.execPath, [...command, "--publish"]).status).toBe(1);
 });
+
+it("accepts lower-band economically matched maturity buckets without exact intra-bucket dates", () => {
+  const a = assessment("FH-LIQ");
+  a.topics.maturities = { ...good, rationale: "Disclosed buckets with matched conservative resource position" };
+  a.topics.covenants = { ...good, rationale: "Nondisclosure immaterial under the conservatively supported funding case" };
+  expect(scoreFinancialHealth(a, "TECHNOLOGY", usable)).toMatchObject({ points: 2, route: "PX01" });
+  a.timedCoverageEstablished = false;
+  expect(scoreFinancialHealth(a, "TECHNOLOGY", usable)).toMatchObject({ points: null, gaps: ["MATCHED_TIMING_UNRESOLVED"] });
+});
+
+it("allows evidenced severe vulnerability without proving successful funding or a robust capital response", () => {
+  const a = assessment("FH-STRESS");
+  a.proposed = { band: "Severe stress vulnerability", points: 2, strongerEvidence: false };
+  a.topics.capital_response = { ...good, rationale: "Qualified constrained funding and independently established material capital pressure" };
+  a.topics.funding_response = { ...good, rationale: "Supported funding deficit across defensible resource range" };
+  delete a.topics.sensitivity;
+  expect(scoreFinancialHealth(a, "TECHNOLOGY", usable).points).toBe(2);
+  a.capitalConclusionEstablished = false;
+  expect(scoreFinancialHealth(a, "TECHNOLOGY", usable)).toMatchObject({ points: null, gaps: ["CAPITAL_CONCLUSION_UNRESOLVED"] });
+});
