@@ -26,3 +26,9 @@ Category execution parameters use one ticker with `category`, `cutoff`, `methodo
 Use retained evidence first. Stop at a defensible band and allow at most one coordinated evidence improvement round per category work package. Private data is optional; use approved public equivalents. Record genuine N/R by missing material dependency and distinguish missing metrics from assessment availability or eligible historical points.
 
 [Approved Financial Health baseline](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_AMENDMENT_v1.0.json)
+
+### Approved Financial Health A/B routes
+
+Stop search on a supportable A/B band. Record both route dispositions and separate genuine economic N/R from outside rollout. Book cash, unverified deposits and uncommitted finance stay labeled and cannot be counted as certain resources.
+
+[Dual-route amendment v1.1](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_DUAL_ROUTE_v1.1.json)

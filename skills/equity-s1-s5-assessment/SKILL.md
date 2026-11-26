@@ -96,3 +96,9 @@ Category execution parameters use one ticker with `category`, `cutoff`, `methodo
 Apply the approved rubric classifications CORE, CONDITIONAL, SUPPORTING, BAND-DEPENDENT and MAXIMUM_ONLY. Select the actual defensible existing band before execution. For Financial Health qualify capital, asset quality, sector-equivalent leverage, timed obligations and accessible resources; use approved public proxies and reproducible analyst stress estimates with explicit funding and capital response. Incomplete supporting topics do not imply missing CORE evidence.
 
 [Approved Financial Health baseline](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_AMENDMENT_v1.0.json)
+
+### Approved Financial Health A/B routes
+
+For approved FH-LIQ and FH-STRESS v1.1, use verified Method B first. If its detailed evidence is insufficient, test Method A independently on the shared financial evidence. Its ceilings are 3/4 and 4/5 respectively. Select a defensible canonical band from the economic conclusion, never from the ceiling.
+
+[Dual-route amendment v1.1](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_DUAL_ROUTE_v1.1.json)

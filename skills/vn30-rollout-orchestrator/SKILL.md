@@ -42,3 +42,9 @@ Category execution parameters use one ticker with `category`, `cutoff`, `methodo
 In the existing single-ticker queue, verify approved methodology and sufficiency, execute annual and incremental assessment and resolve Effective Scores, then construct the candidate and bind Prepare → Adoption → Preflight → Scoring. Aggregate by category and verify downstream consumption, regression and closure. Other unimplemented categories stay outside the rollout scope with no invented topics or points.
 
 [Approved Financial Health baseline](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_AMENDMENT_v1.0.json)
+
+### Approved Financial Health A/B routes
+
+Carry the versioned FH-LIQ/FH-STRESS route qualifiers and ceilings through Prepare, Adoption, Preflight and Scoring in one serial research queue. Keep accepted prior categories immutable.
+
+[Dual-route amendment v1.1](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_DUAL_ROUTE_v1.1.json)

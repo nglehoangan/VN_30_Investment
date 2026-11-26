@@ -1,0 +1,479 @@
+# CODEX TASK — Financial Health Dual-Route A/B Amendment v1.1 & FPT Scoring Validation
+
+## 1. Objective and owner direction
+
+Implement a shared dual-route assessment architecture for FH-LIQ and FH-STRESS.
+
+Use Method B when sufficiently verified evidence exists.
+
+Use Method A when Method B cannot establish a defensible assessment because detailed evidence is unavailable.
+
+Preserve existing economic objectives, scoring bands and rubric weights.
+
+Method B has access to the full maximum score. Method A has a lower maximum score reflecting its narrower assessment coverage.
+
+Do not choose a route merely because it produces a higher score.
+
+Do not use Method A to override adverse economic evidence established by Method B.
+
+This task authorizes isolated research implementation and validation only.
+
+## 2. Retained baseline
+
+Preserve:
+
+- Business Quality: 14/25 PROVISIONAL.
+- FH-BS: 3/6 CONFIRMED_CURRENT.
+- FH-LIQ: N/R.
+- FH-STRESS: N/R.
+- Combined assessed points: 17/31.
+- Effective rubric coverage: 5/23.
+- Latest reported TypeScript regression: 254/254.
+- Latest reported Python regression: 28/28.
+- Official FPT V8 unchanged.
+
+Inspect latest local HEAD, including the WP2 bounded assessment closure.
+
+Do not reopen WP1 or FH-BS.
+
+## 3. Record methodology amendment
+
+Create Financial Health Dual-Route Amendment v1.1 using existing governance and versioning mechanisms.
+
+Record owner-approved B-to-A fallback direction and maximum-score differentiation.
+
+Preserve FH01–FH15 except where explicitly superseded by this amendment.
+
+Preserve all canonical bands.
+
+Document implementation choices separately from explicit owner decisions.
+
+## 4. Shared financial evidence
+
+Reuse existing retained FPT financial inputs, calculations and evidence provenance.
+
+Build or extend one shared financial evidence product for FH-LIQ and FH-STRESS.
+
+Include applicable:
+
+- Reported cash and equivalents.
+- Verified unrestricted cash where available.
+- Restricted cash.
+- Short-term deposits.
+- Deposit availability qualifications.
+- Short-term interest-bearing debt.
+- Long-term debt.
+- Lease obligations.
+- Interest burden.
+- EBIT and EBITDA.
+- Historical CFO.
+- CAPEX.
+- Maturity concentration.
+- Historical refinancing evidence.
+- Committed funding.
+- Relevant financial obligations and guarantees.
+
+Distinguish FACT, DERIVED, ESTIMATE and ASSUMPTION.
+
+Do not count unverified deposits or uncommitted funding as certain cash resources.
+
+Do not assume reported cash is unrestricted without appropriate qualification.
+
+Reuse existing FTEL scope controls.
+
+## 5. FH-LIQ Method B — Full Liquidity Assessment
+
+Preserve the existing comprehensive PX01 and timed-liquidity route.
+
+Required economic scope:
+
+- Qualified resources.
+- Material obligations.
+- Maturity matching.
+- Refinancing dependence.
+- Material covenant disposition.
+- Resource-overlap prevention.
+
+Maximum score: 4/4.
+
+Preserve all maximum prerequisites.
+
+If Method B establishes a valid assessment, use that assessment.
+
+## 6. FH-LIQ Method A — Basic Liquidity Assessment
+
+Allow Method A when Method B lacks required detailed evidence.
+
+Primary economic metric:
+
+Unrestricted cash / short-term debt.
+
+Permit qualified reported-cash proxy where unrestricted cash is not separately disclosed, provided material restriction risks are reviewed and explicitly qualified.
+
+Supporting evidence:
+
+- Reported cash plus short-term deposits.
+- Historical CFO.
+- Interest coverage.
+- Short-term debt concentration.
+- Historical borrowing and repayment.
+- Funding structure.
+- Relevant public financial disclosures.
+
+Do not require an exact obligor-specific daily or monthly liquidity ladder solely because Method B requires one.
+
+Do not require precise covenant headroom for every Method A band.
+
+Retain review of material covenant risks, confirmed breaches and adverse obligations.
+
+Method A must still assess economic adequacy and refinancing dependence.
+
+Do not infer adequate liquidity solely from reported deposits.
+
+Maximum score: 3/4.
+
+Preserve canonical bands 0–3.
+
+Do not mechanically map a ratio into a score.
+
+## 7. FH-STRESS Method B — Full Stress Assessment
+
+Preserve existing comprehensive stress model.
+
+Required economic scope:
+
+- Severe plausible scenario.
+- Qualified accessible resources.
+- Stressed operating cash flow.
+- Mandatory financial obligations.
+- Funding response.
+- Capital response.
+- Material sensitivity analysis.
+
+Maximum score: 5/5.
+
+Preserve robust survival and maximum prerequisites.
+
+## 8. FH-STRESS Method A — Basic Stress Assessment
+
+Allow a public-data-based stress assessment when Method B lacks sufficient detailed funding or capital-response evidence.
+
+Reuse existing runFinancialStress calculation and retained FPT scenarios.
+
+Required economic evidence:
+
+- Severe plausible revenue shock.
+- Margin compression.
+- Stressed EBIT or appropriate sector equivalent.
+- Stressed interest burden.
+- Stressed interest coverage.
+- Stressed operating cash generation.
+- CAPEX and free-cash-flow implications.
+- Cash buffer.
+- Debt maturity concentration.
+- Refinancing dependence.
+- Economic capital-response conclusion proportionate to the selected band.
+
+Do not require proof of exact future financing arrangements to assess demonstrable severe financial vulnerability.
+
+However, do not use uncertain liquidity assumptions alone as proof of vulnerability, likely distressed financing or failure.
+
+A survival band requires affirmative evidence supporting survival.
+
+Preserve all known material obligations.
+
+Use conservative ranges and sensitivity analysis when precise values are unavailable.
+
+Maximum score: 4/5.
+
+Preserve canonical bands 0–4.
+
+Method A cannot receive 5/5.
+
+## 9. Route selection semantics
+
+For each rubric and assessment period:
+
+1. Evaluate Method B eligibility.
+2. If B is sufficiently supported, execute and retain B.
+3. If B is insufficient, record its exact evidence gaps.
+4. Evaluate Method A independently.
+5. Select the defensible canonical band.
+6. Enforce the Method A score ceiling.
+7. If neither route supports a valid band, return current assessment N/R.
+8. Resolve Effective Score using existing historical eligibility and freshness controls.
+
+Do not silently switch to A to avoid known adverse evidence.
+
+Do not use the maximum-score ceiling as a mechanical point adjustment.
+
+Record:
+
+- assessmentMethod: A_BASIC or B_FULL.
+- routeSelectionReason.
+- maximumEligiblePoints.
+- evidence limitations.
+- selected band.
+- selected points.
+- confidence.
+- freshness.
+- materiality.
+- current assessment validity.
+
+Use existing schema conventions where equivalent fields already exist.
+
+## 10. FPT retained-data validation
+
+Use actual FPT annual foundation FY2022–FY2025.
+
+Current economic cutoff: 2026-11-13.
+
+Reuse eligible Q1–Q3/2026 and retained event disclosures.
+
+No new external evidence-discovery round is authorized.
+
+### Retained liquidity inputs, approximate VND trillion
+
+| Metric | FY2025 | Q3/2026 |
+|---|---:|---:|
+| Book cash | 10.522 | 7.377 |
+| Deposits | 29.631 | 20.879 |
+| Short-term debt and finance leases | 19.170 | 14.316 |
+| Cash-only debt coverage proxy | 0.55x | 0.52x |
+| Cash plus all deposits book coverage | 2.09x | 1.97x |
+| Direct EBIT / gross interest | 13.57x | 9.63x |
+
+Use exact retained inputs rather than these rounded display values.
+
+### Retained current severe stress
+
+- Revenue contraction: 25%.
+- Stressed revenue: approximately 40.023 trillion.
+- Stressed EBIT margin: 10%.
+- Stressed EBIT: 4.002 trillion.
+- Stressed interest: 1.314 trillion.
+- Stressed interest coverage: approximately 3.05x.
+- Stressed operating cash proxy: 0.149 trillion.
+- CAPEX proxy: 2.705 trillion.
+- Stressed FCF proxy: approximately negative 2.556 trillion.
+- Short-term debt: 14.316 trillion.
+- Operating lease obligations: approximately 0.869 trillion.
+- At 25% deposit access: deficit approximately 5.145 trillion.
+- At 50% deposit access: surplus approximately 0.075 trillion.
+
+Reuse the original scenario inputs and exact formulas.
+
+Review CAPEX flexibility and deposit-access sensitivity without inventing new factual assumptions.
+
+## 11. Independent analyst band selection
+
+The owner-side trial identified review candidates:
+
+- FH-LIQ FY2025: 2/4.
+- FH-LIQ cutoff: 2/4.
+- FH-STRESS FY2025: 2/5.
+- FH-STRESS cutoff: 2/5.
+
+These are not predetermined scores or mandatory expected outputs.
+
+Independently determine whether the evidence supports each candidate band under Method A.
+
+In particular:
+
+- Verify whether FH-LIQ supports adequate liquidity rather than merely possible adequacy.
+- Verify whether FH-STRESS supports demonstrable severe vulnerability rather than merely unresolved liquidity uncertainty.
+
+Select another existing band if better supported.
+
+Return N/R if no band is defensible.
+
+Do not modify predicates solely to produce the trial candidate scores.
+
+## 12. Effective Score and freshness
+
+Reuse the approved lifecycle.
+
+Preserve:
+
+- Historical assessment integrity.
+- Current reassessment.
+- Materiality review.
+- Maturity rollover.
+- Financial Health freshness.
+- Confirmed invalidation.
+- Provisional eligibility.
+- Current risk restrictions.
+
+A historical Method A assessment does not automatically establish current liquidity adequacy.
+
+When new evidence enables Method B, execute B and supersede the analytical result where qualified.
+
+Do not preserve a higher historical score against valid adverse current evidence.
+
+Do not weaken Risk Policy.
+
+## 13. Source implementation
+
+Inspect and extend existing:
+
+- fh-research.ts.
+- fh-incremental.ts.
+- PX01 public-proxy implementation.
+- Existing WP2 validator and input contracts.
+- vn30_fh_successor.py.
+- Shared category aggregation.
+- Research ranking and Investment Decision consumers.
+- Research HTML presentation.
+
+Do not create a second stress engine, a second liquidity engine or another orchestration framework.
+
+Implement reusable route selection and evidence qualification.
+
+Preserve previous approved artifacts and use versioned successor results.
+
+## 14. Skill updates
+
+Update the six existing skills where relevant:
+
+- equity-s1-s5-assessment.
+- vn30-evidence-coverage-closure.
+- vn30-incremental-scoring.
+- vn30-rollout-orchestrator.
+- vn30-structural-nr-remediation.
+- vn30-scoring-publication-hygiene.
+
+Document:
+
+- B-first, A-fallback policy.
+- Route-specific evidence requirements.
+- Route-specific maximum points.
+- Shared financial evidence.
+- No score shopping.
+- No unsupported proxy admission.
+- Actual analyst band selection.
+- Route transition during incremental assessment.
+
+Ensure reusable behavior across tickers and applicable sectors.
+
+Preserve existing bank and property sector-equivalent methods.
+
+Do not apply FPT-specific industrial formulas indiscriminately to financial institutions.
+
+## 15. Actual end-to-end scoring
+
+Execute actual retained FPT annual and incremental assessments.
+
+Then execute:
+
+Prepare → Adoption → Preflight → Scoring → Category Aggregation → Downstream Integration.
+
+Verify all seven BQ and FH rubrics.
+
+Preserve accepted BQ 14/25 and FH-BS 3/6 on identical inputs.
+
+Verify Method A and Method B qualifications survive Prepare and scoring.
+
+Do not require completion of the remaining 16 out-of-scope rubrics.
+
+Distinguish genuine N/R from outside rollout scope.
+
+Keep the full Investment Score null while incomplete.
+
+## 16. Required regression tests
+
+Test:
+
+- B selected when fully supported.
+- A selected when B is genuinely unavailable.
+- A cannot override known adverse B evidence.
+- FH-LIQ A ceiling 3/4.
+- FH-STRESS A ceiling 4/5.
+- No automatic higher points for B.
+- Material covenant risk handling.
+- Cash restriction handling.
+- Unverified deposits not counted as certain funding.
+- No unsupported band selection.
+- Stress vulnerability independent of unsupported assumptions.
+- Survival bands require affirmative support.
+- Historical Effective Score freshness.
+- A-to-B transition when qualified new evidence arrives.
+- Actual Prepare-to-Scoring integration.
+- Accepted BQ replay.
+- FH-BS replay.
+- Official FPT V8 replay.
+- Existing formal scoring and Risk Policy regressions.
+- Production publication remains unauthorized.
+
+## 17. Required output
+
+Provide actual results:
+
+| Rubric | FY2025 B result | FY2025 A result | Selected FY2025 | Current B result | Current A result | Selected Current | Effective Score |
+|---|---|---|---|---|---|---|---|
+| FH-LIQ | | | | | | | |
+| FH-STRESS | | | | | | | |
+
+Report exact reasons for route selection.
+
+For each selected assessment, include economic rationale, source lineage, selected band, points, confidence, materiality and remaining limitations.
+
+Report actual:
+
+- Financial Health assessed points.
+- Financial Health rated weight.
+- Financial Health total where complete.
+- Combined BQ and FH assessed points.
+- Effective rubric coverage.
+- Confirmed and provisional coverage.
+- Genuine N/R.
+- Outside rollout scope.
+- Prepare-to-Scoring result.
+- Skill update result.
+- Test counts.
+
+A result of 7/15 Financial Health and 21/40 combined assessed points is only an illustrative outcome if both 2-point candidate bands are independently supported.
+
+It is not an acceptance requirement.
+
+## 18. Final deliverable
+
+Create one consolidated report:
+
+WP2_FINANCIAL_HEALTH_DUAL_ROUTE_AB_FPT_CLOSURE.md
+
+Include:
+
+- Amendment v1.1.
+- Source implementation.
+- A/B route decisions.
+- Actual FY2025 and current financial assessments.
+- Stress sensitivity.
+- Actual scoring results.
+- End-to-end workflow proof.
+- Updated skills.
+- Regression results.
+- Exact commands and implementation identities.
+- Remaining genuine economic limitations.
+- Final acceptance recommendation.
+
+## 19. Stopping rules
+
+One bounded implementation and execution cycle.
+
+No additional external evidence collection.
+
+No repeated remediation.
+
+No predetermined scoring targets.
+
+Do not reopen Business Quality or FH-BS.
+
+Do not modify other rubric methodologies.
+
+Do not weaken risk gates.
+
+Do not activate or publish production scoring.
+
+Do not proceed to WP3 Growth Quality automatically.
+
+If either rubric remains genuinely N/R after both routes have been evaluated, accept that limitation and stop.

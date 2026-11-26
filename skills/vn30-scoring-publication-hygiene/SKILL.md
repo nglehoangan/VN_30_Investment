@@ -36,3 +36,9 @@ Category execution parameters use one ticker with `category`, `cutoff`, `methodo
 Retain approved methodology, exact owner records, final assessments and results, source lineage, executable identity and replay inputs, tests and acceptance records, and publication authority. Dispose of redundant temporary files only under the existing retention rules. Research closure carries no production publication authority.
 
 [Approved Financial Health baseline](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_AMENDMENT_v1.0.json)
+
+### Approved Financial Health A/B routes
+
+Retain the owner-approved route order and ceilings, both route diagnostics, shared financial inputs and exact research replay. Do not replace sealed predecessor records or infer formal publication authority.
+
+[Dual-route amendment v1.1](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_DUAL_ROUTE_v1.1.json)

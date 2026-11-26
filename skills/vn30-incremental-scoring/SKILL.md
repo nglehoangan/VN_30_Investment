@@ -33,3 +33,9 @@ Category execution parameters use one ticker with `category`, `cutoff`, `methodo
 Retain the annual baseline and latest valid assessment separately from the incremental review, confirmed/provisional Effective Score and current eligibility. Recalculate affected operands only. Reassess financial positions at authoritative statements, debt-maturity rollover, new borrowing or repayment, cash or asset deterioration, covenant warning, distress, capital impairment and structural change. Block historical use when funding applicability or supported expiry fails. Preserve unresolved materiality separately from confirmed invalidation.
 
 [Approved Financial Health baseline](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_AMENDMENT_v1.0.json)
+
+### Approved Financial Health A/B routes
+
+If fresh qualified evidence enables B after A, prioritize the current B result, including an adverse downgrade. Document the route transition and rerun freshness and maturity applicability before carrying a prior score.
+
+[Dual-route amendment v1.1](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_DUAL_ROUTE_v1.1.json)

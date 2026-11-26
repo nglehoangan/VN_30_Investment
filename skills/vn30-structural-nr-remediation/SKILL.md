@@ -44,3 +44,9 @@ Category execution parameters use one ticker with `category`, `cutoff`, `methodo
 Distinguish genuine economic N/R, eligible historical Effective Score, pending update, unresolved material impact, confirmed invalidation, expired assessment, obsolete completeness requirement, Prepare-to-Scoring integration defect, legitimate authority blocker and outside-scope rubric. Evidence discovery requires a specific unresolved economic dependency.
 
 [Approved Financial Health baseline](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_AMENDMENT_v1.0.json)
+
+### Approved Financial Health A/B routes
+
+Record why B detailed evidence is insufficient and whether A can independently establish a band. Do not switch to A to avoid adverse B evidence or treat uncertainty alone as failure.
+
+[Dual-route amendment v1.1](../../docs/03%20SCORING/WP2_FINANCIAL_HEALTH_DUAL_ROUTE_v1.1.json)
