@@ -1,0 +1,2170 @@
+# CODEX TASK — WP5 v1.1 External Research Evidence Integration, Independent Valuation Correction & Actual FPT Reassessment
+
+## 1. Owner approval and authorization
+
+The owner approves WP5 v1.1 — External Research Evidence Integration & Valuation Reassessment.
+
+Implement the approved successor to WP5 v1.0 in one coordinated execution.
+
+The owner authorizes:
+
+1. Admission of the six explicitly provided research reports.
+2. Creation of a reusable External Research Evidence intake skill for VN30.
+3. Integration of equity, industry and macro research into existing valuation assumption qualification.
+4. Correction of confirmed cross-rubric dependency coupling.
+5. Rubric-specific cross-check and counterevidence controls.
+6. Explicit Zero-Dividend Credit valuation scenarios.
+7. No-Rerating Shareholder Return Assessment.
+8. One additional bounded assumption qualification cycle using the approved reports.
+9. Actual FPT valuation and scoring reassessment.
+10. Updates to the six existing scoring skills.
+11. Cumulative Prepare → Adoption → Preflight → Scoring execution.
+12. Regression validation, technical closure and a consolidated final report.
+
+Preserve all VA01–VA28 decisions unless explicitly clarified by this v1.1 authorization.
+
+Preserve canonical valuation objectives, bands and weights.
+
+Preserve Method A ceilings:
+
+- VAL-PRIMARY: 6/8.
+- VAL-RET: 6/8.
+- VAL-MOS: 3/4.
+
+This authorization is limited to isolated FPT research.
+
+No production scoring, formal ranking, investment actionability, publication or other issuer rollout is authorized.
+
+Do not reopen WP1–WP4.
+
+Do not discover additional external reports beyond the six URLs provided below.
+
+---
+
+## 2. Accepted predecessor baseline
+
+WP1–WP4 remain ACCEPTED AND CLOSED.
+
+| Rubric | Effective Score | Validity |
+|---|---:|---|
+| BQ-EQ | 5/8 | PROVISIONAL |
+| BQ-MOAT | 3/6 | CONFIRMED_CURRENT |
+| BQ-CASH | 3/6 | PROVISIONAL |
+| BQ-RES | 3/5 | PROVISIONAL |
+| FH-BS | 3/6 | CONFIRMED_CURRENT |
+| FH-LIQ | 2/4 | CONFIRMED_CURRENT |
+| FH-STRESS | 2/5 | CONFIRMED_CURRENT |
+| GQ-HIST | 3/5 | CONFIRMED_CURRENT |
+| GQ-FWD | 3/5 | CONFIRMED_CURRENT |
+| GQ-INC | 2/5 | PROVISIONAL |
+| IC-IND | 2/4 | CONFIRMED_CURRENT |
+| IC-POS | 2/4 | CONFIRMED_CURRENT |
+| IC-CYCLE | 1/2 | CONFIRMED_CURRENT |
+
+Accepted aggregates:
+
+- BQ: 14/25.
+- FH: 7/15.
+- GQ: 8/15.
+- IC: 5/10.
+- Combined: 34/65.
+- Effective coverage: 13/23.
+- Confirmed current: 9 rubrics, 41 rated weight, 21 points.
+- Provisional: 4 rubrics, 24 rated weight, 13 points.
+
+WP5 v1.0 retained results:
+
+- VAL-PRIMARY: N/R.
+- VAL-RET: N/R.
+- VAL-MOS: N/R.
+- Genuine valuation N/R: 3 rubrics, 20 weight.
+- Outside rollout scope: 7 rubrics, 15 weight.
+- Full Investment Score: null.
+
+Retained WP5 implementation commit reviewed in diagnostic:
+
+e9d76804f8d480449c3858ebab17485f2837fa99
+
+Resolve the actual latest local HEAD and diagnostic lineage before implementation.
+
+Retained methodology:
+
+wp5-valuation-forward-return-v1.0.0
+
+Retained evaluator:
+
+valuation-route-research-v1.0.0
+
+Retained workflow host:
+
+vn30-val-research-successor-v1
+
+Regression baseline:
+
+- TypeScript: 334/334.
+- Python: 42/42.
+- Formal integration: 33/33.
+- Official FPT V8 exact-scope replay: PASS.
+- Formal parity: CURRENT_PARITY_PASS.
+- Five pre-existing unrelated TypeScript diagnostics.
+- Zero new WP5 diagnostics.
+
+Preserve these baselines.
+
+---
+
+## 3. Mandatory predecessor review
+
+Inspect the exact retained artifacts:
+
+- docs/03 SCORING/WP5_VALUATION_FORWARD_RETURN_AMENDMENT_v1.0.json
+- docs/03 SCORING/METRIC_DEFINITIONS.md, sections 8.1–8.4
+- docs/03 SCORING/SCORING_ENGINE.md
+- docs/03 SCORING/SECTOR_NORMALIZATION.md
+- src/domain/scoring/methodology.ts
+- src/domain/current-scoring/valuation-research.ts
+- tools/scoring/validate_fpt_valuation.mjs
+- tools/scoring/vn30_val_successor.py
+- tests/unit/valuation-research.test.ts
+- Existing valuation workflow and Effective Score contracts.
+
+Review:
+
+docs/fundamental-data-engine/fpt-valuation-forward-return/v1.0/WP5_VALUATION_FORWARD_RETURN_FPT_SCORING_CLOSURE.md
+
+docs/fundamental-data-engine/fpt-valuation-forward-return/v1.0/WP5_VALUATION_ASSUMPTION_AND_DEPENDENCY_DIAGNOSTIC.md
+
+Review the associated:
+
+- FPT_VALUATION_ASSESSMENT.json
+- FPT_VALUATION_RESULT.json
+- FPT_VALUATION_WORKFLOW.json
+- CANDIDATE.json
+- TEST_RESULTS.json
+
+Reuse all retained eligible FPT financial, market, corporate-action, FTEL, GQ, FH and IC evidence.
+
+Do not perform another general evidence-readiness audit.
+
+---
+
+## 4. Approved External Research Evidence universe
+
+Download or reuse exact local copies of only the following six approved reports.
+
+### ERE01 — TCBS FPT Q3/2026 update
+
+URL:
+
+https://www.tcbs.com.vn/wp-content/uploads/2026/11/20261104_FPT_Bao_cao_cap_nhat_KQKD_Q3_2026.pdf
+
+Expected publication date: 2026-11-04.
+
+Evidence type: EQUITY_RESEARCH.
+
+Scope: FPT.
+
+Priority: Highest.
+
+### ERE02 — TCBS FPT initiation report
+
+URL:
+
+https://www.tcbs.com.vn/wp-content/uploads/2026/06/20260629_FPT_Bao_cao_phan_tich_lan_dau-1.pdf
+
+Expected publication date: 2026-06-29.
+
+Evidence type: EQUITY_RESEARCH.
+
+Scope: FPT.
+
+### ERE03 — TCBS Technology industry report
+
+URL:
+
+https://www.tcbs.com.vn/wp-content/uploads/2026/09/20260917_Bao_cao_nganh_Cong_nghe.pdf
+
+Expected publication date: 2026-09-17.
+
+Evidence type: INDUSTRY_RESEARCH.
+
+Scope: Technology and relevant telecommunications exposure.
+
+### ERE04 — GTJASVN ICT industry update
+
+URL:
+
+https://gtht.com.vn/wp-content/uploads/2026/01/VN-GTJASVN-Research_Bao-cao-Cap-nhat-nganh-ICT-Viet-Nam-2026_Jan-2026.pdf
+
+Expected publication period: January 2026.
+
+Evidence type: INDUSTRY_RESEARCH.
+
+Scope: Vietnam ICT industry and applicable FPT analysis.
+
+Extract the exact publication date or approved availability bound from the actual report.
+
+### ERE05 — KBSV macroeconomic outlook Q4/2026
+
+URL:
+
+http://static1.vietstock.vn/edocs/22546/KBSV_TrienvongKinhtevimo_4Q2026.pdf
+
+Evidence type: MACRO_RESEARCH.
+
+Scope: Vietnam macroeconomics.
+
+Expected publication date from prior review: 2026-10-19.
+
+Verify the actual document date and identity.
+
+### ERE06 — HTG initiation valuation report
+
+URL:
+
+https://static1.vietstock.vn/edocs/16259/BAO_CAO_DINH_GIA_LAN_DAUHTG22_2249371b.pdf
+
+Evidence type: METHODOLOGY_REFERENCE.
+
+Scope: HTG valuation methodology.
+
+Verify actual publisher, issuer, date and valuation model.
+
+This report is not FPT financial evidence.
+
+Do not import HTG earnings, multiples, discount rates, growth, cash flow or target prices into FPT.
+
+Use it only as a methodology reference where applicable and consistent with existing approved methodology.
+
+Do not modify HTG scoring.
+
+### Evidence boundary
+
+No additional broker report discovery.
+
+No additional industry report discovery.
+
+No searching for substitute reports.
+
+No expansion of the approved URL universe.
+
+If a provided report cannot be retrieved, identify the precise failure and continue using the other eligible retained reports.
+
+Do not manufacture document content.
+
+---
+
+## 5. External Research Evidence architecture
+
+Introduce a reusable evidence classification within the existing source-admission architecture.
+
+Suggested logical group:
+
+External Research Evidence — ERE.
+
+Support four evidence types:
+
+- EQUITY_RESEARCH.
+- INDUSTRY_RESEARCH.
+- MACRO_RESEARCH.
+- METHODOLOGY_REFERENCE.
+
+Reuse existing source registry, document identity, availability and provenance contracts.
+
+Do not build a separate research ingestion platform or scoring engine.
+
+### 5.1 Required document metadata
+
+Record:
+
+- Document ID.
+- Original URL.
+- Final resolved URL if redirected.
+- Publisher.
+- Research organization.
+- Author or analyst when available.
+- Publication date.
+- Information availability.
+- Retrieval timestamp.
+- Document title.
+- Document type.
+- Ticker scope.
+- Sector scope.
+- Geographic scope.
+- Forecast horizon.
+- PDF page count.
+- SHA-256.
+- Version identity.
+- Research-family identity.
+- Source authority.
+- Admission disposition.
+- Relevant limitations.
+
+Verify document identity from the PDF itself.
+
+A URL filename is not sufficient evidence of publication date or issuer identity.
+
+### 5.2 Required extracted observation metadata
+
+Each extracted observation must retain:
+
+- Document ID.
+- Physical PDF page.
+- Printed page number where applicable.
+- Table or section reference.
+- Original metric label.
+- Original numerical value or range.
+- Unit.
+- Currency.
+- Reporting period.
+- Historical or forecast status.
+- Financial definition.
+- Consolidation scope.
+- Corporate-action basis.
+- Extraction method.
+- Reviewer disposition.
+- Information availability.
+- Related assumption IDs.
+
+Preserve original tables where necessary for audit and reproducibility.
+
+Inspect visual PDF pages when table extraction is ambiguous or incomplete.
+
+### 5.3 Evidence classification
+
+Distinguish:
+
+- ISSUER_REPORTED_FACT.
+- EXTERNAL_REPORTED_OBSERVATION.
+- EXTERNAL_ANALYST_ESTIMATE.
+- EXTERNAL_VALUATION_REFERENCE.
+- EXTERNAL_SCENARIO_ASSUMPTION.
+- EXTERNAL_OPINION.
+- METHODOLOGY_REFERENCE.
+
+Broker financial forecasts are estimates, not issuer-reported actual facts.
+
+If a report reproduces actual financial results, cross-check against existing canonical financial facts.
+
+Do not overwrite accepted issuer financial data with broker figures.
+
+Do not treat a target price as an independently established intrinsic value.
+
+---
+
+## 6. Publication eligibility and source independence
+
+Current FPT cutoff:
+
+2026-11-13.
+
+Annual foundation:
+
+FY2022–FY2025 with the existing retained retrospective information window.
+
+Only information eligible by the applicable assessment cutoff may support that assessment.
+
+Do not insert the June, September, October or November 2026 reports into an earlier FY2025 information window.
+
+A report may be retrieved later without being eligible for historical PIT execution.
+
+Preserve the distinction between:
+
+- Publication date.
+- Information availability date.
+- Financial reporting period.
+- Forecast preparation date.
+- Retrieval date.
+- Operational execution date.
+
+### Research independence
+
+ERE01, ERE02 and ERE03 belong to the TCBS research family.
+
+Do not count them as three independent analyst organizations.
+
+Evaluate revisions and shared models between TCBS reports.
+
+ERE04 is a separate research organization, subject to actual document identity verification.
+
+ERE05 is independent macro context, not independent issuer valuation corroboration.
+
+ERE06 is methodology-only for FPT.
+
+Record common model and evidence dependencies.
+
+Do not claim independent corroboration merely from different documents produced by the same research team.
+
+---
+
+## 7. Create one reusable skill
+
+Create one new skill using the existing repository skill convention.
+
+Suggested skill name:
+
+vn30-external-research-evidence
+
+Use the actual established skill directory structure.
+
+Do not create duplicate source-admission or valuation skills.
+
+### Skill objective
+
+Enable reusable intake and qualification of broker, industry and macroeconomic research for any VN30 ticker.
+
+### Required capabilities
+
+1. Accept a list of owner-provided research URLs or local PDF paths.
+2. Classify document and economic scope.
+3. Download or reuse retained immutable PDF artifacts.
+4. Verify SHA-256.
+5. Extract publication identity.
+6. Extract actual and forecast observations separately.
+7. Preserve page-level provenance.
+8. Normalize units and periods.
+9. Review corporate-action basis.
+10. Review segment and consolidation scope.
+11. Group sources by research family.
+12. Detect superseding forecast revisions.
+13. Map extracted observations to existing assumption IDs.
+14. Identify conflicting estimates.
+15. Prevent direct promotion of target prices into intrinsic value.
+16. Apply point-in-time eligibility.
+17. Return qualified evidence candidates rather than automatically qualified assumptions.
+18. Preserve rejected and out-of-scope dispositions.
+
+### Parameterization
+
+Support existing project conventions for:
+
+- ticker.
+- sector.
+- cutoff.
+- report URLs or paths.
+- report type.
+- issuer scope.
+- evidence purpose.
+- assumption mapping.
+- permitted source list.
+
+Actual execution in this task is FPT only.
+
+The reusable skill must not automatically search or process all VN30 issuers.
+
+---
+
+## 8. Actual FPT research extraction
+
+Extract the complete material valuation sections from ERE01–ERE05.
+
+Do not rely on the owner-side preliminary review as the source of record.
+
+Verify every value against the actual PDF.
+
+### 8.1 ERE01 — TCBS November FPT update
+
+The owner-side review identified a forecast table extending through 2030.
+
+Expected observations for verification:
+
+| Metric | 2026F | 2027F | 2028F | 2029F | 2030F |
+|---|---:|---:|---:|---:|---:|
+| Revenue, VND billion | 56,866 | 63,690 | 71,332 | 79,892 | 89,479 |
+| Parent NPAT, VND billion | 10,606 | 11,468 | 12,646 | 13,960 | 15,443 |
+| EPS, VND/share | 5,624 | 5,504 | 5,494 | 5,488 | 5,496 |
+| Cash DPS, VND/share | 2,000 | 1,957 | 1,954 | 1,952 | 1,954 |
+| CAPEX, VND billion | 2,839 | 3,730 | 4,332 | 4,532 | 5,250 |
+
+These are preliminary transcription candidates.
+
+Verify:
+
+- Exact values.
+- Exact units.
+- Forecast definitions.
+- Share basis.
+- Whether EPS includes fund appropriations.
+- Corporate-action assumptions.
+- Dividend definitions.
+- CAPEX scope.
+- Reporting scope.
+- Actual table page.
+- Historical versus forecast columns.
+
+Correct any preliminary transcription error using the original document.
+
+Also extract:
+
+- Forecast assumptions.
+- Segment growth.
+- Segment profitability.
+- FTEL treatment.
+- Revenue and earnings revisions.
+- Risks.
+- Valuation references.
+- Forecast share-count changes.
+- Financing and cash-flow assumptions.
+- Distribution policy.
+
+### 8.2 ERE02 — TCBS June initiation
+
+Extract:
+
+- Historical financial foundation.
+- Segment forecasts.
+- Earnings forecasts.
+- Relative valuation methods.
+- Historical P/E discussion.
+- International peer group.
+- SOTP methodology.
+- Multiple-selection rationale.
+- Discount or premium rationale.
+- Cash-flow assumptions.
+- Cost of capital if disclosed.
+- Downside risks.
+- Corporate-action basis.
+
+Previously identified illustrative valuation references include:
+
+- Approximately 12x P/E scenario.
+- Approximately 16x international peer scenario.
+- Approximately 17x historical valuation scenario.
+- SOTP valuation range.
+
+Verify their actual meaning.
+
+Determine whether they are target prices, scenario illustrations, fair-value estimates or other contextual values.
+
+Do not mechanically reuse June valuations at November cutoff.
+
+### 8.3 ERE03 — TCBS Technology report
+
+Extract:
+
+- Industry demand.
+- Technology spending.
+- IT services.
+- AI investment and disruption.
+- Relative valuation.
+- Peer group.
+- Industry profitability.
+- Capital intensity.
+- Competitive risks.
+- Growth assumptions.
+
+Do not use a mixed technology, telecom and infrastructure peer group as a homogeneous valuation population without adjustment.
+
+### 8.4 ERE04 — GTJASVN ICT report
+
+Extract:
+
+- Vietnam ICT outlook.
+- Relevant international IT services outlook.
+- FPT-specific financial projections.
+- FPT valuation methodology.
+- Fair multiple or discount assumptions.
+- Sector competition.
+- AI opportunities and risks.
+- Forecast horizon.
+- Valuation limitations.
+
+The January research predates later FTEL and interim disclosures.
+
+Determine which assumptions remain economically applicable.
+
+Do not use an old target price directly as November intrinsic value.
+
+### 8.5 ERE05 — KBSV macro report
+
+Extract relevant:
+
+- Interest-rate outlook.
+- Inflation.
+- GDP.
+- Exchange rate.
+- Funding environment.
+- Downside macro scenarios.
+
+Use macro evidence for contextual assumption calibration.
+
+Do not treat GDP growth as FPT earnings growth.
+
+Do not treat a policy rate as Cost of Equity.
+
+Do not promote macro forecasts into issuer-specific discount rates without appropriate economic justification.
+
+### 8.6 ERE06 — HTG methodology reference
+
+Extract only reusable valuation-method observations where useful.
+
+Examples:
+
+- FCFE construction.
+- FCFF construction.
+- Terminal-value approach.
+- Discount-rate consistency.
+- Scenario presentation.
+- Valuation cross-check.
+
+Do not import any HTG-specific numerical inputs.
+
+---
+
+## 9. Forecast revision and source hierarchy
+
+Compare overlapping TCBS forecasts between June, September where applicable, and November.
+
+Produce a forecast revision table.
+
+| Metric | June estimate | Later estimate | Revision | Reason | Scope compatibility |
+|---|---|---|---|---|---|
+
+Prefer the latest eligible estimate when:
+
+- Metric definitions are comparable.
+- The later report supersedes the earlier assumption.
+- Scope and share basis are compatible.
+
+Do not automatically prefer the newest report if its metric definition differs.
+
+Retain earlier estimates as historical context or downside/upside evidence where justified.
+
+Do not average old and new forecasts mechanically.
+
+Use GTJASVN and retained independent evidence to challenge or corroborate TCBS assumptions.
+
+If only one current detailed FPT forecast family is available, disclose that limitation.
+
+A single external forecast family does not automatically invalidate bounded analyst valuation.
+
+However, it must not be represented as multi-analyst consensus.
+
+---
+
+## 10. Corporate-action and per-share normalization
+
+This is a critical FPT implementation requirement.
+
+Use verified cutoff price:
+
+50,100 VND/share.
+
+Use retained eligible cutoff shares:
+
+1,885,727,648 ordinary shares.
+
+Preserve conditional carry-forward:
+
+CARRIED_FORWARD_NO_CHANGE_FOUND_IN_REVIEWED_DOCUMENTS.
+
+Preserve completeNegativeSearch false.
+
+### 10.1 Distinguish share-count changes
+
+Separate:
+
+- Pro-rata stock dividend.
+- Bonus shares.
+- Stock split.
+- ESOP.
+- Rights offering.
+- External issuance.
+- Buyback.
+- Treasury shares.
+- Other economic dilution.
+
+A pro-rata stock distribution changes the number of shares held by an existing investor.
+
+It does not automatically dilute the investor's ownership percentage.
+
+### 10.2 Forecast share-basis bridge
+
+If TCBS forecasts materially increasing share counts, reconstruct the forecast shareholder entitlement basis.
+
+For each year record:
+
+- Forecast ordinary shares.
+- Change in ordinary shares.
+- Pro-rata issuance.
+- ESOP or other issuance.
+- Investor shares held per original cutoff share.
+- Economic dilution.
+- EPS on published basis.
+- EPS on original-investor equivalent basis.
+- Cash DPS on published basis.
+- Cash distributions per original cutoff share.
+
+Do not assume that all share-count growth is economic dilution.
+
+Do not assume that all share-count growth is proportional issuance either.
+
+Use actual report disclosures.
+
+If allocation is unavailable, retain alternative qualified bounds or sensitivity-only scenarios.
+
+### 10.3 Shareholder return basis
+
+Calculate shareholder return from the economic interest represented by one original cutoff share.
+
+Account for subsequent proportional distributions and changes in share holdings.
+
+Do not use terminal EPS on a later share-count basis while retaining the original shareholding quantity unchanged.
+
+Do not subtract economic dilution twice.
+
+If an EPS series is already adjusted for economic dilution, do not apply another dilution factor.
+
+Verify the economic equivalence of:
+
+- Adjusted per-share cash-flow model.
+- Explicit shareholding-entitlement model.
+
+Where both representations are possible, their results should agree subject to rounding.
+
+---
+
+## 11. Forecast horizon and November 2031 terminal date
+
+The current investment cutoff is 13 November 2026.
+
+A five-year forward shareholder return assessment extends approximately to 13 November 2031.
+
+ERE01 forecast horizon appears to end in FY2030.
+
+Do not describe a 2026–2030 forecast as a complete five-year forward model from November 2026 without an appropriate date bridge.
+
+### Required treatment
+
+- Identify the actual forecast valuation date.
+- Identify remaining FY2026 period.
+- Identify each forecast cash distribution date or approved annual timing convention.
+- Use FY2027–FY2030 forecast evidence where eligible.
+- Establish a justified 2031 extension or terminal earnings assumption.
+- Classify the extension separately from TCBS published estimates.
+
+Do not claim TCBS published a 2031 forecast if it did not.
+
+Permit a qualified bounded analyst extension using:
+
+- Retained sustainable growth evidence.
+- Forecast deceleration.
+- Reinvestment constraints.
+- Cash conversion.
+- Industry outlook.
+- Conservative terminal normalization.
+
+If no supportable extension exists, retain the five-year model limitation.
+
+Do not silently shorten the canonical five-year return horizon.
+
+---
+
+## 12. Valuation Assumption Qualification v1.1
+
+Reuse the existing qualification contract.
+
+Preserve statuses:
+
+- FACTUAL.
+- QUALIFIED_ESTIMATE.
+- BOUNDED_ESTIMATE.
+- SENSITIVITY_ONLY.
+- UNSUPPORTED.
+- INVALIDATED.
+
+An external analyst forecast is not automatically a qualified internal valuation assumption.
+
+### Required qualification sequence
+
+For each material assumption:
+
+1. Identify retained internal evidence.
+2. Identify eligible external research evidence.
+3. Verify financial definition.
+4. Verify reporting period.
+5. Verify corporate-action basis.
+6. Verify consolidation scope.
+7. Review forecast revisions.
+8. Review independent corroboration.
+9. Review adverse evidence.
+10. Construct an economically justified point or range.
+11. Evaluate cross-model consistency.
+12. Determine qualification status.
+13. Record affected models and rubrics.
+
+### 12.1 Analyst estimation principle
+
+Qualification does not mean certainty.
+
+A defensible estimate may remain uncertain.
+
+Permit bounded assumptions where:
+
+- There is relevant economic evidence.
+- The analyst explains why the estimate is representative or conservative.
+- Material limitations are identified.
+- Downside alternatives are evaluated.
+- The assumption is consistent with other model inputs.
+
+Do not require proof that a future outcome will occur.
+
+Do not promote arbitrary ranges to qualified estimates.
+
+Do not promote an estimate merely because it produces an attractive valuation.
+
+### 12.2 Reassess the 27 retained assumptions
+
+Review the actual existing assumption IDs:
+
+- raw_price.
+- shares.
+- parent_earnings.
+- working_eps.
+- normalized_eps.
+- seasonality.
+- ftel_scope.
+- recurring_adjustments.
+- growth.
+- revenue_growth.
+- margin.
+- tax_rate.
+- reinvestment.
+- working_capital.
+- cash_basis.
+- payout.
+- dividend_availability.
+- dilution.
+- exit_pe.
+- fair_pe.
+- discount_rate.
+- wacc.
+- terminal_growth.
+- debt_refinancing.
+- excess_cash.
+- associate_value.
+- permanent_impairment.
+
+Add method-specific assumptions only when economically necessary.
+
+Use existing equivalent IDs wherever possible.
+
+### Required comparison
+
+| Assumption | v1.0 status | New report evidence | v1.1 proposed value/range | Qualification | Reason | Affected rubric/model |
+|---|---|---|---|---|---|---|
+
+Every changed qualification requires an explicit reason.
+
+Retain unresolved assumptions as N/R dependencies where material.
+
+---
+
+## 13. Normalized earnings and FTEL
+
+Retained actual FPT 9M2026 parent NPAT:
+
+7,778,081,180,761 VND.
+
+Retained mechanical annualized EPS:
+
+5,499.61 VND/share.
+
+ERE01 preliminary forecast EPS:
+
+5,624 VND/share for 2026.
+
+These measures are economically informative but not automatically interchangeable.
+
+### Required normalization review
+
+Review:
+
+- Parent NPAT.
+- Forecast NPAT.
+- Earnings attributable to ordinary shareholders.
+- Employee and welfare fund appropriations.
+- Recurring versus non-recurring income.
+- Seasonality.
+- Financial income.
+- Tax.
+- Minority interests.
+- FTEL equity-accounted earnings.
+- Acquisition and disposal effects.
+- Share-count definitions.
+
+Use ERE01 full-year forecast to challenge mechanical annualization.
+
+Do not automatically classify forecast EPS as normalized EPS.
+
+If the retained issuer evidence and analyst forecast support a bounded recurring earnings basis, qualify that range with explicit limitations.
+
+Do not reopen WP1–WP4 or reconstruct the entire FTEL accounting workstream.
+
+### FTEL valuation controls
+
+Do not count FTEL value twice.
+
+If parent earnings include FTEL economic earnings:
+
+- Preserve those earnings consistently in an earnings valuation.
+- Do not add standalone FTEL equity value without removing overlapping earnings.
+
+If using SOTP:
+
+- Align associate ownership and economic scope.
+- Remove overlapping earnings.
+- Treat cash, debt and minority interests consistently.
+- Preserve realization limitations.
+
+---
+
+## 14. Confirmed executable correction
+
+The WP5 diagnostic confirmed structural cross-rubric coupling.
+
+Correct this within the existing valuation architecture.
+
+Do not create a second valuation engine.
+
+### 14.1 Rubric-specific dependencies
+
+Replace shared route-level dependencies that are indiscriminately applied to all rubrics with dependencies bound to:
+
+- Rubric.
+- Model.
+- Route.
+- Assessment period.
+
+Reuse common assumptions through a shared registry.
+
+However, only require assumptions economically material to the selected rubric/model.
+
+Examples:
+
+VAL-RET based on shareholder IRR must not automatically require:
+
+- WACC.
+- Cost of Equity.
+- DCF terminal growth.
+- Standalone associate valuation.
+- Parent FCFE.
+
+Unless the selected return model genuinely uses those inputs.
+
+VAL-MOS may use an independent qualified conservative valuation even if representative PRIMARY remains N/R.
+
+Do not require a qualified RET scenario when it is irrelevant to MOS.
+
+VAL-PRIMARY must not depend on VAL-RET points or VAL-MOS points.
+
+### 14.2 Rubric-specific cross-check
+
+Replace the shared route crossCheckResolved behavior with appropriately scoped cross-check outcomes.
+
+Record:
+
+- Affected rubric.
+- Model.
+- Cross-check method.
+- Common assumptions.
+- Independent evidence.
+- Contradiction disposition.
+- Materiality.
+
+A DCF contradiction must not automatically veto an independent shareholder-return assessment.
+
+A contradiction affecting a genuinely common economic foundation must propagate to all dependent assessments.
+
+### 14.3 Rubric-specific counterevidence and adverse veto
+
+Scope Method B adverse evidence to the relevant rubric/model.
+
+A Method B contradiction or invalidation may veto Method A when the adverse evidence remains economically relevant.
+
+Do not permit fallback to conceal material adverse evidence.
+
+However, an unrelated Method B failure must not veto an independently valid Method A assessment.
+
+Every veto must expose:
+
+- Affected rubric.
+- Affected route.
+- Source evidence.
+- Material common dependency.
+- Economic reason.
+- Disposition.
+
+Do not silently return N/R without an explainable gap.
+
+### 14.4 Method B priority
+
+Preserve Method B priority where valid.
+
+Do not permit route shopping.
+
+Do not treat a valid unfavorable Method B result as missing evidence.
+
+Select a route by economic eligibility, not by score.
+
+---
+
+## 15. Zero-Dividend Credit model
+
+Add explicit support for a conservative scenario that intentionally excludes future dividend credit.
+
+Distinguish:
+
+- Dividend forecast of zero.
+- No dividend credit used in valuation.
+- Unknown future dividends.
+
+These are different meanings.
+
+For an explicit zero-credit model:
+
+- Do not claim the company will pay no dividends.
+- Do not require qualification of a positive future payout.
+- Do not require a numerical positive dividend-availability forecast.
+- Continue reviewing cash constraints where material to earnings sustainability and terminal value.
+- Record zero-credit as a scenario restriction rather than a factual observation.
+
+Preserve historical dividend evidence.
+
+Use positive future dividends only when the selected distribution assumptions are qualified.
+
+Test that intentional zero-credit does not inherit irrelevant dividend-forecast blockers.
+
+---
+
+## 16. No-Rerating Shareholder Return Assessment
+
+Implement the approved quantitative no-rerating form.
+
+The economic objective remains canonical VAL-RET.
+
+### 16.1 Ordinary return model
+
+Calculate five-year shareholder IRR from:
+
+- Initial purchase price.
+- Future shareholder cash distributions.
+- Terminal sale proceeds.
+
+Preserve shareholding-entitlement adjustments.
+
+### 16.2 Scale-free zero-credit model
+
+When:
+
+- No future dividends are credited.
+- Entry and terminal valuation multiples are equal.
+- The starting and ending earnings definitions are economically comparable.
+- Growth and dilution are properly aligned.
+
+The return identity is:
+
+IRR = (1 + aggregate earnings growth) / (1 + economic dilution) − 1.
+
+For a relative terminal multiple factor m over five years:
+
+IRR = [(1 + growth) / (1 + dilution)] × m^(1/5) − 1.
+
+Where:
+
+- m = 1 represents no rerating.
+- m below 1 represents multiple contraction.
+
+Support annual variable growth and dilution paths where appropriate rather than requiring constant rates.
+
+### 16.3 Eligibility
+
+An exact normalized EPS point estimate is not mandatory for the scale-free form when:
+
+- A comparable normalized economic earnings basis is established.
+- Starting economic foundation remains disclosed.
+- Economic growth and dilution assumptions are qualified.
+- Entry and terminal valuation bases are comparable.
+- Multiple-contraction risk is assessed.
+- Current price and share basis are eligible.
+
+Do not waive the normalized economic foundation requirement.
+
+Do not treat mathematical cancellation as proof of earnings sustainability.
+
+Do not treat no rerating as a prediction that the market cannot derate.
+
+### 16.4 Contraction scenarios
+
+Evaluate:
+
+- No rerating.
+- Supported moderate multiple contraction.
+- Supported adverse contraction.
+
+Use external multiple evidence and retained FPT risks.
+
+Do not arbitrarily qualify a contraction percentage merely because it is conservative.
+
+If contraction scenarios remain sensitivity-only, disclose their limitations.
+
+### 16.5 Price sensitivity
+
+A scale-free no-rerating IRR may remain numerically unchanged when purchase price changes because the terminal multiple is defined relative to the new entry multiple.
+
+This mathematical invariance is valid only within that scenario convention.
+
+For price refresh:
+
+- Rebind the entry valuation basis.
+- Recalculate exit assumptions.
+- Revalidate economic plausibility.
+- Recalculate absolute terminal-value models and dividend-inclusive returns.
+- Do not claim every no-rerating return must change numerically with price.
+
+Preserve price-bound assessment identity.
+
+---
+
+## 17. VAL-PRIMARY reassessment
+
+Preserve original weight 8 and canonical bands.
+
+Method B maximum 8.
+
+Method A maximum 6.
+
+### Method priority
+
+Evaluate:
+
+1. Detailed DCF.
+2. Qualified SOTP.
+3. Other eligible detailed sector valuation.
+4. Bounded normalized earnings valuation.
+5. Bounded owner-earnings valuation.
+
+Use the approved methodology hierarchy and actual economic suitability.
+
+Do not select the highest valuation model.
+
+### Earnings valuation
+
+Review:
+
+- Qualified normalized earnings.
+- Appropriate fair P/E range.
+- External peer evidence.
+- Historical valuation.
+- Growth.
+- Cash realization.
+- Financial risk.
+- FTEL scope.
+- AI and competitive risks.
+
+TCBS multiple references may support assumption calibration.
+
+They do not automatically qualify as the internal fair multiple.
+
+GTJASVN may provide independent challenge or corroboration, subject to freshness and scope.
+
+### Illustrative prior sensitivity
+
+Using preliminary TCBS 2026 forecast EPS 5,624 VND:
+
+| P/E | Implied value/share |
+|---:|---:|
+| 8x | 44,992 |
+| 10x | 56,240 |
+| 12x | 67,488 |
+| 14x | 78,736 |
+| 16x | 89,984 |
+
+These are sensitivity candidates only.
+
+Do not force these multiples or values into the qualified model.
+
+### Cash-flow cross-check
+
+Review retained FY cash conversion and weak 9M2026 cash realization.
+
+Do not equate group FCF with parent FCFE.
+
+Do not dismiss genuine adverse cash evidence merely because an earlier DCF sensitivity was unqualified.
+
+Determine whether the earnings model can be supported despite unresolved detailed DCF inputs.
+
+If material contradictory qualified models remain unresolved, retain N/R.
+
+Do not average models mechanically.
+
+### Required result
+
+Record:
+
+- Qualified fair-value range or N/R.
+- Representative value.
+- Conservative value where supported.
+- Current raw price.
+- Price/value relationship.
+- Selected model.
+- Cross-check.
+- Confidence.
+- Canonical band rationale.
+- Adjacent-band rationale.
+- Method A ceiling where applicable.
+
+Do not force a numerical score.
+
+---
+
+## 18. VAL-RET reassessment
+
+Preserve weight 8 and exact canonical return bands.
+
+| Annualized 5Y return | Canonical points |
+|---|---:|
+| Below 8% | 0–1 |
+| 8% to below 12% | 2–3 |
+| 12% to below 15% | 4–5 |
+| 15% to below 18% | 6 |
+| 18% to below 22% | 7 |
+| At least 22% | 8 |
+
+Method A maximum 6.
+
+### Required return models
+
+Evaluate independently:
+
+A. Qualified shareholder cash-flow return model using external forecasts where eligible.
+
+B. No-rerating return model with qualified positive dividends, if available.
+
+C. No-rerating zero-dividend-credit model.
+
+D. Multiple-contraction downside model.
+
+E. Reverse return model.
+
+Use the ordinary M3 conservative base or approved scenario aggregation rules.
+
+Do not choose the most attractive return model.
+
+Do not treat scenario sensitivities as expected returns.
+
+### Forecast growth
+
+Reproduce TCBS published parent NPAT forecast series.
+
+Calculate:
+
+- FY2026–FY2030 earnings CAGR.
+- Year-by-year growth.
+- Forecast EPS growth on published basis.
+- Share-adjusted economic per-share growth.
+- Forecast revisions.
+- Downside growth assumptions.
+
+The preliminary owner review identified parent earnings growth close to 10% annually.
+
+Recompute from exact values.
+
+Do not use headline aggregate NPAT growth as shareholder growth without corporate-action review.
+
+### Retained diagnostic sensitivities
+
+At illustrative:
+
+- Aggregate earnings growth 10%.
+- Economic dilution 0.7%.
+- No rerating.
+
+Previously reproduced:
+
+- Positive payout sensitivity: 11.3939%.
+- Zero-dividend-credit sensitivity: 9.2354%.
+
+Reproduce for regression.
+
+These are not prequalified assumptions.
+
+### Independent eligibility
+
+VAL-RET may receive points even when VAL-PRIMARY remains N/R.
+
+Do not require a fair-value point estimate, DCF, WACC or Cost of Equity where the selected shareholder-return form does not use them.
+
+Retain common economically material dependencies.
+
+### Required output
+
+- Qualified base IRR or N/R.
+- Downside IRR.
+- Upside IRR.
+- No-rerating IRR.
+- Zero-dividend-credit IRR.
+- Multiple-contraction IRR.
+- Five-year forecast coverage.
+- Dividend cash flows.
+- Economic dilution.
+- Terminal value.
+- Method and qualification.
+- Canonical band.
+- Route ceiling.
+- Confidence.
+- Remaining limitations.
+
+Do not force the previous 2/8 trial candidate.
+
+---
+
+## 19. VAL-MOS reassessment
+
+Preserve weight 4 and canonical bands.
+
+Method B maximum 4.
+
+Method A maximum 3.
+
+### Independent conservative valuation
+
+VAL-MOS may use a separately qualified downside valuation even when VAL-PRIMARY remains N/R.
+
+Construct an economically supported conservative value using eligible combinations of:
+
+- Stressed earnings.
+- Conservative valuation multiple.
+- Qualified owner cash flow.
+- Asset or associate value where relevant.
+- Funding exposure.
+- Dilution.
+- Permanent impairment risk.
+
+Do not use a broker target price as conservative value.
+
+Do not use the lowest arbitrary sensitivity output as a qualified intrinsic value.
+
+### Margin of Safety
+
+MOS = (Conservative intrinsic value − Market price) / Conservative intrinsic value.
+
+Distinguish MOS from upside/downside relative to purchase price.
+
+Review:
+
+- Financial capacity.
+- Refinancing risk.
+- Cash conversion.
+- FTEL exposure.
+- Dividend availability where material.
+- Economic dilution.
+- Permanent capital impairment.
+
+Use accepted FH underlying observations without reopening FH.
+
+Do not treat FH Method A scores as formal liquidity or survivability certification.
+
+### Required result
+
+- Conservative intrinsic value or N/R.
+- MOS or N/R.
+- Downside economic scenarios.
+- Permanent impairment review.
+- Selected model.
+- Canonical band.
+- Route ceiling.
+- Confidence.
+- Remaining limitations.
+
+Do not force the previous 1/4 trial candidate.
+
+Uncertainty alone must not create a low valuation score.
+
+---
+
+## 20. Cost of capital qualification
+
+Preserve the distinction between:
+
+- Cost of Equity.
+- WACC.
+- Expected shareholder IRR.
+- Investor hurdle rate.
+
+Use ERE05 macro evidence where relevant.
+
+Extract disclosed discount-rate assumptions from ERE01–ERE04 if available.
+
+Review retained ACBS and prior TCB research methodology.
+
+Do not import TCB's actual discount-rate assumptions into FPT.
+
+If no defensible model-compatible Cost of Equity exists:
+
+- Keep affected DCF model N/R.
+- Do not block an independent earnings valuation solely for that reason unless the selected multiple methodology requires it.
+- Do not block an independent undiscounted shareholder IRR solely for that reason.
+
+Do not create an unsupported equity discount rate from macro forecasts.
+
+---
+
+## 21. Cross-check and common dependency review
+
+For each rubric, record separate model-specific cross-checks.
+
+| Rubric | Model | Primary evidence | Independent corroboration | Common dependencies | Contradiction | Verdict |
+|---|---|---|---|---|---|---|
+
+Do not count:
+
+- P/E and earnings yield as independent corroboration.
+- Two TCBS reports with the same model as independent forecasts.
+- A target price and the earnings multiple used to derive it as independent evidence.
+- DCF and FCF yield from the same cash-flow forecast as independent evidence.
+
+Retain material adverse evidence across models where relevant.
+
+Do not discard contradictory evidence merely to obtain a score.
+
+---
+
+## 22. Freshness, revisions and Effective Score
+
+Reuse existing incremental scoring and model-reuse lifecycle.
+
+Add External Research Evidence triggers:
+
+- New analyst forecast.
+- Material forecast revision.
+- Earnings downgrade.
+- New valuation methodology.
+- Corporate action.
+- Segment scope change.
+- Industry outlook change.
+- Material macro change.
+- New adverse evidence.
+
+A new research report does not automatically require rescoring every rubric.
+
+Review dependency-level materiality.
+
+For price-only refresh:
+
+- Reuse eligible qualified model assumptions.
+- Verify price and share basis.
+- Recalculate affected valuation metrics.
+- Re-evaluate affected bands.
+- Preserve model lineage.
+
+Do not mechanically inherit historical valuation points.
+
+A stale model cannot produce a valid current assessment merely by receiving a new price.
+
+Do not modify accepted WP1–WP4 scores during this task.
+
+---
+
+## 23. Point-in-time source usability hardening
+
+The diagnostic identified a future eligibility hardening issue in the runner.
+
+Within WP5 v1.1 scope, ensure research evidence usability considers:
+
+- Actual publication date or accepted availability bound.
+- Assessment information cutoff.
+- Document identity.
+- Extracted observation lineage.
+- Applicable forecast period.
+- Model dependency.
+
+Presence in a pinned packet alone is not sufficient to establish point-in-time eligibility.
+
+Do not introduce future-information leakage into the annual foundation.
+
+Preserve prior accepted WP5 v1.0 artifacts without alteration.
+
+Do not grant historical backtesting authority.
+
+---
+
+## 24. Confidence and counterevidence
+
+Reuse existing five confidence dimensions:
+
+- Freshness.
+- Completeness.
+- Source reliability.
+- Estimate dependence.
+- Model/cycle uncertainty.
+
+Reuse existing research overlay and thresholds.
+
+Do not automatically increase confidence merely because multiple documents were added.
+
+Review:
+
+- Analyst forecast uncertainty.
+- Research-family concentration.
+- Forecast revisions.
+- Economic scope.
+- Independent corroboration.
+- Cash conversion.
+- FTEL.
+- Economic dilution.
+- Shareholder distribution capacity.
+- Multiple contraction.
+- Funding vulnerability.
+- AI disruption.
+- Forecast extension to 2031.
+
+Record the actual confidence score independently for each rubric.
+
+Preserve confidence separately from points and current validity.
+
+---
+
+## 25. Update six existing skills
+
+In addition to the new vn30-external-research-evidence skill, update the six existing skills.
+
+### equity-s1-s5-assessment
+
+Add:
+
+- External analyst estimate consumption.
+- Broker report versus issuer fact distinction.
+- Forecast revision review.
+- Corporate-action-normalized forecasts.
+- Shareholder entitlement bridge.
+- Independent valuation rubric models.
+- No-rerating and zero-credit forms.
+- Forecast horizon extension.
+
+### vn30-evidence-coverage-closure
+
+Add:
+
+- External research intake when owner-authorized.
+- Evidence reuse before new report discovery.
+- Assumption-level research mapping.
+- Source-family independence.
+- Genuine assumption insufficiency.
+- Research evidence not automatically qualified.
+
+### vn30-incremental-scoring
+
+Add:
+
+- Forecast revision materiality.
+- Research publication eligibility.
+- Assumption freshness.
+- Price-only refresh.
+- Shareholding entitlement changes.
+- Model-specific invalidation.
+- Research-model reuse.
+
+### vn30-rollout-orchestrator
+
+Add:
+
+- Owner-approved research URL list.
+- External evidence intake stage.
+- Assumption qualification stage.
+- Rubric/model-specific dependency execution.
+- Actual cumulative valuation scoring.
+- FPT-only execution support.
+
+### vn30-structural-nr-remediation
+
+Add distinct root causes:
+
+- External research not admitted.
+- Forecast scope incompatible.
+- Forecast share basis unresolved.
+- Economic dilution unresolved.
+- Assumption qualification failure.
+- Forecast horizon insufficient.
+- Unrelated dependency coupling.
+- Material common contradiction.
+- Independent rubric eligible.
+- Genuine valuation N/R.
+
+Do not automatically trigger repeated external discovery.
+
+### vn30-scoring-publication-hygiene
+
+Preserve:
+
+- Original research PDF identity.
+- Research document manifest.
+- Page-level extraction lineage.
+- Forecast revisions.
+- Corporate-action bridges.
+- Assumption qualification.
+- Rubric/model dependencies.
+- Valuation results.
+- Scoring trace.
+- Final workflow receipts.
+
+Do not delete immutable source documents or reproducibility artifacts.
+
+Avoid redundant temporary extraction files in final retained outputs.
+
+Follow existing repository rules for storing raw PDF binaries.
+
+---
+
+## 26. Actual cumulative workflow
+
+Execute actual FPT at cutoff 2026-11-13.
+
+Required stages:
+
+1. Six-report document intake.
+2. Identity and publication verification.
+3. PDF extraction.
+4. Research-family review.
+5. Financial forecast normalization.
+6. FTEL review.
+7. Corporate-action and share-basis bridge.
+8. Forecast revision review.
+9. Assumption qualification.
+10. Method B review.
+11. Method A review.
+12. PRIMARY valuation.
+13. RET valuation.
+14. MOS valuation.
+15. No-rerating and zero-credit assessment.
+16. Cross-check.
+17. Counterevidence.
+18. Analyst proposals.
+19. Executable validation.
+20. Effective Score resolution.
+21. Candidate construction.
+22. Prepare.
+23. Adoption.
+24. Preflight.
+25. Scoring.
+26. Cumulative aggregation.
+27. Research comparison.
+28. Decision analytical input.
+29. Research HTML rendering.
+
+Do not stop after document ingestion or methodology implementation.
+
+Use actual FPT research evidence and financial inputs.
+
+Preserve every eligible numeric result and genuine N/R disposition.
+
+Do not require all three valuation rubrics to receive points.
+
+---
+
+## 27. Risk and authority restrictions
+
+Preserve:
+
+- Stage 0: UNKNOWN.
+- Hard Veto: PENDING.
+- Residual Risk: NOT_RATED.
+- Formal liquidity adequacy: NOT_ASSESSED.
+- Formal survivability: NOT_ASSESSED.
+- Formal valuation authority: not granted.
+- Formal ranking: disabled.
+- Production scoring: disabled.
+- Production publication: disabled.
+- Investment actionability: disabled.
+
+Research valuation outputs may enter analytical consumers with qualifications.
+
+Do not issue actionable BUY, ACCUMULATE, HOLD, REDUCE, SELL or AVOID decisions.
+
+Preserve the portfolio-accounting firewall.
+
+The owner's 15–20% annual investment return objective does not modify M3 return bands.
+
+---
+
+## 28. Required tests
+
+### Research evidence intake
+
+Test:
+
+- Approved URL allowlist.
+- Document identity.
+- SHA-256.
+- Publication eligibility.
+- Future-information rejection.
+- Equity/industry/macro/methodology classification.
+- HTG numerical inputs rejected for FPT.
+- Forecast not classified as issuer actual.
+- Page-level provenance.
+- Same research family not counted as independent.
+- Missing or inaccessible source disposition.
+
+### Forecast normalization
+
+Test:
+
+- Fiscal-year alignment.
+- Forecast revision.
+- FTEL scope.
+- Pro-rata stock distribution.
+- ESOP.
+- Economic dilution.
+- Investor entitlement bridge.
+- Published EPS versus investor-equivalent EPS.
+- Cash DPS adjustment.
+- Double-dilution rejection.
+- 2030 forecast horizon versus 2031 terminal date.
+- Unsupported forecast extension rejected.
+
+### Assumption qualification
+
+Test:
+
+- Qualified external estimate.
+- Supported bounded estimate.
+- Sensitivity-only source.
+- Arbitrary haircut rejection.
+- Arbitrary multiple rejection.
+- Stale external estimate.
+- Conflicting forecasts.
+- Shared forecast dependency.
+- Material counterevidence.
+- Explicit zero-credit scenario.
+
+### Independent rubric correction
+
+Test:
+
+- RET independent of unrelated DCF dependencies.
+- RET independent of unrelated CoE/WACC.
+- MOS independent of unresolved representative PRIMARY.
+- PRIMARY independent of RET result.
+- Cross-check failure scoped to affected rubric.
+- Counterevidence scoped to affected model.
+- Material common blocker propagates.
+- Unrelated B contradiction does not veto valid A.
+- Relevant adverse B evidence still vetoes A.
+- All veto reasons visible.
+- Method B priority preserved.
+- No route shopping.
+
+### Return model
+
+Test:
+
+- Ordinary five-year IRR.
+- Positive cash distributions.
+- Zero-dividend credit.
+- No-rerating identity.
+- Relative multiple contraction.
+- Variable annual growth.
+- Variable annual dilution.
+- Per-share growth without double dilution.
+- Scale-free form with comparable economic basis.
+- Scale-free form rejected without comparable basis.
+- Exact canonical threshold boundaries.
+- Method A ceiling.
+
+### Valuation and MOS
+
+Test:
+
+- Qualified normalized earnings valuation.
+- Independent conservative valuation.
+- Qualified fair multiple.
+- Qualified downside multiple.
+- Invalid target-price substitution.
+- Unsupported DCF rejection.
+- Material cross-model contradiction.
+- Duplicate FTEL value rejection.
+- Excess cash double-count rejection.
+- Correct MOS denominator.
+- Permanent impairment review.
+
+### Freshness and workflow
+
+Test:
+
+- Qualified external forecast reuse.
+- Material forecast revision.
+- Price-only refresh.
+- Price-bound assessment identity.
+- Scale-free return invariance where mathematically appropriate.
+- Corporate-action invalidation.
+- Actual N/R propagation.
+- Prepare → Adoption → Preflight → Scoring.
+- Downstream method and source qualification.
+- Production authority rejection.
+
+---
+
+## 29. Regression and technical closure
+
+Verify:
+
+- All 13 WP1–WP4 accepted Effective Scores unchanged.
+- BQ 14/25.
+- FH 7/15.
+- GQ 8/15.
+- IC 5/10.
+- Exact predecessor replay.
+- WP5 v1.0 historical artifacts unchanged.
+- Diagnostic sensitivities reproducible.
+- Official FPT V8 exact replay.
+- Formal integration tests.
+- Existing TypeScript tests.
+- Existing Python tests.
+- Existing Risk Policy.
+- Remaining seven rubric methodologies unchanged.
+- Overall methodology maximum 100.
+- Valuation maximum 20.
+
+Compare against the five existing unrelated TypeScript diagnostics.
+
+No new or worsened WP5 v1.1 diagnostics are permitted.
+
+Fix only defects within this approved scope.
+
+Do not undertake unrelated technical-debt remediation.
+
+Report actual test execution counts.
+
+Do not copy predecessor test counts as current validation results.
+
+---
+
+## 30. Required outputs
+
+### A. External research manifest
+
+| ID | Publisher | Document | Publication | Type | Scope | SHA-256 | Admission |
+|---|---|---|---|---|---|---|---|
+
+### B. Extracted forecast table
+
+| Metric | Actual foundation | 2026F | 2027F | 2028F | 2029F | 2030F | 2031 analyst extension | Source/page |
+|---|---|---|---|---|---|---|---|---|
+
+Do not attribute the 2031 analyst extension to TCBS.
+
+### C. Corporate-action bridge
+
+| Year | Forecast shares | Pro-rata issuance | Economic dilution | Investor entitlement | Published EPS | Investor-equivalent EPS |
+|---|---|---|---|---|---|---|
+
+### D. Assumption qualification comparison
+
+| Assumption | v1.0 status | New evidence | v1.1 status | Qualified value/range | Model/rubric | Reason |
+|---|---|---|---|---|---|---|
+
+### E. Rubric-specific dependency matrix
+
+| Rubric | Model | Required dependencies | Optional dependencies | Shared material dependencies | Cross-check |
+|---|---|---|---|---|---|
+
+### F. Actual valuation comparison
+
+| Model | Downside | Representative | Upside | Qualification | Confidence |
+|---|---|---|---|---|---|
+
+### G. Five-year return assessment
+
+| Scenario | Growth | Dividend basis | Economic dilution | Exit assumption | IRR | Qualification |
+|---|---|---|---|---|---|---|
+
+Include no-rerating, zero-credit and contraction cases.
+
+### H. MOS assessment
+
+| Conservative value | Purchase price | MOS | Impairment review | Qualification |
+|---|---|---|---|---|
+
+### I. Actual scoring trace
+
+| Rubric | B result | A result | Analyst proposal | Validation | Effective Score | Validity |
+|---|---|---|---|---|---|---|
+
+### J. Cumulative scorecard
+
+| Category | Retained v1.0 | WP5 v1.1 result |
+|---|---:|---:|
+| Business Quality | 14/25 | 14/25 |
+| Financial Health | 7/15 | 7/15 |
+| Growth Quality | 8/15 | 8/15 |
+| Industry & Competitive Position | 5/10 | 5/10 |
+| Valuation & Forward Return | N/R | Actual result |
+
+Report:
+
+- Assessed points.
+- Rated weight.
+- Effective coverage.
+- Confirmed-current points and weight.
+- Provisional points and weight.
+- Genuine valuation N/R.
+- Outside rollout scope.
+- Full Investment Score.
+- Research valuation status.
+- Formal authority.
+
+Do not normalize partial points to 100.
+
+Do not replace N/R with zero.
+
+---
+
+## 31. Acceptance criteria
+
+AC01 — WP5 v1.1 approval recorded.
+
+AC02 — Existing VA01–VA28 controls preserved.
+
+AC03 — Only the six approved reports processed externally.
+
+AC04 — Document identity, SHA-256 and publication eligibility verified or failures explicitly recorded.
+
+AC05 — Report scopes correctly classified.
+
+AC06 — HTG excluded from numerical FPT valuation.
+
+AC07 — New reusable research evidence skill implemented.
+
+AC08 — Existing six skills updated.
+
+AC09 — Research-family independence preserved.
+
+AC10 — Actual and forecast observations separated.
+
+AC11 — Forecast page-level provenance recorded.
+
+AC12 — Forecast revision review executed.
+
+AC13 — FTEL scope reviewed.
+
+AC14 — Corporate-action and economic dilution separated.
+
+AC15 — Investor-equivalent forecast basis reviewed.
+
+AC16 — Five-year forecast horizon handled without fabricated analyst forecasts.
+
+AC17 — Actual assumption qualification executed.
+
+AC18 — All material changed assumptions justified.
+
+AC19 — Unqualified assumptions not promoted to scoring.
+
+AC20 — Rubric-specific dependency correction implemented.
+
+AC21 — Rubric-specific cross-check correction implemented.
+
+AC22 — Rubric-specific counterevidence and veto implemented.
+
+AC23 — Material common blockers preserved.
+
+AC24 — Zero-Dividend Credit implemented.
+
+AC25 — No-Rerating Return Assessment implemented.
+
+AC26 — Comparable normalized economic basis retained.
+
+AC27 — Actual VAL-PRIMARY reassessment executed.
+
+AC28 — Actual VAL-RET reassessment executed.
+
+AC29 — Actual VAL-MOS reassessment executed.
+
+AC30 — Canonical bands and weights preserved.
+
+AC31 — Method A ceilings preserved.
+
+AC32 — Actual analyst proposals recorded before validation.
+
+AC33 — Confidence and counterevidence reviewed.
+
+AC34 — Price-sensitive model lifecycle preserved.
+
+AC35 — Actual cumulative Prepare-to-Scoring executed.
+
+AC36 — WP1–WP4 scores unchanged.
+
+AC37 — Genuine N/R dispositions retained where necessary.
+
+AC38 — Official FPT V8 unchanged.
+
+AC39 — Regression tests pass.
+
+AC40 — No new or worsened typecheck diagnostics.
+
+AC41 — Risk Policy and authority restrictions preserved.
+
+AC42 — No unauthorized production activation.
+
+AC43 — No additional report discovery.
+
+AC44 — Exact artifact and implementation identities recorded.
+
+AC45 — One consolidated final closure report produced.
+
+Numeric valuation coverage is not an acceptance requirement.
+
+Do not mark an inaccessible or unverified document as successfully admitted.
+
+Do not mark an unsupported assumption as qualified merely to achieve numeric coverage.
+
+---
+
+## 32. Versioning and final deliverable
+
+Create the versioned WP5 v1.1 methodology and evaluator successor.
+
+Use existing repository naming and versioning conventions.
+
+Preserve WP5 v1.0 unchanged.
+
+Suggested final artifact directory:
+
+docs/fundamental-data-engine/fpt-valuation-forward-return/v1.1/
+
+Create one consolidated final report:
+
+WP5_V1_1_EXTERNAL_RESEARCH_VALUATION_FPT_FINAL_CLOSURE.md
+
+Include:
+
+1. Owner authorization.
+2. Approved methodology v1.1.
+3. Exact predecessor identity.
+4. Six-report manifest.
+5. Document admission results.
+6. Actual extracted research evidence.
+7. Source-family independence.
+8. Forecast revisions.
+9. FTEL and earnings normalization.
+10. Corporate-action shareholder bridge.
+11. Forecast horizon treatment.
+12. Assumption qualification comparison.
+13. Dependency coupling correction.
+14. Rubric-specific cross-check and adverse veto.
+15. Zero-credit and no-rerating models.
+16. Actual PRIMARY valuation.
+17. Actual RET valuation.
+18. Actual MOS valuation.
+19. Actual analyst-to-executable trace.
+20. Confidence and counterevidence.
+21. Effective Score.
+22. Cumulative workflow proof.
+23. New reusable skill.
+24. Six existing skill updates.
+25. Regression.
+26. Typecheck disposition.
+27. Artifact SHA-256 identities.
+28. Git commit identity.
+29. AC01–AC45 dispositions.
+30. Remaining genuine limitations.
+31. Final research acceptance recommendation.
+
+Create a scoped implementation commit consistent with existing repository governance.
+
+Do not commit unrelated owner changes.
+
+Do not push unless separately authorized.
+
+Do not manufacture final owner acceptance.
+
+---
+
+## 33. Final execution summary
+
+Return:
+
+- Approved report count.
+- Successfully admitted report count.
+- Excluded or failed report count and reasons.
+- Extracted research observations.
+- Qualified assumptions before and after.
+- Remaining unqualified assumptions.
+- Normalized EPS range or N/R.
+- Qualified earnings growth range or N/R.
+- Economic dilution range or N/R.
+- Qualified dividend basis or explicit zero credit.
+- Qualified fair multiple or N/R.
+- Qualified exit assumption or N/R.
+- Qualified fair-value range or N/R.
+- Qualified five-year base IRR or N/R.
+- No-rerating IRR.
+- Zero-credit IRR.
+- Downside IRR.
+- Conservative intrinsic value or N/R.
+- Margin of Safety or N/R.
+- VAL-PRIMARY Effective Score.
+- VAL-RET Effective Score.
+- VAL-MOS Effective Score.
+- Methods and validity.
+- Valuation total.
+- Cumulative assessed points.
+- Effective rubric coverage.
+- Rated weight.
+- Confirmed versus provisional coverage.
+- Genuine valuation N/R.
+- Dependency correction verdict.
+- Research intake skill verdict.
+- Six-skill update verdict.
+- Prepare-to-Scoring verdict.
+- Regression results.
+- Typecheck disposition.
+- Implementation commit.
+- Final acceptance recommendation.
+
+---
+
+## 34. Stopping rules
+
+Complete one coordinated WP5 v1.1 execution.
+
+No additional report discovery.
+
+No repeated external evidence search.
+
+No reopening WP1–WP4.
+
+No changes to accepted predecessor scores.
+
+No qualitative substitute for valuation.
+
+No automatic broker target-price adoption.
+
+No arbitrary earnings haircut qualification.
+
+No unsupported multiple qualification.
+
+No mechanical averaging of conflicting models.
+
+No incorrect stock-dividend dilution.
+
+No forced numeric valuation score.
+
+No change to canonical scoring bands.
+
+No new scoring engine.
+
+No duplicate skills.
+
+No production scoring.
+
+No formal ranking.
+
+No production publication.
+
+No actionable investment decision.
+
+No automatic continuation to WP6.
+
+If one or more valuation rubrics remain genuine N/R after the authorized reports and correction have been fully evaluated, accept that disposition as the final WP5 research limitation.
+
+Stop after actual FPT reassessment, cumulative scoring, regression validation, scoped implementation closure and the single consolidated final report.
