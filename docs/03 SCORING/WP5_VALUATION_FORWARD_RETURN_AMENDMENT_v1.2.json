@@ -1,0 +1,82 @@
+{
+  "status": "APPROVED_BASELINE",
+  "methodology": "wp5-bounded-irr-v1.2.0",
+  "implementation": "valuation-bounded-irr-research-v1.2.0",
+  "weights": {
+    "VAL-PRIMARY": 8,
+    "VAL-RET": 8,
+    "VAL-MOS": 4
+  },
+  "decisions": {
+    "VA01": "Preserve VAL-PRIMARY weight 8, VAL-RET weight 8, VAL-MOS weight 4, and all canonical bands.",
+    "VA02": "Do not substitute qualitative profiles for quantitative valuation.",
+    "VA03": "Prioritize Method B detailed sector valuation. Use Method A bounded analyst valuation when detailed evidence is insufficient.",
+    "VA04": "Method A retains canonical valuation band semantics.",
+    "VA05": "Method A ceilings: PRIMARY 6/8, RET 6/8, MOS 3/4.",
+    "VA06": "Apply sector-specific valuation methods. DCF is not mandatory for every VN30 issuer.",
+    "VA07": "For FPT, prioritize DCF/SOTP, with normalized earnings valuation and bounded owner-earnings valuation as fallback.",
+    "VA08": "Use raw close at cutoff, not adjusted close. Verify units and source hash.",
+    "VA09": "Verify shares outstanding and corporate-action basis at the same cutoff.",
+    "VA10": "Permit qualified normalized earnings ranges rather than requiring an exact point estimate.",
+    "VA11": "Annualized NPAT is not automatically normalized earnings. Require scope and materiality review.",
+    "VA12": "Preserve FTEL accounting scope and economic exposure. Do not mechanically combine pre-FTEL and post-FTEL observations.",
+    "VA13": "Distinguish Cost of Equity, WACC, Expected IRR and investor hurdle rate.",
+    "VA14": "Permit economically supported analyst cost-of-capital ranges.",
+    "VA15": "Implement Valuation Assumption Qualification Framework. Sensitivity-only inputs cannot independently authorize scoring.",
+    "VA16": "Use base, downside, upside and reverse valuation. A qualified explicitly conservative base case does not require scenario probabilities.",
+    "VA17": "Preserve existing M3 IRR thresholds.",
+    "VA18": "VAL-RET must address growth, exit value, distributions, dilution and scenario uncertainty.",
+    "VA19": "Evaluate no-multiple-expansion returns separately. Do not award high points merely because of rerating.",
+    "VA20": "VAL-MOS requires conservative intrinsic value, downside and permanent impairment review.",
+    "VA21": "Do not automatically equate consolidated FCF with parent-shareholder FCFE or classify all deposits as excess cash.",
+    "VA22": "Preserve valuation cross-checks and common-dependency controls. Do not mechanically average conflicting models.",
+    "VA23": "Reuse confidence, counterevidence, materiality and Incremental Assessment.",
+    "VA24": "Qualified valuation models may be retained, but price-sensitive points must be recalculated using the new raw price and current share basis. Do not mechanically carry forward valuation scores.",
+    "VA25": "Preserve Risk Policy, Stage 0, Hard Veto, formal ranking, actionability and production authority.",
+    "VA26": "Use retained FY2022–FY2025 and Q1–Q3/2026 evidence through 2026-11-13. Do not reopen WP1–WP4.",
+    "VA27": "Update the six existing skills and execute actual cumulative Prepare → Adoption → Preflight → Scoring for BQ + FH + GQ + IC + VAL.",
+    "VA28": "Complete one coordinated implementation and assumption-qualification cycle using retained evidence. Do not force points or repeat evidence discovery. Genuine N/R is acceptable."
+  },
+  "owner": {
+    "path": "docs/fundamental-data-engine/fpt-valuation-forward-return/v1.2/OWNER_REQUEST.txt",
+    "sha256": "6a02d803c3f5dee01c1999c5b07f469b299dcc1637b9d13249719f6e0e98c919"
+  },
+  "input": {
+    "path": "docs/fundamental-data-engine/fpt-valuation-forward-return/v1.2/FPT_BOUNDED_RETURN_ASSESSMENT.json",
+    "sha256": "86c1a659141b00402ee195194de6610bff0a8d9dd84a6ecd3bd8b07ead7d2207"
+  },
+  "predecessorAcceptance": {
+    "path": "docs/fundamental-data-engine/fpt-valuation-forward-return/v1.1/WP5_V1_1_EXTERNAL_RESEARCH_VALUATION_FPT_FINAL_CLOSURE.md",
+    "sha256": "ca6b6ee3039d20a92832dff5eadb4afb5b24c6bcbc8aa4d3d357acc0db147885"
+  },
+  "predecessorResult": {
+    "path": "docs/fundamental-data-engine/fpt-valuation-forward-return/v1.1/FPT_VALUATION_RESULT.json",
+    "sha256": "b4394ddb130f1439f081c299e3b3a89202d1ed204f3b5df96ff44b9782da6265"
+  },
+  "legacyWorkflow": {
+    "path": "docs/fundamental-data-engine/fpt-valuation-forward-return/v1.1/FPT_VALUATION_WORKFLOW.json",
+    "sha256": "dee968eb6988ccef6003ebae2879d3f8a4bc3d06749c0ca344e087299ae41784"
+  },
+  "productionScoringAuthorized": false,
+  "publicationAuthorized": false,
+  "externalEvidence": {
+    "path": "docs/fundamental-data-engine/fpt-valuation-forward-return/v1.1/EXTERNAL_RESEARCH_EVIDENCE.json",
+    "sha256": "74ded3e72852e745e6598a05d85bb3c23f71ca666e7cf90bcdc5003474573206"
+  },
+  "diagnosticReviewed": {
+    "path": "docs/fundamental-data-engine/fpt-valuation-forward-return/v1.0/WP5_VALUATION_ASSUMPTION_AND_DEPENDENCY_DIAGNOSTIC.md",
+    "sha256": "9e6d7fff6599f696e1587e056ddf00bbee4007402bf1c0ea19c262c070628e5f"
+  },
+  "boundedDecisions": {
+    "BR01": "Preserve VAL-RET objective, weight 8 and canonical bands.",
+    "BR02": "Permit qualified IRR ranges instead of requiring a single qualified IRR point estimate.",
+    "BR03": "Permit conclusion-level qualification when uncertain material inputs are sufficiently bounded to establish a defensible economic return conclusion.",
+    "BR04": "If the complete qualified return range belongs to one canonical band, permit a score within that band.",
+    "BR05": "If the return range spans multiple bands, use an independently qualified conservative base case or another economically supported conservative conclusion. Do not automatically assign the lowest scenario's band.",
+    "BR06": "Investor return objectives do not determine scoring eligibility. Low IRR must remain scoreable.",
+    "BR07": "Preserve Zero-Dividend Credit, No-Rerating and multiple-contraction assessment.",
+    "BR08": "Sensitivity-only ranges cannot automatically authorize points.",
+    "BR09": "Preserve Method A ceiling, confidence, counterevidence, materiality, Risk Policy and authority.",
+    "BR10": "Execute one bounded VAL-RET reassessment using retained evidence. Do not reopen other rubrics."
+  }
+}

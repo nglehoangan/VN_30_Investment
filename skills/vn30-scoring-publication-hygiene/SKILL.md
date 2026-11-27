@@ -72,3 +72,8 @@ Record assumption provenance, materiality, scope, downside, counterevidence and 
 ### Valuation v1.1 external research and independent rubric eligibility
 
 Use the [external research intake skill](../vn30-external-research-evidence/SKILL.md) for approved inputs only. Bind material dependencies, cross-check and adverse evidence per rubric/model/route/period. Keep publication eligibility, source-family revisions, investor corporate-action entitlement and terminal horizon traceable. Explicit zero dividend credit makes no payout prediction. Same-basis no-rerating may use the scale-free return when normalized economics, growth, dilution and contraction review qualify. Preserve independent conservative MOS, price-bound recalculation, sensitivity-only labels, exact replay and research authority.
+
+
+### WP5 bounded shareholder IRR
+
+For one ticker and cutoff, use the [scoped VAL-RET v1.2 amendment](../../docs/03%20SCORING/WP5_VALUATION_FORWARD_RETURN_AMENDMENT_v1.2.json). Distinguish qualified point, conservative case, single-band range, unexplained cross-band range and sensitivity only. Low or negative supported returns can score; zero points and N/R are distinct. Qualify the complete coherent uncertainty set, endpoints and material adverse cases. Review entitlement, terminal horizon, distribution credit and contraction. Use admitted analyst forecasts as evidence, and qualify material bounds independently. Exclude irrelevant model dependencies. Keep the existing cumulative workflow, price and share binding, counterevidence, model and band lineage, exact assessment record and research-only authority.

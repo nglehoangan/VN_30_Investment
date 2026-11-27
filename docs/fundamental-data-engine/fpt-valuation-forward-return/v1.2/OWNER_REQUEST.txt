@@ -1,0 +1,1084 @@
+# CODEX TASK — WP5 v1.2 Bounded IRR Assessment & Final FPT VAL-RET Reassessment
+
+## 1. Owner authorization
+
+The owner approves a bounded reassessment of VAL-RET before final WP5 closure.
+
+Implement Bounded IRR Assessment as a quantitative extension of the existing Method A valuation architecture.
+
+The objective is to distinguish:
+
+- Low expected shareholder return.
+- Uncertainty within an economically supported return range.
+- Genuine inability to establish an expected-return band.
+
+A low expected IRR is not a reason to return N/R.
+
+Preserve canonical VAL-RET semantics and thresholds.
+
+Do not modify VAL-PRIMARY or VAL-MOS.
+
+Do not reopen WP1–WP4.
+
+Do not discover additional external evidence.
+
+Complete one coordinated implementation, actual FPT assessment, regression and closure.
+
+## 2. Accepted baseline
+
+WP1–WP4 remain CLOSED.
+
+- BQ: 14/25.
+- FH: 7/15.
+- GQ: 8/15.
+- IC: 5/10.
+- Combined assessed points: 34/65.
+- Effective rubric coverage: 13/23.
+- Confirmed current: 9 rubrics, 41 rated weight, 21 points.
+- Provisional: 4 rubrics, 24 rated weight, 13 points.
+
+WP5 v1.1:
+
+- VAL-PRIMARY: N/R.
+- VAL-RET: N/R.
+- VAL-MOS: N/R.
+
+Implementation commit:
+
+499e93e023189d603a18c742188eb8d6e8e2f264
+
+Methodology:
+
+wp5-valuation-forward-return-v1.1.0
+
+Evaluator:
+
+valuation-independent-research-v1.1.0
+
+Workflow host:
+
+vn30-val-research-successor-v1.1
+
+Execution:
+
+exec-fa86143377e9e25f36f2e5e0
+
+Regression baseline:
+
+- TypeScript: 340/340.
+- Python: 44/44.
+- Formal integration: 33/33.
+- Official FPT V8 exact-scope replay: PASS.
+- Formal parity: CURRENT_PARITY_PASS.
+- Five pre-existing unrelated TypeScript diagnostics.
+
+Resolve actual local HEAD and working-tree state before implementation.
+
+Preserve the existing uncommitted diagnostic report.
+
+Do not delete or overwrite unrelated owner files.
+
+## 3. Mandatory source review
+
+Inspect:
+
+- docs/03 SCORING/METRIC_DEFINITIONS.md, sections 8.1–8.4.
+- docs/03 SCORING/SCORING_ENGINE.md.
+- docs/03 SCORING/WP5_VALUATION_FORWARD_RETURN_AMENDMENT_v1.0.json.
+- docs/03 SCORING/WP5_VALUATION_FORWARD_RETURN_AMENDMENT_v1.1.json.
+- src/domain/scoring/methodology.ts.
+- src/domain/current-scoring/valuation-research.ts.
+- src/domain/current-scoring/valuation-research-v11.ts.
+- Existing VAL-RET unit tests.
+- Existing assumption qualification contract.
+- Existing independent rubric dependency contract.
+- Existing Effective Score lifecycle.
+
+Review retained directory:
+
+docs/fundamental-data-engine/fpt-valuation-forward-return/v1.1/
+
+Including:
+
+- WP5_V1_1_EXTERNAL_RESEARCH_VALUATION_FPT_FINAL_CLOSURE.md.
+- EXTERNAL_RESEARCH_EVIDENCE.json.
+- FPT_VALUATION_ASSESSMENT.json.
+- FPT_VALUATION_RESULT.json.
+- FPT_VALUATION_WORKFLOW.json.
+- CANDIDATE.json.
+- TEST_RESULTS.json.
+- Six retained research PDFs.
+
+Review existing v1.0 diagnostic:
+
+WP5_VALUATION_ASSUMPTION_AND_DEPENDENCY_DIAGNOSTIC.md.
+
+Resolve exact artifact identities and dependencies.
+
+Do not perform another broad evidence-readiness audit.
+
+## 4. Bounded IRR owner decisions
+
+Record the following approved scope in WP5 v1.2.
+
+BR01 — Preserve VAL-RET objective, weight 8 and canonical bands.
+
+BR02 — Permit qualified IRR ranges instead of requiring a single qualified IRR point estimate.
+
+BR03 — Permit conclusion-level qualification when uncertain material inputs are sufficiently bounded to establish a defensible economic return conclusion.
+
+BR04 — If the complete qualified return range belongs to one canonical band, permit a score within that band.
+
+BR05 — If the return range spans multiple bands, use an independently qualified conservative base case or another economically supported conservative conclusion. Do not automatically assign the lowest scenario's band.
+
+BR06 — Investor return objectives do not determine scoring eligibility. Low IRR must remain scoreable.
+
+BR07 — Preserve Zero-Dividend Credit, No-Rerating and multiple-contraction assessment.
+
+BR08 — Sensitivity-only ranges cannot automatically authorize points.
+
+BR09 — Preserve Method A ceiling, confidence, counterevidence, materiality, Risk Policy and authority.
+
+BR10 — Execute one bounded VAL-RET reassessment using retained evidence. Do not reopen other rubrics.
+
+Promote the scoped amendment using existing governance conventions.
+
+Do not introduce a new scoring engine.
+
+## 5. Preserve canonical VAL-RET bands
+
+| Expected annualized five-year total return | Points |
+|---|---:|
+| Below 8% | 0–1 |
+| 8% to below 12% | 2–3 |
+| 12% to below 15% | 4–5 |
+| 15% to below 18% | 6 |
+| 18% to below 22% | 7 |
+| At least 22% | 8 |
+
+Method A maximum remains 6/8.
+
+Preserve Method B priority and maximum prerequisites.
+
+Do not redefine canonical bands.
+
+Do not require an expected IRR of 15% or 20% before allowing scoring.
+
+Within a multi-point band, select the lower point when uncertainty is high unless the existing governing methodology supports a stronger conclusion.
+
+## 6. Return assessment route architecture
+
+Preserve existing routes:
+
+1. Method B — Detailed Shareholder Return Assessment.
+2. Method A — Bounded Analyst Return Assessment.
+
+Extend Method A to support:
+
+- Qualified point-estimate IRR.
+- Qualified explicitly conservative base-case IRR.
+- Qualified bounded IRR range.
+
+Do not create Method C with a different economic objective.
+
+Preserve independent VAL-RET dependencies.
+
+Do not require qualified PRIMARY, MOS, DCF, WACC or Cost of Equity when they are not economically required by the selected shareholder return model.
+
+## 7. Qualification at assumption and conclusion levels
+
+Distinguish:
+
+- Exact factual observations.
+- Qualified point estimates.
+- Qualified bounded estimates.
+- Scenario restrictions.
+- Sensitivity-only inputs.
+- Unsupported inputs.
+- Invalidated inputs.
+
+Do not require every forecast variable to have an exact numerical point estimate.
+
+Permit uncertain variables to remain ranges where:
+
+- Their economic definitions are established.
+- The uncertainty set is economically justified.
+- Material adverse possibilities are included.
+- Their combined implications are reviewed.
+- The proposed return conclusion is adequately supported.
+
+A conclusion-level assessment must not bypass material economic integrity.
+
+If a material input remains unbounded and could reverse the proposed return conclusion, the range is not qualified.
+
+A collection of arbitrary sensitivities does not establish a complete qualified uncertainty set.
+
+Document which assumptions are material to the conclusion and which are non-material.
+
+Do not require qualification of an irrelevant operand merely because it exists in the registry.
+
+## 8. Bounded IRR evidence contract
+
+Implement a reusable contract using existing valuation assessment structures.
+
+Required fields:
+
+- Issuer.
+- Assessment period.
+- Information cutoff.
+- Market-price basis.
+- Share basis.
+- Selected model.
+- Return horizon.
+- Comparable normalized economic foundation.
+- Earnings growth range or path.
+- Economic dilution range or path.
+- Distribution treatment.
+- Relative or absolute exit multiple assumptions.
+- Terminal-period extension.
+- Scenario restrictions.
+- Supported uncertainty set.
+- Lower IRR.
+- Upper IRR.
+- Conservative representative case where available.
+- Material dependencies.
+- Non-material dependencies.
+- Range qualification rationale.
+- Economic scenario coherence.
+- Counterevidence.
+- Excluded scenarios and reasons.
+- Canonical bands covered.
+- Analyst-proposed points.
+- Confidence.
+- Adjacent-band rationale.
+- Effective Score eligibility.
+- Actionability restrictions.
+
+Distinguish:
+
+- QUALIFIED_IRR_RANGE.
+- QUALIFIED_CONSERVATIVE_CASE.
+- SENSITIVITY_ONLY_RANGE.
+- NO_DEFENSIBLE_RETURN_CONCLUSION.
+
+Use existing naming conventions where equivalent.
+
+Do not automatically assign qualified status.
+
+## 9. Band eligibility rules
+
+### Case A — Qualified range within a single band
+
+If all economically admissible outcomes in the qualified range fall within one canonical band:
+
+- Permit an analyst proposal within that band.
+- Apply the existing confidence and evidence requirements.
+- Apply Method A ceiling.
+- Preserve adjacent-band rationale.
+
+Illustrative examples:
+
+- Qualified IRR range 3%–7%: eligible for band 0–1.
+- Qualified IRR range 9%–11%: eligible for band 2–3.
+- Qualified IRR range 12.5%–14.5%: eligible for band 4–5.
+
+These are synthetic examples, not FPT conclusions.
+
+### Case B — Qualified range spanning multiple bands
+
+If the range crosses canonical bands:
+
+- Review whether an explicitly conservative base case is independently qualified.
+- Review whether the evidence supports a conservative return conclusion under existing M3 methodology.
+- Document why the selected band remains economically defensible.
+
+Do not automatically choose the lowest band merely because a severe stress case exists.
+
+Do not automatically choose the highest band.
+
+Do not use the midpoint of an IRR range without economic justification.
+
+Do not invent scenario probabilities.
+
+If no defensible expected-return conclusion exists, return N/R.
+
+### Case C — Sensitivity-only range
+
+If the underlying range is sensitivity-only:
+
+- Retain the numerical outputs.
+- Retain scenario limitations.
+- Do not authorize a score solely because every displayed sensitivity happens to fall within one band.
+
+### Case D — Low qualified IRR
+
+A supported low or negative expected IRR is an eligible economic conclusion.
+
+Do not convert it to N/R because it fails the investor return objective.
+
+Distinguish zero points from missing assessment.
+
+## 10. FPT retained market and financial basis
+
+Current cutoff:
+
+2026-11-13.
+
+Raw close:
+
+50,100 VND/share.
+
+Conditional shares:
+
+1,885,727,648.
+
+Retained 9M parent NPAT:
+
+7,778,081,180,761 VND.
+
+Mechanical annualized EPS:
+
+5,499.61 VND/share.
+
+TCBS November forecast:
+
+| FY | Parent NPAT, VND billion | EPS | Cash DPS | Shares, million |
+|---|---:|---:|---:|---:|
+| 2026 | 10,606 | 5,624 | 2,000 | 1,886 |
+| 2027 | 11,468 | 5,504 | 1,957 | 2,083 |
+| 2028 | 12,646 | 5,494 | 1,954 | 2,302 |
+| 2029 | 13,960 | 5,488 | 1,952 | 2,543 |
+| 2030 | 15,443 | 5,496 | 1,954 | 2,810 |
+
+Verify all retained operands and definitions.
+
+Use existing admitted evidence.
+
+Do not download additional reports.
+
+Preserve the distinction between issuer financial facts and TCBS analyst forecasts.
+
+Retained parent NPAT CAGR approximately 9.85% over four forecast intervals.
+
+Published EPS CAGR approximately -0.57%.
+
+Do not equate published EPS growth with existing shareholder economic growth without reviewing investor entitlement.
+
+## 11. FPT sustainable earnings review
+
+Determine whether the retained evidence supports a sufficiently bounded recurring earnings or per-share economic growth path.
+
+Review:
+
+- FY2022–FY2025 earnings history.
+- Current post-FTEL parent earnings.
+- TCBS FY2026–FY2030 forecasts.
+- TCBS June-to-November earnings downgrades.
+- Accepted GQ forward economics.
+- Accepted GQ incremental capital limitations.
+- Accepted FH cash and funding risks.
+- FTEL equity-accounted earnings.
+- Appropriations and financial-income considerations.
+
+Do not require certainty that TCBS forecasts will occur.
+
+Do not use the broker forecast as factual future earnings.
+
+Determine whether the forecast and retained counterevidence support:
+
+- A conservative growth path.
+- A bounded sustainable growth range.
+- A qualified relative earnings trajectory.
+- Or only sensitivity.
+
+For scale-free zero-credit models, an exact normalized EPS level is not mandatory if the comparable normalized economic earnings basis is sufficiently supported.
+
+Do not waive the requirement to establish that comparable economic basis.
+
+## 12. Investor entitlement and dilution bounds
+
+Reuse the v1.1 shareholder entitlement bridge.
+
+Retained scenarios allocate:
+
+- 0% of projected share increments to pro-rata entitlement.
+- 50% to pro-rata entitlement.
+- 100% to pro-rata entitlement.
+
+These are sensitivity boundaries.
+
+Review whether the actual TCBS share-distribution explanation and retained corporate-action evidence support a narrower economically defensible range.
+
+Distinguish:
+
+- Mathematical shareholding boundaries.
+- Legally supported entitlements.
+- Analyst forecast assumptions.
+- Economic dilution.
+- Pro-rata stock distributions.
+
+Do not require exact future issuance timing if a supported range can establish the return conclusion.
+
+However, do not assume that the three tested allocations cover every material future issuance possibility.
+
+Do not treat 100% pro-rata entitlement as a verified fact.
+
+Do not treat 0% pro-rata entitlement as the expected scenario merely because it is conservative.
+
+If future issuance cannot be bounded sufficiently, retain that qualification limitation.
+
+## 13. Forecast horizon and November 2031
+
+Preserve the exact five-year horizon:
+
+13 November 2026 to 13 November 2031.
+
+TCBS forecast ends FY2030.
+
+The remaining terminal stub is approximately 0.868 years.
+
+Review whether retained evidence supports a bounded terminal extension.
+
+Evaluate economically justified:
+
+- Flat investor-equivalent earnings.
+- Continued but moderating growth.
+- Adverse earnings contraction.
+- Other retained evidence-supported terminal scenarios.
+
+Do not automatically qualify flat terminal earnings merely because it appears conservative.
+
+Do not attribute any 2031 forecast to TCBS.
+
+Determine whether uncertainty in the terminal stub materially changes the proposed canonical return band.
+
+If the effect is demonstrably bounded within the relevant conclusion, do not require an exact 2031 earnings forecast.
+
+If it can materially reverse the conclusion and remains unbounded, retain N/R.
+
+## 14. Zero-Dividend Credit and distribution treatment
+
+Preserve existing Zero-Dividend Credit implementation.
+
+Zero credit means future dividend cash flows are deliberately excluded from the assessment.
+
+It does not mean FPT is forecast to pay no dividends.
+
+Review positive dividend credit separately.
+
+Use the retained TCBS cash DPS forecast and issuer historical distributions.
+
+Do not require a positive dividend forecast for an intentional zero-credit case.
+
+However, for canonical total-return scoring:
+
+- Establish why zero credit is a defensible conservative representative assessment.
+- Review whether excluding economically material expected distributions creates a misleading low-return conclusion.
+- Preserve positive-dividend sensitivities.
+- Document the distinction between a conservative return floor and an expected total-return assessment.
+
+Do not award a low expected-return score solely because discretionary dividend credit was excluded.
+
+## 15. No-rerating and multiple-contraction models
+
+Reuse existing no-rerating implementation.
+
+For zero dividend credit and constant aggregate growth and economic dilution:
+
+IRR = (1 + growth) / (1 + dilution) - 1.
+
+For a relative terminal multiple factor m:
+
+IRR = [(1 + growth) / (1 + dilution)] × m^(1/5) - 1.
+
+Support variable annual paths where needed.
+
+Preserve:
+
+- Comparable entry and exit earnings bases.
+- Dated price and share identity.
+- Economic dilution.
+- Corporate-action equivalence.
+- Multiple-contraction counterevidence.
+
+No rerating is a scenario convention, not a prediction about future market valuation.
+
+Review whether the retained external research supports a conservative exit convention and a plausible contraction range.
+
+Do not automatically qualify an arbitrary 10% or 20% contraction.
+
+Do not require an absolute exit P/E when the selected relative valuation model does not need one.
+
+## 16. Reproduce retained FPT sensitivities
+
+Reproduce exact v1.1 results before performing the new assessment.
+
+| Pro-rata entitlement | Zero credit, no rerating | Illustrative DPS, no rerating | 20% contraction, zero credit |
+|---|---:|---:|---:|
+| 0% | -0.46% | 2.72% | -4.80% |
+| 50% | 3.69% | 7.07% | -0.83% |
+| 100% | 7.80% | 11.38% | 3.10% |
+
+Also reproduce:
+
+- Constant 10% growth, 0.7% dilution, zero credit: approximately 9.2354%.
+- Constant 10% growth, 0.7% dilution, illustrative 20% payout: approximately 11.3939%.
+
+Preserve all previous results as sensitivity-only unless the new assessment independently supports a changed qualification.
+
+Do not modify retained v1.1 artifacts.
+
+## 17. Actual bounded range assessment
+
+Construct the economically admissible return uncertainty set using retained evidence.
+
+Review coherent combinations of:
+
+- Earnings trajectory.
+- Investor entitlement.
+- Economic dilution.
+- Terminal-period extension.
+- Distribution credit.
+- Relative exit multiple.
+- Funding and earnings downside.
+
+Do not simply combine independent minimum and maximum assumptions when the combination is economically incoherent.
+
+Evaluate correlated assumptions and meaningful adverse combinations.
+
+If numerical range calculation uses a grid, interval calculation or scenario enumeration, document:
+
+- The included domains.
+- Dependencies between assumptions.
+- Boundary logic.
+- Whether interior outcomes were reviewed.
+- Why the resulting lower and upper estimates support the claimed range.
+- Which economic outcomes remain outside the model.
+
+Do not present the min/max of a few selected scenarios as mathematically or economically exhaustive bounds without justification.
+
+Produce:
+
+| Dependency | Retained evidence | Proposed bound | Qualification | Materiality | Remaining uncertainty |
+|---|---|---|---|---|---|
+
+Then produce:
+
+| Return model | Lower IRR | Upper IRR | Canonical bands | Qualification | Economic conclusion |
+|---|---|---|---|---|---|
+
+Evaluate whether any qualified bounded range or conservative base case establishes a defensible VAL-RET band.
+
+## 18. FPT trial hypothesis
+
+The retained no-rerating zero-credit sensitivity range is approximately:
+
+-0.46% to 7.80%.
+
+This range falls numerically below the 8% canonical threshold.
+
+Investigate whether this provides a defensible conservative expected-return conclusion.
+
+Potential candidate:
+
+VAL-RET 0/8 or 1/8.
+
+This is a diagnostic hypothesis, not an approved score.
+
+Do not force the range to stay below 8%.
+
+Do not discard positive distributions, terminal earnings growth or other material evidence to obtain a low band.
+
+If the qualified conservative base instead supports another canonical band, use that actual band.
+
+If no qualified return conclusion exists, retain N/R.
+
+## 19. Analyst proposal and executable validation
+
+Record the analyst assessment before invoking the evaluator.
+
+For each period provide:
+
+- Selected route.
+- Return model.
+- Qualified foundation.
+- Qualified uncertainty range or conservative case.
+- Lower and upper IRR.
+- Canonical band mapping.
+- Proposed points.
+- Reason for higher adjacent band rejection.
+- Reason for lower adjacent band rejection.
+- Confidence.
+- Counterevidence.
+- Remaining limitations.
+
+The executable must independently verify:
+
+- Source and temporal eligibility.
+- Market and share basis.
+- Applicable model.
+- Qualification contract.
+- Correct calculations.
+- Canonical band eligibility.
+- Method A ceiling.
+- Material contradiction handling.
+- Analyst proposal integrity.
+
+Do not let a range label alone authorize scoring.
+
+Do not allow unsupported material assumptions to bypass validation through conclusion-level qualification.
+
+Return explicit gaps when validation fails.
+
+## 20. Preserve other valuation rubrics
+
+VAL-PRIMARY remains N/R.
+
+VAL-MOS remains N/R.
+
+Do not reevaluate their economic assessments.
+
+Do not alter their assumptions, bands, selected routes or Effective Scores.
+
+Reuse their accepted v1.1 results.
+
+Only update shared implementation components when necessary for the approved VAL-RET extension.
+
+Verify exact replay of both retained N/R outcomes.
+
+## 21. Confidence and counterevidence
+
+Reuse the accepted five-dimensional confidence architecture:
+
+- Freshness.
+- Completeness.
+- Source reliability.
+- Estimate dependence.
+- Model uncertainty.
+
+Do not require high confidence merely to assign a conservative low band.
+
+Preserve existing confidence-based actionability restrictions.
+
+Review:
+
+- Forecast downgrade.
+- Weak cash conversion.
+- FTEL normalization.
+- Economic dilution.
+- Uncertain distributions.
+- Exit multiple contraction.
+- Terminal extension.
+- Funding vulnerability.
+- AI disruption.
+
+A bounded assessment may tolerate unresolved non-material uncertainty.
+
+A material unresolved contradiction remains disqualifying.
+
+Do not confuse limited confidence with zero economic points.
+
+## 22. Effective Score and price-only refresh
+
+Preserve existing price-sensitive valuation lifecycle.
+
+If VAL-RET receives an eligible score:
+
+- Bind it to the actual cutoff price and share basis.
+- Preserve model identity.
+- Record qualified range and selected band.
+- Preserve Method A limitations.
+- Recalculate or revalidate when material dependencies change.
+
+For scale-free no-rerating calculations, numerical price invariance may be mathematically valid.
+
+Continue binding the assessment to eligible dated market observations and reviewing exit-contraction plausibility.
+
+Do not mechanically inherit historical price-sensitive scores.
+
+Do not change historical v1.1 artifacts.
+
+## 23. Update reusable skills
+
+Update only the relevant existing seven skills.
+
+Do not create an eighth skill.
+
+### equity-s1-s5-assessment
+
+Add:
+
+- Bounded IRR Assessment.
+- Conclusion-level range qualification.
+- Band stability.
+- Distinction between low expected return and missing assessment.
+
+### vn30-evidence-coverage-closure
+
+Add:
+
+- Qualified ranges instead of unnecessary point-estimate requirements.
+- Economically admissible uncertainty sets.
+- Material versus irrelevant assumptions.
+
+### vn30-incremental-scoring
+
+Add:
+
+- Return-range dependency refresh.
+- Band re-evaluation.
+- Price-bound scale-free return assessment.
+
+### vn30-rollout-orchestrator
+
+Add the bounded VAL-RET assessment option using the existing category workflow.
+
+### vn30-structural-nr-remediation
+
+Distinguish:
+
+- Qualified low IRR.
+- Qualified single-band range.
+- Qualified multi-band range.
+- Qualified conservative base.
+- Sensitivity-only range.
+- Unbounded material uncertainty.
+- Genuine N/R.
+
+### vn30-scoring-publication-hygiene
+
+Preserve:
+
+- Qualified uncertainty set.
+- Return bounds.
+- Scenario restrictions.
+- Economic evidence.
+- Analyst proposal.
+- Band decision.
+- Model and calculation identities.
+
+### vn30-external-research-evidence
+
+Add the use of admitted analyst forecast ranges for bounded shareholder return qualification.
+
+Do not automatically qualify external research estimates.
+
+## 24. Required tests
+
+Add focused tests covering:
+
+### Canonical band eligibility
+
+- Qualified IRR below 8% receives an eligible 0 or 1 proposal.
+- Negative qualified IRR is scoreable.
+- Qualified single-band range 3%–7%.
+- Qualified single-band range 9%–11%.
+- Qualified single-band range 12.5%–14.5%.
+- Exact threshold boundaries.
+- Method A ceiling 6/8.
+- Failure to meet investor target does not cause N/R.
+
+### Range qualification
+
+- Supported uncertainty set accepted.
+- Arbitrary sensitivity range rejected.
+- Material unbounded assumption rejected.
+- Non-material unresolved assumption does not automatically block.
+- Cross-band range with qualified conservative case.
+- Cross-band range without defensible return conclusion.
+- Unsupported lowest-band selection rejected.
+- Unsupported midpoint selection rejected.
+- Material omitted scenario rejected.
+
+### FPT-specific economic controls
+
+- Zero-dividend credit remains distinct from forecast zero payout.
+- Conservative return floor not automatically treated as expected return.
+- Comparable economic earnings basis required.
+- Investor entitlement adjustment.
+- Economic dilution separated from pro-rata issuance.
+- No double dilution.
+- Terminal stub qualification.
+- Multiple contraction.
+- Actual retained sensitivity replay.
+
+### Independence and integration
+
+- VAL-RET independent of PRIMARY N/R.
+- VAL-RET independent of MOS N/R.
+- No unnecessary CoE/WACC dependency.
+- Material common adverse evidence preserved.
+- Price-bound identity.
+- Prepare → Adoption → Preflight → Scoring.
+- Numeric zero preserved as a rated result.
+- N/R remains distinct from zero.
+- Formal authority restrictions preserved.
+
+## 25. Actual cumulative workflow
+
+Execute actual FPT VAL-RET reassessment using retained evidence.
+
+Use the existing cumulative research workflow.
+
+Required sequence:
+
+1. Verify retained evidence and price/share basis.
+2. Review sustainable earnings foundation.
+3. Review investor entitlement bounds.
+4. Review terminal-period extension.
+5. Review distributions and zero credit.
+6. Review exit multiple and contraction.
+7. Construct bounded return assessment.
+8. Complete assumption and conclusion qualification.
+9. Record analyst proposal.
+10. Execute validation.
+11. Resolve Effective Score.
+12. Retain VAL-PRIMARY and VAL-MOS N/R.
+13. Prepare.
+14. Adoption.
+15. Preflight.
+16. Scoring.
+17. Cumulative aggregation.
+18. Decision analytical integration.
+19. Research HTML rendering.
+
+Do not stop after synthetic tests.
+
+If actual FPT remains N/R, demonstrate the precise remaining economic reason.
+
+## 26. Cumulative score accounting
+
+Preserve WP1–WP4 at 34/65.
+
+If VAL-RET becomes rated:
+
+- Add its actual points.
+- Add its full rated weight of 8.
+- Increase effective rubric coverage by one.
+
+Examples:
+
+| VAL-RET result | Combined assessed points | Rated weight | Effective coverage |
+|---|---:|---:|---:|
+| N/R | 34/65 | 65/100 | 13/23 |
+| 0/8 | 34/73 | 73/100 | 14/23 |
+| 1/8 | 35/73 | 73/100 | 14/23 |
+| 2/8 | 36/73 | 73/100 | 14/23 |
+
+Do not treat a zero-point rated rubric as missing.
+
+Do not normalize partial scores to 100.
+
+VAL-PRIMARY and VAL-MOS retain 12 total N/R weight.
+
+If VAL-RET remains N/R, total valuation N/R weight remains 20.
+
+Full Investment Score remains null.
+
+## 27. Risk and authority
+
+Preserve:
+
+- Stage 0 UNKNOWN.
+- Hard Veto PENDING.
+- Residual Risk NOT_RATED.
+- Formal FH and valuation gates NOT_ASSESSED.
+- Formal ranking disabled.
+- Investment actionability disabled.
+- Production scoring disabled.
+- Production publication disabled.
+
+A qualified low research IRR is an analytical result, not an automatic AVOID decision.
+
+Do not modify official FPT V8.
+
+## 28. Regression
+
+Verify:
+
+- All 13 accepted predecessor Effective Scores unchanged.
+- VAL-PRIMARY N/R unchanged.
+- VAL-MOS N/R unchanged.
+- WP5 v1.1 exact replay preserved.
+- Official FPT V8 exact-scope replay.
+- Formal integration tests.
+- Existing TypeScript tests.
+- Existing Python tests.
+- New bounded IRR tests.
+- Remaining seven WP6/WP7 methodologies unchanged.
+
+Preserve five existing unrelated typecheck diagnostics.
+
+No new or worsened diagnostics.
+
+Report actual executed test counts.
+
+## 29. Acceptance criteria
+
+AC01 — Scoped Bounded IRR Amendment recorded.
+
+AC02 — Canonical VAL-RET bands and weight preserved.
+
+AC03 — Qualified IRR range supported.
+
+AC04 — Low qualified IRR remains scoreable.
+
+AC05 — Sensitivity-only ranges rejected as standalone scoring evidence.
+
+AC06 — Material uncertainty cannot bypass qualification.
+
+AC07 — Single-band and cross-band logic implemented.
+
+AC08 — Conservative base-case eligibility preserved.
+
+AC09 — Zero-credit and expected-total-return distinctions preserved.
+
+AC10 — Comparable economic foundation retained.
+
+AC11 — Investor entitlement and dilution reviewed.
+
+AC12 — November 2031 extension reviewed.
+
+AC13 — Actual retained FPT sensitivity calculations reproduced.
+
+AC14 — Actual FPT bounded return assessment executed.
+
+AC15 — Actual analyst proposal or justified null proposal recorded.
+
+AC16 — Executable validation completed.
+
+AC17 — Confidence and counterevidence retained.
+
+AC18 — Seven relevant skills updated.
+
+AC19 — Cumulative Prepare-to-Scoring execution completed.
+
+AC20 — Numeric zero correctly distinguished from N/R.
+
+AC21 — VAL-PRIMARY and VAL-MOS unchanged.
+
+AC22 — WP1–WP4 unchanged.
+
+AC23 — Regression passes.
+
+AC24 — No new typecheck diagnostics.
+
+AC25 — Formal authority and Risk Policy unchanged.
+
+AC26 — No external evidence discovery.
+
+AC27 — Final report and implementation identities retained.
+
+Numeric score coverage is not an acceptance requirement.
+
+## 30. Final deliverable
+
+Create one consolidated report:
+
+WP5_V1_2_BOUNDED_IRR_FPT_FINAL_CLOSURE.md
+
+Suggested directory:
+
+docs/fundamental-data-engine/fpt-valuation-forward-return/v1.2/
+
+Include:
+
+1. Owner approval.
+2. Exact predecessor identity.
+3. Scoped methodology amendment.
+4. Bounded IRR contract.
+5. Retained evidence.
+6. Actual FPT growth and earnings review.
+7. Investor entitlement qualification.
+8. Terminal-period qualification.
+9. Zero-credit and dividend review.
+10. Exit multiple and contraction review.
+11. Economically admissible uncertainty set.
+12. Qualified versus sensitivity-only ranges.
+13. Canonical band coverage.
+14. Actual analyst proposal.
+15. Executable validation.
+16. Effective Score.
+17. Confidence and counterevidence.
+18. Cumulative score accounting.
+19. Prepare-to-Scoring proof.
+20. Skills updated.
+21. Regression.
+22. Typecheck disposition.
+23. Artifact hashes.
+24. Scoped implementation commit.
+25. Final WP5 acceptance recommendation.
+
+Create a scoped local implementation commit.
+
+Do not push unless authorized.
+
+Preserve unrelated working-tree changes.
+
+Do not manufacture final owner acceptance.
+
+## 31. Required execution summary
+
+Return:
+
+- Qualified earnings growth or path.
+- Investor entitlement range.
+- Economic dilution range.
+- Dividend treatment.
+- Terminal extension disposition.
+- Exit multiple convention.
+- Contraction review.
+- Qualified IRR lower bound, if available.
+- Qualified IRR upper bound, if available.
+- Qualified conservative base IRR, if available.
+- Canonical bands covered.
+- Range qualification status.
+- Analyst-proposed points.
+- Executable points.
+- Effective Score.
+- Method and validity.
+- Confidence.
+- Remaining economic limitations.
+- Cumulative assessed points.
+- Rated weight.
+- Effective coverage.
+- Prepare-to-Scoring verdict.
+- Regression results.
+- Implementation commit.
+- Final acceptance recommendation.
+
+## 32. Stopping rules
+
+Complete one bounded VAL-RET reassessment.
+
+No additional external research.
+
+No changes to VAL-PRIMARY or VAL-MOS.
+
+No reopening WP1–WP4.
+
+No new scoring engine.
+
+No new skill.
+
+No change to canonical bands or weights.
+
+No automatic promotion of sensitivity ranges.
+
+No forced score.
+
+Do not require IRR to meet the investor target.
+
+Do not weaken Risk Policy.
+
+Do not activate formal production.
+
+If a defensible low-return band is established, score it.
+
+If a defensible higher band is established, score that band.
+
+If no qualified return conclusion is established, retain Genuine N/R.
+
+Stop after actual FPT reassessment, cumulative workflow, regression and consolidated final closure.
+
+Do not initiate another VAL remediation cycle or automatically proceed to WP6.
