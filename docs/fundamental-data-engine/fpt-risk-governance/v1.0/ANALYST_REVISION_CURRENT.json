@@ -1,0 +1,218 @@
+{
+  "ticker": "FPT",
+  "cutoff": "2026-11-13",
+  "freeze": "128e1a424bcd75bf7a19f2779a619e21ca021a14bd03973a2c98d02ebadae26b",
+  "revision": 1,
+  "candidates": {
+    "RG-GOV": {
+      "A": {
+        "route": "A",
+        "points": 3,
+        "band": "Generally sound",
+        "topics": {
+          "disclosure": [
+            "q3",
+            "tax"
+          ],
+          "related_parties": [
+            "q3rpt",
+            "rpt",
+            "supervision"
+          ],
+          "minority": [
+            "agm",
+            "capital",
+            "esop"
+          ],
+          "auditor": [
+            "audit",
+            "h1audit"
+          ]
+        },
+        "rationale": "Observed disclosures, related-party schedules and formal shareholder process support generally sound public governance. Interim PwC review and explicit scope reporting support reaffirmed governance after the events were reviewed; publicly reported small tax event warrants monitoring.",
+        "higher": "No transaction-by-transaction terms, abstentions or demonstrated minority outcomes.",
+        "lower": "Available positive reporting and procedures outweigh the documented bounded concerns.",
+        "counterevidence": "Related-party disclosure does not establish fairness. Missing facts remain unknown. Tax decision source is a retained disclosure review; no exhaustive search or legal outcome finding.",
+        "limits": "Limited governance review, no formal veto clearance. Private deliberations, exact votes, and audit of current Q3 are unavailable.",
+        "confidence": [
+          2,
+          1,
+          1,
+          1,
+          1
+        ],
+        "confidenceRationale": "Date appropriate with audit and primary ledger context; exact conduct and events incompletely reviewed.",
+        "materialContradiction": false,
+        "findings": [
+          {
+            "type": "MONITOR",
+            "policy": "RISK_POLICY_v1.0 §11.2 / DECISION_FRAMEWORK §4.7",
+            "fact": "tax",
+            "rationale": "Record and refer for integrity review if recurrence or material misstatement emerges. Retained notice insufficient to establish serious policy trigger; formal action already restricted."
+          }
+        ]
+      }
+    },
+    "RG-RISK": {
+      "A": {
+        "route": "A",
+        "points": 1,
+        "band": "ELEVATED_WEAK",
+        "topics": {
+          "residual_risks": [
+            "q3fx",
+            "h1fx",
+            "fy25fx"
+          ],
+          "mitigation": [
+            "q3fx",
+            "h1fx"
+          ],
+          "distinct_channels": [
+            "execution"
+          ]
+        },
+        "rationale": "Q3 JPY debt magnitude increased about 2.11× with GBP exposure also present. Gross receipts and prior USD hedge do not demonstrate currency, maturity or scope matching. Complex delivery risk remains.",
+        "higher": "Dated scoped FY hedge and gross cash receipts cannot establish effective cutoff mitigation.",
+        "lower": "Mixed currency exposure and existing delivery and treasury activity fall short of demonstrated HIGH or a solvency conclusion.",
+        "counterevidence": "USD/JPY receipts help liquidity but exclude them from quantified net positioning and avoid duplicating FH.",
+        "limits": "Hedge and counterparty scope limited. Associate cash dependence belongs to FH or thesis only absent separate loss outcome. Cyber incidents/contract losses unverified.",
+        "confidence": [
+          1,
+          1,
+          2,
+          1,
+          1
+        ],
+        "confidenceRationale": "Controlled FY tranche is auditable; beyond it loss magnitude remains qualitative.",
+        "materialContradiction": false,
+        "researchStatus": "ELEVATED_WEAK",
+        "channels": [
+          {
+            "id": "FX_SETTLEMENT",
+            "exposure": "USD/JPY service receipts and foreign-currency transactions",
+            "trigger": "Adverse currency moves and timing divergence",
+            "transmission": "Unmatched receivables, payroll or settlement rates move operating and treasury P&L",
+            "loss": "Net currency transaction and settlement loss at unchanged financed principal",
+            "owner": "FH-BS",
+            "priorTreatment": "FH owns leverage, deposit access and repayment stress. No repeat principal or cash shortfall charge.",
+            "consequenceType": "FX_SETTLEMENT",
+            "control": {
+              "stage": "UNKNOWN",
+              "refs": [
+                "q3fx",
+                "h1fx",
+                "fy25fx"
+              ],
+              "through": "2026-09-30",
+              "detail": "FY scoped USD hedge implemented and observable in coverage table. Currency receipts are gross natural-hedge inputs.",
+              "effectiveness": "Q3 confirms the larger JPY exposure and GBP entry but no current maturity, counterparty or matching data; FY comparative hedge cannot establish current effectiveness."
+            },
+            "remaining": "Operating currency mismatch, basis, maturity and counterparty risk. No claim of zero group exposure.",
+            "severity": "ELEVATED",
+            "plausibility": "Credible given multinational revenue/cost funding and evidenced positions",
+            "horizon": "Operating cycle and contract settlement",
+            "materiality": "MATERIAL",
+            "counterevidence": "Disclosed currency receipts and hedge implementation mitigate some routes; no causal loss estimate.",
+            "distinct": true,
+            "refs": [
+              "q3fx",
+              "h1fx",
+              "fy25fx"
+            ],
+            "conclusion": "Material currency risk remains weakly evidenced as controlled at cutoff.",
+            "reviewerDisposition": "ACCEPTED_WITH_LIMITATIONS"
+          },
+          {
+            "id": "DELIVERY_REWORK",
+            "exposure": "Skilled labor and technology-intensive delivery",
+            "trigger": "Skills mismatch or AI integration errors on projects",
+            "transmission": "Rework and customer acceptance disputes increase cost and leakage on awarded projects",
+            "loss": "Issuer-specific delivery remediation and service-credit exposure",
+            "owner": "IC-IND",
+            "priorTreatment": "IC owns systemic AI disruption and demand; Growth owns backlog conversion. No further penalty for lower market demand.",
+            "consequenceType": "DELIVERY_REWORK",
+            "control": {
+              "stage": "UNKNOWN",
+              "refs": [
+                "execution",
+                "nov"
+              ],
+              "through": "2026-11-13",
+              "detail": "Publicly reviewed skills/technology risk and delivery footprint.",
+              "effectiveness": "No claims of successful project controls or quantified penalties."
+            },
+            "remaining": "Potential margin leakage from execution; loss magnitude unavailable.",
+            "severity": "MATERIAL",
+            "plausibility": "Plausible for complex multinational delivery, occurrence of penalties unverified",
+            "horizon": "1–3 years",
+            "materiality": "MATERIAL",
+            "counterevidence": "Historically operating franchise and delivery footprint support execution capacity.",
+            "distinct": true,
+            "refs": [
+              "execution",
+              "nov"
+            ],
+            "conclusion": "Retain as distinct exposure; no imputed realised losses.",
+            "reviewerDisposition": "ACCEPTED_WITH_LIMITATIONS"
+          }
+        ]
+      }
+    },
+    "RG-UNC": {
+      "A": {
+        "route": "A",
+        "points": 0,
+        "band": "High uncertainty",
+        "topics": {
+          "forecast_range": [
+            "nov",
+            "shift"
+          ],
+          "sensitivity": [
+            "cash"
+          ],
+          "dependencies": [
+            "cash",
+            "shift",
+            "nov"
+          ]
+        },
+        "rationale": "Observable conversion variation supports high uncertainty independent of scenario design or return level. WP5 own-model exit PE and growth sensitivities corroborate the consequence.",
+        "higher": "Changes in one material input move the investment result even when all others are held at base.",
+        "lower": "Zero is the canonical high-uncertainty band.",
+        "counterevidence": "Operating profitability and improving 9M sequential FCF give resilience; they do not narrow the modeled thesis.",
+        "limits": "Scenario endpoints are joint economic assumptions, not quantified probabilities or statistical confidence intervals.",
+        "confidence": [
+          2,
+          1,
+          2,
+          2,
+          1
+        ],
+        "confidenceRationale": "Exact verified model and historical dispersion give high confidence in the uncertainty finding.",
+        "materialContradiction": false,
+        "thesis": {
+          "classification": "HIGH",
+          "observedVariability": "Group cash conversion 28.32% to 89.40%; independent of valuation direction.",
+          "refs": [
+            "cash",
+            "shift",
+            "nov"
+          ],
+          "shared": [
+            "normalized_recurring_eps",
+            "growth",
+            "cash_conversion",
+            "exit_multiple",
+            "economic_dilution"
+          ],
+          "scenarioCoherence": "Retain coherent accepted WP5 joint cases and isolate each input around base.",
+          "rangeJustification": "Observed dispersion and scope/forecast evidence support a wide thesis beyond modeling artefacts.",
+          "artificialRange": false
+        }
+      }
+    }
+  },
+  "previous": "7fc21de300924cc0ea4ba623e3e900540a62e6ad574e797e2312270e553a4e27"
+}
