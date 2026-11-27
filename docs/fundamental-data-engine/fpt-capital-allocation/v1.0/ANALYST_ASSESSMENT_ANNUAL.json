@@ -1,0 +1,292 @@
+{
+  "ticker": "FPT",
+  "cutoff": "2025-12-31",
+  "revision": 0,
+  "freeze": "6b6a351edee29b2d5c3bd997aac59ccc542c172387d08b6b8bf09b06cf5da341",
+  "models": {
+    "CA-REINV": {
+      "A": {
+        "route": "A",
+        "points": null,
+        "band": null,
+        "criteria": {
+          "identifiedDecisions": true,
+          "deployedResources": true,
+          "outcomeLinkage": false,
+          "commissioningReviewed": true,
+          "maAndDisposalsReviewed": true,
+          "actionsComparable": false
+        },
+        "topics": {
+          "capex": [
+            "cashHistory"
+          ],
+          "acquisitions": [
+            "ma"
+          ],
+          "divestments": [
+            "ma"
+          ]
+        },
+        "rationale": "Acquisitions identified and cash CAPEX confirmed. Segment outcomes and spending cannot be causally linked.",
+        "counterevidence": "Positive FY cash after CAPEX and continuing profitability coexist with weak cash trends and more spend.",
+        "limitation": "Material commissioning and acquisition cash/outcome attribution remain unresolved.",
+        "reopening": "Event-specific commissioning, consideration and operating outcomes.",
+        "overlapResolved": true,
+        "confidence": [
+          2,
+          0,
+          2,
+          1,
+          0
+        ]
+      },
+      "PROXY": {
+        "route": "PROXY",
+        "points": null,
+        "band": null,
+        "criteria": {
+          "identifiedDecisions": true,
+          "deployedResources": true,
+          "outcomeLinkage": false,
+          "commissioningReviewed": true,
+          "maAndDisposalsReviewed": true,
+          "actionsComparable": false
+        },
+        "topics": {
+          "capex": [
+            "cashHistory"
+          ],
+          "acquisitions": [
+            "ma"
+          ],
+          "divestments": [
+            "ma"
+          ]
+        },
+        "rationale": "Acquisitions identified and cash CAPEX confirmed. Segment outcomes and spending cannot be causally linked.",
+        "counterevidence": "Positive FY cash after CAPEX and continuing profitability coexist with weak cash trends and more spend.",
+        "limitation": "Material commissioning and acquisition cash/outcome attribution remain unresolved.",
+        "reopening": "Event-specific commissioning, consideration and operating outcomes.",
+        "overlapResolved": true,
+        "confidence": [
+          2,
+          0,
+          2,
+          1,
+          0
+        ],
+        "proxy": {
+          "proxy": "PX04",
+          "mode": "CONSERVATIVE",
+          "economicScope": "CONSOLIDATED_OUTCOMES",
+          "materialDependency": "UNRESOLVED",
+          "checks": [
+            "CASH_CAPEX"
+          ],
+          "counterReview": "Positive FY cash after CAPEX and continuing profitability coexist with weak cash trends and more spend.",
+          "routeReview": {
+            "rubricId": "CA-REINV",
+            "route": "PROXY",
+            "improvementRounds": 0,
+            "originalSearchContinued": false,
+            "originalSearchAfterSufficientEvidence": false,
+            "reason": "Material commissioning and acquisition cash/outcome attribution remain unresolved."
+          }
+        }
+      }
+    },
+    "CA-DIST": {
+      "A": {
+        "route": "A",
+        "points": 1,
+        "band": "Disciplined distribution/retention",
+        "criteria": {
+          "parentCash": true,
+          "paidVsAnnounced": true,
+          "retentionEconomics": true,
+          "buybackDisposition": true,
+          "resilience": true
+        },
+        "topics": {
+          "retention": [
+            "parent"
+          ],
+          "distribution": [
+            "parentPaid"
+          ],
+          "buyback_valuation": [
+            "distReview"
+          ],
+          "resilience": [
+            "distReview",
+            "parent"
+          ]
+        },
+        "rationale": "FY parent paid distributions while contributing 2.2tn to investments. Retained cash and group balance-sheet context support a bounded FY finding.",
+        "counterevidence": "FY bridge excludes net lending and financing; H1 parent balances and payout are counterevidence to assigning adverse zero.",
+        "limitation": "FY buyback valuation inapplicable within reviewed accounts only; no comprehensive negative assurance.",
+        "reopening": "Reconcile cutoff parent cash/deployment, distribution payments and buyback coverage.",
+        "overlapResolved": true,
+        "confidence": [
+          2,
+          1,
+          2,
+          1,
+          1
+        ],
+        "maximum": {
+          "prerequisite": "Retain for high returns, distribute otherwise; sensible buyback prices and resilient balance sheet",
+          "rationale": "FY parent paid distributions while contributing 2.2tn to investments. Retained cash and group balance-sheet context support a bounded FY finding. FY bridge excludes net lending and financing; H1 parent balances and payout are counterevidence to assigning adverse zero.",
+          "refs": [
+            "parent",
+            "parentPaid",
+            "distReview"
+          ]
+        }
+      }
+    },
+    "CA-DIL": {
+      "A": {
+        "route": "A",
+        "points": null,
+        "band": null,
+        "criteria": {
+          "materialEventCoverage": false,
+          "authoritativeTerms": false,
+          "eventValue": false,
+          "netProceedsOrBounds": false,
+          "offsetsBounded": false,
+          "entitlementAligned": true,
+          "actionsComparable": false
+        },
+        "topics": {
+          "issue_terms": [
+            "fyEsop",
+            "actions"
+          ],
+          "proceeds": [
+            "parentPaid"
+          ],
+          "per_share": [
+            "actions"
+          ]
+        },
+        "rationale": "Gross-based transfer and break-even sensitivities are adverse before benefits. Historical market marks do not align to completion dates.",
+        "counterevidence": "Plausible retention/productivity benefits and genuine cash proceeds can offset an unknown portion.",
+        "limitation": "Material event timing, complete current programme coverage, net proceeds and offsets unresolved.",
+        "reopening": "Obtain matched event basis, authoritative issue inventory and economic offset bounds.",
+        "overlapResolved": true,
+        "confidence": [
+          2,
+          0,
+          2,
+          1,
+          0
+        ]
+      },
+      "PROXY": {
+        "route": "PROXY",
+        "points": null,
+        "band": null,
+        "criteria": {
+          "materialEventCoverage": false,
+          "authoritativeTerms": false,
+          "eventValue": false,
+          "netProceedsOrBounds": false,
+          "offsetsBounded": false,
+          "entitlementAligned": true,
+          "actionsComparable": false
+        },
+        "topics": {
+          "issue_terms": [
+            "fyEsop",
+            "actions"
+          ],
+          "proceeds": [
+            "parentPaid"
+          ],
+          "per_share": [
+            "actions"
+          ]
+        },
+        "rationale": "Gross-based transfer and break-even sensitivities are adverse before benefits. Historical market marks do not align to completion dates.",
+        "counterevidence": "Plausible retention/productivity benefits and genuine cash proceeds can offset an unknown portion.",
+        "limitation": "Material event timing, complete current programme coverage, net proceeds and offsets unresolved.",
+        "reopening": "Obtain matched event basis, authoritative issue inventory and economic offset bounds.",
+        "overlapResolved": true,
+        "confidence": [
+          2,
+          0,
+          2,
+          1,
+          0
+        ],
+        "proxy": {
+          "proxy": "PX05",
+          "mode": "CONSERVATIVE",
+          "economicScope": "PER_SHARE_OR_SCOPE_AFFECTED",
+          "materialDependency": "UNRESOLVED",
+          "checks": [
+            "ISSUE_TERMS"
+          ],
+          "counterReview": "Plausible retention/productivity benefits and genuine cash proceeds can offset an unknown portion.",
+          "routeReview": {
+            "rubricId": "CA-DIL",
+            "route": "PROXY",
+            "improvementRounds": 0,
+            "originalSearchContinued": false,
+            "originalSearchAfterSufficientEvidence": false,
+            "reason": "Material event timing, complete current programme coverage, net proceeds and offsets unresolved."
+          }
+        }
+      }
+    },
+    "CA-PSV": {
+      "A": {
+        "route": "A",
+        "points": 1,
+        "band": "Real per-share compounding",
+        "criteria": {
+          "actionsComparable": true,
+          "cycleReviewed": true,
+          "scopeComparable": true,
+          "distinctPerShareCrossCheck": true
+        },
+        "topics": {
+          "per_share": [
+            "eps",
+            "cashHistory"
+          ],
+          "actions": [
+            "actions"
+          ],
+          "cycle_adjustment": [
+            "cashHistory"
+          ]
+        },
+        "rationale": "Adjusted within-report EPS chain and positive group post-CAPEX cash per equivalent closing share support FY real compounding through observed variation.",
+        "counterevidence": "Cash per equivalent share fell in FY2025 versus FY2024; positive multiyear comparables and an independent cash channel support historical outcome.",
+        "limitation": "Group FCF/share is a group proxy; no inference of parent FCFE or project-level return.",
+        "reopening": "Build matched-scope recurring parent earnings and equivalent shares, with cash realization cross-check.",
+        "overlapResolved": true,
+        "confidence": [
+          2,
+          1,
+          2,
+          1,
+          1
+        ],
+        "maximum": {
+          "prerequisite": "Real comparable compounding after cycle and corporate-action adjustments",
+          "rationale": "Adjusted within-report EPS chain and positive group post-CAPEX cash per equivalent closing share support FY real compounding through observed variation. Cash per equivalent share fell in FY2025 versus FY2024; positive multiyear comparables and an independent cash channel support historical outcome.",
+          "refs": [
+            "eps",
+            "cashHistory",
+            "actions"
+          ]
+        }
+      }
+    }
+  }
+}
