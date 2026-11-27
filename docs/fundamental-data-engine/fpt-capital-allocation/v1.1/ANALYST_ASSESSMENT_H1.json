@@ -1,0 +1,63 @@
+{
+  "ticker": "FPT",
+  "cutoff": "2026-06-30",
+  "revision": 0,
+  "freeze": "d2490e31ff52a659de546862d11ce04b99fc63004e0df0d684d005da22745207",
+  "models": {
+    "CA-REINV": {},
+    "CA-DIST": {
+      "A": {
+        "route": "A",
+        "points": 1,
+        "band": "Disciplined distribution/retention",
+        "criteria": {
+          "parentCash": true,
+          "paidVsAnnounced": true,
+          "retentionEconomics": true,
+          "buybackDisposition": true,
+          "resilience": true
+        },
+        "topics": {
+          "retention": [
+            "h1Parent",
+            "cashHistory"
+          ],
+          "distribution": [
+            "h1Paid"
+          ],
+          "buyback_valuation": [
+            "h1Paid",
+            "parentPaid"
+          ],
+          "resilience": [
+            "h1Parent",
+            "h1Paid"
+          ]
+        },
+        "rationale": "Actual contributions and paid distributions coexist with a positive VND 598.075bn residual before lending and funding. Supported as bounded parent allocation with profitable historical operating economics, cash retained and parent net borrowing reduced.",
+        "counterevidence": "Negative parent CFO and dependence on mixed upstream receipts constrain recurring capacity. Contribution-specific returns and future needs remain unquantified.",
+        "limitation": "H1 parent period only. Reviewed cash-flow and equity notes contain no material buyback expenditure in scope. No exhaustive negative assurance.",
+        "reopening": "Verify new distribution commitments, parent cash availability and any financing or buyback changes.",
+        "overlapResolved": true,
+        "confidence": [
+          2,
+          1,
+          2,
+          1,
+          1
+        ],
+        "maximum": {
+          "prerequisite": "Retain for high returns, distribute otherwise; sensible buyback prices and resilient balance sheet",
+          "rationale": "Cash contributed to operations exceeded distributions, before funding the bridge was positive, cash rose and net borrowing declined. H1 combination supports bounded retention and payout rather than a project-specific return claim. Buyback valuation inapplicable in reviewed scope.",
+          "refs": [
+            "h1Parent",
+            "h1Paid",
+            "cashHistory"
+          ]
+        }
+      }
+    },
+    "CA-DIL": {},
+    "CA-PSV": {}
+  }
+}
