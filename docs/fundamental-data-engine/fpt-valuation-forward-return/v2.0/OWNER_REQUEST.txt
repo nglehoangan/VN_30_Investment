@@ -1,0 +1,986 @@
+# CODEX TASK — WP5 v2.0 Value Investing Analysis System: Analyst-Driven Valuation, Reasonableness Review & Actual FPT Scoring
+
+## 1. Owner authorization
+
+The owner approves the transition from a primarily evidence-verification-oriented valuation workflow to an analyst-driven Value Investing Analysis System.
+
+Apply the new framework to:
+
+- VAL-PRIMARY — 8 points.
+- VAL-RET — 8 points.
+- VAL-MOS — 4 points.
+
+Record the approved Analyst-Generated Assumptions and Reasonableness Review principles RR01–RR20.
+
+The required workflow is:
+
+Verified Financial Data → Data Freeze → Analyst-Generated Assumptions → Valuation Model → Reasonableness Review → Executable Validation → Scoring.
+
+The analyst must actively perform financial analysis rather than wait for externally supplied valuation assumptions.
+
+This is one coordinated WP5 v2.0 execution.
+
+Use only retained FPT evidence and the six previously approved research reports.
+
+Do not reopen WP1–WP4.
+
+Do not initiate external evidence discovery.
+
+Do not automatically proceed to WP6.
+
+## 2. Preserve governing methodology
+
+Preserve:
+
+- Canonical economic objectives.
+- Original valuation weights 8/8/4.
+- Existing canonical scoring bands.
+- Method B priority.
+- Method A ceilings 6/6/3.
+- Independent rubric eligibility.
+- Bounded IRR Assessment.
+- Zero-Dividend Credit.
+- No-Rerating Return Assessment.
+- Source authority.
+- Information availability.
+- Counterevidence.
+- Effective Score lifecycle.
+- Risk Policy.
+- Formal authority restrictions.
+
+Do not introduce qualitative substitutes for quantitative valuation.
+
+Do not create a new scoring engine.
+
+Do not modify official FPT V8.
+
+## 3. Retained implementation baseline
+
+Previous implementation:
+
+- Commit: f4978e1a804e58eea9ae8da9c431d0d55ea555d3.
+- Methodology: wp5-bounded-irr-v1.2.0.
+- Evaluator: valuation-bounded-irr-research-v1.2.0.
+- Workflow: vn30-val-research-successor-v1.2.
+- Execution: exec-b49c62e59ae2c95c831ec516.
+
+Accepted predecessor scores:
+
+- BQ: 14/25.
+- FH: 7/15.
+- GQ: 8/15.
+- IC: 5/10.
+- Combined: 34/65.
+- Coverage: 13/23.
+- Confirmed current: 9 rubrics, 41 weight, 21 points.
+- Provisional: 4 rubrics, 24 weight, 13 points.
+
+All three valuation rubrics remain N/R.
+
+Regression baseline:
+
+- TypeScript: 354/354.
+- Python: 47/47.
+- Formal integration: 33/33.
+- Official FPT V8 exact replay.
+- CURRENT_PARITY_PASS.
+- Five existing unrelated typecheck diagnostics.
+
+Resolve exact local repository state.
+
+Preserve the separately staged diagnostic report and unrelated working-tree changes.
+
+## 4. Mandatory retained source review
+
+Review:
+
+- docs/03 SCORING/METRIC_DEFINITIONS.md, sections 8.1–8.4.
+- docs/03 SCORING/SCORING_ENGINE.md.
+- docs/03 SCORING/SECTOR_NORMALIZATION.md.
+- src/domain/scoring/methodology.ts.
+- WP5 methodology amendments v1.0, v1.1 and v1.2.
+- valuation-research.ts.
+- valuation-research-v11.ts.
+- valuation-research-v12.ts.
+- Existing valuation runners, workflow hosts and tests.
+
+Review retained WP5 directories:
+
+- fpt-valuation-forward-return/v1.0/
+- fpt-valuation-forward-return/v1.1/
+- fpt-valuation-forward-return/v1.2/
+
+Reuse all approved FPT financial, market, corporate-action, segment, FH, GQ, BQ and IC evidence.
+
+Reuse the six retained ERE PDFs and EXTERNAL_RESEARCH_EVIDENCE.json.
+
+Do not repeat the entire evidence-readiness audit.
+
+## 5. Data Freeze
+
+Create one immutable data-freeze manifest for each assessment period.
+
+Include:
+
+- Issuer.
+- Assessment period.
+- Information cutoff.
+- Eligible retained financial facts.
+- Eligible retained market observations.
+- Corporate actions.
+- Research documents.
+- Extracted research observations.
+- Existing accepted economic assessments.
+- Source identities and hashes.
+- Information availability.
+- Known limitations.
+
+Current cutoff:
+
+2026-11-13.
+
+Annual foundation:
+
+FY2022–FY2025 with the existing retrospective FY information window ending 2026-04-08.
+
+Later research must not enter the earlier FY assessment.
+
+Once data is frozen:
+
+- Analyst uses only the frozen dataset.
+- Reviewer uses only the frozen dataset.
+- Executable validates against the frozen dataset.
+- No automatic external research requests.
+- No additional broker reports.
+- No automatic evidence-discovery loop.
+
+Missing evidence may remain a limitation.
+
+## 6. Separate three classes of model inputs
+
+### FACT
+
+Examples:
+
+- Reported parent NPAT.
+- Market price.
+- Reported ordinary shares.
+- Historical distributions.
+- Historical corporate actions.
+
+Require source identity, provenance and correct definition.
+
+### CALCULATED
+
+Examples:
+
+- EPS.
+- Historical CAGR.
+- P/E.
+- Economic dilution calculation.
+- IRR.
+- MOS.
+- Present value.
+
+Require reproducible formulas and correct input references.
+
+### ANALYST_ESTIMATE
+
+Examples:
+
+- Normalized recurring earnings.
+- Sustainable future growth.
+- Economic dilution outlook.
+- Future dividend payout.
+- Fair P/E.
+- Exit P/E.
+- Cost of Equity.
+- Terminal growth.
+- Conservative impairment scenario.
+
+Require economic reasoning, applicable factual anchors and Reasonableness Review.
+
+Do not require external publication of the exact analyst-selected estimate.
+
+Do not require an estimate to meet the certainty standard of a historical financial fact.
+
+Preserve forecast and estimate labels throughout the workflow.
+
+## 7. Mandatory Financial Analyst responsibility
+
+The analyst must actively construct:
+
+1. Normalized earnings or a defensible economic earnings proxy.
+2. Sustainable growth scenarios.
+3. Economic dilution assumptions.
+4. Shareholder distribution assumptions.
+5. Relative or absolute valuation multiples.
+6. Cost of capital where required by the selected model.
+7. Forecast horizon extension.
+8. Representative valuation.
+9. Five-year expected shareholder return.
+10. Conservative intrinsic value.
+11. Downside and permanent impairment assessment.
+
+Do not respond to missing future estimates by immediately returning N/R.
+
+First attempt to derive or estimate them from the frozen evidence.
+
+A forecast need not be explicitly supplied by a broker or the issuer.
+
+The analyst must explain how available evidence supports the selected estimate.
+
+Do not use arbitrary assumptions or invent facts.
+
+If a material conclusion cannot be defended after the required analysis and bounded review, retain genuine N/R.
+
+## 8. Analyst assumption product
+
+For every material assumption record:
+
+- Assumption ID.
+- Classification.
+- Value or range.
+- Unit.
+- Model.
+- Affected rubric.
+- Frozen evidence references.
+- Derivation method.
+- Economic rationale.
+- Alternative assumptions considered.
+- Historical anchor.
+- External research anchor when available.
+- Scope and corporate-action treatment.
+- Downside sensitivity.
+- Counterevidence.
+- Material limitations.
+
+The analyst must produce an actual model and proposed conclusion before Reasonableness Review.
+
+Do not require the reviewer to preauthorize every estimate before the model is calculated.
+
+The analyst proposal must be immutable for the first review.
+
+## 9. Reasonableness Review framework
+
+Use the six approved review dimensions.
+
+### RV01 — Historical Consistency
+
+Review the estimate against available historical financial and operating evidence.
+
+Historical similarity is not mandatory.
+
+A different future trajectory may be accepted when the analyst explains the economic reason.
+
+### RV02 — External Corroboration
+
+OPTIONAL SUPPORT.
+
+Use retained broker, industry and macro evidence when relevant.
+
+Do not require a second analyst organization to provide the same estimate.
+
+Do not require an external document to confirm the precise chosen growth rate, fair multiple, dividend, dilution or terminal forecast.
+
+Absence of exact external corroboration is not an independent blocking condition.
+
+### RV03 — Economic Consistency
+
+MANDATORY REVIEW.
+
+Assess whether the assumptions are economically plausible considering:
+
+- Business model.
+- Demand.
+- Competitive position.
+- Returns on capital.
+- Reinvestment.
+- Cash generation.
+- Capital requirements.
+- Funding.
+- Shareholder economics.
+
+Use sector-appropriate reasoning.
+
+### RV04 — Internal Consistency
+
+MANDATORY REVIEW.
+
+Review consistency among:
+
+- Earnings.
+- Growth.
+- Reinvestment.
+- Cash flow.
+- Payout.
+- Funding.
+- Dilution.
+- Valuation.
+- Corporate actions.
+
+Reject material contradictions or double counting.
+
+### RV05 — Conservatism and Sensitivity
+
+MANDATORY REVIEW.
+
+Review representative, downside and upside assumptions.
+
+A reasonable base need not remain within one canonical band under every stress scenario.
+
+Do not require an exhaustive mathematically guaranteed bound over all possible future events.
+
+Distinguish a defensible expected-return assessment from a stress-only floor.
+
+### RV06 — Counterevidence
+
+MANDATORY REVIEW.
+
+Review all material adverse evidence in the frozen dataset.
+
+Do not require elimination of every uncertainty.
+
+Distinguish:
+
+- Resolved contradiction.
+- Bounded limitation.
+- Unresolved non-invalidating uncertainty.
+- Material contradiction.
+- Confirmed invalidation.
+
+Only economically relevant material contradictions should block the affected conclusion.
+
+## 10. Reviewer independence
+
+Separate analyst proposal and reviewer challenge into distinct persisted steps.
+
+The reviewer must challenge the assumptions rather than simply restate the analyst's rationale.
+
+Record:
+
+- Specific issue.
+- Relevant frozen evidence.
+- Economic reasoning.
+- Potential effect on the model.
+- Materiality.
+- Recommended correction if required.
+
+The reviewer cannot silently approve unsupported assumptions.
+
+Two reviews performed by the same AI are procedural separation, not independent external expert corroboration.
+
+Do not describe them as independent research organizations.
+
+No additional external evidence discovery is permitted.
+
+## 11. Permitted blocking conditions
+
+Use the following blocking reason classes.
+
+RB01 — Invalid factual basis.
+
+RB02 — Incorrect arithmetic, formula, units or scope.
+
+RB03 — Material economic or internal contradiction.
+
+RB04 — Arbitrary estimate without defensible reasoning.
+
+RB05 — Material uncertainty that prevents a defensible economic conclusion.
+
+Every blocking disposition must identify:
+
+- Specific failed assumption or conclusion.
+- Actual affected model and rubric.
+- Evidence or contradiction.
+- Why the issue is material.
+- Whether a simpler approved model could resolve it.
+- Why an estimate, range or conservative case cannot reasonably resolve it.
+
+The following are not automatic blockers:
+
+- No precise externally published forecast.
+- No forecast extending to the exact terminal date.
+- No externally published normalized EPS.
+- No second broker agreeing with the estimate.
+- No guarantee of future dividend.
+- No exact future ESOP schedule.
+- Scenario results crossing canonical bands.
+- Expected IRR below the investor objective.
+- Low confidence by itself, subject to existing governing gates.
+
+Preserve mandatory source and scoring authority requirements.
+
+## 12. Reasonableness Review dispositions
+
+Support:
+
+ACCEPTED.
+
+ACCEPTED_WITH_LIMITATIONS.
+
+REVISION_REQUIRED.
+
+REJECTED.
+
+An ACCEPTED_WITH_LIMITATIONS estimate can support valuation and scoring when the economic conclusion remains defensible.
+
+Map accepted estimates into existing QUALIFIED_ESTIMATE or BOUNDED_ESTIMATE structures with explicit model-specific limitations.
+
+Do not promote an estimate merely because the reviewer assigned an accepted label.
+
+Require the recorded reasoning and evidence lineage.
+
+Do not overwrite source facts with estimates.
+
+Do not promote hypothetical sensitivities without economic justification.
+
+## 13. One-revision limit
+
+Perform:
+
+1. Initial analyst proposal.
+2. Initial Reasonableness Review.
+3. One analyst revision where required.
+4. Final Reasonableness Review.
+5. Final executable validation and scoring.
+
+No second revision cycle.
+
+No repeated research discovery.
+
+No requirement to bring every assumption to the same confidence level.
+
+At the final review, issue a definitive disposition.
+
+Where a defensible estimate or simpler approved model exists, use it.
+
+Where no defensible conclusion exists, retain N/R with the precise reason.
+
+## 14. Actual FPT earnings analysis
+
+Retained reference values:
+
+- Raw close: 50,100 VND.
+- Conditional ordinary shares: 1,885,727,648.
+- Parent NPAT 9M2026: 7,778,081,180,761 VND.
+- Mechanical annualized EPS: 5,499.61 VND.
+- TCBS 2026 forecast EPS: 5,624 VND.
+- TCBS FY2026–2030 parent NPAT CAGR: approximately 9.85%.
+- Historical ESOP reference: approximately 0.7%.
+- TCBS forecast payout: approximately 36%.
+
+Verify against retained artifacts.
+
+The analyst must construct a recurring earnings bridge.
+
+Review:
+
+- Appropriations.
+- Finance income.
+- Nonrecurring income and expenses.
+- Seasonality.
+- FTEL equity-method treatment.
+- Parent versus group economics.
+- Minority interests.
+- Corporate-action basis.
+
+Where exact adjustment amounts are unavailable, consider economically justified bounded estimates.
+
+Do not assume all unobserved adjustments are zero.
+
+Do not call a mechanically haircutted EPS normalized earnings without explaining the economic adjustment.
+
+Potential trial anchors include 4,400, 4,950 and 5,500 VND.
+
+These are owner-side illustrative model candidates only.
+
+Do not mechanically adopt them.
+
+Produce independently derived values or ranges.
+
+## 15. Actual VAL-PRIMARY analyst assessment
+
+Preserve canonical weight 8 and Method A ceiling 6.
+
+Evaluate the approved sector-appropriate Method B candidates first.
+
+Where detailed DCF or SOTP cannot be supported, perform Method A normalized earnings valuation or another eligible quantitative valuation.
+
+The analyst must actively estimate:
+
+- Recurring earnings.
+- Fair valuation multiple or eligible alternative valuation parameters.
+- Representative value.
+- Downside value.
+- Upside value.
+
+Review retained valuation references, growth, ROIC, cash realization, funding, industry risk and FTEL.
+
+Do not copy broker target prices.
+
+Illustrative trial:
+
+- Downside: EPS 4,400 × P/E 8 = 35,200 VND.
+- Representative: EPS 4,950 × P/E 12 = 59,400 VND.
+- Upside: EPS 5,500 × P/E 14 = 77,000 VND.
+
+Illustrative candidate: 5/8.
+
+Neither inputs nor points are preapproved.
+
+The analyst must select actual justified assumptions.
+
+Reasonableness Review must independently assess the model.
+
+Review material cash-flow counterevidence.
+
+Do not require an independently qualified DCF merely to validate an otherwise supportable earnings valuation.
+
+Do not average conflicting models mechanically.
+
+## 16. Actual VAL-RET analyst assessment
+
+Preserve canonical weight 8.
+
+Bands:
+
+- Below 8%: 0–1.
+- 8% to below 12%: 2–3.
+- 12% to below 15%: 4–5.
+- 15% to below 18%: 6.
+- 18% to below 22%: 7.
+- At least 22%: 8.
+
+Method A ceiling 6.
+
+The analyst must actively construct:
+
+- Starting economic earnings basis.
+- Sustainable earnings growth.
+- Economic dilution.
+- Distribution assumptions.
+- Exit valuation.
+- Five-year forecast.
+- Downside, representative and upside cases.
+
+Use retained TCBS forecast revisions.
+
+Review historical issuance and ESOP.
+
+Separate pro-rata stock dividends from economic dilution.
+
+Avoid double dilution.
+
+Extend the forecast to 13 November 2031 through an explicitly identified analyst estimate.
+
+No external report covering that exact date is required.
+
+Preserve Bounded IRR, No-Rerating and Zero-Dividend Credit forms.
+
+Do not treat zero credit as forecast zero dividends.
+
+Do not treat a stress-only return floor as expected total return without economic justification.
+
+Illustrative trial assumptions:
+
+| Input | Downside | Base | Upside |
+|---|---:|---:|---:|
+| EPS | 4,400 | 4,950 | 5,500 |
+| Growth | 5% | 9% | 12% |
+| Dilution | 1.5% | 0.7% | 0.3% |
+| Payout | 0% | 20% | 35% |
+| Exit P/E | 8 | 10 | 12 |
+
+Illustrative candidate: 2/8.
+
+Do not treat these assumptions or points as prescribed targets.
+
+Calculate actual independently constructed cash flows.
+
+Verify investor entitlement, horizon, scenario consistency and expected-return interpretation.
+
+Do not return N/R because IRR fails the investor target.
+
+## 17. Actual VAL-MOS analyst assessment
+
+Preserve canonical weight 4 and Method A ceiling 3.
+
+Construct an independent conservative quantitative valuation.
+
+Do not require a representative PRIMARY score.
+
+Review:
+
+- Conservative earnings.
+- Conservative valuation.
+- Business downside.
+- Funding and refinancing.
+- Cash conversion.
+- Capital impairment.
+- Economic dilution.
+- FTEL exposure.
+- Asset or associate value where applicable.
+
+Illustrative trial:
+
+- Conservative EPS: 4,400.
+- Conservative P/E: 8.
+- Value: 35,200 VND.
+- Market price: 50,100 VND.
+- Indicative MOS: approximately -42.33%.
+- Price-relative downside: approximately -29.74%.
+
+Illustrative candidate: 1/4.
+
+This is not an approved score or qualified conservative value.
+
+The analyst must justify the stressed value and assess permanent impairment economically.
+
+Do not require a guarantee that permanent loss cannot occur.
+
+Do not treat an arbitrary lowest sensitivity as a conservative intrinsic value.
+
+Allow zero points when poor asymmetry is actually established.
+
+## 18. Executable responsibility
+
+The executable validates:
+
+- Data-freeze identity.
+- Source references.
+- Temporal eligibility.
+- Financial definitions.
+- Units.
+- Scope.
+- Corporate-action treatment.
+- Calculation integrity.
+- Model dependencies.
+- Analyst proposal identity.
+- Review identity.
+- Review disposition.
+- Material contradiction status.
+- Canonical bands.
+- Route ceilings.
+- Existing maximum prerequisites.
+- Effective Score.
+- Scoring authority.
+
+The executable must not reject an estimate solely because no external source contains its exact numeric value.
+
+The executable must not become an autonomous economic assumption selector.
+
+It must not convert unsupported analyst assertions into valid estimates.
+
+Validate review reasoning structure and material dependency consistency.
+
+Preserve rubric-specific cross-check and counterevidence.
+
+Preserve existing approved method priority.
+
+## 19. Model and review outputs
+
+For each rubric and assessment period produce:
+
+### A. Analyst assumption table
+
+| Assumption | Fact/calculated/estimate | Value/range | Derivation | Evidence | Limitations |
+
+### B. Model output
+
+| Scenario | Inputs | Calculated value or IRR | Economic meaning |
+
+### C. Reasonableness Review
+
+| RV criterion | Challenge | Materiality | Verdict | Required revision |
+
+### D. Revision trace
+
+| Original assumption | Reviewer issue | Revised assumption | Analyst response | Final verdict |
+
+### E. Final scoring trace
+
+| Rubric | Route | Qualified conclusion | Analyst points | Review disposition | Executable points | Effective Score |
+
+No automatic numerical score requirement.
+
+## 20. Confidence and Effective Score
+
+Reuse the accepted five-dimensional confidence model.
+
+Do not create a separate numeric Reasonableness Score.
+
+Limited confidence may accompany an eligible conservative assessment.
+
+Preserve:
+
+- Current validity.
+- Confidence.
+- Review limitations.
+- Method.
+- Model identity.
+- Assessment cutoff.
+- Source and assumption lineage.
+- Risk and authority restrictions.
+
+Do not mechanically inherit historical valuation points.
+
+Recalculate current valuation using eligible current market basis.
+
+## 21. Reusable architecture
+
+Implement the analyst-driven framework within the existing valuation architecture.
+
+Do not create a competing valuation engine.
+
+Update the existing seven skills:
+
+1. equity-s1-s5-assessment.
+2. vn30-evidence-coverage-closure.
+3. vn30-incremental-scoring.
+4. vn30-rollout-orchestrator.
+5. vn30-structural-nr-remediation.
+6. vn30-scoring-publication-hygiene.
+7. vn30-external-research-evidence.
+
+Add:
+
+- Data Freeze.
+- Analyst-generated estimates.
+- Fact/calculated/estimate separation.
+- Reasonableness Review.
+- Optional external corroboration.
+- Material blocking reason classification.
+- One-revision limit.
+- Model-specific analyst proposals.
+- Final economic disposition.
+- Retained audit lineage.
+
+Parameterize for any VN30 ticker.
+
+Use sector-specific valuation methods.
+
+Actual execution is FPT only.
+
+Do not automatically process other VN30 issuers.
+
+## 22. Required tests
+
+Verify:
+
+- Analyst-generated estimates can qualify without exact external numerical confirmation.
+- Missing optional external corroboration does not automatically block.
+- Invalid financial facts still block.
+- Incorrect calculations still block.
+- Arbitrary estimates are rejected.
+- Unsupported reviewer acceptance cannot bypass validation.
+- Material economic contradictions remain blocking.
+- Nonmaterial uncertainty can remain as a limitation.
+- Accepted-with-limitations estimates can support eligible scoring.
+- Data Freeze prevents unauthorized new evidence use.
+- Forecast and financial facts remain distinct.
+- Analyst proposal is bound to the exact reviewer disposition.
+- One-revision stopping rule.
+- Independent PRIMARY, RET and MOS eligibility.
+- Method B priority.
+- Method A ceilings.
+- Low and negative qualified IRR scoring.
+- Numeric zero distinct from N/R.
+- Bounded IRR and zero-credit regression.
+- Corporate-action entitlement and dilution controls.
+- Analyst-generated terminal extension.
+- Price-only refresh.
+- Material model invalidation.
+- Existing formal authority rejection.
+
+Use synthetic tests only to validate architecture.
+
+Do not substitute synthetic model success for actual FPT assessment.
+
+## 23. Actual cumulative workflow
+
+Execute both retained assessment periods under their respective information windows.
+
+Complete:
+
+1. Data Freeze.
+2. Actual financial analyst assessment.
+3. Actual valuation model calculation.
+4. Reasonableness Review.
+5. One revision if required.
+6. Final review.
+7. Executable validation.
+8. Actual Effective Score.
+9. Prepare.
+10. Adoption.
+11. Preflight.
+12. Scoring.
+13. Cumulative aggregation.
+14. Analytical Decision inputs.
+15. Research HTML rendering.
+
+The analyst must produce actual quantitative valuation work.
+
+The final report must demonstrate how assumptions were generated, reviewed and used, not merely restate a list of missing inputs.
+
+## 24. Score accounting
+
+Preserve WP1–WP4 at 34/65.
+
+Add only actual eligible valuation points and rated weights.
+
+Illustrative example:
+
+PRIMARY 5/8, RET 2/8, MOS 1/4 produces:
+
+- Valuation: 8/20.
+- Combined: 42/85.
+- Effective coverage: 16/23.
+
+This is not a target or expected acceptance result.
+
+Do not normalize partial scores.
+
+Do not treat N/R as zero.
+
+Full Investment Score remains null while other rubric weights are unresolved.
+
+## 25. Risk and authority restrictions
+
+Preserve:
+
+- Stage 0 UNKNOWN.
+- Hard Veto PENDING.
+- Residual Risk NOT_RATED.
+- Formal FH gates NOT_ASSESSED.
+- Formal valuation authority not granted.
+- Formal ranking disabled.
+- Investment actionability disabled.
+- Production scoring disabled.
+- Production publication disabled.
+
+Do not produce actionable investment decisions.
+
+Do not change the owner's investment objective or canonical thresholds.
+
+## 26. Regression and artifact governance
+
+Verify:
+
+- All 13 accepted predecessor scores unchanged.
+- WP5 v1.0–v1.2 artifacts unchanged.
+- Official FPT V8 exact replay.
+- Formal scoring parity.
+- Full relevant TypeScript suite.
+- Full relevant Python suite.
+- Formal integration tests.
+- Seven skill updates.
+- Existing five typecheck diagnostics unchanged.
+
+Report actual test results.
+
+Create a scoped local implementation commit.
+
+Do not push without authorization.
+
+Preserve separately staged diagnostic documentation.
+
+## 27. Final deliverable
+
+Create:
+
+WP5_V2_0_VALUE_INVESTING_ANALYSIS_FPT_FINAL_CLOSURE.md
+
+Suggested directory:
+
+docs/fundamental-data-engine/fpt-valuation-forward-return/v2.0/
+
+Include:
+
+1. Owner authorization.
+2. Exact predecessor identity.
+3. Methodology amendment.
+4. Data Freeze manifest.
+5. Analyst-generated assumption register.
+6. Actual earnings normalization analysis.
+7. Actual PRIMARY model.
+8. Actual RET model.
+9. Actual MOS model.
+10. Initial Reasonableness Review.
+11. One revision trace where applicable.
+12. Final review.
+13. Executable validation.
+14. Actual Effective Scores.
+15. Confidence and limitations.
+16. Cumulative workflow.
+17. Seven skill updates.
+18. Regression.
+19. Artifact hashes.
+20. Implementation commit.
+21. Final acceptance recommendation.
+
+## 28. Execution summary
+
+Return:
+
+- Analyst-generated assumptions count.
+- Accepted estimates.
+- Accepted-with-limitations estimates.
+- Revised estimates.
+- Rejected estimates.
+- Material blockers by rubric.
+- Normalized earnings range.
+- Representative fair value.
+- Conservative intrinsic value.
+- Five-year base IRR.
+- Downside IRR.
+- Upside IRR.
+- MOS.
+- Actual PRIMARY score.
+- Actual RET score.
+- Actual MOS score.
+- Valuation assessed points and rated weight.
+- Cumulative score.
+- Effective coverage.
+- Confidence.
+- Remaining genuine N/R.
+- Workflow verdict.
+- Regression verdict.
+- Implementation commit.
+- Final research acceptance recommendation.
+
+## 29. Stopping rules
+
+One coordinated implementation and assessment.
+
+One analyst revision maximum.
+
+No external evidence discovery.
+
+No repeated assumption qualification loop.
+
+No reopening WP1–WP4.
+
+No requirement for externally published exact assumptions.
+
+No automatic qualification of analyst estimates.
+
+No forced score.
+
+No target-seeking valuation.
+
+No weakening of source integrity, canonical methodology or Risk Policy.
+
+No new scoring engine.
+
+No duplicate skill.
+
+No production activation.
+
+If the analyst can construct a defensible valuation conclusion, score it.
+
+If the conclusion is unfavorable, assign the appropriate low score.
+
+If material economic uncertainty genuinely prevents a defensible conclusion after the bounded process, retain N/R.
+
+Stop after the actual FPT reassessment and final consolidated closure report.

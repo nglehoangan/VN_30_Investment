@@ -1,0 +1,277 @@
+{
+  "proposal": "7630e1a6b2b42167890dc8e30b514457f86242c643760a115e2da54b2087e3c5",
+  "freeze": "ac276f6e1e2eee96787d9abd16e5a95cd71e97cbb473b024dba86bfc684951c4",
+  "revision": 0,
+  "assessments": {
+    "VAL-PRIMARY": {
+      "disposition": "REVISION_REQUIRED",
+      "dimensions": [
+        {
+          "id": "RV01",
+          "challenge": "Does working parent EPS overstate recurring economics where finance and investment income fluctuate?",
+          "effect": "The residual reserve and fund deduction protect the range; exact contribution remains unallocated.",
+          "materiality": "SUPPORTING",
+          "refs": [
+            "q3",
+            "cash_history",
+            "ftel",
+            "financial_health"
+          ],
+          "verdict": "SUPPORTED"
+        },
+        {
+          "id": "RV02",
+          "challenge": "Do historical multiples overstate the usable range after FTEL and cash deterioration?",
+          "effect": "Use comparative context only; the latest outlook does not settle the cash conversion required by the proposed multiple.",
+          "materiality": "SUPPORTING",
+          "refs": [
+            "sep_pe",
+            "nov_cash_quality"
+          ],
+          "verdict": "SUPPORTED"
+        },
+        {
+          "id": "RV03",
+          "challenge": "Can growth support equity value after reinvestment when cash returns are volatile?",
+          "effect": "Model values do not assume that group FCF transfers directly to parent. Require higher earnings yield.",
+          "materiality": "MATERIAL",
+          "refs": [
+            "q3",
+            "cash_history",
+            "ftel",
+            "financial_health"
+          ],
+          "verdict": "LIMITATION"
+        },
+        {
+          "id": "RV04",
+          "challenge": "Does the model mix group FCF, parent earnings or an extra FTEL ownership value?",
+          "effect": "No group cash transfer, equity-accounted asset addback, or unrestricted liquidity credit.",
+          "materiality": "MATERIAL",
+          "refs": [
+            "q3",
+            "cash_history",
+            "ftel",
+            "financial_health"
+          ],
+          "verdict": "SUPPORTED"
+        },
+        {
+          "id": "RV05",
+          "challenge": "Does the base survive the cash-conversion challenge without averaging cross-checks?",
+          "effect": "The 12× center materially overweights accounting earnings given the unresolved gap to owner cash sensitivities. Lower the range and reassess the band.",
+          "materiality": "MATERIAL",
+          "refs": [
+            "q3",
+            "cash_history",
+            "ftel",
+            "financial_health"
+          ],
+          "verdict": "BLOCKING"
+        },
+        {
+          "id": "RV06",
+          "challenge": "Does recurring earnings valuation mask material liquidity and rollover risk?",
+          "effect": "Bounded for a mid-band or lower valuation judgment; the weakness prevents strong upside claims.",
+          "materiality": "MATERIAL",
+          "refs": [
+            "q3",
+            "cash_history",
+            "ftel",
+            "financial_health"
+          ],
+          "verdict": "LIMITATION"
+        }
+      ],
+      "dependencies": [
+        "normalized_eps",
+        "fair_pe"
+      ],
+      "limits": "Research judgment only. Cash conversion, true parent cash transfer, economic dilution and funding conditions are not fully observed.",
+      "blockers": [
+        {
+          "code": "RB04",
+          "dependency": "fair_pe",
+          "detail": "The 12× center materially overweights accounting earnings given the unresolved gap to owner cash sensitivities. Lower the range and reassess the band.",
+          "simplerModel": "Keep normalized earnings method and deepen yield discount; cash only remains an adverse sensitivity.",
+          "range": "The original range and 12× midpoint do not materially answer the cash challenge."
+        }
+      ]
+    },
+    "VAL-RET": {
+      "disposition": "ACCEPTED_WITH_LIMITATIONS",
+      "dimensions": [
+        {
+          "id": "RV01",
+          "challenge": "Is sustained growth defensible after scaled economics and downward revisions?",
+          "effect": "Growth is below the historical trajectory and revised issuer-scope forecasts; downside allows low growth.",
+          "materiality": "SUPPORTING",
+          "refs": [
+            "q3",
+            "cash_history",
+            "ftel",
+            "financial_health"
+          ],
+          "verdict": "SUPPORTED"
+        },
+        {
+          "id": "RV02",
+          "challenge": "Does changed EPS from projected capitalizations provide any independent per-holder forecast?",
+          "effect": "Published denominator bridge is deliberately excluded from annual investor-equivalent growth.",
+          "materiality": "SUPPORTING",
+          "refs": [
+            "nov_ending_shares",
+            "jun_eps"
+          ],
+          "verdict": "SUPPORTED"
+        },
+        {
+          "id": "RV03",
+          "challenge": "Can a 15% cash distribution coexist with investment needs and weak conversion?",
+          "effect": "Limited central cash credit is compatible with strong retention. The downside has zero credit.",
+          "materiality": "MATERIAL",
+          "refs": [
+            "q3",
+            "cash_history",
+            "ftel",
+            "financial_health"
+          ],
+          "verdict": "LIMITATION"
+        },
+        {
+          "id": "RV04",
+          "challenge": "Are pro-rata shares, ESOP and cash flows handled on one investor entitlement basis?",
+          "effect": "Anniversary flows use cutoff-equivalent ownership and separately apply economic dilution once.",
+          "materiality": "MATERIAL",
+          "refs": [
+            "q3",
+            "cash_history",
+            "ftel",
+            "financial_health"
+          ],
+          "verdict": "SUPPORTED"
+        },
+        {
+          "id": "RV05",
+          "challenge": "Do price-multiple contraction and zero credit overturn the central conclusion?",
+          "effect": "Adverse and favorable cases can cross bands. The central estimate is an expectation, with disclosed no-rerating and zero-credit checks.",
+          "materiality": "MATERIAL",
+          "refs": [
+            "q3",
+            "cash_history",
+            "ftel",
+            "financial_health"
+          ],
+          "verdict": "LIMITATION"
+        },
+        {
+          "id": "RV06",
+          "challenge": "Can a five-year assumption be extended beyond the last retained forecast without asserting the same forecast coverage?",
+          "effect": "Continue fading economics to the fifth anniversary using an analyst estimate; no extra report is necessary.",
+          "materiality": "MATERIAL",
+          "refs": [
+            "q3",
+            "cash_history",
+            "ftel",
+            "financial_health"
+          ],
+          "verdict": "LIMITATION"
+        }
+      ],
+      "dependencies": [
+        "normalized_eps",
+        "growth",
+        "dilution",
+        "payout",
+        "exit_pe"
+      ],
+      "limits": "Research judgment only. Cash conversion, true parent cash transfer, economic dilution and funding conditions are not fully observed.",
+      "blockers": []
+    },
+    "VAL-MOS": {
+      "disposition": "ACCEPTED_WITH_LIMITATIONS",
+      "dimensions": [
+        {
+          "id": "RV01",
+          "challenge": "Does the lasting earnings impairment use a demonstrable downside channel?",
+          "effect": "Stress linked to recurring cash pressure, technology investment and rollover exposure, with a defined lasting earnings reduction.",
+          "materiality": "SUPPORTING",
+          "refs": [
+            "q3",
+            "cash_history",
+            "ftel",
+            "financial_health"
+          ],
+          "verdict": "SUPPORTED"
+        },
+        {
+          "id": "RV02",
+          "challenge": "Can the broker or peer work establish an issuer-specific conservative multiple?",
+          "effect": "External target prices have no role in stressed value.",
+          "materiality": "SUPPORTING",
+          "refs": [],
+          "verdict": "OPTIONAL_ABSENT"
+        },
+        {
+          "id": "RV03",
+          "challenge": "Is a lower multiple adequate once access to deposits and short tenor funding are stressed?",
+          "effect": "Premium yield and stressed earnings both respond to a durable shortfall; severe distress remains a tail.",
+          "materiality": "MATERIAL",
+          "refs": [
+            "q3",
+            "cash_history",
+            "ftel",
+            "financial_health"
+          ],
+          "verdict": "LIMITATION"
+        },
+        {
+          "id": "RV04",
+          "challenge": "Does the stress double count finance charges or add unsupported asset upside?",
+          "effect": "No second charge for embedded finance costs and no uncertain cash or associate addback.",
+          "materiality": "MATERIAL",
+          "refs": [
+            "q3",
+            "cash_history",
+            "ftel",
+            "financial_health"
+          ],
+          "verdict": "SUPPORTED"
+        },
+        {
+          "id": "RV05",
+          "challenge": "Does the computed discount reflect meaningful downside at the observed price?",
+          "effect": "Calculated MOS and price-relative downside establish the limited cushion directly.",
+          "materiality": "MATERIAL",
+          "refs": [
+            "q3",
+            "cash_history",
+            "ftel",
+            "financial_health"
+          ],
+          "verdict": "LIMITATION"
+        },
+        {
+          "id": "RV06",
+          "challenge": "Could forced refinancing or FTEL cash shortfall create worse permanent impairment?",
+          "effect": "Tail impairment can exceed the model; ordinary ability to earn and refinance remains conditional.",
+          "materiality": "MATERIAL",
+          "refs": [
+            "q3",
+            "cash_history",
+            "ftel",
+            "financial_health"
+          ],
+          "verdict": "LIMITATION"
+        }
+      ],
+      "dependencies": [
+        "normalized_eps",
+        "fair_pe",
+        "permanent_impairment"
+      ],
+      "limits": "Research judgment only. Cash conversion, true parent cash transfer, economic dilution and funding conditions are not fully observed.",
+      "blockers": []
+    }
+  }
+}
